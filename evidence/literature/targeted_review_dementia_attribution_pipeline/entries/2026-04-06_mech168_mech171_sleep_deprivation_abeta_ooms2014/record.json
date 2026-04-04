@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dementia_attribution_pipeline",
+  "entry_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_ooms2014",
+  "timestamp_utc": "2026-04-06T00:30:00Z",
+  "claim_ids_tested": ["MECH-168", "MECH-171"],
+  "source": {
+    "title": "Effect of 1 night of total sleep deprivation on cerebrospinal fluid beta-amyloid 42 in healthy middle-aged men: a randomized clinical trial.",
+    "authors": ["Ooms S", "Overeem S", "Besse K", "Rikkert MO", "Verbeek M", "Claassen JAHR"],
+    "year": 2014,
+    "venue": "JAMA Neurology",
+    "doi": "10.1001/jamaneurol.2014.1173",
+    "pmid": "24887018"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "RCT design (n=26, randomized to 1 night total sleep deprivation vs. unrestricted sleep); PSG monitoring; intrathecal catheter for serial CSF sampling. Normal sleep produced a 6% decrease in Abeta42 overnight; sleep deprivation counteracted this, with a 75.8 pg/mL between-group difference. The 2014 JAMA Neurology publication gives this the most public profile of the sleep-deprivation Abeta series. Supports MECH-168 (substrate damage accumulation is sleep-dependent) and MECH-171 (sleep deprivation arm of the vicious cycle).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Single-night deprivation; chronic effects and staging of pipeline failure cannot be inferred.",
+    "All male sample, ages 40-60, cognitively normal -- generalisability to AD population and to women uncertain.",
+    "Measures Abeta42 specifically; does not address tau pathology or downstream attribution pipeline impairment."
+  ],
+  "tags": ["mech168", "mech171", "alzheimers_disease", "sleep_deprivation", "amyloid_beta", "csf", "jama_neurology", "rct"],
+  "mapping": {
+    "source_claim_statement": "One night of total sleep deprivation in healthy middle-aged men (40-60 years) prevents the normal overnight decrease in CSF Abeta42. Normal sleep reduces Abeta42 by ~6%; sleep deprivation counteracts this. Tau and Abeta40 were not significantly changed.",
+    "ree_translation": "MECH-168 posits that the overnight amyloid clearance that sleep enables is the substrate-maintenance function underlying the offline attribution pipeline. When sleep is lost, this clearance fails, beginning the accumulation that eventually degrades pipeline infrastructure. MECH-171 (vicious cycle) requires that sleep deprivation worsens amyloid burden; this paper is one of the cleanest demonstrations of that mechanism.",
+    "mapping_caveat": "The Abeta42 specificity (not Abeta40, not tau) limits inference to early amyloid phase of AD pathology; tau hyperphosphorylation and neurodegeneration are separate substrate damage processes not covered here.",
+    "source_context": "AWAKE study (Radboud Alzheimer Center); 26 cognitively normal men; PSG-monitored; intrathecal catheter serial CSF sampling at defined time points."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "RCT with strong design; JAMA Neurology. Mapping limited by healthy adults, male only, single night. Clear demonstration of the sleep->Abeta mechanism that underlies MECH-171 but does not test attribution pipeline directly."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dementia_attribution_pipeline",
+  "entry_id": "2026-04-06_inv046_inv047_episodic_semantic_dissociation_urbanowitsch2013",
+  "timestamp_utc": "2026-04-06T00:30:00Z",
+  "claim_ids_tested": ["INV-046", "INV-047"],
+  "source": {
+    "title": "Autobiographical memory: a clinical perspective.",
+    "authors": ["Urbanowitsch N", "Gorenc L", "Herold CJ", "Schroder J"],
+    "year": 2013,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2013.00194",
+    "pmid": "24339804"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Clinical study using a standardised autobiographical memory instrument (E-AGI) across MCI, early AD, and moderate AD groups (same instrument across all groups enables direct comparison). Key findings: episodic autobiographical memory (richness of detail) impaired already in MCI; semantic autobiographical memory spared until moderate stages -- direct dissociation across disease stages. This is the most direct published demonstration of the staging pattern predicted by INV-047 (staged decline follows reverse pipeline dependency) and supports INV-046 (dementia is primarily a contextual attribution failure, since episodic-contextual retrieval fails before semantic knowledge). Confidence limited by single-centre study, moderate sample sizes, and the E-AGI instrument.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Single-centre study with relatively small diagnostic groups -- replication with larger samples is needed.",
+    "The E-AGI instrument measures autobiographical episodic vs. semantic memory; it does not directly measure contextual attribution or pipeline phase integrity.",
+    "The dissociation (episodic before semantic) is at the level of symptom description; the paper does not test whether offline consolidation phases are the mechanism."
+  ],
+  "tags": ["inv046", "inv047", "alzheimers_disease", "mci", "episodic_memory", "semantic_memory", "autobiographical_memory", "dissociation", "staging"],
+  "mapping": {
+    "source_claim_statement": "In MCI and early AD, episodic autobiographical memory (richness of recalled detail) is impaired while semantic autobiographical memories are relatively preserved. The dissociation between episodic and semantic autobiographical memory persists across disease stages, with semantic sparing until moderate AD. A recency effect is present in healthy elderly but absent in AD patients.",
+    "ree_translation": "INV-046 claims dementia is computationally a failure of contextual attribution (offline pipeline stage for MECH-123 precision recalibration and REM-phase contextual binding) rather than a flat memory storage failure. Episodic ABM requires the full pipeline (including contextual tagging and precision-weighted retrieval); semantic ABM is more robust to pipeline failure. The observed dissociation -- episodic fails first -- is consistent with the REM/precision-recalibration stage (Phase 4 in the pipeline) being the earliest to fail. INV-047 predicts the full staging profile (precision loss first, then episodic failure, then contextual identity loss, then global disorientation) mirrors the reverse of the sleep phase dependency order. This paper provides the episodic-before-semantic dissociation component of that staging.",
+    "mapping_caveat": "The paper measures autobiographical memory in established MCI/AD, not prospective staging. The episodic/semantic distinction in ABM is not identical to the pipeline stage distinction in INV-047 -- the mapping requires accepting that episodic ABM depends on the precision-recalibration and contextual-binding pipeline stages more heavily than semantic ABM does.",
+    "source_context": "Outpatient psychiatric/geriatric clinic; MCI and AD diagnosed by clinical criteria; E-AGI standardised ABM instrument; education and gender controlled; physiological aging not associated with the dissociation pattern."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Single-centre; moderate sample; E-AGI is a validated clinical instrument. Mapping is moderately faithful -- episodic/semantic dissociation directly maps to the INV-046/INV-047 staging prediction. Transfer risk limited because the disease population is directly relevant."
+  }
+}

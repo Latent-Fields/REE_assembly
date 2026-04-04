@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dementia_attribution_pipeline",
+  "entry_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_lucey2018",
+  "timestamp_utc": "2026-04-06T00:30:00Z",
+  "claim_ids_tested": ["MECH-168", "MECH-171"],
+  "source": {
+    "title": "Effect of sleep on overnight cerebrospinal fluid amyloid beta kinetics.",
+    "authors": ["Lucey BP", "Hicks TJ", "McLeland JS", "Toedebusch CD", "Boyd J", "Elbert DL", "Patterson BW", "Baty J", "Morris JC", "Ovod V", "Mawuenyega KG", "Bateman RJ"],
+    "year": 2018,
+    "venue": "Annals of Neurology",
+    "doi": "10.1002/ana.25117",
+    "pmid": "29220873"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Controlled within-subject design with three arms (normal sleep, sleep deprivation, sodium oxybate enhancement); serial CSF sampling with stable-isotope kinetic labelling (13C-leucine) to directly measure Abeta production vs. clearance. Sleep deprivation increased Abeta38/40/42 by 25-30% via elevated production, not reduced clearance. This directly supports MECH-168 (sleep disruption accelerates pipeline substrate damage) and MECH-171 (disrupted sleep increases AD pathology load, establishing one arm of the vicious cycle). Transfer risk: CSF kinetics measure amyloid load, not attribution pipeline function per se -- the link to contextual attribution failure requires inference via MECH-169.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study measured amyloid beta kinetics, not cognitive or attribution pipeline function -- it cannot directly test whether sleep deprivation impairs contextual attribution specifically.",
+    "Short-duration (single night) sleep deprivation; chronic exposure and dose-response are not established by this design.",
+    "Production increase rather than clearance reduction was the mechanism; this is consistent with but does not require the MECH-169 glymphatic account."
+  ],
+  "tags": ["mech168", "mech171", "alzheimers_disease", "sleep_deprivation", "amyloid_beta", "csf", "kinetics", "lucey", "bateman"],
+  "mapping": {
+    "source_claim_statement": "One night of sleep deprivation in healthy middle-aged humans increases overnight CSF amyloid beta (Abeta38, Abeta40, Abeta42) by 25-30% via increased Abeta production; sodium oxybate (SWS enhancer) suppresses this increase. The mechanism is elevated production during wakefulness, not reduced clearance.",
+    "ree_translation": "MECH-168 predicts that sleep disruption accelerates the pathological substrate damage (amyloid accumulation) that degrades offline consolidation pipeline function over time. This paper provides the clearest mechanistic demonstration that sleep deprivation directly and acutely raises amyloid burden. MECH-171 (vicious cycle) requires that pathology disrupts sleep, which then increases pathology further -- this paper establishes the sleep->pathology arm of that cycle.",
+    "mapping_caveat": "The paper is about amyloid kinetics in healthy adults, not about attribution pipeline impairment in AD patients. The connection to MECH-168 requires accepting that elevated amyloid accumulation eventually disrupts offline consolidation (via MECH-169 substrate damage), which is a multi-step inference not tested here.",
+    "source_context": "Controlled crossover RCT in 17 healthy adults ages 30-60; lumbar catheter serial CSF sampling across overnight session; stable-isotope leucine labelling to separate production from clearance rates."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (kinetic labelling, within-subject design, Bateman lab). Mapping fidelity limited by the amyloid->attribution pipeline inference gap. Transfer risk moderate -- healthy adults, not AD patients."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dementia_attribution_pipeline",
+  "entry_id": "2026-04-06_mech169_glymphatic_sleep_clearance_xie2013",
+  "timestamp_utc": "2026-04-06T00:30:00Z",
+  "claim_ids_tested": ["MECH-169"],
+  "source": {
+    "title": "Sleep drives metabolite clearance from the adult brain.",
+    "authors": ["Xie L", "Kang H", "Xu Q", "Chen MJ", "Liao Y", "Thiyagarajan M", "O'Donnell J", "Christensen DJ", "Nicholson C", "Iliff JJ", "Takano T", "Deane R", "Nedergaard M"],
+    "year": 2013,
+    "venue": "Science",
+    "doi": "10.1126/science.1241224",
+    "pmid": "24136970"
+  },
+  "evidence_class": "animal_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Landmark Science paper from the Nedergaard lab establishing the glymphatic clearance account. Real-time tetramethylammonium diffusion and two-photon imaging in live mice show that sleep/anaesthesia produces a 60% increase in interstitial space, dramatically increasing convective exchange between CSF and interstitial fluid, which doubles the rate of Abeta clearance. This is canonical evidence for MECH-169: the glymphatic mechanism is the substrate-damage account of AD pathology accumulation, and it is complementary (not competing) with the attribution pipeline account. Confidence limited by mouse model and the fact that supporting the glymphatic account does not directly test whether the attribution pipeline is the correct framing of cognitive symptoms.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Mouse model: interstitial space expansion during sleep has not been replicated at this magnitude in humans directly (though CSF tracer studies are consistent).",
+    "The paper establishes the clearance mechanism without addressing which sleep phase is most important or whether phase-specific disruption maps to MECH-168 staged failure ordering.",
+    "Glymphatic account is for substrate damage (amyloid accumulation); it does not itself explain why the cognitive symptom profile in AD follows the reverse pipeline dependency order (INV-047) -- that is exactly the distinction MECH-169 captures."
+  ],
+  "tags": ["mech169", "glymphatic", "sleep", "amyloid_beta", "clearance", "interstitial_fluid", "nedergaard", "science_2013"],
+  "mapping": {
+    "source_claim_statement": "During natural sleep or anaesthesia, the brain interstitial space expands by 60%, increasing convective flow of CSF through the perivascular glymphatic system. This dramatically increases clearance of metabolic waste products including Abeta. The system is largely inactive during wakefulness.",
+    "ree_translation": "MECH-169 states that the glymphatic account (substrate damage via impaired waste clearance) and the attribution pipeline account (symptom profile shape determined by pipeline failure order) are complementary, not competing. This paper establishes the glymphatic mechanism: when sleep is chronically insufficient, Abeta accumulates because this clearance system is under-activated. This explains the substrate damage (neurodegeneration) component of AD. The symptom staging (why episodic failure precedes semantic failure, why procedural memory is spared) requires the attribution pipeline account on top of this.",
+    "mapping_caveat": "This paper establishes only the clearance mechanism, not the attribution pipeline. It cannot discriminate between: (a) diffuse amyloid accumulation causing diffuse cognitive impairment, and (b) targeted pipeline stage failure producing the specific staging profile. The complementarity argument requires both accounts -- this paper covers only one side.",
+    "source_context": "In vivo mouse model (C57BL/6); tetramethylammonium diffusion coefficient and two-photon imaging; spontaneous sleep, anaesthesia, and wakefulness compared; direct CSF-interstitial fluid exchange quantification."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Landmark Science paper, highly cited, widely replicated in principle. Transfer risk: mouse model; human glymphatic function confirmation is indirect. The mapping supports MECH-169 specifically as the substrate-damage account -- does not test whether symptom profile shape is explained by pipeline ordering."
+  }
+}

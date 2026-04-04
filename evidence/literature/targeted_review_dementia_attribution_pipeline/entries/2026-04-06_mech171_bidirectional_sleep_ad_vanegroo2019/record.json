@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dementia_attribution_pipeline",
+  "entry_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+  "timestamp_utc": "2026-04-06T00:30:00Z",
+  "claim_ids_tested": ["MECH-171", "MECH-168", "MECH-169"],
+  "source": {
+    "title": "Sleep-wake regulation and the hallmarks of the pathogenesis of Alzheimer's disease.",
+    "authors": ["Van Egroo M", "Narbutas J", "Chylinski D", "Villar Gonzalez P", "Maquet P", "Salmon E", "Bastin C", "Collette F", "Vandewalle G"],
+    "year": 2019,
+    "venue": "Sleep",
+    "doi": "10.1093/sleep/zsz017",
+    "pmid": "30649520"
+  },
+  "evidence_class": "review_meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Narrative review covering all three major AD pathological hallmarks (amyloid, tau, neurodegeneration) and their bidirectional relationships with sleep-wake disruption. The authors explicitly argue that all three relationships are likely bidirectional -- making this the most comprehensive source for MECH-171 (vicious cycle). Also reviews preclinical stage evidence for MECH-168 (sleep disruption accelerates pathology) and the broader substrate damage account supporting MECH-169. Confidence limited by narrative review design and the review predating some key longitudinal studies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Narrative review -- cannot assign causal direction quantitatively; bidirectionality argued but not formally demonstrated.",
+    "Focus on amyloid, tau, and neurodegeneration hallmarks; does not directly test the attribution pipeline account or symptom staging.",
+    "Pre-dates important longitudinal RCT evidence on sleep intervention and cognitive outcome."
+  ],
+  "tags": ["mech171", "mech168", "mech169", "alzheimers_disease", "sleep_wake", "amyloid_beta", "tau", "neurodegeneration", "bidirectional", "review", "preclinical"],
+  "mapping": {
+    "source_claim_statement": "Sleep-wake disruption is bidirectionally associated with each of the three main AD pathological hallmarks (Abeta accumulation, tau pathology, neurodegeneration). Evidence from animal models and humans supports that sleep disruption worsens AD pathology AND that AD pathology disrupts sleep. The review argues for considering sleep-wake disruption as a modifiable early risk factor.",
+    "ree_translation": "MECH-171 posits a vicious cycle: attribution failure (from pipeline disruption) produces sleep fragmentation (because the offline phases that maintain normal sleep architecture depend on pipeline integrity), which in turn accelerates pipeline substrate damage. This review provides the empirical backbone for that cycle by documenting the bidirectional pathology-sleep link. The three hallmarks map onto the substrate-damage account (MECH-169 for amyloid clearance; tau and neurodegeneration are additional substrate layers). The staged failure prediction of MECH-168 is consistent with the observation that sleep disruption precedes clinical symptoms in the preclinical phase.",
+    "mapping_caveat": "The bidirectionality documented is at the level of AD pathological hallmarks, not at the level of attribution pipeline stages. The review does not test whether specific pipeline phases are disrupted in a specific order. The vicious cycle claim requires accepting that pipeline-mediated attribution failure causes clinically meaningful sleep disruption -- the evidence reviewed is for the broader sleep/pathology relationship.",
+    "source_context": "Review from University of Liege group; focuses on preclinical AD evidence; covers cognitively normal older adults through early AD; integrates animal models and human neuroimaging/biomarker studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.28,
+    "notes": "High-quality review from specialist group; directly maps to the bidirectional vicious cycle. Mapping fidelity limited by the pathology-level framing rather than pipeline-stage framing."
+  }
+}

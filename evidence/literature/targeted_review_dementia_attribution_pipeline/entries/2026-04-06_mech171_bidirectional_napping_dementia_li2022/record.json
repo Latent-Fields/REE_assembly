@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dementia_attribution_pipeline",
+  "entry_id": "2026-04-06_mech171_bidirectional_napping_dementia_li2022",
+  "timestamp_utc": "2026-04-06T00:30:00Z",
+  "claim_ids_tested": ["MECH-171"],
+  "source": {
+    "title": "Daytime napping and Alzheimer's dementia: A potential bidirectional relationship.",
+    "authors": ["Li P", "Gao L", "Yu L", "Zheng X", "Ulsa MC", "Yang HW", "Gaba A", "Yaffe K", "Bennett DA", "Buchman AS", "Hu K", "Leng Y"],
+    "year": 2022,
+    "venue": "Alzheimer's & Dementia",
+    "doi": "10.1002/alz.12636",
+    "pmid": "35297533"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Large longitudinal cohort study (n=1401 Rush Memory and Aging Project) with up to 14-year follow-up using objective actigraphy. The study demonstrates both directions of the bidirectional relationship within the same sample: (a) excess daytime napping predicts incident Alzheimer's dementia and worsens cognition a year later; (b) worse cognition (including dementia progression) predicts more excessive napping a year later. This is direct empirical support for MECH-171 (attribution failure -> sleep disruption -> accelerated pipeline failure). The actigraphy-based napping measurement is objective and longitudinal, which is a methodological strength.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Daytime napping is a proxy for disrupted sleep architecture -- the study does not measure NREM/REM phase quality directly, so the specific pipeline stages affected cannot be identified.",
+    "Bidirectionality is demonstrated at the dementia/napping level, not at the attribution pipeline level; the causal chain from napping->amyloid->pipeline disruption is inferred.",
+    "Residual confounding (comorbidities, medications, activity level) cannot be fully excluded in an observational study."
+  ],
+  "tags": ["mech171", "alzheimers_disease", "daytime_napping", "bidirectional", "longitudinal", "actigraphy", "cohort", "rush_map"],
+  "mapping": {
+    "source_claim_statement": "In 1401 older adults followed for up to 14 years with objective actigraphy: (a) excessive daytime napping at baseline predicts incident Alzheimer's dementia (HR ~1.4) and worse cognition one year later; (b) AD progression more than doubles the annual increase in nap duration/frequency; (c) both directions are present in cross-lagged analysis suggesting a bidirectional or shared-mechanism relationship.",
+    "ree_translation": "MECH-171 predicts a vicious cycle: attribution pipeline failure causes offline phase disruption (fragmented nighttime sleep, excess daytime compensatory napping), which in turn fails to maintain the pipeline, accelerating failure. This paper provides the most direct empirical support for the bidirectional mechanism: dementia accelerates sleep disruption (the attribution failure -> sleep disruption arm) while excess daytime napping predicts worsening dementia (the sleep disruption -> accelerated pipeline failure arm).",
+    "mapping_caveat": "Napping is a downstream proxy of sleep architecture disruption; the paper does not distinguish NREM SWS loss from REM loss, so which pipeline phases are implicated cannot be determined. The bidirectionality demonstrated is for dementia/napping; the attribution-pipeline-specific framing requires additional inference.",
+    "source_context": "Rush Memory and Aging Project; community-dwelling older adults; objective actigraphy; annual cognitive testing; 14-year follow-up; n=1401."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "Strong longitudinal design with objective actigraphy in a large cohort. Mapping fidelity limited by napping as a proxy measure and by the absence of phase-specific PSG data. Transfer risk low -- directly relevant population."
+  }
+}

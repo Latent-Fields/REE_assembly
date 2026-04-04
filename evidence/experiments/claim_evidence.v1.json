@@ -3328,6 +3328,110 @@
         "literature": 6
       }
     },
+    "INV-046": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.72",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_inv046_inv047_episodic_semantic_dissociation_urbanowitsch2013",
+      "latest_timestamp_utc": "2026-04-06T00:30:00Z",
+      "literature_confidence": 0.72,
+      "overall_confidence": 0.72,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-046",
+          "confidence": 0.74,
+          "confidence_rationale": "Clinical study using a standardised autobiographical memory instrument (E-AGI) across MCI, early AD, and moderate AD groups (same instrument across all groups enables direct comparison). Key findings: episodic autobiographical memory (richness of detail) impaired already in MCI; semantic autobiographical memory spared until moderate stages -- direct dissociation across disease stages. This is the most direct published demonstration of the staging pattern predicted by INV-047 (staged decline follows reverse pipeline dependency) and supports INV-046 (dementia is primarily a contextual attribution failure, since episodic-contextual retrieval fails before semantic knowledge). Confidence limited by single-centre study, moderate sample sizes, and the E-AGI instrument.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Single-centre study with relatively small diagnostic groups -- replication with larger samples is needed.",
+            "The E-AGI instrument measures autobiographical episodic vs. semantic memory; it does not directly measure contextual attribution or pipeline phase integrity.",
+            "The dissociation (episodic before semantic) is at the level of symptom description; the paper does not test whether offline consolidation phases are the mechanism."
+          ],
+          "run_id": "2026-04-06_inv046_inv047_episodic_semantic_dissociation_urbanowitsch2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "INV-047": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.72",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_inv046_inv047_episodic_semantic_dissociation_urbanowitsch2013",
+      "latest_timestamp_utc": "2026-04-06T00:30:00Z",
+      "literature_confidence": 0.72,
+      "overall_confidence": 0.72,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-047",
+          "confidence": 0.74,
+          "confidence_rationale": "Clinical study using a standardised autobiographical memory instrument (E-AGI) across MCI, early AD, and moderate AD groups (same instrument across all groups enables direct comparison). Key findings: episodic autobiographical memory (richness of detail) impaired already in MCI; semantic autobiographical memory spared until moderate stages -- direct dissociation across disease stages. This is the most direct published demonstration of the staging pattern predicted by INV-047 (staged decline follows reverse pipeline dependency) and supports INV-046 (dementia is primarily a contextual attribution failure, since episodic-contextual retrieval fails before semantic knowledge). Confidence limited by single-centre study, moderate sample sizes, and the E-AGI instrument.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Single-centre study with relatively small diagnostic groups -- replication with larger samples is needed.",
+            "The E-AGI instrument measures autobiographical episodic vs. semantic memory; it does not directly measure contextual attribution or pipeline phase integrity.",
+            "The dissociation (episodic before semantic) is at the level of symptom description; the paper does not test whether offline consolidation phases are the mechanism."
+          ],
+          "run_id": "2026-04-06_inv046_inv047_episodic_semantic_dissociation_urbanowitsch2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "INV-048": {
       "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.762",
       "direction_counts": {
@@ -3800,7 +3904,7 @@
       }
     },
     "MECH-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.471, lit_conf=0.882",
+      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.47, lit_conf=0.882",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -3817,7 +3921,7 @@
         "lit:fmri_connectivity": 1,
         "lit:spontaneous_thought_default_mode": 1
       },
-      "experimental_confidence": 0.471,
+      "experimental_confidence": 0.47,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7359,18 +7463,20 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.498, lit_conf=0.872",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.498, lit_conf=0.909",
       "direction_counts": {
         "mixed": 2,
-        "supports": 3,
+        "supports": 7,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 9,
+      "entries_total": 13,
       "evidence_class_counts": {
         "exp:simulation": 6,
         "lit:connectome_analysis": 2,
-        "lit:neuroscience_empirical": 1
+        "lit:electrophysiology_single_unit": 3,
+        "lit:neuroscience_empirical": 1,
+        "lit:review_theoretical": 1
       },
       "experimental_confidence": 0.498,
       "fail_runs": 6,
@@ -7381,72 +7487,12 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "v3_exq_098b_mech099_agency_attribution_20260327T155605Z_v3",
-      "latest_timestamp_utc": "2026-03-27T15:56:05Z",
-      "literature_confidence": 0.872,
-      "overall_confidence": 0.685,
+      "latest_run_id": "2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value",
+      "latest_timestamp_utc": "2026-04-05T22:10:00Z",
+      "literature_confidence": 0.909,
+      "overall_confidence": 0.704,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-099",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "claim_probe_mech_099",
-          "failure_signatures": [],
-          "run_id": "20260317T232006Z_v3_exq_017_combined_lateral_reafference_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-17T23:20:06Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-099",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_098_mech099_three_stream",
-          "failure_signatures": [],
-          "run_id": "v3_exq_098_mech099_three_stream_20260326T214750Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-26T21:47:50Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-099",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_098_mech099_three_stream",
-          "failure_signatures": [],
-          "run_id": "v3_exq_098_mech099_three_stream_20260326T214928Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-26T21:49:28Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-099",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_098b_mech099_agency_attribution",
-          "failure_signatures": [],
-          "run_id": "v3_exq_098b_mech099_agency_attribution_20260327T155304Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-27T15:53:04Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-099",
@@ -7461,12 +7507,84 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-27T15:56:05Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-099",
+          "confidence": 0.82,
+          "confidence_rationale": "Blair et al. directly demonstrate that aversive experiences (foot shocks) cause hippocampal place cells to remap their spatial firing fields, and that this remapping occurs specifically when the aversive event is later remembered (not when it is forgotten). Remapping cells are subsequently recruited into SWR replay events to a greater extent than stable cells. This is strong evidence for MECH-099: the hippocampal spatial map is modified by harm encounters, and the modification is selective for encoded (remembered) harm events -- exactly the kind of persistent harm-history accumulation MECH-099 describes. The replay recruitment finding directly links map modification to the consolidation mechanism. Source is eLife, open peer review, high transparency. Docked slightly for the single-session shock paradigm (not extended accumulation over many episodes).",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_099",
+          "failure_signatures": [
+            "The study uses a single acute shock session -- it does not directly demonstrate gradual accumulation of harm history over multiple encounters.",
+            "Remapping is measured as a population-level phenomenon; it is not clear whether individual place fields encode a quantitative harm level or merely a binary harm/no-harm distinction.",
+            "The replay recruitment of remapping cells supports consolidation but does not directly show that the remapped representation is used to navigate away from the harm location on future trials."
+          ],
+          "run_id": "2026-04-05_mech099_blair_2023_aversive_place_remapping",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-099",
+          "confidence": 0.8,
+          "confidence_rationale": "Ormond, Serka and Johansen recorded CA1 place cells in rats performing a spatial navigation task with aversive stimuli on certain maze arms. They found that task learning induced partial remapping in CA1 and that the remapping cells were preferentially recruited into SWR replay events compared to stable cells. This directly links the spatial harm-encoding process (remapping) to the consolidation mechanism (SWR replay). The multi-arm maze with persistent aversive zones is particularly relevant to MECH-099's concept of a spatial harm map: the aversive zones are spatially fixed across sessions, allowing accumulation of harm-zone representations. Confidence docked for the partial remapping (not all cells remap), and because the study does not track the persistence of harm zone representation over many days.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_099",
+          "failure_signatures": [
+            "Remapping is partial -- only a subset of cells remap in response to aversive experience, which may imply the hippocampal harm map is less complete than MECH-099 requires.",
+            "The aversive maze arms are stable session-to-session, but the study does not track whether harm accumulation increases the strength of the spatial representation over multiple sessions.",
+            "The study does not demonstrate that the remapped cells drive avoidance behaviour -- the causal link from harm-modified spatial map to navigation decisions is not established."
+          ],
+          "run_id": "2026-04-05_mech099_ormond_2023_aversive_replay_reactivation",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-099",
+          "confidence": 0.8,
+          "confidence_rationale": "Pfeiffer and Foster directly demonstrate that hippocampal place-cell sequences during rest/pause events at a choice point generate prospective trajectory representations that are strongly biased toward current-location-to-goal paths. The sequences are updated dynamically depending on where the animal currently is and where the goal is -- behaviour consistent with a persistent spatial map that is read out in a context-sensitive manner. The goal-directedness of the sequences (novel start-goal combinations are handled) strongly supports the claim that hippocampal spatial representation is not merely metric but goal-modulated, consistent with MECH-099's residue field concept. Source is high quality (Nature). Main gap: the study focuses on future-path planning rather than harm/benefit accumulation specifically; the value dimension (harm/benefit history) is not the primary variable tested.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_099",
+          "failure_signatures": [
+            "The paper addresses reward/goal location coding, not explicit harm or aversive-value accumulation -- the mapping from goal-approach to harm-avoidance residue is inferential.",
+            "Place-cell sequences here are mostly in a constrained open arena with a single goal; whether the same mechanism generalises to multi-hazard spatial value maps is not directly tested.",
+            "The sequences fire during rest pauses at choice points -- the temporal dynamics of persistent map maintenance between episodes are not characterised."
+          ],
+          "run_id": "2026-04-05_mech099_pfeiffer_foster_2013_prospective_sequences",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-099",
+          "confidence": 0.75,
+          "confidence_rationale": "Wikenheiser and Schoenbaum argue that the hippocampus maintains not just spatial maps but relational cognitive maps that encode associations between cues, actions, outcomes, and their values. They review evidence that hippocampal representations are updated when reward structure changes, and that HPC-OFC interaction allows value information to be integrated into the spatial/relational map. This is directly relevant to MECH-099's claim that the residue field encodes accumulated harm/benefit history -- the Wikenheiser-Schoenbaum framing provides the theoretical justification that hippocampal maps are value-annotated, not purely geometric. The review is from Nature Reviews Neuroscience (high quality) and is widely influential. Confidence docked slightly because this is a review/theory piece, not a direct empirical demonstration of persistent harm accumulation.",
+          "evidence_class": "lit:review_theoretical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_099",
+          "failure_signatures": [
+            "The review addresses value in the context of reward and goal outcomes, not harm accumulation specifically -- the harm/aversive dimension is underrepresented relative to reward.",
+            "As a review paper, it does not provide direct experimental data on how the spatial map encodes harm history.",
+            "The OFC involvement they argue for is not modelled explicitly in REE's V3 architecture -- the hippocampus-OFC loop maps only partially onto REE's E3/hippocampal system."
+          ],
+          "run_id": "2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
         }
       ],
-      "runs_total": 9,
+      "runs_total": 13,
       "source_counts": {
         "experimental": 6,
-        "literature": 3
+        "literature": 7
       }
     },
     "MECH-100": {
@@ -10361,16 +10479,17 @@
       }
     },
     "MECH-168": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.884",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "lit:behavioral_human": 1
+        "lit:behavioral_human": 3,
+        "lit:review_meta_analysis": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -10381,10 +10500,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech168_psg_alzheimers_tao2022",
-      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
-      "literature_confidence": 0.71,
-      "overall_confidence": 0.71,
+      "latest_run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+      "latest_timestamp_utc": "2026-04-06T00:30:00Z",
+      "literature_confidence": 0.884,
+      "overall_confidence": 0.884,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10404,6 +10523,290 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-168",
+          "confidence": 0.8,
+          "confidence_rationale": "Controlled within-subject design with three arms (normal sleep, sleep deprivation, sodium oxybate enhancement); serial CSF sampling with stable-isotope kinetic labelling (13C-leucine) to directly measure Abeta production vs. clearance. Sleep deprivation increased Abeta38/40/42 by 25-30% via elevated production, not reduced clearance. This directly supports MECH-168 (sleep disruption accelerates pipeline substrate damage) and MECH-171 (disrupted sleep increases AD pathology load, establishing one arm of the vicious cycle). Transfer risk: CSF kinetics measure amyloid load, not attribution pipeline function per se -- the link to contextual attribution failure requires inference via MECH-169.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "The study measured amyloid beta kinetics, not cognitive or attribution pipeline function -- it cannot directly test whether sleep deprivation impairs contextual attribution specifically.",
+            "Short-duration (single night) sleep deprivation; chronic exposure and dose-response are not established by this design.",
+            "Production increase rather than clearance reduction was the mechanism; this is consistent with but does not require the MECH-169 glymphatic account."
+          ],
+          "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_lucey2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-168",
+          "confidence": 0.78,
+          "confidence_rationale": "RCT design (n=26, randomized to 1 night total sleep deprivation vs. unrestricted sleep); PSG monitoring; intrathecal catheter for serial CSF sampling. Normal sleep produced a 6% decrease in Abeta42 overnight; sleep deprivation counteracted this, with a 75.8 pg/mL between-group difference. The 2014 JAMA Neurology publication gives this the most public profile of the sleep-deprivation Abeta series. Supports MECH-168 (substrate damage accumulation is sleep-dependent) and MECH-171 (sleep deprivation arm of the vicious cycle).",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Single-night deprivation; chronic effects and staging of pipeline failure cannot be inferred.",
+            "All male sample, ages 40-60, cognitively normal -- generalisability to AD population and to women uncertain.",
+            "Measures Abeta42 specifically; does not address tau pathology or downstream attribution pipeline impairment."
+          ],
+          "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_ooms2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-168",
+          "confidence": 0.77,
+          "confidence_rationale": "Narrative review covering all three major AD pathological hallmarks (amyloid, tau, neurodegeneration) and their bidirectional relationships with sleep-wake disruption. The authors explicitly argue that all three relationships are likely bidirectional -- making this the most comprehensive source for MECH-171 (vicious cycle). Also reviews preclinical stage evidence for MECH-168 (sleep disruption accelerates pathology) and the broader substrate damage account supporting MECH-169. Confidence limited by narrative review design and the review predating some key longitudinal studies.",
+          "evidence_class": "lit:review_meta_analysis",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Narrative review -- cannot assign causal direction quantitatively; bidirectionality argued but not formally demonstrated.",
+            "Focus on amyloid, tau, and neurodegeneration hallmarks; does not directly test the attribution pipeline account or symptom staging.",
+            "Pre-dates important longitudinal RCT evidence on sleep intervention and cognitive outcome."
+          ],
+          "run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
+      }
+    },
+    "MECH-169": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.797",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:animal_model": 1,
+        "lit:review_meta_analysis": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+      "latest_timestamp_utc": "2026-04-06T00:30:00Z",
+      "literature_confidence": 0.797,
+      "overall_confidence": 0.797,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-169",
+          "confidence": 0.82,
+          "confidence_rationale": "Landmark Science paper from the Nedergaard lab establishing the glymphatic clearance account. Real-time tetramethylammonium diffusion and two-photon imaging in live mice show that sleep/anaesthesia produces a 60% increase in interstitial space, dramatically increasing convective exchange between CSF and interstitial fluid, which doubles the rate of Abeta clearance. This is canonical evidence for MECH-169: the glymphatic mechanism is the substrate-damage account of AD pathology accumulation, and it is complementary (not competing) with the attribution pipeline account. Confidence limited by mouse model and the fact that supporting the glymphatic account does not directly test whether the attribution pipeline is the correct framing of cognitive symptoms.",
+          "evidence_class": "lit:animal_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Mouse model: interstitial space expansion during sleep has not been replicated at this magnitude in humans directly (though CSF tracer studies are consistent).",
+            "The paper establishes the clearance mechanism without addressing which sleep phase is most important or whether phase-specific disruption maps to MECH-168 staged failure ordering.",
+            "Glymphatic account is for substrate damage (amyloid accumulation); it does not itself explain why the cognitive symptom profile in AD follows the reverse pipeline dependency order (INV-047) -- that is exactly the distinction MECH-169 captures."
+          ],
+          "run_id": "2026-04-06_mech169_glymphatic_sleep_clearance_xie2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-169",
+          "confidence": 0.77,
+          "confidence_rationale": "Narrative review covering all three major AD pathological hallmarks (amyloid, tau, neurodegeneration) and their bidirectional relationships with sleep-wake disruption. The authors explicitly argue that all three relationships are likely bidirectional -- making this the most comprehensive source for MECH-171 (vicious cycle). Also reviews preclinical stage evidence for MECH-168 (sleep disruption accelerates pathology) and the broader substrate damage account supporting MECH-169. Confidence limited by narrative review design and the review predating some key longitudinal studies.",
+          "evidence_class": "lit:review_meta_analysis",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Narrative review -- cannot assign causal direction quantitatively; bidirectionality argued but not formally demonstrated.",
+            "Focus on amyloid, tau, and neurodegeneration hallmarks; does not directly test the attribution pipeline account or symptom staging.",
+            "Pre-dates important longitudinal RCT evidence on sleep intervention and cognitive outcome."
+          ],
+          "run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
+    "MECH-171": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.889",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 3,
+        "lit:review_meta_analysis": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+      "latest_timestamp_utc": "2026-04-06T00:30:00Z",
+      "literature_confidence": 0.889,
+      "overall_confidence": 0.889,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-171",
+          "confidence": 0.8,
+          "confidence_rationale": "Controlled within-subject design with three arms (normal sleep, sleep deprivation, sodium oxybate enhancement); serial CSF sampling with stable-isotope kinetic labelling (13C-leucine) to directly measure Abeta production vs. clearance. Sleep deprivation increased Abeta38/40/42 by 25-30% via elevated production, not reduced clearance. This directly supports MECH-168 (sleep disruption accelerates pipeline substrate damage) and MECH-171 (disrupted sleep increases AD pathology load, establishing one arm of the vicious cycle). Transfer risk: CSF kinetics measure amyloid load, not attribution pipeline function per se -- the link to contextual attribution failure requires inference via MECH-169.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "The study measured amyloid beta kinetics, not cognitive or attribution pipeline function -- it cannot directly test whether sleep deprivation impairs contextual attribution specifically.",
+            "Short-duration (single night) sleep deprivation; chronic exposure and dose-response are not established by this design.",
+            "Production increase rather than clearance reduction was the mechanism; this is consistent with but does not require the MECH-169 glymphatic account."
+          ],
+          "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_lucey2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-171",
+          "confidence": 0.78,
+          "confidence_rationale": "RCT design (n=26, randomized to 1 night total sleep deprivation vs. unrestricted sleep); PSG monitoring; intrathecal catheter for serial CSF sampling. Normal sleep produced a 6% decrease in Abeta42 overnight; sleep deprivation counteracted this, with a 75.8 pg/mL between-group difference. The 2014 JAMA Neurology publication gives this the most public profile of the sleep-deprivation Abeta series. Supports MECH-168 (substrate damage accumulation is sleep-dependent) and MECH-171 (sleep deprivation arm of the vicious cycle).",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Single-night deprivation; chronic effects and staging of pipeline failure cannot be inferred.",
+            "All male sample, ages 40-60, cognitively normal -- generalisability to AD population and to women uncertain.",
+            "Measures Abeta42 specifically; does not address tau pathology or downstream attribution pipeline impairment."
+          ],
+          "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_ooms2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-171",
+          "confidence": 0.76,
+          "confidence_rationale": "Large longitudinal cohort study (n=1401 Rush Memory and Aging Project) with up to 14-year follow-up using objective actigraphy. The study demonstrates both directions of the bidirectional relationship within the same sample: (a) excess daytime napping predicts incident Alzheimer's dementia and worsens cognition a year later; (b) worse cognition (including dementia progression) predicts more excessive napping a year later. This is direct empirical support for MECH-171 (attribution failure -> sleep disruption -> accelerated pipeline failure). The actigraphy-based napping measurement is objective and longitudinal, which is a methodological strength.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Daytime napping is a proxy for disrupted sleep architecture -- the study does not measure NREM/REM phase quality directly, so the specific pipeline stages affected cannot be identified.",
+            "Bidirectionality is demonstrated at the dementia/napping level, not at the attribution pipeline level; the causal chain from napping->amyloid->pipeline disruption is inferred.",
+            "Residual confounding (comorbidities, medications, activity level) cannot be fully excluded in an observational study."
+          ],
+          "run_id": "2026-04-06_mech171_bidirectional_napping_dementia_li2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-171",
+          "confidence": 0.77,
+          "confidence_rationale": "Narrative review covering all three major AD pathological hallmarks (amyloid, tau, neurodegeneration) and their bidirectional relationships with sleep-wake disruption. The authors explicitly argue that all three relationships are likely bidirectional -- making this the most comprehensive source for MECH-171 (vicious cycle). Also reviews preclinical stage evidence for MECH-168 (sleep disruption accelerates pathology) and the broader substrate damage account supporting MECH-169. Confidence limited by narrative review design and the review predating some key longitudinal studies.",
+          "evidence_class": "lit:review_meta_analysis",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Narrative review -- cannot assign causal direction quantitatively; bidirectionality argued but not formally demonstrated.",
+            "Focus on amyloid, tau, and neurodegeneration hallmarks; does not directly test the attribution pipeline account or symptom staging.",
+            "Pre-dates important longitudinal RCT evidence on sleep intervention and cognitive outcome."
+          ],
+          "run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
+      }
+    },
+    "MECH-172": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.765",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech172_procedural_memory_preserved_heindel1989",
+      "latest_timestamp_utc": "2026-04-06T00:30:00Z",
+      "literature_confidence": 0.765,
+      "overall_confidence": 0.765,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-172",
+          "confidence": 0.83,
+          "confidence_rationale": "Classic double-dissociation study across three patient groups (DAT, HD, PD). The key finding for MECH-172: DAT patients are severely impaired on explicit memory but show NORMAL motor skill learning on the pursuit-rotor task AND normal performance on the weight-biasing task -- the same tasks on which HD patients (with striatal pathology) are specifically impaired. The dissociation is the double: DAT (hippocampal) impairs declarative but spares motor skill/procedural; HD (striatal) impairs motor skill/procedural but spares declarative. This directly demonstrates the architectural separation predicted by MECH-172 (habit/procedural memory is spared in early AD because it depends on a corticostriatal system that does not require offline consolidation).",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_dementia_attribution_pipeline",
+          "failure_signatures": [
+            "Motor learning tasks (pursuit-rotor, weight-biasing) are preserved in DAT but lexical priming is also impaired in DAT -- the sparing is specific to motor procedural learning, not all implicit memory.",
+            "Small sample sizes by modern standards; early clinical diagnostic criteria for DAT.",
+            "Does not directly test whether preservation is due to 'no offline consolidation required' vs. some other mechanism of striatal independence."
+          ],
+          "run_id": "2026-04-06_mech172_procedural_memory_preserved_heindel1989",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:30:00Z"
         }
       ],
       "runs_total": 1,
@@ -13145,7 +13548,7 @@
       }
     },
     "SD-004": {
-      "confidence_rationale": "exp=8 entry(s), lit=6 entry(s), exp_conf=0.667, lit_conf=0.899",
+      "confidence_rationale": "exp=8 entry(s), lit=6 entry(s), exp_conf=0.666, lit_conf=0.899",
       "direction_counts": {
         "mixed": 0,
         "supports": 9,
@@ -13159,7 +13562,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.667,
+      "experimental_confidence": 0.666,
       "fail_runs": 5,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -14267,6 +14670,113 @@
       "source_counts": {
         "experimental": 2,
         "literature": 3
+      }
+    },
+    "SD-017": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.906",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:electrophysiology_causal_intervention": 3,
+        "lit:electrophysiology_single_unit": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences",
+      "latest_timestamp_utc": "2026-04-05T22:10:00Z",
+      "literature_confidence": 0.906,
+      "overall_confidence": 0.906,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-017",
+          "confidence": 0.9,
+          "confidence_rationale": "Aleman-Zapata, Morris and Genzel design a one-session spatial learning task that produces robust long-term memory, then show that both sleep deprivation (4h) and SWR disruption during the post-learning period separately reduce memory performance to chance level at 24h test. The double dissociation -- sleep deprivation vs SWR disruption producing equivalent necessity -- is the strongest existing evidence that offline SWR replay is the necessary mechanism within sleep, not some other correlate of sleep. The task is specifically designed to require only one-session learning and then test consolidation at 24h, isolating the offline consolidation window. This directly addresses SD-017: both the offline sleep phase AND the SWR content within it are necessary. Source is PNAS, Morris lab (one of the founders of spatial memory consolidation research). High confidence.",
+          "evidence_class": "lit:electrophysiology_causal_intervention",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_017",
+          "failure_signatures": [
+            "The task is spatial navigation (plus-maze goal location); it is not a context-attribution or causal assignment task, so the specific attribution-map convergence that SD-017 requires is not directly tested.",
+            "One-session learning paradigm tests formation of a single spatial memory, not the multi-episode context differentiation central to SD-017's failure mode prediction.",
+            "REM phase is not selectively manipulated -- the study addresses SWS/NREM-associated SWRs, which corresponds to only the SWS-analog half of SD-017."
+          ],
+          "run_id": "2026-04-05_sd017_aleman_zapata_2022_sleep_ripple_necessity",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-017",
+          "confidence": 0.85,
+          "confidence_rationale": "Ego-Stengel and Wilson independently replicate and extend Girardeau et al. (2009) using a different spatial learning task and disruption approach. They train rats on two spatial navigation tasks with identical procedures; ripple-associated activity during rest is disrupted after one task but not the other (within-animal control). Disruption slows learning on the task with disrupted consolidation relative to the control task in the same animals. This within-animal design strengthens the causal necessity argument. Directly supports SD-017's SWS-analog necessity claim. Source quality is high (Hippocampus journal, MIT Wilson lab). Docked slightly relative to Girardeau because the disruption method (stimulation of hippocampal afferents) is less selective than closed-loop SWR suppression.",
+          "evidence_class": "lit:electrophysiology_causal_intervention",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_017",
+          "failure_signatures": [
+            "The disruption targets ripple-associated activity but also affects non-ripple hippocampal afferent input -- selectivity is lower than closed-loop SWR detection approaches.",
+            "Both tasks are spatial navigation paradigms; the study does not test whether the impairment extends to non-spatial, context-attribution-based learning.",
+            "The within-animal control is strong but the two tasks may differ in intrinsic difficulty, introducing a potential confound."
+          ],
+          "run_id": "2026-04-05_sd017_ego_stengel_wilson_2010_ripple_disruption",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-017",
+          "confidence": 0.88,
+          "confidence_rationale": "Girardeau et al. provide direct causal evidence for the necessity of hippocampal SWRs (sharp-wave ripples) during post-training rest for spatial memory consolidation. Using closed-loop detection and stimulation to selectively suppress SWRs during the consolidation period (while leaving overall sleep architecture intact), they showed performance impairment in rats trained on a hippocampus-dependent spatial memory task. This is one of the foundational causal necessity papers: the suppression manipulates the replay vehicle specifically, not sleep as a whole. Directly supports SD-017's claim that the SWS-analog phase (SWR-mediated hippocampus-to-cortex replay) is necessary for hippocampal consolidation. High source quality (Nature Neuroscience). Small n is the main limitation.",
+          "evidence_class": "lit:electrophysiology_causal_intervention",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_017",
+          "failure_signatures": [
+            "The stimulation disrupts ripples but not perfectly selectively -- partial disruption of co-occurring cortical activity cannot be fully excluded.",
+            "The spatial memory task (8-arm radial maze, same 3 baited arms daily) tests reference memory, which is primarily hippocampus-dependent; the result may not generalise to more complex multi-context attribution tasks that SD-017 requires.",
+            "The study does not directly test whether SWRs are necessary for causal attribution or slot-filling specifically -- only spatial navigation performance is measured."
+          ],
+          "run_id": "2026-04-05_sd017_girardeau_2009_ripple_suppression_spatial",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-017",
+          "confidence": 0.62,
+          "confidence_rationale": "Wikenheiser and Redish show that hippocampal theta sequences (awake planning sequences during locomotion) are modulated by current goal -- sequences project further ahead when animals are farther from their goal and compress near the goal. This establishes that online hippocampal sequence content is goal-sensitive. Relevance to SD-017 is indirect: it establishes that hippocampal trajectory representations encode goal-directed structure during the waking period, which is the input that the offline consolidation pipeline (SD-017) must process. However, the paper does not demonstrate necessity of offline consolidation -- it is about online theta sequences during behaviour, not SWR replay during sleep. This is mixed evidence: it supports the architectural claim that hippocampus encodes goal-relevant sequential structure (required for SD-017's SWS-analog replay to be meaningful), but does not speak to whether offline phases are necessary.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_sd_017",
+          "failure_signatures": [
+            "The study is about awake theta sequences during navigation, not offline SWR replay during sleep or rest.",
+            "Goal-modulated theta sequences are a waking phenomenon; their necessity for offline consolidation (the core SD-017 claim) is not addressed.",
+            "The study does not test what happens to goal-directed behaviour when offline consolidation is blocked."
+          ],
+          "run_id": "2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:10:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
       }
     }
   },
@@ -54737,9 +55247,369 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-099",
+      "confidence": 0.82,
+      "confidence_rationale": "Blair et al. directly demonstrate that aversive experiences (foot shocks) cause hippocampal place cells to remap their spatial firing fields, and that this remapping occurs specifically when the aversive event is later remembered (not when it is forgotten). Remapping cells are subsequently recruited into SWR replay events to a greater extent than stable cells. This is strong evidence for MECH-099: the hippocampal spatial map is modified by harm encounters, and the modification is selective for encoded (remembered) harm events -- exactly the kind of persistent harm-history accumulation MECH-099 describes. The replay recruitment finding directly links map modification to the consolidation mechanism. Source is eLife, open peer review, high transparency. Docked slightly for the single-session shock paradigm (not extended accumulation over many episodes).",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_099",
+      "failure_signatures": [
+        "The study uses a single acute shock session -- it does not directly demonstrate gradual accumulation of harm history over multiple encounters.",
+        "Remapping is measured as a population-level phenomenon; it is not clear whether individual place fields encode a quantitative harm level or merely a binary harm/no-harm distinction.",
+        "The replay recruitment of remapping cells supports consolidation but does not directly show that the remapped representation is used to navigate away from the harm location on future trials."
+      ],
+      "run_id": "2026-04-05_mech099_blair_2023_aversive_place_remapping",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-099",
+      "confidence": 0.8,
+      "confidence_rationale": "Ormond, Serka and Johansen recorded CA1 place cells in rats performing a spatial navigation task with aversive stimuli on certain maze arms. They found that task learning induced partial remapping in CA1 and that the remapping cells were preferentially recruited into SWR replay events compared to stable cells. This directly links the spatial harm-encoding process (remapping) to the consolidation mechanism (SWR replay). The multi-arm maze with persistent aversive zones is particularly relevant to MECH-099's concept of a spatial harm map: the aversive zones are spatially fixed across sessions, allowing accumulation of harm-zone representations. Confidence docked for the partial remapping (not all cells remap), and because the study does not track the persistence of harm zone representation over many days.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_099",
+      "failure_signatures": [
+        "Remapping is partial -- only a subset of cells remap in response to aversive experience, which may imply the hippocampal harm map is less complete than MECH-099 requires.",
+        "The aversive maze arms are stable session-to-session, but the study does not track whether harm accumulation increases the strength of the spatial representation over multiple sessions.",
+        "The study does not demonstrate that the remapped cells drive avoidance behaviour -- the causal link from harm-modified spatial map to navigation decisions is not established."
+      ],
+      "run_id": "2026-04-05_mech099_ormond_2023_aversive_replay_reactivation",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-099",
+      "confidence": 0.8,
+      "confidence_rationale": "Pfeiffer and Foster directly demonstrate that hippocampal place-cell sequences during rest/pause events at a choice point generate prospective trajectory representations that are strongly biased toward current-location-to-goal paths. The sequences are updated dynamically depending on where the animal currently is and where the goal is -- behaviour consistent with a persistent spatial map that is read out in a context-sensitive manner. The goal-directedness of the sequences (novel start-goal combinations are handled) strongly supports the claim that hippocampal spatial representation is not merely metric but goal-modulated, consistent with MECH-099's residue field concept. Source is high quality (Nature). Main gap: the study focuses on future-path planning rather than harm/benefit accumulation specifically; the value dimension (harm/benefit history) is not the primary variable tested.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_099",
+      "failure_signatures": [
+        "The paper addresses reward/goal location coding, not explicit harm or aversive-value accumulation -- the mapping from goal-approach to harm-avoidance residue is inferential.",
+        "Place-cell sequences here are mostly in a constrained open arena with a single goal; whether the same mechanism generalises to multi-hazard spatial value maps is not directly tested.",
+        "The sequences fire during rest pauses at choice points -- the temporal dynamics of persistent map maintenance between episodes are not characterised."
+      ],
+      "run_id": "2026-04-05_mech099_pfeiffer_foster_2013_prospective_sequences",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-099",
+      "confidence": 0.75,
+      "confidence_rationale": "Wikenheiser and Schoenbaum argue that the hippocampus maintains not just spatial maps but relational cognitive maps that encode associations between cues, actions, outcomes, and their values. They review evidence that hippocampal representations are updated when reward structure changes, and that HPC-OFC interaction allows value information to be integrated into the spatial/relational map. This is directly relevant to MECH-099's claim that the residue field encodes accumulated harm/benefit history -- the Wikenheiser-Schoenbaum framing provides the theoretical justification that hippocampal maps are value-annotated, not purely geometric. The review is from Nature Reviews Neuroscience (high quality) and is widely influential. Confidence docked slightly because this is a review/theory piece, not a direct empirical demonstration of persistent harm accumulation.",
+      "evidence_class": "lit:review_theoretical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_099",
+      "failure_signatures": [
+        "The review addresses value in the context of reward and goal outcomes, not harm accumulation specifically -- the harm/aversive dimension is underrepresented relative to reward.",
+        "As a review paper, it does not provide direct experimental data on how the spatial map encodes harm history.",
+        "The OFC involvement they argue for is not modelled explicitly in REE's V3 architecture -- the hippocampus-OFC loop maps only partially onto REE's E3/hippocampal system."
+      ],
+      "run_id": "2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-017",
+      "confidence": 0.9,
+      "confidence_rationale": "Aleman-Zapata, Morris and Genzel design a one-session spatial learning task that produces robust long-term memory, then show that both sleep deprivation (4h) and SWR disruption during the post-learning period separately reduce memory performance to chance level at 24h test. The double dissociation -- sleep deprivation vs SWR disruption producing equivalent necessity -- is the strongest existing evidence that offline SWR replay is the necessary mechanism within sleep, not some other correlate of sleep. The task is specifically designed to require only one-session learning and then test consolidation at 24h, isolating the offline consolidation window. This directly addresses SD-017: both the offline sleep phase AND the SWR content within it are necessary. Source is PNAS, Morris lab (one of the founders of spatial memory consolidation research). High confidence.",
+      "evidence_class": "lit:electrophysiology_causal_intervention",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_017",
+      "failure_signatures": [
+        "The task is spatial navigation (plus-maze goal location); it is not a context-attribution or causal assignment task, so the specific attribution-map convergence that SD-017 requires is not directly tested.",
+        "One-session learning paradigm tests formation of a single spatial memory, not the multi-episode context differentiation central to SD-017's failure mode prediction.",
+        "REM phase is not selectively manipulated -- the study addresses SWS/NREM-associated SWRs, which corresponds to only the SWS-analog half of SD-017."
+      ],
+      "run_id": "2026-04-05_sd017_aleman_zapata_2022_sleep_ripple_necessity",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-017",
+      "confidence": 0.85,
+      "confidence_rationale": "Ego-Stengel and Wilson independently replicate and extend Girardeau et al. (2009) using a different spatial learning task and disruption approach. They train rats on two spatial navigation tasks with identical procedures; ripple-associated activity during rest is disrupted after one task but not the other (within-animal control). Disruption slows learning on the task with disrupted consolidation relative to the control task in the same animals. This within-animal design strengthens the causal necessity argument. Directly supports SD-017's SWS-analog necessity claim. Source quality is high (Hippocampus journal, MIT Wilson lab). Docked slightly relative to Girardeau because the disruption method (stimulation of hippocampal afferents) is less selective than closed-loop SWR suppression.",
+      "evidence_class": "lit:electrophysiology_causal_intervention",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_017",
+      "failure_signatures": [
+        "The disruption targets ripple-associated activity but also affects non-ripple hippocampal afferent input -- selectivity is lower than closed-loop SWR detection approaches.",
+        "Both tasks are spatial navigation paradigms; the study does not test whether the impairment extends to non-spatial, context-attribution-based learning.",
+        "The within-animal control is strong but the two tasks may differ in intrinsic difficulty, introducing a potential confound."
+      ],
+      "run_id": "2026-04-05_sd017_ego_stengel_wilson_2010_ripple_disruption",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-017",
+      "confidence": 0.88,
+      "confidence_rationale": "Girardeau et al. provide direct causal evidence for the necessity of hippocampal SWRs (sharp-wave ripples) during post-training rest for spatial memory consolidation. Using closed-loop detection and stimulation to selectively suppress SWRs during the consolidation period (while leaving overall sleep architecture intact), they showed performance impairment in rats trained on a hippocampus-dependent spatial memory task. This is one of the foundational causal necessity papers: the suppression manipulates the replay vehicle specifically, not sleep as a whole. Directly supports SD-017's claim that the SWS-analog phase (SWR-mediated hippocampus-to-cortex replay) is necessary for hippocampal consolidation. High source quality (Nature Neuroscience). Small n is the main limitation.",
+      "evidence_class": "lit:electrophysiology_causal_intervention",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_017",
+      "failure_signatures": [
+        "The stimulation disrupts ripples but not perfectly selectively -- partial disruption of co-occurring cortical activity cannot be fully excluded.",
+        "The spatial memory task (8-arm radial maze, same 3 baited arms daily) tests reference memory, which is primarily hippocampus-dependent; the result may not generalise to more complex multi-context attribution tasks that SD-017 requires.",
+        "The study does not directly test whether SWRs are necessary for causal attribution or slot-filling specifically -- only spatial navigation performance is measured."
+      ],
+      "run_id": "2026-04-05_sd017_girardeau_2009_ripple_suppression_spatial",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-017",
+      "confidence": 0.62,
+      "confidence_rationale": "Wikenheiser and Redish show that hippocampal theta sequences (awake planning sequences during locomotion) are modulated by current goal -- sequences project further ahead when animals are farther from their goal and compress near the goal. This establishes that online hippocampal sequence content is goal-sensitive. Relevance to SD-017 is indirect: it establishes that hippocampal trajectory representations encode goal-directed structure during the waking period, which is the input that the offline consolidation pipeline (SD-017) must process. However, the paper does not demonstrate necessity of offline consolidation -- it is about online theta sequences during behaviour, not SWR replay during sleep. This is mixed evidence: it supports the architectural claim that hippocampus encodes goal-relevant sequential structure (required for SD-017's SWS-analog replay to be meaningful), but does not speak to whether offline phases are necessary.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_sd_017",
+      "failure_signatures": [
+        "The study is about awake theta sequences during navigation, not offline SWR replay during sleep or rest.",
+        "Goal-modulated theta sequences are a waking phenomenon; their necessity for offline consolidation (the core SD-017 claim) is not addressed.",
+        "The study does not test what happens to goal-directed behaviour when offline consolidation is blocked."
+      ],
+      "run_id": "2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-046",
+      "confidence": 0.74,
+      "confidence_rationale": "Clinical study using a standardised autobiographical memory instrument (E-AGI) across MCI, early AD, and moderate AD groups (same instrument across all groups enables direct comparison). Key findings: episodic autobiographical memory (richness of detail) impaired already in MCI; semantic autobiographical memory spared until moderate stages -- direct dissociation across disease stages. This is the most direct published demonstration of the staging pattern predicted by INV-047 (staged decline follows reverse pipeline dependency) and supports INV-046 (dementia is primarily a contextual attribution failure, since episodic-contextual retrieval fails before semantic knowledge). Confidence limited by single-centre study, moderate sample sizes, and the E-AGI instrument.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Single-centre study with relatively small diagnostic groups -- replication with larger samples is needed.",
+        "The E-AGI instrument measures autobiographical episodic vs. semantic memory; it does not directly measure contextual attribution or pipeline phase integrity.",
+        "The dissociation (episodic before semantic) is at the level of symptom description; the paper does not test whether offline consolidation phases are the mechanism."
+      ],
+      "run_id": "2026-04-06_inv046_inv047_episodic_semantic_dissociation_urbanowitsch2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-047",
+      "confidence": 0.74,
+      "confidence_rationale": "Clinical study using a standardised autobiographical memory instrument (E-AGI) across MCI, early AD, and moderate AD groups (same instrument across all groups enables direct comparison). Key findings: episodic autobiographical memory (richness of detail) impaired already in MCI; semantic autobiographical memory spared until moderate stages -- direct dissociation across disease stages. This is the most direct published demonstration of the staging pattern predicted by INV-047 (staged decline follows reverse pipeline dependency) and supports INV-046 (dementia is primarily a contextual attribution failure, since episodic-contextual retrieval fails before semantic knowledge). Confidence limited by single-centre study, moderate sample sizes, and the E-AGI instrument.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Single-centre study with relatively small diagnostic groups -- replication with larger samples is needed.",
+        "The E-AGI instrument measures autobiographical episodic vs. semantic memory; it does not directly measure contextual attribution or pipeline phase integrity.",
+        "The dissociation (episodic before semantic) is at the level of symptom description; the paper does not test whether offline consolidation phases are the mechanism."
+      ],
+      "run_id": "2026-04-06_inv046_inv047_episodic_semantic_dissociation_urbanowitsch2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-168",
+      "confidence": 0.8,
+      "confidence_rationale": "Controlled within-subject design with three arms (normal sleep, sleep deprivation, sodium oxybate enhancement); serial CSF sampling with stable-isotope kinetic labelling (13C-leucine) to directly measure Abeta production vs. clearance. Sleep deprivation increased Abeta38/40/42 by 25-30% via elevated production, not reduced clearance. This directly supports MECH-168 (sleep disruption accelerates pipeline substrate damage) and MECH-171 (disrupted sleep increases AD pathology load, establishing one arm of the vicious cycle). Transfer risk: CSF kinetics measure amyloid load, not attribution pipeline function per se -- the link to contextual attribution failure requires inference via MECH-169.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "The study measured amyloid beta kinetics, not cognitive or attribution pipeline function -- it cannot directly test whether sleep deprivation impairs contextual attribution specifically.",
+        "Short-duration (single night) sleep deprivation; chronic exposure and dose-response are not established by this design.",
+        "Production increase rather than clearance reduction was the mechanism; this is consistent with but does not require the MECH-169 glymphatic account."
+      ],
+      "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_lucey2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-168",
+      "confidence": 0.78,
+      "confidence_rationale": "RCT design (n=26, randomized to 1 night total sleep deprivation vs. unrestricted sleep); PSG monitoring; intrathecal catheter for serial CSF sampling. Normal sleep produced a 6% decrease in Abeta42 overnight; sleep deprivation counteracted this, with a 75.8 pg/mL between-group difference. The 2014 JAMA Neurology publication gives this the most public profile of the sleep-deprivation Abeta series. Supports MECH-168 (substrate damage accumulation is sleep-dependent) and MECH-171 (sleep deprivation arm of the vicious cycle).",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Single-night deprivation; chronic effects and staging of pipeline failure cannot be inferred.",
+        "All male sample, ages 40-60, cognitively normal -- generalisability to AD population and to women uncertain.",
+        "Measures Abeta42 specifically; does not address tau pathology or downstream attribution pipeline impairment."
+      ],
+      "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_ooms2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-168",
+      "confidence": 0.77,
+      "confidence_rationale": "Narrative review covering all three major AD pathological hallmarks (amyloid, tau, neurodegeneration) and their bidirectional relationships with sleep-wake disruption. The authors explicitly argue that all three relationships are likely bidirectional -- making this the most comprehensive source for MECH-171 (vicious cycle). Also reviews preclinical stage evidence for MECH-168 (sleep disruption accelerates pathology) and the broader substrate damage account supporting MECH-169. Confidence limited by narrative review design and the review predating some key longitudinal studies.",
+      "evidence_class": "lit:review_meta_analysis",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Narrative review -- cannot assign causal direction quantitatively; bidirectionality argued but not formally demonstrated.",
+        "Focus on amyloid, tau, and neurodegeneration hallmarks; does not directly test the attribution pipeline account or symptom staging.",
+        "Pre-dates important longitudinal RCT evidence on sleep intervention and cognitive outcome."
+      ],
+      "run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-169",
+      "confidence": 0.82,
+      "confidence_rationale": "Landmark Science paper from the Nedergaard lab establishing the glymphatic clearance account. Real-time tetramethylammonium diffusion and two-photon imaging in live mice show that sleep/anaesthesia produces a 60% increase in interstitial space, dramatically increasing convective exchange between CSF and interstitial fluid, which doubles the rate of Abeta clearance. This is canonical evidence for MECH-169: the glymphatic mechanism is the substrate-damage account of AD pathology accumulation, and it is complementary (not competing) with the attribution pipeline account. Confidence limited by mouse model and the fact that supporting the glymphatic account does not directly test whether the attribution pipeline is the correct framing of cognitive symptoms.",
+      "evidence_class": "lit:animal_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Mouse model: interstitial space expansion during sleep has not been replicated at this magnitude in humans directly (though CSF tracer studies are consistent).",
+        "The paper establishes the clearance mechanism without addressing which sleep phase is most important or whether phase-specific disruption maps to MECH-168 staged failure ordering.",
+        "Glymphatic account is for substrate damage (amyloid accumulation); it does not itself explain why the cognitive symptom profile in AD follows the reverse pipeline dependency order (INV-047) -- that is exactly the distinction MECH-169 captures."
+      ],
+      "run_id": "2026-04-06_mech169_glymphatic_sleep_clearance_xie2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-169",
+      "confidence": 0.77,
+      "confidence_rationale": "Narrative review covering all three major AD pathological hallmarks (amyloid, tau, neurodegeneration) and their bidirectional relationships with sleep-wake disruption. The authors explicitly argue that all three relationships are likely bidirectional -- making this the most comprehensive source for MECH-171 (vicious cycle). Also reviews preclinical stage evidence for MECH-168 (sleep disruption accelerates pathology) and the broader substrate damage account supporting MECH-169. Confidence limited by narrative review design and the review predating some key longitudinal studies.",
+      "evidence_class": "lit:review_meta_analysis",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Narrative review -- cannot assign causal direction quantitatively; bidirectionality argued but not formally demonstrated.",
+        "Focus on amyloid, tau, and neurodegeneration hallmarks; does not directly test the attribution pipeline account or symptom staging.",
+        "Pre-dates important longitudinal RCT evidence on sleep intervention and cognitive outcome."
+      ],
+      "run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-171",
+      "confidence": 0.8,
+      "confidence_rationale": "Controlled within-subject design with three arms (normal sleep, sleep deprivation, sodium oxybate enhancement); serial CSF sampling with stable-isotope kinetic labelling (13C-leucine) to directly measure Abeta production vs. clearance. Sleep deprivation increased Abeta38/40/42 by 25-30% via elevated production, not reduced clearance. This directly supports MECH-168 (sleep disruption accelerates pipeline substrate damage) and MECH-171 (disrupted sleep increases AD pathology load, establishing one arm of the vicious cycle). Transfer risk: CSF kinetics measure amyloid load, not attribution pipeline function per se -- the link to contextual attribution failure requires inference via MECH-169.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "The study measured amyloid beta kinetics, not cognitive or attribution pipeline function -- it cannot directly test whether sleep deprivation impairs contextual attribution specifically.",
+        "Short-duration (single night) sleep deprivation; chronic exposure and dose-response are not established by this design.",
+        "Production increase rather than clearance reduction was the mechanism; this is consistent with but does not require the MECH-169 glymphatic account."
+      ],
+      "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_lucey2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-171",
+      "confidence": 0.78,
+      "confidence_rationale": "RCT design (n=26, randomized to 1 night total sleep deprivation vs. unrestricted sleep); PSG monitoring; intrathecal catheter for serial CSF sampling. Normal sleep produced a 6% decrease in Abeta42 overnight; sleep deprivation counteracted this, with a 75.8 pg/mL between-group difference. The 2014 JAMA Neurology publication gives this the most public profile of the sleep-deprivation Abeta series. Supports MECH-168 (substrate damage accumulation is sleep-dependent) and MECH-171 (sleep deprivation arm of the vicious cycle).",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Single-night deprivation; chronic effects and staging of pipeline failure cannot be inferred.",
+        "All male sample, ages 40-60, cognitively normal -- generalisability to AD population and to women uncertain.",
+        "Measures Abeta42 specifically; does not address tau pathology or downstream attribution pipeline impairment."
+      ],
+      "run_id": "2026-04-06_mech168_mech171_sleep_deprivation_abeta_ooms2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-171",
+      "confidence": 0.76,
+      "confidence_rationale": "Large longitudinal cohort study (n=1401 Rush Memory and Aging Project) with up to 14-year follow-up using objective actigraphy. The study demonstrates both directions of the bidirectional relationship within the same sample: (a) excess daytime napping predicts incident Alzheimer's dementia and worsens cognition a year later; (b) worse cognition (including dementia progression) predicts more excessive napping a year later. This is direct empirical support for MECH-171 (attribution failure -> sleep disruption -> accelerated pipeline failure). The actigraphy-based napping measurement is objective and longitudinal, which is a methodological strength.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Daytime napping is a proxy for disrupted sleep architecture -- the study does not measure NREM/REM phase quality directly, so the specific pipeline stages affected cannot be identified.",
+        "Bidirectionality is demonstrated at the dementia/napping level, not at the attribution pipeline level; the causal chain from napping->amyloid->pipeline disruption is inferred.",
+        "Residual confounding (comorbidities, medications, activity level) cannot be fully excluded in an observational study."
+      ],
+      "run_id": "2026-04-06_mech171_bidirectional_napping_dementia_li2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-171",
+      "confidence": 0.77,
+      "confidence_rationale": "Narrative review covering all three major AD pathological hallmarks (amyloid, tau, neurodegeneration) and their bidirectional relationships with sleep-wake disruption. The authors explicitly argue that all three relationships are likely bidirectional -- making this the most comprehensive source for MECH-171 (vicious cycle). Also reviews preclinical stage evidence for MECH-168 (sleep disruption accelerates pathology) and the broader substrate damage account supporting MECH-169. Confidence limited by narrative review design and the review predating some key longitudinal studies.",
+      "evidence_class": "lit:review_meta_analysis",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Narrative review -- cannot assign causal direction quantitatively; bidirectionality argued but not formally demonstrated.",
+        "Focus on amyloid, tau, and neurodegeneration hallmarks; does not directly test the attribution pipeline account or symptom staging.",
+        "Pre-dates important longitudinal RCT evidence on sleep intervention and cognitive outcome."
+      ],
+      "run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-172",
+      "confidence": 0.83,
+      "confidence_rationale": "Classic double-dissociation study across three patient groups (DAT, HD, PD). The key finding for MECH-172: DAT patients are severely impaired on explicit memory but show NORMAL motor skill learning on the pursuit-rotor task AND normal performance on the weight-biasing task -- the same tasks on which HD patients (with striatal pathology) are specifically impaired. The dissociation is the double: DAT (hippocampal) impairs declarative but spares motor skill/procedural; HD (striatal) impairs motor skill/procedural but spares declarative. This directly demonstrates the architectural separation predicted by MECH-172 (habit/procedural memory is spared in early AD because it depends on a corticostriatal system that does not require offline consolidation).",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_dementia_attribution_pipeline",
+      "failure_signatures": [
+        "Motor learning tasks (pursuit-rotor, weight-biasing) are preserved in DAT but lexical priming is also impaired in DAT -- the sparing is specific to motor procedural learning, not all implicit memory.",
+        "Small sample sizes by modern standards; early clinical diagnostic criteria for DAT.",
+        "Does not directly test whether preservation is due to 'no offline consolidation required' vs. some other mechanism of striatal independence."
+      ],
+      "run_id": "2026-04-06_mech172_procedural_memory_preserved_heindel1989",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:30:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-04T23:03:32.141339Z",
+  "generated_at_utc": "2026-04-04T23:21:48.701557Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

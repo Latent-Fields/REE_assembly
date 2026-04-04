@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dementia_attribution_pipeline",
+  "entry_id": "2026-04-06_mech172_procedural_memory_preserved_heindel1989",
+  "timestamp_utc": "2026-04-06T00:30:00Z",
+  "claim_ids_tested": ["MECH-172"],
+  "source": {
+    "title": "Neuropsychological evidence for multiple implicit memory systems: a comparison of Alzheimer's, Huntington's, and Parkinson's disease patients.",
+    "authors": ["Heindel WC", "Salmon DP", "Shults CW", "Walicke PA", "Butters N"],
+    "year": 1989,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.09-02-00582.1989",
+    "pmid": "2521896"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Classic double-dissociation study across three patient groups (DAT, HD, PD). The key finding for MECH-172: DAT patients are severely impaired on explicit memory but show NORMAL motor skill learning on the pursuit-rotor task AND normal performance on the weight-biasing task -- the same tasks on which HD patients (with striatal pathology) are specifically impaired. The dissociation is the double: DAT (hippocampal) impairs declarative but spares motor skill/procedural; HD (striatal) impairs motor skill/procedural but spares declarative. This directly demonstrates the architectural separation predicted by MECH-172 (habit/procedural memory is spared in early AD because it depends on a corticostriatal system that does not require offline consolidation).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Motor learning tasks (pursuit-rotor, weight-biasing) are preserved in DAT but lexical priming is also impaired in DAT -- the sparing is specific to motor procedural learning, not all implicit memory.",
+    "Small sample sizes by modern standards; early clinical diagnostic criteria for DAT.",
+    "Does not directly test whether preservation is due to 'no offline consolidation required' vs. some other mechanism of striatal independence."
+  ],
+  "tags": ["mech172", "alzheimers_disease", "procedural_memory", "motor_learning", "implicit_memory", "hippocampus", "striatum", "huntington", "double_dissociation", "heindel", "butters"],
+  "mapping": {
+    "source_claim_statement": "Dementia of the Alzheimer type (DAT) patients perform normally on pursuit-rotor motor learning and weight-biasing tasks (both implicit procedural/motor tasks) but are severely impaired on explicit memory. Huntington's disease patients show the reverse: impaired on motor learning tasks but relatively spared on lexical priming. This double dissociation indicates that motor skill learning is mediated by a corticostriatal system distinct from the hippocampal-neocortical declarative memory system.",
+    "ree_translation": "MECH-172 predicts that habit/procedural memory is architecturally spared in early AD because it depends on a model-free corticostriatal habit system that does not require offline consolidation phases. The declarative (episodic/contextual) attribution pipeline requires NREM/REM offline phases; the corticostriatal habit system does not. This paper provides the foundational neuropsychological evidence for that architectural separation: DAT selectively damages the hippocampal system (pipeline substrate) while leaving the striatal habit system intact. The double dissociation with HD confirms the systems are genuinely neurologically separable.",
+    "mapping_caveat": "The paper establishes the neuropsychological dissociation at the system level; it does not test whether the preservation is because no offline consolidation is required (the MECH-172 mechanism) vs. simple anatomical separation. The claim that corticostriatal habit learning requires no offline consolidation is supported by adjacent literature but not tested here directly.",
+    "source_context": "Clinical neuropsychology study at San Diego VA; DAT, HD, and demented/nondemented PD patients; pursuit-rotor motor task (200 ms target) and weight-biasing task; explicit recall and lexical priming controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Classic paper, highly cited, double-dissociation design. Mapping fidelity high -- the architectural separation is exactly what MECH-172 predicts. Transfer risk low -- directly tests AD patients on procedural vs. declarative tasks. Confidence limited by small samples and older diagnostic criteria."
+  }
+}
