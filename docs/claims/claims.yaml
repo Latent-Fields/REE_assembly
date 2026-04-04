@@ -9826,3 +9826,135 @@
     and learning trajectory. Hagewoud 2010 (Sleep) -- monostrategy convergence
     when sleep absent, providing indirect support.
     Registered 2026-04-05. V4 scope.
+
+- id: SD-017
+  title: "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated."
+  claim_type: design_decision
+  subject: sleep_phase.minimal_sleep_infrastructure_v3
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-092
+    - ARC-038
+    - ARC-007
+    - SD-014
+  location: docs/architecture/sd_017_sleep_phase_architecture.md
+  notes: >
+    Registered 2026-04-05. Significant roadmap change: previously all sleep phases
+    were V4 scope (offline_phases.md, v3_v4_transition_boundary.md). Key insight:
+    hippocampal attribution mapping -- the core E3 function -- requires offline
+    consolidation phases to converge. Without them, context representations remain
+    undifferentiated (cosine_sim -> 1.0; Law 2016 shows hippocampal context
+    stabilisation requires ~3 interleaved sessions). Slot structure must exist
+    before slot-filling yields reliable attribution signal (Sanders 2020 Bayesian
+    hidden-state inference). The monostrategy failure mode (agent navigates like a
+    fish swimming the same route) is not a V4 problem -- it appears in V3 and
+    blocks E3's core attribution mapping function.
+    V3 minimal implementation: (a) SWS-analog -- periodic hippocampus-to-cortex
+    replay pass updating schema/context templates (distinct from MECH-092 which is
+    hippocampus-internal waking quiescence replay); (b) REM-analog -- causal
+    attribution replay filling context slots with co-correlational estimates from
+    recent trajectory evidence, using information-direction switching.
+    This is architecturally distinct from the full V4 sleep machinery:
+    MECH-120 (SHY synaptic homeostasis), MECH-121 (NREM SWR+spindles),
+    MECH-122 (thalamo-cortical spindles), MECH-123 (REM precision recalibration).
+    Those remain V4. SD-017 is the V3 scaffold that enables E3 goal and harm
+    streams to produce useful attribution maps, without which ree-v3 cannot
+    consolidate contextual knowledge and remains behaviourally impoverished
+    regardless of the quality of the online waking substrate.
+
+- id: ARC-045
+  title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
+  claim_type: architectural_commitment
+  subject: hippocampus.bidirectional_information_flow
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-017
+    - MECH-092
+    - ARC-038
+    - MECH-166
+  notes: >
+    Registered 2026-04-05. Biological grounding: hippocampal-to-neocortical
+    information flow during slow-wave sleep (Diekelmann & Born 2010) is the
+    canonical schema-installation pathway. Waking and REM reactivation then
+    reads from and elaborates installed schemas. The bidirectional nature is not
+    incidental -- it reflects a functional division: the hippocampus proposes
+    structure; the neocortex receives, stabilises, and provides context feedback.
+    ARC-045 claims bidirectionality is necessary (not merely useful) for
+    attribution mapping convergence, because unidirectional online encoding alone
+    cannot produce the stable context representations required for reliable causal
+    attribution. Without the hippocampus-to-cortex pass installing schema attractors,
+    the filling pass has no stable slots to fill.
+    Experimental implication: an agent with bidirectional offline flow should show
+    cosine_sim < 0.95 (differentiated contexts) after sleep phases; one with only
+    waking online encoding remains at cosine_sim -> 1.0 regardless of training
+    duration. EXQ-239 (MECH-153) approximates this via the supervised signal proxy
+    -- the lambda=0.5 supervised pass is a weak stand-in for the SWS-direction
+    schema-installation pass that SD-017 will properly implement.
+
+- id: MECH-166
+  title: "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.slot_formation_filling_temporal_separation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-017
+    - ARC-045
+    - MECH-092
+  notes: >
+    Registered 2026-04-05. Grounded in Sanders, Wilson & Gershman 2020 (eLife):
+    context discrimination at inference time is bounded by the quality of the
+    learned hidden-state prior. The prior must be learned (slot-formation) before
+    posterior inference (slot-filling) can be informative. In REE terms: the
+    context templates (which terrain/situation types exist) must be consolidated
+    as stable attractors before the agent can reliably attribute observed evidence
+    to the correct context slot.
+    Relationship to MECH-165: MECH-165 addresses replay content diversity
+    (forward/reverse balance) during slot-filling. MECH-166 is the prerequisite:
+    the slots must exist and be differentiated before diversity of replay content
+    matters. A system with MECH-165 but not MECH-166 would have diverse replay
+    content but no stable context structure to organise it into.
+    The three waking/sleep information phases map as: (1) waking -- gather what
+    is out there (E1 world model, online experience); (2) SWS-analog -- form the
+    slots (schema abstraction, which distinctions matter); (3) REM-analog -- fill
+    the slots (causal attribution from co-correlations and evidence ordering).
+    Experimental implication: EXQ-239 (MECH-153) provides an indirect test.
+    A direct test requires implementing the SWS-analog pass and comparing
+    attribution map quality (context cosine_sim, terrain classification accuracy)
+    with vs without it.
+
+- id: MECH-167
+  title: "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding."
+  claim_type: mechanism_hypothesis
+  subject: homeostatic_accumulation.computational_motif
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-011
+    - SD-012
+  notes: >
+    Registered 2026-04-05. Biological grounding: Craig 2003 (Trends Neurosci)
+    groups pain, hunger, thirst, and temperature under a common lamina-I
+    homeostatic pathway converging on ACC via VMpo. This creates an apparent
+    scope collision between z_harm_a and drive_level. MECH-167 resolves this:
+    the shared substrate reflects a repeated computational motif (slow interoceptive
+    integration) not information sharing. The analogy: canonical microcircuit motifs
+    appear across cortical areas without those areas sharing content.
+    The two accumulators are separated by: (a) input source (harm exposure vs.
+    energy depletion), (b) temporal dynamics (harm accumulates on contact; energy
+    depletes continuously), (c) downstream gate (harm evaluation vs. z_goal seeding).
+    Experimental prediction: z_harm_a and drive_level should show similar
+    autocorrelation curves (slow decay) but near-zero cross-correlation (orthogonal
+    content). A direct test regresses one against the other across a long episode
+    and expects R^2 < 0.05.
+    Generalisation: any future homeostatic signal (novelty depletion, social
+    contact deficit) should follow the same integration architecture -- slow EMA,
+    ACC-type convergence, distinct downstream gate -- instantiating the same motif
+    without information sharing. This is a framework prediction, not just a
+    description of the existing two accumulators.
