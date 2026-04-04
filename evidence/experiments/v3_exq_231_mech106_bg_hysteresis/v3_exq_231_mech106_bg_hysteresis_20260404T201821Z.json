@@ -1,0 +1,88 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "c1_pass": 0.0,
+    "c2_pass": 1.0,
+    "c3_pass": 0.0,
+    "c4_pass": 1.0,
+    "criteria_met": 2.0,
+    "persist_ratio_seed0": 1.0,
+    "reactive_ratio_seed0": 1.0,
+    "commit_eps_persistent_seed0": 400.0,
+    "mean_commit_persistent_seed0": 6.97,
+    "mean_commit_reactive_seed0": 6.97,
+    "persist_ratio_seed1": 1.0,
+    "reactive_ratio_seed1": 1.0,
+    "commit_eps_persistent_seed1": 400.0,
+    "mean_commit_persistent_seed1": 6.9425,
+    "mean_commit_reactive_seed1": 6.9425,
+    "persist_ratio_seed2": 1.0,
+    "reactive_ratio_seed2": 1.0,
+    "commit_eps_persistent_seed2": 400.0,
+    "mean_commit_persistent_seed2": 199.9925,
+    "mean_commit_reactive_seed2": 199.9925
+  },
+  "summary_markdown": "# V3-EXQ-231 -- MECH-106 BG Hysteresis\n\n**Status:** FAIL  **Criteria met:** 2/4\n**Claims:** MECH-106  **Purpose:** evidence\n\nFirst experiment for MECH-106. Tests whether committed mode persists beyond the initial triggering condition (variance < threshold).\n\n## Conditions\n\n- PERSISTENT: commitment held for >= 20 steps after trigger; releases only when variance > threshold + 0.05\n- REACTIVE: commitment = instantaneous (variance < threshold each step)\n\n## Results\n\n| Seed | Persist ratio | Reactive ratio | Commit eps | C1 | C2 | C3 | C4 |\n|------|--------------|----------------|------------|----|----|----|----|\n| 42 | 1.000 | 1.000 | 400 | FAIL | PASS | FAIL | PASS |\n| 7 | 1.000 | 1.000 | 400 | FAIL | PASS | FAIL | PASS |\n| 13 | 1.000 | 1.000 | 400 | FAIL | PASS | FAIL | PASS |\n\n## Interpretation\n\nMECH-106 PARTIAL: Some hysteresis signal present but below full threshold. Consider longer training or wider margin.\n\n## Failure Notes\n\n- C1 FAIL: persist_ratios=[1.0, 1.0, 1.0] (need > 2.0 in >= 2/3)\n- C3 FAIL: PERSISTENT not committing more steps than REACTIVE\n",
+  "claim_ids": [
+    "MECH-106"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_231_mech106_bg_hysteresis",
+  "fatal_error_count": 0,
+  "seed_results": [
+    {
+      "seed": 42,
+      "PERSISTENT": {
+        "condition": "PERSISTENT",
+        "mean_persistence_ratio": 1.0,
+        "mean_commit_steps_ep": 6.97,
+        "mean_trigger_steps_ep": 6.97,
+        "n_committed_episodes": 400
+      },
+      "REACTIVE": {
+        "condition": "REACTIVE",
+        "mean_persistence_ratio": 1.0,
+        "mean_commit_steps_ep": 6.97,
+        "mean_trigger_steps_ep": 6.97,
+        "n_committed_episodes": 400
+      }
+    },
+    {
+      "seed": 7,
+      "PERSISTENT": {
+        "condition": "PERSISTENT",
+        "mean_persistence_ratio": 1.0,
+        "mean_commit_steps_ep": 6.9425,
+        "mean_trigger_steps_ep": 6.9425,
+        "n_committed_episodes": 400
+      },
+      "REACTIVE": {
+        "condition": "REACTIVE",
+        "mean_persistence_ratio": 1.0,
+        "mean_commit_steps_ep": 6.9425,
+        "mean_trigger_steps_ep": 6.9425,
+        "n_committed_episodes": 400
+      }
+    },
+    {
+      "seed": 13,
+      "PERSISTENT": {
+        "condition": "PERSISTENT",
+        "mean_persistence_ratio": 1.0,
+        "mean_commit_steps_ep": 199.9925,
+        "mean_trigger_steps_ep": 199.9925,
+        "n_committed_episodes": 400
+      },
+      "REACTIVE": {
+        "condition": "REACTIVE",
+        "mean_persistence_ratio": 1.0,
+        "mean_commit_steps_ep": 199.9925,
+        "mean_trigger_steps_ep": 199.9925,
+        "n_committed_episodes": 400
+      }
+    }
+  ],
+  "run_timestamp": "20260404T201821Z",
+  "run_id": "v3_exq_231_mech106_bg_hysteresis_20260404T201821Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

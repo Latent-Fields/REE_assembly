@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 43051,
   "runner_started_at": "2026-04-03T21:41:05.758761+00:00",
-  "last_updated": "2026-04-04T17:29:39.359569+00:00",
+  "last_updated": "2026-04-04T23:04:59.623133+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-231",
+    "queue_id": "V3-EXQ-231a",
     "backlog_id": "",
     "claim_id": "",
-    "title": "MECH-106 BG Hysteresis First Experiment (PERSISTENT vs REACTIVE)",
+    "title": "MECH-106 BG Hysteresis Redesign (valence-modulated threshold vs no-bias ablation)",
     "description": "",
-    "script": "experiments/v3_exq_231_mech106_bg_hysteresis.py",
-    "started_at": "2026-04-04T16:23:07.277083+00:00",
+    "script": "experiments/v3_exq_231a_mech106_bg_hysteresis_redesign.py",
+    "started_at": "2026-04-04T20:18:25.193532+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 400,
-      "episodes_total": 400,
+      "episodes_done": 100,
+      "episodes_total": 100,
       "overall_pct": 100.0
     },
-    "seconds_elapsed": 3992,
+    "seconds_elapsed": 9994,
     "seconds_remaining": 0,
     "recent_lines": [
-      "[REACTIVE] seed=7 ep 300/400 trigger=7.0 commit=7.0 ratio=1.00 rv=0.0031",
-      "[REACTIVE] seed=7 ep 400/400 trigger=6.9 commit=6.9 ratio=1.00 rv=0.0031",
-      "[REACTIVE] seed=7 DONE: mean_persist_ratio=1.000 committed_eps=400/400 mean_commit=6.9",
-      "--- seed=13 ---",
-      "[PERSISTENT] seed=13 episodes=400 steps=200 commit_thresh=0.400"
+      "[seed=200] POSITIVE_HISTORY 40 eps ...",
+      "[seed=200] after POS_HIST: da_pos=0.8450 threshold_vb=0.5656 threshold_nb=0.4000",
+      "[seed=200] PROBE_A 25 eps ...",
+      "[seed=200] PROBE_A done: mean_latency_vb=2.0 (25/25 commits) mean_latency_nb=9.0 (25/25 commits)",
+      "[seed=200] NEGATIVE_HISTORY 40 eps ..."
     ],
     "ree_version": "v3"
   },
@@ -44,24 +44,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-231",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-106 BG Hysteresis First Experiment (PERSISTENT vs REACTIVE)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-231a",
       "backlog_id": "",
       "claim_id": "",
       "title": "MECH-106 BG Hysteresis Redesign (valence-modulated threshold vs no-bias ablation)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -4418,6 +4407,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_230_mech075_novelty_diagnostic/v3_exq_230_mech075_novelty_diagnostic_20260404T162303Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 3209.4
+    },
+    {
+      "queue_id": "V3-EXQ-231",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-106 BG Hysteresis First Experiment (PERSISTENT vs REACTIVE)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-04-04T16:23:07.277083+00:00",
+      "completed_at": "2026-04-04T20:18:22.265215+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_231_mech106_bg_hysteresis/v3_exq_231_mech106_bg_hysteresis_20260404T201821Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 14114.9
     }
   ]
 }

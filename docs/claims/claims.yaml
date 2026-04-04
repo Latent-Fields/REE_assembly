@@ -10340,3 +10340,448 @@
     (2) in pure habit system disorders (Huntington's, striatal lesions),
     procedural memory fails while episodic memory is relatively spared.
     The REE account predicts both dissociations from first principles.
+
+# ---- Claims registered 2026-04-05: medication effects on sleep architecture as attribution pipeline disruption ----
+
+- id: INV-048
+  title: "Any pharmacological agent that disrupts sleep architecture produces equivalent attribution pipeline degradation to behavioral sleep deprivation, proportional to which phase(s) are disrupted and the duration of exposure -- the pipeline is mechanism-agnostic and responds only to phase fidelity."
+  claim_type: invariant
+  subject: sleep.pharmacological_disruption_pipeline_equivalence
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-045
+    - INV-046
+    - MECH-120
+    - MECH-121
+    - MECH-123
+  notes: >
+    Registered 2026-04-05. The attribution pipeline (INV-045/INV-046) makes no
+    mechanistic distinction between sleep deprivation caused by behavioral
+    factors and sleep deprivation caused by pharmacological suppression of
+    sleep phases. The relevant variable is phase fidelity -- whether each
+    consolidation phase runs with adequate depth, duration, and sequence
+    integrity -- not the cause of its disruption.
+    This equivalence principle grounds all downstream pharmacological
+    predictions (MECH-173-177): medication review becomes a pipeline audit.
+    For each prescribed medication, the relevant question is: which pipeline
+    phases does this agent suppress, by how much, over how long?
+    The grounding follows directly from INV-045 (phase ordering is
+    computationally necessary) and INV-046 (dementia is attribution pipeline
+    failure). If the pipeline requires phase fidelity, and medications can
+    disrupt phase fidelity, then medications can cause pipeline degradation
+    via the same mechanism as behavioral sleep loss.
+    Epidemiological support: benzodiazepine and anticholinergic use in
+    older adults are associated with increased dementia incidence (Billioti
+    de Gage et al. 2014 BMJ; Coupland et al. 2019 JAMA Internal Medicine),
+    consistent with pharmacological pipeline disruption over years.
+
+- id: MECH-173
+  title: "Medications that suppress REM sleep (anticholinergics, MAOIs, most antidepressants at therapeutic doses, benzodiazepines) selectively impair MECH-123 precision recalibration -- the most downstream pipeline phase -- and thereby accelerate the earliest dementia prodrome: overconfident contextual attributions before overt memory loss."
+  claim_type: mechanism_hypothesis
+  subject: pharmacology.rem_suppression_phase4_disruption
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-048
+    - MECH-123
+    - INV-047
+    - MECH-168
+  notes: >
+    Registered 2026-04-05. REM sleep is the substrate of MECH-123 (precision
+    recalibration): during REM, decision thresholds and prior confidence
+    weights are reset, allowing the waking system to update its uncertainty
+    estimates. Pharmacological REM suppression deprives this recalibration
+    of its substrate.
+    Because Phase 4 (precision recalibration) fails first in natural
+    neurodegeneration (INV-047), pharmacological REM suppression selectively
+    targets the most vulnerable phase, accelerating the earliest prodrome:
+    the agent continues acting with high confidence while the accuracy of
+    contextual attributions degrades -- the combination characteristic of
+    early MCI (subjective normalcy, objective deficit on sensitive testing).
+    Key REM-suppressing medications by mechanism:
+    (1) Anticholinergics: ACh (from nucleus basalis of Meynert and brainstem
+    PGO wave generators) is the primary neurochemical driver of REM; any
+    muscarinic blockade suppresses REM directly.
+    (2) MAOIs: profound REM suppression via noradrenergic/serotonergic
+    excess; clinically, REM is almost abolished at therapeutic doses.
+    (3) SSRIs/SNRIs: REM suppression via serotonergic excess acting on 5-HT2A
+    REM-off neurons (paroxetine most REM-suppressive due to combined
+    anticholinergic action; venlafaxine and duloxetine moderate).
+    (4) TCAs: REM suppression via combined anticholinergic + serotonergic
+    effects; amitriptyline and clomipramine most potent.
+    (5) Benzodiazepines: reduce REM% via preferential Stage 2 enhancement
+    at the expense of SWS and REM.
+    Prediction: cumulative REM-suppressing medication years should predict
+    MCI conversion, detectable as precision failure on laboratory tasks
+    before clinical diagnosis. This is testable via retrospective
+    pharmacoepidemiology with neuropsychological battery data.
+
+- id: MECH-174
+  title: "GABAergic sleep aids (benzodiazepines and Z-drugs: zolpidem, zopiclone, zaleplon) suppress SWS depth and continuity at therapeutic doses, impairing MECH-120 synaptic homeostasis and MECH-121 schema replay, producing context representations that remain globally undifferentiated -- the same failure mode as SD-017 without any SWS-analog."
+  claim_type: mechanism_hypothesis
+  subject: pharmacology.sws_suppression_phase12_disruption
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-048
+    - MECH-120
+    - MECH-121
+    - SD-017
+  notes: >
+    Registered 2026-04-05. GABA-A positive allosteric modulators (classical
+    benzodiazepines: diazepam, lorazepam, temazepam, nitrazepam; and Z-drugs:
+    zolpidem, zopiclone, zaleplon) bind to benzodiazepine-sensitive GABA-A
+    receptor subunits and produce sleep via global CNS inhibition.
+    This global inhibition suppresses SWS in two distinct ways:
+    (1) Direct SWS depth suppression: slow oscillation amplitude is reduced
+    because the hypnotic state is produced pharmacologically rather than via
+    homeostatic pressure -- the homeostatic drive that normally generates
+    deep SWS is partially bypassed. This impairs MECH-120 (SHY synaptic
+    homeostasis): the normalisation of dominant attractors requires adequate
+    slow-wave power to drive the homeostatic reset.
+    (2) SWS continuity disruption: GABAergic hypnotics produce fragmented
+    slow-wave episodes rather than the sustained SWS blocks required for
+    MECH-121 (schema replay via SWR sequences). Schema consolidation depends
+    on sustained hippocampal SWR sequences coordinated with cortical slow
+    oscillations (Staresina et al. 2015, Diekelmann & Born 2010); fragmented
+    SWS produces fragmented and incomplete replay.
+    Note on Z-drug distinction: Z-drugs preferentially bind alpha-1 subunit
+    GABA-A receptors and enhance Stage 2 spindles (which may support MECH-122
+    spindle coordination for already-consolidated items). However, they still
+    reduce SWS homeostatic depth because they produce sleep via direct
+    pharmacological inhibition rather than via accumulated homeostatic pressure.
+    The net SWS homeostasis impairment is therefore shared with classical
+    benzodiazepines, even if spindle coordination is partially preserved.
+    Prediction: long-term benzodiazepine/Z-drug users should show reduced SWS%
+    on polysomnography and slower context-discrimination learning on tasks
+    requiring schema formation, with episodic retrieval relatively more
+    preserved than new context learning -- the signature of Phase 1/2 failure.
+
+- id: MECH-175
+  title: "Anticholinergic medications confer dementia risk via two independent and potentially additive pathways: (1) REM suppression (ACh is required for REM generation via nucleus basalis and brainstem PGO generators -- muscarinic blockade directly suppresses REM, impairing MECH-123); and (2) cholinergic deficit mimicry (AD is characterised by basal forebrain cholinergic loss; anticholinergic burden creates a pharmacological analog of this deficit during waking hours, independently degrading attention and encoding)."
+  claim_type: mechanism_hypothesis
+  subject: pharmacology.anticholinergic_dual_pathway_dementia_risk
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-173
+    - INV-048
+  notes: >
+    Registered 2026-04-05. The dual-pathway account distinguishes two
+    independent mechanistic contributions of anticholinergic burden to
+    dementia risk:
+    Pathway 1 -- nocturnal REM suppression (pipeline disruption):
+    ACh is the primary neurochemical driver of REM. Muscarinic M1/M2 receptors
+    on PGO (ponto-geniculo-occipital) wave generating neurons and nucleus
+    basalis of Meynert project to cortex and drive REM-state cortical
+    desynchronisation. Anticholinergic blockade directly suppresses PGO
+    waves, suppressing REM initiation and maintenance. This degrades
+    MECH-123 precision recalibration nightly, compounding over years.
+    Pathway 2 -- diurnal cholinergic deficit mimicry (encoding disruption):
+    Alzheimer's disease is characterised by progressive loss of basal
+    forebrain cholinergic neurons (nucleus basalis of Meynert). The cholinergic
+    hypothesis of Alzheimer's (Bartus et al. 1982) established that this
+    deficit is the primary driver of early attentional and encoding failure.
+    Anticholinergic medications produce an iatrogenic cholinergic deficit
+    during waking hours -- a pharmacological analog of the AD lesion itself.
+    This independently impairs attention, encoding, and the cortical
+    desynchronisation required for active learning.
+    Additive prediction: anticholinergic burden scores (ACB scale,
+    Anticholinergic Risk Scale, German Anticholinergic Burden score) should
+    predict dementia conversion better than total medication count or total
+    sleep medication count, because they capture both pathway contributions.
+    The dose-response relationship should be approximately additive if the
+    two pathways are mechanistically independent. This is testable via
+    mediation analysis: if anticholinergic burden -> dementia risk is
+    partially mediated via REM-suppression-years, the nocturnal pathway is
+    confirmed as independent.
+    High-burden medications by indication class:
+    Bladder/urinary: oxybutynin (high), solifenacin (moderate),
+    tolterodine (moderate), darifenacin (high).
+    OTC antihistamines: diphenhydramine (high), chlorphenamine (moderate).
+    TCAs: amitriptyline (high), clomipramine (high), doxepin (high),
+    imipramine (high).
+    Antipsychotics: chlorpromazine (high), olanzapine (moderate),
+    clozapine (high), quetiapine (low-moderate).
+    SSRIs: paroxetine (moderate -- outlier in SSRI class due to
+    potent muscarinic blockade; other SSRIs are low burden).
+    Epidemiological support: Coupland et al. 2019 (JAMA Internal Medicine),
+    Gray et al. 2015 (JAMA Internal Medicine), Khachaturian et al. 2006
+    (Archives of Neurology) -- consistent dose-response anticholinergic
+    burden-dementia association replicated across multiple cohorts and
+    healthcare systems.
+
+- id: MECH-176
+  title: "Orexin receptor antagonists (suvorexant, lemborexant) are predicted to be architecture-preserving sleep aids: they suppress wake-promoting orexin drive without directly compressing sleep phase machinery, allowing the brain's own homeostatic sleep architecture to unfold, and should therefore preserve or improve SWS/REM ratio relative to GABAergic alternatives at equi-efficacious doses."
+  claim_type: mechanism_hypothesis
+  subject: pharmacology.orexin_antagonist_architecture_preserving
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-174
+    - INV-048
+  notes: >
+    Registered 2026-04-05. GABAergic sleep aids produce sleep by actively
+    suppressing the nervous system globally. This bypasses homeostatic
+    pressure, reducing SWS depth and compressing REM by competing with the
+    endogenous machinery (MECH-174). Orexin receptor antagonists (DORAs:
+    dual orexin receptor antagonists -- suvorexant, lemborexant) work by a
+    different mechanism: they block the wake-promoting orexin/hypocretin
+    signal from lateral hypothalamus, permissively allowing the homeostatic
+    sleep pressure to express itself without pharmacological interference
+    with the sleep machinery.
+    The key distinction: GABAergic agents add an active suppressive signal;
+    orexin antagonists remove an active wake-promoting signal. The result
+    is that homeostatic SWS generation is not competed with, and REM cycles
+    emerge from endogenous REM-permitting neurochemistry (reduced monoamines,
+    cholinergic rebound) rather than from pharmacological REM-off suppression.
+    PSG evidence: multiple head-to-head and placebo comparisons show orexin
+    antagonists maintain or slightly increase REM% and do not suppress SWS%
+    below placebo levels (Herring et al. 2016, SLEEP; Kishi et al. 2020
+    meta-analysis). This contrasts with zolpidem (SWS suppression) and
+    temazepam (REM + SWS compression).
+    Testable prediction: in older adults at risk for MCI, orexin antagonist
+    users should show (1) preserved SWS% and REM% on polysomnography, (2)
+    slower episodic memory decline compared to benzodiazepine/Z-drug users
+    at matched total sleep time, and (3) better new context discrimination
+    performance (SD-017 analog in humans: ability to distinguish similar but
+    distinct contexts in list learning tasks).
+    Clinical implication: when a sleep aid is indicated in an older adult
+    at MCI risk, orexin antagonists should be preferred over GABAergic
+    alternatives specifically on dementia risk grounds, independent of
+    other safety considerations (falls, dependence, tolerance).
+
+- id: MECH-177
+  title: "Any pharmacological intervention that durably restores the NREM-to-REM sequence and preserves phase durations in MCI or early Alzheimer's disease is predicted to be disease-modifying via pipeline protection -- upstream of irreversible neurodegeneration, breaking the MECH-171 vicious cycle before schema scaffold collapse, with predicted effect size larger in early MCI than established AD."
+  claim_type: mechanism_hypothesis
+  subject: pharmacology.sleep_architecture_restoration_disease_modifying
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-176
+    - MECH-171
+    - INV-048
+    - MECH-170
+  notes: >
+    Registered 2026-04-05. Pipeline protection mechanism: the MECH-171
+    vicious cycle (sleep disruption -> consolidation failure -> attribution
+    failure -> increased arousal -> further sleep disruption) is the
+    amplification mechanism for dementia progression. Breaking the cycle
+    pharmacologically -- by restoring phase-adequate sleep -- interrupts
+    amplification before the schema scaffold collapses. This is a
+    disease-modifying effect, not symptomatic treatment, because it
+    preserves the infrastructure that contextual attribution depends on.
+    Critical window: MECH-171 predicts that early intervention (MCI stage,
+    before schema scaffold destabilises) produces disproportionately large
+    effects relative to late intervention (established AD, after context
+    slots no longer exist). This is consistent with the general principle
+    that disease-modifying interventions in AD are stage-dependent.
+    Candidates by predicted mechanism and evidence tier:
+    (1) Suvorexant / lemborexant (MECH-176): architecture-preserving
+    via orexin antagonism; preserves SWS + REM. Active clinical
+    investigation (Herring et al. 2020 Alzheimer's Research and Therapy).
+    (2) Ramelteon / melatonin-extended-release: circadian restoration
+    (Phase 0 in INV-045 terminology) improves architecture downstream.
+    Melatonin-ER licensed in EU specifically for over-65 on architecture
+    preservation grounds. Ramelteon: no direct REM/SWS compression.
+    (3) Trazodone (low dose, 25-100mg): 5-HT2A antagonism increases SWS
+    depth (Phase 1/2 enhancement); used in AD sleep disruption trials.
+    Active RCT (McCleery & Sharpley 2020 Cochrane review). SWS-enhancing
+    mechanism is non-GABAergic and non-anticholinergic -- neutral on
+    REM. Provides Phase 1/2 benefit with minimal Phase 4 penalty.
+    (4) Gabapentin / pregabalin: increase SWS depth via voltage-gated
+    calcium channel modulation. Phase 1/2 enhancement. Caveat: tolerance
+    develops for SWS effect; fall risk and cognitive sedation in older
+    adults warrant caution. Not a first-line DPM candidate.
+    (5) Low-dose doxepin (Silenor, 3-6mg): histamine H1 antagonism only
+    at this dose; minimal muscarinic activity below 10mg. Enhances sleep
+    continuity with spindle preservation (MECH-122 compatible). Not
+    REM-suppressive at low dose.
+    Contrast with amyloid-targeting drugs (lecanemab, donanemab): these
+    target substrate damage accumulation (glymphatic pathway, MECH-169)
+    rather than the symptom-progression pipeline. MECH-177 and MECH-169
+    predict additive benefit from combined pipeline protection + amyloid
+    clearance, because they operate on mechanistically independent targets.
+    A phase II trial comparing orexin antagonist + sleep architecture
+    monitoring vs standard care in MCI would directly test MECH-177.
+    Primary endpoint: rate of episodic memory decline (MECH-170 prediction:
+    episodic decline slows before semantic/contextual effects are detectable).
+
+- id: Q-031
+  title: "Does the anticholinergic burden-dementia risk relationship track cumulative REM suppression duration (total ACh-blocked sleep years), total anticholinergic dose as a proxy for diurnal cholinergic deficit, or both as independent additive predictors -- and can mediation analysis in prospective cohorts distinguish the nocturnal (MECH-173) from the diurnal (MECH-175 pathway 2) contribution?"
+  claim_type: open_question
+  subject: pharmacology.anticholinergic_risk_rem_vs_dose_independent_predictors
+  polarity: open
+  status: open
+  depends_on:
+    - MECH-175
+    - MECH-173
+  notes: >
+    Registered 2026-04-05. Distinguishing the two anticholinergic pathways
+    has direct clinical implications: if the nocturnal REM suppression
+    mechanism (Pathway 1) dominates, then switching to non-anticholinergic
+    alternatives with the same indication (e.g., bladder: oxybutynin ->
+    mirabegron, a selective beta-3 adrenergic agonist with no CNS
+    anticholinergic burden) should substantially reduce dementia risk even
+    without improving daytime cognition. If the diurnal cholinergic deficit
+    mechanism (Pathway 2) dominates, mirabegron switch reduces risk via the
+    daytime pathway, and sleep architecture monitoring becomes the key
+    biomarker. If both are additive, both interventions are required.
+    Methodology to test: prospective cohort with (1) annual PSG subset to
+    quantify REM-suppression-years, (2) anticholinergic burden scoring
+    at each visit, (3) dementia conversion endpoint. Structural equation
+    model with REM-suppression-years and cumulative anticholinergic dose
+    as parallel mediators of the anticholinergic burden -> dementia path.
+    Current evidence is insufficient to distinguish the pathways because
+    existing anticholinergic-dementia studies (Coupland 2019, Gray 2015)
+    do not include PSG data, making it impossible to separate nocturnal
+    from diurnal mechanisms.
+
+- id: Q-032
+  title: "Among sleep-promoting medications prescribed in older adults, does relative SWS/REM ratio preservation (measured by polysomnography) predict differential dementia outcomes independent of total sleep time -- and if so, does this validate phase-specific pipeline damage as the causal intermediate and provide a pharmacodynamic biomarker for disease-modifying trials?"
+  claim_type: open_question
+  subject: pharmacology.sws_rem_ratio_dementia_outcome_predictor
+  polarity: open
+  status: open
+  depends_on:
+    - INV-048
+    - MECH-173
+    - MECH-174
+  notes: >
+    Registered 2026-04-05. Total sleep time is the conventional endpoint
+    for sleep intervention trials. If pipeline phase fidelity is the
+    causal intermediate (INV-048), then total sleep time is an insufficient
+    surrogate -- two agents producing equal total sleep time with different
+    SWS/REM profiles should produce different dementia outcomes.
+    If confirmed, SWS% and REM% on PSG would become phase-specific
+    pharmacodynamic biomarkers for disease-modifying trials, enabling
+    mechanism-targeted trial design. Specifically:
+    (1) SWS% as surrogate for Phases 1/2 fidelity (MECH-120/121)
+    (2) REM% as surrogate for Phase 4 fidelity (MECH-123)
+    (3) Spindle density as surrogate for Phase 3 fidelity (MECH-122)
+    Existing data: no direct comparison has used PSG-derived phase metrics
+    as primary endpoints in a dementia conversion trial. The COSMOS-MIND
+    trial (Mewton et al. 2023) and FINGER-type multimodal trials include
+    sleep as a secondary domain but without PSG. A PSG-stratified
+    pharmacoepidemiology study in existing EHR cohorts with linked PSG
+    records (e.g., SHHS, MrOS Sleep Study) could test this retrospectively.
+
+- id: IMPL-026
+  title: "Medication classification by predicted attribution pipeline effect: a reference table mapping common sleep-affecting medication classes to their predicted phase-specific pipeline disruption, net dementia risk direction, and disease-modifying potential."
+  claim_type: implementation_note
+  subject: pharmacology.sleep_dementia_risk_classification
+  polarity: records
+  status: candidate
+  depends_on:
+    - MECH-173
+    - MECH-174
+    - MECH-175
+    - MECH-176
+    - MECH-177
+    - INV-048
+  notes: >
+    Registered 2026-04-05. Reference classification for clinical use and
+    trial design. Pipeline phase notation follows INV-045:
+    Phase 0 = sensory gating (pre-sleep); Phase 1 = SHY homeostasis (MECH-120);
+    Phase 2 = schema replay (MECH-121); Phase 3 = spindle coordination (MECH-122);
+    Phase 4 = REM precision recalibration (MECH-123).
+    Risk direction: WORSENS = net dementia risk increase; NEUTRAL = no
+    significant pipeline disruption at therapeutic doses; IMPROVES = net
+    pipeline protection or enhancement; CONDITIONAL = depends on dose,
+    duration, or patient subtype.
+    DPM = disease-progression-modifying potential.
+
+    HIGH-RISK MEDICATIONS (significant pipeline disruption):
+    Anticholinergics (all classes):
+      Pipeline phases disrupted: Phase 4 (REM suppression) + diurnal
+      cholinergic deficit (MECH-175).
+      Risk: WORSENS. DPM potential: no (harmful). Priority: switch to
+      non-anticholinergic alternatives wherever possible (mirabegron for
+      bladder; SSRI/loratadine for antihistamine; other antidepressants
+      for amitriptyline).
+    Benzodiazepines:
+      Pipeline phases disrupted: Phases 1/2 (SWS suppression) + Phase 4
+      (REM suppression) (MECH-173 + MECH-174).
+      Risk: WORSENS. DPM potential: no. Priority: deprescribe; taper
+      and replace with non-GABAergic alternatives.
+    Z-drugs (zolpidem, zopiclone, zaleplon):
+      Pipeline phases disrupted: Phase 1 (SWS homeostatic depth reduced)
+      + Phase 4 (REM mildly reduced). Spindle enhancement may partially
+      preserve Phase 3.
+      Risk: WORSENS (less severe than classical BZDs but still harmful
+      over years). DPM potential: no. Priority: replace with
+      architecture-preserving alternatives.
+    MAOIs:
+      Pipeline phases disrupted: Phase 4 profound (nearly complete REM
+      abolition at therapeutic doses).
+      Risk: WORSENS. DPM potential: no. Use only when no alternatives
+      exist; monitor with PSG if chronic use.
+    SSRIs/SNRIs (most):
+      Pipeline phases disrupted: Phase 4 moderate (REM suppression,
+      especially paroxetine > venlafaxine > escitalopram/sertraline).
+      Risk: WORSENS (moderate, chronic use). Exception: if treating
+      depression/anxiety that is itself causing sleep disruption,
+      net effect may be neutral or protective short-term.
+      DPM potential: conditional (treating comorbid depression in MCI
+      may have indirect benefit via MECH-171 cycle breaking).
+      Prefer low-REM-burden SSRIs (escitalopram, sertraline) over
+      paroxetine in older adults at MCI risk.
+    TCAs at therapeutic antidepressant doses:
+      Pipeline phases disrupted: Phase 4 (anticholinergic REM suppression)
+      + Phase 1/2 (sedation quality varies by agent).
+      Risk: WORSENS. DPM potential: no (trazodone is the exception --
+      see below).
+
+    NEUTRAL TO CONDITIONAL MEDICATIONS:
+    Quetiapine (low dose, 12.5-50mg off-label):
+      Pipeline effects: H1 antagonism increases sleepiness and may
+      improve sleep continuity. At these doses, anticholinergic burden
+      is low. Some SWS enhancement possible.
+      Risk: NEUTRAL to mildly WORSENS at higher doses.
+      DPM potential: insufficient evidence; monitor Phase 4 if doses
+      exceed 50mg.
+    Mirtazapine:
+      Pipeline effects: H1 + 5-HT2A antagonism increases SWS depth
+      and sleep continuity. REM effects are complex -- early REM
+      suppression with rebound later in night; net REM% may be
+      preserved or mildly increased.
+      Risk: NEUTRAL to possibly IMPROVES (SWS enhancement). DPM
+      potential: conditional; better evidence needed for Phase 4
+      specifically.
+    Gabapentin/pregabalin:
+      Pipeline effects: voltage-gated calcium channel alpha-2-delta
+      subunit binding increases SWS depth (Phase 1/2 enhancement).
+      Risk: IMPROVES Phase 1/2 pipeline fidelity. Caveats: tolerance
+      to SWS effect develops; fall risk and respiratory suppression
+      in older adults. DPM potential: conditional.
+
+    ARCHITECTURE-PRESERVING / BENEFICIAL MEDICATIONS:
+    Orexin antagonists (suvorexant, lemborexant):
+      Pipeline effects: removes wake-promoting orexin drive without
+      compressing sleep phase machinery (MECH-176). Preserves or
+      improves SWS% and REM% vs placebo; superior to zolpidem on
+      phase preservation in head-to-head PSG studies.
+      Risk: IMPROVES (net pipeline protection). DPM potential: YES
+      (first-line candidate for MECH-177 trials in MCI).
+    Ramelteon / melatonin-extended-release:
+      Pipeline effects: circadian restoration improves Phase 0
+      (sensory gating timing) and downstream architecture. No
+      direct Phase 1-4 compression.
+      Risk: IMPROVES (circadian pathway). DPM potential: YES
+      (particularly for patients with circadian-mediated sleep
+      fragmentation, common in early AD).
+    Trazodone (25-100mg):
+      Pipeline effects: 5-HT2A antagonism increases SWS depth
+      (Phase 1/2 enhancement). Non-GABAergic, non-anticholinergic.
+      REM-neutral or mildly permissive at low doses.
+      Risk: IMPROVES Phase 1/2 fidelity. DPM potential: YES
+      (active AD sleep trials; preferred for AD-associated
+      insomnia over GABAergic alternatives).
+    Low-dose doxepin (Silenor, 3-6mg):
+      Pipeline effects: selective H1 antagonism at this dose;
+      minimal muscarinic activity below 10mg. Enhances sleep
+      continuity and spindle density (Phase 3 compatible).
+      Risk: NEUTRAL to mildly IMPROVES Phase 2/3. DPM potential:
+      CONDITIONAL (architecture-neutral; appropriate where other
+      options are contraindicated).

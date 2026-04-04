@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech176_suvorexant_psg_snyder2016",
+  "timestamp_utc": "2026-04-05T20:30:00Z",
+  "claim_ids_tested": ["MECH-176"],
+  "source": {
+    "title": "Effects of suvorexant on sleep architecture and power spectral profile in patients with insomnia: analysis of pooled phase 3 data",
+    "authors": ["Snyder E", "Ma J", "Svetnik V", "Connor KM", "Lines C", "Michelson D", "Herring WJ"],
+    "year": 2016,
+    "venue": "Sleep Medicine",
+    "doi": "10.1016/j.sleep.2015.10.007",
+    "pmid": "27198953"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Pooled RCT PSG data from two large Phase 3 trials (n=1482), 3-month follow-up, objective PSG measurement. Directly demonstrates suvorexant increases REM% (average +3.9% at Night-1) with only minimal SWS/N3 reduction (≤0.8%) -- consistent with MECH-176 architecture preservation prediction. Delta power increase in non-REM supports maintained or enhanced slow-wave homeostasis. Reduced REM latency indicates preserved REM generation machinery. Industry sponsorship (Merck) is a source of potential bias but the PSG measurements are objective and pre-registered.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study shows small decreases in N3/SWS% (≤0.8%) suggesting suvorexant is not fully architecture-neutral on Phase 1; MECH-176 predicts SWS preservation, and the small SWS reduction (though much less than benzodiazepines) is a partial failure of the architecture-preserving prediction.",
+    "No direct comparison to benzodiazepines or Z-drugs in this study -- MECH-176 architecture preservation claim requires head-to-head comparison to confirm superiority, not just differences from placebo.",
+    "Participants are insomnia patients (not MCI or dementia risk population); effects in cognitively at-risk older adults may differ.",
+    "Industry-sponsored study (Merck, manufacturer of suvorexant); all authors are Merck employees."
+  ],
+  "tags": ["mech176", "suvorexant", "orexin_antagonist", "psg", "sleep_architecture", "rem", "sws"],
+  "mapping": {
+    "source_claim_statement": "Suvorexant (20/15mg and 40/30mg, non-elderly/elderly) increases time in all sleep stages compared to placebo. Expressed as %TST: N3/SWS decreases by ≤0.8%, REM increases by up to 3.9% (largest at Night-1, diminishing by Month-3). Delta power in non-REM increases 4-8% at Night-1. REM latency reduced by ~40-50 epochs at Night-1.",
+    "ree_translation": "MECH-176 predicts orexin antagonists preserve or improve SWS/REM ratio vs GABAergic alternatives by removing wake-promoting drive without compressing phase machinery. The REM increase (+3.9%) directly supports Phase 4 preservation. The minimal SWS reduction (≤0.8%) is small compared to GABAergic agents (which typically reduce SWS by 10-20%) and the delta power increase suggests SWS homeostatic quality is maintained even if absolute stage time is minimally reduced.",
+    "mapping_caveat": "The small SWS% decrease challenges the strong form of MECH-176 (full architecture preservation). The correct interpretation is comparative: suvorexant preserves architecture substantially better than GABAergic agents, not that it has zero effect on architecture. The 3.9% REM increase is directly consistent with MECH-176 Phase 4 preservation.",
+    "source_context": "Pooled Phase 3 RCT data; adults with insomnia (mean age ~40s-50s, not elderly); PSG recorded at Night-1, Month-1, Month-3; n=1482."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "High mapping fidelity for REM preservation component. Transfer risk elevated: insomnia patients, not MCI/elderly risk population; industry sponsorship."
+  }
+}

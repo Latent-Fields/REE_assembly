@@ -46,3 +46,4 @@ Prevention requires balanced replay scheduling and MECH-094 tag throughout.
 - `v3_v4_transition_boundary.md` -- V3 static setpoints and V4 dynamic mechanisms
 - `default_mode.md` -- MECH-092 quiescent replay (V3 prerequisite for all sub-phases)
 - `control_plane_heartbeat.md` -- MECH-089 ThetaBuffer (V3 scaffolding for MECH-122)
+- `medications_dementia.md` -- INV-048, MECH-173-177: pharmacological pipeline disruption and disease-modifying predictions

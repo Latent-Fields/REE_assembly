@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
+  "timestamp_utc": "2026-04-05T20:30:00Z",
+  "claim_ids_tested": ["MECH-175", "INV-048"],
+  "source": {
+    "title": "Cumulative use of strong anticholinergics and incident dementia: a prospective cohort study",
+    "authors": ["Gray SL", "Anderson ML", "Dublin S", "Hanlon JT", "Hubbard R", "Walker R", "Yu O", "Crane PK", "Larson EB"],
+    "year": 2015,
+    "venue": "JAMA Internal Medicine",
+    "doi": "10.1001/jamainternmed.2014.7663",
+    "pmid": "25621434"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Strong prospective design with objective pharmacy dispensing data and 10-year cumulative exposure window; clear dose-response curve (HR 1.54 at highest dose tier). High source quality. Mapping fidelity is moderate: the association is well-documented but the mechanism is undetermined -- the paper cannot distinguish the nocturnal REM pathway from the diurnal cholinergic deficit pathway (both predicted by MECH-175). Transfer risk is low: this is exactly the population (65+, community-dwelling, followed prospectively) that MECH-175 addresses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study cannot distinguish REM suppression from diurnal cholinergic deficit as the mediating mechanism -- both are MECH-175 pathways but the epidemiology alone cannot separate them.",
+    "Reverse causation cannot be fully excluded: prodromal dementia may increase anticholinergic prescribing (though authors excluded the most recent 12 months of use and show association for exposure 1-11 years prior).",
+    "Most anticholinergic classes used were tricyclic antidepressants, first-generation antihistamines, and bladder antimuscarinics -- REM suppression potency varies substantially across these classes, which is not captured by the TSDD metric."
+  ],
+  "tags": ["mech175", "inv048", "anticholinergic", "dementia", "cohort", "pharmacoepidemiology"],
+  "mapping": {
+    "source_claim_statement": "Higher cumulative anticholinergic use (total standardized daily doses over 10 years) is associated with increased risk of dementia and Alzheimer's disease in a dose-response manner; HR 1.54 (95% CI 1.21-1.96) for >1095 TSDDs vs no use.",
+    "ree_translation": "MECH-175 predicts this association via two independent pathways: (1) cumulative REM suppression degrading MECH-123 precision recalibration nightly, and (2) cumulative diurnal cholinergic deficit mimicking the basal forebrain cholinergic loss of Alzheimer's disease. The dose-response relationship is consistent with pathway (1) or (2) or both operating cumulatively.",
+    "mapping_caveat": "The TSDD metric does not stratify by REM suppression potency -- diphenhydramine (high ACh, high REM suppression) and oxybutynin (high ACh, primarily peripheral) are given equal weight. A mechanism-faithful analysis would weight by REM suppression power, not just anticholinergic burden. The paper provides epidemiological support for MECH-175 but cannot test the dual-pathway decomposition (see Q-031).",
+    "source_context": "Prospective cohort, community-dwelling adults 65+, Group Health (Seattle), n=3434, mean follow-up 7.3 years; computerised pharmacy dispensing data; dementia via standard diagnostic criteria."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.20,
+    "notes": "Weighted toward source_quality given strong epidemiological design. Mapping fidelity limited by mechanism-agnostic TSDD metric."
+  }
+}

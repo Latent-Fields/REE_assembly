@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech174_benzodiazepine_alzheimer_billioti2014",
+  "timestamp_utc": "2026-04-05T20:30:00Z",
+  "claim_ids_tested": ["MECH-174", "INV-048"],
+  "source": {
+    "title": "Benzodiazepine use and risk of Alzheimer's disease: case-control study",
+    "authors": ["Billioti de Gage S", "Moride Y", "Ducruet T", "Kurth T", "Verdoux H", "Tournier M", "Pariente A", "Begaud B"],
+    "year": 2014,
+    "venue": "BMJ",
+    "doi": "10.1136/bmj.g5205",
+    "pmid": "25208536"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Case-control design with pharmacy database (Quebec RAMQ), good sample size (1796 cases + 7184 controls), 5-year exposure lag, dose-response relationship (OR 1.84 at >180 prescribed daily doses), persistence of association after adjustment for anxiety/depression/insomnia. Longer-acting benzodiazepines had higher OR (1.70 vs 1.43 for short-acting) -- consistent with cumulative SWS+REM suppression hypothesis. Transfer risk is moderate: causal direction is uncertain (reverse causation remains possible despite the exposure lag), and the mechanistic pathway through sleep phase disruption is not tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reverse causation is a real concern even with the 5-year exposure lag: anxiety and insomnia (early prodromal dementia features) may drive benzodiazepine prescribing before diagnosis, though adjustment for these comorbidities did not substantially change the OR.",
+    "The study cannot distinguish whether SWS suppression, REM suppression, or direct GABAergic neurotoxicity is the causal mechanism -- MECH-174 predicts SWS+REM pathway but the design cannot test this.",
+    "Long-acting vs short-acting differential (OR 1.70 vs 1.43) is consistent with cumulative pipeline suppression but is equally consistent with differential half-life producing more residual daytime sedation and encoding impairment."
+  ],
+  "tags": ["mech174", "inv048", "benzodiazepine", "alzheimer", "case_control", "pharmacoepidemiology"],
+  "mapping": {
+    "source_claim_statement": "Benzodiazepine use started at least 5 years before diagnosis is associated with increased Alzheimer's disease risk; adjusted OR 1.51 (95% CI 1.36-1.69); dose-response clear (OR 1.84 at >180 prescribed daily doses); long-acting drugs have higher OR (1.70) than short-acting (1.43). Adjustment for anxiety, depression, and insomnia as potential confounders/prodromal markers did not substantially alter the association.",
+    "ree_translation": "MECH-174 predicts benzodiazepines impair Phases 1 and 2 of the attribution pipeline via SWS homeostasis suppression (MECH-120) and SWR replay fragmentation (MECH-121). INV-048 predicts this pharmacological mechanism is equivalent to behavioral sleep deprivation in producing pipeline degradation. The dose-response and long-acting drug differential are consistent with cumulative pipeline damage accruing over time.",
+    "mapping_caveat": "The association supports MECH-174 and INV-048 but cannot rule out alternative mechanisms: direct GABAergic neurodegeneration (GABA-A receptor downregulation in hippocampus), daytime sedation impairing encoding (distinct from pipeline disruption during sleep), or residual confounding by indication. MECH-174 predicts a specific PSG signature (reduced SWS depth and continuity) that this epidemiological design cannot test.",
+    "source_context": "Case-control, Quebec RAMQ insurance database; adults 66+; 1796 cases, 7184 matched controls; computerised dispensing records; Alzheimer's diagnosis from provincial health records."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Moderate mapping fidelity: the epidemiological association is strong but mechanism cannot be tested with this design. Transfer risk elevated due to causal uncertainty."
+  }
+}

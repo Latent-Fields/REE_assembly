@@ -2088,7 +2088,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.518, lit_conf=0.915",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.518, lit_conf=0.914",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2113,7 +2113,7 @@
       },
       "latest_run_id": "v3_exq_176_arc036_valence_dimension_probe_20260330T070447Z_v3",
       "latest_timestamp_utc": "2026-03-30T16:58:09.645849Z",
-      "literature_confidence": 0.915,
+      "literature_confidence": 0.914,
       "overall_confidence": 0.756,
       "pass_runs": 0,
       "recent_entries": [
@@ -2594,6 +2594,84 @@
         "literature": 5
       }
     },
+    "ARC-045": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.853",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:computational_theory": 1,
+        "lit:electrophysiology_rodent": 1,
+        "lit:review_neuroscience": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019",
+      "latest_timestamp_utc": "2026-04-05T21:00:00Z",
+      "literature_confidence": 0.853,
+      "overall_confidence": 0.853,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-045",
+          "confidence": 0.84,
+          "confidence_rationale": "Hou et al. provide direct electrophysiological evidence of bidirectional information flow between hippocampal CA1 and retrosplenial cortex (RSC) during NREM sleep SWRs. Using GLMs to trace information flow around SWR events: RSC excitatory neurons increase CA1 activity PRIOR to SWRs (RSC -> CA1 direction), while CA1 activates RSC inhibitory neurons AFTER SWRs (CA1 -> RSC direction). This bidirectionality -- RSC drives hippocampal replay initiation (schema/prior influence on what gets replayed) and hippocampus then updates RSC (attribution estimate installation) -- directly maps to ARC-045's claim that bidirectional flow is architecturally necessary for attribution mapping convergence. The RSC-to-CA1 pre-SWR drive is the neocortex-to-hippocampus (recognition/prior) direction; the CA1-to-RSC post-SWR activation is the hippocampus-to-neocortex (generative/installation) direction. Published in Research (Washington D.C.) with simultaneous multi-area recordings and causal direction tracing.",
+          "evidence_class": "lit:electrophysiology_rodent",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_045",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_045_bidirectional_rsc_ca1_swr_hou2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-045",
+          "confidence": 0.82,
+          "confidence_rationale": "Friston 2005 is the foundational paper establishing hierarchical cortical responses as the product of a bidirectional generative-recognition model: forward (bottom-up) connections carry prediction errors (recognition direction -- what evidence does not fit the model), backward (top-down) connections carry predictions (generative direction -- what the model expects to see). The paper explicitly derives that reciprocal, bidirectional connections are a necessary architectural consequence of free-energy minimisation in hierarchical models. This directly grounds ARC-045's claim that bidirectional hippocampus-neocortex flow is architecturally necessary: the generative model (top-down predictions, neocortex -> hippocampus, maps onto schema prior direction) and the recognition model (bottom-up error, hippocampus -> neocortex, maps onto attribution installation direction) are two faces of the same inference process and cannot be collapsed to a single direction without losing the ability to minimise free energy. High mapping fidelity for the architectural necessity argument; confidence limited because the paper focuses on sensory cortex hierarchy, not hippocampal-neocortical consolidation specifically.",
+          "evidence_class": "lit:computational_theory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_045",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_045_hierarchical_generative_model_friston2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-045",
+          "confidence": 0.76,
+          "confidence_rationale": "Langille 2019 argues that NREM and REM sleep serve complementary and sequential functions: NREM installs and edits engrams via slow oscillation + spindle + SWR triple-phase locking (hippocampus-to-cortex, installation direction), while REM stabilises and integrates them, and that the cyclical organisation of NREM-REM sleep is the mechanism ensuring bidirectionality. The paper explicitly proposes that the same sleep rhythms that consolidate also adaptively forget, and that NREM/REM cycling is necessary for both. This maps onto ARC-045: the SWS-direction (hippocampus-to-neocortex) installs schema structure; the REM hippocampal theta rhythm serves the waking/REM-direction (neocortex-to-hippocampus, pattern completion, prior-guided slot-filling). The sequential cycling is what enables iterative convergence of attribution mapping across multiple NREM-REM cycles. Confidence moderate because Langille does not directly test whether disrupting one direction impairs attribution mapping, and the review integrates evidence from multiple sources rather than providing primary data.",
+          "evidence_class": "lit:review_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_045",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
     "IMPL-022": {
       "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.649",
       "direction_counts": {
@@ -3066,6 +3144,84 @@
         "literature": 4
       }
     },
+    "INV-044": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.847",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:computational_theory_with_empirical_grounding": 1,
+        "lit:neuroimaging_human": 1,
+        "lit:rodent_behavioral_pharmacology": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_inv_044_schema_enables_learning_finnie2018",
+      "latest_timestamp_utc": "2026-04-05T21:00:00Z",
+      "literature_confidence": 0.847,
+      "overall_confidence": 0.847,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-044",
+          "confidence": 0.76,
+          "confidence_rationale": "Morton et al. show that hippocampal and frontoparietal regions form abstract representations coding cross-triad relational structure with a common geometric structure -- even without explicit reinforcement to do so. Critically, parahippocampal cortex forms hierarchical representations that both reflect cross-triad (structural/schema) relationships and distinguish individual triads (slot-level). This dissociation directly supports the prior-before-posterior necessity: the geometric common structure must exist (schema/prior) before vector-based retrieval (slot-filling/posterior) can yield informative inferences. The pattern completion vs. vector-based retrieval dissociation between hippocampus and parahippocampal/parietal cortex provides a neural substrate for the two-stage architecture INV-044 requires. Published in PNAS with neurocomputational modelling. Confidence is moderate rather than high because the temporal ordering (schema first, then slot-filling) is inferred from the representational structure rather than directly manipulated.",
+          "evidence_class": "lit:neuroimaging_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_044",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv_044_common_event_structure_inference_morton2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-044",
+          "confidence": 0.9,
+          "confidence_rationale": "Primary grounding paper for INV-044. Sanders, Wilson & Gershman formalise hippocampal remapping as Bayesian hidden state inference: the animal maintains a posterior over discrete latent contexts and remapping reflects uncertainty about which context is currently active. The paper demonstrates that prior construction (context schema -- which distinctions are structurally relevant) necessarily precedes posterior inference: without a pre-formed prior over context partitions, the agent cannot assign new observations to context slots. The model directly predicts that systems attempting to learn context structure (prior) and perform context attribution (posterior) in a single online pass produce degenerate context representations -- partial remapping corresponds to high posterior uncertainty rather than informative attribution. Published in eLife with strong computational formalism and empirical validation against rodent place cell data.",
+          "evidence_class": "lit:computational_theory_with_empirical_grounding",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_044",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv_044_remapping_hidden_state_inference_sanders2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-044",
+          "confidence": 0.72,
+          "confidence_rationale": "Finnie et al. show that NMDAR-independent learning (schema-enabled slot-filling) requires that the first-task memory remain hippocampus-dependent AND requires anterior cingulate cortex (ACC) memory maintenance. When ACC memory is disrupted, NMDAR-independence is abolished -- the schema (prior structure maintained in ACC) is causally necessary for rapid slot-filling on the second task. This is a causal demonstration that the prior structure (schema in cortico-hippocampal circuit) must be maintained before subsequent posterior inference (attribution on a new similar task) can proceed efficiently. The NMDAR-dependency shift is a molecular signature of prior-enabled vs. prior-absent learning. Mapping to INV-044 is moderately strong because it demonstrates causal prior-dependency, but the mechanism is cortico-hippocampal maintenance rather than an offline SWS-analog installation phase.",
+          "evidence_class": "lit:rodent_behavioral_pharmacology",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_044",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv_044_schema_enables_learning_finnie2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
     "INV-045": {
       "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.662",
       "direction_counts": {
@@ -3170,6 +3326,76 @@
       "source_counts": {
         "experimental": 0,
         "literature": 6
+      }
+    },
+    "INV-048": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.762",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
+      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
+      "literature_confidence": 0.762,
+      "overall_confidence": 0.762,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-048",
+          "confidence": 0.7,
+          "confidence_rationale": "Case-control design with pharmacy database (Quebec RAMQ), good sample size (1796 cases + 7184 controls), 5-year exposure lag, dose-response relationship (OR 1.84 at >180 prescribed daily doses), persistence of association after adjustment for anxiety/depression/insomnia. Longer-acting benzodiazepines had higher OR (1.70 vs 1.43 for short-acting) -- consistent with cumulative SWS+REM suppression hypothesis. Transfer risk is moderate: causal direction is uncertain (reverse causation remains possible despite the exposure lag), and the mechanistic pathway through sleep phase disruption is not tested.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "Reverse causation is a real concern even with the 5-year exposure lag: anxiety and insomnia (early prodromal dementia features) may drive benzodiazepine prescribing before diagnosis, though adjustment for these comorbidities did not substantially change the OR.",
+            "The study cannot distinguish whether SWS suppression, REM suppression, or direct GABAergic neurotoxicity is the causal mechanism -- MECH-174 predicts SWS+REM pathway but the design cannot test this.",
+            "Long-acting vs short-acting differential (OR 1.70 vs 1.43) is consistent with cumulative pipeline suppression but is equally consistent with differential half-life producing more residual daytime sedation and encoding impairment."
+          ],
+          "run_id": "2026-04-05_mech174_benzodiazepine_alzheimer_billioti2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-048",
+          "confidence": 0.75,
+          "confidence_rationale": "Strong prospective design with objective pharmacy dispensing data and 10-year cumulative exposure window; clear dose-response curve (HR 1.54 at highest dose tier). High source quality. Mapping fidelity is moderate: the association is well-documented but the mechanism is undetermined -- the paper cannot distinguish the nocturnal REM pathway from the diurnal cholinergic deficit pathway (both predicted by MECH-175). Transfer risk is low: this is exactly the population (65+, community-dwelling, followed prospectively) that MECH-175 addresses.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The study cannot distinguish REM suppression from diurnal cholinergic deficit as the mediating mechanism -- both are MECH-175 pathways but the epidemiology alone cannot separate them.",
+            "Reverse causation cannot be fully excluded: prodromal dementia may increase anticholinergic prescribing (though authors excluded the most recent 12 months of use and show association for exposure 1-11 years prior).",
+            "Most anticholinergic classes used were tricyclic antidepressants, first-generation antihistamines, and bladder antimuscarinics -- REM suppression potency varies substantially across these classes, which is not captured by the TSDD metric."
+          ],
+          "run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
       }
     },
     "MECH-022": {
@@ -7480,7 +7706,7 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.595, lit_conf=0.82",
+      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.595, lit_conf=0.819",
       "direction_counts": {
         "mixed": 12,
         "supports": 5,
@@ -7504,8 +7730,8 @@
       },
       "latest_run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
       "latest_timestamp_utc": "2026-03-29T13:30:00Z",
-      "literature_confidence": 0.82,
-      "overall_confidence": 0.708,
+      "literature_confidence": 0.819,
+      "overall_confidence": 0.707,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -10057,6 +10283,381 @@
         "literature": 6
       }
     },
+    "MECH-166": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.853",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:review_neuroscience": 2,
+        "lit:rodent_behavioral": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020",
+      "latest_timestamp_utc": "2026-04-05T21:00:00Z",
+      "literature_confidence": 0.853,
+      "overall_confidence": 0.853,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-166",
+          "confidence": 0.88,
+          "confidence_rationale": "Landmark paper providing direct evidence that a pre-formed schema enables rapid, single-trial memory consolidation and hippocampal independence. Tse et al. showed that rats with a previously established flavor-place schema (after ~3 weeks of learning multiple flavor-place pairs) could consolidate new pairs in a single trial and recall them in a hippocampus-independent manner within 48 hours. Without the schema, multi-trial learning was required and hippocampal dependency persisted for weeks. This directly demonstrates that schema formation (context slot structure) must precede rapid slot-filling: only after the associative structure (slot topology) was consolidated in neocortex could new instances be rapidly assimilated. Maps strongly to MECH-166's claim that slot-structure (schema abstraction) must be consolidated before slot-filling (causal attribution) can yield reliable signal.",
+          "evidence_class": "lit:rodent_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_166",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech_166_schema_memory_consolidation_tse2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-166",
+          "confidence": 0.8,
+          "confidence_rationale": "Born 2010 provides a mechanistic review of how SWS hippocampal-neocortical dialogue enables memory consolidation. The key mechanism: SWS slow oscillations originate in neocortex, entrain hippocampal sharp-wave ripples, and coordinate thalamocortical spindles to synchronise the transfer of hippocampal memory representations to neocortex. This establishes SWS as the phase in which hippocampal episodic content is transferred to neocortical schema structure -- the SWS-direction installation phase for context slot structure. The explicit identification of SWS as the consolidation direction (hippocampus to neocortex) directly maps to MECH-166's claim that the SWS-analog phase installs schema structure before REM-analog slot-filling. Confidence is high for the directional claim but moderate overall because this is a review paper without primary data directly testing schema vs. slot-filler separation.",
+          "evidence_class": "lit:review_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_166",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech_166_sws_hippocampal_neocortical_dialogue_born2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-166",
+          "confidence": 0.74,
+          "confidence_rationale": "Tukker et al. review the role of Up/Down states (UDS) in memory consolidation across the cortico-hippocampal axis. Key finding relevant to MECH-166: UDS propagate from neocortex through entorhinal cortex to hippocampus during SWS, coordinating sharp-wave ripple replay. The review establishes that the slow oscillation Up/Down structure temporally organises hippocampal SWR replay into discrete packets, each potentially carrying a distinct memory trace fragment. This temporal organisation is what makes the SWS-analog phase capable of installing structured slot topology (rather than continuous encoding): each slow-oscillation cycle creates a bounded, delineated memory installation event. This supports MECH-166's claim that slot-formation and slot-filling are computationally separated: the UDS mechanism ensures that SWS installs bounded slot-structure packets rather than performing continuous online slot-filling. Confidence moderate because this is a review paper that does not directly test schema abstraction vs. attribution separation.",
+          "evidence_class": "lit:review_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_166",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T21:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "MECH-168": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech168_psg_alzheimers_tao2022",
+      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
+      "literature_confidence": 0.71,
+      "overall_confidence": 0.71,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-168",
+          "confidence": 0.72,
+          "confidence_rationale": "Large sample (n=837 elderly insomnia controls, n=239 AD+insomnia), objective PSG measurement with propensity score matching. Directly documents that AD is associated with reduced SWS%, fewer sleep spindles per minute N2, and lower EEG power in slow oscillation bands -- exactly the pipeline damage signature predicted by MECH-168. The non-significant trend for lower REM% in AD is partially supportive of MECH-173 but does not reach significance. Transfer risk: this is cross-sectional/diagnostic, so causal direction (AD causes SWS loss vs SWS loss causes AD) cannot be determined from this design alone.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "REM sleep reduction in AD did not reach statistical significance in this sample, weakening the MECH-173 Phase-4-first-failure prediction for this dataset (though the trend is in the predicted direction).",
+            "Cross-sectional design cannot determine whether SWS/spindle reductions preceded or followed AD neurodegeneration -- the causal directionality required by MECH-168 and MECH-174 is not testable here.",
+            "Both groups had insomnia at baseline -- the design effectively subtracts out insomnia, which is the intended strength, but means these findings reflect what AD adds to an insomnia baseline rather than AD vs healthy sleep."
+          ],
+          "run_id": "2026-04-05_mech168_psg_alzheimers_tao2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-174": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.755",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech174_benzodiazepine_alzheimer_billioti2014",
+      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
+      "literature_confidence": 0.755,
+      "overall_confidence": 0.755,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-174",
+          "confidence": 0.72,
+          "confidence_rationale": "Large sample (n=837 elderly insomnia controls, n=239 AD+insomnia), objective PSG measurement with propensity score matching. Directly documents that AD is associated with reduced SWS%, fewer sleep spindles per minute N2, and lower EEG power in slow oscillation bands -- exactly the pipeline damage signature predicted by MECH-168. The non-significant trend for lower REM% in AD is partially supportive of MECH-173 but does not reach significance. Transfer risk: this is cross-sectional/diagnostic, so causal direction (AD causes SWS loss vs SWS loss causes AD) cannot be determined from this design alone.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "REM sleep reduction in AD did not reach statistical significance in this sample, weakening the MECH-173 Phase-4-first-failure prediction for this dataset (though the trend is in the predicted direction).",
+            "Cross-sectional design cannot determine whether SWS/spindle reductions preceded or followed AD neurodegeneration -- the causal directionality required by MECH-168 and MECH-174 is not testable here.",
+            "Both groups had insomnia at baseline -- the design effectively subtracts out insomnia, which is the intended strength, but means these findings reflect what AD adds to an insomnia baseline rather than AD vs healthy sleep."
+          ],
+          "run_id": "2026-04-05_mech168_psg_alzheimers_tao2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-174",
+          "confidence": 0.7,
+          "confidence_rationale": "Case-control design with pharmacy database (Quebec RAMQ), good sample size (1796 cases + 7184 controls), 5-year exposure lag, dose-response relationship (OR 1.84 at >180 prescribed daily doses), persistence of association after adjustment for anxiety/depression/insomnia. Longer-acting benzodiazepines had higher OR (1.70 vs 1.43 for short-acting) -- consistent with cumulative SWS+REM suppression hypothesis. Transfer risk is moderate: causal direction is uncertain (reverse causation remains possible despite the exposure lag), and the mechanistic pathway through sleep phase disruption is not tested.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "Reverse causation is a real concern even with the 5-year exposure lag: anxiety and insomnia (early prodromal dementia features) may drive benzodiazepine prescribing before diagnosis, though adjustment for these comorbidities did not substantially change the OR.",
+            "The study cannot distinguish whether SWS suppression, REM suppression, or direct GABAergic neurotoxicity is the causal mechanism -- MECH-174 predicts SWS+REM pathway but the design cannot test this.",
+            "Long-acting vs short-acting differential (OR 1.70 vs 1.43) is consistent with cumulative pipeline suppression but is equally consistent with differential half-life producing more residual daytime sedation and encoding impairment."
+          ],
+          "run_id": "2026-04-05_mech174_benzodiazepine_alzheimer_billioti2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
+    "MECH-175": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.787",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
+      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
+      "literature_confidence": 0.787,
+      "overall_confidence": 0.787,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-175",
+          "confidence": 0.8,
+          "confidence_rationale": "Very large nested case-control (58,769 dementia cases, 225,574 controls); class-specific analysis provides mechanistic granularity; consistent dose-response with 1-11 year exposure window; population-attributable fraction of 10.3% indicates clinical significance. The class-specific breakdown (bladder antimuscarinics OR 1.65, antidepressants 1.29, antipsychotics 1.70) is particularly useful for MECH-175 as different drug classes have different REM suppression vs diurnal cholinergic profiles -- though the paper cannot disentangle these mechanistic contributions.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The nested case-control design cannot establish temporal directionality beyond the 1-11 year exposure window -- anticholinergic prescribing patterns may still partially reflect prodromal dementia symptoms.",
+            "Exposure windows of 3-13 years and 5-20 years show similar ORs (1.46 and 1.44), suggesting long-duration exposure patterns but not illuminating which years of exposure are most critical.",
+            "Class-specific ORs span a range (antidepressants 1.29 to antipsychotics 1.70) that MECH-175 would predict partially from differential REM suppression power, but confounding by indication makes direct mechanistic inference difficult."
+          ],
+          "run_id": "2026-04-05_mech175_anticholinergic_dementia_coupland2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-175",
+          "confidence": 0.75,
+          "confidence_rationale": "Strong prospective design with objective pharmacy dispensing data and 10-year cumulative exposure window; clear dose-response curve (HR 1.54 at highest dose tier). High source quality. Mapping fidelity is moderate: the association is well-documented but the mechanism is undetermined -- the paper cannot distinguish the nocturnal REM pathway from the diurnal cholinergic deficit pathway (both predicted by MECH-175). Transfer risk is low: this is exactly the population (65+, community-dwelling, followed prospectively) that MECH-175 addresses.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The study cannot distinguish REM suppression from diurnal cholinergic deficit as the mediating mechanism -- both are MECH-175 pathways but the epidemiology alone cannot separate them.",
+            "Reverse causation cannot be fully excluded: prodromal dementia may increase anticholinergic prescribing (though authors excluded the most recent 12 months of use and show association for exposure 1-11 years prior).",
+            "Most anticholinergic classes used were tricyclic antidepressants, first-generation antihistamines, and bladder antimuscarinics -- REM suppression potency varies substantially across these classes, which is not captured by the TSDD metric."
+          ],
+          "run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
+    "MECH-176": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.74",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech176_suvorexant_psg_snyder2016",
+      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
+      "literature_confidence": 0.74,
+      "overall_confidence": 0.74,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-176",
+          "confidence": 0.78,
+          "confidence_rationale": "Pooled RCT PSG data from two large Phase 3 trials (n=1482), 3-month follow-up, objective PSG measurement. Directly demonstrates suvorexant increases REM% (average +3.9% at Night-1) with only minimal SWS/N3 reduction (\u22640.8%) -- consistent with MECH-176 architecture preservation prediction. Delta power increase in non-REM supports maintained or enhanced slow-wave homeostasis. Reduced REM latency indicates preserved REM generation machinery. Industry sponsorship (Merck) is a source of potential bias but the PSG measurements are objective and pre-registered.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The study shows small decreases in N3/SWS% (\u22640.8%) suggesting suvorexant is not fully architecture-neutral on Phase 1; MECH-176 predicts SWS preservation, and the small SWS reduction (though much less than benzodiazepines) is a partial failure of the architecture-preserving prediction.",
+            "No direct comparison to benzodiazepines or Z-drugs in this study -- MECH-176 architecture preservation claim requires head-to-head comparison to confirm superiority, not just differences from placebo.",
+            "Participants are insomnia patients (not MCI or dementia risk population); effects in cognitively at-risk older adults may differ.",
+            "Industry-sponsored study (Merck, manufacturer of suvorexant); all authors are Merck employees."
+          ],
+          "run_id": "2026-04-05_mech176_suvorexant_psg_snyder2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-177": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.61",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:meta_analysis": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech177_pharmacotherapy_dementia_mccleery2020",
+      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
+      "literature_confidence": 0.61,
+      "overall_confidence": 0.61,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-177",
+          "confidence": 0.72,
+          "confidence_rationale": "Cochrane systematic review, well-conducted. Key finding: orexin antagonists (suvorexant/lemborexant) probably improve total sleep time (MD +28.2 min, moderate certainty) and reduce WASO in mild-moderate AD; trazodone 50mg improves total sleep time and efficiency in moderate-severe AD (low certainty, small trial n=30). Melatonin shows little or no effect. This mixed pattern is partially consistent with MECH-177: orexin antagonist and trazodone are exactly the two architecture-favorable agents predicted to have DPM potential, while melatonin shows weaker effects. However, the outcomes measured are sleep improvement, not cognitive progression -- MECH-177 predicts disease modification, which this Cochrane review does not test directly.",
+          "evidence_class": "lit:meta_analysis",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "Melatonin (up to 10mg) shows little or no effect on any major sleep outcome in AD -- this partially challenges the ramelteon/melatonin-ER disease-modifying candidate prediction in MECH-177, though melatonin-ER formulation and ramelteon (MT1/MT2 agonist vs. non-selective melatonin) are different from standard melatonin.",
+            "No RCT evidence for benzodiazepine or Z-drug use in dementia sleep -- the Cochrane review explicitly notes this gap, meaning MECH-174's predictions about harm from GABAergic agents are not directly contradict by RCT evidence (no data, not negative data).",
+            "Trial durations (2-4 weeks for most) are too short to test MECH-177's disease-modification prediction -- sleep improvement in 4 weeks does not establish prevention of pipeline collapse over years.",
+            "The ramelteon study (n=74) shows no effect on sleep outcomes -- though the review notes the limited evidence from an unpublished sponsor summary."
+          ],
+          "run_id": "2026-04-05_mech177_pharmacotherapy_dementia_mccleery2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T20:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "MECH-900": {
       "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.707",
       "direction_counts": {
@@ -10725,7 +11326,7 @@
       }
     },
     "Q-007": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.321, lit_conf=0.763",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.32, lit_conf=0.763",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -10739,7 +11340,7 @@
         "lit:theoretical_review": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.321,
+      "experimental_confidence": 0.32,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -10751,7 +11352,7 @@
       "latest_run_id": "v3_exq_200_q007_zbeta_volatility_pathway_20260402T221947Z_v3",
       "latest_timestamp_utc": "2026-04-02T22:19:47Z",
       "literature_confidence": 0.763,
-      "overall_confidence": 0.653,
+      "overall_confidence": 0.652,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -53846,9 +54447,299 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-05T18:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-048",
+      "confidence": 0.7,
+      "confidence_rationale": "Case-control design with pharmacy database (Quebec RAMQ), good sample size (1796 cases + 7184 controls), 5-year exposure lag, dose-response relationship (OR 1.84 at >180 prescribed daily doses), persistence of association after adjustment for anxiety/depression/insomnia. Longer-acting benzodiazepines had higher OR (1.70 vs 1.43 for short-acting) -- consistent with cumulative SWS+REM suppression hypothesis. Transfer risk is moderate: causal direction is uncertain (reverse causation remains possible despite the exposure lag), and the mechanistic pathway through sleep phase disruption is not tested.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "Reverse causation is a real concern even with the 5-year exposure lag: anxiety and insomnia (early prodromal dementia features) may drive benzodiazepine prescribing before diagnosis, though adjustment for these comorbidities did not substantially change the OR.",
+        "The study cannot distinguish whether SWS suppression, REM suppression, or direct GABAergic neurotoxicity is the causal mechanism -- MECH-174 predicts SWS+REM pathway but the design cannot test this.",
+        "Long-acting vs short-acting differential (OR 1.70 vs 1.43) is consistent with cumulative pipeline suppression but is equally consistent with differential half-life producing more residual daytime sedation and encoding impairment."
+      ],
+      "run_id": "2026-04-05_mech174_benzodiazepine_alzheimer_billioti2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-048",
+      "confidence": 0.75,
+      "confidence_rationale": "Strong prospective design with objective pharmacy dispensing data and 10-year cumulative exposure window; clear dose-response curve (HR 1.54 at highest dose tier). High source quality. Mapping fidelity is moderate: the association is well-documented but the mechanism is undetermined -- the paper cannot distinguish the nocturnal REM pathway from the diurnal cholinergic deficit pathway (both predicted by MECH-175). Transfer risk is low: this is exactly the population (65+, community-dwelling, followed prospectively) that MECH-175 addresses.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The study cannot distinguish REM suppression from diurnal cholinergic deficit as the mediating mechanism -- both are MECH-175 pathways but the epidemiology alone cannot separate them.",
+        "Reverse causation cannot be fully excluded: prodromal dementia may increase anticholinergic prescribing (though authors excluded the most recent 12 months of use and show association for exposure 1-11 years prior).",
+        "Most anticholinergic classes used were tricyclic antidepressants, first-generation antihistamines, and bladder antimuscarinics -- REM suppression potency varies substantially across these classes, which is not captured by the TSDD metric."
+      ],
+      "run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-168",
+      "confidence": 0.72,
+      "confidence_rationale": "Large sample (n=837 elderly insomnia controls, n=239 AD+insomnia), objective PSG measurement with propensity score matching. Directly documents that AD is associated with reduced SWS%, fewer sleep spindles per minute N2, and lower EEG power in slow oscillation bands -- exactly the pipeline damage signature predicted by MECH-168. The non-significant trend for lower REM% in AD is partially supportive of MECH-173 but does not reach significance. Transfer risk: this is cross-sectional/diagnostic, so causal direction (AD causes SWS loss vs SWS loss causes AD) cannot be determined from this design alone.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "REM sleep reduction in AD did not reach statistical significance in this sample, weakening the MECH-173 Phase-4-first-failure prediction for this dataset (though the trend is in the predicted direction).",
+        "Cross-sectional design cannot determine whether SWS/spindle reductions preceded or followed AD neurodegeneration -- the causal directionality required by MECH-168 and MECH-174 is not testable here.",
+        "Both groups had insomnia at baseline -- the design effectively subtracts out insomnia, which is the intended strength, but means these findings reflect what AD adds to an insomnia baseline rather than AD vs healthy sleep."
+      ],
+      "run_id": "2026-04-05_mech168_psg_alzheimers_tao2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-174",
+      "confidence": 0.72,
+      "confidence_rationale": "Large sample (n=837 elderly insomnia controls, n=239 AD+insomnia), objective PSG measurement with propensity score matching. Directly documents that AD is associated with reduced SWS%, fewer sleep spindles per minute N2, and lower EEG power in slow oscillation bands -- exactly the pipeline damage signature predicted by MECH-168. The non-significant trend for lower REM% in AD is partially supportive of MECH-173 but does not reach significance. Transfer risk: this is cross-sectional/diagnostic, so causal direction (AD causes SWS loss vs SWS loss causes AD) cannot be determined from this design alone.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "REM sleep reduction in AD did not reach statistical significance in this sample, weakening the MECH-173 Phase-4-first-failure prediction for this dataset (though the trend is in the predicted direction).",
+        "Cross-sectional design cannot determine whether SWS/spindle reductions preceded or followed AD neurodegeneration -- the causal directionality required by MECH-168 and MECH-174 is not testable here.",
+        "Both groups had insomnia at baseline -- the design effectively subtracts out insomnia, which is the intended strength, but means these findings reflect what AD adds to an insomnia baseline rather than AD vs healthy sleep."
+      ],
+      "run_id": "2026-04-05_mech168_psg_alzheimers_tao2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-174",
+      "confidence": 0.7,
+      "confidence_rationale": "Case-control design with pharmacy database (Quebec RAMQ), good sample size (1796 cases + 7184 controls), 5-year exposure lag, dose-response relationship (OR 1.84 at >180 prescribed daily doses), persistence of association after adjustment for anxiety/depression/insomnia. Longer-acting benzodiazepines had higher OR (1.70 vs 1.43 for short-acting) -- consistent with cumulative SWS+REM suppression hypothesis. Transfer risk is moderate: causal direction is uncertain (reverse causation remains possible despite the exposure lag), and the mechanistic pathway through sleep phase disruption is not tested.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "Reverse causation is a real concern even with the 5-year exposure lag: anxiety and insomnia (early prodromal dementia features) may drive benzodiazepine prescribing before diagnosis, though adjustment for these comorbidities did not substantially change the OR.",
+        "The study cannot distinguish whether SWS suppression, REM suppression, or direct GABAergic neurotoxicity is the causal mechanism -- MECH-174 predicts SWS+REM pathway but the design cannot test this.",
+        "Long-acting vs short-acting differential (OR 1.70 vs 1.43) is consistent with cumulative pipeline suppression but is equally consistent with differential half-life producing more residual daytime sedation and encoding impairment."
+      ],
+      "run_id": "2026-04-05_mech174_benzodiazepine_alzheimer_billioti2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-175",
+      "confidence": 0.8,
+      "confidence_rationale": "Very large nested case-control (58,769 dementia cases, 225,574 controls); class-specific analysis provides mechanistic granularity; consistent dose-response with 1-11 year exposure window; population-attributable fraction of 10.3% indicates clinical significance. The class-specific breakdown (bladder antimuscarinics OR 1.65, antidepressants 1.29, antipsychotics 1.70) is particularly useful for MECH-175 as different drug classes have different REM suppression vs diurnal cholinergic profiles -- though the paper cannot disentangle these mechanistic contributions.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The nested case-control design cannot establish temporal directionality beyond the 1-11 year exposure window -- anticholinergic prescribing patterns may still partially reflect prodromal dementia symptoms.",
+        "Exposure windows of 3-13 years and 5-20 years show similar ORs (1.46 and 1.44), suggesting long-duration exposure patterns but not illuminating which years of exposure are most critical.",
+        "Class-specific ORs span a range (antidepressants 1.29 to antipsychotics 1.70) that MECH-175 would predict partially from differential REM suppression power, but confounding by indication makes direct mechanistic inference difficult."
+      ],
+      "run_id": "2026-04-05_mech175_anticholinergic_dementia_coupland2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-175",
+      "confidence": 0.75,
+      "confidence_rationale": "Strong prospective design with objective pharmacy dispensing data and 10-year cumulative exposure window; clear dose-response curve (HR 1.54 at highest dose tier). High source quality. Mapping fidelity is moderate: the association is well-documented but the mechanism is undetermined -- the paper cannot distinguish the nocturnal REM pathway from the diurnal cholinergic deficit pathway (both predicted by MECH-175). Transfer risk is low: this is exactly the population (65+, community-dwelling, followed prospectively) that MECH-175 addresses.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The study cannot distinguish REM suppression from diurnal cholinergic deficit as the mediating mechanism -- both are MECH-175 pathways but the epidemiology alone cannot separate them.",
+        "Reverse causation cannot be fully excluded: prodromal dementia may increase anticholinergic prescribing (though authors excluded the most recent 12 months of use and show association for exposure 1-11 years prior).",
+        "Most anticholinergic classes used were tricyclic antidepressants, first-generation antihistamines, and bladder antimuscarinics -- REM suppression potency varies substantially across these classes, which is not captured by the TSDD metric."
+      ],
+      "run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-176",
+      "confidence": 0.78,
+      "confidence_rationale": "Pooled RCT PSG data from two large Phase 3 trials (n=1482), 3-month follow-up, objective PSG measurement. Directly demonstrates suvorexant increases REM% (average +3.9% at Night-1) with only minimal SWS/N3 reduction (\u22640.8%) -- consistent with MECH-176 architecture preservation prediction. Delta power increase in non-REM supports maintained or enhanced slow-wave homeostasis. Reduced REM latency indicates preserved REM generation machinery. Industry sponsorship (Merck) is a source of potential bias but the PSG measurements are objective and pre-registered.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The study shows small decreases in N3/SWS% (\u22640.8%) suggesting suvorexant is not fully architecture-neutral on Phase 1; MECH-176 predicts SWS preservation, and the small SWS reduction (though much less than benzodiazepines) is a partial failure of the architecture-preserving prediction.",
+        "No direct comparison to benzodiazepines or Z-drugs in this study -- MECH-176 architecture preservation claim requires head-to-head comparison to confirm superiority, not just differences from placebo.",
+        "Participants are insomnia patients (not MCI or dementia risk population); effects in cognitively at-risk older adults may differ.",
+        "Industry-sponsored study (Merck, manufacturer of suvorexant); all authors are Merck employees."
+      ],
+      "run_id": "2026-04-05_mech176_suvorexant_psg_snyder2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-177",
+      "confidence": 0.72,
+      "confidence_rationale": "Cochrane systematic review, well-conducted. Key finding: orexin antagonists (suvorexant/lemborexant) probably improve total sleep time (MD +28.2 min, moderate certainty) and reduce WASO in mild-moderate AD; trazodone 50mg improves total sleep time and efficiency in moderate-severe AD (low certainty, small trial n=30). Melatonin shows little or no effect. This mixed pattern is partially consistent with MECH-177: orexin antagonist and trazodone are exactly the two architecture-favorable agents predicted to have DPM potential, while melatonin shows weaker effects. However, the outcomes measured are sleep improvement, not cognitive progression -- MECH-177 predicts disease modification, which this Cochrane review does not test directly.",
+      "evidence_class": "lit:meta_analysis",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "Melatonin (up to 10mg) shows little or no effect on any major sleep outcome in AD -- this partially challenges the ramelteon/melatonin-ER disease-modifying candidate prediction in MECH-177, though melatonin-ER formulation and ramelteon (MT1/MT2 agonist vs. non-selective melatonin) are different from standard melatonin.",
+        "No RCT evidence for benzodiazepine or Z-drug use in dementia sleep -- the Cochrane review explicitly notes this gap, meaning MECH-174's predictions about harm from GABAergic agents are not directly contradict by RCT evidence (no data, not negative data).",
+        "Trial durations (2-4 weeks for most) are too short to test MECH-177's disease-modification prediction -- sleep improvement in 4 weeks does not establish prevention of pipeline collapse over years.",
+        "The ramelteon study (n=74) shows no effect on sleep outcomes -- though the review notes the limited evidence from an unpublished sponsor summary."
+      ],
+      "run_id": "2026-04-05_mech177_pharmacotherapy_dementia_mccleery2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T20:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-045",
+      "confidence": 0.84,
+      "confidence_rationale": "Hou et al. provide direct electrophysiological evidence of bidirectional information flow between hippocampal CA1 and retrosplenial cortex (RSC) during NREM sleep SWRs. Using GLMs to trace information flow around SWR events: RSC excitatory neurons increase CA1 activity PRIOR to SWRs (RSC -> CA1 direction), while CA1 activates RSC inhibitory neurons AFTER SWRs (CA1 -> RSC direction). This bidirectionality -- RSC drives hippocampal replay initiation (schema/prior influence on what gets replayed) and hippocampus then updates RSC (attribution estimate installation) -- directly maps to ARC-045's claim that bidirectional flow is architecturally necessary for attribution mapping convergence. The RSC-to-CA1 pre-SWR drive is the neocortex-to-hippocampus (recognition/prior) direction; the CA1-to-RSC post-SWR activation is the hippocampus-to-neocortex (generative/installation) direction. Published in Research (Washington D.C.) with simultaneous multi-area recordings and causal direction tracing.",
+      "evidence_class": "lit:electrophysiology_rodent",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_045",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_045_bidirectional_rsc_ca1_swr_hou2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-045",
+      "confidence": 0.82,
+      "confidence_rationale": "Friston 2005 is the foundational paper establishing hierarchical cortical responses as the product of a bidirectional generative-recognition model: forward (bottom-up) connections carry prediction errors (recognition direction -- what evidence does not fit the model), backward (top-down) connections carry predictions (generative direction -- what the model expects to see). The paper explicitly derives that reciprocal, bidirectional connections are a necessary architectural consequence of free-energy minimisation in hierarchical models. This directly grounds ARC-045's claim that bidirectional hippocampus-neocortex flow is architecturally necessary: the generative model (top-down predictions, neocortex -> hippocampus, maps onto schema prior direction) and the recognition model (bottom-up error, hippocampus -> neocortex, maps onto attribution installation direction) are two faces of the same inference process and cannot be collapsed to a single direction without losing the ability to minimise free energy. High mapping fidelity for the architectural necessity argument; confidence limited because the paper focuses on sensory cortex hierarchy, not hippocampal-neocortical consolidation specifically.",
+      "evidence_class": "lit:computational_theory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_045",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_045_hierarchical_generative_model_friston2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-045",
+      "confidence": 0.76,
+      "confidence_rationale": "Langille 2019 argues that NREM and REM sleep serve complementary and sequential functions: NREM installs and edits engrams via slow oscillation + spindle + SWR triple-phase locking (hippocampus-to-cortex, installation direction), while REM stabilises and integrates them, and that the cyclical organisation of NREM-REM sleep is the mechanism ensuring bidirectionality. The paper explicitly proposes that the same sleep rhythms that consolidate also adaptively forget, and that NREM/REM cycling is necessary for both. This maps onto ARC-045: the SWS-direction (hippocampus-to-neocortex) installs schema structure; the REM hippocampal theta rhythm serves the waking/REM-direction (neocortex-to-hippocampus, pattern completion, prior-guided slot-filling). The sequential cycling is what enables iterative convergence of attribution mapping across multiple NREM-REM cycles. Confidence moderate because Langille does not directly test whether disrupting one direction impairs attribution mapping, and the review integrates evidence from multiple sources rather than providing primary data.",
+      "evidence_class": "lit:review_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_045",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-044",
+      "confidence": 0.76,
+      "confidence_rationale": "Morton et al. show that hippocampal and frontoparietal regions form abstract representations coding cross-triad relational structure with a common geometric structure -- even without explicit reinforcement to do so. Critically, parahippocampal cortex forms hierarchical representations that both reflect cross-triad (structural/schema) relationships and distinguish individual triads (slot-level). This dissociation directly supports the prior-before-posterior necessity: the geometric common structure must exist (schema/prior) before vector-based retrieval (slot-filling/posterior) can yield informative inferences. The pattern completion vs. vector-based retrieval dissociation between hippocampus and parahippocampal/parietal cortex provides a neural substrate for the two-stage architecture INV-044 requires. Published in PNAS with neurocomputational modelling. Confidence is moderate rather than high because the temporal ordering (schema first, then slot-filling) is inferred from the representational structure rather than directly manipulated.",
+      "evidence_class": "lit:neuroimaging_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_044",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv_044_common_event_structure_inference_morton2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-044",
+      "confidence": 0.9,
+      "confidence_rationale": "Primary grounding paper for INV-044. Sanders, Wilson & Gershman formalise hippocampal remapping as Bayesian hidden state inference: the animal maintains a posterior over discrete latent contexts and remapping reflects uncertainty about which context is currently active. The paper demonstrates that prior construction (context schema -- which distinctions are structurally relevant) necessarily precedes posterior inference: without a pre-formed prior over context partitions, the agent cannot assign new observations to context slots. The model directly predicts that systems attempting to learn context structure (prior) and perform context attribution (posterior) in a single online pass produce degenerate context representations -- partial remapping corresponds to high posterior uncertainty rather than informative attribution. Published in eLife with strong computational formalism and empirical validation against rodent place cell data.",
+      "evidence_class": "lit:computational_theory_with_empirical_grounding",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_044",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv_044_remapping_hidden_state_inference_sanders2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-044",
+      "confidence": 0.72,
+      "confidence_rationale": "Finnie et al. show that NMDAR-independent learning (schema-enabled slot-filling) requires that the first-task memory remain hippocampus-dependent AND requires anterior cingulate cortex (ACC) memory maintenance. When ACC memory is disrupted, NMDAR-independence is abolished -- the schema (prior structure maintained in ACC) is causally necessary for rapid slot-filling on the second task. This is a causal demonstration that the prior structure (schema in cortico-hippocampal circuit) must be maintained before subsequent posterior inference (attribution on a new similar task) can proceed efficiently. The NMDAR-dependency shift is a molecular signature of prior-enabled vs. prior-absent learning. Mapping to INV-044 is moderately strong because it demonstrates causal prior-dependency, but the mechanism is cortico-hippocampal maintenance rather than an offline SWS-analog installation phase.",
+      "evidence_class": "lit:rodent_behavioral_pharmacology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_044",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv_044_schema_enables_learning_finnie2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-166",
+      "confidence": 0.88,
+      "confidence_rationale": "Landmark paper providing direct evidence that a pre-formed schema enables rapid, single-trial memory consolidation and hippocampal independence. Tse et al. showed that rats with a previously established flavor-place schema (after ~3 weeks of learning multiple flavor-place pairs) could consolidate new pairs in a single trial and recall them in a hippocampus-independent manner within 48 hours. Without the schema, multi-trial learning was required and hippocampal dependency persisted for weeks. This directly demonstrates that schema formation (context slot structure) must precede rapid slot-filling: only after the associative structure (slot topology) was consolidated in neocortex could new instances be rapidly assimilated. Maps strongly to MECH-166's claim that slot-structure (schema abstraction) must be consolidated before slot-filling (causal attribution) can yield reliable signal.",
+      "evidence_class": "lit:rodent_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_166",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech_166_schema_memory_consolidation_tse2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-166",
+      "confidence": 0.8,
+      "confidence_rationale": "Born 2010 provides a mechanistic review of how SWS hippocampal-neocortical dialogue enables memory consolidation. The key mechanism: SWS slow oscillations originate in neocortex, entrain hippocampal sharp-wave ripples, and coordinate thalamocortical spindles to synchronise the transfer of hippocampal memory representations to neocortex. This establishes SWS as the phase in which hippocampal episodic content is transferred to neocortical schema structure -- the SWS-direction installation phase for context slot structure. The explicit identification of SWS as the consolidation direction (hippocampus to neocortex) directly maps to MECH-166's claim that the SWS-analog phase installs schema structure before REM-analog slot-filling. Confidence is high for the directional claim but moderate overall because this is a review paper without primary data directly testing schema vs. slot-filler separation.",
+      "evidence_class": "lit:review_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_166",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech_166_sws_hippocampal_neocortical_dialogue_born2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-166",
+      "confidence": 0.74,
+      "confidence_rationale": "Tukker et al. review the role of Up/Down states (UDS) in memory consolidation across the cortico-hippocampal axis. Key finding relevant to MECH-166: UDS propagate from neocortex through entorhinal cortex to hippocampus during SWS, coordinating sharp-wave ripple replay. The review establishes that the slow oscillation Up/Down structure temporally organises hippocampal SWR replay into discrete packets, each potentially carrying a distinct memory trace fragment. This temporal organisation is what makes the SWS-analog phase capable of installing structured slot topology (rather than continuous encoding): each slow-oscillation cycle creates a bounded, delineated memory installation event. This supports MECH-166's claim that slot-formation and slot-filling are computationally separated: the UDS mechanism ensures that SWS installs bounded slot-structure packets rather than performing continuous online slot-filling. Confidence moderate because this is a review paper that does not directly test schema abstraction vs. attribution separation.",
+      "evidence_class": "lit:review_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_166",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T21:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-04T22:43:29.243742Z",
+  "generated_at_utc": "2026-04-04T23:03:32.141339Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

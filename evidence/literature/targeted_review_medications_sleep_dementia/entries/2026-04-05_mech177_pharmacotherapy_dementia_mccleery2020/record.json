@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech177_pharmacotherapy_dementia_mccleery2020",
+  "timestamp_utc": "2026-04-05T20:30:00Z",
+  "claim_ids_tested": ["MECH-177"],
+  "source": {
+    "title": "Pharmacotherapies for sleep disturbances in dementia",
+    "authors": ["McCleery J", "Sharpley AL"],
+    "year": 2020,
+    "venue": "Cochrane Database of Systematic Reviews",
+    "doi": "10.1002/14651858.CD009178.pub4",
+    "pmid": "33189083"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Cochrane systematic review, well-conducted. Key finding: orexin antagonists (suvorexant/lemborexant) probably improve total sleep time (MD +28.2 min, moderate certainty) and reduce WASO in mild-moderate AD; trazodone 50mg improves total sleep time and efficiency in moderate-severe AD (low certainty, small trial n=30). Melatonin shows little or no effect. This mixed pattern is partially consistent with MECH-177: orexin antagonist and trazodone are exactly the two architecture-favorable agents predicted to have DPM potential, while melatonin shows weaker effects. However, the outcomes measured are sleep improvement, not cognitive progression -- MECH-177 predicts disease modification, which this Cochrane review does not test directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Melatonin (up to 10mg) shows little or no effect on any major sleep outcome in AD -- this partially challenges the ramelteon/melatonin-ER disease-modifying candidate prediction in MECH-177, though melatonin-ER formulation and ramelteon (MT1/MT2 agonist vs. non-selective melatonin) are different from standard melatonin.",
+    "No RCT evidence for benzodiazepine or Z-drug use in dementia sleep -- the Cochrane review explicitly notes this gap, meaning MECH-174's predictions about harm from GABAergic agents are not directly contradict by RCT evidence (no data, not negative data).",
+    "Trial durations (2-4 weeks for most) are too short to test MECH-177's disease-modification prediction -- sleep improvement in 4 weeks does not establish prevention of pipeline collapse over years.",
+    "The ramelteon study (n=74) shows no effect on sleep outcomes -- though the review notes the limited evidence from an unpublished sponsor summary."
+  ],
+  "tags": ["mech177", "trazodone", "orexin_antagonist", "melatonin", "dementia", "cochrane", "pharmacotherapy"],
+  "mapping": {
+    "source_claim_statement": "Orexin antagonists (suvorexant/lemborexant) probably increase total nocturnal sleep time by 28 min and decrease WASO by 16 min in mild-to-moderate AD (moderate certainty). Trazodone 50mg for 2 weeks improves total sleep time by 42 min and sleep efficiency by 8.5% in moderate-severe AD (low certainty). Melatonin up to 10mg: little or no effect. Ramelteon 8mg: no important effect on sleep. No RCTs of benzodiazepines or Z-drugs in dementia.",
+    "ree_translation": "MECH-177 predicts architecture-preserving agents (orexin antagonists, trazodone) should have disease-modifying potential via pipeline protection in MCI/early AD. The Cochrane finding that orexin antagonists improve sleep in mild-moderate AD and trazodone improves sleep in moderate-severe AD is consistent with the predicted efficacy pattern. The lack of benzodiazepine/Z-drug RCTs in dementia is consistent with MECH-174 predictions (clinicians may avoid them for the same reasons MECH-174 predicts), but is not evidence of harm.",
+    "mapping_caveat": "The Cochrane outcomes (total sleep time, sleep efficiency, WASO) are sleep quality metrics, not dementia progression metrics. MECH-177's disease-modification claim requires showing slowed cognitive decline, which requires much longer trials with cognitive endpoints. The current evidence supports efficacy for sleep improvement, not DPM. The melatonin null finding is a partial challenge to the circadian-restoration DPM candidate, though melatonin-ER and ramelteon have different pharmacodynamics from standard melatonin.",
+    "source_context": "Cochrane systematic review; 9 RCTs, n=649 total; participants had dementia (mostly AD) with identified sleep disturbance; primary outcomes via actigraphy or PSG; median trial duration 2-4 weeks."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Cochrane). Mapping fidelity limited because sleep improvement outcomes don't test disease-modification prediction of MECH-177. Evidence is indirect for DPM."
+  }
+}

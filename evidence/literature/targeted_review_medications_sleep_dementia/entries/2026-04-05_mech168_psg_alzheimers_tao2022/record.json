@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech168_psg_alzheimers_tao2022",
+  "timestamp_utc": "2026-04-05T20:30:00Z",
+  "claim_ids_tested": ["MECH-168", "MECH-174"],
+  "source": {
+    "title": "Comparison of polysomnography in people with Alzheimer's disease and insomnia versus non-demented elderly people with insomnia",
+    "authors": ["Tao P", "Svetnik V", "Bliwise DL", "Zammit G", "Lines C", "Herring WJ"],
+    "year": 2022,
+    "venue": "Sleep Medicine",
+    "doi": "10.1016/j.sleep.2022.11.027",
+    "pmid": "36529106"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Large sample (n=837 elderly insomnia controls, n=239 AD+insomnia), objective PSG measurement with propensity score matching. Directly documents that AD is associated with reduced SWS%, fewer sleep spindles per minute N2, and lower EEG power in slow oscillation bands -- exactly the pipeline damage signature predicted by MECH-168. The non-significant trend for lower REM% in AD is partially supportive of MECH-173 but does not reach significance. Transfer risk: this is cross-sectional/diagnostic, so causal direction (AD causes SWS loss vs SWS loss causes AD) cannot be determined from this design alone.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "REM sleep reduction in AD did not reach statistical significance in this sample, weakening the MECH-173 Phase-4-first-failure prediction for this dataset (though the trend is in the predicted direction).",
+    "Cross-sectional design cannot determine whether SWS/spindle reductions preceded or followed AD neurodegeneration -- the causal directionality required by MECH-168 and MECH-174 is not testable here.",
+    "Both groups had insomnia at baseline -- the design effectively subtracts out insomnia, which is the intended strength, but means these findings reflect what AD adds to an insomnia baseline rather than AD vs healthy sleep."
+  ],
+  "tags": ["mech168", "mech174", "alzheimers_disease", "polysomnography", "sws", "spindles", "psg"],
+  "mapping": {
+    "source_claim_statement": "Compared to elderly people with insomnia only, adults with AD and insomnia have: lower percentage of time in slow wave sleep (SWS), higher percentage in N1, fewer spindles per minute in N2 sleep, and lower absolute EEG power (particularly low-frequency bands). Trend for lower REM% in AD does not reach significance.",
+    "ree_translation": "MECH-168 predicts consolidation pipeline stages fail in reverse order: Phase 4 (precision recalibration, REM) first, then Phases 2-3 (schema replay, spindles), then Phase 1 (SWS homeostasis). This paper documents spindle reduction and SWS reduction in mild-moderate AD -- consistent with Phases 1-3 disruption. The non-significant REM trend is weaker evidence for Phase 4. The spindle reduction specifically maps to MECH-122 disruption (spindle coordination for schema packaging). MECH-174 predicts that SWS homeostasis and SWR replay are the phases disrupted by GABAergic agents; this paper documents these are also the phases disrupted in established AD.",
+    "mapping_caveat": "The paper establishes the PSG signature of mild-moderate AD (not early MCI or prodromal stages) -- MECH-168 predicts Phase 4 failure precedes Phase 1/2/3 failure, so cross-sectional data from established AD cannot test the temporal ordering. The failure pattern here may represent late-stage pipeline damage, not early staging.",
+    "source_context": "PSG comparison study using baseline data from Merck clinical trials; AD participants had mild-to-moderate severity; adults 55-80 years; propensity score matching for age and total sleep time."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Transfer risk elevated due to cross-sectional design and established (not early/prodromal) AD. Does not test INV-047 staging prediction directly."
+  }
+}

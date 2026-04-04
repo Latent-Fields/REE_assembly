@@ -419,6 +419,12 @@
     "title": "Cross-version hook surface contract and registry.",
     "type": "implementation_note"
   },
+  "IMPL-026": {
+    "status": "candidate",
+    "subject": "pharmacology.sleep_dementia_risk_classification",
+    "title": "Medication classification by predicted attribution pipeline effect: a reference table mapping common sleep-affecting medication classes to their predicted phase-specific pipeline disruption, net dementia risk direction, and disease-modifying potential.",
+    "type": "implementation_note"
+  },
   "INV-001": {
     "status": "active",
     "subject": "ethics.emergence",
@@ -699,6 +705,12 @@
     "status": "candidate",
     "subject": "dementia.staged_decline_phase_dependency_prediction",
     "title": "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile.",
+    "type": "invariant"
+  },
+  "INV-048": {
+    "status": "candidate",
+    "subject": "sleep.pharmacological_disruption_pipeline_equivalence",
+    "title": "Any pharmacological agent that disrupts sleep architecture produces equivalent attribution pipeline degradation to behavioral sleep deprivation, proportional to which phase(s) are disrupted and the duration of exposure -- the pipeline is mechanism-agnostic and responds only to phase fidelity.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -1739,6 +1751,36 @@
     "title": "Preservation of habit and procedural memory in early Alzheimer's disease, while episodic and contextual memory fail, is architecturally predicted by the separation of the model-free habit system (MECH-163 D1/D2, SNc) from the contextual attribution system (E3 hippocampal, requiring offline consolidation phases): the habit system does not require offline consolidation to function, so its relative preservation under early consolidation pipeline failure is not incidental but follows from the architectural separation.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-173": {
+    "status": "candidate",
+    "subject": "pharmacology.rem_suppression_phase4_disruption",
+    "title": "Medications that suppress REM sleep (anticholinergics, MAOIs, most antidepressants at therapeutic doses, benzodiazepines) selectively impair MECH-123 precision recalibration -- the most downstream pipeline phase -- and thereby accelerate the earliest dementia prodrome: overconfident contextual attributions before overt memory loss.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-174": {
+    "status": "candidate",
+    "subject": "pharmacology.sws_suppression_phase12_disruption",
+    "title": "GABAergic sleep aids (benzodiazepines and Z-drugs: zolpidem, zopiclone, zaleplon) suppress SWS depth and continuity at therapeutic doses, impairing MECH-120 synaptic homeostasis and MECH-121 schema replay, producing context representations that remain globally undifferentiated -- the same failure mode as SD-017 without any SWS-analog.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-175": {
+    "status": "candidate",
+    "subject": "pharmacology.anticholinergic_dual_pathway_dementia_risk",
+    "title": "Anticholinergic medications confer dementia risk via two independent and potentially additive pathways: (1) REM suppression (ACh is required for REM generation via nucleus basalis and brainstem PGO generators -- muscarinic blockade directly suppresses REM, impairing MECH-123); and (2) cholinergic deficit mimicry (AD is characterised by basal forebrain cholinergic loss; anticholinergic burden creates a pharmacological analog of this deficit during waking hours, independently degrading attention and encoding).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-176": {
+    "status": "candidate",
+    "subject": "pharmacology.orexin_antagonist_architecture_preserving",
+    "title": "Orexin receptor antagonists (suvorexant, lemborexant) are predicted to be architecture-preserving sleep aids: they suppress wake-promoting orexin drive without directly compressing sleep phase machinery, allowing the brain's own homeostatic sleep architecture to unfold, and should therefore preserve or improve SWS/REM ratio relative to GABAergic alternatives at equi-efficacious doses.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-177": {
+    "status": "candidate",
+    "subject": "pharmacology.sleep_architecture_restoration_disease_modifying",
+    "title": "Any pharmacological intervention that durably restores the NREM-to-REM sequence and preserves phase durations in MCI or early Alzheimer's disease is predicted to be disease-modifying via pipeline protection -- upstream of irreversible neurodegeneration, breaking the MECH-171 vicious cycle before schema scaffold collapse, with predicted effect size larger in early MCI than established AD.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -1917,6 +1959,18 @@
     "status": "open",
     "subject": "goal_representation.resource_world_permutations",
     "title": "What are the optimal permutations of z_resource and z_world separation, fusion, and information flow direction (feedforward, feedback, lateral) across REE's processing stages?",
+    "type": "open_question"
+  },
+  "Q-031": {
+    "status": "open",
+    "subject": "pharmacology.anticholinergic_risk_rem_vs_dose_independent_predictors",
+    "title": "Does the anticholinergic burden-dementia risk relationship track cumulative REM suppression duration (total ACh-blocked sleep years), total anticholinergic dose as a proxy for diurnal cholinergic deficit, or both as independent additive predictors -- and can mediation analysis in prospective cohorts distinguish the nocturnal (MECH-173) from the diurnal (MECH-175 pathway 2) contribution?",
+    "type": "open_question"
+  },
+  "Q-032": {
+    "status": "open",
+    "subject": "pharmacology.sws_rem_ratio_dementia_outcome_predictor",
+    "title": "Among sleep-promoting medications prescribed in older adults, does relative SWS/REM ratio preservation (measured by polysomnography) predict differential dementia outcomes independent of total sleep time -- and if so, does this validate phase-specific pipeline damage as the causal intermediate and provide a pharmacodynamic biomarker for disease-modifying trials?",
     "type": "open_question"
   },
   "SD-001": {

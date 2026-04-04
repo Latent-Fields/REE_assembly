@@ -1,0 +1,49 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "d1_pass": 1.0,
+    "d2_pass": 0.0,
+    "d3_pass": 0.0,
+    "d4_pass": 0.0,
+    "criteria_met": 1.0,
+    "d1_passes_n": 1.0,
+    "d2_passes_n": 0.0,
+    "d3_passes_n": 0.0,
+    "d4_passes_n": 0.0,
+    "cos_sim_seed0": 0.23599903285503387,
+    "r2_s_forward_seed0": -0.31971577617738034,
+    "r2_a_forward_seed0": -0.09635238429923887,
+    "harm_rate_single_seed0": 0.875,
+    "harm_rate_dual_s_seed0": 1.0,
+    "harm_rate_dual_a_seed0": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-241 -- SD-011 Dual Nociceptive Stream POC\n\n**Status:** FAIL  **Criteria met:** 1/3\n**Claims:** SD-011  **Purpose:** diagnostic\n\n## Design\n\nStandalone dual-stream harm encoder validation (no ree_core changes required).\nHarmEncoder(harm_obs [51]) -> z_harm_s [32] (sensory-discriminative, A-delta analog).\nAffectiveHarmEncoder(harm_obs_a [50]) -> z_harm_a [16] (affective-motivational, C-fiber analog).\nForward probes: MLP(z_world, action) -> z_harm_s_next and -> z_harm_a_next.\n\n## Results by Seed\n\n| Seed | cos_sim | R2_s | R2_a | hr_single | hr_dual_s | D1 | D2 | D3 | D4 |\n|------|---------|------|------|-----------|-----------|----|----|----|----|\n| 42 | 0.2360 | -0.3197 | -0.0964 | 0.8750 | 1.0000 | PASS | FAIL | FAIL | FAIL |\n\n## Interpretation\n\nSD-011 NOT CONFIRMED: Dual-stream separation not observed. Possible causes: encoders not diverging (same input structure), insufficient training steps, or env too uniform for stream separation.\n\n## Failure Notes\n\n- D2 FAIL: R2(z_harm_s forward) < 0.3 in 1 seeds: [-0.3197]. Sensory stream not forward-predictable from (z_world, action).\n- D3 FAIL: R2(z_harm_a) >= R2(z_harm_s) in 1 seeds: [(-0.3197, -0.0964)]. Affective stream should be less predictable than sensory stream.\n",
+  "claim_ids": [
+    "SD-011"
+  ],
+  "evidence_direction_per_claim": {
+    "SD-011": "weakens"
+  },
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_241_sd011_dual_nociceptive_stream_poc",
+  "experiment_purpose": "diagnostic",
+  "fatal_error_count": 0,
+  "seed_results": [
+    {
+      "seed": 42,
+      "cos_sim_mean": 0.23599903285503387,
+      "r2_s_forward": -0.31971577617738034,
+      "r2_a_forward": -0.09635238429923887,
+      "harm_rate_single": 0.875,
+      "harm_rate_dual_s": 1.0,
+      "harm_rate_dual_a": 1.0,
+      "d1_pass": true,
+      "d2_pass": false,
+      "d3_pass": false,
+      "d4_pass": false
+    }
+  ],
+  "run_timestamp": "20260404T192704Z",
+  "run_id": "v3_exq_241_20260404T192704Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
