@@ -1,11 +1,13 @@
-<!-- TRANSITION_BOUNDARY_VERSION: 2026-04-02.1 -->
+<!-- TRANSITION_BOUNDARY_VERSION: 2026-04-05.1 -->
 # V3 / V4 Architecture Transition Boundary
 
 ## Overview
 
-**V3** is the waking decision-making substrate: single-agent, fully online, no sleep/consolidation cycle. The core V3 achievement is a functioning commit gate (ARC-016/ARC-030) with symmetric go/no-go drives (MECH-112/116), multi-rate execution (SD-006), and the harm/reafference separation (SD-010).
+**V3** is the waking + minimal offline decision-making substrate. Core V3 achievements: a functioning commit gate (ARC-016/ARC-030) with symmetric go/no-go drives (MECH-112/116), multi-rate execution (SD-006), harm/reafference separation (SD-010), and — added 2026-04-05 — a **minimal sleep-phase infrastructure (SD-017)**: SWS-analog (hippocampus-to-cortex schema/slot consolidation) and REM-analog (causal attribution slot-filling). Without SD-017, the E3 goal and harm streams cannot produce useful attribution maps and the hippocampus remains behaviourally impoverished regardless of online training quality.
 
-**V4** adds the offline consolidation cycle: sleep phases (MECH-120-123), consolidated memory transfer from E3 to E1, precision prior recalibration, and dynamic modulation of setpoints currently hardcoded in V3.
+> **Roadmap change 2026-04-05:** Sleep phases are no longer purely V4 scope. SD-017 moves the *minimal* sleep-phase infrastructure to V3. The full sleep machinery (MECH-120-123: SHY, NREM SWR+spindles, thalamo-cortical spindles, REM precision recalibration) remains V4. See `sd_017_sleep_phase_architecture.md`.
+
+**V4** adds the *full* offline consolidation cycle: MECH-120-123 (SHY, NREM, spindles, REM precision recalibration), consolidated memory transfer from E3 to E1, precision prior recalibration, and dynamic modulation of setpoints currently hardcoded in V3.
 
 The boundary is not a clean wall -- V3 must be designed with V4 in mind, measuring and scaffolding what V4 will later make dynamic.
 
@@ -53,19 +55,34 @@ These must be validated in V3 before V4 consolidation is implementable:
 | Balanced harm/goal salience | MECH-124 prereq | EXQ-074b outcome | pending |
 | z_beta natural setpoint measured | MECH-093 | ongoing telemetry | partial |
 | Go/NoGo competitive commit | ARC-030 | EXQ-077 (planned) | planned |
-| **HippocampalModule multi-step planning** | **MECH-163 VTA/planned system** | **TBD — goal-seeded trajectory generation** | **V3 full completion gate** |
+| **HippocampalModule multi-step planning** | **MECH-163 VTA/planned system** | **TBD -- goal-seeded trajectory generation** | **V3 full completion gate** |
+| **Minimal sleep-phase infrastructure** | **SD-017** | **EXQ-239 proxy (MECH-153 supervised signal); direct test TBD** | **V3 required (2026-04-05 roadmap change)** |
+
+---
+
+## V3 Sleep-Phase Minimum (SD-017) -- Added 2026-04-05
+
+V3 now includes a minimal offline infrastructure, architecturally distinct from the full V4 sleep machinery:
+
+1. **SWS-analog pass**: hippocampus-to-cortex schema/slot consolidation. Triggered periodically (not every episode). Updates context templates in ContextMemory. Does not require z_goal (ARC-038 compliant). This is the slot-formation phase (MECH-166): installs which context distinctions are structurally relevant.
+
+2. **REM-analog pass**: causal attribution replay. Triggered after SWS-analog (slots must exist before filling). Replays recent trajectory buffer through attribution pipeline. Fills context slots with co-correlational evidence. This is the slot-filling phase (MECH-166).
+
+**What this is NOT** (still V4): MECH-120 (SHY), MECH-121 (NREM+spindles), MECH-122 (thalamo-cortical spindles), MECH-123 (REM precision recalibration), sleep phase controller, dynamic setpoint modulation.
+
+See `sd_017_sleep_phase_architecture.md` for full design.
 
 ---
 
 ## V4 Scope Summary
 
-V4 implements the offline consolidation cycle:
+V4 implements the *full* offline consolidation cycle, extending the V3 SD-017 scaffold:
 
 1. **Entry trigger**: quiescent period detected (z_beta below threshold, no external input for N steps)
 2. **Sub-phase sequence**:
    - Phase 0: Sensory gating (spindle analog, MECH-122) -- block new input
-   - Phase 1: SWS denoising (MECH-120) -- residue flattening, z_delta recalibration
-   - Phase 2: NREM replay (MECH-121) -- E3/hippocampal -> E1/neocortical transfer
+   - Phase 1: SWS denoising (MECH-120) -- residue flattening, z_delta recalibration (extends SD-017 SWS-analog)
+   - Phase 2: NREM replay (MECH-121) -- E3/hippocampal -> E1/neocortical transfer (extends SD-017 REM-analog)
    - Phase 3: Spindle coordination (MECH-122) -- theta channel bidirectional packaging
    - Phase 4: REM recalibration (MECH-123) -- precision priors reset, E1 unconstrained
 3. **Exit**: all setpoints recalibrated; sensory gating lifted; z_beta restored to waking baseline
@@ -74,7 +91,8 @@ V4 implements the offline consolidation cycle:
 V4 also adds:
 - Dynamic setpoint modulation (all items in table above become driven by sleep phase state)
 - Bidirectional ThetaBuffer (MECH-122)
-- Sleep phase controller (new module, analogous to mode_manager but for offline cycle)
+- Full sleep phase controller (new module, analogous to mode_manager but for offline cycle)
+- Reverse replay for MECH-165 (replay diversity, forward/reverse balance)
 
 **V4 social extension dependency on V3 hippocampal planning (2026-04-02):**
 

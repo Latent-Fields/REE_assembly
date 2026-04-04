@@ -1,8 +1,15 @@
 # Offline Phase Architecture
 
-This file documents the four sub-phases of REE's offline consolidation mode (MECH-030).
+This file documents REE's offline consolidation phases.
 
-Sub-phases are V4 scope. This document serves as the location anchor for claims.
+**2026-04-05 roadmap update:** A minimal sleep-phase infrastructure (SD-017) is now **V3 scope**. The four full sub-phases (MECH-120-123) remain V4. See `sd_017_sleep_phase_architecture.md` for the V3 design.
+
+## V3 Minimal Offline Phases (SD-017)
+
+| Phase | Name | Function | Status |
+|-------|------|----------|--------|
+| SWS-analog | Schema/slot consolidation | Hippocampus-to-cortex replay; installs context templates (slot-formation, MECH-166) | V3 required |
+| REM-analog | Causal attribution replay | Fills context slots with co-correlational evidence; slot-filling phase (MECH-166) | V3 required |
 
 ## Sub-phases
 
