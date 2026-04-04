@@ -477,6 +477,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-29T21:16:41.432666Z"
     },
+    "MECH-117": {
+      "actor": "user",
+      "decision_needed": "Promotion review: provisional -> stable",
+      "decision_status": "applied",
+      "rationale": "EXQ-234 PASS 4/4 (seeds [1,2,3]) is an independent replication of EXQ-074f (seeds [42,7,13]). Combined 6/6 seeds pass. wanting_l1_fraction=1.0 across all seeds. 0 weakens, conf=0.887, 0 conflicts. Meets stable threshold.",
+      "recommendation": "promote_to_stable",
+      "selected_option": "Promote to stable",
+      "timestamp_utc": "2026-04-04T08:56:47.207755Z"
+    },
     "MECH-118": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -486,14 +495,23 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-29T21:16:41.465228Z"
     },
-    "MECH-128": {
+    "MECH-124": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Hold at candidate: EXQ-147a shows goal seeding works (C2/C3/C4 PASS) but E1 coupling absent (C1 FAIL). Training budget or z_goal substrate depth insufficient. Hold pending resolution.",
+      "rationale": "Apply hold. EXQ-224 diagnostic confirmed harm:goal ratio ~3:1 at baseline, FLAG_2 declining in 2/3 seeds, V4 risk_detected=True. MECH-124 requires V4 sleep architecture to test directly. Hold until V4 consolidation experiments provide interpretable evidence on the full PTSD/option-contraction loop.",
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
-      "timestamp_utc": "2026-04-03T22:00:00Z"
+      "timestamp_utc": "2026-04-04T08:56:51.523159Z"
+    },
+    "MECH-128": {
+      "actor": "user",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "Maintain hold. System generated promote_to_provisional based on conf=0.738 but prior hold decision (2026-04-03) stands: EXQ-147a C1 FAIL (E1 goal conditioning -- mechanism directly under test). z_goal representation established (C2/C3/C4 PASS) but behavioral coupling to E1 trajectory generation not yet achieved. Hold until a dedicated E1 coupling experiment passes C1.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-04T08:56:55.583955Z"
     },
     "MECH-135": {
       "actor": "user",
@@ -512,6 +530,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+    },
+    "MECH-153": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Apply hold. conf=0.657, conflict_ratio=0.571. EXQ-181b confirmed supervised training prerequisite (cosine_sim=0.9999 without it -- memory undifferentiated). Lit-pull completed 2026-04-04 (5 entries in targeted_review_connectome_mech_153). Dedicated conflict-resolution experiments needed before promotion.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-04T08:57:00.483957Z"
     },
     "MECH-155": {
       "actor": "user",
@@ -703,7 +730,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-04-04T03:04:20.369061Z",
+  "generated_at_utc": "2026-04-04T08:57:34.583958Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

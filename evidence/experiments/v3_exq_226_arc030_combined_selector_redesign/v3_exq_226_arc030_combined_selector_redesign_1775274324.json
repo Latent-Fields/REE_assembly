@@ -1,0 +1,75 @@
+{
+  "run_id": "v3_exq_226_arc030_combined_selector_redesign_1775274324_v3",
+  "experiment_type": "v3_exq_226_arc030_combined_selector_redesign",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-030"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "decision": "retain_ree",
+  "timestamp": 1775274324,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 300,
+  "eval_episodes": 300,
+  "steps_per_episode": 200,
+  "harm_weight": 1.0,
+  "benefit_weight": 0.5,
+  "goal_weight": 0.3,
+  "benefit_ratio_thresh": 1.2,
+  "harm_ratio_max": 1.3,
+  "goal_norm_precond": 0.1,
+  "comb_resource_rate": 0.13333333333333333,
+  "ho_resource_rate": 0.10111111111111111,
+  "comb_mean_benefit": 0.002069092234579162,
+  "ho_mean_benefit": 0.0016252125116487139,
+  "comb_harm_rate": 0.1455927819914843,
+  "ho_harm_rate": 0.19119099416247023,
+  "benefit_ratio": 1.3186813186813187,
+  "mean_benefit_ratio": 1.2731210347871058,
+  "harm_ratio": 0.7615043931816291,
+  "avg_goal_norm": 0.360286146402359,
+  "precond_ok_all": true,
+  "benefit_pass": true,
+  "harm_pass": true,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "comb_resource": 0.14,
+      "ho_resource": 0.13666666666666666,
+      "comb_mean_benefit": 0.0023041900415236016,
+      "ho_mean_benefit": 0.0023586096761815736,
+      "comb_harm": 0.15640873082646395,
+      "ho_harm": 0.14216823417618635,
+      "goal_norm": 0.4235658049583435,
+      "precond_ok": true
+    },
+    {
+      "seed": 7,
+      "comb_resource": 0.14,
+      "ho_resource": 0.16666666666666666,
+      "comb_mean_benefit": 0.0023399278652911338,
+      "ho_mean_benefit": 0.0025170278587645684,
+      "comb_harm": 0.13842100608004843,
+      "ho_harm": 0.13619525268996707,
+      "goal_norm": 0.3709487318992615,
+      "precond_ok": true
+    },
+    {
+      "seed": 13,
+      "comb_resource": 0.12,
+      "ho_resource": 0.0,
+      "comb_mean_benefit": 0.0015631587969227498,
+      "ho_mean_benefit": 0.0,
+      "comb_harm": 0.14194860906794052,
+      "ho_harm": 0.29520949562125737,
+      "goal_norm": 0.28634390234947205,
+      "precond_ok": true
+    }
+  ]
+}

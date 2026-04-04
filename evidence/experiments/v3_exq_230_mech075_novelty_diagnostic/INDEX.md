@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_230_mech075_novelty_diagnostic
+
+Generated: `2026-04-04T08:57:34.583958Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_230_mech075_novelty_diagnostic_20260404T033537Z_v3` | `2026-04-04T03:35:37Z` | **FAIL** | novelty_mag_seed0=0.000076<br>novelty_mag_seed1=0.000077<br>novelty_mag_seed2=0.000102<br>explore_gap_seed0=0<br>explore_gap_seed1=0 | - | - | - | [`summary`](runs/v3_exq_230_mech075_novelty_diagnostic_20260404T033537Z_v3/summary.md) / [`manifest`](runs/v3_exq_230_mech075_novelty_diagnostic_20260404T033537Z_v3/manifest.json) / [`metrics`](runs/v3_exq_230_mech075_novelty_diagnostic_20260404T033537Z_v3/metrics.json) |

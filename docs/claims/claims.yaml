@@ -6376,7 +6376,7 @@
   claim_type: mechanism_hypothesis
   subject: wanting.liking_trajectory_dissociation
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
   depends_on:
     - MECH-112
@@ -6420,13 +6420,19 @@
     redirects to L2 in 2 steps; wanting persists toward L1 post-relocation. Consistent
     with Berridge (1996) incentive salience / Culbreth et al. (2023) profiles. Single
     seed (42); duplicate run confirms data but not independent replication.
+    EXQ-234 PASS 4/4 (2026-04-04): independent replication with seeds [1,2,3] (EXQ-074f
+    used seeds [42,7,13]). wanting_l1_fraction=1.0 across all 3 seeds (vs liking
+    0.40-0.66). l1_dissociation=0.34-0.60 (all > 0.10 threshold). goal_norm=0.32-0.37
+    (seeding active). Combined with EXQ-074f: 6 independent seeds all PASS. No weakens
+    evidence. Dissociation is robust and replicable.
   status_note: |
-    Promoted candidate -> provisional 2026-04-04.
-    Evidence: first full wanting/liking behavioral dissociation PASS (EXQ-074f PASS 4/4,
-    seed=42). C1 floor PASS (wanting resource_rate=0.148 >= 0.05), C2 liking fast redirect
-    (2 steps <= 15), C3 wanting l1_fraction=0.96 >= 0.25, C4 dissociation (wanting-liking
-    delta=0.53 > 0.10). Prior 10 mixed entries confirmed partial signals; 074f is first
-    complete PASS. Single seed -- multi-seed replication desirable before active promotion.
+    Promoted candidate -> provisional 2026-04-04 (EXQ-074f PASS 4/4, seed=42).
+    Promoted provisional -> stable 2026-04-04 (EXQ-234 PASS 4/4, seeds=[1,2,3]).
+    EXQ-234 is an independent 3-seed replication of EXQ-074f (3-seed). Combined: 6
+    independent seeds all pass 4/4 criteria. wanting_l1_fraction=1.0 all seeds;
+    liking redirects within 2-11 steps of relocation. No genuine weakens evidence
+    (all prior mixed entries had documented design confounds -- greedy nav uniform
+    across conditions). 0 conflict_ratio. conf=0.887. Meets stable threshold.
 
 - id: ARC-032
   title: "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation."

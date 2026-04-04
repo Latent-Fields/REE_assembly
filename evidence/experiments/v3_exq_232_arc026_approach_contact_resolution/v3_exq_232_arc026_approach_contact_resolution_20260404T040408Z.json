@@ -1,0 +1,133 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "c1_pass": 1.0,
+    "c2_pass": 1.0,
+    "c3_pass": 0.0,
+    "c4_pass": 0.0,
+    "criteria_met": 2.0,
+    "approach_slope_seed0": 5.11854887008667e-06,
+    "contact_slope_seed0": 3.869334856665408e-06,
+    "approach_gap_at_peak_seed0": 0.5309556275606155,
+    "peak_checkpoint_seed0": 20.0,
+    "n_approach_at_peak_seed0": 12.0,
+    "slope_gap_seed0": 1.2492140134212623e-06,
+    "approach_slope_seed1": 0.0,
+    "contact_slope_seed1": 0.0,
+    "approach_gap_at_peak_seed1": 0.534421240290006,
+    "peak_checkpoint_seed1": 10.0,
+    "n_approach_at_peak_seed1": 12.0,
+    "slope_gap_seed1": 0.0,
+    "approach_slope_seed2": 1.3163606208443922e-05,
+    "contact_slope_seed2": -3.103775409059595e-05,
+    "approach_gap_at_peak_seed2": 0.0012271951487723975,
+    "peak_checkpoint_seed2": 20.0,
+    "n_approach_at_peak_seed2": 10.0,
+    "slope_gap_seed2": 4.420136029903988e-05
+  },
+  "summary_markdown": "# V3-EXQ-232 -- ARC-026 Approach/Contact Slope Conflict Resolution\n\n**Status:** FAIL  **Criteria met:** 2/4\n**Claims:** ARC-026  **Purpose:** evidence\n**Supersedes (conflict resolution):** EXQ-033 conflict_ratio=1.0\n\n## Design Changes vs EXQ-033\n\n- Peak checkpoint analysis (not terminal) to handle training instability\n- 1500 eps (vs 1000), checkpoints at [200, 400, 600, 800, 1000, 1500]\n- 3 seeds (vs 1)\n- E3 harm supervision enabled from ep100 onward (phased)\n\n## Results by Seed\n\n| Seed | Approach slope | Contact slope | Gap@peak | Peak ckpt | C1 | C2 | C3 | C4 |\n|------|---------------|--------------|----------|----------|----|----|----|----|\n| 42 | 0.000005 | 0.000004 | 0.5310 | 20 | PASS | PASS | FAIL | FAIL |\n| 7 | 0.000000 | 0.000000 | 0.5344 | 10 | FAIL | PASS | FAIL | FAIL |\n| 13 | 0.000013 | -0.000031 | 0.0012 | 20 | PASS | FAIL | FAIL | FAIL |\n\n## Interpretation\n\nARC-026 PARTIAL: Some slope evidence but below full threshold. May need longer training or higher hazard_harm signal.\n\n## Failure Notes\n\n- C3 FAIL: n_approach_at_peak < 15: [12, 12, 10]\n- C4 FAIL: peak_checkpoint < 400: [20, 10, 20]\n",
+  "claim_ids": [
+    "ARC-026"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_232_arc026_approach_contact_resolution",
+  "fatal_error_count": 0,
+  "seed_results": [
+    {
+      "seed": 42,
+      "peak_checkpoint": 20,
+      "approach_slope": 5.11854887008667e-06,
+      "contact_slope": 3.869334856665408e-06,
+      "approach_gap_at_peak": 0.5309556275606155,
+      "contact_gap_at_peak": 0.5309560000896454,
+      "n_approach_at_peak": 12,
+      "checkpoint_results": {
+        "10": {
+          "gap_approach": 0.5309044420719147,
+          "gap_contact": 0.5309173067410787,
+          "mean_harm_approach": 0.5309044420719147,
+          "mean_harm_contact": 0.5309173067410787,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 12,
+          "n_contact_events": 9,
+          "n_neutral_events": 0
+        },
+        "20": {
+          "gap_approach": 0.5309556275606155,
+          "gap_contact": 0.5309560000896454,
+          "mean_harm_approach": 0.5309556275606155,
+          "mean_harm_contact": 0.5309560000896454,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 12,
+          "n_contact_events": 6,
+          "n_neutral_events": 0
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "peak_checkpoint": 10,
+      "approach_slope": 0.0,
+      "contact_slope": 0.0,
+      "approach_gap_at_peak": 0.534421240290006,
+      "contact_gap_at_peak": 0.5344040223530361,
+      "n_approach_at_peak": 12,
+      "checkpoint_results": {
+        "10": {
+          "gap_approach": 0.534421240290006,
+          "gap_contact": 0.5344040223530361,
+          "mean_harm_approach": 0.534421240290006,
+          "mean_harm_contact": 0.5344040223530361,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 12,
+          "n_contact_events": 7,
+          "n_neutral_events": 0
+        },
+        "20": {
+          "gap_approach": 0.53377632300059,
+          "gap_contact": 0.533882163465023,
+          "mean_harm_approach": 0.53377632300059,
+          "mean_harm_contact": 0.533882163465023,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 12,
+          "n_contact_events": 8,
+          "n_neutral_events": 0
+        }
+      }
+    },
+    {
+      "seed": 13,
+      "peak_checkpoint": 20,
+      "approach_slope": 1.3163606208443922e-05,
+      "contact_slope": -3.103775409059595e-05,
+      "approach_gap_at_peak": 0.0012271951487723975,
+      "contact_gap_at_peak": -0.48785624098270497,
+      "n_approach_at_peak": 10,
+      "checkpoint_results": {
+        "10": {
+          "gap_approach": 0.0010955590866879583,
+          "gap_contact": -0.487545863441799,
+          "mean_harm_approach": 0.48864142252848697,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 0.487545863441799,
+          "n_approach_events": 13,
+          "n_contact_events": 0,
+          "n_neutral_events": 46
+        },
+        "20": {
+          "gap_approach": 0.0012271951487723975,
+          "gap_contact": -0.48785624098270497,
+          "mean_harm_approach": 0.48908343613147737,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 0.48785624098270497,
+          "n_approach_events": 10,
+          "n_contact_events": 0,
+          "n_neutral_events": 47
+        }
+      }
+    }
+  ],
+  "run_timestamp": "20260404T040408Z",
+  "run_id": "v3_exq_232_arc026_approach_contact_resolution_20260404T040408Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

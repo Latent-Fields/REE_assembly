@@ -1,0 +1,45 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_230_mech075_novelty_diagnostic",
+  "run_id": "v3_exq_230_mech075_novelty_diagnostic_20260404T033537Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-04T03:35:37Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-075"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "EXQ-230 DIAGNOSTIC (2026-04-04): substrate_limitation. Novelty signal magnitude ~0.00008-0.0001 (C1 threshold 0.01 -- 100x below). LC-VTA loop structurally disconnected from hippocampal gain modulation in current V3 substrate. Not a test of the MECH-075 mechanism -- measures whether the signal is measurable at this architectural stage. Non-evidential: does not weight against MECH-075."
+}

@@ -1,0 +1,65 @@
+{
+  "run_id": "v3_exq_225_mech112_goal_lift_redesign_1775274103_v3",
+  "experiment_type": "v3_exq_225_mech112_goal_lift_redesign",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-112"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "decision": "hybridize",
+  "timestamp": 1775274103,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 300,
+  "eval_episodes": 300,
+  "steps_per_episode": 200,
+  "harm_weight": 1.0,
+  "benefit_weight": 0.5,
+  "goal_weight": 0.5,
+  "resource_lift_thresh": 0.03,
+  "harm_ratio_max": 1.3,
+  "goal_norm_thresh": 0.05,
+  "gp_resource_rate": 0.19666666666666666,
+  "ga_resource_rate": 0.21,
+  "gp_harm_rate": 0.1675030031938789,
+  "ga_harm_rate": 0.12966615419345653,
+  "resource_lift": -0.013333333333333336,
+  "harm_ratio": 1.2918020453045238,
+  "avg_goal_norm": 0.38282180825869244,
+  "substrate_ok_all": true,
+  "c1_resource_lift_pass": false,
+  "c2_harm_ratio_pass": true,
+  "c3_goal_norm_pass": true,
+  "criteria_met": 2,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "gp_resource_rate": 0.17666666666666667,
+      "ga_resource_rate": 0.2,
+      "gp_harm_rate": 0.17757107719021686,
+      "ga_harm_rate": 0.12973567038935424,
+      "goal_norm": 0.4369957745075226
+    },
+    {
+      "seed": 7,
+      "gp_resource_rate": 0.19666666666666666,
+      "ga_resource_rate": 0.19666666666666666,
+      "gp_harm_rate": 0.19916428196361158,
+      "ga_harm_rate": 0.11926927492897377,
+      "goal_norm": 0.35287901759147644
+    },
+    {
+      "seed": 13,
+      "gp_resource_rate": 0.21666666666666667,
+      "ga_resource_rate": 0.23333333333333334,
+      "gp_harm_rate": 0.12577365042780822,
+      "ga_harm_rate": 0.13999351726204157,
+      "goal_norm": 0.35859063267707825
+    }
+  ]
+}

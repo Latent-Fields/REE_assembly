@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 43051,
   "runner_started_at": "2026-04-03T21:41:05.758761+00:00",
-  "last_updated": "2026-04-04T03:06:26.342789+00:00",
-  "idle": true,
-  "current": null,
+  "last_updated": "2026-04-04T09:00:51.036419+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-227",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "ARC-029 discrepancy diagnostic (EXQ-063 vs EXQ-125 conditions reproduced)",
+    "description": "",
+    "script": "experiments/v3_exq_227_arc029_discrepancy_diagnostic.py",
+    "started_at": "2026-04-04T03:45:27.339149+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 100,
+      "episodes_total": 400,
+      "overall_pct": 25.0
+    },
+    "seconds_elapsed": 18924,
+    "seconds_remaining": 56771,
+    "recent_lines": [
+      "============================================================",
+      "[V3-EXQ-227] SET_B_EXQ125 Seed 123",
+      "============================================================",
+      "[training] SET_B_EXQ125 seed=123 warmup=400",
+      "[train] ep 100/400 running_var=0.000001 committed=True"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -22,6 +48,39 @@
       "backlog_id": "",
       "claim_id": "",
       "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-227",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-029 discrepancy diagnostic (EXQ-063 vs EXQ-125 conditions reproduced)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-228",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-116 / ARC-032 theta-bypass ablation (theta_buffer zeroed vs enabled)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-229",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-128 E1 goal-conditioning pair (GOAL_CONDITIONED vs GOAL_ABLATED)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -4195,6 +4254,34 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_224_mech124_zgoal_salience_diag/v3_exq_224_mech124_zgoal_salience_diag_20260404T022857Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 128.2
+    },
+    {
+      "queue_id": "V3-EXQ-225",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 Goal-Lift Redesign with SD-012 (harm-penalised trajectory scoring)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C1(lift>=0.03): FAIL  C2(ratio<=1.3): PASS  C3(norm>=0.05): PASS | -> FAIL (2/3) decision=hybridize | Status: FAIL",
+      "started_at": "2026-04-04T03:35:46.666287+00:00",
+      "completed_at": "2026-04-04T03:41:45.119249+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 358.5
+    },
+    {
+      "queue_id": "V3-EXQ-226",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-030 COMBINED selector redesign (harm+goal vs harm-only, precond check)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "precond_ok=True  benefit_pass=True  harm_pass=True | -> PASS decision=retain_ree | Status: PASS",
+      "started_at": "2026-04-04T03:41:47.938403+00:00",
+      "completed_at": "2026-04-04T03:45:24.623101+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 216.7
     }
   ]
 }
