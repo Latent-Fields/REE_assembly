@@ -9,6 +9,29 @@
 
 ---
 
+## Status Snapshot (2026-04-04)
+
+- **SD-014 implemented (2026-04-04): hippocampal valence vector node recording.** 4-component
+  valence vector V=[wanting, liking, harm_discriminative, surprise] added to RBFLayer and
+  ResidueField (ree_core/residue/field.py). Each RBF center stores a valence_vecs buffer
+  [num_centers, 4] updated incrementally per visit. MECH-094 gate applies: hypothesis_tag=True
+  blocks valence updates. Prerequisite for ARC-036 and replay prioritisation via drive state.
+- **ARC-028 + MECH-105 implemented (2026-04-04): hippocampal-BetaGate completion coupling.**
+  HippocampalModule.compute_completion_signal() maps best trajectory score to a sigmoid
+  dopamine-analog value. BetaGate.receive_hippocampal_completion() releases beta when signal
+  >= threshold (0.75). Implements the Lisman & Grace 2005 subiculum->NAc->VP->VTA loop.
+- **~292 experiment scripts authored.** EXQ-001 through EXQ-223 series. 0 pending review
+  as of 2026-04-03 (all discussed). EXQ-125 currently running on DLAPTOP-4.local (ARC-029).
+- **Governance clean.** 0 pending review items (generated 2026-04-03T21:39:23Z).
+  Last governance cycle: 2026-04-03 (cowork-2026-04-03-b, 14 experiments reviewed;
+  ARC-022 promoted to provisional).
+- **Current bottleneck: first-paper gate experiments.** EXQ-223 PASS confirmed the minimal
+  E1+E2+hippocampus core loop. Active queue: EXQ-074e (MECH-112/117 wanting/liking),
+  EXQ-076e (MECH-116 E1 goal conditioning), EXQ-195 (SD-003 z_harm_s counterfactual),
+  EXQ-125 (ARC-029 committed mode, running). SD-015 resource indicator in progress.
+
+---
+
 ## Status Snapshot (2026-04-03)
 
 - **EXQ-223 PASS: Minimal mind confirmed (2026-04-03).** The REE core loop —
@@ -524,22 +547,23 @@ Added from V1 learning:
 
 **Current step: 3.1 -> 3.2 transition — First-Paper Gate Experiments**
 
-SD-008/009/010/011/012 all implemented. Breath oscillator and rv->z_beta wired.
-ARC-033 ResidualHarmForward in ree_core. Step 3.1 exit criteria approaching.
+SD-008/009/010/011/012/014 all implemented. ARC-028+MECH-105 hippocampal-BetaGate coupling
+implemented. ARC-033 ResidualHarmForward in ree_core. 0 pending review (clean).
+EXQ-125 currently running (ARC-029 committed mode pair, DLAPTOP-4.local).
 
-1. **EXQ-074e** (MECH-112/117 wanting/liking dissociation; supersedes EXQ-074d): tests
+1. **EXQ-125** (ARC-029 committed vs ablated mode harm pair; running): validate committed
+   vs uncommitted mode harm outcomes in stable and volatile environments.
+2. **EXQ-074e** (MECH-112/117 wanting/liking dissociation; supersedes EXQ-074d): tests
    z_goal_latent vs benefit_eval_head. MECH-124 diagnostic: z_goal salience vs harm salience
    as V4 risk indicator (consolidation-mediated option-space contraction).
-2. **EXQ-076e** (MECH-116/ARC-032 E1 LSTM goal conditioning; supersedes EXQ-076c):
+3. **EXQ-076e** (MECH-116/ARC-032 E1 LSTM goal conditioning; supersedes EXQ-076c):
    frontal working memory for goal representation over multi-step episodes.
-3. **EXQ-195** (SD-003 z_harm_s counterfactual, post-SD-011): critical re-validation of
+4. **EXQ-195** (SD-003 z_harm_s counterfactual, post-SD-011): critical re-validation of
    SD-003 using ResidualHarmForward (ARC-033). Pipeline:
    `z_harm_s_cf = E2_harm_s(z_harm_s, a_cf)`. Do NOT use HarmBridge (bridge_r2=0).
-4. **EXQ-182a** (oracle ceiling for habit-system goal lift): confirms environment is
-   near-optimal for habit-level policy; prerequisite for interpreting goal-lift results.
-5. **EXQ-199--203** (breath oscillator series): MECH-025/Q-007/MECH-029/MECH-026/MECH-057a
-   re-run on corrected substrate with BreathOscillator and rv->z_beta wired.
-6. **Governance cycle** (active): review 36 pending experiments, apply claim decisions.
+5. **EXQ-223** (minimal vertebrate ablation, queued priority 5): PASS already confirmed
+   2026-04-03; queued for a fresh run to confirm repeatability.
+6. **EXQ-184/196** (MECH-033 kernel chain, ARC-018 rollout viability): queued priority 4.
 
 ---
 
