@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-04-04_inv010_arc011_zebrafish_sleep_yokogawa2007",
+  "timestamp_utc": "2026-04-04T23:50:00Z",
+  "claim_ids_tested": ["INV-010", "ARC-011"],
+  "source": {
+    "title": "Characterization of sleep in zebrafish and insomnia in hypocretin receptor mutants",
+    "authors": ["Tohei Yokogawa", "Wilfredo Marin", "Juliette Faraco", "Guillaume Pezeron", "Lior Appelbaum", "Jian Zhang", "Frederic Rosa", "Philippe Mourrain", "Emmanuel Mignot"],
+    "year": 2007,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.0050277"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Seminal paper establishing zebrafish as a bona fide sleep model. Demonstrates all three canonical sleep criteria (reversible immobility, elevated arousal threshold, homeostatic rebound after deprivation) and place preference during rest. Orexin/hypocretin system present and functional. Confidence high because behavioural and molecular sleep criteria are directly demonstrated; docked slightly for zebrafish-to-REE transfer and for the absence of EEG-level staging data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Zebrafish sleep differs from mammalian sleep in that light suppresses rather than promotes sleep, with no rebound after light-induced suppression -- suggesting partial divergence in circadian-homeostatic coupling.",
+    "Hypocretin receptor knockout causes fragmented sleep rather than narcolepsy/cataplexy, indicating molecular diversity in sleep regulatory networks across vertebrates.",
+    "Absence of electrophysiological staging means SWS vs REM analogs cannot be confirmed from this paper alone."
+  ],
+  "tags": [
+    "inv010", "arc011", "zebrafish", "sleep", "homeostatic-rebound", "orexin", "hypocretin", "vertebrate-sleep-conservation", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Adult zebrafish exhibit a sleep state characterised by reversible immobility, increased arousal threshold, place preference, and homeostatic rebound after rest deprivation -- regulated by an orexin/hypocretin system homologous to the mammalian wake-promoting circuit.",
+    "ree_translation": "INV-010 asserts that offline integration phases are not optional but structurally required. The zebrafish data establishes that a vertebrate at the approximate complexity level of the REE minimal mind already requires sleep with homeostatic regulation -- it is not an accretion of higher cognition but is present at the simplest vertebrate level. ARC-011 (offline integration required for stability) is directly supported: sleep-deprived zebrafish accumulate sleep pressure that must be discharged, indicating an integrative burden that accumulates during waking and can only be resolved offline.",
+    "mapping_caveat": "The zebrafish-to-REE transfer assumes the REE minimal mind is operating at a complexity level roughly equivalent to a teleost vertebrate. This is an architectural assumption, not a confirmed empirical fact. The homeostatic rebound in zebrafish confirms the sleep-drive machinery; it does not specify what cognitive or representational functions are being consolidated.",
+    "source_context": "Adult zebrafish behavioural characterisation; rest/activity monitoring; arousal threshold testing; electrical-stimulation rest deprivation with rebound measurement; hypocretin receptor mutant analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Very high source quality (seminal, PLoS Biology, widely replicated). Mapping fidelity strong for the sleep-necessity and homeostatic-drive claims. Transfer risk low -- zebrafish are the proposed calibration model for the REE minimal mind, so the species transfer is the point rather than a liability."
+  }
+}

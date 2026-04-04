@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 43051,
   "runner_started_at": "2026-04-03T21:41:05.758761+00:00",
-  "last_updated": "2026-04-04T15:13:38.085147+00:00",
+  "last_updated": "2026-04-04T16:59:20.979886+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-231",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "MECH-106 BG Hysteresis First Experiment (PERSISTENT vs REACTIVE)",
+    "description": "",
+    "script": "experiments/v3_exq_231_mech106_bg_hysteresis.py",
+    "started_at": "2026-04-04T16:23:07.277083+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 200,
+      "episodes_total": 400,
+      "overall_pct": 50.0
+    },
+    "seconds_elapsed": 2174,
+    "seconds_remaining": 2174,
+    "recent_lines": [
+      "[REACTIVE] seed=42 DONE: mean_persist_ratio=1.000 committed_eps=400/400 mean_commit=7.0",
+      "--- seed=7 ---",
+      "[PERSISTENT] seed=7 episodes=400 steps=200 commit_thresh=0.400",
+      "[PERSISTENT] seed=7 ep 100/400 trigger=7.0 commit=7.0 ratio=1.00 rv=0.0031",
+      "[PERSISTENT] seed=7 ep 200/400 trigger=6.9 commit=6.9 ratio=1.00 rv=0.0031"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -18,10 +44,109 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-193",
+      "queue_id": "V3-EXQ-231",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
+      "title": "MECH-106 BG Hysteresis First Experiment (PERSISTENT vs REACTIVE)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-231a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-106 BG Hysteresis Redesign (valence-modulated threshold vs no-bias ablation)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-232",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-026 Approach/Contact Slope Conflict Resolution (peak-checkpoint analysis)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-233",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-012 z_goal Seeding Causal Validation (drive_weight=2.0 vs 0.0)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-234",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-117 Wanting/Liking Dissociation Replication (seeds [1,2,3])",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-235",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 / ARC-030: Clean Learned-Goal Gate (Paper Gate)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-236",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-018 Rollout Fidelity Gate (ROLLOUT_k5 vs GREEDY_k1, E2-quality-stratified)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-237a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-163: Dual Goal-Directed Systems Discrimination (2x2: SIMPLE/LONG_HORIZON x HABIT/PLANNED)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-223a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Toroidal Minimal Vertebrate Cognition Ablation -- no-wall replication of EXQ-223",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-125a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-029 committed-mode harm redesign (8 hazards, 5 seeds, majority rule)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -4265,6 +4390,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 16596.4
+    },
+    {
+      "queue_id": "V3-EXQ-193",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "delta_harm_pred_vs_floor: 2.651244 | rationale: REE_FULL did not outperform random floor. Implementation/configuration problem -- not informative for Q-012. E3 harm_eval may not be learning, or action selection is not translating E3 predictions into behaviour change. | Done. Outcome: FAIL",
+      "started_at": "2026-04-04T15:14:44.330025+00:00",
+      "completed_at": "2026-04-04T15:29:32.658634+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_193_q012_control_constraints_20260404T152932Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 888.3
+    },
+    {
+      "queue_id": "V3-EXQ-230",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-075 Novelty Loop Diagnostic (GATED vs ABLATED)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-04-04T15:29:34.941782+00:00",
+      "completed_at": "2026-04-04T16:23:04.333393+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_230_mech075_novelty_diagnostic/v3_exq_230_mech075_novelty_diagnostic_20260404T162303Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3209.4
     }
   ]
 }

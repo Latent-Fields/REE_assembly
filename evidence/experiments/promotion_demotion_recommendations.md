@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-04T08:57:34.583958Z`
+Generated: `2026-04-04T16:57:24.047781Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -53,7 +53,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-026
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.596, conflict_ratio=1, exp_entries=7, lit_entries=2; directions supports=2, weakens=2, mixed=1, unknown=4, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.595, conflict_ratio=1, exp_entries=7, lit_entries=2; directions supports=2, weakens=2, mixed=1, unknown=4, conflict_ratio=1
 - Evidence quality note: EXQ-033 FAIL (2026-03-18): Tested C4 — whether approach_slope > contact_slope across training depths (ep 200–1000) on CausalGridWorldV2 (alpha_world=0.9, proximity_scale=0.05). Result: approach_slope=0.000265, contact_slope=0.000289, ratio=0.920. FAIL attributed to training instability: both signals peaked at ep500 (gap_approach=0.285, gap_contact=0.276) then degraded by ep1000 (0.245, 0.265). The…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -148,7 +148,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.538, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.537, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -204,7 +204,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-070
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.524, conflict_ratio=0.5, exp_entries=4, lit_entries=1; directions supports=1, weakens=3, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.523, conflict_ratio=0.5, exp_entries=4, lit_entries=1; directions supports=1, weakens=3, mixed=1, unknown=0, conflict_ratio=0.5
 - Evidence quality note: The rollout_horizon > prediction_horizon ordering is valid for planning only if E1 co-evolves z_world during rollout (see MECH-135). Without co-evolution, a longer rollout worsens goal visibility -- E3 plans in a frozen world for N steps instead of a shorter frozen world. Correct neurological mapping: E1=cortical (slow LSTM, z_world domain, prediction_horizon=20); E2=cerebellar (fast efference-cop…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -260,7 +260,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-075
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.616, conflict_ratio=0.667, exp_entries=5, lit_entries=2; directions supports=1, weakens=2, mixed=3, unknown=1, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.615, conflict_ratio=0.667, exp_entries=5, lit_entries=2; directions supports=1, weakens=2, mixed=3, unknown=1, conflict_ratio=0.667
 - Evidence quality note: EXQ-192a FAIL 1/4 x2 runs (2026-04-03): Hippocampal-VTA novelty loop probe FAIL. Run 1 (T04:39): criteria_met=1/4. Run 2 (T10:25): criteria_met=1/4. mean_novelty_signal_on = 6.4e-05 (threshold C4 > 1e-04: FAIL). cell_gap=0, hazard_gap=0 across both conditions -- NOVELTY_LOOP_ON identical to NOVELTY_LOOP_OFF. Root cause: novelty_gain=2.0 but novelty signal itself is below detection threshold; CEM n…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -298,7 +298,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-092
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.648, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.771, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution). Quiescent heartbeat replay requires SD-006 phase 2 async loop before testing. EXQ-136 FAIL/weakens (2026-03-29): quiescent replay discriminative pair FAIL. SD-006 phase 2 async required for full offline consolidation. Confirms existing hold.
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -317,7 +317,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.683, conflict_ratio=0.889, exp_entries=10, lit_entries=1; directions supports=4, weakens=5, mixed=1, unknown=0, conflict_ratio=0.889
+- Why this decision is needed: overall_conf=0.682, conflict_ratio=0.889, exp_entries=10, lit_entries=1; directions supports=4, weakens=5, mixed=1, unknown=0, conflict_ratio=0.889
 - Evidence quality note: EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0). E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes; gap is negative (higher harm -> slightly lower rate) -- opposite of prediction. DIAGNOSTIC (2026-03-27): z_beta IS wired to clock rate. update_e3_rate_from_beta() is called every step in agent._e1_step() (agent.py:272). Implementation gap does NO…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -336,7 +336,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-094
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.625, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.624, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: EXQ-140 FAIL/weakens (2026-03-29): hypothesis tag gate discriminative pair FAIL. Consistent with prior finding that hypothesis tag gate as implemented is invalid as an approach. Weakening evidence accumulating.
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -355,7 +355,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.749, conflict_ratio=0.8, exp_entries=24, lit_entries=3; directions supports=8, weakens=12, mixed=7, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.748, conflict_ratio=0.8, exp_entries=24, lit_entries=3; directions supports=8, weakens=12, mixed=7, unknown=0, conflict_ratio=0.8
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -411,7 +411,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.828, conflict_ratio=0.632, exp_entries=31, lit_entries=6; directions supports=13, weakens=6, mixed=8, unknown=1, conflict_ratio=0.632
+- Why this decision is needed: overall_conf=0.827, conflict_ratio=0.632, exp_entries=31, lit_entries=6; directions supports=13, weakens=6, mixed=8, unknown=1, conflict_ratio=0.632
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -449,7 +449,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-118
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.715, conflict_ratio=0.667, exp_entries=4, lit_entries=3; directions supports=4, weakens=2, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.714, conflict_ratio=0.667, exp_entries=4, lit_entries=3; directions supports=4, weakens=2, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL. First experimental entry. EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed -- stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation. Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat ~20.6-20.8 across R1/R2…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -487,7 +487,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-128
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.738, conflict_ratio=0.286, exp_entries=3, lit_entries=5; directions supports=6, weakens=1, mixed=1, unknown=0, conflict_ratio=0.286
+- Why this decision is needed: overall_conf=0.737, conflict_ratio=0.286, exp_entries=3, lit_entries=5; directions supports=6, weakens=1, mixed=1, unknown=0, conflict_ratio=0.286
 - Evidence quality note: EXQ-147 FAIL/weakens (2026-03-29): E1 goal conditioning discriminative pair FAIL. First experimental entry. Failure likely reflects training budget / substrate depth rather than fundamental claim failure -- z_goal conditioning requires substantial training to show discriminative effect in trajectory quality. EXQ-147a PARTIAL/mixed (2026-04-03): E1 goal conditioning pair with SD-012 drive_weight=2.…
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
@@ -525,7 +525,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-150
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.541, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.54, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -544,7 +544,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-153
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.657, conflict_ratio=0.571, exp_entries=4, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: overall_conf=0.656, conflict_ratio=0.571, exp_entries=4, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -599,7 +599,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-019
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: overall_conf=0.894, conflict_ratio=0, exp_entries=0, lit_entries=10; directions supports=6, weakens=0, mixed=4, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.893, conflict_ratio=0, exp_entries=0, lit_entries=10; directions supports=6, weakens=0, mixed=4, unknown=0, conflict_ratio=0
 - Evidence quality note: Open architectural question arising 2026-02-27. Two competing models: (A) Single-gate: BG gate one action endpoint, evaluating three criteria simultaneously (sensorium readiness, thought/trajectory readiness, motor commitment). (B) Three-gate: BG implement three anatomically distinct gating loops — (1) Sensorium loop: limbic/beta-associated, gates what the system attends to — selecting not only fr…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):

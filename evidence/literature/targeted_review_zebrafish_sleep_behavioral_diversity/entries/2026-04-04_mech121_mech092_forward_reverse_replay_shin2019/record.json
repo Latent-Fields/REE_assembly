@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-04-04_mech121_mech092_forward_reverse_replay_shin2019",
+  "timestamp_utc": "2026-04-04T23:50:00Z",
+  "claim_ids_tested": ["MECH-121", "MECH-092"],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making",
+    "authors": ["Justin D Shin", "Wenbo Tang", "Shantanu P Jadhav"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.012"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Key paper for the forward/reverse replay distinction and its role in learning trajectory. Reverse replay serves retrospective evaluation (past trajectories, learning gradients); forward replay serves prospective planning (future paths, decision guidance). Both are coordinated with prefrontal readout. The learning shift from reverse-dominant (early) to forward-dominant (late) is a direct empirical demonstration of the dual role of MECH-121 replay and its relationship to the decision-making architecture. High source quality; excellent alignment with REE replay architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study cannot establish whether forward or reverse replay causes learning improvement or merely correlates with it -- causal interventions are lacking for the content-specific directionality.",
+    "The distinction between forward (prospective) and reverse (retrospective) replay may be blurred in complex environments where paths overlap -- the clean dissociation may be task-specific.",
+    "Prefrontal coordination in rodents maps imperfectly onto the E3 planning module in REE, which integrates hippocampal proposals differently."
+  ],
+  "tags": [
+    "mech121", "mech092", "hippocampus", "prefrontal", "forward-replay", "reverse-replay", "prospection", "retrospection", "spatial-learning", "decision-making", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "During pauses in a spatial alternation task, reverse hippocampal-prefrontal replay (representing past paths) dominates early learning and shows a negative learning gradient (codes past choices, supports retrospective evaluation); forward replay (representing future paths) increases with learning and shows a positive gradient (codes correct future paths, guides prospective planning). Correct vs error paths are distinguished in coordinated hippocampal-prefrontal replay.",
+    "ree_translation": "MECH-121 posits that NREM SWR replay transfers episodic content from E3/hippocampal buffer to E1 neocortical schematic representation. The Shin data reveals that replay serves two distinct functional roles -- retrospective evaluation (reverse) and prospective planning (forward) -- both contributing to learning. In REE terms: reverse replay consolidates the outcome record of past viability-map traversals (harm/benefit encountered), supporting E3's retrospective harm attribution. Forward replay seeds E1's world model with anticipated trajectory patterns, supporting the prospective planning function of the HippocampalModule. The learning shift from reverse to forward maps onto the REE transition from exploration (evaluating what happened) to exploitation (planning what to do next). MECH-092's quiescent replay is the V3 prerequisite: if the replay system does not produce both forward and reverse content, consolidation will be one-sided. A system with only forward replay would fail to integrate past outcomes; only reverse would fail to plan ahead.",
+    "mapping_caveat": "The study conflates awake and sleep replay (the analyses span inter-trajectory pauses, which in rodents produce both types). MECH-121 is specifically about sleep-phase NREM replay; MECH-092 is about quiescent awake replay. The Shin findings are most directly relevant to MECH-092. The distinction between the two mechanisms (sleep NREM vs awake quiescence) cannot be resolved from this paper alone. Additionally, the prefrontal cortex readout of replay is an additional processing step not yet explicitly modelled in REE's E3/planning architecture.",
+    "source_context": "Adult rats; spatial W-maze alternation task; simultaneous hippocampal CA1 and prefrontal ensemble recordings throughout learning; decoded forward/reverse replay events during inter-trajectory pauses; learning gradient analysis for past vs future path prediction."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.83,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (Neuron, Jadhav lab, continuous learning trajectory tracking). Mapping fidelity good for the dual retrospective/prospective function of replay. Transfer risk moderate: rodent to REE; awake quiescent replay to sleep NREM replay mapping requires further specification."
+  }
+}

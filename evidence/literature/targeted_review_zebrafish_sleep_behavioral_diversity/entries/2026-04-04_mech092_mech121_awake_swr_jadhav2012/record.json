@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-04-04_mech092_mech121_awake_swr_jadhav2012",
+  "timestamp_utc": "2026-04-04T23:50:00Z",
+  "claim_ids_tested": ["MECH-092", "MECH-121"],
+  "source": {
+    "title": "Awake hippocampal sharp-wave ripples support spatial memory",
+    "authors": ["Shantanu P Jadhav", "Caleb Kemere", "P Walter German", "Loren M Frank"],
+    "year": 2012,
+    "venue": "Science",
+    "doi": "10.1126/science.1217230"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Causal evidence (closed-loop SWR interruption) that awake hippocampal SWRs are necessary for spatial memory consolidation and decision-making. The learning deficit persists throughout training (not just early), and is specific to awake SWRs -- post-experience SWR reactivation and place field activity are preserved after interruption. This maps directly onto MECH-092 (quiescent E3 heartbeat replay triggering SWR-equivalent consolidation) and MECH-121 (NREM SWR replay for episodic-to-semantic transfer). The causal interruption design is stronger than correlational evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Interrupting awake SWRs did not affect place field activity -- suggesting that map formation (experience-dependent potentiation) is independent of SWR replay; replay is required for memory expression, not necessarily encoding.",
+    "The deficit is in a spatial alternation task requiring working memory; how this generalises to strategy diversity vs simple memory storage is not clear.",
+    "The interruption technology (closed-loop electrical stimulation) disrupts all SWRs nonselectively -- the content-specificity of disrupted replay cannot be assessed."
+  ],
+  "tags": [
+    "mech092", "mech121", "hippocampus", "SWR", "awake-replay", "spatial-memory", "decision-making", "causal-evidence", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Interrupting awake hippocampal sharp-wave ripples (SWRs) during pauses in a spatial alternation task produces a persistent learning deficit that cannot be attributed to disrupted place fields or post-experience SWR reactivation. Awake SWRs are causally required for memory-guided decision making.",
+    "ree_translation": "MECH-092 posits quiescent E3 heartbeat cycles trigger SWR-equivalent replay for viability map consolidation. The Jadhav result provides causal evidence that awake SWRs (not just sleep SWRs) are necessary -- meaning that the MECH-092 quiescent replay during inter-episode pauses is not merely a V3 stepping stone but a genuinely required function. Disrupting this function degrades decision-making in exactly the way a degraded viability map would: the agent cannot reliably retrieve memory-guided paths to guide choice. MECH-121's broader claim about SWR replay for consolidation is also supported: the hippocampal replay function is necessary for learning, not just for incidental memory storage.",
+    "mapping_caveat": "This study targets awake SWRs specifically; MECH-092 is framed as occurring during quiescent E3 heartbeat cycles, not necessarily during a formal sleep phase. The alignment between awake SWR replay and MECH-092 is good. MECH-121's sleep-based SWR replay is more distal -- the paper provides general evidence for SWR necessity but does not directly test the sleep-specific consolidation pipeline. Transfer from rodents to REE requires assuming the HippocampalModule generates SWR-equivalent sequences during quiescence.",
+    "source_context": "Adult rats; spatial W-maze alternation task; closed-loop detection and electrical stimulation interruption of awake SWRs; comparison with sham stimulation; place field analysis; post-experience sleep SWR analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "Exceptional source quality (Science, causal closed-loop design, Frank lab). Mapping fidelity good for MECH-092 (awake quiescent replay required for decision-making). Somewhat weaker for MECH-121 (the sleep-specific pipeline). Transfer risk moderate: rodent hippocampus to REE HippocampalModule."
+  }
+}

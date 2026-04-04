@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-04-04_mech120_inv010_shy_zebrafish_suppermpool2024",
+  "timestamp_utc": "2026-04-04T23:50:00Z",
+  "claim_ids_tested": ["MECH-120", "INV-010"],
+  "source": {
+    "title": "Sleep pressure modulates single-neuron synapse number in zebrafish",
+    "authors": ["Anya Suppermpool", "Declan G Lyons", "Elizabeth Broom", "Jason Rihel"],
+    "year": 2024,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-024-07367-3"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.90,
+  "confidence_rationale": "This is the strongest available evidence for SHY at the zebrafish level. Single-neuron resolution imaging of all excitatory synapses across sleep-wake states demonstrates that synapses are gained during waking and lost during sleep, proportional to sleep pressure (adenosine). The paper directly tests whether sleep actively promotes synaptic downregulation vs merely permitting it, finding that active downscaling requires high sleep pressure -- low-pressure pharmacological sleep is insufficient without adenosine boosting. This maps precisely onto MECH-120's SWS denoising/attractor flattening claim. Near-perfect alignment between source measurement and REE mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Synapse loss is neuron-subtype-dependent -- not all neurons participate equally in SHY, complicating assumptions of uniform global downscaling.",
+    "Pharmacologically-induced sleep during periods of low sleep pressure does not trigger synapse loss without adenosine boosting -- indicating that sleep alone is insufficient; a pressure signal is required.",
+    "The paper does not measure downstream behavioural effects of the synapse loss, so the functional consequence for strategy diversity remains inferred rather than demonstrated."
+  ],
+  "tags": [
+    "mech120", "inv010", "zebrafish", "SHY", "synaptic-homeostasis", "sleep-pressure", "adenosine", "single-neuron", "synapse-loss", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "In larval zebrafish, excitatory synapses accumulate during waking and are lost during sleep in a sleep-pressure-dependent manner at the level of individual identified neurons. Sleep-dependent synapse loss requires both high sleep pressure (accumulated adenosine) and low noradrenergic tone; it is not triggered simply by any period of quiescence.",
+    "ree_translation": "MECH-120 posits that the SWS sub-phase performs global attractor flattening and residue field denoising -- a synaptic homeostasis analog. The Suppermpool data provides the most direct zebrafish-level confirmation: the mechanism operates in the precise model organism that corresponds to the REE minimal mind level, and at single-neuron resolution. The sleep-pressure dependence maps onto the need for a genuine offline phase (not just brief quiescence): MECH-092's micro-quiescence replays are distinct from the deeper MECH-120 downscaling, which requires sustained sleep-pressure discharge. The adenosine-dependence gives a molecular candidate for the offline-phase trigger in REE -- the 'sleep debt' accumulation that forces the system into a dedicated consolidation mode.",
+    "mapping_caveat": "The paper measures synapse number, not synaptic weight, and not downstream behavioural strategy diversity. MECH-120 is framed in terms of attractor flattening and residue SNR -- these are functionally adjacent to synapse number but not identical. The neuron-subtype specificity of SHY means global downscaling assumptions in MECH-120 may need refinement: selective downscaling by cell type implies circuit-level targeting rather than uniform renormalization. Additionally, larval zebrafish may not have the full E1/E3 architecture complexity that V4 sleep is intended to regulate.",
+    "source_context": "Larval zebrafish in vivo two-photon imaging; longitudinal tracking of all excitatory synapses on individual identified neurons; spontaneous and forced wakefulness conditions; pharmacological sleep induction with and without adenosine/noradrenaline manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.97,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.15,
+    "notes": "Exceptional source quality (Nature 2024, single-neuron resolution, in vivo longitudinal). Mapping fidelity high -- SHY in zebrafish directly maps onto MECH-120. Transfer risk very low -- zebrafish is the proposed calibration organism. Small dock for the synapse-number vs synaptic-weight / attractor-flattening conceptual gap."
+  }
+}

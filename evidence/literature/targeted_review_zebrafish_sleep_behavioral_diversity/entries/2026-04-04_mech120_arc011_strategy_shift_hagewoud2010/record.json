@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-04-04_mech120_arc011_strategy_shift_hagewoud2010",
+  "timestamp_utc": "2026-04-04T23:50:00Z",
+  "claim_ids_tested": ["MECH-120"],
+  "source": {
+    "title": "Coping with sleep deprivation: shifts in regional brain activity and learning strategy",
+    "authors": ["Roelina Hagewoud", "Robbert Havekes", "Paula A Tiba", "Arianna Novati", "Koen Hogenelst", "Pim Weinreder", "Eddy A Van der Zee", "Peter Meerlo"],
+    "year": 2010,
+    "venue": "Sleep",
+    "doi": "10.1093/sleep/33.11.1465"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Key paper for the behavioral strategy diversity claim. Sleep deprivation in mice shifts learning from a flexible hippocampal spatial strategy to a rigid striatal response strategy, with CREB phosphorylation shifting from hippocampus to dorsal striatum -- demonstrating that the cognitive signature of sleep loss is precisely monostrategy convergence. The reversal learning deficit confirms the rigidity: striatal strategy works for training but fails when the rule changes. This is a direct empirical demonstration of the mechanism underlying the 'singular strategy' problem noted in REE minimal mind experiments.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Performance during initial training is not impaired by sleep deprivation -- the deficit is specifically in flexibility (reversal), not in strategy acquisition per se.",
+    "The study uses mice, not zebrafish -- transfer to zebrafish and to REE architecture requires extrapolation.",
+    "The hippocampus-to-striatum shift is a compensatory mechanism, not simply loss of function -- the system is not failing, it is falling back to a more rigid but functional mode."
+  ],
+  "tags": [
+    "mech120", "behavioral-strategy", "sleep-deprivation", "hippocampus", "striatum", "strategy-shift", "reversal-learning", "monostrategy", "CREB", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Five hours of post-training sleep deprivation causes mice to abandon a hippocampus-dependent spatial strategy in favour of a striatum-dependent response strategy, demonstrated by CREB phosphorylation shifting from hippocampus to dorsal striatum. Sleep-deprived mice perform comparably to controls during training but show significantly impaired performance during reversal training, confirming that the response strategy is less adaptable to changed conditions.",
+    "ree_translation": "MECH-120 is framed as 'attractor flattening' during SWS -- preventing dominant attractors from monopolising the representational space. The Hagewoud data provides the functional-level demonstration of what happens when MECH-120 is absent: the dominant strategy (Hebbian-strengthened during waking) captures the learning system, and the flexible, map-based alternative (hippocampal spatial strategy) becomes inaccessible. This is exactly the 'monostrategy convergence in benign environments' gap identified in REE claims -- the Hebbian monopoly mechanism rather than the harm-trace-driven MECH-124 contraction. The reversal deficit is the REE equivalent of an agent that learned one viability-map path and cannot reroute when that path is blocked. MECH-120's attractor flattening is what preserves access to the hippocampal strategy; its absence forces a striatal fallback.",
+    "mapping_caveat": "The hippocampus-striatum distinction in rodents does not map cleanly onto the REE E1/E3/HippocampalModule architecture. In REE, both spatial map-based planning (E3/Hippocampal) and habitual response selection (E3 without full hippocampal engagement) may exist within the same module rather than as anatomically separate systems. The strategy shift in mice involves two distinct neural substrates competing; the REE analog may be a single-substrate attractor dominance effect rather than a two-system competition. Additionally, the sleep deprivation in this study is post-training (consolidation window), whereas MECH-120 is about ongoing online-to-offline phase transitions.",
+    "source_context": "C57BL/6 mice; symmetrical maze task with place vs response disambiguation; 5-hour post-training sleep deprivation; CREB immunohistochemistry in hippocampus and dorsal striatum; reversal training on day 2."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Sleep journal, clear mechanistic dissection with CREB readout). Mapping fidelity good for the monostrategy-convergence functional claim but requires conceptual translation from two-system competition to single-substrate attractor dynamics. Transfer risk moderate: mice to zebrafish to REE is a two-step transfer."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-04-04_arc007_inv010_pallial_spatial_memory_rodriguez2002",
+  "timestamp_utc": "2026-04-04T23:50:00Z",
+  "claim_ids_tested": ["ARC-007"],
+  "source": {
+    "title": "Conservation of spatial memory function in the pallial forebrain of reptiles and ray-finned fishes",
+    "authors": ["Fernando Rodriguez", "J Carlos Lopez", "J Pedro Vargas", "Yolanda Gomez", "Cristina Broglio", "Cosme Salas"],
+    "year": 2002,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.22-07-02894.2002"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Establishes that the lateral pallium of goldfish (a ray-finned teleost, same class as zebrafish) is functionally homologous to the mammalian hippocampus for spatial memory. LP lesions produce a selective place-task deficit without impairing cue learning -- the hallmark dissociation for hippocampal function. Dorsal and medial pallium lesions do not produce this deficit, confirming anatomical specificity. This is foundational evidence that ARC-007 (hippocampal path memory) is relevant at the zebrafish level and is not a mammalian-only architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study uses goldfish, not zebrafish -- the pallial anatomy is broadly conserved across teleosts but not identical.",
+    "The lesion approach cannot distinguish between storage and retrieval deficits, or between map-based navigation and other flexible strategies.",
+    "The hippocampal homology claim for ray-finned fish pallium is based on functional analogy and developmental marker evidence, not confirmed electrophysiological recordings (no place cells demonstrated in goldfish)."
+  ],
+  "tags": [
+    "arc007", "inv010", "teleost", "goldfish", "pallium", "hippocampus-homolog", "spatial-memory", "place-task", "vertebrate-conservation", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Lateral pallium (LP) lesions in goldfish selectively impair place-task performance (map-based navigation) without affecting cue-based navigation, paralleling hippocampal lesion effects in mammals and birds. Reptile medial cortex lesions show the same dissociation. Neither dorsal nor medial pallium lesions in goldfish produced place-task deficits, confirming LP specificity.",
+    "ree_translation": "ARC-007 posits that hippocampal systems store and replay paths through residue-field terrain -- a claim that requires a hippocampal-equivalent structure to be present and functional at the minimal mind level. The Rodriguez data establishes that ray-finned teleost fish (the class including zebrafish) already possess a pallial region functionally homologous to the hippocampus for spatial map-based memory. This means the HippocampalModule in REE has a genuine biological precedent at zebrafish complexity, not just at mammalian complexity. The place-vs-cue dissociation directly mirrors the REE distinction between viability map-based navigation (E3/Hippocampal terrain) and habit-based action selection.",
+    "mapping_caveat": "Goldfish to zebrafish is a reasonable transfer within ray-finned teleosts but not identical. More importantly, the paper demonstrates spatial memory storage in the pallium but does not demonstrate replay (SWR-equivalent activity) in that structure during sleep or rest -- the replay component of ARC-007 is not directly evidenced here. This paper supports the substrate claim (hippocampal homolog present) but not the dynamic mechanism claim (replay of paths).",
+    "source_context": "Adult goldfish; place task (4-arm maze, spatial cues, new start positions); cue task (visible platform); medial cortex turtle comparison; LP, DP, MP lesion groups; probe and transfer tests."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (J Neurosci, clean lesion dissociation). Mapping fidelity good for the substrate presence claim; weaker for the dynamic replay component of ARC-007. Transfer risk moderate -- goldfish to zebrafish within teleosts is acceptable; teleost pallium to REE HippocampalModule requires further translation."
+  }
+}

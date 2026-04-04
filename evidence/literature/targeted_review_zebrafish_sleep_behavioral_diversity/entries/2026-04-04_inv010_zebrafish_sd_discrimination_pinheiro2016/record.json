@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-04-04_inv010_zebrafish_sd_discrimination_pinheiro2016",
+  "timestamp_utc": "2026-04-04T23:50:00Z",
+  "claim_ids_tested": ["INV-010"],
+  "source": {
+    "title": "Sleep deprivation effects on object discrimination task in zebrafish (Danio rerio)",
+    "authors": ["Jaquelinne Pinheiro-da-Silva", "Priscila Fernandes Silva", "Marcelo Borges Nogueira", "Ana Carolina Luchiari"],
+    "year": 2016,
+    "venue": "Animal Cognition",
+    "doi": "10.1007/s10071-016-1034-x"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct species-level evidence in zebrafish for INV-010. Total sleep deprivation abolishes object discrimination (novel vs familiar object recognition) whereas partial SD leaves partial discrimination intact -- demonstrating a dose-dependent cognitive effect of sleep loss in the calibration organism. The object discrimination task relies on novelty detection and memory consolidation, consistent with hippocampal-equivalent function. Confidence solid for INV-010; does not extend to mechanism-level claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Partial sleep deprivation produces intermediate rather than absent discrimination, suggesting a graded rather than threshold-gated sleep dependency.",
+    "The protocol uses light-based SD methods, which may induce stress confounds beyond pure sleep loss.",
+    "No neuroimaging or molecular readouts -- the mechanism of the cognitive deficit is inferred, not measured."
+  ],
+  "tags": [
+    "inv010", "zebrafish", "sleep-deprivation", "object-discrimination", "memory-consolidation", "cognitive-impairment", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "In adult zebrafish, one night of total sleep deprivation by extended light exposure abolishes object discrimination performance (equal exploration of familiar and novel objects), while partial sleep deprivation preserves partial discrimination. Controls show clear preference for novel objects.",
+    "ree_translation": "INV-010 states that offline integration exists and is required. At the zebrafish level -- the REE minimal mind calibration point -- sleep loss produces measurable cognitive failure within a single night. The novelty discrimination deficit suggests that the memory consolidation function of sleep (mapping onto MECH-017 and MECH-121) is active and obligatory at this level of vertebrate complexity. For REE, this means that a minimal mind operating at zebrafish level cannot maintain adequate world-model currency (z_world differentiation for known vs novel objects) without offline consolidation cycles.",
+    "mapping_caveat": "Object discrimination in zebrafish likely recruits the telencephalic pallium (hippocampal homolog) but this is inferred from mammalian analogy; zebrafish neuroanatomy at the circuit level is less characterised than rodents. The REE minimal mind object-discrimination analog would be the ability to distinguish recently-visited vs novel locations or actions in the CausalGridWorld -- a reasonable but not perfect mapping.",
+    "source_context": "Adult zebrafish; 3-object discrimination paradigm (familiar/novel); 4 conditions: control, partial SD (4h), total SD by light pulses, total SD by extended light; Bayesian statistical analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.15,
+    "notes": "Good source quality (Animal Cognition, clean behavioural design). Mapping fidelity adequate for INV-010 (sleep required for cognitive function). Transfer risk very low -- zebrafish is the target species."
+  }
+}

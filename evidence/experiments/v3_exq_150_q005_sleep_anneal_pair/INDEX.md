@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_150_q005_sleep_anneal_pair
 
-Generated: `2026-04-04T08:57:34.583958Z`
+Generated: `2026-04-04T16:57:24.047781Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
