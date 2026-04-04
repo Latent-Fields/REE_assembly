@@ -25,14 +25,25 @@ echo "[ree-entrypoint] Starting REE container (github user: ${GITHUB_USER}, mach
 
 # ── SSH setup ─────────────────────────────────────────────────────────────────
 if [ -d /root/.ssh ]; then
-    # Fix permissions (mounted volumes often come in with wide perms)
-    chmod 700 /root/.ssh
-    [ -f /root/.ssh/id_rsa ]     && chmod 600 /root/.ssh/id_rsa
-    [ -f /root/.ssh/id_ed25519 ] && chmod 600 /root/.ssh/id_ed25519
-    [ -f /root/.ssh/config ]     && chmod 600 /root/.ssh/config
+    # The bind mount is read-only (and Windows perms are too open for SSH).
+    # Copy to a writable location and set correct permissions there.
+    mkdir -p /tmp/ssh-rw
+    cp /root/.ssh/* /tmp/ssh-rw/ 2>/dev/null || true
+    chmod 700 /tmp/ssh-rw
+    find /tmp/ssh-rw -maxdepth 1 -type f -exec chmod 600 {} \;
 
     # Trust GitHub host key
-    ssh-keyscan -H github.com >> /root/.ssh/known_hosts 2>/dev/null
+    ssh-keyscan -H github.com >> /tmp/ssh-rw/known_hosts 2>/dev/null || true
+
+    # Write an SSH config so git picks up keys from the writable copy
+    cat > /tmp/ssh-config << 'SSHEOF'
+Host github.com
+    IdentityFile /tmp/ssh-rw/id_ed25519
+    IdentityFile /tmp/ssh-rw/id_rsa
+    UserKnownHostsFile /tmp/ssh-rw/known_hosts
+    StrictHostKeyChecking no
+SSHEOF
+    export GIT_SSH_COMMAND="ssh -F /tmp/ssh-config"
     echo "[ree-entrypoint] SSH configured"
 else
     echo "[ree-entrypoint] WARNING: no SSH key mounted -- git push will fail"
