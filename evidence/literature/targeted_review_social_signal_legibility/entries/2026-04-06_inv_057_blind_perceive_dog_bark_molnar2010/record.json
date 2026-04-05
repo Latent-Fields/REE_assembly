@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_inv_057_blind_perceive_dog_bark_molnar2010",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["INV-057", "MECH-191"],
+  "source": {
+    "title": "Seeing with ears: Sightless humans' perception of dog bark provides a test for structural rules in vocal communication.",
+    "authors": ["Molnar C", "Pongracz P", "Miklosi A"],
+    "year": 2010,
+    "venue": "Quarterly Journal of Experimental Psychology",
+    "doi": "10.1080/17470210903168243",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19760535/"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Molnar et al. (2010) provide a critical test of INV-057: congenitally blind humans who have never seen a dog can accurately categorize the emotional content of dog barks. This rules out visual experience, observational learning, and visual convention as explanations for cross-species emotional reading. The ability must rely on structural acoustic properties of the barks that map onto internal emotional categories the listeners already possess. This is strong evidence for functional specificity (INV-057) and causal externalization (MECH-191): the acoustic structure caused by the dog's emotional state is sufficient for emotional categorization by a naieve observer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The congenitally blind participants still had auditory experience with dogs (hearing dogs bark in daily life). The study cannot rule out auditory learning of dog bark-emotion associations, only visual learning.",
+    "The study used pre-defined emotional categories for participants to choose from, which constrains and potentially inflates accuracy. Free-form emotional labeling might show less consistency.",
+    "Performance was above chance but not perfect, suggesting the cross-species reading is noisy rather than the unambiguous legibility MECH-191 implies with the specific signal-state mappings (whine=wanting, yelp=nociception)."
+  ],
+  "tags": ["inv_057", "mech_191", "blind", "dog_bark", "cross_species", "emotion_perception", "acoustic_structure", "no_visual_experience"],
+  "mapping": {
+    "source_claim_statement": "Blind people without any previous canine visual experiences can categorize accurately various dog barks recorded in different contexts. The results suggest that humans can recognize some of the most important motivational states -- such as fear or aggression -- in a dog's bark without visual exposure, and it is very likely that this result can be generalized to other mammalian species.",
+    "ree_translation": "INV-057 claims that cross-species signal legibility evidences functional specificity rather than social convention. Molnar et al. provide the cleanest test: observers with zero visual experience of dogs (congenitally blind, never dog owners) can still read emotional content from barks. This rules out the most obvious learning pathways and supports the interpretation that acoustic structure itself -- caused by the dog's internal state (MECH-191) -- carries the emotional information. The authors explicitly generalize this to 'other mammalian species,' supporting INV-057's broader claim about shared functional architecture.",
+    "mapping_caveat": "The study rules out visual learning but not auditory learning -- congenitally blind people in urban environments have extensive incidental exposure to dog barks. The cross-species reading demonstrated here may still involve auditory association learning rather than purely innate structural decoding. This is a weaker test of innate legibility than MECH-191 ideally requires.",
+    "source_context": "Molnar, Pongracz & Miklosi (2010), QJEP 63(5):1004-13. From the Miklosi lab (Budapest), the leading group in dog cognition research. The study is a clever use of the blind population to control for visual learning in cross-species emotional communication."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.15,
+    "notes": "High source quality: from the Miklosi lab, published in a respected experimental psychology journal. High mapping fidelity: the experimental design directly tests the cross-species legibility claim with appropriate controls. Very low transfer risk: the dog-human system and the acoustic modality are exactly the domain MECH-191 and INV-057 address."
+  }
+}

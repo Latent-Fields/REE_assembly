@@ -1108,7 +1108,7 @@
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=31 entry(s), lit=3 entry(s), exp_conf=0.742, lit_conf=0.825",
+      "confidence_rationale": "exp=31 entry(s), lit=3 entry(s), exp_conf=0.741, lit_conf=0.825",
       "direction_counts": {
         "mixed": 10,
         "supports": 14,
@@ -1121,7 +1121,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.742,
+      "experimental_confidence": 0.741,
       "fail_runs": 24,
       "genuine_exp_count": 31,
       "genuine_exp_direction_counts": {
@@ -2084,7 +2084,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.517, lit_conf=0.914",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.516, lit_conf=0.914",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2098,7 +2098,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.517,
+      "experimental_confidence": 0.516,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2666,6 +2666,77 @@
       "source_counts": {
         "experimental": 0,
         "literature": 3
+      }
+    },
+    "ARC-048": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.787",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:review_comparative": 1,
+        "lit:review_systematic": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_arc_048_emotional_prosody_language_precursor_filippi2016",
+      "latest_timestamp_utc": "2026-04-06T08:00:00Z",
+      "literature_confidence": 0.787,
+      "overall_confidence": 0.787,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-048",
+          "confidence": 0.8,
+          "confidence_rationale": "Fournier et al. (2026) provide the most current systematic review of cross-species vocal emotion communication. Key finding: many animals recognize emotions in other species' vocalizations in a manner qualitatively similar to their perception of conspecific emotions. Familiarity with the vocalizing species and domestication enhance cross-species recognition but are not required. This supports ARC-048 (cross-species vocal emotion recognition is the pre-linguistic channel language extends), MECH-192 (legibility enables empathic coordination across species), and INV-057 (cross-species legibility evidences functional specificity). The review also identifies pitch, harshness, duration, and timing as the acoustic features mediating interspecies recognition.",
+          "evidence_class": "lit:review_systematic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The review notes significant research gaps in understanding which specific acoustic parameters drive interspecies emotion perception, limiting the mechanistic precision of the cross-species legibility claim.",
+            "Domestication and familiarity enhance cross-species recognition, which complicates INV-057's claim that legibility is automatic/innate rather than learned. The enhancement from familiarity suggests a learning component.",
+            "The review covers terrestrial tetrapods broadly, but most studies focus on mammals. The generalization to all 'cross-architectural' legibility may overstate the evidence if non-mammalian species show different patterns."
+          ],
+          "run_id": "2026-04-06_arc_048_cross_species_vocal_emotion_fournier2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-048",
+          "confidence": 0.75,
+          "confidence_rationale": "Filippi (2016) reviews evidence that emotional and interactional prosody (EIP) -- voice modulation conveying emotional content and facilitating vocal coordination -- is present across diverse animal species and may have been foundational to the development of linguistic prosody and language acquisition. This directly supports ARC-048's claim that language extends a pre-existing emotional vocalization channel. The review synthesizes three domains: adaptive benefits of EIP in non-human species, positive effects of EIP in human infant language development, and connections between linguistic prosody and musicality. The continuity thesis -- that language prosody evolved from emotional vocalization -- is the core of ARC-048.",
+          "evidence_class": "lit:review_comparative",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The review treats prosody (intonation, rhythm, stress) as the precursor to language, not the functional states themselves. ARC-048 claims functional states pre-exist and language adds resolution; Filippi claims the vocal modulation system pre-exists and language adds structure. These are related but not identical claims.",
+            "The continuity between animal EIP and human language is proposed but not empirically demonstrated -- the evolutionary gap is inferred from comparative observation, not from fossil/genetic evidence.",
+            "ARC-048 makes the specific claim that 'pre-linguistic Steve says I hurt (yelp); linguistic Daniel says my leg hurts when I walk on wet grass.' Filippi's prosody-continuity thesis does not address the functional-state-to-referent mapping that ARC-048 requires; it addresses the acoustic channel continuity."
+          ],
+          "run_id": "2026-04-06_arc_048_emotional_prosody_language_precursor_filippi2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
       }
     },
     "IMPL-022": {
@@ -3986,6 +4057,133 @@
         "literature": 3
       }
     },
+    "INV-057": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.903",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 5,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:empirical_behavioral": 2,
+        "lit:review_historical": 1,
+        "lit:review_neuroscience": 1,
+        "lit:review_systematic": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
+      "latest_timestamp_utc": "2026-04-06T08:00:00Z",
+      "literature_confidence": 0.903,
+      "overall_confidence": 0.903,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-057",
+          "confidence": 0.8,
+          "confidence_rationale": "Fournier et al. (2026) provide the most current systematic review of cross-species vocal emotion communication. Key finding: many animals recognize emotions in other species' vocalizations in a manner qualitatively similar to their perception of conspecific emotions. Familiarity with the vocalizing species and domestication enhance cross-species recognition but are not required. This supports ARC-048 (cross-species vocal emotion recognition is the pre-linguistic channel language extends), MECH-192 (legibility enables empathic coordination across species), and INV-057 (cross-species legibility evidences functional specificity). The review also identifies pitch, harshness, duration, and timing as the acoustic features mediating interspecies recognition.",
+          "evidence_class": "lit:review_systematic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The review notes significant research gaps in understanding which specific acoustic parameters drive interspecies emotion perception, limiting the mechanistic precision of the cross-species legibility claim.",
+            "Domestication and familiarity enhance cross-species recognition, which complicates INV-057's claim that legibility is automatic/innate rather than learned. The enhancement from familiarity suggests a learning component.",
+            "The review covers terrestrial tetrapods broadly, but most studies focus on mammals. The generalization to all 'cross-architectural' legibility may overstate the evidence if non-mammalian species show different patterns."
+          ],
+          "run_id": "2026-04-06_arc_048_cross_species_vocal_emotion_fournier2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-057",
+          "confidence": 0.85,
+          "confidence_rationale": "Molnar et al. (2010) provide a critical test of INV-057: congenitally blind humans who have never seen a dog can accurately categorize the emotional content of dog barks. This rules out visual experience, observational learning, and visual convention as explanations for cross-species emotional reading. The ability must rely on structural acoustic properties of the barks that map onto internal emotional categories the listeners already possess. This is strong evidence for functional specificity (INV-057) and causal externalization (MECH-191): the acoustic structure caused by the dog's emotional state is sufficient for emotional categorization by a naieve observer.",
+          "evidence_class": "lit:empirical_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The congenitally blind participants still had auditory experience with dogs (hearing dogs bark in daily life). The study cannot rule out auditory learning of dog bark-emotion associations, only visual learning.",
+            "The study used pre-defined emotional categories for participants to choose from, which constrains and potentially inflates accuracy. Free-form emotional labeling might show less consistency.",
+            "Performance was above chance but not perfect, suggesting the cross-species reading is noisy rather than the unambiguous legibility MECH-191 implies with the specific signal-state mappings (whine=wanting, yelp=nociception)."
+          ],
+          "run_id": "2026-04-06_inv_057_blind_perceive_dog_bark_molnar2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-057",
+          "confidence": 0.76,
+          "confidence_rationale": "Ekman (2009) reviews Darwin's five key contributions to emotion science, with two directly relevant to INV-057 and MECH-191: (1) facial expressions of emotion are universal across human cultures, strongly supported by subsequent cross-cultural research; (2) emotions exist across species 'from bees to roosters, dogs, cats, horses as well as other primates,' with cross-species continuity of expression. Darwin's 'serviceable habits' principle -- that expressions originate as functional movements that become ritualized signals -- is the historical precursor to MECH-191's causal externalization claim. Ekman's authority as the leading figure in emotion expression research lends weight to the universality and cross-species claims.",
+          "evidence_class": "lit:review_historical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "Ekman focuses on facial expressions, while MECH-191's examples are primarily vocal (whine, huff, yelp) and postural (tail wag, play bow). The universality evidence is strongest for facial expressions and may not transfer directly to vocalizations.",
+            "The universality of basic emotions (Ekman's six: anger, fear, disgust, surprise, happiness, sadness) has been challenged by constructionist emotion theories (e.g., Barrett's theory of constructed emotion). MECH-191 should not assume universal discrete emotions are uncontested.",
+            "Darwin's 'serviceable habits' principle explains how expressions originate (as functional movements) but not why they remain legible cross-architecturally. The evolutionary ritualization process could decouple signals from their original functional states, complicating MECH-191's causal externalization claim."
+          ],
+          "run_id": "2026-04-06_inv_057_darwin_emotion_universality_ekman2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-057",
+          "confidence": 0.8,
+          "confidence_rationale": "Brudzynski (2007) provides the clearest example of a stereotyped signal being causally generated by a specific neurochemical-emotional state. Rat 22-kHz calls are invariably produced by ascending cholinergic system activation (negative states: fear, aversion), while 50-kHz calls are invariably produced by ascending dopaminergic system activation (positive states: anticipation, play). The two call types have distinct acoustic characteristics that allow unambiguous recognition of the emitter's emotional state. This is the strongest evidence for MECH-191's core claim: the signal is a causal product of the internal state, not a learned convention.",
+          "evidence_class": "lit:review_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The rat USV system is unusually clean -- two discrete call types mapping to two discrete neurochemical systems. Most mammalian vocal systems are more continuous and less neatly categorized. The rat case may overstate the discreteness of functional-state-to-signal mapping.",
+            "Rats are not dogs. The specific acoustic parameters (22-kHz vs 50-kHz ultrasonic) are not cross-architecturally legible to humans without instrumentation. MECH-191's claim about cross-architectural legibility relies on signals being perceptible to observers, which USVs are not for human observers.",
+            "The neurochemical specificity (cholinergic=negative, dopaminergic=positive) may be unique to rodent USV circuits and not generalizable to the laryngeal vocalization systems used by dogs and humans."
+          ],
+          "run_id": "2026-04-06_mech_191_rat_usv_emotional_state_brudzynski2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-057",
+          "confidence": 0.82,
+          "confidence_rationale": "Albuquerque et al. (2016) demonstrate that dogs integrate visual and auditory emotional information cross-modally and cross-species. Dogs looked significantly longer at faces whose expressions were congruent with vocalization valence, for both conspecifics (other dogs) and heterospecifics (humans). This cross-modal, cross-species emotional integration -- previously documented only in humans -- is strong evidence that emotional signals are legible across species without shared language (MECH-192) and that this legibility evidences functional specificity rather than convention (INV-057).",
+          "evidence_class": "lit:empirical_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The study demonstrates recognition but cannot distinguish between direct state-matching (z_beta leakage / MECH-183 mechanism) and learned association. Dogs have extensive experience with human emotional expressions, so the cross-species recognition could be socially learned rather than automatic.",
+            "The congruency-looking paradigm measures expectation violation (longer looking at congruent stimuli), which indexes recognition/categorization but not necessarily empathic state-matching. MECH-192 requires that legibility produces functional state-matching, not just categorization.",
+            "Sample size is modest (17 dogs) and the effect, while significant, involves relatively small differences in looking time."
+          ],
+          "run_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
+      }
+    },
     "MECH-022": {
       "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.471, lit_conf=0.883",
       "direction_counts": {
@@ -4108,7 +4306,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.474, lit_conf=0.879",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.473, lit_conf=0.879",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -4124,7 +4322,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.474,
+      "experimental_confidence": 0.473,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4136,7 +4334,7 @@
       "latest_run_id": "v3_exq_199_mech025_doing_mode_breath_20260402T204835Z_v3",
       "latest_timestamp_utc": "2026-04-02T20:48:35Z",
       "literature_confidence": 0.879,
-      "overall_confidence": 0.778,
+      "overall_confidence": 0.777,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4601,7 +4799,7 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=10 entry(s), lit=14 entry(s), exp_conf=0.883, lit_conf=0.841",
+      "confidence_rationale": "exp=10 entry(s), lit=14 entry(s), exp_conf=0.882, lit_conf=0.841",
       "direction_counts": {
         "mixed": 1,
         "supports": 20,
@@ -4617,7 +4815,7 @@
         "lit:neuroscience_experiment": 3,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.883,
+      "experimental_confidence": 0.882,
       "fail_runs": 2,
       "genuine_exp_count": 10,
       "genuine_exp_direction_counts": {
@@ -4629,7 +4827,7 @@
       "latest_run_id": "v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3",
       "latest_timestamp_utc": "2026-04-04T16:15:54.239023+00:00",
       "literature_confidence": 0.841,
-      "overall_confidence": 0.862,
+      "overall_confidence": 0.861,
       "pass_runs": 8,
       "recent_entries": [
         {
@@ -4841,7 +5039,7 @@
       }
     },
     "MECH-047": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.445, lit_conf=0.879",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.444, lit_conf=0.879",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -4854,7 +5052,7 @@
         "lit:connectome_empirical": 2,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.445,
+      "experimental_confidence": 0.444,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5188,7 +5386,7 @@
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.278, lit_conf=0.836",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.277, lit_conf=0.836",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -5201,7 +5399,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.278,
+      "experimental_confidence": 0.277,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5213,7 +5411,7 @@
       "latest_run_id": "20260315T094933_attribution_completion_gating_v2",
       "latest_timestamp_utc": "2026-03-15T09:49:33.165765+00:00",
       "literature_confidence": 0.836,
-      "overall_confidence": 0.697,
+      "overall_confidence": 0.696,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7074,7 +7272,7 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=16 entry(s), lit=3 entry(s), exp_conf=0.806, lit_conf=0.668",
+      "confidence_rationale": "exp=16 entry(s), lit=3 entry(s), exp_conf=0.805, lit_conf=0.668",
       "direction_counts": {
         "mixed": 7,
         "supports": 8,
@@ -7086,7 +7284,7 @@
         "exp:simulation": 16,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.806,
+      "experimental_confidence": 0.805,
       "fail_runs": 10,
       "genuine_exp_count": 16,
       "genuine_exp_direction_counts": {
@@ -7364,7 +7562,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.674, lit_conf=0.704",
+      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.673, lit_conf=0.704",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -7376,7 +7574,7 @@
         "exp:simulation": 9,
         "lit:connectome_mechanistic_review": 1
       },
-      "experimental_confidence": 0.674,
+      "experimental_confidence": 0.673,
       "fail_runs": 6,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -8306,7 +8504,7 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.594, lit_conf=0.819",
+      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.593, lit_conf=0.819",
       "direction_counts": {
         "mixed": 12,
         "supports": 5,
@@ -8319,7 +8517,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.594,
+      "experimental_confidence": 0.593,
       "fail_runs": 21,
       "genuine_exp_count": 24,
       "genuine_exp_direction_counts": {
@@ -8331,7 +8529,7 @@
       "latest_run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
       "latest_timestamp_utc": "2026-03-29T13:30:00Z",
       "literature_confidence": 0.819,
-      "overall_confidence": 0.707,
+      "overall_confidence": 0.706,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -12842,6 +13040,295 @@
         "literature": 3
       }
     },
+    "MECH-191": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.899",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:empirical_behavioral": 1,
+        "lit:review_comparative": 1,
+        "lit:review_historical": 1,
+        "lit:review_neuroscience": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech_191_vocal_emotion_mammals_briefer2012",
+      "latest_timestamp_utc": "2026-04-06T08:00:00Z",
+      "literature_confidence": 0.899,
+      "overall_confidence": 0.899,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-191",
+          "confidence": 0.85,
+          "confidence_rationale": "Molnar et al. (2010) provide a critical test of INV-057: congenitally blind humans who have never seen a dog can accurately categorize the emotional content of dog barks. This rules out visual experience, observational learning, and visual convention as explanations for cross-species emotional reading. The ability must rely on structural acoustic properties of the barks that map onto internal emotional categories the listeners already possess. This is strong evidence for functional specificity (INV-057) and causal externalization (MECH-191): the acoustic structure caused by the dog's emotional state is sufficient for emotional categorization by a naieve observer.",
+          "evidence_class": "lit:empirical_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The congenitally blind participants still had auditory experience with dogs (hearing dogs bark in daily life). The study cannot rule out auditory learning of dog bark-emotion associations, only visual learning.",
+            "The study used pre-defined emotional categories for participants to choose from, which constrains and potentially inflates accuracy. Free-form emotional labeling might show less consistency.",
+            "Performance was above chance but not perfect, suggesting the cross-species reading is noisy rather than the unambiguous legibility MECH-191 implies with the specific signal-state mappings (whine=wanting, yelp=nociception)."
+          ],
+          "run_id": "2026-04-06_inv_057_blind_perceive_dog_bark_molnar2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-191",
+          "confidence": 0.76,
+          "confidence_rationale": "Ekman (2009) reviews Darwin's five key contributions to emotion science, with two directly relevant to INV-057 and MECH-191: (1) facial expressions of emotion are universal across human cultures, strongly supported by subsequent cross-cultural research; (2) emotions exist across species 'from bees to roosters, dogs, cats, horses as well as other primates,' with cross-species continuity of expression. Darwin's 'serviceable habits' principle -- that expressions originate as functional movements that become ritualized signals -- is the historical precursor to MECH-191's causal externalization claim. Ekman's authority as the leading figure in emotion expression research lends weight to the universality and cross-species claims.",
+          "evidence_class": "lit:review_historical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "Ekman focuses on facial expressions, while MECH-191's examples are primarily vocal (whine, huff, yelp) and postural (tail wag, play bow). The universality evidence is strongest for facial expressions and may not transfer directly to vocalizations.",
+            "The universality of basic emotions (Ekman's six: anger, fear, disgust, surprise, happiness, sadness) has been challenged by constructionist emotion theories (e.g., Barrett's theory of constructed emotion). MECH-191 should not assume universal discrete emotions are uncontested.",
+            "Darwin's 'serviceable habits' principle explains how expressions originate (as functional movements) but not why they remain legible cross-architecturally. The evolutionary ritualization process could decouple signals from their original functional states, complicating MECH-191's causal externalization claim."
+          ],
+          "run_id": "2026-04-06_inv_057_darwin_emotion_universality_ekman2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-191",
+          "confidence": 0.8,
+          "confidence_rationale": "Brudzynski (2007) provides the clearest example of a stereotyped signal being causally generated by a specific neurochemical-emotional state. Rat 22-kHz calls are invariably produced by ascending cholinergic system activation (negative states: fear, aversion), while 50-kHz calls are invariably produced by ascending dopaminergic system activation (positive states: anticipation, play). The two call types have distinct acoustic characteristics that allow unambiguous recognition of the emitter's emotional state. This is the strongest evidence for MECH-191's core claim: the signal is a causal product of the internal state, not a learned convention.",
+          "evidence_class": "lit:review_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The rat USV system is unusually clean -- two discrete call types mapping to two discrete neurochemical systems. Most mammalian vocal systems are more continuous and less neatly categorized. The rat case may overstate the discreteness of functional-state-to-signal mapping.",
+            "Rats are not dogs. The specific acoustic parameters (22-kHz vs 50-kHz ultrasonic) are not cross-architecturally legible to humans without instrumentation. MECH-191's claim about cross-architectural legibility relies on signals being perceptible to observers, which USVs are not for human observers.",
+            "The neurochemical specificity (cholinergic=negative, dopaminergic=positive) may be unique to rodent USV circuits and not generalizable to the laryngeal vocalization systems used by dogs and humans."
+          ],
+          "run_id": "2026-04-06_mech_191_rat_usv_emotional_state_brudzynski2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-191",
+          "confidence": 0.78,
+          "confidence_rationale": "Briefer (2012) provides the most comprehensive review of how mammalian vocalizations are causally linked to internal emotional states via specific physiological production mechanisms. The review demonstrates that the emotional state of the caller causes changes in muscular tension and action of the vocal apparatus, which in turn impacts vocal parameters -- precisely the causal externalization mechanism MECH-191 claims. Acoustic parameters (F0, duration, rate, amplitude) systematically co-vary with arousal level and valence across species. This is strong evidence that stereotyped signals are causal products of internal functional states rather than learned conventions.",
+          "evidence_class": "lit:review_comparative",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The review focuses on continuous acoustic parameters (F0, amplitude, duration) rather than discrete stereotyped signals (whine, huff, yelp). MECH-191 posits categorically distinct signal types mapping to distinct functional states; the review suggests a more continuous arousal-valence space.",
+            "Most evidence comes from arousal-dependent variation; valence-dependent variation is less well established, with the review noting 'fewer and less consistent' findings for valence coding. MECH-191 requires functional specificity (whine=wanting, yelp=nociception), not just arousal encoding.",
+            "The review acknowledges that social context and audience effects modulate vocalization parameters, complicating the simple causal externalization story -- signals may be partly strategic, not purely causal products of internal states."
+          ],
+          "run_id": "2026-04-06_mech_191_vocal_emotion_mammals_briefer2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
+      }
+    },
+    "MECH-192": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.828",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:empirical_behavioral": 1,
+        "lit:review_proposal": 1,
+        "lit:review_systematic": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
+      "latest_timestamp_utc": "2026-04-06T08:00:00Z",
+      "literature_confidence": 0.828,
+      "overall_confidence": 0.828,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-192",
+          "confidence": 0.8,
+          "confidence_rationale": "Fournier et al. (2026) provide the most current systematic review of cross-species vocal emotion communication. Key finding: many animals recognize emotions in other species' vocalizations in a manner qualitatively similar to their perception of conspecific emotions. Familiarity with the vocalizing species and domestication enhance cross-species recognition but are not required. This supports ARC-048 (cross-species vocal emotion recognition is the pre-linguistic channel language extends), MECH-192 (legibility enables empathic coordination across species), and INV-057 (cross-species legibility evidences functional specificity). The review also identifies pitch, harshness, duration, and timing as the acoustic features mediating interspecies recognition.",
+          "evidence_class": "lit:review_systematic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The review notes significant research gaps in understanding which specific acoustic parameters drive interspecies emotion perception, limiting the mechanistic precision of the cross-species legibility claim.",
+            "Domestication and familiarity enhance cross-species recognition, which complicates INV-057's claim that legibility is automatic/innate rather than learned. The enhancement from familiarity suggests a learning component.",
+            "The review covers terrestrial tetrapods broadly, but most studies focus on mammals. The generalization to all 'cross-architectural' legibility may overstate the evidence if non-mammalian species show different patterns."
+          ],
+          "run_id": "2026-04-06_arc_048_cross_species_vocal_emotion_fournier2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-192",
+          "confidence": 0.65,
+          "confidence_rationale": "Silva & de Sousa (2011) propose that dogs may possess empathic capacities toward humans beyond simple emotional contagion, arising from three converging factors: wolf-ancestry social cognition, domestication-driven synchronization with humans, and selective breeding enhancing emotional communication. The proposal supports MECH-192 (signal legibility enables empathic coordination) by identifying the evolutionary pathway through which cross-species empathy became possible. For MECH-193, domestication itself is framed as a coupling-reinforcement process: thousands of years of preferential breeding of dogs that respond to human emotions strengthened the cross-species empathic channel.",
+          "evidence_class": "lit:review_proposal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "This is a proposal/hypothesis paper, not an empirical study. It reviews existing evidence suggestively but does not provide new experimental data.",
+            "The paper acknowledges uncertainty about whether dogs show emotional contagion, sympathetic concern, or empathic perspective-taking -- the level of empathic processing is unclear. MECH-192 requires functional state-matching, which is closest to emotional contagion, but the paper does not resolve which level operates.",
+            "The domestication and selective breeding argument could support a learned/selected association account rather than the automatic cross-architectural legibility that MECH-192 claims. Dogs may have been bred to read human emotions rather than inheriting it from shared functional architecture."
+          ],
+          "run_id": "2026-04-06_mech_192_canis_empathicus_silva2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-192",
+          "confidence": 0.82,
+          "confidence_rationale": "Albuquerque et al. (2016) demonstrate that dogs integrate visual and auditory emotional information cross-modally and cross-species. Dogs looked significantly longer at faces whose expressions were congruent with vocalization valence, for both conspecifics (other dogs) and heterospecifics (humans). This cross-modal, cross-species emotional integration -- previously documented only in humans -- is strong evidence that emotional signals are legible across species without shared language (MECH-192) and that this legibility evidences functional specificity rather than convention (INV-057).",
+          "evidence_class": "lit:empirical_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The study demonstrates recognition but cannot distinguish between direct state-matching (z_beta leakage / MECH-183 mechanism) and learned association. Dogs have extensive experience with human emotional expressions, so the cross-species recognition could be socially learned rather than automatic.",
+            "The congruency-looking paradigm measures expectation violation (longer looking at congruent stimuli), which indexes recognition/categorization but not necessarily empathic state-matching. MECH-192 requires that legibility produces functional state-matching, not just categorization.",
+            "Sample size is modest (17 dogs) and the effect, while significant, involves relatively small differences in looking time."
+          ],
+          "run_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "MECH-193": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.82",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:empirical_neuroendocrine": 1,
+        "lit:review_neuroscience": 1,
+        "lit:review_proposal": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015",
+      "latest_timestamp_utc": "2026-04-06T08:00:00Z",
+      "literature_confidence": 0.82,
+      "overall_confidence": 0.82,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-193",
+          "confidence": 0.65,
+          "confidence_rationale": "Silva & de Sousa (2011) propose that dogs may possess empathic capacities toward humans beyond simple emotional contagion, arising from three converging factors: wolf-ancestry social cognition, domestication-driven synchronization with humans, and selective breeding enhancing emotional communication. The proposal supports MECH-192 (signal legibility enables empathic coordination) by identifying the evolutionary pathway through which cross-species empathy became possible. For MECH-193, domestication itself is framed as a coupling-reinforcement process: thousands of years of preferential breeding of dogs that respond to human emotions strengthened the cross-species empathic channel.",
+          "evidence_class": "lit:review_proposal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "This is a proposal/hypothesis paper, not an empirical study. It reviews existing evidence suggestively but does not provide new experimental data.",
+            "The paper acknowledges uncertainty about whether dogs show emotional contagion, sympathetic concern, or empathic perspective-taking -- the level of empathic processing is unclear. MECH-192 requires functional state-matching, which is closest to emotional contagion, but the paper does not resolve which level operates.",
+            "The domestication and selective breeding argument could support a learned/selected association account rather than the automatic cross-architectural legibility that MECH-192 claims. Dogs may have been bred to read human emotions rather than inheriting it from shared functional architecture."
+          ],
+          "run_id": "2026-04-06_mech_192_canis_empathicus_silva2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-193",
+          "confidence": 0.72,
+          "confidence_rationale": "Walker et al. (2017) review the evidence that C-tactile (CT) afferents -- unmyelinated touch-sensitive nerves in hairy skin that respond optimally to gentle stroking -- mediate oxytocin release during affiliative touch. CT afferents fire maximally at the same stroking speed that humans perceive as most pleasant (~1-10 cm/s), providing a direct neural pathway from social touch to reward and bonding. This supports MECH-193's claim that affiliative signals (petting) activate reward pathways that strengthen empathic coupling, by providing the peripheral neural mechanism for touch-to-reward conversion.",
+          "evidence_class": "lit:review_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "The paper proposes CT afferents as oxytocin mediators but acknowledges this is a hypothesis -- the direct causal link between CT activation and oxytocin release has not been conclusively demonstrated in humans.",
+            "CT afferents are found in human hairy skin but their presence and functional role in dogs is less established. MECH-193 requires that affiliative touch (petting a dog) activates reward in both species; the CT afferent pathway is better documented in humans than in dogs.",
+            "The review focuses on the peripheral neural pathway for touch reward, not on whether this reward specifically strengthens empathic coupling as MECH-193 claims. The link from touch-pleasure to empathy-strengthening is assumed but not directly tested."
+          ],
+          "run_id": "2026-04-06_mech_193_ctactile_oxytocin_social_touch_walker2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-193",
+          "confidence": 0.85,
+          "confidence_rationale": "Nagasawa et al. (2015) demonstrate the biochemical positive feedback loop that MECH-193 predicts: dog gazing at owner increases owner's urinary oxytocin -> owner affiliative behavior increases -> dog oxytocin increases -> more gazing. Intranasal oxytocin administration to dogs increased gazing and subsequently increased owners' oxytocin. Wolves did not show this loop, suggesting it evolved during domestication. This is the most direct evidence for MECH-193's self-reinforcing coupling: successful social exchange -> neurochemical reward -> stronger coupling. Published in Science, this is the landmark paper in the field.",
+          "evidence_class": "lit:empirical_neuroendocrine",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_social_signal_legibility",
+          "failure_signatures": [
+            "MECH-193 claims the reinforcement loop operates via 'fast empathy coordination' (MECH-183 z_beta leakage), but Nagasawa et al.'s loop is mediated by mutual gaze and oxytocin, not by emotional state-matching per se. The oxytocin-gaze loop may be a bonding mechanism independent of empathic coordination.",
+            "Re-analysis of the data (noted in subsequent commentaries) found that the oxytocin increase was primarily evident in women owners; men showed no change or slight decrease. The sex effect was larger than the species effect (dog vs. wolf), complicating the simple interspecies loop narrative.",
+            "The study measures urinary oxytocin after 30-minute interactions, which is a slow endocrine measure. MECH-193's 'fast empathy coordination loop' implies rapid coupling, but the biochemical substrate operates on a much slower timescale than the behavioral loop."
+          ],
+          "run_id": "2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T08:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
     "MECH-900": {
       "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.707",
       "direction_counts": {
@@ -12890,7 +13377,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.309, lit_conf=0.808",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.308, lit_conf=0.808",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -12904,7 +13391,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.309,
+      "experimental_confidence": 0.308,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -13218,7 +13705,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.465, lit_conf=0.812",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.464, lit_conf=0.812",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -13232,7 +13719,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.465,
+      "experimental_confidence": 0.464,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -13837,7 +14324,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.528, lit_conf=0.863",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.527, lit_conf=0.863",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -13851,7 +14338,7 @@
         "lit:computational_model": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.528,
+      "experimental_confidence": 0.527,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -13945,7 +14432,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.76, lit_conf=0.837",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.759, lit_conf=0.837",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -13959,7 +14446,7 @@
         "lit:machine_learning_experiment": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.76,
+      "experimental_confidence": 0.759,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -16200,7 +16687,7 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.771, lit_conf=0.927",
+      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.77, lit_conf=0.927",
       "direction_counts": {
         "mixed": 1,
         "supports": 13,
@@ -16216,7 +16703,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.771,
+      "experimental_confidence": 0.77,
       "fail_runs": 4,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -16442,7 +16929,7 @@
       }
     },
     "SD-015": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.592, lit_conf=0.816",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.591, lit_conf=0.816",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -16455,7 +16942,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.592,
+      "experimental_confidence": 0.591,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -58608,6 +59095,312 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-048",
+      "confidence": 0.8,
+      "confidence_rationale": "Fournier et al. (2026) provide the most current systematic review of cross-species vocal emotion communication. Key finding: many animals recognize emotions in other species' vocalizations in a manner qualitatively similar to their perception of conspecific emotions. Familiarity with the vocalizing species and domestication enhance cross-species recognition but are not required. This supports ARC-048 (cross-species vocal emotion recognition is the pre-linguistic channel language extends), MECH-192 (legibility enables empathic coordination across species), and INV-057 (cross-species legibility evidences functional specificity). The review also identifies pitch, harshness, duration, and timing as the acoustic features mediating interspecies recognition.",
+      "evidence_class": "lit:review_systematic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The review notes significant research gaps in understanding which specific acoustic parameters drive interspecies emotion perception, limiting the mechanistic precision of the cross-species legibility claim.",
+        "Domestication and familiarity enhance cross-species recognition, which complicates INV-057's claim that legibility is automatic/innate rather than learned. The enhancement from familiarity suggests a learning component.",
+        "The review covers terrestrial tetrapods broadly, but most studies focus on mammals. The generalization to all 'cross-architectural' legibility may overstate the evidence if non-mammalian species show different patterns."
+      ],
+      "run_id": "2026-04-06_arc_048_cross_species_vocal_emotion_fournier2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-048",
+      "confidence": 0.75,
+      "confidence_rationale": "Filippi (2016) reviews evidence that emotional and interactional prosody (EIP) -- voice modulation conveying emotional content and facilitating vocal coordination -- is present across diverse animal species and may have been foundational to the development of linguistic prosody and language acquisition. This directly supports ARC-048's claim that language extends a pre-existing emotional vocalization channel. The review synthesizes three domains: adaptive benefits of EIP in non-human species, positive effects of EIP in human infant language development, and connections between linguistic prosody and musicality. The continuity thesis -- that language prosody evolved from emotional vocalization -- is the core of ARC-048.",
+      "evidence_class": "lit:review_comparative",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The review treats prosody (intonation, rhythm, stress) as the precursor to language, not the functional states themselves. ARC-048 claims functional states pre-exist and language adds resolution; Filippi claims the vocal modulation system pre-exists and language adds structure. These are related but not identical claims.",
+        "The continuity between animal EIP and human language is proposed but not empirically demonstrated -- the evolutionary gap is inferred from comparative observation, not from fossil/genetic evidence.",
+        "ARC-048 makes the specific claim that 'pre-linguistic Steve says I hurt (yelp); linguistic Daniel says my leg hurts when I walk on wet grass.' Filippi's prosody-continuity thesis does not address the functional-state-to-referent mapping that ARC-048 requires; it addresses the acoustic channel continuity."
+      ],
+      "run_id": "2026-04-06_arc_048_emotional_prosody_language_precursor_filippi2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-057",
+      "confidence": 0.8,
+      "confidence_rationale": "Fournier et al. (2026) provide the most current systematic review of cross-species vocal emotion communication. Key finding: many animals recognize emotions in other species' vocalizations in a manner qualitatively similar to their perception of conspecific emotions. Familiarity with the vocalizing species and domestication enhance cross-species recognition but are not required. This supports ARC-048 (cross-species vocal emotion recognition is the pre-linguistic channel language extends), MECH-192 (legibility enables empathic coordination across species), and INV-057 (cross-species legibility evidences functional specificity). The review also identifies pitch, harshness, duration, and timing as the acoustic features mediating interspecies recognition.",
+      "evidence_class": "lit:review_systematic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The review notes significant research gaps in understanding which specific acoustic parameters drive interspecies emotion perception, limiting the mechanistic precision of the cross-species legibility claim.",
+        "Domestication and familiarity enhance cross-species recognition, which complicates INV-057's claim that legibility is automatic/innate rather than learned. The enhancement from familiarity suggests a learning component.",
+        "The review covers terrestrial tetrapods broadly, but most studies focus on mammals. The generalization to all 'cross-architectural' legibility may overstate the evidence if non-mammalian species show different patterns."
+      ],
+      "run_id": "2026-04-06_arc_048_cross_species_vocal_emotion_fournier2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-057",
+      "confidence": 0.85,
+      "confidence_rationale": "Molnar et al. (2010) provide a critical test of INV-057: congenitally blind humans who have never seen a dog can accurately categorize the emotional content of dog barks. This rules out visual experience, observational learning, and visual convention as explanations for cross-species emotional reading. The ability must rely on structural acoustic properties of the barks that map onto internal emotional categories the listeners already possess. This is strong evidence for functional specificity (INV-057) and causal externalization (MECH-191): the acoustic structure caused by the dog's emotional state is sufficient for emotional categorization by a naieve observer.",
+      "evidence_class": "lit:empirical_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The congenitally blind participants still had auditory experience with dogs (hearing dogs bark in daily life). The study cannot rule out auditory learning of dog bark-emotion associations, only visual learning.",
+        "The study used pre-defined emotional categories for participants to choose from, which constrains and potentially inflates accuracy. Free-form emotional labeling might show less consistency.",
+        "Performance was above chance but not perfect, suggesting the cross-species reading is noisy rather than the unambiguous legibility MECH-191 implies with the specific signal-state mappings (whine=wanting, yelp=nociception)."
+      ],
+      "run_id": "2026-04-06_inv_057_blind_perceive_dog_bark_molnar2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-057",
+      "confidence": 0.76,
+      "confidence_rationale": "Ekman (2009) reviews Darwin's five key contributions to emotion science, with two directly relevant to INV-057 and MECH-191: (1) facial expressions of emotion are universal across human cultures, strongly supported by subsequent cross-cultural research; (2) emotions exist across species 'from bees to roosters, dogs, cats, horses as well as other primates,' with cross-species continuity of expression. Darwin's 'serviceable habits' principle -- that expressions originate as functional movements that become ritualized signals -- is the historical precursor to MECH-191's causal externalization claim. Ekman's authority as the leading figure in emotion expression research lends weight to the universality and cross-species claims.",
+      "evidence_class": "lit:review_historical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "Ekman focuses on facial expressions, while MECH-191's examples are primarily vocal (whine, huff, yelp) and postural (tail wag, play bow). The universality evidence is strongest for facial expressions and may not transfer directly to vocalizations.",
+        "The universality of basic emotions (Ekman's six: anger, fear, disgust, surprise, happiness, sadness) has been challenged by constructionist emotion theories (e.g., Barrett's theory of constructed emotion). MECH-191 should not assume universal discrete emotions are uncontested.",
+        "Darwin's 'serviceable habits' principle explains how expressions originate (as functional movements) but not why they remain legible cross-architecturally. The evolutionary ritualization process could decouple signals from their original functional states, complicating MECH-191's causal externalization claim."
+      ],
+      "run_id": "2026-04-06_inv_057_darwin_emotion_universality_ekman2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-057",
+      "confidence": 0.8,
+      "confidence_rationale": "Brudzynski (2007) provides the clearest example of a stereotyped signal being causally generated by a specific neurochemical-emotional state. Rat 22-kHz calls are invariably produced by ascending cholinergic system activation (negative states: fear, aversion), while 50-kHz calls are invariably produced by ascending dopaminergic system activation (positive states: anticipation, play). The two call types have distinct acoustic characteristics that allow unambiguous recognition of the emitter's emotional state. This is the strongest evidence for MECH-191's core claim: the signal is a causal product of the internal state, not a learned convention.",
+      "evidence_class": "lit:review_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The rat USV system is unusually clean -- two discrete call types mapping to two discrete neurochemical systems. Most mammalian vocal systems are more continuous and less neatly categorized. The rat case may overstate the discreteness of functional-state-to-signal mapping.",
+        "Rats are not dogs. The specific acoustic parameters (22-kHz vs 50-kHz ultrasonic) are not cross-architecturally legible to humans without instrumentation. MECH-191's claim about cross-architectural legibility relies on signals being perceptible to observers, which USVs are not for human observers.",
+        "The neurochemical specificity (cholinergic=negative, dopaminergic=positive) may be unique to rodent USV circuits and not generalizable to the laryngeal vocalization systems used by dogs and humans."
+      ],
+      "run_id": "2026-04-06_mech_191_rat_usv_emotional_state_brudzynski2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-057",
+      "confidence": 0.82,
+      "confidence_rationale": "Albuquerque et al. (2016) demonstrate that dogs integrate visual and auditory emotional information cross-modally and cross-species. Dogs looked significantly longer at faces whose expressions were congruent with vocalization valence, for both conspecifics (other dogs) and heterospecifics (humans). This cross-modal, cross-species emotional integration -- previously documented only in humans -- is strong evidence that emotional signals are legible across species without shared language (MECH-192) and that this legibility evidences functional specificity rather than convention (INV-057).",
+      "evidence_class": "lit:empirical_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The study demonstrates recognition but cannot distinguish between direct state-matching (z_beta leakage / MECH-183 mechanism) and learned association. Dogs have extensive experience with human emotional expressions, so the cross-species recognition could be socially learned rather than automatic.",
+        "The congruency-looking paradigm measures expectation violation (longer looking at congruent stimuli), which indexes recognition/categorization but not necessarily empathic state-matching. MECH-192 requires that legibility produces functional state-matching, not just categorization.",
+        "Sample size is modest (17 dogs) and the effect, while significant, involves relatively small differences in looking time."
+      ],
+      "run_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-191",
+      "confidence": 0.85,
+      "confidence_rationale": "Molnar et al. (2010) provide a critical test of INV-057: congenitally blind humans who have never seen a dog can accurately categorize the emotional content of dog barks. This rules out visual experience, observational learning, and visual convention as explanations for cross-species emotional reading. The ability must rely on structural acoustic properties of the barks that map onto internal emotional categories the listeners already possess. This is strong evidence for functional specificity (INV-057) and causal externalization (MECH-191): the acoustic structure caused by the dog's emotional state is sufficient for emotional categorization by a naieve observer.",
+      "evidence_class": "lit:empirical_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The congenitally blind participants still had auditory experience with dogs (hearing dogs bark in daily life). The study cannot rule out auditory learning of dog bark-emotion associations, only visual learning.",
+        "The study used pre-defined emotional categories for participants to choose from, which constrains and potentially inflates accuracy. Free-form emotional labeling might show less consistency.",
+        "Performance was above chance but not perfect, suggesting the cross-species reading is noisy rather than the unambiguous legibility MECH-191 implies with the specific signal-state mappings (whine=wanting, yelp=nociception)."
+      ],
+      "run_id": "2026-04-06_inv_057_blind_perceive_dog_bark_molnar2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-191",
+      "confidence": 0.76,
+      "confidence_rationale": "Ekman (2009) reviews Darwin's five key contributions to emotion science, with two directly relevant to INV-057 and MECH-191: (1) facial expressions of emotion are universal across human cultures, strongly supported by subsequent cross-cultural research; (2) emotions exist across species 'from bees to roosters, dogs, cats, horses as well as other primates,' with cross-species continuity of expression. Darwin's 'serviceable habits' principle -- that expressions originate as functional movements that become ritualized signals -- is the historical precursor to MECH-191's causal externalization claim. Ekman's authority as the leading figure in emotion expression research lends weight to the universality and cross-species claims.",
+      "evidence_class": "lit:review_historical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "Ekman focuses on facial expressions, while MECH-191's examples are primarily vocal (whine, huff, yelp) and postural (tail wag, play bow). The universality evidence is strongest for facial expressions and may not transfer directly to vocalizations.",
+        "The universality of basic emotions (Ekman's six: anger, fear, disgust, surprise, happiness, sadness) has been challenged by constructionist emotion theories (e.g., Barrett's theory of constructed emotion). MECH-191 should not assume universal discrete emotions are uncontested.",
+        "Darwin's 'serviceable habits' principle explains how expressions originate (as functional movements) but not why they remain legible cross-architecturally. The evolutionary ritualization process could decouple signals from their original functional states, complicating MECH-191's causal externalization claim."
+      ],
+      "run_id": "2026-04-06_inv_057_darwin_emotion_universality_ekman2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-191",
+      "confidence": 0.8,
+      "confidence_rationale": "Brudzynski (2007) provides the clearest example of a stereotyped signal being causally generated by a specific neurochemical-emotional state. Rat 22-kHz calls are invariably produced by ascending cholinergic system activation (negative states: fear, aversion), while 50-kHz calls are invariably produced by ascending dopaminergic system activation (positive states: anticipation, play). The two call types have distinct acoustic characteristics that allow unambiguous recognition of the emitter's emotional state. This is the strongest evidence for MECH-191's core claim: the signal is a causal product of the internal state, not a learned convention.",
+      "evidence_class": "lit:review_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The rat USV system is unusually clean -- two discrete call types mapping to two discrete neurochemical systems. Most mammalian vocal systems are more continuous and less neatly categorized. The rat case may overstate the discreteness of functional-state-to-signal mapping.",
+        "Rats are not dogs. The specific acoustic parameters (22-kHz vs 50-kHz ultrasonic) are not cross-architecturally legible to humans without instrumentation. MECH-191's claim about cross-architectural legibility relies on signals being perceptible to observers, which USVs are not for human observers.",
+        "The neurochemical specificity (cholinergic=negative, dopaminergic=positive) may be unique to rodent USV circuits and not generalizable to the laryngeal vocalization systems used by dogs and humans."
+      ],
+      "run_id": "2026-04-06_mech_191_rat_usv_emotional_state_brudzynski2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-191",
+      "confidence": 0.78,
+      "confidence_rationale": "Briefer (2012) provides the most comprehensive review of how mammalian vocalizations are causally linked to internal emotional states via specific physiological production mechanisms. The review demonstrates that the emotional state of the caller causes changes in muscular tension and action of the vocal apparatus, which in turn impacts vocal parameters -- precisely the causal externalization mechanism MECH-191 claims. Acoustic parameters (F0, duration, rate, amplitude) systematically co-vary with arousal level and valence across species. This is strong evidence that stereotyped signals are causal products of internal functional states rather than learned conventions.",
+      "evidence_class": "lit:review_comparative",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The review focuses on continuous acoustic parameters (F0, amplitude, duration) rather than discrete stereotyped signals (whine, huff, yelp). MECH-191 posits categorically distinct signal types mapping to distinct functional states; the review suggests a more continuous arousal-valence space.",
+        "Most evidence comes from arousal-dependent variation; valence-dependent variation is less well established, with the review noting 'fewer and less consistent' findings for valence coding. MECH-191 requires functional specificity (whine=wanting, yelp=nociception), not just arousal encoding.",
+        "The review acknowledges that social context and audience effects modulate vocalization parameters, complicating the simple causal externalization story -- signals may be partly strategic, not purely causal products of internal states."
+      ],
+      "run_id": "2026-04-06_mech_191_vocal_emotion_mammals_briefer2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-192",
+      "confidence": 0.8,
+      "confidence_rationale": "Fournier et al. (2026) provide the most current systematic review of cross-species vocal emotion communication. Key finding: many animals recognize emotions in other species' vocalizations in a manner qualitatively similar to their perception of conspecific emotions. Familiarity with the vocalizing species and domestication enhance cross-species recognition but are not required. This supports ARC-048 (cross-species vocal emotion recognition is the pre-linguistic channel language extends), MECH-192 (legibility enables empathic coordination across species), and INV-057 (cross-species legibility evidences functional specificity). The review also identifies pitch, harshness, duration, and timing as the acoustic features mediating interspecies recognition.",
+      "evidence_class": "lit:review_systematic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The review notes significant research gaps in understanding which specific acoustic parameters drive interspecies emotion perception, limiting the mechanistic precision of the cross-species legibility claim.",
+        "Domestication and familiarity enhance cross-species recognition, which complicates INV-057's claim that legibility is automatic/innate rather than learned. The enhancement from familiarity suggests a learning component.",
+        "The review covers terrestrial tetrapods broadly, but most studies focus on mammals. The generalization to all 'cross-architectural' legibility may overstate the evidence if non-mammalian species show different patterns."
+      ],
+      "run_id": "2026-04-06_arc_048_cross_species_vocal_emotion_fournier2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-192",
+      "confidence": 0.65,
+      "confidence_rationale": "Silva & de Sousa (2011) propose that dogs may possess empathic capacities toward humans beyond simple emotional contagion, arising from three converging factors: wolf-ancestry social cognition, domestication-driven synchronization with humans, and selective breeding enhancing emotional communication. The proposal supports MECH-192 (signal legibility enables empathic coordination) by identifying the evolutionary pathway through which cross-species empathy became possible. For MECH-193, domestication itself is framed as a coupling-reinforcement process: thousands of years of preferential breeding of dogs that respond to human emotions strengthened the cross-species empathic channel.",
+      "evidence_class": "lit:review_proposal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "This is a proposal/hypothesis paper, not an empirical study. It reviews existing evidence suggestively but does not provide new experimental data.",
+        "The paper acknowledges uncertainty about whether dogs show emotional contagion, sympathetic concern, or empathic perspective-taking -- the level of empathic processing is unclear. MECH-192 requires functional state-matching, which is closest to emotional contagion, but the paper does not resolve which level operates.",
+        "The domestication and selective breeding argument could support a learned/selected association account rather than the automatic cross-architectural legibility that MECH-192 claims. Dogs may have been bred to read human emotions rather than inheriting it from shared functional architecture."
+      ],
+      "run_id": "2026-04-06_mech_192_canis_empathicus_silva2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-192",
+      "confidence": 0.82,
+      "confidence_rationale": "Albuquerque et al. (2016) demonstrate that dogs integrate visual and auditory emotional information cross-modally and cross-species. Dogs looked significantly longer at faces whose expressions were congruent with vocalization valence, for both conspecifics (other dogs) and heterospecifics (humans). This cross-modal, cross-species emotional integration -- previously documented only in humans -- is strong evidence that emotional signals are legible across species without shared language (MECH-192) and that this legibility evidences functional specificity rather than convention (INV-057).",
+      "evidence_class": "lit:empirical_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The study demonstrates recognition but cannot distinguish between direct state-matching (z_beta leakage / MECH-183 mechanism) and learned association. Dogs have extensive experience with human emotional expressions, so the cross-species recognition could be socially learned rather than automatic.",
+        "The congruency-looking paradigm measures expectation violation (longer looking at congruent stimuli), which indexes recognition/categorization but not necessarily empathic state-matching. MECH-192 requires that legibility produces functional state-matching, not just categorization.",
+        "Sample size is modest (17 dogs) and the effect, while significant, involves relatively small differences in looking time."
+      ],
+      "run_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-193",
+      "confidence": 0.65,
+      "confidence_rationale": "Silva & de Sousa (2011) propose that dogs may possess empathic capacities toward humans beyond simple emotional contagion, arising from three converging factors: wolf-ancestry social cognition, domestication-driven synchronization with humans, and selective breeding enhancing emotional communication. The proposal supports MECH-192 (signal legibility enables empathic coordination) by identifying the evolutionary pathway through which cross-species empathy became possible. For MECH-193, domestication itself is framed as a coupling-reinforcement process: thousands of years of preferential breeding of dogs that respond to human emotions strengthened the cross-species empathic channel.",
+      "evidence_class": "lit:review_proposal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "This is a proposal/hypothesis paper, not an empirical study. It reviews existing evidence suggestively but does not provide new experimental data.",
+        "The paper acknowledges uncertainty about whether dogs show emotional contagion, sympathetic concern, or empathic perspective-taking -- the level of empathic processing is unclear. MECH-192 requires functional state-matching, which is closest to emotional contagion, but the paper does not resolve which level operates.",
+        "The domestication and selective breeding argument could support a learned/selected association account rather than the automatic cross-architectural legibility that MECH-192 claims. Dogs may have been bred to read human emotions rather than inheriting it from shared functional architecture."
+      ],
+      "run_id": "2026-04-06_mech_192_canis_empathicus_silva2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-193",
+      "confidence": 0.72,
+      "confidence_rationale": "Walker et al. (2017) review the evidence that C-tactile (CT) afferents -- unmyelinated touch-sensitive nerves in hairy skin that respond optimally to gentle stroking -- mediate oxytocin release during affiliative touch. CT afferents fire maximally at the same stroking speed that humans perceive as most pleasant (~1-10 cm/s), providing a direct neural pathway from social touch to reward and bonding. This supports MECH-193's claim that affiliative signals (petting) activate reward pathways that strengthen empathic coupling, by providing the peripheral neural mechanism for touch-to-reward conversion.",
+      "evidence_class": "lit:review_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "The paper proposes CT afferents as oxytocin mediators but acknowledges this is a hypothesis -- the direct causal link between CT activation and oxytocin release has not been conclusively demonstrated in humans.",
+        "CT afferents are found in human hairy skin but their presence and functional role in dogs is less established. MECH-193 requires that affiliative touch (petting a dog) activates reward in both species; the CT afferent pathway is better documented in humans than in dogs.",
+        "The review focuses on the peripheral neural pathway for touch reward, not on whether this reward specifically strengthens empathic coupling as MECH-193 claims. The link from touch-pleasure to empathy-strengthening is assumed but not directly tested."
+      ],
+      "run_id": "2026-04-06_mech_193_ctactile_oxytocin_social_touch_walker2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-193",
+      "confidence": 0.85,
+      "confidence_rationale": "Nagasawa et al. (2015) demonstrate the biochemical positive feedback loop that MECH-193 predicts: dog gazing at owner increases owner's urinary oxytocin -> owner affiliative behavior increases -> dog oxytocin increases -> more gazing. Intranasal oxytocin administration to dogs increased gazing and subsequently increased owners' oxytocin. Wolves did not show this loop, suggesting it evolved during domestication. This is the most direct evidence for MECH-193's self-reinforcing coupling: successful social exchange -> neurochemical reward -> stronger coupling. Published in Science, this is the landmark paper in the field.",
+      "evidence_class": "lit:empirical_neuroendocrine",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_social_signal_legibility",
+      "failure_signatures": [
+        "MECH-193 claims the reinforcement loop operates via 'fast empathy coordination' (MECH-183 z_beta leakage), but Nagasawa et al.'s loop is mediated by mutual gaze and oxytocin, not by emotional state-matching per se. The oxytocin-gaze loop may be a bonding mechanism independent of empathic coordination.",
+        "Re-analysis of the data (noted in subsequent commentaries) found that the oxytocin increase was primarily evident in women owners; men showed no change or slight decrease. The sex effect was larger than the species effect (dog vs. wolf), complicating the simple interspecies loop narrative.",
+        "The study measures urinary oxytocin after 30-minute interactions, which is a slow endocrine measure. MECH-193's 'fast empathy coordination loop' implies rapid coupling, but the biochemical substrate operates on a much slower timescale than the behavioral loop."
+      ],
+      "run_id": "2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T08:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "INV-051",
       "confidence": 0.65,
       "confidence_rationale": "Harvey's cognitive model provides the mechanistic account for the overload pole of INV-051. The model describes how excessive negatively-toned cognitive activity (worry, rumination) -- driven by perceived high-stakes waking demands -- triggers autonomic arousal and emotional distress that interfere with sleep initiation and maintenance. In REE terms, this is the condition of excessive MEL: when the waking system is overwhelmed by high-novelty or high-responsibility events that generate prediction errors faster than they can be resolved, the residual arousal spills into the sleep period, preventing the cortical quiescence needed for slow-wave consolidation. The paper supports the specific claim in INV-051 that excessive MEL produces 'overload insomnia and incomplete update even with extended sleep opportunity', via the well-established cognitive-arousal mechanism. Confidence 0.65 because Harvey's model describes a specific psychiatric/cognitive pathway (worry about sleep itself) which is a narrower mechanism than the general MEL overload claim in INV-051. The broader claim -- that any form of excessive cognitive/experiential load disrupts sleep -- is supported but the specific focus on sleep-related worry introduces a specificity mismatch.",
@@ -58937,7 +59730,7 @@
       "timestamp_utc": "2026-04-06T17:30:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-05T18:13:15.151329Z",
+  "generated_at_utc": "2026-04-05T19:32:04.795469Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

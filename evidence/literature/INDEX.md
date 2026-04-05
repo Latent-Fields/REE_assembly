@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-05T18:13:15.151329Z`
+Generated: `2026-04-05T19:32:04.795469Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -148,6 +148,7 @@ Generated: `2026-04-05T18:13:15.151329Z`
 | `targeted_review_sd_017` | [`2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/record.json) | 4 | [`summary`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-04-05_mech123_rem_precision_recalibration_walker2009`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/record.json) | 5 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |
+| `targeted_review_social_signal_legibility` | [`2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/record.json) | 10 | [`summary`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-04-02_arc_018_vte_lookahead_johnson2007`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/record.json) | 17 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-15_mech059_lit-0019_completion`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/record.json) | 5 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/summary.md) |
 | `targeted_review_v3_prefrontal_control` | [`2026-02-15_mech060_lit-0021_completion`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/record.json) | 5 | [`summary`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/summary.md) |

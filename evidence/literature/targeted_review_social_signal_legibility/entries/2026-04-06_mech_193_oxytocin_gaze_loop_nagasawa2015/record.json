@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["MECH-193"],
+  "source": {
+    "title": "Oxytocin-gaze positive loop and the coevolution of human-dog bonds.",
+    "authors": ["Nagasawa M", "Mitsui S", "En S", "Ohtani N", "Ohta M", "Sakuma Y", "Onaka T", "Mogi K", "Kikusui T"],
+    "year": 2015,
+    "venue": "Science",
+    "doi": "10.1126/science.1261022",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25883356/"
+  },
+  "evidence_class": "empirical_neuroendocrine",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Nagasawa et al. (2015) demonstrate the biochemical positive feedback loop that MECH-193 predicts: dog gazing at owner increases owner's urinary oxytocin -> owner affiliative behavior increases -> dog oxytocin increases -> more gazing. Intranasal oxytocin administration to dogs increased gazing and subsequently increased owners' oxytocin. Wolves did not show this loop, suggesting it evolved during domestication. This is the most direct evidence for MECH-193's self-reinforcing coupling: successful social exchange -> neurochemical reward -> stronger coupling. Published in Science, this is the landmark paper in the field.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-193 claims the reinforcement loop operates via 'fast empathy coordination' (MECH-183 z_beta leakage), but Nagasawa et al.'s loop is mediated by mutual gaze and oxytocin, not by emotional state-matching per se. The oxytocin-gaze loop may be a bonding mechanism independent of empathic coordination.",
+    "Re-analysis of the data (noted in subsequent commentaries) found that the oxytocin increase was primarily evident in women owners; men showed no change or slight decrease. The sex effect was larger than the species effect (dog vs. wolf), complicating the simple interspecies loop narrative.",
+    "The study measures urinary oxytocin after 30-minute interactions, which is a slow endocrine measure. MECH-193's 'fast empathy coordination loop' implies rapid coupling, but the biochemical substrate operates on a much slower timescale than the behavioral loop."
+  ],
+  "tags": ["mech_193", "oxytocin", "dog_human_bond", "gaze", "positive_feedback", "coevolution", "reward", "affiliative", "domestication"],
+  "mapping": {
+    "source_claim_statement": "Gazing behavior from dogs, but not wolves, increased urinary oxytocin concentrations in owners, which consequently facilitated owners' affiliation and increased oxytocin concentration in dogs. Nasally administered oxytocin increased gazing behavior in dogs, which in turn increased urinary oxytocin concentrations in owners. These findings support the existence of an interspecies oxytocin-mediated positive loop facilitated and modulated by gazing.",
+    "ree_translation": "MECH-193 claims that affiliative signals activate reward pathways that strengthen the coupling between self-model and attributed other-model, creating a self-reinforcing loop: successful coordination -> affiliative exchange -> stronger coupling -> better state-matching. Nagasawa et al. provide the biochemical substrate for this loop in the dog-human system: mutual gaze triggers oxytocin release in both species, oxytocin promotes affiliative behavior, affiliative behavior promotes more gaze. The oxytocin system is the neuroendocrine implementation of MECH-193's 'reward pathways that strengthen coupling.' The absence of this loop in wolves suggests it was selected for during domestication, implying that the coupling-reinforcement mechanism is itself an evolved adaptation.",
+    "mapping_caveat": "MECH-193 specifically claims the reinforcement operates on 'empathic coupling strength' via 'fast empathy coordination.' Nagasawa et al.'s loop operates via gaze and oxytocin, which is an affiliative bonding mechanism that may be independent of empathic state-matching. The paper shows that social exchange strengthens bonding, but does not demonstrate that this bonding specifically increases empathic accuracy or state-matching sensitivity.",
+    "source_context": "Nagasawa et al. (2015), Science 348(6232):333-6. Landmark paper published in Science by the Kikusui group (Azabu University, Japan). Demonstrated for the first time that the oxytocin positive feedback loop -- previously known only in human mother-infant bonding -- operates cross-species between dogs and humans. One of the most cited papers in human-animal interaction research."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.73,
+    "transfer_risk": 0.15,
+    "notes": "Highest source quality: published in Science, landmark finding, rigorous experimental design with wolf controls and oxytocin administration. Mapping fidelity is good but imperfect: the oxytocin-gaze loop is a coupling-reinforcement mechanism, but it is not specifically an empathy-coupling mechanism as MECH-193 claims. Transfer risk is very low: the dog-human system is the exact system under study."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_mech_192_canis_empathicus_silva2011",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["MECH-192", "MECH-193"],
+  "source": {
+    "title": "'Canis empathicus'? A proposal on dogs' capacity to empathize with humans.",
+    "authors": ["Silva K", "de Sousa L"],
+    "year": 2011,
+    "venue": "Biology Letters",
+    "doi": "10.1098/rsbl.2011.0083",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3130240/"
+  },
+  "evidence_class": "review_proposal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Silva & de Sousa (2011) propose that dogs may possess empathic capacities toward humans beyond simple emotional contagion, arising from three converging factors: wolf-ancestry social cognition, domestication-driven synchronization with humans, and selective breeding enhancing emotional communication. The proposal supports MECH-192 (signal legibility enables empathic coordination) by identifying the evolutionary pathway through which cross-species empathy became possible. For MECH-193, domestication itself is framed as a coupling-reinforcement process: thousands of years of preferential breeding of dogs that respond to human emotions strengthened the cross-species empathic channel.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is a proposal/hypothesis paper, not an empirical study. It reviews existing evidence suggestively but does not provide new experimental data.",
+    "The paper acknowledges uncertainty about whether dogs show emotional contagion, sympathetic concern, or empathic perspective-taking -- the level of empathic processing is unclear. MECH-192 requires functional state-matching, which is closest to emotional contagion, but the paper does not resolve which level operates.",
+    "The domestication and selective breeding argument could support a learned/selected association account rather than the automatic cross-architectural legibility that MECH-192 claims. Dogs may have been bred to read human emotions rather than inheriting it from shared functional architecture."
+  ],
+  "tags": ["mech_192", "mech_193", "dog_empathy", "domestication", "emotional_contagion", "cross_species", "wolf_ancestry", "selective_breeding"],
+  "mapping": {
+    "source_claim_statement": "Dogs may possess empathic capacities extending beyond simple emotional contagion toward humans, arising from wolf-ancestry social cognition, domestication-driven biological changes enabling synchronization with humans, and selective breeding potentially enhancing increasingly sophisticated forms of empathy. Dogs react to owner stress, catch human yawns (emotional contagion), and may infer human mental states.",
+    "ree_translation": "MECH-192 claims signal legibility is the prerequisite for fast empathy coordination to work across species. Silva & de Sousa propose that dogs have evolved exactly this capacity through three pathways: inherited social cognition from wolves (baseline mammalian legibility), domestication-driven synchronization (enhanced coupling between dog and human emotional systems), and selective breeding (further refinement of human-emotion-reading). This evolutionary layering maps onto MECH-192's requirement: the baseline legibility from shared mammalian functional architecture (INV-057) was enhanced by domestication and breeding into the robust cross-species empathic capacity observed today. For MECH-193, the domestication process itself is a species-level version of the coupling-reinforcement loop: dogs that responded to human emotions were preferentially bred, strengthening the coupling over generations.",
+    "mapping_caveat": "This is a proposal paper, not experimental evidence. The three-pathway model is plausible but not empirically validated in this paper. Additionally, the domestication/breeding pathway complicates the 'automatic cross-architectural legibility' framing of MECH-192 -- it suggests that significant selection pressure was needed to achieve the current level of dog-human empathic coordination, which may argue against the innate legibility thesis.",
+    "source_context": "Silva & de Sousa (2011), Biology Letters 7(4):468-71. Published in a Royal Society journal. An early proposal paper that helped frame the research program on dog-human empathy, preceding the Nagasawa (2015) and Albuquerque (2016) empirical studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.20,
+    "notes": "Moderate-high source quality: published in Biology Letters (Royal Society), but is a proposal/hypothesis paper rather than empirical research. Moderate mapping fidelity: the three-pathway model aligns with MECH-192 and MECH-193 conceptually, but lacks the specificity of empirical findings. Low transfer risk: directly addresses the dog-human system."
+  }
+}

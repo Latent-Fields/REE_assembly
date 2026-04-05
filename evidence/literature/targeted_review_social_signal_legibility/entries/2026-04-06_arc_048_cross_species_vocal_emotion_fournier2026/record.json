@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_arc_048_cross_species_vocal_emotion_fournier2026",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["ARC-048", "MECH-192", "INV-057"],
+  "source": {
+    "title": "What do we know about vocal communication of emotion between different species of terrestrial tetrapods?",
+    "authors": ["Fournier F", "Briefer EF", "Pisanski K", "Levrero F"],
+    "year": 2026,
+    "venue": "Biological Reviews of the Cambridge Philosophical Society",
+    "doi": "10.1002/brv.70111",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41536082/"
+  },
+  "evidence_class": "review_systematic",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Fournier et al. (2026) provide the most current systematic review of cross-species vocal emotion communication. Key finding: many animals recognize emotions in other species' vocalizations in a manner qualitatively similar to their perception of conspecific emotions. Familiarity with the vocalizing species and domestication enhance cross-species recognition but are not required. This supports ARC-048 (cross-species vocal emotion recognition is the pre-linguistic channel language extends), MECH-192 (legibility enables empathic coordination across species), and INV-057 (cross-species legibility evidences functional specificity). The review also identifies pitch, harshness, duration, and timing as the acoustic features mediating interspecies recognition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review notes significant research gaps in understanding which specific acoustic parameters drive interspecies emotion perception, limiting the mechanistic precision of the cross-species legibility claim.",
+    "Domestication and familiarity enhance cross-species recognition, which complicates INV-057's claim that legibility is automatic/innate rather than learned. The enhancement from familiarity suggests a learning component.",
+    "The review covers terrestrial tetrapods broadly, but most studies focus on mammals. The generalization to all 'cross-architectural' legibility may overstate the evidence if non-mammalian species show different patterns."
+  ],
+  "tags": ["arc_048", "mech_192", "inv_057", "cross_species", "vocal_emotion", "interspecies", "acoustic_parameters", "systematic_review", "domestication", "familiarity"],
+  "mapping": {
+    "source_claim_statement": "Many animals recognise a range of emotions in the vocalisations of other species in a manner qualitatively similar to their perception of conspecific emotions. Acoustic features including pitch, harshness, call duration, and timing mediate this recognition. Familiarity with a vocalizing species and domestication enhance cross-species emotion recognition.",
+    "ree_translation": "For ARC-048: cross-species vocal emotion recognition demonstrates that the emotional vocalization channel operates across species boundaries, supporting the claim that language extends a pre-existing channel rather than creating a new one. If dogs can read human vocal emotions and vice versa, the functional states being communicated must exist pre-linguistically. For MECH-192: the review confirms that signal legibility operates cross-species, meeting the prerequisite for fast empathy coordination without shared language. For INV-057: the fact that recognition is qualitatively similar for conspecific and heterospecific emotions supports functional specificity -- the acoustic features carrying emotional information are structurally similar across species because they are produced by similar physiological mechanisms.",
+    "mapping_caveat": "The finding that domestication and familiarity enhance cross-species recognition complicates the pure 'automatic legibility' claim. INV-057 argues that cross-species legibility is largely automatic (evidencing shared functional architecture); this review suggests a learning component that improves baseline automatic recognition. The claims may need to accommodate a baseline-automatic-plus-learning model rather than a purely innate model.",
+    "source_context": "Fournier, Briefer, Pisanski & Levrero (2026), Biological Reviews. The most current systematic review of interspecies vocal emotion communication. Published in a top-tier biology review journal. Briefer (second author) is the leading researcher in animal vocal emotion expression."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.18,
+    "notes": "High source quality: systematic review in Biological Reviews (top-tier), with Briefer as co-author. Good mapping fidelity: directly addresses cross-species vocal emotion recognition, the central phenomenon for three claims. Low transfer risk: the findings are directly applicable to the dog-human system."
+  }
+}

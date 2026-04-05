@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_inv_057_darwin_emotion_universality_ekman2009",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["INV-057", "MECH-191"],
+  "source": {
+    "title": "Darwin's contributions to our understanding of emotional expressions.",
+    "authors": ["Ekman P"],
+    "year": 2009,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2009.0189",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2781895/"
+  },
+  "evidence_class": "review_historical",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Ekman (2009) reviews Darwin's five key contributions to emotion science, with two directly relevant to INV-057 and MECH-191: (1) facial expressions of emotion are universal across human cultures, strongly supported by subsequent cross-cultural research; (2) emotions exist across species 'from bees to roosters, dogs, cats, horses as well as other primates,' with cross-species continuity of expression. Darwin's 'serviceable habits' principle -- that expressions originate as functional movements that become ritualized signals -- is the historical precursor to MECH-191's causal externalization claim. Ekman's authority as the leading figure in emotion expression research lends weight to the universality and cross-species claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ekman focuses on facial expressions, while MECH-191's examples are primarily vocal (whine, huff, yelp) and postural (tail wag, play bow). The universality evidence is strongest for facial expressions and may not transfer directly to vocalizations.",
+    "The universality of basic emotions (Ekman's six: anger, fear, disgust, surprise, happiness, sadness) has been challenged by constructionist emotion theories (e.g., Barrett's theory of constructed emotion). MECH-191 should not assume universal discrete emotions are uncontested.",
+    "Darwin's 'serviceable habits' principle explains how expressions originate (as functional movements) but not why they remain legible cross-architecturally. The evolutionary ritualization process could decouple signals from their original functional states, complicating MECH-191's causal externalization claim."
+  ],
+  "tags": ["inv_057", "mech_191", "darwin", "ekman", "facial_expression", "universality", "cross_species", "serviceable_habits", "evolution", "basic_emotions"],
+  "mapping": {
+    "source_claim_statement": "Darwin made five key contributions: (1) emotions as discrete modules; (2) the face as the richest source of emotional information; (3) facial expressions of emotion are universal across cultures; (4) emotions exist across species from bees to primates; (5) emotional expressions evolved through 'serviceable habits' -- movements that originally served practical functions became ritualized as signals.",
+    "ree_translation": "INV-057 claims that cross-species signal legibility evidences functional specificity of stereotyped signals. Ekman's review of Darwin provides the historical and theoretical foundation: Darwin's cross-species continuity (contribution 4) and the 'serviceable habits' principle (contribution 5) are the original statement of the causal externalization thesis. Expressions originated as functional movements (a snarl as preparation to bite, a frown as eye-shading) and became ritualized signals -- but they retain their causal connection to the internal state because the movement pattern is still produced by the same motor programs that drove the original function. This is the evolutionary mechanism behind MECH-191: signals are legible because they are produced by the same neural-motor systems that generate the internal states they signal.",
+    "mapping_caveat": "Ekman's universality evidence is primarily for human facial expressions across cultures, not cross-species legibility per se. Darwin made the cross-species argument, but Ekman's own research program focused on within-species universality. The transfer from 'universal within humans' to 'legible across species' requires additional argument. Additionally, the constructionist challenge to basic emotion theory (Barrett, 2017) complicates the discrete functional-state mapping that MECH-191 requires.",
+    "source_context": "Ekman (2009), Philosophical Transactions of the Royal Society B 364:3449-51. Paul Ekman is the most influential researcher in facial expression and emotion, known for the Facial Action Coding System (FACS) and the basic emotions framework. This review was published in a special Darwin anniversary issue."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.28,
+    "notes": "Very high source quality: Ekman is the authority in the field, published in a top-tier Royal Society journal in a Darwin anniversary issue. Moderate mapping fidelity: the universality and serviceable-habits framework support MECH-191/INV-057 at the theoretical level, but the primary evidence is for facial expressions rather than vocalizations. Moderate transfer risk: the transfer from 'universal within humans' to 'legible cross-species' adds an inferential step."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_arc_048_emotional_prosody_language_precursor_filippi2016",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["ARC-048"],
+  "source": {
+    "title": "Emotional and interactional prosody across animal communication systems: a comparative approach to the emergence of language.",
+    "authors": ["Filippi P"],
+    "year": 2016,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2016.01393",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27733835/"
+  },
+  "evidence_class": "review_comparative",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Filippi (2016) reviews evidence that emotional and interactional prosody (EIP) -- voice modulation conveying emotional content and facilitating vocal coordination -- is present across diverse animal species and may have been foundational to the development of linguistic prosody and language acquisition. This directly supports ARC-048's claim that language extends a pre-existing emotional vocalization channel. The review synthesizes three domains: adaptive benefits of EIP in non-human species, positive effects of EIP in human infant language development, and connections between linguistic prosody and musicality. The continuity thesis -- that language prosody evolved from emotional vocalization -- is the core of ARC-048.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review treats prosody (intonation, rhythm, stress) as the precursor to language, not the functional states themselves. ARC-048 claims functional states pre-exist and language adds resolution; Filippi claims the vocal modulation system pre-exists and language adds structure. These are related but not identical claims.",
+    "The continuity between animal EIP and human language is proposed but not empirically demonstrated -- the evolutionary gap is inferred from comparative observation, not from fossil/genetic evidence.",
+    "ARC-048 makes the specific claim that 'pre-linguistic Steve says I hurt (yelp); linguistic Daniel says my leg hurts when I walk on wet grass.' Filippi's prosody-continuity thesis does not address the functional-state-to-referent mapping that ARC-048 requires; it addresses the acoustic channel continuity."
+  ],
+  "tags": ["arc_048", "language_evolution", "emotional_prosody", "animal_communication", "continuity_hypothesis", "infant_language", "musicality"],
+  "mapping": {
+    "source_claim_statement": "The capacity for emotional and interactional prosody may have been foundational to the development of linguistic prosody and possibly music in humans. Voice modulation conveying emotional content and facilitating vocal coordination appears across diverse animal species. EIP has positive effects in human infant language and social development, and there are cognitive connections between linguistic prosody and musicality.",
+    "ree_translation": "ARC-048 claims language is not a separate cognitive system but a high-bandwidth externalization channel for internal functional states that already exist pre-linguistically. Filippi's review provides the evolutionary bridge: emotional prosody (the acoustic channel for emotional states) exists across species and is the developmental and evolutionary precursor to linguistic prosody. Human infants learn language through a channel that is already emotional -- motherese/infant-directed speech is prosodically exaggerated precisely because it engages the emotional vocalization system. This supports ARC-048's core claim that language bootstraps from pre-linguistic emotional signals, adding 'resolution, causation, context' to a channel that already carries functional state information.",
+    "mapping_caveat": "Filippi's continuity is at the channel level (acoustic prosody evolves into linguistic prosody), while ARC-048's continuity is at the content level (functional states are the referents that language adds precision to). These are complementary but not identical. The review does not address whether the specific functional states that pre-linguistic signals encode become the referents of early linguistic terms, which is ARC-048's specific claim.",
+    "source_context": "Filippi (2016), Frontiers in Psychology 7:1393. Review published in an open-access journal. Synthesizes comparative animal communication, infant development, and music cognition. Part of the growing literature on language evolution from emotional vocalization."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.25,
+    "notes": "Moderate-high source quality: published in Frontiers in Psychology (respectable but not top-tier), covers the relevant comparative literature comprehensively. Moderate mapping fidelity: the prosody-continuity thesis supports ARC-048's channel-continuity claim, but does not directly address the functional-state-as-referent claim. Low-moderate transfer risk: the evolutionary argument is directly relevant to ARC-048."
+  }
+}

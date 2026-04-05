@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["MECH-192", "INV-057"],
+  "source": {
+    "title": "Dogs recognize dog and human emotions.",
+    "authors": ["Albuquerque N", "Guo K", "Wilkinson A", "Savalli C", "Otta E", "Mills D"],
+    "year": 2016,
+    "venue": "Biology Letters",
+    "doi": "10.1098/rsbl.2015.0883",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26763220/"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Albuquerque et al. (2016) demonstrate that dogs integrate visual and auditory emotional information cross-modally and cross-species. Dogs looked significantly longer at faces whose expressions were congruent with vocalization valence, for both conspecifics (other dogs) and heterospecifics (humans). This cross-modal, cross-species emotional integration -- previously documented only in humans -- is strong evidence that emotional signals are legible across species without shared language (MECH-192) and that this legibility evidences functional specificity rather than convention (INV-057).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study demonstrates recognition but cannot distinguish between direct state-matching (z_beta leakage / MECH-183 mechanism) and learned association. Dogs have extensive experience with human emotional expressions, so the cross-species recognition could be socially learned rather than automatic.",
+    "The congruency-looking paradigm measures expectation violation (longer looking at congruent stimuli), which indexes recognition/categorization but not necessarily empathic state-matching. MECH-192 requires that legibility produces functional state-matching, not just categorization.",
+    "Sample size is modest (17 dogs) and the effect, while significant, involves relatively small differences in looking time."
+  ],
+  "tags": ["mech_192", "inv_057", "dog", "human", "cross_species", "emotion_recognition", "multimodal", "visual_auditory", "congruency"],
+  "mapping": {
+    "source_claim_statement": "Dogs looked significantly longer at the face whose expression was congruent to the valence of vocalization, for both conspecifics and heterospecifics. This ability to integrate cross-modal emotional information from two different species was previously known only in humans. The finding suggests dogs form abstract mental representations of positive and negative emotional states that can be triggered by both visual and auditory cues.",
+    "ree_translation": "MECH-192 claims that z_beta leakage (MECH-183) can only produce functional state-matching if the perceived signal maps onto a corresponding internal state in the observer. Albuquerque et al. provide evidence that dogs can read emotional valence from both visual and auditory channels and across species boundaries. This cross-modal, cross-species integration requires that the signals carry valence information in a format that the observer's internal emotional architecture can parse -- which is exactly what MECH-191's causal externalization provides. For INV-057, the cross-species reading (dogs reading human emotions and vice versa) evidences functional specificity: if signals were conventional, each species would need to learn the other's conventions separately for each modality.",
+    "mapping_caveat": "The study shows cross-species emotion recognition but cannot determine whether this triggers empathic state-matching (MECH-192's specific claim) or merely cognitive categorization. Looking-time congruency is a recognition measure, not an empathy measure. The domestication history of dogs means extensive exposure to human expressions, complicating the 'automatic' reading MECH-192 requires.",
+    "source_context": "Albuquerque et al. (2016), Biology Letters 12(1):20150883. Published in a Royal Society journal, this was the first demonstration of cross-modal cross-species emotion recognition in a non-human species. Widely covered in media and highly cited."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "High source quality: Royal Society journal, rigorous experimental design with congruency paradigm, novel finding. Good mapping fidelity: cross-species emotional signal reading is the central phenomenon MECH-192 and INV-057 address. Low transfer risk: the dog-human system is the exact system the REE claims describe."
+  }
+}

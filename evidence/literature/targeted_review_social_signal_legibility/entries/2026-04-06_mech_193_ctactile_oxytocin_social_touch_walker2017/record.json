@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_signal_legibility",
+  "entry_id": "2026-04-06_mech_193_ctactile_oxytocin_social_touch_walker2017",
+  "timestamp_utc": "2026-04-06T08:00:00Z",
+  "claim_ids_tested": ["MECH-193"],
+  "source": {
+    "title": "C-tactile afferents: Cutaneous mediators of oxytocin release during affiliative tactile interactions?",
+    "authors": ["Walker SC", "Trotter PD", "Swaney WT", "Marshall A", "McGlone FP"],
+    "year": 2017,
+    "venue": "Neuropeptides",
+    "doi": "10.1016/j.npep.2017.01.001",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28162847/"
+  },
+  "evidence_class": "review_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Walker et al. (2017) review the evidence that C-tactile (CT) afferents -- unmyelinated touch-sensitive nerves in hairy skin that respond optimally to gentle stroking -- mediate oxytocin release during affiliative touch. CT afferents fire maximally at the same stroking speed that humans perceive as most pleasant (~1-10 cm/s), providing a direct neural pathway from social touch to reward and bonding. This supports MECH-193's claim that affiliative signals (petting) activate reward pathways that strengthen empathic coupling, by providing the peripheral neural mechanism for touch-to-reward conversion.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper proposes CT afferents as oxytocin mediators but acknowledges this is a hypothesis -- the direct causal link between CT activation and oxytocin release has not been conclusively demonstrated in humans.",
+    "CT afferents are found in human hairy skin but their presence and functional role in dogs is less established. MECH-193 requires that affiliative touch (petting a dog) activates reward in both species; the CT afferent pathway is better documented in humans than in dogs.",
+    "The review focuses on the peripheral neural pathway for touch reward, not on whether this reward specifically strengthens empathic coupling as MECH-193 claims. The link from touch-pleasure to empathy-strengthening is assumed but not directly tested."
+  ],
+  "tags": ["mech_193", "c_tactile_afferent", "social_touch", "oxytocin", "reward", "affiliative", "gentle_stroking", "peripheral_nerve"],
+  "mapping": {
+    "source_claim_statement": "C-tactile afferents are unmyelinated mechanoreceptors in hairy skin that respond optimally to slow, gentle stroking (1-10 cm/s) -- the same speed perceived as most pleasant. Stimulating CT afferents reduces physiological arousal, provides positive emotional valence, and decreases pain responses -- effects mirroring those of oxytocin. The authors propose that CT afferent activation mediates oxytocin release during social and nurturing physical contact.",
+    "ree_translation": "MECH-193 claims that affiliative signals (petting, licks) activate reward pathways that strengthen empathic coupling. Walker et al. provide the peripheral neural mechanism: CT afferents are the sensory transducers that convert gentle touch into reward-relevant signals. When Daniel pets Steve, CT afferents in Daniel's skin (and presumably analogous afferents in Steve's skin) fire optimally at stroking speed, activating oxytocin release and pleasant affect. This is the bottom-up pathway from affiliative touch to the reward signal that MECH-193 requires. Combined with Nagasawa et al.'s oxytocin-gaze loop, this gives a complete peripheral-to-central pathway: affiliative touch -> CT afferent activation -> oxytocin release -> bonding reinforcement.",
+    "mapping_caveat": "The CT-to-oxytocin link remains hypothetical. The paper is a review proposing this pathway, not an empirical demonstration. Additionally, MECH-193 claims the reward strengthens empathic coupling specifically, while Walker et al. discuss bonding and attachment more broadly. The specificity of the empathic coupling claim is not supported by this evidence.",
+    "source_context": "Walker et al. (2017), Neuropeptides 64:27-38. Review from a group specializing in social touch neuroscience. CT afferents were discovered in the 1990s and have become a major focus of social neuroscience. The social touch hypothesis proposes that CT afferents evolved specifically for affiliative interpersonal touch."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality: review in a specialized neuroendocrine journal. Moderate mapping fidelity: CT afferents provide the touch-to-reward pathway MECH-193 requires, but the link to empathic coupling specifically is extrapolated. Moderate transfer risk: CT afferents are well-documented in humans but their role in the dog's experience of petting is less established."
+  }
+}
