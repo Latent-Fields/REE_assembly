@@ -393,7 +393,7 @@ def read_merged_runner_status() -> dict:
         "runner_pid": None,  # not meaningful for merged view
         "last_updated": latest_update,
         "idle": not any_running,
-        "current": current_list[0] if len(current_list) == 1 else None,
+        "current": current_list[0] if current_list else None,
         "current_all": current_list if len(current_list) > 1 else None,
         "queue": merged_queue,
         "completed": all_completed,
