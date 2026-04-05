@@ -719,6 +719,18 @@
     "title": "Any agent that builds a model of the world, acts in that world, and learns from experience cannot safely update its world model while using it to navigate the world; it therefore requires periodic offline phases in which action is suspended and the model is reorganised via replay and simulation -- this is not a biological contingency but a general computational necessity for model-building agents.",
     "type": "invariant"
   },
+  "INV-050": {
+    "status": "candidate",
+    "subject": "architecture.three_drive_sleep_regulation",
+    "title": "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking.",
+    "type": "invariant"
+  },
+  "INV-051": {
+    "status": "candidate",
+    "subject": "architecture.mel_optimal_range_requirement",
+    "title": "There exists an optimal range of daily Model Error Load (MEL): insufficient MEL (extreme monotony, isolation, institutional under-stimulation) produces progressive model rigidity via under-stimulation of the learning drive even when sleep architecture is intact; excessive MEL (acute trauma, overwhelming novelty, extreme responsibility) produces overload insomnia and incomplete update even with extended sleep opportunity.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -1793,6 +1805,24 @@
     "title": "Elevated tonic noradrenergic activity (from chronic stress, stimulant exposure, or noradrenaline reuptake inhibitor antidepressants) suppresses REM sleep by maintaining locus coeruleus REM-off firing above the silence threshold required for REM generation, thereby blocking MECH-123 precision recalibration and producing progressive behavioural rigidity equivalent to partial MECH-123 deprivation -- independent of any pharmacological REM suppression.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-179": {
+    "status": "candidate",
+    "subject": "sleep.mel_type_phase_specificity",
+    "title": "Prediction error type determines which sleep phase is demanded for processing: episodic, spatial, and factual errors (incorrect world-state predictions) primarily demand NREM-mediated schema replay (MECH-121) for prior correction; emotional, social, and identity-threatening errors primarily demand REM-mediated simulation and recalibration (MECH-123) for policy and salience update.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-180": {
+    "status": "candidate",
+    "subject": "sleep.novelty_adaptive_sleep_upregulation",
+    "title": "Novel environments and high-MEL learning episodes adaptively upregulate the learning drive component of sleep (INV-050 third drive), producing measurable increases in slow-wave activity power, sleep spindle density, and hippocampal replay rate proportional to the novelty and prediction error load encountered during the preceding wake period.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-181": {
+    "status": "candidate",
+    "subject": "dementia.cognitive_reserve_as_update_loop_maintenance",
+    "title": "Cognitive reserve (produced by education, bilingualism, complex occupation, social engagement, and enriched environments) protects against dementia primarily by maintaining sustained novelty-driven Model Error Load throughout the lifespan, keeping the SD-017 model update system exercised and preserving sleep-architecture responsiveness to learning demands; conversely, understimulating environments accelerate dementia by depriving the update system of the error signal needed to remain adaptive.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -1983,6 +2013,12 @@
     "status": "open",
     "subject": "pharmacology.sws_rem_ratio_dementia_outcome_predictor",
     "title": "Among sleep-promoting medications prescribed in older adults, does relative SWS/REM ratio preservation (measured by polysomnography) predict differential dementia outcomes independent of total sleep time -- and if so, does this validate phase-specific pipeline damage as the causal intermediate and provide a pharmacodynamic biomarker for disease-modifying trials?",
+    "type": "open_question"
+  },
+  "Q-033": {
+    "status": "open",
+    "subject": "clinical.actigraphy_mel_mismatch_decompensation_forecasting",
+    "title": "Can long-run actigraphy data, combined with daily prediction error load estimates derived from passive behavioural, physiological, and subjective signals, be used to infer latent sleep-phase sufficiency relative to waking error burden, and can this mismatch index predict clinical decompensation type and timing with better specificity than total sleep time alone?",
     "type": "open_question"
   },
   "SD-001": {

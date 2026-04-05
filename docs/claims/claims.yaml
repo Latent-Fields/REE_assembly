@@ -10882,3 +10882,276 @@
     nights of REM suppression than low-NA-tone controls at matched total
     sleep time -- confirming that it is REM quality, not total sleep, that
     mediates the rigidity effect.
+
+- id: INV-050
+  title: "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking."
+  claim_type: invariant
+  subject: architecture.three_drive_sleep_regulation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-049
+    - INV-044
+    - SD-017
+    - MECH-120
+    - MECH-121
+    - MECH-123
+  notes: >
+    Registered 2026-04-06. Standard two-process sleep regulation (Borbely 1982)
+    identifies two drives: (1) circadian -- timing of sleep opportunity gated by
+    the suprachiasmatic nucleus; (2) homeostatic -- synaptic sleep pressure (MECH-120
+    SHY drive) accumulated during waking and discharged by SWS. INV-050 proposes a
+    third drive: model-update demand.
+    The Model Error Load (MEL) is the accumulated prediction error generated during
+    a waking period -- the integrated mismatch between the agent's current world
+    model and what it actually encountered. Unlike synaptic homeostatic pressure
+    (which is roughly uniform across waking episodes), MEL is highly variable:
+    a day of high novelty, emotional salience, or complex learning generates far
+    more MEL than a routine day. INV-049 establishes that this MEL must be
+    processed offline; INV-050 adds that the brain's sleep architecture responds
+    adaptively to MEL magnitude.
+    Empirical support: after novel environment exposure, animals show increased
+    slow-wave activity, increased spindle density, and increased hippocampal replay
+    -- proportional to the novelty and learning load (Wilson & McNaughton 1994,
+    Science; Tononi & Cirelli 2003, Brain Research Bulletin; Stickgold et al. 2001,
+    Nature Neuroscience). This adaptive response is MECH-180.
+    Clinical implication: the clinically relevant variable is not hours slept but
+    effective overnight update capacity relative to MEL. A person can sleep
+    8 hours and still have an update deficit if: (a) MEL was unusually high
+    (high novelty, emotional burden, complex responsibility), or (b) sleep
+    architecture was phase-inappropriate for the error type (REM deficit on an
+    emotionally burdensome day, NREM deficit after a complex learning day), or
+    (c) fragmentation reduced the efficiency of each phase (MECH-120/121/122
+    disrupted by MECH-174). This explains why some individuals sleep normal
+    durations and still decompensate.
+
+- id: INV-051
+  title: "There exists an optimal range of daily Model Error Load (MEL): insufficient MEL (extreme monotony, isolation, institutional under-stimulation) produces progressive model rigidity via under-stimulation of the learning drive even when sleep architecture is intact; excessive MEL (acute trauma, overwhelming novelty, extreme responsibility) produces overload insomnia and incomplete update even with extended sleep opportunity."
+  claim_type: invariant
+  subject: architecture.mel_optimal_range_requirement
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-050
+    - INV-049
+    - MECH-181
+  notes: >
+    Registered 2026-04-06. INV-051 is the bounding invariant on MEL: the
+    model update system requires a Goldilocks condition in prediction error load.
+    Insufficient MEL (lower bound failure):
+    Extreme monotony -- routine identical environment, repetitive simple tasks,
+    social isolation, institutionalisation -- generates very little prediction
+    error. The learning drive (INV-050 third drive) is not activated. Even if
+    sleep architecture is intact (circadian and homeostatic drives normal), the
+    offline update phases process very little because there is little to process.
+    The world model stagnates. Prior confidence becomes excessive not because
+    evidence is wrong but because no new evidence challenges it. Policy selection
+    converges on habitual attractors even without sleep deprivation.
+    This mechanism predicts: institutionalised individuals, those in very
+    monotonous occupations, social isolates, and those in early dementia (who
+    generate less exploration and novelty) will show progressive model rigidity
+    independent of total sleep duration, and that this rigidity will accelerate
+    dementia progression via the MECH-171 vicious cycle (stagnation -> less
+    novel experience needed -> even less MEL -> further stagnation).
+    Excessive MEL (upper bound failure):
+    Acute trauma, overwhelming novelty, extreme responsibility, crisis states --
+    generate MEL that exceeds overnight update capacity even with normal sleep
+    architecture. The result: incomplete update accumulates across nights.
+    Critically, high MEL also disrupts sleep via hyperarousal (high cortisol,
+    high NA, MECH-178), reducing the very capacity needed to process it. This
+    is the decompensation mechanism in burnout, PTSD, and acute crisis states:
+    MEL is rising while sleep capacity is falling, producing compounding deficit.
+    Optimal range: the brain requires sufficient daily prediction error to keep
+    the model update system exercised, but not so much that overnight capacity
+    cannot match the demand. Cognitive reserve interventions (education, social
+    engagement, learning new skills, enriched environments) operate by keeping
+    MEL in the optimal range, particularly as brain reserve declines with age.
+
+- id: MECH-179
+  title: "Prediction error type determines which sleep phase is demanded for processing: episodic, spatial, and factual errors (incorrect world-state predictions) primarily demand NREM-mediated schema replay (MECH-121) for prior correction; emotional, social, and identity-threatening errors primarily demand REM-mediated simulation and recalibration (MECH-123) for policy and salience update."
+  claim_type: mechanism_hypothesis
+  subject: sleep.mel_type_phase_specificity
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-050
+    - MECH-121
+    - MECH-123
+    - INV-044
+  notes: >
+    Registered 2026-04-06. MECH-179 is the type-specificity corollary of INV-050:
+    not only does MEL magnitude drive sleep depth, but MEL type drives sleep phase
+    composition.
+    NREM-demanding errors (world-model priors):
+    - Spatial/navigational prediction errors (where am I, what is here)
+    - Episodic factual errors (what happened, who did what)
+    - Skill acquisition errors (motor prediction, sequence learning)
+    - Semantic inconsistencies (new facts that contradict stored schemas)
+    These errors require MECH-121 (SWR-mediated hippocampal-to-cortical replay)
+    to install corrected priors. They are processed during SWS via sharp-wave
+    ripple sequences coordinated with cortical slow oscillations.
+    REM-demanding errors (policy and salience priors):
+    - Emotional prediction errors (unexpected threat, loss, joy, shame)
+    - Social prediction errors (unexpected behaviour from known agents)
+    - Identity-relevant violations (feedback that contradicts self-model)
+    - Interpersonal conflict unresolved at waking
+    These errors require MECH-123 (REM precision recalibration) to update
+    decision thresholds and emotional salience weights, and the E3 simulation
+    layer to rerun social/policy scenarios with updated parameters.
+    Clinical consequence: a person who has a high-emotional-salience day
+    (conflict, loss, threat) but then takes a medication that suppresses REM
+    (MECH-173, MECH-178) will fail to process specifically the emotionally
+    salient errors, while NREM-mediated factual consolidation proceeds normally.
+    This predicts selective emotional memory disturbance and affective instability
+    without equivalent episodic memory failure -- a dissociation consistent with
+    clinical REM deprivation profiles.
+    Parallel prediction for NREM deficit (MECH-174): a person who has a high
+    complex-learning day (new skill, new environment) but takes a GABAergic sleep
+    aid that suppresses SWS will fail to consolidate the spatial/episodic material
+    while emotional processing proceeds -- predicts skill learning failure with
+    preserved emotional reactivity.
+
+- id: MECH-180
+  title: "Novel environments and high-MEL learning episodes adaptively upregulate the learning drive component of sleep (INV-050 third drive), producing measurable increases in slow-wave activity power, sleep spindle density, and hippocampal replay rate proportional to the novelty and prediction error load encountered during the preceding wake period."
+  claim_type: mechanism_hypothesis
+  subject: sleep.novelty_adaptive_sleep_upregulation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-050
+    - MECH-121
+    - MECH-122
+    - MECH-120
+  notes: >
+    Registered 2026-04-06. MECH-180 is the adaptive upregulation mechanism:
+    the brain detects MEL magnitude during wake and scales the subsequent night's
+    offline update resources proportionally.
+    Empirical evidence (strong):
+    - Wilson & McNaughton 1994 (Science): hippocampal place cells active during
+    novel maze exploration replay during subsequent slow wave sleep -- direct
+    evidence that novelty drives targeted replay.
+    - Tononi & Cirelli 2003: slow wave activity increases after high-learning
+    wake periods relative to low-learning periods within the same individuals.
+    - Stickgold et al. 2001 (Nature Neuroscience): 90 minutes of Tetris after
+    sleep deprivation produces game imagery in hypnagogic hallucinations --
+    the brain forces replay of novel material even before full sleep onset.
+    - Louie & Wilson 2001 (Neuron): REM sleep shows coordinated replay of
+    novel spatial sequences from the preceding wake period.
+    Mechanism (REE framing): novelty generates large prediction errors in E1
+    (world model). The hippocampus logs these episodes with high salience tags
+    (MECH-094 hypothesis tag active during encoding). During the subsequent
+    offline phase, hippocampal SWR replay is directed preferentially toward
+    high-salience (novel) material, driving MECH-121 schema installation. The
+    result is increased SWS depth and spindle density -- observable on PSG
+    and detectable (with reduced fidelity) in actigraphy as increased sleep
+    consolidation and reduced movement during early-night SWS windows.
+    Observational correlate in humans: people commonly report deeper, more
+    restful sleep on days with significant novel learning or travel. This is
+    MECH-180, not merely fatigue -- the effect is predicted to persist even
+    when physical activity is matched, because MEL is the driver, not caloric
+    expenditure.
+    Application to clinical enrichment: this mechanism explains why occupational
+    therapy, reminiscence therapy, and novel activity programmes in dementia
+    produce measurable sleep improvements. They are directly stimulating the
+    learning drive component of sleep regulation.
+
+- id: MECH-181
+  title: "Cognitive reserve (produced by education, bilingualism, complex occupation, social engagement, and enriched environments) protects against dementia primarily by maintaining sustained novelty-driven Model Error Load throughout the lifespan, keeping the SD-017 model update system exercised and preserving sleep-architecture responsiveness to learning demands; conversely, understimulating environments accelerate dementia by depriving the update system of the error signal needed to remain adaptive."
+  claim_type: mechanism_hypothesis
+  subject: dementia.cognitive_reserve_as_update_loop_maintenance
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-180
+    - INV-050
+    - INV-051
+    - INV-046
+    - SD-017
+  notes: >
+    Registered 2026-04-06. Cognitive reserve is empirically robust: education,
+    bilingualism, occupational complexity, and social engagement all reduce
+    clinical dementia incidence and delay symptom onset even at matched
+    pathological burden (Stern 2009, Lancet Neurology). The standard
+    explanations -- more synapses, more redundancy, better compensatory
+    routing -- are structural. MECH-181 adds a functional mechanism that
+    operates across the lifespan: cognitive reserve activities maintain the
+    MEL drive, keeping the model update system exercised.
+    The mechanism: complex, socially engaging, novel activities generate
+    substantial daily prediction error (spatial, episodic, social, emotional).
+    This drives MECH-180 (adaptive sleep upregulation), maintaining strong
+    SWS replay and REM simulation capacity. The update system remains
+    responsive to increasing error loads as cognitive demands grow. When
+    neurodegeneration begins affecting the update pipeline, a reserve of
+    adaptive capacity means the system can partially compensate.
+    The converse: institutional monotony, social isolation, retirement without
+    cognitive engagement, and early dementia (which restricts exploration)
+    all reduce MEL. The learning drive falls, MECH-180 upregulation declines,
+    sleep architecture becomes less responsive, and the pipeline degrades
+    faster because it is not exercised. This is the computational basis for
+    the understimulation → dementia acceleration effect, which is observed
+    epidemiologically but lacks a mechanistic explanation.
+    Novel prediction: enrichment interventions (novel activity programmes,
+    reminiscence therapy, social engagement) in early dementia should produce
+    measurable PSG changes (increased SWA, increased spindle density) on nights
+    following enrichment sessions, detectable within weeks -- before any
+    cognitive improvement is measurable. This would confirm that the intervention
+    is restoring the learning drive rather than simply improving mood.
+    This prediction is distinct from existing cognitive reserve explanations
+    because it is testable on short timescales with objective sleep measures,
+    not just long-term cohort data.
+
+- id: Q-033
+  title: "Can long-run actigraphy data, combined with daily prediction error load estimates derived from passive behavioural, physiological, and subjective signals, be used to infer latent sleep-phase sufficiency relative to waking error burden, and can this mismatch index predict clinical decompensation type and timing with better specificity than total sleep time alone?"
+  claim_type: open_question
+  subject: clinical.actigraphy_mel_mismatch_decompensation_forecasting
+  polarity: open
+  status: open
+  depends_on:
+    - INV-050
+    - INV-051
+    - MECH-179
+    - MECH-180
+  notes: >
+    Registered 2026-04-06. Q-033 is the clinical translation question for
+    INV-050/051 and MECH-179/180. The operational challenge: sleep stages are
+    not directly observable from actigraphy. The latent-state estimation
+    approach treats actigraphy as the outer behavioural shell and infers
+    probable phase accumulation (likely NREM proportion, likely REM proportion,
+    fragmentation penalty, circadian phase) using the actigraphy signal combined
+    with additional passive data streams.
+    Candidate signal inputs (passive, continuous, wearable-scale):
+    - Actigraphy (movement, rest-activity rhythm, fragmentation)
+    - Heart rate variability (HRV) during night windows
+    - Skin temperature rhythm (proxy for circadian phase)
+    - Light exposure (zeitgeber quality)
+    - Nap timing and duration
+    - Medication and alcohol timing (via schedule or self-report triggers)
+    - Cognitive performance drift (reaction time, typing speed, error rate)
+    - Speech variability (acoustic biomarkers of cognitive state)
+    - Symptom ratings (brief daily PHQ-2, GAD-2 equivalent)
+    Error burden estimation (MEL proxy, indirect):
+    - Calendar/schedule complexity (novel vs routine day)
+    - Interpersonal contact rate
+    - Self-reported emotional salience
+    - Cognitive task load (work complexity estimates)
+    - Physiological reactivity during wake (HRV, skin conductance)
+    Mismatch index: estimated overnight update capacity minus estimated MEL.
+    Persistent negative mismatch (MEL exceeding capacity) should predict
+    progressive decompensation. The type of mismatch (NREM-deficit on
+    high-episodic-load days vs REM-deficit on high-emotional-load days)
+    should predict decompensation type per MECH-179.
+    Predicted decompensation signatures by mismatch type (from INV-047 cascade):
+    - NREM deficit + high factual MEL -> memory consolidation failure, rigidity
+    - REM deficit + high emotional MEL -> affective lability, paranoia, REM intrusion
+    - Global fragmentation -> noisy priors, fluctuating attention, irritability
+    - Circadian misalignment -> performance rhythm disruption, salience errors
+    - MEL overload (all types) -> insomnia, hyperarousal, compounding deficit
+    Clinical application: decompensation forecast window 24-72 hours ahead,
+    allowing preventive intervention (sleep hygiene, MEL reduction,
+    pharmacological sleep architecture support per MECH-176/177).
+    Immediate tractable test: in a longitudinal cohort of MCI patients,
+    wrist actigraphy + HRV + daily mood diary over 6 months. Compute
+    mismatch index weekly. Test whether mismatch index predicts cognitive
+    test decline at the next monthly assessment better than total sleep
+    time alone. If mismatch index predicts type-specific failure (episodic
+    vs affective) with specificity, that supports both Q-033 and MECH-179.
