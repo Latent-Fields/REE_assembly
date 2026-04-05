@@ -1,0 +1,19 @@
+# Harvey (2002) — A cognitive model of insomnia
+
+**Claim tested:** INV-051 — overload pole: excessive MEL produces overload insomnia and incomplete update even with extended sleep opportunity.
+
+## What the paper proposes
+
+Harvey's cognitive model describes a self-perpetuating cycle that maintains insomnia. Individuals who develop sleep difficulties begin to engage in negatively-toned cognitive activity at or near bedtime -- worry about consequences of poor sleep, rumination about unresolved problems, anticipatory monitoring of internal and external threat cues. This excessive cognitive arousal triggers autonomic activation and emotional distress. The arousal state then selectively directs attention toward sleep-related threats (clock-watching, body scanning), which amplifies the distress. Safety behaviors deployed to control sleep -- thought suppression, forced relaxation, compensatory lying-in -- paradoxically maintain the problem. The net result is that sleep initiation fails or is substantially disrupted even when sleep opportunity is extended.
+
+## Why this is relevant to INV-051
+
+INV-051's overload pole claims that excessive MEL -- from acute trauma, overwhelming novelty, or extreme responsibility -- produces overload insomnia and incomplete model update even with extended sleep opportunity. Harvey's model provides the best-validated cognitive-psychological mechanism for exactly this outcome. In REE terms, excessive daily MEL means that the model-update system has accumulated more unresolved prediction errors than the waking period could process. These errors persist as active, unresolved goal and harm signals at sleep onset. Harvey's pre-sleep cognitive arousal corresponds to the state in which the REE system's open update loops -- still attempting to resolve the day's excess MEL -- prevent the cortical quiescence needed for slow-wave consolidation and model normalisation. The incomplete update claim follows: if the system cannot enter the slow-wave consolidation phase adequately, the error signals remain partially unprocessed, and the next waking period begins with a residue of unresolved updates from the previous day.
+
+## The specificity problem
+
+Harvey's model has a particularity that matters for the REE translation: it emphasises secondary cognitive arousal -- worry specifically about sleep and its consequences -- as the maintaining mechanism, rather than the primary MEL-overload events themselves. A person crushed by an acute trauma or impossible work responsibility may develop insomnia via the Harvey pathway (they worry about the sleep disruption that follows the stressor) or via a more direct arousal-overflow pathway. Harvey's model most directly addresses the maintained insomnia phenotype; whether it captures the initial MEL-overload trigger is less clear. This matters because INV-051 claims the disruption occurs even with intact sleep architecture -- that is, the sleep opportunity is there, but the update is incomplete -- which is the phenomenology Harvey's model explains well.
+
+## Caveats and broader context
+
+The model is well validated in clinical insomnia populations, which are a specific subset of the MEL-overload population INV-051 describes. Many high-MEL individuals -- emergency medicine clinicians, researchers during intense grant periods -- do not develop chronic insomnia, suggesting that the Harvey-cycle (secondary sleep-specific worry) is a necessary mediating variable rather than a direct consequence of MEL overload. The INV-051 claim is thus best read as: excessive MEL increases the probability of entering the Harvey cycle, which then produces the incomplete-update phenotype. The translation from original trigger to sleep disruption to incomplete update requires multiple steps, each of which has independent evidence but none of which has been directly tested as an integrated MEL-overload model.

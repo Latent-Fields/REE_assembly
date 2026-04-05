@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_181",
+  "entry_id": "2026-04-06_mech_181_cognitive_reserve_alzheimer_stern2012",
+  "timestamp_utc": "2026-04-06T09:00:00Z",
+  "claim_ids_tested": ["MECH-181"],
+  "source": {
+    "title": "Cognitive reserve in ageing and Alzheimer's disease.",
+    "authors": ["Stern Y"],
+    "year": 2012,
+    "venue": "The Lancet Neurology",
+    "doi": "10.1016/S1474-4422(12)70191-6",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23079557/"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Stern's 2012 Lancet Neurology review is the canonical statement of cognitive reserve theory and provides important context for MECH-181, but the paper cuts both ways. It strongly supports the epidemiological regularity (education, occupation, leisure protect against dementia) and introduces the critical distinction between passive brain reserve (structural) and active cognitive reserve (networks and processes that adapt to pathology) -- the latter being more directly relevant to the MECH-181 mechanism claim. However, Stern explicitly argues that cognitive reserve operates via neural compensation and efficiency mechanisms rather than via a maintained learning-drive or update loop. His framework posits that reserve is about deploying alternative networks when primary ones are damaged, which is a different mechanism from MECH-181's claim that reserve operates by keeping the update system exercised and preserving sleep responsiveness. This creates a partial conflict: the epidemiology supports MECH-181, but Stern's preferred mechanistic account differs from the REE account. Confidence 0.62: strong epidemiological support, mechanistic account divergent from but not incompatible with MECH-181.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Stern's preferred mechanism (neural compensation -- deploying alternative networks when primary ones are damaged by pathology) is different from MECH-181's mechanism (maintained exercise of the update loop preserving sleep-architecture responsiveness). These are not mutually exclusive but the paper does not support the specific SD-017/sleep pathway.",
+    "The review notes that it is difficult to determine whether cognitively active lifestyles cause reserve or whether pre-morbid intelligence and brain volume cause both the cognitively active lifestyle and the dementia protection -- the usual reverse-causation challenge in observational reserve research.",
+    "Cognitive reserve in Stern's framework is primarily about resilience to established pathology (tolerating more amyloid before symptoms appear), not about preventing pathology accumulation. MECH-181 claims that the update system exercise prevents accumulation -- a different claim about where in the causal chain the protection occurs."
+  ],
+  "tags": ["mech_181", "cognitive_reserve", "alzheimer", "neural_compensation", "education", "occupation", "leisure", "dementia_protection", "reserve_mechanism", "update_loop_vs_compensation"],
+  "mapping": {
+    "source_claim_statement": "Cognitive reserve explains why individuals with equivalent Alzheimer pathology show different levels of clinical impairment. Lifelong experiences -- educational attainment, occupational complexity, leisure activities -- increase this reserve. Active cognitive reserve involves the use of brain networks and cognitive paradigms more efficiently or with greater flexibility, and the ability to recruit alternative brain networks when primary ones fail. Reserve is built by experience, but its effect is mediated by network adaptability rather than by preventing pathology accumulation.",
+    "ree_translation": "MECH-181 claims that cognitive reserve protects by maintaining the SD-017 model-update system, preserving sleep-architecture responsiveness to learning demands. Stern's review establishes that reserve is active (network-based, experience-dependent) rather than purely structural -- this is consistent with REE's emphasis on maintained update-loop exercise rather than simple structural redundancy. The education/occupation/leisure proxies are the same ones REE would identify as MEL generators. However, Stern's mechanistic proposal -- compensation via alternative networks -- is different from MECH-181's mechanism -- preserved responsiveness of the update loop and its sleep-phase consolidation. These are not mutually exclusive: the REE account could be one pathway within a broader reserve picture, or the two mechanisms could operate in parallel. What Stern's framework suggests is that the protection accrues to the ability to deploy flexible responses to pathology, which in REE terms could include flexible model updating when standard update pathways are impaired. The translation requires treating Stern's 'network flexibility' as partially implemented by the MECH-181 update loop, without claiming it is the only or primary mechanism.",
+    "mapping_caveat": "Stern explicitly does not claim that cognitive reserve prevents Alzheimer pathology from accumulating -- it tolerates pathology better. MECH-181 could be read as claiming the update loop exercise actually reduces pathological accumulation (by maintaining amyloid clearance via sleep, for instance). If so, the two frameworks diverge on the locus of protection. The mixed evidence direction reflects this mechanistic divergence alongside strong epidemiological support.",
+    "source_context": "Yaakov Stern (Columbia University) is the leading figure in cognitive reserve research and is largely responsible for popularising the distinction between brain reserve and cognitive reserve. This 2012 Lancet Neurology review is his canonical statement of the theory. Cited >5000 times. The PMC version (PMC3507991) is freely available."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Exceptional source quality -- Lancet Neurology review by the field's leading authority, >5000 citations. Mapping fidelity is moderate: the epidemiological phenomenology maps well onto MECH-181, but the mechanistic account Stern proposes (compensation) diverges from the REE mechanism (update-loop exercise and sleep responsiveness). Transfer risk is moderate-high because MECH-181 makes a specific mechanistic claim that Stern's framework neither confirms nor refutes -- it simply proposes a different mechanism for the same epidemiological regularity. The mixed evidence direction is justified: strong support for the phenomenological regularity, neutral-to-weak on the specific REE mechanism."
+  }
+}

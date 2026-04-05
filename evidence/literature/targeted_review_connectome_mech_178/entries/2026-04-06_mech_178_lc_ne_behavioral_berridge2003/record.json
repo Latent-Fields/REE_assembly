@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_178",
+  "entry_id": "2026-04-06_mech_178_lc_ne_behavioral_berridge2003",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-178"],
+  "source": {
+    "title": "The locus coeruleus-noradrenergic system: modulation of behavioral state and state-dependent cognitive processes",
+    "authors": ["Berridge CW", "Waterhouse BD"],
+    "year": 2003,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/S0165-0173(03)00144-6",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12668290/"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is the canonical comprehensive review of the LC-NE system's role in behavioral state regulation. It directly establishes that the LC-NE system contributes to initiation and maintenance of waking behavioral and forebrain activity states, and that LC dysregulation contributes to arousal and sleep disorders. The review explicitly situates LC-NE modulation within an inverted-U framework where both too little and too much NE impairs performance. Crucially for MECH-178, the review documents LC-NE's role in maintaining arousal states that are incompatible with REM -- i.e., that tonic LC activity above baseline prevents entry into REM. Clinical relevance is addressed directly with reference to PTSD and affective disorders. Confidence 0.70 because this is a review synthesizing pre-2003 evidence: it predates optogenetic causal confirmation of the LC->REM-suppression link, and does not address chronic pharmacological elevation (NRIs) specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "As a 2003 review, it predates optogenetic and chemogenetic studies that provided causal confirmation of LC activity's role in REM suppression -- the evidence base is correlational and pharmacological.",
+    "Does not specifically address NRI antidepressants or stimulants as sources of tonic LC elevation relevant to MECH-178's pharmacological claims.",
+    "The inverted-U framework for NE-cognitive performance does not directly address the sleep-deprivation mechanism for behavioural rigidity proposed by MECH-178."
+  ],
+  "tags": ["mech_178", "locus_coeruleus", "norepinephrine", "behavioral_state", "arousal", "sleep_wake", "cognitive_flexibility", "review", "berridge_waterhouse"],
+  "mapping": {
+    "source_claim_statement": "The LC-NE system contributes to the initiation and maintenance of behavioral and forebrain activity states appropriate for sensory information collection (waking). Dysregulation of LC-NE neurotransmission may contribute to cognitive and arousal dysfunction in sleep/arousal disorders, ADHD, PTSD, and affective disorders. NE modulation of synaptic strength and cognitive state is state-dependent.",
+    "ree_translation": "MECH-178 claims that elevated tonic LC-NE activity -- whether from chronic stress, stimulants, or NRIs -- maintains LC firing above the silence threshold required for REM generation, thereby blocking MECH-123 precision recalibration. Berridge & Waterhouse 2003 directly supports the mechanistic logic: (1) the LC-NE system is a primary driver of arousal states incompatible with REM; (2) dysregulation of LC-NE is implicated in sleep and arousal disorders; and (3) excessive NE activity is associated with cognitive inflexibility (though the pathway described is waking-state NE excess, not REM deprivation). This review provides the broader mechanistic context that grounds MECH-178's LC-to-REM-suppression inference.",
+    "mapping_caveat": "Berridge & Waterhouse frame LC-NE dysregulation and cognitive effects primarily in terms of waking NE modulation, not specifically through sleep architecture disruption. The MECH-178-specific prediction -- that it is the REM-suppression pathway (not waking LC excess) that produces the behavioural rigidity -- is a specific mechanistic sub-claim not directly tested or endorsed by this review.",
+    "source_context": "Comprehensive 2003 review in Brain Research Reviews (Brain Res Brain Res Rev 42:33-84) from University of Wisconsin. Covers LC anatomy, physiology, neurochemistry, and behavioral/cognitive function. One of the most-cited reviews on the LC-NE system. Berridge has been a leading figure in LC-NE research for three decades."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.20,
+    "notes": "Very high source quality -- seminal, comprehensive review from leading experts, widely cited. Mapping fidelity is moderate: the review strongly supports the upstream mechanistic components of MECH-178 (LC drives arousal/waking incompatible with REM; LC dysregulation produces cognitive dysfunction) but does not directly test or confirm the specific sleep-mediated rigidity pathway. Transfer risk is low as this is a broad mechanistic review applicable to both rodent and human physiology."
+  }
+}

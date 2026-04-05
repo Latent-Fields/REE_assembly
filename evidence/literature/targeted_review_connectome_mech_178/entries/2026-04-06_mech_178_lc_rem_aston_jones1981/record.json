@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_178",
+  "entry_id": "2026-04-06_mech_178_lc_rem_aston_jones1981",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-178"],
+  "source": {
+    "title": "Activity of norepinephrine-containing locus coeruleus neurons in behaving rats anticipates fluctuations in the sleep-waking cycle",
+    "authors": ["Aston-Jones G", "Bloom FE"],
+    "year": 1981,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.01-08-00876.1981",
+    "url": "https://www.jneurosci.org/content/1/8/876"
+  },
+  "evidence_class": "primary_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This is the foundational primary recording study demonstrating that LC-NE neurons fire tonically during waking, reduce during NREM sleep, and are virtually silent during REM sleep. This REM-off firing pattern is the direct physiological substrate for MECH-178's claim that elevated tonic LC activity suppresses REM by maintaining firing above the silence threshold required for REM generation. The study directly establishes the necessary-and-sufficient silence condition: REM requires LC quiescence. The limitation is that this is a descriptive firing-pattern study in rats -- it characterises the correlation between LC activity and REM without directly testing whether experimentally elevating LC firing above baseline suppresses REM onset. Confidence 0.80 reflects strong mechanistic grounding with the usual rodent-to-human transfer caveat.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study is correlational and descriptive -- it characterises firing patterns during natural sleep-wake transitions but does not demonstrate that artificially elevated LC firing above baseline suppresses REM.",
+    "Rodent-to-human extrapolation: human LC firing patterns during sleep have been less directly measured than in rats; indirect evidence from pharmacology is necessary to bridge.",
+    "Does not address the chronic/tonic elevation scenario that MECH-178 specifically targets (chronic stress, stimulants, NRIs) -- only describes the normal sleep-wake correlation."
+  ],
+  "tags": ["mech_178", "locus_coeruleus", "rem_sleep", "norepinephrine", "rem_off_neurons", "sleep_wake", "tonic_firing", "foundational"],
+  "mapping": {
+    "source_claim_statement": "NE-containing LC neurons show tonic discharge that covaries with sleep-wake stages: highest during waking, lower during slow-wave sleep, and virtually absent during paradoxical (REM) sleep. Discharge anticipates sleep-wake cycle fluctuations.",
+    "ree_translation": "MECH-178 requires that the LC-NE system maintains a silence threshold for REM generation -- i.e., that REM onset is gated by LC quiescence. Aston-Jones & Bloom 1981 establishes this directly: REM sleep requires virtual cessation of LC firing, making it the foundational empirical support for the claim that any factor maintaining LC firing above baseline will suppress REM. This is the mechanistic basis for MECH-178's inference that chronic stress, stimulant exposure, or NRI antidepressants -- all of which elevate tonic LC-NE activity -- will block MECH-123 precision recalibration by preventing REM generation.",
+    "mapping_caveat": "The study establishes the necessary correlation (LC silence is concurrent with REM) but not the sufficient causal direction (LC silence is required for REM, such that preventing silence prevents REM). Causal evidence comes from later pharmacological and optogenetic studies. MECH-178 requires both the firing-pattern evidence (this paper) and the causal-manipulation evidence (subsequent work) for full support.",
+    "source_context": "Seminal extracellular recording study from Aston-Jones and Bloom at the Salk Institute, published in the inaugural volume of Journal of Neuroscience. Used single-unit and multiple-unit recordings in freely behaving rats. Has been replicated and extended by decades of subsequent work. Establishes the REM-off classification of LC neurons that is now textbook neurophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Exceptional source quality -- foundational, replicated, in the highest-tier journal at the time. Mapping fidelity is good but not perfect: the paper establishes the firing pattern, while MECH-178's inference about chronic elevation requires additional causal links. Transfer risk is moderate (rat to human, but the basic LC-REM relationship is highly conserved)."
+  }
+}

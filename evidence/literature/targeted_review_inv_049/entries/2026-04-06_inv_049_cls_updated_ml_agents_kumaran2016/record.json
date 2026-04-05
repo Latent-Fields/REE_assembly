@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_049",
+  "entry_id": "2026-04-06_inv_049_cls_updated_ml_agents_kumaran2016",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-049"],
+  "source": {
+    "title": "What Learning Systems do Intelligent Agents Need? Complementary Learning Systems Theory Updated",
+    "authors": ["Dharshan Kumaran", "Demis Hassabis", "James L. McClelland"],
+    "year": 2016,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2016.05.004",
+    "pmid": "27315762",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27315762/"
+  },
+  "evidence_class": "computational_theory_review",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This is the 2016 update to CLS theory, co-authored by McClelland and Hassabis (DeepMind). It explicitly extends the original 1995 argument into the domain of artificial intelligent agents, noting that DQN (DeepMind's Atari agent) independently rediscovered experience replay as a necessary component of stable learning -- directly mirroring the hippocampal replay argument. The paper also extends the role of replay to goal-dependent weighting and schema-consistent rapid neocortical learning. This strengthens INV-049 by showing the computational necessity argument holds in modern ML systems designed without biological constraints. The 2016 update makes the generality claim more explicit than the original: replay-based offline updating is not specific to biological systems.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_049", "complementary_learning_systems", "experience_replay", "deep_learning", "DQN", "offline_learning", "intelligent_agents", "memory_consolidation", "catastrophic_forgetting", "supports"],
+  "mapping": {
+    "source_claim_statement": "Intelligent agents require two learning systems: one for rapid encoding of individual experiences, one for gradual integration into structured representations. Experience replay -- replaying stored episodes offline into the slow learner -- is computationally necessary and has been independently rediscovered in DQN-based reinforcement learning. Without replay, learning in deep networks is unstable and catastrophically interfering. The paper extends CLS to show replay also enables goal-dependent weighting of experience statistics.",
+    "ree_translation": "INV-049: The 2016 CLS update closes the loop between biological and artificial systems. DQN's rediscovery of replay without biological constraint confirms that offline replay is a computational necessity independent of evolutionary history. An REE agent building a world model (E1/E2) from navigational experience faces the same interference problem: online gradient updates to the world model, driven by current navigation demands, will corrupt representations accumulated over prior episodes. An offline phase -- during which action is suspended and replay reorganises the model -- is required. The 'not a biological contingency' component of INV-049 is directly supported by the DQN convergence finding.",
+    "mapping_caveat": "The paper discusses replay primarily as a mechanism for stabilising gradient-based learning. Its extension to 'goal-dependent weighting' of replay content is relevant to REE's selective consolidation during quiescence (MECH-092) but goes beyond the INV-049 necessity claim. INV-049 asserts the offline phase is necessary; this paper supports the necessity and adds texture about what happens during that phase. The DQN parallel is the key evidence for the 'general computational' rather than 'biological contingency' framing.",
+    "source_context": "Feature review in Trends in Cognitive Sciences. Updates original CLS theory with reference to modern ML systems (DQN, neural Turing machines). Kumaran is UCL, Hassabis is DeepMind co-founder, McClelland is Stanford."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.15,
+    "notes": "High-quality review in top-tier cognitive science journal. The DQN convergence is particularly strong evidence for the computational universality claim in INV-049. Slight mapping discount because the paper focuses on hippocampal-neocortical dual-system architecture specifically; INV-049 is more abstract. Transfer risk low because the DQN evidence is directly from an artificial system, removing biological-to-artificial transfer concerns."
+  }
+}

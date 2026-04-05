@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_180",
+  "entry_id": "2026-04-06_mech_180_hypnagogic_replay_stickgold+2000",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-180"],
+  "source": {
+    "title": "Replaying the game: hypnagogic images in normals and amnesics.",
+    "authors": ["Stickgold R", "Malia A", "Maguire D", "Roddenberry D", "O'Connor M"],
+    "year": 2000,
+    "venue": "Science",
+    "doi": "10.1126/science.290.5490.350"
+  },
+  "evidence_class": "empirical_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Provides human behavioral evidence that novel perceptual-motor experience is preferentially replayed at sleep onset (hypnagogic stage), even in amnesic patients without functional declarative memory -- suggesting the replay mechanism is automatic and driven by novelty/learning-load rather than by explicit memory formation. Directly relevant to MECH-180 as evidence that the sleep system selectively processes novel experience. Confidence is moderate because (1) the study measures hypnagogic imagery reports, a subjective proxy for replay rather than neural measurement, (2) SWA power, spindle density, and hippocampal replay rate are not measured, and (3) the amnesic finding is theoretically interesting but the n=3 amnesics is very small.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "hypnagogic_imagery_unrelated_to_novel_experience",
+    "amnesics_fail_to_report_game_imagery",
+    "imagery_rate_equivalent_for_novel_vs_familiar_tasks"
+  ],
+  "tags": ["hypnagogic_imagery", "novel_experience_replay", "sleep_onset", "declarative_memory", "human", "Tetris"],
+  "mapping": {
+    "source_claim_statement": "Participants who played Tetris for the first time reported stereotypical visual game images at sleep onset; amnesic patients who could not recall playing the game still reported such images, indicating replay at sleep onset is driven by experiential exposure rather than explicit memory.",
+    "ree_translation": "Novel perceptual-motor experience preferentially targets the hypnagogic replay process, consistent with MECH-180's claim that novel environments and high-MEL episodes upregulate the learning drive component of sleep. The amnesic finding suggests the upregulation is automatic -- driven by the MEL-encoding process rather than by conscious recognition of novelty.",
+    "mapping_caveat": "This study measures hypnagogic imagery (sleep onset, stage 1/2 transition), not slow-wave sleep replay, REM replay, SWA power, or spindle density -- the primary endpoints of MECH-180. The mapping to MECH-180 is conceptually valid (novel experience preferentially engages sleep-phase processing) but the specific neural endpoints in the claim are not measured. The amnesic patients had bilateral medial temporal lobe damage, so their Tetris imagery likely reflects non-hippocampal sensory/motor reactivation rather than hippocampal replay per se.",
+    "source_context": "Human participants played Tetris for the first time (experiment group), previously (experienced group), or were amnesic patients (n=3). At sleep onset, participants were prompted to report any visual images. Novel players reported Tetris imagery at high rates; amnesics reported imagery at similar rates despite no recall of playing."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is good: Science, controlled design with amnesic comparison group, behaviorally rigorous. Mapping fidelity is moderate -- the study establishes the novel-experience-to-sleep-replay link in humans but at the hypnagogic stage, not SWS/SWA/spindle endpoints that MECH-180 primarily targets. Transfer risk is moderate because hypnagogic imagery is a different phenomenon from SWS slow-wave or spindle upregulation, and the amnesic finding specifically argues against hippocampal dependence."
+  }
+}

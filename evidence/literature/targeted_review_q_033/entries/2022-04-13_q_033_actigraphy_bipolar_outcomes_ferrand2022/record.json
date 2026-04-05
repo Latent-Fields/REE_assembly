@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_033",
+  "entry_id": "2022-04-13_q_033_actigraphy_bipolar_outcomes_ferrand2022",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["Q-033"],
+  "source": {
+    "title": "Which Actigraphy Dimensions Predict Longitudinal Outcomes in Bipolar Disorders?",
+    "authors": ["Ferrand, Lisa", "Hennion, Vincent", "Godin, Ophelia", "Bellivier, Frank", "Scott, Jan", "Etain, Bruno"],
+    "year": 2022,
+    "venue": "Journal of Clinical Medicine",
+    "doi": "10.3390/jcm11082204",
+    "pmid": "35456302",
+    "volume": "11",
+    "issue": "8",
+    "pages": "2204"
+  },
+  "evidence_class": "prospective_cohort",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Prospective longitudinal study (n=69, median 3.5 year follow-up) using principal component analysis to identify actigraphy dimensions that predict time to recurrence. Key finding: circadian variability/stability dimension (not total sleep time) significantly predicts recurrence (p=0.009), with intra-day variability (IV) as strongest individual predictor (AUC 0.75 alone, 0.82 combined with clinical variables). This directly supports Q-033's claim that sleep-architecture-proxying measures outperform simpler duration metrics for clinical decompensation prediction. Confidence moderate: the study only recorded 21 days of actigraphy (not long-run), sample is relatively small (n=69), and 'circadian variability' is a proxy for architecture not a direct staging measure. The study establishes predictive specificity for recurrence timing but does not address episode type discrimination.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "short_actigraphy_window_not_continuous",
+    "small_sample_n69",
+    "circadian_variability_not_sleep_staging"
+  ],
+  "tags": [
+    "actigraphy",
+    "bipolar_disorder",
+    "recurrence_prediction",
+    "longitudinal",
+    "circadian_variability",
+    "intra_day_variability",
+    "AUC",
+    "survival_analysis",
+    "decompensation_timing"
+  ],
+  "mapping": {
+    "source_claim_statement": "In euthymic bipolar disorder patients (n=69), actigraphy-derived circadian variability/stability dimension predicts time to mood episode recurrence (p=0.009); intra-day variability alone achieves AUC=0.75, rising to AUC=0.82 combined with clinical variables (age, BD subtype, mood stabilizer polytherapy, mood episode density, BMI).",
+    "ree_translation": "Q-033 proposes that a sleep-phase sufficiency mismatch index will predict decompensation timing with better specificity than total sleep time. This study shows that: (1) circadian rhythm dimension (not sleep duration) is the actigraphy predictor of recurrence; (2) the key metric is fragmentation/variability (IV) rather than amount; and (3) combining actigraphy with clinical variables adds meaningful discriminative power. This is structurally analogous to Q-033's mismatch index: sleep-phase signals combined with burden/context variables predict decompensation timing better than duration alone.",
+    "mapping_caveat": "The actigraphy was recorded at a single 21-day baseline, not continuously over the follow-up period. Q-033 envisions long-run continuous monitoring with dynamic mismatch estimation -- a fundamentally different design. The 'intra-day variability' predictor is a circadian rhythm stability measure, related to but distinct from sleep-phase sufficiency. Episode type specificity was not the focus: all recurrences were pooled.",
+    "source_context": "Euthymic bipolar disorder outpatients, French cohort, 78.3% BD-I, 59.4% female, median age 42 years, median follow-up 3.5 years (range 2-4.5 years), 63.8% experienced recurrence with median survival 17.8 months."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.50,
+    "notes": "Source quality good: prospective, long follow-up, Journal of Clinical Medicine peer-reviewed, statistical methods appropriate (PCA + survival analysis). Mapping fidelity good: directly demonstrates circadian dimension outperforms duration for decompensation timing prediction, which is the core structural claim in Q-033. Transfer risk moderate: baseline-only actigraphy vs Q-033's continuous model; small sample; homogeneous French BD cohort; pooled episode types vs Q-033's type-specific prediction."
+  }
+}

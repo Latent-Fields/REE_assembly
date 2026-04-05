@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_033",
+  "entry_id": "2024-11-18_q_033_mood_episode_prediction_lim2024",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["Q-033"],
+  "source": {
+    "title": "Accurately predicting mood episodes in mood disorder patients using wearable sleep and circadian rhythm features",
+    "authors": ["Lim, Dongju", "Jeong, Jaegwon", "Song, Yun Min", "Cho, Chul-Hyun", "Yeom, Ji Won", "Lee, Taek", "Lee, Jung-Been", "Lee, Heon-Jeong", "Kim, Jae Kyoung"],
+    "year": 2024,
+    "venue": "npj Digital Medicine",
+    "doi": "10.1038/s41746-024-01333-z",
+    "pmid": "39557997",
+    "volume": "7",
+    "issue": "1",
+    "pages": "324"
+  },
+  "evidence_class": "prospective_cohort",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Prospective longitudinal study, n=168, mean 587 days follow-up, strong AUCs (manic 0.98, hypomanic 0.95, depressive 0.80). The key predictive feature was daily circadian phase shift derived from wearable sleep-wake data -- an indirect actigraphy-derived measure rather than explicit staging. This is strongly relevant to Q-033's claim that wearable-derived latent-state indices can outperform simple total sleep time in predicting decompensation type. The episode-type-specific predictions (phase delay -> depression, phase advance -> mania) directly support Q-033's specificity subhypothesis. Confidence capped at 0.72: clinical population is mood disorder (not exclusively bipolar or cognitive), prediction horizon is next-day (Q-033 asks about longer-horizon decompensation timing), and the 'error burden' component is absent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "next_day_prediction_not_longer_horizon_timing",
+    "no_error_burden_estimate_included",
+    "circadian_phase_not_same_as_sleep_stage_sufficiency"
+  ],
+  "tags": [
+    "actigraphy",
+    "wearable",
+    "mood_disorder",
+    "bipolar",
+    "circadian_rhythm",
+    "episode_prediction",
+    "decompensation_type_specificity",
+    "machine_learning",
+    "longitudinal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Wearable-derived circadian phase shifts predict next-day mood episodes with high accuracy (manic AUC 0.98, hypomanic 0.95, depressive 0.80); phase delays predict depressive episodes and phase advances predict manic episodes.",
+    "ree_translation": "Q-033 specifically asks whether a sleep-phase sufficiency mismatch index can predict decompensation type with better specificity than total sleep time alone. This study demonstrates that episode-type-specific prediction is achievable from wearable circadian features -- and that the feature doing the work (phase direction of shift) is qualitatively different from total sleep time. This is a partial existence proof for the Q-033 specificity subhypothesis. The 'mismatch' in Q-033 (sleep-phase vs waking error burden) is a more complex construct than phase shift alone, but the directional mapping (phase delay -> depression, advance -> mania) suggests the sleep-phase signal carries episode-type information that TST does not.",
+    "mapping_caveat": "The prediction horizon is one day ahead, not the multi-week clinical decompensation timing that Q-033 envisions. The model uses 36 derived circadian/sleep features from wearables but does not include a 'prediction error load estimate' from passive behavioural or physiological streams as Q-033 proposes. The 'mismatch index' in Q-033 is conceptually richer than circadian phase shift alone.",
+    "source_context": "South Korean clinical cohort; 168 mood disorder patients (bipolar I/II and major depression); mean 587 days total observation; wearable sleep-wake monitoring ~267 days."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: prospective, long follow-up, large sample for this field, npj Digital Medicine. Mapping fidelity moderate: directly demonstrates episode-type-specific prediction from wearable circadian features, which is the most relevant aspect of Q-033's specificity claim, but the error-burden mismatch index is absent. Transfer risk moderate-high: Korean clinical cohort, next-day prediction vs multi-week decompensation horizon, mood disorder vs broader psychiatric/cognitive Q-033 scope."
+  }
+}

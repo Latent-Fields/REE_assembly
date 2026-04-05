@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_033",
+  "entry_id": "2024-02-21_q_033_actigraphy_sleep_staging_yuan2024",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["Q-033"],
+  "source": {
+    "title": "A systematic review of the performance of actigraphy in measuring sleep stages",
+    "authors": ["Yuan, Hang", "Hill, Elizabeth A.", "Kyle, Simon D.", "Doherty, Aiden"],
+    "year": 2024,
+    "venue": "Journal of Sleep Research",
+    "doi": "10.1111/jsr.14143",
+    "pmid": "38384163",
+    "volume": "33",
+    "issue": "5",
+    "pages": "e14143"
+  },
+  "evidence_class": "systematic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "High-quality systematic review from Oxford. Only 8 eligible studies found; large methodological heterogeneity prevented meta-analysis. Conclusion is that current evidence 'does not support or refute' actigraphy sleep staging validity. This is directly relevant to Q-033 because it establishes the key foundational limitation: actigraphy cannot reliably decompose sleep into stages (REM, NREM, slow-wave) the way PSG can. However the review also confirms that some staging signal exists, keeping open the possibility that latent-state inference methods could extract partial architecture information.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "actigraphy_cannot_reliably_stage_sleep",
+    "heterogeneous_outcome_reporting_prevents_synthesis",
+    "only_8_eligible_studies_at_time_of_review"
+  ],
+  "tags": [
+    "actigraphy",
+    "sleep_staging",
+    "polysomnography",
+    "systematic_review",
+    "sleep_architecture",
+    "wrist_actigraphy",
+    "validation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Wrist-worn actigraphy has 'some ability to classify different sleep stages compared with polysomnography' but large methodological heterogeneity prevents definitive performance assessment; current evidence does not support or refute validity of actigraphy sleep staging.",
+    "ree_translation": "Q-033 requires inferring 'latent sleep-phase sufficiency' from actigraphy. This review establishes that direct sleep-stage decomposition from actigraphy alone is not validated. The mismatch index in Q-033 would need to work with indirect proxies (circadian phase, fragmentation, efficiency) rather than true staging outputs. This constrains but does not foreclose the Q-033 hypothesis: latent-state inference across multiple signal streams may recover what single-sensor staging cannot.",
+    "mapping_caveat": "The review focuses on wrist actigraphy alone. Q-033 explicitly combines actigraphy with passive behavioural, physiological, and subjective signals -- a multi-stream fusion approach that goes beyond anything evaluated in these 8 studies. The limitation is therefore a lower bound on single-sensor performance, not a ceiling on multi-stream inference.",
+    "source_context": "Human adults; various clinical and healthy populations; studies compared sleep architecture estimates to PSG gold standard."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.55,
+    "notes": "Source quality high (systematic review, Oxford group, peer-reviewed). Mapping fidelity moderate: directly addresses actigraphy sleep-stage validity, which is foundational for Q-033, but the review does not evaluate multi-stream fusion or latent-state estimation. Transfer risk moderate: the clinical populations studied are diverse; Q-033 specifically targets psychiatric/cognitive decompensation cohorts where sleep disruption may be more severe and potentially easier to detect."
+  }
+}

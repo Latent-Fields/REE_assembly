@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_050",
+  "entry_id": "2026-04-06_inv_050_two_process_borbely1982",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-050"],
+  "source": {
+    "title": "A two process model of sleep regulation",
+    "authors": ["Alexander A. Borbely"],
+    "year": 1982,
+    "venue": "Human Neurobiology",
+    "doi": null,
+    "pmid": "7185792",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7185792/"
+  },
+  "evidence_class": "neuroscience_theory_empirical",
+  "evidence_direction": "mixed",
+  "confidence": 0.82,
+  "confidence_rationale": "The Borbely 1982 two-process model is the established framework INV-050 both relies on and critiques. It establishes the empirical reality of the two-drive architecture (Process S / homeostatic, Process C / circadian) that INV-050 accepts as the first two drives. The paper provides strong empirical grounding (sleep deprivation EEG data, slow-wave activity kinetics) for the S+C interaction. However, the model is explicitly silent on a learning/model-update demand drive -- the S process is generic homeostatic pressure, not specifically proportional to prediction error accumulation. INV-050 argues a third drive (MEL) is necessary and that S and C alone do not determine update sufficiency. The Borbely paper therefore supports the INV-050 framework partially (confirming drives 1 and 2) while implicitly framing the gap that MEL fills. Evidence direction is 'mixed' because the paper supports the partial framework while omitting the critical third element.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_050", "two_process_model", "sleep_homeostasis", "circadian", "process_s", "process_c", "slow_wave_activity", "sleep_regulation", "foundational", "mixed"],
+  "mapping": {
+    "source_claim_statement": "Sleep regulation is governed by two interacting processes: Process S (homeostatic, builds during waking, dissipates during sleep, tracked by slow-wave EEG activity) and Process C (circadian, independent of prior sleep/wake, oscillates on a ~24h cycle). Sleep propensity at any moment is determined by the interaction of S and C. Sleep deprivation increases S, advancing the next sleep episode and increasing SWA intensity.",
+    "ree_translation": "INV-050 accepts drives 1 (circadian timing = Process C) and 2 (homeostatic synaptic pressure = Process S) as established. The Borbely framework correctly identifies these as real regulatory drives with distinct biophysical implementations. However, Process S is operationalised as a generic waking-time-dependent pressure -- it rises with time awake regardless of cognitive load, learning demand, or prediction error accumulation. INV-050 argues this is insufficient: an agent with a heavy model-update burden (high MEL) after a cognitively demanding day needs more update time than an agent with a low burden, even if total waking hours are identical. The two-process model has no mechanism to represent this distinction. MEL is the missing third drive.",
+    "mapping_caveat": "The Borbely model was designed to account for global sleep propensity and SWA kinetics across sleep deprivation protocols. It does not purport to be a complete model of sleep function -- only of sleep timing and architecture. INV-050's critique (that a third MEL drive is needed) targets a different question: what determines whether the update phase is sufficient for the error burden generated during waking. The two-process model was never designed to answer this question, so calling it 'incomplete' is fair but the model is not falsified by INV-050 -- they operate at different levels of analysis.",
+    "source_context": "Original 1982 paper presenting the two-process model with empirical data from sleep deprivation studies and EEG slow-wave activity analysis. Foundational to all subsequent quantitative sleep regulation modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.97,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "Essentially perfect source quality -- this is the canonical foundational paper, empirically robust, widely replicated. Mapping fidelity is good for establishing drives 1 and 2 as real; the 'mixed' direction reflects that the model neither supports nor refutes MEL (drive 3) -- it simply does not address it. Transfer risk is low: the empirical phenomena (S and C) are well-established in human and animal data, and REE's need for circadian and generic homeostatic timing constraints is uncontroversial."
+  }
+}

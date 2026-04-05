@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_181",
+  "entry_id": "2026-04-06_mech_181_brain_reserve_dementia_valenzuela+sachdev2006",
+  "timestamp_utc": "2026-04-06T09:00:00Z",
+  "claim_ids_tested": ["MECH-181"],
+  "source": {
+    "title": "Brain reserve and dementia: a systematic review.",
+    "authors": ["Valenzuela MJ", "Sachdev P"],
+    "year": 2006,
+    "venue": "Psychological Medicine",
+    "doi": "10.1017/S0033291705006264",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16207391/"
+  },
+  "evidence_class": "systematic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This systematic review integrates data from >29,000 individuals across multiple cohort studies and finds a summary odds ratio of 0.54 (95% CI 0.49-0.59) for incident dementia among those with higher brain reserve -- approximately halving dementia risk over a median 7.1-year follow-up. Reserve was operationalised via education, occupational complexity, and mentally stimulating leisure activities. The REE translation is that these are all proxies for sustained, novel MEL throughout life: complex occupations, education, and stimulating activities all generate prediction errors that exercise the SD-017 model-update system. The dose-response relationship (greater mental activity complexity associated with greater protection) is particularly relevant to MECH-181 because it implies a continuous relationship between update-system exercise and protection, not a threshold effect. The main limitation for the REE translation is that 'brain reserve' is a phenomenological construct that bundles several mechanisms (synaptic density, network efficiency, use-dependent plasticity) without distinguishing which is responsible for protection. MECH-181 claims a specific mechanism -- maintenance of the SD-017 update loop via MEL -- which is one candidate explanation for the reserve effect, not the only one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Brain reserve is a multi-mechanism construct. The protective effect of education and occupational complexity is consistent with the MEL/update-loop account (MECH-181) but equally consistent with brain volume, vascular health, synaptic density, and network redundancy accounts that have nothing to do with the update system.",
+    "The systematic review cannot separate whether cognitively stimulating activities protect via maintaining plasticity (the MECH-181 mechanism) or via building structural reserve that provides tolerance to Alzheimer pathology without preventing it.",
+    "The studies are observational with typical confounds: education tracks SES, health behaviours, and access to medical care, which also protect against dementia independently of cognitive stimulation per se.",
+    "No sleep architecture data are included, so the pathway through sleep-system responsiveness that MECH-181 specifies (reserve maintained via sleep-responsive update loop) is not tested here."
+  ],
+  "tags": ["mech_181", "cognitive_reserve", "brain_reserve", "dementia_prevention", "lifelong_learning", "occupation_complexity", "education", "mel_lifespan", "update_loop_maintenance"],
+  "mapping": {
+    "source_claim_statement": "Higher behavioural brain reserve -- operationalised as education, occupational complexity, and mentally stimulating lifestyle activities -- is associated with an approximately 46% reduction in dementia incidence (OR 0.54). A dose-response relationship was evident between extent of complex mental activities and dementia risk. The protective effect was independent of age and persisted across early, mid, and late life.",
+    "ree_translation": "MECH-181 claims that cognitive reserve protects against dementia primarily by maintaining sustained novelty-driven Model Error Load throughout the lifespan, keeping the SD-017 model update system exercised. Valenzuela and Sachdev's systematic review provides strong epidemiological evidence for the phenomenological regularity that MECH-181 is trying to mechanistically explain. The proxies for brain reserve (education, occupational complexity, stimulating leisure) are, in REE terms, proxies for sustained MEL: formal education forces novel prediction errors daily; complex occupations generate ongoing model-update demands; stimulating leisure activities maintain the error-signal stream into late life. The dose-response relationship is critical: it implies the update-loop benefit accrues proportionally to lifelong novelty exposure, not as a dichotomous reserve threshold -- consistent with MECH-181's claim that the SD-017 system must be continuously exercised to preserve its responsiveness. The converse is equally supported: understimulating environments (low education, routine occupation, socially isolated late life) are each associated with higher dementia risk, consistent with MECH-181's claim that depriving the update system of error signal accelerates dementia.",
+    "mapping_caveat": "Valenzuela and Sachdev's paper documents the epidemiological association; it does not test the SD-017 mechanism specifically. The REE account is one of multiple mechanistic hypotheses compatible with this data pattern. Alternative mechanisms -- structural reserve, vascular health, reduced amyloid deposition via reduced neural stress -- are equally consistent with the systematic review findings. MECH-181 requires additional mechanistic evidence (sleep architecture changes as function of sustained MEL, neuroimaging of update-system integrity) to distinguish itself from competing accounts.",
+    "source_context": "Systematic review from the Neuropsychiatric Institute, Prince of Wales Hospital, Sydney. Valenzuela and Sachdev are major figures in cognitive reserve epidemiology. Published in Psychological Medicine, one of the leading psychiatry journals. Two companion papers appeared in the same year: the systematic review (PMID 16207391) and a non-parametric systematic review of cognitive decline (PMID 16650343). Cited >800 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High source quality -- systematic review with large N, dose-response analysis, and rigorous inclusion criteria. Mapping fidelity is good at the phenomenological level (MEL proxies map to brain reserve proxies) but moderate at the mechanistic level (MECH-181 specifies the SD-017 update-loop mechanism; the paper does not). Transfer risk is moderate: observational epidemiology with education/occupation confounds. The REE account is a candidate mechanism for a real epidemiological regularity, but the data cannot adjudicate between mechanistic accounts."
+  }
+}

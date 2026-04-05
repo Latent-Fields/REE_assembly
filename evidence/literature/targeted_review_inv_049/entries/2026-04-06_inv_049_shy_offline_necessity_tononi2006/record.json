@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_049",
+  "entry_id": "2026-04-06_inv_049_shy_offline_necessity_tononi2006",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-049"],
+  "source": {
+    "title": "Sleep function and synaptic homeostasis",
+    "authors": ["Giulio Tononi", "Chiara Cirelli"],
+    "year": 2006,
+    "venue": "Sleep Medicine Reviews",
+    "doi": "10.1016/j.smrv.2005.05.002",
+    "pmid": "16376591",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16376591/"
+  },
+  "evidence_class": "neuroscience_theory_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The synaptic homeostasis hypothesis (SHY) provides a second, independent computational argument for why offline phases are necessary: not only do distributed representations suffer catastrophic interference (the CLS argument), but synaptic weights that are continuously potentiated during waking will eventually saturate, become energetically unsustainable, and lose signal-to-noise ratio. Renormalisation -- downscaling synaptic weights to baseline -- requires suspension of active encoding and can only occur safely offline. This complements the CLS interference argument with a capacity/homeostasis argument. Confidence is somewhat lower than the CLS entries because SHY's specific mechanism (slow-wave-driven downscaling) is more biologically specific than INV-049's abstract claim, and there is ongoing debate about the completeness of synaptic downscaling as the primary SWS function.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_049", "synaptic_homeostasis", "SHY", "slow_wave_sleep", "synaptic_renormalization", "offline_plasticity", "signal_to_noise", "energy_constraint", "supports"],
+  "mapping": {
+    "source_claim_statement": "During waking, learning-driven synaptic potentiation increases net synaptic strength throughout the cortex. This increases metabolic cost, reduces signal-to-noise ratio, and saturates further learning capacity. Slow-wave sleep allows global downscaling of synaptic weights toward a sustainable baseline via cortical slow oscillations and hippocampal sharp-wave ripples. This renormalisation cannot occur during waking because active sensory input and ongoing learning continually drive new potentiation.",
+    "ree_translation": "INV-049: SHY provides a complementary computational argument to CLS. Beyond catastrophic interference, there is a capacity saturation problem: a model that continuously accumulates prediction errors and updates its parameters will progressively degrade its own signal-to-noise ratio and approach a regime where further learning is inefficient. The offline phase (sleep) is necessary not only to replay and consolidate, but to renormalise model capacity -- downscale overpotentiated connections to restore the dynamic range needed for the next cycle of learning. For REE, this translates to the need for periodic offline phases where E1/E2 parameter distributions are renormalised relative to accumulated prediction error, restoring the system's ability to encode new predictive structure.",
+    "mapping_caveat": "SHY is specifically about synaptic weight magnitudes and their metabolic/signal consequences in biological neural circuits. The REE mapping requires abstraction: 'synaptic saturation' becomes 'parameter saturation or bias drift in the world model,' and 'slow-wave renormalisation' becomes 'periodic model reorganisation during quiescence.' The capacity saturation argument is plausible for REE but not demonstrated -- it is a principled extrapolation from SHY's biological mechanism, not a direct test. SHY debate (partial vs. global downscaling, REM vs. NREM roles) is ongoing and does not affect the basic necessity argument at the level of INV-049.",
+    "source_context": "Theoretical review in Sleep Medicine Reviews. Original SHY formulation (the 2006 paper supersedes an earlier 2003 hypothesis paper). Tononi and Cirelli are at University of Wisconsin-Madison."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "High source quality -- foundational SHY paper, widely influential. Mapping fidelity is moderate because the biological specifics (synaptic weight magnitudes, metabolic cost, slow oscillations) require significant abstraction to apply to INV-049. Transfer risk is higher than for CLS entries because SHY is a biological theory and INV-049 claims generality across substrates -- the transfer requires accepting that 'parameter saturation' is a general phenomenon analogous to synaptic saturation, which is reasonable but not proven."
+  }
+}

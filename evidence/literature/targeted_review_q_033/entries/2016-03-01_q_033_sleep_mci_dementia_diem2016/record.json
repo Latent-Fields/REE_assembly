@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_033",
+  "entry_id": "2016-03-01_q_033_sleep_mci_dementia_diem2016",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["Q-033"],
+  "source": {
+    "title": "Measures of Sleep-Wake Patterns and Risk of Mild Cognitive Impairment or Dementia in Older Women",
+    "authors": ["Diem, Susan J.", "Blackwell, Terri L.", "Stone, Katie L.", "Yaffe, Kristine", "Tranah, Greg", "Cauley, Jane A.", "Ancoli-Israel, Sonia", "Redline, Susan", "Spira, Adam P.", "Hillier, Teresa A.", "Ensrud, Kristine E."],
+    "year": 2016,
+    "venue": "American Journal of Geriatric Psychiatry",
+    "doi": "10.1016/j.jagp.2015.12.002",
+    "pmid": "26964485",
+    "volume": "24",
+    "issue": "3",
+    "pages": "248-258"
+  },
+  "evidence_class": "prospective_cohort",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Large prospective cohort (n=1,245 cognitively normal older women, mean age 82.6 years, ~5 year follow-up, 38% developed MCI/dementia). Sleep efficiency and variability -- not total sleep time -- predicted cognitive decompensation. This broadens Q-033 beyond psychiatric decompensation to cognitive decline, supporting the generalisability of the sleep-architecture-quality thesis. Confidence limited to 0.60: the study does not test the mismatch index concept directly, does not include waking error burden measures, and uses older adults (age 82.6) where sleep architecture is already substantially altered, potentially amplifying effect sizes. The 'architecture' signal here is efficiency/variability (actigraphy-derivable) rather than staging per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "elderly_population_floor_effects_possible",
+    "no_error_burden_or_mismatch_component",
+    "sleep_efficiency_not_phase_sufficiency"
+  ],
+  "tags": [
+    "actigraphy",
+    "cognitive_decline",
+    "MCI",
+    "dementia",
+    "sleep_efficiency",
+    "sleep_variability",
+    "total_sleep_time",
+    "longitudinal",
+    "older_women",
+    "decompensation_prediction"
+  ],
+  "mapping": {
+    "source_claim_statement": "Among 1,245 cognitively normal older women followed ~5 years, lowest quartile sleep efficiency (<74%) conferred 1.5-fold higher odds of developing MCI or dementia; sleep latency and variability also predicted cognitive impairment; total sleep duration alone was not predictive.",
+    "ree_translation": "Q-033 asks whether sleep-phase adequacy (beyond total duration) predicts decompensation type and timing. This study demonstrates that sleep quality measures (efficiency, variability, latency) derived from actigraphy predict cognitive decompensation over a 5-year horizon, while total sleep time does not. This extends Q-033's applicability beyond psychiatric to cognitive decompensation domains, and further supports the premise that architecture-quality signals outperform duration as predictors.",
+    "mapping_caveat": "The predictors here (efficiency, variability, latency) are proxies for sleep architecture quality but are not phase-sufficiency measures as Q-033 envisions. No waking error burden component is present. The population is elderly women (mean 82.6 years) where baseline sleep architecture is heavily compressed -- effects may not generalise to younger or more heterogeneous clinical populations. The decompensation domain is cognitive, not the psychiatric focus of the other Q-033 evidence.",
+    "source_context": "Study of Osteoporotic Fractures (SOF) ancillary study; community-dwelling older women; actigraphy measured over multi-night home recordings; cognitive outcomes assessed at clinic visits over ~5 year follow-up."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.60,
+    "notes": "Source quality high: large prospective cohort (n=1,245), long follow-up, established SOF cohort, strong journal. Mapping fidelity moderate: the study demonstrates the general principle (sleep quality > duration for decompensation prediction) but does not test phase sufficiency or mismatch index concepts. Transfer risk moderate-high: oldest-old women only, cognitive not psychiatric decompensation, no waking burden component, efficiency/variability proxies not phase measures."
+  }
+}

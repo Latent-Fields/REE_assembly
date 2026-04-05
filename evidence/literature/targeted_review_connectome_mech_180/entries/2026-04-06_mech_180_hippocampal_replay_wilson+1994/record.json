@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_180",
+  "entry_id": "2026-04-06_mech_180_hippocampal_replay_wilson+1994",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-180"],
+  "source": {
+    "title": "Reactivation of hippocampal ensemble memories during sleep.",
+    "authors": ["Wilson MA", "McNaughton BL"],
+    "year": 1994,
+    "venue": "Science",
+    "doi": "10.1126/science.8036517"
+  },
+  "evidence_class": "empirical_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Foundational simultaneous multi-unit recording study in rats showing that hippocampal place cells that co-fired during novel spatial exploration exhibit significantly enhanced co-firing during subsequent slow-wave sleep. The novel environment manipulation is exactly the manipulation MECH-180 predicts should drive upregulated hippocampal replay. Effect is robust, replicated, and directly measured at the neural ensemble level. Confidence slightly below ceiling because the study does not quantify the replay rate as a function of novelty magnitude or prediction error load -- it demonstrates the phenomenon exists but does not parametrically test proportionality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "replay_absent_after_novel_exploration",
+    "co-firing_increase_spurious_or_recording_artifact",
+    "effect_same_for_familiar_vs_novel_environments"
+  ],
+  "tags": ["hippocampal_replay", "slow_wave_sleep", "novel_environment", "place_cells", "memory_consolidation", "SWS"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place cells that were temporally correlated during active spatial exploration showed increased tendency to co-fire during subsequent slow-wave sleep, relative to pre-behavior sleep.",
+    "ree_translation": "Novel spatial experience triggers measurable increases in hippocampal replay rate during subsequent sleep -- the specific prediction of MECH-180 that high-MEL episodes produce proportional increases in hippocampal replay. This is the original empirical demonstration that the learning drive component of sleep (INV-050 third drive) is engaged by novel experience.",
+    "mapping_caveat": "The study does not decompose whether the replay increase is driven by novelty per se versus motor activity, spatial learning, or exploration duration. It also does not measure SWA power or spindle density alongside replay -- those endpoints require separate studies. The proportionality claim in MECH-180 (replay rate proportional to novelty and PE load) is supported directionally but not parametrically tested here.",
+    "source_context": "Rats ran spatial behavioral tasks in novel environments; simultaneous large-ensemble recordings from hippocampal CA1 pyramidal cells during pre-behavior sleep, behavior, and post-behavior sleep. Cells active during behavior with overlapping place fields showed enhanced co-firing in post-behavior sleep but not pre-behavior sleep or in non-overlapping cell pairs."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Source quality is very high: Science, n=3 rats with large ensembles, quantitative analysis, foundational paper with thousands of citations. Mapping fidelity is good -- directly tests the novelty-driven replay claim -- but the proportionality sub-claim and the SWA/spindle endpoints are not covered. Transfer risk is low because the rat hippocampal replay mechanism is well-conserved and the finding has been replicated in many species and contexts."
+  }
+}

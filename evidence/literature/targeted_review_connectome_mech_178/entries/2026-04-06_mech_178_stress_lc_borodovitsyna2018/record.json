@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_178",
+  "entry_id": "2026-04-06_mech_178_stress_lc_borodovitsyna2018",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-178"],
+  "source": {
+    "title": "Persistent Stress-Induced Neuroplastic Changes in the Locus Coeruleus/Norepinephrine System",
+    "authors": ["Borodovitsyna O", "Joshi N", "Chandler D"],
+    "year": 2018,
+    "venue": "Neural Plasticity",
+    "doi": "10.1155/2018/1892570",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6020552/"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "This review directly addresses the chronic stress -- LC hyperactivity link that MECH-178 invokes as one of three routes to sustained tonic LC-NE elevation. It documents that repeated or chronic stress persistently increases LC tonic firing through CRF-mediated neuroplastic changes, and that this elevation outlasts the acute stressor. The review also notes that dysregulated LC-NE under chronic stress is associated with thinking inflexibility and maladaptive behavioral responses -- language that partially maps onto MECH-178's 'progressive behavioural rigidity' prediction. Confidence is 0.65 rather than higher because: (1) the review does not directly link chronic LC elevation to REM suppression or to the specific behavioral rigidity mechanism proposed by MECH-178 (it discusses cognitive inflexibility in waking, not the sleep-deprivation pathway); and (2) the step from LC hyperactivity to REM suppression to rigidity requires chaining evidence from this review with the Aston-Jones firing-pattern work, which introduces additional inferential steps.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review documents LC hyperactivity and cognitive/behavioral consequences under chronic stress, but does not directly measure REM sleep reduction as the mediating pathway -- the link to REM suppression is MECH-178's inference, not the review's conclusion.",
+    "Behavioral inflexibility discussed in the review may arise from waking-state LC dysregulation (excessive NE reducing signal-to-noise in PFC) rather than through the sleep-deprivation pathway that MECH-178 specifically proposes.",
+    "Most studies reviewed use animal models; the persistence and magnitude of LC neuroplastic changes in humans under naturalistic chronic stress are less well characterised."
+  ],
+  "tags": ["mech_178", "locus_coeruleus", "chronic_stress", "norepinephrine", "neuroplasticity", "behavioral_rigidity", "crf", "tonic_firing"],
+  "mapping": {
+    "source_claim_statement": "Stress and CRF signaling persistently modify morphological and physiological features of the LC/NE system. Both mild and excessive/traumatic stress are related to maintained hyperactivity of the LC noradrenergic system. Prolonged LC activation leads to maladaptive responses and is implicated in stress-induced neuropsychiatric disorders including thinking inflexibility.",
+    "ree_translation": "MECH-178 requires that chronic stress is one of the three pathways producing sustained elevated tonic LC-NE activity above the REM-generation silence threshold. Borodovitsyna et al. 2018 provides the mechanistic evidence that chronic stress does produce persistent (not just acute) LC hyperactivity via CRF-dependent neuroplastic changes. The associated 'thinking inflexibility' observation is consistent with MECH-178's downstream prediction of behavioural rigidity -- though the review attributes this to waking-state LC dysregulation, not specifically to REM suppression. This is partial evidence: it confirms the upstream pathway (stress -> sustained LC elevation) while leaving the mediating link (sustained LC elevation -> REM suppression -> rigidity) to be inferred from complementary sources.",
+    "mapping_caveat": "The review's behavioral rigidity observations are discussed in the context of waking LC-NE dysregulation (inverted-U dose-response in PFC), not specifically through the sleep-deprivation/REM-suppression mechanism that MECH-178 proposes. MECH-178 makes a specific, testable mechanistic claim about the sleep pathway; this review supports the upstream cause (LC hyperactivity from stress) but does not adjudicate between sleep-mediated and waking-state mechanisms for the resulting rigidity.",
+    "source_context": "Comprehensive review from Rowan University, Neural Plasticity, 2018. Covers genetic, cellular, circuitry, and behavioural evidence for persistent LC/NE changes after stress. Provides a useful synthesis of CRF, opioid, and other stress-related modulation of LC, including evidence from both rodent models and human clinical correlates."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality (systematic, peer-reviewed, wide coverage). Mapping fidelity is moderate -- supports the upstream step of MECH-178 (stress -> LC hyperactivity) directly, but the sleep-mediation pathway requires additional inferential bridging. Transfer risk is moderate given primarily rodent base."
+  }
+}

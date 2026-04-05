@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_179",
+  "entry_id": "2026-04-06_mech_179_rem_emotional_nishida2009",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-179"],
+  "source": {
+    "title": "REM sleep, prefrontal theta, and the consolidation of human emotional memory",
+    "authors": ["Nishida M", "Pearsall J", "Buckner RL", "Walker MP"],
+    "year": 2009,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhn155",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2665156/"
+  },
+  "evidence_class": "primary_human",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "This is the strongest direct experimental evidence for REM-sleep-specific emotional memory consolidation in humans. Using a nap paradigm with polysomnography, Nishida et al. show that (1) subjects who napped showed consolidation benefit specifically for emotional (not neutral) memories; (2) within the nap group, emotional memory consolidation correlated specifically with the amount of REM sleep obtained; and (3) right-dominant prefrontal theta power during REM (linked to limbic-prefrontal recalibration) predicted individual differences in emotional memory consolidation. The specificity to emotional content -- with neutral memory showing no consolidation benefit from napping -- is directly relevant to MECH-179's claim that emotional PE demands REM (MECH-123) rather than NREM. Confidence 0.73 reflects the experimental strength of the within-subjects design while acknowledging that the study does not directly test PE types and does not include a NREM-spatial comparison within the same protocol.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The nap paradigm captures a relatively brief period of REM and NREM -- the dissociation might not fully extrapolate to overnight sleep where NREM and REM interact through multiple cycles.",
+    "The study demonstrates emotional memory specificity for REM consolidation but does not include a matched spatial/declarative condition in the same subjects, so the double dissociation that MECH-179 requires is not tested within this study.",
+    "Prefrontal theta during REM is an electrophysiological correlate, not direct evidence that REM is necessary for emotional memory consolidation -- the correlation could reflect a common cause rather than the REM-theta mechanism being the active agent."
+  ],
+  "tags": ["mech_179", "rem_sleep", "emotional_memory", "prefrontal_theta", "memory_consolidation", "nap_paradigm", "eeg", "human", "nishida", "walker", "specificity"],
+  "mapping": {
+    "source_claim_statement": "Subjects who napped showed a consolidation benefit for emotional but not neutral memories. Within the nap group, emotional memory consolidation correlated with REM sleep amount and with right-dominant prefrontal theta power during REM. REM-sleep theta activity provides the electrophysiological mechanism linking REM to emotional memory consolidation.",
+    "ree_translation": "MECH-179 predicts that emotional prediction errors primarily demand REM-mediated simulation and recalibration for policy and salience update, in contrast to world-state / factual errors which demand NREM. Nishida et al. 2009 provides the clearest direct human experimental evidence for the REM-emotional pole of this dissociation: REM sleep selectively consolidates emotional (not neutral/factual) memories, and this is mediated by prefrontal theta that reflects limbic-prefrontal recalibration consistent with MECH-123. The study supports MECH-179's core claim that emotional PE type creates a specific demand for REM sleep physiology.",
+    "mapping_caveat": "The study maps cleanly onto MECH-179's REM-for-emotional prediction but does not address the NREM-for-spatial/factual prediction within the same protocol. MECH-179 requires a double dissociation; this study provides one limb (REM for emotional) while Peigneux et al. 2004 provides the other (NREM for spatial). The two studies together form a convergent case for the dissociation but do not constitute a direct, within-study test.",
+    "source_context": "Experimental human EEG + memory study from the Walker Lab (UC Berkeley) and Buckner Lab (Harvard). Published in Cerebral Cortex, a high-impact neuroscience journal. The nap paradigm with polysomnography and post-sleep memory testing is a methodologically rigorous design for separating REM from NREM contributions. This paper is frequently cited as the clearest human evidence for REM's role in emotional memory consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.10,
+    "notes": "High source quality -- experimental human study, high-impact journal, strong Walker lab methodology. Mapping fidelity is good: the emotional specificity of REM consolidation is directly MECH-179's REM-pole prediction. The PE-type mapping requires treating emotional memories as traces of emotional/identity-threatening PE, which is conceptually sound but not directly operationalised in the study. Transfer risk is very low -- human subjects, directly relevant to the claim."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_180",
+  "entry_id": "2026-04-06_mech_180_local_swa_learning_huber+2004",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-180"],
+  "source": {
+    "title": "Local sleep and learning.",
+    "authors": ["Huber R", "Ghilardi MF", "Massimini M", "Tononi G"],
+    "year": 2004,
+    "venue": "Nature",
+    "doi": "10.1038/nature02663"
+  },
+  "evidence_class": "empirical_human",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Provides the most direct human evidence for the SWA-upregulation-after-learning endpoint in MECH-180. Uses high-density EEG to show that a motor visuomotor adaptation task produces locally elevated SWA (over the trained hemisphere/region) during subsequent sleep, and that the local SWA increase correlates with performance improvement after sleep. This is exactly the mechanism described in MECH-180: learning drives homeostatic upregulation of SWA (the slow-wave activity power endpoint). Confidence is high because the design is well-controlled (within-subject, region-specific), the effect is quantitative and replicated, and it directly connects the learning-to-SWA pathway. Minor limitations: the task is a relatively simple visuomotor rotation, not a novel environment in the full sense of MECH-180's framing; and spindle density and hippocampal replay rate are not measured here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "local_SWA_increase_absent_after_learning",
+    "SWA_increase_not_correlated_with_performance_improvement",
+    "SWA_increase_reflects_motor_fatigue_not_learning"
+  ],
+  "tags": ["slow_wave_activity", "SWA", "local_sleep", "motor_learning", "synaptic_homeostasis", "EEG", "human", "performance_improvement"],
+  "mapping": {
+    "source_claim_statement": "A visuomotor learning task engaging specific cortical regions produces a local increase in SWA over those regions during subsequent sleep, and the magnitude of local SWA increase correlates with the degree of performance improvement after sleep.",
+    "ree_translation": "Learning-induced synaptic potentiation drives homeostatic upregulation of SWA specifically over the engaged circuits during subsequent sleep -- directly instantiating the MECH-180 mechanism for the slow-wave activity power endpoint. The correlation between SWA increase and post-sleep performance links the upregulation causally to consolidation benefit.",
+    "mapping_caveat": "The task here is a visuomotor rotation task, not a novel environment or a high-dimensional MEL episode. MECH-180 specifically addresses novel-environment and high-MEL contexts. The generalization from a focused motor learning paradigm to the broad novelty/MEL framing requires assuming that SWA homeostasis scales with the amount and breadth of potentiation, which is the Synaptic Homeostasis Hypothesis's core prediction but is not directly tested across novelty magnitudes here.",
+    "source_context": "Human subjects performed a visuomotor adaptation task (arm rotation learning) or a non-learning control task. High-density EEG during subsequent sleep showed locally elevated SWA over parietal/occipital regions contralateral to the trained arm; local SWA increase correlated with overnight improvement in task performance."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.15,
+    "notes": "Source quality is very high: Nature, within-subject design, high-density EEG with topographic analysis, quantitative correlation with performance. Mapping fidelity is high for the SWA endpoint but moderate for the novelty-proportionality and spindle/replay endpoints. Transfer risk is low because this is a human study directly measuring the SWA endpoint."
+  }
+}

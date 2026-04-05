@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_180",
+  "entry_id": "2026-04-06_mech_180_rem_replay_louie+2001",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-180"],
+  "source": {
+    "title": "Temporally structured replay of awake hippocampal ensemble activity during rapid eye movement sleep.",
+    "authors": ["Louie K", "Wilson MA"],
+    "year": 2001,
+    "venue": "Neuron",
+    "doi": "10.1016/s0896-6273(01)00186-6"
+  },
+  "evidence_class": "empirical_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Extends Wilson & McNaughton 1994 by demonstrating that REM sleep also carries temporally structured replay of novel behavioral sequences, with the temporal order preserved at a roughly equivalent timescale (tens of seconds to minutes). Directly relevant to MECH-180 in that it confirms replay extends beyond SWS into REM and involves structured sequence replay, not just pairwise co-firing. Confidence is slightly lower than Wilson 1994 because REM replay is a supporting endpoint in MECH-180 rather than the primary one, and the study uses a single novel task (running track) without parametric novelty manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "temporal_order_not_preserved_in_rem",
+    "rem_replay_uncorrelated_with_waking_sequences",
+    "theta_modulation_absent_during_replay_episodes"
+  ],
+  "tags": ["hippocampal_replay", "REM_sleep", "novel_environment", "temporal_sequence", "episodic_memory", "theta_rhythm"],
+  "mapping": {
+    "source_claim_statement": "Temporally sequenced ensemble firing rate patterns reflecting tens of seconds to minutes of behavioral experience are reproduced during REM episodes at an equivalent timescale, with behavior-dependent theta modulation also reproduced.",
+    "ree_translation": "Novel behavioral learning drives temporally structured sequence replay during REM sleep -- supporting MECH-180's claim that high-MEL episodes upregulate the learning drive component of sleep and produce measurable increases in hippocampal replay rate. The finding extends the replay phenomenon to REM and confirms that replay carries the content of recent novel experience.",
+    "mapping_caveat": "MECH-180 primarily focuses on slow-wave activity and SWS-phase replay; this paper's primary finding concerns REM replay. The relationship between REM replay rate and novelty magnitude is not directly tested. The study does not simultaneously measure SWA power or spindle density. Transfer to the MECH-180 framing requires treating REM replay as one component of the multi-stage consolidation cascade that the learning drive upregulates.",
+    "source_context": "Rats ran novel behavioral sequences on a track; multineuronal recordings from rat hippocampus during sleep and wakefulness. REM episodes contained temporally compressed or equivalent-timescale replays of the waking sequences, with theta modulation matching the behavioral profile."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Source quality is high: Neuron, quantitative sequence analysis, multi-unit recordings. Mapping fidelity is moderate because the primary endpoint (REM replay) is supportive but not the central endpoint of MECH-180 (which emphasizes SWA power, spindle density, and SWS replay). Transfer risk is low given conservation of hippocampal replay mechanisms."
+  }
+}

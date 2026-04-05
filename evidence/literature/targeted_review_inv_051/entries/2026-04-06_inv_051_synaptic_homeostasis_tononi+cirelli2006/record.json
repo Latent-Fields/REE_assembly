@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_051",
+  "entry_id": "2026-04-06_inv_051_synaptic_homeostasis_tononi+cirelli2006",
+  "timestamp_utc": "2026-04-06T09:00:00Z",
+  "claim_ids_tested": ["INV-051"],
+  "source": {
+    "title": "Sleep function and synaptic homeostasis.",
+    "authors": ["Tononi G", "Cirelli C"],
+    "year": 2006,
+    "venue": "Sleep Medicine Reviews",
+    "doi": "10.1016/j.smrv.2005.05.002",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16376591/"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The Synaptic Homeostasis Hypothesis (SHY) provides the key mechanistic substrate for the MEL optimal-range claim. SHY holds that waking experience drives net synaptic potentiation (i.e. accumulation of plasticity demands) and that sleep -- specifically slow-wave activity -- is the mechanism for normalising synaptic weight. This directly supports INV-051's claim that insufficient waking cognitive load (extreme monotony, institutional under-stimulation) would produce insufficient homeostatic pressure on the sleep system: if no synaptic potentiation accumulates during the day, there is little drive for the normalising SWA function of sleep, predicting progressive model rigidity. The converse (excessive load causing overload insomnia) is less directly addressed by SHY per se, but is consistent with the hypothesis because extreme pre-sleep synaptic potentiation load -- without the opportunity for normalisation -- would prevent the cortical quiet needed for slow waves. The mapping to INV-051 is plausible but requires an additional step: SHY is a theory of synaptic dynamics, not of MEL per se, and the translation to 'model rigidity' needs bridging via the REE framework. Confidence 0.72: strong mechanistic alignment with the understimulation pole, weaker on the overload pole.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SHY was designed to explain homeostatic SWA regulation, not long-term model rigidity from chronic understimulation. The 'rigidity' prediction in INV-051 is not tested in this paper.",
+    "SHY does not address the overload pole of INV-051 (excessive MEL producing insomnia). That pathway requires separate hyperarousal evidence.",
+    "Alternative models of sleep function (e.g. memory consolidation replay theories) do not require that waking stimulation be necessary for adaptive sleep -- they predict sleep is useful regardless of quantity of waking learning."
+  ],
+  "tags": ["inv_051", "synaptic_homeostasis", "slow_wave_activity", "sleep_homeostasis", "mel_optimal_range", "waking_experience", "plasticity", "learning_drive"],
+  "mapping": {
+    "source_claim_statement": "Plastic processes during wakefulness result in a net increase in synaptic strength across many brain circuits. The role of sleep is to downscale synaptic strength to a baseline level. Slow-wave activity is the homeostatic marker of prior waking synaptic load -- it is maximal at sleep onset after a waking episode with rich sensory and learning demands, and minimal after reduced stimulation. Without adequate waking potentiation, the homeostatic signal driving restorative sleep is diminished.",
+    "ree_translation": "INV-051 posits an optimal range of daily Model Error Load (MEL). The understimulation pole -- extreme monotony, institutional isolation -- maps onto the SHY condition where insufficient waking synaptic potentiation occurs. In the REE framework, E1/E2 model-update errors are the MEL signal that drives the SD-017 model-update system. If MEL is chronically low (no novel prediction errors), the homeostatic pressure on the sleep system (which normally consolidates and renormalises the learned representations) is insufficient. SHY provides the mechanistic logic: without adequate day-time learning demand, the nocturnal slow-wave process has little to renormalise, and the system drifts toward entrenchment of existing representations without update. This is the REE formulation of 'progressive model rigidity'. The mechanism is not that sleep is impaired per se, but that the loop -- learning-demand drives sleep-pressure drives consolidation -- is under-exercised and loses adaptive responsiveness.",
+    "mapping_caveat": "SHY describes synaptic-level dynamics, not the macroscopic 'model update' system in REE terms. The REE translation requires treating MEL as a proxy for cumulative synaptic potentiation demand across a day. This is a conceptual extension, not a direct empirical test. SHY also does not speak to whether chronic under-exercise of the sleep-homeostasis system produces permanent rigidity versus recoverable hysteresis.",
+    "source_context": "Seminal theoretical review article. Tononi and Cirelli (University of Wisconsin) developed SHY over 2003-2014. This 2006 Sleep Medicine Reviews paper is the canonical extended statement of the framework. Cited >2000 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality -- seminal theoretical review in a major journal, substantial empirical support accumulated since 2006. Mapping fidelity is good for the understimulation pole but the overload pole is outside SHY's scope. Transfer risk is moderate: REE uses SHY as a mechanistic analogy but the formal claim in INV-051 is at a different level of description (MEL, model rigidity) than SHY's synaptic-weight constructs."
+  }
+}

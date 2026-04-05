@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_049",
+  "entry_id": "2026-04-06_inv_049_cls_offline_necessity_mcclelland1995",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-049"],
+  "source": {
+    "title": "Why there are complementary learning systems in the hippocampus and neocortex: Insights from the successes and failures of connectionist models of learning and memory",
+    "authors": ["James L. McClelland", "Bruce L. McNaughton", "Randall C. O'Reilly"],
+    "year": 1995,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.102.3.419",
+    "pmid": "7624455",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7624455/"
+  },
+  "evidence_class": "computational_theory_review",
+  "evidence_direction": "supports",
+  "confidence": 0.92,
+  "confidence_rationale": "This is the foundational paper establishing the computational necessity of offline replay for any system that learns incrementally via gradient descent over distributed representations. The core argument is mathematical: interleaved training (offline replay of prior experience during new learning) is necessary to prevent catastrophic interference -- new learning overwrites old representations when updates are sequential and online. The paper derives this from first principles of connectionist learning, then maps it onto hippocampal-neocortical architecture. This directly founds INV-049's claim that offline phases are a general computational necessity, not a biological contingency. High confidence because the core theorem is well-established; mild discount for the specific biological framing which goes beyond INV-049's more abstract claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_049", "complementary_learning_systems", "catastrophic_interference", "offline_replay", "hippocampus", "neocortex", "connectionist", "interleaved_learning", "memory_consolidation", "foundational"],
+  "mapping": {
+    "source_claim_statement": "Connectionist neural networks learning via gradient descent suffer catastrophic interference when trained sequentially: new learning overwrites existing representations. The solution requires interleaved training -- replaying old experience alongside new. The hippocampus enables rapid encoding of new episodes while neocortex slowly integrates across replayed episodes offline (during sleep). This architectural split is the computational solution to the sequential learning problem.",
+    "ree_translation": "INV-049: Any agent building a world model via incremental learning from experience cannot safely update that model while using it for online navigation. The mathematical reason is catastrophic interference in distributed representations -- online sequential updates corrupt existing knowledge. The solution requires an offline phase in which (a) action is suspended, (b) recent experience is replayed, and (c) the world model is reorganised by interleaving new with old. This is not a biological accident but a derived necessity for any gradient-learning system with distributed representations. The CLS framework provides the formal grounding for INV-049's 'general computational necessity' claim.",
+    "mapping_caveat": "McClelland et al. frame the argument in terms of distributed connectionist representations specifically. INV-049 is broader -- it applies to any model-building agent with an online/offline tension, not only to gradient-based systems. The mapping is very strong for the core necessity claim but requires conceptual extension to cover non-gradient learning systems (e.g., Bayesian model update, symbolic planners). The biological instantiation in hippocampus/neocortex is additional context, not required for the INV-049 claim itself.",
+    "source_context": "Theoretical paper with simulations. Demonstrates catastrophic interference in backpropagation networks on sequential list-learning tasks. Proposes that interleaved (replay-based) training is the formal solution. Maps this onto hippocampal episodic encoding + slow neocortical integration as the biological implementation."
+  },
+  "confidence_components": {
+    "source_quality": 0.98,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.15,
+    "notes": "Foundational, highly cited paper in Psychological Review. Mapping fidelity is very high for gradient-learning systems; slight discount because INV-049 claims universality across learning architectures, which this paper does not fully address. Transfer risk is low -- the argument is general to distributed representations, and REE's latent learning clearly falls within that class."
+  }
+}

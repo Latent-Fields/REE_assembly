@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_050",
+  "entry_id": "2026-04-06_inv_050_sleep_learning_consolidation_walker2004",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-050"],
+  "source": {
+    "title": "Sleep-dependent learning and memory consolidation",
+    "authors": ["Matthew P. Walker", "Robert Stickgold"],
+    "year": 2004,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2004.08.031",
+    "pmid": "15450165",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15450165/"
+  },
+  "evidence_class": "neuroscience_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Walker and Stickgold 2004 provide the key empirical case that sleep is not merely rest but an active, learning-dependent process: performance on motor and perceptual tasks improves after sleep, not just after equivalent waking rest, and the magnitude of improvement correlates with sleep architecture (specifically SWS and sleep spindle density). This establishes that learning demand during the prior waking period shapes what happens during sleep -- the offline update phase is not a fixed, generic process but is modulated by the learning history. This is direct support for INV-050's core structure: the extent of waking learning drives the character of the subsequent sleep phase. The missing link for full INV-050 support is direct evidence that prediction error accumulation (rather than practice time) is the relevant variable -- the paper establishes learning-dependence but does not operationalise this as a prediction error signal specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_050", "sleep_dependent_learning", "memory_consolidation", "motor_learning", "sleep_spindles", "SWS", "offline_processing", "learning_dependence", "supports"],
+  "mapping": {
+    "source_claim_statement": "Sleep plays an active, not passive, role in memory consolidation. Performance on motor sequence learning, visual discrimination, and perceptual tasks improves after sleep but not after equivalent waking rest. The enhancement is sleep-stage specific: motor sequence gains correlate with NREM stage 2 and sleep spindles; visual perceptual gains correlate with SWS and REM sleep. The learning that occurred during the preceding waking period shapes the sleep architecture required for consolidation.",
+    "ree_translation": "INV-050: Walker and Stickgold establish that the overnight update phase is learning-dependent -- what happened during waking determines what happens during sleep. This is the empirical core of INV-050's third drive: sleep is not a fixed nightly process that runs identically regardless of cognitive load, but is calibrated to the learning burden of the prior day. For REE, this translates directly: an agent with high prediction error accumulation during waking needs a different (more intensive or longer) offline update phase than one with low error accumulation. The Borbely model's Process S cannot represent this distinction; MEL can. The correlation between learning intensity and sleep architecture (spindle density, SWS depth) is the human empirical evidence for the MEL drive's existence.",
+    "mapping_caveat": "Walker and Stickgold operationalise 'learning demand' as training on specific skills (motor sequences, visual tasks) and measure consolidation as overnight improvement. They do not frame this in terms of prediction error accumulation or world model updates. The mapping to INV-050's MEL drive requires accepting that 'learning demand' in these experiments corresponds to prediction error (the motor system's forward model was surprised, made errors, and needed updating). This is a reasonable but not demonstrated mapping. The paper also focuses on specific task types rather than general exploratory learning, which is the REE scenario of interest.",
+    "source_context": "Review article in Neuron, 2004. Walker and Stickgold synthesise human studies of sleep-dependent learning across motor, perceptual, and declarative domains. Highly influential in establishing sleep's active role in memory consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "High quality review in Neuron, well-evidenced across multiple task domains. Mapping fidelity is good but not excellent -- the paper establishes learning-dependence of sleep without specifically operationalising the prediction error framing that MEL requires. Transfer risk: human skill-learning studies to REE's model-building agent involves architectural abstraction but the core learning-dependence phenomenon is likely general."
+  }
+}

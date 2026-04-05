@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_050",
+  "entry_id": "2026-04-06_inv_050_sleep_memory_review_rasch2013",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-050"],
+  "source": {
+    "title": "About sleep's role in memory",
+    "authors": ["Bjorn Rasch", "Jan Born"],
+    "year": 2013,
+    "venue": "Physiological Reviews",
+    "doi": "10.1152/physrev.00032.2012",
+    "pmid": "23589831",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23589831/"
+  },
+  "evidence_class": "neuroscience_comprehensive_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Rasch and Born's 2013 Physiological Reviews article is the most comprehensive review of sleep and memory available, covering molecular, cellular, systems, and behavioural levels. It synthesises evidence that slow-wave sleep homeostasis has a local, use-dependent component: cortical areas that were activated during prior waking learning show increased local SWA during subsequent sleep, and the magnitude of local SWA correlates with consolidation quality. This is the most direct evidence for INV-050's claim that learning demand calibrates the update phase -- specifically, that the distribution of offline update resources is proportional to where prediction errors occurred during waking. The local use-dependence of SWA is a key empirical anchor for MEL as a drive that shapes not just total sleep duration but the spatial distribution of update resources during the offline phase.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_050", "sleep_memory_review", "slow_wave_activity", "local_sleep_homeostasis", "use_dependent_sleep", "system_consolidation", "hippocampus", "neocortex", "learning_dependent", "supports"],
+  "mapping": {
+    "source_claim_statement": "Memory consolidation during sleep is active and selective. Slow-wave sleep drives hippocampal-to-neocortical transfer of memory traces via sharp-wave ripple reactivation coupled to cortical slow oscillations and sleep spindles. SWA has a local, use-dependent component: brain regions engaged by prior waking learning show enhanced local SWA in subsequent sleep, correlating with next-day performance. The magnitude of reactivation-dependent consolidation is thus partially calibrated by waking learning demand at the regional level.",
+    "ree_translation": "INV-050: The local use-dependence of SWA is the strongest available evidence for INV-050's third drive (MEL) operating at a granular level. If prediction errors during waking are unevenly distributed across model components (E1 world prediction more stressed than E2 fast transition, for example), the offline update phase allocates more resources (SWA amplitude, replay density) to the more error-stressed components. MEL is thus not merely a scalar total-error accumulator -- it has a spatial (or modular) profile that shapes the within-phase distribution of consolidation resources. The Rasch-Born review provides the biological grounding for this finer-grained picture. Their account of system consolidation (hippocampal reactivation driving neocortical integration) maps directly onto REE's architecture: hippocampal replay (MECH-092) driving E1 parameter update during the quiescent phase.",
+    "mapping_caveat": "Rasch and Born review biological sleep stages (SWS, REM, NREM2) and their specific roles in different memory types (declarative, procedural, emotional). INV-050 abstracts to a 'three-drive' model that does not distinguish between sleep stages at the level of the claim. The mapping works at the level of 'learning-dependent calibration of the offline update phase' but loses stage-specific detail. The local SWA evidence requires careful translation: 'use-dependent local SWA' in biology becomes 'error-load-dependent local update intensity' in REE, which is a plausible but not directly tested mapping.",
+    "source_context": "Comprehensive review in Physiological Reviews, 2013, 86 pages. Rasch (University of Fribourg) and Born (University of Tubingen) are leading sleep-memory researchers. The review covers evidence from human, rodent, and in vitro studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Near-maximal source quality -- comprehensive Physiological Reviews article by leading researchers with broad empirical coverage. Mapping fidelity is good for the learning-dependent calibration argument and the local use-dependence; moderate discount for the abstraction required to connect sleep-stage specifics to INV-050's drive framework. Transfer risk is moderate: the use-dependent SWA evidence is strong in humans and rodents, but mapping 'use-dependent SWA' to 'MEL-proportional update allocation' in an artificial system requires accepting an analogy that has not been tested computationally."
+  }
+}

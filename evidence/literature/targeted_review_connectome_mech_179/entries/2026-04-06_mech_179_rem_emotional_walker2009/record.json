@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_179",
+  "entry_id": "2026-04-06_mech_179_rem_emotional_walker2009",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-179"],
+  "source": {
+    "title": "Overnight therapy? The role of sleep in emotional brain processing",
+    "authors": ["Walker MP", "van der Helm E"],
+    "year": 2009,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/a0016570",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2890316/"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is the canonical REM-sleep emotional processing review, proposing the sleep-to-forget, sleep-to-remember (SFSR) model. Walker & van der Helm directly argue that REM sleep provides a unique neurochemical milieu (low aminergic, high cholinergic) in which emotional memory reprocessing can depotentiate the affective tone of experiences while consolidating the declarative content. This maps directly onto MECH-179's prediction that emotional and identity-threatening prediction errors primarily demand REM-mediated simulation and recalibration (MECH-123). The review distinguishes emotional from neutral memory processing and associates the former preferentially with REM. Confidence 0.70 rather than higher because: (1) this is a theoretical review/model paper rather than a direct empirical test of PE-type specificity; (2) the simple REM-for-emotional vs NREM-for-declarative partition has been complicated by subsequent evidence that NREM also plays a role in emotional memory consolidation; and (3) MECH-179 makes the additional specific claim about different PE types (not just memory types), which this paper does not directly test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The SFSR model distinguishes emotional from neutral memory, not specifically prediction error type -- MECH-179's claim about episodic/spatial/factual errors vs emotional/social/identity-threatening errors is a more specific sub-hypothesis that this review supports in principle but does not test directly.",
+    "Subsequent empirical work (post-2009) has challenged the clean REM-for-emotional partition, with evidence that NREM also contributes substantially to emotional memory consolidation in some conditions.",
+    "The review is framed around memory consolidation (declarative, emotional, procedural) rather than prediction error type -- the REE translation requires mapping memory categories onto PE categories, which introduces an additional inferential step."
+  ],
+  "tags": ["mech_179", "rem_sleep", "emotional_memory", "memory_consolidation", "sfsr_model", "acetylcholine", "aminergic", "affective_tone", "walker", "prediction_error_type"],
+  "mapping": {
+    "source_claim_statement": "REM sleep provides a neurobiological state -- devoid of aminergic modulation, dominated by cholinergic neurochemistry -- that is especially well suited for the preferential processing of emotional experiences. During REM, neural structures involved in emotional memory are reactivated through synchronous theta oscillations, achieving depotentiation of affective tone while supporting neocortical consolidation. Sleep abnormalities are associated with mood disturbances consistent with failures of this mechanism.",
+    "ree_translation": "MECH-179 predicts that emotional, social, and identity-threatening prediction errors primarily demand REM-mediated simulation and recalibration (MECH-123) for policy and salience update. Walker & van der Helm 2009 directly supports this by showing that REM sleep is preferentially recruited for emotional memory -- exactly the category that MECH-179 assigns to the REM phase. The SFSR model's neurochemical logic (low NE during REM enables depotentiation of salience/affective tone while consolidating content) is directly the mechanism that MECH-178 and MECH-179 together invoke: REM's unique chemical environment is what makes it the appropriate phase for recalibrating the salience/policy weights on emotional and identity-relevant prediction errors.",
+    "mapping_caveat": "MECH-179 makes a claim about prediction error type determining sleep phase demand, which is a more specific mechanistic hypothesis than Walker & van der Helm's memory-type framework. The mapping requires treating 'emotional memory' as the trace of emotional/identity-threatening PE, and 'declarative/neutral memory' as the trace of world-state PE -- a reasonable but not directly empirically validated translation. The clean binary partition is also contested in the literature.",
+    "source_context": "Influential theoretical and empirical synthesis in Psychological Bulletin by Walker and van der Helm from UC Berkeley's Walker Lab. Presents the SFSR (Sleep to Forget, Sleep to Remember) model grounded in neurochemical differences between sleep stages. Widely cited as the foundational statement of REM's specific role in emotional processing. Psychological Bulletin is a top-tier review journal."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.20,
+    "notes": "High source quality -- major review journal, leading sleep researchers, foundational model paper. Mapping fidelity is moderate: the emotional-memory / REM association maps onto MECH-179's emotional PE / REM demand prediction, but the PE-type specificity claim in MECH-179 is not directly tested. Transfer risk is low -- human-focused review with human EEG and neuroimaging evidence."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_179",
+  "entry_id": "2026-04-06_mech_179_nrem_spatial_peigneux2004",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-179"],
+  "source": {
+    "title": "Are spatial memories strengthened in the human hippocampus during slow wave sleep?",
+    "authors": ["Peigneux P", "Laureys S", "Fuchs S", "Collette F", "Perrin F", "Reggers J", "Phillips C", "Degueldre C", "Del Fiore G", "Aerts J", "Luxen A", "Maquet P"],
+    "year": 2004,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2004.10.007",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15504332/"
+  },
+  "evidence_class": "primary_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is a key human neuroimaging study showing that hippocampal reactivation during slow-wave sleep (SWS/NREM) specifically predicts the consolidation of spatial memory -- exactly the memory type that MECH-179 assigns to the NREM-mediated schema replay (MECH-121) pathway. The study used fMRI to show that hippocampal regions activated during virtual navigation were reactivated during post-learning SWS, and that the amount of hippocampal SWS activity correlated with next-day spatial memory performance. This directly supports MECH-179's prediction that spatial errors (a type of world-state / factual prediction error) primarily demand NREM-mediated replay for prior correction. Confidence 0.72 because the study does not compare spatial vs. emotional memory head-to-head within the same subjects under the same conditions -- the double dissociation evidence for MECH-179 requires combining this result with complementary REM-emotional memory evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study only examines spatial memory and SWS -- it does not include a REM condition or an emotional memory condition, so it cannot directly test the differential prediction of MECH-179 (that spatial PE specifically demands NREM rather than REM).",
+    "The correlation between SWS hippocampal activity and memory performance is consistent with NREM-spatial specificity but does not rule out that SWS also consolidates emotional memories -- the specificity claim requires the double dissociation.",
+    "Spatial memory is one category of world-state prediction error; MECH-179's claim extends to episodic and factual errors as well, for which this study provides only partial evidence."
+  ],
+  "tags": ["mech_179", "nrem_sleep", "slow_wave_sleep", "spatial_memory", "hippocampus", "memory_consolidation", "replay", "fmri", "peigneux", "declarative_memory"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal areas activated during a virtual navigation (spatial learning) task are reactivated during post-learning slow-wave sleep. The amount of hippocampal activity during SWS is positively correlated with overnight improvement of spatial memory performance. This provides human evidence for hippocampal-cortical reactivation during NREM as a mechanism for spatial memory consolidation.",
+    "ree_translation": "MECH-179 predicts that episodic, spatial, and factual prediction errors primarily demand NREM-mediated schema replay (MECH-121) for prior correction. Peigneux et al. 2004 provides direct human fMRI evidence that spatial memory (spatial PE in REE terms) is consolidated via hippocampal replay specifically during NREM/SWS. The hippocampal reactivation-to-performance correlation is precisely the mechanism MECH-121 describes as prior correction through schema replay. This represents the strongest available human neuroimaging evidence for the NREM-pole of MECH-179's double dissociation claim.",
+    "mapping_caveat": "Spatial memory is the best-established example of NREM-preferential consolidation, but MECH-179's full prediction includes episodic and factual PE types. Spatial memory likely involves strong hippocampal schemas and is among the clearest cases for the NREM hypothesis; the extrapolation to other factual PE types is plausible but not directly tested by this study. The double dissociation (NREM for spatial, REM for emotional) requires complementary studies for its other limb.",
+    "source_context": "Human fMRI study from the Cyclotron Research Centre, University of Liege (Maquet lab). Published in Neuron, a top-tier neuroscience journal. Used a virtual-reality spatial navigation task (NAVI) with a single sleep opportunity after learning. The hippocampal-SWS-performance correlation is one of the most cited pieces of human evidence for systems-level memory consolidation during sleep."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.10,
+    "notes": "Excellent source quality -- human neuroimaging, top journal, direct measurement of the consolidation mechanism. Mapping fidelity is good: the study tests exactly the class of spatial/world-state memory that MECH-179 assigns to NREM, though without the head-to-head comparison with emotional memory. Transfer risk is very low -- human study, directly relevant domain."
+  }
+}

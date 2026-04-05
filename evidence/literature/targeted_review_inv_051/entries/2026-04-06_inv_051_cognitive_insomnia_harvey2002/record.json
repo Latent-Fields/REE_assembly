@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_051",
+  "entry_id": "2026-04-06_inv_051_cognitive_insomnia_harvey2002",
+  "timestamp_utc": "2026-04-06T09:00:00Z",
+  "claim_ids_tested": ["INV-051"],
+  "source": {
+    "title": "A cognitive model of insomnia.",
+    "authors": ["Harvey AG"],
+    "year": 2002,
+    "venue": "Behaviour Research and Therapy",
+    "doi": "10.1016/s0005-7967(01)00061-4",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12186352/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Harvey's cognitive model provides the mechanistic account for the overload pole of INV-051. The model describes how excessive negatively-toned cognitive activity (worry, rumination) -- driven by perceived high-stakes waking demands -- triggers autonomic arousal and emotional distress that interfere with sleep initiation and maintenance. In REE terms, this is the condition of excessive MEL: when the waking system is overwhelmed by high-novelty or high-responsibility events that generate prediction errors faster than they can be resolved, the residual arousal spills into the sleep period, preventing the cortical quiescence needed for slow-wave consolidation. The paper supports the specific claim in INV-051 that excessive MEL produces 'overload insomnia and incomplete update even with extended sleep opportunity', via the well-established cognitive-arousal mechanism. Confidence 0.65 because Harvey's model describes a specific psychiatric/cognitive pathway (worry about sleep itself) which is a narrower mechanism than the general MEL overload claim in INV-051. The broader claim -- that any form of excessive cognitive/experiential load disrupts sleep -- is supported but the specific focus on sleep-related worry introduces a specificity mismatch.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Harvey's model focuses on worry about sleep itself (secondary cognitive arousal), not overload from primary waking events. This may not generalise to the REE case of acute trauma or extreme novelty overload.",
+    "The model is cognitive-psychological and agnostic about neural mechanisms. It does not speak to why overloaded sleep fails to consolidate updates (incomplete update claim in INV-051).",
+    "Many people with high cognitive/occupational load sleep well -- the model requires a specific attentional component (sleep-related threat monitoring) that is not present in all high-MEL individuals."
+  ],
+  "tags": ["inv_051", "insomnia", "cognitive_arousal", "hyperarousal", "overload", "worry", "rumination", "mel_overload_pole", "sleep_onset_failure"],
+  "mapping": {
+    "source_claim_statement": "Individuals with insomnia engage in negatively toned cognitive activity (worry, rumination) that triggers autonomic arousal and emotional distress. Selective attention toward sleep-related threat cues and safety behaviors that attempt to control sleep maintain the arousal cycle, preventing sleep onset. The result is incomplete sleep even when opportunity is extended, because the arousal system overrides the sleep-initiation process.",
+    "ree_translation": "INV-051 posits that excessive MEL (acute trauma, overwhelming novelty, extreme responsibility) produces overload insomnia and incomplete update even with extended sleep opportunity. Harvey's model provides the cognitive-level mechanism for the sleep disruption side of this claim: high waking demands generate cognitive arousal that persists into the pre-sleep period. In REE terms, if the day's prediction errors (MEL) are not resolved during waking -- either because they exceed the system's update capacity or because they are affectively charged and remain open -- they persist as active problem-solving loops at sleep onset. This sustained cognitive arousal is the pre-sleep correlate of incomplete model update: the system is still attempting to process unresolved error signals rather than entering the consolidation-and-normalisation phase. The safety behaviors Harvey identifies (thought control, monitoring) map onto REE goal-maintenance loops that remain active post-commit and prevent the quiescent state needed for sleep-phase consolidation.",
+    "mapping_caveat": "Harvey's model is specifically about the maintenance of insomnia in clinical populations, emphasising the role of sleep-specific worry and monitoring as secondary drivers. The primary causal agent in INV-051 is MEL overload from waking events, not worry about sleep per se. The two can co-occur (high MEL leads to poor sleep which then triggers Harvey's secondary worry cycle), but the INV-051 claim is about the primary pathway. Harvey provides good support for why overloaded sleep is incomplete, but weaker direct support for the initial MEL-overload trigger mechanism.",
+    "source_context": "Highly influential cognitive model of insomnia, published in Behaviour Research and Therapy. Harvey (Oxford, then Berkeley) built on Espie's inhibition model and Morin's CBT framework. Cited >1200 times. Formed the basis of cognitive therapy protocols for insomnia."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "High source quality -- seminal, widely cited model that has been validated in multiple trials and cohort studies. Mapping fidelity is moderate: Harvey addresses the overload-disrupts-sleep pathway but from a specific secondary-arousal angle (worry about sleep). Transfer risk is moderate-high: the REE claim is about primary MEL overload, and Harvey's model is about a specific subtype of cognitive arousal. The mapping is plausible but requires inferring from clinical insomnia phenotype to the broader MEL claim."
+  }
+}
