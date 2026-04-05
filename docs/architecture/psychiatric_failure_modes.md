@@ -168,6 +168,129 @@ num_hazards constant, vary num_resources). Sweep the ratio.
 
 ---
 
+## Frame-Tag Failure Modes: Developmental Etiology (INV-061, MECH-200, MECH-201, MECH-202)
+
+> **Registered 2026-04-06.** Extends MECH-094 (hypothesis tag loss = psychosis mechanism)
+> with a developmental pathway via MECH-198 (pretend play as frame-distinction training).
+
+### Common Architectural Substrate (INV-061)
+
+The REE architecture distinguishes real from synthetic/hypothetical frames via two
+co-operating tag systems: the **hypothesis tag** (MECH-094, agent-internal, marks
+simulation/replay as non-real) and the **play frame tag** (ARC-049, bilateral, marks
+play episodes as authorized-synthetic). Pretend play (MECH-198) is the developmental
+phase where these two systems first co-operate.
+
+When pretend play is absent or insufficient, the frame-distinction mechanism is
+undertrained. The resulting adult failure modes are not independent disorders but
+**different failure signatures of the same undertrained mechanism**, varying by:
+
+1. **Direction of confusion**: real→synthetic (derealization cluster) vs synthetic→real (delusion cluster)
+2. **Affected subsystem**: frame tag, commitment gate, or threat evaluation
+
+This provides a unified developmental etiology for conditions that are clinically
+distinct but architecturally related.
+
+### MECH-200: Real→Synthetic Confusion (Derealization Direction)
+
+The agent treats real consequences as if they were synthetic. The frame tag reads
+"play" when the environment is real.
+
+**Mechanism**: the real/synthetic distinction was never properly calibrated during
+pretend play. The agent defaulted to tagging ambiguous frames as synthetic (the
+safer error during play, where real consequences are absent). In adulthood, this
+default persists: when frame signals are ambiguous, the agent discounts real harm
+signals as if they were play-harm.
+
+**Behavioral signatures:**
+- Actions under real-harm conditions with play-appropriate (i.e. absent) defensive responses
+- Commitment without adequate threat evaluation
+- Harm signals discounted or experienced as distant/unreal
+
+**Psychiatric mappings:**
+
+| Signature | Clinical analogue | REE mechanism |
+|-----------|------------------|---------------|
+| Real harm experienced as unreal | **Derealization** | Frame tag stuck on "synthetic"; z_harm_s fires but is discounted |
+| Elevated commitment, reduced consequence-sensitivity | **Manic episodes** | Play frame leaks into real operation; commitment gate fires without harm-gate check |
+| Actions feel consequence-free | **Dissociative states** | Frame tag intermittently flips to "synthetic" under stress |
+
+### MECH-201: Synthetic→Real Confusion (Delusion Direction)
+
+The agent treats internally generated or simulated representations as real. The
+hypothesis tag (MECH-094) fails to suppress real-consequence responses during
+simulation, replay, or imagination.
+
+**Mechanism**: during pretend play, the hypothesis tag must be active (the stick
+is not really a sword) while the play tag is also active (the fight is not really
+dangerous). If pretend play was insufficient, the hypothesis tag was never properly
+co-exercised with the play tag. In adulthood, internally generated representations
+— simulation, replay, imagination — lack the hypothesis tag marker and are processed
+through the real-consequence pipeline.
+
+**Behavioral signatures:**
+- Internally generated scenarios trigger full emergency responses
+- Replay episodes experienced as happening now, not as memory
+- Pre-commit simulation generates real threat responses
+
+**Psychiatric mappings:**
+
+| Signature | Clinical analogue | REE mechanism |
+|-----------|------------------|---------------|
+| Internal representations experienced as external | **Delusion formation** | Hypothesis tag absent; E3 treats simulated trajectories as real percepts |
+| Replay triggers full emergency response | **PTSD flashback** | SWR replay (MECH-121) lacks hypothesis tag; experienced as real re-occurrence |
+| Simulation generates real threat | **Anxiety disorders** | Pre-commit simulation (normally hypothesis-tagged) triggers z_harm_a as if real |
+| Imagined social scenarios feel real | **Paranoid ideation** | Simulated other-agent threat (MECH-127 counterfactual) processed without hypothesis tag |
+
+### MECH-202: Commitment Gate Developmental Failure
+
+The commitment gate (E3 commit boundary) is undertrained because it was never
+exercised in synthetic mode during pretend play. Two failure directions:
+
+**Direction A — Insufficient inhibition (impulsivity):**
+The gate fires without completing E3 evaluation. During pretend play, the gate
+would have been exercised in a low-stakes context where premature commitment has
+no real consequences, allowing calibration. Without this calibration, the gate
+threshold is set too low.
+
+| Signature | Clinical analogue | REE mechanism |
+|-----------|------------------|---------------|
+| Commits without evaluation | **Impulsivity** | Commitment gate fires before E3 harm/benefit evaluation completes |
+| Elevated commitment + reduced harm sensitivity | **Mania** (commitment component) | Gate threshold too low + MECH-200 frame confusion compound |
+| Cannot delay gratification | **Impulse control disorders** | Gate does not wait for E2 rollout to complete |
+
+**Direction B — Excessive inhibition (paralysis):**
+The gate never fires even when evaluation is complete. Without pretend play
+calibration, the gate threshold was never lowered from the infant default
+(very high commit threshold, INV-055). The agent remains in perpetual
+pre-commit evaluation.
+
+| Signature | Clinical analogue | REE mechanism |
+|-----------|------------------|---------------|
+| Endless re-evaluation without commitment | **OCD** (checking/rumination) | Gate threshold never calibrated down from infant default; E3 loops without committing |
+| Complete inability to initiate action | **Catatonia** | Gate frozen at maximum threshold |
+| Decision paralysis despite completed evaluation | **Severe indecision** | Commitment gate signal never reaches threshold |
+
+### Developmental Evidence
+
+The frame-confusion etiology predicts that pretend play deficits in early childhood
+should correlate with later frame-distinction failures. Existing evidence is consistent:
+
+- Reduced pretend play predicts later psychotic symptoms (Cannon et al. 2002)
+- Children with autism show reduced pretend play AND elevated psychosis risk
+- Pretend play → theory of mind → reality testing are developmentally linked
+- Imaginative play correlates with later impulse control (Diamond & Lee 2011)
+
+### Relationship to MECH-094
+
+MECH-094 identifies hypothesis tag loss as a psychosis mechanism. The frame-confusion
+cluster (MECH-200/201/202) extends this by explaining WHY the tag system might be
+fragile: because pretend play (MECH-198) is where the real/synthetic frame distinction
+is first calibrated. MECH-094 describes the proximal mechanism (tag loss); MECH-198/200/201
+describe the developmental etiology (insufficient calibration during childhood).
+
+---
+
 ## Claims Covered
 
 | ID | Label | Stage |
@@ -180,9 +303,15 @@ num_hazards constant, vary num_resources). Sweep the ratio.
 | INV-054 | depressive_maintenance_loop | Chronicity mechanism |
 | Q-034 | hazard_resource_ratio_depression_threshold | Open testable question |
 
+| INV-061 | frame_confusion_unified_developmental_etiology | All frame-tag failures share common substrate |
+| MECH-200 | frame_confusion_real_as_synthetic | Derealization, mania, dissociation |
+| MECH-201 | frame_confusion_synthetic_as_real | Delusions, PTSD flashbacks, anxiety |
+| MECH-202 | commitment_gate_developmental_failure | Impulsivity, OCD, catatonia |
+
 **Updated claims:**
 - INV-034: added clinical inverse note (goal maintenance failure = depression, EXQ-237a)
 - MECH-117: added clinical note (Berridge dissociation as architectural consequence of MECH-187 failure)
+- MECH-094: developmental etiology added via MECH-198/200/201 (pretend play calibrates the tag system)
 
 ---
 
