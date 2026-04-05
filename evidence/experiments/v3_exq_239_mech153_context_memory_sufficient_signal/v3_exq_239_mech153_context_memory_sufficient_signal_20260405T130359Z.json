@@ -1,0 +1,335 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "cosine_sim_supervised_mean": 1.0,
+    "cosine_sim_ablated_mean": 0.9999999761581421,
+    "mean_cosine_diff": -2.384185793236071e-08,
+    "terrain_accuracy_supervised_mean": 0.6043172240257263,
+    "terrain_accuracy_ablated_mean": 0.6043172240257263,
+    "c1_pass": 0,
+    "c2_pass": 0,
+    "c3_pass": 1,
+    "c4_pass": 1,
+    "c1_seeds_pass": 0,
+    "c3_seeds_pass": 4,
+    "c4_seeds_pass": 5,
+    "n_seeds": 5,
+    "lambda_supervised": 0.5,
+    "warmup_episodes": 500,
+    "cosine_sim_supervised_per_seed": [
+      0.9999999403953552,
+      0.9999999403953552,
+      0.9999999403953552,
+      0.9999999403953552,
+      1.000000238418579
+    ],
+    "cosine_sim_ablated_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      0.9999999403953552,
+      0.9999999403953552
+    ],
+    "terrain_accuracy_supervised_per_seed": [
+      0.7054010033607483,
+      0.5979557037353516,
+      0.5501567125320435,
+      0.5099667906761169,
+      0.6581059098243713
+    ],
+    "terrain_accuracy_ablated_per_seed": [
+      0.7054010033607483,
+      0.5979557037353516,
+      0.5501567125320435,
+      0.5099667906761169,
+      0.6581059098243713
+    ]
+  },
+  "summary_markdown": "# V3-EXQ-239 -- MECH-153 Context Memory Sufficient Signal Test\n\n**Status:** FAIL\n**Claims:** MECH-153\n**Seeds:** [42, 7, 11, 99, 31]\n**Supersedes:** EXQ-187a (inconclusive: lambda=0.1, 150 warmup eps insufficient)\n\n## Context\n\nEXQ-187a was diagnosed as inconclusive (not a code bug): context_memory.write()\nwas correctly called, but lambda=0.1 with 150 warmup episodes was insufficient\nto produce differentiated context vectors (cosine_sim=1.0). This experiment\nuses 5x stronger supervised signal (lambda=0.5) and 3x longer warmup (500 eps).\n\n## Design\n\n**SUPERVISED:** lambda_terrain=0.5, 500 warmup eps x 200 steps.\nCE terrain-class loss (3 classes: OPEN/ROCKY/FOREST) flowing through extract_cue_context()\nand ContextMemory. context_memory.write() called each step.\n\n**ABLATED:** lambda_terrain=0.0 (no supervised loss). Same warmup setup.\nTests whether unsupervised context representations differentiate without supervision.\n\n## Key Results\n\n| Condition | mean cosine_sim | mean terrain_acc |\n|---|---|---|\n| SUPERVISED | 1.0000 | 0.6043 |\n| ABLATED | 1.0000 | 0.6043 |\n| Difference (ABLATED - SUP) | -0.0000 | -- |\n\n## Pass Criteria\n\n| Criterion | Result | Notes |\n|---|---|---|\n| C1: SUP cosine_sim<0.95 (3/5 seeds) | FAIL | 0/5 seeds |\n| C2: mean_cosine_diff>0.02 | FAIL | diff=-0.0000 |\n| C3: SUP terrain_acc>0.55 (3/5 seeds) | PASS | 4/5 seeds |\n| C4: ABL cosine_sim>=0.98 (3/5 seeds) | PASS | 5/5 seeds |\n\nPASS rule: C1 AND (C2 OR C3) AND C4. **FAIL**\n\n## Per-Seed Results\n\n  SUP seed=42: cosine_sim=0.9999999403953552 terrain_acc=0.7054 C1=FAIL C3=PASS\n  SUP seed=7: cosine_sim=0.9999999403953552 terrain_acc=0.5980 C1=FAIL C3=PASS\n  SUP seed=11: cosine_sim=0.9999999403953552 terrain_acc=0.5502 C1=FAIL C3=PASS\n  SUP seed=99: cosine_sim=0.9999999403953552 terrain_acc=0.5100 C1=FAIL C3=FAIL\n  SUP seed=31: cosine_sim=1.000000238418579 terrain_acc=0.6581 C1=FAIL C3=PASS\n\n  ABL seed=42: cosine_sim=1.0 terrain_acc=0.7054 C4=PASS\n  ABL seed=7: cosine_sim=1.0 terrain_acc=0.5980 C4=PASS\n  ABL seed=11: cosine_sim=1.0 terrain_acc=0.5502 C4=PASS\n  ABL seed=99: cosine_sim=0.9999999403953552 terrain_acc=0.5100 C4=PASS\n  ABL seed=31: cosine_sim=0.9999999403953552 terrain_acc=0.6581 C4=PASS\n",
+  "claim_ids": [
+    "MECH-153"
+  ],
+  "evidence_direction": "does_not_support",
+  "experiment_type": "v3_exq_239_mech153_context_memory_sufficient_signal",
+  "experiment_purpose": "evidence",
+  "fatal_error_count": 0,
+  "per_seed_supervised": [
+    {
+      "seed": 42,
+      "condition": "supervised",
+      "cosine_sim": 0.9999999403953552,
+      "terrain_accuracy": 0.7054010033607483,
+      "n_proximate": 777,
+      "n_distal": 414,
+      "n_total": 3059,
+      "n_skipped": 1868,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        1.112705,
+        0.91139,
+        0.899338,
+        1.073472,
+        0.476229
+      ],
+      "terrain_loss_last5": [
+        1.178037,
+        0.51073,
+        1.06254,
+        0.956022,
+        1.114614
+      ],
+      "lambda_terrain": 0.5,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 7,
+      "condition": "supervised",
+      "cosine_sim": 0.9999999403953552,
+      "terrain_accuracy": 0.5979557037353516,
+      "n_proximate": 828,
+      "n_distal": 343,
+      "n_total": 2939,
+      "n_skipped": 1768,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        1.180257,
+        0.000206,
+        0.538083,
+        1.646609,
+        1.337394
+      ],
+      "terrain_loss_last5": [
+        0.448503,
+        1.080002,
+        1.906368,
+        1.319297,
+        0.850953
+      ],
+      "lambda_terrain": 0.5,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 11,
+      "condition": "supervised",
+      "cosine_sim": 0.9999999403953552,
+      "terrain_accuracy": 0.5501567125320435,
+      "n_proximate": 751,
+      "n_distal": 585,
+      "n_total": 3192,
+      "n_skipped": 1856,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        1.098405,
+        0.706734,
+        0.993935,
+        0.975312,
+        1.117986
+      ],
+      "terrain_loss_last5": [
+        0.603606,
+        0.998913,
+        0.925112,
+        1.074827,
+        1.739614
+      ],
+      "lambda_terrain": 0.5,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 99,
+      "condition": "supervised",
+      "cosine_sim": 0.9999999403953552,
+      "terrain_accuracy": 0.5099667906761169,
+      "n_proximate": 796,
+      "n_distal": 567,
+      "n_total": 3010,
+      "n_skipped": 1647,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        0.872616,
+        1.424847,
+        1.341235,
+        0.788444,
+        0.959025
+      ],
+      "terrain_loss_last5": [
+        1.010337,
+        1.895218,
+        0.131186,
+        1.671405,
+        0.332104
+      ],
+      "lambda_terrain": 0.5,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 31,
+      "condition": "supervised",
+      "cosine_sim": 1.000000238418579,
+      "terrain_accuracy": 0.6581059098243713,
+      "n_proximate": 653,
+      "n_distal": 455,
+      "n_total": 3116,
+      "n_skipped": 2008,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        1.15036,
+        1.170418,
+        2.147861,
+        0.644086,
+        0.973535
+      ],
+      "terrain_loss_last5": [
+        1.293778,
+        0.860503,
+        0.737458,
+        1.361744,
+        1.222771
+      ],
+      "lambda_terrain": 0.5,
+      "warmup_episodes": 500
+    }
+  ],
+  "per_seed_ablated": [
+    {
+      "seed": 42,
+      "condition": "ablated",
+      "cosine_sim": 1.0,
+      "terrain_accuracy": 0.7054010033607483,
+      "n_proximate": 777,
+      "n_distal": 414,
+      "n_total": 3059,
+      "n_skipped": 1868,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "terrain_loss_last5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lambda_terrain": 0.0,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 7,
+      "condition": "ablated",
+      "cosine_sim": 1.0,
+      "terrain_accuracy": 0.5979557037353516,
+      "n_proximate": 828,
+      "n_distal": 343,
+      "n_total": 2939,
+      "n_skipped": 1768,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "terrain_loss_last5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lambda_terrain": 0.0,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 11,
+      "condition": "ablated",
+      "cosine_sim": 1.0,
+      "terrain_accuracy": 0.5501567125320435,
+      "n_proximate": 751,
+      "n_distal": 585,
+      "n_total": 3192,
+      "n_skipped": 1856,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "terrain_loss_last5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lambda_terrain": 0.0,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 99,
+      "condition": "ablated",
+      "cosine_sim": 0.9999999403953552,
+      "terrain_accuracy": 0.5099667906761169,
+      "n_proximate": 796,
+      "n_distal": 567,
+      "n_total": 3010,
+      "n_skipped": 1647,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "terrain_loss_last5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lambda_terrain": 0.0,
+      "warmup_episodes": 500
+    },
+    {
+      "seed": 31,
+      "condition": "ablated",
+      "cosine_sim": 0.9999999403953552,
+      "terrain_accuracy": 0.6581059098243713,
+      "n_proximate": 653,
+      "n_distal": 455,
+      "n_total": 3116,
+      "n_skipped": 2008,
+      "has_sufficient_samples": 1,
+      "terrain_loss_first5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "terrain_loss_last5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lambda_terrain": 0.0,
+      "warmup_episodes": 500
+    }
+  ],
+  "run_timestamp": "20260405T130359Z",
+  "claim": "MECH-153",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_239_mech153_context_memory_sufficient_signal_20260405T130359Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
