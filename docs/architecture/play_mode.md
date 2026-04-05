@@ -109,6 +109,76 @@ This **reverses the apparent dependency**: play enables SD-012 experiments, rath
 
 ---
 
+## Play Type Developmental Progression (INV-060, MECH-197)
+
+Play is not monolithic. The type of play changes as the agent's subsystem competence develops,
+with each type training specific architectural components in dependency order:
+
+### Sensorimotor Play (earliest)
+
+"What happens if I do this?" Repetitive action-outcome exploration.
+
+- **Subsystems trained:** E1 world model (sensory prediction), E2 motor model (action-outcome mapping)
+- **Synthetic signal complexity:** single-step goal, binary harm
+- **Developmental position:** transition point out of the infant phase (INV-055). The infant's novelty-driven exploration becomes structured as soon as synthetic goals can be set.
+- **Frame complexity:** minimal — caregiver maintains frame unilaterally; agent does not yet monitor frame state
+
+### Constructive Play
+
+Building, sequencing, multi-step assembly toward a target state.
+
+- **Subsystems trained:** E2 rollout competence (multi-step forward model), E3 trajectory selection (action sequencing)
+- **Synthetic signal complexity:** compositional goals — agent chains actions toward a synthetic target
+- **Developmental position:** requires sensorimotor play competence (E1/E2 world and motor models must be functional)
+- **What emerges:** trajectory competence (MECH-195's transferable output) first develops here
+
+### Pretend Play (MECH-198)
+
+"This stick is a sword." Counterfactual representation within a play frame.
+
+- **Subsystems trained:** MECH-094 hypothesis tag + ARC-049 play tag intersection; E3 commitment architecture in synthetic mode
+- **Synthetic signal complexity:** synthetic *entities* layered on top of synthetic goals — representational substitution
+- **Developmental position:** requires constructive play competence (trajectory selection must be functional). This is the first point where the hypothesis tag and play tag co-operate: the agent maintains a counterfactual representation it knows is synthetic, within a play frame with synthetic stakes.
+- **What emerges:** full commitment architecture exercised in low-stakes mode; counterfactual reasoning under play-frame protection
+
+### Games with Rules
+
+Structured play with agreed-upon constraints, turn-taking, defined roles.
+
+- **Subsystems trained:** social coordination (ARC-047), constraint satisfaction, shared-state monitoring
+- **Synthetic signal complexity:** synthetic rules as frame-internal constraints — the play frame has internal structure beyond "this is play"
+- **Developmental position:** requires pretend play competence (commitment architecture and counterfactual reasoning must be functional)
+- **Frame complexity:** ARC-049 frame becomes structured — not just "this is play" but "this is play with these specific shared constraints." This answers Q-035 empirically: games with rules *require* ongoing shared-state monitoring, not just open/close transitions.
+
+### Cooperative/Social Play
+
+Joint goals, role negotiation, coordinated multi-agent strategy.
+
+- **Subsystems trained:** full multi-agent ARC-049 with mutual frame maintenance, MECH-127 counterfactual other-cost
+- **Synthetic signal complexity:** coordinated synthetic goals across agents; shared play-frame
+- **Developmental position:** requires games-with-rules competence (shared-state monitoring must be functional)
+- **Frame complexity:** full bilateral ARC-049 — agents co-maintain frame as peers. The social harness (ARC-047) scaffolds this until the agents can maintain frames without caregiver assistance.
+
+### Caregiver Role Transition (MECH-199)
+
+The caregiver's role shifts at each developmental transition:
+
+| Phase | Caregiver role | Frame function |
+|-------|---------------|----------------|
+| Infant (INV-055) | Damage protection (ARC-046) | No play frame; caregiver attenuates real harm |
+| Child — sensorimotor play | Frame-setter | Caregiver unilaterally opens/closes play frame |
+| Child — constructive/pretend play | Frame-maintainer | Caregiver monitors frame and intervenes if real harm intrudes |
+| Child — games with rules | Frame co-participant | Caregiver participates in structured play, models rule-following |
+| Child — cooperative play | Scaffolded withdrawal | Caregiver facilitates peer play, begins stepping back |
+| Adult | Peer | Mutual frame maintenance without asymmetric authority |
+
+This maps the caregiver requirement (INV-043) onto specific play-type phases: the caregiver
+is not just "protecting the child" but *actively maintaining the play frame* that enables
+strategy acquisition. The caregiver IS the bilateral frame-maintainer that ARC-049 requires
+during the developmental period when the agent cannot yet self-monitor frame integrity.
+
+---
+
 ## Frame Integrity: Play vs. Manipulation (INV-059)
 
 If an agent can assert play-frame unilaterally while the partner continues acting under real-harm assumptions, the frame distinction becomes exploitable:
@@ -149,3 +219,9 @@ Empirical reference: animal play uses both play bow (open) and ongoing play face
 | EXQ-223 | Minimal mind (E1+E2+hippocampus) may use play episodes as training regime |
 | ARC-014 | Commitment architecture; play suspends real commit consequences |
 | MECH-182-185 | Social signal repertoire; play bow/face are stereotyped signals in this repertoire |
+| INV-055 | Infant stage; sensorimotor play is the transition out of infancy |
+| INV-041 | Child stage; play-type progression IS the child developmental curriculum |
+| INV-043 | Caregiver requirement; caregiver provides frame maintenance during childhood play |
+| ARC-046 | Infant hazard protection; predecessor to play-frame protection |
+| ARC-047 | Social harness; scaffolds cooperative play before peer-level frame maintenance |
+| MECH-189 | Super-ordinal goal formation; constructive and pretend play provide the contexts |

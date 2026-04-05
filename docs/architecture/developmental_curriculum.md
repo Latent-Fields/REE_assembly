@@ -4,7 +4,7 @@
 **Scope:** Staged training, curriculum gating, developmental ethics
 **Depends On:** ARC-005 (control plane), ARC-006 (entities and binding), ARC-007 (hippocampal systems), ARC-013 (residue geometry), INV-010 (offline integration)
 **Status:** provisional
-**Claim ID:** ARC-019, INV-043, INV-055, INV-056, ARC-046, MECH-158, MECH-189
+**Claim ID:** ARC-019, INV-043, INV-055, INV-056, INV-060, ARC-046, ARC-049, ARC-050, MECH-158, MECH-189, MECH-197, MECH-198, MECH-199
 <a id="arc-019"></a>
 
 ---
@@ -85,6 +85,74 @@ is the curriculum's product — not ethical behaviour, but substrate quality.
 Transition to childhood (INV-041) when:
 - `z_goal.norm() > infant_goal_threshold`
 - Behavioral entropy below ceiling (repertoire established, not pure random walk)
+
+---
+
+## Play-Dominant Childhood (INV-060, MECH-197, MECH-198, MECH-199)
+<a id="inv-060"></a>
+
+> **Registered 2026-04-06.** Play dominates the child developmental phase. The type of play
+> changes as subsystem competence develops, systematically training architectural components
+> in dependency order. See `play_mode.md` for the full play architecture.
+
+### Why Play Dominates Childhood
+
+The infant phase (INV-055) produces a valence map, behavioral repertoire, and initial z_goal
+representations. But infancy does not produce **goal-pursuit competence** — the ability to
+plan and execute multi-step strategies toward goals. That is what childhood must accomplish.
+
+Play (INV-058) is the mechanism: synthetic goal/harm signals allow full learning flow without
+real harm risk (MECH-194). The child developmental phase is therefore **play-dominant** — play
+is the primary learning mode, not a supplement to real-consequence experience.
+
+### Play Type Progression (MECH-197)
+
+The type of play changes as subsystem competence develops:
+
+| Play type | Subsystems trained | Prerequisite |
+|-----------|-------------------|--------------|
+| Sensorimotor | E1 world model, E2 motor model | Infant substrate (INV-055) |
+| Constructive | E2 rollout, E3 trajectory selection | Sensorimotor play competence |
+| Pretend (MECH-198) | Hypothesis tag + play tag intersection; commitment architecture | Constructive play competence |
+| Games with rules | Social coordination, constraint satisfaction | Pretend play competence |
+| Cooperative | Full multi-agent frame maintenance | Games-with-rules competence |
+
+Each type requires the competencies acquired by the previous type. The progression is not
+optional — skipping a stage leaves the next stage's subsystem prerequisites unmet.
+
+Sensorimotor play marks the **transition point out of infancy**: the infant's novelty-driven
+exploration becomes structured as soon as synthetic goals can be set (infant gate criterion:
+`z_goal.norm() > infant_goal_threshold`).
+
+### Pretend Play and Counterfactual Reasoning (MECH-198)
+
+Pretend play is architecturally distinctive: the agent maintains a **counterfactual
+representation** (the stick IS a sword) within a play frame (the fight is synthetic). This
+is the first point where the hypothesis tag (MECH-094, agent-internal counterfactual marking)
+and the play tag (ARC-049, bilateral frame) co-operate. The full commitment architecture is
+exercised in synthetic mode before being needed for real-consequence decisions.
+
+### Caregiver as Frame-Maintainer (MECH-199)
+
+During childhood, the caregiver's role shifts from **damage protection** (ARC-046, infant
+stage) to **active play-frame maintenance** (ARC-049). The caregiver:
+
+- Opens and closes play frames (sensorimotor play)
+- Monitors frame boundaries and intervenes when real harm intrudes (constructive/pretend play)
+- Co-participates in structured play, modeling rule-following (games with rules)
+- Scaffolds peer play and begins withdrawing (cooperative play)
+
+This is the specific mechanism by which INV-043 (caregiver requirement) operates during
+childhood: the caregiver IS the bilateral frame-maintainer that ARC-049 requires before
+the agent can self-monitor frame integrity. The transition to adult peer-level frame
+maintenance marks the end of the childhood phase.
+
+### Gate Criterion for Adult Transition
+
+Transition from childhood to adulthood when:
+- Play-acquired trajectory competence transfers successfully to real-consequence episodes
+- The agent can maintain play frames peer-to-peer without caregiver scaffolding
+- Real homeostatic drive (SD-012) correctly engages play-acquired goal-pursuit structure
 
 ---
 
@@ -359,3 +427,13 @@ Expected violation signature when order is ignored:
 - MECH-158 ("Love exists but not for me" failure mode)
 - MECH-052 (Care persistence, social.md)
 - INV-025-029 (Five axioms -- axiom 1 grounds the forgiveness requirement)
+- INV-058 (Play as structural necessity)
+- INV-059 (Frame maintenance necessity)
+- INV-060 (Play dominates childhood; play types progress with development)
+- MECH-194-196 (Play mechanisms: synthetic signals, strategy/calibration dissociation, recalibration)
+- MECH-197 (Play type progression trains subsystems in dependency order)
+- MECH-198 (Pretend play: hypothesis tag + play tag intersection)
+- MECH-199 (Caregiver role transitions from protection to frame-maintenance to peer)
+- ARC-049 (Bilateral play frame tag)
+- ARC-050 (Play as SD-012 curriculum)
+- Q-035 (Minimal frame signal architecture)
