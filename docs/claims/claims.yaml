@@ -12039,3 +12039,57 @@
     - INV-055
   location: docs/architecture/psychiatric_failure_modes.md
   notes: "The commitment gate was never exercised in synthetic mode during pretend play. Two failure directions depending on how the untrained gate resolves: (A) insufficient inhibition -- gate fires without completing E3 evaluation. Maps to impulsivity (commits without evaluation), mania commitment component (gate threshold too low + MECH-200 frame confusion compound), impulse control disorders (gate does not wait for E2 rollout). (B) excessive inhibition -- gate never fires, threshold stuck at infant default (INV-055 very high commit threshold never calibrated down). Maps to OCD checking/rumination (E3 loops without committing), catatonia (gate frozen at max threshold), severe indecision (commitment signal never reaches threshold). Pretend play calibrates the gate: low-stakes commitment practice adjusts the threshold between these extremes."
+
+- id: MECH-203
+  title: serotonergic_replay_salience_tagging
+  claim_type: mechanism_hypothesis
+  subject: Tonic serotonergic (5-HT) level during waking tags benefit-relevant experiences for preferential replay during subsequent SWS, complementing harm-salience tagging by the residue field
+  polarity: positive
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-186
+    - MECH-121
+    - MECH-165
+    - SD-017
+  notes: >
+    The residue field already marks harm-dense experiences for replay prioritization (MECH-099,
+    supported by O'Neill 2010 and Huelin Gorriz 2023). But benefit-salient experiences -- where
+    benefit_exposure was high but z_goal was weak (missed opportunities) -- should also be
+    prioritized for consolidation. The tonic 5-HT benefit gradient (MECH-186) provides the
+    tagging signal: experiences occurring during high tonic 5-HT (active benefit gradient) are
+    tagged for replay, while experiences during low tonic 5-HT (depressive attractor, INV-053)
+    are under-tagged, contributing to the consolidation deficit in depression. This connects
+    the psychiatric failure mode (MECH-186 deficit -> reduced benefit gradient) to the sleep
+    failure mode (under-consolidated benefit-relevant experiences -> impoverished goal
+    representations after sleep). Predicts: depressed agents should show reduced benefit-replay
+    density in SWS relative to harm-replay density.
+
+- id: MECH-204
+  title: serotonergic_rem_gate_zero_point
+  claim_type: mechanism_hypothesis
+  subject: Serotonergic withdrawal during REM actively defines the precision recalibration zero-point by removing the benefit gradient, not merely permitting recalibration
+  polarity: positive
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-123
+    - MECH-186
+    - MECH-178
+    - INV-045
+  notes: >
+    MECH-123 (REM precision recalibration) is currently modeled as a permissive process --
+    REM allows precision priors to reset. But the mechanism by which the recalibration target
+    is established is unspecified. This claim proposes that tonic 5-HT withdrawal during REM
+    (dorsal raphe quiescence) actively sets the zero-point: by removing the benefit gradient
+    that biases waking precision, the system can recalibrate against a neutral reference state.
+    This makes REM recalibration not just "allowed by" 5-HT withdrawal but "calibrated by" it.
+    Connects to INV-045 (phase ordering): SWS must precede REM because consolidation requires
+    the benefit gradient to be active (tagging), while recalibration requires it to be absent
+    (zero-point). The serotonergic state transition (high tonic -> withdrawal) is part of what
+    implements the SWS-to-REM computational boundary. Also connects to MECH-178: if
+    noradrenergic tone suppresses REM (blocking 5-HT withdrawal), then both the replay-salience
+    tagging (MECH-203) and the recalibration zero-point (this claim) are disrupted -- a
+    double hit explaining why noradrenergic-mediated REM suppression produces rigidity rather
+    than just reduced recalibration. Predicts: pharmacological 5-HT agonists during REM
+    should impair precision recalibration quality specifically (not SWS consolidation).

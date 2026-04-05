@@ -328,5 +328,66 @@ V4 design will need to specify:
 
 ---
 
+## Serotonergic Cross-State Architecture (MECH-203, MECH-204)
+
+> **Registered 2026-04-06.** The serotonergic system operates across waking and sleep states.
+> The three waking mechanisms (MECH-186/187/188) are incomplete without their sleep-state
+> counterparts.
+
+### The Incomplete Substrate Problem
+
+MECH-186/187/188 model tonic regulatory systems during waking behavior. But serotonin's
+architectural role spans the wake-sleep boundary:
+
+1. **During waking**: tonic 5-HT maintains the benefit gradient (MECH-186), regulates
+   incentive salience gain (MECH-187), and supports goal persistence (MECH-188).
+
+2. **During SWS**: the tonic 5-HT level *tags* which experiences get prioritized for
+   replay. High-5-HT experiences (benefit-salient) should be replayed alongside
+   harm-salient experiences from the residue field. (**MECH-203**)
+
+3. **During REM**: 5-HT *withdrawal* (dorsal raphe quiescence) defines the zero-point
+   for precision recalibration. Without this, MECH-123 has no reference state to
+   recalibrate against. (**MECH-204**)
+
+### MECH-203: Serotonergic Replay Salience Tagging
+
+The residue field marks harm-dense experiences for preferential NREM replay (MECH-099,
+MECH-121). But benefit-salient experiences are equally important for consolidation --
+particularly missed opportunities (high benefit_exposure, low z_goal_norm) where the
+agent *could have* formed a goal but failed to.
+
+Tonic 5-HT level at time of experience serves as the benefit-salience tag:
+- High tonic 5-HT -> experience tagged for benefit-replay
+- Low tonic 5-HT (depressive state) -> benefit-experiences under-tagged
+
+**Psychiatric prediction:** Depressed agents show reduced benefit-replay density during
+SWS relative to harm-replay density. This creates a consolidation asymmetry: harm
+knowledge is maintained (the world remains threatening in memory) while benefit
+knowledge degrades (opportunities are forgotten). This contributes to the depressive
+maintenance loop (INV-054) via a sleep-mediated pathway.
+
+### MECH-204: Serotonergic REM-Gate Zero-Point
+
+MECH-123 (REM precision recalibration) currently has no specification for how the
+recalibration target is established. This claim proposes: 5-HT withdrawal during REM
+actively *sets* the zero-point by removing the benefit gradient that biases waking
+precision. The system recalibrates against a neutral reference.
+
+This makes REM recalibration not merely "allowed by" 5-HT withdrawal but "calibrated
+by" it. Connects to:
+- **INV-045** (phase ordering): SWS needs active benefit gradient (for MECH-203 tagging);
+  REM needs gradient absent (for MECH-204 zero-point). The serotonergic state transition
+  implements the SWS-to-REM computational boundary.
+- **MECH-178**: noradrenergic REM suppression blocks 5-HT withdrawal, disrupting both
+  replay salience (MECH-203) and recalibration zero-point (MECH-204) -- a double hit
+  explaining rigidity rather than just reduced recalibration.
+
+**Pharmacological prediction:** 5-HT agonists administered during REM should impair
+precision recalibration quality specifically (not SWS consolidation), because they
+prevent the zero-point from being established.
+
+---
+
 *Architecture note: EXQ-237a LONG_HORIZON condition (3 hazards, 1 resource, 150 steps),
 seed=42. Full replication pending seeds 7 and 13.*
