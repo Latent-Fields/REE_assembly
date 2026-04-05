@@ -1,10 +1,10 @@
 # Social Cognition (Self/Other)
 
-**Claim Type:** architectural_commitment  
-**Scope:** Social cognition via mirror modelling, coupling, and otherness inference  
-**Depends On:** INV-005 (harm via mirror modelling), ARC-004 (L-space), ARC-006 (entities and binding)  
-**Status:** stable  
-**Claim ID:** ARC-010, MECH-159
+**Claim Type:** architectural_commitment
+**Scope:** Social cognition via mirror modelling, coupling, and otherness inference
+**Depends On:** INV-005 (harm via mirror modelling), ARC-004 (L-space), ARC-006 (entities and binding)
+**Status:** stable
+**Claim ID:** ARC-010, ARC-047, MECH-159, MECH-190
 <a id="arc-010"></a>
 
 ---
@@ -373,6 +373,103 @@ Source: `docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md`
 
 ---
 
+---
+
+<a id="arc-047"></a>
+## Social Scent Harness — SocialGridWorld (ARC-047)
+
+**Claim Type:** architectural_commitment
+**Scope:** Minimal multi-agent substrate for empirical testing of social cognition claims
+**Depends On:** ARC-010, MECH-041, MECH-031, MECH-036, MECH-127, IMPL-019
+**Status:** candidate
+**Claim ID:** ARC-047
+**Implementation phase:** v4
+
+> **Registered 2026-04-06.** Current social claims (ARC-010, MECH-031/036/041/051/052/127)
+> have no empirical substrate. SocialGridWorld is the minimal environment to generate evidence.
+
+### Architecture
+
+**Base:** Extend CausalGridWorld to SocialGridWorld — N REE agent instances + optional
+predator entity in a shared grid.
+
+**Predator entity:** autonomous agent with random walk + drift toward nearest agent.
+Contact with agent triggers a harm event (z_harm_s spike, residue accumulation).
+Not trainable — purely environmental pressure.
+
+### Scent Channels (7 per other-agent)
+
+Each agent's observation includes seven additional channels from other agents, delivered as
+Gaussian gradient fields (same format as existing hazard_field_view / resource_field_view):
+
+| Channel | Source signal | Emission type |
+|---------|--------------|---------------|
+| `wanting_scent_field[25]` | Other's z_goal norm | Automatic, continuous |
+| `seeking_scent_field[25]` | Other's novelty/arousal state | Automatic, continuous |
+| `alarm_scent_field[25]` | Other's hazard-contact event | Automatic, spike on event |
+| `harm_stress_field[25]` | Other's z_harm_a norm | Automatic, continuous |
+| `direction_cue_field[25]` | Other's trajectory direction | Automatic, continuous |
+| `celebration_scent_field[25]` | Other's benefit-contact event | Automatic, spike on event |
+| `defense_scent_field[25]` | Other's voluntary defense action | Voluntary discrete action |
+
+Scent emission is **semi-involuntary** for all channels except defense, implementing
+MECH-041 affective expression as mode broadcast. Each channel decays with distance
+(Gaussian kernel) and persists for N steps before decaying.
+
+### Receiving Scents
+
+The receiving agent interprets scent channels via ARC-010 mirror modelling:
+- MECH-031 OTHER_SELFLIKE inference tags the source as another agent
+- MECH-127 counterfactual other-cost operates on the inferred other-state from scent inputs
+- MECH-036 other-harm veto triggers when harm_stress_field is high for a tagged other-agent
+
+### Tests Enabled
+
+1. **Cooperative defense** (MECH-190): co-emission of defense scent under predator threat
+2. **Defense of others**: defense emission when others' harm_stress_field is high but self is safe
+3. **Goal helping**: response to wanting_scent by moving toward resources + direction cue
+4. **Self-maintenance**: balancing energy drain from defense with self-resource replenishment
+5. **Kin-weighting**: relational distance (MECH-051) modulating defense threshold for others
+
+### Testing Order (IMPL-019)
+
+Per IMPL-019 self-first ordering: SocialGridWorld experiments are introduced only after
+self-viability, control-plane stability, and E3 commitment reliability are confirmed in
+single-agent CausalGridWorld. Early experiments can use one trained agent + one scripted
+partner before full multi-agent training.
+
+---
+
+<a id="mech-190"></a>
+## Defense Scent Coalitions (MECH-190)
+
+**Claim Type:** mechanism_hypothesis
+**Scope:** Cooperative predator defense via additive scent pressure without language
+**Depends On:** ARC-047, MECH-041, MECH-036, MECH-031, MECH-051
+**Status:** candidate
+**Claim ID:** MECH-190
+
+> **Registered 2026-04-06.** First predicted multi-agent cooperative behavior in SocialGridWorld.
+
+**Mechanics:** each agent has a discrete action bit `emit_defense` at energy cost
+`defense_cost`. When emitted, a `defense_scent` Gaussian field centers on the agent.
+Predator avoidance: `P(avoid) = min(1.0, sum(defense_scent at predator position) * avoidance_scale)`.
+Additive structure: two agents co-emitting → double deterrence at half per-agent cost.
+
+**Predicted behavioral sequence:**
+1. **Individual defense** — emit when predator within personal threat radius
+2. **Early coalition** — emit when others' alarm_scent spikes (MECH-041 coordination signal), even if predator is not immediately proximate
+3. **Altruistic defense** — emit when another agent's harm_stress_field is high, even when self is not threatened (requires MECH-036 other-harm routing + MECH-127 counterfactual evaluation)
+
+Stage 3 provides the first empirical test of MECH-127 in a multi-agent setting.
+Relational distance (MECH-051) should modulate the threshold for altruistic defense.
+
+**Why this emerges before goal-cooperation:** defense signal structure is simpler (binary
+spike + harm coupling) and benefit is immediate; goal-helping requires sustained goal-state
+inference across multiple steps.
+
+---
+
 ## Open Questions
 
 <a id="q-009"></a>
@@ -401,6 +498,8 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-h
 - INV-043 (Caregiver requirement -- developmental_curriculum.md)
 - MECH-158 ("Love exists but not for me" failure mode)
 - MECH-159 (Intergenerational moral progress)
+- ARC-047 (Social scent harness -- SocialGridWorld)
+- MECH-190 (Defense scent coalitions)
 
 ## References / Source Fragments
 

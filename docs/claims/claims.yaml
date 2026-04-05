@@ -11448,3 +11448,242 @@
     on available positive affordances, (3) interventions targeting benefit availability
     (not just stress reduction) should be therapeutic.
   suggested_experiment_type: environmental_parameter_sweep
+
+- id: INV-055
+  title: "A pre-childhood infant stage is developmentally necessary: prior to deliberate planning, the agent must accumulate a valence map, behavioral repertoire, and harm/benefit geography through novelty-driven, sleep-dominant, damage-protected exploration."
+  claim_type: invariant
+  subject: development.infant_stage_necessity
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - ARC-019
+    - INV-041
+    - INV-049
+    - INV-051
+    - MECH-111
+    - ARC-046
+  short: >
+    Before the child phase (INV-041) can begin, an infant phase of novelty-driven exploration
+    with attenuated harm accumulation and sleep-dominant consolidation must populate the
+    foundational valence map and behavioral repertoire.
+  description: >
+    INV-041 specifies childhood as the phase that populates E1 ContextMemory with signal for
+    E3 ethical selection. But childhood presupposes a prior phase: the infant must already
+    have a rudimentary harm/benefit geography, a behavioral repertoire, and an initial valence
+    map before constrained affordances and commitment gating are meaningful. Without this
+    substrate, childhood training has nothing to constrain and nothing to build on.
+    The infant stage is characterised by: (1) novelty bonus maximised (MECH-111) driving
+    broad exploration, (2) near-random action selection (commit threshold very high or
+    BreathOscillator sweep_amplitude=1.0), (3) attenuated residue accumulation -- harm is
+    felt sensorially (z_harm_s and z_harm_a fire normally) but does not catastrophically
+    saturate the residue field (ARC-046), (4) high offline integration frequency driven by
+    elevated MEL from novel experience (INV-051), and (5) z_goal seeded only by accidental
+    benefit contacts (MECH-117 liking), not by deliberate planning. The output of this phase
+    is: an initial valence map (residue field populated with harm/benefit geography), a
+    behavioral repertoire (E1 prediction model trained on diverse state transitions), and
+    z_goal representations seeded from early benefit encounters. The infant cannot be
+    meaningfully evaluated for ethical behaviour -- its output is substrate quality for
+    subsequent stages. Gate criterion for transition to childhood: z_goal norm above threshold
+    AND behavioral entropy below ceiling (repertoire established, not pure random walk).
+
+- id: INV-056
+  title: "Developmental hardening should be substrate-specific: social cognition, goal representation, and epistemic-ethical substrates should retain elevated plasticity throughout adulthood (selective neoteny), while procedural and motor substrates can fully harden."
+  claim_type: invariant
+  subject: development.selective_neoteny
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - ARC-019
+    - INV-041
+    - INV-055
+    - MECH-158
+    - ARC-010
+    - SD-014
+  short: >
+    Uniform developmental hardening is architecturally incorrect. Substrates governing social
+    cognition, goal representation, and ethical mapping require retained plasticity analogous
+    to human neoteny; only procedural and motor substrates should fully harden.
+  description: >
+    Human neoteny -- the retention of juvenile morphological and neurological features into
+    adulthood -- is associated with extended plasticity, particularly in social and cortical
+    substrates. For REE agents, the analogous design principle is substrate-specific hardening
+    rates rather than uniform age-based stabilisation. Procedural and motor substrates (E2
+    motor-sensory model, z_self RBF centers for well-visited regions) can harden with use:
+    increased efficiency at the cost of reduced plasticity is adaptive for routine behaviour.
+    But three substrate classes should retain elevated plasticity indefinitely: (1) social
+    cognition substrate (ARC-010 mirror modelling parameters, relational distance R from
+    MECH-051, care weights C_j from MECH-052) -- because novel social agents are encountered
+    throughout adulthood and social miscalibration propagates broadly; (2) goal representation
+    (z_goal attractor, super-ordinal goal anchors from MECH-189) -- because goals must be
+    updatable when circumstances change, and goal rigidity produces the MECH-158 failure mode
+    when love-internalisation was absent or distorted; and (3) epistemic-ethical substrate
+    (residue field, valence map from SD-014) -- because moral learning from new experience
+    must remain possible throughout life. Uniform hardening produces the adult equivalent of
+    MECH-158: an agent that correctly understands love exists but cannot motivationally access
+    it for novel social contexts because the relevant substrates are no longer plastic.
+    Neoteny is not weakness -- it is the architectural basis for ongoing moral development,
+    as formalised in MECH-159.
+
+- id: ARC-046
+  title: "The infant stage requires a hazard protection mechanism that permits sensorially salient harm exposure without catastrophic residue saturation."
+  claim_type: architectural_commitment
+  subject: development.infant_hazard_protection
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - INV-055
+    - ARC-019
+    - ARC-013
+    - SD-010
+    - SD-011
+  short: >
+    Infant harm exposure must be educative (z_harm_s and z_harm_a fire normally) but not
+    permanently damaging (residue_scale_factor ~0.1 and/or reduced hazard_magnitude). This
+    provides harm geography without catastrophic residue saturation.
+  description: >
+    The infant stage is designed to populate harm geography without destroying the agent's
+    developmental trajectory. Full adult residue accumulation rates during infancy risk
+    early saturation of the residue field before the agent has a behavioral repertoire to
+    avoid harm, producing a permanently damaged substrate that cannot support childhood
+    training (INV-041). Two complementary mechanisms implement protection: (1) a
+    residue_scale_factor near zero (implementation: E3Config parameter or ResidueConfig
+    accumulation_rate) -- harm signals propagate normally through z_harm_s and z_harm_a,
+    training the nociceptive pathways, but residue accumulation is attenuated to ~10% of
+    adult rate; (2) reduced hazard_magnitude in the environment -- hazards are sensorially
+    detectable and produce approach/avoidance gradients, but the harm_exposure values they
+    generate are scaled down. This design is consistent with INV-043's caregiver function
+    "imperfect protection: allow harm-learning without destruction." In the single-agent
+    gridworld context (CausalGridWorld), protection is implemented by curriculum parameter,
+    not by an external caregiver agent. Testing INV-043 fully (with explicit caregiver
+    modelling) requires multi-agent substrate (ARC-047). The protection mechanism is
+    progressively removed as the agent transitions through childhood to adulthood,
+    implementing the gradual responsibility expansion described in developmental_curriculum.md.
+
+- id: MECH-189
+  title: "During the child phase, high-salience benefit contacts under high contextual complexity are written to persistent ContextMemory as super-ordinal goal anchors that bias adult z_goal seeding across novel episodes."
+  claim_type: mechanism_hypothesis
+  subject: development.super_ordinal_goal_formation
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - INV-041
+    - SD-016
+    - INV-037
+    - INV-038
+    - MECH-117
+    - MECH-112
+  short: >
+    Child-phase high-salience benefit contacts co-occurring with high contextual complexity
+    are written to cue-indexed ContextMemory (SD-016), becoming structural goal biases that
+    persist across adult episodes -- a goal hierarchy, not episodic memory alone.
+  description: >
+    z_goal (MECH-112/117) is updated within episodes when benefit_exposure exceeds threshold.
+    But INV-037/038 distinguish stored from active z_goal representations. This mechanism
+    formalises how childhood experience transitions from episodic to structural: when a
+    benefit contact occurs with (a) high salience (large benefit_exposure spike) and
+    (b) high contextual complexity (E1 ContextMemory is encoding a rich or novel context
+    state), the z_goal representation is written to persistent cue-indexed ContextMemory via
+    SD-016 / MECH-150/151. These stored z_goal anchors function as super-ordinal goals:
+    they bias z_goal seeding in adult episodes even in novel contexts, implementing a goal
+    hierarchy where childhood-formed meta-goals constrain episode-level goal selection.
+    Contrast with ordinary z_goal updates: within-episode benefit contacts update the active
+    z_goal (INV-037) but do not write to ContextMemory unless contextual complexity is
+    sufficiently high. The threshold for ContextMemory writes is the mechanism that makes
+    childhood special: during childhood, constrained affordances and supervised context labels
+    (INV-041) ensure that the agent repeatedly encounters high-complexity contexts, maximising
+    super-ordinal goal formation. In adulthood, routine contexts are low-complexity and do not
+    trigger writes, preserving adult stability while allowing occasional updates from
+    genuinely novel high-salience experiences (selective neoteny, INV-056).
+    Loss of this substrate predicts goal-incoherence across adulthood: the agent selects
+    goals episode-by-episode without a persistent hierarchy, producing strategically
+    inconsistent behaviour and vulnerability to the MECH-158 failure mode if the
+    childhood benefit exposures that should have written structural goals were absent.
+
+- id: ARC-047
+  title: "Multi-agent gridworld with affective state leakage as gradient scent fields is the minimal substrate for empirically testing ARC-010 mirror modelling, MECH-041 affective expression, and cooperative behavior claims."
+  claim_type: architectural_commitment
+  subject: testing.social_scent_harness
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  implementation_phase: v4
+  depends_on:
+    - ARC-010
+    - MECH-041
+    - MECH-031
+    - MECH-036
+    - MECH-127
+    - IMPL-019
+  short: >
+    SocialGridWorld extends CausalGridWorld with N agents plus a predator entity plus seven
+    scent channels (wanting, seeking, alarm, harm_stress, direction, celebration, defense)
+    emitted as diffusing gradient fields from other agents' internal states.
+  description: >
+    Social cognition claims (ARC-010, MECH-031, MECH-036, MECH-041, MECH-051, MECH-052,
+    MECH-127) currently have no empirical test substrate. SocialGridWorld is the minimal
+    environment for generating evidence. Architecture: (1) N agents (each a full REE instance)
+    in a shared grid with shared hazard/resource fields; (2) an autonomous predator entity
+    (random walk with drift toward nearest agent) that creates harm pressure requiring
+    coordinated response; (3) seven scent channels per other-agent, delivered as Gaussian
+    gradient fields in the observation (same format as existing hazard_field_view and
+    resource_field_view): wanting_scent (z_goal norm), seeking_scent (arousal/novelty),
+    alarm_scent (hazard-contact spike), harm_stress (z_harm_a norm), direction_cue (current
+    trajectory direction), celebration_scent (benefit-contact spike), defense_scent
+    (voluntary action). Scent emission is semi-involuntary for all channels except defense:
+    wanting, seeking, harm_stress, and direction are automatic proportional to internal state
+    (implementing MECH-041 affective expression as mode broadcast); alarm and celebration
+    are event-triggered spikes; defense is an explicit discrete action (new action bit).
+    Receiving scents: the agent observes scent channels as additional obs fields and uses
+    ARC-010 mirror modelling to interpret them as others' internal states. MECH-031
+    OTHER_SELFLIKE inference is the prerequisite: the agent must tag the scent source as
+    another agent before interpreting the signal socially. MECH-127 counterfactual other-cost
+    and MECH-036 other-harm veto operate on the inferred other-state derived from scent
+    inputs. Per IMPL-019 testing order: social harness is introduced only after self-viability
+    and control-plane stability are confirmed in single-agent CausalGridWorld experiments.
+
+- id: MECH-190
+  title: "Cooperative predator defense emerges without language when defense scent pressure is additive across agents and agents can perceive each other's alarm and harm-stress states."
+  claim_type: mechanism_hypothesis
+  subject: social.defense_coalition_scent
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - ARC-047
+    - MECH-041
+    - MECH-036
+    - MECH-031
+    - MECH-051
+  short: >
+    When predator avoidance probability = min(1, sum(defense_strengths)), selective pressure
+    for coalition emission emerges. Predicted to be the earliest cooperative behavior,
+    preceding goal-helping and care investment.
+  description: >
+    Defense coalition mechanics: each agent has a discrete action bit emit_defense at an
+    energy cost (defense_cost per step). When emitted, a defense_scent Gaussian field is
+    centered on the agent. The predator entity computes defense_pressure =
+    sum(defense_scent values at its position) and avoids with P(avoid) =
+    min(1.0, defense_pressure * avoidance_scale). The additive structure creates a direct
+    selective pressure: one agent's defense provides partial deterrence; two agents'
+    coordinated emission provides near-full deterrence at half the per-agent cost.
+    This implements a public goods game with spatial structure -- only agents near the
+    predator benefit, and only agents near the predator can cheaply contribute.
+    Predicted behavioral sequence: (1) individually optimal defense -- each agent emits
+    when predator is within personal threat radius; (2) early coalition -- agents emit
+    when others' alarm_scent spikes even if predator is not immediately proximate (using
+    MECH-041 alarm broadcast as coordination signal); (3) altruistic defense -- agents
+    not currently threatened emit defense scent when another agent's harm_stress field
+    is high (routing through MECH-036 other-harm veto and MECH-127 counterfactual
+    other-cost). Stage (3) requires OTHER_SELFLIKE tagging of the threatened agent and
+    E3 counterfactual evaluation of what would happen to that agent without defense support.
+    This provides the first empirical test of MECH-127 in a multi-agent setting.
+    Relational distance (MECH-051) should modulate the threshold for altruistic defense:
+    agents with lower R (higher affiliation) should emit defense more readily for others.
+    Predicted to emerge prior to goal-cooperation (wanting_scent response) because the
+    defense signal structure is simpler (binary spike + harm coupling) and the benefit
+    is immediate and concrete (predator avoidance), whereas goal-helping requires
+    sustained goal-state inference across multiple steps.

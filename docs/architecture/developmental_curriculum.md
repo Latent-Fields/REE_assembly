@@ -1,10 +1,10 @@
 # Developmental Curriculum and Staged Training
 
-**Claim Type:** architectural_commitment  
-**Scope:** Staged training, curriculum gating, developmental ethics  
-**Depends On:** ARC-005 (control plane), ARC-006 (entities and binding), ARC-007 (hippocampal systems), ARC-013 (residue geometry), INV-010 (offline integration)  
-**Status:** provisional  
-**Claim ID:** ARC-019, INV-043, MECH-158
+**Claim Type:** architectural_commitment
+**Scope:** Staged training, curriculum gating, developmental ethics
+**Depends On:** ARC-005 (control plane), ARC-006 (entities and binding), ARC-007 (hippocampal systems), ARC-013 (residue geometry), INV-010 (offline integration)
+**Status:** provisional
+**Claim ID:** ARC-019, INV-043, INV-055, INV-056, ARC-046, MECH-158, MECH-189
 <a id="arc-019"></a>
 
 ---
@@ -28,6 +28,63 @@ REE must be trained through **staged development** with explicit gates:
 - Control‑plane settings are **curriculum‑tuned** per stage (precision, volatility, veto thresholds).
 - Offline integration (sleep / consolidation) is used **between stages** to stabilize learning.
 - Telemetry exposure channels are required for **early diagnostics** before language can report needs.
+
+---
+
+## Infant Stage (INV-055, ARC-046)
+<a id="inv-055"></a>
+<a id="arc-046"></a>
+
+> **Registered 2026-04-06.** Prior stage to INV-041 childhood. INV-041 presupposes a substrate
+> that only the infant stage can build.
+
+### What the Infant Stage Must Accomplish
+
+Before the child phase can begin, the agent must have:
+- An initial **valence map**: residue field populated with harm/benefit geography
+- A **behavioral repertoire**: E1 prediction model trained on diverse state transitions
+- **z_goal representations** seeded from accidental benefit contacts (not deliberate planning)
+
+Without this substrate, childhood's constrained affordances and commitment gating are
+meaningless — there is nothing to constrain and nothing to build on.
+
+### Operational Parameters
+
+| Parameter | Infant setting | Purpose |
+|-----------|---------------|---------|
+| `novelty_bonus_weight` | maximised | MECH-111 drives broad novel-state coverage |
+| `commit_threshold` | very high OR `sweep_amplitude=1.0` | Near-random exploration, BreathOscillator always in sweep |
+| `offline_integration_frequency` | very low (frequent) | High sleep:wake ratio (INV-051 MEL-driven) |
+| `residue_scale_factor` | ~0.1 | Harm felt sensorially but residue does not catastrophically saturate |
+| `hazard_magnitude` | reduced | Educative harm gradients without destructive accumulation |
+| E3 planning | disabled or near-random | No deliberate trajectory selection until child stage |
+
+### Hazard Protection (ARC-046)
+
+The infant feels harm — z_harm_s and z_harm_a fire normally, training the nociceptive
+pathways. But residue accumulation is attenuated (~10% adult rate) and hazard magnitudes
+are reduced, so the residue field is populated without catastrophic saturation.
+
+This implements the INV-043 caregiver function "imperfect protection: allow harm-learning
+without destruction." In single-agent CausalGridWorld, protection is a curriculum parameter;
+in multi-agent environments (ARC-047), an explicit caregiver agent can take on this role.
+Protection is progressively removed as the agent transitions to childhood then adulthood.
+
+### Sleep Output
+
+Each offline integration pass during infancy:
+- Populates the residue field via `integrate()` (harm/benefit geography)
+- Builds z_goal representations from benefit encounters
+- Tunes E1 prediction model on diverse transitions
+
+Heavy MEL from novel experience (INV-051) drives high sleep demand. The infant's sleep output
+is the curriculum's product — not ethical behaviour, but substrate quality.
+
+### Gate Criterion
+
+Transition to childhood (INV-041) when:
+- `z_goal.norm() > infant_goal_threshold`
+- Behavioral entropy below ceiling (repertoire established, not pure random walk)
 
 ---
 
@@ -185,6 +242,62 @@ This is not a design flaw; it is structurally unavoidable given staged developme
 
 ---
 
+## Super-Ordinal Goal Formation in Childhood (MECH-189)
+<a id="mech-189"></a>
+
+> **Registered 2026-04-06.** Mechanism by which childhood experience transitions from episodic
+> z_goal updates to structural meta-goals that persist across adulthood.
+
+z_goal (MECH-112/117) is updated within episodes when benefit_exposure exceeds threshold.
+But INV-037/038 distinguish stored from active z_goal representations. MECH-189 formalises
+how childhood experience writes structural biases rather than just episodic memories.
+
+**Trigger condition:** benefit contact with (a) high salience AND (b) high contextual
+complexity (E1 ContextMemory encoding a rich/novel context state) → write z_goal to
+persistent cue-indexed ContextMemory via SD-016 / MECH-150/151.
+
+These stored z_goal anchors become **super-ordinal goals**: they bias z_goal seeding in
+adult episodes even in novel contexts, implementing a goal hierarchy where childhood-formed
+meta-goals constrain episode-level goal selection.
+
+**Why childhood is special:** constrained affordances and supervised context labels (INV-041)
+ensure the agent repeatedly encounters high-complexity contexts, maximising super-ordinal
+goal writes. In adulthood, routine low-complexity contexts do not trigger writes, preserving
+stability while allowing updates from genuinely novel high-salience experiences.
+
+**Failure mode:** absence of childhood benefit exposures under high contextual complexity →
+no super-ordinal goals written → adult goal selection is purely episodic → strategically
+inconsistent behaviour and vulnerability to MECH-158 if love-internalisation was also absent.
+
+---
+
+## Selective Neoteny as Design Principle (INV-056)
+<a id="inv-056"></a>
+
+> **Registered 2026-04-06.** Uniform developmental hardening is architecturally incorrect.
+
+Human neoteny — retention of juvenile plasticity in specific substrates — is computationally
+advantageous for REE agents. The design principle: **substrate-specific hardening rates**,
+not uniform age-based stabilisation.
+
+| Substrate | Hardening policy | Rationale |
+|-----------|-----------------|-----------|
+| E2 motor-sensory (z_self RBF, routine regions) | Can harden | Efficiency gains; routine behaviour should be fast |
+| E1 prediction model (well-visited regions) | Can harden | Stable world model for familiar contexts |
+| Social cognition (ARC-010, MECH-051/052) | Retain plasticity | Novel agents encountered throughout life; social miscalibration propagates broadly |
+| Goal representation (z_goal, super-ordinal anchors) | Retain plasticity | Goals must be updatable; rigidity → MECH-158 failure mode |
+| Epistemic-ethical (residue field, SD-014 valence map) | Retain slow plasticity | Moral learning from new experience must remain possible |
+
+**Failure mode of uniform hardening:** an agent that correctly understands love exists but
+cannot motivationally access it for novel social contexts — the adult-stage analogue of
+MECH-158, produced by plasticity loss rather than developmental absence.
+
+**Relationship to MECH-159:** neoteny is the substrate for intergenerational moral progress.
+Each generation can improve its moral baselines only if the relevant substrates remain
+plastic enough to absorb the improved starting conditions they inherit.
+
+---
+
 ## Self-First, Social-Later Testing Order
 
 **Claim Type:** implementation_note  
@@ -237,6 +350,10 @@ Expected violation signature when order is ignored:
 - Q-006
 - MECH-042
 - INV-041 (Childhood phase as architectural prerequisite)
+- INV-055 (Infant stage necessity)
+- INV-056 (Selective neoteny as design principle)
+- ARC-046 (Infant hazard protection mechanism)
+- MECH-189 (Super-ordinal goal formation in childhood)
 - ARC-040/ARC-042 (E3 dark until E1/E2 ready)
 - INV-043 (Caregiver requirement for ethical development)
 - MECH-158 ("Love exists but not for me" failure mode)
