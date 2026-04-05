@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_195_sd003_zharms_full_counterfactual_20260404T161123Z_v3` at `2026-04-04T16:11:23Z` signatures: none
 - `v3_exq_195_sd003_zharms_full_counterfactual_20260401T031452Z_v3` at `2026-04-01T03:14:52Z` signatures: none
 
 Recurring signatures:

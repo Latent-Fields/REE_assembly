@@ -1,64 +1,16 @@
 {
   "schema_version": "v1",
-  "runner_pid": 43051,
+  "runner_pid": null,
   "runner_started_at": "2026-04-03T21:41:05.758761+00:00",
-  "last_updated": "2026-04-04T23:04:59.623133+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-231a",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "MECH-106 BG Hysteresis Redesign (valence-modulated threshold vs no-bias ablation)",
-    "description": "",
-    "script": "experiments/v3_exq_231a_mech106_bg_hysteresis_redesign.py",
-    "started_at": "2026-04-04T20:18:25.193532+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 100,
-      "episodes_total": 100,
-      "overall_pct": 100.0
-    },
-    "seconds_elapsed": 9994,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "[seed=200] POSITIVE_HISTORY 40 eps ...",
-      "[seed=200] after POS_HIST: da_pos=0.8450 threshold_vb=0.5656 threshold_nb=0.4000",
-      "[seed=200] PROBE_A 25 eps ...",
-      "[seed=200] PROBE_A done: mean_latency_vb=2.0 (25/25 commits) mean_latency_nb=9.0 (25/25 commits)",
-      "[seed=200] NEGATIVE_HISTORY 40 eps ..."
-    ],
-    "ree_version": "v3"
-  },
+  "last_updated": "2026-04-05T09:50:30.169617+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
       "claim_id": "",
       "title": "Onboarding smoke test -- EWINPC (Eoin)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-231a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-106 BG Hysteresis Redesign (valence-modulated threshold vs no-bias ablation)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-232",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-026 Approach/Contact Slope Conflict Resolution (peak-checkpoint analysis)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -4421,6 +4373,35 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_231_mech106_bg_hysteresis/v3_exq_231_mech106_bg_hysteresis_20260404T201821Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 14114.9
+    },
+    {
+      "queue_id": "V3-EXQ-231a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-106 BG Hysteresis Redesign (valence-modulated threshold vs no-bias ablation)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-04-04T20:18:25.193532+00:00",
+      "completed_at": "2026-04-04T23:13:36.390612+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_231a_mech106_bg_hysteresis_redesign/v3_exq_231a_mech106_bg_hysteresis_redesign_20260404T231335Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 10511.1
+    },
+    {
+      "queue_id": "V3-EXQ-232",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-026 Approach/Contact Slope Conflict Resolution (peak-checkpoint analysis)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-04-04T23:13:41.990677+00:00",
+      "completed_at": "2026-04-05T09:18:47.368192+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_232_arc026_approach_contact_resolution/v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 30624.2
     }
-  ]
+  ],
+  "draining": false
 }

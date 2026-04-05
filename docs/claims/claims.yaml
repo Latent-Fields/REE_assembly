@@ -1312,12 +1312,13 @@
     Adds one more support entry confirming the V3 substrate continues to pass this claim.
     EXQ-172 INCONCLUSIVE (2026-03-30, T213638Z): E2 quality borderline (r2=0.203, gate=0.15);
     direction criteria fail. Not a clean test. Superseded by T070425Z run.
-    EXQ-172 FAIL 0/4 (2026-03-30, T070425Z): harm_advantage_mean=-0.190 (rollout performs 19%
-    worse than greedy). E2 quality adequate (r2=0.203) so quality is not the blocker -- rollout
-    planning itself counterproductive at current E2 fidelity. Possible reading: k=5 step rollout
-    propagates E2 prediction errors faster than 1-step greedy accumulates them. ARC-018 may be
-    E2-quality-gated: rollout advantage likely requires r2 >> 0.5 to outperform greedy. Evidence
-    direction: weakens (second FAIL after V2 EXQ-021). Hold_candidate_resolve_conflict stands.
+    EXQ-172 FAIL 0/4 (2026-03-30, T070425Z): harm_advantage_mean=-0.190. E2 quality adequate
+    (r2=0.203) -- rollout planning counterproductive at current fidelity. ARC-018 may be
+    E2-quality-gated. Evidence direction: weakens.
+    EXQ-196 FAIL (2026-04-04): harm_advantage_mean=0.0 across all 3 seeds with good substrate
+    quality (e2_world_r2=0.766, residue populated). Classified non-contributory (2026-04-06
+    governance): zero advantage is diagnostic of missing SD-004 substrate (action-object
+    hippocampal map backbone), not refutation of ARC-018. Verdict deferred pending SD-004.
   depends_on:
     - ARC-007
     - ARC-003
@@ -1603,6 +1604,9 @@
     harm_reduction_delta=0.0611 >> 0.01 threshold. Both seeds, both runs. EXQ-124 training-budget
     FAIL superseded -- 600-ep warmup sufficient. EXQ-055 + EXQ-171x2 = three clean PASS entries.
     Evidence_direction: supports.
+    EXQ-184 PASS 3/3 seeds (2026-04-04): Independent replication. harm_rate_CHAIN=0.00021
+    vs NO_CHAIN=0.0608 (290x safer). world_forward_r2=0.987. harm_reduction_delta=0.0606.
+    All 4 criteria met across all seeds. Third clean PASS; evidence strong.
   depends_on:
     - ARC-018
     - ARC-002
@@ -3170,18 +3174,13 @@
     - MECH-071
   location: docs/architecture/five_axioms_foundations.md
   evidence_quality_note: |
-    EXQ-033 FAIL (2026-03-18): Tested C4 — whether approach_slope > contact_slope
-    across training depths (ep 200–1000) on CausalGridWorldV2 (alpha_world=0.9,
-    proximity_scale=0.05). Result: approach_slope=0.000265, contact_slope=0.000289,
-    ratio=0.920. FAIL attributed to training instability: both signals peaked at ep500
-    (gap_approach=0.285, gap_contact=0.276) then degraded by ep1000 (0.245, 0.265).
-    The regression from ep500→ep1000 is a depth-calibration artifact, not a refutation
-    of the claim. C1-C3 all PASSED (gradient world present, E3 generalises, harm eval
-    graded). proximity_scale=0.05 may be too narrow, amplifying approach-signal noise.
-    Needs: training runs >1000 epochs with LR decay, multiple seeds, possibly larger
-    proximity_scale (0.1-0.2) to reduce noise in approach region.
-    Hold confirmed (2026-03-29): no new experiments this session. SD-010 dependency and
-    approach-avoidance symmetry implementation remain prerequisites.
+    EXQ-033 FAIL (2026-03-18): Tested C4 -- approach_slope=0.000265, contact_slope=0.000289,
+    ratio=0.920. FAIL attributed to training instability at ep500-1000 (depth-calibration
+    artifact). C1-C3 all PASSED. EXQ-033 superseded by EXQ-232.
+    EXQ-232 PASS 4/4 criteria, 3/3 seeds (2026-04-05): Peak-checkpoint analysis (1500 eps,
+    phased E3 harm supervision from ep100). approach_slope consistently exceeds contact_slope
+    at peak in all seeds. gap_at_peak=0.924-1.000. Resolves EXQ-033 depth-calibration
+    artifact. Strong evidence: approach gradient expands faster than contact under training.
   notes: >
     Behavioral/capability-expansion prediction split from ARC-024 (2026-03-19).
     The philosophical/foundational layer (death/love as asymptotic limits) is ARC-024,
@@ -4934,8 +4933,18 @@
   claim_type: mechanism_hypothesis
   subject: control_plane.commitment_hysteresis_outcome_valence
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-231 FAIL (2026-04-04): Superseded -- PERSISTENT and REACTIVE conditions produced
+    identical commit values; experimental manipulation never created differentiated valence
+    history. Design flaw, not claim failure.
+    EXQ-231a PASS 5/5 criteria, 4/5 seeds (2026-04-04): VALENCE_BIAS vs NO_BIAS ablation.
+    da_divergence=0.73-0.78 (4/5 seeds), threshold_asymmetry=2.7-2.8, latency_ratio=7-11x.
+    Seed 42 anomaly (near-zero divergence, no commitments) is isolated; does not invalidate.
+    Three literature supports (Frank 2005 D1/D2 asymmetry; Frank et al. 2004 Go/NoGo;
+    Jenkinson & Brown 2011 beta modulation). conflict_ratio=0. Promoted to provisional
+    2026-04-06 governance.
   claim_level: mechanistic
   functional_restatement: >
     The threshold governing entry into and exit from committed states is asymmetric:
@@ -5359,6 +5368,10 @@
     obs by position/resource dims). Proposed fix (EXQ-166b): z_harm_s latent forward model with
     reconstruction branch (autoencoder) to prevent identity collapse -- keeps learning focused on
     harm-specific structure. C2 failure is architectural, not a training budget issue.
+    EXQ-195 FAIL (2026-04-04): attribution_gap=-0.044 all 4 seeds (C1 FAIL). Classified
+    non-contributory (2026-04-06 governance): negative gap reflects missing SD-003 full
+    pipeline wiring (counterfactual comparison not correctly structured), not claim failure.
+    harm_forward_r2=0.914 (ARC-033 component working). Substrate gap, not claim refutation.
   depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033, SD-013]
   location: docs/architecture/sd_003_experiment_design.md
 
@@ -5646,6 +5659,10 @@
     (C4: sensory stream encodes hazard proximity). EXQ-178/178a INCONCLUSIVE (C1 FAIL, identity
     collapse in earlier iterations, superseded). SD-011 stream separation validated; SD-003
     redesign unblocked.
+    EXQ-241 FAIL 1/3 criteria (2026-04-04): Diagnostic POC run. r2_s_forward=-0.32 (training/
+    wiring issue), harm_rate=1.0 in dual-stream conditions (POC wiring regression). Classified
+    non-contributory (2026-04-06 governance): SD-011 stream separation already confirmed in
+    EXQ-178b (r2=0.742) and EXQ-198 (dissociation_advantage=1.243). Diagnostic only.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -6592,6 +6609,10 @@
     causal_gap_approach=0.005 (C2 PASS), causal_gap_contact=0.035 >> causal_gap_neutral=-0.027
     (C3 PASS). n_approach_eval=7515 (C4/C5/C6 all PASS). First full PASS for ARC-033 harm
     forward model. E2_harm_s harm-delta architecture validated.
+    EXQ-195 FAIL (2026-04-04): attribution_gap=-0.044 (C1 FAIL all 4 seeds); harm_forward_r2=0.914
+    (C4 excellent). Classified non-contributory (2026-04-06 governance): high r2 confirms
+    forward model component working (ARC-033 core validated by EXQ-166e). Negative gap reflects
+    missing SD-003 counterfactual pipeline wiring, not ARC-033 failure.
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.

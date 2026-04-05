@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_232_arc026_approach_contact_resolution
 
-Generated: `2026-04-04T23:03:32.141339Z`
+Generated: `2026-04-05T11:50:28.750410Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-04-04T23:03:32.141339Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3` | `2026-04-05T09:18:46Z` | PASS | c1_pass=1<br>c2_pass=1<br>c3_pass=1<br>c4_pass=1<br>criteria_met=4 | c1_pass:+0<br>c2_pass:+0<br>c3_pass:+1<br>c4_pass:+1<br>criteria_met:+2 | - | - | [`summary`](runs/v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3/summary.md) / [`manifest`](runs/v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3/manifest.json) / [`metrics`](runs/v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3/metrics.json) |
 | `v3_exq_232_arc026_approach_contact_resolution_20260404T040458Z_v3` | `2026-04-04T04:04:58Z` | **FAIL** | c1_pass=1<br>c2_pass=1<br>c3_pass=0<br>c4_pass=0<br>criteria_met=2 | c1_pass:+0<br>c2_pass:+0<br>c3_pass:+0<br>c4_pass:+0<br>criteria_met:+0 | - | - | [`summary`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040458Z_v3/summary.md) / [`manifest`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040458Z_v3/manifest.json) / [`metrics`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040458Z_v3/metrics.json) |
 | `v3_exq_232_arc026_approach_contact_resolution_20260404T040408Z_v3` | `2026-04-04T04:04:08Z` | **FAIL** | c1_pass=1<br>c2_pass=1<br>c3_pass=0<br>c4_pass=0<br>criteria_met=2 | c1_pass:+0<br>c2_pass:+0<br>c3_pass:+0<br>c4_pass:+0<br>criteria_met:+0 | - | - | [`summary`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040408Z_v3/summary.md) / [`manifest`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040408Z_v3/manifest.json) / [`metrics`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040408Z_v3/metrics.json) |
 | `v3_exq_232_arc026_approach_contact_resolution_20260404T040126Z_v3` | `2026-04-04T04:01:26Z` | **FAIL** | c1_pass=1<br>c2_pass=1<br>c3_pass=0<br>c4_pass=0<br>criteria_met=2 | c1_pass:+0<br>c2_pass:+0<br>c3_pass:+0<br>c4_pass:+0<br>criteria_met:+0 | - | - | [`summary`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040126Z_v3/summary.md) / [`manifest`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040126Z_v3/manifest.json) / [`metrics`](runs/v3_exq_232_arc026_approach_contact_resolution_20260404T040126Z_v3/metrics.json) |

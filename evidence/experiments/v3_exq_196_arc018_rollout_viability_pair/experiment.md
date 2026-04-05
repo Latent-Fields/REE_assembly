@@ -11,5 +11,10 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-No recent FAIL runs. Keep monitoring key stop metrics.
+Recent failure runs:
+- `v3_exq_196_arc018_rollout_viability_pair_20260404T164611Z_v3` at `2026-04-04T16:46:11.896259+00:00` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

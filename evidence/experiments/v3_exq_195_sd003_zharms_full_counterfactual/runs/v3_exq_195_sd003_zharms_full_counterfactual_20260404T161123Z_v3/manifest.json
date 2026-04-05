@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_195_sd003_zharms_full_counterfactual",
+  "run_id": "v3_exq_195_sd003_zharms_full_counterfactual_20260404T161123Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-04T16:11:23Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-003",
+    "ARC-033"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Non-contributory (2026-04-06 governance). Attribution gap failure (C1: gap=-0.044 all 4 seeds) reflects missing SD-003 full pipeline wiring (counterfactual comparison not yet correctly structured), not refutation of the mechanism. Harm forward r2=0.914 confirms ARC-033 component working. Classified as substrate-gap diagnostic for both SD-003 and ARC-033.",
+  "evidence_direction_per_claim": {
+    "SD-003": "non_contributory",
+    "ARC-033": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

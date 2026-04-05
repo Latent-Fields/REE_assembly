@@ -1,0 +1,253 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "c1_pass": 1.0,
+    "c2_pass": 1.0,
+    "c3_pass": 1.0,
+    "c4_pass": 1.0,
+    "criteria_met": 4.0,
+    "approach_slope_seed0": 1.4911690201514762e-05,
+    "contact_slope_seed0": 1.4022318216470554e-05,
+    "approach_gap_at_peak_seed0": 0.999418672422568,
+    "peak_checkpoint_seed0": 1500.0,
+    "n_approach_at_peak_seed0": 120.0,
+    "slope_gap_seed0": 8.893719850442073e-07,
+    "approach_slope_seed1": 1.5732139731064848e-05,
+    "contact_slope_seed1": 1.4688843186234646e-05,
+    "approach_gap_at_peak_seed1": 0.9999639610449473,
+    "peak_checkpoint_seed1": 1500.0,
+    "n_approach_at_peak_seed1": 120.0,
+    "slope_gap_seed1": 1.0432965448302024e-06,
+    "approach_slope_seed2": 0.0005773761544057828,
+    "contact_slope_seed2": 0.00010642550527328374,
+    "approach_gap_at_peak_seed2": 0.9245383177580986,
+    "peak_checkpoint_seed2": 1000.0,
+    "n_approach_at_peak_seed2": 80.0,
+    "slope_gap_seed2": 0.000470950649132499
+  },
+  "summary_markdown": "# V3-EXQ-232 -- ARC-026 Approach/Contact Slope Conflict Resolution\n\n**Status:** PASS  **Criteria met:** 4/4\n**Claims:** ARC-026  **Purpose:** evidence\n**Supersedes (conflict resolution):** EXQ-033 conflict_ratio=1.0\n\n## Design Changes vs EXQ-033\n\n- Peak checkpoint analysis (not terminal) to handle training instability\n- 1500 eps (vs 1000), checkpoints at [200, 400, 600, 800, 1000, 1500]\n- 3 seeds (vs 1)\n- E3 harm supervision enabled from ep100 onward (phased)\n\n## Results by Seed\n\n| Seed | Approach slope | Contact slope | Gap@peak | Peak ckpt | C1 | C2 | C3 | C4 |\n|------|---------------|--------------|----------|----------|----|----|----|----|\n| 42 | 0.000015 | 0.000014 | 0.9994 | 1500 | PASS | PASS | PASS | PASS |\n| 7 | 0.000016 | 0.000015 | 1.0000 | 1500 | PASS | PASS | PASS | PASS |\n| 13 | 0.000577 | 0.000106 | 0.9245 | 1000 | PASS | PASS | PASS | PASS |\n\n## Interpretation\n\nARC-026 SUPPORTED: At peak performance checkpoint, approach_slope > contact_slope. The gradient of harm detection extends backward from contact to approach. Consistent with 'love expands under intelligence' derivation (ARC-024): more training -> deeper causal gradient detection.\n",
+  "claim_ids": [
+    "ARC-026"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_232_arc026_approach_contact_resolution",
+  "fatal_error_count": 0,
+  "seed_results": [
+    {
+      "seed": 42,
+      "peak_checkpoint": 1500,
+      "approach_slope": 1.4911690201514762e-05,
+      "contact_slope": 1.4022318216470554e-05,
+      "approach_gap_at_peak": 0.999418672422568,
+      "contact_gap_at_peak": 0.9994953572750092,
+      "n_approach_at_peak": 120,
+      "checkpoint_results": {
+        "200": {
+          "gap_approach": 0.9800334751605988,
+          "gap_contact": 0.9812663435935974,
+          "mean_harm_approach": 0.9800334751605988,
+          "mean_harm_contact": 0.9812663435935974,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 80,
+          "n_neutral_events": 0
+        },
+        "400": {
+          "gap_approach": 0.99338052769502,
+          "gap_contact": 0.9939477400081914,
+          "mean_harm_approach": 0.99338052769502,
+          "mean_harm_contact": 0.9939477400081914,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 82,
+          "n_neutral_events": 0
+        },
+        "600": {
+          "gap_approach": 0.9963725045323372,
+          "gap_contact": 0.996737511576833,
+          "mean_harm_approach": 0.9963725045323372,
+          "mean_harm_contact": 0.996737511576833,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 74,
+          "n_neutral_events": 0
+        },
+        "800": {
+          "gap_approach": 0.9977646787961324,
+          "gap_contact": 0.9980001547565199,
+          "mean_harm_approach": 0.9977646787961324,
+          "mean_harm_contact": 0.9980001547565199,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 73,
+          "n_neutral_events": 0
+        },
+        "1000": {
+          "gap_approach": 0.9985147972901662,
+          "gap_contact": 0.9986835616199594,
+          "mean_harm_approach": 0.9985147972901662,
+          "mean_harm_contact": 0.9986835616199594,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 76,
+          "n_neutral_events": 0
+        },
+        "1500": {
+          "gap_approach": 0.999418672422568,
+          "gap_contact": 0.9994953572750092,
+          "mean_harm_approach": 0.999418672422568,
+          "mean_harm_contact": 0.9994953572750092,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 82,
+          "n_neutral_events": 0
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "peak_checkpoint": 1500,
+      "approach_slope": 1.5732139731064848e-05,
+      "contact_slope": 1.4688843186234646e-05,
+      "approach_gap_at_peak": 0.9999639610449473,
+      "contact_gap_at_peak": 0.9999717799100009,
+      "n_approach_at_peak": 120,
+      "checkpoint_results": {
+        "200": {
+          "gap_approach": 0.979512179394563,
+          "gap_contact": 0.9808762837678958,
+          "mean_harm_approach": 0.979512179394563,
+          "mean_harm_contact": 0.9808762837678958,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 78,
+          "n_neutral_events": 0
+        },
+        "400": {
+          "gap_approach": 0.9935789828499159,
+          "gap_contact": 0.9941537543518902,
+          "mean_harm_approach": 0.9935789828499159,
+          "mean_harm_contact": 0.9941537543518902,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 73,
+          "n_neutral_events": 0
+        },
+        "600": {
+          "gap_approach": 0.9965034807721774,
+          "gap_contact": 0.9968688464784002,
+          "mean_harm_approach": 0.9965034807721774,
+          "mean_harm_contact": 0.9968688464784002,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 77,
+          "n_neutral_events": 0
+        },
+        "800": {
+          "gap_approach": 0.9997767647107442,
+          "gap_contact": 0.9998161832491557,
+          "mean_harm_approach": 0.9997767647107442,
+          "mean_harm_contact": 0.9998161832491557,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 75,
+          "n_neutral_events": 0
+        },
+        "1000": {
+          "gap_approach": 0.9998891790707906,
+          "gap_contact": 0.9999097616641552,
+          "mean_harm_approach": 0.9998891790707906,
+          "mean_harm_contact": 0.9999097616641552,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 77,
+          "n_neutral_events": 0
+        },
+        "1500": {
+          "gap_approach": 0.9999639610449473,
+          "gap_contact": 0.9999717799100009,
+          "mean_harm_approach": 0.9999639610449473,
+          "mean_harm_contact": 0.9999717799100009,
+          "mean_harm_neutral": 0.0,
+          "n_approach_events": 120,
+          "n_contact_events": 77,
+          "n_neutral_events": 0
+        }
+      }
+    },
+    {
+      "seed": 13,
+      "peak_checkpoint": 1000,
+      "approach_slope": 0.0005773761544057828,
+      "contact_slope": 0.00010642550527328374,
+      "approach_gap_at_peak": 0.9245383177580986,
+      "contact_gap_at_peak": -0.024195530202731175,
+      "n_approach_at_peak": 80,
+      "checkpoint_results": {
+        "200": {
+          "gap_approach": 0.4626373942334724,
+          "gap_contact": -0.10933593442135817,
+          "mean_harm_approach": 0.5719733286548305,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 0.10933593442135817,
+          "n_approach_events": 74,
+          "n_contact_events": 0,
+          "n_neutral_events": 5919
+        },
+        "400": {
+          "gap_approach": 0.41486838746502175,
+          "gap_contact": -0.0001585341893311285,
+          "mean_harm_approach": 0.4150269216543529,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 0.0001585341893311285,
+          "n_approach_events": 75,
+          "n_contact_events": 0,
+          "n_neutral_events": 5914
+        },
+        "600": {
+          "gap_approach": 0.8748342534184342,
+          "gap_contact": -0.006080469404849644,
+          "mean_harm_approach": 0.8809147228232839,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 0.006080469404849644,
+          "n_approach_events": 88,
+          "n_contact_events": 0,
+          "n_neutral_events": 5901
+        },
+        "800": {
+          "gap_approach": 0.8815828826079496,
+          "gap_contact": -0.00025901131705652434,
+          "mean_harm_approach": 0.8818418939250061,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 0.00025901131705652434,
+          "n_approach_events": 83,
+          "n_contact_events": 0,
+          "n_neutral_events": 5907
+        },
+        "1000": {
+          "gap_approach": 0.9245383177580986,
+          "gap_contact": -0.024195530202731175,
+          "mean_harm_approach": 0.9487338479608297,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 0.024195530202731175,
+          "n_approach_events": 80,
+          "n_contact_events": 0,
+          "n_neutral_events": 5911
+        },
+        "1500": {
+          "gap_approach": 0.8575259680719217,
+          "gap_contact": -2.6994498612858707e-05,
+          "mean_harm_approach": 0.8575529625705346,
+          "mean_harm_contact": 0.0,
+          "mean_harm_neutral": 2.6994498612858707e-05,
+          "n_approach_events": 67,
+          "n_contact_events": 0,
+          "n_neutral_events": 5922
+        }
+      }
+    }
+  ],
+  "run_timestamp": "20260405T091846Z",
+  "run_id": "v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

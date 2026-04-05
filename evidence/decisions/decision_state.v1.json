@@ -144,6 +144,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-04-03T22:00:00Z"
     },
+    "ARC-045": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. SD-017 minimal sleep infrastructure not yet implemented in V3. EXQ-242/243 queued but not run. No promotion or demotion until V3 experiments complete.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-04-05T11:48:38.245Z"
+    },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
       "decision_needed": "Convergence packet review queue approval",
@@ -450,6 +459,15 @@
       "selected_option": "Promote to provisional",
       "timestamp_utc": "2026-03-19T19:52:00Z"
     },
+    "MECH-106": {
+      "actor": "user",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "Promote to provisional. EXQ-231a PASS (4/5 seeds, 5/5 criteria) confirmed commitment threshold asymmetric valence modulation. conflict_ratio=0. overall_conf=0.866. EXQ-231 predecessor superseded (design flaw: conditions produced identical commit values).",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote now",
+      "timestamp_utc": "2026-04-05T11:48:38.245Z"
+    },
     "MECH-111": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -557,6 +575,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
+    "MECH-166": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. SD-017 slot-formation/filling substrate depends on bidirectional replay not yet implemented. EXQ-242 queued but not run. Hold until sleep phase experiments complete.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-04-05T11:48:38.245Z"
     },
     "Q-006": {
       "actor": "user",
@@ -684,6 +711,15 @@
       "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
       "timestamp_utc": "2026-03-29T21:15:46.867662Z"
     },
+    "Q-033": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Narrow Q-033. Operationalise as: (1) Can latent-state estimation from actigraphy reconstruct sleep-phase sufficiency relative to waking MEL load? (2) Does MEL-mismatch index predict failure type (NREM vs REM deficit) better than total sleep time? Clinical translation question -- depends on INV-050/051, MECH-179/180 experimental validation first.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-04-05T11:48:38.245Z"
+    },
     "SD-008": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -720,6 +756,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-04-03T22:00:00Z"
     },
+    "SD-017": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. Minimal sleep phase infrastructure not yet a first-class V3 substrate component. EXQ-242-246 queued but not run. Hold until sleep phase ablation experiments complete.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-04-05T11:48:38.245Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -730,7 +775,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-04-04T23:03:32.141339Z",
+  "generated_at_utc": "2026-04-05T11:50:28.750410Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

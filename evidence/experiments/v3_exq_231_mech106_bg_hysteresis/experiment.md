@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_231_mech106_bg_hysteresis_20260404T201821Z_v3` at `2026-04-04T20:18:21Z` signatures: none
 - `v3_exq_231_mech106_bg_hysteresis_20260404T033753Z_v3` at `2026-04-04T03:37:53Z` signatures: none
 
 Recurring signatures:
