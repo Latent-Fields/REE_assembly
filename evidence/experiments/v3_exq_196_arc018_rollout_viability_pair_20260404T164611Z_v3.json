@@ -1,0 +1,134 @@
+{
+  "run_id": "v3_exq_196_arc018_rollout_viability_pair_20260404T164611Z_v3",
+  "experiment_type": "v3_exq_196_arc018_rollout_viability_pair",
+  "claim_ids": [
+    "ARC-018"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_class": "discriminative_pair",
+  "decision": "retire_ree_claim",
+  "criteria": {
+    "C1_direction_all_seeds": false,
+    "C2_harm_advantage": false,
+    "C3_residue_populated": true,
+    "C4_e2_quality": true,
+    "C5_data_quality": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_C2_ADVANTAGE": 0.003,
+    "THRESH_C4_E2_QUALITY": 0.1,
+    "THRESH_C5_MIN_CONTACTS": 3
+  },
+  "summary_metrics": {
+    "harm_rate_MAPPED_mean": 0.8479439092894001,
+    "harm_rate_ABLATED_mean": 0.8479439092894001,
+    "harm_advantage_mean": 0.0,
+    "e2_world_r2_mean": 0.7659062992205691,
+    "ablated_harm_contacts_per_seed": [
+      4952,
+      5402,
+      4648
+    ]
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "config": {
+    "env_size": 8,
+    "num_hazards": 3,
+    "num_resources": 3,
+    "hazard_harm": 0.5,
+    "world_dim": 32,
+    "self_dim": 32,
+    "action_dim": 4,
+    "action_object_dim": 16,
+    "n_train_episodes": 400,
+    "steps_per_episode": 150,
+    "n_eval_episodes": 40,
+    "eval_steps": 150,
+    "cem_candidates": 16,
+    "cem_iterations": 3,
+    "cem_horizon": 8,
+    "lr": 0.0003
+  },
+  "scenario": "discriminative_pair: VIABILITY_MAPPED (ResidueField accumulates harm, HippocampalModule navigates residue terrain via CEM in action-object space, E3 selects with Phi_R cost) vs VIABILITY_ABLATED (same modules but residue field zeroed -- flat terrain, no viability map). CausalGridWorldV2 size=8 hazards=3 resources=3. Train 400 eps x 150 steps. Eval 40 eps x 150 steps.",
+  "interpretation": "PASS supports ARC-018: hippocampal viability mapping (residue field terrain guiding trajectory proposals) produces measurably better harm avoidance than flat-terrain proposals. The viability map mechanism validated: harm history shapes z_world terrain, HippocampalModule CEM navigates it, E3 Phi_R cost term creates preference for low-residue paths. FAIL weakens ARC-018: viability mapping provides no benefit over terrain-blind trajectory proposals -- residue field terrain does not usefully inform hippocampal CEM search. INCONCLUSIVE: E2 world model not trained sufficiently or insufficient harm contacts.",
+  "per_seed_results": {
+    "42": {
+      "e2_world_r2": 0.6523972904818809,
+      "train_metrics": {
+        "e2_world_r2": 0.6523972904818809,
+        "residue_total": 31.148754119873047,
+        "residue_harm_events": 5769,
+        "residue_active_centers": 32
+      },
+      "VIABILITY_MAPPED": {
+        "harm_rate": 0.846061848624637,
+        "n_harm_contacts": 4952,
+        "total_steps": 5853,
+        "mean_residue_cost": 230.60128072207144
+      },
+      "VIABILITY_ABLATED": {
+        "harm_rate": 0.846061848624637,
+        "n_harm_contacts": 4952,
+        "total_steps": 5853,
+        "mean_residue_cost": 0.6238324642181396
+      },
+      "harm_advantage": 0.0,
+      "c1_direction_pass": false
+    },
+    "7": {
+      "e2_world_r2": 0.7969798007543948,
+      "train_metrics": {
+        "e2_world_r2": 0.7969798007543948,
+        "residue_total": 31.61800193786621,
+        "residue_harm_events": 5718,
+        "residue_active_centers": 32
+      },
+      "VIABILITY_MAPPED": {
+        "harm_rate": 0.9231032125768968,
+        "n_harm_contacts": 5402,
+        "total_steps": 5852,
+        "mean_residue_cost": 215.57698761267932
+      },
+      "VIABILITY_ABLATED": {
+        "harm_rate": 0.9231032125768968,
+        "n_harm_contacts": 5402,
+        "total_steps": 5852,
+        "mean_residue_cost": 0.6238324642181396
+      },
+      "harm_advantage": 0.0,
+      "c1_direction_pass": false
+    },
+    "13": {
+      "e2_world_r2": 0.8483418064254316,
+      "train_metrics": {
+        "e2_world_r2": 0.8483418064254316,
+        "residue_total": 31.733169555664062,
+        "residue_harm_events": 5869,
+        "residue_active_centers": 32
+      },
+      "VIABILITY_MAPPED": {
+        "harm_rate": 0.7746666666666666,
+        "n_harm_contacts": 4648,
+        "total_steps": 6000,
+        "mean_residue_cost": 237.48901246643067
+      },
+      "VIABILITY_ABLATED": {
+        "harm_rate": 0.7746666666666666,
+        "n_harm_contacts": 4648,
+        "total_steps": 6000,
+        "mean_residue_cost": 0.6238324642181396
+      },
+      "harm_advantage": 0.0,
+      "c1_direction_pass": false
+    }
+  },
+  "supersedes": null,
+  "dry_run": false,
+  "timestamp_utc": "2026-04-04T16:46:11.896259+00:00"
+}
