@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm2_replay_ordering",
+  "entry_id": "2026-04-06_mech120_synaptic_downscaling_devivo2017",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-120"],
+  "source": {
+    "title": "Ultrastructural evidence for synaptic scaling across the wake/sleep cycle",
+    "authors": [
+      "Luisa de Vivo", "Michele Bellesi", "William Marshall", "Eric A. Bushong",
+      "Mark H. Ellisman", "Giulio Tononi", "Chiara Cirelli"
+    ],
+    "year": 2017,
+    "venue": "Science",
+    "volume": "355",
+    "issue": "6324",
+    "pages": "507-510",
+    "pmid": "28154076",
+    "pmc": "PMC5313037",
+    "doi": "10.1126/science.aah5982",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5313037/"
+  },
+  "evidence_class": "experimental_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "de Vivo et al. 2017 provides the most direct ultrastructural evidence that synaptic normalisation occurs during NREM sleep specifically. Using 3D electron microscopy of mouse motor and sensory cortex synapses, they measured ~18% reduction in axon-spine interface area after sleep versus wake. Critically, the downscaling was proportional to synapse size (larger = more downscaled), and spared the largest ~20% of synapses -- consistent with SHY's prediction that the most-strengthened (i.e. dominant) synapses are differentially reduced. This is the FM2 mechanism: without this proportional downscaling, replay would write into a weight landscape dominated by synapses already enlarged by wake-phase Hebbian potentiation. The paper is the strongest empirical evidence that the weight-normalisation phase (MECH-120) actually occurs during SWS in vivo.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "synaptic_landscape_not_normalised_before_replay",
+    "dominant_trace_monopolisation",
+    "wake_potentiation_not_corrected"
+  ],
+  "tags": [
+    "synaptic-homeostasis", "SHY", "NREM", "slow-wave-sleep", "downscaling",
+    "ultrastructure", "electron-microscopy", "axon-spine-interface", "MECH-120",
+    "de-Vivo", "Tononi", "Cirelli", "Science", "weight-normalisation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Synaptic axon-spine interface (ASI) area decreases ~18% after sleep versus wake. This decrease is proportional to synapse size, indicating scaling (not uniform subtraction). The largest synapses are spared, suggesting selective preservation of very strong traces while weaker and moderately-potentiated synapses are normalised. These results support SHY: sleep renormalises synaptic strength increased during waking Hebbian learning.",
+    "ree_translation": "MECH-120 posits that SHY normalisation (proportional downscaling) must occur during NREM before replay, to flatten the dominant attractors created by wake-phase high-salience encoding. de Vivo et al. provide direct physical evidence that this normalisation occurs: synapses enlarged by wake activity are proportionally reduced during sleep, with the scaling proportional to size. In the REE framework, the wake-phase dominant traces correspond to the enlarged synapses; the FM2 failure mode is what happens when replay occurs before this proportional downscaling has flattened the landscape -- the enlarged synapses (dominant traces) receive the most gradient signal from replay, further potentiating what is already dominant. de Vivo et al. demonstrate that the normalisation phase is real, SWS-specific, and operates by exactly the proportional mechanism that MECH-120 requires.",
+    "mapping_caveat": "de Vivo et al. measure synaptic size after sleep vs. after wake -- they cannot directly show that the downscaling precedes replay events (SWRs), only that it occurs during SWS globally. The causal ordering (normalisation then replay) is inferred from the temporal structure of SWS (slow oscillations and downscaling are early SWS; SWR-triggered replay events also occur during SWS but the relative timing of downscaling at individual synapses vs. their participation in replay events is not measured in this study). The paper is purely morphological -- it does not assess memory consolidation or identify whether the spared large synapses are those corresponding to dominant-trace memories.",
+    "source_context": "Science, 2017. Tononi and Cirelli lab. One of the most important empirical supports for SHY. 3D electron microscopy of 6920 synapses. High methodological rigour. Widely regarded as the first ultrastructural evidence for the SHY downscaling prediction."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.18,
+    "notes": "Highest-tier empirical evidence for the SHY normalisation mechanism. Mapping fidelity is high: proportional downscaling of enlarged synapses is precisely the flattening of dominant attractors that MECH-120 requires. Low transfer risk: the measurement is from mouse cortex during actual NREM sleep. Confidence limited by inability to directly show causal ordering (normalisation precedes replay events at same synapses) and lack of functional memory outcome data."
+  }
+}

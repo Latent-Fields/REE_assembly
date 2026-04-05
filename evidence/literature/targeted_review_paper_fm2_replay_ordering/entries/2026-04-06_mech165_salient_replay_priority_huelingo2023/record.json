@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm2_replay_ordering",
+  "entry_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-165", "MECH-120"],
+  "source": {
+    "title": "The role of experience in prioritizing hippocampal replay",
+    "authors": [
+      "Marta Huelin Gorriz", "Masahiro Takigawa", "Daniel Bendor"
+    ],
+    "year": 2023,
+    "venue": "Nature Communications",
+    "volume": "14",
+    "issue": "1",
+    "pages": "8157",
+    "pmid": "38071221",
+    "pmc": "PMC10710481",
+    "doi": "10.1038/s41467-023-43939-z",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10710481/"
+  },
+  "evidence_class": "experimental_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Huelin Gorriz et al. 2023 provides direct empirical evidence for the core empirical claim underlying MECH-165: that sleep replay is biased toward high-salience (novel, longer-duration) experiences. Rats ran repeated spatial trajectories on two tracks differing in novelty and lap count. Sleep replay rate was proportional to number of trajectories run and decreased with familiarity -- i.e., more potentiated (more-practised, more-novel) experiences dominated sleep replay content. Critically, the cumulative number of awake replay events during behaviour predicted which memories were prioritised for sleep replay, showing that the bias is already being set during waking encoding. This is the empirical demonstration of the FM2 failure mode: without homeostatic normalisation, replay during sleep preferentially reactivates what has already been most potentiated during waking, further consolidating dominant traces at the expense of weaker or older material. Confidence is limited by the proposed mechanism (awake replay tags via neuromodulation) being distinct from but compatible with the SHY weight-landscape mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "salient_experience_dominates_sleep_replay",
+    "novel_high_frequency_experience_preferentially_consolidated",
+    "replay_ordering_bias_from_waking_potentiation"
+  ],
+  "tags": [
+    "hippocampal-replay", "replay-priority", "salience", "novelty", "sleep-replay",
+    "memory-consolidation", "awake-replay", "place-cells", "MECH-165", "MECH-120",
+    "Huelin-Gorriz", "Bendor", "Nature-Communications", "rat", "spatial-memory"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep replay rate is proportional to the number of spatial trajectories run and decreases with track familiarity. The cumulative number of awake replay events during behaviour predicts which memories are prioritised for sleep replay. More novel and more-practised experiences receive higher sleep replay rates. Proposed mechanism: awake replay 'tags' memories by reactivating neuromodulatory pathways (dopamine), increasing cortical excitability for those memories during sleep, which then biases hippocampal replay toward those cortico-hippocampal circuits.",
+    "ree_translation": "MECH-165 claims that replay into a non-normalised landscape reinforces dominant traces rather than consolidating diverse content. Huelin Gorriz et al. provide the empirical demonstration of the dominant-trace phenomenon: high-salience (novel, frequently-traversed) experiences dominate sleep replay content. The proposed tagging mechanism (awake replay + neuromodulation) is compatible with but distinct from the SHY weight-landscape mechanism: both converge on the same outcome (dominant experiences get more sleep replay). MECH-120 predicts that SHY normalisation should counteract this bias by flattening the potentiated weights -- and therefore that disrupting SHY (by preventing SWS-phase downscaling) should exaggerate the already-present bias documented here. The Huelin Gorriz data establish the baseline bias that MECH-120 must counteract, making this paper empirical support for both claims' framing of the problem.",
+    "mapping_caveat": "The paper does not test what happens when synaptic homeostasis is disrupted -- it documents the naturally-occurring bias, which may reflect an adaptive prioritisation of important memories rather than a pathological dominant-trace problem. The paper's proposed mechanism (awake replay tagging via neuromodulatory excitability) is distinct from the SHY weight-landscape mechanism: the two could be independent or additive. The paper does not address the NREM-then-REM sequence, the role of SWS-phase downscaling, or the ordering constraint between normalisation and replay. The FM2 argument requires inferring that this naturally-occurring bias becomes pathological when homeostasis fails -- a normative claim that is implicit but not directly tested here.",
+    "source_context": "Nature Communications, 2023. Daniel Bendor lab (UCL). Large-ensemble hippocampal recording in rats during spatial learning and sleep. Highly relevant contemporary data. The paper is notable for operationalising 'priority' as replay rate and linking it quantitatively to awake behaviour metrics."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "High source quality -- Nature Communications, strong empirical design. Good mapping fidelity: the paper directly demonstrates the replay-priority bias that MECH-165 predicts is the failure mode. Transfer risk low -- directly measuring hippocampal replay in rats, the target system. Confidence limited by the normative inference step (documented adaptive bias becomes a failure mode when homeostasis is absent) and the fact that the proposed neuromodulatory mechanism is not the same as the weight-landscape mechanism."
+  }
+}

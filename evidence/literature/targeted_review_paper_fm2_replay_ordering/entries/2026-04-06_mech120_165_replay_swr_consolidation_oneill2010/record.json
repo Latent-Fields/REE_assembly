@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm2_replay_ordering",
+  "entry_id": "2026-04-06_mech120_165_replay_swr_consolidation_oneill2010",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-120", "MECH-165"],
+  "source": {
+    "title": "Play it again: reactivation of waking experience and memory",
+    "authors": [
+      "Joseph O'Neill", "Barty Pleydell-Bouverie", "David Dupret", "Jozsef Csicsvari"
+    ],
+    "year": 2010,
+    "venue": "Trends in Neurosciences",
+    "volume": "33",
+    "issue": "5",
+    "pages": "220-229",
+    "pmid": "20207025",
+    "doi": "10.1016/j.tins.2010.01.006",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20207025/"
+  },
+  "evidence_class": "theoretical_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "O'Neill et al. 2010 reviews the hippocampal SWR-replay system and the evidence that reactivation of waking experience during sleep and rest underlies memory consolidation. The paper is directly relevant to FM2 because it characterises the mechanism by which hippocampal replay reads from and writes to the weight landscape: sharp wave/ripple events coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. The paper notes that the hippocampus 'organises' the reactivation process -- which implies that the hippocampal attractor state (itself shaped by prior potentiation) determines what gets replayed. The review does not directly address the SHY normalisation question, but it identifies the key feature of the system: prior synaptic potentiation in hippocampal circuits determines which assemblies fire preferentially during SWRs, making the weight landscape the upstream cause of replay content.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "replay_content_biased_by_prior_potentiation",
+    "dominant_trace_drives_SWR_reactivation"
+  ],
+  "tags": [
+    "hippocampal-replay", "SWR", "sharp-wave-ripple", "reactivation", "systems-consolidation",
+    "NREM", "sleep", "MECH-120", "MECH-165", "O-Neill", "Trends-Neurosciences",
+    "attractor-dynamics", "memory-consolidation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sharp wave/ripple (SWR) events in the hippocampus coordinate the reactivation of memory traces encoded during waking experience. The hippocampus plays an organising role in the reactivation process; SWR-triggered replay directs the reinstatement of memory representations in cortical circuits. The mechanisms remain uncertain, but SWR-directed reactivation of brain-wide memory traces is proposed to underlie consolidation.",
+    "ree_translation": "MECH-165 posits that replay into a non-normalised weight landscape reinforces dominant traces. The O'Neill et al. review describes the mechanism by which this happens: SWR events fire from hippocampal assemblies whose synaptic weights reflect the most-potentiated waking experiences. Without SHY normalisation (MECH-120) flattening those weights first, the assemblies that participated most in high-salience waking experience have the strongest internal connections and lowest firing threshold, and therefore drive SWR initiation and replay content preferentially. The review supports both claims indirectly: it establishes the channel (SWR-directed replay) through which dominant traces get further consolidated, and by characterising the hippocampus as organising replay based on its internal state, it shows that weight landscape is the upstream determinant of what gets replayed.",
+    "mapping_caveat": "O'Neill et al. 2010 do not discuss synaptic homeostasis or the ordering of SHY versus replay. The paper does not directly show that high-salience or more-potentiated experiences are preferentially replayed (this is addressed more directly by later work such as Huelin Gorriz et al. 2023). The FM2 argument requires reading the implication: that if the hippocampal weight landscape is dominated by one attractor, SWRs preferentially fire that attractor. This is implied but not demonstrated in O'Neill et al. The review predates the ultrastructural SHY evidence (de Vivo 2017) and discusses downscaling only peripherally.",
+    "source_context": "Trends in Neurosciences, 2010. O'Neill, Pleydell-Bouverie, Dupret, Csicsvari -- Csicsvari lab (Oxford). Major review of hippocampal replay mechanisms. Frequently cited alongside Diekelmann & Born 2010. The companion paper to the O'Neill 2010 Nat Rev Neurosci reference (that was actually this Trends paper, misidentified in the task specification)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.22,
+    "notes": "High source quality -- major review paper from a leading lab. Mapping fidelity is moderate: the paper establishes the SWR-replay mechanism but does not directly address the weight-landscape-determines-content question that is central to FM2. The inference chain from 'hippocampus organises replay from its internal state' to 'dominant attractors drive preferential replay' is sound but not explicitly argued in the paper. Low transfer risk -- directly describing the biological system at stake."
+  }
+}

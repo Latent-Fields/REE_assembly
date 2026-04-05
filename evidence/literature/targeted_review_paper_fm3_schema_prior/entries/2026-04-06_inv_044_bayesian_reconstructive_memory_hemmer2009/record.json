@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm3_schema_prior",
+  "entry_id": "2026-04-06_inv_044_bayesian_reconstructive_memory_hemmer2009",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-044"],
+  "source": {
+    "title": "Integrating episodic memories and prior knowledge at multiple levels of abstraction",
+    "authors": ["Pernille Hemmer", "Mark Steyvers"],
+    "year": 2009,
+    "venue": "Psychonomic Bulletin and Review",
+    "doi": "10.3758/PBR.16.1.80",
+    "pmid": "19145014",
+    "url": "https://doi.org/10.3758/PBR.16.1.80"
+  },
+  "evidence_class": "computational_theory_with_empirical_grounding",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Hemmer and Steyvers provide a Bayesian model of reconstructive memory in which episodic recall is a weighted combination of episodic trace quality and prior knowledge at multiple hierarchical levels. The key result for FM3 is directional: recall is systematically biased toward the prior (the installed schema at object and category levels), and this bias is stronger when the episodic trace is weaker. This directly demonstrates that prior quality constrains the quality of episodic attribution -- when the prior is uninformative, recall is uniformly poor regardless of episodic trace strength. The model formalises the claim that slot-filling (episodic attribution) is constrained by slot-quality (prior installation). Confidence is slightly reduced from ceiling because the paper demonstrates the prior-constrains-posterior direction using perceptual reconstruction (object size) rather than contextual causal attribution, and it does not directly model the failure mode of prior construction and posterior inference occurring simultaneously.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_044", "bayesian", "prior_knowledge", "episodic_memory", "reconstructive_memory", "prior_quality", "posterior_inference", "slot_filling", "prior_installation", "computational", "empirical", "supports"],
+  "mapping": {
+    "source_claim_statement": "Recall of previously seen objects is systematically biased toward prior knowledge at multiple hierarchical levels (specific object mean, superordinate category mean). The bias is larger when the episodic memory trace is noisier. A Bayesian model combining episodic evidence with hierarchical priors accounts for both the direction and magnitude of recall biases. Prior knowledge shapes episodic encoding and retrieval in a principled probabilistic way.",
+    "ree_translation": "INV-044: Hemmer and Steyvers formalise the mechanics of why prior quality constrains posterior inference quality. In the REE context, the episodic trace is the causal attribution evidence (which actions in which context produced which outcomes); the prior is the schema -- the installed context slot structure that specifies what distinctions are relevant. The Bayesian model shows that posterior recall quality is a direct function of prior quality: when the prior is a tight, well-defined distribution (high prior quality, well-formed schema), posterior attribution is accurate even under noisy episodic conditions. When the prior is flat or uninformative (schema not yet formed), the posterior defaults to the mean of the distribution -- losing the information in the episodic trace rather than gaining from the prior. This operationalises the FM3 Bayesian prior-before-posterior constraint: attempting to do attribution before the prior is installed is not merely inefficient, it is guaranteed to produce attribution quality below what a well-formed prior would enable. The hierarchical prior structure (object level + category level) directly parallels REE's nested context structure (specific context slots + general schema topology).",
+    "mapping_caveat": "The paper's paradigm concerns perceptual reconstruction of object sizes, not causal attribution of context membership. The 'prior' in Hemmer and Steyvers is a statistical distribution over object properties, not a schema over which context distinctions are structurally relevant. Transfer to REE causal attribution requires extending the Bayesian principle from low-level perceptual features to high-level context structure -- a plausible extension but not demonstrated in this paper. The paper also does not directly model what happens when prior construction and posterior inference occur simultaneously; it only demonstrates the prior-shapes-posterior direction from pre-established priors.",
+    "source_context": "Behavioural experiment with Bayesian computational modelling. Participants studied and recalled sizes of fruit and vegetable images. Bayesian model with hierarchical priors (object-specific and category-level) fit to recall data. Psychonomic Bulletin and Review 2009, Vol. 16(1), pp. 80-87."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality: rigorous Bayesian computational model with empirical validation, peer-reviewed, coherent methodology. Mapping fidelity moderate: the Bayesian prior-shapes-posterior formalism applies cleanly, but the content domain (perceptual object properties) is distant from REE causal attribution context slots. Transfer risk moderate-high for the same reason: the principle is general (Bayesian reconstruction), but the specific domain and the type of 'prior' differ substantially."
+  }
+}

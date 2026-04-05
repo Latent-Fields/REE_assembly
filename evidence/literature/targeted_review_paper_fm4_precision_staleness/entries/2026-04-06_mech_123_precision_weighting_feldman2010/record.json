@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm4_precision_staleness",
+  "entry_id": "2026-04-06_mech_123_precision_weighting_feldman2010",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-123"],
+  "source": {
+    "title": "Attention, uncertainty, and free-energy",
+    "authors": ["Harriet Feldman", "Karl J. Friston"],
+    "year": 2010,
+    "venue": "Frontiers in Human Neuroscience",
+    "volume": "4",
+    "issue": "215",
+    "pages": "article 215",
+    "pmid": "21160551",
+    "pmc": "PMC3001758",
+    "doi": "10.3389/fnhum.2010.00215",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3001758/"
+  },
+  "evidence_class": "theoretical_computational",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Feldman and Friston establish the foundational mechanism that MECH-123's failure mode depends on: precision weighting is the parameter that controls how evidence is integrated in hierarchical inference. Their central claim is that precision encodes the expected reliability of prediction errors and is instantiated as synaptic gain on error units. The critical corollary for MECH-123 is what the paper implies about miscalibration: when precision estimates are wrong -- when the gain applied to prediction errors does not match the actual reliability of those signals in the current context -- inference fails systematically regardless of evidence quality. Invalid spatial cues in their simulations produce under-weighted sensory representations (low precision assigned to the target location) despite identical physical stimuli: the inference problem is being solved with the wrong precision values. This translates directly to MECH-123's failure mode 4: an agent entering a new episode with precision priors calibrated to the previous episode applies the wrong gain to prediction errors from the new context. Early evidence in the new context encounters the wrong precision weights -- systematically over- or under-weighted based on the prior episode's statistics, not the current one's. Confidence is limited because the paper does not address cross-episode precision transfer or REM as a recalibration mechanism; the mapping to sleep/MECH-123 is inferential. The paper also focuses on spatial attention within a single inference episode rather than across episodes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "precision_mismatch_between_episodes",
+    "systematic_over_under_weighting_early_evidence",
+    "wrong_inference_despite_good_evidence"
+  ],
+  "tags": [
+    "precision-weighting", "free-energy", "predictive-coding", "attention", "Feldman", "Friston",
+    "hierarchical-inference", "prediction-error-gain", "synaptic-gain", "MECH-123",
+    "precision-miscalibration", "Bayesian-inference", "uncertainty"
+  ],
+  "mapping": {
+    "source_claim_statement": "Attention can be understood as inferring the precision (inverse variance) of sensory signals during hierarchical perception. Precision is encoded as the synaptic gain of prediction-error units: high precision means prediction errors from that channel are amplified and drive inference strongly; low precision means they are attenuated and have little update force. When the wrong precision is assigned -- as in the invalid-cue condition in their simulations -- the system integrates evidence with incorrect weights, producing distorted inference even when physical evidence is unambiguous.",
+    "ree_translation": "MECH-123 claims REM recalibrates precision priors between episodes. Feldman and Friston establish why this is computationally necessary: precision is not an auxiliary parameter but the controlling gate on evidence integration. If precision_ema_alpha and related precision parameters are calibrated to episode N's statistics and not reset before episode N+1, then every prediction error signal in N+1 is weighted by the wrong gain. The first evidence encountered in N+1 -- which in a new context is the most informative, as it establishes which schemas apply -- is processed with a gain tuned to N's context. This produces the failure mode directly: early evidence is over-weighted (if N was a low-uncertainty episode and N+1 is genuinely surprising) or under-weighted (if N was high-uncertainty and N+1 is predictable), systematically distorting subsequent inference through anchoring effects.",
+    "mapping_caveat": "Feldman and Friston address precision calibration within a single inference episode (spatial attention paradigm), not across episodes separated by sleep. The claim that precision must be reset between episodes is a downstream implication of their framework, not a claim they make. The specific parameters (precision_ema_alpha, commitment_threshold) are REE constructs without named biological equivalents in this paper. The sleep connection requires the additional step that REM is the mechanism implementing precision recalibration -- supported by Hobson and Friston 2012 (in targeted_review_sleep_phase_mechanisms), but not by this paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "High source quality: canonical paper in predictive processing / precision weighting literature, published in Frontiers open access, >2000 citations. Mapping fidelity: strong for the precision-as-gate mechanism, but the cross-episode transfer aspect requires additional bridging (the paper is about within-episode precision). Transfer risk: moderate -- the framework is applicable in principle, but the paper does not study the inter-episode case."
+  }
+}

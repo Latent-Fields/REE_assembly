@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm4_precision_staleness",
+  "entry_id": "2026-04-06_mech_123_hierarchical_primacy_lange2021",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-123"],
+  "source": {
+    "title": "A confirmation bias in perceptual decision-making due to hierarchical approximate inference",
+    "authors": ["Richard D. Lange", "Ankani Chattoraj", "Jeffrey M. Beck", "Jacob L. Yates", "Ralf M. Haefner"],
+    "year": 2021,
+    "venue": "PLoS Computational Biology",
+    "volume": "17",
+    "issue": "11",
+    "pages": "e1009517",
+    "pmid": "34843452",
+    "doi": "10.1371/journal.pcbi.1009517",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8659691/"
+  },
+  "evidence_class": "computational_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Lange et al. provide the most direct evidence for the specific mechanism by which stale or wrong priors at the start of a new inference context produce systematic distortion rather than random noise. Their central finding -- that hierarchical approximate inference produces confirmation bias and primacy effects because top-down categorical feedback cannot be perfectly divided out from sensory representations -- formalises exactly the failure mode MECH-123 is concerned with. When an agent enters a new context with priors calibrated to the previous context (whether from top-down precision miscalibration or stale categorical priors), the first evidence arrives into a hierarchical system that has already begun top-down prediction. The prediction errors from early evidence enter the update loop multiple times because they modulate top-down feedback that then affects how subsequent sensory inputs are represented. Earlier evidence therefore has disproportionate weight in the final inference. Lange et al. show this is not a peripheral bias but a structural consequence of approximate hierarchical inference: exact inference would correct for this by dividing out prior influence, but biological systems cannot do this perfectly. The connection to MECH-123 is in this structural argument: if precision priors carried over from episode N shape the initial top-down signal in episode N+1, the first evidence in N+1 enters this same self-reinforcing loop -- and the stale priors thereby disproportionately anchor all subsequent inference in the new episode. Confidence is limited because the paper studies within-episode primacy effects (frames within a trial), not across-episode prior staleness, and does not address sleep.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "early_evidence_disproportionate_anchor_under_stale_priors",
+    "self_reinforcing_top_down_feedback_loop",
+    "systematic_confirmation_bias_from_hierarchical_structure"
+  ],
+  "tags": [
+    "hierarchical-inference", "confirmation-bias", "primacy-effect", "anchoring",
+    "approximate-inference", "top-down-feedback", "Lange", "Haefner", "MECH-123",
+    "sequential-inference", "perceptual-decision-making", "early-evidence",
+    "categorical-prior", "double-counting"
+  ],
+  "mapping": {
+    "source_claim_statement": "In hierarchical approximate inference, the decision area feeds categorical beliefs back to sensory areas, where they influence how subsequent evidence is represented. Exact inference would require dividing out this prior influence; approximate inference cannot do this perfectly. The result is that earlier frames enter the update multiple times -- they shape the categorical belief that shapes how subsequent evidence is represented, giving them disproportionate weight. This produces systematic primacy effects (early evidence over-weighted) when category information is high. The bias is directional and predictable, not random, and depends on the task statistics (category information vs. sensory information).",
+    "ree_translation": "MECH-123's failure mode 4 claims that an agent entering a new episode with stale precision priors from the prior episode will systematically over- or under-weight early evidence in the new context. Lange et al. establish the structural mechanism by which stale priors produce this outcome. If precision priors from episode N cause the agent to enter N+1 with a strong top-down prediction (because N's high-certainty context generated confident priors), then the first evidence in N+1 enters the hierarchical system against this pre-existing feedback signal. The prediction errors from early evidence shape the categorical belief (context estimate), which feeds back to affect how subsequent evidence is represented. Because approximate inference cannot perfectly correct for this feedback, early evidence 'enters the update multiple times' -- anchoring the context estimate in a direction determined by the stale priors. This is not noise: it is systematic anchoring of N+1's inference to N's precision calibration, mediated by the same top-down feedback architecture Lange et al. study. REM recalibration (MECH-123) prevents this by resetting the precision parameters before N+1 begins.",
+    "mapping_caveat": "Lange et al. study within-episode primacy effects (sequential frames in a psychophysics trial, order of seconds), not across-episode prior staleness (sleep cycle, order of hours to days). The mechanism is structurally analogous but the timescale and context shift are different. The paper also studies categorical priors (which stimulus type is present) rather than the affective/precision priors (commitment_threshold, precision_ema_alpha) that MECH-123 specifically addresses. The extension to affective and precision parameter staleness across sleep cycles requires assuming the same hierarchical feedback architecture operates across the longer cross-episode timescale -- plausible but not demonstrated by this paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality: recent computational + empirical paper (PLoS Computational Biology), derived mechanistic predictions tested psychophysically and verified in human observers. Mapping fidelity: the structural mechanism is a strong match to MECH-123's failure mode description; the timescale and parameter specifics differ. Transfer risk: moderate -- the core mechanism (hierarchical approximate inference produces primacy effects from top-down feedback) is general and applies across timescales in principle, but the cross-episode sleep context is not tested."
+  }
+}

@@ -3145,17 +3145,19 @@
       }
     },
     "INV-044": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.847",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.898",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 6,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 3,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "lit:computational_theory_with_empirical_grounding": 1,
+        "lit:computational_theoretical_review": 1,
+        "lit:computational_theory_with_empirical_grounding": 2,
         "lit:neuroimaging_human": 1,
+        "lit:review_systems_neuroscience": 1,
         "lit:rodent_behavioral_pharmacology": 1
       },
       "experimental_confidence": 0.0,
@@ -3167,26 +3169,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_inv_044_schema_enables_learning_finnie2018",
-      "latest_timestamp_utc": "2026-04-05T21:00:00Z",
-      "literature_confidence": 0.847,
-      "overall_confidence": 0.847,
+      "latest_run_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
+      "latest_timestamp_utc": "2026-04-06T00:00:00Z",
+      "literature_confidence": 0.898,
+      "overall_confidence": 0.898,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "INV-044",
-          "confidence": 0.76,
-          "confidence_rationale": "Morton et al. show that hippocampal and frontoparietal regions form abstract representations coding cross-triad relational structure with a common geometric structure -- even without explicit reinforcement to do so. Critically, parahippocampal cortex forms hierarchical representations that both reflect cross-triad (structural/schema) relationships and distinguish individual triads (slot-level). This dissociation directly supports the prior-before-posterior necessity: the geometric common structure must exist (schema/prior) before vector-based retrieval (slot-filling/posterior) can yield informative inferences. The pattern completion vs. vector-based retrieval dissociation between hippocampus and parahippocampal/parietal cortex provides a neural substrate for the two-stage architecture INV-044 requires. Published in PNAS with neurocomputational modelling. Confidence is moderate rather than high because the temporal ordering (schema first, then slot-filling) is inferred from the representational structure rather than directly manipulated.",
-          "evidence_class": "lit:neuroimaging_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_inv_044",
-          "failure_signatures": [],
-          "run_id": "2026-04-05_inv_044_common_event_structure_inference_morton2020",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T21:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "INV-044",
@@ -3214,12 +3202,54 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-044",
+          "confidence": 0.8,
+          "confidence_rationale": "Hemmer and Steyvers provide a Bayesian model of reconstructive memory in which episodic recall is a weighted combination of episodic trace quality and prior knowledge at multiple hierarchical levels. The key result for FM3 is directional: recall is systematically biased toward the prior (the installed schema at object and category levels), and this bias is stronger when the episodic trace is weaker. This directly demonstrates that prior quality constrains the quality of episodic attribution -- when the prior is uninformative, recall is uniformly poor regardless of episodic trace strength. The model formalises the claim that slot-filling (episodic attribution) is constrained by slot-quality (prior installation). Confidence is slightly reduced from ceiling because the paper demonstrates the prior-constrains-posterior direction using perceptual reconstruction (object size) rather than contextual causal attribution, and it does not directly model the failure mode of prior construction and posterior inference occurring simultaneously.",
+          "evidence_class": "lit:computational_theory_with_empirical_grounding",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm3_schema_prior",
+          "failure_signatures": [],
+          "run_id": "2026-04-06_inv_044_bayesian_reconstructive_memory_hemmer2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-044",
+          "confidence": 0.75,
+          "confidence_rationale": "Friston's free energy principle establishes the formal architecture within which the prior-before-posterior constraint operates. The hierarchical generative model requires that higher levels of the hierarchy (the prior, schema, context structure) specify the generative model before lower levels can perform prediction-error minimisation (posterior inference, attribution). The free energy formulation makes explicit that likelihood evaluation and prior construction are architecturally distinct operations: the brain minimises free energy with respect to a fixed generative model, which is itself updated on a slower timescale through model selection. This is the formal basis for MECH-166's claim that slot-formation and slot-filling are computationally separated -- they operate at different hierarchical levels and on different timescales. Confidence is reduced from the ceiling because Friston's review is a high-level theoretical synthesis, not a paper directly demonstrating the failure mode of concurrent prior construction and posterior inference in a memory consolidation paradigm. The mapping to sleep-dependent consolidation requires an additional step not made explicit in the paper.",
+          "evidence_class": "lit:computational_theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm3_schema_prior",
+          "failure_signatures": [],
+          "run_id": "2026-04-06_inv_044_free_energy_unified_brain_friston2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-044",
+          "confidence": 0.85,
+          "confidence_rationale": "Van Kesteren et al. propose the SLIMM model (Schema-Linked Interactions between Medial Prefrontal and Medial Temporal Regions), which formalises the neural architecture by which prior schema (installed in neocortex, indexed by mPFC) governs the routing of new episodic content. When new information is congruent with an existing schema, mPFC detects this congruence and promotes direct neocortical encoding, bypassing slow MTL-dependent consolidation. Without schema, new information cannot be assimilated rapidly -- it must traverse the slow multi-step hippocampal route. This maps directly to the FM3 argument: the schema (slot structure) must be pre-installed in neocortex before episodic attribution (slot-filling) can proceed efficiently. The review synthesises animal lesion and human neuroimaging evidence, making it a strong mechanistic anchor for the prior-before-posterior claim. Confidence slightly reduced from ceiling because the review synthesises rather than provides new primary data, and the mapping from 'schema-congruent rapid assimilation' to 'Bayesian prior-before-posterior' requires an interpretive step.",
+          "evidence_class": "lit:review_systems_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm3_schema_prior",
+          "failure_signatures": [],
+          "run_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 0,
-        "literature": 3
+        "literature": 6
       }
     },
     "INV-045": {
@@ -5949,7 +5979,7 @@
       }
     },
     "MECH-070": {
-      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.456, lit_conf=0.72",
+      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.455, lit_conf=0.72",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -5961,7 +5991,7 @@
         "exp:simulation": 4,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.456,
+      "experimental_confidence": 0.455,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -5973,7 +6003,7 @@
       "latest_run_id": "v3_exq_212_mech070_e2_motor_model_pair_1775203063_v3",
       "latest_timestamp_utc": "2026-04-03T21:37:43Z",
       "literature_confidence": 0.72,
-      "overall_confidence": 0.522,
+      "overall_confidence": 0.521,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -9323,17 +9353,19 @@
       }
     },
     "MECH-120": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.873",
+      "confidence_rationale": "exp=0 entry(s), lit=7 entry(s), exp_conf=0, lit_conf=0.906",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 7,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 3,
+      "entries_total": 7,
       "evidence_class_counts": {
         "lit:behavioral_animal": 2,
-        "lit:theoretical_neuroscience": 1
+        "lit:computational_theory": 1,
+        "lit:experimental_neuroscience": 2,
+        "lit:theoretical_neuroscience": 2
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -9344,48 +9376,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech120_shy_synaptic_normalisation_tononi2014",
-      "latest_timestamp_utc": "2026-04-05T16:30:00Z",
-      "literature_confidence": 0.873,
-      "overall_confidence": 0.873,
+      "latest_run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
+      "latest_timestamp_utc": "2026-04-06T00:00:00Z",
+      "literature_confidence": 0.906,
+      "overall_confidence": 0.906,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-120",
-          "confidence": 0.82,
-          "confidence_rationale": "Key paper for the behavioral strategy diversity claim. Sleep deprivation in mice shifts learning from a flexible hippocampal spatial strategy to a rigid striatal response strategy, with CREB phosphorylation shifting from hippocampus to dorsal striatum -- demonstrating that the cognitive signature of sleep loss is precisely monostrategy convergence. The reversal learning deficit confirms the rigidity: striatal strategy works for training but fails when the rule changes. This is a direct empirical demonstration of the mechanism underlying the 'singular strategy' problem noted in REE minimal mind experiments.",
-          "evidence_class": "lit:behavioral_animal",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
-          "failure_signatures": [
-            "Performance during initial training is not impaired by sleep deprivation -- the deficit is specifically in flexibility (reversal), not in strategy acquisition per se.",
-            "The study uses mice, not zebrafish -- transfer to zebrafish and to REE architecture requires extrapolation.",
-            "The hippocampus-to-striatum shift is a compensatory mechanism, not simply loss of function -- the system is not failing, it is falling back to a more rigid but functional mode."
-          ],
-          "run_id": "2026-04-04_mech120_arc011_strategy_shift_hagewoud2010",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-04T23:50:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-120",
-          "confidence": 0.9,
-          "confidence_rationale": "This is the strongest available evidence for SHY at the zebrafish level. Single-neuron resolution imaging of all excitatory synapses across sleep-wake states demonstrates that synapses are gained during waking and lost during sleep, proportional to sleep pressure (adenosine). The paper directly tests whether sleep actively promotes synaptic downregulation vs merely permitting it, finding that active downscaling requires high sleep pressure -- low-pressure pharmacological sleep is insufficient without adenosine boosting. This maps precisely onto MECH-120's SWS denoising/attractor flattening claim. Near-perfect alignment between source measurement and REE mechanism.",
-          "evidence_class": "lit:behavioral_animal",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
-          "failure_signatures": [
-            "Synapse loss is neuron-subtype-dependent -- not all neurons participate equally in SHY, complicating assumptions of uniform global downscaling.",
-            "Pharmacologically-induced sleep during periods of low sleep pressure does not trigger synapse loss without adenosine boosting -- indicating that sleep alone is insufficient; a pressure signal is required.",
-            "The paper does not measure downstream behavioural effects of the synapse loss, so the functional consequence for strategy diversity remains inferred rather than demonstrated."
-          ],
-          "run_id": "2026-04-04_mech120_inv010_shy_zebrafish_suppermpool2024",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-04T23:50:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-120",
@@ -9399,12 +9395,83 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T16:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-120",
+          "confidence": 0.78,
+          "confidence_rationale": "Robins 1995 is the foundational computational demonstration that rehearsal (replay) effectiveness depends critically on the current weight landscape. The paper shows that when a network has been trained on one task (domain A), the weight space is dominated by attractors for that task; subsequent replay of older items into this non-normalised landscape re-potentiates the already-dominant patterns rather than restoring the balance. This is the core computational mechanism underlying MECH-120's claim that SHY normalisation must precede replay. The paper does not study biological sleep, so transfer from artificial to biological neural networks requires care, but the mathematical insight -- that gradient descent from replay flows along directions potentiated by prior training -- directly instantiates the FM2 failure mode. Confidence is moderate-high because the mapping is structurally precise but the system differs substantially from hippocampal-neocortical consolidation.",
+          "evidence_class": "lit:computational_theory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+          "failure_signatures": [
+            "replay_reinforces_dominant_trace",
+            "weight_landscape_not_normalised_before_replay",
+            "catastrophic_interference_in_sequential_learning"
+          ],
+          "run_id": "2026-04-06_mech120_165_catastrophic_forgetting_robins1995",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-120",
+          "confidence": 0.74,
+          "confidence_rationale": "O'Neill et al. 2010 reviews the hippocampal SWR-replay system and the evidence that reactivation of waking experience during sleep and rest underlies memory consolidation. The paper is directly relevant to FM2 because it characterises the mechanism by which hippocampal replay reads from and writes to the weight landscape: sharp wave/ripple events coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. The paper notes that the hippocampus 'organises' the reactivation process -- which implies that the hippocampal attractor state (itself shaped by prior potentiation) determines what gets replayed. The review does not directly address the SHY normalisation question, but it identifies the key feature of the system: prior synaptic potentiation in hippocampal circuits determines which assemblies fire preferentially during SWRs, making the weight landscape the upstream cause of replay content.",
+          "evidence_class": "lit:theoretical_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+          "failure_signatures": [
+            "replay_content_biased_by_prior_potentiation",
+            "dominant_trace_drives_SWR_reactivation"
+          ],
+          "run_id": "2026-04-06_mech120_165_replay_swr_consolidation_oneill2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-120",
+          "confidence": 0.82,
+          "confidence_rationale": "de Vivo et al. 2017 provides the most direct ultrastructural evidence that synaptic normalisation occurs during NREM sleep specifically. Using 3D electron microscopy of mouse motor and sensory cortex synapses, they measured ~18% reduction in axon-spine interface area after sleep versus wake. Critically, the downscaling was proportional to synapse size (larger = more downscaled), and spared the largest ~20% of synapses -- consistent with SHY's prediction that the most-strengthened (i.e. dominant) synapses are differentially reduced. This is the FM2 mechanism: without this proportional downscaling, replay would write into a weight landscape dominated by synapses already enlarged by wake-phase Hebbian potentiation. The paper is the strongest empirical evidence that the weight-normalisation phase (MECH-120) actually occurs during SWS in vivo.",
+          "evidence_class": "lit:experimental_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+          "failure_signatures": [
+            "synaptic_landscape_not_normalised_before_replay",
+            "dominant_trace_monopolisation",
+            "wake_potentiation_not_corrected"
+          ],
+          "run_id": "2026-04-06_mech120_synaptic_downscaling_devivo2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-120",
+          "confidence": 0.8,
+          "confidence_rationale": "Huelin Gorriz et al. 2023 provides direct empirical evidence for the core empirical claim underlying MECH-165: that sleep replay is biased toward high-salience (novel, longer-duration) experiences. Rats ran repeated spatial trajectories on two tracks differing in novelty and lap count. Sleep replay rate was proportional to number of trajectories run and decreased with familiarity -- i.e., more potentiated (more-practised, more-novel) experiences dominated sleep replay content. Critically, the cumulative number of awake replay events during behaviour predicted which memories were prioritised for sleep replay, showing that the bias is already being set during waking encoding. This is the empirical demonstration of the FM2 failure mode: without homeostatic normalisation, replay during sleep preferentially reactivates what has already been most potentiated during waking, further consolidating dominant traces at the expense of weaker or older material. Confidence is limited by the proposed mechanism (awake replay tags via neuromodulation) being distinct from but compatible with the SHY weight-landscape mechanism.",
+          "evidence_class": "lit:experimental_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+          "failure_signatures": [
+            "salient_experience_dominates_sleep_replay",
+            "novel_high_frequency_experience_preferentially_consolidated",
+            "replay_ordering_bias_from_waking_potentiation"
+          ],
+          "run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 7,
       "source_counts": {
         "experimental": 0,
-        "literature": 3
+        "literature": 7
       }
     },
     "MECH-121": {
@@ -9541,16 +9608,18 @@
       }
     },
     "MECH-123": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.767",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.865",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 5,
       "evidence_class_counts": {
+        "lit:computational_empirical": 1,
         "lit:review_empirical": 1,
+        "lit:theoretical_computational": 2,
         "lit:theoretical_neuroscience": 1
       },
       "experimental_confidence": 0.0,
@@ -9562,10 +9631,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech123_rem_precision_recalibration_walker2009",
-      "latest_timestamp_utc": "2026-04-05T16:30:00Z",
-      "literature_confidence": 0.767,
-      "overall_confidence": 0.767,
+      "latest_run_id": "2026-04-06_mech_123_predictive_coding_precision_rao1999",
+      "latest_timestamp_utc": "2026-04-06T00:00:00Z",
+      "literature_confidence": 0.865,
+      "overall_confidence": 0.865,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -9595,12 +9664,66 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T16:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-123",
+          "confidence": 0.72,
+          "confidence_rationale": "Lange et al. provide the most direct evidence for the specific mechanism by which stale or wrong priors at the start of a new inference context produce systematic distortion rather than random noise. Their central finding -- that hierarchical approximate inference produces confirmation bias and primacy effects because top-down categorical feedback cannot be perfectly divided out from sensory representations -- formalises exactly the failure mode MECH-123 is concerned with. When an agent enters a new context with priors calibrated to the previous context (whether from top-down precision miscalibration or stale categorical priors), the first evidence arrives into a hierarchical system that has already begun top-down prediction. The prediction errors from early evidence enter the update loop multiple times because they modulate top-down feedback that then affects how subsequent sensory inputs are represented. Earlier evidence therefore has disproportionate weight in the final inference. Lange et al. show this is not a peripheral bias but a structural consequence of approximate hierarchical inference: exact inference would correct for this by dividing out prior influence, but biological systems cannot do this perfectly. The connection to MECH-123 is in this structural argument: if precision priors carried over from episode N shape the initial top-down signal in episode N+1, the first evidence in N+1 enters this same self-reinforcing loop -- and the stale priors thereby disproportionately anchor all subsequent inference in the new episode. Confidence is limited because the paper studies within-episode primacy effects (frames within a trial), not across-episode prior staleness, and does not address sleep.",
+          "evidence_class": "lit:computational_empirical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm4_precision_staleness",
+          "failure_signatures": [
+            "early_evidence_disproportionate_anchor_under_stale_priors",
+            "self_reinforcing_top_down_feedback_loop",
+            "systematic_confirmation_bias_from_hierarchical_structure"
+          ],
+          "run_id": "2026-04-06_mech_123_hierarchical_primacy_lange2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-123",
+          "confidence": 0.78,
+          "confidence_rationale": "Feldman and Friston establish the foundational mechanism that MECH-123's failure mode depends on: precision weighting is the parameter that controls how evidence is integrated in hierarchical inference. Their central claim is that precision encodes the expected reliability of prediction errors and is instantiated as synaptic gain on error units. The critical corollary for MECH-123 is what the paper implies about miscalibration: when precision estimates are wrong -- when the gain applied to prediction errors does not match the actual reliability of those signals in the current context -- inference fails systematically regardless of evidence quality. Invalid spatial cues in their simulations produce under-weighted sensory representations (low precision assigned to the target location) despite identical physical stimuli: the inference problem is being solved with the wrong precision values. This translates directly to MECH-123's failure mode 4: an agent entering a new episode with precision priors calibrated to the previous episode applies the wrong gain to prediction errors from the new context. Early evidence in the new context encounters the wrong precision weights -- systematically over- or under-weighted based on the prior episode's statistics, not the current one's. Confidence is limited because the paper does not address cross-episode precision transfer or REM as a recalibration mechanism; the mapping to sleep/MECH-123 is inferential. The paper also focuses on spatial attention within a single inference episode rather than across episodes.",
+          "evidence_class": "lit:theoretical_computational",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm4_precision_staleness",
+          "failure_signatures": [
+            "precision_mismatch_between_episodes",
+            "systematic_over_under_weighting_early_evidence",
+            "wrong_inference_despite_good_evidence"
+          ],
+          "run_id": "2026-04-06_mech_123_precision_weighting_feldman2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-123",
+          "confidence": 0.68,
+          "confidence_rationale": "Rao and Ballard establish the foundational architecture in which precision weights (inverse noise variances) determine the relative authority of top-down predictions versus bottom-up prediction errors. Their hierarchical predictive coding model explicitly formalizes that bottom-up error signals and top-down predictions are each weighted by the inverse of their corresponding noise variances: the source with lower estimated noise variance (higher precision) contributes more to the inference. This formalisation is the substrate on which the cross-episode staleness argument rests. If noise variance estimates (precision parameters) are calibrated to prior-episode statistics and not updated before a new episode begins, then the relative authority of prior expectations versus incoming evidence is set by the wrong context. In a context shift -- new environment, new relationship, new task -- the top-down signal may be granted too much authority (over-weighting familiar patterns that no longer apply) or too little (failing to trust strong evidence that matches new context patterns). Confidence is moderate because: (1) the paper is focused on within-episode visual inference, not cross-episode prior staleness; (2) the connection to sleep and REM is entirely inferential and not discussed; (3) the specific noise variance parameters in the Rao-Ballard model are technically distinct from the affective/precision parameters (precision_ema_alpha, commitment_threshold) in MECH-123. This is the foundational paper supporting the Feldman-Friston precision-as-gate argument and should be read alongside it.",
+          "evidence_class": "lit:theoretical_computational",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm4_precision_staleness",
+          "failure_signatures": [
+            "stale_noise_variance_estimates_top_down_authority_mismatch",
+            "wrong_relative_weighting_top_down_vs_bottom_up",
+            "context_shift_with_uncalibrated_precision"
+          ],
+          "run_id": "2026-04-06_mech_123_predictive_coding_precision_rao1999",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 5
       }
     },
     "MECH-124": {
@@ -10665,8 +10788,8 @@
         "literature": 6
       }
     },
-    "MECH-166": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.853",
+    "MECH-165": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.837",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -10675,7 +10798,97 @@
       },
       "entries_total": 3,
       "evidence_class_counts": {
+        "lit:computational_theory": 1,
+        "lit:experimental_neuroscience": 1,
+        "lit:theoretical_neuroscience": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
+      "latest_timestamp_utc": "2026-04-06T00:00:00Z",
+      "literature_confidence": 0.837,
+      "overall_confidence": 0.837,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-165",
+          "confidence": 0.78,
+          "confidence_rationale": "Robins 1995 is the foundational computational demonstration that rehearsal (replay) effectiveness depends critically on the current weight landscape. The paper shows that when a network has been trained on one task (domain A), the weight space is dominated by attractors for that task; subsequent replay of older items into this non-normalised landscape re-potentiates the already-dominant patterns rather than restoring the balance. This is the core computational mechanism underlying MECH-120's claim that SHY normalisation must precede replay. The paper does not study biological sleep, so transfer from artificial to biological neural networks requires care, but the mathematical insight -- that gradient descent from replay flows along directions potentiated by prior training -- directly instantiates the FM2 failure mode. Confidence is moderate-high because the mapping is structurally precise but the system differs substantially from hippocampal-neocortical consolidation.",
+          "evidence_class": "lit:computational_theory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+          "failure_signatures": [
+            "replay_reinforces_dominant_trace",
+            "weight_landscape_not_normalised_before_replay",
+            "catastrophic_interference_in_sequential_learning"
+          ],
+          "run_id": "2026-04-06_mech120_165_catastrophic_forgetting_robins1995",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-165",
+          "confidence": 0.74,
+          "confidence_rationale": "O'Neill et al. 2010 reviews the hippocampal SWR-replay system and the evidence that reactivation of waking experience during sleep and rest underlies memory consolidation. The paper is directly relevant to FM2 because it characterises the mechanism by which hippocampal replay reads from and writes to the weight landscape: sharp wave/ripple events coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. The paper notes that the hippocampus 'organises' the reactivation process -- which implies that the hippocampal attractor state (itself shaped by prior potentiation) determines what gets replayed. The review does not directly address the SHY normalisation question, but it identifies the key feature of the system: prior synaptic potentiation in hippocampal circuits determines which assemblies fire preferentially during SWRs, making the weight landscape the upstream cause of replay content.",
+          "evidence_class": "lit:theoretical_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+          "failure_signatures": [
+            "replay_content_biased_by_prior_potentiation",
+            "dominant_trace_drives_SWR_reactivation"
+          ],
+          "run_id": "2026-04-06_mech120_165_replay_swr_consolidation_oneill2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-165",
+          "confidence": 0.8,
+          "confidence_rationale": "Huelin Gorriz et al. 2023 provides direct empirical evidence for the core empirical claim underlying MECH-165: that sleep replay is biased toward high-salience (novel, longer-duration) experiences. Rats ran repeated spatial trajectories on two tracks differing in novelty and lap count. Sleep replay rate was proportional to number of trajectories run and decreased with familiarity -- i.e., more potentiated (more-practised, more-novel) experiences dominated sleep replay content. Critically, the cumulative number of awake replay events during behaviour predicted which memories were prioritised for sleep replay, showing that the bias is already being set during waking encoding. This is the empirical demonstration of the FM2 failure mode: without homeostatic normalisation, replay during sleep preferentially reactivates what has already been most potentiated during waking, further consolidating dominant traces at the expense of weaker or older material. Confidence is limited by the proposed mechanism (awake replay tags via neuromodulation) being distinct from but compatible with the SHY weight-landscape mechanism.",
+          "evidence_class": "lit:experimental_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+          "failure_signatures": [
+            "salient_experience_dominates_sleep_replay",
+            "novel_high_frequency_experience_preferentially_consolidated",
+            "replay_ordering_bias_from_waking_potentiation"
+          ],
+          "run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "MECH-166": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.909",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
         "lit:review_neuroscience": 2,
+        "lit:review_systems_neuroscience": 1,
         "lit:rodent_behavioral": 1
       },
       "experimental_confidence": 0.0,
@@ -10687,10 +10900,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020",
-      "latest_timestamp_utc": "2026-04-05T21:00:00Z",
-      "literature_confidence": 0.853,
-      "overall_confidence": 0.853,
+      "latest_run_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
+      "latest_timestamp_utc": "2026-04-06T00:00:00Z",
+      "literature_confidence": 0.909,
+      "overall_confidence": 0.909,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10734,12 +10947,26 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-166",
+          "confidence": 0.85,
+          "confidence_rationale": "Van Kesteren et al. propose the SLIMM model (Schema-Linked Interactions between Medial Prefrontal and Medial Temporal Regions), which formalises the neural architecture by which prior schema (installed in neocortex, indexed by mPFC) governs the routing of new episodic content. When new information is congruent with an existing schema, mPFC detects this congruence and promotes direct neocortical encoding, bypassing slow MTL-dependent consolidation. Without schema, new information cannot be assimilated rapidly -- it must traverse the slow multi-step hippocampal route. This maps directly to the FM3 argument: the schema (slot structure) must be pre-installed in neocortex before episodic attribution (slot-filling) can proceed efficiently. The review synthesises animal lesion and human neuroimaging evidence, making it a strong mechanistic anchor for the prior-before-posterior claim. Confidence slightly reduced from ceiling because the review synthesises rather than provides new primary data, and the mapping from 'schema-congruent rapid assimilation' to 'Bayesian prior-before-posterior' requires an interpretive step.",
+          "evidence_class": "lit:review_systems_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_paper_fm3_schema_prior",
+          "failure_signatures": [],
+          "run_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T00:00:00Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 3
+        "literature": 4
       }
     },
     "MECH-168": {
@@ -13320,7 +13547,7 @@
       }
     },
     "Q-017": {
-      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.463, lit_conf=0.874",
+      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.462, lit_conf=0.874",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -13339,7 +13566,7 @@
         "lit:fmri_connectivity": 2,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.463,
+      "experimental_confidence": 0.462,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -14869,7 +15096,7 @@
       }
     },
     "SD-008": {
-      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.945, lit_conf=0.748",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.944, lit_conf=0.748",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -14882,7 +15109,7 @@
         "lit:computational_model": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.945,
+      "experimental_confidence": 0.944,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -56379,6 +56606,48 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-044",
+      "confidence": 0.8,
+      "confidence_rationale": "Hemmer and Steyvers provide a Bayesian model of reconstructive memory in which episodic recall is a weighted combination of episodic trace quality and prior knowledge at multiple hierarchical levels. The key result for FM3 is directional: recall is systematically biased toward the prior (the installed schema at object and category levels), and this bias is stronger when the episodic trace is weaker. This directly demonstrates that prior quality constrains the quality of episodic attribution -- when the prior is uninformative, recall is uniformly poor regardless of episodic trace strength. The model formalises the claim that slot-filling (episodic attribution) is constrained by slot-quality (prior installation). Confidence is slightly reduced from ceiling because the paper demonstrates the prior-constrains-posterior direction using perceptual reconstruction (object size) rather than contextual causal attribution, and it does not directly model the failure mode of prior construction and posterior inference occurring simultaneously.",
+      "evidence_class": "lit:computational_theory_with_empirical_grounding",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm3_schema_prior",
+      "failure_signatures": [],
+      "run_id": "2026-04-06_inv_044_bayesian_reconstructive_memory_hemmer2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-044",
+      "confidence": 0.75,
+      "confidence_rationale": "Friston's free energy principle establishes the formal architecture within which the prior-before-posterior constraint operates. The hierarchical generative model requires that higher levels of the hierarchy (the prior, schema, context structure) specify the generative model before lower levels can perform prediction-error minimisation (posterior inference, attribution). The free energy formulation makes explicit that likelihood evaluation and prior construction are architecturally distinct operations: the brain minimises free energy with respect to a fixed generative model, which is itself updated on a slower timescale through model selection. This is the formal basis for MECH-166's claim that slot-formation and slot-filling are computationally separated -- they operate at different hierarchical levels and on different timescales. Confidence is reduced from the ceiling because Friston's review is a high-level theoretical synthesis, not a paper directly demonstrating the failure mode of concurrent prior construction and posterior inference in a memory consolidation paradigm. The mapping to sleep-dependent consolidation requires an additional step not made explicit in the paper.",
+      "evidence_class": "lit:computational_theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm3_schema_prior",
+      "failure_signatures": [],
+      "run_id": "2026-04-06_inv_044_free_energy_unified_brain_friston2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-044",
+      "confidence": 0.85,
+      "confidence_rationale": "Van Kesteren et al. propose the SLIMM model (Schema-Linked Interactions between Medial Prefrontal and Medial Temporal Regions), which formalises the neural architecture by which prior schema (installed in neocortex, indexed by mPFC) governs the routing of new episodic content. When new information is congruent with an existing schema, mPFC detects this congruence and promotes direct neocortical encoding, bypassing slow MTL-dependent consolidation. Without schema, new information cannot be assimilated rapidly -- it must traverse the slow multi-step hippocampal route. This maps directly to the FM3 argument: the schema (slot structure) must be pre-installed in neocortex before episodic attribution (slot-filling) can proceed efficiently. The review synthesises animal lesion and human neuroimaging evidence, making it a strong mechanistic anchor for the prior-before-posterior claim. Confidence slightly reduced from ceiling because the review synthesises rather than provides new primary data, and the mapping from 'schema-congruent rapid assimilation' to 'Bayesian prior-before-posterior' requires an interpretive step.",
+      "evidence_class": "lit:review_systems_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm3_schema_prior",
+      "failure_signatures": [],
+      "run_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "INV-049",
       "confidence": 0.92,
       "confidence_rationale": "This is the foundational paper establishing the computational necessity of offline replay for any system that learns incrementally via gradient descent over distributed representations. The core argument is mathematical: interleaved training (offline replay of prior experience during new learning) is necessary to prevent catastrophic interference -- new learning overwrites old representations when updates are sequential and online. The paper derives this from first principles of connectionist learning, then maps it onto hippocampal-neocortical architecture. This directly founds INV-049's claim that offline phases are a general computational necessity, not a biological contingency. High confidence because the core theorem is well-established; mild discount for the specific biological framing which goes beyond INV-049's more abstract claim.",
@@ -56457,6 +56726,198 @@
       "experiment_type": "targeted_review_inv_050",
       "failure_signatures": [],
       "run_id": "2026-04-06_inv_050_two_process_borbely1982",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-120",
+      "confidence": 0.78,
+      "confidence_rationale": "Robins 1995 is the foundational computational demonstration that rehearsal (replay) effectiveness depends critically on the current weight landscape. The paper shows that when a network has been trained on one task (domain A), the weight space is dominated by attractors for that task; subsequent replay of older items into this non-normalised landscape re-potentiates the already-dominant patterns rather than restoring the balance. This is the core computational mechanism underlying MECH-120's claim that SHY normalisation must precede replay. The paper does not study biological sleep, so transfer from artificial to biological neural networks requires care, but the mathematical insight -- that gradient descent from replay flows along directions potentiated by prior training -- directly instantiates the FM2 failure mode. Confidence is moderate-high because the mapping is structurally precise but the system differs substantially from hippocampal-neocortical consolidation.",
+      "evidence_class": "lit:computational_theory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+      "failure_signatures": [
+        "replay_reinforces_dominant_trace",
+        "weight_landscape_not_normalised_before_replay",
+        "catastrophic_interference_in_sequential_learning"
+      ],
+      "run_id": "2026-04-06_mech120_165_catastrophic_forgetting_robins1995",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-120",
+      "confidence": 0.74,
+      "confidence_rationale": "O'Neill et al. 2010 reviews the hippocampal SWR-replay system and the evidence that reactivation of waking experience during sleep and rest underlies memory consolidation. The paper is directly relevant to FM2 because it characterises the mechanism by which hippocampal replay reads from and writes to the weight landscape: sharp wave/ripple events coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. The paper notes that the hippocampus 'organises' the reactivation process -- which implies that the hippocampal attractor state (itself shaped by prior potentiation) determines what gets replayed. The review does not directly address the SHY normalisation question, but it identifies the key feature of the system: prior synaptic potentiation in hippocampal circuits determines which assemblies fire preferentially during SWRs, making the weight landscape the upstream cause of replay content.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+      "failure_signatures": [
+        "replay_content_biased_by_prior_potentiation",
+        "dominant_trace_drives_SWR_reactivation"
+      ],
+      "run_id": "2026-04-06_mech120_165_replay_swr_consolidation_oneill2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-120",
+      "confidence": 0.82,
+      "confidence_rationale": "de Vivo et al. 2017 provides the most direct ultrastructural evidence that synaptic normalisation occurs during NREM sleep specifically. Using 3D electron microscopy of mouse motor and sensory cortex synapses, they measured ~18% reduction in axon-spine interface area after sleep versus wake. Critically, the downscaling was proportional to synapse size (larger = more downscaled), and spared the largest ~20% of synapses -- consistent with SHY's prediction that the most-strengthened (i.e. dominant) synapses are differentially reduced. This is the FM2 mechanism: without this proportional downscaling, replay would write into a weight landscape dominated by synapses already enlarged by wake-phase Hebbian potentiation. The paper is the strongest empirical evidence that the weight-normalisation phase (MECH-120) actually occurs during SWS in vivo.",
+      "evidence_class": "lit:experimental_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+      "failure_signatures": [
+        "synaptic_landscape_not_normalised_before_replay",
+        "dominant_trace_monopolisation",
+        "wake_potentiation_not_corrected"
+      ],
+      "run_id": "2026-04-06_mech120_synaptic_downscaling_devivo2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-120",
+      "confidence": 0.8,
+      "confidence_rationale": "Huelin Gorriz et al. 2023 provides direct empirical evidence for the core empirical claim underlying MECH-165: that sleep replay is biased toward high-salience (novel, longer-duration) experiences. Rats ran repeated spatial trajectories on two tracks differing in novelty and lap count. Sleep replay rate was proportional to number of trajectories run and decreased with familiarity -- i.e., more potentiated (more-practised, more-novel) experiences dominated sleep replay content. Critically, the cumulative number of awake replay events during behaviour predicted which memories were prioritised for sleep replay, showing that the bias is already being set during waking encoding. This is the empirical demonstration of the FM2 failure mode: without homeostatic normalisation, replay during sleep preferentially reactivates what has already been most potentiated during waking, further consolidating dominant traces at the expense of weaker or older material. Confidence is limited by the proposed mechanism (awake replay tags via neuromodulation) being distinct from but compatible with the SHY weight-landscape mechanism.",
+      "evidence_class": "lit:experimental_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+      "failure_signatures": [
+        "salient_experience_dominates_sleep_replay",
+        "novel_high_frequency_experience_preferentially_consolidated",
+        "replay_ordering_bias_from_waking_potentiation"
+      ],
+      "run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-123",
+      "confidence": 0.72,
+      "confidence_rationale": "Lange et al. provide the most direct evidence for the specific mechanism by which stale or wrong priors at the start of a new inference context produce systematic distortion rather than random noise. Their central finding -- that hierarchical approximate inference produces confirmation bias and primacy effects because top-down categorical feedback cannot be perfectly divided out from sensory representations -- formalises exactly the failure mode MECH-123 is concerned with. When an agent enters a new context with priors calibrated to the previous context (whether from top-down precision miscalibration or stale categorical priors), the first evidence arrives into a hierarchical system that has already begun top-down prediction. The prediction errors from early evidence enter the update loop multiple times because they modulate top-down feedback that then affects how subsequent sensory inputs are represented. Earlier evidence therefore has disproportionate weight in the final inference. Lange et al. show this is not a peripheral bias but a structural consequence of approximate hierarchical inference: exact inference would correct for this by dividing out prior influence, but biological systems cannot do this perfectly. The connection to MECH-123 is in this structural argument: if precision priors carried over from episode N shape the initial top-down signal in episode N+1, the first evidence in N+1 enters this same self-reinforcing loop -- and the stale priors thereby disproportionately anchor all subsequent inference in the new episode. Confidence is limited because the paper studies within-episode primacy effects (frames within a trial), not across-episode prior staleness, and does not address sleep.",
+      "evidence_class": "lit:computational_empirical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm4_precision_staleness",
+      "failure_signatures": [
+        "early_evidence_disproportionate_anchor_under_stale_priors",
+        "self_reinforcing_top_down_feedback_loop",
+        "systematic_confirmation_bias_from_hierarchical_structure"
+      ],
+      "run_id": "2026-04-06_mech_123_hierarchical_primacy_lange2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-123",
+      "confidence": 0.78,
+      "confidence_rationale": "Feldman and Friston establish the foundational mechanism that MECH-123's failure mode depends on: precision weighting is the parameter that controls how evidence is integrated in hierarchical inference. Their central claim is that precision encodes the expected reliability of prediction errors and is instantiated as synaptic gain on error units. The critical corollary for MECH-123 is what the paper implies about miscalibration: when precision estimates are wrong -- when the gain applied to prediction errors does not match the actual reliability of those signals in the current context -- inference fails systematically regardless of evidence quality. Invalid spatial cues in their simulations produce under-weighted sensory representations (low precision assigned to the target location) despite identical physical stimuli: the inference problem is being solved with the wrong precision values. This translates directly to MECH-123's failure mode 4: an agent entering a new episode with precision priors calibrated to the previous episode applies the wrong gain to prediction errors from the new context. Early evidence in the new context encounters the wrong precision weights -- systematically over- or under-weighted based on the prior episode's statistics, not the current one's. Confidence is limited because the paper does not address cross-episode precision transfer or REM as a recalibration mechanism; the mapping to sleep/MECH-123 is inferential. The paper also focuses on spatial attention within a single inference episode rather than across episodes.",
+      "evidence_class": "lit:theoretical_computational",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm4_precision_staleness",
+      "failure_signatures": [
+        "precision_mismatch_between_episodes",
+        "systematic_over_under_weighting_early_evidence",
+        "wrong_inference_despite_good_evidence"
+      ],
+      "run_id": "2026-04-06_mech_123_precision_weighting_feldman2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-123",
+      "confidence": 0.68,
+      "confidence_rationale": "Rao and Ballard establish the foundational architecture in which precision weights (inverse noise variances) determine the relative authority of top-down predictions versus bottom-up prediction errors. Their hierarchical predictive coding model explicitly formalizes that bottom-up error signals and top-down predictions are each weighted by the inverse of their corresponding noise variances: the source with lower estimated noise variance (higher precision) contributes more to the inference. This formalisation is the substrate on which the cross-episode staleness argument rests. If noise variance estimates (precision parameters) are calibrated to prior-episode statistics and not updated before a new episode begins, then the relative authority of prior expectations versus incoming evidence is set by the wrong context. In a context shift -- new environment, new relationship, new task -- the top-down signal may be granted too much authority (over-weighting familiar patterns that no longer apply) or too little (failing to trust strong evidence that matches new context patterns). Confidence is moderate because: (1) the paper is focused on within-episode visual inference, not cross-episode prior staleness; (2) the connection to sleep and REM is entirely inferential and not discussed; (3) the specific noise variance parameters in the Rao-Ballard model are technically distinct from the affective/precision parameters (precision_ema_alpha, commitment_threshold) in MECH-123. This is the foundational paper supporting the Feldman-Friston precision-as-gate argument and should be read alongside it.",
+      "evidence_class": "lit:theoretical_computational",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm4_precision_staleness",
+      "failure_signatures": [
+        "stale_noise_variance_estimates_top_down_authority_mismatch",
+        "wrong_relative_weighting_top_down_vs_bottom_up",
+        "context_shift_with_uncalibrated_precision"
+      ],
+      "run_id": "2026-04-06_mech_123_predictive_coding_precision_rao1999",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-165",
+      "confidence": 0.78,
+      "confidence_rationale": "Robins 1995 is the foundational computational demonstration that rehearsal (replay) effectiveness depends critically on the current weight landscape. The paper shows that when a network has been trained on one task (domain A), the weight space is dominated by attractors for that task; subsequent replay of older items into this non-normalised landscape re-potentiates the already-dominant patterns rather than restoring the balance. This is the core computational mechanism underlying MECH-120's claim that SHY normalisation must precede replay. The paper does not study biological sleep, so transfer from artificial to biological neural networks requires care, but the mathematical insight -- that gradient descent from replay flows along directions potentiated by prior training -- directly instantiates the FM2 failure mode. Confidence is moderate-high because the mapping is structurally precise but the system differs substantially from hippocampal-neocortical consolidation.",
+      "evidence_class": "lit:computational_theory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+      "failure_signatures": [
+        "replay_reinforces_dominant_trace",
+        "weight_landscape_not_normalised_before_replay",
+        "catastrophic_interference_in_sequential_learning"
+      ],
+      "run_id": "2026-04-06_mech120_165_catastrophic_forgetting_robins1995",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-165",
+      "confidence": 0.74,
+      "confidence_rationale": "O'Neill et al. 2010 reviews the hippocampal SWR-replay system and the evidence that reactivation of waking experience during sleep and rest underlies memory consolidation. The paper is directly relevant to FM2 because it characterises the mechanism by which hippocampal replay reads from and writes to the weight landscape: sharp wave/ripple events coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. The paper notes that the hippocampus 'organises' the reactivation process -- which implies that the hippocampal attractor state (itself shaped by prior potentiation) determines what gets replayed. The review does not directly address the SHY normalisation question, but it identifies the key feature of the system: prior synaptic potentiation in hippocampal circuits determines which assemblies fire preferentially during SWRs, making the weight landscape the upstream cause of replay content.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+      "failure_signatures": [
+        "replay_content_biased_by_prior_potentiation",
+        "dominant_trace_drives_SWR_reactivation"
+      ],
+      "run_id": "2026-04-06_mech120_165_replay_swr_consolidation_oneill2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-165",
+      "confidence": 0.8,
+      "confidence_rationale": "Huelin Gorriz et al. 2023 provides direct empirical evidence for the core empirical claim underlying MECH-165: that sleep replay is biased toward high-salience (novel, longer-duration) experiences. Rats ran repeated spatial trajectories on two tracks differing in novelty and lap count. Sleep replay rate was proportional to number of trajectories run and decreased with familiarity -- i.e., more potentiated (more-practised, more-novel) experiences dominated sleep replay content. Critically, the cumulative number of awake replay events during behaviour predicted which memories were prioritised for sleep replay, showing that the bias is already being set during waking encoding. This is the empirical demonstration of the FM2 failure mode: without homeostatic normalisation, replay during sleep preferentially reactivates what has already been most potentiated during waking, further consolidating dominant traces at the expense of weaker or older material. Confidence is limited by the proposed mechanism (awake replay tags via neuromodulation) being distinct from but compatible with the SHY weight-landscape mechanism.",
+      "evidence_class": "lit:experimental_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm2_replay_ordering",
+      "failure_signatures": [
+        "salient_experience_dominates_sleep_replay",
+        "novel_high_frequency_experience_preferentially_consolidated",
+        "replay_ordering_bias_from_waking_potentiation"
+      ],
+      "run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-166",
+      "confidence": 0.85,
+      "confidence_rationale": "Van Kesteren et al. propose the SLIMM model (Schema-Linked Interactions between Medial Prefrontal and Medial Temporal Regions), which formalises the neural architecture by which prior schema (installed in neocortex, indexed by mPFC) governs the routing of new episodic content. When new information is congruent with an existing schema, mPFC detects this congruence and promotes direct neocortical encoding, bypassing slow MTL-dependent consolidation. Without schema, new information cannot be assimilated rapidly -- it must traverse the slow multi-step hippocampal route. This maps directly to the FM3 argument: the schema (slot structure) must be pre-installed in neocortex before episodic attribution (slot-filling) can proceed efficiently. The review synthesises animal lesion and human neuroimaging evidence, making it a strong mechanistic anchor for the prior-before-posterior claim. Confidence slightly reduced from ceiling because the review synthesises rather than provides new primary data, and the mapping from 'schema-congruent rapid assimilation' to 'Bayesian prior-before-posterior' requires an interpretive step.",
+      "evidence_class": "lit:review_systems_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_paper_fm3_schema_prior",
+      "failure_signatures": [],
+      "run_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-06T00:00:00Z"
@@ -57003,7 +57464,7 @@
       "timestamp_utc": "2026-04-06T09:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-05T09:08:25.736641Z",
+  "generated_at_utc": "2026-04-05T09:37:09.341052Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

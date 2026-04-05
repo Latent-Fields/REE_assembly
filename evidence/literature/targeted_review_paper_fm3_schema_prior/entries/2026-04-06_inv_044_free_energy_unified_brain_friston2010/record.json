@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm3_schema_prior",
+  "entry_id": "2026-04-06_inv_044_free_energy_unified_brain_friston2010",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-044"],
+  "source": {
+    "title": "The free-energy principle: a unified brain theory?",
+    "authors": ["Karl Friston"],
+    "year": 2010,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2787",
+    "pmid": "20068583",
+    "url": "https://doi.org/10.1038/nrn2787"
+  },
+  "evidence_class": "computational_theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Friston's free energy principle establishes the formal architecture within which the prior-before-posterior constraint operates. The hierarchical generative model requires that higher levels of the hierarchy (the prior, schema, context structure) specify the generative model before lower levels can perform prediction-error minimisation (posterior inference, attribution). The free energy formulation makes explicit that likelihood evaluation and prior construction are architecturally distinct operations: the brain minimises free energy with respect to a fixed generative model, which is itself updated on a slower timescale through model selection. This is the formal basis for MECH-166's claim that slot-formation and slot-filling are computationally separated -- they operate at different hierarchical levels and on different timescales. Confidence is reduced from the ceiling because Friston's review is a high-level theoretical synthesis, not a paper directly demonstrating the failure mode of concurrent prior construction and posterior inference in a memory consolidation paradigm. The mapping to sleep-dependent consolidation requires an additional step not made explicit in the paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_044", "free_energy_principle", "bayesian", "hierarchical_generative_model", "prior", "posterior", "prediction_error", "active_inference", "computational_theory", "prior_posterior_separation", "supports"],
+  "mapping": {
+    "source_claim_statement": "The brain implements approximate Bayesian inference by minimising variational free energy with respect to a hierarchical generative model. Higher levels of the hierarchy encode the prior (generative model structure, precision weighting); lower levels compute the likelihood and minimise prediction error. Perception is posterior inference given a fixed generative model; learning updates the generative model itself -- a distinct, slower process. These two operations -- inference under the model (posterior) and update of the model (prior) -- are architecturally separate and cannot be collapsed into a single simultaneous operation without circularity.",
+    "ree_translation": "INV-044: Friston's framework provides the formal basis for why prior construction and posterior inference must be architecturally separated. In the free energy formulation, the generative model (which encodes the prior over states and their transitions) is held fixed during inference (posterior computation over current states). Model update -- which is what schema formation is -- requires a separate optimisation pass over a slower timescale. A system that attempts to simultaneously update its generative model (form the schema, install the prior) while computing the posterior under that model faces circularity: the model being optimised is the same model being used to evaluate the likelihood. This is the Bayesian prior-before-posterior constraint formalised: prior construction and posterior inference cannot be co-computed without the prior collapsing under the gradient of the inference it is supposed to constrain. In REE terms, slot-formation (schema update, generative model revision) must precede slot-filling (posterior inference, causal attribution) because the generative model that defines the slots must be stable for the attribution inference to be well-posed.",
+    "mapping_caveat": "Friston's review does not address sleep-dependent consolidation or the specific empirical failure modes of online co-computation. The free energy principle is a computational-level theory; the mapping to sleep as the offline phase for generative model update is an inference from the temporal structure of the argument, not a claim Friston makes explicitly. Additionally, Friston distinguishes perception (fast, inference under model) from learning (slow, model update) but treats both as continuous processes -- the case for why they must be separated into offline phases rather than merely run on different timescales requires additional argument. Transfer from the general free energy framework to the specific case of REE context slot attribution is plausible but extends well beyond what this review paper directly demonstrates.",
+    "source_context": "Theoretical review synthesising the free energy principle with neural Darwinism, information theory, and optimal control theory. Proposes that action, perception, and learning are all instances of free energy minimisation. Nature Reviews Neuroscience 2010, Vol. 11(2), pp. 127-138."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Extremely high source quality: landmark review in Nature Reviews Neuroscience, highly cited, rigorous formalism. Mapping fidelity moderate: the formal separation of inference (posterior) and model update (prior construction) maps cleanly onto the FM3 constraint, but the paper does not make this connection to memory consolidation or sleep. Transfer risk moderate-high: the argument requires bridging from continuous free energy minimisation to the discrete offline/online phase structure of sleep consolidation, which is a significant inferential step."
+  }
+}

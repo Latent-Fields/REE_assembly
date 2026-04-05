@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm4_precision_staleness",
+  "entry_id": "2026-04-06_mech_123_predictive_coding_precision_rao1999",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-123"],
+  "source": {
+    "title": "Predictive coding in the visual cortex: a functional interpretation of some extra-classical receptive-field effects",
+    "authors": ["Rajesh P.N. Rao", "Dana H. Ballard"],
+    "year": 1999,
+    "venue": "Nature Neuroscience",
+    "volume": "2",
+    "issue": "1",
+    "pages": "79-87",
+    "pmid": "10195184",
+    "doi": "10.1038/4580",
+    "url": "https://www.nature.com/articles/nn0199_79"
+  },
+  "evidence_class": "theoretical_computational",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Rao and Ballard establish the foundational architecture in which precision weights (inverse noise variances) determine the relative authority of top-down predictions versus bottom-up prediction errors. Their hierarchical predictive coding model explicitly formalizes that bottom-up error signals and top-down predictions are each weighted by the inverse of their corresponding noise variances: the source with lower estimated noise variance (higher precision) contributes more to the inference. This formalisation is the substrate on which the cross-episode staleness argument rests. If noise variance estimates (precision parameters) are calibrated to prior-episode statistics and not updated before a new episode begins, then the relative authority of prior expectations versus incoming evidence is set by the wrong context. In a context shift -- new environment, new relationship, new task -- the top-down signal may be granted too much authority (over-weighting familiar patterns that no longer apply) or too little (failing to trust strong evidence that matches new context patterns). Confidence is moderate because: (1) the paper is focused on within-episode visual inference, not cross-episode prior staleness; (2) the connection to sleep and REM is entirely inferential and not discussed; (3) the specific noise variance parameters in the Rao-Ballard model are technically distinct from the affective/precision parameters (precision_ema_alpha, commitment_threshold) in MECH-123. This is the foundational paper supporting the Feldman-Friston precision-as-gate argument and should be read alongside it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "stale_noise_variance_estimates_top_down_authority_mismatch",
+    "wrong_relative_weighting_top_down_vs_bottom_up",
+    "context_shift_with_uncalibrated_precision"
+  ],
+  "tags": [
+    "predictive-coding", "precision-weights", "noise-variance", "top-down-prediction",
+    "bottom-up-error", "hierarchical-inference", "Rao", "Ballard", "MECH-123",
+    "extra-classical-receptive-fields", "Kalman-filtering", "visual-cortex"
+  ],
+  "mapping": {
+    "source_claim_statement": "In the Rao-Ballard hierarchical model, feedback connections carry top-down predictions and feedforward connections carry residual errors (prediction errors). The weighting of these two streams is explicitly controlled by the inverse noise variances: 'the bottom-up error and the top-down prediction error are weighted by the inverse of their corresponding noise variances, consistent with the principle of Kalman filtering.' A high precision prior (low noise variance on top-down predictions) means the hierarchy trusts its predictions and suppresses bottom-up error signals. A high precision likelihood (low noise variance on bottom-up errors) means incoming evidence drives strong updates. The balance between these two precision estimates determines the relative authority of expectation versus new evidence.",
+    "ree_translation": "MECH-123 requires that precision priors (the parameters governing how much weight incoming evidence receives relative to prior expectations) be recalibrated between episodes. Rao and Ballard establish the structural reason why stale precision is computationally costly: the noise variance estimates that weight top-down vs. bottom-up signals are calibrated implicitly to the generative model's estimate of the current context. If the model enters episode N+1 with noise variance estimates from episode N, it applies N's authority ratios to N+1's evidence. In a context where N was high-certainty (narrow priors, low top-down noise variance), the system will over-trust top-down predictions relative to incoming evidence from N+1. The first evidence arriving in N+1 -- which should maximally update the context estimate -- instead encounters a precision balance tilted toward the previous context's expectations. This is not a failure of evidence quality but of the inference architecture's calibration parameters.",
+    "mapping_caveat": "Rao and Ballard's model is a within-episode, within-modality account of visual cortex inference. The cross-episode staleness problem, and the argument that sleep is required for precision recalibration, are not discussed. The specific parameters in their model (noise variance matrices Sigma_td, Sigma_bu) correspond only loosely to REE's precision_ema_alpha and commitment_threshold, which encode different aspects of precision. Transfer from visual cortex feedforward/feedback dynamics to the full REE precision architecture requires bridging through Friston's free-energy framework. The paper is best treated as the structural foundation for why precision weights matter, rather than direct evidence for the cross-episode staleness or sleep recalibration claims."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Extremely high source quality: one of the most cited papers in computational neuroscience, foundational for the entire predictive coding literature. Mapping fidelity is moderate: the paper clearly establishes the precision-as-noise-inverse-variance architecture that underpins the staleness argument, but the cross-episode and sleep-specific claims require multiple additional steps. Transfer risk is moderate-high: the specific model (visual cortex, single-episode) is architecturally distant from REE's multi-modal, multi-episode, sleep-gated precision architecture."
+  }
+}

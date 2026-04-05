@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm3_schema_prior",
+  "entry_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["INV-044", "MECH-166"],
+  "source": {
+    "title": "How schema and novelty augment memory formation",
+    "authors": ["Marlieke T R van Kesteren", "Dirk J Ruiter", "Guillen Fernandez", "Richard N Henson"],
+    "year": 2012,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2012.02.001",
+    "pmid": "22398180",
+    "url": "https://doi.org/10.1016/j.tins.2012.02.001"
+  },
+  "evidence_class": "review_systems_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Van Kesteren et al. propose the SLIMM model (Schema-Linked Interactions between Medial Prefrontal and Medial Temporal Regions), which formalises the neural architecture by which prior schema (installed in neocortex, indexed by mPFC) governs the routing of new episodic content. When new information is congruent with an existing schema, mPFC detects this congruence and promotes direct neocortical encoding, bypassing slow MTL-dependent consolidation. Without schema, new information cannot be assimilated rapidly -- it must traverse the slow multi-step hippocampal route. This maps directly to the FM3 argument: the schema (slot structure) must be pre-installed in neocortex before episodic attribution (slot-filling) can proceed efficiently. The review synthesises animal lesion and human neuroimaging evidence, making it a strong mechanistic anchor for the prior-before-posterior claim. Confidence slightly reduced from ceiling because the review synthesises rather than provides new primary data, and the mapping from 'schema-congruent rapid assimilation' to 'Bayesian prior-before-posterior' requires an interpretive step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_044", "mech_166", "schema", "memory_consolidation", "mPFC", "MTL", "hippocampus", "neocortex", "congruence", "SLIMM", "slot_formation", "slot_filling", "prior_installation", "review", "systems_neuroscience", "supports"],
+  "mapping": {
+    "source_claim_statement": "Information congruent with an existing neocortical schema is more rapidly encoded and consolidated; mPFC detects congruence and routes new information into pre-existing schematic representations. Without a prior schema, consolidation follows the slow multi-year hippocampal-dependent route. The SLIMM model proposes that mPFC acts as a 'schema gate': when a schema exists, mPFC promotes rapid direct neocortical encoding; when it does not, default slow MTL processing occurs.",
+    "ree_translation": "INV-044 / MECH-166: The van Kesteren SLIMM model is a neural instantiation of the slot-formation-before-slot-filling constraint. The neocortical schema is the installed prior -- the context slot structure that specifies which distinctions are relevant and how they relate. mPFC is the congruence detector that checks whether an incoming episode has a slot available. When the prior (schema) is installed, slot-filling (episodic attribution) is rapid and hippocampal-independent. When the prior is absent, the agent cannot perform congruence-gated attribution and must instead rely on slow iterative consolidation -- equivalent to attempting to build the slot structure and fill it simultaneously. The SLIMM model thus provides a neural mechanism for why computing schema formation and episodic attribution online is architecturally incoherent: mPFC can only gate rapid assimilation if the schema already exists in neocortex to be matched against.",
+    "mapping_caveat": "Van Kesteren et al. frame the argument in terms of neural routing efficiency, not Bayesian prior degeneracy. The paper does not model the formal consequences of attempting simultaneous prior construction and posterior inference -- it describes what happens when the schema is absent (slow consolidation) rather than what happens when both processes are attempted concurrently. The FM3 claim (degenerate prior shifts during the inference it is supposed to constrain) requires an additional inferential step beyond what the paper directly demonstrates. Transfer from spatial/semantic schema congruence to REE causal attribution context slots is an extension of scope.",
+    "source_context": "Review synthesising human neuroimaging and animal lesion evidence for schema-congruence effects on memory formation. Proposes SLIMM model relating mPFC-MTL interactions to congruency-dependent encoding routes. Trends in Neurosciences 2012, Vol. 35(4), pp. 211-219."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "High source quality: influential review in Trends in Neurosciences, SLIMM model well-cited. Mapping fidelity good: schema-as-installed-prior / congruence-gating-as-slot-availability maps cleanly onto the FM3 structural argument. Transfer risk moderate: the paper's 'congruent vs. incongruent' binary does not directly operationalise the continuous Bayesian prior degeneracy argument, and the domain (semantic/spatial schema) differs from REE causal attribution context."
+  }
+}

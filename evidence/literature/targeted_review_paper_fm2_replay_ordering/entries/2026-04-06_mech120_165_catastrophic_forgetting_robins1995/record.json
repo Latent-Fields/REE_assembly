@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_paper_fm2_replay_ordering",
+  "entry_id": "2026-04-06_mech120_165_catastrophic_forgetting_robins1995",
+  "timestamp_utc": "2026-04-06T00:00:00Z",
+  "claim_ids_tested": ["MECH-120", "MECH-165"],
+  "source": {
+    "title": "Catastrophic Forgetting, Rehearsal and Pseudorehearsal",
+    "authors": ["Anthony V. Robins"],
+    "year": 1995,
+    "venue": "Connection Science",
+    "volume": "7",
+    "issue": "2",
+    "pages": "123-146",
+    "doi": "10.1080/09540099550039318",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/09540099550039318"
+  },
+  "evidence_class": "computational_theory",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Robins 1995 is the foundational computational demonstration that rehearsal (replay) effectiveness depends critically on the current weight landscape. The paper shows that when a network has been trained on one task (domain A), the weight space is dominated by attractors for that task; subsequent replay of older items into this non-normalised landscape re-potentiates the already-dominant patterns rather than restoring the balance. This is the core computational mechanism underlying MECH-120's claim that SHY normalisation must precede replay. The paper does not study biological sleep, so transfer from artificial to biological neural networks requires care, but the mathematical insight -- that gradient descent from replay flows along directions potentiated by prior training -- directly instantiates the FM2 failure mode. Confidence is moderate-high because the mapping is structurally precise but the system differs substantially from hippocampal-neocortical consolidation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "replay_reinforces_dominant_trace",
+    "weight_landscape_not_normalised_before_replay",
+    "catastrophic_interference_in_sequential_learning"
+  ],
+  "tags": [
+    "catastrophic-forgetting", "rehearsal", "pseudorehearsal", "weight-landscape",
+    "sequential-learning", "continual-learning", "replay-order", "MECH-120", "MECH-165",
+    "Robins", "Connection-Science", "computational", "gradient-descent"
+  ],
+  "mapping": {
+    "source_claim_statement": "When a neural network is trained sequentially on multiple tasks, learning the later task catastrophically interferes with earlier learned representations because gradient descent modifies the shared weight space along directions that serve the current task, overwriting prior structure. Rehearsal (replaying old items during new learning) mitigates this, but only if the weight landscape has not been dominated by the new task's attractors. Pseudorehearsal (generating representative samples from the current weight distribution before it is overwritten) preserves the prior landscape's shape. The core insight is that replay effectiveness is a function of the weight landscape into which replay writes: a dominated landscape re-potentiates dominant patterns.",
+    "ree_translation": "MECH-120 claims that SHY weight normalisation during NREM must precede replay so that replay writes into a balanced landscape. Robins 1995 provides the canonical computational justification: when the weight landscape is dominated by high-salience (i.e. more-often-trained, more-recently-potentiated) representations, gradient steps from replay disproportionately flow along those dominant directions. Diverse or weaker memories do not receive equal gradient signal -- replay of those memories gets overridden by the dominant attractor's pull. MECH-165 claims that without this normalisation, replay is selective in exactly this direction: reinforcing what is already strongest. Robins 1995 is the computational proof of concept for why ordering (normalise first, then replay) is necessary rather than arbitrary.",
+    "mapping_caveat": "The paper uses relatively simple multi-layer networks with backpropagation, not the sparse, Hebbian, event-triggered dynamics of hippocampal place cells. The paper's 'rehearsal' is interleaved training, not offline replay during a separate quiescent phase. The structural analogy to SHY + replay is strong but the dynamics of hippocampal replay (SWR-triggered, content-dependent) are substantially different from backpropagation through artificially generated pseudoitems. The paper does not discuss sleep or synaptic homeostasis. The mapping is conceptual, not mechanistic.",
+    "source_context": "Connection Science, 1995. Foundational paper in continual learning. Has 885+ citations. Anthony Robins, University of Otago. One of the two canonical papers (alongside McCloskey & Cohen 1989) that defined the catastrophic forgetting problem. Still cited in contemporary continual learning literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "High source quality -- seminal, highly-cited foundational paper. Good mapping fidelity: the core mathematical insight (gradient from replay dominated by landscape curvature) maps cleanly onto the FM2 argument. Transfer risk moderate-high: artificial backprop networks vs. biological Hebbian replay dynamics; the ordering necessity argument holds conceptually but the specific mechanisms differ. Does not address SHY or sleep directly."
+  }
+}
