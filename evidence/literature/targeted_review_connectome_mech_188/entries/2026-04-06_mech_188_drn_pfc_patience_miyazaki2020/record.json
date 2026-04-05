@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_188",
+  "entry_id": "2026-04-06_mech_188_drn_pfc_patience_miyazaki2020",
+  "timestamp_utc": "2026-04-06T17:30:00Z",
+  "claim_ids_tested": ["MECH-188"],
+  "source": {
+    "title": "Serotonergic projections to the orbitofrontal and medial prefrontal cortices differentially modulate waiting for future rewards",
+    "authors": ["Miyazaki K", "Miyazaki KW", "Sivori G", "Yamanaka A", "Tanaka KF", "Doya K"],
+    "year": 2020,
+    "venue": "Science Advances",
+    "volume": "6",
+    "issue": "48",
+    "doi": "10.1126/sciadv.abc7246",
+    "pmid": "33246957",
+    "pmc": "PMC7695476"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "High-quality experimental paper using optogenetic terminal stimulation in transgenic mice -- provides circuit-level causal evidence that DRN serotonin projections to OFC and mPFC specifically support waiting behaviour (patience for delayed rewards). This is the most direct mechanistic grounding available for MECH-188's DRN-to-dlPFC pathway claim. The mPFC stimulation effect (promotes waiting under timing uncertainty) maps to the LONG_HORIZON context requirement in MECH-188. Transfer risk moderate: rodent mPFC maps to primate dlPFC only partially; OFC contribution may be stronger than mPFC in this paradigm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OFC 5-HT stimulation promotes waiting most broadly (all timing conditions) -- consistent with OFC valuation component of goal persistence",
+    "mPFC 5-HT stimulation promotes waiting selectively under temporal uncertainty -- maps to MECH-188's role when benefit terrain is degraded or timing is unpredictable",
+    "NAc 5-HT stimulation does not promote waiting -- dissociates the PFC pathway from reward-volume mechanisms, supporting the specificity of MECH-188's top-down circuit claim",
+    "Bayesian model: OFC calculates overall reward probability; mPFC evaluates time committed -- this double-dissociation is architecturally relevant to how z_goal seeding vs. z_goal maintenance might differ"
+  ],
+  "tags": [
+    "mech_188",
+    "pfc",
+    "goal_persistence",
+    "serotonin",
+    "5-ht",
+    "drn",
+    "orbitofrontal_cortex",
+    "medial_pfc",
+    "optogenetics",
+    "patience",
+    "waiting",
+    "delayed_reward",
+    "dorsal_raphe_nucleus",
+    "long_horizon",
+    "doya_lab"
+  ],
+  "mapping": {
+    "source_claim_statement": "Optogenetic stimulation of DRN serotonergic terminals in OFC promotes waiting for delayed rewards across all timing conditions. mPFC stimulation promotes waiting only when timing of future rewards is uncertain. NAc stimulation has no significant effect. The OFC and mPFC compute posterior reward probability using different timing models.",
+    "ree_translation": "MECH-188 claims that DRN 5-HT projections to dlPFC maintain z_goal through harm spikes after seeding. Miyazaki et al. provide the circuit-level substrate: DRN serotonergic terminals in mPFC causally support persistence (waiting) specifically under conditions where future reward timing is uncertain -- which is precisely the condition MECH-188 addresses (benefit terrain has temporarily collapsed, z_goal seeding has dropped, but the goal representation must be maintained). The OFC finding extends this: OFC 5-HT supports overall reward valuation continuity, while mPFC 5-HT supports temporal commitment when the reward path is uncertain. In REE terms, OFC may contribute to the benefit terrain component (MECH-186/187) while mPFC 5-HT is the more direct substrate for MECH-188 goal-maintenance under adversity.",
+    "mapping_caveat": "The waiting paradigm is a positive-reward delay task, not an aversive harm context. The subjects are waiting for a delayed reward, not maintaining a goal while harm signals spike. This is architecturally analogous but not identical to MECH-188's claim -- which specifically concerns z_goal persistence during z_harm_a elevation. The OFC/mPFC dissociation in this paper suggests the architecture may be more distributed than MECH-188's single dlPFC pathway formulation.",
+    "source_context": "Doya lab (OIST) has produced a sustained programme of serotonin-patience work using optogenetics. This 2020 Science Advances paper is the circuit-dissection follow-up to their prior DRN soma-stimulation work. PMC open access."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Science Advances, optogenetic circuit-level causal evidence, recent). Mapping fidelity good -- the mPFC 5-HT timing-uncertainty condition is mechanistically close to MECH-188's terrain-collapse scenario. Transfer risk: (1) rodent mPFC is not identical to primate dlPFC; (2) aversive harm is not the same as reward delay; (3) the OFC contribution may mean MECH-188 should be split or the circuit is broader than specified."
+  }
+}

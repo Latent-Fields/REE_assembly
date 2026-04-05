@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_054",
+  "entry_id": "2026-04-06_inv_054_longterm_treatment_kupfer1991",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["INV-054"],
+  "source": {
+    "title": "Long-term treatment of depression.",
+    "authors": ["David J. Kupfer"],
+    "year": 1991,
+    "venue": "Journal of Clinical Psychiatry",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/1903134/"
+  },
+  "evidence_class": "clinical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Kupfer's 1991 review established the three-phase model of depression treatment (acute, continuation, maintenance) and documented that recurrent depression requires sustained pharmacological management for most patients, with high relapse rates on discontinuation. The paper synthesizes the Pittsburgh Study and NIMH Collaborative data showing that without continued pharmacotherapy, depression recurs in the majority of patients within months to years. This directly supports INV-054's chronicity prediction: once the depressive attractor is established, it is not dissolved by time alone -- active external scaffolding is required to prevent return. The response latency data in Kupfer's framework is implicit: acute-phase treatment is described as requiring weeks before benefit, with the MacArthur consensus defining response as requiring at least 2 weeks of sustained improvement. Confidence is moderate-low because this is a narrative review (no primary data in this specific paper) and the mechanistic interpretation (attractor vs recurrent vulnerability) requires inference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If depression were a simple graded state, maintenance pharmacotherapy would be unnecessary -- recovery would persist without continued medication. The high relapse rates on discontinuation documented by Kupfer indicate that the remission state is inherently unstable (consistent with a shallow local minimum) and the depressive attractor remains accessible."
+  ],
+  "tags": ["inv_054", "depression", "long_term_treatment", "recurrence", "maintenance_pharmacotherapy", "chronicity", "acute_phase", "response_latency", "Pittsburgh_study", "NIMH_collaborative"],
+  "mapping": {
+    "source_claim_statement": "Recurrent major depression requires continued pharmacological management for most patients. Discontinuation of acute-phase treatment leads to high relapse rates. The acute phase (achieving remission) must be followed by continuation and maintenance phases to prevent recurrence. Tricyclic antidepressants and lithium are effective in maintenance; evidence for newer agents is less clear in 1991.",
+    "ree_translation": "INV-054: The attractor interpretation predicts that the depressive state is self-maintaining (closed loop) and that recovery requires active external scaffolding to cross the benefit_exposure threshold -- not merely time or environmental improvement. Kupfer's data on relapse rates and the need for maintenance pharmacotherapy is consistent with this: the depressive attractor is not eliminated by achieving remission, it is merely escaped from temporarily. High relapse rates on medication discontinuation suggest the terrain gradient is not fully rebuilt during acute treatment -- the attractor basin remains shallow, requiring continued external support. The three-phase model (acute/continuation/maintenance) maps onto a staged terrain rebuilding process rather than a one-time state change.",
+    "mapping_caveat": "Kupfer frames chronicity in terms of recurrent depressive episodes (a longitudinal, episodic model) rather than in terms of a single episode's self-maintenance. INV-054 is about maintenance within an episode (closed loop preventing recovery) while Kupfer addresses maintenance across episodes (preventing recurrence). Both are consistent with an attractor interpretation, but the two framings are distinct: within-episode maintenance is INV-054's core claim, while across-episode recurrence is a separate (though related) phenomenon. The mapping is strongest if INV-054 is interpreted as applying to episode chronicity as well as recurrence.",
+    "source_context": "Narrative review synthesizing Pittsburgh longitudinal studies and NIMH Collaborative Study data. Kupfer was a principal investigator of the Pittsburgh maintenance trials, giving the review authority on the empirical data. Published as a symposium paper. No meta-analytic methods; clinical synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is good for 1991 (authoritative author, primary trial data synthesized) but pre-meta-analysis era. Mapping fidelity is moderate: the within-episode vs across-episode distinction reduces tight correspondence, though both are consistent with attractor dynamics. Transfer risk is moderate-low: the clinical phenomenology (chronicity, need for maintenance) is well-established and does not depend on specific mechanistic assumptions."
+  }
+}

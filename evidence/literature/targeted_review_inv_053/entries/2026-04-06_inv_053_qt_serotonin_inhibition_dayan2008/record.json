@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_053",
+  "entry_id": "2026-04-06_inv_053_qt_serotonin_inhibition_dayan2008",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["INV-053"],
+  "source": {
+    "title": "Serotonin, inhibition, and negative mood",
+    "authors": ["Peter Dayan", "Quentin J. M. Huys"],
+    "year": 2008,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.0040004",
+    "pmid": "18248087",
+    "pmc": "PMC2222921",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18248087/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the canonical paper in the Huys/Dayan computational psychiatry lineage and directly grounds the framing that INV-053 is designed to extend. The paper models depression via decision-tree pruning: serotonin inhibits branches with negative expected value, and a drop in serotonin causes failure to prune bad thoughts, leading to large negative prediction errors. This is a Q-value / value-learning account -- the failure is in the valuation and inhibition of action sequences, not in the substrate that generates goals. The paper supports INV-053 indirectly (it establishes that chronic negative prediction errors are computationally coherent as a depression mechanism) but at a different architectural layer. It does not speak to terrain/seeding collapse as the primary locus. Confidence reflects: high source quality, good indirect support for attractor dynamics, but distinct mechanism from INV-053's core claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Persistent large negative prediction errors following disinhibited aversive thought chains",
+    "Serotonin drop -> failure to prune negative-value decision branches -> rumination",
+    "Significant aversive shift in reinforcement statistics from behavioural disinhibition"
+  ],
+  "tags": ["inv_053", "computational_psychiatry", "huys_dayan_lineage", "serotonin", "pruning", "decision_tree", "q_values", "reinforcement_learning", "negative_mood", "reward_learning_layer"],
+  "mapping": {
+    "source_claim_statement": "Serotonin mediates behavioural inhibition by pruning decision trees: it eliminates branches with low or negative expected value. A psychiatrically or experimentally induced drop in serotonin reduces this pruning, causing the agent to mentally explore aversive thought-chains it would normally cut. This produces unexpectedly large negative prediction errors and an aversive shift in reinforcement statistics -- a computational account of negative mood in depression.",
+    "ree_translation": "INV-053 locates the computational depression attractor at the terrain and seeding layer: z_harm_a tonically elevated, benefit_exposure below seeding threshold, z_goal absent, VALENCE_WANTING terrain collapsed, HABIT and PLANNED modes behaviourally equivalent. Dayan & Huys (2008) locate depression at the value-learning layer: failure to inhibit negatively-valued action sequences due to serotonin drop produces a runaway negative prediction error dynamic. These are architecturally distinct failure modes. The Dayan/Huys account is about miscalibrated Q-values and disinhibited search; INV-053 is about the substrate that would generate approach goals in the first place being absent or collapsed. A patient without VALENCE_WANTING terrain would not even engage the decision-tree search that Dayan/Huys describe -- the tree would simply not be entered. INV-053 describes the prior failure: no goal to evaluate, so no search to prune.",
+    "mapping_caveat": "The Dayan/Huys model works at the Q-value / action-selection layer. INV-053 works at the terrain/seeding layer, one level more upstream. These are not competing accounts -- they describe different failure modes that could co-occur. But they are not the same thing. REE's contribution is to identify the substrate (benefit terrain, z_goal seeding) as a distinct, earlier failure point that the Huys/Dayan lineage does not address. This distinction is the paper's core framing contribution and must be clearly established against this background.",
+    "source_context": "Theoretical computational model with simulated affective chains. The serotonin-as-pruning account generates testable predictions about the relationship between inhibitory control, negative affect, and drug effects. The paper has been highly influential in computational psychiatry as it provided a mechanistic account of serotonin's role in depression that reconciled its aversive rather than appetitive primary associations with its use as an antidepressant."
+  },
+  "confidence_components": {
+    "source_quality": 0.96,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.35,
+    "notes": "Source quality is very high -- foundational paper in PLoS Computational Biology, from two of the field's leading theorists. Mapping fidelity is modest because the mechanism (Q-value pruning) is at a different architectural layer from INV-053 (terrain/seeding). Transfer risk is moderate: the conceptual framework is relevant (attractor-like dynamics in depression), but the specific computational mechanism does not map cleanly to REE's architecture. This entry is most valuable as establishing the contrast: what REE's claim is NOT (it is not a Q-value account)."
+  }
+}

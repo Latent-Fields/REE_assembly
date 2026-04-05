@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_187",
+  "entry_id": "2026-04-06_mech_187_wanting_liking_berridge1998",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["MECH-187"],
+  "source": {
+    "title": "What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?",
+    "authors": ["Berridge KC", "Robinson TE"],
+    "year": 1998,
+    "venue": "Brain Research. Brain Research Reviews",
+    "doi": "10.1016/s0165-0173(98)00019-8",
+    "url": "https://doi.org/10.1016/s0165-0173(98)00019-8",
+    "pmid": "9858756"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Canonical authoritative review establishing the wanting/liking dissociation and dopamine's exclusive role in incentive salience. Directly grounds MECH-187 by showing that DA is necessary for 'wanting' (incentive salience) but not 'liking' (hedonic impact), making DA a separable gain-controlled signal. Up to 99% NAc DA depletion abolishes wanting without altering liking, providing a near-complete loss-of-function characterisation. Mapping to MECH-187's formal gain parameter is conceptual rather than quantitative, reducing confidence slightly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Dopamine depletion (up to 99% in NAc and neostriatum via 6-OHDA) abolishes incentive salience ('wanting') while leaving hedonic reactions ('liking') intact.",
+    "Taste reactivity (gapes, etc.) to sucrose vs. quinine is normal in DA-depleted rats.",
+    "Learned hedonic modulation (taste-aversion conditioning) is preserved without DA.",
+    "Benzodiazepine-induced hedonic enhancement is dopamine-independent.",
+    "DA is necessary for attributing incentive salience to reward-predictive stimuli, not for hedonic pleasure itself."
+  ],
+  "tags": ["mech_187", "incentive_salience", "dopamine", "wanting", "liking", "nucleus_accumbens", "6-OHDA", "da_depletion", "motivation", "reward", "berridge", "canonical"],
+  "mapping": {
+    "source_claim_statement": "Dopamine systems are necessary for 'wanting' incentives but not for 'liking' them. Incentive salience is a distinct motivational component modulated by mesolimbic DA.",
+    "ree_translation": "MECH-187 formalizes serotonin as a gain multiplier on the benefit_exposure -> z_goal transduction. The wanting/liking dissociation is the empirical foundation: z_goal seeding (wanting) is DA-gated, while benefit_eval_head output (liking) is not. MECH-187 acts specifically on the wanting channel -- the gain on DA-mediated incentive salience attribution from benefit terrain signals.",
+    "mapping_caveat": "Berridge & Robinson characterise the DA system as the wanting substrate but do not explicitly address serotonergic gain modulation. MECH-187's serotonergic gain claim requires the additional step (supplied by Dayan/Huys 2009 and Korte 2016) that 5-HT modulates this DA-mediated wanting signal. The paper provides the substrate definition, not the gain mechanism itself.",
+    "source_context": "Rat neurochemistry study with behavioral assays (taste reactivity, conditioning, pharmacological challenge). 6-OHDA lesion achieving up to 99% DA depletion is the key manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.15,
+    "notes": "Mapping fidelity slightly limited because this paper establishes the DA-wanting substrate but does not provide the 5-HT gain modulation mechanism directly. Transfer risk low -- this is a foundational neuroscience result replicated many times across species."
+  }
+}

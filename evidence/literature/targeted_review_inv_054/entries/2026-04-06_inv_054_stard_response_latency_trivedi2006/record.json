@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_054",
+  "entry_id": "2026-04-06_inv_054_stard_response_latency_trivedi2006",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["INV-054"],
+  "source": {
+    "title": "Medication augmentation after the failure of SSRIs for depression.",
+    "authors": ["Madhukar H. Trivedi", "Maurizio Fava", "Stephen R. Wisniewski", "Michael E. Thase", "Frederick Quitkin", "Diane Warden", "Louise Ritz", "Andrew A. Nierenberg", "Barry D. Lebowitz", "Melanie M. Biggs", "James F. Luther", "Kathy Shores-Wilson", "A. John Rush"],
+    "year": 2006,
+    "venue": "New England Journal of Medicine",
+    "doi": "10.1056/NEJMoa052964",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16554526/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This STAR*D Step 2 paper provides concrete quantitative anchors for INV-054's phase-transition prediction. Key data: (1) Step 1 citalopram non-remitters had received a mean of 11.9 weeks of citalopram (mean dose 55 mg/day) before entering Step 2 -- demonstrating that non-response is not a brief transient but a sustained failure to cross threshold over nearly 3 months. (2) Remission rates at Step 2 augmentation were only ~30%, indicating that once the depression maintenance loop is established, overcoming it is not simply a matter of switching or augmenting pharmacotherapy. (3) In the companion Gaynes et al. 2008 STAR*D analysis, for those who did achieve remission or response at citalopram Step 1, the median time to remission was 6.2-6.9 weeks and time to response 5.4-5.5 weeks -- supporting the 2-6 week response latency window even in eventual responders. This non-linear pattern (long lag then threshold crossing) is consistent with the attractor/phase-transition account and inconsistent with graded linear recovery. Confidence is moderate-high: the data are real, large-scale, and directly quantify response latency; the mapping to an attractor interpretation requires interpretation but is well-motivated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If recovery from depression were graded and linear, partial improvement would appear within the first 1-2 weeks of SSRI administration and cumulate continuously. The STAR*D data show no such linear accumulation: the majority of responders require 4-8 weeks to demonstrate meaningful improvement, with the response curve showing a characteristic delayed onset followed by a steeper improvement phase -- inconsistent with graded recovery but consistent with threshold crossing."
+  ],
+  "tags": ["inv_054", "STARD", "depression", "treatment_response", "response_latency", "citalopram", "SSRI", "phase_transition", "remission", "non_linear_recovery", "antidepressant_onset", "attractor", "chronicity"],
+  "mapping": {
+    "source_claim_statement": "In the STAR*D Step 2 trial: 565 patients who had failed to remit after a mean 11.9 weeks of citalopram therapy (mean dose 55 mg/day) were augmented with bupropion-SR or buspirone. Remission rates with augmentation were ~30% by HRSD-17. In the broader STAR*D cohort (Gaynes et al. 2008), for those achieving remission or response with Step 1 citalopram, median time to remission was 6.2-6.9 weeks and median time to response was 5.4-5.5 weeks.",
+    "ree_translation": "INV-054 predicts that recovery from the depressive attractor is non-linear: the agent must cross a benefit_exposure threshold before terrain gradient re-emerges, predicting a characteristic delay (terrain accumulation phase) followed by a relatively rapid improvement once threshold is crossed (phase transition). The STAR*D data are consistent with this: eventual responders show a 5-7 week median lag before response, rather than immediate partial improvement. Non-responders (who entered Step 2 after ~12 weeks) represent the more deeply embedded attractor state. The 30% Step 2 remission rate reflects the difficulty of escaping the attractor once established, even with augmented pharmacological intervention. EXP-0097's suggested recovery threshold criterion (>50 episodes required) calibrates against this empirical window: the terrain rebuilding that SSRIs support analogously requires sustained benefit_exposure accumulation before the gradient re-emerges.",
+    "mapping_caveat": "The STAR*D data quantify pharmacological response latency, not purely behavioral recovery. The delay may reflect neurobiological mechanisms (receptor desensitization, neurogenesis) rather than terrain rebuilding per se. The attractor interpretation is consistent with the data but not uniquely supported by them -- alternative accounts (pharmacokinetic delay, downstream signaling cascade latency) are also consistent. The REE framework makes the additional prediction that interventions directly increasing benefit_exposure (behavioral activation) should show a similar latency profile to SSRIs, which would strengthen the terrain-specific account.",
+    "source_context": "Large-scale, multicenter, randomized effectiveness trial. N=565 for Step 2 augmentation. Measurement-based care with structured outcome assessment (HRSD-17 and QIDS-SR-16) at each visit, enabling time-course analysis. Real-world outpatient population with broad inclusion criteria. Published in NEJM -- highest impact clinical journal. One of multiple STAR*D papers; primary Step 1 acute outcomes were reported separately by Rush et al. 2006."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is very high: NEJM, large RCT, real-world effectiveness design, structured measurement-based outcomes. Mapping fidelity is moderate-high: the response latency data are a direct empirical constraint on INV-054's phase-transition prediction, but the mechanism of delay (terrain vs neurobiological) requires inference. Transfer risk is moderate: the STAR*D population is human clinical, not computational agent; the phenomenological correspondence (delayed threshold-crossing recovery) is direct even if the mechanism differs."
+  }
+}

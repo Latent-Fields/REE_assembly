@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_187",
+  "entry_id": "2026-04-06_mech_187_5ht_affective_control_dayan2009",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["MECH-187"],
+  "source": {
+    "title": "Serotonin in affective control.",
+    "authors": ["Dayan P", "Huys QJM"],
+    "year": 2009,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.051508.135607",
+    "url": "https://doi.org/10.1146/annurev.neuro.051508.135607",
+    "pmid": "19400722"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Dayan & Huys provide a rigorous computational account of serotonin in affective control, primarily framing 5-HT as an opponent to dopamine in aversive processing rather than as a gain modulator on appetitive wanting. This is directionally relevant to MECH-187 but maps most naturally to a different functional role: behavioral inhibition under punishment rather than gain regulation of incentive salience. The paper supports the general claim that 5-HT modulates motivated behavior in a way that is computationally dissociable from DA, but the specific gain-on-wanting formulation of MECH-187 is not the primary frame of this review. Evidence is mixed: supports the 5-HT/DA interaction as a gain-like modulation mechanism, but emphasizes the aversive (opponent) rather than appetitive-gain direction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "5-HT is framed as an opponent modulator of dopaminergic reward, primarily operating through aversive prediction error channels.",
+    "The aversive processing framing of 5-HT is asymmetric with DA: rewards and punishments have different natural statistics, so 5-HT is not simply a mirror of DA.",
+    "5-HT exerts effects at multiple spatial and temporal scales in invertebrates (fixed networks); in mammals its role is more unified and representational but still aversion-centred.",
+    "Computational modeling suggests 5-HT modulates the balance between appetitive and aversive prediction, rather than acting as a multiplicative gain on the DA wanting signal per se."
+  ],
+  "tags": ["mech_187", "serotonin", "dopamine", "affective_control", "computational_model", "opponent_modulation", "aversive_processing", "reinforcement_learning", "dayan", "huys"],
+  "mapping": {
+    "source_claim_statement": "Serotonin is computationally involved in aversive processing as an opponent to dopamine's appetitive function. Its widespread distribution in the mammalian brain is associated with a unified role in aversive prediction that is amenable to reinforcement-learning analysis. 5-HT does not simply mirror DA due to asymmetries in reward/punishment statistics.",
+    "ree_translation": "MECH-187 frames serotonin as a gain parameter on z_goal seeding from benefit terrain -- an appetitive gain-on-wanting function. Dayan & Huys's account is partially compatible: if 5-HT is the opponent to DA's appetitive signal, then reducing 5-HT (or increasing DA receptor sensitivity) elevates the effective gain on appetitive motivation. The paper's computational framework is consistent with serotonergic modulation of the benefit_exposure -> z_goal transduction if one models low 5-HT as releasing a tonic brake on the DA wanting channel. However, the direct 'gain on wanting' framing is not their primary account -- they emphasize behavioral inhibition and punishment sensitivity.",
+    "mapping_caveat": "The opponent modulation framework does not map cleanly to a multiplicative gain on incentive salience. It could support a subtractive (floor-raising) model -- low 5-HT removes a brake -- rather than a true gain change. MECH-187's formal gain parameter requires a separate mechanistic account (e.g., Korte 2016 provides the DA-in-NAc microdialysis evidence). This paper is most useful as the computational theoretical framing for WHY 5-HT interacts with the DA reward system, not as direct evidence for the specific gain architecture.",
+    "source_context": "Theoretical/computational review. Synthesizes invertebrate circuit studies with mammalian behavioral pharmacology. Uses reinforcement learning formalism (prediction error, temporal difference). No new experimental data."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (Dayan is a leading computational neuroscientist; peer-reviewed Annual Review). Mapping fidelity reduced because the opponent/aversive framing does not map directly to a gain-on-wanting account. Transfer risk elevated because the computational model is abstract -- the gain-on-wanting interpretation requires additional steps not explicitly present in the paper."
+  }
+}

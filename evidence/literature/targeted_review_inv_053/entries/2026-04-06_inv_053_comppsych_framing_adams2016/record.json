@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_053",
+  "entry_id": "2026-04-06_inv_053_comppsych_framing_adams2016",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["INV-053"],
+  "source": {
+    "title": "Computational Psychiatry: towards a mathematically informed understanding of mental illness",
+    "authors": ["Rick A. Adams", "Quentin J. M. Huys", "Jonathan P. Roiser"],
+    "year": 2016,
+    "venue": "Journal of Neurology, Neurosurgery, and Psychiatry",
+    "doi": "10.1136/jnnp-2015-310737",
+    "pmid": "26157034",
+    "pmc": "PMC4717449",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26157034/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "This is the definitive programmatic statement of the computational psychiatry field as represented by the Huys/Adams/Roiser lineage. It frames depression computationally as arising from aberrant valuation -- either from learned helplessness (prior belief about loss of agency affecting Q-value computation) or from failure to inhibit mental exploration of aversive events. Both mechanisms operate at the reward-learning/value-computation layer. The paper is highly relevant for establishing the contrast class against which INV-053's novel claim must be positioned. It provides partial indirect support (confirming that depression has a computational structure) but at a layer distinct from INV-053's terrain/seeding substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Aberrant reward valuation producing depressive symptoms via miscalibrated Q-values",
+    "Helplessness as prior belief about loss of agency distorting value computation",
+    "Inability to inhibit aversive mental exploration (failure of cognitive pruning)"
+  ],
+  "tags": ["inv_053", "computational_psychiatry", "huys_dayan_lineage", "reinforcement_learning", "depression", "helplessness", "reward_valuation", "aberrant_q_values", "predictive_coding", "schizophrenia", "review"],
+  "mapping": {
+    "source_claim_statement": "Computational Psychiatry seeks to describe the relationship between neurobiology, environment, and mental symptoms in computational terms. For depression specifically, the paper identifies two candidate computational mechanisms: (1) aberrant valuations arising from prior beliefs about loss of agency (learned helplessness as a Bayesian prior), and (2) failure to inhibit mental exploration of aversive events. Both mechanisms are framed within reinforcement learning: depression as a problem of incorrect Q-values or miscalibrated reward prediction.",
+    "ree_translation": "INV-053 identifies a third, architecturally distinct mechanism: terrain and seeding collapse. Even an agent with correct Q-values and intact inhibitory control cannot initiate goal-directed behaviour if the substrate that generates approach goals (VALENCE_WANTING terrain, z_goal seeding) is absent. Adams et al.'s two mechanisms presuppose that the agent is capable of generating motivational states and is failing in their evaluation or inhibition. INV-053 describes the prior failure: the motivational substrate itself is unavailable. This maps more closely to severe melancholic depression with psychomotor retardation than to the ruminative, cognitively active profile captured by the helplessness and pruning accounts.",
+    "mapping_caveat": "The Adams/Huys/Roiser framework is agnostic about the substrate that generates motivational states -- it operates entirely at the level of value computation and prediction error. INV-053's contribution is to identify that this substrate is architecturally separable and can fail independently. The paper does not contain the distinction between motivational terrain and value computation because that level of analysis is not its target. The framing contribution of the REE paper is to introduce this layer explicitly and show that it generates distinct failure signatures (HABIT/PLANNED equivalence, terrain collapse) not derivable from Q-value accounts.",
+    "source_context": "Review article in JNNP (2016), highly cited as a reference paper for the field. Covers depression and schizophrenia as worked examples. The depression account closely follows Huys et al.'s earlier work on pruning and helplessness. The schizophrenia account uses predictive coding and precision weighting. Neither account addresses motivational terrain or goal-seeding substrate."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.42,
+    "transfer_risk": 0.30,
+    "notes": "High source quality -- this is the flagship review paper for the field from three leading researchers. Mapping fidelity is modest: the paper establishes the contrast class rather than providing direct support for INV-053. The two failure modes described (helplessness prior, pruning failure) are at the value-computation layer, not the terrain/seeding layer. Transfer risk is moderate: some conceptual overlap (both describe attractor-like depression dynamics) but the mechanisms do not align. This entry is most valuable for establishing REE's claim against the canonical background in the field."
+  }
+}

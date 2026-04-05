@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_187",
+  "entry_id": "2026-04-06_mech_187_5ht1b_da_nac_motivation_korte2016",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["MECH-187"],
+  "source": {
+    "title": "The 5-HT1A/1B-receptor agonist eltoprazine increases both catecholamine release in the prefrontal cortex and dopamine release in the nucleus accumbens and decreases motivation for reward and 'waiting' impulsivity, but increases 'stopping' impulsivity.",
+    "authors": ["Korte SM", "Prins J", "Van den Bergh FS", "Oosting RS", "Dupree R", "Korte-Bouws GAH", "Westphal KGC", "Olivier B", "Denys DA", "Garland A", "Gunturkun O"],
+    "year": 2016,
+    "venue": "European Journal of Pharmacology",
+    "doi": "10.1016/j.ejphar.2016.11.024",
+    "url": "https://doi.org/10.1016/j.ejphar.2016.11.024",
+    "pmid": "27866999"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Korte et al. provide in vivo microdialysis in behaving rats combined with reward motivation and impulsivity assays, directly measuring 5-HT receptor manipulation effects on DA release in the NAc. This is the most mechanistically direct of the four papers: it shows that 5-HT1A/1B agonism increases DA in NAc while simultaneously decreasing motivation for reward (measured by ICSS threshold elevation), providing a concrete circuit-level demonstration that 5-HT receptor activation alters the DA wanting signal. The paradoxical direction (5-HT agonism -> more DA in NAc but less reward motivation) is important for MECH-187 and merits careful interpretation. Confidence reduced from the mechanistic specificity because the direction of DA release does not straightforwardly predict the gain-on-wanting direction, and the agonist pharmacology may not generalize to tonic endogenous 5-HT modulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "5-HT1A/1B agonist eltoprazine increases extracellular DA in NAc (microdialysis) while decreasing motivation for brain stimulation reward (higher ICSS thresholds).",
+    "The same agonist decreases 'waiting' impulsivity but increases 'stopping' impulsivity -- showing dissociable effects on different impulsivity subtypes.",
+    "Eltoprazine also increases NE and DA in both mPFC and OFC, and decreases 5-HT release in mPFC and NAc.",
+    "Brain stimulation reward is less effective (elevated reward threshold) despite elevated DA in NAc -- paradox: more DA does not equal more wanting.",
+    "The effect dissociates: eltoprazine is effective in treating impulsive choice but simultaneously impairs impulse stopping."
+  ],
+  "tags": ["mech_187", "serotonin", "5-HT1B", "5-HT1A", "dopamine", "nucleus_accumbens", "microdialysis", "incentive_salience", "ICSS", "motivation", "impulsivity", "eltoprazine", "gain_modulation"],
+  "mapping": {
+    "source_claim_statement": "5-HT1A/1B receptor agonism (eltoprazine) increases DA release in NAc (measured by in vivo microdialysis) and decreases motivation for reward (elevated ICSS thresholds) while differentially modulating waiting vs. stopping impulsivity.",
+    "ree_translation": "MECH-187 proposes 5-HT as a gain parameter on the benefit_exposure -> z_goal transduction. Korte et al. show that 5-HT1A/1B receptor activation (mimicking a state of elevated serotonergic tone) increases DA in NAc -- the circuit substrate for incentive salience -- while reducing motivation as measured by ICSS. This paradox is informative for MECH-187: it suggests that the gain-on-wanting relationship is NOT a simple linear function of DA in NAc. Rather, 5-HT receptor activation at the NAc may create a state where DA is released but its motivational transduction is altered -- potentially by modifying postsynaptic DA receptor sensitivity or by altering the signal-to-noise of the DA wanting signal. For MECH-187 specifically: serotonergic tone modulates the transduction efficiency of DA -> z_goal seeding, not merely DA release per se. This refines the mechanism: MECH-187 acts at the DA-signal transduction step in NAc, not purely at presynaptic DA release.",
+    "mapping_caveat": "The paradox of elevated DA but reduced motivation under 5-HT agonism complicates a simple gain-on-wanting interpretation. The paper does not resolve whether the reduced motivation is due to (a) altered postsynaptic DA receptor sensitivity at NAc, (b) competing inhibitory signals from simultaneously elevated PFC catecholamines, or (c) an artifact of the ICSS paradigm not cleanly separating wanting from liking. The eltoprazine pharmacology is not identical to endogenous 5-HT modulation, and the concurrent effects on norepinephrine (also elevated in mPFC) create confounds. The EXP-0099 gain multiplier design should account for possible direction-of-effect complexity.",
+    "source_context": "Rat behavioral pharmacology with in vivo microdialysis. Eltoprazine (5-HT1A/1B agonist) administered systemically. Measurements: DA, NE, 5-HT release in mPFC, OFC, NAc; intracranial self-stimulation (ICSS) reward threshold; 5-choice serial reaction time task for impulsivity; delay-aversion and stop-signal tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is good (peer-reviewed, in vivo, quantitative) but not top-tier (European Journal of Pharmacology; single study without replication). Mapping fidelity is the highest of the four papers for the specific circuit mechanism (5-HT receptor -> DA in NAc -> motivation), but the paradoxical direction requires interpretive care. Transfer risk elevated because systemic drug effects (mixed 5-HT1A/1B agonism plus NE effects) may not generalize to the endogenous 5-HT gain architecture MECH-187 proposes."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_054",
+  "entry_id": "2026-04-06_inv_054_depression_adaptation_nesse2000",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["INV-054"],
+  "source": {
+    "title": "Is depression an adaptation?",
+    "authors": ["Randolph M. Nesse"],
+    "year": 2000,
+    "venue": "Archives of General Psychiatry",
+    "doi": "10.1001/archpsyc.57.1.14",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10632228/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Nesse's evolutionary framing establishes that low mood functions as an inhibitory state that blocks investment in situations where effort would be futile, dangerous, or wasted -- a state that is self-maintaining by design. This is structurally analogous to INV-054's closed negative feedback loop: the inhibitory state (no motivation gradient) prevents the very actions (benefit-seeking) that would dissolve it. The evolutionary account does not invoke terrain or seeding thresholds, but the functional logic is isomorphic. Confidence is moderate: the paper supports the maintenance-loop structure strongly but does not provide empirical quantification of recovery latency or demonstrate non-linearity of recovery. It is theoretical framing, not clinical measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If depression were an adaptation, environmental improvement should trigger immediate mood recovery -- the inhibitory state would have no further adaptive function. That clinical improvement often lags environmental change by weeks is not explained by Nesse's framework but is consistent with a self-maintaining attractor interpretation."
+  ],
+  "tags": ["inv_054", "depression", "adaptation", "evolutionary_psychiatry", "maintenance_loop", "inhibitory_state", "futility_signaling", "motivation_withdrawal", "chronicity"],
+  "mapping": {
+    "source_claim_statement": "Low mood adaptively inhibits action in situations where effort would result in danger, loss, or wasted effort. The characteristics of low mood -- pessimism, lack of motivation, disengagement -- give a fitness advantage by blocking futile or dangerous challenges. These inhibitions are self-sustaining while the adverse environmental conditions persist.",
+    "ree_translation": "INV-054: Once VALENCE_WANTING collapses, the agent reduces benefit-oriented exploration (no gradient to follow), reducing benefit encounters, keeping benefit_exposure sub-threshold, preventing terrain recovery. Nesse's 'inhibition of futile effort' maps onto the INV-054 mechanism: reduced exploration is not a bug but a feature of the depressive state, and it perpetuates the state by preventing the benefit encounters needed to rebuild terrain gradient. The REE account adds a specific mechanism (benefit_exposure threshold, terrain seeding) that explains why the loop is closed even when the environment improves.",
+    "mapping_caveat": "Nesse's framework is explicitly adaptive: low mood is useful in the right context. INV-054 is about a pathological fixed point that persists past the environmental trigger. The two accounts are compatible if the adaptive mechanism becomes dysregulated -- i.e., the inhibitory state persists after conditions change because the terrain (not the environment) is now the maintaining variable. Nesse's paper does not engage with threshold dynamics or the distinction between adaptive and pathological chronicity.",
+    "source_context": "Review paper synthesizing evolutionary biology, ethology, and clinical psychiatry. No primary data. Framework paper generating multiple testable predictions about what depression should look like if it is adaptive. Published in a high-impact clinical psychiatry journal. Widely cited as foundational evolutionary psychiatry."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High source quality: high-impact peer-reviewed review in Archives of General Psychiatry. Mapping fidelity is moderate: the functional logic of a self-maintaining inhibitory state maps cleanly onto INV-054's loop, but Nesse does not use threshold language and does not predict non-linear recovery. Transfer risk is moderate: evolutionary framing is distinct from computational terrain framing; the structural analogy is strong but the mechanisms are different."
+  }
+}

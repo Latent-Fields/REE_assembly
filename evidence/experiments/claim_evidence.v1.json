@@ -196,7 +196,7 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.708, lit_conf=0.835",
+      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.707, lit_conf=0.835",
       "direction_counts": {
         "mixed": 2,
         "supports": 16,
@@ -213,7 +213,7 @@
         "lit:neuroscience_experiment": 1,
         "lit:theoretical_review": 6
       },
-      "experimental_confidence": 0.708,
+      "experimental_confidence": 0.707,
       "fail_runs": 5,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -1044,7 +1044,7 @@
       }
     },
     "ARC-023": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.458, lit_conf=0.705",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.458, lit_conf=0.704",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -1067,8 +1067,8 @@
       },
       "latest_run_id": "v3_exq_131_arc023_multirate_heartbeat_pair_20260329T032102Z_v3",
       "latest_timestamp_utc": "2026-03-29T03:21:02Z",
-      "literature_confidence": 0.705,
-      "overall_confidence": 0.582,
+      "literature_confidence": 0.704,
+      "overall_confidence": 0.581,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -1913,7 +1913,7 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=9 entry(s), lit=7 entry(s), exp_conf=0.71, lit_conf=0.86",
+      "confidence_rationale": "exp=9 entry(s), lit=7 entry(s), exp_conf=0.709, lit_conf=0.86",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -1928,7 +1928,7 @@
         "lit:fmri_connectivity": 3,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.71,
+      "experimental_confidence": 0.709,
       "fail_runs": 6,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -1940,7 +1940,7 @@
       "latest_run_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
       "latest_timestamp_utc": "2026-04-05T00:00:00Z",
       "literature_confidence": 0.86,
-      "overall_confidence": 0.785,
+      "overall_confidence": 0.784,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -3792,6 +3792,200 @@
         "literature": 2
       }
     },
+    "INV-053": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.818",
+      "direction_counts": {
+        "mixed": 2,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 2,
+        "lit:computational_model": 1,
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_inv_053_reward_punishment_depression_eshel2010",
+      "latest_timestamp_utc": "2026-04-06T16:00:00Z",
+      "literature_confidence": 0.818,
+      "overall_confidence": 0.818,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-053",
+          "confidence": 0.72,
+          "confidence_rationale": "This paper provides the strongest behavioural-science grounding for INV-053's architecture. Treadway and Zald argue that anhedonia has been systematically underspecified by conflating consummatory pleasure (liking) with motivational drive (wanting), and that this conflation has obscured the neurobiology. They show that dopamine is primarily implicated in motivational aspects of reward, not hedonic experience; and that the effort-based decision-making deficits seen in depression reflect motivational rather than hedonic dysfunction. This maps directly onto INV-053's claim: the attractor state involves z_goal collapse (wanting) with liking (benefit_eval_head) potentially preserved. The paper supports INV-053 by providing empirical grounding for the wanting/liking dissociation that REE's architecture instantiates computationally. The 'decisional anhedonia' concept they introduce is effectively the behavioural signature of INV-053's PLANNED/HABIT equivalence.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_053",
+          "failure_signatures": [
+            "Reduced motivation to pursue rewards despite intact hedonic capacity (consummatory pleasure preserved)",
+            "Effort-based decision-making deficits: unwillingness to exert effort for reward even when reward is valued",
+            "Decisional anhedonia: influence of motivational collapse on reward-directed decision-making",
+            "Dopamine-dependent motivational drive dissociated from opioid-dependent hedonic experience"
+          ],
+          "run_id": "2026-04-06_inv_053_anhedonia_motivational_treadway2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-053",
+          "confidence": 0.55,
+          "confidence_rationale": "This is the definitive programmatic statement of the computational psychiatry field as represented by the Huys/Adams/Roiser lineage. It frames depression computationally as arising from aberrant valuation -- either from learned helplessness (prior belief about loss of agency affecting Q-value computation) or from failure to inhibit mental exploration of aversive events. Both mechanisms operate at the reward-learning/value-computation layer. The paper is highly relevant for establishing the contrast class against which INV-053's novel claim must be positioned. It provides partial indirect support (confirming that depression has a computational structure) but at a layer distinct from INV-053's terrain/seeding substrate.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_053",
+          "failure_signatures": [
+            "Aberrant reward valuation producing depressive symptoms via miscalibrated Q-values",
+            "Helplessness as prior belief about loss of agency distorting value computation",
+            "Inability to inhibit aversive mental exploration (failure of cognitive pruning)"
+          ],
+          "run_id": "2026-04-06_inv_053_comppsych_framing_adams2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-053",
+          "confidence": 0.62,
+          "confidence_rationale": "This is the canonical paper in the Huys/Dayan computational psychiatry lineage and directly grounds the framing that INV-053 is designed to extend. The paper models depression via decision-tree pruning: serotonin inhibits branches with negative expected value, and a drop in serotonin causes failure to prune bad thoughts, leading to large negative prediction errors. This is a Q-value / value-learning account -- the failure is in the valuation and inhibition of action sequences, not in the substrate that generates goals. The paper supports INV-053 indirectly (it establishes that chronic negative prediction errors are computationally coherent as a depression mechanism) but at a different architectural layer. It does not speak to terrain/seeding collapse as the primary locus. Confidence reflects: high source quality, good indirect support for attractor dynamics, but distinct mechanism from INV-053's core claim.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_053",
+          "failure_signatures": [
+            "Persistent large negative prediction errors following disinhibited aversive thought chains",
+            "Serotonin drop -> failure to prune negative-value decision branches -> rumination",
+            "Significant aversive shift in reinforcement statistics from behavioural disinhibition"
+          ],
+          "run_id": "2026-04-06_inv_053_qt_serotonin_inhibition_dayan2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-053",
+          "confidence": 0.65,
+          "confidence_rationale": "Eshel and Roiser review the evidence that depressed patients exhibit abnormal behavioural responses to both rewards and punishments -- biased learning from positive and negative outcomes -- mediated by frontostriatal systems and monoamine neuromodulation. Their review provides the empirical evidence base for reward processing abnormalities in depression, including blunted positive prediction errors and heightened negative prediction error signalling. This supports INV-053 by confirming that the failure mode in depression is not purely hedonic (affect at receipt) but extends to the learning and representation of reward and punishment information across time -- precisely the substrate-level failure that INV-053 identifies. The frontostriatal / monoamine framing is compatible with REE's terrain and seeding architecture, though the paper does not distinguish terrain collapse from value-learning miscalibration.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_053",
+          "failure_signatures": [
+            "Blunted positive prediction errors in frontostriatal systems during reward learning",
+            "Heightened negative prediction error signalling with aversive bias in learning",
+            "Abnormal behavioural responses to reward and punishment: slower acquisition of reward-maximising strategies",
+            "Monoamine-mediated disruption of frontostriatal circuits linking valuation to action"
+          ],
+          "run_id": "2026-04-06_inv_053_reward_punishment_depression_eshel2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
+      }
+    },
+    "INV-054": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.77",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1,
+        "lit:clinical_review": 1,
+        "lit:theoretical_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_inv_054_stard_response_latency_trivedi2006",
+      "latest_timestamp_utc": "2026-04-06T16:00:00Z",
+      "literature_confidence": 0.77,
+      "overall_confidence": 0.77,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-054",
+          "confidence": 0.62,
+          "confidence_rationale": "Nesse's evolutionary framing establishes that low mood functions as an inhibitory state that blocks investment in situations where effort would be futile, dangerous, or wasted -- a state that is self-maintaining by design. This is structurally analogous to INV-054's closed negative feedback loop: the inhibitory state (no motivation gradient) prevents the very actions (benefit-seeking) that would dissolve it. The evolutionary account does not invoke terrain or seeding thresholds, but the functional logic is isomorphic. Confidence is moderate: the paper supports the maintenance-loop structure strongly but does not provide empirical quantification of recovery latency or demonstrate non-linearity of recovery. It is theoretical framing, not clinical measurement.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_054",
+          "failure_signatures": [
+            "If depression were an adaptation, environmental improvement should trigger immediate mood recovery -- the inhibitory state would have no further adaptive function. That clinical improvement often lags environmental change by weeks is not explained by Nesse's framework but is consistent with a self-maintaining attractor interpretation."
+          ],
+          "run_id": "2026-04-06_inv_054_depression_adaptation_nesse2000",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-054",
+          "confidence": 0.58,
+          "confidence_rationale": "Kupfer's 1991 review established the three-phase model of depression treatment (acute, continuation, maintenance) and documented that recurrent depression requires sustained pharmacological management for most patients, with high relapse rates on discontinuation. The paper synthesizes the Pittsburgh Study and NIMH Collaborative data showing that without continued pharmacotherapy, depression recurs in the majority of patients within months to years. This directly supports INV-054's chronicity prediction: once the depressive attractor is established, it is not dissolved by time alone -- active external scaffolding is required to prevent return. The response latency data in Kupfer's framework is implicit: acute-phase treatment is described as requiring weeks before benefit, with the MacArthur consensus defining response as requiring at least 2 weeks of sustained improvement. Confidence is moderate-low because this is a narrative review (no primary data in this specific paper) and the mechanistic interpretation (attractor vs recurrent vulnerability) requires inference.",
+          "evidence_class": "lit:clinical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_054",
+          "failure_signatures": [
+            "If depression were a simple graded state, maintenance pharmacotherapy would be unnecessary -- recovery would persist without continued medication. The high relapse rates on discontinuation documented by Kupfer indicate that the remission state is inherently unstable (consistent with a shallow local minimum) and the depressive attractor remains accessible."
+          ],
+          "run_id": "2026-04-06_inv_054_longterm_treatment_kupfer1991",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-054",
+          "confidence": 0.72,
+          "confidence_rationale": "This STAR*D Step 2 paper provides concrete quantitative anchors for INV-054's phase-transition prediction. Key data: (1) Step 1 citalopram non-remitters had received a mean of 11.9 weeks of citalopram (mean dose 55 mg/day) before entering Step 2 -- demonstrating that non-response is not a brief transient but a sustained failure to cross threshold over nearly 3 months. (2) Remission rates at Step 2 augmentation were only ~30%, indicating that once the depression maintenance loop is established, overcoming it is not simply a matter of switching or augmenting pharmacotherapy. (3) In the companion Gaynes et al. 2008 STAR*D analysis, for those who did achieve remission or response at citalopram Step 1, the median time to remission was 6.2-6.9 weeks and time to response 5.4-5.5 weeks -- supporting the 2-6 week response latency window even in eventual responders. This non-linear pattern (long lag then threshold crossing) is consistent with the attractor/phase-transition account and inconsistent with graded linear recovery. Confidence is moderate-high: the data are real, large-scale, and directly quantify response latency; the mapping to an attractor interpretation requires interpretation but is well-motivated.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_054",
+          "failure_signatures": [
+            "If recovery from depression were graded and linear, partial improvement would appear within the first 1-2 weeks of SSRI administration and cumulate continuously. The STAR*D data show no such linear accumulation: the majority of responders require 4-8 weeks to demonstrate meaningful improvement, with the response curve showing a characteristic delayed onset followed by a steeper improvement phase -- inconsistent with graded recovery but consistent with threshold crossing."
+          ],
+          "run_id": "2026-04-06_inv_054_stard_response_latency_trivedi2006",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
     "MECH-022": {
       "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.471, lit_conf=0.883",
       "direction_counts": {
@@ -4077,7 +4271,7 @@
       }
     },
     "MECH-026": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.469, lit_conf=0.878",
+      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.469, lit_conf=0.877",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4105,8 +4299,8 @@
       },
       "latest_run_id": "v3_exq_202_mech026_vigilance_breath_20260402T230320Z_v3",
       "latest_timestamp_utc": "2026-04-02T23:03:20Z",
-      "literature_confidence": 0.878,
-      "overall_confidence": 0.776,
+      "literature_confidence": 0.877,
+      "overall_confidence": 0.775,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4527,7 +4721,7 @@
       }
     },
     "MECH-040": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.792",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.791",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -4549,8 +4743,8 @@
       },
       "latest_run_id": "2026-02-15_mech040_lcne_adaptive_gain_followup",
       "latest_timestamp_utc": "2026-02-15T15:12:00Z",
-      "literature_confidence": 0.792,
-      "overall_confidence": 0.792,
+      "literature_confidence": 0.791,
+      "overall_confidence": 0.791,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4879,7 +5073,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.727, lit_conf=0.876",
+      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.726, lit_conf=0.876",
       "direction_counts": {
         "mixed": 2,
         "supports": 14,
@@ -4901,7 +5095,7 @@
         "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.727,
+      "experimental_confidence": 0.726,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5973,7 +6167,7 @@
       }
     },
     "MECH-070": {
-      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.455, lit_conf=0.72",
+      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.455, lit_conf=0.719",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -5996,7 +6190,7 @@
       },
       "latest_run_id": "v3_exq_212_mech070_e2_motor_model_pair_1775203063_v3",
       "latest_timestamp_utc": "2026-04-03T21:37:43Z",
-      "literature_confidence": 0.72,
+      "literature_confidence": 0.719,
       "overall_confidence": 0.521,
       "pass_runs": 2,
       "recent_entries": [
@@ -6770,7 +6964,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=3 entry(s), exp_conf=0.752, lit_conf=0.843",
+      "confidence_rationale": "exp=12 entry(s), lit=3 entry(s), exp_conf=0.751, lit_conf=0.843",
       "direction_counts": {
         "mixed": 3,
         "supports": 8,
@@ -6783,7 +6977,7 @@
         "lit:connectome_circuit_study": 1,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.752,
+      "experimental_confidence": 0.751,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -6990,7 +7184,7 @@
       }
     },
     "MECH-091": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.308, lit_conf=0.685",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.308, lit_conf=0.684",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -7013,8 +7207,8 @@
       },
       "latest_run_id": "v3_exq_133_mech091_phase_reset_pair_20260329T032233Z_v3",
       "latest_timestamp_utc": "2026-03-29T03:22:33Z",
-      "literature_confidence": 0.685,
-      "overall_confidence": 0.497,
+      "literature_confidence": 0.684,
+      "overall_confidence": 0.496,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7170,7 +7364,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.674, lit_conf=0.705",
+      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.674, lit_conf=0.704",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -7193,8 +7387,8 @@
       },
       "latest_run_id": "v3_exq_116_mech093_heartbeat_multiseed_20260328T211756Z_v3",
       "latest_timestamp_utc": "2026-03-28T21:17:56Z",
-      "literature_confidence": 0.705,
-      "overall_confidence": 0.682,
+      "literature_confidence": 0.704,
+      "overall_confidence": 0.681,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -7383,7 +7577,7 @@
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.587, lit_conf=0.905",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.586, lit_conf=0.905",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
@@ -7398,7 +7592,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.587,
+      "experimental_confidence": 0.586,
       "fail_runs": 8,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -7410,7 +7604,7 @@
       "latest_run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3",
       "latest_timestamp_utc": "2026-03-28T22:09:39Z",
       "literature_confidence": 0.905,
-      "overall_confidence": 0.746,
+      "overall_confidence": 0.745,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -7751,7 +7945,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.497, lit_conf=0.909",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.496, lit_conf=0.909",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -7766,7 +7960,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:review_theoretical": 1
       },
-      "experimental_confidence": 0.497,
+      "experimental_confidence": 0.496,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -8997,7 +9191,7 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=11 entry(s), lit=2 entry(s), exp_conf=0.951, lit_conf=0.78",
+      "confidence_rationale": "exp=11 entry(s), lit=2 entry(s), exp_conf=0.95, lit_conf=0.78",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -9010,7 +9204,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.951,
+      "experimental_confidence": 0.95,
       "fail_runs": 8,
       "genuine_exp_count": 11,
       "genuine_exp_direction_counts": {
@@ -9022,7 +9216,7 @@
       "latest_run_id": "v3_exq_234_mech117_wanting_liking_replication_20260404T033531Z_v3",
       "latest_timestamp_utc": "2026-04-04T03:35:31Z",
       "literature_confidence": 0.78,
-      "overall_confidence": 0.883,
+      "overall_confidence": 0.882,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -12442,6 +12636,210 @@
       "source_counts": {
         "experimental": 0,
         "literature": 4
+      }
+    },
+    "MECH-187": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.84",
+      "direction_counts": {
+        "mixed": 2,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 1,
+        "lit:connectome_mechanistic_review": 3
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech_187_wanting_liking_berridge1998",
+      "latest_timestamp_utc": "2026-04-06T16:00:00Z",
+      "literature_confidence": 0.84,
+      "overall_confidence": 0.84,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-187",
+          "confidence": 0.72,
+          "confidence_rationale": "Korte et al. provide in vivo microdialysis in behaving rats combined with reward motivation and impulsivity assays, directly measuring 5-HT receptor manipulation effects on DA release in the NAc. This is the most mechanistically direct of the four papers: it shows that 5-HT1A/1B agonism increases DA in NAc while simultaneously decreasing motivation for reward (measured by ICSS threshold elevation), providing a concrete circuit-level demonstration that 5-HT receptor activation alters the DA wanting signal. The paradoxical direction (5-HT agonism -> more DA in NAc but less reward motivation) is important for MECH-187 and merits careful interpretation. Confidence reduced from the mechanistic specificity because the direction of DA release does not straightforwardly predict the gain-on-wanting direction, and the agonist pharmacology may not generalize to tonic endogenous 5-HT modulation.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_187",
+          "failure_signatures": [
+            "5-HT1A/1B agonist eltoprazine increases extracellular DA in NAc (microdialysis) while decreasing motivation for brain stimulation reward (higher ICSS thresholds).",
+            "The same agonist decreases 'waiting' impulsivity but increases 'stopping' impulsivity -- showing dissociable effects on different impulsivity subtypes.",
+            "Eltoprazine also increases NE and DA in both mPFC and OFC, and decreases 5-HT release in mPFC and NAc.",
+            "Brain stimulation reward is less effective (elevated reward threshold) despite elevated DA in NAc -- paradox: more DA does not equal more wanting.",
+            "The effect dissociates: eltoprazine is effective in treating impulsive choice but simultaneously impairs impulse stopping."
+          ],
+          "run_id": "2026-04-06_mech_187_5ht1b_da_nac_motivation_korte2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-187",
+          "confidence": 0.6,
+          "confidence_rationale": "Dayan & Huys provide a rigorous computational account of serotonin in affective control, primarily framing 5-HT as an opponent to dopamine in aversive processing rather than as a gain modulator on appetitive wanting. This is directionally relevant to MECH-187 but maps most naturally to a different functional role: behavioral inhibition under punishment rather than gain regulation of incentive salience. The paper supports the general claim that 5-HT modulates motivated behavior in a way that is computationally dissociable from DA, but the specific gain-on-wanting formulation of MECH-187 is not the primary frame of this review. Evidence is mixed: supports the 5-HT/DA interaction as a gain-like modulation mechanism, but emphasizes the aversive (opponent) rather than appetitive-gain direction.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_187",
+          "failure_signatures": [
+            "5-HT is framed as an opponent modulator of dopaminergic reward, primarily operating through aversive prediction error channels.",
+            "The aversive processing framing of 5-HT is asymmetric with DA: rewards and punishments have different natural statistics, so 5-HT is not simply a mirror of DA.",
+            "5-HT exerts effects at multiple spatial and temporal scales in invertebrates (fixed networks); in mammals its role is more unified and representational but still aversion-centred.",
+            "Computational modeling suggests 5-HT modulates the balance between appetitive and aversive prediction, rather than acting as a multiplicative gain on the DA wanting signal per se."
+          ],
+          "run_id": "2026-04-06_mech_187_5ht_affective_control_dayan2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-187",
+          "confidence": 0.55,
+          "confidence_rationale": "Cools et al. provide a rigorous review of 5-HT's role in emotional and behavioral control, emphasising aversive signal modulation and response inhibition rather than appetitive gain-on-wanting. The review supports the general claim that 5-HT modulates motivated behavior through its effects on punishment sensitivity and behavioral suppression, which is partially relevant to MECH-187's gain-modulation framework. However, the dominant account here -- 5-HT enhances aversive processing and response inhibition -- does not map directly to serotonin as a gain amplifier on incentive salience. Evidence direction is mixed: the aversive-gain and response-inhibition accounts are consistent with 5-HT reducing the effective gain on appetitive wanting (low 5-HT -> disinhibited wanting), but this is an indirect reading.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_187",
+          "failure_signatures": [
+            "5-HT depletion enhances behavioral and neural responsiveness to punishment and aversive signals.",
+            "5-HT depletion disinhibits previously rewarded but now punished behaviors (failure to suppress approach under aversive contingencies).",
+            "5-HT modulates the impact of punishment-related signals on learning and emotion, not primarily the magnitude of appetitive incentive salience.",
+            "Response inhibition (stopping ongoing behavior) is promoted by 5-HT -- distinct from reducing the amplitude of approach motivation.",
+            "Human studies: tryptophan depletion increases sensitivity to aversive cues and impairs reversal learning without clearly enhancing approach."
+          ],
+          "run_id": "2026-04-06_mech_187_5ht_behavioral_control_cools2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-187",
+          "confidence": 0.85,
+          "confidence_rationale": "Canonical authoritative review establishing the wanting/liking dissociation and dopamine's exclusive role in incentive salience. Directly grounds MECH-187 by showing that DA is necessary for 'wanting' (incentive salience) but not 'liking' (hedonic impact), making DA a separable gain-controlled signal. Up to 99% NAc DA depletion abolishes wanting without altering liking, providing a near-complete loss-of-function characterisation. Mapping to MECH-187's formal gain parameter is conceptual rather than quantitative, reducing confidence slightly.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_187",
+          "failure_signatures": [
+            "Dopamine depletion (up to 99% in NAc and neostriatum via 6-OHDA) abolishes incentive salience ('wanting') while leaving hedonic reactions ('liking') intact.",
+            "Taste reactivity (gapes, etc.) to sucrose vs. quinine is normal in DA-depleted rats.",
+            "Learned hedonic modulation (taste-aversion conditioning) is preserved without DA.",
+            "Benzodiazepine-induced hedonic enhancement is dopamine-independent.",
+            "DA is necessary for attributing incentive salience to reward-predictive stimuli, not for hedonic pleasure itself."
+          ],
+          "run_id": "2026-04-06_mech_187_wanting_liking_berridge1998",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T16:00:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
+      }
+    },
+    "MECH-188": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.817",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 3
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-06_mech_188_serotonin_behavioral_control_cools2008",
+      "latest_timestamp_utc": "2026-04-06T17:30:00Z",
+      "literature_confidence": 0.817,
+      "overall_confidence": 0.817,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-188",
+          "confidence": 0.8,
+          "confidence_rationale": "High-quality experimental paper using optogenetic terminal stimulation in transgenic mice -- provides circuit-level causal evidence that DRN serotonin projections to OFC and mPFC specifically support waiting behaviour (patience for delayed rewards). This is the most direct mechanistic grounding available for MECH-188's DRN-to-dlPFC pathway claim. The mPFC stimulation effect (promotes waiting under timing uncertainty) maps to the LONG_HORIZON context requirement in MECH-188. Transfer risk moderate: rodent mPFC maps to primate dlPFC only partially; OFC contribution may be stronger than mPFC in this paradigm.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_188",
+          "failure_signatures": [
+            "OFC 5-HT stimulation promotes waiting most broadly (all timing conditions) -- consistent with OFC valuation component of goal persistence",
+            "mPFC 5-HT stimulation promotes waiting selectively under temporal uncertainty -- maps to MECH-188's role when benefit terrain is degraded or timing is unpredictable",
+            "NAc 5-HT stimulation does not promote waiting -- dissociates the PFC pathway from reward-volume mechanisms, supporting the specificity of MECH-188's top-down circuit claim",
+            "Bayesian model: OFC calculates overall reward probability; mPFC evaluates time committed -- this double-dissociation is architecturally relevant to how z_goal seeding vs. z_goal maintenance might differ"
+          ],
+          "run_id": "2026-04-06_mech_188_drn_pfc_patience_miyazaki2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T17:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-188",
+          "confidence": 0.65,
+          "confidence_rationale": "Comprehensive mechanistic review of PFC synaptic transmission covering serotonin receptor subtypes (5-HT2A, 5-HT2C, 5-HT1A), stress hormone effects on PFC pyramidal neurons, and working memory circuitry. Provides the receptor-level anatomy for how DRN serotonin modulates the recurrent excitation underlying working memory maintenance in PFC -- the synaptic substrate for MECH-188's z_goal persistence mechanism. Confidence bounded by breadth (not a targeted MECH-188 test) and the stress-impairment framing (chronic stress degrades PFC function, which is consistent with MECH-188 failure but does not directly test top-down goal maintenance).",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_188",
+          "failure_signatures": [
+            "5-HT2A receptors on PFC layer V pyramidal neurons suppress NMDAR function via microtubule/kinesin transport -- this is the anatomical substrate for serotonin gating PFC-to-striatum output",
+            "Chronic stress impairs dendritic branching and spine density in PFC pyramidal neurons -- predicts that chronic harm exposure degrades MECH-188 substrate, not just activates it",
+            "Acute stress enhances glutamatergic transmission in PFC transiently (GR-mediated) -- consistent with brief harm spikes being tolerable; chronic stress (analogous to sustained z_harm_a elevation) is what destroys MECH-188 capacity",
+            "PFC working memory: sustained spiking in dlPFC during delay periods arises from NMDA-mediated recurrent excitation -- this is the cellular correlate of z_goal persistence after seeding"
+          ],
+          "run_id": "2026-04-06_mech_188_pfc_synaptic_serotonin_yan2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T17:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-188",
+          "confidence": 0.75,
+          "confidence_rationale": "High-quality review from a leading group (Robbins lab), directly addresses 5-HT modulation of aversive processing and response inhibition in PFC. The two-process framework (aversion sensitivity vs. response inhibition) maps cleanly onto the distinct failure modes of MECH-188. Transfer risk is moderate: this review synthesises rodent and human data but does not directly measure PFC working memory maintenance of goal representations during harm spikes -- it addresses punishment sensitivity rather than goal persistence per se.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_188",
+          "failure_signatures": [
+            "5-HT depletion enhances aversive processing and disinhibits punished behaviours -- predicts failure mode where harm spikes displace goals",
+            "5-HT promotes response inhibition -- maps to the PFC mechanism that prevents z_harm_a from overwriting z_goal",
+            "Exaggerated aversive processing + deficient response inhibition underlie affective disorder symptoms -- aligns with MECH-188 failure phenomenology (cannot-hold-a-plan state)"
+          ],
+          "run_id": "2026-04-06_mech_188_serotonin_behavioral_control_cools2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-06T17:30:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
       }
     },
     "MECH-900": {
@@ -58280,9 +58678,266 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-06T09:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-053",
+      "confidence": 0.72,
+      "confidence_rationale": "This paper provides the strongest behavioural-science grounding for INV-053's architecture. Treadway and Zald argue that anhedonia has been systematically underspecified by conflating consummatory pleasure (liking) with motivational drive (wanting), and that this conflation has obscured the neurobiology. They show that dopamine is primarily implicated in motivational aspects of reward, not hedonic experience; and that the effort-based decision-making deficits seen in depression reflect motivational rather than hedonic dysfunction. This maps directly onto INV-053's claim: the attractor state involves z_goal collapse (wanting) with liking (benefit_eval_head) potentially preserved. The paper supports INV-053 by providing empirical grounding for the wanting/liking dissociation that REE's architecture instantiates computationally. The 'decisional anhedonia' concept they introduce is effectively the behavioural signature of INV-053's PLANNED/HABIT equivalence.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_053",
+      "failure_signatures": [
+        "Reduced motivation to pursue rewards despite intact hedonic capacity (consummatory pleasure preserved)",
+        "Effort-based decision-making deficits: unwillingness to exert effort for reward even when reward is valued",
+        "Decisional anhedonia: influence of motivational collapse on reward-directed decision-making",
+        "Dopamine-dependent motivational drive dissociated from opioid-dependent hedonic experience"
+      ],
+      "run_id": "2026-04-06_inv_053_anhedonia_motivational_treadway2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-053",
+      "confidence": 0.55,
+      "confidence_rationale": "This is the definitive programmatic statement of the computational psychiatry field as represented by the Huys/Adams/Roiser lineage. It frames depression computationally as arising from aberrant valuation -- either from learned helplessness (prior belief about loss of agency affecting Q-value computation) or from failure to inhibit mental exploration of aversive events. Both mechanisms operate at the reward-learning/value-computation layer. The paper is highly relevant for establishing the contrast class against which INV-053's novel claim must be positioned. It provides partial indirect support (confirming that depression has a computational structure) but at a layer distinct from INV-053's terrain/seeding substrate.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_053",
+      "failure_signatures": [
+        "Aberrant reward valuation producing depressive symptoms via miscalibrated Q-values",
+        "Helplessness as prior belief about loss of agency distorting value computation",
+        "Inability to inhibit aversive mental exploration (failure of cognitive pruning)"
+      ],
+      "run_id": "2026-04-06_inv_053_comppsych_framing_adams2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-053",
+      "confidence": 0.62,
+      "confidence_rationale": "This is the canonical paper in the Huys/Dayan computational psychiatry lineage and directly grounds the framing that INV-053 is designed to extend. The paper models depression via decision-tree pruning: serotonin inhibits branches with negative expected value, and a drop in serotonin causes failure to prune bad thoughts, leading to large negative prediction errors. This is a Q-value / value-learning account -- the failure is in the valuation and inhibition of action sequences, not in the substrate that generates goals. The paper supports INV-053 indirectly (it establishes that chronic negative prediction errors are computationally coherent as a depression mechanism) but at a different architectural layer. It does not speak to terrain/seeding collapse as the primary locus. Confidence reflects: high source quality, good indirect support for attractor dynamics, but distinct mechanism from INV-053's core claim.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_053",
+      "failure_signatures": [
+        "Persistent large negative prediction errors following disinhibited aversive thought chains",
+        "Serotonin drop -> failure to prune negative-value decision branches -> rumination",
+        "Significant aversive shift in reinforcement statistics from behavioural disinhibition"
+      ],
+      "run_id": "2026-04-06_inv_053_qt_serotonin_inhibition_dayan2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-053",
+      "confidence": 0.65,
+      "confidence_rationale": "Eshel and Roiser review the evidence that depressed patients exhibit abnormal behavioural responses to both rewards and punishments -- biased learning from positive and negative outcomes -- mediated by frontostriatal systems and monoamine neuromodulation. Their review provides the empirical evidence base for reward processing abnormalities in depression, including blunted positive prediction errors and heightened negative prediction error signalling. This supports INV-053 by confirming that the failure mode in depression is not purely hedonic (affect at receipt) but extends to the learning and representation of reward and punishment information across time -- precisely the substrate-level failure that INV-053 identifies. The frontostriatal / monoamine framing is compatible with REE's terrain and seeding architecture, though the paper does not distinguish terrain collapse from value-learning miscalibration.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_053",
+      "failure_signatures": [
+        "Blunted positive prediction errors in frontostriatal systems during reward learning",
+        "Heightened negative prediction error signalling with aversive bias in learning",
+        "Abnormal behavioural responses to reward and punishment: slower acquisition of reward-maximising strategies",
+        "Monoamine-mediated disruption of frontostriatal circuits linking valuation to action"
+      ],
+      "run_id": "2026-04-06_inv_053_reward_punishment_depression_eshel2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-054",
+      "confidence": 0.62,
+      "confidence_rationale": "Nesse's evolutionary framing establishes that low mood functions as an inhibitory state that blocks investment in situations where effort would be futile, dangerous, or wasted -- a state that is self-maintaining by design. This is structurally analogous to INV-054's closed negative feedback loop: the inhibitory state (no motivation gradient) prevents the very actions (benefit-seeking) that would dissolve it. The evolutionary account does not invoke terrain or seeding thresholds, but the functional logic is isomorphic. Confidence is moderate: the paper supports the maintenance-loop structure strongly but does not provide empirical quantification of recovery latency or demonstrate non-linearity of recovery. It is theoretical framing, not clinical measurement.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_054",
+      "failure_signatures": [
+        "If depression were an adaptation, environmental improvement should trigger immediate mood recovery -- the inhibitory state would have no further adaptive function. That clinical improvement often lags environmental change by weeks is not explained by Nesse's framework but is consistent with a self-maintaining attractor interpretation."
+      ],
+      "run_id": "2026-04-06_inv_054_depression_adaptation_nesse2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-054",
+      "confidence": 0.58,
+      "confidence_rationale": "Kupfer's 1991 review established the three-phase model of depression treatment (acute, continuation, maintenance) and documented that recurrent depression requires sustained pharmacological management for most patients, with high relapse rates on discontinuation. The paper synthesizes the Pittsburgh Study and NIMH Collaborative data showing that without continued pharmacotherapy, depression recurs in the majority of patients within months to years. This directly supports INV-054's chronicity prediction: once the depressive attractor is established, it is not dissolved by time alone -- active external scaffolding is required to prevent return. The response latency data in Kupfer's framework is implicit: acute-phase treatment is described as requiring weeks before benefit, with the MacArthur consensus defining response as requiring at least 2 weeks of sustained improvement. Confidence is moderate-low because this is a narrative review (no primary data in this specific paper) and the mechanistic interpretation (attractor vs recurrent vulnerability) requires inference.",
+      "evidence_class": "lit:clinical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_054",
+      "failure_signatures": [
+        "If depression were a simple graded state, maintenance pharmacotherapy would be unnecessary -- recovery would persist without continued medication. The high relapse rates on discontinuation documented by Kupfer indicate that the remission state is inherently unstable (consistent with a shallow local minimum) and the depressive attractor remains accessible."
+      ],
+      "run_id": "2026-04-06_inv_054_longterm_treatment_kupfer1991",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-054",
+      "confidence": 0.72,
+      "confidence_rationale": "This STAR*D Step 2 paper provides concrete quantitative anchors for INV-054's phase-transition prediction. Key data: (1) Step 1 citalopram non-remitters had received a mean of 11.9 weeks of citalopram (mean dose 55 mg/day) before entering Step 2 -- demonstrating that non-response is not a brief transient but a sustained failure to cross threshold over nearly 3 months. (2) Remission rates at Step 2 augmentation were only ~30%, indicating that once the depression maintenance loop is established, overcoming it is not simply a matter of switching or augmenting pharmacotherapy. (3) In the companion Gaynes et al. 2008 STAR*D analysis, for those who did achieve remission or response at citalopram Step 1, the median time to remission was 6.2-6.9 weeks and time to response 5.4-5.5 weeks -- supporting the 2-6 week response latency window even in eventual responders. This non-linear pattern (long lag then threshold crossing) is consistent with the attractor/phase-transition account and inconsistent with graded linear recovery. Confidence is moderate-high: the data are real, large-scale, and directly quantify response latency; the mapping to an attractor interpretation requires interpretation but is well-motivated.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_054",
+      "failure_signatures": [
+        "If recovery from depression were graded and linear, partial improvement would appear within the first 1-2 weeks of SSRI administration and cumulate continuously. The STAR*D data show no such linear accumulation: the majority of responders require 4-8 weeks to demonstrate meaningful improvement, with the response curve showing a characteristic delayed onset followed by a steeper improvement phase -- inconsistent with graded recovery but consistent with threshold crossing."
+      ],
+      "run_id": "2026-04-06_inv_054_stard_response_latency_trivedi2006",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-187",
+      "confidence": 0.72,
+      "confidence_rationale": "Korte et al. provide in vivo microdialysis in behaving rats combined with reward motivation and impulsivity assays, directly measuring 5-HT receptor manipulation effects on DA release in the NAc. This is the most mechanistically direct of the four papers: it shows that 5-HT1A/1B agonism increases DA in NAc while simultaneously decreasing motivation for reward (measured by ICSS threshold elevation), providing a concrete circuit-level demonstration that 5-HT receptor activation alters the DA wanting signal. The paradoxical direction (5-HT agonism -> more DA in NAc but less reward motivation) is important for MECH-187 and merits careful interpretation. Confidence reduced from the mechanistic specificity because the direction of DA release does not straightforwardly predict the gain-on-wanting direction, and the agonist pharmacology may not generalize to tonic endogenous 5-HT modulation.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_187",
+      "failure_signatures": [
+        "5-HT1A/1B agonist eltoprazine increases extracellular DA in NAc (microdialysis) while decreasing motivation for brain stimulation reward (higher ICSS thresholds).",
+        "The same agonist decreases 'waiting' impulsivity but increases 'stopping' impulsivity -- showing dissociable effects on different impulsivity subtypes.",
+        "Eltoprazine also increases NE and DA in both mPFC and OFC, and decreases 5-HT release in mPFC and NAc.",
+        "Brain stimulation reward is less effective (elevated reward threshold) despite elevated DA in NAc -- paradox: more DA does not equal more wanting.",
+        "The effect dissociates: eltoprazine is effective in treating impulsive choice but simultaneously impairs impulse stopping."
+      ],
+      "run_id": "2026-04-06_mech_187_5ht1b_da_nac_motivation_korte2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-187",
+      "confidence": 0.6,
+      "confidence_rationale": "Dayan & Huys provide a rigorous computational account of serotonin in affective control, primarily framing 5-HT as an opponent to dopamine in aversive processing rather than as a gain modulator on appetitive wanting. This is directionally relevant to MECH-187 but maps most naturally to a different functional role: behavioral inhibition under punishment rather than gain regulation of incentive salience. The paper supports the general claim that 5-HT modulates motivated behavior in a way that is computationally dissociable from DA, but the specific gain-on-wanting formulation of MECH-187 is not the primary frame of this review. Evidence is mixed: supports the 5-HT/DA interaction as a gain-like modulation mechanism, but emphasizes the aversive (opponent) rather than appetitive-gain direction.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_187",
+      "failure_signatures": [
+        "5-HT is framed as an opponent modulator of dopaminergic reward, primarily operating through aversive prediction error channels.",
+        "The aversive processing framing of 5-HT is asymmetric with DA: rewards and punishments have different natural statistics, so 5-HT is not simply a mirror of DA.",
+        "5-HT exerts effects at multiple spatial and temporal scales in invertebrates (fixed networks); in mammals its role is more unified and representational but still aversion-centred.",
+        "Computational modeling suggests 5-HT modulates the balance between appetitive and aversive prediction, rather than acting as a multiplicative gain on the DA wanting signal per se."
+      ],
+      "run_id": "2026-04-06_mech_187_5ht_affective_control_dayan2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-187",
+      "confidence": 0.55,
+      "confidence_rationale": "Cools et al. provide a rigorous review of 5-HT's role in emotional and behavioral control, emphasising aversive signal modulation and response inhibition rather than appetitive gain-on-wanting. The review supports the general claim that 5-HT modulates motivated behavior through its effects on punishment sensitivity and behavioral suppression, which is partially relevant to MECH-187's gain-modulation framework. However, the dominant account here -- 5-HT enhances aversive processing and response inhibition -- does not map directly to serotonin as a gain amplifier on incentive salience. Evidence direction is mixed: the aversive-gain and response-inhibition accounts are consistent with 5-HT reducing the effective gain on appetitive wanting (low 5-HT -> disinhibited wanting), but this is an indirect reading.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_187",
+      "failure_signatures": [
+        "5-HT depletion enhances behavioral and neural responsiveness to punishment and aversive signals.",
+        "5-HT depletion disinhibits previously rewarded but now punished behaviors (failure to suppress approach under aversive contingencies).",
+        "5-HT modulates the impact of punishment-related signals on learning and emotion, not primarily the magnitude of appetitive incentive salience.",
+        "Response inhibition (stopping ongoing behavior) is promoted by 5-HT -- distinct from reducing the amplitude of approach motivation.",
+        "Human studies: tryptophan depletion increases sensitivity to aversive cues and impairs reversal learning without clearly enhancing approach."
+      ],
+      "run_id": "2026-04-06_mech_187_5ht_behavioral_control_cools2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-187",
+      "confidence": 0.85,
+      "confidence_rationale": "Canonical authoritative review establishing the wanting/liking dissociation and dopamine's exclusive role in incentive salience. Directly grounds MECH-187 by showing that DA is necessary for 'wanting' (incentive salience) but not 'liking' (hedonic impact), making DA a separable gain-controlled signal. Up to 99% NAc DA depletion abolishes wanting without altering liking, providing a near-complete loss-of-function characterisation. Mapping to MECH-187's formal gain parameter is conceptual rather than quantitative, reducing confidence slightly.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_187",
+      "failure_signatures": [
+        "Dopamine depletion (up to 99% in NAc and neostriatum via 6-OHDA) abolishes incentive salience ('wanting') while leaving hedonic reactions ('liking') intact.",
+        "Taste reactivity (gapes, etc.) to sucrose vs. quinine is normal in DA-depleted rats.",
+        "Learned hedonic modulation (taste-aversion conditioning) is preserved without DA.",
+        "Benzodiazepine-induced hedonic enhancement is dopamine-independent.",
+        "DA is necessary for attributing incentive salience to reward-predictive stimuli, not for hedonic pleasure itself."
+      ],
+      "run_id": "2026-04-06_mech_187_wanting_liking_berridge1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T16:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-188",
+      "confidence": 0.8,
+      "confidence_rationale": "High-quality experimental paper using optogenetic terminal stimulation in transgenic mice -- provides circuit-level causal evidence that DRN serotonin projections to OFC and mPFC specifically support waiting behaviour (patience for delayed rewards). This is the most direct mechanistic grounding available for MECH-188's DRN-to-dlPFC pathway claim. The mPFC stimulation effect (promotes waiting under timing uncertainty) maps to the LONG_HORIZON context requirement in MECH-188. Transfer risk moderate: rodent mPFC maps to primate dlPFC only partially; OFC contribution may be stronger than mPFC in this paradigm.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_188",
+      "failure_signatures": [
+        "OFC 5-HT stimulation promotes waiting most broadly (all timing conditions) -- consistent with OFC valuation component of goal persistence",
+        "mPFC 5-HT stimulation promotes waiting selectively under temporal uncertainty -- maps to MECH-188's role when benefit terrain is degraded or timing is unpredictable",
+        "NAc 5-HT stimulation does not promote waiting -- dissociates the PFC pathway from reward-volume mechanisms, supporting the specificity of MECH-188's top-down circuit claim",
+        "Bayesian model: OFC calculates overall reward probability; mPFC evaluates time committed -- this double-dissociation is architecturally relevant to how z_goal seeding vs. z_goal maintenance might differ"
+      ],
+      "run_id": "2026-04-06_mech_188_drn_pfc_patience_miyazaki2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T17:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-188",
+      "confidence": 0.65,
+      "confidence_rationale": "Comprehensive mechanistic review of PFC synaptic transmission covering serotonin receptor subtypes (5-HT2A, 5-HT2C, 5-HT1A), stress hormone effects on PFC pyramidal neurons, and working memory circuitry. Provides the receptor-level anatomy for how DRN serotonin modulates the recurrent excitation underlying working memory maintenance in PFC -- the synaptic substrate for MECH-188's z_goal persistence mechanism. Confidence bounded by breadth (not a targeted MECH-188 test) and the stress-impairment framing (chronic stress degrades PFC function, which is consistent with MECH-188 failure but does not directly test top-down goal maintenance).",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_188",
+      "failure_signatures": [
+        "5-HT2A receptors on PFC layer V pyramidal neurons suppress NMDAR function via microtubule/kinesin transport -- this is the anatomical substrate for serotonin gating PFC-to-striatum output",
+        "Chronic stress impairs dendritic branching and spine density in PFC pyramidal neurons -- predicts that chronic harm exposure degrades MECH-188 substrate, not just activates it",
+        "Acute stress enhances glutamatergic transmission in PFC transiently (GR-mediated) -- consistent with brief harm spikes being tolerable; chronic stress (analogous to sustained z_harm_a elevation) is what destroys MECH-188 capacity",
+        "PFC working memory: sustained spiking in dlPFC during delay periods arises from NMDA-mediated recurrent excitation -- this is the cellular correlate of z_goal persistence after seeding"
+      ],
+      "run_id": "2026-04-06_mech_188_pfc_synaptic_serotonin_yan2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T17:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-188",
+      "confidence": 0.75,
+      "confidence_rationale": "High-quality review from a leading group (Robbins lab), directly addresses 5-HT modulation of aversive processing and response inhibition in PFC. The two-process framework (aversion sensitivity vs. response inhibition) maps cleanly onto the distinct failure modes of MECH-188. Transfer risk is moderate: this review synthesises rodent and human data but does not directly measure PFC working memory maintenance of goal representations during harm spikes -- it addresses punishment sensitivity rather than goal persistence per se.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_188",
+      "failure_signatures": [
+        "5-HT depletion enhances aversive processing and disinhibits punished behaviours -- predicts failure mode where harm spikes displace goals",
+        "5-HT promotes response inhibition -- maps to the PFC mechanism that prevents z_harm_a from overwriting z_goal",
+        "Exaggerated aversive processing + deficient response inhibition underlie affective disorder symptoms -- aligns with MECH-188 failure phenomenology (cannot-hold-a-plan state)"
+      ],
+      "run_id": "2026-04-06_mech_188_serotonin_behavioral_control_cools2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-06T17:30:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-05T16:58:32.480581Z",
+  "generated_at_utc": "2026-04-05T18:13:15.151329Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

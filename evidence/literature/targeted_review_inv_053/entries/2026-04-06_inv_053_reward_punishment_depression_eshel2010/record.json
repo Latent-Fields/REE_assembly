@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_053",
+  "entry_id": "2026-04-06_inv_053_reward_punishment_depression_eshel2010",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["INV-053"],
+  "source": {
+    "title": "Reward and punishment processing in depression",
+    "authors": ["Neir Eshel", "Jonathan P. Roiser"],
+    "year": 2010,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2010.01.027",
+    "pmid": "20303067",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20303067/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Eshel and Roiser review the evidence that depressed patients exhibit abnormal behavioural responses to both rewards and punishments -- biased learning from positive and negative outcomes -- mediated by frontostriatal systems and monoamine neuromodulation. Their review provides the empirical evidence base for reward processing abnormalities in depression, including blunted positive prediction errors and heightened negative prediction error signalling. This supports INV-053 by confirming that the failure mode in depression is not purely hedonic (affect at receipt) but extends to the learning and representation of reward and punishment information across time -- precisely the substrate-level failure that INV-053 identifies. The frontostriatal / monoamine framing is compatible with REE's terrain and seeding architecture, though the paper does not distinguish terrain collapse from value-learning miscalibration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Blunted positive prediction errors in frontostriatal systems during reward learning",
+    "Heightened negative prediction error signalling with aversive bias in learning",
+    "Abnormal behavioural responses to reward and punishment: slower acquisition of reward-maximising strategies",
+    "Monoamine-mediated disruption of frontostriatal circuits linking valuation to action"
+  ],
+  "tags": ["inv_053", "reward_processing", "punishment_processing", "depression", "frontostriatal", "monoamines", "prediction_error", "behavioral", "learning", "eshel_roiser", "biological_psychiatry"],
+  "mapping": {
+    "source_claim_statement": "Depressed patients exhibit abnormal behavioural responses to reward and punishment mediated by dysfunction in a frontostriatal network modulated by monoamine systems. The core dysfunction is in reward and punishment learning -- blunted reward sensitivity and enhanced punishment sensitivity -- which distorts the guidance of behaviour by affective information. These abnormalities correspond to aberrant function in OFC, ACC, and striatum, and are sensitive to monoamine manipulation. Computational studies generate testable predictions about how monoamine signalling drives this pattern of learning abnormalities.",
+    "ree_translation": "INV-053 identifies z_harm_a tonic elevation and benefit_exposure chronic sub-threshold as the substrate-level signature of the depressive attractor. Eshel and Roiser's review documents the consequence of this at the learning level: blunted positive prediction errors (consistent with low benefit_exposure reducing z_goal seeding) and heightened negative prediction errors (consistent with elevated z_harm_a). The reward/punishment asymmetry they describe is a behavioural and neural signature consistent with what INV-053 predicts would occur when the terrain/seeding substrate is chronically biased toward harm. However, Eshel and Roiser interpret this at the value-learning layer (aberrant Q-values, distorted prediction signals) rather than at a separable terrain substrate. The terrain/seeding account provides the mechanism upstream: if benefit_exposure is chronically below threshold, the learning system will produce exactly the blunted positive and enhanced negative prediction error pattern they document.",
+    "mapping_caveat": "Eshel and Roiser operate at the reinforcement learning / value-computation layer and frame abnormalities in terms of distorted reward and punishment learning. They do not distinguish between a learning-layer failure (incorrect Q-values from abnormal prediction errors) and a substrate-layer failure (absence of the motivational terrain that would generate approach goals independent of recent learning). INV-053's key claim is that the terrain/seeding failure is upstream and architecturally distinct. The prediction error abnormalities documented by Eshel and Roiser are consistent with INV-053 -- they are what a terrain-collapsed system would produce when observed through the lens of RL -- but they do not uniquely distinguish the terrain account from the Q-value account. The critical discriminating evidence would be HABIT/PLANNED behavioural equivalence with preserved hedonic response to directly encountered rewards, which this paper does not test.",
+    "source_context": "Review article in Biological Psychiatry (2010), covering behavioural, neuroimaging, and computational evidence on reward/punishment processing in depression. Key sources: probabilistic reversal learning tasks, monetary reward tasks, social reward paradigms, monoamine depletion studies. The computational framing draws on Dayan and Huys and on other RL models of depression."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.28,
+    "notes": "Good source quality -- review in Biological Psychiatry from two established researchers, integrating behavioural and neuroimaging evidence. Mapping fidelity is moderate: the reward/punishment processing asymmetry is consistent with INV-053's terrain/seeding account but does not uniquely distinguish it from Q-value accounts. Transfer risk is moderate for the same reason. The entry contributes by grounding INV-053 in the established empirical literature on reward processing abnormalities in depression, without constituting decisive evidence for the terrain/seeding account specifically."
+  }
+}

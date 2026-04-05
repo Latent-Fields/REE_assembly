@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_188",
+  "entry_id": "2026-04-06_mech_188_pfc_synaptic_serotonin_yan2021",
+  "timestamp_utc": "2026-04-06T17:30:00Z",
+  "claim_ids_tested": ["MECH-188"],
+  "source": {
+    "title": "Mechanisms of synaptic transmission dysregulation in the prefrontal cortex: pathophysiological implications",
+    "authors": ["Yan Z", "Rein B"],
+    "year": 2021,
+    "venue": "Molecular Psychiatry",
+    "volume": "27",
+    "issue": "1",
+    "pages": "445-465",
+    "doi": "10.1038/s41380-021-01092-3",
+    "pmid": "33875802",
+    "pmc": "PMC8523584"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Comprehensive mechanistic review of PFC synaptic transmission covering serotonin receptor subtypes (5-HT2A, 5-HT2C, 5-HT1A), stress hormone effects on PFC pyramidal neurons, and working memory circuitry. Provides the receptor-level anatomy for how DRN serotonin modulates the recurrent excitation underlying working memory maintenance in PFC -- the synaptic substrate for MECH-188's z_goal persistence mechanism. Confidence bounded by breadth (not a targeted MECH-188 test) and the stress-impairment framing (chronic stress degrades PFC function, which is consistent with MECH-188 failure but does not directly test top-down goal maintenance).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "5-HT2A receptors on PFC layer V pyramidal neurons suppress NMDAR function via microtubule/kinesin transport -- this is the anatomical substrate for serotonin gating PFC-to-striatum output",
+    "Chronic stress impairs dendritic branching and spine density in PFC pyramidal neurons -- predicts that chronic harm exposure degrades MECH-188 substrate, not just activates it",
+    "Acute stress enhances glutamatergic transmission in PFC transiently (GR-mediated) -- consistent with brief harm spikes being tolerable; chronic stress (analogous to sustained z_harm_a elevation) is what destroys MECH-188 capacity",
+    "PFC working memory: sustained spiking in dlPFC during delay periods arises from NMDA-mediated recurrent excitation -- this is the cellular correlate of z_goal persistence after seeding"
+  ],
+  "tags": [
+    "mech_188",
+    "pfc",
+    "goal_persistence",
+    "serotonin",
+    "5-ht",
+    "5-ht2a",
+    "working_memory",
+    "stress",
+    "nmda",
+    "synaptic_transmission",
+    "layer_v_pyramidal",
+    "chronic_stress",
+    "dlpfc",
+    "recurrent_excitation",
+    "yan_lab"
+  ],
+  "mapping": {
+    "source_claim_statement": "PFC receives major serotonergic projections. 5-HT2A receptors on PFC pyramidal neurons suppress NMDAR function; 5-HT2C has opposing effects. Working memory in dlPFC is sustained by NMDA-mediated recurrent excitation during delay periods. Chronic stress impairs PFC dendritic structure and synaptic plasticity; acute stress transiently enhances glutamatergic transmission.",
+    "ree_translation": "MECH-188 requires a synaptic mechanism by which DRN 5-HT projections can sustain z_goal in dlPFC against harm interruption. Yan and Rein supply this at the receptor level: (1) DRN 5-HT acts on layer V pyramidal 5-HT2A receptors, modulating the NMDA-mediated recurrent excitation that is the cellular substrate of working memory maintenance; (2) the balance of 5-HT2A (inhibitory on NMDAR via kinesin) and 5-HT2C (enhancing) sets the gain of PFC persistent activity; (3) acute harm (acute stress) transiently up-regulates glutamatergic tone in PFC, which could briefly boost z_goal maintenance capacity; (4) chronic harm (chronic stress) ultimately degrades PFC structure, which is the biological basis for the clinical observation that sustained adversity eventually collapses goal-directed behaviour even with an intact 5-HT system. This maps the MECH-188 LONG_HORIZON context requirement to the chronic-vs-acute stress distinction in PFC physiology.",
+    "mapping_caveat": "This review does not measure goal representation maintenance under aversive challenge directly. It provides the anatomical and receptor-level substrate but does not test whether 5-HT specifically maintains a learned goal representation when harm signals are elevated. The serotonin effects on PFC are bidirectional and subtype-dependent -- the net effect on z_goal persistence would depend on which receptor subtypes are dominant in dlPFC during harm states, which is not resolved here.",
+    "source_context": "Yan lab (SUNY Buffalo) review in Molecular Psychiatry. Covers a wide scope -- the serotonin section is one of several monoaminergic sections. PMC open access. 2021 publication date makes this the most recent of the three entries."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Mol Psychiatry, comprehensive mechanistic review). Mapping fidelity moderate -- provides the synaptic substrate but not the goal-persistence-under-harm test. Transfer risk: (1) stress paradigm is not identical to z_harm_a spike condition; (2) receptor subtype balance is not fully specified for the harm context; (3) MECH-188 specifically invokes dlPFC but this review covers mPFC and vlPFC as well, which may have different serotonin response profiles."
+  }
+}

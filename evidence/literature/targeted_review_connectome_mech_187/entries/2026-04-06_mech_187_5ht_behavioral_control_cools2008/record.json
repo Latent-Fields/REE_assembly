@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_187",
+  "entry_id": "2026-04-06_mech_187_5ht_behavioral_control_cools2008",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["MECH-187"],
+  "source": {
+    "title": "Serotoninergic regulation of emotional and behavioural control processes.",
+    "authors": ["Cools R", "Roberts AC", "Robbins TW"],
+    "year": 2008,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2007.10.011",
+    "url": "https://doi.org/10.1016/j.tics.2007.10.011",
+    "pmid": "18069045"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Cools et al. provide a rigorous review of 5-HT's role in emotional and behavioral control, emphasising aversive signal modulation and response inhibition rather than appetitive gain-on-wanting. The review supports the general claim that 5-HT modulates motivated behavior through its effects on punishment sensitivity and behavioral suppression, which is partially relevant to MECH-187's gain-modulation framework. However, the dominant account here -- 5-HT enhances aversive processing and response inhibition -- does not map directly to serotonin as a gain amplifier on incentive salience. Evidence direction is mixed: the aversive-gain and response-inhibition accounts are consistent with 5-HT reducing the effective gain on appetitive wanting (low 5-HT -> disinhibited wanting), but this is an indirect reading.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "5-HT depletion enhances behavioral and neural responsiveness to punishment and aversive signals.",
+    "5-HT depletion disinhibits previously rewarded but now punished behaviors (failure to suppress approach under aversive contingencies).",
+    "5-HT modulates the impact of punishment-related signals on learning and emotion, not primarily the magnitude of appetitive incentive salience.",
+    "Response inhibition (stopping ongoing behavior) is promoted by 5-HT -- distinct from reducing the amplitude of approach motivation.",
+    "Human studies: tryptophan depletion increases sensitivity to aversive cues and impairs reversal learning without clearly enhancing approach."
+  ],
+  "tags": ["mech_187", "serotonin", "behavioral_control", "punishment", "response_inhibition", "aversive_processing", "tryptophan_depletion", "reversal_learning", "cools", "robbins"],
+  "mapping": {
+    "source_claim_statement": "5-HT modulates aversive signal impact on learning and emotion and promotes response inhibition. Low 5-HT -> exaggerated aversive processing and deficient response inhibition, underlying distinct affective disorder symptom profiles.",
+    "ree_translation": "MECH-187 claims 5-HT is a gain multiplier on benefit_exposure -> z_goal. Cools et al.'s account is consistent with a complementary view: when 5-HT is low, response inhibition to punishment is reduced, which in an agent with a VALENCE_WANTING terrain would manifest as less interruption of goal-approach by harm signals -- functionally similar to elevated wanting gain. However, this is a double-negative inference: 5-HT does not directly amplify incentive salience, it modulates the braking signal. The distinction matters for model implementation: MECH-187 as a direct gain parameter vs. an indirect dis-inhibition account. Dis-inhibition would map better to z_harm_a gate on z_goal maintenance (MECH-188) than to the transduction gain at the benefit_terrain -> z_goal step.",
+    "mapping_caveat": "Cools et al.'s review is primarily relevant to MECH-188 (PFC goal persistence under adversity) rather than to MECH-187 (incentive salience gain regulation). The response inhibition account maps to behavioral-stopping suppression of goal execution, not to varying the amplitude of the goal-seeding transduction. Assigning this paper primarily to MECH-187 over-extends its primary claim.",
+    "source_context": "Comprehensive review integrating animal lesion, pharmacological challenge, neuroimaging, and clinical studies in humans and non-human primates. Covers prefrontal cortex, amygdala, and striatal 5-HT effects. Uses reversal learning, stop-signal tasks, and emotional recognition paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.20,
+    "notes": "Excellent source quality from leading Cambridge behavioral neuroscience group. Mapping fidelity is the lowest of the four papers for MECH-187 specifically -- this review maps more naturally to MECH-188 (goal persistence under harm) than to incentive salience gain regulation. It provides necessary context but is not the direct evidential anchor for MECH-187's gain-on-wanting formulation."
+  }
+}

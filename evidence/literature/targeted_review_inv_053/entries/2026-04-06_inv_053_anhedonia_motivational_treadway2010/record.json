@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_053",
+  "entry_id": "2026-04-06_inv_053_anhedonia_motivational_treadway2010",
+  "timestamp_utc": "2026-04-06T16:00:00Z",
+  "claim_ids_tested": ["INV-053"],
+  "source": {
+    "title": "Reconsidering anhedonia in depression: lessons from translational neuroscience",
+    "authors": ["Michael T. Treadway", "David H. Zald"],
+    "year": 2011,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2010.06.006",
+    "pmid": "20603146",
+    "pmc": "PMC3005986",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20603146/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This paper provides the strongest behavioural-science grounding for INV-053's architecture. Treadway and Zald argue that anhedonia has been systematically underspecified by conflating consummatory pleasure (liking) with motivational drive (wanting), and that this conflation has obscured the neurobiology. They show that dopamine is primarily implicated in motivational aspects of reward, not hedonic experience; and that the effort-based decision-making deficits seen in depression reflect motivational rather than hedonic dysfunction. This maps directly onto INV-053's claim: the attractor state involves z_goal collapse (wanting) with liking (benefit_eval_head) potentially preserved. The paper supports INV-053 by providing empirical grounding for the wanting/liking dissociation that REE's architecture instantiates computationally. The 'decisional anhedonia' concept they introduce is effectively the behavioural signature of INV-053's PLANNED/HABIT equivalence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reduced motivation to pursue rewards despite intact hedonic capacity (consummatory pleasure preserved)",
+    "Effort-based decision-making deficits: unwillingness to exert effort for reward even when reward is valued",
+    "Decisional anhedonia: influence of motivational collapse on reward-directed decision-making",
+    "Dopamine-dependent motivational drive dissociated from opioid-dependent hedonic experience"
+  ],
+  "tags": ["inv_053", "anhedonia", "wanting_liking_dissociation", "translational_neuroscience", "dopamine", "effort", "motivation", "depression", "treadway_zald", "decisional_anhedonia", "consummatory_pleasure", "behavioral"],
+  "mapping": {
+    "source_claim_statement": "Anhedonia has been inadequately defined by focusing on consummatory pleasure (hedonic experience of reward) while ignoring motivational aspects (drive to pursue reward). Dopamine is primarily involved in motivation and effort allocation for reward, not in hedonic experience per se. In depression, the dominant deficit is motivational: reduced willingness to invest effort for rewards, even when rewards are valued. This produces 'decisional anhedonia' -- the impairment of reward-directed decision-making as a downstream consequence of motivational collapse.",
+    "ree_translation": "INV-053 separates wanting (z_goal_latent, approach drive) from liking (benefit_eval_head, hedonic calibration). The attractor state involves z_goal seeding failure: VALENCE_WANTING terrain collapses, the agent loses the prospective approach gradient, and PLANNED and HABIT modes become behaviourally equivalent because there is no goal-directed trajectory to differentiate them. Liking may be preserved -- the agent can still compute benefit_exposure when confronted with a resource -- but this does not generate approach. Treadway and Zald's 'decisional anhedonia' is exactly this: the agent that can still experience pleasure if placed directly at a reward location but will not invest effort to get there. Their dissociation between consummatory and motivational anhedonia is the behavioural-science grounding for REE's z_goal/benefit_eval_head architectural dissociation.",
+    "mapping_caveat": "Treadway and Zald work at the behavioural and neurobiological level. They identify dopamine as the key system for motivational anhedonia but do not provide a computational account of how dopamine failure would produce terrain collapse. REE adds the computational architecture: benefit_exposure below seeding threshold causes z_goal absence, which causes VALENCE_WANTING collapse. The paper does not specify the mechanism by which motivation collapses, only that it does and that it is dissociable from hedonic experience. REE's model provides the mechanistic account that the paper calls for.",
+    "source_context": "Review article in Neuroscience and Biobehavioral Reviews (2011), highly cited in both clinical and translational neuroscience literatures. Draws on animal literature on dopamine and effort, human neuroimaging, and clinical phenomenology. Introduced the 'decisional anhedonia' concept. Key empirical claim: effort-based decision-making (cost-benefit analysis with physical effort) is the most sensitive behavioural assay for the motivational deficit in depression."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "High source quality -- influential review with strong empirical grounding in translational neuroscience. Mapping fidelity is good: the wanting/liking dissociation maps directly to REE's z_goal/benefit_eval_head split, and decisional anhedonia maps to PLANNED/HABIT equivalence. Transfer risk is low -- the motivational deficit described is the behavioural-level signature of what INV-053 claims at the computational level. Main limitation: the paper describes the phenomenon without a computational mechanism, which REE provides."
+  }
+}
