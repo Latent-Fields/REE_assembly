@@ -6482,6 +6482,10 @@
     current location, not memory). C3 PASS (wanting l1_fraction=0.355 -- directional
     approach toward goal location). Wanting and liking operate on distinct spatial and
     temporal scales as predicted. C1 redesign needed for behavioural resource-rate evidence.
+    Clinical application (INV-053): the architecture predicts anhedonia specifically as
+    wanting failure with liking potentially preserved -- the Berridge dissociation is an
+    architectural consequence of z_goal failure (MECH-187 gain suppression), not a
+    general hedonic deficit.
     EXQ-085g FAIL 3/4 (2026-03-29): wanting-liking dissociation not yet testable because
     z_goal not pointing to resources (goal_resource_r=0.066). Gated on SD-015 z_resource
     separation.
@@ -6663,6 +6667,10 @@
     is conceptually uncontested but experimentally untestable until SD-012 is resolved.
     Path forward: same as MECH-071/SD-012. Hold pending architectural discussion of
     z_goal seeding mechanism.
+    Pathological inverse (INV-053): failure of goal maintenance under adversive conditions
+    is the computational definition of the depressive attractor state (EXQ-237a). The
+    claim now has both a normative face (goal maintenance necessary for ethical agency)
+    and a clinical face (goal maintenance failure = depression).
 
 - id: INV-035
   title: "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states."
@@ -11237,3 +11245,195 @@
   source:
     - evidence/planning/thought_intake_2026-04-05_steve_dog_emotional_mirroring.md
   notes: "When harm-signal timbre is heard from a coupled other-agent, two simultaneous approach gradients converge on the distressed other: (1) observer's own prediction error from unexpected acoustic signal -> curiosity approach gradient; (2) z_beta leakage carries the other's surprise/distress as direct affective activation -> second curiosity approach gradient. Both converge on approaching the distressed loved one, explaining why empathic animals are pulled toward the distressed other rather than only avoiding harm for them from a distance. Confirmed novel: behavioral evidence for approach exists (Sato 2015, Bartal 2016) but is explained as single-mechanism; dual converging gradient account is novel. Lit: targeted_review_social_emotional_mirroring."
+
+- id: MECH-186
+  title: "Tonic serotonergic signal maintains VALENCE_WANTING floor under chronic harm exposure, preventing benefit terrain collapse."
+  claim_type: mechanism_hypothesis
+  subject: serotonin.tonic_benefit_gradient_maintenance
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  implementation_phase: v4
+  depends_on:
+    - SD-014
+    - SD-012
+    - MECH-117
+  short: Tonic serotonergic signal maintains a floor on VALENCE_WANTING in the residue field under chronic harm exposure, preventing motivational terrain collapse.
+  description: >
+    A slow-accumulating, decay-resistant tonic signal (serotonergic analog) maintains a
+    non-zero floor on VALENCE_WANTING entries in the residue field even when phasic DA/z_goal
+    events are sparse. Without this, chronic harm-dominated environments suppress
+    benefit_exposure below the SD-012 seeding threshold, the benefit terrain goes flat,
+    and goal-directed behaviour becomes behaviourally indistinguishable from habitual
+    reactive behaviour. This mechanism operates before z_goal exists -- it maintains
+    terrain legibility, not active wanting. Distinct from incentive salience gain regulation
+    (MECH-187) which acts at the transduction point, and PFC goal persistence (MECH-188)
+    which acts after seeding.
+  evidence_quality_note: >
+    Emergent from EXQ-237a: LONG_HORIZON condition produced flat HABIT/PLANNED equivalence
+    (goal_norm=0.004, identical resource_rate/harm_rate) consistent with benefit terrain
+    collapse. Mechanism not yet implemented; claim is theoretical.
+
+- id: MECH-187
+  title: "Serotonin modulates the gain on dopaminergic incentive salience, converting the hard SD-012 threshold into an adaptive graded transduction function."
+  claim_type: mechanism_hypothesis
+  subject: serotonin.incentive_salience_gain_regulation
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  implementation_phase: v4
+  depends_on:
+    - SD-012
+    - MECH-186
+  short: Serotonin modulates the gain on dopaminergic incentive salience, converting the hard SD-012 threshold into an adaptive graded transduction function.
+  description: >
+    The serotonergic system modulates how much z_goal change is produced per unit of
+    benefit_exposure -- the gain on the benefit->z_goal transduction. Currently SD-012
+    implements a hard threshold function; this mechanism softens and adaptively rescales
+    it. When gain is appropriately set, weak benefit signals in adverse environments
+    can still seed z_goal at a reduced level. When gain is suppressed (as in the
+    absence of this mechanism), benefit signals below threshold produce zero wanting
+    response (anhedonia). When gain is excessive, small benefits produce runaway
+    incentive salience (addiction-like escalation). Operates at the benefit->z_goal
+    transduction point. Distinct from terrain maintenance (MECH-186) and goal persistence
+    (MECH-188).
+  evidence_quality_note: >
+    Theoretical. Maps to 5-HT modulation of DA-mediated incentive salience at NAc.
+    Explains anhedonia as specifically gain suppression, not general hedonic deficit --
+    predicts liking may be preserved when wanting is abolished (Berridge dissociation,
+    see MECH-117).
+
+- id: MECH-188
+  title: "PFC-mediated goal persistence under adversity, sustained by 5-HT projections from DRN to dlPFC, maintains z_goal through harm spikes after seeding."
+  claim_type: mechanism_hypothesis
+  subject: serotonin.pfc_goal_persistence_under_adversity
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  implementation_phase: v4
+  depends_on:
+    - SD-012
+    - MECH-187
+    - INV-034
+  short: PFC-mediated working memory for goal representations, modulated by 5-HT projections, maintains z_goal after seeding when harm spikes or benefit exposure temporarily drops.
+  description: >
+    Once z_goal has been seeded (SD-012), a PFC-mediated maintenance mechanism keeps
+    the representation non-zero through periods of elevated harm (z_harm_a spikes) or
+    temporarily reduced benefit exposure. This is distinct from initial seeding (SD-012,
+    MECH-186/187) -- it operates after the goal representation exists. Without this
+    mechanism, z_goal collapses at the first harm event, preventing sustained goal-directed
+    behaviour. 5-HT projections from DRN to dlPFC sustain working memory representations
+    and support patience for delayed rewards, which is architecturally the LONG_HORIZON
+    context requirement. Failure of this mechanism specifically produces the cannot-hold-a-plan
+    phenomenology: goals form but are immediately displaced by threat response. Distinct
+    from the GAD-like state where z_harm_a interrupts goal execution without z_goal collapsing.
+  evidence_quality_note: >
+    Theoretical. Maps to 5-HT projections from DRN to dlPFC sustaining working memory
+    under adversity. Well-established in human and animal literature: low 5-HT = impaired
+    PFC function, difficulty sustaining goal representations against distraction/threat.
+
+- id: INV-052
+  title: "Goal-directed behaviour in adversive environments requires a tonic regulatory system maintaining benefit orientation across terrain, transduction, and maintenance stages."
+  claim_type: invariant
+  subject: goal_directed_agency.tonic_regulatory_system
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - MECH-186
+    - MECH-187
+    - MECH-188
+    - SD-012
+  short: Goal-directed behaviour in adversive environments requires a tonic regulatory system maintaining benefit orientation across all three pipeline stages.
+  description: >
+    Goal-directed behaviour in adversive environments requires a tonic regulatory system
+    maintaining benefit orientation across all three pipeline stages: terrain
+    (VALENCE_WANTING floor, MECH-186), transduction (gain on z_goal seeding, MECH-187),
+    and maintenance (z_goal persistence under harm, MECH-188). Without all three, chronic
+    harm exposure produces a self-maintaining low-motivation attractor. Each mechanism
+    can fail independently, producing different clinical presentations. This is an
+    architectural invariant: any goal-directed agent operating in environments with
+    variable harm/benefit ratios will exhibit motivational collapse without tonic
+    regulation of these three stages. The serotonergic system is one biological
+    instantiation; others are possible.
+
+- id: INV-053
+  title: "Chronic harm-dominated environments produce a self-maintaining depressive attractor: z_goal seeding failure, terrain collapse, and HABIT/PLANNED behavioural equivalence."
+  claim_type: invariant
+  subject: psychiatric.computational_depression_attractor
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - INV-052
+    - MECH-117
+    - SD-012
+    - SD-011
+  short: Chronic harm-dominated environments produce a self-maintaining attractor state characterised by z_goal seeding failure, terrain collapse, and behavioural equivalence of goal-directed and habitual modes.
+  description: >
+    Chronic harm-dominated environments (high hazard/benefit ratio) produce a specific
+    pathological attractor: z_harm_a tonically elevated, benefit_exposure chronically
+    below SD-012 seeding threshold, z_goal absent, VALENCE_WANTING terrain collapsed,
+    and behavioural output identical between goal-directed (PLANNED) and habitual (HABIT)
+    modes. Crucially, the capacity for goal-directed action is preserved -- demonstrated
+    by intact goal-directed function in low-harm contexts -- but engagement is absent.
+    This is the computational architecture of anxious depression: aversive arousal
+    (elevated z_harm_a) combined with motivational collapse (absent z_goal). Pure
+    melancholic depression may represent the same state after z_harm_a has also
+    habituated, leaving only the flat terrain without even aversive activation.
+    The state is emergent from environmental conditions acting on the existing substrate,
+    not from internal damage. First observed empirically in EXQ-237a LONG_HORIZON
+    condition: goal_norm=0.004 (PLANNED), harm_rate=0.14, resource_rate=0.05 (identical
+    HABIT/PLANNED).
+  evidence_quality_note: >
+    EXQ-237a LONG_HORIZON: HABIT goal_norm=0.000, PLANNED goal_norm=0.004,
+    resource_rate identical (0.050), harm_rate identical (0.140). Emergent, not designed.
+    Seed=42 only; full replication pending seeds 7+13.
+
+- id: INV-054
+  title: "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity."
+  claim_type: invariant
+  subject: psychiatric.depressive_maintenance_loop
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - INV-053
+    - MECH-186
+    - SD-014
+  short: Once benefit terrain collapses, reduced benefit-oriented exploration keeps benefit_exposure sub-threshold, preventing recovery -- a closed negative feedback loop predicting chronicity.
+  description: >
+    Once VALENCE_WANTING collapses to zero (INV-053), the agent reduces benefit-oriented
+    exploration (no gradient to follow), reducing benefit encounters, keeping
+    benefit_exposure below the SD-012 seeding threshold, further preventing terrain
+    recovery. This closed negative feedback loop predicts chronicity: the depressive
+    attractor is self-maintaining once established. Environmental improvement alone may
+    be insufficient -- the terrain must be actively rebuilt (analogous to behavioural
+    activation therapy: externally scaffolding benefit encounters to restore the
+    gradient before internal motivation can re-emerge). Also predicts that the
+    transition from the depressive attractor to normal function requires a phase
+    transition (sufficient benefit exposure to cross threshold), not a gradual linear
+    recovery.
+
+- id: Q-034
+  title: "Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?"
+  claim_type: question
+  subject: psychiatric.depression_threshold_parameter
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  depends_on:
+    - INV-053
+    - SD-012
+  short: Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?
+  description: >
+    Prediction: a fixed hazard_harm level with sufficient resource density never produces
+    the INV-053 attractor state; the same hazard_harm with insufficient resources does.
+    The key parameter is the ratio of harm exposure to benefit exposure opportunity,
+    not absolute stress intensity. Testable in CausalGridWorldV2 by holding hazard_harm
+    constant and varying num_resources (or holding num_hazards constant and varying
+    num_resources). If correct: (1) depression is a resource-availability disorder as
+    much as a stress disorder, (2) the same stressor produces depression or not depending
+    on available positive affordances, (3) interventions targeting benefit availability
+    (not just stress reduction) should be therapeutic.
+  suggested_experiment_type: environmental_parameter_sweep
