@@ -9,6 +9,34 @@
 
 ---
 
+## Status Snapshot (2026-04-06)
+
+- **SD-011/SD-012 Full E3 Integration (2026-04-05).** z_harm_a now flows through the complete
+  agent loop: agent.sense() -> LatentStack.encode() -> E3.select(). New E3Config parameters:
+  urgency_weight (z_harm_a.norm() lowers commit threshold, D2 avoidance escape, capped by
+  urgency_max=0.5) and affective_harm_scale (amplifies lambda_ethical by accumulated threat).
+  E3.compute_harm_forward_cost() replaces deprecated HarmBridge path, rolling z_harm_s step-by-step
+  through trajectory actions via ResidualHarmForward. Agent.compute_drive_level(obs_body) added
+  as canonical SD-012 static method. All new parameters default to 0.0/None for full backward
+  compatibility.
+- **EXQ-247 queued:** 4-arm ablation validating full SD-011/SD-012 E3 integration. Tests
+  urgency_weight and affective_harm_scale jointly with drive_weight across ablation conditions
+  (FULL vs NO_URGENCY vs NO_AFFECT vs BASELINE). 3 seeds x 200 train + 50 eval x 200 steps.
+- **New claims registered (2026-04-06 thought-intake sessions):** INV-049 (Offline Update
+  Necessity Principle -- offline phases are a mathematical necessity for model-building agents),
+  INV-050 (three-drive sleep regulation), INV-051 (optimal novelty range), MECH-178
+  (noradrenergic REM suppression pathway), MECH-179 (MEL type-specificity), MECH-180
+  (novelty-driven adaptive sleep), MECH-181 (cognitive reserve as update-loop maintenance),
+  Q-033 (actigraphy MEL forecasting).
+- **~198 experiments run.** 51 PASS, 123 FAIL, 22 ERROR, 2 UNKNOWN. 22 experiments
+  currently queued (EXQ-223 through EXQ-247 series plus EWIN-PC onboarding smoke).
+- **0 pending review** (as of 2026-04-04T18:45:00Z).
+- **Current bottleneck: first-paper gate.** Active queue: EXQ-074e/234 (wanting/liking),
+  EXQ-076e/235 (goal conditioning), EXQ-195 (SD-003 z_harm_s counterfactual), EXQ-247
+  (SD-011/012 full integration), and sleep-architecture experiments (EXQ-242--246).
+
+---
+
 ## Status Snapshot (2026-04-04)
 
 - **SD-014 implemented (2026-04-04): hippocampal valence vector node recording.** 4-component
