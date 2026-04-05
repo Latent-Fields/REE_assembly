@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-185", "MECH-182", "MECH-183"],
+  "source": {
+    "title": "Emotional contagion in rodents: A comprehensive exploration of mechanisms and multimodal perspectives.",
+    "authors": ["Yu D", "Bao L", "Yin B"],
+    "year": 2024,
+    "venue": "Behavioural Processes",
+    "doi": "10.1016/j.beproc.2024.105008",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38373472/"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Yu et al. (2024) provide a comprehensive multimodal review of emotional contagion mechanisms in rodents, covering olfactory, auditory, visual, and tactile pathways. The auditory pathway section is most relevant to MECH-182: squeaks and ultrasonic vocalizations correlate with emotional states and are essential for social emotional communication. The olfactory pathway (pheromones modulated by oxytocin) is relevant to MECH-183 as another direct-activation channel. The review emphasizes that emotional contagion is 'automatic and unconscious' -- supporting the direct-activation account over inference. For MECH-185, the multimodal integration section is relevant: multiple simultaneous sensory channels (auditory distress vocalizations, olfactory alarm pheromones) contribute to the social emotional response, consistent with the dual-gradient claim (though the review does not frame this as two separate approach gradients converging).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review does not distinguish approach-toward-distressed-other from avoidance-of-distress-source in the behavioral outputs -- conflating these two patterns is a limitation for MECH-185 specifically.",
+    "Ultrasonic vocalizations in rodents may be a poor model for the vocal timbre changes relevant to MECH-182 (which involves timbre changes from physiological arousal in organisms with richer vocal repertoires like dogs and humans).",
+    "The review does not directly address the self-experience-learning-to-cross-agent-generalization mechanism that is the novel component of MECH-182. Innate conspecific call recognition may be the dominant mechanism in rodents."
+  ],
+  "tags": ["mech_185", "mech_182", "mech_183", "emotional_contagion", "rodent", "auditory", "olfactory", "multimodal", "oxytocin", "ultrasonic_vocalizations"],
+  "mapping": {
+    "source_claim_statement": "Emotional contagion in rodents operates through multiple sensory modalities: (1) olfactory -- two types of pheromones modulated by oxytocin transmit emotional states; (2) auditory -- squeaks and ultrasonic vocalizations correlate with emotional states and mediate social emotional communication; (3) visual -- observational motion and facial expression (less primary in rodents); (4) tactile -- allogrooming and socio-affective touch modulate emotional states. The phenomenon is automatic and unconscious. Multimodal integration mediates full emotional contagion.",
+    "ree_translation": "Yu et al. provide a multimodal framework for emotional contagion that maps onto MECH-182/183/185 at the functional level. The auditory pathway (squeaks and USVs correlating with emotional states) is the rodent analogue of MECH-182's vocal timbre signal. The olfactory pathway (alarm pheromones modulated by oxytocin) is an additional direct-activation channel analogous to MECH-183's z_beta leakage (direct chemical signal encoding the other's arousal state). The automatic/unconscious characterization supports MECH-183's direct-activation over inference account. For MECH-185, the multimodal convergence is important: multiple simultaneous channels (auditory distress calls + olfactory alarm pheromones) converge to produce the contagious emotional response -- structurally parallel to MECH-185's dual-gradient account.",
+    "mapping_caveat": "The rodent multimodal emotional contagion framework is descriptive rather than mechanistic at the computational level that MECH-182/183/185 require. The review treats emotional contagion as a behavioral/neural phenomenon without committing to a specific computational architecture (latent variable z_beta, attribution stream, harm-gradient). The REE claims add a specific architectural implementation layer not present in the biological literature.",
+    "source_context": "Yu, Bao & Yin (2024), Behavioural Processes. Fujian Normal University, China. Comprehensive review of rodent emotional contagion with multimodal perspective. Addresses AI/human-animal interaction applications in its scope, making it relevant to REE context. Published February 2024."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.40,
+    "notes": "Good source quality: comprehensive review covering multiple sensory modalities with mechanistic detail. Mapping fidelity is moderate: the multimodal contagion framework maps onto MECH-182/183/185 at the functional level but does not provide the specific mechanistic evidence each claim requires. Transfer risk moderate: rodent emotional contagion to REE architecture for dogs and the REE agent is a meaningful gap."
+  }
+}

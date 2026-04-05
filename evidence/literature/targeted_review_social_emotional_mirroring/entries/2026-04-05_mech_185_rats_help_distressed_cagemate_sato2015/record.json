@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_185_rats_help_distressed_cagemate_sato2015",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-185", "MECH-184"],
+  "source": {
+    "title": "Rats demonstrate helping behavior toward a soaked conspecific.",
+    "authors": ["Sato N", "Tan L", "Tate K", "Okada M"],
+    "year": 2015,
+    "venue": "Animal Cognition",
+    "doi": "10.1007/s10071-015-0872-2",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25964095/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Sato et al. (2015) show that rats actively approach and help distressed cagemates (door-opening to rescue soaked rats), with three features directly relevant to MECH-185: (1) the approach toward the distressed other is active, rapid, and precedes any reward -- the motivational structure is consistent with dual-gradient approach (not just harm avoidance from a distance); (2) rats that had previously been soaked themselves learned to help faster -- consistent with the MECH-182/183 claim that self-experience with the relevant aversive state grounds empathic response to others; (3) the behavior was contingent on the other's distressed state, not just the presence of another rat. This paper provides direct behavioral evidence that distressed conspecifics generate APPROACH behavior (not just avoidance), which is the core phenomenon MECH-185 must explain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not measure acoustic signals from the distressed rat or test whether removing vocalizations reduces helping. The vocal component (MECH-182) is not tested.",
+    "The mechanism is described as 'empathy-like feelings' without specifying whether this is direct state activation (MECH-183) or inference. The neural mechanism is not characterized.",
+    "Rats opening a door to help a cagemate involves learned instrumental behavior. The approach motivation might be better explained as approach to an arousing stimulus (MECH-185 curiosity gradient) rather than planning to alleviate the other's harm (MECH-184 harm avoidance). The paper cannot distinguish these accounts."
+  ],
+  "tags": ["mech_185", "mech_184", "prosocial", "helping", "rat", "distress", "approach", "empathy_motivated", "self_experience", "cagemate"],
+  "mapping": {
+    "source_claim_statement": "Rats learn to open a door to release a soaked (distressed) cagemate. They open faster when the cagemate is distressed vs. undistressed. Rats with prior soaking experience learn faster than naive rats. In a choice paradigm, rats preferred helping the distressed cagemate over obtaining food. The authors interpret this as empathy-motivated prosocial behavior.",
+    "ree_translation": "MECH-185 claims that a distressed loved one generates two simultaneous approach gradients: (1) prediction error from the unexpected distress cue (curiosity approach gradient) and (2) z_beta leakage carrying the other's distress state as direct affective activation (second approach gradient). Sato et al. provide behavioral evidence that distress generates *approach* toward the distressed other, not just avoidance of harm-from-a-distance. Crucially, rats that had previously experienced soaking themselves helped faster -- the exact self-experience-to-other-generalization mechanism that MECH-182 and MECH-183 predict: prior self-experience grounds the harm-signal recognition, which in turn drives more efficient other-directed helping. The choice paradigm (helping > food) shows the motivational priority of distress-driven approach, consistent with MECH-185's claim that two converging gradients create a strong net approach toward the distressed other.",
+    "mapping_caveat": "The paper cannot distinguish between (a) the dual-gradient account in MECH-185 (prediction error + z_beta leakage both driving approach) and (b) a single-mechanism account (simple emotional contagion driving approach). The behavioral outcome is consistent with MECH-185 but does not provide evidence for the two-gradient structure specifically. The self-experience acceleration finding supports MECH-182/183 more directly than MECH-185 per se.",
+    "source_context": "Sato et al. (2015), Animal Cognition. Kwansei Gakuin University, Japan. Part of the door-opening prosocial behavior paradigm developed by multiple groups. Extends Ben-Ami Bartal et al. (2011, Science) which showed rats helping trapped cagemates. The 'soaking' distress paradigm is more naturalistic than the trapped-in-tube paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Good source quality: controlled behavioral study in Animal Cognition with multiple experiments distinguishing distressed vs. non-distressed conditions and prior experience effects. Mapping fidelity is good for the behavioral outcome (approach toward distressed other, self-experience acceleration) but moderate for the two-gradient mechanism specifically. Transfer risk moderate: rat to REE agent is a large computational gap, but the core behavioral phenomenon (approach motivated by other's distress) is directly relevant."
+  }
+}

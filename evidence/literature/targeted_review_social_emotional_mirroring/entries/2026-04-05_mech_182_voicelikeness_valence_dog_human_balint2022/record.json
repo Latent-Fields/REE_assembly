@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_182_voicelikeness_valence_dog_human_balint2022",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-182"],
+  "source": {
+    "title": "Dog and human neural sensitivity to voicelikeness: A comparative fMRI study.",
+    "authors": ["Balint A", "Szabo A", "Andics A", "Gacsi M"],
+    "year": 2022,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2022.119791",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36476565/"
+  },
+  "evidence_class": "neuroimaging_comparative",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Balint et al. (2022) extend the 2014 Andics findings by showing that both dogs and humans have auditory cortical regions preferentially responding to voice-like sounds (high voicelikeness) over sine-wave tones, and that the acoustic parameter f0 modulates emotional valence sensitivity differently for voice-like vs. sine-wave sounds in both species. The finding that mammalian auditory systems have a general tuning to voicelikeness -- not just conspecific vocalizations -- is directly relevant to MECH-182: it suggests the acoustic features that carry emotional content are processed by a domain-general voice-tuned system rather than a species-specific template. This slightly strengthens the cross-agent generalization component of MECH-182. Confidence is moderate-low because the paper still does not address the learning-from-self-experience mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The general voicelikeness tuning is described as potentially innate rather than learned from self-vocalization experience -- this is the opposite of the learning mechanism MECH-182 requires.",
+    "The stimuli were artificial sounds parametrically manipulating f0 and call length -- not naturalistic vocalizations with the full acoustic complexity that would characterize harm-associated timbre changes in real vocalizations.",
+    "The bilateral primary auditory response to voicelikeness could reflect low-level acoustic feature detection rather than a harm/affective signal specifically relevant to MECH-182."
+  ],
+  "tags": ["mech_182", "voicelikeness", "acoustic_valence", "dog", "fMRI", "f0", "auditory_cortex", "cross_species", "voice_tuning"],
+  "mapping": {
+    "source_claim_statement": "Both dogs and humans show stronger auditory cortical responses to voice-like sounds than to sine-wave sounds across bilateral primary and non-primary auditory regions. Processing of f0 in voice-like sounds is modulated differently from sine-wave sounds in both species. These results reveal functional similarities between evolutionarily distant mammals for processing voicelikeness and its effect on basic acoustic cues of vocal emotions.",
+    "ree_translation": "MECH-182 claims that acoustic features of vocalizations (specifically those that change with physiological arousal -- like f0 elevation, tense voice quality, amplitude envelope changes) serve as cross-modal harm-approach signals learnable from self-experience. Balint et al. show that both dogs and humans have voice-tuned auditory regions that process f0 as a carrier of emotional information -- but that this processing applies to voice-like sounds generally, not just conspecific or species-specific vocalizations. This is mildly favorable for the MECH-182 generalization step: if the system is tuned to voicelikeness rather than species-specific templates, then hearing a familiar human's voice under fear/harm conditions would activate the same valence-processing system that normally processes the dog's own vocalization patterns.",
+    "mapping_caveat": "The paper argues for a tuning to voicelikeness that may be primarily innate rather than learned from self-experience. If the emotional valence processing of voice-like sounds is largely pre-wired, MECH-182's specific mechanism (learning from self-experience -> generalization to others) may be partially redundant with innate cross-species acoustic templates. The paper thus supports the functional outcome of MECH-182 while leaving open whether the learning mechanism is necessary.",
+    "source_context": "Follow-up study by Andics group (Budapest), NeuroImage 2022. Used synthetic voice-like and sine-wave sounds parametrically varying f0 and call length. Same dog fMRI methodology as 2014 paper. Specifically designed to test whether the 2014 findings reflected conspecific-tuning or a more general voicelikeness preference."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "High source quality from established group using controlled parametric design. Mapping fidelity is moderate: supports the acoustic substrate component of MECH-182 but the innate vs learned question cuts against the specific learning mechanism. Transfer risk moderate: the generalization from acoustic processing to REE harm-approach stream learning is a substantive mechanistic step not warranted by this data alone."
+  }
+}

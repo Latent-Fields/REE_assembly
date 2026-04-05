@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_184_social_affective_default_network_amft2014",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-184"],
+  "source": {
+    "title": "Definition and characterization of an extended social-affective default network.",
+    "authors": ["Amft M", "Bzdok D", "Laird AR", "Fox PT", "Schilbach L", "Eickhoff SB"],
+    "year": 2014,
+    "venue": "Brain Structure and Function",
+    "doi": "10.1007/s00429-013-0698-0",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24399179/"
+  },
+  "evidence_class": "meta_analysis_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Amft et al. (2014) identify an extended social-affective default network (SA-DMN) in which the amygdala/hippocampus cluster is associated with emotional processes and memory, while vmPFC, ventral striatum, anterior and subgenual cingulum are associated with motivation and reward in social-affective context. This network is the anatomical substrate within which MECH-184 must operate: other-directed harm avoidance requires hippocampal rollout planning integrated with social-affective motivational signals. However, the paper characterizes the hippocampus's role in this network as primarily episodic memory and emotional processing -- not specifically prospective planning for other's welfare. The mapping to MECH-184 is indirect: the necessary substrate exists but the function attributed to hippocampus in this network is not specifically 'planning to protect the other agent'. Evidence direction is mixed because it establishes the network architecture without demonstrating the other-directed planning function specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper characterizes the hippocampus/amygdala cluster as associated with emotional and memory functions within the SA-DMN -- not specifically with prospective planning for another's welfare. MECH-184's claim that hippocampal rollout proposals can be other-referenced is not tested.",
+    "The SA-DMN is defined by connectivity patterns, not by causal manipulation of planning for others. The network could support MECH-184 or could be primarily a self-referential system that only secondarily models others.",
+    "The vmPFC, which Amft et al. associate with motivation and reward in the social-affective context, is connected to hippocampus in this network. But the directionality (vmPFC driving hippocampal planning vs. hippocampus informing vmPFC valuation) is not resolved by connectivity analyses."
+  ],
+  "tags": ["mech_184", "default_mode_network", "social_affective_network", "hippocampus", "vmPFC", "amygdala", "mentalizing", "motivation_reward", "other_directed"],
+  "mapping": {
+    "source_claim_statement": "An extended social-affective default network (SA-DMN) consists of interconnected regions including amygdala/hippocampus (emotional and memory processes), vmPFC/ventral striatum/subgenual cingulum (motivation, reward, cognitive modulation of affect), and posterior cingulum/precuneus/dmPFC (mentalizing, self-reference, autobiographic memory). The temporo-parietal junction and anterior middle temporal sulcus cluster is associated with social cognition.",
+    "ree_translation": "MECH-184 claims that hippocampal rollout proposals can be generated with a harm-gradient source that is other-referenced (via z_beta leakage from MECH-183), enabling planning directed at protecting the other agent. For this to work, the hippocampus must be structurally embedded in a network that connects social-emotional information (other's state) with prospective planning (rollout generation). Amft et al. provide evidence for exactly this network: the SA-DMN connects hippocampus (which the REE architecture uses for rollout proposals) with vmPFC (valuation/reward in social-affective context) and with the mentalizing network (TPJ, dmPFC). If the other's harm state activates the SA-DMN via MECH-183's z_beta leakage, and the hippocampus is embedded in this network, then other-directed rollout proposals are anatomically feasible through the SA-DMN architecture.",
+    "mapping_caveat": "Amft et al. characterize hippocampal function in the SA-DMN as emotional/memory rather than prospective planning for others. MECH-184's specific claim requires that hippocampal rollouts are generated in response to other-directed harm gradients -- a more specific function than 'emotional memory'. The paper provides the network substrate but not direct evidence for the specific planning function. The mapping is plausible but requires additional bridging evidence.",
+    "source_context": "Amft et al. (2014) in Brain Structure and Function. Meta-analytic connectivity study using seed-based activation likelihood estimation (ALE) and resting-state functional connectivity from 800+ participants. Eickhoff group (Dusseldorf/Julich) is a major source of human functional neuroanatomy meta-analyses. This paper defines the SA-DMN as a distinct sub-network of the default mode system."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.45,
+    "notes": "High source quality: ALE meta-analysis plus resting-state from large dataset. Mapping fidelity is moderate: the network substrate is correct but the specific other-directed planning function of hippocampus is not shown. Transfer risk is moderate-high: mapping from social-affective DMN activation to REE hippocampal rollout planning involves multiple unstated assumptions about function attribution."
+  }
+}

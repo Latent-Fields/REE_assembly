@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_183_perception_action_model_empathy_preston2002",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-183"],
+  "source": {
+    "title": "Empathy: Its ultimate and proximate bases.",
+    "authors": ["Preston SD", "de Waal FBM"],
+    "year": 2002,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/s0140525x02000018",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12625087/"
+  },
+  "evidence_class": "theoretical_framework_with_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Preston and de Waal (2002) propose the Perception-Action Model (PAM) of empathy, which is the closest existing theoretical framework to MECH-183. The PAM's core mechanism is that 'the perception of an object's state activates the subject's corresponding representations, which in turn activate somatic and autonomic responses.' This is functionally equivalent to the z_beta leakage claim: perceiving another's affective state directly activates self's corresponding affective representations (not inference about the other's state). The PAM predicts that similarity and familiarity modulate the strength of this direct activation -- consistent with MECH-183's requirement that OTHER_SELFLIKE tagging gates the coupling. The paper is a foundational theoretical synthesis rather than an experimental test of MECH-183 specifically, but it establishes that direct-state-activation (not inference) empathy models are well-motivated in the literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The PAM is a theoretical framework, not a direct test of z_beta leakage or any specific neural mechanism. It proposes that representations are activated but does not specify whether this is via direct coupling or inference -- the distinction MECH-183 makes.",
+    "The PAM explicitly acknowledges cognitive and prefrontal contributions to empathy that modulate the bottom-up state sharing. This suggests the direct activation mechanism is not the whole story -- top-down inference co-occurs and the distinction between direct activation and inference may not be clean.",
+    "The PAM was developed primarily from behavioral and phylogenetic data; subsequent neuroimaging has challenged some aspects (e.g., somatosensory mirror neurons are weaker than predicted). The direct-activation claim remains contested at the neural level."
+  ],
+  "tags": ["mech_183", "perception_action_model", "PAM", "empathy", "direct_activation", "affective_resonance", "mirror_neurons", "familiarity", "similarity"],
+  "mapping": {
+    "source_claim_statement": "The proximate mechanism of empathy is that perception of an object's state activates the subject's corresponding representations, which activate somatic and autonomic responses. This mechanism is automatic and bottom-up. Familiarity and similarity with the other increase the strength of activation. The interaction between this PAM mechanism and prefrontal modulation determines the level of empathy expressed.",
+    "ree_translation": "MECH-183 proposes that when the other-model is sufficiently coupled (via OTHER_SELFLIKE tagging), the other agent's affective state activations leak directly into self's z_beta processing -- not as inference but as direct activation of the same affective states. Preston and de Waal's PAM is the biological analogue of this mechanism: perception of another's state activates self's corresponding representations directly, with similarity/familiarity (analogous to OTHER_SELFLIKE tagging) modulating the coupling strength. The REE z_beta leakage claim is a mechanistic computational implementation of the PAM within a specific architectural framework. The PAM provides the empirical grounding that such direct-activation mechanisms exist and are well-established in comparative and social neuroscience.",
+    "mapping_caveat": "The PAM operates at the psychological/behavioral level. MECH-183 makes a specific computational claim about z_beta (a latent affective variable) being directly activated by the other-model, which goes beyond the PAM's specification. The PAM does not distinguish between activation of a representational variable in a latent space and inference about another's state -- this distinction is central to MECH-183 but not addressed in the PAM framework.",
+    "source_context": "Preston & de Waal (2002) in Behavioral and Brain Sciences with 40+ commentaries. One of the most cited empathy papers in comparative psychology. Established the PAM as the dominant theoretical framework for evolutionary empathy research. de Waal is at Emory; Preston is at Michigan. The 2002 paper was updated in de Waal & Preston (2017, Nature Reviews Neuroscience)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "High source quality as a foundational theoretical synthesis with extensive commentary and empirical grounding. Mapping fidelity is good -- the PAM is the closest existing framework to MECH-183's direct-activation mechanism, with similarity/familiarity modulation directly paralleling OTHER_SELFLIKE gating. Transfer risk is moderate-low: the conceptual translation from PAM to z_beta leakage is natural but adds a layer of computational specificity not warranted by the biological framework alone."
+  }
+}

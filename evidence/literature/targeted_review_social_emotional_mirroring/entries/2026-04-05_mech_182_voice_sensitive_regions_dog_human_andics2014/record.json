@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_182_voice_sensitive_regions_dog_human_andics2014",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-182"],
+  "source": {
+    "title": "Voice-sensitive regions in the dog and human brain are revealed by comparative fMRI.",
+    "authors": ["Andics A", "Gacsi M", "Farago T", "Kis A", "Miklosi A"],
+    "year": 2014,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2014.01.058",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24560578/"
+  },
+  "evidence_class": "neuroimaging_comparative",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Andics et al. (2014) is the foundational comparative neuroimaging study showing that dogs and humans share voice-sensitive auditory cortical regions and that emotional valence in vocalizations -- encoded in basic acoustic parameters -- modulates these regions similarly in both species. This supports MECH-182's claim that acoustic features of vocalizations carry cross-species harm/arousal signal legible via shared neural architecture. The study does not demonstrate learned cross-modal self-to-other generalization (the novel mechanistic step in MECH-182), but it establishes the substrate: emotional valence in vocal timbre is processed by conserved auditory regions that predate the dog-human split. Confidence is moderate because the finding supports the acoustic foundation of the claim without testing the self-experience learning-to-cross-agent generalization component.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study shows that dog auditory regions respond to vocal emotional valence but does not test whether this sensitivity was LEARNED from self-vocalization experience or is innate -- the learning/generalization component of MECH-182 is not addressed.",
+    "The stimuli were dog and human vocalizations presented passively; no manipulation of prior self-experience was possible in this design. The cross-modal self-to-other generalization that MECH-182 posits cannot be inferred from passive listening paradigms.",
+    "The shared emotional valence processing could reflect convergent evolution rather than a common mechanism for harm-signal learning, which would weaken the learning-based account in MECH-182."
+  ],
+  "tags": ["mech_182", "vocal_emotion", "dog", "fMRI", "auditory_cortex", "emotional_valence", "cross_species", "voice_processing", "harm_signal_acoustic"],
+  "mapping": {
+    "source_claim_statement": "Voice-sensitive regions exist in the dog auditory cortex with a similar topographic pattern to human temporal voice areas. In both species, emotional valence cues in vocalizations modulate activation in non-primary auditory regions using the same basic acoustic parameters (fundamental frequency, etc.). The similarity suggests an evolutionarily ancient voice-processing system shared across mammals.",
+    "ree_translation": "MECH-182 claims that the harm-approach signal learned from self-vocalization experience generalizes cross-agent via shared acoustic features. Andics et al. provide the necessary substrate for this claim: if dog auditory cortex processes vocal emotional valence using the same acoustic parameters as human auditory cortex, and if the dog's own vocalizations during arousal/fear carry those parameters, then the dog's harm-attribution stream has direct acoustic access to a cross-species emotional valence signal in heard vocalizations. The paper does not test the learning-from-self-experience mechanism, but it removes a potential objection: the mechanism is plausible because the neural architecture for vocal emotional valence processing is conserved across large evolutionary distances.",
+    "mapping_caveat": "The paper establishes substrate (conserved vocal emotional processing) but not mechanism (learned cross-modal generalization from self-experience to other's vocalizations). MECH-182 requires both. The substrate finding is necessary but not sufficient for the claim. The learning component remains untested in any direct sense.",
+    "source_context": "Andics et al. 2014, Current Biology. First comparative neuroimaging study of a non-primate mammal (dog) and primate (human). Dogs were trained to lie still in an MRI scanner -- a significant technical achievement. The paper was widely cited and spawned a decade of comparative canine neuroimaging. Lead author Attila Andics (Budapest) is the primary source of dog fMRI data globally."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Source quality is very high: rigorously controlled neuroimaging comparative study in Current Biology, replicated in follow-up work. Mapping fidelity is moderate: the paper provides the acoustic/neural substrate for MECH-182 but does not test the learning-from-self component. Transfer risk is low-moderate: the cross-species substrate is directly relevant, but REE applies this to a computational architecture where the mapping step is more explicit."
+  }
+}

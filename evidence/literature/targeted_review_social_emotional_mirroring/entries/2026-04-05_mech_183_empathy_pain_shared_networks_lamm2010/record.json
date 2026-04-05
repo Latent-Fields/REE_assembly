@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_183_empathy_pain_shared_networks_lamm2010",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-183"],
+  "source": {
+    "title": "Meta-analytic evidence for common and distinct neural networks associated with directly experienced pain and empathy for pain.",
+    "authors": ["Lamm C", "Decety J", "Singer T"],
+    "year": 2011,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2010.10.014",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20946964/"
+  },
+  "evidence_class": "meta_analysis_neuroimaging",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Lamm, Decety & Singer (2011) provide the most rigorous neural evidence for shared representations between self-experienced and other-experienced pain: a meta-analysis of 32 fMRI studies confirms that bilateral anterior insular cortex and medial/anterior cingulate cortex activate for both directly experienced pain and empathy for pain. This bilateral anterior insula / dACC overlap is the neural correlate of what MECH-183 calls z_beta leakage: observing another's pain activates the same neural substrates that encode self-pain. The distinction between 'inference about the other' and 'direct activation' is supported by the insula data specifically -- the anterior insula encodes interoceptive body state representations, not semantic inferences about pain. Confidence is moderately high because this is a rigorous meta-analysis directly showing the shared substrate that MECH-183 requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The meta-analysis cannot resolve whether the shared insula/ACC activation during empathy reflects direct state sharing (z_beta leakage) or top-down inference activating the same regions via feedback from prefrontal mentalizing. The activation overlap is the outcome, not the mechanism.",
+    "The paper shows that abstract information about the other's pain (not seeing a body part in pain) more strongly recruits mentalizing regions (precuneus, vmPFC, TPJ) -- suggesting that for non-embodied cues, inference may dominate over direct state activation. This constrains when z_beta leakage vs. inference is operative.",
+    "The somatosensory cortex activation during empathy for pain (found in body-part paradigms but not abstract paradigms) suggests the mechanism may depend heavily on stimulus type and embodied salience -- MECH-183 needs to specify when the direct z_beta leakage account applies."
+  ],
+  "tags": ["mech_183", "empathy_pain", "anterior_insula", "ACC", "shared_neural_substrate", "meta_analysis", "direct_activation", "interoception", "social_pain"],
+  "mapping": {
+    "source_claim_statement": "A core network of bilateral anterior insular cortex and medial/anterior cingulate cortex is consistently activated for both directly experienced pain and empathy for pain across 32 fMRI studies. These areas are linked to representing 'global feeling states' and guidance of adaptive behavior for both self and other-related experiences. Seeing a body part in pain additionally activates somatosensory areas and action-understanding regions; abstract visual cues about another's pain recruit mentalizing regions (vmPFC, precuneus, TPJ).",
+    "ree_translation": "MECH-183 claims that the other's affective state leaks into self's z_beta processing via direct state activation, not inference. The bilateral anterior insula is the best candidate neural substrate for this leakage: it encodes interoceptive body state representations (z_beta's biological analogue) and is activated both by self-pain and by witnessing another's pain. Lamm et al. provide rigorous meta-analytic confirmation that this overlap is consistent and bilateral. The distinction between embodied (body-part) and abstract paradigms is particularly relevant: MECH-183 requires that the leakage occurs via the interoceptive system (insula), not via mentalizing (vmPFC/precuneus). The embodied paradigm evidence (somatosensory activation, insula) is more consistent with z_beta leakage; the abstract paradigm evidence (mentalizing network dominance) suggests the inference-about-other account applies there.",
+    "mapping_caveat": "The meta-analysis confirms the shared neural substrate but cannot distinguish between direct state sharing (leakage) and top-down inference activating the same regions. MECH-183 requires the former. The paper supports a shared-substrate hypothesis that is necessary but not sufficient for the direct-activation account. The paradigm dependency (embodied vs. abstract) also suggests z_beta leakage may be modality-specific rather than a general mechanism.",
+    "source_context": "Lamm, Decety & Singer (2011), NeuroImage. Meta-analysis of 9 image-based studies (full brain maps) plus coordinate-based analysis of 32 studies. Tania Singer's group (Max Planck Leipzig) is the leading source of human empathy neuroimaging. This paper is among the most cited in social neuroscience. Published 2010/early 2011."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality: image-based and coordinate-based meta-analysis in major journal from leading group. Mapping fidelity is good: anterior insula activation during other's pain is the closest neural correlate of z_beta leakage in the literature. Transfer risk is low: human fMRI directly relevant to the REE architectural claim about an interoceptive affective variable being shared between self and other processing."
+  }
+}

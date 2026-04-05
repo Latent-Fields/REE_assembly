@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_183_mammalian_empathy_pam_dewaal2017",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-183"],
+  "source": {
+    "title": "Mammalian empathy: behavioural manifestations and neural basis.",
+    "authors": ["de Waal FBM", "Preston SD"],
+    "year": 2017,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn.2017.72",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28655877/"
+  },
+  "evidence_class": "review_neuroimaging_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The 2017 update of the PAM in Nature Reviews Neuroscience incorporates neuroimaging evidence and consolidates the case for direct affective state activation in empathy. Key new data: (1) yawn contagion, consolation behavior, and aid-giving evidence across mammals supports automatic state-sharing; (2) 'contagious physiological affect' (shared autonomic responses) in socially bonded individuals supports the direct-activation rather than inference account; (3) personal past experience with the painful/distressing event increases empathic accuracy, consistent with the MECH-182/183 claim that self-experience grounds cross-agent state attribution. The paper explicitly discusses representations related to another's state as embodied (grounded in self-experience), which is the core of MECH-183. Confidence is moderately high because the paper now includes neural evidence for shared state activation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper notes ongoing debate about whether emotional and cognitive empathy are truly dissociable neural mechanisms -- if they cannot be dissociated, the MECH-183 claim about DIRECT activation (vs. inference) may not be empirically testable.",
+    "Mirror neuron evidence, which the paper cites in support of the PAM, has been challenged on methodological grounds (single-unit recordings in humans have low cell numbers; population-level mirror responses may reflect feedback from action observation rather than a dedicated mirror system).",
+    "The paper discusses emotional contagion as a precursor to empathy but notes that consolidating these into a single mechanism obscures important functional differences. MECH-183 equates z_beta leakage with direct state activation, but the literature suggests multiple partially overlapping mechanisms."
+  ],
+  "tags": ["mech_183", "PAM", "embodied_simulation", "mammalian_empathy", "state_sharing", "mirror_neurons", "consolation", "yawn_contagion", "affective_resonance"],
+  "mapping": {
+    "source_claim_statement": "According to the PAM, emotional states of others are understood through personal, embodied representations that allow empathy and accuracy to increase based on the observer's past experiences. New evidence includes contagious physiological affect (autonomic synchrony in bonded pairs), consolation behavior (approach and contact with distressed conspecific), and aid-giving across species. Mirror neuron systems provide a neural substrate for this direct state-sharing. Past personal experience with the relevant stimulus directly increases empathic accuracy.",
+    "ree_translation": "MECH-183 claims that z_beta leakage is direct -- the other agent's affective state activates self's z_beta, not a representation *of* the other's state. De Waal & Preston 2017 provide multiple independent lines of evidence for this direct-activation account: (1) contagious physiological affect (autonomic synchrony) shows that affective states are shared at a physiological level below conscious inference; (2) consolation behavior in chimps and corvids involves spontaneous approach and contact -- consistent with the approach gradient that MECH-185 also predicts; (3) past experience improves empathic accuracy -- consistent with MECH-183's claim that the other-model is grounded in self-representations. The paper explicitly frames the mechanism as 'personal embodied representations' activated by perceiving another's state -- the closest neuroscientific analogue to z_beta leakage in the REE architecture.",
+    "mapping_caveat": "The paper does not distinguish between (a) direct activation of self's affective state by perception of other's state, and (b) activation of self's representation OF the other's affective state. MECH-183 requires (a) specifically. The neural evidence (mirror neurons, shared activation in insula/ACC) is consistent with both interpretations, and the authors do not definitively resolve this.",
+    "source_context": "De Waal & Preston (2017) in Nature Reviews Neuroscience -- 15-year update of the original PAM. Incorporates rodent, primate, corvid, canine, and human evidence. Highly influential review cited >1000 times. Represents the current consensus framework for evolutionary empathy neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality: major review in flagship neuroscience journal from the founders of the PAM framework. Mapping fidelity is good: embodied-representation direct-activation account maps well to z_beta leakage. Transfer risk is low: behavioral and neural evidence is directly relevant and cross-species, removing large species-transfer concerns."
+  }
+}

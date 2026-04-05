@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_social_emotional_mirroring",
+  "entry_id": "2026-04-05_mech_184_dopamine_hippocampus_seeking_kesner2022",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-184", "MECH-185"],
+  "source": {
+    "title": "Seeking motivation and reward: Roles of dopamine, hippocampus, and supramammillo-septal pathway.",
+    "authors": ["Kesner AJ", "Calva CB", "Ikemoto S"],
+    "year": 2022,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/j.pneurobio.2022.102252",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35227866/"
+  },
+  "evidence_class": "mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Kesner et al. (2022) describe a specific neural circuit for information-seeking and curiosity-driven approach: novel stimuli and uncertainty trigger dopaminergic approach via a supramammillary -> hippocampal formation -> medial septum -> VTA pathway. The hippocampus is identified as the cognitive hub for 'environment prediction error' -- mismatch between expected and observed environment states. Phasic dopamine responses signal 'potentially important stimuli rather than rewards'. This is relevant to both MECH-184 (hippocampus as hub for other-directed planning in environments containing distressed others) and MECH-185 (prediction error from unexpected acoustic signal generates dopaminergic approach). The transfer from information-seeking about the environment to planning for another's welfare is a significant inferential step, but the underlying hippocampal/dopaminergic circuit is correctly identified.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper focuses on information-seeking in the absence of clear goal or reward -- a non-social paradigm. The social dimension of MECH-184 (planning for another's welfare) is not addressed.",
+    "The hippocampus's role in this circuit is cognitive/spatial (environment prediction error, salience perception) rather than planning -- the rollout generation function of REE's hippocampus is not the same as the prediction-error-signaling function described here.",
+    "The supramammillary pathway described is specific to uncertainty-driven seeking, not harm-avoidance planning. MECH-184 requires harm-gradient-driven planning, which may use different circuitry."
+  ],
+  "tags": ["mech_184", "mech_185", "hippocampus", "dopamine", "seeking", "prediction_error", "supramammillary", "curiosity", "information_seeking", "novelty"],
+  "mapping": {
+    "source_claim_statement": "Novel stimuli and uncertainty trigger seeking motivation via a supramammillary nucleus -> hippocampal formation -> medial septum -> VTA dopamine circuit. The hippocampal formation processes the cognitive aspects of information-seeking (salience, uncertainty perception). Phasic dopamine responses signal potentially important stimuli rather than primary rewards. The concept of 'environment prediction error' -- discrepancy between expected and observed environment -- drives seeking behavior.",
+    "ree_translation": "MECH-184 requires that hippocampal rollout proposals can be generated in response to a distressed other agent -- a social form of 'environment prediction error' (the environment contains unexpected harm to a coupled other). Kesner et al. provide evidence that hippocampus is the cognitive hub for prediction-error-driven seeking, and that dopamine signals 'potentially important stimuli' (not just rewards). A distressed loved one is precisely such a stimulus: unexpected (generates prediction error), salient (generates dopamine response), and important (drives seeking/approach). The supramammillary-hippocampal circuit could in principle support approach toward a distressed other when their distress creates environmental prediction error. For MECH-185, the prediction error from unexpected acoustic distress cues would be processed via this same circuit.",
+    "mapping_caveat": "Kesner et al. describe information-seeking in non-social, spatial environments. The extension to social stimuli (a distressed other agent) requires assuming that the hippocampal prediction error computation generalizes from spatial/environmental prediction errors to social prediction errors. This is plausible given hippocampal involvement in social cognition (Amft et al. 2014) but not demonstrated by Kesner et al. directly.",
+    "source_context": "Kesner, Calva & Ikemoto (2022) in Progress in Neurobiology. NIH Intramural Research Program (NIAAA + NIDA). Systematic review of the supramammillary-hippocampal-septal-VTA circuit for curiosity and information-seeking. Ikemoto is a major figure in dopamine motivation neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.48,
+    "transfer_risk": 0.55,
+    "notes": "Good source quality from established NIH investigators. Mapping fidelity is moderate-low: the hippocampal prediction error and dopaminergic seeking circuit is correct, but its extension to social/other-directed planning involves significant inferential steps not warranted by the paper's data. Transfer risk is moderate-high: non-social information-seeking to other-directed harm avoidance is a substantial domain transfer."
+  }
+}

@@ -11176,3 +11176,64 @@
     test decline at the next monthly assessment better than total sleep
     time alone. If mismatch index predicts type-specific failure (episodic
     vs affective) with specificity, that supports both Q-033 and MECH-179.
+
+- id: MECH-182
+  title: "Vocalization timbre as learned cross-modal harm-approach signal, generalizing to other-agent vocalizations."
+  claim_type: mechanism_hypothesis
+  subject: social.vocalization_harm_signal
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-005
+    - MECH-031
+    - MECH-032
+  location: docs/thoughts/2026-04-05_steve_dog_emotional_mirroring.md
+  source:
+    - evidence/planning/thought_intake_2026-04-05_steve_dog_emotional_mirroring.md
+  notes: "Physiological arousal (surprise -> adrenaline -> muscle tone) causes acoustic changes in own vocalizations correlated with harm approach. This cross-modal association is learned from self-experience by the harm attribution stream, then generalizes: the same acoustic feature in another agent's vocalizations activates the harm-approach signal via the attributed other-model. Partial novelty: acoustic substrate documented (Andics 2014, Balint 2022); self-experience learning mechanism cross-agent is novel. Lit: targeted_review_social_emotional_mirroring."
+
+- id: MECH-183
+  title: "z_beta leakage: attributed other-model affective state activates self z_beta directly, not via inference."
+  claim_type: mechanism_hypothesis
+  subject: social.zbeta_leakage
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-005
+    - MECH-031
+    - MECH-032
+  location: docs/thoughts/2026-04-05_steve_dog_emotional_mirroring.md
+  source:
+    - evidence/planning/thought_intake_2026-04-05_steve_dog_emotional_mirroring.md
+  notes: "When an agent's other-model is sufficiently coupled via attribution stream + OTHER_SELFLIKE tagging, the other agent's affective state activations leak directly into self z_beta processing -- not as inference about the other but as direct activation. This is the specific computational implementation of INV-005 (harm via mirror modelling). Partial novelty: PAM functional description (Preston & de Waal 2002, Lamm 2011) well-established; z_beta leakage gated by attribution stream is novel. Lit: targeted_review_social_emotional_mirroring."
+
+- id: MECH-184
+  title: "Other-directed hippocampal harm avoidance: planning architecture identical to self-preservation with harm-gradient source swapped to coupled other-agent."
+  claim_type: mechanism_hypothesis
+  subject: social.other_directed_harm_avoidance
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-029
+    - MECH-183
+    - MECH-031
+    - MECH-127
+  location: docs/thoughts/2026-04-05_steve_dog_emotional_mirroring.md
+  source:
+    - evidence/planning/thought_intake_2026-04-05_steve_dog_emotional_mirroring.md
+  notes: "When z_beta leakage causes harm-gradient activation to be other-referenced, hippocampal rollout proposals target harm avoidance for the other agent. The planning architecture is structurally identical to self-preservation; only the harm-gradient source has changed. This is the mechanistic grounding of INV-029 (love as long-horizon care-investment). Confirmed novel: no literature describes hippocampal planning reused with harm-gradient source swapped to other-agent (Amft 2014, Kesner 2022 provide anatomical substrate only). Lit: targeted_review_social_emotional_mirroring."
+
+- id: MECH-185
+  title: "Surprise-doubled approach gradient toward distressed other: prediction error approach and z_beta leakage approach converge simultaneously."
+  claim_type: mechanism_hypothesis
+  subject: social.empathic_curiosity_approach_doubling
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-183
+    - MECH-184
+    - INV-029
+  location: docs/thoughts/2026-04-05_steve_dog_emotional_mirroring.md
+  source:
+    - evidence/planning/thought_intake_2026-04-05_steve_dog_emotional_mirroring.md
+  notes: "When harm-signal timbre is heard from a coupled other-agent, two simultaneous approach gradients converge on the distressed other: (1) observer's own prediction error from unexpected acoustic signal -> curiosity approach gradient; (2) z_beta leakage carries the other's surprise/distress as direct affective activation -> second curiosity approach gradient. Both converge on approaching the distressed loved one, explaining why empathic animals are pulled toward the distressed other rather than only avoiding harm for them from a distance. Confirmed novel: behavioral evidence for approach exists (Sato 2015, Bartal 2016) but is explained as single-mechanism; dual converging gradient account is novel. Lit: targeted_review_social_emotional_mirroring."
