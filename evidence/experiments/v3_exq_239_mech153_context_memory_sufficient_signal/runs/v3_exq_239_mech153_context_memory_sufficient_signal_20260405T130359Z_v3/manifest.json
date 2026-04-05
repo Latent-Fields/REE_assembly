@@ -1,0 +1,45 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_239_mech153_context_memory_sufficient_signal",
+  "run_id": "v3_exq_239_mech153_context_memory_sufficient_signal_20260405T130359Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-05T13:03:59Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-153"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_note": "Weakens MECH-153: 2nd attempt (supersedes EXQ-187a) with lambda=0.5 and warmup=500ep still shows no context differentiation (cosine_sim=1.0 both conditions). Note: baseline ablated condition also shows cosine_sim=1.0, so the negative result may be partially substrate-confounded -- context_memory infrastructure may be too immature for either pathway.",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

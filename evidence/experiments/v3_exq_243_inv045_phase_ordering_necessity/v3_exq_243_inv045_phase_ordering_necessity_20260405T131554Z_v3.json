@@ -1,0 +1,245 @@
+{
+  "run_id": "v3_exq_243_inv045_phase_ordering_necessity_20260405T131554Z_v3",
+  "experiment_type": "v3_exq_243_inv045_phase_ordering_necessity",
+  "claim_ids": [
+    "INV-045",
+    "MECH-123"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260405T131554Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "INV-045": "weakens",
+    "MECH-123": "supports"
+  },
+  "pass_criteria_summary": {
+    "p1_rem_only_no_benefit": {
+      "wins": 3,
+      "pass": true,
+      "desc": "REM_ONLY harm_discrim <= WAKING_ONLY+eps in >=2/3 seeds"
+    },
+    "p2_wrong_order_no_benefit": {
+      "wins": 3,
+      "pass": true,
+      "desc": "REM_THEN_SWS harm_discrim <= WAKING_ONLY+eps in >=2/3 seeds"
+    },
+    "p3_correct_order_benefits": {
+      "wins": 1,
+      "pass": false,
+      "desc": "SWS_THEN_REM harm_discrim > WAKING_ONLY in >=2/3 seeds"
+    },
+    "p4_mech123_no_regression": {
+      "wins": 3,
+      "pass": true,
+      "desc": "SWS_THEN_REM_RECAL harm_discrim >= SWS_THEN_REM in >=2/3 seeds"
+    },
+    "inv045_pass": false
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.0009659995557740331,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": -5.072355270385742e-05,
+      "harm_eval_safe": 0.5308693051338196,
+      "harm_eval_dangerous": 0.5308185815811157,
+      "train_harm_dang_final": 0.008034524035453797,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 42,
+      "condition": "REM_ONLY",
+      "slot_cosine_sim": 0.0009659995557740331,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": 2.7418136596679688e-06,
+      "harm_eval_safe": 0.5296010375022888,
+      "harm_eval_dangerous": 0.5296037793159485,
+      "train_harm_dang_final": 0.008034524035453797,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 42,
+      "condition": "REM_THEN_SWS",
+      "slot_cosine_sim": 0.0004491141007747501,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": 2.7418136596679688e-06,
+      "harm_eval_safe": 0.5296010375022888,
+      "harm_eval_dangerous": 0.5296037793159485,
+      "train_harm_dang_final": 0.008034524035453797,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 0.0004491141007747501,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": 2.7418136596679688e-06,
+      "harm_eval_safe": 0.5296010375022888,
+      "harm_eval_dangerous": 0.5296037793159485,
+      "train_harm_dang_final": 0.008034524035453797,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_THEN_REM_RECAL",
+      "slot_cosine_sim": 0.0004491141007747501,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": 2.7418136596679688e-06,
+      "harm_eval_safe": 0.5296010375022888,
+      "harm_eval_dangerous": 0.5296037793159485,
+      "train_harm_dang_final": 0.008034524035453797,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 7,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.002224390394985676,
+      "harm_rate_safe": 0.0005857181816299756,
+      "harm_rate_dangerous": 0.005340071702003479,
+      "harm_discrimination": -0.025671105831861496,
+      "harm_eval_safe": 0.0717560425400734,
+      "harm_eval_dangerous": 0.0460849367082119,
+      "train_harm_dang_final": 0.005562797041734059,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 7,
+      "condition": "REM_ONLY",
+      "slot_cosine_sim": 0.002224390394985676,
+      "harm_rate_safe": 0.0005687869642178217,
+      "harm_rate_dangerous": 0.005295277736584345,
+      "harm_discrimination": -0.04058583825826645,
+      "harm_eval_safe": 0.11854969710111618,
+      "harm_eval_dangerous": 0.07796385884284973,
+      "train_harm_dang_final": 0.005759063871701558,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 7,
+      "condition": "REM_THEN_SWS",
+      "slot_cosine_sim": 0.999999463558197,
+      "harm_rate_safe": 0.0005687869642178217,
+      "harm_rate_dangerous": 0.005295277736584345,
+      "harm_discrimination": -0.04058583825826645,
+      "harm_eval_safe": 0.11854969710111618,
+      "harm_eval_dangerous": 0.07796385884284973,
+      "train_harm_dang_final": 0.005759063871701558,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 0.999999463558197,
+      "harm_rate_safe": 0.0005687869642178217,
+      "harm_rate_dangerous": 0.005295277736584345,
+      "harm_discrimination": -0.04058583825826645,
+      "harm_eval_safe": 0.11854969710111618,
+      "harm_eval_dangerous": 0.07796385884284973,
+      "train_harm_dang_final": 0.005759063871701558,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_THEN_REM_RECAL",
+      "slot_cosine_sim": 0.999999463558197,
+      "harm_rate_safe": 0.0005687869642178217,
+      "harm_rate_dangerous": 0.005295277736584345,
+      "harm_discrimination": -0.04058583825826645,
+      "harm_eval_safe": 0.11854969710111618,
+      "harm_eval_dangerous": 0.07796385884284973,
+      "train_harm_dang_final": 0.005759063871701558,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 13,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": -0.012985332868993282,
+      "harm_rate_safe": 0.000749656098484993,
+      "harm_rate_dangerous": 0.006981987323363621,
+      "harm_discrimination": 0.1150156632065773,
+      "harm_eval_safe": 0.12457526475191116,
+      "harm_eval_dangerous": 0.23959092795848846,
+      "train_harm_dang_final": 0.005354641922314962,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 13,
+      "condition": "REM_ONLY",
+      "slot_cosine_sim": -0.012985332868993282,
+      "harm_rate_safe": 0.0007157414937019349,
+      "harm_rate_dangerous": 0.0066704372068246195,
+      "harm_discrimination": 0.014088764786720276,
+      "harm_eval_safe": 0.13271555304527283,
+      "harm_eval_dangerous": 0.1468043178319931,
+      "train_harm_dang_final": 0.00619300688902537,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 13,
+      "condition": "REM_THEN_SWS",
+      "slot_cosine_sim": 0.9999997615814209,
+      "harm_rate_safe": 0.0007157414937019349,
+      "harm_rate_dangerous": 0.0066704372068246195,
+      "harm_discrimination": 0.014088764786720276,
+      "harm_eval_safe": 0.13271555304527283,
+      "harm_eval_dangerous": 0.1468043178319931,
+      "train_harm_dang_final": 0.00619300688902537,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 0.9999997615814209,
+      "harm_rate_safe": 0.0007157414937019349,
+      "harm_rate_dangerous": 0.0066704372068246195,
+      "harm_discrimination": 0.014088764786720276,
+      "harm_eval_safe": 0.13271555304527283,
+      "harm_eval_dangerous": 0.1468043178319931,
+      "train_harm_dang_final": 0.00619300688902537,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_THEN_REM_RECAL",
+      "slot_cosine_sim": 0.9999997615814209,
+      "harm_rate_safe": 0.0007157414937019349,
+      "harm_rate_dangerous": 0.0066704372068246195,
+      "harm_discrimination": 0.014088764786720276,
+      "harm_eval_safe": 0.13271555304527283,
+      "harm_eval_dangerous": 0.1468043178319931,
+      "train_harm_dang_final": 0.00619300688902537,
+      "sleep_passes": 15
+    }
+  ],
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "REM_ONLY",
+      "REM_THEN_SWS",
+      "SWS_THEN_REM",
+      "SWS_THEN_REM_RECAL"
+    ],
+    "sleep_interval": 10,
+    "sws_write_steps": 20,
+    "context_switch_every": 5,
+    "training_episodes": 150,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 20,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "discrimination_eps": 0.01,
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
+}

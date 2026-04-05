@@ -1,0 +1,72 @@
+{
+  "run_id": "v3_exq_228a_arc032_theta_bypass_behavioral_1775398618_v3",
+  "experiment_type": "v3_exq_228a_arc032_theta_bypass_behavioral",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-032"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "V3-EXQ-228",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "decision": "substrate_limitation",
+  "timestamp": 1775398618,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "grid_size": 10,
+  "n_resources": 2,
+  "n_hazards": 3,
+  "hazard_harm": 0.02,
+  "steps_per_ep": 200,
+  "warmup_episodes": 150,
+  "eval_episodes": 100,
+  "greedy_frac": 0.4,
+  "goal_norm_thresh": 0.05,
+  "lift_thresh": 0.05,
+  "harm_ratio_max": 1.5,
+  "resource_rate_active": 0.10666666666666667,
+  "resource_rate_zeroed": 0.10666666666666667,
+  "harm_rate_active": 0.16419344729331134,
+  "harm_rate_zeroed": 0.16419344729331134,
+  "goal_norm_active": 0.03059675870463252,
+  "lift": 0.0,
+  "harm_ratio": 1.0,
+  "precond_goal_pass": false,
+  "c1_lift_pass": false,
+  "c2_harm_pass": true,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "resource_rate_active": 0.12,
+      "resource_rate_zeroed": 0.12,
+      "harm_rate_active": 0.16769905271141727,
+      "harm_rate_zeroed": 0.16769905271141727,
+      "goal_norm_active": 0.006164331454783678,
+      "lift": 0.0,
+      "harm_ratio": 1.0
+    },
+    {
+      "seed": 7,
+      "resource_rate_active": 0.05,
+      "resource_rate_zeroed": 0.05,
+      "harm_rate_active": 0.15086222753789028,
+      "harm_rate_zeroed": 0.15086222753789028,
+      "goal_norm_active": 0.06837896257638931,
+      "lift": 0.0,
+      "harm_ratio": 1.0
+    },
+    {
+      "seed": 13,
+      "resource_rate_active": 0.15,
+      "resource_rate_zeroed": 0.15,
+      "harm_rate_active": 0.17401906163062653,
+      "harm_rate_zeroed": 0.17401906163062653,
+      "goal_norm_active": 0.01724698208272457,
+      "lift": 0.0,
+      "harm_ratio": 1.0
+    }
+  ]
+}

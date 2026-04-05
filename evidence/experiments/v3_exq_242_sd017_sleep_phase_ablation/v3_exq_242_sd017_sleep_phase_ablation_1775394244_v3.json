@@ -1,0 +1,274 @@
+{
+  "run_id": "v3_exq_242_sd017_sleep_phase_ablation_1775394244_v3",
+  "experiment_type": "v3_exq_242_sd017_sleep_phase_ablation",
+  "claim_ids": [
+    "SD-017",
+    "ARC-045",
+    "MECH-166"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp": "2026-04-05T13:09:38.550444+00:00",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-017": "weakens",
+    "ARC-045": "weakens",
+    "MECH-166": "weakens"
+  },
+  "pass_criteria_summary": {
+    "c1_slot_differentiation": {
+      "wins": 1,
+      "pass": false,
+      "desc": "SWS_ONLY slot_cosine_sim < WAKING_ONLY in >=3/5 seeds"
+    },
+    "c2_harm_rate_benefit": {
+      "wins": 0,
+      "pass": false,
+      "desc": "SWS_THEN_REM harm_dangerous < WAKING_ONLY*0.90 in >=3/5 seeds"
+    },
+    "c3_safe_specificity": {
+      "count_ok": 15,
+      "pass": true,
+      "desc": "harm_rate_safe < 0.04 in >=60% of all condition-seed runs"
+    },
+    "c4_harm_discrimination": {
+      "wins": 2,
+      "pass": false,
+      "desc": "SWS_THEN_REM harm_discrimination > WAKING_ONLY in >=3/5 seeds"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.0009659995557740331,
+      "slot_cosine_sim_post_last_sws": 0.0009659995557740331,
+      "harm_rate_safe": 0.008475480585628085,
+      "harm_rate_dangerous": 0.007987733976046244,
+      "harm_discrimination": -0.00020110607147216797,
+      "harm_eval_safe": 0.5414942502975464,
+      "harm_eval_dangerous": 0.5412931442260742,
+      "train_harm_safe_final": 0.00842327377597491,
+      "train_harm_dang_final": 0.008089834547042847,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_ONLY",
+      "slot_cosine_sim": 0.00044795044232159853,
+      "slot_cosine_sim_post_last_sws": 0.00044795044232159853,
+      "harm_rate_safe": 0.008475480585628085,
+      "harm_rate_dangerous": 0.007987733976046244,
+      "harm_discrimination": -0.00020110607147216797,
+      "harm_eval_safe": 0.5414942502975464,
+      "harm_eval_dangerous": 0.5412931442260742,
+      "train_harm_safe_final": 0.00842327377597491,
+      "train_harm_dang_final": 0.008089834547042847,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 0.00044795044232159853,
+      "slot_cosine_sim_post_last_sws": 0.00044795044232159853,
+      "harm_rate_safe": 0.008475480585628085,
+      "harm_rate_dangerous": 0.007987733976046244,
+      "harm_discrimination": -0.00013047456741333008,
+      "harm_eval_safe": 0.532368004322052,
+      "harm_eval_dangerous": 0.5322375297546387,
+      "train_harm_safe_final": 0.00842327377597491,
+      "train_harm_dang_final": 0.008089834547042847,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 7,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.002224390394985676,
+      "slot_cosine_sim_post_last_sws": 0.002224390394985676,
+      "harm_rate_safe": 0.0008222243344783784,
+      "harm_rate_dangerous": 0.005934141458405389,
+      "harm_discrimination": 0.08249479532241821,
+      "harm_eval_safe": 0.07398159801959991,
+      "harm_eval_dangerous": 0.15647639334201813,
+      "train_harm_safe_final": 0.0006582819151878357,
+      "train_harm_dang_final": 0.005609439021348953,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_ONLY",
+      "slot_cosine_sim": 0.9999996423721313,
+      "slot_cosine_sim_post_last_sws": 0.9999996423721313,
+      "harm_rate_safe": 0.0008222243344783784,
+      "harm_rate_dangerous": 0.005934141458405389,
+      "harm_discrimination": 0.08249479532241821,
+      "harm_eval_safe": 0.07398159801959991,
+      "harm_eval_dangerous": 0.15647639334201813,
+      "train_harm_safe_final": 0.0006582819151878357,
+      "train_harm_dang_final": 0.005609439021348953,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 1.0,
+      "slot_cosine_sim_post_last_sws": 1.0,
+      "harm_rate_safe": 0.005489864238368141,
+      "harm_rate_dangerous": 0.00757179032696618,
+      "harm_discrimination": -0.09173712134361267,
+      "harm_eval_safe": 0.2031954973936081,
+      "harm_eval_dangerous": 0.11145837604999542,
+      "train_harm_safe_final": 0.0019672895764311156,
+      "train_harm_dang_final": 0.005500558769702911,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 13,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": -0.012985332868993282,
+      "slot_cosine_sim_post_last_sws": -0.012985332868993282,
+      "harm_rate_safe": 0.0011290885860390134,
+      "harm_rate_dangerous": 0.006946506321430206,
+      "harm_discrimination": 0.05662274360656738,
+      "harm_eval_safe": 0.0929986983537674,
+      "harm_eval_dangerous": 0.14962144196033478,
+      "train_harm_safe_final": 0.0008526222078998884,
+      "train_harm_dang_final": 0.006947845264275869,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_ONLY",
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_cosine_sim_post_last_sws": 0.9999998807907104,
+      "harm_rate_safe": 0.0011290885860390134,
+      "harm_rate_dangerous": 0.006946506321430206,
+      "harm_discrimination": 0.05662274360656738,
+      "harm_eval_safe": 0.0929986983537674,
+      "harm_eval_dangerous": 0.14962144196033478,
+      "train_harm_safe_final": 0.0008526222078998884,
+      "train_harm_dang_final": 0.006947845264275869,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 1.0,
+      "slot_cosine_sim_post_last_sws": 1.0,
+      "harm_rate_safe": 0.0011152278769016267,
+      "harm_rate_dangerous": 0.00626952047612932,
+      "harm_discrimination": 0.015387751162052155,
+      "harm_eval_safe": 0.09671496599912643,
+      "harm_eval_dangerous": 0.11210271716117859,
+      "train_harm_safe_final": 0.0008442872090140979,
+      "train_harm_dang_final": 0.007142410935958227,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 100,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": -0.005960316397249699,
+      "slot_cosine_sim_post_last_sws": -0.005960316397249699,
+      "harm_rate_safe": 0.0007168873219357598,
+      "harm_rate_dangerous": 0.006384483422173393,
+      "harm_discrimination": 0.008302537724375725,
+      "harm_eval_safe": 0.03123396821320057,
+      "harm_eval_dangerous": 0.039536505937576294,
+      "train_harm_safe_final": 0.0005835729185740153,
+      "train_harm_dang_final": 0.005172960319121679,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 100,
+      "condition": "SWS_ONLY",
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_cosine_sim_post_last_sws": 0.9999998807907104,
+      "harm_rate_safe": 0.0007168873219357598,
+      "harm_rate_dangerous": 0.006384483422173393,
+      "harm_discrimination": 0.008302537724375725,
+      "harm_eval_safe": 0.03123396821320057,
+      "harm_eval_dangerous": 0.039536505937576294,
+      "train_harm_safe_final": 0.0005835729185740153,
+      "train_harm_dang_final": 0.005172960319121679,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 100,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_cosine_sim_post_last_sws": 0.9999998807907104,
+      "harm_rate_safe": 0.0007168873219357598,
+      "harm_rate_dangerous": 0.006384483422173393,
+      "harm_discrimination": 0.008258618414402008,
+      "harm_eval_safe": 0.0313851498067379,
+      "harm_eval_dangerous": 0.03964376822113991,
+      "train_harm_safe_final": 0.0005835729185740153,
+      "train_harm_dang_final": 0.005172960319121679,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 200,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": -0.0021946143824607134,
+      "slot_cosine_sim_post_last_sws": -0.0021946143824607134,
+      "harm_rate_safe": 0.007624411668645012,
+      "harm_rate_dangerous": 0.007960924318101671,
+      "harm_discrimination": -0.06442803144454956,
+      "harm_eval_safe": 0.6882895827293396,
+      "harm_eval_dangerous": 0.62386155128479,
+      "train_harm_safe_final": 0.0029731163491805396,
+      "train_harm_dang_final": 0.007726745710770288,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 200,
+      "condition": "SWS_ONLY",
+      "slot_cosine_sim": 0.9999999403953552,
+      "slot_cosine_sim_post_last_sws": 0.9999999403953552,
+      "harm_rate_safe": 0.007624411668645012,
+      "harm_rate_dangerous": 0.007960924318101671,
+      "harm_discrimination": -0.06442803144454956,
+      "harm_eval_safe": 0.6882895827293396,
+      "harm_eval_dangerous": 0.62386155128479,
+      "train_harm_safe_final": 0.0029731163491805396,
+      "train_harm_dang_final": 0.007726745710770288,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 200,
+      "condition": "SWS_THEN_REM",
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_cosine_sim_post_last_sws": 0.9999998807907104,
+      "harm_rate_safe": 0.007064399946729342,
+      "harm_rate_dangerous": 0.0078027376082208414,
+      "harm_discrimination": 0.10571835935115814,
+      "harm_eval_safe": 0.1820036917924881,
+      "harm_eval_dangerous": 0.28772205114364624,
+      "train_harm_safe_final": 0.007698372401793799,
+      "train_harm_dang_final": 0.007786070281267166,
+      "sleep_passes": 20
+    }
+  ],
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "SWS_ONLY",
+      "SWS_THEN_REM"
+    ],
+    "sleep_interval": 10,
+    "sws_write_steps": 20,
+    "context_switch_every": 5,
+    "training_episodes": 200,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 30,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
+}

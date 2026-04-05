@@ -6016,6 +6016,8 @@
     condition due to sub-threshold benefit_exposure (proximity_benefit_scale=0.03 default,
     benefit_exposure~0.025 < threshold 0.1). EXQ-238 with corrected env params will provide
     the clean causal ablation.
+    EXQ-234 PASS (2026-04-05): independent replication of wanting/liking dissociation with
+    seeds [1,2,3]. All 4 criteria met in all 3 seeds. Replicates EXQ-074f.
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -9163,6 +9165,12 @@
     experiment found a specific supervised config INSUFFICIENT -- insufficient supervision
     failing to differentiate is inconclusive for the necessity claim (does not prove
     supervision is unnecessary, nor sufficient). See EXQ-211 for partial replication.
+    EXQ-239 FAIL (2026-04-05, supersedes EXQ-187a): lambda=0.5, warmup=500ep -- cosine_sim=1.0
+    in both supervised and ablated conditions. Supervised head learns terrain classification but
+    latent representations don't differentiate. Weakens claim but substrate-confounded: ablated
+    baseline also shows cosine_sim=1.0, meaning context_memory infrastructure may be too immature
+    for either pathway. A deeper analysis of the attribution pipeline's expected mathematical
+    functions is needed to design better tests.
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
 
@@ -9878,6 +9886,11 @@
     and learning trajectory. Hagewoud 2010 (Sleep) -- monostrategy convergence
     when sleep absent, providing indirect support.
     Registered 2026-04-05. V4 scope.
+  evidence_quality_note: >
+    EXQ-244 FAIL (2026-04-05): balanced replay (forward+reverse) did not reliably increase
+    behavioral diversity vs forward-only (2/5 seeds, needed 3/5). Proxy substrate (64 replay
+    steps, no actual offline phase). Offline replay alone cannot increase entropy without tested
+    alternative strategies and random walks as source material for diversification.
 
 - id: SD-017
   title: "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated."
