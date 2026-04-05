@@ -10785,3 +10785,100 @@
       Risk: NEUTRAL to mildly IMPROVES Phase 2/3. DPM potential:
       CONDITIONAL (architecture-neutral; appropriate where other
       options are contraindicated).
+
+- id: INV-049
+  title: "Any agent that builds a model of the world, acts in that world, and learns from experience cannot safely update its world model while using it to navigate the world; it therefore requires periodic offline phases in which action is suspended and the model is reorganised via replay and simulation -- this is not a biological contingency but a general computational necessity for model-building agents."
+  claim_type: invariant
+  subject: architecture.offline_update_necessity_general_principle
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-044
+    - INV-045
+    - SD-017
+  notes: >
+    Registered 2026-04-06. This is the general law of which INV-044 (Bayesian
+    staging: prior construction must precede posterior inference) and INV-045
+    (phase ordering: SWS-analog before REM-analog) are specific corollaries.
+    INV-049 makes the broader claim: offline phases are not a biological hack
+    but a computational necessity for any sufficiently complex model-building agent.
+    The necessity argument: updating a world model requires temporarily
+    destabilising the model's weight structure (replay, recalibration, schema
+    integration). A system that must simultaneously use its world model to
+    navigate the environment and update it cannot do both safely -- each model
+    update during online navigation destabilises the very predictions the agent
+    depends on for survival. Offline suspension of action removes this
+    constraint, allowing the model to be reorganised without consequence.
+    This is consistent with: (1) experimental observation that removing sleep
+    from the REE harness produces behavioural rigidity (monostrategy
+    convergence, inability to update priors, cosine_sim -> 1.0 in EXQ-150
+    zero-contrast finding); (2) the SHY principle (Tononi & Cirelli 2014) that
+    synaptic renormalisation cannot occur during active wake without disrupting
+    ongoing activity; (3) catastrophic interference in ML: neural networks
+    trained continuously on new data without replay degrade on old data --
+    replay (offline update) prevents this; (4) the general principle in
+    reinforcement learning that experience replay and offline training improve
+    generalisation relative to pure online learning.
+    The formulation has two important implications:
+    (1) Sleep is not peculiar to biology -- any artificial agent that learns a
+    world model from continuous experience will benefit from sleep-like offline
+    phases, and may require them for long-term stable behaviour.
+    (2) Dementia can be understood as progressive failure of offline model
+    updating (INV-046), not merely as neurodegeneration per se -- the
+    neurodegeneration becomes cognitively manifest when it disrupts the offline
+    maintenance cycle enough that the world model can no longer be updated.
+    EXQ-150 supporting note: all three conditions (NO_ANNEAL, ANNEAL, RESET)
+    showed final_contrast = 0.0 across all seeds -- zero context discrimination
+    regardless of what the offline phase did to the residue field weights. This
+    is consistent with INV-049: the experiment demonstrated that without the
+    proper slot-forming infrastructure (SD-017), no offline operation -- however
+    well-designed -- can produce context-specific representations.
+
+- id: MECH-178
+  title: "Elevated tonic noradrenergic activity (from chronic stress, stimulant exposure, or noradrenaline reuptake inhibitor antidepressants) suppresses REM sleep by maintaining locus coeruleus REM-off firing above the silence threshold required for REM generation, thereby blocking MECH-123 precision recalibration and producing progressive behavioural rigidity equivalent to partial MECH-123 deprivation -- independent of any pharmacological REM suppression."
+  claim_type: mechanism_hypothesis
+  subject: neurochemistry.noradrenergic_tone_rem_suppression_rigidity
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-173
+    - MECH-123
+    - INV-049
+  notes: >
+    Registered 2026-04-06. During REM sleep, locus coeruleus (LC) noradrenergic
+    neurons fall almost entirely silent (Aston-Jones & Bloom 1981, Science) --
+    this LC silence is a necessary permissive condition for REM generation and
+    for the cholinergic-dominant neurochemistry of MECH-123 (precision
+    recalibration). The LC silence allows ACh-driven cortical desynchronisation
+    and the low-noradrenaline state in which precision priors can be reset.
+    Mechanism: elevated tonic NA activity maintains LC firing above the silence
+    threshold, preventing REM entry. This differs from anticholinergic REM
+    suppression (MECH-173, which blocks ACh drive directly) -- noradrenergic
+    suppression works by maintaining the competing wake-promoting signal.
+    Sources of elevated tonic NA:
+    (1) Chronic stress: sustained HPA/sympathetic activation maintains high
+    basal LC firing; a well-replicated mechanism for REM disruption in PTSD
+    and in animal models of chronic stress.
+    (2) Stimulant use: amphetamines and methylphenidate release NA (and DA)
+    from terminals; even moderate chronic use elevates tonic NA and fragments
+    REM architecture.
+    (3) SNRIs / NRIs (venlafaxine, duloxetine, atomoxetine, reboxetine):
+    block NA reuptake transporter, elevating synaptic NA throughout sleep;
+    class-level REM suppression well-documented on PSG.
+    (4) Sympathomimetics (decongestants, high-dose caffeine): raise NA/adrenaline
+    tone acutely, fragmenting REM on the nights of use.
+    Behavioural consequence: because MECH-123 cannot run without REM, the
+    precision priors set during the previous active period are not recalibrated.
+    The system carries overconfident or miscalibrated priors into the next
+    waking period. Repeated across nights, this produces the progressive
+    behavioural rigidity observed when sleep is withheld from the REE harness:
+    the agent cannot update its decision thresholds, policy selection converges
+    to a narrow attractor, and exploration decreases.
+    The noradrenergic pathway is therefore a non-pharmacological mechanism for
+    the same pipeline failure that MECH-173 describes pharmacologically.
+    Prediction: individuals with high trait noradrenergic tone (high harm-
+    avoidance, PTSD, chronic work stress) should show faster monostrategy
+    convergence on laboratory context-discrimination tasks after simulated
+    nights of REM suppression than low-NA-tone controls at matched total
+    sleep time -- confirming that it is REM quality, not total sleep, that
+    mediates the rigidity effect.

@@ -713,6 +713,12 @@
     "title": "Any pharmacological agent that disrupts sleep architecture produces equivalent attribution pipeline degradation to behavioral sleep deprivation, proportional to which phase(s) are disrupted and the duration of exposure -- the pipeline is mechanism-agnostic and responds only to phase fidelity.",
     "type": "invariant"
   },
+  "INV-049": {
+    "status": "candidate",
+    "subject": "architecture.offline_update_necessity_general_principle",
+    "title": "Any agent that builds a model of the world, acts in that world, and learns from experience cannot safely update its world model while using it to navigate the world; it therefore requires periodic offline phases in which action is suspended and the model is reorganised via replay and simulation -- this is not a biological contingency but a general computational necessity for model-building agents.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -1779,6 +1785,12 @@
     "status": "candidate",
     "subject": "pharmacology.sleep_architecture_restoration_disease_modifying",
     "title": "Any pharmacological intervention that durably restores the NREM-to-REM sequence and preserves phase durations in MCI or early Alzheimer's disease is predicted to be disease-modifying via pipeline protection -- upstream of irreversible neurodegeneration, breaking the MECH-171 vicious cycle before schema scaffold collapse, with predicted effect size larger in early MCI than established AD.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-178": {
+    "status": "candidate",
+    "subject": "neurochemistry.noradrenergic_tone_rem_suppression_rigidity",
+    "title": "Elevated tonic noradrenergic activity (from chronic stress, stimulant exposure, or noradrenaline reuptake inhibitor antidepressants) suppresses REM sleep by maintaining locus coeruleus REM-off firing above the silence threshold required for REM generation, thereby blocking MECH-123 precision recalibration and producing progressive behavioural rigidity equivalent to partial MECH-123 deprivation -- independent of any pharmacological REM suppression.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {
