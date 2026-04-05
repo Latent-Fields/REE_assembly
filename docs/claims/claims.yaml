@@ -5149,6 +5149,11 @@
     Critical design finding: fixed-weight CEM scoring (not a learned benefit_eval head) was
     what finally worked. All 5+ prior failures were head-learning failures, not architecture
     failures. V4 implementation of approach-avoidance should start from CEM scoring.
+    GOVERNANCE META (2026-04-06): Illusory conflict resolution risk. Go/NoGo symmetry untested
+    with real z_goal. Approach sub-channel cannot be evaluated when goal signal is absent.
+    Non-contributory FAILs (EXQ-235, EXQ-086 measurement bug) removed from scoring but the
+    remaining supports are from specialized selectors, not the full symmetric gate. Status:
+    pending_retest_after_substrate (gate: EXQ-247 + SD-015 resource indicator encoding).
   depends_on:
     - ARC-021
     - MECH-069
@@ -5663,6 +5668,12 @@
     wiring issue), harm_rate=1.0 in dual-stream conditions (POC wiring regression). Classified
     non-contributory (2026-04-06 governance): SD-011 stream separation already confirmed in
     EXQ-178b (r2=0.742) and EXQ-198 (dissociation_advantage=1.243). Diagnostic only.
+    GOVERNANCE META (2026-04-06): All experimental evidence is diagnostic (EXQ-241 x2, EXQ-178
+    series). D3 reversal (R^2_affective > R^2_sensory in all seeds) is an active signal:
+    AffectiveHarmEncoder is currently a monotone transform of the sensory stream, not a genuinely
+    distinct pathway. Wiring needs a second source (context, history, residue field) inaccessible
+    to the sensory stream. Status: pending_retest_after_substrate (gate: EXQ-247 wires z_harm_a
+    into E3 commit gating, may create functional distinction).
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -6018,6 +6029,12 @@
     the clean causal ablation.
     EXQ-234 PASS (2026-04-05): independent replication of wanting/liking dissociation with
     seeds [1,2,3]. All 4 criteria met in all 3 seeds. Replicates EXQ-074f.
+    GOVERNANCE META (2026-04-06): Illusory conflict resolution risk. Supports come exclusively
+    from wanting/liking circuit (EXQ-074f, EXQ-234) which tests incentive salience -- a narrow
+    z_goal pathway. The broader claim (structured goal latent for flexible goal-directed behavior)
+    is untested. Non-contributory FAILs (EXQ-235) removed from scoring but indicate z_goal
+    alignment failure persists outside the wanting pathway. Status: pending_retest_after_substrate
+    (gate: EXQ-247 SD-011/SD-012 integration).
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -6564,6 +6581,11 @@
     EXQ-076f non_contributory (2026-04-04): EXQ-076 series (076d/e/f) tests E1 goal
     conditioning via z_goal persistence metrics -- does not isolate the theta-bypass
     pathway. ARC-032 remains untested as a standalone claim. No evidence_direction change.
+    GOVERNANCE META (2026-04-06): Illusory conflict resolution risk -- zero genuine evidence.
+    EXQ-228, EXQ-228a both non-contributory (z_goal precondition failure: goal_norm=0.031
+    < 0.05 threshold). Theta pathway has never been testable. Conflict ratio is undefined,
+    not resolved. Any promotion signal would be illusory. Status: pending_retest_after_substrate
+    (gate: EXQ-247 must produce z_goal_norm >= 0.05).
 
 - id: ARC-033
   title: "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream."
@@ -7876,6 +7898,10 @@
     (effective_benefit=0.025*3=0.075). Both conditions fail to seed. Not a test of SD-012
     causal role. EXQ-189 validity confirmed (used proximity_benefit_scale=0.18). EXQ-238
     will rerun with corrected env params (proximity_benefit_scale=0.18, matching EXQ-189).
+    GOVERNANCE META (2026-04-06): All experimental evidence is diagnostic/non-contributory
+    (EXQ-085 series, EXQ-233, EXQ-238). drive_level extraction has never produced
+    z_goal_norm > 0.1. Evidence is entirely negative but classified as substrate limitation.
+    Status: pending_retest_after_substrate (gate: EXQ-247 SD-011/SD-012 co-integration).
 
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
@@ -9171,6 +9197,11 @@
     baseline also shows cosine_sim=1.0, meaning context_memory infrastructure may be too immature
     for either pathway. A deeper analysis of the attribution pipeline's expected mathematical
     functions is needed to design better tests.
+    GOVERNANCE META (2026-04-06): Weakens classification genuine but substrate-confounded.
+    cosine_sim=1.0 in both conditions means context_memory infrastructure too immature for
+    either pathway. A first-principles analysis of the attribution pipeline's expected
+    mathematical functions is needed before redesigning the test. Status: needs_redesign
+    (pipeline mathematical analysis required).
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
 
@@ -9751,6 +9782,13 @@
     Governance 2026-04-03: hold_pending_v3_substrate applied. implementation_phase=v3,
     2 supports from lit entries, 0 exp entries. No V3 substrate experiments yet. Standard
     V3-pending gate: hold until V3 experiments demonstrate dual-system discrimination.
+    GOVERNANCE META (2026-04-06): Illusory conflict resolution risk + needs task redesign.
+    EXQ-237a non-contributory (z_goal substrate limitation). But even the habit condition
+    showed zero lift in simple tasks (lift_simple=0.0), suggesting the test paradigm itself
+    is flawed -- habit formation isn't observable in the current task design. Superseding
+    experiment needs: (a) a task where monostrategy IS the correct behavior (repeated
+    identical environments) to establish habit detection, then (b) novel environments where
+    planned pathway should add value. Status: needs_redesign (task paradigm + substrate).
 
 - id: MECH-164
   title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by
@@ -9891,6 +9929,11 @@
     behavioral diversity vs forward-only (2/5 seeds, needed 3/5). Proxy substrate (64 replay
     steps, no actual offline phase). Offline replay alone cannot increase entropy without tested
     alternative strategies and random walks as source material for diversification.
+    GOVERNANCE META (2026-04-06): EXQ-244 weakens classification may be test-design issue,
+    not claim issue. Replay cannot increase behavioral diversity without exploration-generated
+    alternative strategies as source material. Superseding experiment must pair replay diversity
+    mechanism with random walks or explicit exploration to provide diverse candidates for replay
+    to select from. Status: needs_redesign (pair replay with exploration mechanism).
 
 - id: SD-017
   title: "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated."
