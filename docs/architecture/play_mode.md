@@ -140,6 +140,7 @@ Building, sequencing, multi-step assembly toward a target state.
 - **Synthetic signal complexity:** synthetic *entities* layered on top of synthetic goals — representational substitution
 - **Developmental position:** requires constructive play competence (trajectory selection must be functional). This is the first point where the hypothesis tag and play tag co-operate: the agent maintains a counterfactual representation it knows is synthetic, within a play frame with synthetic stakes.
 - **What emerges:** full commitment architecture exercised in low-stakes mode; counterfactual reasoning under play-frame protection
+- **Testable prediction:** agents whose curriculum skips pretend play should show commitment architecture failures in adult real-consequence operation — specifically: false commits, frame confusion between real and hypothetical (treating real consequences as synthetic), and undertrained commitment gating. A developmental_ablation_discriminative_pair (FULL_PLAY_CURRICULUM vs SKIP_PRETEND) should show this signature.
 
 ### Games with Rules
 

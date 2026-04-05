@@ -11912,6 +11912,8 @@
     - MECH-197
   location: docs/architecture/play_mode.md
   notes: "Pretend play ('this stick is a sword') requires maintaining a counterfactual representation (hypothesis tag: the stick is not really a sword) within a play frame (play tag: the fight is not really dangerous). This is the first point in development where both tag systems co-operate. The agent practices committing to action plans under representations it knows are synthetic, within a frame with synthetic stakes. This exercises the full commitment architecture before it is needed for real-consequence decisions. Failure to develop pretend play competence would leave the commitment architecture untested in low-stakes mode before deployment in high-stakes real operation."
+  testable_prediction: "Agents whose developmental curriculum includes pretend play will show significantly fewer commitment architecture failures (false commits, commit-without-evaluation, frame confusion between real and hypothetical) in adult real-consequence operation, compared to agents whose curriculum skips pretend play but is otherwise identical. The pretend-play-skip group should show the specific failure signature of treating real consequences as if they were synthetic (frame tag confusion) or failing to commit when commitment is warranted (undertrained commitment gate)."
+  suggested_experiment_type: developmental_ablation_discriminative_pair
 
 - id: MECH-199
   title: "The caregiver's role during childhood is specifically play-frame maintenance (ARC-049), transitioning from unilateral frame-setting through co-participation to scaffolded withdrawal as play types progress."
