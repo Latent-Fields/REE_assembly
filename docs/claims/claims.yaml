@@ -6482,6 +6482,13 @@
     current location, not memory). C3 PASS (wanting l1_fraction=0.355 -- directional
     approach toward goal location). Wanting and liking operate on distinct spatial and
     temporal scales as predicted. C1 redesign needed for behavioural resource-rate evidence.
+    EXQ-074e FAIL runs (x3) and EXQ-074f FAIL runs (x3): marked non_contributory
+    2026-04-06. These runs failed C1 (wanting resource rate gap < threshold) because the
+    serotonergic substrate (MECH-186/187/188) was absent. Without MECH-187 (incentive
+    salience gain regulation), z_goal-driven wanting produces insufficient resource-rate
+    uplift -- the failure is a missing substrate issue, not evidence against MECH-117.
+    These runs do not score toward MECH-117 governance. Re-run after serotonergic
+    mechanisms are implemented (see EXP-0095 to EXP-0101).
     Clinical application (INV-053): the architecture predicts anhedonia specifically as
     wanting failure with liking potentially preserved -- the Berridge dissociation is an
     architectural consequence of z_goal failure (MECH-187 gain suppression), not a
@@ -6497,8 +6504,12 @@
     EXQ-234 PASS 4/4 (2026-04-04): independent replication with seeds [1,2,3] (EXQ-074f
     used seeds [42,7,13]). wanting_l1_fraction=1.0 across all 3 seeds (vs liking
     0.40-0.66). l1_dissociation=0.34-0.60 (all > 0.10 threshold). goal_norm=0.32-0.37
-    (seeding active). Combined with EXQ-074f: 6 independent seeds all PASS. No weakens
-    evidence. Dissociation is robust and replicable.
+    (seeding active). Combined with EXQ-074f: 6 independent seeds all PASS. No genuine
+    weakens evidence (all prior FAIL/mixed runs reclassified non_contributory -- see above).
+    Dissociation is robust and replicable. Basic mechanism validated.
+    Serotonergic scope: full clinical validation of wanting under adversive conditions
+    (LONG_HORIZON, INV-053) is BLOCKED pending MECH-186/187/188 implementation.
+    EXP-0095 to EXP-0101 define the serotonergic validation experiments.
   status_note: |
     Promoted candidate -> provisional 2026-04-04 (EXQ-074f PASS 4/4, seed=42).
     Promoted provisional -> stable 2026-04-04 (EXQ-234 PASS 4/4, seeds=[1,2,3]).

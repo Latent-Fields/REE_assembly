@@ -290,6 +290,143 @@
       "status": "proposed",
       "added_utc": "2026-04-02",
       "notes": "Small implementation: ~3 lines in agent.py. Wait until more V3 experiments have run to establish reliable baseline_variance estimates before implementing."
+    },
+    {
+      "proposal_id": "EXP-0095",
+      "claim_id": "Q-034",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "high",
+      "objective": "Characterize the hazard/resource ratio threshold above which the depression attractor forms (behavioral flattening: HABIT==PLANNED). EXQ-237a established the attractor exists at LONG_HORIZON parameters; this sweep identifies boundary conditions.",
+      "design": "3x3 grid sweep of hazard_rate (low/medium/high) x resource_rate (low/medium/high). For each cell, 3 seeds in HABIT and PLANNED mode. Measure HABIT/PLANNED behavioral equivalence score (|HABIT_harm_rate - PLANNED_harm_rate|). PASS: identify threshold ratio above which gap < 0.02 in majority (>=2/3) of seeds; produce ratio-to-gap curve showing transition.",
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "Immediately testable -- no new architecture needed, parameter extension of EXQ-237a. Key deliverable is the threshold estimate, not just PASS/FAIL."
+    },
+    {
+      "proposal_id": "EXP-0096",
+      "claim_id": "INV-053",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "high",
+      "objective": "Systematically replicate and characterize the computational depression attractor from EXQ-237a seed=42. Establish that z_harm_a elevation + z_goal failure -> HABIT/PLANNED flattening is robust across seeds.",
+      "design": "Multi-seed (5 seeds) replication of LONG_HORIZON condition from EXQ-237a (high hazard/resource ratio). Measure per seed: z_harm_a_mean, z_goal_norm, HABIT_harm_rate, PLANNED_harm_rate, behavioral_equivalence_score. PASS: >=4/5 seeds show z_goal_norm < 0.1 AND |HABIT_harm_rate - PLANNED_harm_rate| < 0.02 (modes indistinguishable).",
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "EXQ-237a seed=42 is preliminary evidence. This experiment provides the systematic replication needed to register INV-053 as active. Run before MECH-186/187/188 experiments."
+    },
+    {
+      "proposal_id": "EXP-0097",
+      "claim_id": "INV-054",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "high",
+      "objective": "Test the phase-transition recovery prediction: once the depression attractor is established (LONG_HORIZON), switching to LOW_HARM environment produces non-linear delayed recovery, not immediate improvement.",
+      "design": "Phase 1: train 3 seeds in LONG_HORIZON until depression attractor established (z_goal_norm < 0.1 for 50+ episodes). Phase 2: switch to LOW_HARM environment, continue training 300 additional episodes. Measure recovery trajectory: z_goal_norm and HABIT/PLANNED gap over phase 2 episodes. PASS: recovery trajectory shows latency >50 phase-2 episodes before z_goal_norm crosses 0.3 threshold (demonstrating delayed/phase-transition recovery, not immediate). FAIL: z_goal_norm recovers within 10 episodes (graded not phase-transition).",
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "INV-054 maintenance loop predicts that the depressive state is self-maintaining: z_goal absent -> no terrain exploration -> terrain stays collapsed. Recovery requires accumulated terrain re-exposure to cross a threshold. This is a unique prediction distinguishing INV-054 from simple reward-signal insufficiency accounts."
+    },
+    {
+      "proposal_id": "EXP-0098",
+      "claim_id": "MECH-186",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "objective": "Test whether artificially maintaining a minimum VALENCE_WANTING floor (simulating serotonergic benefit terrain maintenance) prevents depression attractor formation in LONG_HORIZON condition.",
+      "design": "2-condition x 3-seed matched design: (A) LONG_HORIZON/no_floor (baseline, depression expected), (B) LONG_HORIZON/floor_maintained (clip VALENCE_WANTING minimum=0.05 throughout training). Measure: z_goal_norm, |HABIT_harm_rate - PLANNED_harm_rate|. PASS: condition B shows z_goal_norm >= 0.15 AND HABIT/PLANNED gap >= 0.05 vs condition A (floor prevents depression attractor).",
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "Requires small implementation: floor clamp on VALENCE_WANTING in agent. Run EXP-0096 first to confirm depression attractor is robust before testing rescue mechanisms. Maps to environmental intervention and activity scheduling in therapy (externally supplied terrain restoration)."
+    },
+    {
+      "proposal_id": "EXP-0099",
+      "claim_id": "MECH-187",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "objective": "Test bidirectional gain effects on z_goal seeding: reduced gain replicates depression in SIMPLE/LOW_HARM condition; elevated gain rescues LONG_HORIZON from depression attractor. Bidirectional prediction is a strong discriminating test.",
+      "design": "3-condition x 3-seed: (A) SIMPLE/normal_gain (baseline), (B) SIMPLE/reduced_gain (multiply z_goal seeding gain by 0.2), (C) LONG_HORIZON/elevated_gain (multiply gain by 5). Measure: z_goal_norm, HABIT/PLANNED gap. PASS: condition B shows z_goal_norm < 0.1 in SIMPLE (reduced gain induces depression in easy environment); condition C shows partial z_goal_norm rescue >= 0.10 in LONG_HORIZON (elevated gain partially restores seeding despite terrain collapse).",
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "Maps to SSRI mechanism: not mood elevation per se, but recalibration of the approach system responsiveness to terrain signals. Bidirectional prediction (gain reduction causes depression; gain elevation rescues) is what distinguishes MECH-187 from MECH-186 (terrain maintenance). Requires gain parameter in z_goal seeding module."
+    },
+    {
+      "proposal_id": "EXP-0100",
+      "claim_id": "MECH-188",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "objective": "Test whether injecting a sustained z_goal signal (simulating PFC top-down goal persistence) prevents behavioral flattening during LONG_HORIZON even when benefit terrain has collapsed.",
+      "design": "2-condition x 3-seed: (A) LONG_HORIZON/no_injection (baseline), (B) LONG_HORIZON/z_goal_injected (add constant z_goal_seed=0.3 to action selection phase, bypassing terrain-based seeding). Measure: HABIT/PLANNED behavioral gap, harm_rate. PASS: injection maintains HABIT/PLANNED gap >= 0.05 in LONG_HORIZON (terrain collapsed but external goal scaffolding preserves goal-directed behavior).",
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "Maps to behavioural activation therapy: injecting goal structure that the terrain can no longer supply spontaneously. Key test: is MECH-188 sufficient in isolation? INV-052 (EXP-0101) tests whether any single mechanism is sufficient. MECH-188 is a top-down override, distinct from terrain manipulation (MECH-186) and gain regulation (MECH-187)."
+    },
+    {
+      "proposal_id": "EXP-0101",
+      "claim_id": "INV-052",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "high",
+      "objective": "Test whether any single serotonergic rescue mechanism (MECH-186, 187, or 188 in isolation) fully restores LONG_HORIZON performance to SIMPLE baseline, or whether full recovery requires all three. Confirms INV-052: tonic regulatory system is necessary across all three pipeline stages.",
+      "design": "5-condition x 3-seed: (A) SIMPLE/no_interventions (healthy baseline), (B) LONG_HORIZON/no_interventions (depression baseline), (C) LONG_HORIZON/terrain_floor_only (MECH-186), (D) LONG_HORIZON/elevated_gain_only (MECH-187), (E) LONG_HORIZON/goal_injection_only (MECH-188). Compare z_goal_norm and HABIT/PLANNED gap for each condition vs healthy baseline. PASS: no single mechanism (C, D, or E) recovers to >= 80% of SIMPLE baseline on both metrics; partial rescue by each individually confirms distinct stages but joint necessity.",
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "Depends on EXP-0098, EXP-0099, EXP-0100 completing first for parameter calibration of each mechanism. Should run after those three complete. A full combined-mechanisms condition (all three together) can optionally be added as condition F to test whether all three together do restore baseline."
+    },
+    {
+      "proposal_id": "LIT-0097",
+      "claim_id": "INV-053",
+      "proposal_type": "literature",
+      "target_repo": "REE_assembly",
+      "priority": "high",
+      "objective": "Ground INV-053 (computational depression attractor) in computational psychiatry, distinguishing motivational terrain collapse from aberrant reward learning. Huys/Dayan/Adams lineage focuses on incorrect Q-values and precision weighting; INV-053 is about the substrate (benefit terrain, z_goal seeding) degrading. Establish this as a distinct failure mode.",
+      "key_sources": [
+        "Huys, Daw & Dayan (2021) - Depression: A decision-theoretic analysis (Annual Review of Neuroscience) -- reward learning in depression, pruning, and effort",
+        "Adams, Huys & Roiser (2016) - Computational psychiatry: towards a mathematically informed understanding of mental illness (Journal of Neurology, Neurosurgery & Psychiatry)",
+        "Dayan & Huys (2008) - Serotonin, inhibition, and negative mood (PLOS Computational Biology) -- 5-HT and reward modulation",
+        "Eshel & Roiser (2010) - Reward and punishment processing in depression (Biological Psychiatry) -- anhedonia as reward sensitivity deficit",
+        "Treadway & Zald (2011) - Reconsidering anhedonia in depression: lessons from translational neuroscience (Neuroscience and Biobehavioral Reviews) -- wanting vs liking in clinical anhedonia"
+      ],
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "Key framing contribution: REE locates depression at the terrain/seeding layer, not the value-learning layer. This is architecturally distinct from existing computational psychiatry models and should be documented as such in the paper."
+    },
+    {
+      "proposal_id": "LIT-0098",
+      "claim_id": "MECH-187",
+      "proposal_type": "literature",
+      "target_repo": "REE_assembly",
+      "priority": "medium",
+      "objective": "Ground MECH-187 (incentive salience gain regulation by serotonin) in 5-HT neuromodulation and incentive salience literature. Serotonin modulates dopaminergic incentive salience attribution; MECH-187 formalizes this as gain on z_goal seeding from benefit terrain signals.",
+      "key_sources": [
+        "Berridge & Robinson (1998) - What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience? (Brain Research Reviews) -- canonical wanting/liking dissociation",
+        "Dayan & Huys (2009) - Serotonin in affective control (Annual Review of Neuroscience) -- 5-HT as opponent modulator of dopaminergic reward",
+        "Cools, Roberts & Robbins (2008) - Serotoninergic regulation of emotional and behavioural control processes (Trends in Cognitive Sciences) -- 5-HT and behavioral control",
+        "Robinson & Berridge (2003) - Addiction and incentive-sensitization theory (Addiction) -- incentive salience, gain modulation, and sensitization",
+        "Lim et al. (2020) or Fonseca et al. (2015) - Serotonin modulation of dopamine-dependent reward and incentive salience (PFC/VTA/VLS circuit)"
+      ],
+      "status": "proposed",
+      "added_utc": "2026-04-06"
+    },
+    {
+      "proposal_id": "LIT-0099",
+      "claim_id": "INV-054",
+      "proposal_type": "literature",
+      "target_repo": "REE_assembly",
+      "priority": "medium",
+      "objective": "Ground INV-054 (depressive maintenance loop as self-sustaining attractor; recovery as phase transition) in clinical depression phenomenology and treatment response literature. Phase-transition prediction (non-linear, delayed recovery) is a unique testable consequence of the INV-054 maintenance loop.",
+      "key_sources": [
+        "Nesse (2000) - Is depression an adaptation? (Archives of General Psychiatry) -- ecological/functional framing of depression maintenance",
+        "Petersen et al. (2014) or Gotlib & Hammen (2008) -- depression maintenance and rumination as self-sustaining loop",
+        "Kupfer (1991) - Long-term treatment of depression (Journal of Clinical Psychiatry) -- antidepressant response latency as empirical constraint",
+        "Trivedi et al. (STAR*D, 2006) - Evaluation of outcomes with citalopram for depression (American Journal of Psychiatry) -- treatment response as non-linear process with substantial latency",
+        "Mathew, Manji & Charney (2008) - Novel drugs and therapeutic targets for severe mood disorders (Neuropsychopharmacology) -- phase-transition framing of antidepressant mechanism"
+      ],
+      "status": "proposed",
+      "added_utc": "2026-04-06",
+      "notes": "The key empirical constraint is treatment response latency (2-4 weeks for SSRIs). If recovery were graded, immediate partial response would be expected. Delayed non-linear response supports attractor/phase-transition account. This grounding is important for the paper's psychiatric section credibility."
     }
   ]
 }
