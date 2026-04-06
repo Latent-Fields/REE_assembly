@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_mnemonic_pe_hippocampal_states_bein2020",
+  "timestamp_utc": "2026-04-07T03:30:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "Mnemonic prediction errors bias hippocampal states",
+    "authors": ["Oded Bein", "Katherine Duncan", "Lila Davachi"],
+    "year": 2020,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-020-17287-1"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Provides the biological mechanism for how surprise triggers hippocampal switch from retrieval to encoding mode -- the precondition for contrastive replay. CA1-entorhinal connectivity increases (encoding the surprising input) while CA1-CA3 connectivity decreases (suppressing the old prediction) proportionally to prediction error magnitude. This is the waking-state precursor to offline contrastive replay: the hippocampus flags the mismatch and gates the anchor episode for replay. Mapping gap: this is online processing during waking, not offline replay; the contrastive pairing structure is not directly tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The connectivity shifts are measured during waking online processing, not during offline replay -- the mechanism may not transfer directly to the surprise buffer architecture MECH-205 posits.",
+    "The study uses room-image paradigm with discrete, countable changes -- unclear whether the same mechanism operates for naturalistic continuous prediction errors."
+  ],
+  "tags": ["mech_205", "mnemonic_prediction_error", "ca1_comparator", "hippocampal_states", "encoding_retrieval", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Mnemonic prediction errors bias hippocampal states: CA1-entorhinal connectivity increases and CA1-CA3 connectivity decreases with prediction error magnitude, shifting hippocampus toward encoding novel information and away from retrieving erroneous memory predictions.",
+    "ree_translation": "Maps onto the biological mechanism underlying MECH-205's surprise buffer population: when prediction error occurs, CA1 detects the mismatch (anchor CA3 prediction vs incoming entorhinal input), suppresses the old retrieval prediction, and upregulates encoding of the surprising input. This is the online flagging step that populates the surprise buffer for offline contrastive replay. The CA1-entorhinal vs CA1-CA3 connectivity balance is the biological implementation of the contrastive comparison: the surprising episode is tagged by how much it differs from the CA3 prediction.",
+    "mapping_caveat": "The study measures online waking connectivity during perception, not offline replay. MECH-205's surprise buffer and contrastive replay operate during offline sleep phases. The study shows HOW hippocampus detects and flags surprising episodes; it does not show how those flagged episodes are structured into contrastive pairs for offline replay.",
+    "source_context": "Human fMRI (high-resolution hippocampal subfield) during retrieval + perception of room images with 0-4 changes from learned versions. Left hemisphere CA1 connectivity measured."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Nature Communications, high-resolution hippocampal fMRI with subfield specificity. Mapping fidelity moderate -- the study shows the online mismatch detection mechanism, not the offline replay structure. Transfer risk moderate: online waking perception to offline sleep replay."
+  }
+}

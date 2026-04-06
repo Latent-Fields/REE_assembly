@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_ca1_mismatch_detector_duncan2011",
+  "timestamp_utc": "2026-04-07T03:30:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "Evidence for area CA1 as a match/mismatch detector: A high-resolution fMRI study of the human hippocampus",
+    "authors": ["Katherine Duncan", "Nicholas Ketz", "Souheil Inati", "Lila Davachi"],
+    "year": 2011,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.20933"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Foundational fMRI evidence for CA1 as an automatic comparator between CA3 predictions and sensory input. CA1 tracks total number of stimulus changes linearly and across task-relevance, consistent with automatic contrastive comparison. Supports the biological substrate of the contrastive causal structure in MECH-205. Confidence reduced: 2011 paper with lower fMRI resolution than current standards; does not address offline replay; maps to the detection mechanism not the replay structure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CA1's comparator function is demonstrated for perceptual mismatch during waking -- whether the same mechanism operates for replayed episodes during offline phases is not established by this study."
+  ],
+  "tags": ["mech_205", "ca1_comparator", "mismatch_detection", "hippocampus", "pattern_completion", "fmri"],
+  "mapping": {
+    "source_claim_statement": "CA1 displays responses consistent with a match/mismatch detector, tracking the total number of stimulus changes (0-4) roughly linearly and automatically regardless of task relevance. CA1 is the only hippocampal subfield to reliably show this sensitivity.",
+    "ree_translation": "CA1 implements the biological comparator for MECH-205's contrastive structure: CA3 generates the prediction (via pattern completion from the anchor episode), CA1 receives both CA3 output and direct entorhinal input (the variation), and CA1 computes the difference. During offline contrastive replay, this same CA1 comparator function would operate across the anchor-variation pairs, producing a graded mismatch signal that identifies which features distinguish surprising from non-surprising outcomes.",
+    "mapping_caveat": "The study demonstrates CA1 mismatch detection during online waking perception. MECH-205's contrastive structure operates during offline replay -- whether CA1's comparator function is active and serves the same role during SWR-driven replay sequences is an inference, not directly tested here. The 2011 resolution may not be sufficient to definitively assign the comparator function to CA1 vs neighbouring subfields.",
+    "source_context": "Human high-resolution fMRI during paired associate memory task. Participants learned scene-object pairs; tested with intact or modified probes (1-4 feature changes). CA1 selectivity across task-relevance of changes tested."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Hippocampus journal, foundational but older and lower resolution than current standards. Mapping fidelity moderate: demonstrates the comparator mechanism but in online waking context. Transfer risk moderate-high: online perception to offline replay."
+  }
+}

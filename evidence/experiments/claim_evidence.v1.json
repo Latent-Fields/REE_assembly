@@ -4578,7 +4578,7 @@
       }
     },
     "MECH-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.468, lit_conf=0.881",
+      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.467, lit_conf=0.881",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4595,7 +4595,7 @@
         "lit:fmri_connectivity": 1,
         "lit:spontaneous_thought_default_mode": 1
       },
-      "experimental_confidence": 0.468,
+      "experimental_confidence": 0.467,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4607,7 +4607,7 @@
       "latest_run_id": "v3_exq_201_mech029_dmn_probe_breath_20260402T224206Z_v3",
       "latest_timestamp_utc": "2026-04-02T22:42:06Z",
       "literature_confidence": 0.881,
-      "overall_confidence": 0.778,
+      "overall_confidence": 0.777,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -13259,18 +13259,19 @@
       }
     },
     "MECH-205": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.875",
+      "confidence_rationale": "exp=0 entry(s), lit=8 entry(s), exp_conf=0, lit_conf=0.872",
       "direction_counts": {
         "mixed": 0,
-        "supports": 5,
+        "supports": 8,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 5,
+      "entries_total": 8,
       "evidence_class_counts": {
+        "lit:behavioral_human": 1,
         "lit:computational_model": 2,
         "lit:electrophysiology_single_unit": 2,
-        "lit:fmri_connectivity": 1
+        "lit:fmri_connectivity": 3
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -13281,60 +13282,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-07_mech_205_rewarded_reactivation_singer2009",
-      "latest_timestamp_utc": "2026-04-07T02:45:00Z",
-      "literature_confidence": 0.875,
-      "overall_confidence": 0.875,
+      "latest_run_id": "2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023",
+      "latest_timestamp_utc": "2026-04-07T03:30:00Z",
+      "literature_confidence": 0.872,
+      "overall_confidence": 0.872,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-205",
-          "confidence": 0.75,
-          "confidence_rationale": "Strong theoretical framework modelling the hippocampus as a hierarchical generative model that supports generative replay (sampling novel sequences from learned distribution) and continual learning. Directly supports MECH-205's claim that replay is generative. Does not address surprise-gating of replay scheduling, which is the other half of the claim.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_205",
-          "failure_signatures": [
-            "The model does not address what determines WHICH sequences are replayed -- there is no surprise-gating or prioritisation mechanism. Replay samples from the learned distribution uniformly, which is a weaker claim than MECH-205's surprise-proportional scheduling."
-          ],
-          "run_id": "2026-04-07_mech_205_generative_replay_stoianov2022",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-07T02:45:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-205",
-          "confidence": 0.68,
-          "confidence_rationale": "Demonstrates that prediction errors destabilise hippocampal representations and trigger memory updating (reconsolidation after 24h delay). Supports the broader principle that surprise drives hippocampal model-updating. However, the study measures reconsolidation of existing memories, not replay scheduling or generative replay -- the mechanism is adjacent to but not identical with MECH-205's surprise buffer.",
-          "evidence_class": "lit:fmri_connectivity",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_205",
-          "failure_signatures": [
-            "The study measures memory reconsolidation/updating, not replay scheduling or offline consolidation. The prediction error effect is on representation destabilisation, not on replay frequency or generative replay content."
-          ],
-          "run_id": "2026-04-07_mech_205_prediction_error_memory_sinclair2021",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-07T02:45:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-205",
-          "confidence": 0.82,
-          "confidence_rationale": "Strong computational model with clear normative derivation showing replay prioritized by gain (prediction-error dependent) x need. The gain term captures MECH-205's surprise-gating; the generative capacity (composing novel sequences from pieces) maps onto MECH-205's counterfactual variations. Minor mapping gap: the model prioritizes by expected policy improvement rather than raw prediction error magnitude, which is a more refined criterion than MECH-205's formulation.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_205",
-          "failure_signatures": [
-            "The model prioritizes by expected BEHAVIORAL gain, not raw prediction error -- replay of a surprise that cannot change policy is not prioritized, which is a more restrictive criterion than MECH-205's surprise buffer."
-          ],
-          "run_id": "2026-04-07_mech_205_prioritized_replay_mattar2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-07T02:45:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-205",
@@ -13366,12 +13319,62 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-07T02:45:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-205",
+          "confidence": 0.68,
+          "confidence_rationale": "Foundational fMRI evidence for CA1 as an automatic comparator between CA3 predictions and sensory input. CA1 tracks total number of stimulus changes linearly and across task-relevance, consistent with automatic contrastive comparison. Supports the biological substrate of the contrastive causal structure in MECH-205. Confidence reduced: 2011 paper with lower fMRI resolution than current standards; does not address offline replay; maps to the detection mechanism not the replay structure.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_205",
+          "failure_signatures": [
+            "CA1's comparator function is demonstrated for perceptual mismatch during waking -- whether the same mechanism operates for replayed episodes during offline phases is not established by this study."
+          ],
+          "run_id": "2026-04-07_mech_205_ca1_mismatch_detector_duncan2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-07T03:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-205",
+          "confidence": 0.72,
+          "confidence_rationale": "Provides the biological mechanism for how surprise triggers hippocampal switch from retrieval to encoding mode -- the precondition for contrastive replay. CA1-entorhinal connectivity increases (encoding the surprising input) while CA1-CA3 connectivity decreases (suppressing the old prediction) proportionally to prediction error magnitude. This is the waking-state precursor to offline contrastive replay: the hippocampus flags the mismatch and gates the anchor episode for replay. Mapping gap: this is online processing during waking, not offline replay; the contrastive pairing structure is not directly tested.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_205",
+          "failure_signatures": [
+            "The connectivity shifts are measured during waking online processing, not during offline replay -- the mechanism may not transfer directly to the surprise buffer architecture MECH-205 posits.",
+            "The study uses room-image paradigm with discrete, countable changes -- unclear whether the same mechanism operates for naturalistic continuous prediction errors."
+          ],
+          "run_id": "2026-04-07_mech_205_mnemonic_pe_hippocampal_states_bein2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-07T03:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-205",
+          "confidence": 0.8,
+          "confidence_rationale": "Direct empirical evidence that replay is valence-asymmetric: rewarding and punishing paths are replayed differentially, and replay content causally predicts approach vs avoidance decisions trial-by-trial. This is the strongest direct support for MECH-205's claim that the contrastive structure of replay is directional by valence -- harm surprises drive avoidance-map updating, goal surprises drive approach-map updating. MEG methodology captures rapid sequential replay with 20-90ms precision. Mapping gap: the study measures forward planning replay (awake), not offline sleep replay, and does not address the contrastive pairing structure within each replay event.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_205",
+          "failure_signatures": [
+            "The valence asymmetry observed is in PLANNING replay (awake, before decisions), not in offline sleep consolidation replay -- the direction of effect may differ between contexts.",
+            "Replay of punishing paths before approach decisions predicted irrational risk-taking, suggesting valence-asymmetric replay can MISLEAD as well as correct decisions -- the contrastive structure does not guarantee accurate causal attribution."
+          ],
+          "run_id": "2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-07T03:30:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 0,
-        "literature": 5
+        "literature": 8
       }
     },
     "MECH-900": {
@@ -15965,7 +15968,7 @@
       }
     },
     "SD-004": {
-      "confidence_rationale": "exp=8 entry(s), lit=6 entry(s), exp_conf=0.664, lit_conf=0.898",
+      "confidence_rationale": "exp=8 entry(s), lit=6 entry(s), exp_conf=0.663, lit_conf=0.898",
       "direction_counts": {
         "mixed": 0,
         "supports": 9,
@@ -15979,7 +15982,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.664,
+      "experimental_confidence": 0.663,
       "fail_runs": 5,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -15991,7 +15994,7 @@
       "latest_run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
       "latest_timestamp_utc": "2026-03-30T23:50:00Z",
       "literature_confidence": 0.898,
-      "overall_confidence": 0.781,
+      "overall_confidence": 0.78,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -60187,9 +60190,59 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-07T02:45:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-205",
+      "confidence": 0.68,
+      "confidence_rationale": "Foundational fMRI evidence for CA1 as an automatic comparator between CA3 predictions and sensory input. CA1 tracks total number of stimulus changes linearly and across task-relevance, consistent with automatic contrastive comparison. Supports the biological substrate of the contrastive causal structure in MECH-205. Confidence reduced: 2011 paper with lower fMRI resolution than current standards; does not address offline replay; maps to the detection mechanism not the replay structure.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_205",
+      "failure_signatures": [
+        "CA1's comparator function is demonstrated for perceptual mismatch during waking -- whether the same mechanism operates for replayed episodes during offline phases is not established by this study."
+      ],
+      "run_id": "2026-04-07_mech_205_ca1_mismatch_detector_duncan2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-07T03:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-205",
+      "confidence": 0.72,
+      "confidence_rationale": "Provides the biological mechanism for how surprise triggers hippocampal switch from retrieval to encoding mode -- the precondition for contrastive replay. CA1-entorhinal connectivity increases (encoding the surprising input) while CA1-CA3 connectivity decreases (suppressing the old prediction) proportionally to prediction error magnitude. This is the waking-state precursor to offline contrastive replay: the hippocampus flags the mismatch and gates the anchor episode for replay. Mapping gap: this is online processing during waking, not offline replay; the contrastive pairing structure is not directly tested.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_205",
+      "failure_signatures": [
+        "The connectivity shifts are measured during waking online processing, not during offline replay -- the mechanism may not transfer directly to the surprise buffer architecture MECH-205 posits.",
+        "The study uses room-image paradigm with discrete, countable changes -- unclear whether the same mechanism operates for naturalistic continuous prediction errors."
+      ],
+      "run_id": "2026-04-07_mech_205_mnemonic_pe_hippocampal_states_bein2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-07T03:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-205",
+      "confidence": 0.8,
+      "confidence_rationale": "Direct empirical evidence that replay is valence-asymmetric: rewarding and punishing paths are replayed differentially, and replay content causally predicts approach vs avoidance decisions trial-by-trial. This is the strongest direct support for MECH-205's claim that the contrastive structure of replay is directional by valence -- harm surprises drive avoidance-map updating, goal surprises drive approach-map updating. MEG methodology captures rapid sequential replay with 20-90ms precision. Mapping gap: the study measures forward planning replay (awake), not offline sleep replay, and does not address the contrastive pairing structure within each replay event.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_205",
+      "failure_signatures": [
+        "The valence asymmetry observed is in PLANNING replay (awake, before decisions), not in offline sleep consolidation replay -- the direction of effect may differ between contexts.",
+        "Replay of punishing paths before approach decisions predicted irrational risk-taking, suggesting valence-asymmetric replay can MISLEAD as well as correct decisions -- the contrastive structure does not guarantee accurate causal attribution."
+      ],
+      "run_id": "2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-07T03:30:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-06T07:33:59.987898Z",
+  "generated_at_utc": "2026-04-06T07:46:36.570309Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

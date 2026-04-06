@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-06T07:33:59.987898Z`
+Generated: `2026-04-06T07:46:36.570309Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -107,7 +107,7 @@ Generated: `2026-04-06T07:33:59.987898Z`
 | `targeted_review_mech_135` | [`2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998`](targeted_review_mech_135/entries/2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998/record.json) | 4 | [`summary`](targeted_review_mech_135/entries/2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998/summary.md) |
 | `targeted_review_mech_154_156_e1_manifold` | [`2018-10-24_mech_155_cognitive_map_abstract_knowledge_behrens2018`](targeted_review_mech_154_156_e1_manifold/entries/2018-10-24_mech_155_cognitive_map_abstract_knowledge_behrens2018/record.json) | 4 | [`summary`](targeted_review_mech_154_156_e1_manifold/entries/2018-10-24_mech_155_cognitive_map_abstract_knowledge_behrens2018/summary.md) |
 | `targeted_review_mech_166` | [`2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020`](targeted_review_mech_166/entries/2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020/record.json) | 3 | [`summary`](targeted_review_mech_166/entries/2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020/summary.md) |
-| `targeted_review_mech_205` | [`2026-04-07_mech_205_rewarded_reactivation_singer2009`](targeted_review_mech_205/entries/2026-04-07_mech_205_rewarded_reactivation_singer2009/record.json) | 5 | [`summary`](targeted_review_mech_205/entries/2026-04-07_mech_205_rewarded_reactivation_singer2009/summary.md) |
+| `targeted_review_mech_205` | [`2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023`](targeted_review_mech_205/entries/2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023/record.json) | 8 | [`summary`](targeted_review_mech_205/entries/2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_medications_sleep_dementia` | [`2026-04-05_mech176_suvorexant_alzheimer_herring2020`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/record.json) | 10 | [`summary`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/summary.md) |
 | `targeted_review_paper_fm2_replay_ordering` | [`2026-04-06_mech165_salient_replay_priority_huelingo2023`](targeted_review_paper_fm2_replay_ordering/entries/2026-04-06_mech165_salient_replay_priority_huelingo2023/record.json) | 4 | [`summary`](targeted_review_paper_fm2_replay_ordering/entries/2026-04-06_mech165_salient_replay_priority_huelingo2023/summary.md) |

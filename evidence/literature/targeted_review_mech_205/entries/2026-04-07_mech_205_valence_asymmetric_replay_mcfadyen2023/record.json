@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023",
+  "timestamp_utc": "2026-04-07T03:30:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "Differential replay of reward and punishment paths predicts approach and avoidance",
+    "authors": ["Jessica McFadyen", "Yunzhe Liu", "Raymond J Dolan"],
+    "year": 2023,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-023-01287-7"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct empirical evidence that replay is valence-asymmetric: rewarding and punishing paths are replayed differentially, and replay content causally predicts approach vs avoidance decisions trial-by-trial. This is the strongest direct support for MECH-205's claim that the contrastive structure of replay is directional by valence -- harm surprises drive avoidance-map updating, goal surprises drive approach-map updating. MEG methodology captures rapid sequential replay with 20-90ms precision. Mapping gap: the study measures forward planning replay (awake), not offline sleep replay, and does not address the contrastive pairing structure within each replay event.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The valence asymmetry observed is in PLANNING replay (awake, before decisions), not in offline sleep consolidation replay -- the direction of effect may differ between contexts.",
+    "Replay of punishing paths before approach decisions predicted irrational risk-taking, suggesting valence-asymmetric replay can MISLEAD as well as correct decisions -- the contrastive structure does not guarantee accurate causal attribution."
+  ],
+  "tags": ["mech_205", "valence_asymmetric_replay", "approach_avoidance", "reward_punishment", "meg", "human"],
+  "mapping": {
+    "source_claim_statement": "Replay of rewarding paths was boosted relative to aversive paths before avoidance decisions and attenuated before approach decisions. Trial-by-trial bias toward replaying punishing paths predicted irrational approach decisions, especially in anxious individuals.",
+    "ree_translation": "Directly supports MECH-205's contrastive causal structure being valence-asymmetric: the hippocampus replays harm-relevant (punishing) paths differently from benefit-relevant (rewarding) paths, and the content of this replay drives downstream approach vs avoidance behaviour. This maps onto MECH-205's claim that harm surprises write to the avoidance/residue map and goal surprises write to the approach map -- the same contrastive machinery produces different downstream behavioural outputs depending on which valence dominates.",
+    "mapping_caveat": "The study measures forward planning replay during waking deliberation, not the offline contrastive replay MECH-205 posits during sleep. The contrastive pairing (anchor episode vs variations) is not directly observed -- the study measures relative replay frequency of rewarding vs punishing paths, not structured contrastive comparison within a single replay event.",
+    "source_context": "Human MEG during approach-avoidance decision task. Participants chose whether to enter environments with reward/punishment paths. Replay detected via 20-90ms sequential state transitions."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Nature Neuroscience, well-powered human MEG study. Mapping fidelity reduced because the study captures planning replay, not offline consolidation replay, and does not test the contrastive pairing structure. Transfer risk low: human participants, ecologically valid approach-avoidance decisions."
+  }
+}
