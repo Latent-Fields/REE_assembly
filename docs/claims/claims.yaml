@@ -12810,3 +12810,33 @@
     requires capacity-aware planning.
   registered: "2026-04-07"
   depends_on: [INV-064, MECH-214, MECH-212]
+
+- id: SD-018
+  title: encoder.resource_proximity_supervision
+  claim_type: substrate_decision
+  status: implemented
+  subject: encoder.resource_proximity
+  description: >
+    z_world encoder requires auxiliary resource proximity regression loss to encode
+    benefit-relevant features. Without this, z_world is trained only on E1 world-model
+    prediction loss, which is invariant to resource saliency (the resource does not
+    change the sensory scene unless contacted). EXQ-085m proved benefit_eval_r2=-0.004:
+    z_world is orthogonal to resource proximity. A Sigmoid regression head on z_world
+    predicting max(resource_field_view) in [0,1] backprops through the encoder, forcing
+    z_world to represent resource proximity. This is the benefit-side analog of SD-009,
+    which solved the same problem for harm-event discrimination. Without SD-018, the
+    entire benefit/goal scoring pathway (benefit_eval_head, goal_proximity, z_goal seeding,
+    drive modulation, dual systems) operates on noise. SD-018 is the critical unblocking
+    substrate decision for V3 goal-directed behavior.
+  notes: >
+    Implementation: SplitEncoder.resource_proximity_head = nn.Sequential(
+    nn.Linear(world_dim, 1), nn.Sigmoid()). Config: use_resource_proximity_head (bool,
+    default False), resource_proximity_weight (float, default 0.5). Agent method:
+    compute_resource_proximity_loss(target, latent_state) -> MSE loss. Target:
+    max(resource_field_view) from CausalGridWorldV2 (available when use_proxy_fields=True).
+    Gradient flows through z_world encoder. Backward-compatible: disabled by default.
+    Identified during V3 wiring audit 2026-04-07: the z_world-doesn't-encode-resources
+    gap explains all goal-directed behavior failures (EXQ-085m, EXQ-225, EXQ-237a,
+    EXQ-238, and the entire EXQ-085h-085o SD-015 series).
+  registered: "2026-04-07"
+  depends_on: [SD-009, SD-005]
