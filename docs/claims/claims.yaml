@@ -12354,7 +12354,7 @@
 # Registered 2026-04-07 -- dream phenomenology as window onto replay type
 # Source: Daniel Golden first-person observation; three-type dream taxonomy
 - id: INV-062
-  title: "Dream phenomenology is a first-person window onto active offline replay type: frustration-with-systematic-failure marks contrastive replay not converging; self-dissolved simultaneity marks semantic consolidation; the structural character of the dream reflects the computational process, not incidental affect."
+  title: "Dream phenomenology is a first-person window onto active offline sleep process: four structurally distinct dream types map onto four computationally distinct sleep functions -- harm-contrastive replay, goal-contrastive replay, NREM semantic consolidation, and REM world-model free-running."
   claim_type: invariant
   subject: dream_phenomenology.replay_type_signature
   polarity: asserts
@@ -12364,58 +12364,63 @@
     - MECH-205
     - MECH-208
     - MECH-209
+    - MECH-210
     - INV-049
     - MECH-121
+    - MECH-123
   location: docs/architecture/sleep/offline_phases.md#inv-062
   source:
     - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
     - evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md
   notes: >
-    Three structurally distinct dream types observed consistently by DG (first-person
-    phenomenological data, noted as definite types but not claimed to be exhaustive):
-    Type 1 (stress/escape): trying to get away, everything that could go wrong does.
-    Type 2 (joy/goal): trying to reach a goal, everything that could go wrong does.
+    Four structurally distinct dream types observed consistently by DG (first-person
+    phenomenological data; noted as definite types but not claimed to be exhaustive):
+    Type 1 (stress/escape frustration): trying to get away from something; everything
+    that could go wrong does go wrong. No resolution.
+    Type 2 (joy/goal frustration): trying to reach a goal; everything that could go wrong
+    does go wrong. No resolution. Affect is different from Type 1 (approach vs avoidance)
+    but the systematic-failure structure is identical.
     Type 3 (procedural superposition): one thing experienced from all angles, all scales,
-    all times simultaneously -- opening a door that is all doors at once; a cherry blossom
-    tree blooming experienced from all perspectives and all moments simultaneously.
-    The claim is that these three types map onto three computationally distinct offline
-    processes, and that the phenomenological character of the dream is a signature of
-    which process is running:
-    Types 1 and 2 are harm-contrastive and goal-contrastive replay (MECH-205) not
-    converging. The "everything going wrong" structure is the generative model exhaustively
-    sampling the failure space around the anchor episode -- systematically exploring
-    counterfactual variations that all hit the failure condition. The frustration IS the
-    convergence failure signal: the dream continues because the termination criterion
-    (causally relevant features extracted) has not been met. Type 1 and Type 2 are
-    structurally mirror images (harm-avoidance vs goal-approach, MECH-208 / ARC-031)
-    with the same frustration signature. The non-resolution of the dream is not a quirk
-    of dreaming -- it is a direct phenomenological report of the replay loop still running.
-    Type 3 is NREM SWR semantic consolidation (MECH-121). The hippocampus presents all
-    stored instances of a concept rapidly; at conscious timescales the sequence collapses
-    to simultaneity. The self-dissolution (no agent trying and failing -- the dreamer IS
-    the superposition) reflects episodic context being stripped during abstraction: the
-    when, where, and who of individual episodes are removed, leaving only the invariant
-    features of the category. Multi-angle = multiple stored viewpoints of the concept.
-    Multi-scale = hierarchical model operating across item/sequence/map levels simultaneously
-    (Stoianov 2022). Multi-time = all instances across the agent's experience presented
-    together for schema extraction.
-    Phenomenological differences between types: Types 1/2 have an agent with a goal and
-    an affect of frustrated urgency; Type 3 has no agent, no goal, and is phenomenologically
-    peaceful. This maps cleanly: contrastive replay requires a self-model (who is acting)
-    and a failure signal (the search); semantic consolidation strips the episodic self-context
-    and produces no convergence criterion (it is building a schema, not solving a problem).
-    Clinical implications: (1) Recurring Type 1 dreams are a marker of convergence failure
-    on harm-contrastive replay -- the threatening episode's causal features haven't been
-    extracted, the residue field update is incomplete. In PTSD: Type 1 replays are intrusive
-    precisely because MECH-094 hypothesis tag degrades under high-affect load, blurring
-    the simulation/real boundary. (2) Successful therapy should shift Type 1 from
-    non-resolving to resolving -- a testable prediction using dream diaries as treatment
-    response markers. (3) Absence of Type 3 dreams could indicate failure of episodic->
-    semantic transfer (MECH-121 pathway impaired).
-    Epistemic note: this is first-person phenomenological data from one observer. The
-    taxonomy is observed, not derived. The mapping to computational processes is an
-    interpretation. The claim is strong enough to register as candidate but requires
-    corroboration from other observers and eventual connection to sleep-stage measurements.
+    and all times simultaneously -- opening a door that is all kinds of doors at once; a
+    cherry blossom tree blooming experienced from all perspectives, scales, and moments at
+    once. No agent, no goal, phenomenologically peaceful.
+    Type 4 (detailed story / close to reality): coherent narrative with full story arc;
+    close to real-world plausibility; novel situations not directly experienced; super
+    interesting. An agent present in a coherent world where things follow causally from
+    each other.
+    Four-type mapping to computational processes:
+    Types 1 and 2: harm-contrastive and goal-contrastive replay (MECH-205) not converging.
+    The systematic-failure structure is the generative model exhaustively sampling the
+    failure space -- variations that all hit the failure condition. Frustration IS the
+    convergence failure signal; non-resolution is a phenomenological report that the replay
+    loop is still running. Mirror images by valence (MECH-208 / ARC-031).
+    Type 3: NREM SWR semantic consolidation (MECH-121 / MECH-209). Rapid SWR sequence
+    collapses to phenomenological simultaneity. Self-dissolution = episodic context
+    stripped during abstraction. Multi-scale = hierarchical model across levels. Peaceful
+    because there is no convergence criterion -- building a schema, not solving a problem.
+    Type 4: REM E1 world model free-running (MECH-210 / MECH-123). Sensory input
+    disconnected, commit gate suppressed; E1 LSTM runs forward unconstrained on its learned
+    prior. Sequential LSTM dynamics produce narrative arc. "Close to reality" = in-
+    distribution samples from a well-calibrated world model. "Super interesting" = E1
+    surfacing novel-but-coherent patterns from its prior that the agent hasn't consciously
+    accessed -- world model hypothesis testing. Agent present in a coherent world because
+    E1 is a sequential agent-world model, not a categorical schema extractor.
+    Cross-type comparison: Types 1/2 and 4 all have an agent; Type 3 does not. Types 1/2
+    have no narrative resolution (convergence criterion unmet); Type 4 has narrative arc
+    (no convergence criterion -- free generation). Type 3 has no agent and no narrative
+    (schema building). The presence/absence of agent and resolution criterion cleanly
+    discriminates all four.
+    Clinical implications: (1) Recurring non-resolving Type 1 = convergence failure on
+    harm-contrastive replay; PTSD marker; should resolve with successful therapy. (2)
+    Absence of Type 3 = possible MECH-121 failure (episodic->semantic transfer impaired).
+    (3) Absence of Type 4 or degraded Type 4 (incoherent, implausible stories) = E1
+    world model poorly calibrated or REM architecture disrupted (MECH-123 / MECH-178).
+    (4) Anxious individuals (elevated harm-weighting, MECH-208) predicted to have
+    predominantly Type 1 with reduced Type 3 and Type 4 -- replay budget crowded by
+    harm-contrastive search.
+    Epistemic note: first-person phenomenological data from one observer. Taxonomy
+    observed, not derived. The mapping to computational processes is an interpretation
+    requiring corroboration from other observers and sleep-stage measurement.
 
 # Registered 2026-04-07 -- Type 3 dream as semantic consolidation phenomenology
 # Source: Daniel Golden first-person observation; MECH-121 lit synthesis
@@ -12482,3 +12487,77 @@
     replay dominates the budget, not only does the avoidance map get over-consolidated,
     but the semantic abstraction that would provide generalisable escape/approach schemas
     gets under-consolidated.
+
+# Registered 2026-04-07 -- Type 4 dream as REM E1 world-model free-running
+# Source: Daniel Golden first-person observation; MECH-123 synthesis
+- id: MECH-210
+  title: "Type 4 (detailed story, close to reality, super interesting) dreams are the phenomenological signature of REM E1 world-model free-running: with sensory input disconnected and the commit gate suppressed, E1's LSTM generates unconstrained sequential rollouts from its learned prior, producing coherent narrative arcs that are novel-but-plausible and experientially interesting."
+  claim_type: mechanism_hypothesis
+  subject: sleep.rem_e1_world_model_free_running
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-123
+    - MECH-094
+    - MECH-178
+    - INV-049
+    - INV-062
+  location: docs/architecture/sleep/offline_phases.md#mech-210
+  source:
+    - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
+    - evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md
+  notes: >
+    During waking, E1's LSTM is constrained by continuous sensory input -- it predicts
+    the next state, receives the actual state, and updates on the error. During REM, three
+    constraints lift simultaneously: (1) sensory input is disconnected (thalamocortical
+    gating); (2) the commit gate is fully suppressed (ARC-016 running_variance threshold
+    effectively infinite -- no committed action can occur); (3) monoaminergic tone
+    (noradrenaline, serotonin) withdraws, reducing precision on prior predictions and
+    allowing the model to explore more freely. E1 is thus free to run its LSTM forward
+    from any internally-generated starting point, following its learned transition model
+    without correction from the world. All activity is hypothesis-tagged (MECH-094).
+    The result is that E1 generates what is effectively a story: a sequential, causally
+    coherent rollout of world states, with the agent as a participant whose actions have
+    consequences within the simulation. Because E1's prior is learned from real experience,
+    the rollouts stay within the distributional support of plausible events -- they are
+    "close to reality." Because they are samples from the prior rather than memories, they
+    are novel -- situations and event sequences the agent has not experienced but that E1's
+    world model treats as possible.
+    The "super interesting" quality is the key diagnostic marker. It signals that E1 is
+    surfacing novel-but-coherent structure from its learned prior: causal chains, social
+    dynamics, physical sequences that the model has implicitly learned but that have not
+    been consciously encountered as episodes. This is MECH-123's "world model hypothesis
+    testing": E1 explores whether its current prior produces internally consistent
+    trajectories. When the prior is well-calibrated, the rollouts are interesting because
+    they reveal structure that was latent but not yet explicit. When the prior is
+    miscalibrated, the rollouts are either boring (repetitive, low-information samples)
+    or incoherent (impossible, contradictory sequences).
+    Narrative arc emerges naturally from E1's sequential LSTM dynamics with
+    prediction_horizon=20: the model generates extended temporal sequences in which
+    earlier states constrain later ones, producing setup, development, and consequence --
+    the structural signature of story. This is not imposed on the model; it is what a
+    sequential world model with a long prediction horizon produces when run forward freely.
+    Contrast with other dream types: unlike Types 1/2 (hippocampal contrastive replay,
+    frustration from convergence failure), Type 4 has no convergence criterion -- E1 is
+    generating, not searching. Unlike Type 3 (NREM semantic consolidation, self-dissolved
+    superposition), Type 4 has a present agent in a sequential world -- because E1 is an
+    agent-world model, not a categorical schema extractor.
+    The distinction between Type 4 and Type 1/2 in terms of frustration is also
+    mechanistically grounded: in Types 1/2, the hippocampus is iterating variations that
+    keep failing, and the emotional content of the anchor episode (harm, blocked goal)
+    sets the affective tone. In Type 4, E1 is free-running from an arbitrary starting
+    point with no failure criterion -- there may be challenges in the narrative, but the
+    dreamer can engage with them as interesting problems rather than frustrated obstacles,
+    because there is no external convergence criterion demanding resolution.
+    Clinical implications: (1) degraded Type 4 (incoherent stories, impossible events,
+    implausible causality) = E1 world model poorly calibrated or REM integrity disrupted
+    (MECH-123, MECH-178). (2) Absence of Type 4 in patients on REM-suppressing medications
+    (e.g. many antidepressants suppress REM) is a testable prediction -- they should lose
+    Type 4 while Types 1-3 may be less affected. (3) The subjective quality of Type 4
+    dreams (how interesting, how coherent, how novel) may be an accessible proxy for
+    E1 world model quality -- richer and more interesting stories suggesting a better-
+    calibrated world model. (4) In dementia: progressive loss of world model fidelity
+    (MECH-178 pathway, rigidity mechanism) predicts progressive degradation of Type 4
+    towards repetitive, low-information, close-to-habit dreams before Type 4 disappears
+    entirely -- a gradient that dream diaries might track ahead of other symptoms.
