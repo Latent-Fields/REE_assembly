@@ -12725,6 +12725,7 @@
   claim_type: mechanism
   status: candidate
   subject: development.goal_coherence
+  implementation_phase: v4
   description: >
     The content of any goal -- the state or object being aimed at -- must be
     representable in E1's latent schema space for z_goal to carry semantic
@@ -12752,6 +12753,13 @@
     direction -- may reflect under-differentiated E1 schemas rather than E3/reward
     pathology. This reframes certain anhedonic and motivationally flat presentations
     as E1 poverty rather than purely dopaminergic disorder.
+    V3 WIRING AUDIT (2026-04-07): z_goal lives purely in z_world space
+    (GoalState seeds from z_world_current). V3 grid world conflates location with
+    reward, so z_world-only goals are adequate. V4 needs z_self-domain goal
+    representation (DR-11) and an environment where proxy and hedonic content
+    dissociate (DR-14) to surface this failure mode. See also addiction mapping:
+    repeated pursuit of z_goal proxy without hedonic grounding = wanting fires on
+    E1-unrepresented satisfaction state.
   registered: "2026-04-07"
   depends_on: [INV-064, MECH-205, MECH-121]
 
@@ -12760,6 +12768,7 @@
   claim_type: mechanism
   status: candidate
   subject: development.self_model_agency
+  implementation_phase: v4
   description: >
     Coherent goal-achievement prediction requires a well-differentiated self-model
     as the subject of that prediction. In REE terms this decomposes into two
@@ -12792,5 +12801,12 @@
     goal/harm evaluation. (4) Infant motor development (proprioceptive and body
     schema formation before goal-directed reaching) follows this sequence exactly.
     "Know thyself" is not ethical wisdom but an architectural prerequisite.
+    V3 WIRING AUDIT (2026-04-07): E3.score_trajectory() evaluates entirely in
+    z_world space -- z_self is invisible to E3 (DR-10). E3 trusts E2 rollout
+    unconditionally -- no E2 PE -> E3 confidence modulation (DR-12). z_self
+    encoder has no temporal depth -- body_obs -> MLP -> EMA, no recurrence (DR-13).
+    All three gaps are correctly scoped for V3's simple 4-action grid world but
+    become critical when the agent has complex body dynamics or the environment
+    requires capacity-aware planning.
   registered: "2026-04-07"
   depends_on: [INV-064, MECH-214, MECH-212]
