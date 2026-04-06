@@ -1,3 +1,7 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-04-06_steve_signal_legibility_language_bootstrap.md
+Claims: MECH-191, MECH-192, MECH-193, ARC-048, INV-057
+
 # Thought: Steve -- Signal Legibility, Fast Empathy Coordination, and the Language Bootstrap
 
 **Date:** 2026-04-06

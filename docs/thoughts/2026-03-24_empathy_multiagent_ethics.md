@@ -1,4 +1,5 @@
 Status: processed
+Intake: evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md
 
 Processed in:
 - MECH-127 (claims.yaml): counterfactual other-cost-aversion as motivational surrogate
