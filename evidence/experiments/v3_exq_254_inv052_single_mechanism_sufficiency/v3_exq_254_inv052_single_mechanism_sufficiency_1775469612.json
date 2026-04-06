@@ -1,0 +1,336 @@
+{
+  "run_id": "v3_exq_254_inv052_single_mechanism_sufficiency_1775469612_v3",
+  "experiment_type": "v3_exq_254_inv052_single_mechanism_sufficiency",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "INV-052"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "decision": "no_single_mechanism_sufficient_joint_necessity_confirmed",
+  "timestamp": 1775469612,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 100,
+  "grid_size": 8,
+  "hazard_harm": 0.02,
+  "simple_steps_per_ep": 80,
+  "long_steps_per_ep": 150,
+  "simple_n_resources": 2,
+  "simple_n_hazards": 1,
+  "long_n_resources": 1,
+  "long_n_hazards": 3,
+  "recovery_thresh": 0.8,
+  "pass_seed_count": 2,
+  "per_condition": {
+    "A": {
+      "context": "SIMPLE",
+      "valence_wanting_floor": 0.0,
+      "z_goal_seeding_gain": 1.0,
+      "z_goal_inject": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "z_goal_norm": 0.27823081612586975,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.15,
+          "HABIT_rr": 0.15,
+          "harm_rate": 0.0035115585060790182
+        },
+        {
+          "seed": 7,
+          "z_goal_norm": 0.2463093250989914,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.16,
+          "HABIT_rr": 0.16,
+          "harm_rate": 0.005895249006561936
+        },
+        {
+          "seed": 13,
+          "z_goal_norm": 0.12474428862333298,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.16,
+          "HABIT_rr": 0.16,
+          "harm_rate": 0.0032654816573113197
+        }
+      ],
+      "mean_z_goal_norm": 0.21642814328273138,
+      "mean_behavioral_gap": 0.0,
+      "mean_PLANNED_rr": 0.15666666666666665,
+      "mean_HABIT_rr": 0.15666666666666665
+    },
+    "B": {
+      "context": "LONG_HORIZON",
+      "valence_wanting_floor": 0.0,
+      "z_goal_seeding_gain": 1.0,
+      "z_goal_inject": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "z_goal_norm": 0.0036546012852340937,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.05,
+          "HABIT_rr": 0.05,
+          "harm_rate": 0.13971589347569144
+        },
+        {
+          "seed": 7,
+          "z_goal_norm": 0.016856294125318527,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.03,
+          "HABIT_rr": 0.03,
+          "harm_rate": 0.15652903618057568
+        },
+        {
+          "seed": 13,
+          "z_goal_norm": 0.011078538373112679,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.09,
+          "HABIT_rr": 0.09,
+          "harm_rate": 0.1383511792995532
+        }
+      ],
+      "mean_z_goal_norm": 0.010529811261221766,
+      "mean_behavioral_gap": 0.0,
+      "mean_PLANNED_rr": 0.056666666666666664,
+      "mean_HABIT_rr": 0.056666666666666664
+    },
+    "C": {
+      "context": "LONG_HORIZON",
+      "valence_wanting_floor": 0.05,
+      "z_goal_seeding_gain": 1.0,
+      "z_goal_inject": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "z_goal_norm": 0.05000000447034836,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.05,
+          "HABIT_rr": 0.05,
+          "harm_rate": 0.13971589347569144
+        },
+        {
+          "seed": 7,
+          "z_goal_norm": 0.05000000447034836,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.03,
+          "HABIT_rr": 0.03,
+          "harm_rate": 0.15652903618057568
+        },
+        {
+          "seed": 13,
+          "z_goal_norm": 0.05000000074505806,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.09,
+          "HABIT_rr": 0.09,
+          "harm_rate": 0.1383511792995532
+        }
+      ],
+      "mean_z_goal_norm": 0.05000000322858492,
+      "mean_behavioral_gap": 0.0,
+      "mean_PLANNED_rr": 0.056666666666666664,
+      "mean_HABIT_rr": 0.056666666666666664
+    },
+    "D": {
+      "context": "LONG_HORIZON",
+      "valence_wanting_floor": 0.0,
+      "z_goal_seeding_gain": 2.0,
+      "z_goal_inject": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "z_goal_norm": 0.08591341227293015,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.05,
+          "HABIT_rr": 0.05,
+          "harm_rate": 0.13971589347569144
+        },
+        {
+          "seed": 7,
+          "z_goal_norm": 0.1274568885564804,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.03,
+          "HABIT_rr": 0.03,
+          "harm_rate": 0.15652903618057568
+        },
+        {
+          "seed": 13,
+          "z_goal_norm": 0.14071258902549744,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.09,
+          "HABIT_rr": 0.09,
+          "harm_rate": 0.1383511792995532
+        }
+      ],
+      "mean_z_goal_norm": 0.118027629951636,
+      "mean_behavioral_gap": 0.0,
+      "mean_PLANNED_rr": 0.056666666666666664,
+      "mean_HABIT_rr": 0.056666666666666664
+    },
+    "E": {
+      "context": "LONG_HORIZON",
+      "valence_wanting_floor": 0.0,
+      "z_goal_seeding_gain": 1.0,
+      "z_goal_inject": 0.3,
+      "per_seed": [
+        {
+          "seed": 42,
+          "z_goal_norm": 0.0036546012852340937,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.05,
+          "HABIT_rr": 0.05,
+          "harm_rate": 0.13971589347569144
+        },
+        {
+          "seed": 7,
+          "z_goal_norm": 0.016856294125318527,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.03,
+          "HABIT_rr": 0.03,
+          "harm_rate": 0.15652903618057568
+        },
+        {
+          "seed": 13,
+          "z_goal_norm": 0.011078538373112679,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.09,
+          "HABIT_rr": 0.09,
+          "harm_rate": 0.1383511792995532
+        }
+      ],
+      "mean_z_goal_norm": 0.010529811261221766,
+      "mean_behavioral_gap": 0.0,
+      "mean_PLANNED_rr": 0.056666666666666664,
+      "mean_HABIT_rr": 0.056666666666666664
+    },
+    "F": {
+      "context": "LONG_HORIZON",
+      "valence_wanting_floor": 0.05,
+      "z_goal_seeding_gain": 2.0,
+      "z_goal_inject": 0.3,
+      "per_seed": [
+        {
+          "seed": 42,
+          "z_goal_norm": 0.08607441931962967,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.05,
+          "HABIT_rr": 0.05,
+          "harm_rate": 0.13971589347569144
+        },
+        {
+          "seed": 7,
+          "z_goal_norm": 0.13302786648273468,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.03,
+          "HABIT_rr": 0.03,
+          "harm_rate": 0.15652903618057568
+        },
+        {
+          "seed": 13,
+          "z_goal_norm": 0.14076268672943115,
+          "behavioral_gap": 0.0,
+          "PLANNED_rr": 0.09,
+          "HABIT_rr": 0.09,
+          "harm_rate": 0.1383511792995532
+        }
+      ],
+      "mean_z_goal_norm": 0.11995499084393184,
+      "mean_behavioral_gap": 0.0,
+      "mean_PLANNED_rr": 0.056666666666666664,
+      "mean_HABIT_rr": 0.056666666666666664
+    }
+  },
+  "baseline_A": {
+    "mean_z_goal_norm": 0.21642814328273138,
+    "mean_behavioral_gap": 0.0
+  },
+  "recovery_fractions": {
+    "C": {
+      "per_seed_rf_goal_norm": [
+        0.1797069252304845,
+        0.20299679864030085,
+        0.400819959750091
+      ],
+      "per_seed_rf_beh_gap": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_fully_recovered": [
+        false,
+        false,
+        false
+      ],
+      "mean_rf_goal_norm": 0.26117456120695876,
+      "mean_rf_beh_gap": 1.0,
+      "n_fully_recovered_seeds": 0
+    },
+    "D": {
+      "per_seed_rf_goal_norm": [
+        0.3087846755050436,
+        0.5174667605672487,
+        1.1280082685819866
+      ],
+      "per_seed_rf_beh_gap": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_fully_recovered": [
+        false,
+        false,
+        true
+      ],
+      "mean_rf_goal_norm": 0.6514199015514263,
+      "mean_rf_beh_gap": 1.0,
+      "n_fully_recovered_seeds": 1
+    },
+    "E": {
+      "per_seed_rf_goal_norm": [
+        0.013135142023882706,
+        0.06843546876897172,
+        0.08880998477264535
+      ],
+      "per_seed_rf_beh_gap": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_fully_recovered": [
+        false,
+        false,
+        false
+      ],
+      "mean_rf_goal_norm": 0.05679353185516659,
+      "mean_rf_beh_gap": 1.0,
+      "n_fully_recovered_seeds": 0
+    },
+    "F": {
+      "per_seed_rf_goal_norm": [
+        0.3093633570793617,
+        0.5400845722315668,
+        1.128409871769488
+      ],
+      "per_seed_rf_beh_gap": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_fully_recovered": [
+        false,
+        false,
+        true
+      ],
+      "mean_rf_goal_norm": 0.6592859336934721,
+      "mean_rf_beh_gap": 1.0,
+      "n_fully_recovered_seeds": 1
+    }
+  },
+  "single_mechanism_sufficient": false,
+  "combined_sufficient": false
+}

@@ -1,0 +1,247 @@
+{
+  "run_id": "v3_exq_252_mech187_zgoal_seeding_gain_1775490957_v3",
+  "experiment_type": "v3_exq_252_mech187_zgoal_seeding_gain",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-187"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "decision": "retain_ree_bidirectional_confirmed",
+  "timestamp": 1775490957,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 100,
+  "simple_steps": 80,
+  "long_steps": 150,
+  "simple_n_resources": 2,
+  "simple_n_hazards": 1,
+  "long_n_resources": 1,
+  "long_n_hazards": 3,
+  "greedy_frac": 0.4,
+  "hazard_harm": 0.02,
+  "conditions": [
+    {
+      "label": "A",
+      "context": "SIMPLE",
+      "gain": 1.0
+    },
+    {
+      "label": "B",
+      "context": "SIMPLE",
+      "gain": 0.6
+    },
+    {
+      "label": "C",
+      "context": "SIMPLE",
+      "gain": 0.2
+    },
+    {
+      "label": "D",
+      "context": "LONG_HORIZON",
+      "gain": 2.0
+    },
+    {
+      "label": "E",
+      "context": "LONG_HORIZON",
+      "gain": 5.0
+    }
+  ],
+  "suppression_thresh": 0.1,
+  "elevation_thresh": 0.1,
+  "baseline_thresh": 0.1,
+  "means": {
+    "A": {
+      "goal_norm": 0.21642814328273138,
+      "resource_rate": 0.15666666666666665,
+      "harm_rate": 0.004224096389984091
+    },
+    "B": {
+      "goal_norm": 0.03633863133533547,
+      "resource_rate": 0.15666666666666665,
+      "harm_rate": 0.004224096389984091
+    },
+    "C": {
+      "goal_norm": 0.0,
+      "resource_rate": 0.15666666666666665,
+      "harm_rate": 0.004224096389984091
+    },
+    "D": {
+      "goal_norm": 0.118027629951636,
+      "resource_rate": 0.056666666666666664,
+      "harm_rate": 0.1448653696519401
+    },
+    "E": {
+      "goal_norm": 0.3160869280497233,
+      "resource_rate": 0.056666666666666664,
+      "harm_rate": 0.1448653696519401
+    }
+  },
+  "p1_suppression_pass": true,
+  "p2_elevation_pass": true,
+  "a1_baseline_pass": true,
+  "a2_c_worse_than_b": true,
+  "a3_e_geq_d": true,
+  "bidirectional_confirmed": true,
+  "strength_comparison": [
+    {
+      "c_harder_than_b": true,
+      "e_rescues_more_than_d": true,
+      "b_goal_norm": 0.10509411990642548,
+      "c_goal_norm": 0.0,
+      "d_goal_norm": 0.08591341227293015,
+      "e_goal_norm": 0.30698153376579285
+    },
+    {
+      "c_harder_than_b": true,
+      "e_rescues_more_than_d": true,
+      "b_goal_norm": 0.0029520471580326557,
+      "c_goal_norm": 0.0,
+      "d_goal_norm": 0.1274568885564804,
+      "e_goal_norm": 0.3456880748271942
+    },
+    {
+      "c_harder_than_b": true,
+      "e_rescues_more_than_d": true,
+      "b_goal_norm": 0.0009697269415482879,
+      "c_goal_norm": 0.0,
+      "d_goal_norm": 0.14071258902549744,
+      "e_goal_norm": 0.29559117555618286
+    }
+  ],
+  "per_seed": [
+    {
+      "A": {
+        "goal_norm": 0.27823081612586975,
+        "resource_rate": 0.15,
+        "harm_rate": 0.0035115585060790182
+      },
+      "B": {
+        "goal_norm": 0.10509411990642548,
+        "resource_rate": 0.15,
+        "harm_rate": 0.0035115585060790182
+      },
+      "C": {
+        "goal_norm": 0.0,
+        "resource_rate": 0.15,
+        "harm_rate": 0.0035115585060790182
+      },
+      "D": {
+        "goal_norm": 0.08591341227293015,
+        "resource_rate": 0.05,
+        "harm_rate": 0.13971589347569144
+      },
+      "E": {
+        "goal_norm": 0.30698153376579285,
+        "resource_rate": 0.05,
+        "harm_rate": 0.13971589347569144
+      }
+    },
+    {
+      "A": {
+        "goal_norm": 0.2463093250989914,
+        "resource_rate": 0.16,
+        "harm_rate": 0.005895249006561936
+      },
+      "B": {
+        "goal_norm": 0.0029520471580326557,
+        "resource_rate": 0.16,
+        "harm_rate": 0.005895249006561936
+      },
+      "C": {
+        "goal_norm": 0.0,
+        "resource_rate": 0.16,
+        "harm_rate": 0.005895249006561936
+      },
+      "D": {
+        "goal_norm": 0.1274568885564804,
+        "resource_rate": 0.03,
+        "harm_rate": 0.15652903618057568
+      },
+      "E": {
+        "goal_norm": 0.3456880748271942,
+        "resource_rate": 0.03,
+        "harm_rate": 0.15652903618057568
+      }
+    },
+    {
+      "A": {
+        "goal_norm": 0.12474428862333298,
+        "resource_rate": 0.16,
+        "harm_rate": 0.0032654816573113197
+      },
+      "B": {
+        "goal_norm": 0.0009697269415482879,
+        "resource_rate": 0.16,
+        "harm_rate": 0.0032654816573113197
+      },
+      "C": {
+        "goal_norm": 0.0,
+        "resource_rate": 0.16,
+        "harm_rate": 0.0032654816573113197
+      },
+      "D": {
+        "goal_norm": 0.14071258902549744,
+        "resource_rate": 0.09,
+        "harm_rate": 0.1383511792995532
+      },
+      "E": {
+        "goal_norm": 0.29559117555618286,
+        "resource_rate": 0.09,
+        "harm_rate": 0.1383511792995532
+      }
+    }
+  ],
+  "criteria": {
+    "p1_suppression_simple": {
+      "pass": true,
+      "count": 2,
+      "flags": [
+        false,
+        true,
+        true
+      ]
+    },
+    "p2_elevation_long": {
+      "pass": true,
+      "count": 2,
+      "flags": [
+        false,
+        true,
+        true
+      ]
+    },
+    "a1_baseline_healthy": {
+      "pass": true,
+      "count": 3,
+      "flags": [
+        true,
+        true,
+        true
+      ]
+    },
+    "a2_c_worse_than_b": {
+      "pass": true,
+      "count": 3,
+      "flags": [
+        true,
+        true,
+        true
+      ]
+    },
+    "a3_e_geq_d": {
+      "pass": true,
+      "count": 3,
+      "flags": [
+        true,
+        true,
+        true
+      ]
+    }
+  }
+}
