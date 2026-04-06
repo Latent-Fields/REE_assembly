@@ -12350,3 +12350,135 @@
     (3) interventions rebalancing the replay ratio (exposure therapy, beta-blockers pre-sleep)
     reduce avoidance bias by correcting the harm-weighted cognitive map installed by
     asymmetric replay.
+
+# Registered 2026-04-07 -- dream phenomenology as window onto replay type
+# Source: Daniel Golden first-person observation; three-type dream taxonomy
+- id: INV-062
+  title: "Dream phenomenology is a first-person window onto active offline replay type: frustration-with-systematic-failure marks contrastive replay not converging; self-dissolved simultaneity marks semantic consolidation; the structural character of the dream reflects the computational process, not incidental affect."
+  claim_type: invariant
+  subject: dream_phenomenology.replay_type_signature
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-205
+    - MECH-208
+    - MECH-209
+    - INV-049
+    - MECH-121
+  location: docs/architecture/sleep/offline_phases.md#inv-062
+  source:
+    - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
+    - evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md
+  notes: >
+    Three structurally distinct dream types observed consistently by DG (first-person
+    phenomenological data, noted as definite types but not claimed to be exhaustive):
+    Type 1 (stress/escape): trying to get away, everything that could go wrong does.
+    Type 2 (joy/goal): trying to reach a goal, everything that could go wrong does.
+    Type 3 (procedural superposition): one thing experienced from all angles, all scales,
+    all times simultaneously -- opening a door that is all doors at once; a cherry blossom
+    tree blooming experienced from all perspectives and all moments simultaneously.
+    The claim is that these three types map onto three computationally distinct offline
+    processes, and that the phenomenological character of the dream is a signature of
+    which process is running:
+    Types 1 and 2 are harm-contrastive and goal-contrastive replay (MECH-205) not
+    converging. The "everything going wrong" structure is the generative model exhaustively
+    sampling the failure space around the anchor episode -- systematically exploring
+    counterfactual variations that all hit the failure condition. The frustration IS the
+    convergence failure signal: the dream continues because the termination criterion
+    (causally relevant features extracted) has not been met. Type 1 and Type 2 are
+    structurally mirror images (harm-avoidance vs goal-approach, MECH-208 / ARC-031)
+    with the same frustration signature. The non-resolution of the dream is not a quirk
+    of dreaming -- it is a direct phenomenological report of the replay loop still running.
+    Type 3 is NREM SWR semantic consolidation (MECH-121). The hippocampus presents all
+    stored instances of a concept rapidly; at conscious timescales the sequence collapses
+    to simultaneity. The self-dissolution (no agent trying and failing -- the dreamer IS
+    the superposition) reflects episodic context being stripped during abstraction: the
+    when, where, and who of individual episodes are removed, leaving only the invariant
+    features of the category. Multi-angle = multiple stored viewpoints of the concept.
+    Multi-scale = hierarchical model operating across item/sequence/map levels simultaneously
+    (Stoianov 2022). Multi-time = all instances across the agent's experience presented
+    together for schema extraction.
+    Phenomenological differences between types: Types 1/2 have an agent with a goal and
+    an affect of frustrated urgency; Type 3 has no agent, no goal, and is phenomenologically
+    peaceful. This maps cleanly: contrastive replay requires a self-model (who is acting)
+    and a failure signal (the search); semantic consolidation strips the episodic self-context
+    and produces no convergence criterion (it is building a schema, not solving a problem).
+    Clinical implications: (1) Recurring Type 1 dreams are a marker of convergence failure
+    on harm-contrastive replay -- the threatening episode's causal features haven't been
+    extracted, the residue field update is incomplete. In PTSD: Type 1 replays are intrusive
+    precisely because MECH-094 hypothesis tag degrades under high-affect load, blurring
+    the simulation/real boundary. (2) Successful therapy should shift Type 1 from
+    non-resolving to resolving -- a testable prediction using dream diaries as treatment
+    response markers. (3) Absence of Type 3 dreams could indicate failure of episodic->
+    semantic transfer (MECH-121 pathway impaired).
+    Epistemic note: this is first-person phenomenological data from one observer. The
+    taxonomy is observed, not derived. The mapping to computational processes is an
+    interpretation. The claim is strong enough to register as candidate but requires
+    corroboration from other observers and eventual connection to sleep-stage measurements.
+
+# Registered 2026-04-07 -- Type 3 dream as semantic consolidation phenomenology
+# Source: Daniel Golden first-person observation; MECH-121 lit synthesis
+- id: MECH-209
+  title: "The simultaneous multi-instance, multi-scale, multi-time phenomenology of Type 3 dreams is the experiential signature of NREM SWR episodic-to-semantic transfer: rapid hippocampal sequential presentation of concept instances collapses to phenomenological simultaneity, with self-dissolution reflecting the stripping of episodic context during abstraction."
+  claim_type: mechanism_hypothesis
+  subject: sleep.semantic_consolidation_phenomenology
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-121
+    - MECH-092
+    - INV-062
+    - INV-049
+  location: docs/architecture/sleep/offline_phases.md#mech-209
+  source:
+    - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
+    - evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md
+  notes: >
+    MECH-121 describes NREM SWR replay as the mechanism for episodic-to-semantic transfer:
+    hippocampal SWR-equivalent replay coordinates with slow oscillations to deliver
+    episodic content to neocortex (E1's LSTM) for schema integration. The computational
+    process involves rapid sequential presentation of concept instances (compressed to
+    20-90ms per state, McFadyen 2023), allowing E1 to abstract the invariant features
+    across instances.
+    This claim specifies what that process looks like from the inside, given any
+    phenomenological access during NREM. Because the hippocampal SWR sequence operates
+    at timescales far below conscious temporal resolution, the sequence collapses to
+    simultaneity at the phenomenological level: all instances of the concept are present
+    at once, rather than being experienced one after another.
+    Concrete examples from DG's experience: (1) Opening a door experienced as all kinds
+    of doors at once -- all instances of door in memory simultaneously present. (2) A
+    cherry blossom tree blooming experienced from all angles, all scales (petal to branch
+    to tree to forest), and all moments of blooming at once.
+    Two structural features characterise Type 3: (i) MULTI-DIMENSIONALITY -- all angles,
+    all scales, all times simultaneously, not a sequence; (ii) SELF-DISSOLUTION -- no
+    agent trying and failing, no goal, no frustration. The dreamer IS the superposition,
+    not an observer of it or an actor within it.
+    Self-dissolution maps onto the episodic context stripping that defines semantic
+    consolidation: episodic memory preserves who, when, where (the self in a situation);
+    semantic memory strips those and retains only the what (the category's invariant
+    features). During the SWR-driven consolidation process, the episodic binding that
+    anchors experience to a self-in-a-situation is exactly what is being removed. The
+    phenomenological self therefore dissolves -- not because consciousness is absent, but
+    because the self-context that normally grounds phenomenological perspective is the
+    content being discarded.
+    Multi-scale access maps onto the hierarchical generative model (Stoianov 2022):
+    items -> sequences -> maps. The dreamer simultaneously accesses all levels of the
+    hierarchy (petal = item, branch sequence = sequence, whole forest = map). This would
+    be experienced as "all scales at once" precisely because the hierarchical model is
+    being consolidated top-to-bottom in a single SWR burst.
+    Multi-time maps onto the temporal abstraction required for schema formation: the
+    schema for "cherry blossom blooming" must abstract across all the times the dreamer
+    has observed blooming, presenting them simultaneously to E1 for invariant extraction.
+    Therapeutic / clinical implication: if Type 3 dreams are the phenomenological signature
+    of healthy semantic consolidation, then their absence (or displacement by Type 1/2
+    dreams crowding the replay budget) would indicate impaired episodic->semantic transfer.
+    In chronic anxiety (MECH-208): elevated harm-weighting allocates excessive replay
+    budget to harm-contrastive search (Type 1), leaving insufficient budget for semantic
+    consolidation (Type 3). Clinically: anxious patients may report predominantly Type 1/2
+    dreams and rarely Type 3 -- a testable prediction using prospective dream diaries.
+    Connects to MECH-124 (consolidation-mediated option-space contraction): if harm-path
+    replay dominates the budget, not only does the avoidance map get over-consolidated,
+    but the semantic abstraction that would provide generalisable escape/approach schemas
+    gets under-consolidated.
