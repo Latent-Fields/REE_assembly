@@ -6992,6 +6992,13 @@
     efficiency -- more spindle bursts per offline cycle = more episodic content
     transferred to E1. This provides a potential diagnostic metric in V4.
     Registered 2026-03-23. V4 scope.
+  evidence_quality_note: >
+    EXQ-246 PASS (2026-04-05): V3 proxy spindle coordination test. Reclassified to
+    inconclusive (governance 2026-04-07). PASS is vacuously true -- WITH_SPINDLE and
+    NO_SPINDLE conditions produced identical metrics in all 3 seeds (harm rates, harm
+    discrimination, harm_eval values all identical). Phase 3 spindle proxy (ThetaBuffer
+    consolidation_summary written back to ContextMemory) had zero measurable effect.
+    V3 proxy is too weak to produce signal for this V4-scope mechanism.
 
 - id: MECH-123
   title: "The REM sub-phase of offline mode recalibrates precision priors and tests world model hypotheses via unconstrained generative simulation, with commit gate fully suppressed."
@@ -9933,7 +9940,11 @@
     not claim issue. Replay cannot increase behavioral diversity without exploration-generated
     alternative strategies as source material. Superseding experiment must pair replay diversity
     mechanism with random walks or explicit exploration to provide diverse candidates for replay
-    to select from. Status: needs_redesign (pair replay with exploration mechanism).
+    to select from.
+    GOVERNANCE (2026-04-07): Both EXQ-244 runs reclassified from weakens to non_contributory.
+    Test-design limitation confirmed: proxy substrate and missing exploration source material
+    mean the experiment cannot test the claim. Conflict ratio should resolve after index rebuild.
+    Status: hold_candidate, needs_redesign (pair replay with exploration mechanism).
 
 - id: SD-017
   title: "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated."
@@ -12046,7 +12057,7 @@
   subject: Tonic serotonergic (5-HT) level during waking tags benefit-relevant experiences for preferential replay during subsequent SWS, complementing harm-salience tagging by the residue field
   polarity: positive
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v3
   depends_on:
     - MECH-186
     - MECH-121
@@ -12071,7 +12082,7 @@
   subject: Serotonergic withdrawal during REM actively defines the precision recalibration zero-point by removing the benefit gradient, not merely permitting recalibration
   polarity: positive
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v3
   depends_on:
     - MECH-123
     - MECH-186

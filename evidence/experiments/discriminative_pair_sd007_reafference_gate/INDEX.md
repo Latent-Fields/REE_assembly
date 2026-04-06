@@ -1,6 +1,6 @@
 # Experiment Index: discriminative_pair_sd007_reafference_gate
 
-Generated: `2026-04-05T20:29:13.856506Z`
+Generated: `2026-04-06T03:10:49.678236Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

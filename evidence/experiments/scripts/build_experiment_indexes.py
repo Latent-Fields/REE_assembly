@@ -160,7 +160,8 @@ def _parse_timestamp_only(raw: str) -> datetime:
 def _normalize_direction(raw: str | None) -> str:
     # "superseded" marks a run as invalidated by a corrected iteration -- it is
     # preserved in the entry log but excluded from scoring (see loop below).
-    allowed = {"supports", "weakens", "mixed", "unknown", "superseded"}
+    allowed = {"supports", "weakens", "mixed", "unknown", "superseded",
+                "non_contributory", "inconclusive"}
     value = (raw or "unknown").strip().lower()
     return value if value in allowed else "unknown"
 
@@ -894,7 +895,10 @@ def _experimental_entry_confidence(run: RunRecord, inferred_direction: str) -> t
     confidence = 0.6
     rationale_bits: list[str] = []
 
-    if inferred_direction == "mixed":
+    if inferred_direction in ("non_contributory", "inconclusive"):
+        confidence = 0.0
+        rationale_bits.append(f"{inferred_direction} -- excluded from scoring")
+    elif inferred_direction == "mixed":
         confidence = 0.5
         rationale_bits.append("mixed direction")
     elif inferred_direction == "unknown":
@@ -1171,6 +1175,9 @@ def _write_claim_evidence_matrix(
                 continue
             if run.experiment_purpose in ("diagnostic", "baseline"):
                 entry["scoring_excluded"] = f"{run.experiment_purpose}_probe"
+                continue
+            if claim_direction in ("non_contributory", "inconclusive"):
+                entry["scoring_excluded"] = claim_direction
                 continue
 
             claim_to_entries[claim_id].append(entry)
