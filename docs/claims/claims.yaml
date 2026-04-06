@@ -12184,3 +12184,169 @@
     variations simultaneously, yielding a richer causal signature than the single online
     comparison. The anchor episode is the observed outcome; the variation population is the
     counterfactual reference set; the extracted features are the offline causal attribution.
+    Refinement C (2026-04-07, Gupta 2010 + Stoianov 2022): the generative variations are
+    produced by the hippocampus's own hierarchical sequential model (items -> sequences ->
+    maps), not by arbitrary E2 rollouts. The hippocampus recombines experienced trajectory
+    segments (forward + reverse) at the sequence level to compose structurally plausible
+    counterfactuals that were never directly traversed. E2 provides the transition dynamics;
+    the hippocampal sequence model provides the structural constraints that keep variations
+    coherent with the learned map. The "what if" variations are hippocampally-constrained
+    recombinations, not unconstrained rollouts.
+    Refinement D (2026-04-07, Mattar & Daw 2018): replay priority is not raw PE magnitude
+    but PE x viability-relevance -- the product of gain (how much does updating this state
+    change the agent's policy?) and need (how likely is this state to be relevant to the
+    current viability landscape?). A highly surprising event in a region the agent will
+    never revisit has zero need and is not prioritised despite high gain. The surprise buffer
+    is therefore a priority queue on PE x relevance, not PE alone. This is a tighter and
+    more normatively justified criterion than raw PE magnitude.
+
+# Registered 2026-04-07 -- CA1 comparator as surprise buffer write mechanism
+# Source: Duncan 2011 + Bein 2020 lit-pull synthesis for MECH-205
+- id: MECH-206
+  title: "CA1 acts as a PE-proportional comparator that writes episodes to the surprise buffer: mismatch between CA3 prediction and entorhinal actual input produces a graded signal that tags the episode for offline replay and suppresses retrieval of the now-erroneous prediction."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.ca1_surprise_buffer_write_mechanism
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-205
+    - MECH-092
+    - SD-003
+  location: docs/architecture/sleep/offline_phases.md#mech-206
+  source:
+    - evidence/literature/targeted_review_mech_205/entries/2026-04-07_mech_205_ca1_mismatch_detector_duncan2011/record.json
+    - evidence/literature/targeted_review_mech_205/entries/2026-04-07_mech_205_mnemonic_pe_hippocampal_states_bein2020/record.json
+  notes: >
+    MECH-205 posits a surprise buffer (priority queue of high-PE episodes) but does not
+    specify the biological mechanism by which episodes are tagged and written to that buffer.
+    This claim fills that gap: CA1 is the write mechanism.
+    CA1 receives two simultaneous inputs: CA3's pattern-completed prediction of the current
+    context (what was expected), and entorhinal cortex's representation of the actual
+    incoming experience (what happened). CA1 activity reflects the degree of discrepancy
+    between these two channels -- automatically, graded, and proportionally (Duncan et al.
+    2011: CA1 tracks total number of changes linearly regardless of task relevance).
+    When mismatch is high, a bidirectional connectivity shift occurs (Bein et al. 2020):
+    CA1-entorhinal connectivity increases (encode the surprising input) while CA1-CA3
+    connectivity decreases (suppress retrieval of the now-erroneous prediction). This
+    implements the surprise buffer write in two steps: (1) the episode is tagged with its
+    PE magnitude via CA1 mismatch signal; (2) retrieval of the old prediction is suppressed
+    to prevent the erroneous model from continuing to drive behaviour.
+    The graded, linear sensitivity is critical: the surprise buffer needs a continuous PE
+    magnitude readout to rank episodes for replay priority. A binary match/mismatch flag
+    would not support the priority ordering MECH-205 requires. CA1's graded mismatch signal
+    is exactly the right quantity.
+    During SWR-driven offline replay, the same CA1 comparator logic operates in the
+    generative direction: CA3 pattern-completes the anchor episode; hippocampally-generated
+    variations arrive via entorhinal-equivalent input; CA1 computes the structural difference
+    between anchor and each variation. This is the contrastive comparison signal that drives
+    causal feature extraction (MECH-205 contrastive structure). The CA1 mismatch signal
+    during replay identifies which features distinguish anchor from variation, providing the
+    learning signal for forward model correction.
+    REE architectural implication: the HippocampalModule needs a CA1-equivalent comparator
+    submodule receiving (i) CA3-like pattern-completed anchor representations and (ii)
+    entorhinal-like actual/variation representations, with output being a graded PE signal
+    that writes to the surprise buffer priority queue.
+    Predicts: (1) disrupting CA1 activity specifically (not CA3 or DG) should impair surprise
+    buffer population while leaving forward replay intact; (2) the CA1 mismatch signal during
+    replay should correlate with which features the agent subsequently treats as causally
+    relevant to the surprising outcome.
+
+# Registered 2026-04-07 -- cholinergic write-gate on surprise buffer
+# Source: Sinclair 2021 lit-pull synthesis for MECH-205
+- id: MECH-207
+  title: "Acetylcholine acts as a permissive write-gate on the surprise buffer: prediction errors trigger hippocampal representation destabilisation and offline memory updating only when basal forebrain cholinergic activation co-occurs."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.cholinergic_surprise_buffer_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-205
+    - MECH-206
+    - MECH-178
+  location: docs/architecture/sleep/offline_phases.md#mech-207
+  source:
+    - evidence/literature/targeted_review_mech_205/entries/2026-04-07_mech_205_prediction_error_memory_sinclair2021/record.json
+  notes: >
+    MECH-205 treats the surprise buffer as populated by any high-PE episode. Sinclair et al.
+    2021 (PNAS) show that prediction errors trigger hippocampal destabilisation and memory
+    updating ONLY when basal forebrain cholinergic activation co-occurs. Without ACh, the PE
+    signal does not make memories labile for updating, even if the PE is large.
+    This implies a neuromodulatory write-gate on the surprise buffer: ACh is the permissive
+    signal that determines which PE-tagged episodes actually get written to the buffer. PE
+    alone is necessary but not sufficient -- the agent must be in an ACh-permissive state
+    (aroused, attending) for the episode to be cached.
+    This explains: (1) inattentional learning failure -- you can be objectively surprised
+    (high PE) and fail to update if ACh is low (drowsy, inattentive); (2) novelty enhances
+    learning -- novel contexts elevate ACh (basal forebrain is strongly novelty-responsive),
+    opening the write-gate for PE episodes encountered in that context; (3) the 24-hour
+    delay in updating (Sinclair 2021) is consistent with offline sleep-phase consolidation
+    of ACh-gated cached episodes (MECH-205 / MECH-121).
+    Clinical implication: ACh depletion (as in Alzheimer's disease, where basal forebrain
+    is an early casualty) closes the surprise buffer write-gate even when the CA1 comparator
+    (MECH-206) generates normal PE signals. The forward models accumulate PE without
+    updating -- the patient registers that something is wrong but cannot integrate the
+    correction. A plausible mechanism for confabulation and inertia-of-false-belief in
+    early AD.
+    Two-gate architecture: NE controls when offline replay occurs (via REM gating, MECH-178);
+    ACh controls which episodes are eligible for offline updating (surprise buffer gate). They
+    are independent axes: REM suppression (high NE) blocks the offline phase; low ACh
+    at encoding blocks which episodes enter the buffer in the first place. Both gates must
+    be functional for a PE episode to reach offline correction.
+    Implementation_phase v4: requires neuromodulatory layer in hippocampal module.
+    Predicts: (1) ACh blockade at time of PE prevents offline updating of that episode even
+    if replay occurs; (2) ACh agonists at PE time enhance offline updating; (3) in AD,
+    PE-to-updating delay is disproportionately impaired relative to PE detection.
+
+# Registered 2026-04-07 -- valence-asymmetric replay and anxiety mechanism
+# Source: McFadyen 2023 lit-pull synthesis for MECH-205
+- id: MECH-208
+  title: "Valence-asymmetric replay causally drives approach/avoidance bias: harm-path replay is weighted relative to reward-path replay by the agent's harm-salience parameter, and chronically elevated harm-weighting produces avoidance bias in safe contexts."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.valence_asymmetric_replay_approach_avoidance
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-205
+    - ARC-031
+    - MECH-186
+    - MECH-124
+  location: docs/architecture/sleep/offline_phases.md#mech-208
+  source:
+    - evidence/literature/targeted_review_mech_205/entries/2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023/record.json
+  notes: >
+    MECH-205 claims the contrastive replay structure is valence-asymmetric (harm surprises
+    write to avoidance map, goal surprises write to approach map). McFadyen et al. 2023
+    (Nature Neuroscience) show this asymmetry is not merely structural but causally drives
+    downstream decisions, and is modulated by individual differences in harm-weighting.
+    Replay of punishment paths was boosted relative to reward paths before avoidance
+    decisions, and attenuated before approach decisions. Trial-by-trial bias toward
+    punishment-path replay predicted irrational approach decisions -- excess threat evidence
+    tipped the decision toward avoidance even in safe contexts. The effect was stronger in
+    high trait-anxiety individuals.
+    In REE terms: the harm-salience parameter (z_beta / residue field weighting) modulates
+    the valence asymmetry in replay. Elevated harm-salience causes punishment-path replay
+    to dominate, systematically biasing the contrastive comparison toward harm-relevant
+    features. The agent extracts harm-predictive features from a larger fraction of its
+    replay budget than is warranted by actual harm probability -- a miscalibration that
+    generalises to safe contexts, producing avoidance of situations that do not warrant it.
+    This is the replay-mediated anxiety mechanism: not that anxious agents perceive more
+    harm in the moment, but that they replay harm-relevant paths more heavily during offline
+    consolidation, installing a harm-weighted cognitive map that biases future decisions.
+    The mechanism is self-reinforcing: elevated harm-weighting -> more harm-path replay ->
+    more harm-predictive feature extraction -> more avoidance -> fewer approach experiences
+    -> less corrective evidence -> maintained harm-weighting. This is the consolidation-
+    mediated option-space contraction of MECH-124, specified here as operating via the
+    valence asymmetry in replay content.
+    Connects to MECH-186 (psychiatric failure mode cluster). The beta-blocker-before-sleep
+    prediction follows directly: propranolol reduces NE-mediated harm salience during
+    consolidation, rebalancing the replay ratio toward reward paths, attenuating avoidance
+    bias. Consistent with the literature on propranolol and fear memory reconsolidation.
+    Predicts: (1) disrupting harm-path replay specifically should attenuate avoidance
+    behaviour in anxious agents without affecting approach in safe contexts; (2) the ratio
+    of harm-path to reward-path replay during offline phases predicts trait anxiety scores;
+    (3) interventions rebalancing the replay ratio (exposure therapy, beta-blockers pre-sleep)
+    reduce avoidance bias by correcting the harm-weighted cognitive map installed by
+    asymmetric replay.
