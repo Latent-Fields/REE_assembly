@@ -11358,8 +11358,8 @@
   subject: serotonin.incentive_salience_gain_regulation
   polarity: asserts
   status: candidate
-  confidence: 0.0
-  implementation_phase: v4
+  confidence: 0.55
+  implementation_phase: v3
   depends_on:
     - SD-012
     - MECH-186
@@ -11376,10 +11376,10 @@
     transduction point. Distinct from terrain maintenance (MECH-186) and goal persistence
     (MECH-188).
   evidence_quality_note: >
-    Theoretical. Maps to 5-HT modulation of DA-mediated incentive salience at NAc.
-    Explains anhedonia as specifically gain suppression, not general hedonic deficit --
-    predicts liking may be preserved when wanting is abolished (Berridge dissociation,
-    see MECH-117).
+    EXQ-252 PASS (2026-04-07): bidirectional z_goal seeding gain confirmed. Moderate
+    suppression (gain=0.6) collapses z_goal_norm in SIMPLE context (P1), moderate
+    elevation (gain=2.0) rescues seeding in LONG_HORIZON context (P2). First genuine
+    evidence. Maps to 5-HT modulation of DA-mediated incentive salience at NAc.
 
 - id: MECH-188
   title: "PFC-mediated goal persistence under adversity, sustained by 5-HT projections from DRN to dlPFC, maintains z_goal through harm spikes after seeding."
@@ -12124,6 +12124,11 @@
   location: docs/architecture/sleep/offline_phases.md#mech-205
   source:
     - conversation_2026-04-06_surprise_gated_replay
+  evidence_quality_note: >
+    Tier 1 implementation (2026-04-07): PE EMA tracking + VALENCE_SURPRISE population
+    on residue field + PE-weighted surprise_weight in drive_state for replay start
+    selection. Config: surprise_gated_replay=True. EXQ-258 queued for validation.
+    Awaiting V3 substrate evidence (hold_pending_v3_substrate).
   notes: >
     MECH-092 establishes that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent
     replay, and MECH-121 specifies the full NREM consolidation pipeline. Neither specifies

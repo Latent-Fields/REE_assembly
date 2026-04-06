@@ -161,9 +161,13 @@ def _normalize_direction(raw: str | None) -> str:
     # "superseded" marks a run as invalidated by a corrected iteration -- it is
     # preserved in the entry log but excluded from scoring (see loop below).
     allowed = {"supports", "weakens", "mixed", "unknown", "superseded",
-                "non_contributory", "inconclusive"}
+                "non_contributory", "inconclusive", "does_not_support"}
+    # Map synonyms to canonical values.
+    synonyms = {"does_not_support": "weakens"}
     value = (raw or "unknown").strip().lower()
-    return value if value in allowed else "unknown"
+    if value not in allowed:
+        return "unknown"
+    return synonyms.get(value, value)
 
 
 def _normalize_confidence(raw: Any, default: float = 0.5) -> float:
@@ -305,7 +309,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 if isinstance(v, (int, float)):
                     metrics[k] = float(v)
 
-        status = str(manifest.get("status", "UNKNOWN")).upper()
+        status = str(manifest.get("status") or manifest.get("outcome", "UNKNOWN")).upper()
         signatures = manifest.get("failure_signatures", [])
         if not isinstance(signatures, list):
             signatures = []
