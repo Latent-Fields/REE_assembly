@@ -12120,6 +12120,7 @@
     - MECH-121
     - INV-049
     - SD-003
+    - ARC-031
   location: docs/architecture/sleep/offline_phases.md#mech-205
   source:
     - conversation_2026-04-06_surprise_gated_replay
@@ -12162,3 +12163,24 @@
     magnitude; (2) replay of an episode decreases as the forward models improve on it;
     (3) blocking replay of high-surprise episodes (e.g. targeted memory reactivation of
     low-surprise items) should impair model correction for the blocked episodes specifically.
+    Contrastive causal structure of replay (2026-04-07 refinement): the generative variations
+    are not sampled arbitrarily -- they are CONTRASTIVELY paired with the anchor episode.
+    The anchor is the surprising event (e.g. "I was hurt here" or "I reached the goal here
+    unexpectedly"). The variations are nearby episodes where the surprising outcome DID NOT
+    occur. The learning signal is the feature contrast: what distinguishes (context, action)
+    pairs that produced the surprise from those that did not? This is offline causal inference,
+    not just prediction-error minimisation. The system is asking "which antecedent features
+    are causally upstream of this outcome?" rather than just "can I predict this outcome better?"
+    This sharpens the termination criterion: replay does not stop when prediction error drops
+    but when the causally relevant features have been extracted -- i.e. when the model can
+    reliably classify surprising vs non-surprising variations by their input features.
+    The contrastive structure is directionally asymmetric by valence: harm surprises generate
+    variations where harm does not occur ("what would I have had to do differently to avoid
+    this?") -- result writes to the avoidance/residue map. Goal surprises generate variations
+    where the goal is not reached ("what were the lucky features I should exploit?") -- result
+    writes to the approach map. Same contrastive machinery, different downstream targets.
+    This connects directly to ARC-031 (approach-avoidance symmetry) and implements SD-003
+    offline: the hippocampus runs the counterfactual population E2(z_t, a_cf) across many
+    variations simultaneously, yielding a richer causal signature than the single online
+    comparison. The anchor episode is the observed outcome; the variation population is the
+    counterfactual reference set; the extracted features are the offline causal attribution.
