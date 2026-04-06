@@ -441,3 +441,136 @@ Any medication that suppresses REM (anticholinergics, MAOIs, most antidepressant
 ### Epistemic status
 
 The four-type taxonomy is first-person phenomenological data from one observer (DG), noted as definite types but not claimed to be exhaustive. The mapping to computational processes is an interpretation requiring corroboration from other observers and eventual connection to polysomnographic sleep-stage measurement. Dream diaries from multiple individuals, classified by structural type (agent/no-agent, resolving/non-resolving, sequential/simultaneous), would allow initial corroboration without sleep-lab equipment.
+
+---
+
+## Self-Model Failure Modes: E1 Schema Poverty and E2 Capacity Degradation (INV-064, MECH-214, MECH-215)
+
+> **Registered 2026-04-07.** A class of failure modes distinct from motivational/reward
+> pathology: the preconditions for coherent goal-directed agency are absent, not the
+> motivational system itself.
+
+### The Architectural Distinction
+
+The motivational failure modes above (INV-052–054, 2x2 taxonomy) assume that the
+agent has a functioning self-model and an accurate model of its own capabilities.
+These failures are located in the goal-seeding and terrain-maintenance pipeline —
+the agent could form goals but the signal is absent or degraded.
+
+A separate class of failure exists upstream of that pipeline: **the self-model
+required to be the subject of goal-directed action is itself degraded**. This
+produces a superficially similar phenomenology (absence of goal-directed behaviour,
+motivational flatness, inability to plan) but through a different architectural
+pathway with different treatment implications.
+
+The distinction maps onto three claims:
+
+- **INV-064**: E1 schema differentiation → E2 transition differentiation → E3
+  evaluative capacity is a strict computational dependency. E3 cannot productively
+  train until its inputs (z_world from E1, action_objects from E2) carry sufficient
+  information. The biological fact that the prefrontal cortex myelinates last is an
+  architectural necessity, not a developmental accident.
+
+- **MECH-214**: Goal *content* is constituted by E1 schema space. A goal aimed at
+  an E1-unrepresented state is a random vector in E3's operating space — it cannot
+  generate coherent viability terrain or trajectory proposals. Goal coherence
+  co-develops with E1 schema richness.
+
+- **MECH-215**: Goal *pursuit* requires E2 self-transition accuracy. The "I" that
+  makes a goal first-personal — *I* can reach *that* — is constituted by E1's
+  self-schemas (who I am, what I feel, what my body is) and E2's self-transition
+  model (what I can do, how my actions transform my state). Without both, E3's
+  viability estimates have no coherent subject.
+
+### Two Failure Modes
+
+**Mode A — Goal incoherence (MECH-214 failure):**
+
+E1 schema differentiation is insufficient. The agent cannot form stable representations
+of the states it nominally wants. Goal-directed behaviour appears absent or directionless
+— not because the wanting system is suppressed (MECH-187 failure) but because there is
+no representationally coherent object for wanting to point at.
+
+| Signature | Clinical mapping | REE mechanism |
+|-----------|-----------------|---------------|
+| Wanting without object — diffuse, undirected motivation | Certain anhedonic/dysthymic presentations | z_goal seeded but referent E1-unrepresented; z_goal is effectively noise |
+| Goals stated but behaviorally inert | Alexithymia, emotional-cognitive disconnection | Goal object not grounded in affective E1 schema; E3 evaluates an abstract token |
+| Difficulty identifying what one wants at all | Schizoid features, depersonalisation | E1 self-schema and world-schema both poorly differentiated; goal space is near-empty |
+| Repeated pursuit of goals that produce no satisfaction | Compulsive achievement without hedonic gain | Goal object represented abstractly (status, money) but E1 has no schema for the hedonic state they were proxies for |
+
+Crucially, this failure is **not dopaminergic**. The wanting system (MECH-187 gain)
+may be intact; there is simply no coherent target for it to amplify. Standard
+antidepressants and dopamine agonists do not address E1 schema poverty.
+
+**Mode B — Capacity estimate failure (MECH-215 failure):**
+
+E2 self-transition accuracy is degraded. The agent's model of what it can do — how
+its actions transform its own z_self state — is systematically wrong. E3 receives a
+corrupted capacity model and produces viability estimates that are either
+catastrophically pessimistic (the world looks unnavigable) or unrealistically
+optimistic (the agent overestimates its reach).
+
+| Direction | Signature | Clinical mapping | REE mechanism |
+|-----------|-----------|-----------------|---------------|
+| Pessimistic | Cannot start — world appears unnavigable | Learned helplessness, agoraphobia, avoidance | E2 self-transitions predict action → no change or harm; E3 viability estimates uniformly low |
+| Pessimistic | Knows the goal, cannot move toward it | Depression (action-initiation subtype) | E2 capacity model: I cannot do what this goal requires |
+| Optimistic | Overestimates capability, repeatedly fails | Manic planning, grandiosity | E2 self-transitions inflated; E3 produces unreachable viability trajectories |
+| Noisy | Variable, unpredictable capacity | Chronic fatigue, chronic pain, episodic illness | E2 self-transition model trained on inconsistent data; capacity estimates unreliable across days |
+
+The pessimistic direction is particularly important: **avoidance, agoraphobia, and
+learned helplessness may be E2 failures rather than E3 over-valuations of harm**.
+The standard cognitive framing — the patient overestimates threat — aims treatment at
+E3's harm evaluation. But if E2's capacity model is degraded (I cannot do what is
+required to be safe), E3's output is not biased — it is responding correctly to a
+broken capacity input. Correcting E3's output directly (cognitive restructuring) will
+fail if E2 remains inaccurate.
+
+### Developmental Etiology (INV-064)
+
+Both failure modes have a developmental pathway: **early-life disruption of E1 and E2
+differentiation constrains E3 training quality permanently**. E3 trains on E1/E2 outputs.
+If those outputs carry low information during the critical developmental window, E3 learns
+to evaluate degraded inputs — and its harm/goal representations are noise-fitted to the
+actual structure of the world.
+
+Early-life adversity that disrupts sensory schema formation (sensory deprivation, trauma
+that narrows the experienced world, chronic unpredictability that prevents schema
+stabilisation) therefore does not merely cause emotional injury. It degrades the
+representational substrate from which coherent goals and accurate capacity estimates can
+ever be drawn. The downstream effects on executive function and goal-directed behaviour
+persist into adulthood not because of stored trauma but because E3 was trained on
+impoverished inputs.
+
+This is consistent with the empirical finding that early adversity produces deficits in
+goal-directed behaviour and executive function that are disproportionate to, and
+dissociable from, the emotional sequelae of the same adversity.
+
+### Treatment Implications
+
+The treatment target for Mode A (MECH-214 failure) is **E1 schema enrichment**:
+expanding the experiential vocabulary, building representational differentiation.
+Novel high-entropy environments, arts, movement, practices developing fine perceptual
+discrimination, and (carefully) psychedelic experiences that temporarily dissolve
+existing schema boundaries can expand the space of coherent goals available to E3.
+This is not symptom management — it is enlarging the space from which goals can form.
+
+The treatment target for Mode B pessimistic direction (MECH-215 failure) is **E2
+self-transition recalibration via action in the world**. This is why exposure-based
+therapies show consistent superiority over purely cognitive approaches in phobias and
+PTSD. Cognitive restructuring addresses E3's harm estimates directly; exposure-based
+therapy rebuilds E2 self-transitions through direct experience of what the agent can
+actually do. The capacity model is updated from below, not argued into shape from above.
+
+Somatic and interoception-focused therapies (body-based trauma approaches, movement
+practices, breathwork) operate at the correct architectural level: they rebuild E1
+self-schemas (who I am, what my body is) and E2 self-transitions (what I can do)
+directly, restoring the preconditions for coherent agency rather than targeting E3
+output.
+
+### Claims Covered
+
+| ID | Label | Failure type |
+|----|-------|-------------|
+| INV-064 | e1_e2_e3_maturational_sequence_necessity | Developmental: E3 cannot train on degraded E1/E2 inputs |
+| MECH-214 | goal_referent_e1_representability | Mode A: goal content requires E1 schema differentiation |
+| MECH-215 | self_model_prerequisite_for_agentive_prediction | Mode B: goal pursuit requires E1 self-schema + E2 capacity model |
