@@ -1,0 +1,99 @@
+{
+  "experiment_type": "v3_exq_255_mech203_benefit_tagging",
+  "run_id": "v3_exq_255_mech203_benefit_tagging_v3",
+  "claim_ids": [
+    "MECH-203"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp": "2026-04-06T08:40:48.972505Z",
+  "verdict": "FAIL",
+  "evidence_direction": "weakens",
+  "conditions": [
+    "SEROTONIN",
+    "NO_SEROTONIN"
+  ],
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "metrics": {
+    "benefit_valence_ratio": 0.0,
+    "mean_peak_5ht": 0.5,
+    "gain_std": 5.551115123125783e-16
+  },
+  "evidence": {
+    "c1_benefit_ratio_passed": false,
+    "c2_peak_5ht_passed": false,
+    "c3_gain_variation_passed": false
+  },
+  "per_condition_results": [
+    {
+      "condition": "SEROTONIN",
+      "seed": 42,
+      "mean_benefit_valence": 0.0,
+      "mean_nonbenefit_valence": 0.0,
+      "benefit_valence_ratio": 0.0,
+      "mean_peak_5ht": 0.5,
+      "gain_std": 5.551115123125783e-16,
+      "n_benefit_samples": 0,
+      "n_nonbenefit_samples": 100
+    },
+    {
+      "condition": "SEROTONIN",
+      "seed": 137,
+      "mean_benefit_valence": 0.0,
+      "mean_nonbenefit_valence": 0.0,
+      "benefit_valence_ratio": 0.0,
+      "mean_peak_5ht": 0.5,
+      "gain_std": 5.551115123125783e-16,
+      "n_benefit_samples": 0,
+      "n_nonbenefit_samples": 100
+    },
+    {
+      "condition": "SEROTONIN",
+      "seed": 2026,
+      "mean_benefit_valence": 0.0,
+      "mean_nonbenefit_valence": 0.0,
+      "benefit_valence_ratio": 0.0,
+      "mean_peak_5ht": 0.5,
+      "gain_std": 5.551115123125783e-16,
+      "n_benefit_samples": 0,
+      "n_nonbenefit_samples": 100
+    },
+    {
+      "condition": "NO_SEROTONIN",
+      "seed": 42,
+      "mean_benefit_valence": 0.0,
+      "mean_nonbenefit_valence": 0.0,
+      "benefit_valence_ratio": 0.0,
+      "mean_peak_5ht": 0.5,
+      "gain_std": 0.0,
+      "n_benefit_samples": 0,
+      "n_nonbenefit_samples": 100
+    },
+    {
+      "condition": "NO_SEROTONIN",
+      "seed": 137,
+      "mean_benefit_valence": 0.0,
+      "mean_nonbenefit_valence": 0.0,
+      "benefit_valence_ratio": 0.0,
+      "mean_peak_5ht": 0.5,
+      "gain_std": 0.0,
+      "n_benefit_samples": 0,
+      "n_nonbenefit_samples": 100
+    },
+    {
+      "condition": "NO_SEROTONIN",
+      "seed": 2026,
+      "mean_benefit_valence": 0.0,
+      "mean_nonbenefit_valence": 0.0,
+      "benefit_valence_ratio": 0.0,
+      "mean_peak_5ht": 0.5,
+      "gain_std": 0.0,
+      "n_benefit_samples": 0,
+      "n_nonbenefit_samples": 100
+    }
+  ]
+}

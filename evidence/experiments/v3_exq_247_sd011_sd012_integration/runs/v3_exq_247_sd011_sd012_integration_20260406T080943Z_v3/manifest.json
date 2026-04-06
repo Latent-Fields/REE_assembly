@@ -1,0 +1,61 @@
+{
+  "run_id": "v3_exq_247_sd011_sd012_integration_20260406T080943Z_v3",
+  "experiment_type": "v3_exq_247_sd011_sd012_integration",
+  "claim_ids": [
+    "SD-011",
+    "SD-012",
+    "ARC-033",
+    "ARC-030"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "criteria": {
+    "C1_commit_diff_passes": 0,
+    "C1_pass": false,
+    "C2_affect_ratio_passes": 1,
+    "C2_pass": false,
+    "C3_goal_norm_passes": 0,
+    "C3_pass": false,
+    "C4_regression_passes": 2,
+    "C4_pass": true,
+    "C5_threshold_sep_passes": 3,
+    "C5_pass": true,
+    "overall": "FAIL",
+    "evidence_direction": "does_not_support"
+  },
+  "conditions_summary": {
+    "FULL": {
+      "mean_commit_diff": 0.0,
+      "mean_harm_rate": 0.016966666666666668,
+      "mean_goal_norm": 0.0,
+      "mean_urgency": 0.4999300281991561
+    },
+    "NO_URGENCY": {
+      "mean_commit_diff": 0.0,
+      "mean_harm_rate": 0.0176,
+      "mean_goal_norm": 0.0,
+      "mean_urgency": 0.0
+    },
+    "NO_AFFECT": {
+      "mean_commit_diff": 0.0,
+      "mean_harm_rate": 0.017066666666666664,
+      "mean_goal_norm": 0.0,
+      "mean_urgency": 0.49977311388353507
+    },
+    "BASELINE": {
+      "mean_commit_diff": 0.0,
+      "mean_harm_rate": 0.0161,
+      "mean_goal_norm": 0.0,
+      "mean_urgency": 0.0
+    }
+  },
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "train_episodes": 200,
+  "eval_episodes": 50,
+  "steps_per_episode": 200
+}

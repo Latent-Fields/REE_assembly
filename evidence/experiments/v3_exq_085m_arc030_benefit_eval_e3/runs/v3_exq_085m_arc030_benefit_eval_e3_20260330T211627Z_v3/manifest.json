@@ -25,7 +25,7 @@
     "SD-015"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -42,5 +42,5 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "0/4 criteria. benefit_eval_r2_train=-8.6 (head diverges, no learning). benefit_per_ep=0 in both ENABLED/DISABLED conditions -- benefit events absent. ARC-030 benefit_eval_head approach (E3 trajectory scoring via benefit proximity regression head) fails at this scale. Root cause: benefit proximity signal too sparse for E3 to learn within warmup budget."
+  "evidence_direction_note": "z_world encoder did not encode resource proximity (SD-018 root cause identified 2026-04-07). benefit_eval_head cannot learn without resource-relevant features in z_world. This FAIL reflects a substrate gap, not a mechanism failure. Reclassified from weakens to non_contributory."
 }

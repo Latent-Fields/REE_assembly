@@ -24,7 +24,8 @@
     "MECH-112"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "z_world encoder did not encode resource proximity (SD-018 root cause identified 2026-04-07). benefit_eval_head cannot learn without resource-relevant features in z_world. This FAIL reflects a substrate gap, not a mechanism failure. Reclassified from weakens to non_contributory.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -41,7 +42,7 @@
   },
   "failure_signatures": [],
   "evidence_direction_per_claim": {
-    "ARC-030": "weakens",
-    "MECH-112": "weakens"
+    "ARC-030": "non_contributory",
+    "MECH-112": "non_contributory"
   }
 }

@@ -1,0 +1,88 @@
+{
+  "experiment_type": "v3_exq_256_mech203_balanced_replay",
+  "run_id": "v3_exq_256_mech203_balanced_replay_v3",
+  "claim_ids": [
+    "MECH-203"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp": "2026-04-06T08:36:48.878510Z",
+  "verdict": "FAIL",
+  "evidence_direction": "weakens",
+  "conditions": [
+    "SEROTONIN",
+    "NO_SEROTONIN"
+  ],
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "metrics": {
+    "mean_ser_replay_benefit": 0.0,
+    "mean_noser_replay_benefit": 0.0,
+    "mean_ser_post_goal_norm": 0.0,
+    "mean_noser_post_goal_norm": 0.0,
+    "goal_ratio": 0.0
+  },
+  "evidence": {
+    "c1_benefit_proximity_passed": false,
+    "c3_goal_ratio_passed": false
+  },
+  "per_condition_results": [
+    {
+      "condition": "SEROTONIN",
+      "seed": 42,
+      "pre_sleep_goal_norm": 0.0,
+      "post_sleep_goal_norm": 0.0,
+      "pre_sleep_5ht": 0.5,
+      "mean_replay_benefit_proximity": 0.0,
+      "n_replay_samples": 50
+    },
+    {
+      "condition": "SEROTONIN",
+      "seed": 137,
+      "pre_sleep_goal_norm": 0.0,
+      "post_sleep_goal_norm": 0.0,
+      "pre_sleep_5ht": 0.5,
+      "mean_replay_benefit_proximity": 0.0,
+      "n_replay_samples": 50
+    },
+    {
+      "condition": "SEROTONIN",
+      "seed": 2026,
+      "pre_sleep_goal_norm": 0.0,
+      "post_sleep_goal_norm": 0.0,
+      "pre_sleep_5ht": 0.5,
+      "mean_replay_benefit_proximity": 0.0,
+      "n_replay_samples": 50
+    },
+    {
+      "condition": "NO_SEROTONIN",
+      "seed": 42,
+      "pre_sleep_goal_norm": 0.0,
+      "post_sleep_goal_norm": 0.0,
+      "pre_sleep_5ht": 0.5,
+      "mean_replay_benefit_proximity": 0.0,
+      "n_replay_samples": 50
+    },
+    {
+      "condition": "NO_SEROTONIN",
+      "seed": 137,
+      "pre_sleep_goal_norm": 0.0,
+      "post_sleep_goal_norm": 0.0,
+      "pre_sleep_5ht": 0.5,
+      "mean_replay_benefit_proximity": 0.0,
+      "n_replay_samples": 50
+    },
+    {
+      "condition": "NO_SEROTONIN",
+      "seed": 2026,
+      "pre_sleep_goal_norm": 0.0,
+      "post_sleep_goal_norm": 0.0,
+      "pre_sleep_5ht": 0.5,
+      "mean_replay_benefit_proximity": 0.0,
+      "n_replay_samples": 50
+    }
+  ]
+}
