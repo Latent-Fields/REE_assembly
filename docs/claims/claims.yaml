@@ -12104,3 +12104,61 @@
     double hit explaining why noradrenergic-mediated REM suppression produces rigidity rather
     than just reduced recalibration. Predicts: pharmacological 5-HT agonists during REM
     should impair precision recalibration quality specifically (not SWS consolidation).
+
+# Registered 2026-04-06 — surprise-gated generative replay
+# Source: conversation on hippocampal replay scheduling priority
+- id: MECH-205
+  title: "Hippocampal replay is surprise-gated and generative: episodes with high unexplained prediction error are prioritized, replayed with counterfactual variations via E2, and deprioritized only when forward models can account for the surprise."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.surprise_gated_generative_replay
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-092
+    - MECH-094
+    - MECH-121
+    - INV-049
+    - SD-003
+  location: docs/architecture/sleep/offline_phases.md#mech-205
+  source:
+    - conversation_2026-04-06_surprise_gated_replay
+  notes: >
+    MECH-092 establishes that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent
+    replay, and MECH-121 specifies the full NREM consolidation pipeline. Neither specifies
+    what determines WHICH episodes are replayed or HOW MUCH replay each receives.
+    This claim fills that gap: the hippocampus maintains a surprise buffer -- a priority queue
+    of cached episodes ranked by unexplained prediction error magnitude (E1 sensory, E2
+    motor-sensory, or E3 harm/goal error). During offline phases, the highest-surprise episode
+    is popped from the buffer, and the hippocampus generates counterfactual VARIATIONS around
+    it via E2 rollouts (not rote re-presentation of the raw experience). The forward models
+    (E1/E2) train on these replayed variations. Replay of a given episode tapers when prediction
+    error on it and its counterfactual neighbourhood drops below threshold -- a natural
+    convergence-based termination criterion. This makes replay allocation adaptive: more
+    surprising events receive more replay cycles.
+    Three functional consequences: (1) Efficient offline compute -- replay focuses on what the
+    model gets wrong, consistent with the SWR literature showing replay bias toward novel and
+    reward-adjacent sequences (Olafsdottir et al. 2018). (2) Generative, not rote -- the
+    variation generation is E2 running counterfactual rollouts offline, which directly trains
+    SD-003 attribution capacity without acting-on-incomplete-models risk (INV-049). (3) Natural
+    termination -- events that resist explanation get more cycles, which is why they consolidate
+    more strongly (and clinically, why traumatic events that cannot be integrated keep replaying
+    intrusively -- the termination criterion is never met, MECH-094 tag may degrade under
+    sustained high-affect replay).
+    When the surprising event involved harm, replay must also continue until the residue field
+    (viability map) updates to reflect the newly learned danger. This means the replay target
+    is not purely forward-model prediction error but also includes residue field update
+    completeness -- the driver is surprise, but the scope includes both model correction and
+    map consolidation.
+    MECH-094 hypothesis tag is critical: every generated variation must carry the simulation
+    flag. Tag loss during generative replay = confabulation (replayed variations remembered as
+    real). Tag loss on high-affect replays = PTSD intrusion mechanism (the replay loses its
+    "this is simulation" marker).
+    Architectural implication: the surprise buffer is a distinct structure from the viability
+    map -- it is a replay SCHEDULING structure, not a spatial map. It lives in the hippocampal
+    module and is populated during waking (high prediction error events cached with their
+    error magnitude) and consumed during offline phases.
+    Predicts: (1) replay frequency of an episode correlates with its initial prediction error
+    magnitude; (2) replay of an episode decreases as the forward models improve on it;
+    (3) blocking replay of high-surprise episodes (e.g. targeted memory reactivation of
+    low-surprise items) should impair model correction for the blocked episodes specifically.

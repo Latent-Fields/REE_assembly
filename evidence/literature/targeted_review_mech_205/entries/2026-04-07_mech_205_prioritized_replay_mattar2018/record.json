@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_prioritized_replay_mattar2018",
+  "timestamp_utc": "2026-04-07T02:45:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay",
+    "authors": ["Marcelo G Mattar", "Nathaniel D Daw"],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Strong computational model with clear normative derivation showing replay prioritized by gain (prediction-error dependent) x need. The gain term captures MECH-205's surprise-gating; the generative capacity (composing novel sequences from pieces) maps onto MECH-205's counterfactual variations. Minor mapping gap: the model prioritizes by expected policy improvement rather than raw prediction error magnitude, which is a more refined criterion than MECH-205's formulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model prioritizes by expected BEHAVIORAL gain, not raw prediction error -- replay of a surprise that cannot change policy is not prioritized, which is a more restrictive criterion than MECH-205's surprise buffer."
+  ],
+  "tags": ["mech_205", "prioritized_replay", "prediction_error", "computational_model", "dyna"],
+  "mapping": {
+    "source_claim_statement": "Replay utility is the product of a gain term (prioritizing states behind the agent when an unexpected outcome is encountered) and a need term (prioritizing states ahead that are imminently relevant). Replay can compose novel behavioral sequences from separately experienced pieces.",
+    "ree_translation": "The gain term maps onto MECH-205's surprise-gating: high prediction error increases replay priority. The need term adds a forward-looking component MECH-205 does not explicitly model. The compositional sequence generation maps onto MECH-205's generative counterfactual variations via E2. The implicit termination (utility falls below threshold) maps onto MECH-205's convergence criterion.",
+    "mapping_caveat": "Mattar & Daw's gain is policy-relevant surprise (would the update change behaviour?), not raw prediction error. MECH-205's surprise buffer uses prediction error magnitude directly, which is a less selective criterion. The model is for planning replay (awake), while MECH-205 targets offline sleep replay -- the prioritization logic may differ between awake and sleep states.",
+    "source_context": "Computational reinforcement learning model (DYNA framework) validated against rodent place cell replay data in spatial navigation tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "Nature Neuroscience, highly cited normative framework. Mapping fidelity reduced because the gain x need product is more refined than raw surprise; transfer risk low because the framework is general RL, applicable to any replay system."
+  }
+}

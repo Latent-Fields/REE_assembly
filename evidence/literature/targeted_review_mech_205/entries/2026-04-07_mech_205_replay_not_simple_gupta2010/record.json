@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_replay_not_simple_gupta2010",
+  "timestamp_utc": "2026-04-07T02:45:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "Hippocampal Replay Is Not a Simple Function of Experience",
+    "authors": ["Anoopum S Gupta", "Matthijs A A van der Meer", "David S Touretzky", "A David Redish"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.01.034"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct electrophysiological evidence that hippocampal replay generates novel shortcut sequences never experienced by the animal -- combining forward and reverse segments from different trajectories. This is the strongest empirical support for MECH-205's claim that replay is generative rather than rote. Does not directly test whether surprise drives the generation of these novel sequences.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study demonstrates generative replay but does not show that surprise/prediction error is the trigger for generating novel sequences rather than other factors like spatial proximity or sequence overlap."
+  ],
+  "tags": ["mech_205", "generative_replay", "novel_sequences", "hippocampus", "swr", "shortcut"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay during SWRs includes novel shortcut trajectories the animal never traversed, composed by combining forward replay of one trajectory with backward replay of another. Replay is not a simple function of prior experience.",
+    "ree_translation": "Directly supports MECH-205's claim that hippocampal replay is generative -- producing counterfactual variations, not just rote re-presentation of cached episodes. The shortcut sequences are analogous to E2 counterfactual rollouts: the hippocampus constructs what COULD have happened by recombining trajectory segments, training the cognitive map on these constructed possibilities.",
+    "mapping_caveat": "The study demonstrates generativity but does not link it to surprise/prediction error. MECH-205 claims that surprise gates which episodes receive generative replay; Gupta et al. show that replay CAN be generative but do not show that surprise determines WHEN it is generative. The spatial shortcut composition may be driven by spatial structure rather than prediction error.",
+    "source_context": "Rodent (rat) hippocampal place cell recordings during multiple-T maze spatial navigation. Novel shortcut sequences identified during rest-period SWRs."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Neuron, landmark finding in replay literature. High mapping fidelity for the generative aspect; lower for the surprise-gating aspect (not tested). Transfer risk moderate: rodent spatial replay to REE's general architecture."
+  }
+}

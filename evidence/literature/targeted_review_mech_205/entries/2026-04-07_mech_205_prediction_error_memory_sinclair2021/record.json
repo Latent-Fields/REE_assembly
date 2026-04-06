@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_prediction_error_memory_sinclair2021",
+  "timestamp_utc": "2026-04-07T02:45:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "Prediction errors disrupt hippocampal representations and update episodic memories",
+    "authors": ["Alyssa H Sinclair", "Grace M Manalili", "Iva K Brunec", "R Alison Adcock", "Morgan D Barense"],
+    "year": 2021,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.2117625118"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Demonstrates that prediction errors destabilise hippocampal representations and trigger memory updating (reconsolidation after 24h delay). Supports the broader principle that surprise drives hippocampal model-updating. However, the study measures reconsolidation of existing memories, not replay scheduling or generative replay -- the mechanism is adjacent to but not identical with MECH-205's surprise buffer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study measures memory reconsolidation/updating, not replay scheduling or offline consolidation. The prediction error effect is on representation destabilisation, not on replay frequency or generative replay content."
+  ],
+  "tags": ["mech_205", "prediction_error", "hippocampus", "memory_updating", "reconsolidation", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Prediction errors disrupt sustained hippocampal representations, creating conditions that favour memory updating. After surprising interruptions, stronger hippocampal activation predicts more false memories (memory updating). The effect requires basal forebrain (cholinergic) co-activation and manifests after a 24-hour consolidation delay.",
+    "ree_translation": "Supports the broader principle underlying MECH-205: prediction errors flag episodes for hippocampal model-updating. The destabilisation of hippocampal representations by surprise is consistent with MECH-205's claim that surprising episodes are cached in the surprise buffer for offline processing. The 24-hour delay before updating manifests is consistent with sleep-dependent consolidation. The cholinergic gating maps onto neuromodulatory control of replay scheduling.",
+    "mapping_caveat": "The study measures reconsolidation of existing episodic memories, not replay scheduling or the generation of counterfactual variations. MECH-205 claims surprise gates REPLAY SCHEDULING and GENERATIVE VARIATION; Sinclair et al. show surprise gates MEMORY DESTABILISATION AND UPDATING -- a related but distinct mechanism. The fMRI paradigm cannot resolve SWR-level replay events.",
+    "source_context": "Human fMRI during narrative video viewing with prediction-error-inducing interruptions. Memory tested after 24-hour delay."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.30,
+    "notes": "PNAS, well-designed human fMRI with clear prediction error manipulation. Mapping fidelity reduced because the study addresses memory updating, not replay scheduling or generative replay. Transfer risk moderate: human episodic memory narrative paradigm to REE's architectural replay mechanism."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_generative_replay_stoianov2022",
+  "timestamp_utc": "2026-04-07T02:45:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "The hippocampal formation as a hierarchical generative model supporting generative replay and continual learning",
+    "authors": ["Ivilin Stoianov", "Domenico Maisto", "Giovanni Pezzulo"],
+    "year": 2022,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/j.pneurobio.2022.102329"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Strong theoretical framework modelling the hippocampus as a hierarchical generative model that supports generative replay (sampling novel sequences from learned distribution) and continual learning. Directly supports MECH-205's claim that replay is generative. Does not address surprise-gating of replay scheduling, which is the other half of the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model does not address what determines WHICH sequences are replayed -- there is no surprise-gating or prioritisation mechanism. Replay samples from the learned distribution uniformly, which is a weaker claim than MECH-205's surprise-proportional scheduling."
+  ],
+  "tags": ["mech_205", "generative_replay", "hierarchical_model", "hippocampus", "continual_learning"],
+  "mapping": {
+    "source_claim_statement": "The hippocampal formation implements a three-level hierarchical generative model. During offline periods, generative replay samples fictive sequences from the learned distribution, supporting continual learning without catastrophic forgetting. These sequences can include novel events not directly experienced.",
+    "ree_translation": "The hierarchical generative model maps onto the hippocampal module in REE's E3 complex. Generative replay producing novel sequences from learned distributions maps directly onto MECH-205's counterfactual variation generation. The continual learning function maps onto MECH-205's forward model training during offline phases. The hierarchical structure (items -> sequences -> maps) maps onto REE's multi-level representation (z_gamma events -> trajectories -> viability map).",
+    "mapping_caveat": "The model samples from the learned distribution uniformly -- there is no mechanism for surprise-gated prioritisation. MECH-205 claims replay is BOTH generative AND surprise-prioritised; Stoianov et al. model only the generative aspect. The model is primarily spatial; whether the generative mechanism extends to affective/harm-related replay is untested.",
+    "source_context": "Computational model using variational autoencoders (hierarchical VAE) trained on simulated rodent navigation trajectories. Tested for continual learning and novel sequence generation."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Progress in Neurobiology, strong theoretical framework. Mapping fidelity reduced because the model addresses generativity without prioritisation. Transfer risk moderate: simulated rodent navigation to REE general architecture."
+  }
+}

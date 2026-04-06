@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_205",
+  "entry_id": "2026-04-07_mech_205_rewarded_reactivation_singer2009",
+  "timestamp_utc": "2026-04-07T02:45:00Z",
+  "claim_ids_tested": ["MECH-205"],
+  "source": {
+    "title": "Rewarded Outcomes Enhance Reactivation of Experience in the Hippocampus",
+    "authors": ["Annabelle C Singer", "Loren M Frank"],
+    "year": 2009,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2009.11.016"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong empirical evidence that reward receipt enhances SWR reactivation, especially during learning when reward is novel/surprising. Direct electrophysiology in hippocampal CA3. Mapping gap: the study measures reward salience, not prediction error per se -- reward and surprise are confounded during learning phases. The effect is on reactivation frequency, not on whether replay is generative.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reward and surprise are confounded during learning phases -- the study cannot disambiguate whether enhanced reactivation is driven by reward value or by prediction error specifically."
+  ],
+  "tags": ["mech_205", "swr", "reward", "reactivation", "hippocampus", "learning"],
+  "mapping": {
+    "source_claim_statement": "Receipt of reward enhances hippocampal SWR reactivation of associated spatial sequences, and this enhancement is strongest during learning of new path-reward associations.",
+    "ree_translation": "Maps onto MECH-205's surprise-gating: salient outcomes (reward, especially novel reward during learning) increase replay priority for the associated experience. The learning-phase enhancement suggests prediction error (reward prediction error specifically) drives the prioritisation, since reward is most surprising when the association is new.",
+    "mapping_caveat": "The study measures reward-modulated reactivation, not surprise-modulated reactivation directly. MECH-205 claims replay is gated by prediction error across all domains (sensory, motor, harm/goal), not just reward. The study does not address whether replay is generative (variations) or rote (re-presentation).",
+    "source_context": "Rodent (rat) hippocampal CA3 single-unit recordings during spatial sequence-switching task with explicit reward/no-reward comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.25,
+    "notes": "Neuron, well-controlled experiment isolating reward from trajectory. Mapping fidelity reduced because the study tests reward salience, not prediction error directly, and does not address the generative aspect. Transfer risk moderate: rodent spatial navigation to REE's general architecture."
+  }
+}
