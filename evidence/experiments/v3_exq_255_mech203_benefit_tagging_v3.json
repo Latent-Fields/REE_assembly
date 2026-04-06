@@ -7,8 +7,8 @@
   "experiment_purpose": "evidence",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp": "2026-04-06T08:40:48.972505Z",
-  "verdict": "FAIL",
-  "evidence_direction": "weakens",
+  "verdict": "ERROR",
+  "evidence_direction": "non_contributory",
   "conditions": [
     "SEROTONIN",
     "NO_SEROTONIN"
@@ -95,5 +95,6 @@
       "n_benefit_samples": 0,
       "n_nonbenefit_samples": 100
     }
-  ]
+  ],
+  "evidence_direction_note": "INVALID RESULT: env.step() return order bug in script. obs_next, reward, done, truncated, info_next = env.step() but current env.step() returns (flat_obs, harm_signal, done, info, obs_dict). truncated=info dict (truthy) caused every episode to break after 1 step. harm_signal always 0 (info_next.get(harm) on obs_dict). All per_condition_results have n_benefit_samples=0, metrics=0. Verdict and evidence_direction are scientifically invalid. Marked non_contributory pending rerun with corrected script."
 }
