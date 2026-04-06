@@ -12561,3 +12561,130 @@
     (MECH-178 pathway, rigidity mechanism) predicts progressive degradation of Type 4
     towards repetitive, low-information, close-to-habit dreams before Type 4 disappears
     entirely -- a gradient that dream diaries might track ahead of other symptoms.
+
+- id: INV-063
+  title: minimum_entropy_intake_sleep_dependency
+  claim_type: invariant
+  status: candidate
+  subject: sleep.entropy_intake
+  description: >
+    A minimum level of environmental entropy intake during waking is required to sustain
+    all four offline sleep functions. Too little entropy collection produces specific,
+    proportional sleep function failures: insufficient schema material starves NREM Type 3
+    consolidation; insufficient surprising episodes starve Types 1/2 contrastive replay;
+    insufficient novel event sequences starve E1 world-model updating; insufficient
+    high-entropy sensory input degrades E2 motor-sequence learning. This predicts a
+    psychiatric risk gradient: environments with low entropy (straight lines, routine,
+    little novelty — characteristic of urban and institutional settings) systematically
+    deplete the material for sleep function, producing progressive failure modes across
+    anxiety, depression, and cognitive rigidity dimensions. High-entropy environments
+    (nature, fractal structure, novel sensory complexity) provide the necessary raw
+    material for all four functions and are predicted to be protective.
+  notes: >
+    Motivated by Daniel Golden's observation that nature exposure (fractal visual
+    complexity, unpredictable structure) and urban deprivation (straight lines, routine,
+    low novelty) differentially affect psychiatric outcomes in ways not explained by
+    current accounts. The entropy-intake mechanism links waking experience quality
+    to sleep function completeness: the brain cannot consolidate, replay, or recalibrate
+    what it has not encountered. Minimum entropy thresholds are likely E1-specific
+    (world-model schema update requires novel world states) and E2-specific (motor sequence
+    learning requires action-outcome variation). This is a novel prediction that bridges
+    environmental psychiatry, chronobiology, and the REE sleep framework.
+  registered: "2026-04-07"
+  depends_on: [INV-049, MECH-121, MECH-205, MECH-209, MECH-210, MECH-211]
+
+- id: MECH-211
+  title: schema_consolidation_as_search_grammar
+  claim_type: mechanism
+  status: candidate
+  subject: sleep.nrem.schema_vocabulary
+  description: >
+    Type 3 NREM semantic consolidation (SWR-driven episodic-to-semantic transfer)
+    produces the generative vocabulary that Types 1 and 2 contrastive replay searches
+    draw upon for variation generation. Schemas consolidated during Type 3 sleep provide
+    categorical structure — object types, action primitives, contextual frames — that
+    constrains and enriches the counterfactual space sampled by E2 during Types 1/2
+    replay. Richer Type 3 consolidation therefore enables a broader, better-structured
+    contrastive search space in subsequent Types 1/2 episodes. Depleted Type 3
+    consolidation (insufficient schema material from waking, or hippocampal
+    episodic-to-semantic transfer failure) narrows the variation space, producing
+    stereotyped, low-diversity replay that fails to identify the causal features
+    distinguishing safe from unsafe contexts — chronic convergence failure.
+  notes: >
+    This makes NREM consolidation a prerequisite for contrastive replay quality,
+    not merely a parallel process. Type 3 is not just semantically restful; it
+    actively arms the E2 variation generator with the vocabulary for its search.
+    MECH-205's convergence criterion depends on variation diversity; MECH-211
+    identifies where that diversity comes from. Clinical prediction: patients with
+    impaired NREM spindle activity (a marker of hippocampal-neocortical transfer)
+    should show more stereotyped, narrow contrastive replay — consistent with the
+    rigid, repetitive quality of trauma-related nightmares in PTSD.
+  registered: "2026-04-07"
+  depends_on: [MECH-205, MECH-209, INV-062]
+
+- id: MECH-212
+  title: e2_motor_sequence_sleep_consolidation
+  claim_type: mechanism
+  status: candidate
+  subject: sleep.nrem.e2_consolidation
+  description: >
+    E2 (the fast motor-sensory transition model) undergoes dedicated NREM offline
+    consolidation analogous to but distinct from E1 schema consolidation. While E1
+    consolidates world-model schemas (what objects and events exist), E2 consolidates
+    action-sequence schemas (how to traverse z_self transition space efficiently):
+    chains of action-objects that reliably navigate from initial to target z_self
+    states. This E2 NREM replay is driven by the same SWR mechanism but carries
+    motor-sensorium prediction error rather than world-state prediction error.
+    Disrupted E2 consolidation predicts impaired skill acquisition and
+    procedural memory — the well-established sleep-dependent motor learning effect
+    (Walker 2005, Fischer 2002) is the phenomenological signature of E2 NREM replay.
+    In REE terms: SWRs during NREM replay high-PE E2 state transitions; the surprise
+    buffer for E2 is populated by action sequences that produced unexpectedly large
+    motor-sensory prediction error (clumsy, novel, or skill-boundary episodes).
+  notes: >
+    This is a significant gap in the current sleep architecture (MECH-120 through
+    MECH-123), which is E1-centric. E2 has no dedicated offline consolidation claim
+    despite being a full transition model with its own prediction error signal and
+    therefore its own surprise buffer population mechanism. Motor sequence learning
+    is one of the most replicated sleep-dependent memory findings; its absence from
+    the REE sleep account is an architectural omission. E2's action_objects become
+    the hippocampal map backbone (SD-004), so E2 consolidation may also feed the
+    E3 viability map indirectly.
+  registered: "2026-04-07"
+  depends_on: [MECH-205, MECH-121, INV-049]
+  implementation_phase: v3
+
+- id: MECH-213
+  title: e1_e2_joint_rem_calibration
+  claim_type: mechanism
+  status: candidate
+  subject: sleep.rem.joint_calibration
+  description: >
+    REM phase involves joint E1-E2 calibration, not E1 recalibration alone. E1
+    generates world-state sequences (narrative context) while E2 simultaneously
+    generates action sequences through those world states (the agent acting within
+    the narrative). The two models run in a partially decoupled closed loop: E1's
+    world evolution is shaped by E2's action proposals, and E2's action-value estimates
+    are updated by E1's predicted world responses. The phenomenological signature of
+    this joint operation is the Type 4 dream: a coherent story with an agent
+    navigating it — neither pure sensory replay (E1 alone) nor pure motor sequence
+    replay (E2 alone), but the joint product of both forward models running together
+    without external grounding. The agentive quality of REM dreams (I am there, I
+    am acting) directly reflects E2's active participation; pure E1 replay would
+    produce observer-perspective narrative without first-person agency. This joint
+    REM operation recalibrates the match between E1's world predictions and E2's
+    action-consequence expectations, correcting systematic biases that accumulated
+    during waking experience.
+  notes: >
+    This distinguishes REE's REM account from E1-centric accounts. MECH-123 (current
+    REM recalibration claim) should be updated to note E2 participation. The
+    clinical prediction: disrupted REM (sleep apnea, fragmentation, REM suppression
+    by antidepressants) impairs E1-E2 joint calibration, producing systematic
+    divergence between world-model predictions and motor-consequence expectations.
+    This divergence may manifest as action-plan brittleness, impaired transfer of
+    skills to novel contexts, or the 'known-what but not how' dissociation.
+    SSRIs suppress REM; their side effect of emotional blunting or feeling
+    'disconnected' from action may partly reflect impaired E1-E2 joint calibration.
+  registered: "2026-04-07"
+  depends_on: [MECH-123, MECH-210, MECH-212, INV-062]
+  implementation_phase: v3
