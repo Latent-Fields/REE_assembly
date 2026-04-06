@@ -6,12 +6,15 @@
 #   bash scripts/governance.sh --v2   # V2: also sync from ../ree-v2/ first
 #
 # Steps:
-#   1. [V2 only] Sync V2 experiment results from ree-v2 into run-pack format
+#   1. [V2 only] Sync V2 experiment results from ree-v2/ into run-pack format
+#   1b. Sync V3 flat JSON results to run-pack format
 #   2. Build all evidence indexes (experiments, literature, planning, recommendations)
 #   3. Generate pending_review.md
 #   4. Rebuild claims.json for GitHub Pages hover tooltips
+#   5. Rebuild contributor ledger
+#   6. Refresh governance_agenda.v1.json timestamps (keeps explorer banner current)
 #
-# Note: V3 experiments write run packs directly to evidence/experiments/ — no sync needed.
+# Note: V3 experiments write run packs directly to evidence/experiments/ -- no sync needed.
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -49,6 +52,9 @@ echo "--- Step 4/5: Rebuilding claims.json for site tooltips ---"
 
 echo "--- Step 5/5: Rebuilding contributor ledger ---"
 "$PYTHON" contributors/build_contributions.py
+
+echo "--- Step 6/6: Refreshing governance_agenda.v1.json timestamps ---"
+"$PYTHON" scripts/refresh_governance_agenda_timestamp.py
 
 echo ""
 echo "Done. Check evidence/experiments/pending_review.md for experiments awaiting review."

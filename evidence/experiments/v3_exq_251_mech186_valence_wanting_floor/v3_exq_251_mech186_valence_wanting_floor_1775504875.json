@@ -1,0 +1,93 @@
+{
+  "run_id": "v3_exq_251_mech186_valence_wanting_floor_1775504875_v3",
+  "experiment_type": "v3_exq_251_mech186_valence_wanting_floor",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-186"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "decision": "substrate_limitation",
+  "timestamp": 1775504875,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 100,
+  "steps_per_ep": 150,
+  "n_resources": 1,
+  "n_hazards": 3,
+  "hazard_harm": 0.02,
+  "greedy_frac": 0.4,
+  "valence_wanting_floor": 0.05,
+  "floor_goal_norm_thresh": 0.15,
+  "behavioral_gap_thresh": 0.05,
+  "pass_seed_count_thresh": 2,
+  "mean_z_goal_norm_A": 0.013120680814608932,
+  "mean_z_goal_norm_B": 0.050000001986821495,
+  "mean_A_HABIT_rr": 0.09000000000000001,
+  "mean_A_PLANNED_rr": 0.09000000000000001,
+  "mean_B_HABIT_rr": 0.09000000000000001,
+  "mean_B_PLANNED_rr": 0.09000000000000001,
+  "mean_behavioral_gap_A": 0.0,
+  "mean_behavioral_gap_B": 0.0,
+  "mean_z_harm_a_mean_B": 0.0,
+  "c1_floor_goal_norm_count": 0,
+  "c2_behavioral_gap_count": 0,
+  "both_criteria_count": 0,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "z_goal_norm_A": 0.0034974918235093355,
+      "z_goal_norm_B": 0.05000000074505806,
+      "A_HABIT_rr": 0.08,
+      "A_PLANNED_rr": 0.08,
+      "B_HABIT_rr": 0.08,
+      "B_PLANNED_rr": 0.08,
+      "behavioral_gap_A": 0.0,
+      "behavioral_gap_B": 0.0,
+      "z_harm_a_mean_B": 0.0,
+      "c1_floor_goal_norm": false,
+      "c2_behavioral_gap": false,
+      "both_criteria_met": false
+    },
+    {
+      "seed": 7,
+      "z_goal_norm_A": 0.020292086526751518,
+      "z_goal_norm_B": 0.05000000447034836,
+      "A_HABIT_rr": 0.07,
+      "A_PLANNED_rr": 0.07,
+      "B_HABIT_rr": 0.07,
+      "B_PLANNED_rr": 0.07,
+      "behavioral_gap_A": 0.0,
+      "behavioral_gap_B": 0.0,
+      "z_harm_a_mean_B": 0.0,
+      "c1_floor_goal_norm": false,
+      "c2_behavioral_gap": false,
+      "both_criteria_met": false
+    },
+    {
+      "seed": 13,
+      "z_goal_norm_A": 0.01557246409356594,
+      "z_goal_norm_B": 0.05000000074505806,
+      "A_HABIT_rr": 0.12,
+      "A_PLANNED_rr": 0.12,
+      "B_HABIT_rr": 0.12,
+      "B_PLANNED_rr": 0.12,
+      "behavioral_gap_A": 0.0,
+      "behavioral_gap_B": 0.0,
+      "z_harm_a_mean_B": 0.0,
+      "c1_floor_goal_norm": false,
+      "c2_behavioral_gap": false,
+      "both_criteria_met": false
+    }
+  ],
+  "pass_count_by_criterion": {
+    "c1_floor_goal_norm": 0,
+    "c2_behavioral_gap": 0,
+    "both_criteria": 0
+  }
+}
