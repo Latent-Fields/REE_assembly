@@ -12688,3 +12688,69 @@
   registered: "2026-04-07"
   depends_on: [MECH-123, MECH-210, MECH-212, INV-062]
   implementation_phase: v3
+
+- id: INV-064
+  title: e1_e2_e3_maturational_sequence_necessity
+  claim_type: invariant
+  status: candidate
+  subject: development.maturational_sequence
+  description: >
+    The developmental sequence in which sensory-perceptual systems (E1) mature before
+    motor-transition systems (E2) before frontal-evaluative systems (E3) is a
+    computational necessity, not an anatomical accident. E3's primary inputs are
+    z_world from E1 and action_objects from E2. If these inputs carry only
+    poorly-differentiated, low-information representations, E3 training produces a
+    noise-fitted harm/goal evaluator. The information quality available to E3 is
+    strictly bounded by E1/E2 representational differentiation. Therefore productive
+    E3 training cannot begin until E1 and E2 have reached sufficient schema
+    differentiation. REE predicts that the biological fact of prefrontal cortex
+    being the last cortical region to myelinate fully (completing mid-20s in humans)
+    is architecturally required: any agent architecture with this dependency structure
+    will exhibit the same maturation order.
+  notes: >
+    This unifies several otherwise unexplained developmental facts: why adolescent
+    risk-taking persists well past sensory-motor competence (E1/E2 are largely
+    mature but E3 training is still integrating), why early-life disruption has
+    outsized and specific effects on executive function rather than just emotional
+    regulation, and why intensive novel experience in childhood (high-entropy
+    environments, play, exploratory learning) has disproportionate long-term
+    cognitive returns relative to the same experience in adulthood. The
+    maturational sequence is not merely a constraint to work around -- it is the
+    correct curriculum order for building a competent E3.
+  registered: "2026-04-07"
+  depends_on: [INV-055, INV-056, MECH-212, MECH-213]
+
+- id: MECH-214
+  title: goal_referent_e1_representability
+  claim_type: mechanism
+  status: candidate
+  subject: development.goal_coherence
+  description: >
+    The content of any goal -- the state or object being aimed at -- must be
+    representable in E1's latent schema space for z_goal to carry semantic
+    information. A goal aimed at an E1-unrepresented state is, functionally, a
+    random vector in E3's operating space: it cannot generate coherent viability
+    terrain, cannot guide hippocampal trajectory proposals, and cannot produce
+    meaningful harm/benefit evaluation. Goal coherence therefore co-develops with
+    E1 schema richness: primitive goals (warmth, satiation, physical contact) emerge
+    earliest because those states are E1-representable from earliest sensory
+    experience; higher-order social, aesthetic, ethical, and self-transcendent goals
+    emerge only after E1 has differentiated the relevant schema vocabulary. Goals
+    are E1 functions in this precise sense: their referent content is constituted by
+    E1 representations, not independently specified. The frontal goal-evaluation
+    system can only evaluate what the world-model can represent.
+  notes: >
+    Clinical predictions: (1) Early-life disruption of E1 schema formation (sensory
+    deprivation, early trauma, neurodevelopmental conditions affecting sensory
+    processing) does not merely cause emotional injury -- it constrains the semantic
+    space from which coherent goals can ever be drawn, with downstream effects on E3
+    training quality that persist into adulthood. (2) Interventions that expand E1
+    schema richness (novel high-entropy environments, therapy that develops
+    experiential vocabulary, practices that develop fine perceptual discrimination)
+    can widen the space of coherent goals available to E3, not just regulate existing
+    ones. (3) Goal incoherence -- wanting without clear object, motivation without
+    direction -- may reflect under-differentiated E1 schemas rather than E3/reward
+    pathology. This reframes certain anhedonic and motivationally flat presentations
+    as E1 poverty rather than purely dopaminergic disorder.
+  registered: "2026-04-07"
+  depends_on: [INV-064, MECH-205, MECH-121]
