@@ -391,3 +391,53 @@ prevent the zero-point from being established.
 
 *Architecture note: EXQ-237a LONG_HORIZON condition (3 hazards, 1 resource, 150 steps),
 seed=42. Full replication pending seeds 7 and 13.*
+
+---
+
+## Dream Phenomenology as Diagnostic and Treatment-Response Marker (INV-062, MECH-205–210)
+
+The four-type dream taxonomy (INV-062) follows directly from the offline pipeline architecture and provides a clinically accessible window into which process is running, whether it converged, and whether the pipeline is intact.
+
+### The four types and their computational signatures
+
+| Dream type | Process | Phase | Key phenomenological marker |
+|-----------|---------|-------|----------------------------|
+| **Type 1: Stress/escape frustration** | Harm-contrastive replay not converging (MECH-205) | SWS / early REM | Agent trying to escape; everything fails systematically; no resolution |
+| **Type 2: Joy/goal frustration** | Goal-contrastive replay not converging (MECH-205) | SWS / early REM | Agent trying to reach goal; everything fails systematically; no resolution |
+| **Type 3: Procedural superposition** | NREM SWR semantic consolidation (MECH-121, MECH-209) | NREM2 / SWS | No agent; one thing as all instances simultaneously; all angles, scales, times at once; peaceful |
+| **Type 4: Detailed story, close to reality** | REM E1 world-model free-running (MECH-210, MECH-123) | REM | Agent in coherent novel world; narrative arc; close to plausible; super interesting |
+
+The frustration in Types 1 and 2 is not incidental affect — it is the convergence failure signal. The dream continues because the termination criterion (causally relevant features extracted) has not been met. Non-resolution is a direct phenomenological report of the replay loop still running. The self-dissolution in Type 3 is the signature of episodic context being stripped during semantic abstraction. The narrative coherence and novelty in Type 4 is E1's world model generating in-distribution but never-experienced sequences — interesting because E1 is surfacing latent structure from its prior.
+
+### Psychiatric predictions
+
+**PTSD (MECH-205, MECH-094, MECH-208):**
+Recurring non-resolving Type 1 dreams are a direct marker of convergence failure on harm-contrastive replay. The causal features of the threatening episode have not been extracted; the residue field update is incomplete. The intrusive quality of PTSD nightmares follows from MECH-094 hypothesis tag degradation under high-affect replay load — the replay loses its simulation marker and is processed as real re-occurrence rather than a search procedure.
+
+*Treatment-response prediction:* Successful trauma therapy should produce a shift from non-resolving to resolving Type 1 dreams before the patient reports conscious relief. The dream convergence precedes the waking resolution because the offline process completes before the waking narrative catches up. This is testable with prospective dream diaries alongside standard clinical outcome measures.
+
+**Anxiety disorders (MECH-208):**
+Elevated harm-weighting (z_beta / residue field) allocates excess replay budget to Type 1 at the expense of Types 3 and 4. Anxious individuals are predicted to report:
+- Predominantly Type 1 dreams, longer and more intense
+- Reduced frequency of Type 3 (insufficient budget for semantic consolidation)
+- Reduced frequency or degraded quality of Type 4 (insufficient budget for world model exploration)
+
+The self-reinforcing loop (MECH-208): elevated harm-weighting → more harm-path replay → more harm-predictive feature extraction → more avoidance → less corrective evidence → maintained harm-weighting. Dream diary composition (ratio of Type 1 to Types 3+4) is a potential proxy for the state of this loop.
+
+**Depression (MECH-203, INV-054):**
+Reduced benefit-replay density during SWS relative to harm-replay density (MECH-203 disruption under low tonic 5-HT) predicts a specific Type 2 deficit: the joy-frustration goal dreams should be reduced or absent, while Type 1 may be maintained. This is the replay-mediated maintenance of the depressive maintenance loop — the system has insufficient approach-side contrastive replay to extract goal-predictive features, while harm-side replay continues normally.
+
+**Dementia (MECH-210, MECH-178, INV-046):**
+As E1's world model degrades through the noradrenergic rigidity pathway (MECH-178), Type 4 dreams should degrade in a predictable sequence:
+1. Type 4 becomes less interesting (prior no longer surfaces novel structure — repetitive familiar patterns)
+2. Type 4 collapses toward habit-like sequences (the world model can only generate well-worn paths)
+3. Type 4 disappears entirely (REM integrity too disrupted to sustain free-running)
+
+This gradient may precede other detectable symptoms. Prospective dream diary tracking in cognitively healthy individuals over-65 may identify early E1 degradation before standard neuropsychological tests reach threshold.
+
+**REM-suppressing medications (MECH-173, MECH-210):**
+Any medication that suppresses REM (anticholinergics, MAOIs, most antidepressants, benzodiazepines) should selectively eliminate Type 4 while leaving Types 1–3 relatively intact. Type 3 (NREM SWS process) may actually increase if the replay budget freed from REM is redistributed, but Types 1/2 (early REM contrastive replay) may also be affected by REM suppression. A testable cross-over design: measure dream-type composition before and after REM-suppressing medication, with and without sleep-stage verification.
+
+### Epistemic status
+
+The four-type taxonomy is first-person phenomenological data from one observer (DG), noted as definite types but not claimed to be exhaustive. The mapping to computational processes is an interpretation requiring corroboration from other observers and eventual connection to polysomnographic sleep-stage measurement. Dream diaries from multiple individuals, classified by structural type (agent/no-agent, resolving/non-resolving, sequential/simultaneous), would allow initial corroboration without sleep-lab equipment.
