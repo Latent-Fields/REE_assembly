@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 52838,
   "runner_started_at": "2026-04-06T08:34:14.451702+00:00",
-  "last_updated": "2026-04-07T01:49:08.748738+00:00",
+  "last_updated": "2026-04-07T09:13:38.661388+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-248",
-    "backlog_id": "",
-    "claim_id": "Q-034",
-    "title": "Q-034: Hazard/Resource Ratio Threshold Sweep (3x3 grid, HABIT vs PLANNED)",
-    "description": "",
-    "script": "experiments/v3_exq_248_q034_threshold_sweep.py",
-    "started_at": "2026-04-07T01:32:46.829780+00:00",
-    "progress": {
-      "run_label": "Seed 42 / h1_r3",
-      "runs_done": 0,
-      "runs_total": 54,
-      "episodes_done": 250,
-      "episodes_total": 300,
-      "overall_pct": 1.5
-    },
-    "seconds_elapsed": 982,
-    "seconds_remaining": 123808,
-    "recent_lines": [
-      "[train] h1_r3 seed=42 ep 50/300 harm_pos=628 harm_neg=190 ben_samples=6816 goal_norm=0.366",
-      "[train] h1_r3 seed=42 ep 100/300 harm_pos=1173 harm_neg=340 ben_samples=12960 goal_norm=0.357",
-      "[train] h1_r3 seed=42 ep 150/300 harm_pos=1762 harm_neg=502 ben_samples=19680 goal_norm=0.332",
-      "[train] h1_r3 seed=42 ep 200/300 harm_pos=2392 harm_neg=665 ben_samples=26656 goal_norm=0.424",
-      "[train] h1_r3 seed=42 ep 250/300 eval_ep=50/100 cond=PLANNED"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-252",
@@ -40,28 +14,6 @@
       "description": "",
       "estimated_minutes": 600.0,
       "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-248",
-      "backlog_id": "",
-      "claim_id": "Q-034",
-      "title": "Q-034: Hazard/Resource Ratio Threshold Sweep (3x3 grid, HABIT vs PLANNED)",
-      "description": "",
-      "estimated_minutes": 2160.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-245",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-120 SHY-Analog Normalisation Phase Ordering (SHY before vs after SWS)",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -4660,6 +4612,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 5481.3
+    },
+    {
+      "queue_id": "V3-EXQ-248",
+      "backlog_id": "",
+      "claim_id": "Q-034",
+      "title": "Q-034: Hazard/Resource Ratio Threshold Sweep (3x3 grid, HABIT vs PLANNED)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "h3_r2: lift=+0.0000 +/-0.0000 equiv_frac=1.00 z_goal=0.126 z_harm_a=0.0000 [EQUIV] | h3_r3: lift=+0.0000 +/-0.0000 equiv_frac=1.00 z_goal=0.239 z_harm_a=0.0000 [EQUIV] | -> PASS decision=retain_ree direction=supports",
+      "started_at": "2026-04-07T01:32:46.829780+00:00",
+      "completed_at": "2026-04-07T09:12:18.240832+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 27571.3
+    },
+    {
+      "queue_id": "V3-EXQ-245",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-120 SHY-Analog Normalisation Phase Ordering (SHY before vs after SWS)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Outcome: FAIL | s2_correct_order_beats_wrong_order: {'wins': 1, 'pass': False, 'desc': 'SHY_THEN_SWS slot_cosine_sim < SWS_THEN_SHY in >=2/3 seeds'} | Status: FAIL",
+      "started_at": "2026-04-07T09:12:20.108961+00:00",
+      "completed_at": "2026-04-07T09:13:38.659967+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 78.6
     }
   ]
 }
