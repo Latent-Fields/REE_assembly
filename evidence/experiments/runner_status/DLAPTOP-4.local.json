@@ -2,40 +2,18 @@
   "schema_version": "v1",
   "runner_pid": 52838,
   "runner_started_at": "2026-04-06T08:34:14.451702+00:00",
-  "last_updated": "2026-04-07T09:13:38.661388+00:00",
+  "last_updated": "2026-04-07T19:48:36.958501+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-252",
+      "queue_id": "V3-EXQ-248b",
       "backlog_id": "",
-      "claim_id": "MECH-187",
-      "title": "MECH-187: Bidirectional z_goal Seeding Gain (5-cond: x0.6/x0.2 suppression, x2.0/x5.0 elevation)",
+      "claim_id": "Q-034",
+      "title": "Q-034: Hazard/Resource Ratio Sweep (SD-018)",
       "description": "",
-      "estimated_minutes": 600.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-EWIN-PC-b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Onboarding smoke test -- EWIN-PC (Eoin) [retry b]",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-ree-cloud-1",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Onboarding smoke test -- ree-cloud-1 (Hetzner CX22)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
+      "estimated_minutes": 51.1,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -4640,6 +4618,48 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 78.6
+    },
+    {
+      "queue_id": "V3-EXQ-238c",
+      "backlog_id": "",
+      "claim_id": "SD-012",
+      "title": "SD-012: Drive Weight Ablation (SD-018)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "benefit_goal_corr_seed0: 0.20892 | benefit_goal_corr_seed1: 0.23867 | benefit_goal_corr_seed2: 0.36107",
+      "started_at": "2026-04-07T09:14:43.824366+00:00",
+      "completed_at": "2026-04-07T12:50:52.487771+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_238_sd012_drive_weight_ablation_fix/v3_exq_238_sd012_drive_weight_ablation_fix_20260407T125051Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12968.6
+    },
+    {
+      "queue_id": "V3-EXQ-258",
+      "backlog_id": "",
+      "claim_id": "MECH-205",
+      "title": "MECH-205: Surprise-Gated Replay Validation (Tier 1)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "P3 (pe_ema_varies): 3/3 PASS | -> FAIL decision=surprise_gating_nonfunctional direction=weakens | verdict: FAIL",
+      "started_at": "2026-04-07T12:50:55.560303+00:00",
+      "completed_at": "2026-04-07T13:13:39.988898+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1364.4
+    },
+    {
+      "queue_id": "V3-EXQ-254c",
+      "backlog_id": "",
+      "claim_id": "INV-052",
+      "title": "INV-052: Single Mechanism Sufficiency (SD-018)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: seed=13 cond=F z_goal_norm=0.193 behavioral_gap=0.0000 | -> PASS  decision=no_single_mechanism_sufficient_joint_necessity_confirmed  direction=supports | Status: PASS",
+      "started_at": "2026-04-07T16:16:50.529966+00:00",
+      "completed_at": "2026-04-07T19:48:36.947428+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12706.4
     }
   ]
 }
