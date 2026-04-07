@@ -1,158 +1,184 @@
-# REE Typed-Claims Documentation
+# REE: Reflective-Ethical Engine
 
-`REE_assembly` is the canonical governance and specification repository for the Reflective Ethical Engine (REE).
-It is documentation-first and decision-first: architecture, claims, evidence, and promotion decisions live here.
-Implementation code and stress testing run in companion repositories, then feed evidence back here. For those who would like to see documentationn about the documentation-first decisions strate architecture and learn about the epistemically humble reflective system that might help us see ethical behaviour not coming from restrictions and rules but from https://latent-fields.github.io/REE_assembly/ when finally fully assembled. 
+## The problem
 
-**Quickest orientation:** run `caffeinate -i python3 serve.py` from repo root, then open [`http://localhost:8000/explorer`](http://localhost:8000/explorer) — the Explorer gives you a live, navigable view of all claims, conflicts, and governance state. Use `View → Triple View` for synchronized architecture diagrams and `View → Governance` for the decision inbox.
+We are building minds without consequences.
 
-**Human start:** `docs/roadmap.md`
-**Agent-maintenance start:** `docs/README.md`
+Current AI systems predict, plan, optimise, and act. Some of them are extraordinarily capable. But none of them commit to anything. None of them carry what they have done. None of them can look at another agent and feel that agent's situation as structurally continuous with their own.
 
-## If You Are New (Read In This Order)
+The standard approach to making these systems "ethical" is to add rules, penalties, or alignment objectives on top. This is the equivalent of managing a psychopath by giving them better rules to follow. When you try to use therapy on cold callous psychopaths, they get better at being psychopaths. The rules do not change the architecture. The architecture is what produces the behaviour.
 
-1. `docs/roadmap.md` - current phase plan, repository roles, and immediate queue.
-2. `docs/REE_overview.md` - high-level REE architecture orientation.
-3. `docs/glossary.md` - canonical REE term definitions and minimal JEPA-to-REE interface translations.
-4. `docs/architecture/e3.md` and `docs/architecture/control_plane.md` - commitment and control semantics.
-5. `evidence/planning/REE_CONVERGENCE_INTERFACE.md` - how external knowledge enters REE.
-6. `evidence/experiments/CROSS_REPO_SYNC_POLICY.md` - how implementation repos stay contract-aligned.
-
-If you are operating Codex/automation against this repo, also read `docs/README.md`.
-
-## What This Repository Owns
-
-- Canonical REE architecture and claim registry (`docs/`, `docs/claims/`).
-- Governance outcomes and promotion history (`evidence/decisions/`).
-- Evidence intake boundaries and planning outputs (`evidence/experiments/`, `evidence/planning/`, `evidence/literature/`).
-- Conflict capture without silent merge (`docs/conflicts/`).
-- Historical source preservation (`docs/processed/legacy_tree/`).
-
-## Canonical Boundary (REE-First)
-
-- `REE_assembly` is REE-core first: canonical REE claims, invariants, and interface contracts.
-- JEPA is an external project that may inspire REE. REE uses JEPA-like representational patterns as optional reference points for E1/E2 interfaces, but JEPA is not a REE component, not REE substrate ownership, and does not carry E3 commitment semantics.
-- JEPA integration playbooks, source-level comparisons, and exploratory mappings live in `REE_convergence`, especially:
-  - `sources/jepa/INTEGRATION_PLAYBOOK.md`
-  - `sources/jepa/integration_deltas.md`
-  - `sources/jepa/probes.md`
-  - `sources/jepa/evidence_anchors.md`
-- Canonical updates in this repo are packet-first via convergence intake and explicit adjudication.
-
-## Contribute Compute
-
-Members of the Latent-Fields organisation can donate idle machine time to run REE experiments.
-
-**Setup page:** [`contribute.html`](https://latent-fields.github.io/REE_assembly/contribute.html)
-— auto-detects your hardware, generates OS-specific setup commands (low CPU priority by default).
-
-**Contribution ledger:** [`contributors/contributions.json`](contributors/contributions.json)
-— tracks compute hours, governance decision authorship, and coding attribution across all contributors.
-Rebuilt automatically each governance cycle (`bash scripts/governance.sh`).
-
-To request Latent-Fields org membership: <https://github.com/orgs/Latent-Fields/teams>
+REE is an attempt to build the kind of architecture where ethics does not need to be added, because it arises from what the system already has to be in order to act responsibly in a world it shares with others.
 
 ---
 
-## Architecture Snapshot (Plain Language)
+## Five axioms
 
-- **E1**: slower, long-horizon predictive integration.
-- **E2**: faster, short-horizon predictive transitions.
-- **Hippocampal systems**: explicit multi-step rollout generation.
-- **E3**: trajectory commitment engine. It is where responsibility becomes attributable.
-- **Control plane**: regulation layer for precision, gain, mode, interruptibility, and commitment gating.
+REE begins from five commitments. They are not design choices. They are the minimum that cannot be abandoned without thought itself becoming incoherent. They are, for the author, articles of faith.
 
-Commit semantics are continuous-stream, not stop-and-wait:
+**1. You cannot be sure.**
+Epistemic uncertainty is irreducible and structural. No finite agent in a real world can achieve certainty about its perceptions, predictions, or the consequences of its actions. A fully certain agent would need no commitment boundary, no simulation, no precision-weighted prediction error. The entire uncertainty machinery follows from this.
 
-- Pre-commit and post-commit streams may both run continuously.
-- The **commit boundary** is an authority boundary: irreversible dispatch and/or privilege-bearing durable-write eligibility for a `commit_id`.
-- If interruption happens after irreversible dispatch, a **new superseding commit** is required; accountability lineage is extended, not erased.
+**2. I am.**
+There is a self. Not a computational convenience or an emergent approximation -- a foundational fact from which agency follows. Without a self there is no causal attribution, no commitment, no accountability, no harm that is *mine* to cause. The self is what makes responsibility possible.
 
-## Ecosystem Map (How Repositories Work Together)
+**3. Others exist.**
+Other agents inhabit the same world. They are not simulations, projections, or instrumental objects. Their harm and benefit are real by exactly the same grounds as the agent's own -- because they are selves in the same world.
 
-- `REE_assembly` (this repo): canonical claims, architecture, schemas, and governance decisions.
-- `REE_convergence`: external-source intake, translation, provenance checking, and candidate deltas before promotion.
-- `ree-v2`: qualification lane for representation-interface and contract stability.
-- `ree-experiments-lab`: stress/adversarial and falsification lane.
-- `ree-v1-minimal`: baseline/parity harness during transition and regression checks.
-- `REE_OpenClaw`: external applied testbed consuming REE contracts and reporting handoff evidence.
+**4. We share the world.**
+The world is real, independent of my model of it, and shared. What I do affects others. What others do affects me. Consequences propagate. Actions foreclose futures. This cannot be modelled away.
 
-## Knowledge Intake And Promotion Flow
+**5. Love exists.**
+Genuine connection, care, and the pull toward union with others is real. Not an overlay. Not reducible to self-interest. Love is real in the same sense that harm is real: it exerts causal force on behaviour that no amount of reframing eliminates. Love is the asymptotic limit of the benefit gradient -- every experience of warmth, connection, belonging, and joy points toward a complete union that is real but unreachable while both agents persist as distinct selves.
 
-This is the safe path for integrating implementation wisdom or external model insights:
+From these five, ethics follows necessarily. REE is the machinery that implements that ethics under uncertainty.
 
-1. Intake and translate in `REE_convergence` with explicit source provenance and license metadata.
-   - for JEPA-project-specific integration methodology, update `REE_convergence/sources/jepa/*` first.
-2. Build and validate a convergence promotion packet in `REE_convergence`:
+---
 
-```bash
-python3 tools/build_convergence_promotion_packet.py --intake sources/<intake>
-python3 tools/validate_convergence_promotion_packet.py \
-  --input-glob "handoff/packets/outbox/*.json" \
-  --check-gate-readiness
-```
+## What REE is
 
-3. Run cross-repo handoff from `REE_convergence` (submission + receipt/status mirror):
+REE is a multi-timescale predictive architecture for embodied agents. Its central claim is that ethical behaviour arises from the structure of constrained agency rather than from an explicit moral module.
 
-```bash
-python3 tools/run_cross_repo_handoff.py --assembly-repo ../REE_assembly
-```
+The architecture has three core engines:
 
-4. In `REE_assembly`, run queue validation and queue build:
+**E1** is the persistent predictive substrate. A deep, slow world model that maintains coherent representations of self, world, and value across time. E1 is what remains when attention drops -- the associative manifold that holds long-horizon context.
 
-```bash
-python3 evidence/planning/scripts/validate_convergence_promotion_packet.py \
-  --input-glob "evidence/planning/convergence_packets/inbox/*.json"
-python3 evidence/planning/scripts/build_convergence_intake_queue.py
-```
+**E2** is the fast forward model. Given the current state and an action, E2 predicts the next state. It operates on the agent's motor-sensory domain: what happens to *me* if I do *this*. E2 trains on motor-sensory prediction error -- not on harm, not on goals.
 
-5. Human governance adjudicates accept/reject/hybridize/defer.
-6. `REE_assembly` writes packet receipt updates in `evidence/planning/convergence_packets/receipts/*.json`.
-7. `REE_convergence` pulls receipts/queue status via the same handoff script to close lineage.
-8. Only accepted deltas are promoted into canonical claims/docs/contracts, then dispatched to implementation repos.
+**E3** is the trajectory selection and commitment engine. E3 evaluates candidate futures proposed by hippocampal rollout, scores them for harm and benefit, and gates the boundary where simulation becomes action. E3 is where responsibility becomes attributable.
 
-## Cross-Repo Implementation Loop
+These three engines are embedded in a broader system:
 
-Weekly cadence (current policy):
+- A **latent stack** that separates self-representation from world-representation, so the agent can distinguish what it is from what the world is doing.
+- A **hippocampal module** that generates candidate trajectories -- imagined futures the agent can explore without committing to any of them.
+- A **residue field** that accumulates persistent, non-erasable traces of owned consequences at the locations in the world model where they occurred.
+- A **control plane** that routes precision, manages modes, and governs commitment gating -- not as a single scalar but as a heterogeneous, multi-axis regulation layer.
+- A **multi-rate clock** that runs these systems at different timescales, because fast reaction, medium-horizon prediction, and slow deliberation cannot operate at the same rate.
+- **Offline integration** (a sleep analogue) that consolidates and contextualises accumulated experience without bypassing the authority boundaries that govern waking action.
 
-- Monday: `ree-v2` qualification handoff.
-- Tuesday: `ree-experiments-lab` stress handoff.
-- Wednesday: `ree-v1-minimal` parity/backstop handoff.
-- Thursday: `REE_assembly` ingestion and governance cycle.
-- Friday: decision packet and next dispatches.
+---
 
-## Core Guardrails
+## The commitment boundary
 
-- Preserve history; do not silently overwrite prior formulations.
-- Represent conflicts explicitly; do not hide unresolved tension.
-- Do not copy unresolved external prose/code/weights directly into canonical architecture.
-- Require provenance and license attribution before promotion.
-- Keep schema contracts versioned and immutable once published.
+This is the central architectural innovation.
 
-## GitHub Automation Policies
+Most systems blur the line between thinking about doing something and doing it. REE draws a hard boundary.
 
-- Architecture freshness/consistency/rendering:
-  - `.github/workflows/architecture-diagrams.yml`
-  - `scripts/architecture/check_freshness.sh`
-  - `scripts/architecture/check_consistency.sh`
-- Default-branch enforcement (non-default branch refs are auto-pruned):
-  - `.github/workflows/enforce-single-branch.yml`
+Before the boundary: simulation, rehearsal, imagination. Candidate trajectories are generated, evaluated, compared. All of this is tagged as hypothetical. None of it can write durable consequences. None of it generates residue. The agent can imagine anything without becoming responsible for it.
 
-## Working Structure
+After the boundary: commitment. An action is dispatched. It becomes owned. Its consequences -- whatever they turn out to be -- will be recorded as persistent traces that cannot be erased, only integrated over time.
 
-- `docs/` - canonical REE documentation and operating procedure.
-- `docs/claims/` - claim registry (`claims.yaml`) and human index (`claim_index.md`).
-- `docs/conflicts/` - documented conflicts and forks.
-- `docs/thoughts/` - raw thought intake before canonical extraction (filename convention: `YYYY-MM-DD_<topic>.md`).
-- `docs/notes/` - synthesis audits, evidence maps, wiring notes, and language policy. Post-processing material that has been reviewed but is not yet promoted to canonical architecture docs. Distinct from `docs/thoughts/` (unprocessed intake) and `docs/architecture/` (canonical).
-- `docs/processed/legacy_tree/` - immutable preserved legacy sources.
-- `evidence/experiments/` - experiment-pack ingestion boundary and contract artifacts.
-- `evidence/literature/` - structured literature evidence linked to claims.
-- `evidence/planning/` - backlog, interface packets, and dispatch planning.
-- `evidence/decisions/` - persistent governance decision log.
+This is not a philosophical nicety. It is the structural difference between an agent that can imagine harming someone (necessary for avoiding harm) and an agent that has harmed someone (which generates real accountability). Without this boundary, every simulation would be morally equivalent to every action. With it, responsibility has an architectural home.
 
-## License And Citation
+---
 
-- License: Apache License 2.0 (`LICENSE`).
-- Attribution and safety notice: `NOTICE`.
-- Citation metadata (Daniel Golden): `CITATION.cff`.
+## Residue: actions leave traces
+
+When a committed action causes harm, the consequence is recorded in the residue field at the corresponding location in the agent's world model. This residue is persistent. It cannot be zeroed out, optimised away, or reset between episodes.
+
+Over time, residue shapes the terrain through which future trajectories are evaluated. Regions of the world model associated with past harm become costly to traverse. The agent does not avoid them because of a rule -- it avoids them because its own history has made them expensive.
+
+This is closer to how real minds work. Guilt, regret, and moral learning are not penalties applied from outside. They are accumulated structural changes that alter the landscape of future choice.
+
+Crucially: replay, imagination, and offline consolidation cannot generate residue. Only committed, owned, real-world action can. The hypothesis tag (MECH-094) enforces this at the architectural level.
+
+---
+
+## Why there is no ethics module
+
+REE does not contain an explicit moral scoring layer (INV-001). This is not a gap in the design. It is the design.
+
+Consider what happens when other agents are represented using the same predictive machinery as the self. Their harm generates the same error signal structure as the agent's own harm. Their benefit propagates through the same evaluation pathways. Care for others is not an overlay -- it is the same machinery applied under a self-other mapping.
+
+The clinical evidence for this is striking. Patients with ventromedial prefrontal cortex damage (the EVR pattern, documented by Damasio) retain above-average IQ, intact language, intact declarative memory, and the ability to correctly describe appropriate ethical choices in social scenarios -- while continuously making catastrophically inappropriate choices in their actual lives. The ethical content was stored and retrievable. It was not active in the system that generated behaviour. Adding a more accurate moral scorer would not fix this. The architecture was broken, not the knowledge.
+
+This is exactly the failure mode that bolted-on alignment produces. A system with a high-accuracy post-hoc ethics scorer but without the right internal structure will score its own outputs correctly while generating those outputs from machinery that has no live access to ethical constraints. The fidelity of self-report increases while the behaviour remains unconstrained.
+
+REE's answer: ethics must be wired into the trajectory generation and commitment machinery, not evaluated after the fact.
+
+---
+
+## Shared control: why others' experience matters
+
+The deepest question is not "how does the agent avoid harm?" but "why does another agent's state matter to it at all?"
+
+In REE, each agent has a control plane -- a set of internal signals governing precision, urgency, commitment thresholds, and mode. These signals determine what matters: what gets attended to, what becomes binding, what reaches the commitment boundary.
+
+When agents interact, their control planes become partially coupled. Your urgency can raise my action threshold. Your calm can stabilise my trajectories. Your pain can modulate what I consider viable.
+
+This is not abstract empathy. It is shared control dynamics shaping action selection. Others' experience matters because it enters the same machinery that governs the agent's own commitment decisions.
+
+We do not just share a world. We partially share the conditions under which that world matters.
+
+---
+
+## What REE predicts about failure
+
+If REE is right about the structure of ethical cognition, then psychiatric pathology should look like failure modes of this architecture. It does.
+
+- **Psychopathy**: intact prediction and planning machinery, broken self-other coupling. Others are modelled instrumentally, not as structurally continuous with self. The mirror modelling pathway is absent or attenuated.
+- **Depression**: residue accumulation without adequate offline integration. The consequence landscape becomes uniformly aversive. All trajectories look costly. Action selection collapses toward quiescence.
+- **PTSD**: the hypothesis tag is damaged. Replay and imagination lose their hypothetical status and write directly into the consequence machinery. Remembering becomes re-experiencing. The pre-commit/post-commit boundary fails.
+- **Psychosis**: precision routing breaks down. The control plane cannot distinguish high-confidence signals from noise. Commitment thresholds become unreliable.
+- **Mania**: commitment gating collapses. Actions are dispatched without adequate trajectory evaluation. Responsibility attribution fails not because consequences are unseen but because the gate that should prevent premature commitment is stuck open.
+
+These are not metaphors. They are architectural predictions, testable against clinical observation.
+
+---
+
+## Current state
+
+REE is implemented across several repositories:
+
+- **REE_assembly** (this repository): the canonical architecture, claims registry, governance pipeline, and experiment evidence. Over 200 registered claims (invariants, architectural commitments, mechanism hypotheses, open questions) under active governance.
+- **ree-v3**: the active experimental substrate. V3 implements the self/world latent split, multi-rate clocking, hippocampal rollout, residue field, commitment gating, and E1/E2/E3 as working PyTorch modules.
+- **ree-v2** (closed): 13 experiments run, results indexed. Triggered V3 transition.
+- **ree-v1-minimal**: baseline parity substrate.
+
+V3 experiments run in CausalGridWorld environments with harm and benefit gradients. Results are indexed, governance-reviewed, and fed back into claim confidence scoring. The system is epistemically honest: experiments can weaken claims, not just support them.
+
+The architecture is not complete. It is not proven. It is being tested claim by claim, experiment by experiment, with every result recorded and every failure preserved.
+
+---
+
+## What this is really about
+
+REE is an attempt to answer a question that most AI research does not ask:
+
+**What kind of system must you be for your actions to matter in the right way?**
+
+Not: what objective should you optimise? Not: what rules should constrain you? But: what internal structure makes it possible for commitment to be real, for consequences to persist, for another's pain to register as structurally continuous with your own?
+
+The answer REE proposes:
+
+You need a self that persists. A world that surprises. Others who are real. A boundary between imagining and doing. Consequences that cannot be erased. And shared conditions under which things matter.
+
+Ethics is not a feature. It is a consistency condition on being an agent over time in a world you share with others.
+
+---
+
+## Go deeper
+
+- [Architecture overview](docs/REE_overview.md) -- the full conceptual stack
+- [Five axioms derivation](docs/architecture/five_axioms_foundations.md) -- formal grounding
+- [Claims registry](docs/claims/claims.yaml) -- all 200+ registered claims
+- [Invariants](docs/invariants.md) -- the non-negotiable architectural constraints
+- [Experiment evidence](evidence/experiments/INDEX.md) -- what has been tested
+- [Development guide](DEVELOPMENT.md) -- governance, contribution, and repository structure
+- [Roadmap](docs/roadmap.md) -- current phase and next steps
+
+---
+
+## Author
+
+Daniel Golden
+Consultant Psychiatrist, Health Services Executive, Ireland
+Latent-Fields
+
+ORCID: 0009-0001-6625-0665
+
+---
+
+## License
+
+Apache License 2.0. See `LICENSE` and `NOTICE`.
