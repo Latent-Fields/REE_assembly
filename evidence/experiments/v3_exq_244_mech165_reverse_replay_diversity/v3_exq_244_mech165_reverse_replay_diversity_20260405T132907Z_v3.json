@@ -1,0 +1,219 @@
+{
+  "run_id": "v3_exq_244_mech165_reverse_replay_diversity_20260405T132907Z_v3",
+  "experiment_type": "v3_exq_244_mech165_reverse_replay_diversity",
+  "claim_ids": [
+    "MECH-165"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260405T132907Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "pass_criteria_summary": {
+    "m1_entropy_balanced_gt_forward": {
+      "wins": 2,
+      "pass": false,
+      "desc": "BALANCED entropy_mean > FORWARD_ONLY in >=3/5 seeds"
+    },
+    "m2_monostrategy_balanced_lt_forward": {
+      "wins": 2,
+      "pass": false,
+      "desc": "BALANCED monostrategy_rate < FORWARD_ONLY in >=3/5 seeds"
+    },
+    "m3_entropy_balanced_gt_waking": {
+      "wins": 1,
+      "pass": false,
+      "desc": "BALANCED entropy_mean > WAKING_ONLY in >=3/5 seeds"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "WAKING_ONLY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.008475480585628085,
+      "harm_rate_dangerous": 0.007987733976046244,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 42,
+      "condition": "FORWARD_ONLY_REPLAY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.008475480585628085,
+      "harm_rate_dangerous": 0.007987733976046244,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 42,
+      "condition": "BALANCED_REPLAY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.008475480585628085,
+      "harm_rate_dangerous": 0.007987733976046244,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 7,
+      "condition": "WAKING_ONLY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.0008222243344783784,
+      "harm_rate_dangerous": 0.005934141458405389,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 7,
+      "condition": "FORWARD_ONLY_REPLAY",
+      "action_entropy_safe": 0.06864353317097151,
+      "action_entropy_dangerous": 0.04243427681965411,
+      "action_entropy_mean": 0.055538904995312804,
+      "monostrategy_rate": 0.9666666666666667,
+      "harm_rate_safe": 0.0015661898793776833,
+      "harm_rate_dangerous": 0.005973534496625265,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 7,
+      "condition": "BALANCED_REPLAY",
+      "action_entropy_safe": 0.5902991685675015,
+      "action_entropy_dangerous": 0.2969101359734863,
+      "action_entropy_mean": 0.44360465227049395,
+      "monostrategy_rate": 0.7666666666666667,
+      "harm_rate_safe": 0.007580952539841335,
+      "harm_rate_dangerous": 0.008032242613368564,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 13,
+      "condition": "WAKING_ONLY",
+      "action_entropy_safe": 0.07705443482080253,
+      "action_entropy_dangerous": 0.24697566525611026,
+      "action_entropy_mean": 0.1620150500384564,
+      "monostrategy_rate": 0.9833333333333333,
+      "harm_rate_safe": 0.0011354377926720515,
+      "harm_rate_dangerous": 0.006946506321430206,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 13,
+      "condition": "FORWARD_ONLY_REPLAY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.0006662658455636767,
+      "harm_rate_dangerous": 0.005480292193094889,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 13,
+      "condition": "BALANCED_REPLAY",
+      "action_entropy_safe": 0.053002861591859816,
+      "action_entropy_dangerous": 0.19822996859088135,
+      "action_entropy_mean": 0.1256164150913706,
+      "monostrategy_rate": 0.95,
+      "harm_rate_safe": 0.0009303145168224971,
+      "harm_rate_dangerous": 0.005431118551890056,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 100,
+      "condition": "WAKING_ONLY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.0007168873219357598,
+      "harm_rate_dangerous": 0.006384483422173393,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 100,
+      "condition": "FORWARD_ONLY_REPLAY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.0007168873219357598,
+      "harm_rate_dangerous": 0.006384483422173393,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 100,
+      "condition": "BALANCED_REPLAY",
+      "action_entropy_safe": -1.000000082240371e-09,
+      "action_entropy_dangerous": -1.000000082240371e-09,
+      "action_entropy_mean": -1.000000082240371e-09,
+      "monostrategy_rate": 1.0,
+      "harm_rate_safe": 0.0007168873219357598,
+      "harm_rate_dangerous": 0.006384483422173393,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 200,
+      "condition": "WAKING_ONLY",
+      "action_entropy_safe": 0.643315469187394,
+      "action_entropy_dangerous": 0.3580889185804342,
+      "action_entropy_mean": 0.5007021938839141,
+      "monostrategy_rate": 0.6666666666666666,
+      "harm_rate_safe": 0.007624411668645012,
+      "harm_rate_dangerous": 0.007960924318101671,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 200,
+      "condition": "FORWARD_ONLY_REPLAY",
+      "action_entropy_safe": 0.5900316835825963,
+      "action_entropy_dangerous": 0.42630944774634205,
+      "action_entropy_mean": 0.5081705656644692,
+      "monostrategy_rate": 0.6666666666666666,
+      "harm_rate_safe": 0.007008555791775385,
+      "harm_rate_dangerous": 0.007557258824507395,
+      "sleep_passes": 20
+    },
+    {
+      "seed": 200,
+      "condition": "BALANCED_REPLAY",
+      "action_entropy_safe": 0.5972490407895364,
+      "action_entropy_dangerous": 0.3659350148588344,
+      "action_entropy_mean": 0.4815920278241854,
+      "monostrategy_rate": 0.6833333333333333,
+      "harm_rate_safe": 0.007101884446806378,
+      "harm_rate_dangerous": 0.007081523344251844,
+      "sleep_passes": 20
+    }
+  ],
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "FORWARD_ONLY_REPLAY",
+      "BALANCED_REPLAY"
+    ],
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "replay_steps": 64,
+    "mono_threshold": 0.6,
+    "training_episodes": 200,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 30,
+    "seeds": [
+      42,
+      7,
+      13,
+      100,
+      200
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
+}

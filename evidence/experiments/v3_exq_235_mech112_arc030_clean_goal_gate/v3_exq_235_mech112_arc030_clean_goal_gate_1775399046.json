@@ -1,0 +1,171 @@
+{
+  "run_id": "v3_exq_235_mech112_arc030_clean_goal_gate_1775399046_v3",
+  "experiment_type": "v3_exq_235_mech112_arc030_clean_goal_gate",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-112",
+    "ARC-030"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "decision": "substrate_limitation",
+  "decision_note": "z_goal not aligned with resource proximity (C2 FAIL)",
+  "evidence_direction_per_claim": {
+    "MECH-112": "non_contributory",
+    "ARC-030": "non_contributory"
+  },
+  "timestamp": 1775399046,
+  "seeds": [
+    42,
+    7,
+    13,
+    99,
+    0
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 100,
+  "steps_per_episode": 80,
+  "harm_weight": 1.0,
+  "benefit_weight": 0.5,
+  "goal_weight": 0.3,
+  "goal_norm_thresh": 0.1,
+  "goal_align_thresh": 0.15,
+  "success_delta_thresh": 0.2,
+  "latency_ratio_thresh": 0.75,
+  "harm_ratio_max": 1.2,
+  "success_step_gate": 40,
+  "ga_success_rate": 0.054000000000000006,
+  "ab_success_rate": 0.052000000000000005,
+  "ga_mean_first_hit": 945.18,
+  "ab_mean_first_hit": 947.174,
+  "avg_harm_active": 0.038084360078507594,
+  "avg_harm_ablated": 0.0382471570395304,
+  "harm_ratio": 0.9957435539364522,
+  "ga_goal_norm": 0.18150091618299485,
+  "ga_goal_align_corr": -0.04581051235705365,
+  "c1_norm_count": 4,
+  "c2_align_count": 0,
+  "c3_lift_count": 0,
+  "c4_harm_pass": true,
+  "c5_variant_count": 1,
+  "c1_pass": true,
+  "c2_pass": false,
+  "c3_pass": false,
+  "c4_pass": true,
+  "c5_pass": false,
+  "per_seed_main": [
+    {
+      "seed": 42,
+      "ga_success": 0.07,
+      "ab_success": 0.06,
+      "ga_first_hit": 929.25,
+      "ab_first_hit": 939.16,
+      "ga_harm": 0.0016211052782833576,
+      "ab_harm": 0.0015503652896359562,
+      "goal_norm": 0.3149573504924774,
+      "goal_align_corr": -0.13499141501599962,
+      "c1_pass": true,
+      "c2_pass": false,
+      "c3_pass": false
+    },
+    {
+      "seed": 7,
+      "ga_success": 0.07,
+      "ab_success": 0.04,
+      "ga_first_hit": 929.22,
+      "ab_first_hit": 959.1,
+      "ga_harm": 0.001435602028351277,
+      "ab_harm": 0.0019080398058146236,
+      "goal_norm": 0.14503490924835205,
+      "goal_align_corr": -0.1435374641311424,
+      "c1_pass": true,
+      "c2_pass": false,
+      "c3_pass": false
+    },
+    {
+      "seed": 13,
+      "ga_success": 0.06,
+      "ab_success": 0.0,
+      "ga_first_hit": 939.22,
+      "ab_first_hit": 999.0,
+      "ga_harm": 0.001996984610930085,
+      "ab_harm": 0.18404700124973342,
+      "goal_norm": 0.1428351104259491,
+      "goal_align_corr": 0.03400023006666356,
+      "c1_pass": true,
+      "c2_pass": false,
+      "c3_pass": false
+    },
+    {
+      "seed": 99,
+      "ga_success": 0.07,
+      "ab_success": 0.09,
+      "ga_first_hit": 929.21,
+      "ab_first_hit": 909.35,
+      "ga_harm": 0.0017162216215394436,
+      "ab_harm": 0.0018799580955691636,
+      "goal_norm": 0.22764502465724945,
+      "goal_align_corr": -0.0996255920493119,
+      "c1_pass": true,
+      "c2_pass": false,
+      "c3_pass": false
+    },
+    {
+      "seed": 0,
+      "ga_success": 0.0,
+      "ab_success": 0.07,
+      "ga_first_hit": 999.0,
+      "ab_first_hit": 929.26,
+      "ga_harm": 0.1836518868534338,
+      "ab_harm": 0.0018504207568988205,
+      "goal_norm": 0.0770321860909462,
+      "goal_align_corr": 0.11510167934452215,
+      "c1_pass": false,
+      "c2_pass": false,
+      "c3_pass": false
+    }
+  ],
+  "per_seed_variant": [
+    {
+      "seed": 42,
+      "ga_success": 0.05,
+      "ab_success": 0.08,
+      "ga_first_hit": 949.15,
+      "ab_first_hit": 919.35,
+      "c5_pass": false
+    },
+    {
+      "seed": 7,
+      "ga_success": 0.07,
+      "ab_success": 0.09,
+      "ga_first_hit": 929.27,
+      "ab_first_hit": 909.26,
+      "c5_pass": false
+    },
+    {
+      "seed": 13,
+      "ga_success": 0.08,
+      "ab_success": 0.0,
+      "ga_first_hit": 919.27,
+      "ab_first_hit": 999.0,
+      "c5_pass": true
+    },
+    {
+      "seed": 99,
+      "ga_success": 0.04,
+      "ab_success": 0.09,
+      "ga_first_hit": 959.12,
+      "ab_first_hit": 909.29,
+      "c5_pass": false
+    },
+    {
+      "seed": 0,
+      "ga_success": 0.0,
+      "ab_success": 0.04,
+      "ga_first_hit": 999.0,
+      "ab_first_hit": 959.12,
+      "c5_pass": false
+    }
+  ]
+}

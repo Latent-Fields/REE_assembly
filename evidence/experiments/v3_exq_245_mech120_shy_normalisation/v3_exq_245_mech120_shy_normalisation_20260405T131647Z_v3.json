@@ -1,0 +1,168 @@
+{
+  "run_id": "v3_exq_245_mech120_shy_normalisation_20260405T131647Z_v3",
+  "experiment_type": "v3_exq_245_mech120_shy_normalisation",
+  "claim_ids": [
+    "MECH-120"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260405T131647Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "pass_criteria_summary": {
+    "s1_shy_before_sws_beats_sws_alone": {
+      "wins": 0,
+      "pass": false,
+      "desc": "SHY_THEN_SWS slot_cosine_sim < SWS_NO_SHY in >=2/3 seeds"
+    },
+    "s2_correct_order_beats_wrong_order": {
+      "wins": 3,
+      "pass": true,
+      "desc": "SHY_THEN_SWS slot_cosine_sim < SWS_THEN_SHY in >=2/3 seeds"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.0009659974602982402,
+      "slot_variance": 5.068241080152802e-05,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 0,
+      "sim_trend": "NA"
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_NO_SHY",
+      "slot_cosine_sim": 0.00044870551209896803,
+      "slot_variance": 1.9210236072540283,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_THEN_SWS",
+      "slot_cosine_sim": 0.9976940751075745,
+      "slot_variance": 1.680428147315979,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_THEN_SHY",
+      "slot_cosine_sim": 0.9981189966201782,
+      "slot_variance": 1.2141003608703613,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 7,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.0022243864368647337,
+      "slot_variance": 5.547854016185738e-05,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 0,
+      "sim_trend": "NA"
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_NO_SHY",
+      "slot_cosine_sim": 0.999997079372406,
+      "slot_variance": 0.01159166730940342,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_THEN_SWS",
+      "slot_cosine_sim": 0.9999998211860657,
+      "slot_variance": 0.0006459362339228392,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_THEN_SHY",
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_variance": 0.0004889760166406631,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 13,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": -0.012985327281057835,
+      "slot_variance": 3.53940631612204e-05,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 0,
+      "sim_trend": "NA"
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_NO_SHY",
+      "slot_cosine_sim": 0.999997079372406,
+      "slot_variance": 0.0005454037454910576,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_THEN_SWS",
+      "slot_cosine_sim": 0.9999997615814209,
+      "slot_variance": 0.00024239288177341223,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_THEN_SHY",
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_variance": 0.00017507643497083336,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10,
+      "sim_trend": "stable_or_worse"
+    }
+  ],
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "SWS_NO_SHY",
+      "SHY_THEN_SWS",
+      "SWS_THEN_SHY"
+    ],
+    "sleep_interval": 10,
+    "sws_write_steps": 20,
+    "shy_decay": 0.85,
+    "context_switch_every": 5,
+    "training_episodes": 100,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 20,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
+}

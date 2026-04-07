@@ -1,0 +1,145 @@
+{
+  "run_id": "v3_exq_246_mech122_spindle_coordination_20260405T132145Z_v3",
+  "experiment_type": "v3_exq_246_mech122_spindle_coordination",
+  "claim_ids": [
+    "MECH-122"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260405T132145Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "pass_criteria_summary": {
+    "t1_spindle_no_harm_regression": {
+      "wins": 3,
+      "pass": true,
+      "desc": "WITH_SPINDLE harm_dang <= NO_SPINDLE*1.05 in >=2/3 seeds"
+    },
+    "t2_spindle_maintains_discrimination": {
+      "wins": 3,
+      "pass": true,
+      "desc": "WITH_SPINDLE harm_discrim >= NO_SPINDLE in >=2/3 seeds"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.0009659974602982402,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": -5.08427619934082e-05,
+      "harm_eval_safe": 0.5308693051338196,
+      "harm_eval_dangerous": 0.5308184623718262,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_REM_NO_SPINDLE",
+      "slot_cosine_sim": 0.0004491147992666811,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": 2.682209014892578e-06,
+      "harm_eval_safe": 0.5296010375022888,
+      "harm_eval_dangerous": 0.5296037197113037,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 42,
+      "condition": "SWS_REM_WITH_SPINDLE",
+      "slot_cosine_sim": 0.0004491147992666811,
+      "harm_rate_safe": 0.008446034719546636,
+      "harm_rate_dangerous": 0.008041572868824006,
+      "harm_discrimination": 2.682209014892578e-06,
+      "harm_eval_safe": 0.5296010375022888,
+      "harm_eval_dangerous": 0.5296037197113037,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 7,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": 0.0022243864368647337,
+      "harm_rate_safe": 0.0005857181816299756,
+      "harm_rate_dangerous": 0.005340071702003479,
+      "harm_discrimination": -0.0253576822578907,
+      "harm_eval_safe": 0.07075963169336319,
+      "harm_eval_dangerous": 0.04540194943547249,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_REM_NO_SPINDLE",
+      "slot_cosine_sim": 0.9999995827674866,
+      "harm_rate_safe": 0.0005687869642178217,
+      "harm_rate_dangerous": 0.005295277736584345,
+      "harm_discrimination": -0.04058621823787689,
+      "harm_eval_safe": 0.11855005472898483,
+      "harm_eval_dangerous": 0.07796383649110794,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 7,
+      "condition": "SWS_REM_WITH_SPINDLE",
+      "slot_cosine_sim": 0.9999995827674866,
+      "harm_rate_safe": 0.0005687869642178217,
+      "harm_rate_dangerous": 0.005295277736584345,
+      "harm_discrimination": -0.04058621823787689,
+      "harm_eval_safe": 0.11855005472898483,
+      "harm_eval_dangerous": 0.07796383649110794,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 13,
+      "condition": "WAKING_ONLY",
+      "slot_cosine_sim": -0.012985327281057835,
+      "harm_rate_safe": 0.000749656098484993,
+      "harm_rate_dangerous": 0.006981987323363621,
+      "harm_discrimination": 0.11501415818929672,
+      "harm_eval_safe": 0.1245708242058754,
+      "harm_eval_dangerous": 0.23958498239517212,
+      "sleep_passes": 0
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_REM_NO_SPINDLE",
+      "slot_cosine_sim": 0.9999997615814209,
+      "harm_rate_safe": 0.0007157414937019349,
+      "harm_rate_dangerous": 0.0066704372068246195,
+      "harm_discrimination": 0.01372210681438446,
+      "harm_eval_safe": 0.1290479153394699,
+      "harm_eval_dangerous": 0.14277002215385437,
+      "sleep_passes": 15
+    },
+    {
+      "seed": 13,
+      "condition": "SWS_REM_WITH_SPINDLE",
+      "slot_cosine_sim": 0.9999997615814209,
+      "harm_rate_safe": 0.0007157414937019349,
+      "harm_rate_dangerous": 0.0066704372068246195,
+      "harm_discrimination": 0.01372210681438446,
+      "harm_eval_safe": 0.1290479153394699,
+      "harm_eval_dangerous": 0.14277002215385437,
+      "sleep_passes": 15
+    }
+  ],
+  "config": {
+    "conditions": [
+      "WAKING_ONLY",
+      "SWS_REM_NO_SPINDLE",
+      "SWS_REM_WITH_SPINDLE"
+    ],
+    "sleep_interval": 10,
+    "sws_write_steps": 20,
+    "context_switch_every": 5,
+    "training_episodes": 150,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 20,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
+}
