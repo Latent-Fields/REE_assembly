@@ -1,0 +1,141 @@
+{
+  "run_id": "v3_exq_250_inv054_phase_transition_recovery_1775541543_v3",
+  "experiment_type": "v3_exq_250_inv054_phase_transition_recovery",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "INV-054"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "INCONCLUSIVE",
+  "evidence_direction": "inconclusive",
+  "decision": "hold_inconclusive",
+  "timestamp": 1775541543,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 200,
+  "max_phase1_episodes": 500,
+  "phase2_episodes": 300,
+  "long_n_resources": 1,
+  "long_n_hazards": 3,
+  "long_steps": 150,
+  "low_harm_n_resources": 3,
+  "low_harm_n_hazards": 1,
+  "low_harm_steps": 150,
+  "hazard_harm": 0.02,
+  "attractor_threshold": 0.1,
+  "attractor_window": 50,
+  "recovery_threshold": 0.3,
+  "latency_pass_min": 50,
+  "latency_fail_max": 10,
+  "recovery_latency_mean": 301.0,
+  "recovery_latency_std": 0.0,
+  "terrain_coverage_at_ep50_mean": 0.5417,
+  "terrain_coverage_at_ep300_mean": 0.5625,
+  "n_established": 3,
+  "pass_count": 0,
+  "fail_count": 0,
+  "latencies": [
+    null,
+    null,
+    null
+  ],
+  "note": "",
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "attractor_established": true,
+      "phase1_attractor_episode": 201,
+      "latency_to_recovery": null,
+      "terrain_coverage_by_ep": [
+        0.5625,
+        0.5625,
+        0.5625,
+        0.5625,
+        0.5625,
+        0.5625
+      ],
+      "z_goal_norm_trajectory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0247,
+        0.0
+      ],
+      "phase2_resource_rate_traj": [
+        0.15,
+        0.1,
+        0.25,
+        0.1,
+        0.25,
+        0.25
+      ],
+      "seed_verdict": "INCONCLUSIVE"
+    },
+    {
+      "seed": 7,
+      "attractor_established": true,
+      "phase1_attractor_episode": 201,
+      "latency_to_recovery": null,
+      "terrain_coverage_by_ep": [
+        0.5469,
+        0.5469,
+        0.5625,
+        0.5625,
+        0.5625,
+        0.5625
+      ],
+      "z_goal_norm_trajectory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0014,
+        0.0
+      ],
+      "phase2_resource_rate_traj": [
+        0.25,
+        0.1,
+        0.1,
+        0.25,
+        0.45,
+        0.15
+      ],
+      "seed_verdict": "INCONCLUSIVE"
+    },
+    {
+      "seed": 13,
+      "attractor_established": true,
+      "phase1_attractor_episode": 201,
+      "latency_to_recovery": null,
+      "terrain_coverage_by_ep": [
+        0.5156,
+        0.5469,
+        0.5625,
+        0.5625,
+        0.5625,
+        0.5625
+      ],
+      "z_goal_norm_trajectory": [
+        0.0,
+        0.0007,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "phase2_resource_rate_traj": [
+        0.25,
+        0.4,
+        0.3,
+        0.3,
+        0.25,
+        0.15
+      ],
+      "seed_verdict": "INCONCLUSIVE"
+    }
+  ]
+}

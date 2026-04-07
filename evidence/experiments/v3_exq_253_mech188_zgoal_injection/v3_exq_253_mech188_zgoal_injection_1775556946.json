@@ -1,0 +1,107 @@
+{
+  "run_id": "v3_exq_253_mech188_zgoal_injection_1775556946_v3",
+  "experiment_type": "v3_exq_253_mech188_zgoal_injection",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-188"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "decision": "injection_insufficient",
+  "timestamp": 1775556946,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 100,
+  "steps_per_ep": 150,
+  "n_resources": 1,
+  "n_hazards": 3,
+  "hazard_harm": 0.02,
+  "greedy_frac": 0.4,
+  "z_goal_inject_A": 0.0,
+  "z_goal_inject_B": 0.3,
+  "behavioral_gap_thresh": 0.05,
+  "pass_seed_count": 2,
+  "condition_comparison": {
+    "mean_gap_A": 0.0,
+    "mean_gap_B": 0.0,
+    "mean_z_goal_norm_A": 0.013120680504168073,
+    "mean_z_goal_norm_B": 0.013120680504168073,
+    "mean_PLANNED_rr_A": 0.09000000000000001,
+    "mean_PLANNED_rr_B": 0.09000000000000001,
+    "mean_HABIT_rr_A": 0.09000000000000001,
+    "mean_HABIT_rr_B": 0.09000000000000001,
+    "mean_harm_rate_A": 0.16172030805549356,
+    "mean_harm_rate_B": 0.16172030805549356
+  },
+  "pass_count_B": 0,
+  "overall_pass": false,
+  "per_seed_A": [
+    {
+      "seed": 42,
+      "condition": "A",
+      "PLANNED_rr": 0.08,
+      "HABIT_rr": 0.08,
+      "behavioral_gap": 0.0,
+      "PLANNED_harm_rate": 0.16355801440362136,
+      "z_goal_norm": 0.0034974918235093355,
+      "gap_pass": false
+    },
+    {
+      "seed": 7,
+      "condition": "A",
+      "PLANNED_rr": 0.07,
+      "HABIT_rr": 0.07,
+      "behavioral_gap": 0.0,
+      "PLANNED_harm_rate": 0.1481187677513361,
+      "z_goal_norm": 0.020292086526751518,
+      "gap_pass": false
+    },
+    {
+      "seed": 13,
+      "condition": "A",
+      "PLANNED_rr": 0.12,
+      "HABIT_rr": 0.12,
+      "behavioral_gap": 0.0,
+      "PLANNED_harm_rate": 0.17348414201152323,
+      "z_goal_norm": 0.015572463162243366,
+      "gap_pass": false
+    }
+  ],
+  "per_seed_B": [
+    {
+      "seed": 42,
+      "condition": "B",
+      "PLANNED_rr": 0.08,
+      "HABIT_rr": 0.08,
+      "behavioral_gap": 0.0,
+      "PLANNED_harm_rate": 0.16355801440362136,
+      "z_goal_norm": 0.0034974918235093355,
+      "gap_pass": false
+    },
+    {
+      "seed": 7,
+      "condition": "B",
+      "PLANNED_rr": 0.07,
+      "HABIT_rr": 0.07,
+      "behavioral_gap": 0.0,
+      "PLANNED_harm_rate": 0.1481187677513361,
+      "z_goal_norm": 0.020292086526751518,
+      "gap_pass": false
+    },
+    {
+      "seed": 13,
+      "condition": "B",
+      "PLANNED_rr": 0.12,
+      "HABIT_rr": 0.12,
+      "behavioral_gap": 0.0,
+      "PLANNED_harm_rate": 0.17348414201152323,
+      "z_goal_norm": 0.015572463162243366,
+      "gap_pass": false
+    }
+  ]
+}
