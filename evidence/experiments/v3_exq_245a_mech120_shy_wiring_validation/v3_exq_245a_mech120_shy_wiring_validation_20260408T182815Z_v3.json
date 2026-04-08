@@ -1,0 +1,100 @@
+{
+  "run_id": "v3_exq_245a_mech120_shy_wiring_validation_20260408T182815Z_v3",
+  "experiment_type": "v3_exq_245a_mech120_shy_wiring_validation",
+  "claim_ids": [
+    "MECH-120"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260408T182815Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "pass_criteria_summary": {
+    "s1_shy_reduces_norm_std": {
+      "wins": 3,
+      "pass": true,
+      "desc": "slot_norm_std(SHY_ENABLED) < slot_norm_std(SHY_DISABLED) in >=2/3 seeds"
+    },
+    "s2_shy_improves_differentiation": {
+      "wins": 0,
+      "pass": false,
+      "desc": "slot_cosine_sim(SHY_ENABLED) < slot_cosine_sim(SHY_DISABLED) in >=2/3 seeds"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "SHY_ENABLED",
+      "slot_cosine_sim": 0.9976941347122192,
+      "slot_norm_std": 1.2963131666183472,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_DISABLED",
+      "slot_cosine_sim": 0.0004487042606342584,
+      "slot_norm_std": 1.3860098123550415,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_ENABLED",
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_norm_std": 0.02541535533964634,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_DISABLED",
+      "slot_cosine_sim": 0.999997079372406,
+      "slot_norm_std": 0.10766474157571793,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_ENABLED",
+      "slot_cosine_sim": 0.9999998211860657,
+      "slot_norm_std": 0.015568971633911133,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_DISABLED",
+      "slot_cosine_sim": 0.999997079372406,
+      "slot_norm_std": 0.023353824391961098,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    }
+  ],
+  "config": {
+    "conditions": [
+      "SHY_ENABLED",
+      "SHY_DISABLED"
+    ],
+    "sleep_interval": 10,
+    "sws_write_steps": 20,
+    "shy_decay_rate": 0.85,
+    "context_switch_every": 5,
+    "training_episodes": 100,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 20,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "env_safe_num_hazards": 1,
+    "env_dangerous_num_hazards": 8
+  }
+}
