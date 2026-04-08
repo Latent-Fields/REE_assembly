@@ -1,0 +1,161 @@
+{
+  "run_id": "v3_exq_257_sd018_resource_prox_validation_20260406T171952Z_v3",
+  "experiment_type": "v3_exq_257_sd018_resource_prox_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-018",
+    "ARC-030",
+    "MECH-112"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "SD-018": "weakens",
+    "ARC-030": "weakens",
+    "MECH-112": "weakens"
+  },
+  "timestamp_utc": "20260406T171952Z",
+  "criteria": {
+    "C1_resource_prox_r2_pass": false,
+    "C1_values": [
+      -9014075048.118273,
+      -1661885892.3038538,
+      0.9864515200865567
+    ],
+    "C1_threshold": 0.3,
+    "C2_benefit_r2_lift_pass": true,
+    "C2_details": [
+      {
+        "seed": 1,
+        "with_r2": -1358493658.7011027,
+        "without_r2": -6011110875908.095,
+        "lift": true
+      },
+      {
+        "seed": 2,
+        "with_r2": -1733829743.0277953,
+        "without_r2": -2630087642650.615,
+        "lift": true
+      },
+      {
+        "seed": 3,
+        "with_r2": 0.9984357162226258,
+        "without_r2": -3976502210976.6147,
+        "lift": true
+      }
+    ],
+    "C3_resource_rate_lift_pass": false,
+    "C3_details": [
+      {
+        "seed": 1,
+        "with_rate": 0.001,
+        "without_rate": 0.001,
+        "threshold": 0.0011,
+        "lift": false
+      },
+      {
+        "seed": 2,
+        "with_rate": 0.0015,
+        "without_rate": 0.00175,
+        "threshold": 0.0019250000000000003,
+        "lift": false
+      },
+      {
+        "seed": 3,
+        "with_rate": 0.0015,
+        "without_rate": 0.002,
+        "threshold": 0.0022,
+        "lift": false
+      }
+    ]
+  },
+  "per_condition_results": [
+    {
+      "seed": 1,
+      "condition": "WITH_RESOURCE_HEAD",
+      "resource_rate": 0.001,
+      "resource_prox_r2": -9014075048.118273,
+      "benefit_eval_r2": -1358493658.7011027,
+      "benefit_r2_train": 0.9358104638360628,
+      "z_goal_norm": 8.21557155639141e-10,
+      "resources_collected": 4,
+      "eval_steps": 4000
+    },
+    {
+      "seed": 1,
+      "condition": "WITHOUT",
+      "resource_rate": 0.001,
+      "resource_prox_r2": -1.0,
+      "benefit_eval_r2": -6011110875908.095,
+      "benefit_r2_train": -0.08306203474182783,
+      "z_goal_norm": 1.5646518802814313e-10,
+      "resources_collected": 4,
+      "eval_steps": 4000
+    },
+    {
+      "seed": 2,
+      "condition": "WITH_RESOURCE_HEAD",
+      "resource_rate": 0.0015,
+      "resource_prox_r2": -1661885892.3038538,
+      "benefit_eval_r2": -1733829743.0277953,
+      "benefit_r2_train": 0.9149996244616585,
+      "z_goal_norm": 1.1360213880706738e-09,
+      "resources_collected": 6,
+      "eval_steps": 4000
+    },
+    {
+      "seed": 2,
+      "condition": "WITHOUT",
+      "resource_rate": 0.00175,
+      "resource_prox_r2": -1.0,
+      "benefit_eval_r2": -2630087642650.615,
+      "benefit_r2_train": -0.1186228058070895,
+      "z_goal_norm": 1.381739583861119e-10,
+      "resources_collected": 7,
+      "eval_steps": 4000
+    },
+    {
+      "seed": 3,
+      "condition": "WITH_RESOURCE_HEAD",
+      "resource_rate": 0.0015,
+      "resource_prox_r2": 0.9864515200865567,
+      "benefit_eval_r2": 0.9984357162226258,
+      "benefit_r2_train": 0.9466156867342005,
+      "z_goal_norm": 0.0026663753669708967,
+      "resources_collected": 6,
+      "eval_steps": 4000
+    },
+    {
+      "seed": 3,
+      "condition": "WITHOUT",
+      "resource_rate": 0.002,
+      "resource_prox_r2": -1.0,
+      "benefit_eval_r2": -3976502210976.6147,
+      "benefit_r2_train": -0.07476700326606855,
+      "z_goal_norm": 1.0870182531874661e-09,
+      "resources_collected": 8,
+      "eval_steps": 4000
+    }
+  ],
+  "config": {
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "conditions": [
+      "WITH_RESOURCE_HEAD",
+      "WITHOUT"
+    ],
+    "p0_episodes": 50,
+    "p1_episodes": 30,
+    "p2_episodes": 20,
+    "steps_per_ep": 200,
+    "grid_size": 5,
+    "num_resources": 2,
+    "num_hazards": 2,
+    "lambda_resource": 0.5,
+    "lambda_event": 0.5
+  }
+}

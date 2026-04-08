@@ -1,0 +1,118 @@
+{
+  "run_id": "v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3",
+  "experiment_type": "v3_exq_260_sd020_harm_surprise_pe",
+  "claim_ids": [
+    "SD-020",
+    "SD-011"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "status": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-020": "weakens",
+    "SD-011": "supports"
+  },
+  "criteria": {
+    "C1_urgency_corr_surprise_gt_raw": {
+      "pass": false,
+      "seeds_passing": 0,
+      "surprise_mean": -0.0117,
+      "raw_mean": -0.0079
+    },
+    "C2_stream_corr_surprise_lt_raw": {
+      "pass": true,
+      "seeds_passing": 2,
+      "surprise_mean": -0.0869,
+      "raw_mean": -0.0924
+    }
+  },
+  "condition_metrics": {
+    "RAW_ACCUM": {
+      "mean_stream_corr": -0.0924,
+      "mean_urgency_corr": -0.0079
+    },
+    "SURPRISE_PE": {
+      "mean_stream_corr": -0.0869,
+      "mean_urgency_corr": -0.0117
+    },
+    "COMBINED": {
+      "mean_stream_corr": -0.0908,
+      "mean_urgency_corr": -0.0071
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "RAW_ACCUM",
+      "mean_stream_corr": -0.3554,
+      "mean_urgency_threat_change_corr": -0.0126,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 42,
+      "condition": "SURPRISE_PE",
+      "mean_stream_corr": -0.351,
+      "mean_urgency_threat_change_corr": -0.0135,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 42,
+      "condition": "COMBINED",
+      "mean_stream_corr": -0.3535,
+      "mean_urgency_threat_change_corr": -0.013,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 7,
+      "condition": "RAW_ACCUM",
+      "mean_stream_corr": 0.0194,
+      "mean_urgency_threat_change_corr": -0.0362,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 7,
+      "condition": "SURPRISE_PE",
+      "mean_stream_corr": 0.0086,
+      "mean_urgency_threat_change_corr": -0.0412,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 7,
+      "condition": "COMBINED",
+      "mean_stream_corr": 0.0143,
+      "mean_urgency_threat_change_corr": -0.0368,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 13,
+      "condition": "RAW_ACCUM",
+      "mean_stream_corr": 0.0589,
+      "mean_urgency_threat_change_corr": 0.025,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 13,
+      "condition": "SURPRISE_PE",
+      "mean_stream_corr": 0.0818,
+      "mean_urgency_threat_change_corr": 0.0195,
+      "n_eval_episodes": 60
+    },
+    {
+      "seed": 13,
+      "condition": "COMBINED",
+      "mean_stream_corr": 0.0668,
+      "mean_urgency_threat_change_corr": 0.0284,
+      "n_eval_episodes": 60
+    }
+  ],
+  "config_summary": {
+    "grid_size": 10,
+    "num_hazards": 3,
+    "num_resources": 5,
+    "harm_history_len": 10,
+    "p0_episodes": 120,
+    "p1_episodes": 60,
+    "steps_per_ep": 150
+  }
+}
