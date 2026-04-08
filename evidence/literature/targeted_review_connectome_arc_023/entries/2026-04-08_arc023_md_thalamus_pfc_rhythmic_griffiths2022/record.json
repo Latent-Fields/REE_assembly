@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_023",
+  "entry_id": "2026-04-08_arc023_md_thalamus_pfc_rhythmic_griffiths2022",
+  "timestamp_utc": "2026-04-08T17:30:00Z",
+  "claim_ids_tested": ["ARC-023"],
+  "source": {
+    "title": "Rhythmic interactions between the mediodorsal thalamus and prefrontal cortex precede human visual perception",
+    "authors": ["Benjamin J Griffiths", "Tino Zaehle", "Stefan Repplinger", "Friedhelm C Schmitt", "Jurgen Voges", "Simon Hanslmayr", "Tobias Staudigl"],
+    "year": 2022,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-022-31407-z"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Human intracranial + MEG data showing MD thalamus at 7-8 Hz coupling with PFC at ~10-11 Hz is strong direct evidence for a characteristic thalamic frequency in the cognitive/deliberative loop. The frequency hierarchy (MD slower than PFC) aligns with ARC-023's prediction. However, only one thalamic nucleus-cortical target pair is tested, so extrapolation to a full three-loop frequency hierarchy requires inference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cortical activity leads thalamic oscillations in this study, suggesting PFC drives MD rather than MD setting the pace -- this inverts ARC-023's framing of thalamic nuclei as rate-setters."
+  ],
+  "tags": ["arc_023", "mediodorsal_thalamus", "prefrontal_cortex", "thalamocortical", "oscillation_frequency"],
+  "mapping": {
+    "source_claim_statement": "Mediodorsal thalamic low-frequency activity (7-8 Hz) and prefrontal low-frequency activity (~10-11 Hz) are rhythmically coupled, and this coupling predicts perceptual performance.",
+    "ree_translation": "The MD-PFC oscillatory coupling at theta/alpha frequencies corresponds to the E3 deliberative heartbeat in ARC-023: MD maps to the thalamic relay for the E3 complex, and its 7-8 Hz rhythm represents the characteristic deliberation rate (slowest of the three loops).",
+    "mapping_caveat": "The study shows PFC leading MD (cortex drives thalamus), whereas ARC-023 posits thalamic nuclei as rate-setters. The actual circuit may be a resonant loop rather than thalamus-to-cortex unidirectional pacing. Also, patient population (epilepsy) may not generalize.",
+    "source_context": "Human patients with depth electrodes (epilepsy) + healthy controls with MEG; visual detection task."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (Nature Communications, human intracranial + MEG, n=6 patients + 12 controls). Mapping fidelity moderate: MD-PFC coupling well-established but the study tests only one loop, and directionality (PFC leads) partially challenges ARC-023's thalamic rate-setting framing. Transfer risk low (human data, relevant brain regions)."
+  }
+}

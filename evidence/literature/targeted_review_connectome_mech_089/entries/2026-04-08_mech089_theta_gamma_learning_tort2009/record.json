@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_089",
+  "entry_id": "2026-04-08_mech089_theta_gamma_learning_tort2009",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-089"],
+  "source": {
+    "title": "Theta-gamma coupling increases during the learning of item-context associations",
+    "authors": ["Adriano B L Tort", "Robert W Komorowski", "Joseph R Manns", "Nancy J Kopell", "Howard Eichenbaum"],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0911331106"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "High-quality in vivo electrophysiology from rat hippocampal CA3 directly demonstrates that gamma amplitude modulation by theta phase increases during associative learning, with coupling strength correlated with performance. The functional relevance is clear: theta-gamma coupling is not epiphenomenal but tracks cognitive demands. However, mapping to MECH-089 requires a substantial translation step: the paper shows theta-gamma coupling during memory retrieval in a single brain region, whereas MECH-089 claims this mechanism packages E1 updates for E3 consumption across processing hierarchies. The paper does not demonstrate inter-region information transfer via CFC, nor does it show the specific ~5-7 gamma-per-theta batching ratio posited by MECH-089.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Paper demonstrates intra-regional (CA3) coupling only, not inter-hierarchy transfer as MECH-089 requires",
+    "No direct evidence that gamma packets constitute discrete information units being 'batched' for a downstream consumer"
+  ],
+  "tags": ["mech_089", "theta_gamma", "cross_frequency_coupling", "hippocampus", "associative_learning", "phase_amplitude_coupling"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta-gamma phase-amplitude coupling increases during learning and correlates with behavioral performance, with low gamma (30-60 Hz) amplitude modulated by theta (4-12 Hz) phase in CA3.",
+    "ree_translation": "If gamma cycles represent fast-update processing (analogous to E1 rate) and theta cycles represent the slower integration rhythm (analogous to E3 heartbeat rate), then the learning-dependent increase in coupling supports the idea that tight temporal packaging of fast updates within slow cycles is functionally important for downstream information use.",
+    "mapping_caveat": "The paper addresses within-region coupling in hippocampal CA3, not inter-module transfer between processing hierarchies. REE's E1-to-E3 packaging is an architectural claim about how information crosses module boundaries, which goes beyond what intra-regional CFC demonstrates. The translation assumes that the same coupling principle observed within a region generalizes to inter-module communication.",
+    "source_context": "Rat hippocampal CA3 recordings during conditional discrimination task requiring item-context associations. LFP analysis using comodulogram and modulation index."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is high: PNAS publication, rigorous MI quantification, behavioral correlation, controls for speed and power confounds. Mapping fidelity is moderate: the paper shows functional CFC within a region but MECH-089 claims inter-module temporal packaging. Transfer risk is moderate: rat hippocampal physiology to an artificial architecture requires substantial bridging assumptions."
+  }
+}

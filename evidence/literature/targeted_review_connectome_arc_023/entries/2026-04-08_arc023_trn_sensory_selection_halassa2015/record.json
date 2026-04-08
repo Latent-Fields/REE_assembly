@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_023",
+  "entry_id": "2026-04-08_arc023_trn_sensory_selection_halassa2015",
+  "timestamp_utc": "2026-04-08T17:30:00Z",
+  "claim_ids_tested": ["ARC-023"],
+  "source": {
+    "title": "Thalamic control of sensory selection in divided attention",
+    "authors": ["Ralf D Wimmer", "L Ian Schmitt", "Thomas J Davidson", "Miho Nakajima", "Karl Deisseroth", "Michael M Halassa"],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature15398"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Nature paper with causal optogenetic evidence showing TRN subnetworks mediate modality-specific gating of thalamocortical pathways under PFC control. Directly supports ARC-023's TRN-as-routing-switch claim. Confidence limited by mouse-to-human transfer and the fact that modality-specific gating (sensory selection) is not identical to frequency-specific loop gating.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study demonstrates modality-specific TRN gating (visual vs auditory), not frequency-specific gating between processing levels (sensory vs motor vs cognitive). The mapping from modality-routing to loop-routing is an inference step."
+  ],
+  "tags": ["arc_023", "thalamic_reticular_nucleus", "attention_gating", "thalamocortical", "routing"],
+  "mapping": {
+    "source_claim_statement": "Prefrontal cortex biases modality-specific TRN subnetworks to control thalamic sensory gain, enabling selective attention across sensory modalities via feedforward inhibition.",
+    "ree_translation": "The TRN's modality-specific subnetworks and PFC-dependent gating correspond to ARC-023's claim that TRN acts as an inter-loop routing switch. If TRN can selectively gate sensory thalamocortical pathways, the same architecture could gate between sensory (E1), motor (E2), and cognitive (E3) thalamocortical loops.",
+    "mapping_caveat": "The study demonstrates routing between sensory modalities (visual vs auditory), not between processing hierarchy levels (sensory vs motor vs deliberative). Extrapolation from modality-gating to loop-gating is architecturally plausible but not directly tested.",
+    "source_context": "Mouse, optogenetic manipulation + electrophysiology, cross-modal attention task."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Exceptional source quality (Nature, causal optogenetic evidence, clean behavioral readout). Mapping fidelity moderate: TRN subnetworks are modality-specific, but whether they also gate between functional hierarchy levels (sensory/motor/cognitive) is inferred, not tested. Transfer risk: mouse model, though TRN architecture is conserved across mammals."
+  }
+}

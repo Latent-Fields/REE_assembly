@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_092",
+  "entry_id": "2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-092"],
+  "source": {
+    "title": "Disruption of awake sharp-wave ripples does not affect memorization of locations in repeated-acquisition spatial memory tasks",
+    "authors": ["Lies Deceuninck", "Fabian Kloosterman"],
+    "year": 2024,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.84004"
+  },
+  "evidence_class": "electrophysiology_lfp_and_behavior",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Well-designed causal disruption study published in eLife showing that awake SWR disruption does NOT impair short-term memorization in repeated-acquisition tasks. This appears to weaken MECH-092 at first glance, but the authors themselves interpret the null result as evidence that awake SWR replay's impact is long-term and cumulative rather than immediate -- which actually refines MECH-092's consolidation claim rather than refuting it. The task type matters: repeated-acquisition tasks requiring within-trial memorization of novel locations differ from Jadhav 2012's across-session learning task. This suggests awake SWR replay may be important for building stable spatial representations over time (consolidation) but not for short-term buffering -- a distinction that informs rather than weakens MECH-092's viability map consolidation framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Null result for SWR disruption on memorization -- no behavioral deficit detected across three spatial memory tasks",
+    "Directly contrasts with Jadhav 2012 positive result, raising questions about task-dependence of awake SWR function",
+    "If awake SWR replay is not needed for short-term memorization, the micro-DMN consolidation window in MECH-092 may be too short to produce meaningful consolidation effects"
+  ],
+  "tags": ["mech_092", "sharp_wave_ripple", "awake_replay", "consolidation", "null_result", "causal_disruption", "repeated_acquisition", "spatial_memory"],
+  "mapping": {
+    "source_claim_statement": "Disrupting awake hippocampal sharp-wave ripples does not affect rats' ability to memorize new locations in repeated-acquisition spatial memory tasks requiring within-trial or within-session memorization. Rats performed equally well with or without SWR disruptions across three different task variants.",
+    "ree_translation": "MECH-092 claims quiescent E3 heartbeat cycles trigger SWR-equivalent replay for viability map consolidation. Deceuninck & Kloosterman 2024 shows that awake SWR disruption does not impair short-timescale spatial memorization -- implying that if MECH-092's micro-DMN replay serves consolidation, the consolidation must operate over longer timescales than single trials. This constrains MECH-092's mechanism: quiescent replay during awake rest may contribute to gradual viability map refinement rather than immediate trajectory encoding. The viability map may need cumulative replay across multiple quiescent periods to show measurable consolidation effects.",
+    "mapping_caveat": "The null result does not directly refute MECH-092 because the tasks differ fundamentally from Jadhav 2012's paradigm. Repeated-acquisition tasks (memorize new locations each trial) may rely on different memory systems than the incremental spatial learning task where Jadhav found a deficit. MECH-092's viability map consolidation may be closer to incremental learning (trajectory evaluation across experience) than to single-trial memorization. However, the null result raises a legitimate constraint: if MECH-092's micro-DMN replay operates on very short timescales (seconds between actions), the consolidation effect per replay episode may be too small to detect behaviorally.",
+    "source_context": "Rats performing three variants of repeated-acquisition spatial memory tasks (including non-match-to-sample on 8-arm radial maze). Online SWR detection and electrical disruption via ventral hippocampal commissure stimulation (similar methodology to Jadhav 2012). Well-powered null result with appropriate controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Good source quality (eLife, rigorous methods comparable to Jadhav 2012, adequate controls). Mapping fidelity is moderate -- the null result constrains but does not refute MECH-092, and the task type difference between this study and Jadhav 2012 is a significant confound for direct comparison. Transfer risk is elevated because the timescale implications (long-term cumulative vs. short-term immediate) affect how MECH-092's micro-DMN consolidation window should be interpreted."
+  }
+}

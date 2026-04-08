@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_093",
+  "entry_id": "2026-04-08_mech093_alpha_frequency_modulation_task_demands_wutz2018",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-093"],
+  "source": {
+    "title": "Frequency modulation of neural oscillations according to visual task demands",
+    "authors": ["Andreas Wutz", "David Melcher", "Jason Samaha"],
+    "year": 2018,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1713318115"
+  },
+  "evidence_class": "electrophysiology_meg_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Strong empirical demonstration that oscillation frequency is under top-down control and is functionally distinct from power/amplitude modulation. The dissociation between frequency and power modulation directly supports MECH-093's claim that rate modulation (how often updates occur) is distinct from gain modulation (how much each update matters, i.e. MECH-059). However, the paper tests visual task demands rather than arousal/affective state, and the frequency shifts are in occipital alpha rather than prefrontal executive rhythms. The mapping from visual temporal resolution to E3 heartbeat rate requires an inference step -- both involve oscillatory frequency setting the temporal grain of a cognitive process, but the domains differ.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "frequency_modulation_was_occipital_alpha_not_prefrontal_executive",
+    "task_demands_not_arousal_or_affective_state_drove_shifts",
+    "effect_size_approximately_0.04Hz_at_scalp_level"
+  ],
+  "tags": ["mech_093", "alpha_frequency", "frequency_modulation", "top_down_control", "temporal_resolution", "power_frequency_dissociation", "MEG", "human"],
+  "mapping": {
+    "source_claim_statement": "The peak frequency of alpha oscillations is modulated by task demands (integration vs segregation) via top-down control, independently of oscillatory power. Lower alpha frequency provides longer integration windows; higher alpha frequency provides finer temporal segregation. This frequency modulation is a unique top-down control mechanism distinct from power/amplitude changes.",
+    "ree_translation": "MECH-093 posits that z_beta modulates E3 heartbeat frequency -- the rate at which the deliberative cycle updates -- as distinct from precision-weighting (MECH-059, which scales how much each update matters). Wutz et al. demonstrate the biological feasibility of this exact dissociation: a neural system can modulate oscillation frequency independently of oscillation power, and frequency sets the temporal grain of the associated cognitive process. If E3's deliberative rhythm behaves like alpha-band oscillations in this respect, then z_beta (via LC-NE arousal) could modulate how often E3 updates (frequency) while MECH-059's precision signal modulates how strongly each update is weighted (gain).",
+    "mapping_caveat": "The paper demonstrates top-down cognitive control of frequency, not arousal/affective modulation. The z_beta -> frequency pathway in MECH-093 is driven by affective salience (harm, arousal), not task instruction. The paper's frequency shifts were in occipital cortex, not prefrontal executive circuits where E3 would operate. The mapping requires assuming that the same frequency-modulation mechanism (biologically feasible per this paper) is also available to arousal-driven subcortical systems targeting prefrontal oscillators.",
+    "source_context": "Human MEG study; participants switched between temporal integration and segregation tasks with identical stimuli; frequency modulation emerged 360ms before stimulus onset (anticipatory, top-down); effect specific to alpha band."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "PNAS paper with rigorous MEG methodology and clear frequency-vs-power dissociation. High source quality. Mapping fidelity limited because the modulation is cognitive/task-driven rather than arousal/affective, and the brain region (occipital) differs from E3's putative prefrontal locus. Transfer risk moderate: the principle (frequency and power are independently controllable) transfers well, but the specific mechanism (arousal-driven frequency control) requires additional inference."
+  }
+}

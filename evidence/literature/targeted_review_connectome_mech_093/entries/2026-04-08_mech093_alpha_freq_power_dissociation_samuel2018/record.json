@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_093",
+  "entry_id": "2026-04-08_mech093_alpha_freq_power_dissociation_samuel2018",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-093"],
+  "source": {
+    "title": "The frequency of alpha oscillations: Task-dependent modulation and its functional significance",
+    "authors": ["Immanuel Babu Henry Samuel", "Chao Wang", "Zhenhong Hu", "Mingzhou Ding"],
+    "year": 2018,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2018.08.063"
+  },
+  "evidence_class": "electrophysiology_eeg_fmri_human",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Strong empirical demonstration that alpha frequency and alpha power are statistically uncorrelated (r=0.168, p=0.468) and track different neural substrates (alpha frequency inversely correlates with visual BOLD; alpha power does not). This directly supports MECH-093's central architectural claim that rate modulation (E3 heartbeat frequency, analogous to oscillation frequency) is a distinct control channel from gain modulation (precision-weighting/MECH-059, analogous to oscillation power). Mapping limited by the same domain gap as Wutz et al.: the data are from visual cortex during working memory, not from arousal-driven prefrontal executive circuits.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "visual_cortex_not_prefrontal",
+    "working_memory_load_not_arousal_or_affect_as_driver",
+    "no_noradrenergic_or_arousal_manipulation"
+  ],
+  "tags": ["mech_093", "alpha_frequency", "alpha_power", "frequency_power_dissociation", "cortical_excitability", "EEG", "fMRI", "human", "working_memory"],
+  "mapping": {
+    "source_claim_statement": "Alpha oscillation frequency and alpha power are independently modulated by cognitive load and are uncorrelated (r=0.168, p=0.468). Alpha frequency (but not power) inversely correlates with BOLD activity in visual cortex. Alpha frequency serves as an indicator of cortical excitability and sensory gating, providing a complementary but distinct index from alpha power.",
+    "ree_translation": "MECH-093's core architectural claim is that z_beta modulates E3 heartbeat FREQUENCY (how often updates occur) as a separate control channel from MECH-059's precision-weighting (how much each update matters, analogous to gain/amplitude). Samuel et al. provide the strongest available evidence that these are genuinely independent channels in the brain: oscillation frequency and oscillation power are uncorrelated, modulated by different task phases, and track different hemodynamic substrates. If E3's deliberative rhythm follows this pattern, then z_beta could modulate E3's update rate without affecting precision, and precision could be modulated without affecting rate -- exactly the MECH-093/MECH-059 dissociation.",
+    "mapping_caveat": "The driver of frequency modulation here is cognitive working memory load, not arousal or affective state. The recording site is visual cortex, not prefrontal. The paper does not investigate neuromodulatory mechanisms (NE, etc.) for the frequency shifts. The dissociation is demonstrated for alpha-band oscillations during a specific task -- whether the same independence holds for E3's putative deliberative rhythm under arousal modulation is an extrapolation.",
+    "source_context": "Human simultaneous EEG-fMRI during Sternberg working memory task with varying set sizes (1, 3, 5 items). Alpha frequency analyzed across encoding, retention, and retrieval phases. 20 participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.45,
+    "notes": "NeuroImage paper with simultaneous EEG-fMRI providing converging evidence. The frequency-power independence finding is the most directly relevant result for MECH-093's distinctiveness claim. Source quality high. Mapping fidelity moderate-low: the principle (frequency and power are independent) is what matters, but the context (visual WM) is far from E3 deliberative heartbeat. Transfer risk moderate: the architectural principle should generalize, but the specific pathway (z_beta -> E3 frequency) is not tested."
+  }
+}

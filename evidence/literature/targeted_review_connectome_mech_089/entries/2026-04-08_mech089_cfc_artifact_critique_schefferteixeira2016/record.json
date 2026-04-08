@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_089",
+  "entry_id": "2026-04-08_mech089_cfc_artifact_critique_schefferteixeira2016",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-089"],
+  "source": {
+    "title": "On cross-frequency phase-phase coupling between theta and gamma oscillations in the hippocampus",
+    "authors": ["Robson Scheffer-Teixeira", "Adriano B L Tort"],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.20515"
+  },
+  "evidence_class": "methodological_critique",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "High-quality methodological critique demonstrating that a specific form of cross-frequency coupling (phase-phase coupling, n:m locking) between theta and gamma may be substantially artifactual due to filtering, epoch-length effects, improper surrogates, and theta waveform harmonics. Importantly, this paper targets phase-phase coupling, not phase-amplitude coupling (PAC) -- the form of CFC most relevant to MECH-089. The authors do not claim PAC is artifactual, and in fact the senior author (Tort) has published the strongest PAC evidence (Tort et al. 2009). Nevertheless, the methodological concerns raise the general caution that CFC metrics can be misleading, and the finding that theta harmonics produce spurious coupling at expected frequency ratios is a warning for any CFC interpretation. For MECH-089's purposes, this paper weakens the strongest versions of the temporal-packaging claim (precise phase-locked slots) while leaving the weaker version (amplitude modulation by phase) largely intact.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Phase-phase theta-gamma coupling may be largely artifactual from filtering and waveform harmonics",
+    "No existing metric can automatically distinguish true CFC from waveform-induced artifacts in LFP/EEG",
+    "If gamma 'slots' are not phase-locked to specific theta positions, the discrete-batching interpretation is weakened"
+  ],
+  "tags": ["mech_089", "theta_gamma", "cross_frequency_coupling", "methodological_critique", "artifact", "phase_phase_coupling", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "Theta-gamma phase-phase coupling (n:m locking) in the hippocampus may be largely artifactual, driven by filtering-induced phase shifts, epoch-length dependencies, improper surrogate methods, and theta waveform harmonics. No convincing evidence for prominent phase-phase coupling was found with appropriate controls.",
+    "ree_translation": "If the precise temporal positioning of gamma packets within theta cycles is artifactual rather than reflecting genuine neural coding, then MECH-089's claim that each theta cycle 'integrates ~5-7 gamma sub-cycles' into organized slots may be over-specified. The weaker version of MECH-089 -- that gamma-rate activity is amplitude-modulated by theta-rate activity (PAC) -- survives this critique. The stronger version -- that specific gamma cycles occupy specific theta-phase positions with informational content -- is challenged.",
+    "mapping_caveat": "This paper specifically targets phase-phase coupling (n:m locking), not phase-amplitude coupling (PAC). MECH-089 could be implemented via either mechanism. If MECH-089 only requires amplitude modulation (PAC), this critique has limited relevance. If MECH-089 requires precise phase-locked slots (phase-phase), this critique is directly relevant. The distinction matters for implementation design.",
+    "source_context": "Rat hippocampal multi-site silicon probe recordings during active waking and REM sleep, with extensive simulations using white noise and coupled Kuramoto oscillators to identify artifact sources."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is high: rigorous methodological analysis in eLife with open data/code, from a group (Tort lab) with deep expertise in CFC measurement. Mapping fidelity is moderate: the critique targets phase-phase coupling specifically, and the relevance to MECH-089 depends on which form of CFC the claim requires. Transfer risk is low-moderate: methodological concerns about neural CFC measurement have limited direct bearing on whether an artificial architecture should use theta-gamma-style batching -- the question for REE is whether the design principle is sound, not whether it's easy to measure in brains."
+  }
+}

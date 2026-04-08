@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_091",
+  "entry_id": "2026-04-08_mech091_phase_reset_network_coordination_voloh2016",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-091"],
+  "source": {
+    "title": "A Role of Phase-Resetting in Coordinating Large Scale Neural Networks During Attention and Goal-Directed Behavior",
+    "authors": ["Benjamin Voloh", "Thilo Womelsdorf"],
+    "year": 2016,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2016.00018"
+  },
+  "evidence_class": "review_computational_mechanistic",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Comprehensive review establishing phase reset as a functional coordination mechanism -- not epiphenomenal -- across distributed brain networks during goal-directed behavior. Directly addresses the computational advantage question: phase reset sets neural context via narrow-band frequency selection, imposes coherent low-frequency phases for high-frequency synchronization, and is triggered by both external salient stimuli and internal signals (erroneous reward expectations, exploratory saccades). The review covers prefrontal, cingulate, hippocampal, and thalamic circuits. Mapping to MECH-091 is strong because the review explicitly addresses goal-directed behavior and error-related phase reset, though it does not address the specific E3 heartbeat cycle architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["review_not_primary_data", "no_specific_e3_heartbeat_analog"],
+  "tags": ["mech_091", "phase_reset", "network_coordination", "goal_directed_behavior", "attention", "prefrontal", "thalamic", "review"],
+  "mapping": {
+    "source_claim_statement": "Phase resetting realigns oscillatory activity to internal or external cues, facilitating coordinated information transfer within and between distributed brain areas. Phase resets drive changes in neural excitability, ensemble organization, functional networks, and overt behavior. Both exogenous salient stimuli and endogenous signals (erroneous reward expectations) trigger phase resets.",
+    "ree_translation": "MECH-091 claims that salient events (action completion, unexpected harm) phase-reset E3's heartbeat oscillator to ensure updated information enters at the start of a fresh cycle. Voloh & Womelsdorf establish that phase reset is the brain's general mechanism for exactly this function: reorganizing the timing of processing cycles in response to events that demand updated information routing. The review's emphasis on erroneous reward expectations as endogenous phase-reset triggers maps directly to unexpected-harm events in REE.",
+    "mapping_caveat": "This is a review synthesizing existing literature, not primary data. The circuits discussed (visual cortex, PFC, ACC, hippocampus, thalamus) are relevant but the review does not address a specific heartbeat-like oscillatory cycle in a planning/evaluation system analogous to E3.",
+    "source_context": "Review of phase-reset literature across animal and human electrophysiology studies, covering visual attention, reward processing, error monitoring, and goal-directed behavior paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good (peer-reviewed Frontiers review, comprehensive, cites primary data from multiple modalities). Mapping fidelity high because the review directly addresses phase reset as a mechanism for information routing during goal-directed behavior -- the exact functional role MECH-091 claims. Transfer risk low because the review already covers prefrontal and thalamocortical circuits in error/reward contexts. Main gap: the review does not discuss a discrete heartbeat-like processing cycle."
+  }
+}

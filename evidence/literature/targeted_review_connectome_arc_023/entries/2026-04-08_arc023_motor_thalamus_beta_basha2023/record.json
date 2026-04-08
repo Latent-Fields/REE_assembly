@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_023",
+  "entry_id": "2026-04-08_arc023_motor_thalamus_beta_basha2023",
+  "timestamp_utc": "2026-04-08T17:30:00Z",
+  "claim_ids_tested": ["ARC-023"],
+  "source": {
+    "title": "Beta band oscillations in the motor thalamus are modulated by visuomotor coordination in essential tremor patients",
+    "authors": ["Diellor Basha", "Suneil K Kalia", "Mojgan Hodaie", "Adriana L Lopez Rios", "Andres M Lozano", "William D Hutchison"],
+    "year": 2023,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2023.1082196"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Human intraoperative recordings from motor thalamus (VIM) showing characteristic beta (13-30 Hz) oscillations that are task-modulated. Directly demonstrates that the motor thalamic relay operates at beta frequency -- distinct from the MD thalamic theta (~7-8 Hz) shown by Griffiths 2022. The two papers together support ARC-023's claim of frequency-specific thalamic nuclei. Confidence limited by patient population (essential tremor) and single nucleus studied.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Patient population has essential tremor -- thalamic oscillatory dynamics may be pathologically altered rather than representative of healthy motor thalamus.",
+    "Motor thalamic beta may originate from cerebellum rather than BG, complicating the mapping to a BG-thalamocortical loop."
+  ],
+  "tags": ["arc_023", "motor_thalamus", "beta_oscillation", "vim", "thalamocortical"],
+  "mapping": {
+    "source_claim_statement": "The ventral intermediate nucleus (VIM) of the motor thalamus exhibits beta oscillations (13-30 Hz) that are modulated by visuomotor task demands; beta suppression facilitates cerebellar-to-cortical information throughput.",
+    "ree_translation": "The VIM beta oscillation corresponds to ARC-023's motor loop heartbeat (E2 at motor command rate). The 13-30 Hz beta band is intermediate between the MD theta (7-8 Hz, E3 deliberative) and sensory relay gamma (30+ Hz, E1 sensory frame rate), matching ARC-023's predicted frequency hierarchy: E1 fastest > E2 intermediate > E3 slowest.",
+    "mapping_caveat": "VIM receives cerebellar rather than BG input, so this is technically the cerebello-thalamo-cortical motor loop, not the BG motor loop. ARC-023 specifies BG-like loops with VL as the motor relay. VIM and VL are adjacent and partially overlapping but not identical. Essential tremor pathology may alter baseline oscillatory dynamics.",
+    "source_context": "Human essential tremor patients, intraoperative microelectrode recordings during DBS surgery, visuomotor coordination task."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate (Frontiers, small DBS patient sample, disease population). Mapping fidelity moderate: VIM beta is established but this is cerebello-thalamic rather than BG-thalamocortical, and the patient population has tremor pathology. Transfer risk moderate: essential tremor alters thalamic oscillatory dynamics, and VIM/VL distinction matters for mapping to BG loops."
+  }
+}

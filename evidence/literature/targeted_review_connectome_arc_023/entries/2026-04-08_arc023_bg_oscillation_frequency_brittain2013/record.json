@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_023",
+  "entry_id": "2026-04-08_arc023_bg_oscillation_frequency_brittain2013",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["ARC-023"],
+  "source": {
+    "title": "Oscillations and the basal ganglia: Motor control and beyond",
+    "authors": ["John-Stuart Brittain", "Peter Brown"],
+    "year": 2014,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2013.05.084",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4813758/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Comprehensive review of BG oscillatory dynamics across frequency bands, drawing on human DBS recordings, MEG, and ECoG. Provides convergent evidence that different functional territories of the BG-thalamocortical network exhibit characteristic frequency signatures: beta (13-35 Hz) dominates motor territories, gamma (40-90 Hz) associates with active movement processing, theta/alpha (4-12 Hz) associates with cognitive/executive functions in ventral STN and limbic territories. This frequency segregation across functional domains supports ARC-023's claim of characteristic loop rates. However, as a review it does not provide novel primary data, and the frequency-territory mapping is correlational rather than causal. The thalamic rate-setting role specifically claimed by ARC-023 is not directly addressed.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Review, not primary data; frequency-territory associations are correlational", "Thalamic nuclei as rate-setters not directly addressed; focus is on cortical-STN-GPi dynamics", "Motor territory beta dominance is well-established but cognitive/limbic frequency signatures are less firmly characterized"],
+  "tags": ["arc_023", "thalamocortical", "basal_ganglia", "oscillation", "beta", "gamma", "theta", "loop_frequency", "motor", "cognitive", "review", "DBS"],
+  "mapping": {
+    "source_claim_statement": "Different BG-thalamocortical functional territories exhibit characteristic oscillation frequencies: motor territories show persistent beta (13-35 Hz, subdivided into lower 13-20 Hz and upper 20-35 Hz), with gamma (40-90 Hz) emerging at movement onset; cognitive/executive processing involves theta/alpha (4-12 Hz) in ventral STN; limbic territories in ventral striatum/STN show theta-band activity correlated with impulse control. These frequency bands are selectively propagated or filtered by the BG network.",
+    "ree_translation": "ARC-023 claims three BG-like loops at characteristic rates: E1 (sensory, continuous/fastest), E2 (motor, intermediate), E3 (deliberation, slowest). The Brittain & Brown review supports a frequency hierarchy across BG functional territories: motor beta (13-35 Hz) for E2-equivalent circuits, cognitive theta/alpha (4-12 Hz) for E3-equivalent circuits. The observation that certain cortical rhythms penetrate the BG while others are transformed or blocked aligns with ARC-023's claim that each loop has a characteristic rate rather than sharing a common clock. The beta-gamma dynamics in motor territories map to E2's motor command rate, while theta/alpha in cognitive territories map to E3's deliberation rate.",
+    "mapping_caveat": "The review focuses on STN/GPi recordings and cortical-BG coupling, not on thalamic relay nuclei (VL, MD, sensory relays) as rate-setters. ARC-023 specifically claims that thalamic nuclei set or gate the characteristic rates, whereas the review's evidence is more consistent with the rates being emergent network properties of the full cortico-BG-thalamic loop. The E1 (sensory) loop rate is not characterized in this review. Additionally, the frequency associations are drawn from Parkinson's disease and essential tremor patients with DBS, and pathological states may alter the normal frequency hierarchy.",
+    "source_context": "Review article synthesizing human DBS recordings (STN, GPi), MEG, ECoG, and scalp EEG studies across PD, ET, and healthy participants. Peter Brown lab (Oxford), leading group in BG oscillation research."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (NeuroImage, Peter Brown lab, comprehensive synthesis of human data). Mapping fidelity moderate-low: frequency-territory associations support the general claim but thalamic rate-setting is not addressed, and E1 sensory loop is not characterized. Transfer risk moderate: much of the data comes from pathological populations (PD, ET), though convergent evidence from healthy participants exists for some frequency bands."
+  }
+}

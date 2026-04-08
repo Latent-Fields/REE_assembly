@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_092",
+  "entry_id": "2026-04-08_mech092_awake_swr_causal_jadhav2012",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-092"],
+  "source": {
+    "title": "Awake Hippocampal Sharp-Wave Ripples Support Spatial Memory",
+    "authors": ["Shantanu P. Jadhav", "Caleb Kemere", "P. Walter German", "Loren M. Frank"],
+    "year": 2012,
+    "venue": "Science",
+    "doi": "10.1126/science.1217230"
+  },
+  "evidence_class": "electrophysiology_single_unit_and_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "High-quality causal disruption experiment in Science. Directly demonstrates that awake SWRs are necessary for spatial working memory during learning. The causal link (disrupt SWRs -> impaired learning) strongly supports MECH-092's claim that quiescent replay serves a consolidation function. Mapping is strong but not perfect: Jadhav disrupted ALL awake SWRs (not specifically quiescent-period ones), and the task is spatial alternation rather than viability mapping. The deficit was specific to working memory (outbound trials), not reference memory, which suggests replay consolidates recently acquired trajectory information -- directly relevant to MECH-092's viability map consolidation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Disruption was not limited to quiescent periods specifically -- all awake SWRs were interrupted",
+    "The deficit was in working memory (outbound), not reference memory (inbound), suggesting awake SWRs may support a specific type of memory rather than general consolidation"
+  ],
+  "tags": ["mech_092", "sharp_wave_ripple", "awake_replay", "consolidation", "causal_disruption", "spatial_memory", "working_memory"],
+  "mapping": {
+    "source_claim_statement": "Disrupting awake hippocampal sharp-wave ripples causes a specific spatial working memory deficit during learning of a W-track alternation task, while place field representations and sleep replay remain intact.",
+    "ree_translation": "MECH-092 posits that quiescent E3 heartbeat cycles trigger SWR-equivalent replay for viability map consolidation. Jadhav 2012 provides causal evidence that awake SWR replay is necessary for spatial memory consolidation during learning. The working memory specificity of the deficit (outbound trials requiring integration of recent and remote trajectory experience) maps directly onto viability map consolidation -- the hippocampal module must replay recently traversed trajectories to update its internal model of navigable space.",
+    "mapping_caveat": "The disruption targeted all awake SWRs indiscriminately, not specifically those during quiescent/immobility periods. MECH-092 specifically claims quiescent E3 heartbeat triggers. However, awake SWRs occur predominantly during immobility/quiet wakefulness, so the overlap is high. The task (spatial alternation on W-track) maps onto trajectory-based planning but is simpler than full viability map navigation.",
+    "source_context": "Rats implanted with tetrodes in CA1 and stimulation electrodes in ventral hippocampal commissure. Online SWR detection with <25ms latency electrical disruption. 8-day learning paradigm on W-track maze. n=6 disruption, n=4 control stimulation, n=4 unstimulated."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Excellent source quality (Science, causal manipulation, appropriate controls). Mapping fidelity is strong but not perfect -- disruption was not restricted to quiescent periods, and the deficit was working-memory-specific rather than general consolidation. Transfer risk is moderate -- biological awake SWR disruption maps well onto REE's quiescent replay mechanism, but timescale and complexity differences exist."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_091",
+  "entry_id": "2026-04-08_mech091_delta_phase_reset_conflict_monitoring_rawls2020",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-091"],
+  "source": {
+    "title": "Delta phase reset predicts conflict-related changes in P3 amplitude and behavior",
+    "authors": ["Eric Rawls", "Vladimir Miskovic", "Connie Lamm"],
+    "year": 2020,
+    "venue": "Brain Research",
+    "doi": "10.1016/j.brainres.2020.146662"
+  },
+  "evidence_class": "electrophysiology_scalp_eeg",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Empirical EEG study demonstrating that delta-band phase reset predicts both conflict-related P3 amplitude changes and behavioral reaction time differences. Directly links phase reset to conflict monitoring -- a functional context much closer to MECH-091's harm/salience detection than the working memory context of Rizzuto 2003. The proposed noradrenergic mechanism (phasic locus coeruleus release resetting cortical networks) provides a plausible neurochemical pathway. However, this is scalp EEG (lower spatial resolution), the flanker task tests response conflict rather than harm/threat detection, and the delta band (1-3 Hz) frequency relationship to E3 heartbeat rate is unspecified.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["scalp_eeg_spatial_ambiguity", "conflict_not_harm_detection", "delta_to_e3_heartbeat_frequency_unspecified"],
+  "tags": ["mech_091", "phase_reset", "delta_oscillation", "conflict_monitoring", "P3", "norepinephrine", "flanker_task", "behavior_prediction"],
+  "mapping": {
+    "source_claim_statement": "Pre-stimulus delta oscillation phase predicts post-stimulus P3 amplitude and reaction time differences between low-conflict and high-conflict conditions. Partial phase reset is a cortical mechanism for monitoring the environment for unexpected events. Phasic norepinephrine from locus coeruleus may functionally reset ongoing network activity.",
+    "ree_translation": "MECH-091 claims that salient events phase-reset E3's heartbeat oscillator. Rawls et al. demonstrate that delta-band phase reset is functionally linked to conflict monitoring and behavioral adaptation -- the neural system detects response conflict (a form of unexpected difficulty) and resets ongoing oscillatory activity to enable updated processing. The noradrenergic mechanism provides a candidate pathway for how salience detection could trigger E3 phase reset: phasic LC-NE release upon detecting unexpected harm or conflict could reset the E3 oscillator, ensuring the next evaluation cycle incorporates updated harm estimates.",
+    "mapping_caveat": "Response conflict in a flanker task is structurally different from harm detection or action completion in REE. The P3 component reflects stimulus categorization and context updating, not necessarily harm evaluation. The delta frequency band's relationship to E3's proposed heartbeat rate (which may be in a different frequency range) is not established. Scalp EEG cannot localize the generator to specific prefrontal or thalamocortical circuits.",
+    "source_context": "High-density EEG during a flanker task in adolescents/young adults. Analysis focused on pre-stimulus delta oscillation phase, post-stimulus P3 amplitude, and behavioral conflict effects."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality good (peer-reviewed Brain Research, recent, quantitative brain-behavior correlations). Mapping fidelity moderate-good: conflict monitoring is closer to harm detection than memory encoding, and the study explicitly links phase reset to behavioral adaptation. Transfer risk moderate-low: the general mechanism (phase reset enables updated environmental monitoring) maps well to MECH-091, but the specific task and frequency band differ from the E3 heartbeat scenario."
+  }
+}

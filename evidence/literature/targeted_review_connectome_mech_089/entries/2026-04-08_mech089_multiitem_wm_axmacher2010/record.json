@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_089",
+  "entry_id": "2026-04-08_mech089_multiitem_wm_axmacher2010",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-089"],
+  "source": {
+    "title": "Cross-frequency coupling supports multi-item working memory in the human hippocampus",
+    "authors": ["Nikolai Axmacher", "Melanie M Henseler", "Ole Jensen", "Ilona Weinreich", "Christian E Elger", "Juergen Fell"],
+    "year": 2010,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0911531107"
+  },
+  "evidence_class": "electrophysiology_ieeg",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Human intracranial EEG directly demonstrating that multiple working memory items are multiplexed via gamma bursts nested within theta cycles, with theta frequency decreasing as load increases to accommodate more gamma slots. This is the closest empirical analog to MECH-089's claim that multiple fast-rate (E1) updates are batched within each slow-rate (E3) cycle. The ~4:1 gamma-to-theta ratio is somewhat lower than MECH-089's posited 5-7, but in the right ballpark. However, the paper demonstrates multiplexing of distinct memory items, whereas MECH-089 claims temporal batching of sequential updates from a single fast processor (E1) for a slower consumer (E3). The functional context differs: WM maintenance vs. online sensory-prediction batching.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Gamma-to-theta ratio (~4:1) is at the lower bound of MECH-089's posited 5-7 range",
+    "Paper demonstrates multiplexing of distinct items, not sequential batching of updates from a single source",
+    "Working memory maintenance context differs from E1's continuous sensory prediction stream"
+  ],
+  "tags": ["mech_089", "theta_gamma", "cross_frequency_coupling", "working_memory", "human", "intracranial_eeg", "multiplexing"],
+  "mapping": {
+    "source_claim_statement": "Multiple working memory items are maintained by gamma-frequency cell assemblies nested within theta oscillations in the human hippocampus, with theta frequency decreasing to accommodate more items (maintaining ~4:1 gamma-to-theta ratio).",
+    "ree_translation": "If E3 operates at a theta-equivalent rate and E1 at a gamma-equivalent rate, then multiple E1 updates per E3 cycle can be temporally multiplexed within each theta window. The load-dependent theta slowing suggests the batching window is flexible -- E3's effective sampling rate could adapt to the density of E1 updates requiring integration.",
+    "mapping_caveat": "The paper addresses maintenance of discrete items (faces) in working memory, not batching of sequential prediction updates. MECH-089's E1-to-E3 packaging is about temporal summarization of a continuous fast stream, not multiplexing of independent items. The information-theoretic content of each gamma slot may differ fundamentally between the two contexts.",
+    "source_context": "Human intracranial EEG from epilepsy patients with bilateral hippocampal depth electrodes during a modified Sternberg face working memory task with loads of 1, 2, or 4 items."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is high: human intracranial recordings, PNAS, clear load manipulation with behavioral validation (narrower coupling predicts faster RT). Mapping fidelity is moderate-low: WM item multiplexing is structurally analogous to temporal batching but functionally distinct from E1-to-E3 update packaging. Transfer risk is moderate: human hippocampal physiology to artificial architecture, but the human data is actually closer to the 'slow consumer samples fast producer' framing than rat data."
+  }
+}

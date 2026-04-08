@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_091",
+  "entry_id": "2026-04-08_mech091_intracranial_neocortical_phase_reset_rizzuto2003",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-091"],
+  "source": {
+    "title": "Reset of human neocortical oscillations during a working memory task",
+    "authors": ["Daniel S Rizzuto", "Joseph R Madsen", "Edward B Bromfield", "Andreas Schulze-Bonhage", "Daniel Seelig", "Robert Aschenbrenner-Scheibe", "Michael J Kahana"],
+    "year": 2003,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0732061100"
+  },
+  "evidence_class": "electrophysiology_intracranial",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong intracranial evidence from 551 electrodes demonstrating genuine phase reset (not additive evoked power) in 7-16 Hz oscillations following stimulus events. Phase locking occurred without accompanying power increases, which is the gold-standard criterion for distinguishing true phase reset from evoked responses. However, the task context (working memory item presentation) differs from the salient-event / unexpected-harm context of MECH-091, and the frequency band (7-16 Hz) is higher than the delta-theta range most relevant to E3 heartbeat cycles. Transfer from memory encoding to harm-evaluation cycle reset requires inference.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["frequency_band_mismatch_7_16hz_vs_delta_theta", "task_context_memory_not_salience"],
+  "tags": ["mech_091", "phase_reset", "intracranial", "working_memory", "neocortex", "hippocampus", "oscillation"],
+  "mapping": {
+    "source_claim_statement": "Stimulus events reset the phase of ongoing 7-16 Hz oscillations in human neocortex and hippocampus. Phase locking occurs without power increases, indicating genuine phase reset rather than additive evoked responses. Different stimulus classes produce topographically distinct reset patterns.",
+    "ree_translation": "MECH-091 posits that salient events (action completion, unexpected harm, commitment boundary crossing) phase-reset the E3 heartbeat oscillator. Rizzuto et al. demonstrate that stimulus events genuinely reset ongoing oscillations in human cortex -- the mechanism exists in biological neural circuits. The topographic selectivity of reset patterns (different stimuli reset different regions) maps to the idea that different salience types could selectively reset E3 timing while leaving E1/E2 cycles undisturbed.",
+    "mapping_caveat": "The study uses a Sternberg memory task, not a salience/harm detection paradigm. The frequency band (7-16 Hz) is higher than the delta-theta range typically associated with salience processing and P300. The intracranial method is gold-standard for establishing mechanism existence, but the functional context differs from MECH-091's error/harm processing domain.",
+    "source_context": "Intracranial EEG from epilepsy surgery patients performing a Sternberg short-term recognition memory task. 551 electrodes across neocortex and hippocampus."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Highest source quality (PNAS, intracranial, large electrode array, rigorous phase analysis separating reset from evoked). Mapping fidelity limited because the task context is memory encoding, not salience/harm detection. Transfer risk moderate -- the mechanism (phase reset) is domain-general, but the specific functional role in E3 heartbeat cycling requires bridging inference."
+  }
+}

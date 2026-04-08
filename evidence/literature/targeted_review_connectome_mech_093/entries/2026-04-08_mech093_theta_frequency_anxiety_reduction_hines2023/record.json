@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_093",
+  "entry_id": "2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-093"],
+  "source": {
+    "title": "Frequency matters: how changes in hippocampal theta frequency can influence temporal coding, anxiety-reduction, and memory",
+    "authors": ["Miranda Hines", "Steven Poulter", "Vincent Douchamps", "Francesca Pibiri", "Anthony McGregor", "Colin Lever"],
+    "year": 2023,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2022.998116"
+  },
+  "evidence_class": "electrophysiology_lfp_animal_pharmacological",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Strong pharmacological evidence that all clinically effective anxiolytics reduce hippocampal theta FREQUENCY (not amplitude), implying that anxiety/arousal increases theta frequency. This directly maps onto MECH-093: high harm salience (high z_beta) -> faster oscillation frequency (faster E3 updates). The temporal coding framework provides a functional explanation: faster theta = finer temporal grain = faster processing cycles, exactly what MECH-093 predicts for high-threat situations. Mapping limited by hippocampal (not prefrontal) recording site and animal (rat) model, but the theta frequency-anxiety link is robust across drug classes (benzodiazepines, 5-HT1A agonists, pregabalin), suggesting a universal principle.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "hippocampal_not_prefrontal_recording_site",
+    "rat_model_not_human",
+    "mechanism_of_frequency_reduction_unspecified",
+    "no_noradrenergic_mechanism_discussed"
+  ],
+  "tags": ["mech_093", "theta_frequency", "anxiety", "anxiolytics", "frequency_modulation", "temporal_coding", "hippocampus", "pharmacological", "arousal"],
+  "mapping": {
+    "source_claim_statement": "All clinically effective anxiolytic drugs tested to date reduce the frequency of hippocampal reticular-elicited theta oscillations. This frequency reduction is specific to the intercept component (baseline frequency) rather than the slope (stimulus-rate sensitivity). Anxiolytics with diverse neurochemical targets (benzodiazepines, 5-HT1A agonists, pregabalin) converge on this common frequency-reduction effect, suggesting a 'final common pathway' for anxiety reduction that operates through oscillation frequency.",
+    "ree_translation": "MECH-093 proposes that z_beta (affective latent mapping to arousal/harm salience) modulates E3 heartbeat frequency: high z_beta -> faster E3 updates (finer temporal harm attribution), low z_beta -> slower E3 updates (more stable policy). The Hines et al. finding maps directly: anxiety/threat (high arousal, analogous to high z_beta) is associated with higher theta frequency, and pharmacological anxiolysis (reducing arousal, analogous to lowering z_beta) reduces theta frequency. The temporal coding framework adds mechanistic depth: each theta cycle constitutes one processing 'scenario', so faster theta = more scenarios per unit time = finer-grained temporal evaluation -- exactly what MECH-093 predicts for high-threat situations where rapid harm re-evaluation is adaptive.",
+    "mapping_caveat": "Recording site is hippocampus (rat), not prefrontal cortex. E3 in REE maps more closely to prefrontal-executive circuits than to hippocampal memory systems, though the hippocampus is part of the E3 complex. The paper does not discuss noradrenergic mechanisms -- the 'final common pathway' for frequency reduction is unspecified. The anxiolytic-frequency link is correlational in the drug direction (drugs that reduce anxiety also reduce frequency) rather than demonstrating that natural anxiety states increase frequency.",
+    "source_context": "Review and original data from freely moving rats; hippocampal LFP recordings during reticular formation stimulation; pharmacological manipulation with multiple anxiolytic drug classes (benzodiazepines, buspirone, pregabalin). Theta frequency measured as intercept of frequency-stimulus intensity regression."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Frontiers review with original pharmacological data. The cross-drug-class convergence on frequency reduction is strong evidence for a genuine anxiety-frequency link. Mapping fidelity moderate: hippocampal theta frequency maps onto MECH-093's oscillation-rate concept, but the recording site (hippocampus) and species (rat) differ from E3's prefrontal locus. Transfer risk moderate because the principle (arousal increases processing rate via oscillation frequency) is architecturally general, but the specific pathway (z_beta -> E3 heartbeat) requires extrapolation."
+  }
+}

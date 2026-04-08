@@ -1046,19 +1046,19 @@
       }
     },
     "ARC-023": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.846",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.841",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 4,
+      "entries_total": 5,
       "evidence_class_counts": {
         "lit:connectome_circuit_study": 1,
-        "lit:electrophysiology_intracranial_human": 1,
-        "lit:optogenetics_electrophysiology": 1,
-        "lit:review_electrophysiology": 1
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_lfp": 1,
+        "lit:electrophysiology_single_unit": 2
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -1069,10 +1069,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-08_arc023_trn_sensory_selection_wimmer2015",
-      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
-      "literature_confidence": 0.846,
-      "overall_confidence": 0.846,
+      "latest_run_id": "2026-04-08_arc023_trn_sensory_selection_halassa2015",
+      "latest_timestamp_utc": "2026-04-08T17:30:00Z",
+      "literature_confidence": 0.841,
+      "overall_confidence": 0.841,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -1094,7 +1094,7 @@
           "claim_id": "ARC-023",
           "confidence": 0.65,
           "confidence_rationale": "Comprehensive review of BG oscillatory dynamics across frequency bands, drawing on human DBS recordings, MEG, and ECoG. Provides convergent evidence that different functional territories of the BG-thalamocortical network exhibit characteristic frequency signatures: beta (13-35 Hz) dominates motor territories, gamma (40-90 Hz) associates with active movement processing, theta/alpha (4-12 Hz) associates with cognitive/executive functions in ventral STN and limbic territories. This frequency segregation across functional domains supports ARC-023's claim of characteristic loop rates. However, as a review it does not provide novel primary data, and the frequency-territory mapping is correlational rather than causal. The thalamic rate-setting role specifically claimed by ARC-023 is not directly addressed.",
-          "evidence_class": "lit:review_electrophysiology",
+          "evidence_class": "lit:connectome_mechanistic_review",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_connectome_arc_023",
           "failure_signatures": [
@@ -1110,43 +1110,57 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-023",
-          "confidence": 0.68,
-          "confidence_rationale": "Direct intracranial recordings in humans showing MD thalamus operates at 7-8 Hz (upper theta) and mPFC at ~11 Hz (alpha) during cognitive-perceptual gating. This is strong evidence that the MD-PFC (deliberative/cognitive) loop has a characteristic low-frequency rhythm, distinct from the beta-band (13-30 Hz) rhythm characteristic of motor thalamocortical circuits via VL. However, the study examines perceptual detection rather than deliberation per se, and does not directly compare multiple parallel loops. The ARC-023 claim that E3 operates at the slowest deliberation rate maps well to the observed theta/alpha MD-PFC coupling, but the precise frequency hierarchy (E1 > E2 > E3 rate) is not tested within a single paradigm.",
-          "evidence_class": "lit:electrophysiology_intracranial_human",
+          "confidence": 0.72,
+          "confidence_rationale": "Human intracranial + MEG data showing MD thalamus at 7-8 Hz coupling with PFC at ~10-11 Hz is strong direct evidence for a characteristic thalamic frequency in the cognitive/deliberative loop. The frequency hierarchy (MD slower than PFC) aligns with ARC-023's prediction. However, only one thalamic nucleus-cortical target pair is tested, so extrapolation to a full three-loop frequency hierarchy requires inference.",
+          "evidence_class": "lit:electrophysiology_lfp",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_connectome_arc_023",
           "failure_signatures": [
-            "Study measures perceptual gating, not deliberation or planning; partial mapping to E3 deliberation rate",
-            "Only one loop (MD-PFC) measured; no simultaneous recording of VL-motor or sensory relay loops for direct frequency comparison"
+            "Cortical activity leads thalamic oscillations in this study, suggesting PFC drives MD rather than MD setting the pace -- this inverts ARC-023's framing of thalamic nuclei as rate-setters."
           ],
-          "run_id": "2026-04-08_arc023_md_pfc_rhythmic_perception_griffiths2022",
+          "run_id": "2026-04-08_arc023_md_thalamus_pfc_rhythmic_griffiths2022",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-08T17:00:00Z"
+          "timestamp_utc": "2026-04-08T17:30:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-023",
-          "confidence": 0.72,
-          "confidence_rationale": "Direct causal evidence (optogenetics + electrophysiology in mice) that TRN sectors selectively gate specific thalamocortical channels under PFC top-down control. The visTRN sector modulates visual thalamic relay (LGN) gain independently, and PFC disruption abolishes this modulation. This is strong evidence for ARC-023's claim that TRN acts as an inter-loop routing switch. However, the study addresses sensory modality selection (visual vs auditory within sensory relay nuclei), not gating across the three functionally distinct loops (sensory/motor/cognitive). The mapping from cross-modal sensory gating to cross-loop (E1/E2/E3) gating is an extrapolation.",
-          "evidence_class": "lit:optogenetics_electrophysiology",
+          "confidence": 0.62,
+          "confidence_rationale": "Human intraoperative recordings from motor thalamus (VIM) showing characteristic beta (13-30 Hz) oscillations that are task-modulated. Directly demonstrates that the motor thalamic relay operates at beta frequency -- distinct from the MD thalamic theta (~7-8 Hz) shown by Griffiths 2022. The two papers together support ARC-023's claim of frequency-specific thalamic nuclei. Confidence limited by patient population (essential tremor) and single nucleus studied.",
+          "evidence_class": "lit:electrophysiology_single_unit",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_connectome_arc_023",
           "failure_signatures": [
-            "Study examines sensory modality gating (visual vs auditory), not motor vs cognitive vs sensory loop gating",
-            "Mouse model; human TRN architecture may differ in degree of topographic segregation",
-            "Does not measure oscillatory frequency differences between gated channels"
+            "Patient population has essential tremor -- thalamic oscillatory dynamics may be pathologically altered rather than representative of healthy motor thalamus.",
+            "Motor thalamic beta may originate from cerebellum rather than BG, complicating the mapping to a BG-thalamocortical loop."
           ],
-          "run_id": "2026-04-08_arc023_trn_sensory_selection_wimmer2015",
+          "run_id": "2026-04-08_arc023_motor_thalamus_beta_basha2023",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-08T17:00:00Z"
+          "timestamp_utc": "2026-04-08T17:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-023",
+          "confidence": 0.7,
+          "confidence_rationale": "Nature paper with causal optogenetic evidence showing TRN subnetworks mediate modality-specific gating of thalamocortical pathways under PFC control. Directly supports ARC-023's TRN-as-routing-switch claim. Confidence limited by mouse-to-human transfer and the fact that modality-specific gating (sensory selection) is not identical to frequency-specific loop gating.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_023",
+          "failure_signatures": [
+            "The study demonstrates modality-specific TRN gating (visual vs auditory), not frequency-specific gating between processing levels (sensory vs motor vs cognitive). The mapping from modality-routing to loop-routing is an inference step."
+          ],
+          "run_id": "2026-04-08_arc023_trn_sensory_selection_halassa2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:30:00Z"
         }
       ],
-      "runs_total": 4,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 4
+        "literature": 5
       }
     },
     "ARC-024": {
@@ -2130,7 +2144,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.51, lit_conf=0.913",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.509, lit_conf=0.913",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2144,7 +2158,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.51,
+      "experimental_confidence": 0.509,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2156,7 +2170,7 @@
       "latest_run_id": "v3_exq_176_arc036_valence_dimension_probe_20260330T070447Z_v3",
       "latest_timestamp_utc": "2026-03-30T16:58:09.645849Z",
       "literature_confidence": 0.913,
-      "overall_confidence": 0.752,
+      "overall_confidence": 0.751,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2348,7 +2362,7 @@
       }
     },
     "ARC-039": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.803",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.802",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -2371,8 +2385,8 @@
       },
       "latest_run_id": "2026-03-30_hippo_time_cells_omer2022",
       "latest_timestamp_utc": "2026-03-30T23:50:00Z",
-      "literature_confidence": 0.803,
-      "overall_confidence": 0.803,
+      "literature_confidence": 0.802,
+      "overall_confidence": 0.802,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3910,7 +3924,7 @@
       }
     },
     "INV-052": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.823, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.822, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -3921,7 +3935,7 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.823,
+      "experimental_confidence": 0.822,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -3933,7 +3947,7 @@
       "latest_run_id": "v3_exq_254_inv052_single_mechanism_sufficiency_1775591316_v3",
       "latest_timestamp_utc": "2026-04-07T19:48:36Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.823,
+      "overall_confidence": 0.822,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -4428,7 +4442,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.467, lit_conf=0.878",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.466, lit_conf=0.878",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -4444,7 +4458,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.467,
+      "experimental_confidence": 0.466,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4921,7 +4935,7 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=10 entry(s), lit=14 entry(s), exp_conf=0.876, lit_conf=0.84",
+      "confidence_rationale": "exp=10 entry(s), lit=14 entry(s), exp_conf=0.875, lit_conf=0.84",
       "direction_counts": {
         "mixed": 1,
         "supports": 20,
@@ -4937,7 +4951,7 @@
         "lit:neuroscience_experiment": 3,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.876,
+      "experimental_confidence": 0.875,
       "fail_runs": 2,
       "genuine_exp_count": 10,
       "genuine_exp_direction_counts": {
@@ -4949,7 +4963,7 @@
       "latest_run_id": "v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3",
       "latest_timestamp_utc": "2026-04-04T16:15:54.239023+00:00",
       "literature_confidence": 0.84,
-      "overall_confidence": 0.858,
+      "overall_confidence": 0.857,
       "pass_runs": 8,
       "recent_entries": [
         {
@@ -5161,7 +5175,7 @@
       }
     },
     "MECH-047": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.438, lit_conf=0.878",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.437, lit_conf=0.878",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -5174,7 +5188,7 @@
         "lit:connectome_empirical": 2,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.438,
+      "experimental_confidence": 0.437,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5508,7 +5522,7 @@
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.271, lit_conf=0.835",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.27, lit_conf=0.835",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -5521,7 +5535,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.271,
+      "experimental_confidence": 0.27,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5949,7 +5963,7 @@
       }
     },
     "MECH-060": {
-      "confidence_rationale": "exp=1 entry(s), lit=18 entry(s), exp_conf=0.72, lit_conf=0.852",
+      "confidence_rationale": "exp=1 entry(s), lit=18 entry(s), exp_conf=0.72, lit_conf=0.851",
       "direction_counts": {
         "mixed": 5,
         "supports": 14,
@@ -5981,8 +5995,8 @@
       },
       "latest_run_id": "2026-04-04_mech060_modelbased_striatal_pe_daw2011",
       "latest_timestamp_utc": "2026-04-04T09:00:00Z",
-      "literature_confidence": 0.852,
-      "overall_confidence": 0.819,
+      "literature_confidence": 0.851,
+      "overall_confidence": 0.818,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -7035,7 +7049,7 @@
       }
     },
     "MECH-075": {
-      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.502, lit_conf=0.781",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.501, lit_conf=0.781",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -7048,7 +7062,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.502,
+      "experimental_confidence": 0.501,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -7060,7 +7074,7 @@
       "latest_run_id": "v3_exq_230_mech075_novelty_diagnostic_20260404T162303Z_v3",
       "latest_timestamp_utc": "2026-04-04T16:23:03Z",
       "literature_confidence": 0.781,
-      "overall_confidence": 0.614,
+      "overall_confidence": 0.613,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -7406,7 +7420,7 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.799, lit_conf=0.768",
+      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.798, lit_conf=0.768",
       "direction_counts": {
         "mixed": 9,
         "supports": 9,
@@ -7420,7 +7434,7 @@
         "lit:electrophysiology_eeg": 1,
         "lit:electrophysiology_lfp": 2
       },
-      "experimental_confidence": 0.799,
+      "experimental_confidence": 0.798,
       "fail_runs": 10,
       "genuine_exp_count": 16,
       "genuine_exp_direction_counts": {
@@ -7432,7 +7446,7 @@
       "latest_run_id": "2026-04-08_mech090_stn_beta_desync_kuhn2004",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
       "literature_confidence": 0.768,
-      "overall_confidence": 0.784,
+      "overall_confidence": 0.783,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -7765,7 +7779,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.667, lit_conf=0.827",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.666, lit_conf=0.827",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -7780,7 +7794,7 @@
         "lit:electrophysiology_lfp_animal_pharmacological": 1,
         "lit:electrophysiology_meg_human": 1
       },
-      "experimental_confidence": 0.667,
+      "experimental_confidence": 0.666,
       "fail_runs": 6,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -8688,7 +8702,7 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.587, lit_conf=0.818",
+      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.586, lit_conf=0.818",
       "direction_counts": {
         "mixed": 12,
         "supports": 5,
@@ -8701,7 +8715,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.587,
+      "experimental_confidence": 0.586,
       "fail_runs": 21,
       "genuine_exp_count": 24,
       "genuine_exp_direction_counts": {
@@ -8713,7 +8727,7 @@
       "latest_run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
       "latest_timestamp_utc": "2026-03-29T13:30:00Z",
       "literature_confidence": 0.818,
-      "overall_confidence": 0.703,
+      "overall_confidence": 0.702,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -9228,7 +9242,7 @@
       }
     },
     "MECH-112": {
-      "confidence_rationale": "exp=13 entry(s), lit=6 entry(s), exp_conf=0.81, lit_conf=0.9",
+      "confidence_rationale": "exp=13 entry(s), lit=6 entry(s), exp_conf=0.809, lit_conf=0.9",
       "direction_counts": {
         "mixed": 4,
         "supports": 12,
@@ -9242,7 +9256,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.81,
+      "experimental_confidence": 0.809,
       "fail_runs": 8,
       "genuine_exp_count": 13,
       "genuine_exp_direction_counts": {
@@ -9921,7 +9935,7 @@
       }
     },
     "MECH-120": {
-      "confidence_rationale": "exp=2 entry(s), lit=7 entry(s), exp_conf=0.372, lit_conf=0.905",
+      "confidence_rationale": "exp=2 entry(s), lit=7 entry(s), exp_conf=0.371, lit_conf=0.905",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -9936,7 +9950,7 @@
         "lit:experimental_neuroscience": 2,
         "lit:theoretical_neuroscience": 2
       },
-      "experimental_confidence": 0.372,
+      "experimental_confidence": 0.371,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -9948,7 +9962,7 @@
       "latest_run_id": "v3_exq_245_mech120_shy_normalisation_20260407T091221Z_v3",
       "latest_timestamp_utc": "2026-04-07T09:12:21Z",
       "literature_confidence": 0.905,
-      "overall_confidence": 0.692,
+      "overall_confidence": 0.691,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -11326,7 +11340,7 @@
       }
     },
     "MECH-165": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.318, lit_conf=0.836",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.317, lit_conf=0.836",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -11340,7 +11354,7 @@
         "lit:experimental_neuroscience": 1,
         "lit:theoretical_neuroscience": 1
       },
-      "experimental_confidence": 0.318,
+      "experimental_confidence": 0.317,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -11352,7 +11366,7 @@
       "latest_run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
       "latest_timestamp_utc": "2026-04-06T00:00:00Z",
       "literature_confidence": 0.836,
-      "overall_confidence": 0.707,
+      "overall_confidence": 0.706,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -13008,7 +13022,7 @@
       }
     },
     "MECH-186": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.372, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.371, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 0,
@@ -13019,7 +13033,7 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.372,
+      "experimental_confidence": 0.371,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -13031,7 +13045,7 @@
       "latest_run_id": "v3_exq_251_mech186_valence_wanting_floor_1775549211_v3",
       "latest_timestamp_utc": "2026-04-07T08:06:51Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.372,
+      "overall_confidence": 0.371,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -13715,6 +13729,110 @@
         "literature": 8
       }
     },
+    "MECH-216": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.866",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:computational_model": 2,
+        "lit:fmri_connectivity": 1,
+        "lit:theoretical_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-08_mech_216_successor_representation_gershman2018",
+      "latest_timestamp_utc": "2026-04-08T22:00:00Z",
+      "literature_confidence": 0.866,
+      "overall_confidence": 0.866,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-216",
+          "confidence": 0.82,
+          "confidence_rationale": "This is the formal computational model of incentive salience that directly formalises what MECH-216 proposes. The wanting = kappa x learned_value equation is the mathematical core. High source quality (peer-reviewed computational neuroscience with empirical validation against ventral pallidum recordings). Very high mapping fidelity -- the model's structure (cached learned prediction x current state = dynamic wanting) maps almost exactly onto E1 schema activation x drive_level = VALENCE_WANTING seeding.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_216",
+          "failure_signatures": [
+            "The model assumes a separate kappa (state) parameter that modulates wanting independently of learning -- REE does not yet have a clean kappa analog beyond drive_level.",
+            "The model's learned values are TD-cached reward predictions, not schema activations per se -- the mapping from TD values to E1 schema readout is not exact."
+          ],
+          "run_id": "2026-04-08_mech_216_computational_incentive_salience_zhang2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-216",
+          "confidence": 0.78,
+          "confidence_rationale": "Berridge's incentive salience framework provides the strongest neuroscientific foundation for MECH-216. The mechanism described -- learned CS-UCS associations dynamically generating wanting at re-encounter, modulated by physiological state -- maps directly onto E1 schema activation seeding VALENCE_WANTING. High source quality (canonical review by the field's originator), strong mapping fidelity (the CS-to-wanting transformation is precisely what MECH-216 proposes in latent space), moderate transfer risk (biological dopamine circuits vs. computational E1 schema readout).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_216",
+          "failure_signatures": [
+            "Berridge emphasises that wanting can be generated for stimuli never previously liked -- MECH-216 does not model this dissociation (wanting is always grounded in resource benefit).",
+            "The biological mechanism requires mesolimbic dopamine as the wanting-generation substrate; REE has no dopaminergic analog -- serotonin module handles a different function."
+          ],
+          "run_id": "2026-04-08_mech_216_prediction_error_incentive_salience_berridge2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-216",
+          "confidence": 0.65,
+          "confidence_rationale": "Human fMRI evidence that hippocampal predictive maps guide reward-related choice behavior. Moderate confidence: the paper demonstrates that predictive representations (not just spatial proximity) influence reward generalization, supporting the principle that prediction-based signals guide approach. But the paper addresses representation-to-choice, not representation-to-wanting -- the motivational step is inferred, not directly measured.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_216",
+          "failure_signatures": [
+            "Predictive map influence on choices weakened over time as spatial map strengthened (44/48 participants showed spatial dominance during choice) -- suggests predictive maps may be transitional rather than persistent.",
+            "Orbitofrontal cortex, not hippocampus alone, mediates the selection between spatial and predictive maps -- the mechanism requires OFC arbitration that REE does not model."
+          ],
+          "run_id": "2026-04-08_mech_216_spatio_predictive_maps_garvert2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-216",
+          "confidence": 0.68,
+          "confidence_rationale": "The SR framework provides strong indirect support for MECH-216 by showing that hippocampal representations naturally cluster around reward-proximal states, creating a predictive map with implicit reward gradients. This is the spatial/representational complement to Berridge's motivational account. Moderate mapping fidelity: the SR predicts representational clustering, not motivational seeding per se -- the link from predictive representation to wanting requires the additional step that MECH-216 proposes.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_216",
+          "failure_signatures": [
+            "The SR encodes expected future state occupancy, not motivational valence -- the mapping from SR clustering to wanting seeding is an additional interpretive step not present in Gershman's framework.",
+            "SR clustering around reward arises from visitation frequency, not from a predictive-wanting mechanism -- the computational origin is different from MECH-216's schema-activation account."
+          ],
+          "run_id": "2026-04-08_mech_216_successor_representation_gershman2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:00:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
+      }
+    },
     "MECH-900": {
       "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.706",
       "direction_counts": {
@@ -13763,7 +13881,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.302, lit_conf=0.807",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.301, lit_conf=0.807",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -13777,7 +13895,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.302,
+      "experimental_confidence": 0.301,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -14091,7 +14209,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.458, lit_conf=0.811",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.457, lit_conf=0.811",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -14105,7 +14223,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.458,
+      "experimental_confidence": 0.457,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -14710,7 +14828,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.521, lit_conf=0.862",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.52, lit_conf=0.862",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -14724,7 +14842,7 @@
         "lit:computational_model": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.521,
+      "experimental_confidence": 0.52,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -14736,7 +14854,7 @@
       "latest_run_id": "v3_exq_193_q012_control_constraints_20260404T152932Z_v3",
       "latest_timestamp_utc": "2026-04-04T15:29:32.086395+00:00",
       "literature_confidence": 0.862,
-      "overall_confidence": 0.726,
+      "overall_confidence": 0.725,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -14818,7 +14936,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.753, lit_conf=0.836",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.752, lit_conf=0.836",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -14832,7 +14950,7 @@
         "lit:machine_learning_experiment": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.753,
+      "experimental_confidence": 0.752,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -16138,7 +16256,7 @@
       }
     },
     "Q-034": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.772, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.771, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -16149,7 +16267,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.772,
+      "experimental_confidence": 0.771,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -16161,7 +16279,7 @@
       "latest_run_id": "v3_exq_248_q034_threshold_sweep_1775553137_v3",
       "latest_timestamp_utc": "2026-04-07T09:12:17Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.772,
+      "overall_confidence": 0.771,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -16187,7 +16305,7 @@
       }
     },
     "SD-003": {
-      "confidence_rationale": "exp=79 entry(s), lit=7 entry(s), exp_conf=0.623, lit_conf=0.85",
+      "confidence_rationale": "exp=79 entry(s), lit=7 entry(s), exp_conf=0.623, lit_conf=0.849",
       "direction_counts": {
         "mixed": 22,
         "supports": 22,
@@ -16213,7 +16331,7 @@
       },
       "latest_run_id": "2026-04-04_sd_003_motor_intention_agency_timm2014",
       "latest_timestamp_utc": "2026-04-04T09:00:00Z",
-      "literature_confidence": 0.85,
+      "literature_confidence": 0.849,
       "overall_confidence": 0.736,
       "pass_runs": 14,
       "recent_entries": [
@@ -17363,7 +17481,7 @@
       }
     },
     "SD-015": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.585, lit_conf=0.815",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.584, lit_conf=0.815",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -17376,7 +17494,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -61161,7 +61279,7 @@
       "claim_id": "ARC-023",
       "confidence": 0.65,
       "confidence_rationale": "Comprehensive review of BG oscillatory dynamics across frequency bands, drawing on human DBS recordings, MEG, and ECoG. Provides convergent evidence that different functional territories of the BG-thalamocortical network exhibit characteristic frequency signatures: beta (13-35 Hz) dominates motor territories, gamma (40-90 Hz) associates with active movement processing, theta/alpha (4-12 Hz) associates with cognitive/executive functions in ventral STN and limbic territories. This frequency segregation across functional domains supports ARC-023's claim of characteristic loop rates. However, as a review it does not provide novel primary data, and the frequency-territory mapping is correlational rather than causal. The thalamic rate-setting role specifically claimed by ARC-023 is not directly addressed.",
-      "evidence_class": "lit:review_electrophysiology",
+      "evidence_class": "lit:connectome_mechanistic_review",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_connectome_arc_023",
       "failure_signatures": [
@@ -61170,41 +61288,6 @@
         "Motor territory beta dominance is well-established but cognitive/limbic frequency signatures are less firmly characterized"
       ],
       "run_id": "2026-04-08_arc023_bg_oscillation_frequency_brittain2013",
-      "source_type": "literature",
-      "status": "SOURCE",
-      "timestamp_utc": "2026-04-08T17:00:00Z"
-    },
-    {
-      "architecture_epoch": "ree_hybrid_guardrails_v1",
-      "claim_id": "ARC-023",
-      "confidence": 0.68,
-      "confidence_rationale": "Direct intracranial recordings in humans showing MD thalamus operates at 7-8 Hz (upper theta) and mPFC at ~11 Hz (alpha) during cognitive-perceptual gating. This is strong evidence that the MD-PFC (deliberative/cognitive) loop has a characteristic low-frequency rhythm, distinct from the beta-band (13-30 Hz) rhythm characteristic of motor thalamocortical circuits via VL. However, the study examines perceptual detection rather than deliberation per se, and does not directly compare multiple parallel loops. The ARC-023 claim that E3 operates at the slowest deliberation rate maps well to the observed theta/alpha MD-PFC coupling, but the precise frequency hierarchy (E1 > E2 > E3 rate) is not tested within a single paradigm.",
-      "evidence_class": "lit:electrophysiology_intracranial_human",
-      "evidence_direction": "supports",
-      "experiment_type": "targeted_review_connectome_arc_023",
-      "failure_signatures": [
-        "Study measures perceptual gating, not deliberation or planning; partial mapping to E3 deliberation rate",
-        "Only one loop (MD-PFC) measured; no simultaneous recording of VL-motor or sensory relay loops for direct frequency comparison"
-      ],
-      "run_id": "2026-04-08_arc023_md_pfc_rhythmic_perception_griffiths2022",
-      "source_type": "literature",
-      "status": "SOURCE",
-      "timestamp_utc": "2026-04-08T17:00:00Z"
-    },
-    {
-      "architecture_epoch": "ree_hybrid_guardrails_v1",
-      "claim_id": "ARC-023",
-      "confidence": 0.72,
-      "confidence_rationale": "Direct causal evidence (optogenetics + electrophysiology in mice) that TRN sectors selectively gate specific thalamocortical channels under PFC top-down control. The visTRN sector modulates visual thalamic relay (LGN) gain independently, and PFC disruption abolishes this modulation. This is strong evidence for ARC-023's claim that TRN acts as an inter-loop routing switch. However, the study addresses sensory modality selection (visual vs auditory within sensory relay nuclei), not gating across the three functionally distinct loops (sensory/motor/cognitive). The mapping from cross-modal sensory gating to cross-loop (E1/E2/E3) gating is an extrapolation.",
-      "evidence_class": "lit:optogenetics_electrophysiology",
-      "evidence_direction": "supports",
-      "experiment_type": "targeted_review_connectome_arc_023",
-      "failure_signatures": [
-        "Study examines sensory modality gating (visual vs auditory), not motor vs cognitive vs sensory loop gating",
-        "Mouse model; human TRN architecture may differ in degree of topographic segregation",
-        "Does not measure oscillatory frequency differences between gated channels"
-      ],
-      "run_id": "2026-04-08_arc023_trn_sensory_selection_wimmer2015",
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-08T17:00:00Z"
@@ -61489,6 +61572,123 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-023",
+      "confidence": 0.72,
+      "confidence_rationale": "Human intracranial + MEG data showing MD thalamus at 7-8 Hz coupling with PFC at ~10-11 Hz is strong direct evidence for a characteristic thalamic frequency in the cognitive/deliberative loop. The frequency hierarchy (MD slower than PFC) aligns with ARC-023's prediction. However, only one thalamic nucleus-cortical target pair is tested, so extrapolation to a full three-loop frequency hierarchy requires inference.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [
+        "Cortical activity leads thalamic oscillations in this study, suggesting PFC drives MD rather than MD setting the pace -- this inverts ARC-023's framing of thalamic nuclei as rate-setters."
+      ],
+      "run_id": "2026-04-08_arc023_md_thalamus_pfc_rhythmic_griffiths2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-023",
+      "confidence": 0.62,
+      "confidence_rationale": "Human intraoperative recordings from motor thalamus (VIM) showing characteristic beta (13-30 Hz) oscillations that are task-modulated. Directly demonstrates that the motor thalamic relay operates at beta frequency -- distinct from the MD thalamic theta (~7-8 Hz) shown by Griffiths 2022. The two papers together support ARC-023's claim of frequency-specific thalamic nuclei. Confidence limited by patient population (essential tremor) and single nucleus studied.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [
+        "Patient population has essential tremor -- thalamic oscillatory dynamics may be pathologically altered rather than representative of healthy motor thalamus.",
+        "Motor thalamic beta may originate from cerebellum rather than BG, complicating the mapping to a BG-thalamocortical loop."
+      ],
+      "run_id": "2026-04-08_arc023_motor_thalamus_beta_basha2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-023",
+      "confidence": 0.7,
+      "confidence_rationale": "Nature paper with causal optogenetic evidence showing TRN subnetworks mediate modality-specific gating of thalamocortical pathways under PFC control. Directly supports ARC-023's TRN-as-routing-switch claim. Confidence limited by mouse-to-human transfer and the fact that modality-specific gating (sensory selection) is not identical to frequency-specific loop gating.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [
+        "The study demonstrates modality-specific TRN gating (visual vs auditory), not frequency-specific gating between processing levels (sensory vs motor vs cognitive). The mapping from modality-routing to loop-routing is an inference step."
+      ],
+      "run_id": "2026-04-08_arc023_trn_sensory_selection_halassa2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-216",
+      "confidence": 0.82,
+      "confidence_rationale": "This is the formal computational model of incentive salience that directly formalises what MECH-216 proposes. The wanting = kappa x learned_value equation is the mathematical core. High source quality (peer-reviewed computational neuroscience with empirical validation against ventral pallidum recordings). Very high mapping fidelity -- the model's structure (cached learned prediction x current state = dynamic wanting) maps almost exactly onto E1 schema activation x drive_level = VALENCE_WANTING seeding.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_216",
+      "failure_signatures": [
+        "The model assumes a separate kappa (state) parameter that modulates wanting independently of learning -- REE does not yet have a clean kappa analog beyond drive_level.",
+        "The model's learned values are TD-cached reward predictions, not schema activations per se -- the mapping from TD values to E1 schema readout is not exact."
+      ],
+      "run_id": "2026-04-08_mech_216_computational_incentive_salience_zhang2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-216",
+      "confidence": 0.78,
+      "confidence_rationale": "Berridge's incentive salience framework provides the strongest neuroscientific foundation for MECH-216. The mechanism described -- learned CS-UCS associations dynamically generating wanting at re-encounter, modulated by physiological state -- maps directly onto E1 schema activation seeding VALENCE_WANTING. High source quality (canonical review by the field's originator), strong mapping fidelity (the CS-to-wanting transformation is precisely what MECH-216 proposes in latent space), moderate transfer risk (biological dopamine circuits vs. computational E1 schema readout).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_216",
+      "failure_signatures": [
+        "Berridge emphasises that wanting can be generated for stimuli never previously liked -- MECH-216 does not model this dissociation (wanting is always grounded in resource benefit).",
+        "The biological mechanism requires mesolimbic dopamine as the wanting-generation substrate; REE has no dopaminergic analog -- serotonin module handles a different function."
+      ],
+      "run_id": "2026-04-08_mech_216_prediction_error_incentive_salience_berridge2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-216",
+      "confidence": 0.65,
+      "confidence_rationale": "Human fMRI evidence that hippocampal predictive maps guide reward-related choice behavior. Moderate confidence: the paper demonstrates that predictive representations (not just spatial proximity) influence reward generalization, supporting the principle that prediction-based signals guide approach. But the paper addresses representation-to-choice, not representation-to-wanting -- the motivational step is inferred, not directly measured.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_216",
+      "failure_signatures": [
+        "Predictive map influence on choices weakened over time as spatial map strengthened (44/48 participants showed spatial dominance during choice) -- suggests predictive maps may be transitional rather than persistent.",
+        "Orbitofrontal cortex, not hippocampus alone, mediates the selection between spatial and predictive maps -- the mechanism requires OFC arbitration that REE does not model."
+      ],
+      "run_id": "2026-04-08_mech_216_spatio_predictive_maps_garvert2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-216",
+      "confidence": 0.68,
+      "confidence_rationale": "The SR framework provides strong indirect support for MECH-216 by showing that hippocampal representations naturally cluster around reward-proximal states, creating a predictive map with implicit reward gradients. This is the spatial/representational complement to Berridge's motivational account. Moderate mapping fidelity: the SR predicts representational clustering, not motivational seeding per se -- the link from predictive representation to wanting requires the additional step that MECH-216 proposes.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_216",
+      "failure_signatures": [
+        "The SR encodes expected future state occupancy, not motivational valence -- the mapping from SR clustering to wanting seeding is an additional interpretive step not present in Gershman's framework.",
+        "SR clustering around reward arises from visitation frequency, not from a predictive-wanting mechanism -- the computational origin is different from MECH-216's schema-activation account."
+      ],
+      "run_id": "2026-04-08_mech_216_successor_representation_gershman2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.72,
       "confidence_rationale": "Strong experimental design with balanced expectancy controls. Demonstrates that expectation selectively modulates sensory-nociceptive transmission (thalamus, S2, insula) through a distinct modulatory network (caudal ACC, caudate, nCF). Maps well to SD-011 claim that forward-model cancellation applies to z_harm_s but not z_harm_a, though the paper frames this as expectation modulation rather than dual-stream separation per se.",
@@ -61572,7 +61772,7 @@
       "timestamp_utc": "20260408T190019Z"
     }
   ],
-  "generated_at_utc": "2026-04-08T21:35:46.897921Z",
+  "generated_at_utc": "2026-04-08T23:07:22.375281Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

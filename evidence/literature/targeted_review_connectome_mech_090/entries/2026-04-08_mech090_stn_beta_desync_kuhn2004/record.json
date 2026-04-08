@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-04-08_mech090_stn_beta_desync_kuhn2004",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Event-related beta desynchronization in human subthalamic nucleus correlates with motor performance",
+    "authors": [
+      "Andrea A. Kuhn",
+      "David Williams",
+      "Andreas Kupsch",
+      "Patricia Limousin",
+      "Marwan Hariz",
+      "Gerd-Helge Schneider",
+      "Kielan Yarrow",
+      "Peter Brown"
+    ],
+    "year": 2004,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awh106"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct electrophysiological evidence from human STN recordings showing beta desynchronization is necessary for movement initiation, with timing that predicts reaction time. The go/nogo dissociation demonstrates beta acts as a gate on motor output: sustained beta suppression permits movement, early beta rebound suppresses it. This directly supports MECH-090's claim that beta gates propagation to action selection. Confidence tempered by Parkinson's disease population and the fact that the paper does not explicitly test whether internal planning continues during elevated beta.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_090", "beta_oscillation", "action_gating", "STN", "DBS", "electrophysiology", "go_nogo"],
+  "mapping": {
+    "source_claim_statement": "Beta desynchronization (~20 Hz) in the human subthalamic nucleus precedes and correlates with voluntary movement initiation. The onset latency of beta suppression strongly predicts reaction time. In nogo trials, beta suppression is prematurely terminated and reverses into early resynchronization, blocking movement execution.",
+    "ree_translation": "MECH-090: STN beta synchronization gates E3-to-action-selection propagation. Elevated beta = action output suppressed (nogo/committed-sequence state). Beta desynchronization = E3 state permitted to propagate to action selection (go/sequence-completion state). The go/nogo dissociation maps directly to the MECH-090 mechanism: beta controls whether planned actions reach execution, not whether planning occurs.",
+    "mapping_caveat": "All subjects were Parkinson's disease patients undergoing DBS surgery, so beta dynamics may be pathologically amplified. The study tests motor output gating but does not independently measure whether internal planning or model updating continues during elevated beta. The REE-specific distinction (E3 updates internally while output is gated) is supported by the go/nogo asymmetry but not directly tested.",
+    "source_context": "Human LFP recordings from bilateral STN in 8 PD patients during a warned go/nogo reaction time task. Recordings made via externalized DBS electrodes in the immediate postoperative period, off medication."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "High source quality -- landmark DBS electrophysiology study in Brain, widely cited. Mapping fidelity is strong for the output-gating aspect but the internal-updating dimension of MECH-090 is not directly addressed. Transfer risk is moderate: PD population with pathologically elevated beta, but the go/nogo desynchronization pattern has been replicated in healthy controls with MEG."
+  }
+}

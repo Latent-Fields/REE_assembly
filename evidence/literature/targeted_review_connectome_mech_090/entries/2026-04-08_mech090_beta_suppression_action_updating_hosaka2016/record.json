@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-04-08_mech090_beta_suppression_action_updating_hosaka2016",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "The Suppression of Beta Oscillations in the Primate Supplementary Motor Complex Reflects a Volatile State During the Updating of Action Sequences",
+    "authors": [
+      "Ryosuke Hosaka",
+      "Toshi Nakajima",
+      "Kazuyuki Aihara",
+      "Yoko Yamaguchi",
+      "Hajime Mushiake"
+    ],
+    "year": 2016,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhv163"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.75,
+  "confidence_rationale": "This paper provides important evidence that partially supports and partially challenges MECH-090. The finding that elevated beta maintains existing action plans (status quo) while beta suppression permits updating directly supports the general framework. However, the critical challenge is that beta suppression here enables INTERNAL plan updating -- the reorganization of cell assemblies encoding action sequences -- not just motor output propagation. If beta suppression is required for internal plan revision, then elevated beta does not merely gate output while leaving internal updating intact; it actively prevents internal state changes too. This directly challenges MECH-090's specificity claim that beta gates output but not internal updating. Confidence reflects genuine dual-valence evidence from direct primate electrophysiology.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["beta_gates_internal_updating_not_just_output", "beta_suppression_required_for_plan_revision"],
+  "tags": ["mech_090", "beta_oscillation", "action_gating", "internal_updating", "SMA", "primate", "action_sequences", "volatility"],
+  "mapping": {
+    "source_claim_statement": "Beta oscillations in the primate supplementary motor complex are tonically enhanced during maintenance of existing action sequences and phasically suppressed during updating of those sequences. Beta suppression creates a 'volatile' neural state permitting reorganization of cell assemblies. Inappropriate beta suppression during maintenance causes erroneous action selection. High-gamma activity organizes new action representations only when coupled with beta suppression.",
+    "ree_translation": "MECH-090 claims beta gates E3-to-action-selection propagation, not E3 internal updating. Hosaka et al. show that in the SMA (a region involved in action sequence planning -- functionally analogous to aspects of E3), elevated beta ALSO prevents internal plan revision, not just output. Beta suppression is required for the internal reorganization of action representations. This challenges the specificity of MECH-090: if beta gates both output AND internal updating, the claim that E3 continues updating internally while beta is elevated (heartbeat continues) may need qualification. The maintenance/updating dissociation supports beta-as-gate but the locus of gating extends beyond output to include internal state.",
+    "mapping_caveat": "SMA is not the basal ganglia. MECH-090 specifically locates beta gating in STN/striatum. The SMA is a cortical motor planning area that receives BG output but has its own beta dynamics. It is possible that BG beta gates output (as MECH-090 claims) while cortical beta in SMA gates internal plan updating -- different circuit levels may use beta for different gating functions. The primate task (bimanual sequences with block-level updating) is more complex than typical go/nogo but still different from the committed-sequence scenario of MECH-090.",
+    "source_context": "Two Japanese macaques performing a bimanual sequential motor task with alternating visually guided and memory-guided trials. LFP recordings from pre-SMA and SMA via glass-insulated microelectrodes. Wavelet time-frequency analysis of beta (10-40 Hz) and high-gamma (40-200 Hz) oscillations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "High source quality -- direct primate LFP recordings from motor planning areas during a well-controlled sequential task, published in Cerebral Cortex. Mapping fidelity is moderate: the SMA is functionally relevant to E3-like planning but is cortical, not BG; the updating measured is of action sequences (relevant) but at the block level rather than within committed sequences. Transfer risk is moderate: primate data is valuable but the circuit locus (cortical SMA vs subcortical STN/striatum) means the beta dynamics may not directly reflect the BG gating mechanism of MECH-090."
+  }
+}

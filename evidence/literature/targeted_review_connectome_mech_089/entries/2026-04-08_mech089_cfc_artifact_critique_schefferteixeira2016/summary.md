@@ -1,0 +1,31 @@
+# Scheffer-Teixeira & Tort 2016 -- Methodological Critique of Theta-Gamma Phase-Phase Coupling
+
+**Source**: Scheffer-Teixeira R, Tort ABL. "On cross-frequency phase-phase coupling between theta and gamma oscillations in the hippocampus." *eLife* 5:e20515, 2016. DOI: 10.7554/eLife.20515
+
+## What the paper did
+
+Scheffer-Teixeira and Tort -- and it is worth noting that the senior author is the same Tort whose 2009 paper provided some of the strongest evidence for functional theta-gamma coupling -- undertook a systematic methodological audit of phase-phase coupling (n:m locking) between theta and gamma oscillations in rat hippocampus. They analyzed LFP recordings from multi-site silicon probes during active waking and REM sleep, then constructed extensive control analyses: filtered white noise, coupled Kuramoto oscillators, and three distinct surrogate methods (time-shifting, random permutation, phase-scrambling). The question was simple and devastating: when we observe what looks like theta-gamma phase-phase coupling, how much of it is genuine and how much is measurement artifact?
+
+## Key findings
+
+The answer, delivered with commendable thoroughness, is sobering. They identified five sources of spurious coupling: (1) quasi-linear phase shifts from band-pass filtering create artificial phase relationships in both white noise and genuine LFPs; (2) the Rn:m coupling metric shows strong positive bias toward shorter epochs, producing inflated values even in structurally random signals; (3) the standard practice of pooling surrogate epochs before computing Rn:m artificially deflates the null distribution, manufacturing false positives; (4) non-sinusoidal theta waveforms generate harmonic frequency components that produce phase-locked relationships at exactly the frequency ratios one would predict from a genuine coding scheme; and (5) diagonal stripes in phase-phase plots -- previously cited as evidence for coupling -- appear in white-noise controls.
+
+When appropriate controls were applied (single-run surrogates of equivalent epoch length), the authors found "no convincing evidence for prominent theta-gamma phase-phase coupling in the hippocampus." For very long recordings (10-20 minutes), weak statistical significance emerged against permutation surrogates but not time-shifted controls, and the authors attribute this primarily to theta harmonics rather than genuine phase locking.
+
+## Translation to MECH-089
+
+The relevance of this critique to MECH-089 requires careful parsing, because the paper targets a specific form of cross-frequency coupling -- phase-phase coupling (n:m locking) -- and not the more commonly studied phase-amplitude coupling (PAC). These are distinct measurements. PAC asks: "Is the amplitude of gamma oscillations modulated by the phase of theta?" Phase-phase coupling asks: "Are the phases of gamma and theta oscillations locked in a consistent ratio?" MECH-089's claim that "each theta cycle integrates ~5-7 gamma sub-cycles into a rolling summary" could be implemented via either mechanism, and the distinction matters.
+
+If MECH-089 only requires that gamma-rate E1 activity be amplitude-modulated by theta-rate E3 sampling -- i.e., that E1 outputs are stronger at certain phases of the E3 cycle -- then Scheffer-Teixeira's critique has limited relevance, because PAC evidence (including from Tort's own 2009 paper) remains robust and was not challenged here. But if MECH-089 requires that specific gamma cycles occupy specific theta-phase positions carrying distinct informational content -- the "5-7 numbered slots" interpretation -- then this critique strikes closer to the claim, because the evidence that gamma phases lock to specific theta phases in a reliable n:m ratio appears to be substantially weaker than previously believed.
+
+For REE's architectural design, the practical implication is nuanced. The question is not whether brains show perfect n:m phase locking (they may not), but whether a multi-rate architecture benefits from organizing fast-rate outputs within slow-rate windows. The biological evidence for PAC remains strong; the evidence for precise phase-phase slot assignment is questionable. An implementation that uses amplitude-gated temporal batching (E1 outputs are weighted by E3-cycle phase) may be more biologically grounded than one that assumes discrete numbered slots.
+
+## Limitations
+
+The paper's scope is deliberately narrow: phase-phase coupling in rat hippocampal LFP. It does not address PAC, which is the dominant form of CFC studied in the theta-gamma literature and arguably more relevant to MECH-089. It does not address intracranial EEG in humans, where coupling metrics may behave differently. And crucially, it does not argue that cross-frequency coupling as a phenomenon is non-existent -- only that one specific metric (Rn:m for phase-phase coupling) is vulnerable to artifacts that prior studies did not adequately control for.
+
+There is also an interesting epistemological note: the same research group that produced the strongest evidence for functional theta-gamma PAC (Tort et al. 2009) here produces the strongest critique of theta-gamma phase-phase coupling. This is not contradiction but rather precision -- they are distinguishing between what the data can and cannot support, which is exactly the kind of intellectual honesty that should inform how we translate neural findings into architectural claims.
+
+## Confidence reasoning
+
+Source quality is high (0.88): rigorous methodological analysis in a strong venue, with open data and code, from a group with unimpeachable expertise in CFC measurement. Mapping fidelity is moderate (0.50): the critique targets phase-phase coupling specifically, and its relevance to MECH-089 depends on whether the claim requires precise phase locking or merely amplitude modulation. Transfer risk is low-moderate (0.30): for an artificial architecture, the question is less "is this measurable in brains?" and more "is the design principle sound?" -- methodological concerns about neural measurement have limited direct bearing on architectural design choices. Overall confidence is 0.55 -- the paper provides an important calibration on the strength of CFC evidence, weakening the "precise slots" version of MECH-089 while leaving the "amplitude-gated batching" version largely unscathed.

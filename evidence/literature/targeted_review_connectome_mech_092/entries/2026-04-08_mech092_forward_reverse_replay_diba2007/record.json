@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_092",
+  "entry_id": "2026-04-08_mech092_forward_reverse_replay_diba2007",
+  "timestamp_utc": "2026-04-08T17:00:00Z",
+  "claim_ids_tested": ["MECH-092"],
+  "source": {
+    "title": "Forward and reverse hippocampal place-cell sequences during ripples",
+    "authors": ["Kamran Diba", "Gyorgy Buzsaki"],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1961"
+  },
+  "evidence_class": "electrophysiology_single_unit_and_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality empirical electrophysiology study in Nature Neuroscience demonstrating temporally compressed bidirectional replay during awake SWR events. Directly supports MECH-092's claim of compressed trajectory replay during quiescent periods. The temporal compression (~10-20x) matches MECH-092's specification. Forward replay at run onset and reverse replay at run termination support both consolidation and planning roles. However, the study does not directly test consolidation function (correlational, not causal), and the quiescence specificity is implicit rather than tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Correlational evidence only -- does not causally demonstrate that replay serves consolidation",
+    "Does not specifically isolate quiescent periods from other immobility states",
+    "Forward replay ('preplay') complicates a pure consolidation interpretation -- suggests planning/anticipation role too"
+  ],
+  "tags": ["mech_092", "sharp_wave_ripple", "awake_replay", "temporal_compression", "forward_replay", "reverse_replay", "place_cells"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place cell sequences replay in temporally compressed form during awake sharp-wave ripple events: in reverse order at the end of a run (replay) and in forward order in anticipation of a run (preplay). Vector distances between place fields are preserved in the temporal structure of these compressed sequences.",
+    "ree_translation": "MECH-092 specifies that hippocampal replay during quiescent E3 heartbeat cycles replays compressed recent trajectory experience at ~10-20x faster than real time. Diba & Buzsaki 2007 directly demonstrates this temporal compression in awake SWR-associated replay. The bidirectional nature (forward preplay for upcoming trajectories, reverse replay of completed trajectories) maps onto the viability map's dual need: consolidating recent experience (reverse replay) and evaluating planned routes (forward replay). The preservation of spatial structure in compressed replay supports the claim that replay faithfully recapitulates trajectory geometry for map consolidation.",
+    "mapping_caveat": "The study characterizes replay properties but does not test whether replay serves consolidation specifically (versus retrieval, evaluation, or reinforcement learning). MECH-092 claims a consolidation function; Diba & Buzsaki 2007 is consistent with this but also consistent with alternative functional interpretations. The forward replay (preplay) component suggests a planning role that goes beyond pure consolidation -- this is not contradictory to MECH-092 but expands the functional scope.",
+    "source_context": "Rats with tetrodes in hippocampal CA1 running on an elevated linear track. Place cell sequences recorded during running and during immobility periods at track ends. SWR events identified in LFP. Replay sequences detected via correlation of pairwise temporal offsets between run and rest."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "Excellent source quality (Nature Neuroscience, rigorous electrophysiology, Buzsaki lab). Mapping fidelity is good -- temporal compression and awake SWR association map directly onto MECH-092 -- but the study does not test consolidation function specifically. Transfer risk is moderate: the linear track paradigm is simpler than viability map navigation, and the functional interpretation (consolidation vs. planning vs. reinforcement) is not resolved by this study alone."
+  }
+}
