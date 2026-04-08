@@ -13040,6 +13040,13 @@
   status: candidate
   subject: goal.e1_schema_wanting
   implementation_phase: v3
+  implementation_note: >
+    IMPLEMENTED 2026-04-09. E1DeepPredictor.schema_readout_head (Linear(hidden_dim,1)+Sigmoid)
+    reads LSTM top-layer hidden state -> schema_salience [0,1]. Agent caches in _schema_salience
+    via _e1_tick(), seeds VALENCE_WANTING when > threshold via update_schema_wanting().
+    Config: E1Config.schema_wanting_enabled (False default), REEConfig.schema_wanting_threshold
+    (0.3), schema_wanting_gain (0.5). Training: compute_schema_readout_loss(resource_proximity_target).
+    Validation: EXQ-260 queued.
   description: >
     E1 schema activations that reliably predict resource encounters seed VALENCE_WANTING
     at the current z_world position before resource contact. This is a Pavlovian
