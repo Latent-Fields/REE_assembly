@@ -12879,3 +12879,177 @@
     EXQ-238, and the entire EXQ-085h-085o SD-015 series).
   registered: "2026-04-07"
   depends_on: [SD-009, SD-005]
+
+- id: INV-065
+  title: proxy_goal_necessity
+  claim_type: invariant
+  status: candidate
+  subject: goal.multi_step_planning
+  description: >
+    Any agent architecture with a bounded planning horizon and a sparse reward
+    landscape requires intermediate wanting-rich states (proxy goals) to exhibit
+    multi-step goal-directed behavior beyond the planning horizon. In REE terms: the
+    CEM planner operates over a fixed horizon (~10 steps). In environments where
+    resources are sparse or distal, resource z_world states will frequently lie
+    outside that horizon. Without intermediate states that have acquired wanting
+    value through schema binding or trajectory consolidation, the CEM score surface
+    has no gradient toward the resource -- the agent cannot plan beyond 10 steps.
+    Proxy goals are not a design choice but an architectural necessity: they are
+    whatever z_world states have acquired wanting value through experience-dependent
+    association, making the wanting landscape navigable at all scales. This is an
+    invariant prediction about any planning architecture with these properties,
+    independent of implementation details.
+  notes: >
+    The proxy goal mechanism emerges automatically in REE via two routes:
+    (1) E1 schema-conditioned wanting (MECH-216): schema slots predicting resource
+    encounter seed VALENCE_WANTING before direct contact, extending wanting coverage
+    to E1-predictive z_world states.
+    (2) Trajectory-consolidated wanting (MECH-217): reverse replay spreads wanting
+    backward along approach paths, making every waypoint a plannable sub-goal.
+    Neither route requires explicit proxy goal design -- they are consequences of
+    the wanting landscape architecture (SD-014, SD-015) combined with E1 schema
+    formation and offline consolidation. The invariant predicts that resource
+    acquisition rate in sparse environments will be strongly gated by the density
+    of proxy goals in the wanting landscape.
+  registered: "2026-04-08"
+  depends_on: [SD-014, SD-015, MECH-216, MECH-217]
+
+- id: MECH-216
+  title: e1_predictive_wanting
+  claim_type: mechanism
+  status: candidate
+  subject: goal.e1_schema_wanting
+  implementation_phase: v3
+  description: >
+    E1 schema activations that reliably predict resource encounters seed VALENCE_WANTING
+    at the current z_world position before resource contact. This is a Pavlovian
+    conditioned wanting mechanism: E1 acts as a CS-detector (firing on environmental
+    features that precede resources), and its activation seeds the same wanting signal
+    as the UCS (resource contact itself). The result is a wanting landscape that
+    extends beyond directly-encountered resource positions -- it also includes z_world
+    states from which resources are predictable via E1's learned schemas. The
+    hippocampus then navigates toward these E1-predicted wanting regions, producing
+    approach behavior toward schema-activating intermediate states (proto-proxy goals)
+    before the direct wanting signal from SD-014 is available.
+  notes: >
+    Mechanistic basis: E1's LSTM hidden state encodes schema activations. These
+    schemas form from temporal co-occurrence: E1 learns to predict z_world_t+1 from
+    z_world_t, and internally differentiates episodes in which resource contact
+    subsequently occurs from those that do not. Schema activation (the internal
+    E1 state preceding resource-predictive transitions) becomes the CS signal.
+    Implementation path in V3: requires reading out E1 schema activation magnitude
+    at each waking step and using it to modulate SerotoninModule.update_benefit_salience()
+    (which currently requires resource contact to update VALENCE_WANTING). A schema
+    activation signal above threshold would seed partial wanting without contact.
+    This is the forward-looking complement to MECH-217's backward consolidation.
+    DR-13 (z_self temporal depth) is not required -- this operates in z_world domain.
+    Distinguishable from direct contact wanting by spatial offset: E1 wanting fires
+    at approach positions, contact wanting fires at resource position.
+  registered: "2026-04-08"
+  depends_on: [SD-014, SD-018, MECH-203, INV-065]
+
+- id: MECH-217
+  title: temporal_wanting_propagation
+  claim_type: mechanism
+  status: candidate
+  subject: goal.replay_wanting_spread
+  implementation_phase: v3
+  description: >
+    Offline consolidation via reverse replay (MECH-165) spreads VALENCE_WANTING
+    backward along previously successful approach trajectories. During SWS replay,
+    the reversed world_state sequence of resource-approach episodes is replayed through
+    the residue field. Each waypoint along the reversed trajectory receives a fractional
+    wanting update proportional to the resource-contact wanting at the episode terminus
+    and decayed by distance from the contact event. This produces a wanting gradient
+    along the approach path: positions closer to the resource acquire stronger wanting
+    signal than positions farther away, creating a navigable gradient from any waypoint.
+    The practical effect is that multi-step goal-directed behavior emerges from
+    single-resource encounters: the agent can navigate toward any previously-traversed
+    waypoint (within CEM horizon) that was part of a resource-approach path.
+  notes: >
+    Mechanism requires MECH-165 (reverse replay substrate). MECH-165 is currently
+    a substrate gap (see ree-v3/docs/substrate_plans/mech165_reverse_replay_impl_plan.md).
+    Without MECH-165, MECH-217 cannot be implemented. Once MECH-165 is available:
+    the wanting-spread function can be added to HippocampalModule.reverse_replay() --
+    after generating the reversed Trajectory, iterate through world_states and call
+    ResidueField.update_valence() with decayed wanting at each step.
+    Decay schedule: wanting_at_waypoint = wanting_at_terminus * gamma^(steps_from_terminus),
+    gamma ~0.9. RBF bandwidth handles spatial smoothing.
+    This is the consolidation-mediated complement to MECH-216's waking schema
+    conditioning. Together they populate the wanting landscape at all temporal scales:
+    MECH-216 (waking, forward-looking), MECH-217 (offline, backward-spreading).
+    Distinguishable from MECH-216: MECH-217 wanting is path-specific (concentrated
+    along previously traversed routes), MECH-216 wanting is schema-specific (concentrated
+    at feature-activating positions regardless of prior path).
+  registered: "2026-04-08"
+  depends_on: [MECH-165, SD-014, INV-065]
+
+- id: MECH-218
+  title: interoceptive_predictive_wanting
+  claim_type: mechanism
+  status: candidate
+  subject: goal.interoceptive_wanting
+  implementation_phase: v4
+  description: >
+    When z_self depletion trend is established (energy falling before drive_level
+    becomes acutely high), E2's self-model projects forward and seeds anticipatory
+    homeostatic wanting -- VALENCE_WANTING populated by predicted future deficit rather
+    than by current resource proximity or schema activation. This produces approach
+    behaviour that begins before the need is critical: seeking before thirsty, rather
+    than seeking when thirsty. The signal flows from E2 self-transition predictions
+    (depletion rate) through GoalConfig.drive_weight modulation into VALENCE_WANTING
+    seeding, effectively increasing the drive-level multiplier before the actual
+    drive_level threshold is crossed. This is the anticipatory homeostatic extension
+    of SD-012 (reactive homeostatic drive modulation).
+  notes: >
+    V4 gated. Requires DR-13: z_self temporal depth. Without temporal depth in z_self
+    (currently body_obs -> MLP -> EMA, no recurrence), E2 cannot estimate depletion
+    *rate*, only current depletion *level*. DR-13 requires either recurrent z_self
+    encoder or E2 feedback into z_self enrichment (E2 as self-model with multi-step
+    prediction). Once DR-13 is available: the depletion rate signal can modulate
+    SerotoninModule (or a parallel interoceptive neuromodulator) to inject wanting
+    proportional to projected future deficit.
+    Distinguishable from SD-012 (reactive): reactive wanting fires on current
+    drive_level; predictive wanting fires on drive_level_rate (trend). Dissociation:
+    an agent with a depleted but stable energy level should NOT show MECH-218 wanting;
+    an agent with rapidly-falling energy at high baseline should show MECH-218 wanting
+    before the absolute threshold is crossed.
+    Clinical note: anticipatory homeostatic regulation failure (unable to seek before
+    critical deficit) is a component of executive dysfunction in ADHD and depression
+    where prospective self-model accuracy is degraded.
+  registered: "2026-04-08"
+  depends_on: [SD-012, MECH-203, INV-065]
+
+- id: ARC-051
+  title: multi_level_wanting_goal_hierarchy
+  claim_type: architecture_hypothesis
+  status: candidate
+  subject: goal.emergent_hierarchy
+  implementation_phase: v3
+  description: >
+    The combination of the VALENCE_WANTING landscape (SD-014), E1 schema-conditioned
+    wanting (MECH-216), and trajectory-consolidated wanting (MECH-217) produces an
+    emergent multi-level goal hierarchy without explicit goal-hierarchy design. Level 1:
+    direct resource encounter wanting (SD-018 + MECH-203, short-range, precise).
+    Level 2: E1-schema-mediated predictive wanting (MECH-216, medium-range, schema-
+    specific). Level 3: trajectory-consolidated wanting (MECH-217, long-range,
+    path-specific). All three levels populate the same VALENCE_WANTING field; the CEM
+    scorer responds to the combined gradient, enabling planning at all scales from a
+    single unified navigation mechanism. The architecture is sufficient for multi-step
+    goal-directed behavior without introducing a separate goal-planning subsystem.
+  notes: >
+    The hierarchy is emergent in the strict sense: it is not encoded anywhere as
+    a hierarchy -- it is a consequence of three separate mechanisms (contact-wanting,
+    schema-wanting, replay-wanting) that happen to operate at different spatial and
+    temporal scales and all feed the same VALENCE_WANTING field. The CEM planner
+    cannot distinguish which level it is responding to; it only sees the combined
+    gradient. This has a prediction: removing any one level degrades multi-step
+    performance at the scale that level operates -- removing MECH-217 degrades
+    performance specifically in paths longer than the E1 schema radius; removing
+    MECH-216 degrades performance in environments with reliable approach cues but
+    no clear CEM-horizon gradient.
+    The V4 interoceptive level (MECH-218) extends the hierarchy into the z_self
+    domain (ARC-031 territory) but is not required for the V3 multi-step claim.
+    Level 4 (MECH-218, V4): interoceptive anticipatory wanting (requires DR-13).
+  registered: "2026-04-08"
+  depends_on: [SD-014, MECH-216, MECH-217, INV-065, SD-018]
