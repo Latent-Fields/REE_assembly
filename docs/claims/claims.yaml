@@ -6910,6 +6910,10 @@
     This is the currently observed signature in V3 (no sleep substrate) and is
     predicted by MECH-120 absence, not by any other mechanism.
     Registered 2026-03-23. V4 scope. Functional outcome note added 2026-04-04.
+    Implementation note (2026-04-08): SHY wiring completed -- enter_sws_mode() now
+    calls E1.shy_normalise(decay) when shy_enabled=True. Config: REEConfig.shy_enabled
+    (bool, default False), REEConfig.shy_decay_rate (float, default 0.85). EXQ-245a
+    queued for validation.
 
 - id: MECH-121
   title: "The NREM sub-phase of offline mode replays recent episodic content via SWR-equivalent sequences, transferring episodic traces from E3/hippocampal buffer to E1/neocortical schematic representation."
