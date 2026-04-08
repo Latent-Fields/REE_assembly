@@ -1,0 +1,107 @@
+{
+  "run_id": "v3_exq_259_wanting_gradient_navigation_dry",
+  "experiment_type": "v3_exq_259_wanting_gradient_navigation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-015",
+    "MECH-112",
+    "ARC-030",
+    "SD-012"
+  ],
+  "evidence_direction_per_claim": {
+    "SD-015": "does_not_support",
+    "MECH-112": "does_not_support",
+    "ARC-030": "does_not_support",
+    "SD-012": "does_not_support"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_wanting_populated": false,
+    "c1_vals": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "c2_resource_rate_lift": false,
+    "c2_lifts": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "c3_benefit_lift": false,
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 1,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "p1_resource_counts": [],
+      "p1_benefit_exposures": []
+    },
+    {
+      "seed": 1,
+      "condition": "WITHOUT",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "p1_resource_counts": [],
+      "p1_benefit_exposures": []
+    },
+    {
+      "seed": 2,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "p1_resource_counts": [],
+      "p1_benefit_exposures": []
+    },
+    {
+      "seed": 2,
+      "condition": "WITHOUT",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "p1_resource_counts": [],
+      "p1_benefit_exposures": []
+    },
+    {
+      "seed": 3,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "p1_resource_counts": [],
+      "p1_benefit_exposures": []
+    },
+    {
+      "seed": 3,
+      "condition": "WITHOUT",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "p1_resource_counts": [],
+      "p1_benefit_exposures": []
+    }
+  ],
+  "config": {
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "conditions": [
+      "WITH_WANTING",
+      "WITHOUT"
+    ],
+    "wanting_weight": 0.4,
+    "p0_episodes": 100,
+    "p1_episodes": 50,
+    "steps_per_ep": 200
+  },
+  "timestamp": "2026-04-08T16:47:17.578590Z"
+}
