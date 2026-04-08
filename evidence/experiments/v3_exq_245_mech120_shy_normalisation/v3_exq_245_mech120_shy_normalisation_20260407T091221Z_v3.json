@@ -8,7 +8,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260407T091221Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "pass_criteria_summary": {
     "s1_shy_before_sws_beats_sws_alone": {
       "wins": 0,
@@ -164,5 +164,6 @@
     ],
     "env_safe_num_hazards": 1,
     "env_dangerous_num_hazards": 8
-  }
+  },
+  "evidence_direction_note": "Governance 2026-04-08: reclassified from weakens. MECH-120 is V4-scope (SWS attractor flattening / SHY normalisation). V3 proxy substrate lacks MECH-030, MECH-092, MECH-094, ARC-016 prerequisites. Both s1 and s2 failures reflect absent substrate, not claim falsification. Non-contributory pending V4 substrate implementation."
 }

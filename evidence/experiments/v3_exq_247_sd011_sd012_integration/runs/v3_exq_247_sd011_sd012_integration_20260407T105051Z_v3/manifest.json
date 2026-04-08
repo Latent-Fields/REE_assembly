@@ -57,5 +57,12 @@
   ],
   "train_episodes": 200,
   "eval_episodes": 50,
-  "steps_per_episode": 200
+  "steps_per_episode": 200,
+  "evidence_direction_per_claim": {
+    "SD-011": "does_not_support",
+    "SD-012": "does_not_support",
+    "ARC-033": "mixed",
+    "ARC-030": "does_not_support"
+  },
+  "evidence_direction_per_claim_note": "Governance 2026-04-08: per-claim breakdown added. C1 (commit differentiation) FAIL -> ARC-030 does_not_support. C2 (affect ratio) FAIL (1/3 seeds) -> SD-011 does_not_support. C3 (goal norm=0) FAIL -> SD-012 does_not_support (z_goal seeding absent). C4 (regression) PASS 2/3 seeds -> ARC-033 mixed (harm delta predictor worked partially). C5 (threshold separation) PASS 3/3 seeds -> commit gating functional."
 }

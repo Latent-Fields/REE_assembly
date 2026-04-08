@@ -8,7 +8,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260405T132907Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "pass_criteria_summary": {
     "m1_entropy_balanced_gt_forward": {
       "wins": 2,
@@ -215,5 +215,6 @@
     ],
     "env_safe_num_hazards": 1,
     "env_dangerous_num_hazards": 8
-  }
+  },
+  "evidence_direction_note": "Governance 2026-04-08: reclassified from weakens. Test-design limitation: proxy substrate (64 replay steps) and absent exploration source material mean experiment cannot discriminate replay diversity mechanism. Replay cannot increase behavioral diversity without exploration-generated alternative strategies as input. MECH-165 is V4-scope; redesign required to pair replay with explicit exploration before testing."
 }

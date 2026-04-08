@@ -6894,6 +6894,16 @@
     Empirical grounding: Hagewoud et al. 2010 (Sleep) showed that sleep deprivation
     shifts learning from hippocampal spatial strategy to rigid striatal response
     strategy in mice, with reversal learning deficit confirming reduced flexibility.
+  evidence_quality_note: >
+    EXQ-245 FAIL x2 (2026-04-05, 2026-04-07): both reclassified to non_contributory
+    (governance 2026-04-08). MECH-120 is V4-scope; V3 substrate lacks MECH-030,
+    MECH-092, MECH-094, ARC-016 prerequisites. s1 (SHY-then-SWS beats SWS-alone)
+    failure reflects absent substrate, not claim falsification. Run 1 showed s2 PASS
+    (correct order beats wrong order, 3/3 seeds) but run 2 regression (s2 also FAIL 1/3).
+    Literature support strong (7 entries). Held at candidate pending V4 substrate
+    implementation. Note (2026-04-08): user confirmed decision to pull V4 mechanisms
+    into V3 scope -- MECH-120 substrate (SHY decay, SWS residue scaling) should be
+    planned for V3 implementation. hold_candidate_resolve_conflict applied.
     Suppermpool et al. 2024 (Nature) confirmed single-neuron SHY operation in
     zebrafish with sleep-pressure gating. Prediction for REE: a minimal mind without
     a sleep substrate will show monostrategy convergence under extended training.
@@ -6993,12 +7003,15 @@
     transferred to E1. This provides a potential diagnostic metric in V4.
     Registered 2026-03-23. V4 scope.
   evidence_quality_note: >
-    EXQ-246 PASS (2026-04-05): V3 proxy spindle coordination test. Reclassified to
-    inconclusive (governance 2026-04-07). PASS is vacuously true -- WITH_SPINDLE and
-    NO_SPINDLE conditions produced identical metrics in all 3 seeds (harm rates, harm
-    discrimination, harm_eval values all identical). Phase 3 spindle proxy (ThetaBuffer
-    consolidation_summary written back to ContextMemory) had zero measurable effect.
-    V3 proxy is too weak to produce signal for this V4-scope mechanism.
+    EXQ-246 PASS x2 (2026-04-05): two V3 proxy spindle coordination runs. Both
+    reclassified to inconclusive (governance 2026-04-07 for first run, 2026-04-08
+    for second indexed run). PASSes are vacuously true -- WITH_SPINDLE and NO_SPINDLE
+    conditions produced identical metrics in all 3 seeds in both runs (harm rates,
+    harm discrimination, harm_eval values all identical). Phase 3 spindle proxy
+    (ThetaBuffer consolidation_summary written back to ContextMemory) had zero
+    measurable effect. V3 proxy too weak to produce signal for this V4-scope mechanism.
+    Promotion to provisional deferred: no real experimental evidence. MECH-122 requires
+    a functional spindle mechanism (V4-scope). hold_candidate applied.
 
 - id: MECH-123
   title: "The REM sub-phase of offline mode recalibrates precision priors and tests world model hypotheses via unconstrained generative simulation, with commit gate fully suppressed."
@@ -9945,6 +9958,9 @@
     Test-design limitation confirmed: proxy substrate and missing exploration source material
     mean the experiment cannot test the claim. Conflict ratio should resolve after index rebuild.
     Status: hold_candidate, needs_redesign (pair replay with exploration mechanism).
+    GOVERNANCE (2026-04-08): Manifests corrected, hold_candidate_resolve_conflict applied.
+    Note: user confirmed V4 mechanisms being pulled into V3 scope -- MECH-165 substrate
+    (reverse replay scheduler, exploration source material) should be planned for V3.
 
 - id: SD-017
   title: "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated."
@@ -11409,13 +11425,20 @@
     Theoretical. Maps to 5-HT projections from DRN to dlPFC sustaining working memory
     under adversity. Well-established in human and animal literature: low 5-HT = impaired
     PFC function, difficulty sustaining goal representations against distraction/threat.
+    EXQ-253 FAIL (2026-04-07): reclassified to non_contributory (governance 2026-04-08).
+    z_goal_inject=0.3 added but behavioral gap=0 -- without baseline z_goal seeding
+    (SD-012 not resolved), injection cannot demonstrate persistence of an absent goal.
+    Non-contributory pending V3/V4 substrate implementation. Note (2026-04-08): user
+    confirmed decision to pull V4 mechanisms into V3 scope -- MECH-188 substrate
+    (5-HT DRN->dlPFC persistence mechanism) should be planned for V3.
+    hold_candidate_resolve_conflict applied.
 
 - id: INV-052
   title: "Goal-directed behaviour in adversive environments requires a tonic regulatory system maintaining benefit orientation across terrain, transduction, and maintenance stages."
   claim_type: invariant
   subject: goal_directed_agency.tonic_regulatory_system
   polarity: asserts
-  status: candidate
+  status: provisional
   confidence: 0.0
   depends_on:
     - MECH-186
@@ -11434,13 +11457,21 @@
     variable harm/benefit ratios will exhibit motivational collapse without tonic
     regulation of these three stages. The serotonergic system is one biological
     instantiation; others are possible.
+  evidence_quality_note: >
+    EXQ-254 PASS x2 (2026-04-07): two replications, both PASS. single_mechanism_sufficient=false
+    in all 6 conditions (no floor, gain, or persistence mechanism alone sufficient across SIMPLE
+    and LONG_HORIZON contexts). Replication confirms joint necessity: INV-052 holds reliably.
+    Note: combined_sufficient=false also -- even all three together did not fully recover
+    LONG_HORIZON performance. Expected at V3 with partial substrate; joint-necessity finding
+    valid regardless. Promoted to provisional (governance 2026-04-08). overall_conf=0.914,
+    conflict_ratio=0, 4 experimental PASSes.
 
 - id: INV-053
   title: "Chronic harm-dominated environments produce a self-maintaining depressive attractor: z_goal seeding failure, terrain collapse, and HABIT/PLANNED behavioural equivalence."
   claim_type: invariant
   subject: psychiatric.computational_depression_attractor
   polarity: asserts
-  status: candidate
+  status: provisional
   confidence: 0.0
   depends_on:
     - INV-052
@@ -11466,7 +11497,10 @@
   evidence_quality_note: >
     EXQ-237a LONG_HORIZON: HABIT goal_norm=0.000, PLANNED goal_norm=0.004,
     resource_rate identical (0.050), harm_rate identical (0.140). Emergent, not designed.
-    Seed=42 only; full replication pending seeds 7+13.
+    EXQ-249 PASS x2 (2026-04-07): two 5-seed replications, both fully PASS. z_goal_norm=0.019
+    (both runs), approach_rate=0.010, all 5 seeds meet both criteria (c1 goal_norm<thresh,
+    c2 behavioral_equivalence<thresh). Attractor is highly reproducible and consistent.
+    Promoted to provisional (governance 2026-04-08). overall_conf=0.819, conflict_ratio=0.
 
 - id: INV-054
   title: "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity."

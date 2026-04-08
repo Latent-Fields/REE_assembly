@@ -8,7 +8,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260405T131658Z",
   "outcome": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "inconclusive",
   "pass_criteria_summary": {
     "t1_spindle_no_harm_regression": {
       "wins": 3,
@@ -141,5 +141,6 @@
     ],
     "env_safe_num_hazards": 1,
     "env_dangerous_num_hazards": 8
-  }
+  },
+  "evidence_direction_note": "Governance 2026-04-07 (manifest corrected 2026-04-08): reclassified from supports. Vacuous PASS -- WITH_SPINDLE and NO_SPINDLE produced identical metrics in all 3 seeds. V3 spindle proxy has zero measurable effect on harm discrimination. MECH-122 is V4-scope; real evidence requires functional spindle mechanism."
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "contributions/v1",
-  "last_updated": "2026-04-06T18:51:29Z",
+  "last_updated": "2026-04-08T05:54:52Z",
   "compute": {
     "cost_model": {
       "electricity_kwh_rate": 0.27,
@@ -29,12 +29,12 @@
         "hardware": "Apple M2 Air 8GB",
         "tdp_watts": 15,
         "gpu_watts": 0,
-        "total_cpu_hours": 105.89,
-        "total_experiments": 206,
+        "total_cpu_hours": 138.052,
+        "total_experiments": 218,
         "first_run": "2026-03-22T01:42:13.931249+00:00",
-        "last_run": "2026-04-06T08:09:44.911323+00:00",
-        "estimated_electricity_cost_eur": 0.4289,
-        "estimated_cloud_equivalent_cost_usd": 4.405
+        "last_run": "2026-04-07T19:48:36.947428+00:00",
+        "estimated_electricity_cost_eur": 0.5591,
+        "estimated_cloud_equivalent_cost_usd": 5.7429
       },
       "Daniel-PC": {
         "display_name": "CyberPower PC (i5-8600K + RTX 2060 Super)",
@@ -42,12 +42,12 @@
         "hardware": "i5-8600K, GTX 1050 Ti 4GB, 8GB RAM",
         "tdp_watts": 95,
         "gpu_watts": 75,
-        "total_cpu_hours": 0.381,
-        "total_experiments": 4,
+        "total_cpu_hours": 9.856,
+        "total_experiments": 7,
         "first_run": "2026-03-22T23:45:30.370016+00:00",
-        "last_run": "2026-03-23T14:56:36.050538+00:00",
-        "estimated_electricity_cost_eur": 0.0175,
-        "estimated_cloud_equivalent_cost_usd": 0.0159
+        "last_run": "2026-04-05T23:48:17.471337+00:00",
+        "estimated_electricity_cost_eur": 0.4524,
+        "estimated_cloud_equivalent_cost_usd": 0.41
       },
       "EWIN-PC": {
         "display_name": "EWIN-PC (Ryzen 7 8700F + RTX 5070)",
@@ -55,12 +55,12 @@
         "hardware": "AMD Ryzen 7 8700F, RTX 5070 12GB, 32GB DDR5",
         "tdp_watts": 65,
         "gpu_watts": 150,
-        "total_cpu_hours": 18.312,
-        "total_experiments": 6,
+        "total_cpu_hours": 23.835,
+        "total_experiments": 8,
         "first_run": "2026-04-05T00:18:52.367318+00:00",
-        "last_run": "2026-04-06T02:28:50.472673+00:00",
-        "estimated_electricity_cost_eur": 1.063,
-        "estimated_cloud_equivalent_cost_usd": 0.7618
+        "last_run": "2026-04-07T10:15:46.889741+00:00",
+        "estimated_electricity_cost_eur": 1.3836,
+        "estimated_cloud_equivalent_cost_usd": 0.9915
       },
       "Mac": {
         "display_name": "Mac",
@@ -74,11 +74,24 @@
         "last_run": "2026-03-29T13:22:42.539343+00:00",
         "estimated_electricity_cost_eur": 0.0607,
         "estimated_cloud_equivalent_cost_usd": 0.6239
+      },
+      "ree-cloud-1": {
+        "display_name": "ree-cloud-1",
+        "owner": "Unknown",
+        "hardware": "Unknown",
+        "tdp_watts": 15,
+        "gpu_watts": 0,
+        "total_cpu_hours": 3.296,
+        "total_experiments": 18,
+        "first_run": "2026-04-06T15:55:57.691885+00:00",
+        "last_run": "2026-04-06T16:23:25.638137+00:00",
+        "estimated_electricity_cost_eur": 0.0133,
+        "estimated_cloud_equivalent_cost_usd": 0.1371
       }
     },
     "totals": {
-      "cpu_hours": 203.58,
-      "experiments": 394
+      "cpu_hours": 254.036,
+      "experiments": 429
     }
   },
   "decisions": {
@@ -104,29 +117,29 @@
   },
   "coding": {
     "baseline_method": "git_co_authorship",
-    "baseline_date": "2026-04-06",
-    "total_lines_analyzed": 4869578,
-    "total_commits_analyzed": 1933,
+    "baseline_date": "2026-04-08",
+    "total_lines_analyzed": 5000364,
+    "total_commits_analyzed": 1970,
     "contributors": {
       "Claude (Anthropic)": {
-        "lines_added": 795791,
-        "commits": 752,
-        "proportion_by_lines": 0.1634,
-        "proportion_by_commits": 0.389,
+        "lines_added": 805413,
+        "commits": 757,
+        "proportion_by_lines": 0.1611,
+        "proportion_by_commits": 0.3843,
         "basis": "git_history_co_authorship"
       },
       "Codex (OpenAI)": {
         "lines_added": 0,
         "commits": 3,
         "proportion_by_lines": 0.0,
-        "proportion_by_commits": 0.0016,
+        "proportion_by_commits": 0.0015,
         "basis": "git_history_co_authorship"
       },
       "Daniel Golden": {
-        "lines_added": 4073787,
-        "commits": 1178,
-        "proportion_by_lines": 0.8366,
-        "proportion_by_commits": 0.6094,
+        "lines_added": 4194951,
+        "commits": 1210,
+        "proportion_by_lines": 0.8389,
+        "proportion_by_commits": 0.6142,
         "basis": "git_history_co_authorship"
       }
     },

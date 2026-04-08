@@ -7,7 +7,7 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "decision": "surprise_gating_nonfunctional",
   "timestamp_utc": "20260407T131339Z",
   "timestamp": 1775567619,
@@ -128,5 +128,6 @@
       "mean_surprise": 3.663150855550687e-06,
       "surprise_tag_populated": false
     }
-  ]
+  ],
+  "evidence_direction_note": "Governance 2026-04-08: reclassified from weakens. Diagnostic classification. P2 (PE collected) and P3 (PE EMA varies) both PASS (3/3 seeds) -- PE infrastructure works. P1 fails because VALENCE_SURPRISE write path not triggering (threshold not met or wiring gap in Tier 1 implementation). This is a substrate wiring diagnostic, not evidence that surprise-gated replay fails. MECH-205 Tier 1 implementation needs VALENCE_SURPRISE write threshold calibration."
 }
