@@ -5674,6 +5674,13 @@
     distinct pathway. Wiring needs a second source (context, history, residue field) inaccessible
     to the sensory stream. Status: pending_retest_after_substrate (gate: EXQ-247 wires z_harm_a
     into E3 commit gating, may create functional distinction).
+    IMPLEMENTATION (2026-04-08): Second source implemented. AffectiveHarmEncoder now receives
+    harm_history (FIFO rolling window of past harm_exposure scalars, length=harm_history_len)
+    concatenated with harm_obs_a. Auxiliary harm_accum_head predicts accumulated harm scalar
+    (MSE loss, weight=z_harm_a_aux_loss_weight). This gives z_harm_a genuinely distinct temporal
+    information (harm trajectory over time) that z_harm_s does not receive, resolving the D3
+    reversal. Config: LatentStackConfig.harm_history_len (default 0, set 10 to enable).
+    EXQ-241a validation queued. Status: ready for retest.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -12884,6 +12891,94 @@
   registered: "2026-04-07"
   depends_on: [SD-009, SD-005]
 
+- id: SD-019
+  title: affective_harm_nonredundancy_constraint
+  claim_type: design_decision
+  status: candidate
+  implementation_phase: v3
+  subject: harm_stream.affective_nonredundancy
+  polarity: asserts
+  description: >
+    The affective harm stream (`z_harm_a`) must encode temporally integrated threat load,
+    not a delayed, smoothed, or monotone-transformed copy of the sensory-discriminative
+    harm stream (`z_harm_s`). `z_harm_s` tracks immediate, action-conditional hazard
+    proximity/intensity and supports forward prediction (`E2_harm_s`). `z_harm_a` serves a
+    different function: it encodes accumulated threat burden with motivational relevance for
+    urgency and commitment modulation. A valid `z_harm_a` implementation must therefore admit
+    dissociations where immediate sensory harm is low but affective load remains elevated, and
+    where brief sensory spikes do not saturate affective load.
+  notes: >
+    This claim sharpens SD-011. SD-011 establishes the dual-stream split in principle:
+    sensory-discriminative vs affective-motivational. SD-019 adds a stricter substrate
+    constraint: the affective stream is invalid if it is recoverable as a simple lagged or
+    monotone mapping from the sensory stream. Biological grounding: the C-fiber /
+    paleospinothalamic pathway is slower and more integrative than the A-delta pathway, but
+    the critical computational property is not "delay" alone; it is nonredundant temporal
+    integration with persistence and slower recovery. Motivated by EXQ-241 and EXQ-241a:
+    both show that `z_harm_a` can track accumulated harm while remaining too close to
+    `z_harm_s` functionally (D3 reversal persists in EXQ-241a despite harm-history input).
+    The design requirement is therefore representational nonredundancy, not merely temporal lag.
+  registered: "2026-04-08"
+  depends_on: [SD-011, SD-010, ARC-016]
+  location: docs/architecture/sensory_stream_tags.md#sd-019
+
+- id: MECH-219
+  title: affective_harm_hysteretic_integration
+  claim_type: mechanism_hypothesis
+  status: candidate
+  implementation_phase: v3
+  subject: harm_stream.hysteretic_affective_load
+  polarity: asserts
+  description: >
+    `z_harm_a` is generated from a temporally extended harm-history signal by a hysteretic
+    integration rule: affective load rises under sustained or repeated harm exposure and
+    decays more slowly once exposure stops. The resulting signal is not reconstructible from
+    instantaneous sensory harm alone and therefore provides E3 with a genuine motivational
+    urgency channel rather than a second copy of proximity. The first operational form is a
+    leaky integrator over recent harm exposure with asymmetric onset and recovery parameters.
+  notes: >
+    This is the first concrete mechanism proposal satisfying SD-019. A pure delay
+    (`z_harm_a(t) = z_harm_s(t-k)`) is insufficient because it preserves recoverability from
+    the sensory stream and is unlikely to produce meaningful motivational dissociation. The
+    proposed mechanism instead uses hysteretic integration: repeated or sustained harm drives
+    the load upward, while recovery is slower and path-dependent. This matches the intended
+    role of `z_harm_a` in ARC-016-style urgency and commitment modulation. The mechanism is
+    compatible with the harm-history input added on 2026-04-08, but makes the stronger claim
+    that asymmetric rise/decay dynamics are necessary. Testable predictions: (1) after harm
+    offset, `z_harm_s` falls rapidly while `z_harm_a` remains elevated; (2) repeated brief
+    harms summate in `z_harm_a` more than single isolated harms; (3) two trajectories with
+    matched current `z_harm_s` but different recent harm histories produce different
+    `z_harm_a` norms and different urgency effects in E3.
+  registered: "2026-04-08"
+  depends_on: [SD-019, SD-011, ARC-016]
+  location: docs/architecture/sensory_stream_tags.md#mech-219
+
+- id: Q-036
+  title: "What additional variables, beyond temporal integration, are required for affective harm to become a genuinely distinct load state: persistence, recovery failure, uncontrollability, inescapability, or prediction error?"
+  claim_type: question
+  subject: harm_stream.affective_load_drivers
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  depends_on:
+    - SD-019
+    - MECH-219
+  location: docs/architecture/sensory_stream_tags.md#q-036
+  short: >
+    Is temporal hysteresis sufficient for `z_harm_a`, or must affective load also depend on
+    persistence, recovery failure, uncontrollability, inescapability, or surprise?
+  description: >
+    Temporal integration is the most conservative mechanism for differentiating affective
+    harm from sensory harm, but it may not be sufficient. Human affective pain and threat
+    load appear to depend not only on duration and intensity but also on whether harm is
+    escapable, controllable, surprising, or recurrent despite attempted avoidance. The
+    answer determines whether MECH-219 can remain a simple hysteretic integrator or whether
+    `z_harm_a` requires additional weighting terms. REE implication: if temporal hysteresis
+    alone fails to produce a functionally distinct urgency signal, the next candidate
+    variables should be persistence of exposure, recovery failure after offset,
+    uncontrollability or inescapability, and prediction-error weighted threat.
+  suggested_experiment_type: discriminative_pair
+
 - id: INV-065
   title: proxy_goal_necessity
   claim_type: invariant
@@ -13057,3 +13152,144 @@
     Level 4 (MECH-218, V4): interoceptive anticipatory wanting (requires DR-13).
   registered: "2026-04-08"
   depends_on: [SD-014, MECH-216, MECH-217, INV-065, SD-018]
+
+- id: SD-020
+  title: "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude."
+  claim_type: design_decision
+  subject: harm_stream.affective_surprise_pe
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  depends_on: [SD-011, SD-019, ARC-016]
+  functional_restatement: >
+    The current AffectiveHarmEncoder trains z_harm_a via an auxiliary head predicting raw
+    accumulated harm scalar. This makes z_harm_a an integrator of absolute state, not a
+    surprise detector. Chen (2023, Front Neural Circuits) establishes that the anterior
+    insula cortex (AIC) -- the biological analog of z_harm_a -- responds to "unsigned
+    intensity prediction errors as a modality-unspecific aversive surprise signal," not to
+    raw stimulus magnitude. SD-020 requires replacing the aux loss target: instead of
+    MSE(harm_accum_pred, accumulated_harm), train on MSE(harm_surprise_pred, harm_PE)
+    where harm_PE = actual_accum - predicted_accum. This makes z_harm_a encode how
+    SURPRISING the current threat level is, not how high it is. E3 urgency then responds
+    to unexpected threat escalation (which requires immediate behavioral change) rather
+    than sustained-but-expected threat (which the agent may already be handling).
+  evidence_quality_note: >
+    No experimental evidence yet. Derived from systematic comparison of Chen (2023)
+    hierarchical predictive coding framework against current SD-011 implementation.
+    Chen explicitly states AIC encodes PE, not raw state. Seymour (2019, Neuron) supports
+    the framing: pain-as-RL-signal is a precision-weighted control signal, not raw
+    nociceptive magnitude. Q-036 (already registered) asks exactly this question --
+    SD-020 is the "prediction error" answer to Q-036's open question.
+  notes: >
+    Addresses Q-036 directly. If SD-020 is confirmed experimentally, Q-036 answer is:
+    "surprise (PE) is necessary in addition to temporal integration." The implementation
+    requires a simple harm-accumulation predictor (e.g., linear model of harm_accum from
+    previous steps) to generate the PE target. This is a low-complexity change to the
+    training loop, not the encoder architecture. The encoder stays the same; only the
+    aux loss target changes.
+  registered: "2026-04-08"
+  location: docs/architecture/sd_011_dual_nociceptive_streams.md
+
+- id: SD-021
+  title: "Descending pain modulation: when E3 is committed to a trajectory through expected harm, z_harm_s PE precision is reduced (endogenous analgesia). Commitment gates sensory harm attenuation."
+  claim_type: design_decision
+  subject: harm_stream.descending_modulation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  depends_on: [SD-011, SD-020, ARC-016, MECH-090]
+  functional_restatement: >
+    The harm stream is currently purely feed-forward: bottom-up encoding from observations
+    to latent, consumed by E3. There is no descending pathway. Chen (2023) emphasizes that
+    the pain system includes a descending inhibitory pathway (pgACC -> PAG -> RVM) that
+    provides top-down suppression of nociceptive input during committed action. In REE
+    terms: when E3 commits to a trajectory that passes through a hazard (accepted expected
+    harm), the sensory harm stream z_harm_s should be precision-downweighted for the
+    PREDICTED component of harm. The forward model E2_harm_s already predicts z_harm_s_next
+    -- the precision of the residual (actual - predicted) should be reduced during
+    commitment. Implementation: when E3.committed_trajectory is not None and beta_gate is
+    elevated (MECH-090), multiply z_harm_s PE by a commitment-gated attenuation factor
+    (0 < alpha_descending < 1). z_harm_a is NOT attenuated (affective load persists
+    regardless of commitment -- you can tolerate expected pain but it still matters).
+  evidence_quality_note: >
+    No experimental evidence yet. Derived from Chen (2023) descending pathway emphasis
+    and Keltner (2006) finding that expectation modulates sensory transmission through
+    a distinct modulatory network. Keltner showed expectation activates caudal ACC/nCF
+    (modulatory) while suppressing thalamus/S2/insula (sensory) -- this IS descending
+    modulation. The REE implementation maps commitment -> expected harm prediction ->
+    sensory PE attenuation. Biological grounding: endogenous opioid system provides
+    analgesia during committed escape/approach behavior.
+  notes: >
+    This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
+    to reach a goal suppresses sensory alarm for the expected harm component while
+    maintaining affective urgency (z_harm_a still elevated). Disruption of this mechanism
+    maps to hyperalgesia / anxiety disorders (inability to attenuate expected sensory harm
+    during committed action). Connects to MECH-090 (beta gating) and MECH-094 (hypothesis
+    tag). During beta-elevated commitment, the agent is executing, not planning -- sensory
+    PE precision should be reduced.
+  registered: "2026-04-08"
+  location: docs/architecture/sd_011_dual_nociceptive_streams.md
+
+- id: MECH-220
+  title: harm_stream_hub_coordination
+  claim_type: mechanism_hypothesis
+  subject: harm_stream.cross_stream_hub
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on: [SD-011, SD-020, SD-021, ARC-016]
+  description: >
+    A lightweight cross-stream coordination mechanism (harm hub) allows z_harm_s and
+    z_harm_a to share context without collapsing into a single stream. The hub implements
+    two directed interactions: (1) z_harm_a receives z_harm_s PE magnitude as context
+    (sensory surprise informs affective load update rate); (2) z_harm_s precision is gated
+    by z_harm_a urgency level (high affective load amplifies sensory sensitivity -- the
+    hypervigilance pathway). This is NOT a fusion: the streams maintain separate encoders,
+    separate training targets, and separate functional roles. The hub is a gating/attention
+    mechanism that coordinates their interaction.
+  notes: >
+    Derived from Chen (2023) "cingulate-insula hub" concept. Chen's central claim: the
+    two pain pathways are not fully independent parallel channels but are coordinated
+    by a cingulate-insula hub with four functions: salience detection, cortical-subcortical
+    integration, network switching, and ACC functional coupling. Our current implementation
+    has z_harm_s and z_harm_a as completely independent encoders with zero cross-talk.
+    The hub mechanism addresses this gap with minimal architectural change: a single
+    attention/gating layer after the two encoders, parameterised by hub_weight.
+    Testable prediction: hub_weight > 0 should improve both forward model R^2 (z_harm_s
+    benefits from affective context for precision) and urgency calibration (z_harm_a
+    benefits from sensory PE for surprise detection). A hub_weight ablation should show
+    performance degradation vs the coordinated version.
+  registered: "2026-04-08"
+  location: docs/architecture/sd_011_dual_nociceptive_streams.md
+
+- id: ARC-052
+  title: harm_precision_weighting
+  claim_type: architecture_hypothesis
+  subject: harm_stream.dynamic_precision
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on: [SD-011, SD-020, ARC-016, MECH-220]
+  description: >
+    Each harm stream outputs a precision estimate alongside its latent vector. E3's use of
+    harm streams is weighted by their respective precisions: high-precision z_harm_s has more
+    influence on attribution (SD-003), high-precision z_harm_a has more influence on commit
+    gating. Precision is context-dependent: (1) z_harm_s precision increases with forward
+    model accuracy (when E2_harm_s predictions are good, the PE is more informative);
+    (2) z_harm_a precision increases with accumulation stability (when threat state is
+    changing rapidly, z_harm_a is less precise -- high volatility reduces confidence in the
+    accumulated state). Neuromodulatory inputs (serotonin, norepinephrine) modulate the
+    precision gains, matching Chen (2023) ACh/NE/DA precision control framework.
+  notes: >
+    This extends ARC-016 (dynamic precision) into the harm stream specifically. Chen (2023)
+    formalizes gain = xi_2 / (xi_2 + xi_1) where relative precision determines how much PE
+    updates the prediction. Our current harm encoders have fixed architectures with no
+    precision output. Adding a precision head (sigma output alongside mu) to each encoder
+    enables the precision-weighted framework. Implementation: HarmEncoder and
+    AffectiveHarmEncoder each output (z, log_sigma); E3 weights inputs by exp(-log_sigma).
+    V3 scope: implement precision heads but use fixed precision initially; modulate in
+    experiments. V4: wire neuromodulatory control (SerotoninModule already exists).
+  registered: "2026-04-08"
+  location: docs/architecture/sd_011_dual_nociceptive_streams.md

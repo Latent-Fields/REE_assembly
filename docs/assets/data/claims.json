@@ -305,6 +305,12 @@
     "title": "multi_level_wanting_goal_hierarchy",
     "type": "architecture_hypothesis"
   },
+  "ARC-052": {
+    "status": "candidate",
+    "subject": "harm_stream.dynamic_precision",
+    "title": "harm_precision_weighting",
+    "type": "architecture_hypothesis"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -2165,6 +2171,18 @@
     "title": "interoceptive_predictive_wanting",
     "type": "mechanism"
   },
+  "MECH-219": {
+    "status": "candidate",
+    "subject": "harm_stream.hysteretic_affective_load",
+    "title": "affective_harm_hysteretic_integration",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-220": {
+    "status": "candidate",
+    "subject": "harm_stream.cross_stream_hub",
+    "title": "harm_stream_hub_coordination",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -2375,6 +2393,12 @@
     "title": "What is the minimal signal architecture for play frame maintenance: is a single bilateral open/close tag sufficient, or does ongoing signal exchange (a continuous play-face equivalent) need to be sustained throughout the episode?",
     "type": "question"
   },
+  "Q-036": {
+    "status": "open",
+    "subject": "harm_stream.affective_load_drivers",
+    "title": "What additional variables, beyond temporal integration, are required for affective harm to become a genuinely distinct load state: persistence, recovery failure, uncontrollability, inescapability, or prediction error?",
+    "type": "question"
+  },
   "SD-001": {
     "status": "resolved",
     "subject": "hippocampal_module.cem_trajectory_search_placement",
@@ -2476,5 +2500,23 @@
     "subject": "encoder.resource_proximity",
     "title": "encoder.resource_proximity_supervision",
     "type": "substrate_decision"
+  },
+  "SD-019": {
+    "status": "candidate",
+    "subject": "harm_stream.affective_nonredundancy",
+    "title": "affective_harm_nonredundancy_constraint",
+    "type": "design_decision"
+  },
+  "SD-020": {
+    "status": "candidate",
+    "subject": "harm_stream.affective_surprise_pe",
+    "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
+    "type": "design_decision"
+  },
+  "SD-021": {
+    "status": "candidate",
+    "subject": "harm_stream.descending_modulation",
+    "title": "Descending pain modulation: when E3 is committed to a trajectory through expected harm, z_harm_s PE precision is reduced (endogenous analgesia). Commitment gates sensory harm attenuation.",
+    "type": "design_decision"
   }
 }
