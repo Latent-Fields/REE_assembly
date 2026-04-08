@@ -2,7 +2,7 @@
 
 **Claim ID:** SD-011
 **Subject:** `harm_stream.dual_nociceptive_streams`
-**Status:** PENDING — current primary implementation bottleneck
+**Status:** IMPLEMENTED (base 2026-03-30, second source 2026-04-08)
 **Registered:** 2026-03-24
 **Depends on:** SD-010, ARC-027
 **Blocks:** SD-003 redesign (EXQ-093/094 confirmed infeasibility of z_world → z_harm bridge)
