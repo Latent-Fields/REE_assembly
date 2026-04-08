@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-04-08_sd_011_predictive_coding_pain_chen2023",
+  "timestamp_utc": "2026-04-08T22:25:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Hierarchical predictive coding in distributed pain circuits",
+    "authors": ["Zhe Sage Chen"],
+    "year": 2023,
+    "venue": "Frontiers in Neural Circuits",
+    "doi": "10.3389/fncir.2023.1073537"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Comprehensive mini-review (2023) explicitly formalizing two anatomically separable ascending pain pathways within a hierarchical predictive coding framework: medial pathway (dACC + AIC, affective-emotional) and lateral pathway (somatosensory cortex, sensory-discriminative). The predictive coding formalization with precision-weighted PEs at each level maps directly to SD-011's z_harm_s (lateral, forward-predictable via PE) vs z_harm_a (medial, integrated affective state). The posterior-to-anterior insular gradient with traveling waves provides an implementation mechanism. Marked as a mini-review rather than primary experimental data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is a mini-review with a proposed framework, not primary experimental validation. Many components remain speculative (as the author acknowledges).",
+    "The medial/lateral pathway distinction maps to cortical processing, not directly to the spinal-level Adelta/C-fiber distinction that SD-011 grounds its dual streams in."
+  ],
+  "tags": ["sd_011", "predictive_coding", "active_inference", "dual_pathway", "cingulate_insula_hub", "precision_weighting", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "Two major ascending pain pathways are anatomically and functionally separable. The medial pain pathway involves dACC and AIC as main nodes, whereas the lateral pain pathway involves somatosensory cortex. Within a hierarchical predictive coding framework, signals descending the hierarchy convey predictions while signals ascending the hierarchy propagate prediction errors. The precision-weighted gain parameter (relative precision xi_2/(xi_2+xi_1)) modulates PE magnitude at each level. The insula shows a functional gradient: PIC encodes stimulus intensity and expectations (prediction units), AIC responds to prediction errors as modality-unspecific aversive surprise signals.",
+    "ree_translation": "Lateral pathway (somatosensory cortex, PIC) = z_harm_s: encodes sensory-discriminative information, subject to predictive coding cancellation via precision-weighted PEs. When E2_harm_s accurately predicts harm_s_next, the PE is small and the gain attenuates the signal. Medial pathway (dACC, AIC) = z_harm_a: encodes affective-emotional/motivational state, integrates across modalities and time, generates the 'aversive surprise' signal that drives behavioral control. The cingulate-insula hub coordinates these streams hierarchically rather than as parallel independent channels. This matches SD-011's claim that z_harm_s is forward-predictable (amenable to E2 forward model) while z_harm_a is integrative/motivational (feeds E3 directly).",
+    "mapping_caveat": "The medial/lateral cortical pathway distinction does not perfectly map to the spinal Adelta/C-fiber distinction that SD-011 uses as its biological grounding. The cortical pathways receive mixed input from both fiber types. Chen's framework emphasizes the cingulate-insula hub as a coordinating center, suggesting the streams are not fully independent but hierarchically organized — this could either strengthen or complicate SD-011's clean two-stream separation depending on how the hierarchy is interpreted.",
+    "source_context": "Mini-review integrating human neuroimaging, rodent optogenetics, and computational theory. Proposed framework with some speculative components. 2023 publication reflects current state of the field."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.15,
+    "notes": "Source quality moderate (Frontiers mini-review, not primary data, but comprehensive and well-grounded in recent optogenetics evidence). Mapping fidelity high: the explicit two-pathway formalization with precision-weighted PEs maps very directly to SD-011's dual-stream architecture. Transfer risk very low: directly about the computational architecture of human pain processing, synthesizing both human and animal evidence."
+  }
+}

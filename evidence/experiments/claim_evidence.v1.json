@@ -196,7 +196,7 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.701, lit_conf=0.834",
+      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.7, lit_conf=0.834",
       "direction_counts": {
         "mixed": 2,
         "supports": 16,
@@ -213,7 +213,7 @@
         "lit:neuroscience_experiment": 1,
         "lit:theoretical_review": 6
       },
-      "experimental_confidence": 0.701,
+      "experimental_confidence": 0.7,
       "fail_runs": 5,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -374,7 +374,7 @@
       }
     },
     "ARC-014": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.798",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.797",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -397,8 +397,8 @@
       },
       "latest_run_id": "2026-04-05_arc014_rangel_camerer_montague_2008",
       "latest_timestamp_utc": "2026-04-05T18:00:00Z",
-      "literature_confidence": 0.798,
-      "overall_confidence": 0.798,
+      "literature_confidence": 0.797,
+      "overall_confidence": 0.797,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -584,7 +584,7 @@
       }
     },
     "ARC-017": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.507, lit_conf=0.822",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.506, lit_conf=0.822",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -597,7 +597,7 @@
         "lit:connectome_analysis": 1,
         "lit:review_vestibular_anatomy": 1
       },
-      "experimental_confidence": 0.507,
+      "experimental_confidence": 0.506,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -1046,16 +1046,19 @@
       }
     },
     "ARC-023": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.704",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.846",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "lit:connectome_circuit_study": 1
+        "lit:connectome_circuit_study": 1,
+        "lit:electrophysiology_intracranial_human": 1,
+        "lit:optogenetics_electrophysiology": 1,
+        "lit:review_electrophysiology": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -1066,10 +1069,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021",
-      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
-      "literature_confidence": 0.704,
-      "overall_confidence": 0.704,
+      "latest_run_id": "2026-04-08_arc023_trn_sensory_selection_wimmer2015",
+      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
+      "literature_confidence": 0.846,
+      "overall_confidence": 0.846,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -1085,16 +1088,69 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-16T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-023",
+          "confidence": 0.65,
+          "confidence_rationale": "Comprehensive review of BG oscillatory dynamics across frequency bands, drawing on human DBS recordings, MEG, and ECoG. Provides convergent evidence that different functional territories of the BG-thalamocortical network exhibit characteristic frequency signatures: beta (13-35 Hz) dominates motor territories, gamma (40-90 Hz) associates with active movement processing, theta/alpha (4-12 Hz) associates with cognitive/executive functions in ventral STN and limbic territories. This frequency segregation across functional domains supports ARC-023's claim of characteristic loop rates. However, as a review it does not provide novel primary data, and the frequency-territory mapping is correlational rather than causal. The thalamic rate-setting role specifically claimed by ARC-023 is not directly addressed.",
+          "evidence_class": "lit:review_electrophysiology",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_023",
+          "failure_signatures": [
+            "Review, not primary data; frequency-territory associations are correlational",
+            "Thalamic nuclei as rate-setters not directly addressed; focus is on cortical-STN-GPi dynamics",
+            "Motor territory beta dominance is well-established but cognitive/limbic frequency signatures are less firmly characterized"
+          ],
+          "run_id": "2026-04-08_arc023_bg_oscillation_frequency_brittain2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-023",
+          "confidence": 0.68,
+          "confidence_rationale": "Direct intracranial recordings in humans showing MD thalamus operates at 7-8 Hz (upper theta) and mPFC at ~11 Hz (alpha) during cognitive-perceptual gating. This is strong evidence that the MD-PFC (deliberative/cognitive) loop has a characteristic low-frequency rhythm, distinct from the beta-band (13-30 Hz) rhythm characteristic of motor thalamocortical circuits via VL. However, the study examines perceptual detection rather than deliberation per se, and does not directly compare multiple parallel loops. The ARC-023 claim that E3 operates at the slowest deliberation rate maps well to the observed theta/alpha MD-PFC coupling, but the precise frequency hierarchy (E1 > E2 > E3 rate) is not tested within a single paradigm.",
+          "evidence_class": "lit:electrophysiology_intracranial_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_023",
+          "failure_signatures": [
+            "Study measures perceptual gating, not deliberation or planning; partial mapping to E3 deliberation rate",
+            "Only one loop (MD-PFC) measured; no simultaneous recording of VL-motor or sensory relay loops for direct frequency comparison"
+          ],
+          "run_id": "2026-04-08_arc023_md_pfc_rhythmic_perception_griffiths2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-023",
+          "confidence": 0.72,
+          "confidence_rationale": "Direct causal evidence (optogenetics + electrophysiology in mice) that TRN sectors selectively gate specific thalamocortical channels under PFC top-down control. The visTRN sector modulates visual thalamic relay (LGN) gain independently, and PFC disruption abolishes this modulation. This is strong evidence for ARC-023's claim that TRN acts as an inter-loop routing switch. However, the study addresses sensory modality selection (visual vs auditory within sensory relay nuclei), not gating across the three functionally distinct loops (sensory/motor/cognitive). The mapping from cross-modal sensory gating to cross-loop (E1/E2/E3) gating is an extrapolation.",
+          "evidence_class": "lit:optogenetics_electrophysiology",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_023",
+          "failure_signatures": [
+            "Study examines sensory modality gating (visual vs auditory), not motor vs cognitive vs sensory loop gating",
+            "Mouse model; human TRN architecture may differ in degree of topographic segregation",
+            "Does not measure oscillatory frequency differences between gated channels"
+          ],
+          "run_id": "2026-04-08_arc023_trn_sensory_selection_wimmer2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 4
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=30 entry(s), lit=3 entry(s), exp_conf=0.747, lit_conf=0.824",
+      "confidence_rationale": "exp=30 entry(s), lit=3 entry(s), exp_conf=0.746, lit_conf=0.824",
       "direction_counts": {
         "mixed": 10,
         "supports": 14,
@@ -1107,7 +1163,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.747,
+      "experimental_confidence": 0.746,
       "fail_runs": 23,
       "genuine_exp_count": 30,
       "genuine_exp_direction_counts": {
@@ -1214,7 +1270,7 @@
       }
     },
     "ARC-025": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.779, lit_conf=0.717",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.778, lit_conf=0.717",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -1227,7 +1283,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.779,
+      "experimental_confidence": 0.778,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -1429,7 +1485,7 @@
       }
     },
     "ARC-027": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.898, lit_conf=0.861",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.897, lit_conf=0.861",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -1442,7 +1498,7 @@
         "lit:connectome_fear_circuit": 2,
         "lit:review_nociception_anatomy": 1
       },
-      "experimental_confidence": 0.898,
+      "experimental_confidence": 0.897,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -1454,7 +1510,7 @@
       "latest_run_id": "20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3",
       "latest_timestamp_utc": "2026-04-01T22:50:47.540314Z",
       "literature_confidence": 0.861,
-      "overall_confidence": 0.88,
+      "overall_confidence": 0.879,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -1539,7 +1595,7 @@
       }
     },
     "ARC-029": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.565, lit_conf=0.829",
+      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.564, lit_conf=0.829",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -1555,7 +1611,7 @@
         "lit:fmri_connectivity": 1,
         "lit:review_neurophysiology": 1
       },
-      "experimental_confidence": 0.565,
+      "experimental_confidence": 0.564,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1786,7 +1842,7 @@
       }
     },
     "ARC-032": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.451, lit_conf=0.826",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.45, lit_conf=0.826",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -1799,7 +1855,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.451,
+      "experimental_confidence": 0.45,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -2183,7 +2239,7 @@
       }
     },
     "ARC-038": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.31, lit_conf=0.908",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.309, lit_conf=0.908",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2198,7 +2254,7 @@
         "lit:electrophysiology_rodent_causal": 1,
         "lit:review_mechanistic": 2
       },
-      "experimental_confidence": 0.31,
+      "experimental_confidence": 0.309,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2210,7 +2266,7 @@
       "latest_run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
       "latest_timestamp_utc": "2026-04-05T00:00:00Z",
       "literature_confidence": 0.908,
-      "overall_confidence": 0.759,
+      "overall_confidence": 0.758,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2361,7 +2417,7 @@
       }
     },
     "ARC-041": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.345, lit_conf=0.741",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.344, lit_conf=0.741",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -2374,7 +2430,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.345,
+      "experimental_confidence": 0.344,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2386,7 +2442,7 @@
       "latest_run_id": "2026-04-02_arc_041_vmpfc_cognitive_map_value_2025",
       "latest_timestamp_utc": "2026-04-02T13:05:00Z",
       "literature_confidence": 0.741,
-      "overall_confidence": 0.543,
+      "overall_confidence": 0.542,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -2461,7 +2517,7 @@
       }
     },
     "ARC-042": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.408, lit_conf=0.848",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.407, lit_conf=0.848",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2476,7 +2532,7 @@
         "lit:ml_theoretical_empirical": 2,
         "lit:neuroscience_computational": 1
       },
-      "experimental_confidence": 0.408,
+      "experimental_confidence": 0.407,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -2488,7 +2544,7 @@
       "latest_run_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
       "latest_timestamp_utc": "2026-04-05T12:00:00Z",
       "literature_confidence": 0.848,
-      "overall_confidence": 0.628,
+      "overall_confidence": 0.627,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -2925,7 +2981,7 @@
       }
     },
     "INV-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.434, lit_conf=0.802",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.433, lit_conf=0.802",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -2937,7 +2993,7 @@
         "exp:simulation": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.434,
+      "experimental_confidence": 0.433,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -3095,7 +3151,7 @@
       }
     },
     "INV-043": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.815",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.814",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -3118,8 +3174,8 @@
       },
       "latest_run_id": "2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021",
       "latest_timestamp_utc": "2026-04-02T12:00:00Z",
-      "literature_confidence": 0.815,
-      "overall_confidence": 0.815,
+      "literature_confidence": 0.814,
+      "overall_confidence": 0.814,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3520,7 +3576,7 @@
       }
     },
     "INV-048": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.876",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.875",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -3544,8 +3600,8 @@
       },
       "latest_run_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
       "latest_timestamp_utc": "2026-04-05T22:30:00Z",
-      "literature_confidence": 0.876,
-      "overall_confidence": 0.876,
+      "literature_confidence": 0.875,
+      "overall_confidence": 0.875,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3918,7 +3974,7 @@
       }
     },
     "INV-053": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.822, lit_conf=0.817",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.821, lit_conf=0.817",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -3932,7 +3988,7 @@
         "lit:computational_model": 1,
         "lit:connectome_mechanistic_review": 1
       },
-      "experimental_confidence": 0.822,
+      "experimental_confidence": 0.821,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -4040,7 +4096,7 @@
       }
     },
     "INV-054": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.77",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.769",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -4064,8 +4120,8 @@
       },
       "latest_run_id": "2026-04-06_inv_054_stard_response_latency_trivedi2006",
       "latest_timestamp_utc": "2026-04-06T16:00:00Z",
-      "literature_confidence": 0.77,
-      "overall_confidence": 0.77,
+      "literature_confidence": 0.769,
+      "overall_confidence": 0.769,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4251,7 +4307,7 @@
       }
     },
     "MECH-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.465, lit_conf=0.882",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.464, lit_conf=0.882",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4265,7 +4321,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.465,
+      "experimental_confidence": 0.464,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4277,7 +4333,7 @@
       "latest_run_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
       "latest_timestamp_utc": "2026-04-02T23:59:00Z",
       "literature_confidence": 0.882,
-      "overall_confidence": 0.778,
+      "overall_confidence": 0.777,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5337,7 +5393,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.72, lit_conf=0.875",
+      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.719, lit_conf=0.875",
       "direction_counts": {
         "mixed": 2,
         "supports": 14,
@@ -5359,7 +5415,7 @@
         "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.72,
+      "experimental_confidence": 0.719,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5557,7 +5613,7 @@
       }
     },
     "MECH-057a": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.8, lit_conf=0.86",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.799, lit_conf=0.86",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -5571,7 +5627,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:empirical_neuroscience": 3
       },
-      "experimental_confidence": 0.8,
+      "experimental_confidence": 0.799,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -5787,7 +5843,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.72, lit_conf=0.825",
+      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.719, lit_conf=0.825",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -5800,7 +5856,7 @@
         "lit:machine_learning_experiment": 6,
         "lit:review": 5
       },
-      "experimental_confidence": 0.72,
+      "experimental_confidence": 0.719,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5812,7 +5868,7 @@
       "latest_run_id": "2026-04-04_mech_059_precision_dopamine_psychosis_Haarsma2020",
       "latest_timestamp_utc": "2026-04-04T09:00:00Z",
       "literature_confidence": 0.825,
-      "overall_confidence": 0.799,
+      "overall_confidence": 0.798,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -7228,20 +7284,23 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=3 entry(s), exp_conf=0.745, lit_conf=0.842",
+      "confidence_rationale": "exp=12 entry(s), lit=6 entry(s), exp_conf=0.744, lit_conf=0.844",
       "direction_counts": {
-        "mixed": 3,
-        "supports": 8,
+        "mixed": 4,
+        "supports": 10,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 15,
+      "entries_total": 18,
       "evidence_class_counts": {
         "exp:simulation": 12,
         "lit:connectome_circuit_study": 1,
-        "lit:connectome_mechanistic_review": 2
+        "lit:connectome_mechanistic_review": 2,
+        "lit:electrophysiology_ieeg": 1,
+        "lit:electrophysiology_lfp": 1,
+        "lit:methodological_critique": 1
       },
-      "experimental_confidence": 0.745,
+      "experimental_confidence": 0.744,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -7250,56 +7309,12 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3",
-      "latest_timestamp_utc": "2026-03-28T22:10:59Z",
-      "literature_confidence": 0.842,
-      "overall_confidence": 0.793,
+      "latest_run_id": "2026-04-08_mech089_theta_gamma_learning_tort2009",
+      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
+      "literature_confidence": 0.844,
+      "overall_confidence": 0.794,
       "pass_runs": 5,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-089",
-          "confidence": 0.84,
-          "confidence_rationale": "Major review directly addressing the functional role of theta-phase/gamma-amplitude coupling across human cortex, hippocampus, and prefrontal circuits. Provides both the mechanistic account (slow oscillation phase organises fast-oscillation bursts) and the cognitive function (enabling communication across spatial and temporal scales between hierarchically distinct systems). The packaging-for-higher-level-read-out mechanism is explicit and maps cleanly to MECH-089's ThetaBuffer. Slightly higher confidence than Lisman & Jensen (2013) for MECH-089 because this review covers the general cortical case, not just rodent hippocampal spatial coding, reducing species-transfer risk.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_089",
-          "failure_signatures": [],
-          "run_id": "2026-03-22_mech089_canolty_knight_cfc_2010",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-22T12:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-089",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_066_mech089_theta_batching",
-          "failure_signatures": [],
-          "run_id": "v3_exq_066_mech089_theta_batching_20260323T101009Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T10:10:09Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-089",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_096a_full_integration_benchmark",
-          "failure_signatures": [],
-          "run_id": "v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-25T05:54:16Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-089",
@@ -7329,26 +7344,81 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-28T22:10:59Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-089",
+          "confidence": 0.55,
+          "confidence_rationale": "High-quality methodological critique demonstrating that a specific form of cross-frequency coupling (phase-phase coupling, n:m locking) between theta and gamma may be substantially artifactual due to filtering, epoch-length effects, improper surrogates, and theta waveform harmonics. Importantly, this paper targets phase-phase coupling, not phase-amplitude coupling (PAC) -- the form of CFC most relevant to MECH-089. The authors do not claim PAC is artifactual, and in fact the senior author (Tort) has published the strongest PAC evidence (Tort et al. 2009). Nevertheless, the methodological concerns raise the general caution that CFC metrics can be misleading, and the finding that theta harmonics produce spurious coupling at expected frequency ratios is a warning for any CFC interpretation. For MECH-089's purposes, this paper weakens the strongest versions of the temporal-packaging claim (precise phase-locked slots) while leaving the weaker version (amplitude modulation by phase) largely intact.",
+          "evidence_class": "lit:methodological_critique",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_089",
+          "failure_signatures": [
+            "Phase-phase theta-gamma coupling may be largely artifactual from filtering and waveform harmonics",
+            "No existing metric can automatically distinguish true CFC from waveform-induced artifacts in LFP/EEG",
+            "If gamma 'slots' are not phase-locked to specific theta positions, the discrete-batching interpretation is weakened"
+          ],
+          "run_id": "2026-04-08_mech089_cfc_artifact_critique_schefferteixeira2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-089",
+          "confidence": 0.58,
+          "confidence_rationale": "Human intracranial EEG directly demonstrating that multiple working memory items are multiplexed via gamma bursts nested within theta cycles, with theta frequency decreasing as load increases to accommodate more gamma slots. This is the closest empirical analog to MECH-089's claim that multiple fast-rate (E1) updates are batched within each slow-rate (E3) cycle. The ~4:1 gamma-to-theta ratio is somewhat lower than MECH-089's posited 5-7, but in the right ballpark. However, the paper demonstrates multiplexing of distinct memory items, whereas MECH-089 claims temporal batching of sequential updates from a single fast processor (E1) for a slower consumer (E3). The functional context differs: WM maintenance vs. online sensory-prediction batching.",
+          "evidence_class": "lit:electrophysiology_ieeg",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_089",
+          "failure_signatures": [
+            "Gamma-to-theta ratio (~4:1) is at the lower bound of MECH-089's posited 5-7 range",
+            "Paper demonstrates multiplexing of distinct items, not sequential batching of updates from a single source",
+            "Working memory maintenance context differs from E1's continuous sensory prediction stream"
+          ],
+          "run_id": "2026-04-08_mech089_multiitem_wm_axmacher2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-089",
+          "confidence": 0.62,
+          "confidence_rationale": "High-quality in vivo electrophysiology from rat hippocampal CA3 directly demonstrates that gamma amplitude modulation by theta phase increases during associative learning, with coupling strength correlated with performance. The functional relevance is clear: theta-gamma coupling is not epiphenomenal but tracks cognitive demands. However, mapping to MECH-089 requires a substantial translation step: the paper shows theta-gamma coupling during memory retrieval in a single brain region, whereas MECH-089 claims this mechanism packages E1 updates for E3 consumption across processing hierarchies. The paper does not demonstrate inter-region information transfer via CFC, nor does it show the specific ~5-7 gamma-per-theta batching ratio posited by MECH-089.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_089",
+          "failure_signatures": [
+            "Paper demonstrates intra-regional (CA3) coupling only, not inter-hierarchy transfer as MECH-089 requires",
+            "No direct evidence that gamma packets constitute discrete information units being 'batched' for a downstream consumer"
+          ],
+          "run_id": "2026-04-08_mech089_theta_gamma_learning_tort2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 15,
+      "runs_total": 18,
       "source_counts": {
         "experimental": 12,
-        "literature": 3
+        "literature": 6
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=16 entry(s), lit=3 entry(s), exp_conf=0.799, lit_conf=0.667",
+      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.799, lit_conf=0.768",
       "direction_counts": {
-        "mixed": 7,
-        "supports": 8,
+        "mixed": 9,
+        "supports": 9,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 19,
+      "entries_total": 22,
       "evidence_class_counts": {
         "exp:simulation": 16,
-        "lit:connectome_mechanistic_review": 3
+        "lit:connectome_mechanistic_review": 3,
+        "lit:electrophysiology_eeg": 1,
+        "lit:electrophysiology_lfp": 2
       },
       "experimental_confidence": 0.799,
       "fail_runs": 10,
@@ -7359,57 +7429,12 @@
         "unknown": 0,
         "weakens": 3
       },
-      "latest_run_id": "20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3",
-      "latest_timestamp_utc": "2026-04-01T23:01:27.658562Z",
-      "literature_confidence": 0.667,
-      "overall_confidence": 0.733,
+      "latest_run_id": "2026-04-08_mech090_stn_beta_desync_kuhn2004",
+      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
+      "literature_confidence": 0.768,
+      "overall_confidence": 0.784,
       "pass_runs": 6,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-090",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_096a_full_integration_benchmark",
-          "failure_signatures": [],
-          "run_id": "v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-25T05:54:16Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-090",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_119_mech090_beta_gate_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_119_mech090_beta_gate_pair_20260328T213307Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-28T21:33:07Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-090",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_059_arc016_beta_gate_fixed_threshold",
-          "failure_signatures": [],
-          "run_id": "20260320T204910Z_v3_exq_059_arc016_beta_gate_fixed_threshold_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-01T23:01:27.655701Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-090",
@@ -7439,28 +7464,79 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-01T23:01:27.658562Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-090",
+          "confidence": 0.72,
+          "confidence_rationale": "This paper provides nuanced evidence for MECH-090. On one hand, it shows that post-movement beta synchronization (PMBS) reflects internal model confidence rather than direct motor inhibition -- supporting the idea that beta carries information about internal states, not just output gating. On the other hand, the finding that PMBS amplitude modulates subsequent motor adaptation (higher PMBS = less exploratory adjustment) implies beta does influence downstream behavior through internal model evaluation, blurring the clean output-gating-only distinction of MECH-090. The paper supports the claim that beta carries information about internal model state but complicates the claim that beta exclusively gates output without affecting internal processing.",
+          "evidence_class": "lit:electrophysiology_eeg",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_090",
+          "failure_signatures": [
+            "beta_reflects_internal_model_state_not_just_output_gate"
+          ],
+          "run_id": "2026-04-08_mech090_beta_internal_model_confidence_tan2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-090",
+          "confidence": 0.75,
+          "confidence_rationale": "This paper provides important evidence that partially supports and partially challenges MECH-090. The finding that elevated beta maintains existing action plans (status quo) while beta suppression permits updating directly supports the general framework. However, the critical challenge is that beta suppression here enables INTERNAL plan updating -- the reorganization of cell assemblies encoding action sequences -- not just motor output propagation. If beta suppression is required for internal plan revision, then elevated beta does not merely gate output while leaving internal updating intact; it actively prevents internal state changes too. This directly challenges MECH-090's specificity claim that beta gates output but not internal updating. Confidence reflects genuine dual-valence evidence from direct primate electrophysiology.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_090",
+          "failure_signatures": [
+            "beta_gates_internal_updating_not_just_output",
+            "beta_suppression_required_for_plan_revision"
+          ],
+          "run_id": "2026-04-08_mech090_beta_suppression_action_updating_hosaka2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-090",
+          "confidence": 0.82,
+          "confidence_rationale": "Direct electrophysiological evidence from human STN recordings showing beta desynchronization is necessary for movement initiation, with timing that predicts reaction time. The go/nogo dissociation demonstrates beta acts as a gate on motor output: sustained beta suppression permits movement, early beta rebound suppresses it. This directly supports MECH-090's claim that beta gates propagation to action selection. Confidence tempered by Parkinson's disease population and the fact that the paper does not explicitly test whether internal planning continues during elevated beta.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_090",
+          "failure_signatures": [],
+          "run_id": "2026-04-08_mech090_stn_beta_desync_kuhn2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 19,
+      "runs_total": 22,
       "source_counts": {
         "experimental": 16,
-        "literature": 3
+        "literature": 6
       }
     },
     "MECH-091": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.302, lit_conf=0.684",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.301, lit_conf=0.849",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 1,
+        "mixed": 1,
+        "supports": 4,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 2,
+      "entries_total": 6,
       "evidence_class_counts": {
         "exp:simulation": 1,
-        "lit:connectome_mechanistic_review": 1
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_intracranial": 1,
+        "lit:electrophysiology_scalp_eeg": 1,
+        "lit:review_computational_mechanistic": 1,
+        "lit:review_methodological_critical": 1
       },
-      "experimental_confidence": 0.302,
+      "experimental_confidence": 0.301,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7469,26 +7545,12 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_133_mech091_phase_reset_pair_20260329T032233Z_v3",
-      "latest_timestamp_utc": "2026-03-29T03:22:33Z",
-      "literature_confidence": 0.684,
-      "overall_confidence": 0.493,
+      "latest_run_id": "2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007",
+      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
+      "literature_confidence": 0.849,
+      "overall_confidence": 0.712,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-091",
-          "confidence": 0.68,
-          "confidence_rationale": "Good mechanistic support for phase reset as a general neural mechanism triggered by salient/unexpected stimuli; thalamocortical neurons identified as key phase-reset substrate. Confidence tempered because the review covers general phase-reset mechanisms, and the specific link to basal ganglia-thalamo-E3 heartbeat reset (MECH-091) requires additional inference.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_091",
-          "failure_signatures": [],
-          "run_id": "2026-03-16_mech091_phase_reset_information_transmission_pmc2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-16T12:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-091",
@@ -7503,31 +7565,103 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-29T03:22:33Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-091",
+          "confidence": 0.7,
+          "confidence_rationale": "Empirical EEG study demonstrating that delta-band phase reset predicts both conflict-related P3 amplitude changes and behavioral reaction time differences. Directly links phase reset to conflict monitoring -- a functional context much closer to MECH-091's harm/salience detection than the working memory context of Rizzuto 2003. The proposed noradrenergic mechanism (phasic locus coeruleus release resetting cortical networks) provides a plausible neurochemical pathway. However, this is scalp EEG (lower spatial resolution), the flanker task tests response conflict rather than harm/threat detection, and the delta band (1-3 Hz) frequency relationship to E3 heartbeat rate is unspecified.",
+          "evidence_class": "lit:electrophysiology_scalp_eeg",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_091",
+          "failure_signatures": [
+            "scalp_eeg_spatial_ambiguity",
+            "conflict_not_harm_detection",
+            "delta_to_e3_heartbeat_frequency_unspecified"
+          ],
+          "run_id": "2026-04-08_mech091_delta_phase_reset_conflict_monitoring_rawls2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-091",
+          "confidence": 0.72,
+          "confidence_rationale": "Strong intracranial evidence from 551 electrodes demonstrating genuine phase reset (not additive evoked power) in 7-16 Hz oscillations following stimulus events. Phase locking occurred without accompanying power increases, which is the gold-standard criterion for distinguishing true phase reset from evoked responses. However, the task context (working memory item presentation) differs from the salient-event / unexpected-harm context of MECH-091, and the frequency band (7-16 Hz) is higher than the delta-theta range most relevant to E3 heartbeat cycles. Transfer from memory encoding to harm-evaluation cycle reset requires inference.",
+          "evidence_class": "lit:electrophysiology_intracranial",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_091",
+          "failure_signatures": [
+            "frequency_band_mismatch_7_16hz_vs_delta_theta",
+            "task_context_memory_not_salience"
+          ],
+          "run_id": "2026-04-08_mech091_intracranial_neocortical_phase_reset_rizzuto2003",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-091",
+          "confidence": 0.74,
+          "confidence_rationale": "Comprehensive review establishing phase reset as a functional coordination mechanism -- not epiphenomenal -- across distributed brain networks during goal-directed behavior. Directly addresses the computational advantage question: phase reset sets neural context via narrow-band frequency selection, imposes coherent low-frequency phases for high-frequency synchronization, and is triggered by both external salient stimuli and internal signals (erroneous reward expectations, exploratory saccades). The review covers prefrontal, cingulate, hippocampal, and thalamic circuits. Mapping to MECH-091 is strong because the review explicitly addresses goal-directed behavior and error-related phase reset, though it does not address the specific E3 heartbeat cycle architecture.",
+          "evidence_class": "lit:review_computational_mechanistic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_091",
+          "failure_signatures": [
+            "review_not_primary_data",
+            "no_specific_e3_heartbeat_analog"
+          ],
+          "run_id": "2026-04-08_mech091_phase_reset_network_coordination_voloh2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-091",
+          "confidence": 0.65,
+          "confidence_rationale": "This critical review examines the fundamental question of whether ERPs are generated by phase resetting of ongoing oscillations or by additive evoked responses independent of background EEG. The review finds evidence for both models, concluding that the truth likely involves contributions from both mechanisms. This is 'mixed' evidence for MECH-091: it supports the existence of phase reset as a real neural mechanism (not just measurement artifact), but it cautions that not all apparent phase-locking after stimuli necessarily reflects true phase reset -- some may be additive evoked activity. This is an important epistemic check on MECH-091's confidence.",
+          "evidence_class": "lit:review_methodological_critical",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_091",
+          "failure_signatures": [
+            "phase_reset_may_be_partially_evoked_response",
+            "methodological_difficulty_distinguishing_mechanisms",
+            "frequency_band_specificity_uncertain"
+          ],
+          "run_id": "2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 1,
-        "literature": 1
+        "literature": 5
       }
     },
     "MECH-092": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.302, lit_conf=0.913",
+      "confidence_rationale": "exp=1 entry(s), lit=10 entry(s), exp_conf=0.301, lit_conf=0.904",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 7,
+        "mixed": 1,
+        "supports": 9,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 8,
+      "entries_total": 11,
       "evidence_class_counts": {
         "exp:simulation": 1,
         "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_lfp_and_behavior": 1,
         "lit:electrophysiology_rodent": 1,
         "lit:electrophysiology_single_unit": 3,
+        "lit:electrophysiology_single_unit_and_lfp": 2,
         "lit:review_mechanistic": 2
       },
-      "experimental_confidence": 0.302,
+      "experimental_confidence": 0.301,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7536,62 +7670,12 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
-      "latest_timestamp_utc": "2026-04-05T00:00:00Z",
-      "literature_confidence": 0.913,
-      "overall_confidence": 0.76,
+      "latest_run_id": "2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024",
+      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
+      "literature_confidence": 0.904,
+      "overall_confidence": 0.753,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.87,
-          "confidence_rationale": "Causal evidence (closed-loop SWR interruption) that awake hippocampal SWRs are necessary for spatial memory consolidation and decision-making. The learning deficit persists throughout training (not just early), and is specific to awake SWRs -- post-experience SWR reactivation and place field activity are preserved after interruption. This maps directly onto MECH-092 (quiescent E3 heartbeat replay triggering SWR-equivalent consolidation) and MECH-121 (NREM SWR replay for episodic-to-semantic transfer). The causal interruption design is stronger than correlational evidence.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
-          "failure_signatures": [
-            "Interrupting awake SWRs did not affect place field activity -- suggesting that map formation (experience-dependent potentiation) is independent of SWR replay; replay is required for memory expression, not necessarily encoding.",
-            "The deficit is in a spatial alternation task requiring working memory; how this generalises to strategy diversity vs simple memory storage is not clear.",
-            "The interruption technology (closed-loop electrical stimulation) disrupts all SWRs nonselectively -- the content-specificity of disrupted replay cannot be assessed."
-          ],
-          "run_id": "2026-04-04_mech092_mech121_awake_swr_jadhav2012",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-04T23:50:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.85,
-          "confidence_rationale": "Key paper for the forward/reverse replay distinction and its role in learning trajectory. Reverse replay serves retrospective evaluation (past trajectories, learning gradients); forward replay serves prospective planning (future paths, decision guidance). Both are coordinated with prefrontal readout. The learning shift from reverse-dominant (early) to forward-dominant (late) is a direct empirical demonstration of the dual role of MECH-121 replay and its relationship to the decision-making architecture. High source quality; excellent alignment with REE replay architecture.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
-          "failure_signatures": [
-            "The study cannot establish whether forward or reverse replay causes learning improvement or merely correlates with it -- causal interventions are lacking for the content-specific directionality.",
-            "The distinction between forward (prospective) and reverse (retrospective) replay may be blurred in complex environments where paths overlap -- the clean dissociation may be task-specific.",
-            "Prefrontal coordination in rodents maps imperfectly onto the E3 planning module in REE, which integrates hippocampal proposals differently."
-          ],
-          "run_id": "2026-04-04_mech121_mech092_forward_reverse_replay_shin2019",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-04T23:50:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.82,
-          "confidence_rationale": "Direct Bayesian state-space analysis of awake SWRs in foraging rodents shows nearly all SWRs embed spatial trajectories with momentum. Crucially, awake SWRs show momentum (inertia in velocity) mirroring natural movement; sleep SWRs lack momentum. This establishes a mechanistic distinction between awake offline replay (consolidation-oriented, trajectory-following) and sleep replay, and partially addresses the goal-directed vs. consolidation distinction. Strong methodology, published in Neuron. Mapping to ARC-038 is strong for the waking-quiescence replay aspect; moderate for the consolidation-mode vs. goal-directed distinction (momentum does not directly measure goal-directedness).",
-          "evidence_class": "lit:electrophysiology_rodent",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_038",
-          "failure_signatures": [],
-          "run_id": "2026-04-05_arc_038_awake_swr_trajectory_momentum_krause2021",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T00:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-092",
@@ -7619,26 +7703,82 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.82,
+          "confidence_rationale": "High-quality causal disruption experiment in Science. Directly demonstrates that awake SWRs are necessary for spatial working memory during learning. The causal link (disrupt SWRs -> impaired learning) strongly supports MECH-092's claim that quiescent replay serves a consolidation function. Mapping is strong but not perfect: Jadhav disrupted ALL awake SWRs (not specifically quiescent-period ones), and the task is spatial alternation rather than viability mapping. The deficit was specific to working memory (outbound trials), not reference memory, which suggests replay consolidates recently acquired trajectory information -- directly relevant to MECH-092's viability map consolidation.",
+          "evidence_class": "lit:electrophysiology_single_unit_and_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_092",
+          "failure_signatures": [
+            "Disruption was not limited to quiescent periods specifically -- all awake SWRs were interrupted",
+            "The deficit was in working memory (outbound), not reference memory (inbound), suggesting awake SWRs may support a specific type of memory rather than general consolidation"
+          ],
+          "run_id": "2026-04-08_mech092_awake_swr_causal_jadhav2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.78,
+          "confidence_rationale": "High-quality empirical electrophysiology study in Nature Neuroscience demonstrating temporally compressed bidirectional replay during awake SWR events. Directly supports MECH-092's claim of compressed trajectory replay during quiescent periods. The temporal compression (~10-20x) matches MECH-092's specification. Forward replay at run onset and reverse replay at run termination support both consolidation and planning roles. However, the study does not directly test consolidation function (correlational, not causal), and the quiescence specificity is implicit rather than tested.",
+          "evidence_class": "lit:electrophysiology_single_unit_and_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_092",
+          "failure_signatures": [
+            "Correlational evidence only -- does not causally demonstrate that replay serves consolidation",
+            "Does not specifically isolate quiescent periods from other immobility states",
+            "Forward replay ('preplay') complicates a pure consolidation interpretation -- suggests planning/anticipation role too"
+          ],
+          "run_id": "2026-04-08_mech092_forward_reverse_replay_diba2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.7,
+          "confidence_rationale": "Well-designed causal disruption study published in eLife showing that awake SWR disruption does NOT impair short-term memorization in repeated-acquisition tasks. This appears to weaken MECH-092 at first glance, but the authors themselves interpret the null result as evidence that awake SWR replay's impact is long-term and cumulative rather than immediate -- which actually refines MECH-092's consolidation claim rather than refuting it. The task type matters: repeated-acquisition tasks requiring within-trial memorization of novel locations differ from Jadhav 2012's across-session learning task. This suggests awake SWR replay may be important for building stable spatial representations over time (consolidation) but not for short-term buffering -- a distinction that informs rather than weakens MECH-092's viability map consolidation framing.",
+          "evidence_class": "lit:electrophysiology_lfp_and_behavior",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_092",
+          "failure_signatures": [
+            "Null result for SWR disruption on memorization -- no behavioral deficit detected across three spatial memory tasks",
+            "Directly contrasts with Jadhav 2012 positive result, raising questions about task-dependence of awake SWR function",
+            "If awake SWR replay is not needed for short-term memorization, the micro-DMN consolidation window in MECH-092 may be too short to produce meaningful consolidation effects"
+          ],
+          "run_id": "2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 8,
+      "runs_total": 11,
       "source_counts": {
         "experimental": 1,
-        "literature": 7
+        "literature": 10
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.667, lit_conf=0.704",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.667, lit_conf=0.827",
       "direction_counts": {
         "mixed": 1,
-        "supports": 4,
+        "supports": 7,
         "unknown": 0,
         "weakens": 5
       },
-      "entries_total": 10,
+      "entries_total": 13,
       "evidence_class_counts": {
         "exp:simulation": 9,
-        "lit:connectome_mechanistic_review": 1
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_eeg_fmri_human": 1,
+        "lit:electrophysiology_lfp_animal_pharmacological": 1,
+        "lit:electrophysiology_meg_human": 1
       },
       "experimental_confidence": 0.667,
       "fail_runs": 6,
@@ -7649,57 +7789,12 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "v3_exq_116_mech093_heartbeat_multiseed_20260328T211756Z_v3",
-      "latest_timestamp_utc": "2026-03-28T21:17:56Z",
-      "literature_confidence": 0.704,
-      "overall_confidence": 0.676,
+      "latest_run_id": "2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023",
+      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
+      "literature_confidence": 0.827,
+      "overall_confidence": 0.747,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-093",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_038_arc016_precision_sweep",
-          "failure_signatures": [],
-          "run_id": "v3_exq_038_arc016_precision_sweep_20260322T020909Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-22T02:09:09Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-093",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_096a_full_integration_benchmark",
-          "failure_signatures": [],
-          "run_id": "v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-25T05:54:16Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-093",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_097_mech093_heartbeat_rate",
-          "failure_signatures": [],
-          "run_id": "v3_exq_097_mech093_heartbeat_rate_20260326T214212Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-26T21:42:12Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-093",
@@ -7729,16 +7824,71 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-03-28T21:17:56Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-093",
+          "confidence": 0.6,
+          "confidence_rationale": "Strong empirical demonstration that alpha frequency and alpha power are statistically uncorrelated (r=0.168, p=0.468) and track different neural substrates (alpha frequency inversely correlates with visual BOLD; alpha power does not). This directly supports MECH-093's central architectural claim that rate modulation (E3 heartbeat frequency, analogous to oscillation frequency) is a distinct control channel from gain modulation (precision-weighting/MECH-059, analogous to oscillation power). Mapping limited by the same domain gap as Wutz et al.: the data are from visual cortex during working memory, not from arousal-driven prefrontal executive circuits.",
+          "evidence_class": "lit:electrophysiology_eeg_fmri_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_093",
+          "failure_signatures": [
+            "visual_cortex_not_prefrontal",
+            "working_memory_load_not_arousal_or_affect_as_driver",
+            "no_noradrenergic_or_arousal_manipulation"
+          ],
+          "run_id": "2026-04-08_mech093_alpha_freq_power_dissociation_samuel2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-093",
+          "confidence": 0.62,
+          "confidence_rationale": "Strong empirical demonstration that oscillation frequency is under top-down control and is functionally distinct from power/amplitude modulation. The dissociation between frequency and power modulation directly supports MECH-093's claim that rate modulation (how often updates occur) is distinct from gain modulation (how much each update matters, i.e. MECH-059). However, the paper tests visual task demands rather than arousal/affective state, and the frequency shifts are in occipital alpha rather than prefrontal executive rhythms. The mapping from visual temporal resolution to E3 heartbeat rate requires an inference step -- both involve oscillatory frequency setting the temporal grain of a cognitive process, but the domains differ.",
+          "evidence_class": "lit:electrophysiology_meg_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_093",
+          "failure_signatures": [
+            "frequency_modulation_was_occipital_alpha_not_prefrontal_executive",
+            "task_demands_not_arousal_or_affective_state_drove_shifts",
+            "effect_size_approximately_0.04Hz_at_scalp_level"
+          ],
+          "run_id": "2026-04-08_mech093_alpha_frequency_modulation_task_demands_wutz2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-093",
+          "confidence": 0.68,
+          "confidence_rationale": "Strong pharmacological evidence that all clinically effective anxiolytics reduce hippocampal theta FREQUENCY (not amplitude), implying that anxiety/arousal increases theta frequency. This directly maps onto MECH-093: high harm salience (high z_beta) -> faster oscillation frequency (faster E3 updates). The temporal coding framework provides a functional explanation: faster theta = finer temporal grain = faster processing cycles, exactly what MECH-093 predicts for high-threat situations. Mapping limited by hippocampal (not prefrontal) recording site and animal (rat) model, but the theta frequency-anxiety link is robust across drug classes (benzodiazepines, 5-HT1A agonists, pregabalin), suggesting a universal principle.",
+          "evidence_class": "lit:electrophysiology_lfp_animal_pharmacological",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_093",
+          "failure_signatures": [
+            "hippocampal_not_prefrontal_recording_site",
+            "rat_model_not_human",
+            "mechanism_of_frequency_reduction_unspecified",
+            "no_noradrenergic_mechanism_discussed"
+          ],
+          "run_id": "2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 10,
+      "runs_total": 13,
       "source_counts": {
         "experimental": 9,
-        "literature": 1
+        "literature": 4
       }
     },
     "MECH-094": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.302, lit_conf=0.806",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.301, lit_conf=0.806",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -7752,7 +7902,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.302,
+      "experimental_confidence": 0.301,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7841,7 +7991,7 @@
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.58, lit_conf=0.904",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.579, lit_conf=0.904",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
@@ -7856,7 +8006,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.58,
+      "experimental_confidence": 0.579,
       "fail_runs": 8,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -7868,7 +8018,7 @@
       "latest_run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3",
       "latest_timestamp_utc": "2026-03-28T22:09:39Z",
       "literature_confidence": 0.904,
-      "overall_confidence": 0.742,
+      "overall_confidence": 0.741,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -8065,7 +8215,7 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=20 entry(s), lit=3 entry(s), exp_conf=0.631, lit_conf=0.861",
+      "confidence_rationale": "exp=20 entry(s), lit=3 entry(s), exp_conf=0.63, lit_conf=0.861",
       "direction_counts": {
         "mixed": 7,
         "supports": 7,
@@ -8079,7 +8229,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.631,
+      "experimental_confidence": 0.63,
       "fail_runs": 16,
       "genuine_exp_count": 20,
       "genuine_exp_direction_counts": {
@@ -8177,7 +8327,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.49, lit_conf=0.908",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.489, lit_conf=0.908",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -8192,7 +8342,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:review_theoretical": 1
       },
-      "experimental_confidence": 0.49,
+      "experimental_confidence": 0.489,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -8302,7 +8452,7 @@
       }
     },
     "MECH-100": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.863, lit_conf=0.756",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.862, lit_conf=0.756",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -8316,7 +8466,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.863,
+      "experimental_confidence": 0.862,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -8420,7 +8570,7 @@
       }
     },
     "MECH-101": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.786, lit_conf=0.826",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.785, lit_conf=0.826",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -8434,7 +8584,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.786,
+      "experimental_confidence": 0.785,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -8727,7 +8877,7 @@
       }
     },
     "MECH-104": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.893, lit_conf=0.896",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.892, lit_conf=0.896",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -8740,7 +8890,7 @@
         "lit:computational_model": 1,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.893,
+      "experimental_confidence": 0.892,
       "fail_runs": 3,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -8752,7 +8902,7 @@
       "latest_run_id": "v3_exq_204_mech104_surprise_gate_pair_20260403T020540Z_v3",
       "latest_timestamp_utc": "2026-04-03T02:05:40Z",
       "literature_confidence": 0.896,
-      "overall_confidence": 0.895,
+      "overall_confidence": 0.894,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -8963,7 +9113,7 @@
       }
     },
     "MECH-111": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.394, lit_conf=0.772",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.393, lit_conf=0.772",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -8976,7 +9126,7 @@
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.394,
+      "experimental_confidence": 0.393,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -9306,7 +9456,7 @@
       }
     },
     "MECH-116": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.451, lit_conf=0.812",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.45, lit_conf=0.812",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -9319,7 +9469,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.451,
+      "experimental_confidence": 0.45,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -9423,7 +9573,7 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.96, lit_conf=0.78",
+      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.959, lit_conf=0.78",
       "direction_counts": {
         "mixed": 2,
         "supports": 6,
@@ -9436,7 +9586,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.96,
+      "experimental_confidence": 0.959,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -9448,7 +9598,7 @@
       "latest_run_id": "v3_exq_234_mech117_wanting_liking_replication_20260405T143337Z_v3",
       "latest_timestamp_utc": "2026-04-05T14:33:37Z",
       "literature_confidence": 0.78,
-      "overall_confidence": 0.888,
+      "overall_confidence": 0.887,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -9895,7 +10045,7 @@
       }
     },
     "MECH-121": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.878",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.877",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -9918,8 +10068,8 @@
       },
       "latest_run_id": "2026-04-05_mech121_nrem_replay_hippocampus_neocortex_diekelmann2010",
       "latest_timestamp_utc": "2026-04-05T16:30:00Z",
-      "literature_confidence": 0.878,
-      "overall_confidence": 0.878,
+      "literature_confidence": 0.877,
+      "overall_confidence": 0.877,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10381,7 +10531,7 @@
       }
     },
     "MECH-135": {
-      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.825, lit_conf=0.833",
+      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.824, lit_conf=0.833",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -10395,7 +10545,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.825,
+      "experimental_confidence": 0.824,
       "fail_runs": 2,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -10499,7 +10649,7 @@
       }
     },
     "MECH-150": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.345, lit_conf=0.748",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.344, lit_conf=0.748",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -10512,7 +10662,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.345,
+      "experimental_confidence": 0.344,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -10668,7 +10818,7 @@
       }
     },
     "MECH-153": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.457, lit_conf=0.86",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.456, lit_conf=0.86",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -10684,7 +10834,7 @@
         "lit:ml_theoretical_empirical": 1,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.457,
+      "experimental_confidence": 0.456,
       "fail_runs": 3,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -10966,7 +11116,7 @@
       }
     },
     "MECH-156": {
-      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.518, lit_conf=0.788",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.517, lit_conf=0.788",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -10978,7 +11128,7 @@
         "exp:simulation": 2,
         "lit:electrophysiology_lfp": 1
       },
-      "experimental_confidence": 0.518,
+      "experimental_confidence": 0.517,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -10990,7 +11140,7 @@
       "latest_run_id": "v3_exq_210_mech156_theta_traversal_probe_1775184493_v3",
       "latest_timestamp_utc": "2026-04-03T03:49:33.793812Z",
       "literature_confidence": 0.788,
-      "overall_confidence": 0.608,
+      "overall_confidence": 0.607,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -12263,7 +12413,7 @@
       }
     },
     "MECH-180": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.906",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.905",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -12286,8 +12436,8 @@
       },
       "latest_run_id": "2026-04-06_mech_180_rem_replay_louie+2001",
       "latest_timestamp_utc": "2026-04-06T00:00:00Z",
-      "literature_confidence": 0.906,
-      "overall_confidence": 0.906,
+      "literature_confidence": 0.905,
+      "overall_confidence": 0.905,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -12922,7 +13072,7 @@
       }
     },
     "MECH-187": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.771, lit_conf=0.84",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.77, lit_conf=0.839",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -12935,7 +13085,7 @@
         "lit:behavioral_animal": 1,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.771,
+      "experimental_confidence": 0.77,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -12946,8 +13096,8 @@
       },
       "latest_run_id": "2026-04-06_mech_187_wanting_liking_berridge1998",
       "latest_timestamp_utc": "2026-04-06T16:00:00Z",
-      "literature_confidence": 0.84,
-      "overall_confidence": 0.823,
+      "literature_confidence": 0.839,
+      "overall_confidence": 0.822,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -13447,7 +13597,7 @@
       }
     },
     "MECH-205": {
-      "confidence_rationale": "exp=1 entry(s), lit=8 entry(s), exp_conf=0.323, lit_conf=0.871",
+      "confidence_rationale": "exp=1 entry(s), lit=8 entry(s), exp_conf=0.322, lit_conf=0.871",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -13462,7 +13612,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:fmri_connectivity": 3
       },
-      "experimental_confidence": 0.323,
+      "experimental_confidence": 0.322,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -13722,7 +13872,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.452, lit_conf=0.828",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.451, lit_conf=0.828",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -13736,7 +13886,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.452,
+      "experimental_confidence": 0.451,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -13748,7 +13898,7 @@
       "latest_run_id": "v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3",
       "latest_timestamp_utc": "2026-04-03T20:24:34Z",
       "literature_confidence": 0.828,
-      "overall_confidence": 0.64,
+      "overall_confidence": 0.639,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -13832,7 +13982,7 @@
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.353, lit_conf=0.818",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.352, lit_conf=0.818",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -13846,7 +13996,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.353,
+      "experimental_confidence": 0.352,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -15614,7 +15764,7 @@
       }
     },
     "Q-022": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.566, lit_conf=0.762",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.565, lit_conf=0.762",
       "direction_counts": {
         "mixed": 3,
         "supports": 2,
@@ -15627,7 +15777,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.566,
+      "experimental_confidence": 0.565,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -16156,7 +16306,7 @@
       }
     },
     "SD-003-prereq": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.721, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.72, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -16167,7 +16317,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.721,
+      "experimental_confidence": 0.72,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -16179,7 +16329,7 @@
       "latest_run_id": "20260315T044440_causal_grid_world_baseline_v2",
       "latest_timestamp_utc": "2026-03-15T04:44:40.670153+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.721,
+      "overall_confidence": 0.72,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -16439,7 +16589,7 @@
       }
     },
     "SD-006": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.881, lit_conf=0.79",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.88, lit_conf=0.79",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -16451,7 +16601,7 @@
         "exp:simulation": 4,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.881,
+      "experimental_confidence": 0.88,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -16463,7 +16613,7 @@
       "latest_run_id": "2026-03-29_sd_006_theta_gamma_neural_code_lisman2013",
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.79,
-      "overall_confidence": 0.845,
+      "overall_confidence": 0.844,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -16553,7 +16703,7 @@
       }
     },
     "SD-007": {
-      "confidence_rationale": "exp=20 entry(s), lit=5 entry(s), exp_conf=0.758, lit_conf=0.885",
+      "confidence_rationale": "exp=20 entry(s), lit=5 entry(s), exp_conf=0.757, lit_conf=0.885",
       "direction_counts": {
         "mixed": 1,
         "supports": 16,
@@ -16569,7 +16719,7 @@
         "lit:fmri_connectivity": 1,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.758,
+      "experimental_confidence": 0.757,
       "fail_runs": 13,
       "genuine_exp_count": 20,
       "genuine_exp_direction_counts": {
@@ -16581,7 +16731,7 @@
       "latest_run_id": "v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3",
       "latest_timestamp_utc": "2026-03-29T21:58:06Z",
       "literature_confidence": 0.885,
-      "overall_confidence": 0.822,
+      "overall_confidence": 0.821,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -16852,7 +17002,7 @@
       }
     },
     "SD-010": {
-      "confidence_rationale": "exp=19 entry(s), lit=3 entry(s), exp_conf=0.852, lit_conf=0.836",
+      "confidence_rationale": "exp=19 entry(s), lit=3 entry(s), exp_conf=0.851, lit_conf=0.836",
       "direction_counts": {
         "mixed": 14,
         "supports": 7,
@@ -16865,7 +17015,7 @@
         "lit:connectome_mechanistic_review": 2,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.852,
+      "experimental_confidence": 0.851,
       "fail_runs": 15,
       "genuine_exp_count": 19,
       "genuine_exp_direction_counts": {
@@ -16969,18 +17119,20 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=9 entry(s), lit=9 entry(s), exp_conf=0.747, lit_conf=0.926",
+      "confidence_rationale": "exp=9 entry(s), lit=13 entry(s), exp_conf=0.747, lit_conf=0.909",
       "direction_counts": {
         "mixed": 1,
-        "supports": 13,
+        "supports": 17,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 18,
+      "entries_total": 22,
       "evidence_class_counts": {
         "exp:simulation": 9,
-        "lit:connectome_mechanistic_review": 2,
+        "lit:computational_model": 2,
+        "lit:connectome_mechanistic_review": 3,
         "lit:empirical_study": 2,
+        "lit:fmri_connectivity": 1,
         "lit:fmri_lesion": 1,
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 3
@@ -16994,80 +17146,12 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3",
-      "latest_timestamp_utc": "2026-04-08T15:59:07.286277Z",
-      "literature_confidence": 0.926,
-      "overall_confidence": 0.837,
+      "latest_run_id": "2026-04-08_sd_011_predictive_coding_pain_chen2023",
+      "latest_timestamp_utc": "2026-04-08T22:25:00Z",
+      "literature_confidence": 0.909,
+      "overall_confidence": 0.828,
       "pass_runs": 4,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.8,
-          "confidence_rationale": "This 1999 review in Pain is one of the most cited accounts of cortical pain processing architecture. It synthesises neuroimaging and electrophysiology evidence to argue that pain is processed in at least two distinct cortical subsystems: (1) a lateral pain system (S1, S2, parietal operculum) subserving sensory-discriminative processing (intensity, location, quality); (2) a medial pain system (ACC, medial thalamus, anterior insula) subserving affective-motivational processing (unpleasantness, behavioral drive). This directly corresponds to the z_harm_s (lateral system) / z_harm_a (medial system) dissociation in SD-011, and the lateral system's properties (topographically organized, intensity-encoding, event-locked) are precisely those required for ARC-033's E2_harm_s forward model. Confidence 0.80 because this is a 1999 review (some findings have been revised since), and the lateral/medial system framing is a useful heuristic but is now known to be oversimplified (both systems are active in most painful conditions; the dissociation is relative rather than absolute).",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_033",
-          "failure_signatures": [
-            "If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.",
-            "The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified."
-          ],
-          "run_id": "2026-04-05_arc_033_cortical_pain_representation_treede1999",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T00:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.82,
-          "confidence_rationale": "This MEG study provides direct empirical evidence for two temporally and spatially separable cortical pain representations corresponding to the A-delta (first pain) and C-fiber (second pain) streams that SD-011 models as z_harm_s and z_harm_a. Using laser-evoked cutaneous pain, the study disambiguates first pain (A-delta mediated, latency ~200ms, sharp/pricking) from second pain (C-fiber mediated, latency ~1000ms, burning/dull) and maps their cortical generators using MEG. Key finding: first pain activates S1/S2 bilaterally with a sharp temporally defined response; second pain activates a more distributed late cortical network including S2/insula and ACC with a sustained, temporally broader response. This directly instantiates the fast-localizable (z_harm_s) vs. slow-diffuse (z_harm_a) distinction in SD-011, and the temporal precision of the A-delta response relative to the C-fiber response supports ARC-033's claim that E2_harm_s can forward-model z_harm_s but z_harm_a is not similarly forward-predictable.",
-          "evidence_class": "lit:empirical_study",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_011",
-          "failure_signatures": [
-            "If the S1/S2 response to second pain (C-fiber) is of similar magnitude and temporal precision to the first pain response, the claim that z_harm_s is more forward-predictable than z_harm_a would be weakened -- both streams would be similarly temporally constrained.",
-            "If the ACC response is already present for first pain (A-delta) with similar magnitude as for second pain, it would challenge the stream-separation model by showing that the affective dimension is activated by both streams rather than selectively by the C-fiber stream."
-          ],
-          "run_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T00:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.86,
-          "confidence_rationale": "Craig's 2003 paper is the clearest published statement that pain (especially C-fiber mediated slow pain) functions as a homeostatic emotion: a motivational signal reflecting deviation from physiological homeostasis, analogous to hunger, thirst, and temperature. This directly supports the z_harm_a component of SD-011 as an accumulated homeostatic deviation signal (C-fiber / paleospinothalamic analog). Craig specifies that lamina I neurons receiving predominantly C-fiber input drive a pathway through VMpo thalamus to posterior insula that generates the homeostatic feeling, and then to ACC that generates the behavioral motivation. The model explicitly dissociates this from the sensory-discriminative pathway through VPL to S1/S2. Confidence is 0.86 rather than higher because: (a) this is a framework review not a new experiment; (b) the mapping between Craig's homeostatic allostasis framing and the specific claim that z_harm_a 'accumulates homeostatic deviation' is inferential rather than experimentally demonstrated.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_011",
-          "failure_signatures": [
-            "Craig's model treats pain as generated by a specific labeled-line system (lamina I -> VMpo -> insula -> ACC), not by distributed C-fiber activity whose integration over time accumulates harm. If the accumulation property is not a feature of the pathway architecture but is instead a secondary consequence of peripheral sensitization, the z_harm_a characterization as a running integral would be architecturally misleading.",
-            "The homeostatic emotion framework explicitly groups pain with temperature, itch, hunger, and thirst as a family of interoceptive emotions. This suggests z_harm_a and the homeostatic/allostatic drive signals in REE (SD-012) may be instantiating the same underlying mechanism from different angles -- potentially a scope conflict rather than independent support."
-          ],
-          "run_id": "2026-04-05_sd_011_pain_homeostatic_emotion_craig2003",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T00:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.88,
-          "confidence_rationale": "This paper provides a critical experimental double dissociation complementing Rainville et al. (1997) (already in the SD-011 evidence set). Rainville 1997 showed that hypnotic modulation of pain unpleasantness changed ACC activity but not S1. Hofbauer 2001 shows the converse: hypnotic modulation of pain intensity changed S1 activity but not ACC. Together these two studies constitute a clean bidirectional dissociation: S1 encodes the sensory-discriminative dimension (z_harm_s equivalent), ACC encodes the affective-motivational dimension (z_harm_a equivalent). This is direct empirical evidence for two separable cortical representations corresponding to the two streams in SD-011. Confidence 0.88 because the study is a clean primary experiment with PET, using validated hypnotic modulation paradigm, in humans. Minor caveats: small N typical of PET era, hypnotic modulation is a somewhat indirect manipulation, and S1 activation in pain is now known to be more complex (encoding both intensity and location).",
-          "evidence_class": "lit:empirical_study",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_011",
-          "failure_signatures": [
-            "If S1 activity also tracks unpleasantness at higher pain intensities or under conditions outside the hypnotic modulation paradigm, the clean sensory-affective dissociation would be incomplete, and z_harm_s/z_harm_a streams would not be as separable as the double dissociation suggests.",
-            "The use of hypnotic suggestion as the manipulation assumes that hypnosis can independently vary sensory intensity vs affective unpleasantness. If hypnotic suggestions inevitably modulate both dimensions simultaneously (with one dimension masked in the ratings), the dissociation would be an artifact of the measurement approach rather than a genuine functional dissociation."
-          ],
-          "run_id": "2026-04-05_sd_011_sensory_dimension_pain_hofbauer2001",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T00:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-011",
@@ -17082,16 +17166,84 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-08T15:59:07.286277Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.72,
+          "confidence_rationale": "Strong experimental design with balanced expectancy controls. Demonstrates that expectation selectively modulates sensory-nociceptive transmission (thalamus, S2, insula) through a distinct modulatory network (caudal ACC, caudate, nCF). Maps well to SD-011 claim that forward-model cancellation applies to z_harm_s but not z_harm_a, though the paper frames this as expectation modulation rather than dual-stream separation per se.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "The study does not directly test two-stream dissociation; it tests how expectation modulates the overall pain response at different nodes.",
+            "Insular cortex activation appears in both the nociceptive (sensory) and expectation (affective) contrasts, complicating a clean pathway dissociation."
+          ],
+          "run_id": "2026-04-08_sd_011_expectation_pain_modulation_keltner2006",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.78,
+          "confidence_rationale": "Authoritative review (6000+ citations) establishing the posterior-to-anterior insular gradient: posterior insula encodes primary interoceptive representation (direct, high-resolution, sensory-discriminative), anterior insula re-represents this as integrated subjective state (affective, homeostatic). This gradient maps directly to z_harm_s (PIC) vs z_harm_a (AIC). Craig's framework extends his earlier 2002/2003 work already in this review by adding the meta-representation and awareness dimensions, strengthening the case that z_harm_a is not merely a smoothed version of z_harm_s but a qualitatively different representation.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "The review focuses on interoception and awareness broadly, not specifically on nociceptive dual streams. Pain is one of many interoceptive modalities discussed.",
+            "The anterior insula framework concerns subjective awareness, not directly the motivational-urgency function that z_harm_a serves in REE."
+          ],
+          "run_id": "2026-04-08_sd_011_anterior_insula_awareness_craig2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:15:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.7,
+          "confidence_rationale": "Authoritative computational review (Neuron) recasting pain as a precision-weighted RL signal with dual function: sensory precision for learning and motivational signal for control. This dual-function framing maps well to z_harm_s (precise, forward-predictable, used for attribution learning) vs z_harm_a (motivational, drives behavioral control via E3). The precision-weighting framework explains why prediction can attenuate z_harm_s (precision cancellation) while z_harm_a remains as the motivational drive. However, Seymour does not explicitly formalize two separate streams \u2014 the paper treats pain as a single signal with multiple computational roles.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "Seymour explicitly frames pain as a single integrated signal, not two separable streams. The dual-function interpretation is REE's mapping, not the paper's claim.",
+            "The RL framework may overemphasize motivational function at the expense of the sensory-discriminative pathway's independent computational role."
+          ],
+          "run_id": "2026-04-08_sd_011_pain_precision_rl_seymour2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:20:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.75,
+          "confidence_rationale": "Comprehensive mini-review (2023) explicitly formalizing two anatomically separable ascending pain pathways within a hierarchical predictive coding framework: medial pathway (dACC + AIC, affective-emotional) and lateral pathway (somatosensory cortex, sensory-discriminative). The predictive coding formalization with precision-weighted PEs at each level maps directly to SD-011's z_harm_s (lateral, forward-predictable via PE) vs z_harm_a (medial, integrated affective state). The posterior-to-anterior insular gradient with traveling waves provides an implementation mechanism. Marked as a mini-review rather than primary experimental data.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "This is a mini-review with a proposed framework, not primary experimental validation. Many components remain speculative (as the author acknowledges).",
+            "The medial/lateral pathway distinction maps to cortical processing, not directly to the spinal-level Adelta/C-fiber distinction that SD-011 grounds its dual streams in."
+          ],
+          "run_id": "2026-04-08_sd_011_predictive_coding_pain_chen2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-08T22:25:00Z"
         }
       ],
-      "runs_total": 18,
+      "runs_total": 22,
       "source_counts": {
         "experimental": 9,
-        "literature": 9
+        "literature": 13
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=4 entry(s), lit=5 entry(s), exp_conf=0.469, lit_conf=0.896",
+      "confidence_rationale": "exp=4 entry(s), lit=5 entry(s), exp_conf=0.468, lit_conf=0.896",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -17107,7 +17259,7 @@
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.469,
+      "experimental_confidence": 0.468,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -17119,7 +17271,7 @@
       "latest_run_id": "v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3",
       "latest_timestamp_utc": "2026-04-08T15:59:07.286277Z",
       "literature_confidence": 0.896,
-      "overall_confidence": 0.683,
+      "overall_confidence": 0.682,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -61003,9 +61155,424 @@
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-04-08T15:59:07.286277Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-023",
+      "confidence": 0.65,
+      "confidence_rationale": "Comprehensive review of BG oscillatory dynamics across frequency bands, drawing on human DBS recordings, MEG, and ECoG. Provides convergent evidence that different functional territories of the BG-thalamocortical network exhibit characteristic frequency signatures: beta (13-35 Hz) dominates motor territories, gamma (40-90 Hz) associates with active movement processing, theta/alpha (4-12 Hz) associates with cognitive/executive functions in ventral STN and limbic territories. This frequency segregation across functional domains supports ARC-023's claim of characteristic loop rates. However, as a review it does not provide novel primary data, and the frequency-territory mapping is correlational rather than causal. The thalamic rate-setting role specifically claimed by ARC-023 is not directly addressed.",
+      "evidence_class": "lit:review_electrophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [
+        "Review, not primary data; frequency-territory associations are correlational",
+        "Thalamic nuclei as rate-setters not directly addressed; focus is on cortical-STN-GPi dynamics",
+        "Motor territory beta dominance is well-established but cognitive/limbic frequency signatures are less firmly characterized"
+      ],
+      "run_id": "2026-04-08_arc023_bg_oscillation_frequency_brittain2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-023",
+      "confidence": 0.68,
+      "confidence_rationale": "Direct intracranial recordings in humans showing MD thalamus operates at 7-8 Hz (upper theta) and mPFC at ~11 Hz (alpha) during cognitive-perceptual gating. This is strong evidence that the MD-PFC (deliberative/cognitive) loop has a characteristic low-frequency rhythm, distinct from the beta-band (13-30 Hz) rhythm characteristic of motor thalamocortical circuits via VL. However, the study examines perceptual detection rather than deliberation per se, and does not directly compare multiple parallel loops. The ARC-023 claim that E3 operates at the slowest deliberation rate maps well to the observed theta/alpha MD-PFC coupling, but the precise frequency hierarchy (E1 > E2 > E3 rate) is not tested within a single paradigm.",
+      "evidence_class": "lit:electrophysiology_intracranial_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [
+        "Study measures perceptual gating, not deliberation or planning; partial mapping to E3 deliberation rate",
+        "Only one loop (MD-PFC) measured; no simultaneous recording of VL-motor or sensory relay loops for direct frequency comparison"
+      ],
+      "run_id": "2026-04-08_arc023_md_pfc_rhythmic_perception_griffiths2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-023",
+      "confidence": 0.72,
+      "confidence_rationale": "Direct causal evidence (optogenetics + electrophysiology in mice) that TRN sectors selectively gate specific thalamocortical channels under PFC top-down control. The visTRN sector modulates visual thalamic relay (LGN) gain independently, and PFC disruption abolishes this modulation. This is strong evidence for ARC-023's claim that TRN acts as an inter-loop routing switch. However, the study addresses sensory modality selection (visual vs auditory within sensory relay nuclei), not gating across the three functionally distinct loops (sensory/motor/cognitive). The mapping from cross-modal sensory gating to cross-loop (E1/E2/E3) gating is an extrapolation.",
+      "evidence_class": "lit:optogenetics_electrophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [
+        "Study examines sensory modality gating (visual vs auditory), not motor vs cognitive vs sensory loop gating",
+        "Mouse model; human TRN architecture may differ in degree of topographic segregation",
+        "Does not measure oscillatory frequency differences between gated channels"
+      ],
+      "run_id": "2026-04-08_arc023_trn_sensory_selection_wimmer2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-089",
+      "confidence": 0.55,
+      "confidence_rationale": "High-quality methodological critique demonstrating that a specific form of cross-frequency coupling (phase-phase coupling, n:m locking) between theta and gamma may be substantially artifactual due to filtering, epoch-length effects, improper surrogates, and theta waveform harmonics. Importantly, this paper targets phase-phase coupling, not phase-amplitude coupling (PAC) -- the form of CFC most relevant to MECH-089. The authors do not claim PAC is artifactual, and in fact the senior author (Tort) has published the strongest PAC evidence (Tort et al. 2009). Nevertheless, the methodological concerns raise the general caution that CFC metrics can be misleading, and the finding that theta harmonics produce spurious coupling at expected frequency ratios is a warning for any CFC interpretation. For MECH-089's purposes, this paper weakens the strongest versions of the temporal-packaging claim (precise phase-locked slots) while leaving the weaker version (amplitude modulation by phase) largely intact.",
+      "evidence_class": "lit:methodological_critique",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_089",
+      "failure_signatures": [
+        "Phase-phase theta-gamma coupling may be largely artifactual from filtering and waveform harmonics",
+        "No existing metric can automatically distinguish true CFC from waveform-induced artifacts in LFP/EEG",
+        "If gamma 'slots' are not phase-locked to specific theta positions, the discrete-batching interpretation is weakened"
+      ],
+      "run_id": "2026-04-08_mech089_cfc_artifact_critique_schefferteixeira2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-089",
+      "confidence": 0.58,
+      "confidence_rationale": "Human intracranial EEG directly demonstrating that multiple working memory items are multiplexed via gamma bursts nested within theta cycles, with theta frequency decreasing as load increases to accommodate more gamma slots. This is the closest empirical analog to MECH-089's claim that multiple fast-rate (E1) updates are batched within each slow-rate (E3) cycle. The ~4:1 gamma-to-theta ratio is somewhat lower than MECH-089's posited 5-7, but in the right ballpark. However, the paper demonstrates multiplexing of distinct memory items, whereas MECH-089 claims temporal batching of sequential updates from a single fast processor (E1) for a slower consumer (E3). The functional context differs: WM maintenance vs. online sensory-prediction batching.",
+      "evidence_class": "lit:electrophysiology_ieeg",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_089",
+      "failure_signatures": [
+        "Gamma-to-theta ratio (~4:1) is at the lower bound of MECH-089's posited 5-7 range",
+        "Paper demonstrates multiplexing of distinct items, not sequential batching of updates from a single source",
+        "Working memory maintenance context differs from E1's continuous sensory prediction stream"
+      ],
+      "run_id": "2026-04-08_mech089_multiitem_wm_axmacher2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-089",
+      "confidence": 0.62,
+      "confidence_rationale": "High-quality in vivo electrophysiology from rat hippocampal CA3 directly demonstrates that gamma amplitude modulation by theta phase increases during associative learning, with coupling strength correlated with performance. The functional relevance is clear: theta-gamma coupling is not epiphenomenal but tracks cognitive demands. However, mapping to MECH-089 requires a substantial translation step: the paper shows theta-gamma coupling during memory retrieval in a single brain region, whereas MECH-089 claims this mechanism packages E1 updates for E3 consumption across processing hierarchies. The paper does not demonstrate inter-region information transfer via CFC, nor does it show the specific ~5-7 gamma-per-theta batching ratio posited by MECH-089.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_089",
+      "failure_signatures": [
+        "Paper demonstrates intra-regional (CA3) coupling only, not inter-hierarchy transfer as MECH-089 requires",
+        "No direct evidence that gamma packets constitute discrete information units being 'batched' for a downstream consumer"
+      ],
+      "run_id": "2026-04-08_mech089_theta_gamma_learning_tort2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-090",
+      "confidence": 0.72,
+      "confidence_rationale": "This paper provides nuanced evidence for MECH-090. On one hand, it shows that post-movement beta synchronization (PMBS) reflects internal model confidence rather than direct motor inhibition -- supporting the idea that beta carries information about internal states, not just output gating. On the other hand, the finding that PMBS amplitude modulates subsequent motor adaptation (higher PMBS = less exploratory adjustment) implies beta does influence downstream behavior through internal model evaluation, blurring the clean output-gating-only distinction of MECH-090. The paper supports the claim that beta carries information about internal model state but complicates the claim that beta exclusively gates output without affecting internal processing.",
+      "evidence_class": "lit:electrophysiology_eeg",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_090",
+      "failure_signatures": [
+        "beta_reflects_internal_model_state_not_just_output_gate"
+      ],
+      "run_id": "2026-04-08_mech090_beta_internal_model_confidence_tan2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-090",
+      "confidence": 0.75,
+      "confidence_rationale": "This paper provides important evidence that partially supports and partially challenges MECH-090. The finding that elevated beta maintains existing action plans (status quo) while beta suppression permits updating directly supports the general framework. However, the critical challenge is that beta suppression here enables INTERNAL plan updating -- the reorganization of cell assemblies encoding action sequences -- not just motor output propagation. If beta suppression is required for internal plan revision, then elevated beta does not merely gate output while leaving internal updating intact; it actively prevents internal state changes too. This directly challenges MECH-090's specificity claim that beta gates output but not internal updating. Confidence reflects genuine dual-valence evidence from direct primate electrophysiology.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_090",
+      "failure_signatures": [
+        "beta_gates_internal_updating_not_just_output",
+        "beta_suppression_required_for_plan_revision"
+      ],
+      "run_id": "2026-04-08_mech090_beta_suppression_action_updating_hosaka2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-090",
+      "confidence": 0.82,
+      "confidence_rationale": "Direct electrophysiological evidence from human STN recordings showing beta desynchronization is necessary for movement initiation, with timing that predicts reaction time. The go/nogo dissociation demonstrates beta acts as a gate on motor output: sustained beta suppression permits movement, early beta rebound suppresses it. This directly supports MECH-090's claim that beta gates propagation to action selection. Confidence tempered by Parkinson's disease population and the fact that the paper does not explicitly test whether internal planning continues during elevated beta.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_090",
+      "failure_signatures": [],
+      "run_id": "2026-04-08_mech090_stn_beta_desync_kuhn2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-091",
+      "confidence": 0.7,
+      "confidence_rationale": "Empirical EEG study demonstrating that delta-band phase reset predicts both conflict-related P3 amplitude changes and behavioral reaction time differences. Directly links phase reset to conflict monitoring -- a functional context much closer to MECH-091's harm/salience detection than the working memory context of Rizzuto 2003. The proposed noradrenergic mechanism (phasic locus coeruleus release resetting cortical networks) provides a plausible neurochemical pathway. However, this is scalp EEG (lower spatial resolution), the flanker task tests response conflict rather than harm/threat detection, and the delta band (1-3 Hz) frequency relationship to E3 heartbeat rate is unspecified.",
+      "evidence_class": "lit:electrophysiology_scalp_eeg",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_091",
+      "failure_signatures": [
+        "scalp_eeg_spatial_ambiguity",
+        "conflict_not_harm_detection",
+        "delta_to_e3_heartbeat_frequency_unspecified"
+      ],
+      "run_id": "2026-04-08_mech091_delta_phase_reset_conflict_monitoring_rawls2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-091",
+      "confidence": 0.72,
+      "confidence_rationale": "Strong intracranial evidence from 551 electrodes demonstrating genuine phase reset (not additive evoked power) in 7-16 Hz oscillations following stimulus events. Phase locking occurred without accompanying power increases, which is the gold-standard criterion for distinguishing true phase reset from evoked responses. However, the task context (working memory item presentation) differs from the salient-event / unexpected-harm context of MECH-091, and the frequency band (7-16 Hz) is higher than the delta-theta range most relevant to E3 heartbeat cycles. Transfer from memory encoding to harm-evaluation cycle reset requires inference.",
+      "evidence_class": "lit:electrophysiology_intracranial",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_091",
+      "failure_signatures": [
+        "frequency_band_mismatch_7_16hz_vs_delta_theta",
+        "task_context_memory_not_salience"
+      ],
+      "run_id": "2026-04-08_mech091_intracranial_neocortical_phase_reset_rizzuto2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-091",
+      "confidence": 0.74,
+      "confidence_rationale": "Comprehensive review establishing phase reset as a functional coordination mechanism -- not epiphenomenal -- across distributed brain networks during goal-directed behavior. Directly addresses the computational advantage question: phase reset sets neural context via narrow-band frequency selection, imposes coherent low-frequency phases for high-frequency synchronization, and is triggered by both external salient stimuli and internal signals (erroneous reward expectations, exploratory saccades). The review covers prefrontal, cingulate, hippocampal, and thalamic circuits. Mapping to MECH-091 is strong because the review explicitly addresses goal-directed behavior and error-related phase reset, though it does not address the specific E3 heartbeat cycle architecture.",
+      "evidence_class": "lit:review_computational_mechanistic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_091",
+      "failure_signatures": [
+        "review_not_primary_data",
+        "no_specific_e3_heartbeat_analog"
+      ],
+      "run_id": "2026-04-08_mech091_phase_reset_network_coordination_voloh2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-091",
+      "confidence": 0.65,
+      "confidence_rationale": "This critical review examines the fundamental question of whether ERPs are generated by phase resetting of ongoing oscillations or by additive evoked responses independent of background EEG. The review finds evidence for both models, concluding that the truth likely involves contributions from both mechanisms. This is 'mixed' evidence for MECH-091: it supports the existence of phase reset as a real neural mechanism (not just measurement artifact), but it cautions that not all apparent phase-locking after stimuli necessarily reflects true phase reset -- some may be additive evoked activity. This is an important epistemic check on MECH-091's confidence.",
+      "evidence_class": "lit:review_methodological_critical",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_091",
+      "failure_signatures": [
+        "phase_reset_may_be_partially_evoked_response",
+        "methodological_difficulty_distinguishing_mechanisms",
+        "frequency_band_specificity_uncertain"
+      ],
+      "run_id": "2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.82,
+      "confidence_rationale": "High-quality causal disruption experiment in Science. Directly demonstrates that awake SWRs are necessary for spatial working memory during learning. The causal link (disrupt SWRs -> impaired learning) strongly supports MECH-092's claim that quiescent replay serves a consolidation function. Mapping is strong but not perfect: Jadhav disrupted ALL awake SWRs (not specifically quiescent-period ones), and the task is spatial alternation rather than viability mapping. The deficit was specific to working memory (outbound trials), not reference memory, which suggests replay consolidates recently acquired trajectory information -- directly relevant to MECH-092's viability map consolidation.",
+      "evidence_class": "lit:electrophysiology_single_unit_and_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_092",
+      "failure_signatures": [
+        "Disruption was not limited to quiescent periods specifically -- all awake SWRs were interrupted",
+        "The deficit was in working memory (outbound), not reference memory (inbound), suggesting awake SWRs may support a specific type of memory rather than general consolidation"
+      ],
+      "run_id": "2026-04-08_mech092_awake_swr_causal_jadhav2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.78,
+      "confidence_rationale": "High-quality empirical electrophysiology study in Nature Neuroscience demonstrating temporally compressed bidirectional replay during awake SWR events. Directly supports MECH-092's claim of compressed trajectory replay during quiescent periods. The temporal compression (~10-20x) matches MECH-092's specification. Forward replay at run onset and reverse replay at run termination support both consolidation and planning roles. However, the study does not directly test consolidation function (correlational, not causal), and the quiescence specificity is implicit rather than tested.",
+      "evidence_class": "lit:electrophysiology_single_unit_and_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_092",
+      "failure_signatures": [
+        "Correlational evidence only -- does not causally demonstrate that replay serves consolidation",
+        "Does not specifically isolate quiescent periods from other immobility states",
+        "Forward replay ('preplay') complicates a pure consolidation interpretation -- suggests planning/anticipation role too"
+      ],
+      "run_id": "2026-04-08_mech092_forward_reverse_replay_diba2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.7,
+      "confidence_rationale": "Well-designed causal disruption study published in eLife showing that awake SWR disruption does NOT impair short-term memorization in repeated-acquisition tasks. This appears to weaken MECH-092 at first glance, but the authors themselves interpret the null result as evidence that awake SWR replay's impact is long-term and cumulative rather than immediate -- which actually refines MECH-092's consolidation claim rather than refuting it. The task type matters: repeated-acquisition tasks requiring within-trial memorization of novel locations differ from Jadhav 2012's across-session learning task. This suggests awake SWR replay may be important for building stable spatial representations over time (consolidation) but not for short-term buffering -- a distinction that informs rather than weakens MECH-092's viability map consolidation framing.",
+      "evidence_class": "lit:electrophysiology_lfp_and_behavior",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_092",
+      "failure_signatures": [
+        "Null result for SWR disruption on memorization -- no behavioral deficit detected across three spatial memory tasks",
+        "Directly contrasts with Jadhav 2012 positive result, raising questions about task-dependence of awake SWR function",
+        "If awake SWR replay is not needed for short-term memorization, the micro-DMN consolidation window in MECH-092 may be too short to produce meaningful consolidation effects"
+      ],
+      "run_id": "2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-093",
+      "confidence": 0.6,
+      "confidence_rationale": "Strong empirical demonstration that alpha frequency and alpha power are statistically uncorrelated (r=0.168, p=0.468) and track different neural substrates (alpha frequency inversely correlates with visual BOLD; alpha power does not). This directly supports MECH-093's central architectural claim that rate modulation (E3 heartbeat frequency, analogous to oscillation frequency) is a distinct control channel from gain modulation (precision-weighting/MECH-059, analogous to oscillation power). Mapping limited by the same domain gap as Wutz et al.: the data are from visual cortex during working memory, not from arousal-driven prefrontal executive circuits.",
+      "evidence_class": "lit:electrophysiology_eeg_fmri_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_093",
+      "failure_signatures": [
+        "visual_cortex_not_prefrontal",
+        "working_memory_load_not_arousal_or_affect_as_driver",
+        "no_noradrenergic_or_arousal_manipulation"
+      ],
+      "run_id": "2026-04-08_mech093_alpha_freq_power_dissociation_samuel2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-093",
+      "confidence": 0.62,
+      "confidence_rationale": "Strong empirical demonstration that oscillation frequency is under top-down control and is functionally distinct from power/amplitude modulation. The dissociation between frequency and power modulation directly supports MECH-093's claim that rate modulation (how often updates occur) is distinct from gain modulation (how much each update matters, i.e. MECH-059). However, the paper tests visual task demands rather than arousal/affective state, and the frequency shifts are in occipital alpha rather than prefrontal executive rhythms. The mapping from visual temporal resolution to E3 heartbeat rate requires an inference step -- both involve oscillatory frequency setting the temporal grain of a cognitive process, but the domains differ.",
+      "evidence_class": "lit:electrophysiology_meg_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_093",
+      "failure_signatures": [
+        "frequency_modulation_was_occipital_alpha_not_prefrontal_executive",
+        "task_demands_not_arousal_or_affective_state_drove_shifts",
+        "effect_size_approximately_0.04Hz_at_scalp_level"
+      ],
+      "run_id": "2026-04-08_mech093_alpha_frequency_modulation_task_demands_wutz2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-093",
+      "confidence": 0.68,
+      "confidence_rationale": "Strong pharmacological evidence that all clinically effective anxiolytics reduce hippocampal theta FREQUENCY (not amplitude), implying that anxiety/arousal increases theta frequency. This directly maps onto MECH-093: high harm salience (high z_beta) -> faster oscillation frequency (faster E3 updates). The temporal coding framework provides a functional explanation: faster theta = finer temporal grain = faster processing cycles, exactly what MECH-093 predicts for high-threat situations. Mapping limited by hippocampal (not prefrontal) recording site and animal (rat) model, but the theta frequency-anxiety link is robust across drug classes (benzodiazepines, 5-HT1A agonists, pregabalin), suggesting a universal principle.",
+      "evidence_class": "lit:electrophysiology_lfp_animal_pharmacological",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_093",
+      "failure_signatures": [
+        "hippocampal_not_prefrontal_recording_site",
+        "rat_model_not_human",
+        "mechanism_of_frequency_reduction_unspecified",
+        "no_noradrenergic_mechanism_discussed"
+      ],
+      "run_id": "2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T17:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.72,
+      "confidence_rationale": "Strong experimental design with balanced expectancy controls. Demonstrates that expectation selectively modulates sensory-nociceptive transmission (thalamus, S2, insula) through a distinct modulatory network (caudal ACC, caudate, nCF). Maps well to SD-011 claim that forward-model cancellation applies to z_harm_s but not z_harm_a, though the paper frames this as expectation modulation rather than dual-stream separation per se.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "The study does not directly test two-stream dissociation; it tests how expectation modulates the overall pain response at different nodes.",
+        "Insular cortex activation appears in both the nociceptive (sensory) and expectation (affective) contrasts, complicating a clean pathway dissociation."
+      ],
+      "run_id": "2026-04-08_sd_011_expectation_pain_modulation_keltner2006",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.78,
+      "confidence_rationale": "Authoritative review (6000+ citations) establishing the posterior-to-anterior insular gradient: posterior insula encodes primary interoceptive representation (direct, high-resolution, sensory-discriminative), anterior insula re-represents this as integrated subjective state (affective, homeostatic). This gradient maps directly to z_harm_s (PIC) vs z_harm_a (AIC). Craig's framework extends his earlier 2002/2003 work already in this review by adding the meta-representation and awareness dimensions, strengthening the case that z_harm_a is not merely a smoothed version of z_harm_s but a qualitatively different representation.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "The review focuses on interoception and awareness broadly, not specifically on nociceptive dual streams. Pain is one of many interoceptive modalities discussed.",
+        "The anterior insula framework concerns subjective awareness, not directly the motivational-urgency function that z_harm_a serves in REE."
+      ],
+      "run_id": "2026-04-08_sd_011_anterior_insula_awareness_craig2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:15:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.7,
+      "confidence_rationale": "Authoritative computational review (Neuron) recasting pain as a precision-weighted RL signal with dual function: sensory precision for learning and motivational signal for control. This dual-function framing maps well to z_harm_s (precise, forward-predictable, used for attribution learning) vs z_harm_a (motivational, drives behavioral control via E3). The precision-weighting framework explains why prediction can attenuate z_harm_s (precision cancellation) while z_harm_a remains as the motivational drive. However, Seymour does not explicitly formalize two separate streams \u2014 the paper treats pain as a single signal with multiple computational roles.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "Seymour explicitly frames pain as a single integrated signal, not two separable streams. The dual-function interpretation is REE's mapping, not the paper's claim.",
+        "The RL framework may overemphasize motivational function at the expense of the sensory-discriminative pathway's independent computational role."
+      ],
+      "run_id": "2026-04-08_sd_011_pain_precision_rl_seymour2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:20:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.75,
+      "confidence_rationale": "Comprehensive mini-review (2023) explicitly formalizing two anatomically separable ascending pain pathways within a hierarchical predictive coding framework: medial pathway (dACC + AIC, affective-emotional) and lateral pathway (somatosensory cortex, sensory-discriminative). The predictive coding formalization with precision-weighted PEs at each level maps directly to SD-011's z_harm_s (lateral, forward-predictable via PE) vs z_harm_a (medial, integrated affective state). The posterior-to-anterior insular gradient with traveling waves provides an implementation mechanism. Marked as a mini-review rather than primary experimental data.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "This is a mini-review with a proposed framework, not primary experimental validation. Many components remain speculative (as the author acknowledges).",
+        "The medial/lateral pathway distinction maps to cortical processing, not directly to the spinal-level Adelta/C-fiber distinction that SD-011 grounds its dual streams in."
+      ],
+      "run_id": "2026-04-08_sd_011_predictive_coding_pain_chen2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-08T22:25:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_purpose": "diagnostic",
+      "experiment_type": "v3_exq_241a_sd011_second_source_validation",
+      "failure_signatures": [],
+      "run_id": "v3_exq_241a_sd011_second_source_validation_20260408T190019Z_v3",
+      "scoring_excluded": "diagnostic_probe",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "20260408T190019Z"
     }
   ],
-  "generated_at_utc": "2026-04-08T16:01:35.374231Z",
+  "generated_at_utc": "2026-04-08T21:35:46.897921Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

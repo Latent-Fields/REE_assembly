@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-04-08_sd_011_expectation_pain_modulation_keltner2006",
+  "timestamp_utc": "2026-04-08T22:10:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Isolating the modulatory effect of expectation on pain transmission: a functional magnetic resonance imaging study",
+    "authors": ["John R Keltner", "Ansgar Furst", "Catherine Fan", "Rick Redfern", "Ben Inglis", "Howard L Fields"],
+    "year": 2006,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4463-05.2006"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong experimental design with balanced expectancy controls. Demonstrates that expectation selectively modulates sensory-nociceptive transmission (thalamus, S2, insula) through a distinct modulatory network (caudal ACC, caudate, nCF). Maps well to SD-011 claim that forward-model cancellation applies to z_harm_s but not z_harm_a, though the paper frames this as expectation modulation rather than dual-stream separation per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study does not directly test two-stream dissociation; it tests how expectation modulates the overall pain response at different nodes.",
+    "Insular cortex activation appears in both the nociceptive (sensory) and expectation (affective) contrasts, complicating a clean pathway dissociation."
+  ],
+  "tags": ["sd_011", "expectation", "pain_modulation", "fmri", "sensory_discriminative", "forward_model"],
+  "mapping": {
+    "source_claim_statement": "Pain intensity expectancy modulates activations produced by noxious stimuli through a distinct modulatory network (caudal ACC, caudate, cerebellum, nucleus cuneiformis) that converges with afferent nociceptive input in the nCF. Nociceptive regions (thalamus, S2, insula) are activated by stimulus intensity under matched expectation conditions.",
+    "ree_translation": "The sensory-discriminative pathway (thalamus -> S2 -> insula) corresponds to z_harm_s: forward-predictable by expectation (i.e., a learned forward model can cancel/attenuate this signal when predicted). The expectation-modulatory network (caudal ACC, caudate, nCF) corresponds to the affective-motivational processing that generates z_harm_a: this network processes expectation itself rather than being suppressed by it. Forward-model cancellation applies to sensory transmission, not to the affective evaluation circuit.",
+    "mapping_caveat": "The paper tests expectation modulation of overall pain, not dual-stream separation. The caudal ACC activation is an expectation effect, not a sustained homeostatic deviation signal as z_harm_a requires. The insula appears in both contrasts, suggesting it participates in both streams.",
+    "source_context": "Human fMRI, healthy adults, conditioned visual cues + thermal nociceptive stimulation (47-48C). Balanced design controlling for expectancy confounds."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (J Neurosci, clever balanced design, Fields lab). Mapping fidelity moderate: the expectation/sensory dissociation supports the principle that prediction cancels sensory but not affective pain processing, but the paper was not designed to test dual-stream anatomy. Transfer risk low: human fMRI with nociceptive stimulation directly relevant to pain architecture."
+  }
+}

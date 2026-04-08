@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-04-08_sd_011_pain_precision_rl_seymour2019",
+  "timestamp_utc": "2026-04-08T22:20:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Pain: A Precision Signal for Reinforcement Learning and Control",
+    "authors": ["Ben Seymour"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.01.055"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Authoritative computational review (Neuron) recasting pain as a precision-weighted RL signal with dual function: sensory precision for learning and motivational signal for control. This dual-function framing maps well to z_harm_s (precise, forward-predictable, used for attribution learning) vs z_harm_a (motivational, drives behavioral control via E3). The precision-weighting framework explains why prediction can attenuate z_harm_s (precision cancellation) while z_harm_a remains as the motivational drive. However, Seymour does not explicitly formalize two separate streams — the paper treats pain as a single signal with multiple computational roles.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Seymour explicitly frames pain as a single integrated signal, not two separable streams. The dual-function interpretation is REE's mapping, not the paper's claim.",
+    "The RL framework may overemphasize motivational function at the expense of the sensory-discriminative pathway's independent computational role."
+  ],
+  "tags": ["sd_011", "computational_model", "reinforcement_learning", "precision_weighting", "pain_motivation", "forward_model"],
+  "mapping": {
+    "source_claim_statement": "The core function of pain is motivational -- to direct both short- and long-term behavior away from harm. A reinforcement learning model of pain explains why pain is tuned by multiple factors and necessarily supported by a distributed network of brain regions, recasting pain as a precise and objectifiable control signal. Pain is conceptualized as the internal reinforcement signal used for learning and is distinct from the nociceptive sensing process.",
+    "ree_translation": "Seymour's distinction between nociceptive sensing (detection) and pain (motivational RL signal) maps onto z_harm_s (nociceptive sensing: precise, forward-predictable, used by E2_harm_s forward model for attribution) vs z_harm_a (pain as motivational signal: drives E3 behavioral control, scales urgency for commit gating). The precision-weighting framework explains SD-011's key asymmetry: z_harm_s can be attenuated by prediction (precision cancellation when forward model accurately predicts harm) while z_harm_a cannot be cancelled because it IS the control signal that must remain operative regardless of prediction accuracy.",
+    "mapping_caveat": "Seymour treats pain as a single precision-weighted signal, not two anatomically separable streams. The mapping to SD-011's dual-stream architecture requires interpreting his sensing/motivation distinction as implying separable computational pathways, which goes beyond the paper's explicit claims. The paper does not address spinal cord or brainstem dual-pathway anatomy (Adelta vs C-fiber).",
+    "source_context": "Computational review in Neuron. Integrates reinforcement learning, active inference, optimal control, and information theory. Based on human behavioral and neuroimaging studies of pain avoidance learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (Neuron, Seymour is a leading computational pain researcher). Mapping fidelity moderate: the sensing/motivation distinction supports SD-011's rationale but the paper does not formalize two separate streams. Transfer risk low: computational framework directly about pain processing architecture."
+  }
+}

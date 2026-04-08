@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-04-08_sd_011_anterior_insula_awareness_craig2009",
+  "timestamp_utc": "2026-04-08T22:15:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "How do you feel--now? The anterior insula and human awareness",
+    "authors": ["A D Bud Craig"],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2555"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Authoritative review (6000+ citations) establishing the posterior-to-anterior insular gradient: posterior insula encodes primary interoceptive representation (direct, high-resolution, sensory-discriminative), anterior insula re-represents this as integrated subjective state (affective, homeostatic). This gradient maps directly to z_harm_s (PIC) vs z_harm_a (AIC). Craig's framework extends his earlier 2002/2003 work already in this review by adding the meta-representation and awareness dimensions, strengthening the case that z_harm_a is not merely a smoothed version of z_harm_s but a qualitatively different representation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review focuses on interoception and awareness broadly, not specifically on nociceptive dual streams. Pain is one of many interoceptive modalities discussed.",
+    "The anterior insula framework concerns subjective awareness, not directly the motivational-urgency function that z_harm_a serves in REE."
+  ],
+  "tags": ["sd_011", "insula", "interoception", "awareness", "posterior_anterior_gradient", "homeostatic"],
+  "mapping": {
+    "source_claim_statement": "The dorsal posterior insula (PIC) contains a primary interoceptive representation that engenders distinct, highly resolved feelings from the body including pain, temperature, itch, and visceral sensations. The right anterior insula (AIC) generates a meta-representation of this activity, providing the basis for the subjective image of the material self as a feeling (sentient) entity — emotional awareness.",
+    "ree_translation": "PIC primary interoceptive representation = z_harm_s: immediate, high-resolution, sensory-discriminative encoding of harm proximity/intensity. AIC meta-representation = z_harm_a: integrated, accumulated homeostatic state that incorporates temporal context and body-state history. The posterior-to-anterior gradient is not merely spatial smoothing but a qualitative transformation — from resolved sensation to integrated affect — matching SD-011's claim that z_harm_a carries fundamentally different information than z_harm_s.",
+    "mapping_caveat": "Craig's framework is about interoception and awareness broadly, not specifically about nociceptive dual-stream architecture. The AIC meta-representation concerns subjective experience and sentience, which is broader than z_harm_a's specific function as motivational urgency signal for E3 commit gating. The step from 'awareness substrate' to 'motivational drive input' requires additional mechanistic argument.",
+    "source_context": "Review synthesizing human neuroimaging, lesion, and anatomical studies. Primarily concerned with anterior insular cortex as neural correlate of awareness, with pain as one of several interoceptive modalities."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.20,
+    "notes": "Extremely high source quality (Nat Rev Neurosci, Craig is the leading authority on insular interoception, 6000+ citations). Mapping fidelity good but not perfect: the posterior/anterior gradient is compelling for SD-011 but the AIC function in Craig's framework (awareness) is broader than z_harm_a's function (motivational urgency). Transfer risk low: directly about human pain/interoception neuroanatomy."
+  }
+}
