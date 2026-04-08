@@ -483,9 +483,10 @@
       "objective": "Redesigned replay diversity test. Must pair replay mechanism with explicit exploration to provide diverse source material. Test asks: does balanced replay MAINTAIN diversity that exploration created?",
       "design": "Phase 1 (exploration): warmup with epsilon=0.5 random exploration, generating diverse behavioral trajectories. Phase 2 (consolidation + test): FORWARD_REPLAY vs BALANCED_REPLAY vs NO_REPLAY. PASS: BALANCED maintains action_entropy from Phase 1 better than FORWARD (which should collapse to monostrategy). 5 seeds.",
       "supersedes": "EXQ-244 (weakens: test design flaw -- asked replay to CREATE diversity rather than MAINTAIN it)",
-      "status": "proposed",
+      "status": "executed",
+      "executed_by": "V3-EXQ-244a",
       "added_utc": "2026-04-06",
-      "notes": "Design-forward analysis DR-9: replay cannot increase entropy without alternative strategies as source material. Current EXQ-244 asked replay to diversify from monostrategy -- impossible by definition."
+      "notes": "Design-forward analysis DR-9: replay cannot increase entropy without alternative strategies as source material. Current EXQ-244 asked replay to diversify from monostrategy -- impossible by definition. MECH-165 substrate implemented 2026-04-09; EXQ-244a queued."
     },
     {
       "proposal_id": "EXP-0106",

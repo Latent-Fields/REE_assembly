@@ -2,10 +2,59 @@
   "schema_version": "v1",
   "runner_pid": 25849,
   "runner_started_at": "2026-04-08T18:59:49.314822+00:00",
-  "last_updated": "2026-04-08T21:56:07.242026+00:00",
+  "last_updated": "2026-04-08T23:38:08.333396+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-261b",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-021: descending pain modulation during commitment",
+    "description": "",
+    "script": "experiments/v3_exq_261_sd021_descending_pain_mod.py",
+    "started_at": "2026-04-08T23:11:35.121904+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 1593,
+    "seconds_remaining": 1040,
+    "recent_lines": [
+      "seed=42 condition=NO_DESCENDING ... resource=0.980 harm=0.005 committed_trav=0",
+      "seed=42 condition=WITH_DESCENDING ... resource=0.980 harm=0.005 committed_trav=0",
+      "seed=7 condition=NO_DESCENDING ... resource=0.961 harm=0.005 committed_trav=0",
+      "seed=7 condition=WITH_DESCENDING ... resource=0.961 harm=0.005 committed_trav=0",
+      "seed=13 condition=NO_DESCENDING ... resource=1.000 harm=0.005 committed_trav=0"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-260b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020: z_harm_a surprise PE training vs raw accumulation",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-261b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021: descending pain modulation during commitment",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -4802,6 +4851,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 1.2
+    },
+    {
+      "queue_id": "V3-EXQ-262b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-220: cross-stream harm hub coordination",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[EXQ-262] FAIL -- wrote v3_exq_262_mech220_harm_hub_20260408T231100Z_v3.json | C1 fwd_r2: FAIL (1/3) | C2 stream_corr: PASS (3/3)",
+      "started_at": "2026-04-08T23:10:59.084679+00:00",
+      "completed_at": "2026-04-08T23:11:31.631782+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 32.5
     }
   ]
 }
