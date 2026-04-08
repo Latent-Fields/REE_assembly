@@ -1,0 +1,376 @@
+{
+  "run_id": "v3_exq_245b_mech120_shy_decay_sweep_20260408T213214Z_v3",
+  "experiment_type": "v3_exq_245b_mech120_shy_decay_sweep",
+  "claim_ids": [
+    "MECH-120"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260408T213214Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "pass_criteria_summary": {
+    "best_condition": null,
+    "condition_details": {
+      "SHY_090_W20": {
+        "p1_cosine_wins": 0,
+        "p2_norm_wins": 3,
+        "p1_pass": false,
+        "p2_pass": true,
+        "both_pass": false,
+        "mean_cosine_sim": 0.9951092004776001,
+        "mean_norm_std": 0.4626662501444419
+      },
+      "SHY_090_W40": {
+        "p1_cosine_wins": 0,
+        "p2_norm_wins": 3,
+        "p1_pass": false,
+        "p2_pass": true,
+        "both_pass": false,
+        "mean_cosine_sim": 0.9951213598251343,
+        "mean_norm_std": 0.4498151183749239
+      },
+      "SHY_095_W20": {
+        "p1_cosine_wins": 0,
+        "p2_norm_wins": 3,
+        "p1_pass": false,
+        "p2_pass": true,
+        "both_pass": false,
+        "mean_cosine_sim": 0.952863335609436,
+        "mean_norm_std": 0.48234719534715015
+      },
+      "SHY_095_W40": {
+        "p1_cosine_wins": 0,
+        "p2_norm_wins": 3,
+        "p1_pass": false,
+        "p2_pass": true,
+        "both_pass": false,
+        "mean_cosine_sim": 0.9529151916503906,
+        "mean_norm_std": 0.4618763421506931
+      },
+      "SHY_098_W20": {
+        "p1_cosine_wins": 0,
+        "p2_norm_wins": 3,
+        "p1_pass": false,
+        "p2_pass": true,
+        "both_pass": false,
+        "mean_cosine_sim": 0.7893082797527313,
+        "mean_norm_std": 0.4995690733194351
+      },
+      "SHY_098_W40": {
+        "p1_cosine_wins": 0,
+        "p2_norm_wins": 3,
+        "p1_pass": false,
+        "p2_pass": true,
+        "both_pass": false,
+        "mean_cosine_sim": 0.7893490791320801,
+        "mean_norm_std": 0.4670961753775676
+      }
+    },
+    "baseline_mean_cosine_sim": 0.666814287668482,
+    "baseline_mean_norm_std": 0.5056761261075735
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "BASELINE",
+      "shy_enabled": false,
+      "shy_decay_rate": 0.85,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.0004487042606342584,
+      "slot_norm_std": 1.3860098123550415,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_090_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.9,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.9853286743164062,
+      "slot_norm_std": 1.333763837814331,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_090_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.9,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.9853642582893372,
+      "slot_norm_std": 1.33528470993042,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_095_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.95,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.8585922718048096,
+      "slot_norm_std": 1.3699421882629395,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_095_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.95,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.858745813369751,
+      "slot_norm_std": 1.3706282377243042,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_098_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.98,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.3679288327693939,
+      "slot_norm_std": 1.385478138923645,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 42,
+      "condition": "SHY_098_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.98,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.3680475950241089,
+      "slot_norm_std": 1.385617971420288,
+      "harm_rate_safe": 0.008448581063747407,
+      "harm_rate_dangerous": 0.007789325857162475,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "BASELINE",
+      "shy_enabled": false,
+      "shy_decay_rate": 0.85,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.999997079372406,
+      "slot_norm_std": 0.10766474157571793,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_090_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.9,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.999999463558197,
+      "slot_norm_std": 0.03717035800218582,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_090_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.9,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 1.0,
+      "slot_norm_std": 0.012241331860423088,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_095_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.95,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.9999988675117493,
+      "slot_norm_std": 0.057575177401304245,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_095_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.95,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_norm_std": 0.01270400732755661,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_098_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.98,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.9999980330467224,
+      "slot_norm_std": 0.09124904870986938,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 7,
+      "condition": "SHY_098_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.98,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_norm_std": 0.013957183808088303,
+      "harm_rate_safe": 0.0007237662458419801,
+      "harm_rate_dangerous": 0.005481776742140452,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "BASELINE",
+      "shy_enabled": false,
+      "shy_decay_rate": 0.85,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.999997079372406,
+      "slot_norm_std": 0.023353824391961098,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_090_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.9,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.999999463558197,
+      "slot_norm_std": 0.01706455461680889,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_090_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.9,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.9999998211860657,
+      "slot_norm_std": 0.001919313333928585,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_095_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.95,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.9999988675117493,
+      "slot_norm_std": 0.019524220377206802,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_095_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.95,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.9999998807907104,
+      "slot_norm_std": 0.002296781400218606,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_098_W20",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.98,
+      "sws_write_steps": 20,
+      "slot_cosine_sim": 0.9999979734420776,
+      "slot_norm_std": 0.021980032324790955,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    },
+    {
+      "seed": 13,
+      "condition": "SHY_098_W40",
+      "shy_enabled": true,
+      "shy_decay_rate": 0.98,
+      "sws_write_steps": 40,
+      "slot_cosine_sim": 0.9999997615814209,
+      "slot_norm_std": 0.001713370904326439,
+      "harm_rate_safe": 0.0013958232603470484,
+      "harm_rate_dangerous": 0.005700185815493266,
+      "sleep_passes": 10
+    }
+  ],
+  "config": {
+    "conditions": {
+      "BASELINE": {
+        "shy_enabled": false,
+        "decay": 0.85,
+        "writes": 20
+      },
+      "SHY_090_W20": {
+        "shy_enabled": true,
+        "decay": 0.9,
+        "writes": 20
+      },
+      "SHY_090_W40": {
+        "shy_enabled": true,
+        "decay": 0.9,
+        "writes": 40
+      },
+      "SHY_095_W20": {
+        "shy_enabled": true,
+        "decay": 0.95,
+        "writes": 20
+      },
+      "SHY_095_W40": {
+        "shy_enabled": true,
+        "decay": 0.95,
+        "writes": 40
+      },
+      "SHY_098_W20": {
+        "shy_enabled": true,
+        "decay": 0.98,
+        "writes": 20
+      },
+      "SHY_098_W40": {
+        "shy_enabled": true,
+        "decay": 0.98,
+        "writes": 40
+      }
+    },
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "training_episodes": 100,
+    "steps_per_episode": 150,
+    "eval_episodes_each": 20,
+    "seeds": [
+      42,
+      7,
+      13
+    ]
+  }
+}
