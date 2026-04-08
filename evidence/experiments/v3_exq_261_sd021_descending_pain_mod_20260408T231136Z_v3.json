@@ -1,0 +1,88 @@
+{
+  "run_id": "v3_exq_261_sd021_descending_pain_mod_20260408T231136Z_v3",
+  "experiment_type": "v3_exq_261_sd021_descending_pain_mod",
+  "claim_ids": [
+    "SD-021",
+    "SD-011"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "status": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-021": "weakens",
+    "SD-011": "supports"
+  },
+  "criteria": {
+    "C1_resource_rate_improvement": {
+      "pass": false,
+      "seeds_passing": 0,
+      "margin": 0.05
+    },
+    "C2_harm_rate_capped": {
+      "pass": true,
+      "seeds_passing": 3,
+      "cap_factor": 1.5
+    },
+    "C3_committed_traversals": {
+      "informational": true,
+      "seeds_passing": 0
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "NO_DESCENDING",
+      "resource_rate": 0.9804,
+      "harm_rate": 0.0051,
+      "committed_traversals": 0,
+      "eval_episodes": 50
+    },
+    {
+      "seed": 42,
+      "condition": "WITH_DESCENDING",
+      "resource_rate": 0.9804,
+      "harm_rate": 0.0051,
+      "committed_traversals": 0,
+      "eval_episodes": 50
+    },
+    {
+      "seed": 7,
+      "condition": "NO_DESCENDING",
+      "resource_rate": 0.9607,
+      "harm_rate": 0.0052,
+      "committed_traversals": 0,
+      "eval_episodes": 50
+    },
+    {
+      "seed": 7,
+      "condition": "WITH_DESCENDING",
+      "resource_rate": 0.9607,
+      "harm_rate": 0.0052,
+      "committed_traversals": 0,
+      "eval_episodes": 50
+    },
+    {
+      "seed": 13,
+      "condition": "NO_DESCENDING",
+      "resource_rate": 1.0,
+      "harm_rate": 0.0053,
+      "committed_traversals": 0,
+      "eval_episodes": 50
+    },
+    {
+      "seed": 13,
+      "condition": "WITH_DESCENDING",
+      "resource_rate": 1.0,
+      "harm_rate": 0.0053,
+      "committed_traversals": 0,
+      "eval_episodes": 50
+    }
+  ],
+  "config_summary": {
+    "grid_size": 8,
+    "alpha_descending": 0.3,
+    "p0_episodes": 150,
+    "p1_episodes": 50
+  }
+}

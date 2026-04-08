@@ -1,36 +1,10 @@
 {
   "schema_version": "v1",
-  "runner_pid": 25849,
+  "runner_pid": null,
   "runner_started_at": "2026-04-08T18:59:49.314822+00:00",
-  "last_updated": "2026-04-08T23:38:08.333396+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-261b",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-021: descending pain modulation during commitment",
-    "description": "",
-    "script": "experiments/v3_exq_261_sd021_descending_pain_mod.py",
-    "started_at": "2026-04-08T23:11:35.121904+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 1593,
-    "seconds_remaining": 1040,
-    "recent_lines": [
-      "seed=42 condition=NO_DESCENDING ... resource=0.980 harm=0.005 committed_trav=0",
-      "seed=42 condition=WITH_DESCENDING ... resource=0.980 harm=0.005 committed_trav=0",
-      "seed=7 condition=NO_DESCENDING ... resource=0.961 harm=0.005 committed_trav=0",
-      "seed=7 condition=WITH_DESCENDING ... resource=0.961 harm=0.005 committed_trav=0",
-      "seed=13 condition=NO_DESCENDING ... resource=1.000 harm=0.005 committed_trav=0"
-    ],
-    "ree_version": "v3"
-  },
+  "last_updated": "2026-04-08T23:40:17.843471+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-260b",
@@ -40,17 +14,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-261b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-021: descending pain modulation during commitment",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -4865,6 +4828,21 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 32.5
+    },
+    {
+      "queue_id": "V3-EXQ-261b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021: descending pain modulation during commitment",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[EXQ-261] FAIL -- wrote v3_exq_261_sd021_descending_pain_mod_20260408T231136Z_v3.json | C1 resource_rate: FAIL (0/3) | C2 harm_rate_cap: PASS (3/3)",
+      "started_at": "2026-04-08T23:11:35.121904+00:00",
+      "completed_at": "2026-04-08T23:40:17.807527+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1722.7
     }
-  ]
+  ],
+  "draining": false
 }
