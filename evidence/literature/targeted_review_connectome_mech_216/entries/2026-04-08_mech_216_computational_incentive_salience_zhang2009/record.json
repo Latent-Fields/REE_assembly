@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_216",
+  "entry_id": "2026-04-08_mech_216_computational_incentive_salience_zhang2009",
+  "timestamp_utc": "2026-04-08T22:00:00Z",
+  "claim_ids_tested": ["MECH-216"],
+  "source": {
+    "title": "A Neural Computational Model of Incentive Salience",
+    "authors": ["Jun Zhang", "Kent C Berridge", "Amy J Tindell", "Kyle S Smith", "J Wayne Aldridge"],
+    "year": 2009,
+    "venue": "PLOS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1000437"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the formal computational model of incentive salience that directly formalises what MECH-216 proposes. The wanting = kappa x learned_value equation is the mathematical core. High source quality (peer-reviewed computational neuroscience with empirical validation against ventral pallidum recordings). Very high mapping fidelity -- the model's structure (cached learned prediction x current state = dynamic wanting) maps almost exactly onto E1 schema activation x drive_level = VALENCE_WANTING seeding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model assumes a separate kappa (state) parameter that modulates wanting independently of learning -- REE does not yet have a clean kappa analog beyond drive_level.",
+    "The model's learned values are TD-cached reward predictions, not schema activations per se -- the mapping from TD values to E1 schema readout is not exact."
+  ],
+  "tags": ["mech_216", "incentive_salience", "computational_model", "wanting", "zhang_berridge"],
+  "mapping": {
+    "source_claim_statement": "Incentive salience is computed as W_m(s) = kappa * f(V_hat(s), r_t), where kappa is current neurobiological state, V_hat is the TD-learned cached value, and r_t is the current reward. The model predicts ventral pallidum firing patterns during CS-triggered wanting.",
+    "ree_translation": "MECH-216 proposes that E1 schema activations (analog of V_hat -- learned predictive representations) seed VALENCE_WANTING (analog of W_m -- the wanting signal) at the current z_world position, modulated by drive_level (analog of kappa). The seeding mechanism is the E1-to-serotonin pathway rather than the mesolimbic dopamine pathway.",
+    "mapping_caveat": "Zhang et al.'s V_hat is a scalar TD value; E1 schema activation is a high-dimensional pattern. The mapping assumes that a scalar readout (schema activation magnitude) can serve the same role as V_hat. The kappa modulation in REE is via drive_level (SD-012), which is not yet fully functional.",
+    "source_context": "Computational model validated against rat ventral pallidum neural recordings during Pavlovian conditioned approach."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Peer-reviewed computational model with neural validation. The computational structure maps very well onto MECH-216. Transfer risk low because the model is itself an abstraction of the biological mechanism -- we are mapping abstraction to abstraction."
+  }
+}

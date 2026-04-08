@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_216",
+  "entry_id": "2026-04-08_mech_216_successor_representation_gershman2018",
+  "timestamp_utc": "2026-04-08T22:00:00Z",
+  "claim_ids_tested": ["MECH-216"],
+  "source": {
+    "title": "The Successor Representation: Its Computational Logic and Neural Substrates",
+    "authors": ["Samuel J Gershman"],
+    "year": 2018,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0151-18.2018"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The SR framework provides strong indirect support for MECH-216 by showing that hippocampal representations naturally cluster around reward-proximal states, creating a predictive map with implicit reward gradients. This is the spatial/representational complement to Berridge's motivational account. Moderate mapping fidelity: the SR predicts representational clustering, not motivational seeding per se -- the link from predictive representation to wanting requires the additional step that MECH-216 proposes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The SR encodes expected future state occupancy, not motivational valence -- the mapping from SR clustering to wanting seeding is an additional interpretive step not present in Gershman's framework.",
+    "SR clustering around reward arises from visitation frequency, not from a predictive-wanting mechanism -- the computational origin is different from MECH-216's schema-activation account."
+  ],
+  "tags": ["mech_216", "successor_representation", "hippocampus", "predictive_map", "reward_clustering"],
+  "mapping": {
+    "source_claim_statement": "The successor representation encodes states in terms of expected future occupancy, producing place-field-like representations that cluster around frequently visited (including reward-proximal) locations. This predictive map enables rapid value computation when reward structure changes.",
+    "ree_translation": "E1's learned world model (LSTM) encodes predictive relationships between z_world states, analogous to the SR. States that reliably precede resource encounters have elevated E1 predictive activity (the schema activation in MECH-216). The SR's reward-proximal clustering provides a spatial-representational mechanism for why E1 schemas at resource-predictive positions would carry stronger activation -- they are more frequently and reliably predictive of high-value future states.",
+    "mapping_caveat": "The SR produces representational clustering, not motivational output. MECH-216 requires a separate step from 'E1 predicts this state leads to reward' to 'E1 seeds wanting here'. The SR framework does not address wanting or motivational seeding. The mapping treats E1's LSTM hidden state as an SR-like predictive representation, which is an assumption, not a demonstrated equivalence.",
+    "source_context": "Computational review synthesising RL theory (Dayan 1993) with hippocampal neuroscience (place cells, grid cells)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.25,
+    "notes": "High-quality review in J Neurosci. Mapping fidelity moderate because SR addresses representation, not motivation -- the connection to wanting requires an interpretive bridge that MECH-216 proposes but Gershman does not."
+  }
+}

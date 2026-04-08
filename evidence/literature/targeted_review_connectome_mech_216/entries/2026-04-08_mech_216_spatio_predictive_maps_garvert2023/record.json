@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_216",
+  "entry_id": "2026-04-08_mech_216_spatio_predictive_maps_garvert2023",
+  "timestamp_utc": "2026-04-08T22:00:00Z",
+  "claim_ids_tested": ["MECH-216"],
+  "source": {
+    "title": "Hippocampal spatio-predictive cognitive maps adaptively guide reward generalization",
+    "authors": ["Mona M Garvert", "Tankred Saanum", "Eric Schulz", "Nicolas W Schuck", "Christian F Doeller"],
+    "year": 2023,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-023-01283-x"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Human fMRI evidence that hippocampal predictive maps guide reward-related choice behavior. Moderate confidence: the paper demonstrates that predictive representations (not just spatial proximity) influence reward generalization, supporting the principle that prediction-based signals guide approach. But the paper addresses representation-to-choice, not representation-to-wanting -- the motivational step is inferred, not directly measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Predictive map influence on choices weakened over time as spatial map strengthened (44/48 participants showed spatial dominance during choice) -- suggests predictive maps may be transitional rather than persistent.",
+    "Orbitofrontal cortex, not hippocampus alone, mediates the selection between spatial and predictive maps -- the mechanism requires OFC arbitration that REE does not model."
+  ],
+  "tags": ["mech_216", "hippocampus", "predictive_map", "reward_generalization", "fmri", "cognitive_map"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus encodes both spatial and predictive cognitive maps, with the predictive map initially influencing reward generalization more strongly. The orbitofrontal cortex tracks consistency between outcomes and each map type, updating hippocampal representations adaptively.",
+    "ree_translation": "E1 encodes predictive representations of z_world (analogous to the predictive cognitive map). These representations influence approach behavior / reward generalization before direct spatial proximity signals dominate. In MECH-216 terms: E1 schema-conditioned wanting (predictive map influence) operates before and alongside direct resource-proximity wanting (spatial map influence). The finding that predictive influence is strongest early in learning suggests MECH-216 may be most important during initial exploration before the wanting landscape is populated by direct contact.",
+    "mapping_caveat": "The paper measures choice behavior, not wanting or motivational signals. The hippocampal maps guide generalization through value computation, not through explicit motivational seeding. The OFC arbitration mechanism has no REE analog. The transition from predictive to spatial dominance suggests the mechanism may be most relevant in novel environments.",
+    "source_context": "Human fMRI study (N=48), virtual spatial navigation task with reward learning and generalization testing."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Nature Neuroscience publication, large sample, well-controlled fMRI design. Mapping fidelity moderate: the paper addresses representation-guided choice, not wanting-seeding. The transfer from human fMRI to REE's computational E1 is an abstraction step."
+  }
+}

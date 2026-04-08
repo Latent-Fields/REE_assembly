@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_216",
+  "entry_id": "2026-04-08_mech_216_prediction_error_incentive_salience_berridge2012",
+  "timestamp_utc": "2026-04-08T22:00:00Z",
+  "claim_ids_tested": ["MECH-216"],
+  "source": {
+    "title": "From prediction error to incentive salience: mesolimbic computation of reward motivation",
+    "authors": ["Kent C Berridge"],
+    "year": 2012,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/j.1460-9568.2012.07990.x"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Berridge's incentive salience framework provides the strongest neuroscientific foundation for MECH-216. The mechanism described -- learned CS-UCS associations dynamically generating wanting at re-encounter, modulated by physiological state -- maps directly onto E1 schema activation seeding VALENCE_WANTING. High source quality (canonical review by the field's originator), strong mapping fidelity (the CS-to-wanting transformation is precisely what MECH-216 proposes in latent space), moderate transfer risk (biological dopamine circuits vs. computational E1 schema readout).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Berridge emphasises that wanting can be generated for stimuli never previously liked -- MECH-216 does not model this dissociation (wanting is always grounded in resource benefit).",
+    "The biological mechanism requires mesolimbic dopamine as the wanting-generation substrate; REE has no dopaminergic analog -- serotonin module handles a different function."
+  ],
+  "tags": ["mech_216", "incentive_salience", "wanting", "pavlovian_conditioning", "dopamine", "berridge"],
+  "mapping": {
+    "source_claim_statement": "Mesolimbic dopamine systems dynamically compute incentive salience by combining learned Pavlovian CS-UCS associations with current neurobiological state at the moment of cue re-encounter, generating wanting independently of hedonic liking or cognitive expectation.",
+    "ree_translation": "E1 schema activations that reliably predict resource encounters (learned CS-UCS associations) seed VALENCE_WANTING at the current z_world position (incentive salience attribution at cue re-encounter). The drive_level / physiological state modulation (kappa parameter) maps to SD-012 homeostatic drive scaling.",
+    "mapping_caveat": "Berridge's wanting is mediated by mesolimbic dopamine; REE's wanting is a field value in the residue field updated by the serotonin module. The biological wanting can dissociate from liking and from prediction -- REE's wanting is currently tied to benefit/resource proximity. The kappa-modulation (state-dependent gain) maps loosely to drive_level but REE does not yet implement moment-by-moment recomputation of wanting at re-encounter.",
+    "source_context": "Review of rodent and human neuroscience on dopamine, incentive salience, and Pavlovian-to-instrumental transfer."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Canonical review by the field originator. High-quality empirical grounding (salt appetite, amphetamine sensitisation, lesion studies). Mapping fidelity docked because MECH-216 does not replicate the wanting/liking dissociation -- E1 schema wanting is always resource-grounded."
+  }
+}
