@@ -2,48 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 52838,
   "runner_started_at": "2026-04-06T08:34:14.451702+00:00",
-  "last_updated": "2026-04-08T05:51:09.273951+00:00",
+  "last_updated": "2026-04-08T10:48:11.686760+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-248b",
-    "backlog_id": "",
-    "claim_id": "Q-034",
-    "title": "Q-034: Hazard/Resource Ratio Sweep (SD-018)",
-    "description": "",
-    "script": "experiments/v3_exq_248_q034_threshold_sweep.py",
-    "started_at": "2026-04-07T22:53:36.341749+00:00",
-    "progress": {
-      "run_label": "Seed 7 / h1_r1",
-      "runs_done": 7,
-      "runs_total": 9,
-      "episodes_done": 200,
-      "episodes_total": 300,
-      "overall_pct": 85.2
-    },
-    "seconds_elapsed": 9783,
-    "seconds_remaining": 1742,
-    "recent_lines": [
-      "[V3-EXQ-248] Seed 7 Condition h1_r1 Mode PLANNED",
-      "[train] h1_r1 seed=7 ep 50/300 harm_pos=528 harm_neg=79 ben_samples=5216 goal_norm=0.188",
-      "[train] h1_r1 seed=7 ep 100/300 harm_pos=1025 harm_neg=148 ben_samples=10336 goal_norm=0.121",
-      "[train] h1_r1 seed=7 ep 150/300 harm_pos=1576 harm_neg=234 ben_samples=15968 goal_norm=0.173",
-      "[train] h1_r1 seed=7 ep 200/300 harm_pos=2083 harm_neg=321 ben_samples=21152 goal_norm=0.012"
-    ],
-    "ree_version": "v3"
-  },
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-248b",
-      "backlog_id": "",
-      "claim_id": "Q-034",
-      "title": "Q-034: Hazard/Resource Ratio Sweep (SD-018)",
-      "description": "",
-      "estimated_minutes": 51.1,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "current": null,
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -4686,6 +4648,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 12706.4
+    },
+    {
+      "queue_id": "V3-EXQ-248b",
+      "backlog_id": "",
+      "claim_id": "Q-034",
+      "title": "Q-034: Hazard/Resource Ratio Sweep (SD-018)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "h3_r2: lift=+0.0000 +/-0.0000 equiv_frac=1.00 z_goal=0.126 z_harm_a=0.0000 [EQUIV] | h3_r3: lift=+0.0000 +/-0.0000 equiv_frac=1.00 z_goal=0.239 z_harm_a=0.0000 [EQUIV] | -> PASS decision=retain_ree direction=supports",
+      "started_at": "2026-04-07T22:53:36.341749+00:00",
+      "completed_at": "2026-04-08T10:48:11.677006+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 27605.2
     }
   ]
 }
