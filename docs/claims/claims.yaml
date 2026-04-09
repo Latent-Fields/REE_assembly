@@ -6868,7 +6868,7 @@
   subject: sleep.sws_denoising_attractor_flattening
   polarity: asserts
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v3
   depends_on:
     - MECH-030
     - MECH-092
@@ -6916,16 +6916,17 @@
     MECH-092, MECH-094, ARC-016 prerequisites. s1 (SHY-then-SWS beats SWS-alone)
     failure reflects absent substrate, not claim falsification. Run 1 showed s2 PASS
     (correct order beats wrong order, 3/3 seeds) but run 2 regression (s2 also FAIL 1/3).
-    Literature support strong (7 entries). Held at candidate pending V4 substrate
-    implementation. Note (2026-04-08): user confirmed decision to pull V4 mechanisms
-    into V3 scope -- MECH-120 substrate (SHY decay, SWS residue scaling) should be
-    planned for V3 implementation. hold_candidate_resolve_conflict applied.
+    Literature support strong (7 entries). Held at candidate pending V3 substrate
+    completion. Reclassified implementation_phase: v3 (governance 2026-04-09): SD-017
+    (minimal sleep-phase infrastructure) moved to V3 scope; MECH-120 operates within
+    the SWS phase so its substrate (SHY decay, SWS residue scaling) is V3-scoped.
+    Recommendation corrected to hold_pending_v3_substrate.
     Suppermpool et al. 2024 (Nature) confirmed single-neuron SHY operation in
     zebrafish with sleep-pressure gating. Prediction for REE: a minimal mind without
     a sleep substrate will show monostrategy convergence under extended training.
     This is the currently observed signature in V3 (no sleep substrate) and is
     predicted by MECH-120 absence, not by any other mechanism.
-    Registered 2026-03-23. V4 scope. Functional outcome note added 2026-04-04.
+    Registered 2026-03-23. Reclassified V3 scope 2026-04-09. Functional outcome note added 2026-04-04.
     Implementation note (2026-04-08): SHY wiring completed -- enter_sws_mode() now
     calls E1.shy_normalise(decay) when shy_enabled=True. Config: REEConfig.shy_enabled
     (bool, default False), REEConfig.shy_decay_rate (float, default 0.85). EXQ-245a
