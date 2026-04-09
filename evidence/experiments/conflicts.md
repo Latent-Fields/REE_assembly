@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-09T17:03:31.080453Z`
+Generated: `2026-04-09T17:17:18.210154Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -47,7 +47,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-165` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-04-06_mech165_salient_replay_priority_huelingo2023` | 6 |
 | `MECH-186` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015` | 5 |
 | `MECH-188` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_253_mech188_zgoal_injection_1775556946_v3` | 6 |
-| `MECH-205` | directional, source_disagreement | 8 | 2 | 0.4 | `v3_exq_258a_mech205_surprise_gated_replay_1775693658_v3` | 10 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3` | 7 |
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
@@ -61,8 +60,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-011` | directional, mixed_evidence | 20 | 5 | 0.4 | `v3_exq_241b_sd011_second_source_info_gain_20260408T231939Z_v3` | 47 |
 | `SD-012` | directional, source_disagreement, mixed_evidence | 6 | 6 | 1 | `v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3` | 24 |
 | `SD-015` | directional, source_disagreement, mixed_evidence | 4 | 3 | 0.857 | `v3_exq_085m_arc030_benefit_eval_e3_20260330T211858Z_v3` | 14 |
-| `SD-020` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-04-09_sd_020_pain_matrix_salience_iannetti2010` | 5 |
-| `SD-021` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-04-09_sd_021_placebo_opioid_eippert2009` | 5 |
 
 ## Conflict Details
 
@@ -187,7 +184,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-030
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=6, weakens=6, conflict_ratio=1, overall_confidence=0.741
+- Evidence breakdown: supports=6, weakens=6, conflict_ratio=1, overall_confidence=0.74
 - Recent entries:
   - `2026-04-06T15:39:22.299341Z` `experimental` `v3_exq_085m_arc030_benefit_eval_e3` direction=`non_contributory` confidence=0
   - `2026-04-06T15:39:26.122581Z` `experimental` `v3_exq_085m_arc030_benefit_eval_e3` direction=`non_contributory` confidence=0
@@ -830,26 +827,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### MECH-205
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.672
-- Recent entries:
-  - `2026-04-07T03:30:00Z` `literature` `targeted_review_mech_205` direction=`supports` confidence=0.68
-  - `2026-04-07T03:30:00Z` `literature` `targeted_review_mech_205` direction=`supports` confidence=0.72
-  - `2026-04-07T03:30:00Z` `literature` `targeted_review_mech_205` direction=`supports` confidence=0.8
-  - `2026-04-07T13:13:39Z` `experimental` `v3_exq_258_mech205_surprise_gated_replay` direction=`weakens` confidence=0.75
-  - `2026-04-09T00:14:18Z` `experimental` `v3_exq_258a_mech205_surprise_gated_replay` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `The model does not address what determines WHICH sequences are replayed -- there is no surprise-gating or prioritisation mechanism. Replay samples from the learned distribution uniformly, which is a weaker claim than MECH-205's surprise-proportional scheduling.` (1)
-  - `The study measures memory reconsolidation/updating, not replay scheduling or offline consolidation. The prediction error effect is on representation destabilisation, not on replay frequency or generative replay content.` (1)
-  - `The model prioritizes by expected BEHAVIORAL gain, not raw prediction error -- replay of a surprise that cannot change policy is not prioritized, which is a more restrictive criterion than MECH-205's surprise buffer.` (1)
-  - `The study demonstrates generative replay but does not show that surprise/prediction error is the trigger for generating novel sequences rather than other factors like spatial proximity or sequence overlap.` (1)
-  - `Reward and surprise are confounded during learning phases -- the study cannot disambiguate whether enhanced reactivation is driven by reward value or by prediction error specifically.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### Q-001
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.68
@@ -1034,9 +1011,9 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, mixed_evidence
 - Evidence breakdown: supports=20, weakens=5, conflict_ratio=0.4, overall_confidence=0.857
 - Recent entries:
-  - `2026-04-09T06:26:09.832876Z` `experimental` `v3_exq_260_sd020_harm_surprise_pe` direction=`supports` confidence=0.55
-  - `2026-04-09T06:26:09.833453Z` `experimental` `v3_exq_261_sd021_descending_pain_mod` direction=`supports` confidence=0.55
   - `2026-04-09T17:03:11.704818Z` `experimental` `v3_exq_262_mech220_harm_hub` direction=`supports` confidence=0.55
+  - `2026-04-09T17:16:22.255891Z` `experimental` `v3_exq_260_sd020_harm_surprise_pe` direction=`supports` confidence=0.55
+  - `2026-04-09T17:16:26.732473Z` `experimental` `v3_exq_261_sd021_descending_pain_mod` direction=`supports` confidence=0.55
   - `20260408T190019Z` `experimental` `v3_exq_241a_sd011_second_source_validation` direction=`non_contributory` confidence=0
   - `20260408T231939Z` `experimental` `v3_exq_241b_sd011_second_source_info_gain` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
@@ -1085,46 +1062,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `VisNet relies on temporal continuity (slow feature analysis) for invariance learning -- REE's ResourceEncoder uses supervised or BCE training, a fundamentally different learning signal.` (1)
   - `Rolls' spatial view cells are allocentric and hippocampal -- REE's z_world is egocentric grid observation, a different coordinate frame.` (1)
   - `Hippocampal landmark cells bind object identity WITH spatial location (conjunctive coding), suggesting the brain may not keep what/where fully separate at the navigation level.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### SD-020
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.767
-- Recent entries:
-  - `2026-04-09T06:26:09.832876Z` `experimental` `v3_exq_260_sd020_harm_surprise_pe` direction=`weakens` confidence=0.75
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_020` direction=`supports` confidence=0.82
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_020` direction=`supports` confidence=0.88
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_020` direction=`supports` confidence=0.9
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_020` direction=`supports` confidence=0.72
-- Recurring failure signatures:
-  - `If adaptive coding in anterior insula reflects only the context-dependence of sensory gain (adaptation) rather than prediction error per se, the PE interpretation could be questioned.` (1)
-  - `If the effect is not replicated in larger samples, the small-n limitation (N=19) would become more serious.` (1)
-  - `If replications found anterior insula tracked absolute intensity rather than PE in identical paradigms, the dissociation claim would fail.` (1)
-  - `If the anterior/posterior gradient reflects only temporal dynamics (sustained vs. transient) rather than computational role (PE vs. intensity), this would weaken the mapping to z_harm_a.` (1)
-  - `If anterior insula PE signals were driven solely by attentional orienting rather than learning (i.e., if they disappeared in conditions where attention was controlled), the unsigned PE interpretation would be weakened.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### SD-021
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.751
-- Recent entries:
-  - `2026-04-09T06:26:09.833453Z` `experimental` `v3_exq_261_sd021_descending_pain_mod` direction=`weakens` confidence=0.75
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_021` direction=`supports` confidence=0.75
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_021` direction=`supports` confidence=0.78
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_021` direction=`supports` confidence=0.8
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_sd_021` direction=`supports` confidence=0.82
-- Recurring failure signatures:
-  - `The lateral PAG result (rather than vlPAG) may indicate non-opioidergic, serotonergic, or noradrenergic descending mechanisms, which would complicate the clean opioid-gating story in SD-021.` (1)
-  - `If placebo ability is a trait variable rather than a state that E3 commitment can invoke, the mechanism may not be trainable via commitment-gating in the way SD-021 proposes.` (1)
-  - `If the PAG activations during anticipation reviewed here reflect threat-preparation (defensive arousal) rather than top-down analgesic gating, the descending inhibition framing would be incomplete.` (1)
-  - `If dlPFC-PAG coupling reflects attention rather than commitment-gated suppression, the mapping to E3 commitment requires revision.` (1)
-  - `If PAG stimulation produces analgesia only via motor/avoidance effects rather than sensory suppression, the descending inhibitory interpretation weakens.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.

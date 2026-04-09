@@ -1,13 +1,13 @@
 # Architecture Gap Register
 
-Generated: `2026-04-09T17:01:58.638277Z`
+Generated: `2026-04-09T17:17:18.210154Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 
 | gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | confidence_delta_lit_minus_exp | recurring_signatures | consider_new_structure | external_precedence_candidate | recommendation |
 |---|---|---|---|---|---|---|---|---|---|
-| `AGR-0001` | `ARC-030` | `candidate` | 1 | 0 | 0.342 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0001` | `ARC-030` | `candidate` | 1 | 0 | 0.341 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0002` | `MECH-073` | `candidate` | 1 | 0.6 | 0.687 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0003` | `SD-012` | `candidate` | 1 | 0 | 0.331 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0004` | `ARC-016` | `provisional` | 0.923 | 0 | 0.08 | 0 | no | no | `mandatory_decision_checkpoint` |
