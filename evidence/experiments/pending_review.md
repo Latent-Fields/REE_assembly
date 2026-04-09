@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-04-09T06:46:38Z`  
+Generated: `2026-04-09T16:50:01Z`  
 Last review: `2026-04-09T13:00:00Z`  
-Pending: **13** item(s) -- 0 PASS, 5 FAIL, 8 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **14** item(s) -- 0 PASS, 5 FAIL, 9 runner-only (ERROR/UNKNOWN/smoke)
 
 ## FAIL (action required)
 
@@ -27,6 +27,7 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 | `V3-EXQ-260a` | ERROR | `?` | ERROR |
 | `V3-EXQ-261a` | ERROR | `?` | ERROR |
 | `V3-EXQ-263` | ERROR | `?` | ERROR |
+| `V3-EXQ-263a` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-241b` | UNKNOWN | `?` | UNKNOWN |
 
 ---
