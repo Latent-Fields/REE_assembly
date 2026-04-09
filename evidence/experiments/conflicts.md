@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-09T19:21:43.308058Z`
+Generated: `2026-04-09T21:02:35.089283Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -19,7 +19,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-038` | directional, source_disagreement | 5 | 1 | 0.333 | `v3_exq_240a_arc038_waking_consolidation_probe_20260409T062319Z_v3` | 7 |
 | `ARC-041` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-04-02_arc_041_vmpfc_cognitive_map_value_2025` | 5 |
 | `ARC-042` | directional, source_disagreement | 5 | 3 | 0.75 | `2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009` | 9 |
-| `MECH-033` | directional, mixed_evidence | 15 | 2 | 0.235 | `v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3` | 18 |
+| `INV-054` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_278_inv054_depression_recovery_phase_transition_1775764609_v3` | 6 |
+| `MECH-033` | directional, mixed_evidence | 16 | 2 | 0.222 | `v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3` | 19 |
 | `MECH-070` | directional, source_disagreement, mixed_evidence | 1 | 3 | 0.5 | `v3_exq_212_mech070_e2_motor_model_pair_1775203063_v3` | 5 |
 | `MECH-071` | directional, mixed_evidence | 25 | 13 | 0.684 | `v3_exq_071d_rollout_batched_attribution_20260401T232311Z_v3` | 56 |
 | `MECH-072` | directional, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_213_mech072_foreseeable_harm_gating_20260403T202320Z_v3` | 8 |
@@ -38,7 +39,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-116` | directional, source_disagreement | 3 | 4 | 0.857 | `v3_exq_228_mech116_arc032_theta_bypass_ablation_1775299018_v3` | 10 |
 | `MECH-118` | directional, source_disagreement, mixed_evidence | 4 | 2 | 0.667 | `v3_exq_084d_q022_deff_hopfield_dissociation_20260402T033313Z_v3` | 7 |
 | `MECH-120` | directional, source_disagreement | 7 | 2 | 0.444 | `v3_exq_245b_mech120_shy_decay_sweep_20260408T213214Z_v3` | 11 |
-| `MECH-124` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-04-04_mech_124_threat_goal_salience_competition_kim2019` | 5 |
+| `MECH-124` | directional | 5 | 1 | 0.333 | `v3_exq_298_mech124_zgoal_salience_discriminative_1775759716_v3` | 6 |
 | `MECH-128` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_229_mech128_e1_goal_conditioning_pair_1775299023_v3` | 9 |
 | `MECH-135` | directional, mixed_evidence | 8 | 2 | 0.4 | `v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3` | 16 |
 | `MECH-150` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-04-02_mech_150_coordinated_reinstatement_staresina2019` | 5 |
@@ -298,15 +299,33 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
+### INV-054
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.658
+- Recent entries:
+  - `2026-04-06T16:00:00Z` `literature` `targeted_review_inv_054` direction=`supports` confidence=0.58
+  - `2026-04-06T16:00:00Z` `literature` `targeted_review_inv_054` direction=`supports` confidence=0.72
+  - `2026-04-07T00:01:20Z` `experimental` `v3_exq_250_inv054_phase_transition_recovery` direction=`inconclusive` confidence=0
+  - `2026-04-07T05:59:03Z` `experimental` `v3_exq_250_inv054_phase_transition_recovery` direction=`inconclusive` confidence=0
+  - `2026-04-09T19:56:49Z` `experimental` `v3_exq_278_inv054_depression_recovery_phase_transition` direction=`weakens` confidence=0.75
+- Recurring failure signatures:
+  - `If depression were an adaptation, environmental improvement should trigger immediate mood recovery -- the inhibitory state would have no further adaptive function. That clinical improvement often lags environmental change by weeks is not explained by Nesse's framework but is consistent with a self-maintaining attractor interpretation.` (1)
+  - `If depression were a simple graded state, maintenance pharmacotherapy would be unnecessary -- recovery would persist without continued medication. The high relapse rates on discontinuation documented by Kupfer indicate that the remission state is inherently unstable (consistent with a shallow local minimum) and the depressive attractor remains accessible.` (1)
+  - `If recovery from depression were graded and linear, partial improvement would appear within the first 1-2 weeks of SSRI administration and cumulate continuously. The STAR*D data show no such linear accumulation: the majority of responders require 4-8 weeks to demonstrate meaningful improvement, with the response curve showing a characteristic delayed onset followed by a steeper improvement phase -- inconsistent with graded recovery but consistent with threshold crossing.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
 ### MECH-033
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=15, weakens=2, conflict_ratio=0.235, overall_confidence=0.857
+- Evidence breakdown: supports=16, weakens=2, conflict_ratio=0.222, overall_confidence=0.866
 - Recent entries:
-  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.8
   - `2026-03-30T23:50:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.81
   - `2026-04-01T20:32:50.560861Z` `experimental` `v3_exq_184_mech033_kernel_chain_pair` direction=`supports` confidence=0.75
   - `2026-04-02T23:59:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.82
   - `2026-04-04T16:15:54.239023+00:00` `experimental` `v3_exq_184_mech033_kernel_chain_pair` direction=`supports` confidence=0.75
+  - `2026-04-09T18:39:08Z` `experimental` `v3_exq_308_mech033_kernel_chain_discriminative` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `v2_verdict_fail:kernel_chaining_interface` (1)
   - `Preplay sequences are statistically indistinguishable from random population activity in some analyses, raising the possibility that apparent 'preplay' reflects post-hoc alignment rather than genuine prospective computation -- which would undercut the rollout-seeding interpretation.` (1)
@@ -433,7 +452,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-090
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=9, weakens=4, conflict_ratio=0.615, overall_confidence=0.783
+- Evidence breakdown: supports=9, weakens=4, conflict_ratio=0.615, overall_confidence=0.782
 - Recent entries:
   - `2026-04-01T23:01:27.658062Z` `experimental` `v3_exq_060_arc016_beta_gate_fixed_threshold` direction=`supports` confidence=0.75
   - `2026-04-01T23:01:27.658562Z` `experimental` `v3_exq_060_arc016_beta_gate_fixed_threshold` direction=`supports` confidence=0.75
@@ -453,7 +472,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-093
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=5, conflict_ratio=0.833, overall_confidence=0.746
+- Evidence breakdown: supports=7, weakens=5, conflict_ratio=0.833, overall_confidence=0.745
 - Recent entries:
   - `2026-03-27T14:53:29Z` `experimental` `v3_exq_097b_mech093_heartbeat_rate` direction=`supports` confidence=0.75
   - `2026-03-28T21:17:56Z` `experimental` `v3_exq_116_mech093_heartbeat_multiseed` direction=`supports` confidence=0.75
@@ -650,14 +669,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### MECH-124
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.89
+- Conflict types: directional
+- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, overall_confidence=0.861
 - Recent entries:
-  - `2026-04-04T02:44:17.923992Z` `experimental` `v3_exq_224_mech124_zgoal_salience_diag` direction=`weakens` confidence=0.75
   - `2026-04-04T10:00:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.82
   - `2026-04-04T10:05:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.84
   - `2026-04-04T10:10:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.76
   - `2026-04-04T10:15:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.71
+  - `2026-04-09T18:35:16Z` `experimental` `v3_exq_298_mech124_zgoal_salience_discriminative` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `Sleep disruption after trauma preferentially impairs extinction memory consolidation, leaving fear traces relatively intact -- producing an asymmetric imbalance.` (1)
   - `REM fragmentation during the critical post-trauma window impedes normal fear-extinction consolidation, perpetuating fear trace dominance.` (1)

@@ -1,0 +1,189 @@
+{
+  "run_id": "v3_exq_319_sd022_harm_stream_dissociation_dry",
+  "experiment_type": "v3_exq_319_sd022_harm_stream_dissociation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-022",
+    "SD-011"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "SD-022": "does_not_support",
+    "SD-011": "does_not_support"
+  },
+  "outcome": "FAIL",
+  "timestamp_utc": "20260409T194041Z",
+  "registered_thresholds": {
+    "C1_z_harm_s_drop": 0.3,
+    "C2_z_harm_a_retention": 0.02,
+    "C3_dissociation_score": 0.01,
+    "D_damage_quality": 0.05,
+    "seeds_needed": 3
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "z_harm_s_drop_high": 6.746058702468872,
+      "z_harm_a_retention_high": 0.5012551605701446,
+      "z_harm_a_retention_fresh": 0.4863895773887634,
+      "dissociation_score": 0.014865583181381203,
+      "damage_vector_mean_high": 0.046491146087646484,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": false,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 11.481622695922852,
+          "z_harm_a_on_mean": 0.5015324751536051,
+          "z_harm_s_post_mean": 4.7355639934539795,
+          "z_harm_a_post_mean": 0.5012551605701446,
+          "damage_vector_mean": 0.046491146087646484
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 9.503129959106445,
+          "z_harm_a_on_mean": 0.4863895773887634,
+          "z_harm_s_post_mean": 7.6378100395202635,
+          "z_harm_a_post_mean": 0.4863895773887634,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": false,
+      "z_harm_s_drop_high": 7.638756656646729,
+      "z_harm_a_retention_high": 0.4378774642944336,
+      "z_harm_a_retention_fresh": 0.423382431268692,
+      "dissociation_score": 0.014495033025741566,
+      "damage_vector_mean_high": 0.04013825207948685,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": false,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 16.469022750854492,
+          "z_harm_a_on_mean": 0.4380827844142914,
+          "z_harm_s_post_mean": 8.830266094207763,
+          "z_harm_a_post_mean": 0.4378774642944336,
+          "damage_vector_mean": 0.04013825207948685
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 13.90878963470459,
+          "z_harm_a_on_mean": 0.423382431268692,
+          "z_harm_s_post_mean": 8.433543682098389,
+          "z_harm_a_post_mean": 0.423382431268692,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": false,
+      "z_harm_s_drop_high": 2.805362764994303,
+      "z_harm_a_retention_high": 0.5868597865104676,
+      "z_harm_a_retention_fresh": 0.5949446558952332,
+      "dissociation_score": -0.008084869384765603,
+      "damage_vector_mean_high": 0.04698687791824341,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": false,
+      "d_damage_quality_pass": false,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 13.045485178629557,
+          "z_harm_a_on_mean": 0.5867727597554525,
+          "z_harm_s_post_mean": 10.240122413635254,
+          "z_harm_a_post_mean": 0.5868597865104676,
+          "damage_vector_mean": 0.04698687791824341
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 18.746858596801758,
+          "z_harm_a_on_mean": 0.5949446558952332,
+          "z_harm_s_post_mean": 7.192719125747681,
+          "z_harm_a_post_mean": 0.5949446558952332,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": false,
+      "z_harm_s_drop_high": 6.010884030659994,
+      "z_harm_a_retention_high": 0.3107010513544083,
+      "z_harm_a_retention_fresh": 0.29754638671875,
+      "dissociation_score": 0.013154664635658286,
+      "damage_vector_mean_high": 0.04229551926255226,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": false,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 15.232526143391928,
+          "z_harm_a_on_mean": 0.31099022428194684,
+          "z_harm_s_post_mean": 9.221642112731933,
+          "z_harm_a_post_mean": 0.3107010513544083,
+          "damage_vector_mean": 0.04229551926255226
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 8.9611234664917,
+          "z_harm_a_on_mean": 0.29754638671875,
+          "z_harm_s_post_mean": 10.963783073425294,
+          "z_harm_a_post_mean": 0.29754638671875,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": false,
+      "z_harm_s_drop_high": 3.6907043774922688,
+      "z_harm_a_retention_high": 0.3999237686395645,
+      "z_harm_a_retention_fresh": 0.40535369515419006,
+      "dissociation_score": -0.005429926514625538,
+      "damage_vector_mean_high": 0.04108892381191254,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": false,
+      "d_damage_quality_pass": false,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 14.305391629536947,
+          "z_harm_a_on_mean": 0.4000169138113658,
+          "z_harm_s_post_mean": 10.614687252044678,
+          "z_harm_a_post_mean": 0.3999237686395645,
+          "damage_vector_mean": 0.04108892381191254
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 11.182259559631348,
+          "z_harm_a_on_mean": 0.40535369515419006,
+          "z_harm_s_post_mean": 9.11287202835083,
+          "z_harm_a_post_mean": 0.40535369515419006,
+          "damage_vector_mean": 0.0
+        }
+      }
+    }
+  ],
+  "seeds_passing": 0,
+  "experiment_passes": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "warmup_episodes": 100,
+    "steps_per_episode": 200,
+    "pre_damage_transits": 50,
+    "threat_on_steps": 30,
+    "offset_steps": 60,
+    "harm_obs_a_dim": 7,
+    "limb_damage_enabled": true
+  }
+}

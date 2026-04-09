@@ -1,0 +1,98 @@
+{
+  "schema_version": "substrate_queue/v1",
+  "last_updated_utc": "2026-04-09T22:30:00Z",
+  "queue": [
+    {
+      "sd_id": "SD-013",
+      "title": "E2_harm_s counterfactual perturbation training",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": ["SD-003"],
+      "failure_record": [],
+      "implementation_hint": "E2_harm_s is implemented (ARC-033) but training requires counterfactual perturbation signal to avoid bias in causal_sig. Add contrastive counterfactual action pair during E2_harm_s training: for each transition, sample a_cf != a_actual, compute predicted z_harm_s_cf, train E2_harm_s to produce divergent outputs for actual vs counterfactual actions. Validates SD-003 z_harm_s attribution pipeline.",
+      "priority": 2,
+      "added_session": "governance-2026-04-09-c",
+      "last_seen_session": "governance-2026-04-09-c"
+    },
+    {
+      "sd_id": "SD-015",
+      "title": "Dedicated z_resource encoder for goal-directed navigation",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": ["MECH-112"],
+      "unblocks_claims": ["MECH-162", "Q-030", "INV-065"],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_085l_sd015_proximity_regression_enc_20260330T210913Z_v3",
+          "experiment_type": "v3_exq_085l_sd015_proximity_regression_enc",
+          "metric": "benefit_ratio=0.420 (encoder works, prox_r2=0.908, but navigation does not improve)",
+          "target": "benefit_ratio > 0.5 consistently across seeds"
+        },
+        {
+          "run_id": "v3_exq_085o_sd015_sorted_rf_enc_20260330T214636Z_v3",
+          "experiment_type": "v3_exq_085o_sd015_sorted_rf_enc",
+          "metric": "benefit_ratio=0.113 (encoder converges, goal_resource_r_enc=0.574, but navigation lift absent)",
+          "target": "benefit_ratio > 0.5 and goal_resource_r_enc > 0.7"
+        }
+      ],
+      "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation).",
+      "priority": 1,
+      "added_session": "governance-2026-04-09-c",
+      "last_seen_session": "governance-2026-04-09-c"
+    },
+    {
+      "sd_id": "SD-019",
+      "title": "Affective harm non-redundancy constraint",
+      "ready": false,
+      "design_doc": "docs/architecture/sensory_stream_tags.md#sd-019",
+      "depends_on_unresolved": ["ARC-016"],
+      "unblocks_claims": ["MECH-219", "Q-036", "SD-020"],
+      "failure_record": [],
+      "implementation_hint": "z_harm_a and z_harm_s must encode non-overlapping information under the split SD-011 design. SD-019 adds an orthogonality/redundancy-reduction constraint (e.g. adversarial loss or correlation penalty) between z_harm_a and z_harm_s encoder outputs. Requires ARC-016 (dynamic precision) to contextualize what counts as non-redundant in different regime states.",
+      "priority": 2,
+      "added_session": "governance-2026-04-09-c",
+      "last_seen_session": "governance-2026-04-09-c"
+    },
+    {
+      "sd_id": "SD-020",
+      "title": "z_harm_a encodes affective surprise (precision-weighted PE)",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_011_dual_nociceptive_streams.md",
+      "depends_on_unresolved": ["SD-019", "ARC-016"],
+      "unblocks_claims": ["SD-021", "MECH-220", "ARC-052"],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3",
+          "experiment_type": "v3_exq_260_sd020_harm_surprise_pe",
+          "metric": "non_contributory: current z_harm_a trains as EMA accumulator not PE-weighted signal; SD-020 design not yet implemented",
+          "target": "z_harm_a must encode precision-weighted PE (surprise magnitude), not raw accumulated harm; stream distinctness r2_s_to_a < 0.5"
+        }
+      ],
+      "implementation_hint": "Replace z_harm_a AffectiveHarmEncoder training target from EMA-accumulated harm to a precision-weighted prediction error signal: surprise = |harm_obs - E_predicted_harm| * precision. ARC-016 dynamic precision provides the precision weight. Requires SD-019 to enforce that z_harm_s and z_harm_a encode non-redundant aspects of the harm signal.",
+      "priority": 1,
+      "added_session": "governance-2026-04-09-c",
+      "last_seen_session": "governance-2026-04-09-c"
+    },
+    {
+      "sd_id": "SD-021",
+      "title": "Descending pain modulation: commitment-gated z_harm_s PE suppression",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_011_dual_nociceptive_streams.md",
+      "depends_on_unresolved": ["SD-020", "ARC-016", "MECH-090"],
+      "unblocks_claims": ["MECH-220"],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_261_sd021_descending_pain_mod_20260408T231136Z_v3",
+          "experiment_type": "v3_exq_261_sd021_descending_pain_mod",
+          "metric": "non_contributory: SD-021 requires commitment-gated precision modulation of z_harm_s; ARC-016 and MECH-090 not fully implemented",
+          "target": "z_harm_s PE suppressed during committed trajectories (endogenous analgesia analog); measurable as lower z_harm_s_norm during COMMITTED vs UNCOMMITTED episodes under matched harm exposure"
+        }
+      ],
+      "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward: the predicted trajectory harm reduces the raw sensory-discriminative PE signal. Requires ARC-016 precision gating (commit threshold modulation) and MECH-090 beta oscillation gate to identify committed state. SD-020 must be implemented first to give z_harm_s a precision-weighted PE training signal.",
+      "priority": 2,
+      "added_session": "governance-2026-04-09-c",
+      "last_seen_session": "governance-2026-04-09-c"
+    }
+  ]
+}

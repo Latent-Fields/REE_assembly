@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 52175,
   "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-09T19:22:38.078528+00:00",
+  "last_updated": "2026-04-09T22:23:27.134371+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-268",
-    "backlog_id": "EXP-0096",
-    "claim_id": "INV-053",
-    "title": "INV-053 depression attractor replication (5 seeds)",
+    "queue_id": "V3-EXQ-288",
+    "backlog_id": "EXP-0095",
+    "claim_id": "Q-034",
+    "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
     "description": "",
-    "script": "experiments/v3_exq_268_inv053_depression_attractor_replication.py",
-    "started_at": "2026-04-09T18:49:21.972722+00:00",
+    "script": "experiments/v3_exq_288_q034_hazard_resource_threshold_sweep.py",
+    "started_at": "2026-04-09T19:56:52.990561+00:00",
     "progress": {
-      "run_label": "starting...",
-      "runs_done": 3,
-      "runs_total": 5,
-      "episodes_done": 300,
-      "episodes_total": 300,
-      "overall_pct": 80.0
+      "run_label": "Seed 13 / h0",
+      "runs_done": 23,
+      "runs_total": 27,
+      "episodes_done": 200,
+      "episodes_total": 200,
+      "overall_pct": 88.9
     },
-    "seconds_elapsed": 1996,
-    "seconds_remaining": 665,
+    "seconds_elapsed": 8794,
+    "seconds_remaining": 1108,
     "recent_lines": [
-      "[train] seed=44 ep 300/300 harm_pos=1039 harm_neg=162 ben_samples=12192 goal_norm=0.004",
-      "[eval done] seed=44 mode=PLANNED resource_rate=0.020 harm_rate=0.18858 z_harm_a_mean=0.0000 goal_norm=0.004",
-      "verdict: PASS seed=44 c1=True c2=True z_goal_norm=0.004 hr_diff=0.00000",
-      "Seed 45",
-      "[V3-EXQ-268] Seed 45 Mode HABIT steps=150"
+      "verdict: PASS seed=13 h0.3r0.1 HABIT harm_rate=0.07719 goal_norm=0.000",
+      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 50/200 harm_pos=252 harm_neg=41",
+      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 100/200 harm_pos=504 harm_neg=75",
+      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 150/200 harm_pos=759 harm_neg=102",
+      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 200/200 harm_pos=1008 harm_neg=142"
     ],
     "ree_version": "v3"
   },
@@ -44,35 +44,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-268",
-      "backlog_id": "EXP-0096",
-      "claim_id": "INV-053",
-      "title": "INV-053 depression attractor replication (5 seeds)",
-      "description": "",
-      "estimated_minutes": 233.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-278",
-      "backlog_id": "EXP-0097",
-      "claim_id": "INV-054",
-      "title": "INV-054 phase-transition recovery prediction (3 seeds)",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-288",
       "backlog_id": "EXP-0095",
       "claim_id": "Q-034",
       "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
       "description": "",
       "estimated_minutes": 720.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -4999,6 +4977,34 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 166.5
+    },
+    {
+      "queue_id": "V3-EXQ-268",
+      "backlog_id": "EXP-0096",
+      "claim_id": "INV-053",
+      "title": "INV-053 depression attractor replication (5 seeds)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "Mean z_harm_a_mean=0.0000 | -> PASS decision=retain_ree direction=supports | Status: PASS",
+      "started_at": "2026-04-09T18:49:21.972722+00:00",
+      "completed_at": "2026-04-09T19:41:38.000246+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3136.0
+    },
+    {
+      "queue_id": "V3-EXQ-278",
+      "backlog_id": "EXP-0097",
+      "claim_id": "INV-054",
+      "title": "INV-054 phase-transition recovery prediction (3 seeds)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | -> FAIL evidence_direction=does_not_support | Status: FAIL",
+      "started_at": "2026-04-09T19:41:41.303553+00:00",
+      "completed_at": "2026-04-09T19:56:49.897200+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 908.6
     }
   ]
 }

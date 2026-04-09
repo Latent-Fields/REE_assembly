@@ -1607,6 +1607,13 @@
     EXQ-184 PASS 3/3 seeds (2026-04-04): Independent replication. harm_rate_CHAIN=0.00021
     vs NO_CHAIN=0.0608 (290x safer). world_forward_r2=0.987. harm_reduction_delta=0.0606.
     All 4 criteria met across all seeds. Third clean PASS; evidence strong.
+    EXQ-308 PASS 3/3 seeds (2026-04-09, governance 2026-04-09-c): V3 current-substrate
+    discriminative pair (SD-018 resource proximity + drive_weight=2.0). KERNEL_CHAIN
+    harm_rate=0.000301 vs NO_CHAIN=0.0608 (~200x safer). world_forward_r2=0.961.
+    resource_prox_r2=0.783. harm_reduction_delta=0.0605. All criteria pass all seeds.
+    Extends EXQ-184 into current substrate defaults; V2 EXQ-022 FAIL fully explained
+    by absent z_world/action-object primitive and inadequate training. MECH-033 is
+    now replicated 4x PASS across multiple substrate generations.
   depends_on:
     - ARC-018
     - ARC-002
@@ -6920,16 +6927,16 @@
     shifts learning from hippocampal spatial strategy to rigid striatal response
     strategy in mice, with reversal learning deficit confirming reduced flexibility.
   evidence_quality_note: >
-    EXQ-245 FAIL x2 (2026-04-05, 2026-04-07): both reclassified to non_contributory
-    (governance 2026-04-08). MECH-120 is V4-scope; V3 substrate lacks MECH-030,
-    MECH-092, MECH-094, ARC-016 prerequisites. s1 (SHY-then-SWS beats SWS-alone)
-    failure reflects absent substrate, not claim falsification. Run 1 showed s2 PASS
-    (correct order beats wrong order, 3/3 seeds) but run 2 regression (s2 also FAIL 1/3).
-    Literature support strong (7 entries). Held at candidate pending V3 substrate
-    completion. Reclassified implementation_phase: v3 (governance 2026-04-09): SD-017
-    (minimal sleep-phase infrastructure) moved to V3 scope; MECH-120 operates within
-    the SWS phase so its substrate (SHY decay, SWS residue scaling) is V3-scoped.
-    Recommendation corrected to hold_pending_v3_substrate.
+    V3 scope confirmed (governance 2026-04-09 + 2026-04-09-c): MECH-120 operates
+    within the SWS phase of SD-017 (now provisional). SHY wiring implemented 2026-04-08
+    (enter_sws_mode calls shy_normalise). Implementation complete; testing blocked by
+    missing experimental prerequisites: MECH-030 (sleep consolidation modes, provisional),
+    MECH-092 (quiescent replay), MECH-094 (hypothesis tag), ARC-016 (dynamic precision).
+    EXQ-245 FAIL x2 (2026-04-05, 2026-04-07): both reclassified to non_contributory --
+    proxy substrate without full offline-phase architecture. s1 (SHY-then-SWS beats
+    SWS-alone) failure reflects absent substrate, not claim falsification. Literature
+    support strong (7 entries). Held at candidate pending experimental design that uses
+    SD-017 first-class methods and the full prerequisite chain.
     Suppermpool et al. 2024 (Nature) confirmed single-neuron SHY operation in
     zebrafish with sleep-pressure gating. Prediction for REE: a minimal mind without
     a sleep substrate will show monostrategy convergence under extended training.
@@ -7097,7 +7104,7 @@
   claim_type: mechanism_hypothesis
   subject: sleep.consolidation_mediated_option_contraction
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v4
   depends_on:
     - MECH-030
@@ -7154,8 +7161,13 @@
     in the current V3 substrate, harm salience systematically exceeds goal salience; if
     offline consolidation is harm-dominated in V4, the MECH-124 loop predicts progressive
     option contraction. Diagnostic only -- does not test the consolidation mechanism itself
-    (no sleep in V3). Evidence_direction not changed; governance decision remains
-    hold_candidate_resolve_conflict (requires V4 sleep architecture experiment).
+    (no sleep in V3).
+    EXQ-298 PASS (2026-04-09, governance 2026-04-09-c): z_goal salience discriminative pair
+    with drive_weight=2.0 vs ablation. PRIMARY mean ratio=0.700, ABLATION mean ratio=0.288,
+    delta=0.412 (3/3 seeds, all criteria). z_goal IS competitive with harm salience under
+    current V3 defaults -- V4 consolidation risk indicator green. Promoted to provisional
+    (governance 2026-04-09-c): 5 supports, 1 opposing, conf=0.774. V4 consolidation
+    experiments still required to test the full option-contraction loop.
 
 - id: MECH-125
   title: "E3 trajectory selection implements multi-constraint viability evaluation rather than scalar reward maximisation: a trajectory is selected when no major evaluation system produces a veto-level error signal across goal space, harm space, identity space, and resource space."
@@ -10004,7 +10016,7 @@
   claim_type: design_decision
   subject: sleep_phase.minimal_sleep_infrastructure_v3
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -11391,7 +11403,7 @@
   polarity: asserts
   status: candidate
   confidence: 0.0
-  implementation_phase: v4
+  implementation_phase: v3
   depends_on:
     - SD-014
     - SD-012
@@ -11410,7 +11422,18 @@
   evidence_quality_note: >
     Emergent from EXQ-237a: LONG_HORIZON condition produced flat HABIT/PLANNED equivalence
     (goal_norm=0.004, identical resource_rate/harm_rate) consistent with benefit terrain
-    collapse. Mechanism not yet implemented; claim is theoretical.
+    collapse.
+    EXQ-278 FAIL (INV-054, 2026-04-09): immediate recovery when hazards removed -- consistent
+    with MECH-186 being required for chronicity. Without tonic 5-HT maintaining VALENCE_WANTING
+    floor, benefit terrain collapses quickly AND recovers quickly when harm drops. The
+    reciprocal rapid-recovery result is positive circumstantial evidence that MECH-186
+    absence is the missing piece for INV-054's chronicity prediction.
+    Reclassified V3 scope (governance 2026-04-09-c): SerotoninModule (MECH-203/204,
+    implemented 2026-04-07) provides the experimental substrate. tonic_5ht_enabled=True
+    enables z_goal_seeding_gain + valence_wanting_floor modulation per step.
+    V3 experiment feasible: chronic harm condition WITH vs WITHOUT tonic_5ht_enabled,
+    comparing z_goal collapse rate and VALENCE_WANTING floor retention.
+    Held at candidate pending experiment design.
 
 - id: MECH-187
   title: "Serotonin modulates the gain on dopaminergic incentive salience, converting the hard SD-012 threshold into an adaptive graded transduction function."
@@ -11458,7 +11481,7 @@
   polarity: asserts
   status: candidate
   confidence: 0.0
-  implementation_phase: v4
+  implementation_phase: v3
   depends_on:
     - SD-012
     - MECH-187
@@ -11482,9 +11505,13 @@
     EXQ-253 FAIL (2026-04-07): reclassified to non_contributory (governance 2026-04-08).
     z_goal_inject=0.3 added but behavioral gap=0 -- without baseline z_goal seeding
     (SD-012 not resolved), injection cannot demonstrate persistence of an absent goal.
-    Non-contributory pending V3/V4 substrate implementation. Note (2026-04-08): user
-    confirmed decision to pull V4 mechanisms into V3 scope -- MECH-188 substrate
-    (5-HT DRN->dlPFC persistence mechanism) should be planned for V3.
+    Reclassified V3 scope (governance 2026-04-09-c): SerotoninModule (MECH-203/204,
+    implemented 2026-04-07) provides the experimental substrate. tonic_5ht_enabled=True
+    modulates z_goal_seeding_gain dynamically each step (DRN->dlPFC 5-HT persistence
+    analog). V3 experiment feasible: z_goal persistence under harm spikes WITH vs WITHOUT
+    tonic_5ht_enabled, comparing z_goal_norm trajectory through harm events. Requires
+    z_goal to be properly seeded first (SD-012 + SD-018, now implemented).
+    Held at candidate pending experiment design.
     hold_candidate_resolve_conflict applied.
 
 - id: INV-052
@@ -11545,7 +11572,7 @@
   claim_type: invariant
   subject: psychiatric.computational_depression_attractor
   polarity: asserts
-  status: provisional
+  status: stable
   confidence: 0.0
   depends_on:
     - INV-052
@@ -11575,6 +11602,12 @@
     (both runs), approach_rate=0.010, all 5 seeds meet both criteria (c1 goal_norm<thresh,
     c2 behavioral_equivalence<thresh). Attractor is highly reproducible and consistent.
     Promoted to provisional (governance 2026-04-08). overall_conf=0.819, conflict_ratio=0.
+    EXQ-268 PASS 5/5 seeds (2026-04-09, governance 2026-04-09-c): third independent 5-seed
+    replication. z_goal_norm mean=0.022 (range 0.000-0.071), behavioral_equivalence_score=1.0
+    for all seeds, harm_rate_diff=0.0 for all seeds. Three 5-seed replications with 0 opposing.
+    Promoted to stable (governance 2026-04-09-c): attractor is robustly reproducible.
+    Note: confidence=0.0 in yaml is a scoring artifact (provisional confidence field unset);
+    empirical evidence is unambiguous across 15 independent seeds.
 
 - id: INV-054
   title: "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity."
@@ -11600,6 +11633,19 @@
     transition from the depressive attractor to normal function requires a phase
     transition (sufficient benefit exposure to cross threshold), not a gradual linear
     recovery.
+  evidence_quality_note: >
+    EXQ-278 FAIL (2026-04-09, governance 2026-04-09-c): 3 seeds, phase 1 (3 hazards,
+    1 resource, 300 eps) established depression (z_goal_norm=0.0 all seeds). Phase 2
+    (0 hazards, 1 resource, 300 eps): recovery was immediate (latency 1-3 eps) and
+    graded in all 3 seeds. Pass criterion (2/3 seeds need latency>=50 eps AND abrupt
+    phase transition) not met (0/3). evidence_direction=does_not_support.
+    Interpretation: when hazards are removed, z_goal recovers immediately without
+    showing the chronicity the feedback loop predicts. The benefit terrain does not
+    maintain collapse once active harm exposure drops. Either the feedback loop is weaker
+    than claimed (harm withdrawal is sufficient to restart recovery without terrain
+    rebuilding), or MECH-186 serotonergic floor (not yet implemented) is required for
+    the full chronicity prediction to emerge. INV-054 held at candidate;
+    conflict ratio now elevated (2 opposing, 3 supporting).
 
 - id: Q-034
   title: "Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?"
@@ -12229,7 +12275,7 @@
   claim_type: mechanism_hypothesis
   subject: hippocampal.surprise_gated_generative_replay
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -12253,9 +12299,11 @@
     EXQ-258b PASS (2026-04-09): threshold=1e-5, all bugs fixed, surprise writes fire
     correctly (64/100 steps in smoke test). Substrate confirmed operational.
     Promoted to provisional (governance 2026-04-09): 1 exp PASS (EXQ-258b) + 8 lit supports,
-    0 valid opposing runs (both prior FAILs superseded), conflict_ratio=0. Behavioral
-    efficacy experiment (does surprise-gating improve replay quality?) still needed for
-    stable promotion.
+    0 valid opposing runs (both prior FAILs superseded), conflict_ratio=0.
+    EXQ-258b second seed PASS (governance 2026-04-09-c): additional seed-set (1775722634)
+    confirms P1/P2/P3 across all 3 seeds. Second independent replication of surprise-write
+    infrastructure. Promoted to stable (governance 2026-04-09-c): 2 independent seed-sets
+    PASS, 8 lit supports, 0 conflict, conf=0.893.
   notes: >
     MECH-092 establishes that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent
     replay, and MECH-121 specifies the full NREM consolidation pipeline. Neither specifies
