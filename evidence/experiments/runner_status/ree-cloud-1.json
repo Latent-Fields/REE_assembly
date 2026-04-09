@@ -1,16 +1,16 @@
 {
   "schema_version": "v1",
-  "runner_pid": 668,
-  "runner_started_at": "2026-04-08T21:51:01.376948+00:00",
-  "last_updated": "2026-04-09T00:14:19.137087+00:00",
-  "idle": false,
+  "runner_pid": null,
+  "runner_started_at": "2026-04-09T17:40:44.367020+00:00",
+  "last_updated": "2026-04-09T18:40:17.556534+00:00",
+  "idle": true,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-262b",
+      "queue_id": "V3-EXQ-265",
       "backlog_id": "",
       "claim_id": "",
-      "title": "MECH-220: cross-stream harm hub coordination",
+      "title": "SD-017 sleep phase methods validation (sws/rem pass activation)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
@@ -18,12 +18,12 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-261b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-021: descending pain modulation during commitment",
+      "queue_id": "V3-EXQ-266",
+      "backlog_id": "EVB-0047",
+      "claim_id": "Q-020",
+      "title": "Q-020: hippocampal valence geometry discriminative pair",
       "description": "",
-      "estimated_minutes": 17.3,
+      "estimated_minutes": 186.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2109,6 +2109,49 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 3155.8
+    },
+    {
+      "queue_id": "V3-EXQ-258b",
+      "backlog_id": "",
+      "claim_id": "MECH-205",
+      "title": "MECH-205: Surprise-gated replay validation (pe_surprise_threshold calibration fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "P3 (pe_ema_varies): 3/3 PASS | -> PASS decision=surprise_gated_replay_functional direction=supports | verdict: PASS",
+      "started_at": "2026-04-09T07:24:10.655024+00:00",
+      "completed_at": "2026-04-09T08:17:15.030039+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 3184.4
+    },
+    {
+      "queue_id": "V3-ONBOARD-smoke-ree-cloud-1b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Onboarding smoke test -- ree-cloud-1 (Hetzner CX22) [retry b]",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[ONBOARD]   status: PASS | Status: PASS",
+      "started_at": "2026-04-09T08:17:17.101227+00:00",
+      "completed_at": "2026-04-09T08:19:05.277758+00:00",
+      "output_file": "/home/ree/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_onboard_smoke_ree_cloud_1/v3_onboard_smoke_ree_cloud_1_20260409T081904Z.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 108.2
+    },
+    {
+      "queue_id": "V3-EXQ-267",
+      "backlog_id": "EVB-0051",
+      "claim_id": "ARC-038",
+      "title": "ARC-038: waking consolidation discriminative evidence",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15",
+      "started_at": "2026-04-09T17:40:45.953400+00:00",
+      "completed_at": "2026-04-09T18:40:16.178215+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 3570.2
     }
-  ]
+  ],
+  "draining": false
 }
