@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "env_steps_per_second": 1571.9,
+    "steps_per_second_cpu": 14.2,
+    "steps_per_second_gpu": 0.0,
+    "gpu_speedup": null,
+    "cuda_available": false,
+    "gpu_name": "N/A (CPU-only cloud worker)",
+    "gpu_block_error": null,
+    "torch_version": "2.5.1+cu121",
+    "platform": "Linux-5.15.0-173-generic-x86_64-with-glibc2.35",
+    "env_only_episodes": 50,
+    "cpu_episodes": 15,
+    "gpu_episodes": 0,
+    "steps_per_episode": 100
+  },
+  "criteria": {
+    "C1_all_blocks_completed": true,
+    "C2_env_sps_gt0": true,
+    "C3_cpu_sps_gt0": true
+  },
+  "routing_hint": {
+    "note": "CPU-only cloud worker -- suitable for env-heavy and standard experiments",
+    "prefer_env_heavy": true,
+    "prefer_net_heavy": false
+  },
+  "run_timestamp": "20260409T081904Z",
+  "run_id": "v3_onboard_smoke_ree_cloud_1_20260409T081904Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim": "onboarding",
+  "verdict": "PASS"
+}
