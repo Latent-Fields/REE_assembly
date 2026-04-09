@@ -1,0 +1,127 @@
+{
+  "run_id": "v3_exq_318_sd022_limb_damage_stream_separation_dry",
+  "experiment_type": "v3_exq_318_sd022_limb_damage_stream_separation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-022",
+    "SD-011"
+  ],
+  "evidence_direction_per_claim": {
+    "SD-022": "does_not_support",
+    "SD-011": "does_not_support"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "overall_pass": false,
+    "n_seeds_pass": 0,
+    "pass_min_seeds": 2,
+    "enabled_pass_per_seed": [
+      {
+        "seed": 7,
+        "r2_s_to_a": 0.0,
+        "harm_obs_a_variance": 0.0,
+        "c_r2_pass": true,
+        "c_var_pass": false,
+        "overall_pass": false
+      },
+      {
+        "seed": 13,
+        "r2_s_to_a": 0.0,
+        "harm_obs_a_variance": 0.0,
+        "c_r2_pass": true,
+        "c_var_pass": false,
+        "overall_pass": false
+      },
+      {
+        "seed": 42,
+        "r2_s_to_a": 0.0,
+        "harm_obs_a_variance": 0.0,
+        "c_r2_pass": true,
+        "c_var_pass": false,
+        "overall_pass": false
+      }
+    ],
+    "mean_r2_enabled": 0.0,
+    "mean_r2_disabled": 0.0,
+    "r2_reduction": 0.0,
+    "disabled_replicates_ceiling": false
+  },
+  "results_per_condition": [
+    {
+      "condition": "LIMB_DAMAGE_ENABLED",
+      "seed": 42,
+      "harm_obs_a_variance": 0.0,
+      "cosine_sim_harm_streams": 0.0,
+      "r2_s_to_a": 0.0,
+      "n_eval_steps": 0,
+      "harm_obs_a_dim": 7
+    },
+    {
+      "condition": "LIMB_DAMAGE_DISABLED",
+      "seed": 42,
+      "harm_obs_a_variance": 0.0,
+      "cosine_sim_harm_streams": 0.0,
+      "r2_s_to_a": 0.0,
+      "n_eval_steps": 0,
+      "harm_obs_a_dim": 50
+    },
+    {
+      "condition": "LIMB_DAMAGE_ENABLED",
+      "seed": 7,
+      "harm_obs_a_variance": 0.0,
+      "cosine_sim_harm_streams": 0.0,
+      "r2_s_to_a": 0.0,
+      "n_eval_steps": 0,
+      "harm_obs_a_dim": 7
+    },
+    {
+      "condition": "LIMB_DAMAGE_DISABLED",
+      "seed": 7,
+      "harm_obs_a_variance": 0.0,
+      "cosine_sim_harm_streams": 0.0,
+      "r2_s_to_a": 0.0,
+      "n_eval_steps": 0,
+      "harm_obs_a_dim": 50
+    },
+    {
+      "condition": "LIMB_DAMAGE_ENABLED",
+      "seed": 13,
+      "harm_obs_a_variance": 0.0,
+      "cosine_sim_harm_streams": 0.0,
+      "r2_s_to_a": 0.0,
+      "n_eval_steps": 0,
+      "harm_obs_a_dim": 7
+    },
+    {
+      "condition": "LIMB_DAMAGE_DISABLED",
+      "seed": 13,
+      "harm_obs_a_variance": 0.0,
+      "cosine_sim_harm_streams": 0.0,
+      "r2_s_to_a": 0.0,
+      "n_eval_steps": 0,
+      "harm_obs_a_dim": 50
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "LIMB_DAMAGE_ENABLED",
+      "LIMB_DAMAGE_DISABLED"
+    ],
+    "warmup_episodes": 150,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "thresh_r2_s_to_a_max": 0.5,
+    "thresh_harm_obs_a_var_min": 0.001,
+    "pass_min_seeds": 2,
+    "harm_obs_a_dim_enabled": 7,
+    "harm_obs_a_dim_disabled": 50
+  },
+  "timestamp": "2026-04-09T19:16:02.324077Z"
+}

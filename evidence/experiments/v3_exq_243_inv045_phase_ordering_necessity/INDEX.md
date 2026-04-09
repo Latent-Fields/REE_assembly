@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_243_inv045_phase_ordering_necessity
 
-Generated: `2026-04-09T17:17:18.210154Z`
+Generated: `2026-04-09T19:21:43.308058Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
