@@ -2,51 +2,18 @@
   "schema_version": "v1",
   "runner_pid": 21464,
   "runner_started_at": "2026-04-05T13:10:38.210785+00:00",
-  "last_updated": "2026-04-07T10:50:52.448122+00:00",
+  "last_updated": "2026-04-09T08:48:05.321048+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-243",
+      "queue_id": "V3-EXQ-238c",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "INV-045 Phase Ordering Necessity + MECH-123 Precision Recalibration",
+      "claim_id": "SD-012",
+      "title": "SD-012: Drive Weight Ablation (SD-018)",
       "description": "",
-      "estimated_minutes": 17.3,
+      "estimated_minutes": 64.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-228a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-032 theta-rate pathway behavioral test (THETA_ACTIVE vs THETA_ZEROED)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-238",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-012 drive_weight ablation fix (proximity_benefit_scale corrected)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-237a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-163: Dual Goal-Directed Systems Discrimination (2x2: SIMPLE/LONG_HORIZON x HABIT/PLANNED)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -359,6 +326,48 @@
       "output_file": "",
       "completed_by": "Daniel-PC",
       "actual_secs": 125605.8
+    },
+    {
+      "queue_id": "V3-EXQ-248b",
+      "backlog_id": "",
+      "claim_id": "Q-034",
+      "title": "Q-034: Hazard/Resource Ratio Sweep (SD-018)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "h3_r2: lift=+0.0000 +/-0.0000 equiv_frac=1.00 z_goal=0.126 z_harm_a=0.0000 [EQUIV] | h3_r3: lift=+0.0000 +/-0.0000 equiv_frac=1.00 z_goal=0.239 z_harm_a=0.0000 [EQUIV] | -> PASS decision=retain_ree direction=supports",
+      "started_at": "2026-04-07T10:52:07.915521+00:00",
+      "completed_at": "2026-04-08T16:35:52.887058+00:00",
+      "output_file": "",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 107025.0
+    },
+    {
+      "queue_id": "V3-EXQ-258",
+      "backlog_id": "",
+      "claim_id": "MECH-205",
+      "title": "MECH-205: Surprise-Gated Replay Validation (Tier 1)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "P3 (pe_ema_varies): 3/3 PASS | -> FAIL decision=surprise_gating_nonfunctional direction=weakens | verdict: FAIL",
+      "started_at": "2026-04-08T16:35:57.006640+00:00",
+      "completed_at": "2026-04-08T18:15:28.945416+00:00",
+      "output_file": "",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 5971.9
+    },
+    {
+      "queue_id": "V3-EXQ-254c",
+      "backlog_id": "",
+      "claim_id": "INV-052",
+      "title": "INV-052: Single Mechanism Sufficiency (SD-018)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: seed=13 cond=F z_goal_norm=0.193 behavioral_gap=0.0000 | -> PASS  decision=no_single_mechanism_sufficient_joint_necessity_confirmed  direction=supports | Status: PASS",
+      "started_at": "2026-04-08T18:15:30.300859+00:00",
+      "completed_at": "2026-04-09T08:48:05.314693+00:00",
+      "output_file": "",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 52355.0
     }
   ]
 }

@@ -1,0 +1,195 @@
+{
+  "run_id": "v3_exq_248_q034_threshold_sweep_1775666151_v3",
+  "experiment_type": "v3_exq_248_q034_threshold_sweep",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "Q-034"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "decision": "retain_ree",
+  "timestamp_utc": "20260408T163551Z",
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 100,
+  "steps_per_ep": 150,
+  "grid_size": 8,
+  "hazard_counts": [
+    1,
+    2,
+    3
+  ],
+  "resource_counts": [
+    3,
+    2,
+    1
+  ],
+  "hazard_harm": 0.02,
+  "greedy_frac": 0.4,
+  "lift_equiv_thresh": 0.02,
+  "majority_thresh": 2,
+  "min_equiv_cells": 3,
+  "per_cell_results": {
+    "h1_r3": {
+      "n_hazards": 1,
+      "n_resources": 3,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.4483211537202199,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.002612999560972055,
+      "harm_rate_planned": 0.002612999560972055,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h1_r2": {
+      "n_hazards": 1,
+      "n_resources": 2,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.25092468162377674,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.0018438225430581305,
+      "harm_rate_planned": 0.0018438225430581305,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h1_r1": {
+      "n_hazards": 1,
+      "n_resources": 1,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.006131453836133005,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.0038355772559377876,
+      "harm_rate_planned": 0.0038355772559377876,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h2_r3": {
+      "n_hazards": 2,
+      "n_resources": 3,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.39648115634918213,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.04817894869105021,
+      "harm_rate_planned": 0.04817894869105021,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h2_r2": {
+      "n_hazards": 2,
+      "n_resources": 2,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.23307872315247855,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.043675910031782256,
+      "harm_rate_planned": 0.043675910031782256,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h2_r1": {
+      "n_hazards": 2,
+      "n_resources": 1,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.005797771775784592,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.05314191353767447,
+      "harm_rate_planned": 0.05314191353767447,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h3_r3": {
+      "n_hazards": 3,
+      "n_resources": 3,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.2385709136724472,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.13955908815623655,
+      "harm_rate_planned": 0.13955908815623655,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h3_r2": {
+      "n_hazards": 3,
+      "n_resources": 2,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.1260963206489881,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.13980359578073023,
+      "harm_rate_planned": 0.13980359578073023,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    },
+    "h3_r1": {
+      "n_hazards": 3,
+      "n_resources": 1,
+      "mean_lift": 0.0,
+      "std_lift": 0.0,
+      "lifts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "z_goal_norm": 0.013120680116117,
+      "z_harm_a_mean": 0.0,
+      "harm_rate_habit": 0.16172030805549356,
+      "harm_rate_planned": 0.16172030805549356,
+      "pass_fraction_lt002": 1.0,
+      "majority_equiv": true
+    }
+  },
+  "threshold_identified": true,
+  "threshold_region": "h>=1 and r<=3",
+  "n_equiv_cells": 9
+}
