@@ -2,10 +2,22 @@
   "schema_version": "v1",
   "runner_pid": 86389,
   "runner_started_at": "2026-04-09T06:19:31.718338+00:00",
-  "last_updated": "2026-04-09T06:46:38.325505+00:00",
-  "idle": true,
+  "last_updated": "2026-04-09T09:04:33.542113+00:00",
+  "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-ONBOARD-smoke-ree-cloud-1b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Onboarding smoke test -- ree-cloud-1 (Hetzner CX22) [retry b]",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -4858,6 +4870,34 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_240a_arc038_waking_consolidation_probe/v3_exq_240a_arc038_waking_consolidation_probe_20260409T062319Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 222.4
+    },
+    {
+      "queue_id": "V3-EXQ-263a",
+      "backlog_id": "",
+      "claim_id": "MECH-216",
+      "title": "MECH-216: E1 predictive wanting schema readout validation (API fix)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: PASS",
+      "started_at": "2026-04-09T07:24:05.431067+00:00",
+      "completed_at": "2026-04-09T08:41:16.001426+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4630.6
+    },
+    {
+      "queue_id": "V3-EXQ-258b",
+      "backlog_id": "",
+      "claim_id": "MECH-205",
+      "title": "MECH-205: Surprise-gated replay validation (pe_surprise_threshold calibration fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "P3 (pe_ema_varies): 3/3 PASS | -> PASS decision=surprise_gated_replay_functional direction=supports | verdict: PASS",
+      "started_at": "2026-04-09T08:41:18.127416+00:00",
+      "completed_at": "2026-04-09T09:04:33.536602+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1395.4
     }
   ]
 }
