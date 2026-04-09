@@ -11421,16 +11421,26 @@
     - MECH-186
   short: Serotonin modulates the gain on dopaminergic incentive salience, converting the hard SD-012 threshold into an adaptive graded transduction function.
   description: >
-    The serotonergic system modulates how much z_goal change is produced per unit of
-    benefit_exposure -- the gain on the benefit->z_goal transduction. Currently SD-012
-    implements a hard threshold function; this mechanism softens and adaptively rescales
-    it. When gain is appropriately set, weak benefit signals in adverse environments
-    can still seed z_goal at a reduced level. When gain is suppressed (as in the
-    absence of this mechanism), benefit signals below threshold produce zero wanting
-    response (anhedonia). When gain is excessive, small benefits produce runaway
-    incentive salience (addiction-like escalation). Operates at the benefit->z_goal
-    transduction point. Distinct from terrain maintenance (MECH-186) and goal persistence
-    (MECH-188).
+    The serotonergic system modulates the gain on cue-triggered incentive salience:
+    how much z_goal change is produced per unit of benefit_exposure when the terrain
+    representation detects resource proximity. Currently SD-012 implements a hard
+    threshold function; this mechanism softens and adaptively rescales it. When gain
+    is appropriately set, weak benefit signals in adverse environments can still seed
+    z_goal at a reduced level. When gain is suppressed, benefit signals below threshold
+    produce zero wanting response (anhedonia). When gain is excessive, small benefits
+    produce runaway incentive salience (addiction-like escalation).
+
+    Critically: MECH-187 is about cue-triggered, proximity-driven seeding (Berridge's
+    incentive salience), NOT global approach vigour. Cools et al. (2011) show that tonic
+    5-HT adaptively reduces global approach drive in high-harm environments -- that is
+    correct and expected. MECH-187 operates at the cue->z_goal transduction point and
+    remains operative even when global vigour is down-regulated: a low-drive organism in
+    a harm-rich environment should still transduce a directly-proximate resource into
+    wanting. Failure of MECH-187 specifically means even proximate benefits fail to
+    trigger wanting (anhedonia); failure of global vigour means the agent does not seek
+    but can still respond when benefit is salient. These are dissociable failure modes.
+    Operates at the benefit->z_goal transduction point. Distinct from terrain maintenance
+    (MECH-186) and goal persistence (MECH-188).
   evidence_quality_note: >
     EXQ-252 PASS (2026-04-07): bidirectional z_goal seeding gain confirmed. Moderate
     suppression (gain=0.6) collapses z_goal_norm in SIMPLE context (P1), moderate
@@ -11489,14 +11499,24 @@
   description: >
     Goal-directed behaviour in adversive environments requires a tonic regulatory system
     maintaining benefit orientation across all three pipeline stages: terrain
-    (VALENCE_WANTING floor, MECH-186), transduction (gain on z_goal seeding, MECH-187),
-    and maintenance (z_goal persistence under harm, MECH-188). Without all three, chronic
-    harm exposure produces a self-maintaining low-motivation attractor. Each mechanism
-    can fail independently, producing different clinical presentations. This is an
-    architectural invariant: any goal-directed agent operating in environments with
-    variable harm/benefit ratios will exhibit motivational collapse without tonic
+    (VALENCE_WANTING floor, MECH-186), transduction (cue-triggered incentive salience
+    gain, MECH-187), and maintenance (z_goal persistence under harm, MECH-188). Without
+    all three, chronic harm exposure produces a self-maintaining low-motivation attractor.
+    Each mechanism can fail independently, producing different clinical presentations.
+    This is an architectural invariant: any goal-directed agent operating in environments
+    with variable harm/benefit ratios will exhibit motivational collapse without tonic
     regulation of these three stages. The serotonergic system is one biological
     instantiation; others are possible.
+
+    Stage clarification: the tonic regulatory system does NOT maintain global approach
+    vigour at full strength in harm-rich environments -- Cools et al. (2011) correctly
+    predict that global drive is adaptively down-regulated as average punishment rate
+    rises. What is maintained is (1) the terrain gradient representation so benefit
+    opportunities remain encoded even under chronic harm, (2) the cue-triggered
+    transduction pathway so proximate benefits still produce wanting even against a
+    reduced vigour baseline, and (3) goal representations once seeded. The distinction
+    between cue-triggered wanting (preserved) and global approach vigour (adaptively
+    reduced) is the key to resolving apparent tension with the Cools account.
   evidence_quality_note: >
     EXQ-254 PASS x2 (2026-04-07): two replications, both PASS. single_mechanism_sufficient=false
     in all 6 conditions (no floor, gain, or persistence mechanism alone sufficient across SIMPLE

@@ -2,7 +2,7 @@
 
 **Entry:** 2026-04-09_inv_052_5ht_da_unified_cools2011
 **Claim tested:** INV-052
-**Evidence direction:** supports (with important directional caveat on MECH-187)
+**Evidence direction:** supports
 
 ## What the paper did
 
@@ -14,18 +14,20 @@ The average-punishment-rate hypothesis generates a specific prediction: as punis
 
 The paper also unifies the "patience" framing of 5-HT (serotonin promotes waiting for delayed rewards) with the average-rate framework: patience and inhibition of vigour are both expressions of the same underlying function -- downregulating the urgency of approach in environments where benefits are not immediately available or where punishment is frequent.
 
-## Translation to INV-052 and the MECH-187 tension
+## Translation to INV-052
 
 This paper is the most important one for identifying the boundary conditions of INV-052. The terrain stage (MECH-186) receives strong support: tonic 5-HT tracking average punishment rate is exactly the mechanism by which the system maintains an accurate representation of the harm landscape -- the floor is not arbitrary but calibrated to actual environmental statistics.
 
-However, the transduction stage (MECH-187) faces a directional challenge. MECH-187 claims that tonic 5-HT maintains the *gain* on VALENCE_WANTING seeding -- that the system preserves the ability to transduce benefit opportunities into goal activation. But the Cools et al. prediction is that higher tonic 5-HT in high-harm environments reduces approach drive. If MECH-187 means "the system can still be seeded by benefits," this is partially contradicted: the average-punishment-rate account predicts precisely that seeding gain is suppressed as punishment rate rises. INV-052 therefore requires a mechanism that decouples terrain encoding (benefit gradient remains represented even in harm-rich terrain) from invigoration suppression (the overall approach drive is modulated by average punishment). REE must claim that MECH-187 operates at the level of terrain-contingent seeding, not overall vigour.
+The transduction stage (MECH-187) initially appears to face a directional challenge from this paper. MECH-187 concerns the gain on benefit->z_goal seeding, and the Cools prediction that higher tonic 5-HT reduces approach drive could seem to contradict it. But this tension dissolves once MECH-187 is properly scoped: MECH-187 is about *cue-triggered incentive salience* -- whether a proximately-detected benefit fires wanting -- not about global approach vigour. Cools modulates vigour (how actively the organism seeks); MECH-187 concerns transduction (whether a detected benefit produces wanting). These are dissociable in the Berridge incentive salience framework and likely in distinct circuits. An organism with reduced global drive (Cools: adaptive under high harm) can still have intact cue-triggered wanting when benefit is proximate (MECH-187). Anhedonia -- failure of MECH-187 -- is the specific loss of cue-triggered wanting, distinct from the reduced vigour that Cools describes as adaptive.
+
+The Cools account therefore actually *refines* rather than challenges INV-052: the tonic regulatory system at the transduction stage should preserve cue-triggered wanting while permitting adaptive vigour reduction. This is a more precise and more biologically plausible claim than "5-HT maintains high approach drive under harm."
 
 The maintenance stage (MECH-188) is not directly addressed, but the patience/delay-discounting framing provides indirect support: patience is a form of goal representation maintenance over time, and tonic 5-HT's role in patience suggests a connection to sustained goal holding.
 
 ## Limitations
 
-The average-punishment-rate hypothesis is an analogy, and analogies have limits. The paper acknowledges that the primate DRN data are suggestive but not conclusive about what tonic 5-HT encodes. Human data remain inconsistent. The directional tension with MECH-187 is real and must be addressed in INV-052's claim development -- it is not sufficient to note that tonic 5-HT is involved; the precise direction of its regulatory effect on benefit seeding in harm-rich environments needs to be clarified experimentally.
+The average-punishment-rate hypothesis is an analogy, and analogies have limits. The paper acknowledges that the primate DRN data are suggestive but not conclusive about what tonic 5-HT encodes. Human data remain inconsistent. The vigour/wanting dissociation resolves the apparent tension at a conceptual level but is not directly tested here -- that dissociation would need to be verified in REE experiments that separately measure approach frequency vs. wanting-on-contact. If MECH-187 is measured only by navigation success, it conflates wanting with vigour and remains ambiguous under this paper's predictions.
 
 ## Confidence reasoning
 
-Confidence at 0.70 -- slightly lower than the other three entries because the average-punishment-rate prediction creates a directional challenge for MECH-187 that reduces mapping fidelity. This is actually the most scientifically valuable entry: the tension it identifies is a genuine constraint on how INV-052 must be elaborated. Source quality is high; the challenge is in the mapping, not the source.
+Confidence revised to 0.74 (from initial 0.70). The average-punishment-rate prediction no longer creates a directional challenge to MECH-187 once cue-triggered wanting and global vigour are properly distinguished. This is the most scientifically valuable entry: it forced a precision improvement in how MECH-187 and INV-052 are stated, and the Cools account is now complementary evidence rather than a tension. Source quality is high; the mapping is now cleaner.

@@ -3924,7 +3924,7 @@
       }
     },
     "INV-052": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.821, lit_conf=0.864",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.821, lit_conf=0.869",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -3948,8 +3948,8 @@
       },
       "latest_run_id": "2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008",
       "latest_timestamp_utc": "2026-04-09T15:00:00Z",
-      "literature_confidence": 0.864,
-      "overall_confidence": 0.847,
+      "literature_confidence": 0.869,
+      "overall_confidence": 0.85,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -3970,14 +3970,14 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "INV-052",
-          "confidence": 0.7,
-          "confidence_rationale": "Proposes that tonic serotonin reflects average punishment rate, analogous to dopamine reflecting average reward rate. This is the most directly testable formulation of the tonic floor concept relevant to INV-052: in harm-rich environments where punishment rate is high, tonic 5-HT should modulate sustained goal-directed behaviour. The paper provides the theoretical bridge between average punishment rate and behavioural vigour that MECH-187 (transduction gain) requires.",
+          "confidence": 0.74,
+          "confidence_rationale": "Proposes that tonic serotonin reflects average punishment rate, which supports the terrain stage (MECH-186) of INV-052. The apparent tension with MECH-187 resolves once cue-triggered incentive salience (wanting on proximate contact) is distinguished from global approach vigour (how actively the organism seeks). Cools modulates vigour -- correct and expected. MECH-187 concerns whether a detected benefit triggers wanting, which is dissociable from vigour in Berridge's framework. The Cools account refines rather than challenges INV-052.",
           "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_inv_052",
           "failure_signatures": [
-            "When punishment rate rises, tonic serotonin inhibits vigour -- this is the opposite direction from benefit orientation maintenance, suggesting tonic 5-HT may suppress rather than support goal pursuit in high-harm environments",
-            "The average-punishment-rate framing predicts that high tonic 5-HT in chronic harm environments should reduce approach -- which partially challenges MECH-187's claim that tonic 5-HT maintains transduction gain"
+            "If MECH-187 is measured only by navigation success or approach frequency, it conflates wanting with vigour and remains ambiguous under Cools predictions.",
+            "The vigour/wanting dissociation is assumed not directly tested -- if cue-triggered wanting and global vigour are not separable in the substrate, the Cools challenge to MECH-187 would be real."
           ],
           "run_id": "2026-04-09_inv_052_5ht_da_unified_cools2011",
           "source_type": "literature",
@@ -12878,7 +12878,7 @@
       }
     },
     "MECH-184": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.736",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.735",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -12902,8 +12902,8 @@
       },
       "latest_run_id": "2026-04-05_mech_185_rats_help_distressed_cagemate_sato2015",
       "latest_timestamp_utc": "2026-04-05T12:00:00Z",
-      "literature_confidence": 0.736,
-      "overall_confidence": 0.736,
+      "literature_confidence": 0.735,
+      "overall_confidence": 0.735,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -62885,14 +62885,14 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "INV-052",
-      "confidence": 0.7,
-      "confidence_rationale": "Proposes that tonic serotonin reflects average punishment rate, analogous to dopamine reflecting average reward rate. This is the most directly testable formulation of the tonic floor concept relevant to INV-052: in harm-rich environments where punishment rate is high, tonic 5-HT should modulate sustained goal-directed behaviour. The paper provides the theoretical bridge between average punishment rate and behavioural vigour that MECH-187 (transduction gain) requires.",
+      "confidence": 0.74,
+      "confidence_rationale": "Proposes that tonic serotonin reflects average punishment rate, which supports the terrain stage (MECH-186) of INV-052. The apparent tension with MECH-187 resolves once cue-triggered incentive salience (wanting on proximate contact) is distinguished from global approach vigour (how actively the organism seeks). Cools modulates vigour -- correct and expected. MECH-187 concerns whether a detected benefit triggers wanting, which is dissociable from vigour in Berridge's framework. The Cools account refines rather than challenges INV-052.",
       "evidence_class": "lit:theoretical_review",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_inv_052",
       "failure_signatures": [
-        "When punishment rate rises, tonic serotonin inhibits vigour -- this is the opposite direction from benefit orientation maintenance, suggesting tonic 5-HT may suppress rather than support goal pursuit in high-harm environments",
-        "The average-punishment-rate framing predicts that high tonic 5-HT in chronic harm environments should reduce approach -- which partially challenges MECH-187's claim that tonic 5-HT maintains transduction gain"
+        "If MECH-187 is measured only by navigation success or approach frequency, it conflates wanting with vigour and remains ambiguous under Cools predictions.",
+        "The vigour/wanting dissociation is assumed not directly tested -- if cue-triggered wanting and global vigour are not separable in the substrate, the Cools challenge to MECH-187 would be real."
       ],
       "run_id": "2026-04-09_inv_052_5ht_da_unified_cools2011",
       "source_type": "literature",
@@ -63295,7 +63295,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-09T16:43:03.071440Z",
+  "generated_at_utc": "2026-04-09T16:47:15.515321Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
