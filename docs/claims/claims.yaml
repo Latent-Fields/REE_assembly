@@ -13357,6 +13357,17 @@
     damage should have high z_harm_a and near-zero z_harm_s -- a dissociation
     CausalGridWorldV2 cannot currently produce. The EMA-based harm_obs_a is superseded
     by the damage-state source when limb_damage_enabled=True.
+  implementation_note: >
+    IMPLEMENTED 2026-04-09. CausalGridWorldV2 (ree_core/environment/causal_grid_world.py):
+    4-directional limb_damage[4] state; accumulates when moving through hazards;
+    heals at heal_rate=0.002/step; movement failure P(fail) = damage[d] * failure_prob_scale.
+    harm_obs_a re-sourced from body damage state (7 dims: damage[4]+max+mean+residual_pain)
+    when limb_damage_enabled=True, replacing 50-dim proximity EMA.
+    body_state extended 12->17 dims (+ damage[4] + residual_pain).
+    REEConfig.from_dims() params: limb_damage_enabled (False default),
+    damage_increment (0.15), failure_prob_scale (0.3), heal_rate (0.002).
+    Backward compatible: disabled by default; existing experiments unaffected.
+    Validation experiment: V3-EXQ-318 queued.
   evidence_quality_note: >
     No experimental evidence yet. Diagnosis confirmed by EXQ-241b (r2_s_to_a=0.996,
     info_gain=14k-22k indicating no genuine separation). EXQ-241b reinterpretation

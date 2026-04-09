@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 52175,
   "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-09T18:42:14.930603+00:00",
-  "idle": true,
-  "current": null,
+  "last_updated": "2026-04-09T19:21:32.938632+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-268",
+    "backlog_id": "EXP-0096",
+    "claim_id": "INV-053",
+    "title": "INV-053 depression attractor replication (5 seeds)",
+    "description": "",
+    "script": "experiments/v3_exq_268_inv053_depression_attractor_replication.py",
+    "started_at": "2026-04-09T18:49:21.972722+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 2,
+      "runs_total": 5,
+      "episodes_done": 300,
+      "episodes_total": 300,
+      "overall_pct": 60.0
+    },
+    "seconds_elapsed": 1931,
+    "seconds_remaining": 1323,
+    "recent_lines": [
+      "[train] seed=44 ep 100/300 harm_pos=349 harm_neg=51 ben_samples=3936 goal_norm=0.000",
+      "[train] seed=44 ep 150/300 harm_pos=519 harm_neg=81 ben_samples=5952 goal_norm=0.027",
+      "[train] seed=44 ep 200/300 harm_pos=691 harm_neg=114 ben_samples=8128 goal_norm=0.030",
+      "[train] seed=44 ep 250/300 harm_pos=867 harm_neg=136 ben_samples=10176 goal_norm=0.011",
+      "[train] seed=44 ep 300/300 harm_pos=1039 harm_neg=162 ben_samples=12192 goal_norm=0.004"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-266",
@@ -18,13 +44,35 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-267",
-      "backlog_id": "EVB-0051",
-      "claim_id": "ARC-038",
-      "title": "ARC-038: waking consolidation discriminative evidence",
+      "queue_id": "V3-EXQ-268",
+      "backlog_id": "EXP-0096",
+      "claim_id": "INV-053",
+      "title": "INV-053 depression attractor replication (5 seeds)",
       "description": "",
-      "estimated_minutes": 80.0,
-      "status": "claimed",
+      "estimated_minutes": 233.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-278",
+      "backlog_id": "EXP-0097",
+      "claim_id": "INV-054",
+      "title": "INV-054 phase-transition recovery prediction (3 seeds)",
+      "description": "",
+      "estimated_minutes": 240.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-288",
+      "backlog_id": "EXP-0095",
+      "claim_id": "Q-034",
+      "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
+      "description": "",
+      "estimated_minutes": 720.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
