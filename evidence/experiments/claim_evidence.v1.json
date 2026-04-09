@@ -2531,7 +2531,7 @@
       }
     },
     "ARC-042": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.406, lit_conf=0.848",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.405, lit_conf=0.848",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2546,7 +2546,7 @@
         "lit:ml_theoretical_empirical": 2,
         "lit:neuroscience_computational": 1
       },
-      "experimental_confidence": 0.406,
+      "experimental_confidence": 0.405,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -6276,7 +6276,7 @@
       }
     },
     "MECH-062": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.786",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.785",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -6299,8 +6299,8 @@
       },
       "latest_run_id": "2026-02-15_mech062_pbwm_gating_neuralcomputation2006",
       "latest_timestamp_utc": "2026-02-15T14:19:00Z",
-      "literature_confidence": 0.786,
-      "overall_confidence": 0.786,
+      "literature_confidence": 0.785,
+      "overall_confidence": 0.785,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6337,7 +6337,7 @@
       }
     },
     "MECH-063": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.786",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.785",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -6360,8 +6360,8 @@
       },
       "latest_run_id": "2026-02-15_mech063_lcne_adaptive_gain_annurev2005",
       "latest_timestamp_utc": "2026-02-15T14:22:00Z",
-      "literature_confidence": 0.786,
-      "overall_confidence": 0.786,
+      "literature_confidence": 0.785,
+      "overall_confidence": 0.785,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7589,51 +7589,49 @@
       }
     },
     "MECH-091": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.299, lit_conf=0.849",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.849",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 6,
+      "entries_total": 5,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_intracranial": 1,
         "lit:electrophysiology_scalp_eeg": 1,
         "lit:review_computational_mechanistic": 1,
         "lit:review_methodological_critical": 1
       },
-      "experimental_confidence": 0.299,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
       "latest_run_id": "2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
       "literature_confidence": 0.849,
-      "overall_confidence": 0.711,
+      "overall_confidence": 0.849,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-091",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_133_mech091_phase_reset_pair",
+          "confidence": 0.68,
+          "confidence_rationale": "Good mechanistic support for phase reset as a general neural mechanism triggered by salient/unexpected stimuli; thalamocortical neurons identified as key phase-reset substrate. Confidence tempered because the review covers general phase-reset mechanisms, and the specific link to basal ganglia-thalamo-E3 heartbeat reset (MECH-091) requires additional inference.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_091",
           "failure_signatures": [],
-          "run_id": "v3_exq_133_mech091_phase_reset_pair_20260329T032233Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-29T03:22:33Z"
+          "run_id": "2026-03-16_mech091_phase_reset_information_transmission_pmc2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -7706,23 +7704,22 @@
           "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 6,
+      "runs_total": 5,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 5
       }
     },
     "MECH-092": {
-      "confidence_rationale": "exp=1 entry(s), lit=10 entry(s), exp_conf=0.299, lit_conf=0.904",
+      "confidence_rationale": "exp=0 entry(s), lit=10 entry(s), exp_conf=0, lit_conf=0.904",
       "direction_counts": {
         "mixed": 1,
         "supports": 9,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 11,
+      "entries_total": 10,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_lfp_and_behavior": 1,
         "lit:electrophysiology_rodent": 1,
@@ -7730,19 +7727,19 @@
         "lit:electrophysiology_single_unit_and_lfp": 2,
         "lit:review_mechanistic": 2
       },
-      "experimental_confidence": 0.299,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
       "latest_run_id": "2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
       "literature_confidence": 0.904,
-      "overall_confidence": 0.753,
+      "overall_confidence": 0.904,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7827,9 +7824,9 @@
           "timestamp_utc": "2026-04-08T17:00:00Z"
         }
       ],
-      "runs_total": 11,
+      "runs_total": 10,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 10
       }
     },
@@ -7957,50 +7954,34 @@
       }
     },
     "MECH-094": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.299, lit_conf=0.805",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.805",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 4,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:fmri_connectivity": 1,
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.299,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
       "latest_run_id": "2026-03-29_mech_094_source_memory_perceived_imagined_king2013",
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.805,
-      "overall_confidence": 0.678,
+      "overall_confidence": 0.805,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-094",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_140_mech094_hypothesis_tag_gate_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_140_mech094_hypothesis_tag_gate_pair_20260329T033050Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-29T03:30:50Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-094",
@@ -8053,9 +8034,9 @@
           "timestamp_utc": "2026-03-29T14:00:00Z"
         }
       ],
-      "runs_total": 4,
+      "runs_total": 3,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 3
       }
     },
@@ -8284,7 +8265,7 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=20 entry(s), lit=3 entry(s), exp_conf=0.629, lit_conf=0.86",
+      "confidence_rationale": "exp=20 entry(s), lit=3 entry(s), exp_conf=0.628, lit_conf=0.86",
       "direction_counts": {
         "mixed": 7,
         "supports": 7,
@@ -8298,7 +8279,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.629,
+      "experimental_confidence": 0.628,
       "fail_runs": 16,
       "genuine_exp_count": 20,
       "genuine_exp_direction_counts": {
@@ -8310,7 +8291,7 @@
       "latest_run_id": "v3_exq_110_c1fail_20260328T161637Z_v3",
       "latest_timestamp_utc": "2026-03-28T20:51:48.346204Z",
       "literature_confidence": 0.86,
-      "overall_confidence": 0.745,
+      "overall_confidence": 0.744,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -8946,7 +8927,7 @@
       }
     },
     "MECH-104": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.891, lit_conf=0.896",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.89, lit_conf=0.896",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -8959,7 +8940,7 @@
         "lit:computational_model": 1,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.891,
+      "experimental_confidence": 0.89,
       "fail_runs": 3,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -8971,7 +8952,7 @@
       "latest_run_id": "v3_exq_204_mech104_surprise_gate_pair_20260403T020540Z_v3",
       "latest_timestamp_utc": "2026-04-03T02:05:40Z",
       "literature_confidence": 0.896,
-      "overall_confidence": 0.894,
+      "overall_confidence": 0.893,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -9182,7 +9163,7 @@
       }
     },
     "MECH-111": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.392, lit_conf=0.772",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.391, lit_conf=0.772",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -9195,7 +9176,7 @@
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.392,
+      "experimental_confidence": 0.391,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -9207,7 +9188,7 @@
       "latest_run_id": "v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3",
       "latest_timestamp_utc": "2026-04-02T02:18:31Z",
       "literature_confidence": 0.772,
-      "overall_confidence": 0.544,
+      "overall_confidence": 0.543,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -9642,7 +9623,7 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.958, lit_conf=0.779",
+      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.957, lit_conf=0.779",
       "direction_counts": {
         "mixed": 2,
         "supports": 6,
@@ -9655,7 +9636,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.958,
+      "experimental_confidence": 0.957,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -17793,7 +17774,7 @@
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=4 entry(s), lit=5 entry(s), exp_conf=0.467, lit_conf=0.896",
+      "confidence_rationale": "exp=4 entry(s), lit=5 entry(s), exp_conf=0.466, lit_conf=0.896",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -17809,7 +17790,7 @@
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.467,
+      "experimental_confidence": 0.466,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -17821,7 +17802,7 @@
       "latest_run_id": "v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3",
       "latest_timestamp_utc": "2026-04-08T15:59:07.286277Z",
       "literature_confidence": 0.896,
-      "overall_confidence": 0.682,
+      "overall_confidence": 0.681,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -48988,14 +48969,15 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-091",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_133_mech091_phase_reset_pair",
       "failure_signatures": [],
       "run_id": "v3_exq_133_mech091_phase_reset_pair_20260329T032233Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-03-29T03:22:33Z"
@@ -49034,14 +49016,15 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-092",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_136_mech092_quiescent_replay_pair",
       "failure_signatures": [],
       "run_id": "v3_exq_136_mech092_quiescent_replay_pair_20260329T032531Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-03-29T03:25:31Z"
@@ -49081,14 +49064,15 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-094",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_140_mech094_hypothesis_tag_gate_pair",
       "failure_signatures": [],
       "run_id": "v3_exq_140_mech094_hypothesis_tag_gate_pair_20260329T033050Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-03-29T03:30:50Z"
@@ -63295,7 +63279,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-09T16:47:15.515321Z",
+  "generated_at_utc": "2026-04-09T17:01:58.638277Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

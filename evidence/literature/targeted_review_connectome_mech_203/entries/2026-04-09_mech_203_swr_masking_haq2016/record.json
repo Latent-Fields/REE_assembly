@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_203",
+  "entry_id": "2026-04-09_mech_203_swr_masking_haq2016",
+  "timestamp_utc": "2026-04-09T12:35:00Z",
+  "claim_ids_tested": ["MECH-203"],
+  "source": {
+    "title": "Serotonin dependent masking of hippocampal sharp wave ripples",
+    "authors": ["ul Haq R", "Anderson ML", "Hollnagel JO", "Worschech F", "Sherkheli MA", "Behrens CJ", "Heinemann U"],
+    "year": 2016,
+    "venue": "Neuropharmacology",
+    "doi": "10.1016/j.neuropharm.2015.09.026",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26409781/"
+  },
+  "evidence_class": "empirical_in_vitro_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Directly demonstrates that serotonin gates hippocampal sharp wave ripples (SWRs), the primary neural correlate of offline memory consolidation/replay. When 5-HT is elevated, SWRs are masked; when 5-HT is washed out, SWRs reappear. This is highly consistent with MECH-203's proposal that falling 5-HT during SWS releases replay: low tonic 5-HT is the permissive condition for replay execution. Source quality is good (peer-reviewed empirical, top neuropharmacology journal). Mapping fidelity is good because SWR masking is exactly the mechanism by which benefit-tagged episodes could be sequentially gated for replay. Transfer risk is moderate (rat hippocampal slices in vitro to in vivo sleep states).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In vitro slice preparation -- does not capture in vivo state dynamics or the ascending dorsal raphe modulation of 5-HT tone",
+    "Masking is receptor-mediated (5-HT1A + 5-HT2A/C) but does not address which episodes are preferentially unmasked during low-5-HT windows -- selectivity for benefit-dense experiences is not demonstrated",
+    "LTP was still inducible during high 5-HT -- encoding and replay may not be as cleanly separated as MECH-203 assumes"
+  ],
+  "tags": ["mech_203", "serotonin", "sleep", "hippocampus", "sharp_wave_ripples", "SWR_masking", "replay", "memory_consolidation"],
+  "mapping": {
+    "source_claim_statement": "Serotonin dose-dependently masks hippocampal sharp wave ripples (SPW-Rs) via 5-HT1A and 5-HT2A/C receptors, through presynaptic transmitter release reduction rather than postsynaptic membrane changes. SPW-Rs reappear when 5-HT is washed out. LTP is inducible during high 5-HT conditions.",
+    "ree_translation": "MECH-203 proposes that high tonic 5-HT during waking tags benefit-relevant experiences for later replay, and that falling 5-HT during SWS releases this replay. This paper demonstrates the permissive mechanism: SWRs (the neural substrate of replay) are masked when 5-HT is high (waking) and unmasked when 5-HT falls (NREM/SWS). The LTP-during-high-5-HT finding also maps to the waking encoding phase: the agent can form associations while tonic 5-HT suppresses premature replay. The REE SerotoninModule's benefit_salience update during waking (while replay is suppressed) and release of replay during sleep-mode entry corresponds directly to this gating logic.",
+    "mapping_caveat": "The paper does not address prioritization among episodes -- all SWRs are masked equally, not just benefit-relevant ones. The selectivity mechanism (which episodes get replayed first) would require an additional tagging layer not demonstrated here. The in vitro preparation also does not confirm that this gating operates during natural sleep in the intact animal.",
+    "source_context": "Rat hippocampal slice preparation. Serotonin applied exogenously at physiologically relevant concentrations. The authors conclude that 5-HT can gate the switch between encoding mode (high 5-HT, LTP available, replay suppressed) and consolidation mode (low 5-HT, replay permitted)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Source quality good: peer-reviewed empirical, Neuropharmacology, mechanistic depth. Mapping fidelity good: SWR gating is the specific mechanism MECH-203 requires for replay release during sleep. Transfer risk moderate: in vitro slice does not replicate in vivo neuromodulatory dynamics."
+  }
+}

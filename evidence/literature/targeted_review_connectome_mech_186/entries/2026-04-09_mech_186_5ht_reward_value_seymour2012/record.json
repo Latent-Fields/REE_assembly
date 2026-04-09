@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_186",
+  "entry_id": "2026-04-09_mech_186_5ht_reward_value_seymour2012",
+  "timestamp_utc": "2026-04-09T00:00:00Z",
+  "claim_ids_tested": [
+    "MECH-186"
+  ],
+  "source": {
+    "title": "Serotonin Selectively Modulates Reward Value in Human Decision-Making",
+    "authors": [
+      "Ben Seymour",
+      "Nathaniel D. Daw",
+      "Jonathan P. Roiser",
+      "Peter Dayan",
+      "Ray Dolan"
+    ],
+    "year": 2012,
+    "venue": "Journal of Neuroscience",
+    "pmid": "22539845",
+    "doi": "10.1523/JNEUROSCI.5053-11.2012",
+    "url": "https://www.jneurosci.org/content/32/17/5833"
+  },
+  "evidence_class": "empirical_human",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Human tryptophan depletion study (reducing 5-HT) selectively impaired the neural and behavioral representation of reward outcome value in a concurrent reward-and-pain task, while leaving punishment processing relatively intact. This is direct causal evidence (via tryptophan depletion) in humans that 5-HT specifically supports the *appetitive* side of valuation -- when 5-HT is reduced, reward value representations in vmPFC degrade. This maps onto MECH-186's claim that tonic 5-HT maintains the VALENCE_WANTING floor (the benefit-side terrain). The effect was computationally dissociable from choice perseveration effects, suggesting it is specifically about value representation rather than general motivation or motor output. Confidence moderate: this is a human study using a well-validated depletion method, but the paradigm mixes reward and pain simultaneously and the floor-maintenance interpretation requires inference beyond what the paper claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The depletion procedure reduces 5-HT globally -- it cannot dissociate tonic from phasic 5-HT contributions or isolate the dorsal raphe floor-maintenance mechanism specifically",
+    "The task involves simultaneous monetary reward and physical pain; the interaction structure may not cleanly generalize to sustained harm-dominant environments",
+    "Effect was on reward value representation (vmPFC cue-value activity), not on the terrain architecture per se -- the mapping to VALENCE_WANTING entries requires REE-side inference"
+  ],
+  "tags": [
+    "mech_186",
+    "serotonin",
+    "tryptophan_depletion",
+    "empirical_human",
+    "reward_value",
+    "vmPFC",
+    "decision_making",
+    "wanting",
+    "causal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Acute tryptophan depletion (lowering central 5-HT) selectively impaired behavioral and neural representations of reward outcome value -- reducing vmPFC cue-value responses and dorsolateral putamen prediction-error signals for rewards, while leaving punishment processing relatively intact.",
+    "ree_translation": "MECH-186 claims that tonic 5-HT maintains the VALENCE_WANTING floor in the residue field -- without it, benefit terrain goes flat under harm-dominant conditions. Seymour et al. show the causal flip side: when 5-HT is reduced experimentally, reward value representations selectively degrade in the brain circuits responsible for tracking benefit value (vmPFC, dorsolateral putamen). The selectivity for the reward side -- while punishment processing is relatively preserved -- is consistent with MECH-186's claim that 5-HT specifically maintains the benefit gradient, not harm sensitivity. This is the only existing human causal evidence that 5-HT level changes bidirectionally track the quality of benefit terrain representation.",
+    "mapping_caveat": "Depletion reduces 5-HT globally over hours; MECH-186 posits a specifically tonic, slow-accumulating signal. The vmPFC effect could reflect changed phasic 5-HT as much as tonic baseline. The floor-maintenance story requires that the tonic component be the critical one -- this paper cannot isolate it.",
+    "source_context": "Human double-blind crossover fMRI study, n=21, acute dietary tryptophan depletion, novel concurrent reward-and-pain choice task, no psychiatric history."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Journal of Neuroscience, strong design with fMRI + behavior + computational model, human data. Mapping fidelity moderate -- the depletion-to-floor-maintenance link requires a further mechanistic step. Transfer risk relatively low since this is human data directly."
+  }
+}

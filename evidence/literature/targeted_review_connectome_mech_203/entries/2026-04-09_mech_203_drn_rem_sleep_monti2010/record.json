@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_203",
+  "entry_id": "2026-04-09_mech_203_drn_rem_sleep_monti2010",
+  "timestamp_utc": "2026-04-09T12:30:00Z",
+  "claim_ids_tested": ["MECH-203"],
+  "source": {
+    "title": "The role of dorsal raphe nucleus serotonergic and non-serotonergic neurons, and of their receptors, in regulating waking and rapid eye movement (REM) sleep",
+    "authors": ["Monti JM"],
+    "year": 2010,
+    "venue": "Sleep Medicine Reviews",
+    "doi": "10.1016/j.smrv.2009.10.003",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20153670/"
+  },
+  "evidence_class": "review_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical review establishing the DRN serotonin waking-high / REM-silent firing pattern. Directly supports the claim that tonic 5-HT drops during sleep phases, enabling the replay-gating mechanism MECH-203 proposes. Source quality is high (peer-reviewed review, authoritative author). Mapping fidelity is moderate: the review documents state-dependent firing rates rather than replay prioritization per se, so the specific benefit-salience tagging function requires additional inferential steps.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "5-HT receptor subtypes (1A vs 2A/C) have opposing effects -- if MECH-203 is receptor-subtype-specific, this heterogeneity introduces ambiguity",
+    "non-serotonergic DRN neurons (dopamine, GABA, glutamate) contribute to sleep regulation independently -- tonic 5-HT is not the sole DRN output"
+  ],
+  "tags": ["mech_203", "serotonin", "sleep", "dorsal_raphe", "REM", "NREM", "wakefulness", "5-HT_state_dependence"],
+  "mapping": {
+    "source_claim_statement": "Serotonin promotes waking and inhibits REM sleep; DRN serotonergic neurons fire maximally during wake, decrease during NREM, and become virtually silent during REM. Receptor knockouts (5-HT1A, 5-HT1B) increase REM sleep; 5-HT2A/C knockouts increase wakefulness.",
+    "ree_translation": "The waking-high / REM-silent 5-HT discharge pattern establishes the tonic level gradient that MECH-203 requires: during waking, high tonic 5-HT tags benefit-relevant experiences; during REM, near-zero 5-HT releases these tags for replay processing. The phase boundary (waking -> NREM -> REM) is implemented by DRN activity descent, matching the SWS-then-REM ordering specified in MECH-203's notes.",
+    "mapping_caveat": "The review addresses 5-HT's role in sleep-stage gating, not replay prioritization directly. The benefit-salience tagging function is an additional theoretical layer not directly tested in this literature. Transfer risk from cat/rat electrophysiology to human REE substrate is moderate.",
+    "source_context": "Comprehensive review of DRN neurochemistry across sleep states. Covers receptor subtype pharmacology (1A, 1B, 2A/C, 3, 7), microinjection studies, and knockout phenotypes. Establishes mechanistic precision about which receptor subtypes govern which sleep transitions."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: authoritative review in top sleep journal, comprehensive receptor pharmacology. Mapping fidelity moderate: source confirms the tonic gradient exists but does not address replay salience tagging. Transfer risk moderate: animal electrophysiology (cat/rat) to computational model."
+  }
+}

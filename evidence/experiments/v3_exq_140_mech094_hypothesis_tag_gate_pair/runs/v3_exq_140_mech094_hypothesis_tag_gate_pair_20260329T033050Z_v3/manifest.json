@@ -23,7 +23,8 @@
     "MECH-094"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Substrate gap: categorical phi(z) write gate (hypothesis tag) is not implemented in ree_core. Proxy used replay-with-noise vs replay-without-noise -- cannot test the gate when the gate is absent. FAIL reflects substrate gap, not claim failure. Corrected 2026-04-09.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,

@@ -1,5 +1,7 @@
 {
   "status": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Substrate gap: hypothesis tag as categorical phi(z) write gate separating simulation from committed residue updates is not implemented in ree_core. Proxy used replay-with-noise vs replay-without-noise as a stand-in -- this cannot test the tag gate because the gate itself is absent. The test measures a noise sensitivity difference, not a write-gate mechanism. Claim requires explicit implementation of the categorical tag before it can be tested. Overrides summary_markdown decision=retire_ree_claim.",
   "metrics": {
     "contamination_gap_on": 0.04486503610337789,
     "contamination_gap_ablated": 0.030668956756826626,

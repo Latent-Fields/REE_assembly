@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_186",
+  "entry_id": "2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015",
+  "timestamp_utc": "2026-04-09T00:00:00Z",
+  "claim_ids_tested": [
+    "MECH-186"
+  ],
+  "source": {
+    "title": "Serotonergic neurons signal reward and punishment on multiple timescales",
+    "authors": [
+      "Jeremiah Y. Cohen",
+      "Mackenzie W. Amoroso",
+      "Naoshige Uchida"
+    ],
+    "year": 2015,
+    "venue": "eLife",
+    "pmid": "25714923",
+    "doi": "10.7554/eLife.06346",
+    "url": "https://elifesciences.org/articles/06346"
+  },
+  "evidence_class": "empirical_rodent",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Direct electrophysiological evidence that dorsal raphe serotonergic neurons modulate tonic firing rates across block-level environmental contexts (reward vs punishment), with individual neurons showing sustained baseline shifts over tens of seconds to minutes. This is the cleanest empirical demonstration that 5-HT carries a slow-timescale environmental state signal -- precisely what MECH-186 requires as its biological substrate. The finding that dopaminergic neurons do NOT show the same block-level tonic modulation is critical negative control evidence supporting the mechanistic specificity of the serotonergic floor. Confidence moderate rather than high because the study is rodent electrophysiology with no direct demonstration of terrain collapse under 5-HT suppression, and the mapping from tonic firing modulation to VALENCE_WANTING floor requires inference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Tonic block-level serotonergic modulation is shown in mice, not replicated in humans; human DRN recording is technically challenging and this specific finding may not transfer",
+    "The block-level firing rate changes are correlational -- the study does not directly show that 5-HT tonic signal causally maintains benefit terrain or that suppression causes goal latent collapse",
+    "The paper identifies a minority subset of 5-HT neurons phasically excited by reward-predicting cues, which could complicate the clean tonic-vs-phasic separation MECH-186 requires"
+  ],
+  "tags": [
+    "mech_186",
+    "serotonin",
+    "dorsal_raphe",
+    "tonic",
+    "empirical_rodent",
+    "reward",
+    "punishment",
+    "timescales",
+    "state_value",
+    "electrophysiology"
+  ],
+  "mapping": {
+    "source_claim_statement": "A large fraction of serotonergic neurons modulate their tonic firing rates over the course of minutes depending on whether the block context is reward-dominant or punishment-dominant; dopaminergic neurons do not show this block-level tonic modulation.",
+    "ree_translation": "MECH-186 posits a slow-accumulating, decay-resistant tonic signal that maintains a non-zero floor on VALENCE_WANTING in the residue field under chronic harm exposure. Cohen et al.'s block-level tonic modulation directly instantiates the required biological signal: the sustained DRN firing rate shift across environmental context is exactly the kind of slowly integrating, environment-sensitive signal that could maintain terrain legibility when phasic DA/z_goal events are sparse. The finding that DA neurons do NOT show this block-level shift is strong supporting evidence for mechanistic specificity -- the serotonergic floor is a distinct channel from the phasic dopaminergic incentive salience system (MECH-187).",
+    "mapping_caveat": "The experiment uses discrete alternating reward/punishment blocks, not continuous chronic harm-dominant environments. The mapping to MECH-186's 'chronic harm exposure' scenario requires extrapolation from block-level context to sustained terrain suppression. The REE-specific language of VALENCE_WANTING entries in a residue field is not present in the source.",
+    "source_context": "Channelrhodopsin-2 identification of serotonergic neurons in dorsal raphe of behaving mice, optogenetic photoidentification + extracellular recording, n=~35 photoidentified serotonergic neurons across sessions."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.42,
+    "notes": "eLife high-impact empirical; optogenetic photoidentification avoids the chronic ambiguity of waveform-based 5-HT identification. Mapping fidelity moderate because block context is not the same as chronic harm terrain. Transfer risk moderate: mouse DRN physiology to MECH-186's computational floor is a two-step inference."
+  }
+}

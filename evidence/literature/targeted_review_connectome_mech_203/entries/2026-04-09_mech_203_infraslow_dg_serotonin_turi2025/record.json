@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_203",
+  "entry_id": "2026-04-09_mech_203_infraslow_dg_serotonin_turi2025",
+  "timestamp_utc": "2026-04-09T12:50:00Z",
+  "claim_ids_tested": ["MECH-203"],
+  "source": {
+    "title": "Serotonin modulates infraslow oscillation in the dentate gyrus during Non-REM sleep",
+    "authors": ["Turi GF", "Teng S", "Chen X", "Lim ECY", "Dias C", "Hu R", "Wang R", "Zhen F", "Peng Y"],
+    "year": 2025,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.100196",
+    "url": "https://elifesciences.org/reviewed-preprints/100196v3"
+  },
+  "evidence_class": "empirical_in_vivo_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Demonstrates that serotonin release during NREM sleep oscillates at 0.01-0.03 Hz (infraslow) in the dentate gyrus, inversely phase-coupled to DG glutamatergic neuron activity. Genetic ablation of 5-HT1a receptors in dentate granule cells impairs both the oscillation and fear memory recall. This directly links serotonin's NREM modulation to memory consolidation outcomes. Source quality high (eLife, in vivo, genetic manipulation with behavioral readout). Mapping fidelity moderate -- the paper tests fear memory consolidation (harm-valenced), not benefit-relevant replay specifically, requiring inference about generalization.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Tested specifically in the dentate gyrus, not CA1 where SWRs predominantly occur -- DG infraslow oscillation may be a distinct process from CA1 ripple-dependent replay",
+    "Fear memory consolidation (contextual fear conditioning) is harm-valenced, not benefit-valenced -- the transfer to benefit-salience tagging (the core MECH-203 claim) requires generalization",
+    "The infraslow oscillation is in opposite phase to 5-HT release -- serotonin inhibits DG activity through 5-HT1a; whether this facilitates or gates downstream CA1 replay is not established",
+    "Genetic 5-HT1a ablation is a chronic manipulation -- does not resolve whether acute 5-HT level during waking determines replay priority"
+  ],
+  "tags": ["mech_203", "serotonin", "sleep", "dentate_gyrus", "NREM", "infraslow_oscillations", "5-HT1a", "memory_consolidation", "fear_memory"],
+  "mapping": {
+    "source_claim_statement": "During NREM sleep, glutamatergic dentate gyrus neurons exhibit infraslow oscillations (0.01-0.03 Hz) that are modulated by rhythmic serotonin release in opposite phase. 5-HT1a receptor-mediated inhibition is required for both the oscillation and fear memory recall. Ablating 5-HT1a receptors in dentate granule cells impairs memory performance in retrieval tests.",
+    "ree_translation": "MECH-203 requires that serotonin during sleep modulates replay prioritization for previously-tagged experiences. This paper shows that rhythmic serotonin release during NREM shapes hippocampal activity patterns and that this is causally necessary for memory consolidation outcomes. The 5-HT1a-mediated inhibition of DG during NREM oscillations may provide temporal windows for ripple-dependent replay in downstream CA1 by reducing dentate interference. The generalization to benefit-relevant memories (not just fear) is supported by the general principle: if serotonin organizes NREM hippocampal substates, and benefit-dense experiences (tagged by high waking 5-HT) are preferentially associated with those substates, then the DG oscillation is part of the consolidation pathway for MECH-203.",
+    "mapping_caveat": "The paper addresses fear memory, not benefit-salience replay. The direction of DG modulation (serotonin inhibits DG, DG activity is gated) may not directly translate to CA1 ripple facilitation. The infraslow DG oscillation and the CA1 SWR process are anatomically and functionally related but not identical.",
+    "source_context": "In vivo recording in mice. Genetic targeting of 5-HT1a receptors in dentate granule cells. Contextual fear conditioning behavioral paradigm. DG infraslow oscillation measured during NREM. Memory retrieval test 24h after encoding."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.28,
+    "notes": "Source quality high: eLife, in vivo, causal genetic manipulation with behavioral readout. Mapping fidelity moderate: fear memory consolidation demonstrates serotonin-NREM-memory link but requires generalization to benefit-salience. Transfer risk low-moderate: mouse, conserved hippocampal architecture."
+  }
+}

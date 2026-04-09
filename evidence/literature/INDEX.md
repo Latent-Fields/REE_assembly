@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-09T15:34:49.190315Z`
+Generated: `2026-04-09T17:01:58.638277Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -68,8 +68,10 @@ Generated: `2026-04-09T15:34:49.190315Z`
 | `targeted_review_connectome_mech_179` | [`2026-04-06_mech_179_rem_emotional_walker2009`](targeted_review_connectome_mech_179/entries/2026-04-06_mech_179_rem_emotional_walker2009/record.json) | 3 | [`summary`](targeted_review_connectome_mech_179/entries/2026-04-06_mech_179_rem_emotional_walker2009/summary.md) |
 | `targeted_review_connectome_mech_180` | [`2026-04-06_mech_180_rem_replay_louie+2001`](targeted_review_connectome_mech_180/entries/2026-04-06_mech_180_rem_replay_louie+2001/record.json) | 4 | [`summary`](targeted_review_connectome_mech_180/entries/2026-04-06_mech_180_rem_replay_louie+2001/summary.md) |
 | `targeted_review_connectome_mech_181` | [`2026-04-06_mech_181_cognitive_reserve_alzheimer_stern2012`](targeted_review_connectome_mech_181/entries/2026-04-06_mech_181_cognitive_reserve_alzheimer_stern2012/record.json) | 2 | [`summary`](targeted_review_connectome_mech_181/entries/2026-04-06_mech_181_cognitive_reserve_alzheimer_stern2012/summary.md) |
+| `targeted_review_connectome_mech_186` | [`2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015`](targeted_review_connectome_mech_186/entries/2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015/record.json) | 3 | [`summary`](targeted_review_connectome_mech_186/entries/2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015/summary.md) |
 | `targeted_review_connectome_mech_187` | [`2026-04-06_mech_187_wanting_liking_berridge1998`](targeted_review_connectome_mech_187/entries/2026-04-06_mech_187_wanting_liking_berridge1998/record.json) | 4 | [`summary`](targeted_review_connectome_mech_187/entries/2026-04-06_mech_187_wanting_liking_berridge1998/summary.md) |
 | `targeted_review_connectome_mech_188` | [`2026-04-06_mech_188_serotonin_behavioral_control_cools2008`](targeted_review_connectome_mech_188/entries/2026-04-06_mech_188_serotonin_behavioral_control_cools2008/record.json) | 3 | [`summary`](targeted_review_connectome_mech_188/entries/2026-04-06_mech_188_serotonin_behavioral_control_cools2008/summary.md) |
+| `targeted_review_connectome_mech_203` | [`2026-04-09_mech_203_infraslow_dg_serotonin_turi2025`](targeted_review_connectome_mech_203/entries/2026-04-09_mech_203_infraslow_dg_serotonin_turi2025/record.json) | 5 | [`summary`](targeted_review_connectome_mech_203/entries/2026-04-09_mech_203_infraslow_dg_serotonin_turi2025/summary.md) |
 | `targeted_review_connectome_mech_216` | [`2026-04-08_mech_216_successor_representation_gershman2018`](targeted_review_connectome_mech_216/entries/2026-04-08_mech_216_successor_representation_gershman2018/record.json) | 4 | [`summary`](targeted_review_connectome_mech_216/entries/2026-04-08_mech_216_successor_representation_gershman2018/summary.md) |
 | `targeted_review_connectome_mech_220` | [`2026-04-09_mech_220_salience_perceptual_wiech2010`](targeted_review_connectome_mech_220/entries/2026-04-09_mech_220_salience_perceptual_wiech2010/record.json) | 4 | [`summary`](targeted_review_connectome_mech_220/entries/2026-04-09_mech_220_salience_perceptual_wiech2010/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |

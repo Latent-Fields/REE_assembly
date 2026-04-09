@@ -4074,9 +4074,11 @@
   status: candidate
   claim_level: functional
   evidence_quality_note: |
-    EXQ-140 FAIL/weakens (2026-03-29): hypothesis tag gate discriminative pair FAIL.
-    Consistent with prior finding that hypothesis tag gate as implemented is invalid as
-    an approach. Weakening evidence accumulating.
+    EXQ-140 reclassified non_contributory (2026-04-09): hypothesis tag as categorical
+    phi(z) write gate is not implemented in ree_core -- proxy used replay-with-noise vs
+    replay-without-noise as a stand-in, which cannot test the gate when the gate is absent.
+    FAIL reflects substrate gap, not claim failure. Manifest evidence_direction corrected
+    to non_contributory. Claim held pending explicit tag-gate implementation.
   depends_on:
     - ARC-014
     - INV-011
@@ -4307,11 +4309,10 @@
   evidence_quality_note: |
     Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
     Phase-reset of E3 heartbeat requires SD-006 phase 2 async implementation first.
-    EXQ-133 FAIL (2026-03-29): 5656 phase resets fired successfully but produced no
-    discriminative behavioral signal (gap_on=0.014, criterion needs >=0.04). Resets execute
-    but downstream async update consequences do not propagate. SD-006 phase 2 (fully async
-    multi-rate loop) required for async effects to be observable. Investigation queued for
-    why phase resets produce no downstream behavioral change even with current sync implementation.
+    EXQ-133 reclassified non_contributory (2026-04-09): test measured latent divergence
+    after simulated salient events as a proxy for phase reset. Without SD-006 phase 2 async
+    execution there is no oscillatory clock phase to reset -- the mechanism under test is
+    absent, not failing. Manifest evidence_direction corrected to non_contributory.
   claim_level: mechanistic
   functional_restatement: >
     Salient events (completion, unexpected harm, commitment boundary) resynchronize E3's
@@ -4345,8 +4346,11 @@
   evidence_quality_note: |
     Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
     Quiescent heartbeat replay requires SD-006 phase 2 async loop before testing.
-    EXQ-136 FAIL/weakens (2026-03-29): quiescent replay discriminative pair FAIL. SD-006
-    phase 2 async required for full offline consolidation. Confirms existing hold.
+    EXQ-136 reclassified non_contributory (2026-04-09): consolidation via quiescent SWR
+    replay requires SD-006 async loop, working viability map, and hypothesis_tag implementation
+    -- none present. Proxy measured navigation delta with/without replay; cannot detect
+    consolidation of a map that does not exist. Manifest evidence_direction corrected to
+    non_contributory.
   claim_level: mixed
   functional_restatement: >
     During quiescent periods between active E3 updates, the hippocampal module performs

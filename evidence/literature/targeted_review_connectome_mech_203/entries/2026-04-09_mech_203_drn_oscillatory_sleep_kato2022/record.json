@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_203",
+  "entry_id": "2026-04-09_mech_203_drn_oscillatory_sleep_kato2022",
+  "timestamp_utc": "2026-04-09T12:40:00Z",
+  "claim_ids_tested": ["MECH-203"],
+  "source": {
+    "title": "Oscillatory Population-Level Activity of Dorsal Raphe Serotonergic Neurons Is Inscribed in Sleep Structure",
+    "authors": ["Kato T", "Mitsukura Y", "Yoshida K", "Mimura M", "Takata N", "Tanaka KF"],
+    "year": 2022,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2288-21.2022",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9512575/"
+  },
+  "evidence_class": "empirical_in_vivo_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly demonstrates in vivo that DRN 5-HT population activity is not monotonically low during NREM but oscillates at 0.01-0.05 Hz, with inverse correlation to EEG power fluctuations. This shows that NREM sleep is not a single 5-HT-off state but contains dynamic sub-states with alternating serotonin activity. Relevant to MECH-203 because it suggests the benefit-salience tagging signal (tonic 5-HT) continues to modulate in real-time during NREM, potentially creating windows of differential replay eligibility. Source quality high (Journal of Neuroscience, in vivo fiber photometry). Mapping fidelity moderate -- the oscillatory activity is characterised but its functional role in replay prioritization is not directly tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optogenetic and SSRI silencing of the 5-HT oscillation did not abolish EEG fluctuations -- serotonin tracks NREM states but does not generate them, weakening a causal role for 5-HT in organizing replay windows",
+    "The oscillatory 5-HT pattern during NREM is not shown to correlate with SWR occurrence or replay content",
+    "Mouse fiber photometry -- population-level signal, not single-unit; cannot resolve individual neuron subtypes or projection targets"
+  ],
+  "tags": ["mech_203", "serotonin", "sleep", "dorsal_raphe", "NREM", "oscillations", "sleep_substates", "fiber_photometry"],
+  "mapping": {
+    "source_claim_statement": "DRN 5-HT population activity oscillates at 0.01-0.05 Hz during NREM sleep, inversely correlated with wideband EEG power (r < -0.7). Activity is highest during waking, oscillatory/descending during NREM, and minimal during REM. Silencing the oscillation does not abolish EEG fluctuations. NREM contains binary sub-states structured by 5-HT dynamics.",
+    "ree_translation": "MECH-203 requires that tonic 5-HT modulates replay eligibility during sleep. This paper establishes that DRN 5-HT is not simply 'off' during NREM -- it oscillates, creating dynamic windows. This is consistent with the benefit-salience tagging operation: if replay prioritization is gated by falling 5-HT phases within NREM oscillations, then the 0.01-0.05 Hz DRN oscillation provides the temporal structure for selective replay windows. The deepening troughs progressing toward REM onset also match MECH-203's SWS-before-REM phase structure: progressive 5-HT withdrawal marks the consolidation-to-recalibration boundary.",
+    "mapping_caveat": "The paper shows 5-HT oscillates during NREM and correlates with EEG substates, but does not demonstrate that these oscillations gate SWRs or that episodes with higher benefit exposure are replayed preferentially during falling-5-HT phases. The causal direction is unclear: serotonin may track EEG substates rather than organize them.",
+    "source_context": "In vivo fiber photometry in Tph2-CreERT2;Rosa-CAG-LSL-CoChR/EYFP mice expressing GCaMP in DRN 5-HT neurons. Combined EEG/EMG sleep scoring. Optogenetic and pharmacological interventions to test causal role of oscillation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: Journal of Neuroscience, in vivo, rigorous fiber photometry with genetic targeting and causal manipulation. Mapping fidelity moderate: oscillatory 5-HT during NREM is demonstrated, but functional link to replay prioritization is not established. Transfer risk moderate-low: mouse, but DRN physiology is conserved across mammals."
+  }
+}

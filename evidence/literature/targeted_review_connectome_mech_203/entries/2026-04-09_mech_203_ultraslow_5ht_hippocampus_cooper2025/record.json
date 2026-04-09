@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_203",
+  "entry_id": "2026-04-09_mech_203_ultraslow_5ht_hippocampus_cooper2025",
+  "timestamp_utc": "2026-04-09T12:45:00Z",
+  "claim_ids_tested": ["MECH-203"],
+  "source": {
+    "title": "Ultraslow serotonin oscillations in the hippocampus delineate substates across NREM and waking",
+    "authors": ["Cooper C", "Parthier D", "Sibille J", "Tukker JJ", "Tritsch N", "Schmitz D"],
+    "year": 2025,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.101105",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12252544/"
+  },
+  "evidence_class": "empirical_in_vivo_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The most directly relevant paper found. Demonstrates in vivo that ultraslow 5-HT oscillations (<0.05 Hz) in the hippocampus create a phase relationship with sharp wave ripples: ripples occur preferentially on the falling phase of 5-HT oscillations during NREM, with higher-power ripples clustering near the peak during NREM specifically. This is precisely the mechanism MECH-203 requires -- 5-HT level at the time of consolidation determines replay salience, with falling 5-HT phases permitting and prioritizing higher-power (more content-rich) SWRs. Source quality high (eLife peer-reviewed, in vivo). Mapping fidelity high: the ripple-phase relationship is exactly the gating mechanism MECH-203 predicts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ripple phase-locking to falling 5-HT is demonstrated during NREM and wake -- not specific to NREM only, which weakens the sleep-specific replay consolidation claim",
+    "Higher-power ripples cluster near the 5-HT peak (not falling phase) during NREM -- this means the highest-salience replay may occur when 5-HT is still elevated, not at the trough; the direction is partially counterintuitive",
+    "Arousal markers (microarousals, EMG peaks) also cluster on the rising phase -- 5-HT oscillations may be tracking arousal substates rather than specifically regulating memory consolidation",
+    "The specific episodes that are replayed during falling-5-HT phases (whether benefit-dense vs harm-dense) are not characterised"
+  ],
+  "tags": ["mech_203", "serotonin", "sleep", "hippocampus", "sharp_wave_ripples", "NREM", "ultraslow_oscillations", "replay", "memory_consolidation", "substates"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal 5-HT shows ultraslow (<0.05 Hz) oscillations during NREM and waking. Hippocampal ripples occur preferentially on the falling phase of these oscillations in both NREM and wake. Higher-power ripples (stronger replay events) concentrate near the 5-HT peak during NREM. Arousal markers concentrate on the rising phase. Hippocampal-cortical coherence is strongest on the rising phase. The oscillations temporally segregate consolidation (falling phase) from arousal-related processing (rising phase).",
+    "ree_translation": "MECH-203 proposes that tonic 5-HT level gates replay eligibility, with high 5-HT suppressing and low 5-HT permitting replay. This paper demonstrates in vivo that hippocampal ripples cluster on the falling phase of 5-HT oscillations during NREM -- the falling-5-HT window is the replay window. The finding that higher-power ripples cluster near the 5-HT peak during NREM is more complex: it may indicate that the onset of falling 5-HT (from a high waking baseline) primes the highest-salience replay first, consistent with benefit-dense experiences (occurring at high waking 5-HT) being the first to replay when 5-HT begins falling. The REE SerotoninModule's transition from waking to sleep_mode produces exactly this falling-phase dynamic. The segregation of arousal (rising 5-HT) from consolidation (falling 5-HT) also maps to the REE distinction between active exploration (high 5-HT, benefit_salience update) and offline consolidation (falling 5-HT, replay execution).",
+    "mapping_caveat": "The ripple-phase relationship is found during both NREM and waking, not sleep-specific. The specific replay content (which memories are replayed) is not characterised -- only ripple power, not episode identity. The higher-power ripples near the 5-HT peak is counterintuitive relative to simple masking model (Haq 2016) and may indicate that NREM 5-HT oscillations implement a more complex replay scheduling logic than MECH-203 currently specifies.",
+    "source_context": "In vivo recording in mice. Implanted electrodes in hippocampus with serotonin biosensors. Combined ripple detection and ultraslow 5-HT oscillation measurement during natural sleep and waking. The study is recent (2025) and represents the most direct evidence of hippocampal 5-HT oscillation -- ripple phase coupling available."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high: eLife, in vivo, direct measurement of hippocampal 5-HT with simultaneous ripple detection. Mapping fidelity high: the ripple-5-HT phase relationship is exactly the MECH-203 mechanism. Transfer risk low-moderate: mouse, but hippocampal replay and serotonergic modulation are conserved. Minor uncertainty about direction of higher-power ripple clustering."
+  }
+}

@@ -1,5 +1,7 @@
 {
   "status": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Substrate gap: proxy used latent state divergence after simulated salient events as a stand-in for E3 heartbeat phase reset. Actual mechanism requires SD-006 async multi-rate loop (phase 2) to give E3 a real oscillatory cycle that can be phase-reset. Without async scheduling there is no clock phase to measure -- the test cannot distinguish substrate absence from claim failure. Overrides summary_markdown decision=retire_ree_claim which was auto-generated from FAIL outcome.",
   "metrics": {
     "gap_reset_on": 0.01396998470205546,
     "gap_ablated": -0.0006176068083177944,

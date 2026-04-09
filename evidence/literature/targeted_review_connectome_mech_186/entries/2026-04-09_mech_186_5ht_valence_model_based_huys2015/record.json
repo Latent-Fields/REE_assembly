@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_186",
+  "entry_id": "2026-04-09_mech_186_5ht_valence_model_based_huys2015",
+  "timestamp_utc": "2026-04-09T00:00:00Z",
+  "claim_ids_tested": [
+    "MECH-186"
+  ],
+  "source": {
+    "title": "Valence-dependent influence of serotonin depletion on model-based choice strategy",
+    "authors": [
+      "Quentin J. M. Huys",
+      "Reto Eshel",
+      "Alexander Farber",
+      "Tobias Hauser",
+      "Peter Dayan",
+      "Peter Bossaerts"
+    ],
+    "year": 2016,
+    "venue": "Molecular Psychiatry",
+    "pmid": "25869808",
+    "doi": "10.1038/mp.2015.46",
+    "url": "https://www.nature.com/articles/mp201546"
+  },
+  "evidence_class": "empirical_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Human tryptophan depletion in healthy volunteers used a two-stage Markov decision task that can dissociate model-free (habitual) from model-based (goal-directed) behavioral strategies. The key finding: 5-HT depletion impaired model-based (goal-directed) behavior specifically in the reward condition, but promoted it in the punishment condition. This valence asymmetry is directly relevant to MECH-186: it suggests that tonic 5-HT specifically supports the maintenance of goal-directed benefit-seeking, not goal-directed behavior in general. When 5-HT is reduced, reward-contingent goal pursuit degrades toward habitual responding -- which is the behavioral signature MECH-186 predicts when VALENCE_WANTING terrain goes flat (goal-directed and habitual become indistinguishable). Confidence moderate: the study is well-powered and uses a validated computational framework, but the effect size is modest and the mechanism is not specified -- it could be working through value representation, attention to transitions, or other routes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The behavioral effect is modest and the authors themselves note that the mechanism remains unspecified -- multiple pathways (value representation, attention to state transitions, working memory) could produce the same behavioral signature",
+    "Tryptophan depletion is global and acts over hours; it cannot isolate the tonic-vs-phasic distinction that MECH-186's floor-maintenance claim requires",
+    "The task uses discrete monetary reward/punishment, which may not generalize to the sustained harm-dominant residue terrain MECH-186 targets -- the 'chronic' aspect is not present"
+  ],
+  "tags": [
+    "mech_186",
+    "serotonin",
+    "tryptophan_depletion",
+    "empirical_human",
+    "model_based",
+    "goal_directed",
+    "valence_asymmetry",
+    "reward",
+    "punishment",
+    "habitual"
+  ],
+  "mapping": {
+    "source_claim_statement": "Tryptophan depletion (lowering 5-HT) impaired model-based goal-directed behavior in the reward condition but promoted it in the punishment condition, revealing a valence-dependent role of serotonin in the goal-directed vs habitual behavioral balance.",
+    "ree_translation": "MECH-186 predicts that when tonic 5-HT is depleted, benefit_exposure falls below the SD-012 seeding threshold and goal-directed behavior becomes behaviourally indistinguishable from habitual reactive behaviour. Huys et al. provide the human behavioral evidence for exactly this pattern in the reward condition: reduced 5-HT causes model-based (goal-directed) behavior to degrade toward model-free (habitual) behavior -- but only for reward-contingent choices. The asymmetry (punishment condition goes the other way) is consistent with MECH-186's mechanistic specificity: the floor maintains benefit terrain legibility, not harm terrain legibility. When 5-HT falls, benefit-oriented goal pursuit collapses to habit; harm-oriented avoidance may actually sharpen (consistent with the punishment condition finding). This is the most direct human behavioral evidence for the specific valence asymmetry that MECH-186 requires.",
+    "mapping_caveat": "Model-based behavior in the two-stage task is not the same as goal latent seeding in the REE latent terrain. The mapping requires the inference that 'model-based reward pursuit' = 'benefit terrain guided by z_goal' and 'model-free habitual responding' = 'flat terrain / reactive behaviour.' This is a reasonable functional homology but is not the same process.",
+    "source_context": "Human double-blind crossover, n=30 healthy volunteers, acute dietary tryptophan depletion, two-stage Markov decision task, behavioral analysis using maximum likelihood model comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.32,
+    "notes": "Molecular Psychiatry, Huys et al. are leading computational psychiatry group. Mapping fidelity moderate due to the task-to-terrain mapping inference step. Transfer risk relatively low because this is human data. Overall confidence slightly lower than Seymour 2012 because the effect is behavioral rather than neural, with unspecified mechanism."
+  }
+}
