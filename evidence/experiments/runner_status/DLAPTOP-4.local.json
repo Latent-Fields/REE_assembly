@@ -2,48 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 86389,
   "runner_started_at": "2026-04-09T06:19:31.718338+00:00",
-  "last_updated": "2026-04-09T06:20:02.280261+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-240a",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "ARC-038 Waking Consolidation Mode Probe (substrate fix re-run)",
-    "description": "",
-    "script": "experiments/v3_exq_240a_arc038_waking_consolidation_probe.py",
-    "started_at": "2026-04-09T06:19:37.238969+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 200,
-      "episodes_total": 200,
-      "overall_pct": 100.0
-    },
-    "seconds_elapsed": 25,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "[NO_CONSOLIDATE] ep 100/200 harm_rate=0.23429 recent_10_mean=0.24529 consolidations=0",
-      "[NO_CONSOLIDATE] ep 150/200 harm_rate=0.26246 recent_10_mean=0.23365 consolidations=0",
-      "[NO_CONSOLIDATE] ep 200/200 harm_rate=0.20200 recent_10_mean=0.23462 consolidations=0",
-      "[V3-EXQ-240a] seed=7 env_seed=200 train_eps=200 steps=200 consolidate_every=10",
-      "[CONSOLIDATE] env_seed=200..."
-    ],
-    "ree_version": "v3"
-  },
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-240a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-038 Waking Consolidation Mode Probe (substrate fix re-run)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "last_updated": "2026-04-09T06:46:38.325505+00:00",
+  "idle": true,
+  "current": null,
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -4882,6 +4844,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 1.6
+    },
+    {
+      "queue_id": "V3-EXQ-240a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-038 Waking Consolidation Mode Probe (substrate fix re-run)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "consolidate_final_harm_rate: 0.15410958600467262 | no_consolidate_final_harm_rate: 0.13513552623043457 | target_harm_rate: 0.05",
+      "started_at": "2026-04-09T06:19:37.238969+00:00",
+      "completed_at": "2026-04-09T06:23:19.632105+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_240a_arc038_waking_consolidation_probe/v3_exq_240a_arc038_waking_consolidation_probe_20260409T062319Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 222.4
     }
   ]
 }

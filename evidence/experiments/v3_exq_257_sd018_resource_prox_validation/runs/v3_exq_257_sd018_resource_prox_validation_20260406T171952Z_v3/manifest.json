@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_257_sd018_resource_prox_validation",
+  "run_id": "v3_exq_257_sd018_resource_prox_validation_20260406T171952Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-06T17:19:52Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-018",
+    "ARC-030",
+    "MECH-112"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "Governance 2026-04-09: MECH-112 and ARC-030 reclassified non_contributory. Failure cascade: z_goal_norm~1e-10 in seeds 1+2 (SD-012 absent) blocks resource proximity head training. SD-018=weakens maintained (implementation directly tested, behavior not demonstrated).",
+  "evidence_direction_per_claim": {
+    "SD-018": "weakens",
+    "ARC-030": "non_contributory",
+    "MECH-112": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

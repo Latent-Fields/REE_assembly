@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_237a_mech163_dual_system_discrimination_1775505809_v3` at `2026-04-06T20:03:29Z` signatures: none
 - `v3_exq_237a_mech163_dual_system_discrimination_1775428687_v3` at `2026-04-05T22:38:07Z` signatures: none
 - `v3_exq_237a_mech163_dual_system_discrimination_1775405287_v3` at `2026-04-05T16:08:07Z` signatures: none
 

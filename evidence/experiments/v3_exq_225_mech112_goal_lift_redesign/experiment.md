@@ -11,5 +11,10 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-No recent FAIL runs. Keep monitoring key stop metrics.
+Recent failure runs:
+- `v3_exq_225_mech112_goal_lift_redesign_1775496236_v3` at `2026-04-06T17:23:56Z` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->
