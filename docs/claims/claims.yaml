@@ -13323,6 +13323,84 @@
     Basbaum & Fields (1984, Annu Rev Neurosci): descending pain modulation (PAG-RVM pathway).
     Eippert et al. (2009, Science): opioidergic brainstem placebo analgesia (direct fMRI).
 
+- id: SD-022
+  title: "Directional limb damage: body extension for genuine z_harm_s / z_harm_a causal independence"
+  claim_type: design_decision
+  subject: body.directional_limb_damage
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  depends_on: [SD-011]
+  functional_restatement: >
+    harm_obs_a is currently an EMA of hazard/resource proximity fields -- structurally
+    identical to harm_obs with a slower time constant. EXQ-241b confirmed r2_s_to_a=0.996
+    across all seeds regardless of harm_history extension: the streams cannot separate
+    because both derive from the same world signal. The A-delta/C-fiber distinction
+    requires harm_obs_a to derive from a BODY STATE causally independent of current
+    world proximity. SD-022 instantiates this via four directional limbs (N/E/S/W) each
+    accumulating damage when used through hazards. Damage state (tissue injury) persists
+    slowly-healing across steps even when the agent leaves the hazard zone, giving
+    harm_obs_a a body-derived source. An agent in a safe location with accumulated limb
+    damage should have high z_harm_a and near-zero z_harm_s -- a dissociation
+    CausalGridWorldV2 cannot currently produce. The EMA-based harm_obs_a is superseded
+    by the damage-state source when limb_damage_enabled=True.
+  evidence_quality_note: >
+    No experimental evidence yet. Diagnosis confirmed by EXQ-241b (r2_s_to_a=0.996,
+    info_gain=14k-22k indicating no genuine separation). EXQ-241b reinterpretation
+    (2026-04-09): the result is a substrate ceiling, not a scientific failure of SD-011.
+    The directional limb design is the minimum body extension required for the
+    information-source independence that the biological A-delta/C-fiber distinction
+    provides. See substrate plan: ree-v3/docs/substrate_plans/sd022_directional_limb_damage_impl_plan.md
+  notes: >
+    Failure mode mapped to psychiatric conditions: persistent z_harm_a with no current
+    world threat = hypervigilance, chronic pain, PTSD (body-state residue persists after
+    the threat is gone). Without SD-022, these failure modes cannot be modelled or tested.
+    Unblocks: SD-011 retests (EXQ-241c), ARC-030 Go/NoGo symmetry, Q-034 threshold,
+    ARC-052 precision outputs. Recommend implementing before SD-023; independent of it.
+  registered: "2026-04-09"
+
+- id: SD-023
+  title: "Environmental gradient texture: multi-channel world observation with neutral landmark objects"
+  claim_type: design_decision
+  subject: environment.gradient_texture
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  depends_on: [SD-014]
+  functional_restatement: >
+    z_world can only encode features that exist in world_obs. CausalGridWorldV2 currently
+    emits two proximity fields (hazard, resource), making z_world approximately a
+    two-scalar encoding regardless of encoder expressiveness. This creates a ceiling on
+    all world-model claims: E1 cannot build genuine temporal predictions when the world
+    has almost no texture; MECH-216 (predictive wanting) cannot fire predictively
+    because the only world feature correlated with resources is resource proximity itself
+    (no leading indicator); ARC-017 (stream tags) cannot demonstrate typed separation
+    with only two undifferentiated channels. SD-023 extends world_obs with two new
+    object types that emit characteristic gradient fields but have no harm/benefit.
+    Landmark B is placed with statistical bias near resources, providing a predictive
+    cue that E1's LSTM can learn to associate with upcoming resource contact. This is
+    the minimum world richness required for MECH-216 to produce genuine anticipatory
+    wanting rather than reactive proximity detection. world_obs_dim: 250 -> 300.
+  evidence_quality_note: >
+    No experimental evidence yet. Identified as substrate gap 2026-04-09 from EXQ-263a
+    analysis: even after API fixes, MECH-216 will likely produce artifactual salience
+    because E1 has no leading-indicator signal to predict. EXQ-241b substrate diagnosis
+    (same session) independently confirmed the world is too sparse for stream separation
+    experiments. See substrate plan: ree-v3/docs/substrate_plans/sd023_environmental_gradient_texture_impl_plan.md
+  notes: >
+    The principle "all objects emit, each type distinctively" is biologically grounded:
+    in natural environments every object has a detectable presence (olfactory, acoustic,
+    thermal, visual texture). Landmark A provides navigation anchors (short-range strong
+    gradient). Landmark B provides predictive resource cues (medium-range weak gradient,
+    biased near resources). Both channels feed z_world, enriching the world model.
+    Does NOT fix z_harm_s/z_harm_a independence (that is SD-022). Both SDs needed.
+    The landmark_B predictive structure directly enables MECH-216 retest (EXQ-263b).
+    Further extension: ambient "object presence" gradient for every object type
+    (full "all objects emit" implementation) is deferred -- SD-023 is the minimum needed.
+  registered: "2026-04-09"
+
 - id: MECH-220
   title: harm_stream_hub_coordination
   claim_type: mechanism_hypothesis
