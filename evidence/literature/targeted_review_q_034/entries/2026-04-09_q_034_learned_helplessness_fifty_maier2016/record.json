@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_034",
+  "entry_id": "2026-04-09_q_034_learned_helplessness_fifty_maier2016",
+  "timestamp_utc": "2026-04-09T15:30:00Z",
+  "claim_ids_tested": ["Q-034"],
+  "source": {
+    "title": "Learned Helplessness at Fifty: Insights from Neuroscience",
+    "authors": ["Steven F. Maier", "Martin E. P. Seligman"],
+    "year": 2016,
+    "venue": "Psychological Review",
+    "doi": "10.1037/rev0000033",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4920136/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "The paper provides strong conceptual support for Q-034 by demonstrating that controllability -- not stressor intensity -- is the key parameter determining whether an aversive event produces depression-like passivity and anxiety. Identical inescapable shocks leave rats with lasting anhedonia and fear; escapable shocks of the same intensity do not. Controllability maps onto resource access in the REE Q-034 framing: an agent with access to effective coping actions (resources) can modulate its exposure to harm, even under fixed hazard. The vmPFC-DRN gateway mechanism (controllability detection suppresses DRN serotonin → prevents learned helplessness) is directly analogous to the hypothesis that sufficient benefit_exposure prevents the depression attractor. Confidence is moderate rather than high because the paper does not frame the effect as a ratio, does not hold hazard intensity constant while varying resource density parametrically, and the controllability manipulation conflates resource access with efficacy expectations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not test a hazard/resource ratio formulation -- controllability is a categorical manipulation (escapable vs inescapable), not a parametric variation of resource density at fixed hazard.",
+    "The mechanism is primarily serotonergic (DRN 5-HT) and vmPFC-mediated, not mesolimbic dopaminergic -- transfer to the INV-053 attractor (which is dopamine-weighted) requires an additional bridging step.",
+    "Controllability confounds resource access with expectancy learning -- it is not possible from this literature alone to determine whether the protective effect is caused by reward receipt, by the act of responding, or by the cognitive representation of controllability."
+  ],
+  "tags": ["q_034", "learned_helplessness", "controllability", "stress_threshold", "serotonin", "vmPFC", "DRN", "depression_attractor"],
+  "mapping": {
+    "source_claim_statement": "Passivity and heightened fear following prolonged aversive events are the default neural response, not a learned state. The presence of control -- detection of contingency between responses and outcomes -- actively suppresses this default via vmPFC-DRN inhibitory pathways. Controllable and uncontrollable stressors of identical intensity produce radically different outcomes.",
+    "ree_translation": "Q-034 predicts that the hazard/resource ratio (not absolute hazard) determines whether the depression attractor is entered. The Maier/Seligman result is the same claim under a different operationalisation: resource access (ability to take effective actions that terminate harm) is the decisive variable, not stressor magnitude. An agent with sufficient resource density can modulate hazard exposure and thereby prevent the attractor transition. The vmPFC detection of controllability maps onto E3's goal-maintenance function (INV-034): E3 monitors whether current actions can achieve harm-reduction goals; when resource density is sufficient, E3 can satisfy harm-reduction, preventing sustained aversive signal accumulation.",
+    "mapping_caveat": "Controllability in the animal model is a binary categorical variable (escapable vs inescapable); Q-034 requires a continuous ratio with a threshold. The transfer to mesolimbic dopamine attractors requires assuming that DRN 5-HT and NAc dopamine pathways have the same threshold dynamics -- not established. The 'resources' in Q-034 are benefit_exposure opportunities in the environment; in the animal model they are response efficacy, which may or may not track benefit density.",
+    "source_context": "50-year retrospective review; rat shock-escape paradigms; vmPFC lesion and stimulation experiments; DRN electrophysiology and pharmacology; human extrapolation speculative"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Highest-quality source possible -- landmark review by founders of the field integrating 50 years of mechanistic evidence. Mapping fidelity is moderate: the core insight (resource access, not hazard, is the decisive variable) maps well, but the parametric ratio formulation and dopaminergic mechanism are not tested. Transfer risk is moderate: animal-to-human is well-established for this paradigm, but serotonin-to-dopamine attractor translation is speculative."
+  }
+}

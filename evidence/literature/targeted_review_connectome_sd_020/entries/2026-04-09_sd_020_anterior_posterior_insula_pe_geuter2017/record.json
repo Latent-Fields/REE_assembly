@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_020",
+  "entry_id": "2026-04-09_sd_020_anterior_posterior_insula_pe_geuter2017",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-020"],
+  "source": {
+    "title": "Functional dissociation of stimulus intensity encoding and predictive coding of pain in the insula",
+    "authors": ["Geuter S", "Boll S", "Eippert F", "Buchel C"],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.24770",
+    "pmid": "28524817",
+    "citation": "eLife 6:e24770"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Direct empirical demonstration of the anterior/posterior insula dissociation: anterior insula tracks predictive coding signals (expectation + PE), posterior insula tracks stimulus intensity. This is the strongest pre-Chen fMRI evidence that anterior insula (the biological anchor of z_harm_a) encodes PE rather than raw magnitude. High source quality (eLife, open access, Buchel lab), large enough sample (30 subjects), probabilistic paradigm allowing clean PE extraction. Slight confidence reduction because skin conductance and pupil dilation were used as peripheral PE proxies rather than independent fMRI PE regressors, but the paradigm logic is sound.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If replications found anterior insula tracked absolute intensity rather than PE in identical paradigms, the dissociation claim would fail.",
+    "If the anterior/posterior gradient reflects only temporal dynamics (sustained vs. transient) rather than computational role (PE vs. intensity), this would weaken the mapping to z_harm_a."
+  ],
+  "tags": ["sd_020", "anterior_insula", "posterior_insula", "prediction_error", "stimulus_intensity", "fmri", "predictive_coding", "pain", "dissociation"],
+  "mapping": {
+    "source_claim_statement": "Anterior insula activity conforms to a predictive coding model (expectation + PE); posterior insula encodes stimulus intensity. Skin conductance and pupil dilation also follow the predictive coding pattern, not raw intensity.",
+    "ree_translation": "z_harm_a is anchored in anterior insula. This study shows that anterior insula encodes PE (surprise) not raw harm magnitude. The SD-020 redesign -- replacing the raw harm accumulation training target with a PE-based target -- directly implements what anterior insula actually computes. The posterior insula/z_harm_s distinction (from SD-011) is consistent: posterior insula encodes intensity, anterior encodes PE-weighted affect.",
+    "mapping_caveat": "The study used heat pain in healthy adults. Transfer to harm signals across other modalities (as REE requires) rests on subsequent cross-modal work (Horing 2022). The PE signal here is constructed indirectly via cue-based probabilistic paradigm rather than explicit prediction measurement. The mapping from 'anterior insula PE response' to 'z_harm_a training target' requires the additional assumption that the training objective should match the biological computation, which is REE's architectural stance but not independently demonstrated.",
+    "source_context": "Human adults (30), heat pain (thermode), probabilistic cue paradigm, 3T fMRI, skin conductance + pupil dilation as peripheral autonomic PE measures"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Source quality high: eLife, open review, Buchel lab (leading predictive coding/pain lab), 30 subjects, well-designed probabilistic paradigm. Mapping fidelity high: the anterior/posterior insula dissociation maps directly onto the z_harm_a vs z_harm_s distinction and the SD-020 training target claim. Transfer risk modest: human experimental pain maps well to harm processing in REE's terms; the cross-modal generalisation needed for REE is partially addressed by Horing 2022."
+  }
+}

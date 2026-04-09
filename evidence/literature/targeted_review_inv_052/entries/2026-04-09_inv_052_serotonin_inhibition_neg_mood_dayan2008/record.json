@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_052",
+  "entry_id": "2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["INV-052"],
+  "source": {
+    "title": "Serotonin, Inhibition, and Negative Mood",
+    "authors": ["Peter Dayan", "Quentin J. M. Huys"],
+    "year": 2008,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.0040004",
+    "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0040004"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Directly models 5-HT as a pruning/inhibition signal in sequential decision-making under aversive prediction; reduced 5-HT tone leads to cascading negative prediction errors, consistent with benefit terrain collapse. But the paper models 5-HT primarily as aversive-suppressor rather than benefit-orientation maintainer — the tonic floor concept is implicit rather than the paper's explicit focus.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reduced serotonin fails to prune decision trees away from aversive branches, causing cascading negative prediction errors and behavioural disengagement",
+    "Behavioural inhibition collapse under low 5-HT maps onto sustained failure to maintain goal-directed pursuit in harm-laden environments"
+  ],
+  "tags": ["inv_052", "serotonin", "computational_model", "depression", "goal_directed", "behavioral_inhibition", "decision_tree_pruning", "negative_mood"],
+  "mapping": {
+    "source_claim_statement": "Serotonin implements behavioural inhibition by pruning branches of a decision tree with negative expected outcomes; low 5-HT exposes these branches, producing large negative prediction errors and worsening mood.",
+    "ree_translation": "In REE terms, the pruning function is a prerequisite to benefit terrain maintenance (MECH-186): a tonic 5-HT floor prevents the benefit gradient from being overwritten by harm-branch cascades. When 5-HT floor collapses, the terrain representation becomes dominated by aversive branches and VALENCE_WANTING seeding (MECH-187) fails.",
+    "mapping_caveat": "The paper operates at the level of Pavlovian inhibition, not explicit latent terrain maps. The translation to REE's three-stage framework (terrain, transduction, maintenance) requires inferential extension beyond what Dayan and Huys directly model.",
+    "source_context": "Theoretical/computational — rat and human behavioural data cited but no direct neural recording. Model assumes simplified RL architecture without explicit latent space."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (PLoS CB, highly cited, explicit computational model). Moderate mapping fidelity: the pruning metaphor captures terrain collapse but the tonic floor requirement of INV-052 must be inferred from what happens when inhibition fails. Transfer risk is moderate — the computational framing is compatible but not isomorphic with REE's latent architecture."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_052",
+  "entry_id": "2026-04-09_inv_052_serotonin_affective_control_dayan2009",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["INV-052"],
+  "source": {
+    "title": "Serotonin in Affective Control",
+    "authors": ["Peter Dayan", "Quentin J. M. Huys"],
+    "year": 2009,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.051508.135607",
+    "url": "https://www.annualreviews.org/content/journals/10.1146/annurev.neuro.051508.135607"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Comprehensive review treating serotonin as a unified affective control signal across appetitive and aversive motivated action, with explicit treatment of asymmetries between reward and punishment statistics that explain why a tonic 5-HT floor is needed. The review does not use REE's three-stage language but provides the computational and empirical grounding for exactly that structure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Serotonin's role in aversive processing is only a partial mirror of dopamine's role in reward due to natural asymmetries in reward vs punishment statistics -- implying a tonic regulatory role cannot be straightforwardly derived from phasic dopamine analogies",
+    "The review notes that behavioural data in humans on serotonin's role remains inconsistent, limiting confident mapping from rodent/invertebrate computational models"
+  ],
+  "tags": ["inv_052", "serotonin", "theoretical_review", "affective_control", "goal_directed", "tonic", "aversive", "depression", "computational_psychiatry"],
+  "mapping": {
+    "source_claim_statement": "Serotonin provides a computational view of affective control over appetitively and aversively motivated actions; its role in aversive processing is analogous to but asymmetric with dopamine's role in reward, due to natural statistics of punishments vs rewards.",
+    "ree_translation": "The asymmetry argument directly supports INV-052's claim that a distinct tonic regulatory system is required: because punishment statistics are not simply the inverse of reward statistics, dopamine's phasic benefit-signalling cannot serve double-duty as the harm-environment regulator. A dedicated tonic 5-HT floor (MECH-186) is architecturally necessary, not merely convenient.",
+    "mapping_caveat": "The review's computational framework is built around RL value functions and does not map directly onto REE's latent terrain architecture. The three-stage decomposition (terrain, transduction, maintenance) is not present in the source -- it is an REE-side inference from the review's unified treatment of affective control.",
+    "source_context": "Review paper spanning invertebrate to mammalian data; primarily rodent electrophysiology and pharmacology, with human behavioural pharmacology sections."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Annual Review of Neuroscience carries high prestige; Dayan and Huys are the canonical computational authorities on serotonin function. Mapping fidelity slightly reduced because the review does not distinguish the three INV-052 stages. Transfer risk from RL framework to REE latent architecture is moderate but manageable."
+  }
+}

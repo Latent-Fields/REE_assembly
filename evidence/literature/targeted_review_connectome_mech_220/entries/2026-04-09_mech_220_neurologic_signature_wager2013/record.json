@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_220",
+  "entry_id": "2026-04-09_mech_220_neurologic_signature_wager2013",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["MECH-220"],
+  "source": {
+    "title": "An fMRI-based neurologic signature of physical pain",
+    "authors": ["Tor D Wager", "Lauren Y Atlas", "Martin A Lindquist", "Mathieu Roy", "Choong-Wan Woo", "Ethan Kross"],
+    "year": 2013,
+    "venue": "New England Journal of Medicine",
+    "doi": "10.1056/NEJMoa1204471",
+    "pmid": "23574118"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Demonstrates that a distributed pattern including both dorsal posterior insula and dorsal anterior cingulate cortex is required to capture physical pain -- neither structure alone is sufficient. The fact that the neurologic pain signature spans both insula (sensory-discriminative) and ACC (affective-evaluative) regions, and that this distributed pattern predicts pain better than either region alone, is indirect evidence for the coordinated dual-stream architecture MECH-220 requires. Transfer risk: the paper characterises a multivariate *pattern*, not a directed *connectivity* relationship; hub coordination is not directly tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the pain signature could be reduced to a single region (e.g. posterior insula alone) without loss, the dual-stream coordination argument would be weakened",
+    "If the ACC component of the signature reflected only motor preparation rather than affective valuation, the harm-load mapping would be undermined"
+  ],
+  "tags": ["mech_220", "pain_signature", "insula_acc", "nociceptive_dual_stream", "fmri_pattern", "analgesic_response"],
+  "mapping": {
+    "source_claim_statement": "A distributed fMRI pattern spanning bilateral posterior insula, anterior insula, anterior cingulate cortex (among other regions) predicts physical pain intensity at the individual level with >93% accuracy, is pharmacologically responsive to remifentanil, and dissociates physical from social pain.",
+    "ree_translation": "The necessity of both insula and ACC components in the neurologic signature implies that physical pain processing is inherently dual-stream: the posterior insula encodes sensory intensity (the z_harm_s analogue) and the ACC encodes affective salience (the z_harm_a analogue). The pattern's coherence -- its predictive power depending on both -- is consistent with MECH-220's claim that the two streams must be *coordinated*, not independent. The analgesic responsiveness is consistent with the hub being a modulable gate, not a fixed conduit.",
+    "mapping_caveat": "The paper identifies coactivated regions in a multivariate pattern; it does not characterise directed connectivity or test whether there is a discrete 'hub' mediating the insula-ACC relationship. The mapping to MECH-220's hub mechanism requires inferring coordination from correlated activity, which is an interpretive step the paper itself does not take. The dissociation from social pain is useful but not directly relevant to the sensory-affective stream coordination claim.",
+    "source_context": "Human fMRI; heat pain in healthy volunteers; four studies, 114 participants; opioid analgesic manipulation; dissociation from social pain condition"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Landmark clinical neuroscience paper in NEJM. Source quality very high. Mapping fidelity is limited because the paper does not directly test hub coordination -- it characterises a distributed pattern. The inference from co-patterning to stream coordination is reasonable but carries interpretive risk. This entry provides pain-specific empirical grounding for the dual-stream structure; the connectivity papers (Menon, Seeley, Wiech) provide the hub mechanism evidence."
+  }
+}

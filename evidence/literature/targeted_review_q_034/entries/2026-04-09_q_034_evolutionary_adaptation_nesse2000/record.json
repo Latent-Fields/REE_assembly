@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_034",
+  "entry_id": "2026-04-09_q_034_evolutionary_adaptation_nesse2000",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["Q-034"],
+  "source": {
+    "title": "Is depression an adaptation?",
+    "authors": ["Randolph M. Nesse"],
+    "year": 2000,
+    "venue": "Archives of General Psychiatry",
+    "doi": "10.1001/archpsyc.57.1.14",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10632228/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "The paper explicitly frames depression as triggered by situations combining harm AND absence of crucial resources or viable plans -- a structural ratio logic. The same harm level WITH resources should not trigger depression, per the framework. However, this is evolutionary theory, not empirical test, and the ratio is qualitative not parametric.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No empirical test of the resource-availability modulation claim.",
+    "Evolutionary framework does not map cleanly to computational attractor dynamics.",
+    "Crucial resource is not operationalised or quantified."
+  ],
+  "tags": ["q_034", "evolutionary_psychiatry", "resource_availability", "no_escape", "adaptation"],
+  "mapping": {
+    "source_claim_statement": "Low mood is adaptive in unpropitious situations where effort will likely result in danger, loss, or wasted effort -- specifically including situations involving absence of a crucial resource or a viable plan. The same harm level WITH resources should not trigger the full depressive response.",
+    "ree_translation": "The paper's trigger conditions for adaptive depression -- harm + no crucial resource -- map to the Q-034 ratio: the depression onset threshold is a function of hazard/resource balance, not harm alone. Sufficient resource availability should prevent the transition even under harm exposure.",
+    "mapping_caveat": "Evolutionary framework; no empirical parameterisation; the concept of resource is broader than REE benefit_exposure (includes social capital, escape routes, viable plans). Transfer from evolutionary logic to computational threshold is inferential.",
+    "source_context": "Theoretical/evolutionary; human conditions primarily; no animal or computational data"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.50,
+    "notes": "High-quality theoretical paper from a leading evolutionary psychiatrist. Mapping is conceptually strong but the operationalisation gap is large -- the paper does not specify parametric conditions."
+  }
+}

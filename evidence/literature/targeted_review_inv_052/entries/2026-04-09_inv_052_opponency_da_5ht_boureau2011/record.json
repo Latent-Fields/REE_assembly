@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_052",
+  "entry_id": "2026-04-09_inv_052_opponency_da_5ht_boureau2011",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["INV-052"],
+  "source": {
+    "title": "Opponency Revisited: Competition and Cooperation Between Dopamine and Serotonin",
+    "authors": ["Y-Lan Boureau", "Peter Dayan"],
+    "year": 2011,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/npp.2010.151",
+    "url": "https://www.nature.com/articles/npp2010151"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Explicitly frames tonic serotonin as an opportunity benefit for the passage of time and quiescence signal -- the closest extant literature articulation of the MECH-186 tonic floor concept. The opponency framework explains why 5-HT cannot be replaced by phasic dopamine for sustained benefit orientation. However, the paper's emphasis is on approach/avoidance balance rather than the three-stage terrain/transduction/maintenance dissociation INV-052 requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Serotonin-dopamine relationship exhibits competitive, cooperative, and interactive modes depending on context -- the simple tonic floor metaphor may underspecify the actual regulatory architecture",
+    "Tonic 5-HT's role in quiescence and patience may be dissociable from benefit terrain maintenance, creating a potential mapping overextension in INV-052's terrain stage claim"
+  ],
+  "tags": ["inv_052", "serotonin", "dopamine", "opponency", "tonic", "quiescence", "theoretical_review", "approach_avoidance", "benefit_orientation"],
+  "mapping": {
+    "source_claim_statement": "Tonic serotonin functions as an opportunity benefit for the passage of time, leading to quiescence; increase in 5-HT/DA ratio produces no-go-to-avoid state while decrease maintains go-to-win motivation and arousal.",
+    "ree_translation": "The 'opportunity benefit for time' framing directly instantiates MECH-186's tonic 5-HT floor: the floor sets a baseline expectation that quiescent persistence is better than panicked avoidance. When terrain is harm-rich, the floor prevents VALENCE_WANTING from collapsing to zero by maintaining a minimal opportunity-benefit signal even in the absence of immediate reward cues.",
+    "mapping_caveat": "The paper models tonic 5-HT as regulating the invigoration-inhibition axis (how much to act), not directly the terrain representation (where benefit lies). REE's MECH-186 is more specifically about spatial/latent benefit gradient maintenance. The translation from quiescence modulation to terrain representation requires an inferential step.",
+    "source_context": "Theoretical review with supporting behavioural pharmacology from rodent and human studies; no direct neural recording of tonic 5-HT during terrain encoding."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.73,
+    "transfer_risk": 0.35,
+    "notes": "Neuropsychopharmacology, high quality; Boureau and Dayan are computational authorities. The 'opportunity benefit for time' formulation is the strongest published statement of a tonic benefit-orientation role for 5-HT, but it maps to invigouration rather than terrain representation specifically."
+  }
+}

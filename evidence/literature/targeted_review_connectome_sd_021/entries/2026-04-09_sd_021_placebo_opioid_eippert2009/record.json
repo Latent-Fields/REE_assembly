@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_021",
+  "entry_id": "2026-04-09_sd_021_placebo_opioid_eippert2009",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "Activation of the opioidergic descending pain control system underlies placebo analgesia",
+    "authors": ["Falk Eippert", "Ulrike Bingel", "Eszter D Schoell", "Juliana Yacubian", "Regine Klinger", "Jurgen Lorenz", "Christian Buchel"],
+    "year": 2009,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2009.07.014"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the key human fMRI + pharmacological dissection paper establishing that top-down cortical expectation (rACC) activates the PAG-RVM descending inhibitory axis via opioid mechanisms. Naloxone abolishes both rACC-PAG coupling and the behavioural placebo effect, providing a clean double dissociation. Directly supports the mechanism proposed in SD-021. Confidence is high but not maximal because placebo is not identical to voluntary goal-directed commitment -- it is belief/expectation-based, not yet motor-commitment-gated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If naloxone's effect is non-specific (e.g., anxiolytic rather than opioidergic), the descending modulation interpretation weakens.",
+    "If placebo analgesia and commitment-gated analgesia use different cortical origins (rACC vs. pgACC/dACC), the direct mapping to SD-021 would need revision."
+  ],
+  "tags": ["sd_021", "pag", "rvm", "rACC", "pgACC", "opioid", "placebo", "descending_inhibition", "fmri", "human", "expectation"],
+  "mapping": {
+    "source_claim_statement": "Naloxone abolished placebo-induced rACC-PAG coupling, brainstem descending control activation (PAG, RVM, hypothalamus), and behavioural placebo analgesia -- demonstrating that opioidergic rACC-PAG connectivity is the mechanism by which top-down expectation gates sensory pain suppression.",
+    "ree_translation": "In REE terms: the rACC/pgACC is the cortical origin of the commitment-gated precision-downweighting signal on z_harm_s. When E3 is committed (beta_gate elevated, MECH-090) and trajectory passes through expected harm, rACC/pgACC sends opioidergic signal to PAG, which recruits RVM off-cells to suppress dorsal horn nociceptive relay -- reducing z_harm_s PE precision. This is the mechanism SD-021 proposes to implement computationally.",
+    "mapping_caveat": "Placebo analgesia is expectation-based, not strictly commitment-based in the motor sense. REE's commitment gate (MECH-090 beta oscillation) is a stronger condition than placebo expectation. SD-021 requires that committed E3 trajectory (not merely expected pain reduction) drives this pathway. The mapping is strong for the mechanism but the trigger condition is not identical.",
+    "source_context": "Healthy human volunteers; pharmacological fMRI with naloxone vs. saline; thermal pain stimuli; placebo cream paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "High source quality -- human fMRI, pharmacological causal test, published in Neuron, highly replicated. Mapping fidelity is good because the mechanism (rACC-PAG opioid coupling = top-down sensory gating) maps cleanly to SD-021. Transfer risk is low -- same species, same circuit. The main uncertainty is that placebo expectation is not the same as committed motor trajectory; it is a weaker version of the top-down drive. This reduces mapping fidelity slightly but does not undermine the core circuit claim."
+  }
+}

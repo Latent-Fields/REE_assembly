@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_034",
+  "entry_id": "2026-04-09_q_034_stress_dopamine_reward_review_baik2020",
+  "timestamp_utc": "2026-04-09T15:30:00Z",
+  "claim_ids_tested": ["Q-034"],
+  "source": {
+    "title": "Stress and the dopaminergic reward system",
+    "authors": ["Ja-Hyun Baik"],
+    "year": 2020,
+    "venue": "Experimental and Molecular Medicine",
+    "doi": "10.1038/s12276-020-00532-4",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8080624/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "This review consolidates the mechanistic evidence that chronic stress suppresses mesolimbic dopamine reward processing (blunted NAc dopamine release, reduced D1/D2 receptor sensitivity, VTA firing changes) and that this suppression is the proximal cause of anhedonia in depression. The review explicitly frames reward-system modulation as a stress-coping mechanism, not merely a downstream casualty, supporting the claim that reward availability is a functional variable in stress response -- not simply an unrelated comfort factor. The NAc dopamine system's dual sensitivity to reward and aversive stimuli positions it as precisely the integrator a hazard/resource ratio model requires. Confidence is moderate: the review provides mechanistic grounding for the dopaminergic attractor hypothesis (INV-053) and establishes that reward-system state tracks stress exposure, but does not test the ratio formulation or threshold directly. It is a narrative review without primary data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review does not test or propose a hazard/resource ratio formulation -- it describes directional effects of stress on reward without a threshold or tipping-point model.",
+    "Narrative review without primary data or meta-analytic pooling -- confidence in specific quantitative claims is limited.",
+    "The review emphasises that acute stress can transiently activate the dopamine system (salience signal), which could superficially argue against the depression-attractor model if the sustained chronic component is not clearly distinguished."
+  ],
+  "tags": ["q_034", "stress_dopamine", "mesolimbic", "nucleus_accumbens", "VTA", "reward_suppression", "anhedonia", "depression_mechanism"],
+  "mapping": {
+    "source_claim_statement": "Chronic stress negatively regulates mesolimbic dopamine transmission, impairing reward sensitivity (anhedonia). The dopaminergic reward system is necessary for monitoring and selecting optimal coping responses to stress. Reward sensitivity and stress reactivity share circuitry (NAc, VTA, PFC) and modulate each other bidirectionally.",
+    "ree_translation": "Q-034 predicts that benefit_exposure (resource density) modulates whether hazard_harm drives the system into the depression attractor. Baik (2020) establishes the mechanistic basis: chronic stress suppresses NAc dopamine reward signalling, reducing the agent's effective benefit sensitivity; simultaneously, the reward system is required for selecting adaptive coping responses under stress. In REE terms: z_goal seeding depends on mesolimbic dopamine (SD-012); if chronic harm exposure progressively suppresses the dopamine system, benefit_exposure alone cannot seed z_goal unless it remains above the threshold for reward-driven dopamine release. The review grounds Q-034's attractor mechanism in the bidirectional stress-reward circuit.",
+    "mapping_caveat": "The review describes stress-induced changes in dopamine transmission but does not operationalise 'sufficient reward density' as a protective parameter. The bidirectional framing (stress impairs reward; reward availability influences stress coping) implies the ratio logic without testing it. Transfer from chronic stress suppression of VTA/NAc dopamine to the REE z_goal seeding mechanism requires accepting that SD-012 (homeostatic drive) implements the same functional relationship.",
+    "source_context": "Narrative review; rodent and human data; VTA electrophysiology, microdialysis, fMRI, molecular studies; stress models including CMS, social defeat, restraint stress"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.38,
+    "notes": "Solid review in a high-quality journal synthesising a well-established literature. Mapping fidelity is moderate: the paper speaks to the mechanism (stress suppresses dopamine reward signalling) that Q-034 implies, but doesn't test the ratio or threshold. Transfer risk is relatively low compared to other entries because the dopaminergic mechanism is directly relevant to the INV-053 attractor and SD-012 seeding; this is the mechanistic bridge the other entries lack."
+  }
+}

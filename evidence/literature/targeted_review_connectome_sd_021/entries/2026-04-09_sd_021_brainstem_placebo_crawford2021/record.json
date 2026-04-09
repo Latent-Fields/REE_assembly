@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_021",
+  "entry_id": "2026-04-09_sd_021_brainstem_placebo_crawford2021",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "Brainstem Mechanisms of Pain Modulation: A within-Subjects 7T fMRI Study of Placebo Analgesic and Nocebo Hyperalgesic Responses",
+    "authors": ["Lewis S Crawford", "Emily P Mills", "Theo Hanson", "Paul M Macey", "Rebecca Glarin", "Vaughan G Macefield", "Kevin A Keay", "Luke A Henderson"],
+    "year": 2021,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0806-21.2021"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "High-resolution 7T brainstem fMRI study directly imaging PAG and RVM responses during placebo analgesia in humans, confirming that greater placebo ability correlates with differential PAG column activation and RVM engagement. Adds specificity missing from earlier lower-resolution studies: the lateral/dorsolateral PAG (rather than ventrolateral) is engaged during placebo, suggesting non-opioidergic mechanisms may also contribute. Directly relevant to SD-021's precision-downweighting claim because it shows the brainstem circuit is sensitive to top-down expectation states in humans with high anatomical resolution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The lateral PAG result (rather than vlPAG) may indicate non-opioidergic, serotonergic, or noradrenergic descending mechanisms, which would complicate the clean opioid-gating story in SD-021.",
+    "If placebo ability is a trait variable rather than a state that E3 commitment can invoke, the mechanism may not be trainable via commitment-gating in the way SD-021 proposes."
+  ],
+  "tags": ["sd_021", "pag", "rvm", "7T_fmri", "brainstem", "placebo", "nocebo", "descending_inhibition", "high_resolution", "human"],
+  "mapping": {
+    "source_claim_statement": "At 7T, greater placebo analgesia correlated with reduced signal in dorsolateral/lateral PAG and increased signal in RVM; nocebo hyperalgesia showed the inverse. Both placebo and nocebo engaged the lateral PAG columns, suggesting non-opioidergic (serotonergic/noradrenergic) pathways contribute alongside opioidergic mechanisms.",
+    "ree_translation": "This confirms the PAG-RVM axis as the brainstem precision gate for z_harm_s in humans with column-level specificity. The finding that placebo engages lateral PAG (in addition to vlPAG) expands the substrate: SD-021's attenuation factor is likely not purely opioidergic but involves multiple descending neuromodulatory systems. This is consistent with the idea that commitment-gated analgesia may involve serotonergic (raphe-spinal) and noradrenergic (locus coeruleus-spinal) contributions alongside opioid pathways.",
+    "mapping_caveat": "Placebo-trait-variability is a confound: people who are good placebo responders may have stronger resting PAG-RVM connectivity, making this finding difficult to interpret as a state-dependent commitment mechanism. The within-subjects design helps but trait variance remains. Also, commitment to traverse a harm is not the same experimental manipulation as expectation of reduced pain intensity.",
+    "source_context": "Healthy human volunteers; 7T fMRI; within-subjects placebo/nocebo crossover; thermal pain stimuli; brainstem-optimised acquisition."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.18,
+    "notes": "High source quality: 7T within-subjects design is methodologically the strongest human brainstem fMRI available. Mapping fidelity moderate: directly relevant circuit but lateral PAG finding complicates the pure opioid framing of SD-021. Transfer risk low (human data). The placebo-to-commitment mapping caveat reduces fidelity slightly."
+  }
+}

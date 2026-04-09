@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_020",
+  "entry_id": "2026-04-09_sd_020_adaptive_coding_pe_hoskin2023",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-020"],
+  "source": {
+    "title": "Adaptive coding of pain prediction error in the anterior insula",
+    "authors": ["Hoskin R", "Talmi D"],
+    "year": 2023,
+    "venue": "European Journal of Pain",
+    "doi": "10.1002/ejp.2093",
+    "pmid": "36799445",
+    "citation": "Eur J Pain 27(6):766-778"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "First study to apply an axiomatic 'adaptive coding' approach to pain PE in anterior insula, demonstrating that left dorsal anterior insula responds to the unexpectedness of pain delivery relative to local context rather than absolute pain magnitude. This is a direct empirical instantiation of SD-020's claim that z_harm_a encodes surprise (PE) not raw accumulated harm. Confidence is slightly below Horing 2022 due to smaller sample (19 subjects) and the specific 'adaptive coding' framework being less established than standard PE modelling, though the axiomatic approach is well-validated in value/reward literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If adaptive coding in anterior insula reflects only the context-dependence of sensory gain (adaptation) rather than prediction error per se, the PE interpretation could be questioned.",
+    "If the effect is not replicated in larger samples, the small-n limitation (N=19) would become more serious."
+  ],
+  "tags": ["sd_020", "anterior_insula", "adaptive_coding", "prediction_error", "unexpectedness", "pain_perception", "fmri", "aversive_learning"],
+  "mapping": {
+    "source_claim_statement": "Left dorsal anterior insula demonstrates adaptive coding of pain prediction error: it is sensitive to both predicted pain magnitudes on expectation instigation and the unexpectedness of pain delivery, responding according to local context rather than absolute magnitude.",
+    "ree_translation": "SD-020 proposes that z_harm_a should encode how surprising the current threat level is -- the mismatch between predicted and actual harm accumulation. This paper provides direct fMRI evidence that the anterior insula (z_harm_a's biological anchor) does exactly this: it encodes contextual unexpectedness (PE) rather than absolute intensity. E3 urgency driven by z_harm_a trained on PE will respond to unexpected threat escalation, which is precisely the behavioural trigger that requires immediate policy update.",
+    "mapping_caveat": "The 'adaptive coding' framework used here quantifies PE via an axiomatic approach (non-parametric, based on ordinal response patterns) rather than a formal Bayesian PE model. This is methodologically distinct from precision-weighted PE as formulated in predictive coding theory. The mapping to SD-020's precision-weighting claim requires an additional inferential step. Also, N=19 is small by contemporary fMRI standards.",
+    "source_context": "Healthy adults (N=19), cued heat pain paradigm with varied stimulus intensities, 3T fMRI, axiomatic approach to identify adaptive coding patterns"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.22,
+    "notes": "Source quality moderate-high: European Journal of Pain, peer-reviewed, axiomatic approach is principled but less established in pain literature than model-based PE decomposition. N=19 is the main limitation. Mapping fidelity high: the paper's central claim ('unexpectedness not absolute magnitude') is almost a verbatim restatement of SD-020. Transfer risk low: human experimental pain, direct relevance."
+  }
+}

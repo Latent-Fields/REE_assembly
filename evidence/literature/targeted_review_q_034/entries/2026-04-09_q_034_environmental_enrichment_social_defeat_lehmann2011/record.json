@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_034",
+  "entry_id": "2026-04-09_q_034_environmental_enrichment_social_defeat_lehmann2011",
+  "timestamp_utc": "2026-04-09T15:30:00Z",
+  "claim_ids_tested": ["Q-034"],
+  "source": {
+    "title": "Environmental Enrichment Confers Stress Resiliency to Social Defeat through an Infralimbic Cortex-Dependent Neuroanatomical Pathway",
+    "authors": ["Michael L. Lehmann", "Miles Herkenham"],
+    "year": 2011,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0577-11.2011",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3094574/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "This experiment holds the hazard (social defeat stress) fixed across groups and varies the resource environment (standard vs enriched housing), then measures depression-like outcomes. This is structurally the closest available empirical operationalisation of Q-034's prediction: same hazard, higher resource density → protected from depression attractor. Enriched mice showed significantly fewer defeat-induced depressive-like behaviors and maintained FosB/DeltaFosB expression in reward-processing regions (infralimbic cortex, nucleus accumbens, amygdala). The infralimbic cortex lesion experiment demonstrates that the enrichment effect is circuit-mediated, not merely a physical activity confound. Confidence is moderate rather than high because enrichment bundles multiple resource types (novelty, social interaction, exercise, object exploration) without isolating reward-density per se; the stress was social defeat (a qualitatively different stressor from hazard_harm exposure in REE); and no parametric threshold was identified.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Enrichment confounds reward density, novelty exposure, physical exercise, and social complexity -- it is not possible to attribute the protective effect to reward availability alone.",
+    "No parametric manipulation of enrichment level -- the study compares enriched vs standard vs impoverished housing, not a continuous resource gradient.",
+    "No threshold identified: the study shows protection at one enrichment level but does not characterise the dose-response relationship.",
+    "Social defeat stress is qualitatively different from the harm_exposure hazard in CausalGridWorldV2 -- the attacker's agency introduces uncontrollability components beyond simple hazard density."
+  ],
+  "tags": ["q_034", "environmental_enrichment", "social_defeat", "resilience", "nucleus_accumbens", "infralimbic_cortex", "resource_density", "depression_attractor"],
+  "mapping": {
+    "source_claim_statement": "Mice housed in an enriched environment (21 days) prior to social defeat stress showed significantly less depressive-like behaviour (forced swim, tail suspension, social avoidance) than mice in standard or impoverished housing. Lesioning the infralimbic cortex abolished the protective effect. Enrichment sustained FosB/DeltaFosB expression in nucleus accumbens and prefrontal cortex during defeat.",
+    "ree_translation": "Q-034 predicts: fixed hazard_harm + sufficient benefit_exposure → depression attractor not entered. Lehmann & Herkenham demonstrate: fixed social defeat (hazard) + enriched environment (resource density) → protection from depression-like state. The enriched environment provides elevated baseline reward availability, increasing benefit_exposure relative to harm_exposure; the infralimbic cortex (equivalent to E3's harm/goal evaluation circuitry) mediates the protection. This is the closest experimental analogue to the REE Q-034 prediction available in the rodent literature.",
+    "mapping_caveat": "Environmental enrichment is a compound manipulation; the specific component driving protection (reward access vs novelty vs exercise) is not isolated. The infralimbic lesion result is consistent with E3 mediation but does not demonstrate that the locus of action is reward-density detection rather than, for instance, exercise-induced neuroplasticity. The CausalGridWorldV2 hazard is a resource-independent grid property; social defeat stress involves conspecific behaviour and is not purely analogous.",
+    "source_context": "Male C57BL/6J mice; 21-day housing manipulation; 14-day social defeat stress; forced swim, tail suspension, social interaction tests; FosB/DeltaFosB immunostaining; infralimbic cortex lesion experiment"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "High-quality empirical study in a respected journal, well-designed with a lesion experiment that supports mechanistic interpretation. Mapping fidelity is moderate: the qualitative logic (resource environment modulates whether fixed stressor causes depression) maps well, but the quantitative ratio formulation and isolation of reward density as the active ingredient are absent. Transfer risk reflects both mouse-to-human and social-defeat-to-CausalGridWorld transposition."
+  }
+}

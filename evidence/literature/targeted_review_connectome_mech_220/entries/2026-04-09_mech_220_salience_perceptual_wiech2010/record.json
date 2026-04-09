@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_220",
+  "entry_id": "2026-04-09_mech_220_salience_perceptual_wiech2010",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["MECH-220"],
+  "source": {
+    "title": "Anterior insula integrates information about salience into perceptual decisions about pain",
+    "authors": ["Katja Wiech", "Chia-shu Lin", "Kay H Brodersen", "Ulrike Bingel", "Markus Ploner", "Irene Tracey"],
+    "year": 2010,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2087-10.2010",
+    "pmid": "21123578"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The strongest direct empirical evidence for MECH-220's hypervigilance pathway among the four entries. The study demonstrates that (1) anterior insula prestimulus activity predicts pain classification under threat, and (2) anticipatory pain increases functional connectivity between anterior insula and midcingulate cortex (MCC/ACC). This is precisely the mechanism MECH-220 predicts: z_harm_a urgency (instantiated here as threat context) gates z_harm_s precision (instantiated as the probability of classifying a near-threshold stimulus as painful). Transfer risk is modest: the manipulation is threat-induced anticipatory state rather than endogenous affective urgency.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the prestimulus insula effect reflected general attentional readiness rather than affective gain modulation, the precision-gating mapping would be weakened",
+    "If the insula-MCC coupling increase under threat proved to be a byproduct of motor preparedness rather than sensory gain, the hub interpretation would need revision"
+  ],
+  "tags": ["mech_220", "hypervigilance", "insula_mcc_coupling", "prestimulus_activity", "pain_perception", "threat_context", "affective_gain", "sensory_precision"],
+  "mapping": {
+    "source_claim_statement": "Physically identical near-threshold laser stimuli are classified as painful more frequently under high-threat context; anterior insula prestimulus signal level predicts this context-dependent pain classification; threat-induced anticipation of pain increases functional connectivity between anterior insula and midcingulate cortex.",
+    "ree_translation": "This paper operationalises MECH-220's hypervigilance pathway with striking directness. The high-threat context is the experimental instantiation of elevated z_harm_a urgency. The anterior insula prestimulus signal that predicts pain classification is the sensory precision gate -- a readiness to classify ambiguous input as harmful. The increased insula-MCC connectivity under threat is the hub coordination mechanism: the affective stream (z_harm_a, here: threat-driven urgency indexed by MCC) is shown to modulate the sensory stream's classification threshold (z_harm_s precision) via an identified connectivity increase. This is the hypervigilance pathway mechanistically demonstrated.",
+    "mapping_caveat": "The threat manipulation is experimentally induced and momentary; MECH-220's z_harm_a urgency arises from the agent's own ongoing harm evaluation, not an external threat instruction. The mapping requires accepting that external threat and internal affective urgency engage the same insula-ACC circuit. This is plausible given the broader literature but not directly proven here. Also: the paper uses MCC (midcingulate), which is adjacent to but distinct from the dorsal ACC typically associated with affective pain. The anatomical correspondence is close but not identical.",
+    "source_context": "Human fMRI; near-threshold laser pain in healthy volunteers; within-subject threat manipulation (safe vs. potentially harmful framing of identical stimuli); task design adapted from perceptual decision literature"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "High-quality experimental pain paper from the Tracey lab. The mapping fidelity is the highest in this review because the study directly tests the insula-ACC coupling during affective modulation of nociceptive classification -- precisely the hub mechanism MECH-220 proposes. Transfer risk is mainly the externally induced vs. internally generated urgency distinction, which is a genuine difference in source but not in circuit."
+  }
+}

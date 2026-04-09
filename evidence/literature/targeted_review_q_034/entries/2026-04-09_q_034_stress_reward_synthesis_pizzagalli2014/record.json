@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_034",
+  "entry_id": "2026-04-09_q_034_stress_reward_synthesis_pizzagalli2014",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["Q-034"],
+  "source": {
+    "title": "Depression, Stress, and Anhedonia: Toward a Synthesis and Integrated Model",
+    "authors": ["Diego A. Pizzagalli"],
+    "year": 2014,
+    "venue": "Annual Review of Clinical Psychology",
+    "doi": "10.1146/annurev-clinpsy-050212-185606",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3972338/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "The paper explicitly frames anhedonia as arising from 'dysfunctional interactions between stress and brain reward systems' -- an interaction model, not a pure stress-load model. Critically, it reports that chronically stressed animals that successfully acquired appetitive behaviour showed protection against dopamine transporter reductions, suggesting active reward engagement buffers against stress-induced anhedonia. This is a direct analogue of the hazard/resource ratio claim. However, the paper does not explicitly formulate a ratio threshold, does not use attractor/bifurcation language, and does not test whether fixed hazard + sufficient reward prevents the depressive state. The support is structural-conceptual rather than parametric.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not frame the interaction as a ratio with a threshold -- it describes a directional interaction effect without a tipping-point formulation.",
+    "No explicit test of whether sufficient reward exposure at fixed stress level prevents the depressive transition.",
+    "The protective effect of reward engagement is reported as a secondary finding, not the paper's main hypothesis."
+  ],
+  "tags": ["q_034", "stress_reward_interaction", "anhedonia", "dopamine", "mesolimbic", "human_animal"],
+  "mapping": {
+    "source_claim_statement": "Anhedonia in depression arises from dysfunctional interactions between stress and brain reward systems; specifically, chronic uncontrollable stress reduces mesolimbic dopamine transmission, impairing incentive motivation and reinforcement learning. Animals that successfully acquired appetitive behaviour under stress were protected against stress-induced dopamine transporter reductions.",
+    "ree_translation": "The finding that reward engagement buffers against stress-induced dopaminergic downregulation maps directly to Q-034: benefit_exposure (resource density) modulates whether stress (hazard) produces the depression attractor. A sufficiently rich reward environment may prevent the transition even under sustained hazard exposure.",
+    "mapping_caveat": "The paper does not test the ratio formulation explicitly; it does not hold hazard constant and vary reward density to identify a threshold. The buffering result is correlational and the mechanism (active behaviour vs. passive exposure) is confounded.",
+    "source_context": "Integrative review of human and animal literature; dopamine and reinforcement learning framework; MDD vs healthy controls; animal stress models (rat CMS, social defeat)"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High-quality, widely-cited review by a leading figure in the field. Mapping fidelity is moderate: the paper makes the right qualitative point (interaction not additive) but does not operationalise a ratio or threshold. Transfer risk reflects that dopamine-level mechanisms may not map cleanly to the computational benefit/harm exposure quantities in REE."
+  }
+}

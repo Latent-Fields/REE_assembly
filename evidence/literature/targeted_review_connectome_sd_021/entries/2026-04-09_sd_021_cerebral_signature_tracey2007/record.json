@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_021",
+  "entry_id": "2026-04-09_sd_021_cerebral_signature_tracey2007",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "The cerebral signature for pain perception and its modulation",
+    "authors": ["Irene Tracey", "Patrick W Mantyh"],
+    "year": 2007,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2007.07.012"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Comprehensive review synthesising evidence that the brainstem PAG-RVM descending system is the hub through which cortical states (expectation, attention, emotion) modulate sensory pain. Directly maps onto SD-021's architecture. Confidence reflects the review nature (no new primary data) and the fact that the expectation-specific PAG activation findings reviewed here pre-date the pharmacological confirmation (Eippert 2009), slightly reducing causal certainty.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the PAG activations during anticipation reviewed here reflect threat-preparation (defensive arousal) rather than top-down analgesic gating, the descending inhibition framing would be incomplete.",
+    "If dlPFC-PAG coupling reflects attention rather than commitment-gated suppression, the mapping to E3 commitment requires revision."
+  ],
+  "tags": ["sd_021", "pag", "rvm", "acc", "dlpfc", "expectation", "anticipation", "descending_inhibition", "review", "brainstem"],
+  "mapping": {
+    "source_claim_statement": "During anticipation of pain, prefrontal cortex activation predicts placebo pain relief and correlates with PAG activity; the brainstem descending modulatory network is the hub through which psychological factors (expectation, attention, emotion, cognition) modulate nociceptive transmission.",
+    "ree_translation": "The review frames the brainstem as a 'gating hub' between cortical state and spinal nociceptive relay -- exactly the architecture SD-021 proposes. E3 commitment engages pgACC/rACC (the cortical state), which recruits PAG (the hub), which via RVM reduces z_harm_s PE precision (dorsal horn gate). Tracey & Mantyh identify dlPFC as also participating, consistent with the executive commitment component of E3.",
+    "mapping_caveat": "Review synthesises heterogeneous studies without uniform commitment manipulation. Expectation, attention, and cognitive control are conflated in the reviewed studies. SD-021 requires commitment-specific gating; the review supports the general architecture but not the specificity of the commitment trigger.",
+    "source_context": "Human neuroimaging review; synthesises placebo, attention, emotion, and cognitive pain modulation studies; no primary data."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.15,
+    "notes": "High source quality as a landmark review by leading pain neuroscientists. Mapping fidelity good for circuit architecture but reduced because the commitment-specific trigger is not distinguished from expectation/attention generally. Transfer risk low given all-human data. The key finding -- that PAG activity during anticipation correlates with dlPFC and predicts behavioural analgesia -- is directly relevant to the E3-commitment-drives-PAG pathway."
+  }
+}

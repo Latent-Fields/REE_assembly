@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_034",
+  "entry_id": "2026-04-09_q_034_nonreward_attractor_rolls2016",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["Q-034"],
+  "source": {
+    "title": "A non-reward attractor theory of depression",
+    "authors": ["Edmund T. Rolls"],
+    "year": 2016,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2016.05.007",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27181908/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "This is the only paper in this set that explicitly uses attractor state language for depression and proposes a computational model in which the balance between reward and non-reward input -- not absolute non-reward -- determines which attractor state wins. The reciprocal inhibition architecture directly implies that sufficient reward input prevents the non-reward attractor from engaging. Both reducing non-reward and increasing reward are valid interventions. Confidence limited by: model operates at neural circuit level (OFC), not environmental resource density; ratio threshold not parametrically specified; does not distinguish hazard/harm from non-reward.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Model operates at neural circuit level -- does not specify environmental resource density as the parameter.",
+    "Ratio threshold is not parametrically defined in the model.",
+    "Harm and non-reward are not cleanly distinguished -- hazard exposure and reward absence are treated as functionally equivalent inputs."
+  ],
+  "tags": ["q_034", "attractor_state", "nonreward", "orbitofrontal_cortex", "computational_model", "reciprocal_inhibition", "depression_mechanism"],
+  "mapping": {
+    "source_claim_statement": "Depression is an attractor state in the lateral OFC non-reward system, maintained by reciprocal inhibition with the medial OFC reward system. The non-reward attractor engages when reward input is insufficient to maintain the reward attractor. Antidepressants may work by facilitating the reward attractor, which quashes the non-reward attractor via reciprocal inhibition.",
+    "ree_translation": "The Rolls model is structurally equivalent to Q-034 at the neural circuit level: attractor state engagement is determined by the balance of reward and non-reward input, not absolute non-reward alone. Sufficient reward input maintains the healthy attractor. This validates the ratio logic: both reducing hazard (non-reward input) and increasing resource access (reward input) are effective because they shift the same balance parameter.",
+    "mapping_caveat": "The model uses reward/non-reward circuit inputs as the key variables; REE uses benefit_exposure and harm_exposure in the environment. These are related but not identical -- the circuit model does not address how environmental resource density maps to OFC input strength. The model does not specify the parametric threshold between attractors.",
+    "source_context": "Computational model of OFC circuits using integrate-and-fire neurons; human and animal neuroimaging evidence reviewed; applies to MDD and bipolar disorder"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Strong mechanistic model from a senior computational neuroscientist. Mapping fidelity is good at the structural level (attractor state, balance of inputs) but requires an inferential step from OFC circuit inputs to environmental resource/hazard densities. Transfer risk reflects this gap plus the fact that the specific ratio threshold is not specified."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_020",
+  "entry_id": "2026-04-09_sd_020_insula_unsigned_pe_surprise_horing2022",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-020"],
+  "source": {
+    "title": "The human insula processes both modality-independent and pain-selective learning signals",
+    "authors": ["Horing B", "Buchel C"],
+    "year": 2022,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.3001540",
+    "pmid": "35522696",
+    "citation": "PLoS Biol 20(5):e3001540"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.90,
+  "confidence_rationale": "Strongest pre-Chen direct evidence for SD-020. Explicitly shows anterior insula encodes unsigned (absolute) intensity PE irrespective of modality -- i.e., aversive surprise regardless of whether the aversive event is pain or sound. The 'unsigned' qualifier is critical: this is modality-unspecific aversive surprise, exactly the signal SD-020 proposes for z_harm_a. Large sample (47 subjects), cross-modal paradigm (pain + loud sound), 3T fMRI with SCR. Also demonstrates pain-selective signed PE in posterior insula, providing within-study support for the anterior/posterior dissociation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If anterior insula PE signals were driven solely by attentional orienting rather than learning (i.e., if they disappeared in conditions where attention was controlled), the unsigned PE interpretation would be weakened.",
+    "If the modality-independence implies that anterior insula cannot distinguish harm-PE from any aversive-PE, this would suggest z_harm_a conflates harm and non-harm aversive surprise -- a potential problem for SD-020's specificity assumption."
+  ],
+  "tags": ["sd_020", "anterior_insula", "unsigned_prediction_error", "aversive_surprise", "modality_independent", "fmri", "pain", "cross_modal", "learning_signals"],
+  "mapping": {
+    "source_claim_statement": "Anterior insula encodes unsigned intensity prediction errors irrespective of modality (pain or sound), indicating a modality-unspecific aversive surprise signal. Dorsal posterior insula encodes signed intensity PE specifically for pain.",
+    "ree_translation": "z_harm_a is anchored in anterior insula. This paper directly demonstrates that anterior insula encodes aversive surprise (unsigned PE), not raw magnitude. The SD-020 claim that z_harm_a should be trained on PE rather than raw harm accumulation is directly instantiated: the biological structure being modelled computes surprise. The modality-independence is worth flagging for REE: z_harm_a in SD-020 is specific to harm events, but the biological AIC apparently responds to any aversive surprise. This implies the harm-specificity of z_harm_a may need to be enforced via architectural gating (e.g., conditioned on harm-relevant context) rather than assumed from the AIC's intrinsic computation.",
+    "mapping_caveat": "The modality-independence finding is double-edged: it confirms PE/surprise coding in AIC, but it suggests AIC is not specifically a harm detector -- it is an aversive surprise detector. SD-020 proposes z_harm_a specifically for harm PE. If z_harm_a maps onto AIC, then harm-specificity must come from elsewhere (e.g., input gating, or the fact that the REE environment only presents harm as the aversive modality). This is a potential architectural refinement SD-020 does not yet address.",
+    "source_context": "Human adults (47), heat pain + loud sounds at varying intensities, cue-based learning paradigm, 3T fMRI + skin conductance responses"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.20,
+    "notes": "Source quality very high: PLoS Biology (open access, rigorous peer review), large sample, Buchel lab, cross-modal design substantially strengthens causal interpretation. Mapping fidelity high: the unsigned PE / modality-independent aversive surprise finding is almost a direct description of what SD-020 proposes for z_harm_a. Transfer risk low: human experimental pain, directly relevant. Main mapping concern is the modality-independence implication (noted in mapping_caveat) which is a refinement point, not a contradiction."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_220",
+  "entry_id": "2026-04-09_mech_220_salience_network_seeley2007",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["MECH-220"],
+  "source": {
+    "title": "Dissociable intrinsic connectivity networks for salience processing and executive control",
+    "authors": ["William W Seeley", "Vinod Menon", "Alan F Schatzberg", "Jennifer Keller", "Gary H Glover", "Heather Kenna", "Allan L Reiss", "Michael D Greicius"],
+    "year": 2007,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5587-06.2007",
+    "pmid": "17329432"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Primary empirical data demonstrating that ACC and insula form a distinct resting-state network (salience network) dissociable from executive control. Functional coupling between these structures is shown to track affective state (anxiety), directly supporting the affective-modulation-of-sensory-gain dimension of MECH-220. Transfer risk: resting-state paradigm, not nociception task; affective covariate is dispositional anxiety, not acute harm urgency.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the salience network found here reflected only attentional set rather than affective amplification, the mapping to hypervigilance-gated sensory precision would be weakened",
+    "If ACC-insula coupling proved to be epiphenomenal rather than causal in the salience response, the hub coordination claim would be undermined"
+  ],
+  "tags": ["mech_220", "salience_network", "resting_state_fmri", "acc_insula_coupling", "affective_modulation", "anxiety_connectivity"],
+  "mapping": {
+    "source_claim_statement": "A salience network anchored by dorsal anterior cingulate and frontoinsular cortex shows dissociable intrinsic connectivity from an executive-control network; prescan anxiety correlates with intrinsic dACC connectivity in the salience network specifically.",
+    "ree_translation": "The dissociability result confirms that the ACC-insula hub is a coherent coordinating module distinct from cognitive-executive circuitry -- consistent with MECH-220's claim that the harm hub is lightweight and segregated from other processing streams. The anxiety-dACC coupling result is the resting-state analogue of MECH-220's hypervigilance pathway: elevated affective state (anxiety) amplifies the salience network coupling, operationally corresponding to z_harm_a urgency gating z_harm_s precision.",
+    "mapping_caveat": "Anxiety is a dispositional trait measured before scanning; MECH-220 refers to phasic urgency during an active harm encounter. The temporal dynamics are very different -- trait vs. state. The structural dissociability result is robust; the affective amplification claim requires further support from task-based studies (see Wiech 2010 entry).",
+    "source_context": "Human resting-state fMRI; mixed healthy controls and mild-depression group; no nociceptive stimulation; anxiety measured by prescan self-report"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Foundational empirical paper for the salience network (>7000 citations). The dissociability result is highly replicable and maps cleanly to MECH-220's stream-separation assumption. The anxiety-coupling result is suggestive but is trait-level evidence for what MECH-220 frames as a state-level mechanism; this limits mapping fidelity."
+  }
+}

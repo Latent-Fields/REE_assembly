@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_220",
+  "entry_id": "2026-04-09_mech_220_salience_hub_menon2010",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["MECH-220"],
+  "source": {
+    "title": "Saliency, switching, attention and control: a network model of insula function",
+    "authors": ["Vinod Menon", "Lucina Q Uddin"],
+    "year": 2010,
+    "venue": "Brain Structure and Function",
+    "doi": "10.1007/s00429-010-0262-0",
+    "pmid": "20512370"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Highly influential theoretical synthesis establishing the insula-ACC salience hub model. Four-mechanism framework directly maps to MECH-220 hub functions. Transfer risk: pain is not the primary focus; the paper addresses salience broadly. Mapping is structural/mechanistic, not pain-specific.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The hub model treats insula and ACC as coordinating partners -- if they were truly independent with no cross-stream influence, the salience network framing would not hold",
+    "If the insula-ACC coupling only reflects co-activation rather than directed coordination, the hub interpretation is weakened"
+  ],
+  "tags": ["mech_220", "salience_network", "insula_acc_hub", "network_switching", "coordination_mechanism"],
+  "mapping": {
+    "source_claim_statement": "The anterior insula acts as a hub in the salience network, with strong functional coupling to anterior cingulate cortex, enabling bottom-up detection of salient events, network switching, and interaction between anterior and posterior insula for autonomic modulation.",
+    "ree_translation": "The insula-ACC coupling described here is the biological substrate for the MECH-220 harm hub. The hub's two directed interactions -- z_harm_s PE magnitude contextualizing z_harm_a load, and z_harm_a urgency gating z_harm_s precision -- are direct functional analogues of the bidirectional salience-switching and autonomic modulation mechanisms Menon and Uddin describe.",
+    "mapping_caveat": "The paper addresses salience broadly, not nociception specifically. The insula 'hub' here is the anterior insula coordinating with ACC for general salience, which may or may not be the same circuit as the pain-specific nociceptive coordination in MECH-220. REE's z_harm_s and z_harm_a require separate nociceptive encoders, whereas the Menon/Uddin model does not distinguish pain from other salient stimuli.",
+    "source_context": "Human resting-state fMRI; theoretical synthesis across cognitive and affective tasks; no pain-specific protocol"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Near-canonical paper for salience network architecture. Transfer risk mainly from domain breadth -- salience in general, not harm-stream-specific. The four mechanisms (salient event detection, network switching, anterior-posterior insula interaction, ACC coupling) all have direct MECH-220 analogues, which elevates mapping fidelity despite the domain gap."
+  }
+}

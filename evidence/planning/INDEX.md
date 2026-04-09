@@ -1,8 +1,8 @@
 # Planning Index
 
-Generated: `2026-04-09T06:45:04.345632Z`
+Generated: `2026-04-09T15:34:49.190315Z`
 
-- Evidence backlog: `evidence_backlog.v1.json` (125 item(s))
-- Experiment proposals: `experiment_proposals.v1.json` (170 item(s))
+- Evidence backlog: `evidence_backlog.v1.json` (123 item(s))
+- Experiment proposals: `experiment_proposals.v1.json` (165 item(s))
 - Architecture gap register: `architecture_gap_register.v1.json` (29 item(s), consider_new_structure=0)
 - Planning criteria: `planning_criteria.v1.yaml`

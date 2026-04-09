@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_021",
+  "entry_id": "2026-04-09_sd_021_pag_descending_basbaum1984",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "Endogenous pain control systems: brainstem spinal pathways and endorphin circuitry",
+    "authors": ["A I Basbaum", "H L Fields"],
+    "year": 1984,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.ne.07.030184.001521"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Foundational anatomical review establishing the PAG-RVM-spinal cord descending inhibitory axis as a distinct pathway that can be engaged top-down. Directly grounds the claim that there is a dedicated descending channel capable of suppressing nociceptive throughput. Lower confidence cap because the paper predates modern human imaging and does not address commitment or voluntary action specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If PAG stimulation produces analgesia only via motor/avoidance effects rather than sensory suppression, the descending inhibitory interpretation weakens.",
+    "If RVM on-cells and off-cells are not separable in humans, the bidirectional framing loses precision."
+  ],
+  "tags": ["sd_021", "pag", "rvm", "descending_inhibition", "endogenous_opioid", "foundational"],
+  "mapping": {
+    "source_claim_statement": "Electrical stimulation of PAG and microinjection of opioids into PAG produce profound analgesia mediated by a descending brainstem-spinal pathway through RVM, involving endorphin circuitry at three levels of the neuraxis.",
+    "ree_translation": "In REE terms: the PAG-RVM axis is the biological implementation of the precision-downweighting gate on z_harm_s. When E3 commits and the pgACC/ACC engages PAG, PAG output to RVM shifts RVM off-cells into active suppression of dorsal horn nociceptive relay — precisely the 'attenuation factor' SD-021 proposes.",
+    "mapping_caveat": "Basbaum & Fields describe the anatomy and pharmacology but the activating trigger is largely opioid administration or electrical stimulation, not voluntary commitment. The cognitive 'top-down' activation of PAG by ACC during committed action is inferred from later work; this paper does not directly address E3-commitment gating.",
+    "source_context": "Animal models (rats, cats); stimulation-produced analgesia and opioid microinjection; no human imaging."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Extremely high source quality (canonical foundational review, >4000 citations). Mapping fidelity is moderate: the paper establishes the pathway exists and can be gated, but the specific trigger (cognitive commitment) is not addressed. Transfer risk is modest given subsequent human work confirming the same circuit, but animal-to-human generalisation is not trivial."
+  }
+}

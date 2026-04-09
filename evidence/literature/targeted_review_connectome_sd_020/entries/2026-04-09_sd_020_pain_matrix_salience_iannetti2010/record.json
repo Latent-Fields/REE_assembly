@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_020",
+  "entry_id": "2026-04-09_sd_020_pain_matrix_salience_iannetti2010",
+  "timestamp_utc": "2026-04-09T15:00:00Z",
+  "claim_ids_tested": ["SD-020"],
+  "source": {
+    "title": "From the neuromatrix to the pain matrix (and back)",
+    "authors": ["Iannetti GD", "Mouraux A"],
+    "year": 2010,
+    "venue": "Experimental Brain Research",
+    "doi": "10.1007/s00221-010-2340-1",
+    "pmid": "20607220",
+    "citation": "Exp Brain Res 205(1):1-12"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Influential theoretical review arguing that pain-matrix activity (including insula) reflects salience/surprise detection rather than pain-specific processing. Directly supports the SD-020 claim that affective harm encoding tracks unexpectedness rather than raw magnitude. Confidence is moderate because it is a review/theoretical position paper rather than direct empirical measurement of PE coding, and does not itself quantify the PE component — that empirical work came in later studies building on this framework.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If insula responses were shown to correlate purely with nociceptive intensity irrespective of saliency, this framework would be undermined."
+  ],
+  "tags": ["sd_020", "anterior_insula", "pain_matrix", "salience", "surprise", "prediction_error", "multimodal", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "The cortical network activated by painful stimuli (the 'pain matrix', including insula, ACC, and frontal areas) is largely unspecific for nociception and instead reflects a salience detection system responding to significant/surprising sensory events regardless of modality.",
+    "ree_translation": "If the anterior insula is a salience/surprise detector rather than a raw-intensity encoder, then z_harm_a — which is biologically anchored in AIC — should be trained on surprise (PE) not raw harm accumulation. The SD-020 redesign of the auxiliary loss target directly implements what Iannetti and Mouraux argue the AIC computes.",
+    "mapping_caveat": "The salience framework is debated; some researchers (e.g., Legrain et al.) extend it, others contest it. The review does not distinguish anterior from posterior insula in detail, nor does it formalise PE in the precision-weighting sense that SD-020 requires. Transfer from 'salience' to 'precision-weighted PE' needs additional empirical support (provided by Geuter 2017 and Horing 2022).",
+    "source_context": "Theoretical synthesis across human EEG, MEG, fMRI, PET studies of acute experimental pain and non-painful comparators"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (>1000 citations, Experimental Brain Research, from leading pain neuroscience labs). Mapping fidelity moderate: the paper argues for salience/surprise but does not use formal PE language or precision-weighting. Transfer risk elevated because the claim is theoretical and the debate about the pain matrix is ongoing; this is strong conceptual support but not direct PE quantification."
+  }
+}
