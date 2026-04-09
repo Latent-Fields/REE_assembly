@@ -6674,6 +6674,11 @@
     z_harm_a (affective stream, SD-011) does NOT need a forward model -- it is not used in
     counterfactuals. Registered 2026-03-24.
     See thought intake: evidence/planning/thought_intake_2026-03-24_dual_nociceptive_streams.md
+  implementation_note: >
+    2026-04-09: E2HarmSForward implemented in ree_core/predictors/e2_harm_s.py (wraps
+    ResidualHarmForward, residual delta architecture). LatentStackConfig.use_e2_harm_s_forward
+    added; REEConfig.from_dims() wired. Validation experiment V3-EXQ-264 queued (phased
+    training, 2 conditions x 3 seeds). Design doc at docs/architecture/arc_033_e2_harm_s_forward_model.md.
 
 - id: INV-034
   title: "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance."
@@ -10026,6 +10031,13 @@
     streams to produce useful attribution maps, without which ree-v3 cannot
     consolidate contextual knowledge and remains behaviourally impoverished
     regardless of the quality of the online waking substrate.
+  implementation_note: >
+    2026-04-09: First-class SWS-analog and REM-analog passes implemented in REEAgent
+    (run_sws_schema_pass, run_rem_attribution_pass, run_sleep_cycle). Config params:
+    sws_enabled, sws_consolidation_steps, sws_schema_weight, rem_enabled, rem_attribution_steps
+    (all default False/0). All wired through REEConfig.from_dims(). Validation experiment
+    V3-EXQ-265 queued (2 conditions x 3 seeds, ~45 min). Distinguishes from EXQ-242
+    (proxy hooks, non_contributory) -- this is the first-class substrate implementation.
 
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
@@ -11493,6 +11505,13 @@
     LONG_HORIZON performance. Expected at V3 with partial substrate; joint-necessity finding
     valid regardless. Promoted to provisional (governance 2026-04-08). overall_conf=0.914,
     conflict_ratio=0, 4 experimental PASSes.
+  literature_confidence: 0.864
+  literature_evidence: |
+    4 entries in evidence/literature/targeted_review_inv_052/.
+    Cools et al. (2011, Neuropsychopharmacology): serotonin and dopamine unified affective/activational account.
+    Boureau & Dayan (2011, Neural Comput): opponent serotonin-dopamine interaction model.
+    Dayan & Huys (2009, PLoS Comput Biol): serotonin and affective control of learning.
+    Dayan & Huys (2008, Adv Neural Info Proc): serotonin, inhibition, and negative mood states.
 
 - id: INV-053
   title: "Chronic harm-dominated environments produce a self-maintaining depressive attractor: z_goal seeding failure, terrain collapse, and HABIT/PLANNED behavioural equivalence."
@@ -11577,6 +11596,15 @@
     on available positive affordances, (3) interventions targeting benefit availability
     (not just stress reduction) should be therapeutic.
   suggested_experiment_type: environmental_parameter_sweep
+  literature_confidence: 0.804
+  literature_evidence: |
+    6 entries in evidence/literature/targeted_review_q_034/.
+    Pizzagalli (2014, Annu Rev Clin Psychol): stress-reward interaction model; reward engagement buffers against stress-induced dopamine reduction. (confidence 0.60)
+    Rolls (2016, Eur Neuropsychopharmacol): non-reward attractor theory of depression. (confidence 0.65)
+    Nesse (2000, Psychiatry): evolutionary adaptation account; depression as response to unwinnable situations. (confidence 0.55)
+    Maier & Seligman (2016, Psychol Rev): learned helplessness at 50; controllability (resource access) is the threshold parameter, not stressor intensity. (confidence 0.67)
+    Lehmann & Herkenham (2011, J Neurosci): enriched environment prevents social defeat depression; same hazard, higher resource density -> protection. (confidence 0.66)
+    Baik (2020, Exp Mol Med): stress suppresses mesolimbic dopamine reward system; reward availability modulates coping. (confidence 0.52)
 
 - id: INV-055
   title: "A pre-childhood infant stage is developmentally necessary: prior to deliberate planning, the agent must accumulate a valence map, behavioral repertoire, and harm/benefit geography through novelty-driven, sleep-dominant, damage-protected exploration."
@@ -13219,6 +13247,13 @@
     aux loss target changes.
   registered: "2026-04-08"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
+  literature_confidence: 0.915
+  literature_evidence: |
+    4 entries in evidence/literature/targeted_review_connectome_sd_020/.
+    Hoskin et al. (2023, J Neurosci): anterior insula encodes adaptive PE, not raw magnitude.
+    Geuter et al. (2017, eLife): anterior/posterior insula PE dissociation.
+    Horing et al. (2022, J Neurosci): unsigned PE surprise signal in insula.
+    Iannetti & Mouraux (2010, J Neurophysiol): pain matrix as salience detector, not nociceptive.
 
 - id: SD-021
   title: "Descending pain modulation: when E3 is committed to a trajectory through expected harm, z_harm_s PE precision is reduced (endogenous analgesia). Commitment gates sensory harm attenuation."
@@ -13260,6 +13295,13 @@
     PE precision should be reduced.
   registered: "2026-04-08"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
+  literature_confidence: 0.894
+  literature_evidence: |
+    4 entries in evidence/literature/targeted_review_connectome_sd_021/.
+    Crawford et al. (2021, PNAS): brainstem mechanisms of placebo analgesia (7T fMRI; PAG, LC).
+    Tracey & Mantyh (2007, Neuron): cerebral signature of pain and its modulation (review).
+    Basbaum & Fields (1984, Annu Rev Neurosci): descending pain modulation (PAG-RVM pathway).
+    Eippert et al. (2009, Science): opioidergic brainstem placebo analgesia (direct fMRI).
 
 - id: MECH-220
   title: harm_stream_hub_coordination
@@ -13292,6 +13334,13 @@
     performance degradation vs the coordinated version.
   registered: "2026-04-08"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
+  literature_confidence: 0.878
+  literature_evidence: |
+    4 entries in evidence/literature/targeted_review_connectome_mech_220/.
+    Wager et al. (2013, NEJM): fMRI-based neurologic signature of physical pain (NPS).
+    Menon & Uddin (2010, TICS): saliency, switching, attention and control (insula hub).
+    Seeley et al. (2007, J Neurosci): salience network and insular-ACC hub.
+    Wiech et al. (2010, Neuron): perceptual salience and modulatory role of insula in pain.
 
 - id: ARC-052
   title: harm_precision_weighting
