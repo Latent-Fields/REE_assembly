@@ -1,0 +1,105 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "consolidate_final_harm_rate": 0.15410958600467262,
+    "no_consolidate_final_harm_rate": 0.13513552623043457,
+    "consolidate_acq_speed": 97.4,
+    "no_consolidate_acq_speed": 93.4,
+    "consolidation_benefit_ratio": 2.046847667950793,
+    "consolidation_passes_avg": 20.0,
+    "target_harm_rate": 0.05,
+    "block_size": 20.0,
+    "consolidate_interval": 10.0,
+    "training_episodes": 200.0,
+    "n_seeds": 5.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "criteria_met": 1.0,
+    "majority_threshold": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-240a -- ARC-038 Waking Consolidation Mode Probe\n\n**Status:** FAIL\n**Claims:** ARC-038\n**Decision:** inconclusive_diagnostic\n**Purpose:** diagnostic\n**Seeds:** [42, 7, 123, 0, 99]\n\n## Design\n\nCONSOLIDATE vs NO_CONSOLIDATE: after every K=10 episodes, CONSOLIDATE condition runs hippocampal.replay() (no z_goal) + residue_field.integrate() (offline map-geometry update). NO_CONSOLIDATE skips these calls entirely.\n\ntarget_harm_rate=0.05 (reachable).\nMajority rule: >= 3/5 seeds required per criterion.\n\n## Results\n\n| Condition | Final Harm Rate | Acq Speed | Benefit Ratio |\n|---|---|---|---|\n| CONSOLIDATE | 0.15411 | 97.4 | 2.047 |\n| NO_CONSOLIDATE | 0.13514 | 93.4 | (baseline) |\n\n## PASS Criteria\n\n| Criterion | Result | Seeds Met | Detail |\n|---|---|---|---|\n| C1: CONSOLIDATE final_harm < NO_CONSOLIDATE | PASS | 3/5 | 0.15411 vs 0.13514 |\n| C2: CONSOLIDATE acq_speed < NO_CONSOLIDATE | FAIL | 2/5 | 97.4 vs 93.4 |\n| C3: benefit_ratio > 1.1 | FAIL | 2/5 | ratio=2.047 |\n\nPASS = C1 AND (C2 OR C3). Status: **FAIL**\n\n## Per-Seed\n\n  seed=42 env=100: c_final=0.22913 nc_final=0.23717 ratio=1.035 c_acq=37 nc_acq=200 passes=20\n  seed=7 env=200: c_final=0.01230 nc_final=0.08320 ratio=6.765 c_acq=21 nc_acq=26 passes=20\n  seed=123 env=300: c_final=0.05285 nc_final=0.06421 ratio=1.215 c_acq=29 nc_acq=21 passes=20\n  seed=0 env=400: c_final=0.23929 nc_final=0.22826 ratio=0.954 c_acq=200 nc_acq=200 passes=20\n  seed=99 env=500: c_final=0.23698 nc_final=0.06284 ratio=0.265 c_acq=200 nc_acq=20 passes=20\n\n## Diagnostic Notes\n\n- C2 FAIL (2/5 seeds): acquisition speed CONSOLIDATE=97.4 not < NO_CONSOLIDATE=93.4.\n- C3 FAIL (2/5 seeds): benefit_ratio=2.047 not > 1.1 threshold.\n",
+  "claim_ids": [
+    "ARC-038"
+  ],
+  "experiment_purpose": "diagnostic",
+  "per_seed_results": [
+    {
+      "experiment_seed": 42,
+      "env_seed": 100,
+      "consolidate_final_harm": 0.2291271686553955,
+      "no_consolidate_final_harm": 0.23717417097091675,
+      "consolidate_acq_speed": 37,
+      "no_consolidate_acq_speed": 200,
+      "consolidation_benefit_ratio": 1.0351202450706483,
+      "consolidation_passes": 20,
+      "c1_seed": true,
+      "c2_seed": true,
+      "c3_seed": false
+    },
+    {
+      "experiment_seed": 7,
+      "env_seed": 200,
+      "consolidate_final_harm": 0.012298016651719808,
+      "no_consolidate_final_harm": 0.08319859553948045,
+      "consolidate_acq_speed": 21,
+      "no_consolidate_acq_speed": 26,
+      "consolidation_benefit_ratio": 6.765204332996702,
+      "consolidation_passes": 20,
+      "c1_seed": true,
+      "c2_seed": true,
+      "c3_seed": true
+    },
+    {
+      "experiment_seed": 123,
+      "env_seed": 300,
+      "consolidate_final_harm": 0.05285427846217241,
+      "no_consolidate_final_harm": 0.06421000400632619,
+      "consolidate_acq_speed": 29,
+      "no_consolidate_acq_speed": 21,
+      "consolidation_benefit_ratio": 1.214849693810143,
+      "consolidation_passes": 20,
+      "c1_seed": true,
+      "c2_seed": false,
+      "c3_seed": true
+    },
+    {
+      "experiment_seed": 0,
+      "env_seed": 400,
+      "consolidate_final_harm": 0.2392870052655538,
+      "no_consolidate_final_harm": 0.22825775346159935,
+      "consolidate_acq_speed": 200,
+      "no_consolidate_acq_speed": 200,
+      "consolidation_benefit_ratio": 0.9539078530749528,
+      "consolidation_passes": 20,
+      "c1_seed": false,
+      "c2_seed": false,
+      "c3_seed": false
+    },
+    {
+      "experiment_seed": 99,
+      "env_seed": 500,
+      "consolidate_final_harm": 0.2369814609885216,
+      "no_consolidate_final_harm": 0.06283710717385013,
+      "consolidate_acq_speed": 200,
+      "no_consolidate_acq_speed": 20,
+      "consolidation_benefit_ratio": 0.2651562148015186,
+      "consolidation_passes": 20,
+      "c1_seed": false,
+      "c2_seed": false,
+      "c3_seed": false
+    }
+  ],
+  "evidence_direction": "does_not_support",
+  "experiment_type": "v3_exq_240a_arc038_waking_consolidation_probe",
+  "fatal_error_count": 0,
+  "diagnostic_notes": [
+    "C2 FAIL (2/5 seeds): acquisition speed CONSOLIDATE=97.4 not < NO_CONSOLIDATE=93.4.",
+    "C3 FAIL (2/5 seeds): benefit_ratio=2.047 not > 1.1 threshold."
+  ],
+  "run_timestamp": "20260409T062319Z",
+  "claim": "ARC-038",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_240a_arc038_waking_consolidation_probe_20260409T062319Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
