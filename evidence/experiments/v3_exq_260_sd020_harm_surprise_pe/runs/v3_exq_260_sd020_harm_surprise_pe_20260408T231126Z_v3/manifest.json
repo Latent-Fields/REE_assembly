@@ -24,9 +24,10 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "SD-020 non_contributory: SD-020 is a design decision specifying that z_harm_a should train on surprise PE rather than raw accumulated harm state. The current substrate trains z_harm_a as an EMA accumulator (the old design). The FAIL simply confirms that the new design is not yet implemented -- it does not provide evidence that the PE-training approach is wrong. Substrate gap; retestable after SD-020 is implemented. SD-011 direction (supports) preserved: stream distinctness (C-related criteria) passed.",
   "evidence_direction_per_claim": {
-    "SD-020": "weakens",
+    "SD-020": "non_contributory",
     "SD-011": "supports"
   },
   "experiment_purpose": "evidence",

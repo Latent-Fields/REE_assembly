@@ -23,7 +23,8 @@
     "MECH-205"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by EXQ-258b. Root cause: pe_surprise_threshold=0.001 was ~53x too high vs observed mean_surprise=1.86e-5; surprise writes never fired during the run. EXQ-258b lowered threshold to 1e-5 and PASSed. This run's FAIL reflects a threshold calibration bug, not the claim mechanism.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {

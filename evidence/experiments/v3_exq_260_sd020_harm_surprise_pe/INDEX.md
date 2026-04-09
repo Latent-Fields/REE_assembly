@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_260_sd020_harm_surprise_pe
 
-Generated: `2026-04-09T17:03:31.080453Z`
+Generated: `2026-04-09T17:17:18.210154Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-04-09T17:03:31.080453Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3` | `2026-04-09T06:26:09.832876Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3/summary.md) / [`manifest`](runs/v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3/manifest.json) / [`metrics`](runs/v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3/metrics.json) |
+| `v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3` | `2026-04-09T17:16:22.255891Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3/summary.md) / [`manifest`](runs/v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3/manifest.json) / [`metrics`](runs/v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3/metrics.json) |

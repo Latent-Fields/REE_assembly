@@ -24,9 +24,10 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "SD-021 non_contributory: SD-021 requires commitment-gated precision modulation of z_harm_s (endogenous analgesia during committed trajectories). This depends on ARC-016 (dynamic precision) and MECH-090 (beta oscillation gating), neither of which is fully implemented. The FAIL confirms the feature is absent from the current substrate, not that the design decision is wrong. Substrate gap; retestable after SD-021 is implemented. SD-011 direction (supports) preserved.",
   "evidence_direction_per_claim": {
-    "SD-021": "weakens",
+    "SD-021": "non_contributory",
     "SD-011": "supports"
   },
   "experiment_purpose": "evidence",

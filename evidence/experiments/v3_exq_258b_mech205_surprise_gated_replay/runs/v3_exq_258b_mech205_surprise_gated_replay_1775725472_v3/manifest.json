@@ -1,10 +1,10 @@
 {
   "schema_version": "experiment_pack/v1",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "experiment_type": "v3_exq_258_mech205_surprise_gated_replay",
-  "run_id": "v3_exq_258_mech205_surprise_gated_replay_1775567619_v3",
-  "status": "FAIL",
-  "timestamp_utc": "2026-04-07T13:13:39Z",
+  "experiment_type": "v3_exq_258b_mech205_surprise_gated_replay",
+  "run_id": "v3_exq_258b_mech205_surprise_gated_replay_1775725472_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-04-09T09:04:32Z",
   "source_repo": {
     "name": "ree-v3",
     "commit": "",
@@ -23,8 +23,7 @@
     "MECH-205"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "superseded",
-  "evidence_direction_note": "Superseded by EXQ-258a and EXQ-258b. Root cause: (1) experiment script checked nonexistent _rbf_layer attr (should be rbf_field) so P1 was always False, (2) pe_ema_alpha=0.1 tracked PE too fast. EXQ-258b with all bugs fixed PASSed. This run's FAIL reflects implementation bugs, not the claim mechanism.",
+  "evidence_direction": "supports",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {

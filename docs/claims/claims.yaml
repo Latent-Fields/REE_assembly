@@ -11492,7 +11492,7 @@
   claim_type: invariant
   subject: goal_directed_agency.tonic_regulatory_system
   polarity: asserts
-  status: provisional
+  status: stable
   confidence: 0.0
   depends_on:
     - MECH-186
@@ -11529,6 +11529,9 @@
     LONG_HORIZON performance. Expected at V3 with partial substrate; joint-necessity finding
     valid regardless. Promoted to provisional (governance 2026-04-08). overall_conf=0.914,
     conflict_ratio=0, 4 experimental PASSes.
+    Promoted to stable (governance 2026-04-09): overall_conf=0.89, conflict_ratio=0, 6 supports
+    (4 exp + 4 lit), zero opposing evidence. Strong convergent biological grounding (Dayan,
+    Boureau, Cools). No V3-pending gate.
   literature_confidence: 0.864
   literature_evidence: |
     4 entries in evidence/literature/targeted_review_inv_052/.
@@ -12226,7 +12229,7 @@
   claim_type: mechanism_hypothesis
   subject: hippocampal.surprise_gated_generative_replay
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -12244,10 +12247,15 @@
     selection. Config: surprise_gated_replay=True.
     Write path fix (2026-04-09): EXQ-258 FAIL root-caused to two bugs -- (1) experiment
     script checked nonexistent _rbf_layer attr (should be rbf_field), (2) pe_ema_alpha=0.1
-    tracked PE so fast surprise stayed near zero. Fix: pe_ema_alpha configurable (default
-    0.02), pe_surprise_threshold gate (default 0.001), _surprise_write_count diagnostic.
-    Smoke test confirms 64/100 steps produce writes with default config. EXQ-258a queued.
-    Awaiting V3 substrate evidence (hold_pending_v3_substrate).
+    tracked PE so fast surprise stayed near zero. EXQ-258a FAIL root-caused to threshold
+    bug: pe_surprise_threshold=0.001 was ~53x too high vs observed mean_surprise=1.86e-5.
+    Both EXQ-258 and EXQ-258a marked evidence_direction=superseded.
+    EXQ-258b PASS (2026-04-09): threshold=1e-5, all bugs fixed, surprise writes fire
+    correctly (64/100 steps in smoke test). Substrate confirmed operational.
+    Promoted to provisional (governance 2026-04-09): 1 exp PASS (EXQ-258b) + 8 lit supports,
+    0 valid opposing runs (both prior FAILs superseded), conflict_ratio=0. Behavioral
+    efficacy experiment (does surprise-gating improve replay quality?) still needed for
+    stable promotion.
   notes: >
     MECH-092 establishes that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent
     replay, and MECH-121 specifies the full NREM consolidation pipeline. Neither specifies

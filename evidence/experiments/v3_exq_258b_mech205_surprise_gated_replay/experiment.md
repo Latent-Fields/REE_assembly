@@ -1,4 +1,4 @@
-# Experiment: v3_exq_261_sd021_descending_pain_mod
+# Experiment: v3_exq_258b_mech205_surprise_gated_replay
 
 ## What it tests
 
@@ -11,10 +11,5 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-Recent failure runs:
-- `v3_exq_261_sd021_descending_pain_mod_20260408T231136Z_v3` at `2026-04-09T17:16:26.732473Z` signatures: none
-
-Recurring signatures:
-
-Suggested design TODOs:
+No recent FAIL runs. Keep monitoring key stop metrics.
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->
