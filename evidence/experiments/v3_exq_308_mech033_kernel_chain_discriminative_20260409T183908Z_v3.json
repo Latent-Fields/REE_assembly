@@ -1,0 +1,125 @@
+{
+  "run_id": "v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3",
+  "experiment_type": "v3_exq_308_mech033_kernel_chain_discriminative",
+  "claim_ids": [
+    "MECH-033"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "backlog_id": "EVB-0051",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "decision": "retain_ree",
+  "evidence_class": "discriminative_pair",
+  "registered_thresholds": {
+    "THRESH_C2_MIN_REDUCTION": 0.01,
+    "THRESH_C3_E2_QUALITY": 0.2,
+    "THRESH_C4_MIN_CONTACTS": 5,
+    "THRESH_C5_PROX_R2": 0.05
+  },
+  "criteria": {
+    "C1_chain_harm_rate_lower_than_no_chain": true,
+    "C2_mean_harm_reduction_above_threshold": true,
+    "C3_e2_world_forward_r2_quality": true,
+    "C4_no_chain_sufficient_harm_contacts": true,
+    "C5_resource_prox_r2_quality": true,
+    "mean_harm_reduction_delta": 0.06048398503367083,
+    "per_seed_deltas": [
+      0.06128798409879177,
+      0.0591400525553225,
+      0.061023918446898195
+    ]
+  },
+  "summary_metrics": {
+    "chain_harm_rate": 0.00030104281230767567,
+    "no_chain_harm_rate": 0.0607850278459785,
+    "chain_n_harm_events": 25.333333333333332,
+    "no_chain_n_harm_events": 4169.666666666667,
+    "mean_world_forward_r2": 0.9609091989184674,
+    "mean_resource_prox_r2": 0.7825050404195725,
+    "mean_harm_reduction_delta": 0.06048398503367083
+  },
+  "protocol": {
+    "warmup_episodes": 600,
+    "eval_episodes": 50,
+    "steps_per_episode": 100,
+    "chain_depth": 3,
+    "lr": 0.0003,
+    "r2_eval_steps": 1000,
+    "drive_weight": 2.0
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "sd_features": {
+    "use_resource_proximity_head": true,
+    "drive_weight": 2.0,
+    "sd_018_description": "ResourceProximityHead(Linear(32,1)+Sigmoid) trains on max(resource_field_view)",
+    "sd_012_description": "drive_weight=2.0 tracks drive_level=1-energy in eval metrics"
+  },
+  "prior_evidence": {
+    "EXQ-055": "PASS (action-object chaining 67x harm reduction vs random)",
+    "EXQ-124": "FAIL (warmup insufficient; E2 not trained before eval)",
+    "EXQ-171": "PASS (fixed warmup to 600 episodes; 2-seed replication)",
+    "EXQ-184": "PASS (3-seed replication, no SD-018/SD-012)"
+  },
+  "scenario": "Discriminative pair for MECH-033 (EVB-0051). Two conditions: KERNEL_CHAIN vs NO_CHAIN (random baseline). KERNEL_CHAIN: at each eval step, roll out ACTION_DIM=5 candidates k=3 steps using E2WorldForward + HarmHead; select action minimising cumulative predicted harm. NO_CHAIN: uniform random action selection. Shared warmup (600 eps): random-action training of WorldEncoder+ ResourceProximityHead (SD-018) + SelfEncoder + E2WorldForward + HarmHead (Adam lr=3e-4, joint optimizer). SD-018: MSE loss on max(resource_field_view) target via sigmoid head on z_world. SD-012: drive_weight=2.0 (drive_level=1-energy). E2 convergence: R^2 on 1000 fresh random transitions after warmup. SD-018 quality: ProximityHead R^2 on 500 fresh random steps. Eval: 50 episodes per condition per seed. 2 conditions x 3 seeds = 6 eval cells. CausalGridWorldV2 size=8 num_hazards=3 num_resources=3 hazard_harm=0.02.",
+  "interpretation": "PASS -> MECH-033 supported with well-grounded z_world (SD-018 resource proximity supervision). E2 kernel rollouts reduce harm >= 1 pp across all 3 seeds. Extends EXQ-184 PASS into current substrate defaults. FAIL C5 (prox R^2 < 0.05) -> SD-018 head not converging with 600 episodes; increase warmup or adjust resource_proximity_weight. FAIL C3 (E2 R^2 < 0.20) -> Inconclusive; E2 not trained enough. FAIL C1 (C3+C4+C5 pass, chaining hurts) -> Weakens MECH-033 under SD-018 conditions; possible overfitting of proximity head bias. FAIL C2 (C1 pass, delta < 0.01) -> Direction correct but small effect; mixed evidence.",
+  "per_seed_results": {
+    "KERNEL_CHAIN": [
+      {
+        "condition": "KERNEL_CHAIN",
+        "seed": 42,
+        "harm_rate": 0.0002280396829843521,
+        "n_harm_events": 20,
+        "world_forward_r2": 0.9491882501972009,
+        "resource_prox_r2": 0.728920062287411
+      },
+      {
+        "condition": "KERNEL_CHAIN",
+        "seed": 7,
+        "harm_rate": 0.0003286515198946,
+        "n_harm_events": 29,
+        "world_forward_r2": 0.9620276771203621,
+        "resource_prox_r2": 0.7986109476107908
+      },
+      {
+        "condition": "KERNEL_CHAIN",
+        "seed": 13,
+        "harm_rate": 0.000346437234044075,
+        "n_harm_events": 27,
+        "world_forward_r2": 0.9715116694378392,
+        "resource_prox_r2": 0.8199841113605157
+      }
+    ],
+    "NO_CHAIN": [
+      {
+        "condition": "NO_CHAIN",
+        "seed": 42,
+        "harm_rate": 0.06151602378177612,
+        "n_harm_events": 4179,
+        "world_forward_r2": 0.9491882501972009,
+        "resource_prox_r2": 0.728920062287411
+      },
+      {
+        "condition": "NO_CHAIN",
+        "seed": 7,
+        "harm_rate": 0.0594687040752171,
+        "n_harm_events": 4125,
+        "world_forward_r2": 0.9620276771203621,
+        "resource_prox_r2": 0.7986109476107908
+      },
+      {
+        "condition": "NO_CHAIN",
+        "seed": 13,
+        "harm_rate": 0.06137035568094227,
+        "n_harm_events": 4205,
+        "world_forward_r2": 0.9715116694378392,
+        "resource_prox_r2": 0.8199841113605157
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "20260409T183908Z"
+}
