@@ -13423,6 +13423,13 @@
     Further extension: ambient "object presence" gradient for every object type
     (full "all objects emit" implementation) is deferred -- SD-023 is the minimum needed.
   registered: "2026-04-09"
+  implementation_note: >
+    IMPLEMENTED 2026-04-09 in CausalGridWorldV2 (ree_core/environment/causal_grid_world.py).
+    New params: n_landmarks_a (int, default 0), n_landmarks_b (int, default 0),
+    landmark_a_sigma=1.5, landmark_a_scale=1.0, landmark_b_sigma=2.5, landmark_b_scale=0.6,
+    landmark_b_resource_bias=0.7. world_obs_dim: 250 -> 300 when landmarks enabled.
+    obs_dict keys: landmark_a_field_view [25], landmark_b_field_view [25].
+    Backward compatible: all defaults 0/disabled. Validation: V3-EXQ-263b queued.
 
 - id: MECH-220
   title: harm_stream_hub_coordination
