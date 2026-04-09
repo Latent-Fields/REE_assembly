@@ -1,19 +1,45 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-04-08T18:59:49.314822+00:00",
-  "last_updated": "2026-04-08T23:40:17.843471+00:00",
-  "idle": true,
-  "current": null,
+  "runner_pid": 86389,
+  "runner_started_at": "2026-04-09T06:19:31.718338+00:00",
+  "last_updated": "2026-04-09T06:20:02.280261+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-240a",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "ARC-038 Waking Consolidation Mode Probe (substrate fix re-run)",
+    "description": "",
+    "script": "experiments/v3_exq_240a_arc038_waking_consolidation_probe.py",
+    "started_at": "2026-04-09T06:19:37.238969+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 200,
+      "episodes_total": 200,
+      "overall_pct": 100.0
+    },
+    "seconds_elapsed": 25,
+    "seconds_remaining": 0,
+    "recent_lines": [
+      "[NO_CONSOLIDATE] ep 100/200 harm_rate=0.23429 recent_10_mean=0.24529 consolidations=0",
+      "[NO_CONSOLIDATE] ep 150/200 harm_rate=0.26246 recent_10_mean=0.23365 consolidations=0",
+      "[NO_CONSOLIDATE] ep 200/200 harm_rate=0.20200 recent_10_mean=0.23462 consolidations=0",
+      "[V3-EXQ-240a] seed=7 env_seed=200 train_eps=200 steps=200 consolidate_every=10",
+      "[CONSOLIDATE] env_seed=200..."
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-260b",
+      "queue_id": "V3-EXQ-240a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-020: z_harm_a surprise PE training vs raw accumulation",
+      "title": "ARC-038 Waking Consolidation Mode Probe (substrate fix re-run)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -4842,7 +4868,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 1722.7
+    },
+    {
+      "queue_id": "V3-EXQ-263",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-216: E1 predictive wanting schema readout validation",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-04-09T06:19:33.241751+00:00",
+      "completed_at": "2026-04-09T06:19:34.844303+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1.6
     }
-  ],
-  "draining": false
+  ]
 }
