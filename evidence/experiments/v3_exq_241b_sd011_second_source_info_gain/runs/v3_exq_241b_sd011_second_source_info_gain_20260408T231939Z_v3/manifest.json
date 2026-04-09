@@ -6,7 +6,8 @@
   ],
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "status": "FAIL",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Substrate ceiling, not scientific failure of SD-011. r2_s_to_a=0.99 (mean across seeds) regardless of harm_history extension because both streams derive from the same world signal (hazard proximity EMA). CausalGridWorldV2 cannot produce the causal independence the A-delta/C-fiber distinction requires: an agent with damaged tissue in a safe area should have high z_harm_a and near-zero z_harm_s, which is structurally impossible when harm_obs_a is an EMA of the same proximity fields as harm_obs. SD-022 (directional limb damage, registered 2026-04-09) is the correct fix: harm_obs_a re-sourced from body damage state that persists when the agent leaves the hazard zone. Retestable once SD-022 is implemented.",
   "timestamp_utc": "20260408T231939Z",
   "seeds": [
     42,

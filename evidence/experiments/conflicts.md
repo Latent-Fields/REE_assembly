@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-09T17:01:58.638277Z`
+Generated: `2026-04-09T17:03:31.080453Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -48,7 +48,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-186` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015` | 5 |
 | `MECH-188` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_253_mech188_zgoal_injection_1775556946_v3` | 6 |
 | `MECH-205` | directional, source_disagreement | 8 | 2 | 0.4 | `v3_exq_258a_mech205_surprise_gated_replay_1775693658_v3` | 10 |
-| `MECH-220` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-04-09_mech_220_salience_perceptual_wiech2010` | 5 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3` | 7 |
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
@@ -59,7 +58,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-005` | directional, source_disagreement, mixed_evidence | 11 | 16 | 0.815 | `v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3` | 33 |
 | `SD-007` | directional, mixed_evidence | 17 | 9 | 0.692 | `v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3` | 27 |
 | `SD-010` | directional, mixed_evidence | 7 | 1 | 0.25 | `20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3` | 25 |
-| `SD-011` | directional, mixed_evidence | 20 | 6 | 0.462 | `v3_exq_241b_sd011_second_source_info_gain_20260408T231939Z_v3` | 47 |
+| `SD-011` | directional, mixed_evidence | 20 | 5 | 0.4 | `v3_exq_241b_sd011_second_source_info_gain_20260408T231939Z_v3` | 47 |
 | `SD-012` | directional, source_disagreement, mixed_evidence | 6 | 6 | 1 | `v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3` | 24 |
 | `SD-015` | directional, source_disagreement, mixed_evidence | 4 | 3 | 0.857 | `v3_exq_085m_arc030_benefit_eval_e3_20260330T211858Z_v3` | 14 |
 | `SD-020` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-04-09_sd_020_pain_matrix_salience_iannetti2010` | 5 |
@@ -851,26 +850,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### MECH-220
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.739
-- Recent entries:
-  - `2026-04-09T06:26:09.834006Z` `experimental` `v3_exq_262_mech220_harm_hub` direction=`weakens` confidence=0.75
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.68
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.8
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.72
-  - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.82
-- Recurring failure signatures:
-  - `If the pain signature could be reduced to a single region (e.g. posterior insula alone) without loss, the dual-stream coordination argument would be weakened` (1)
-  - `If the ACC component of the signature reflected only motor preparation rather than affective valuation, the harm-load mapping would be undermined` (1)
-  - `The hub model treats insula and ACC as coordinating partners -- if they were truly independent with no cross-stream influence, the salience network framing would not hold` (1)
-  - `If the insula-ACC coupling only reflects co-activation rather than directed coordination, the hub interpretation is weakened` (1)
-  - `If the salience network found here reflected only attentional set rather than affective amplification, the mapping to hypervigilance-gated sensory precision would be weakened` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### Q-001
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.68
@@ -1053,13 +1032,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-011
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=20, weakens=6, conflict_ratio=0.462, overall_confidence=0.856
+- Evidence breakdown: supports=20, weakens=5, conflict_ratio=0.4, overall_confidence=0.857
 - Recent entries:
   - `2026-04-09T06:26:09.832876Z` `experimental` `v3_exq_260_sd020_harm_surprise_pe` direction=`supports` confidence=0.55
   - `2026-04-09T06:26:09.833453Z` `experimental` `v3_exq_261_sd021_descending_pain_mod` direction=`supports` confidence=0.55
-  - `2026-04-09T06:26:09.834006Z` `experimental` `v3_exq_262_mech220_harm_hub` direction=`supports` confidence=0.55
+  - `2026-04-09T17:03:11.704818Z` `experimental` `v3_exq_262_mech220_harm_hub` direction=`supports` confidence=0.55
   - `20260408T190019Z` `experimental` `v3_exq_241a_sd011_second_source_validation` direction=`non_contributory` confidence=0
-  - `20260408T231939Z` `experimental` `v3_exq_241b_sd011_second_source_info_gain` direction=`weakens` confidence=0.75
+  - `20260408T231939Z` `experimental` `v3_exq_241b_sd011_second_source_info_gain` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.` (1)
   - `The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified.` (1)

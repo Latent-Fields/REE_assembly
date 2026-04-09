@@ -24,9 +24,10 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "MECH-220 (hub coordination) is non_contributory: fwd_r2 < -0.89 in ALL conditions including NO_HUB, and stream_corr is identical across NO_HUB/S_TO_A_HUB/BIDI_HUB within each seed -- the hub has zero effect because ARC-033/E2HarmSForward is not learning (forward model prerequisite missing). The experiment cannot distinguish hub effects from no-hub when the baseline forward model is already broken. SD-011 per-claim direction (supports) stands: C2 (stream distinctness) passed with ceiling=0.85 across 3 seeds. Overall direction set to non_contributory because the primary claim under test (MECH-220) cannot be evaluated.",
   "evidence_direction_per_claim": {
-    "MECH-220": "weakens",
+    "MECH-220": "non_contributory",
     "SD-011": "supports"
   },
   "experiment_purpose": "evidence",

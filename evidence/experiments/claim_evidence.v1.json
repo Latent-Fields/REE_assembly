@@ -14052,49 +14052,33 @@
       }
     },
     "MECH-220": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.324, lit_conf=0.878",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.878",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 5,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:fmri_connectivity": 3,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.324,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
       "latest_run_id": "2026-04-09_mech_220_salience_perceptual_wiech2010",
       "latest_timestamp_utc": "2026-04-09T15:00:00Z",
       "literature_confidence": 0.878,
-      "overall_confidence": 0.739,
+      "overall_confidence": 0.878,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-220",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_262_mech220_harm_hub",
-          "failure_signatures": [],
-          "run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-09T06:26:09.834006Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-220",
@@ -14164,9 +14148,9 @@
           "timestamp_utc": "2026-04-09T15:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 4,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 4
       }
     },
@@ -17654,7 +17638,7 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=12 entry(s), lit=13 entry(s), exp_conf=0.803, lit_conf=0.909",
+      "confidence_rationale": "exp=12 entry(s), lit=13 entry(s), exp_conf=0.804, lit_conf=0.909",
       "direction_counts": {
         "mixed": 1,
         "supports": 20,
@@ -17672,7 +17656,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.803,
+      "experimental_confidence": 0.804,
       "fail_runs": 8,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -17682,9 +17666,9 @@
         "weakens": 4
       },
       "latest_run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
-      "latest_timestamp_utc": "2026-04-09T06:26:09.834006Z",
+      "latest_timestamp_utc": "2026-04-09T17:03:11.704818Z",
       "literature_confidence": 0.909,
-      "overall_confidence": 0.856,
+      "overall_confidence": 0.857,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -17764,7 +17748,7 @@
           "run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-04-09T06:26:09.834006Z"
+          "timestamp_utc": "2026-04-09T17:03:11.704818Z"
         }
       ],
       "runs_total": 25,
@@ -62747,36 +62731,6 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
-      "claim_id": "MECH-220",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
-      "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
-      "experiment_purpose": "evidence",
-      "experiment_type": "v3_exq_262_mech220_harm_hub",
-      "failure_signatures": [],
-      "run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
-      "source_type": "experimental",
-      "status": "FAIL",
-      "timestamp_utc": "2026-04-09T06:26:09.834006Z"
-    },
-    {
-      "architecture_epoch": "ree_hybrid_guardrails_v1",
-      "claim_id": "SD-011",
-      "confidence": 0.55,
-      "confidence_rationale": "direction/status mismatch",
-      "evidence_class": "exp:simulation",
-      "evidence_direction": "supports",
-      "experiment_purpose": "evidence",
-      "experiment_type": "v3_exq_262_mech220_harm_hub",
-      "failure_signatures": [],
-      "run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
-      "source_type": "experimental",
-      "status": "FAIL",
-      "timestamp_utc": "2026-04-09T06:26:09.834006Z"
-    },
-    {
-      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-203",
       "confidence": 0.72,
       "confidence_rationale": "Canonical review establishing the DRN serotonin waking-high / REM-silent firing pattern. Directly supports the claim that tonic 5-HT drops during sleep phases, enabling the replay-gating mechanism MECH-203 proposes. Source quality is high (peer-reviewed review, authoritative author). Mapping fidelity is moderate: the review documents state-dependent firing rates rather than replay prioritization per se, so the specific benefit-salience tagging function requires additional inferential steps.",
@@ -63248,6 +63202,37 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-220",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "non_contributory",
+      "experiment_purpose": "evidence",
+      "experiment_type": "v3_exq_262_mech220_harm_hub",
+      "failure_signatures": [],
+      "run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
+      "scoring_excluded": "non_contributory",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-04-09T17:03:11.704818Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_purpose": "evidence",
+      "experiment_type": "v3_exq_262_mech220_harm_hub",
+      "failure_signatures": [],
+      "run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-04-09T17:03:11.704818Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -63265,10 +63250,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "experiment_purpose": "diagnostic",
       "experiment_type": "v3_exq_241b_sd011_second_source_info_gain",
       "failure_signatures": [],
@@ -63279,7 +63264,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-09T17:01:58.638277Z",
+  "generated_at_utc": "2026-04-09T17:03:31.080453Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

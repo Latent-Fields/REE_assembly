@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_246_mech122_spindle_coordination
 
-Generated: `2026-04-09T17:01:58.638277Z`
+Generated: `2026-04-09T17:03:31.080453Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

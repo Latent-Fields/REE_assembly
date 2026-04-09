@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_224_mech124_zgoal_salience_diag
 
-Generated: `2026-04-09T17:01:58.638277Z`
+Generated: `2026-04-09T17:03:31.080453Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
