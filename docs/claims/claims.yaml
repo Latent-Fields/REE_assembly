@@ -4259,6 +4259,14 @@
     committed gate can be re-opened by selective interrupt (surprise-gated variance spike)
     without requiring full de-commitment from all harm contacts. Corroborates the
     gating architecture -- gate holds during expected harm, opens only on genuine surprise.
+  implementation_note: >
+    BISTABLE LATCH IMPLEMENTED 2026-04-10. REEAgent._e3_tick() and select_action() in
+    ree_core/agent.py. Config: HeartbeatConfig.beta_gate_bistable (bool, False default).
+    When bistable=True: gate elevates only on ENTRY to committed state (committed AND NOT
+    currently elevated); hippocampal completion signal triggers release via
+    beta_gate.receive_hippocampal_completion(hippocampal.compute_completion_signal(candidates)).
+    Previous behaviour (per-tick raise/release) preserved when beta_gate_bistable=False.
+    Backward compatible. Validation: V3-EXQ-321 queued.
   literature_evidence: |
     Jenkinson & Brown (2011) PMID 22018805 [DOI: 10.1016/j.tins.2011.09.003]:
     "Beta oscillations provide a measure of the likelihood that a new voluntary action
@@ -8006,6 +8014,13 @@
     gridworld confound structure) is unverified -- the gridworld may not have
     sufficient confounding for the bias to affect SD-003 results in practice.
     EXQ-115 PASS is a prerequisite before this claim becomes testable.
+  implementation_note: >
+    IMPLEMENTED 2026-04-10. E2HarmSConfig: use_interventional (bool, False default),
+    interventional_fraction (float, 0.3), interventional_margin (float, 0.1).
+    E2HarmSForward.compute_interventional_loss(z_harm_s, a_actual, a_cf): ReLU margin
+    loss forcing ||z_pred_actual - z_pred_cf|| >= interventional_margin. Applied to
+    interventional_fraction of each training batch. Location: ree_core/predictors/e2_harm_s.py.
+    Backward compatible: disabled by default. Validation: V3-EXQ-320 queued.
 
 - id: SD-014
   title: "Hippocampal map nodes must store an explicit 4-component valence vector (wanting, liking, harm-discriminative, surprise) updated incrementally per visit; replay prioritisation is weighted by drive-state-gated valence relevance."
@@ -8142,6 +8157,16 @@
     Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.703,
     conflict_ratio=0.889. EXQ-182a PASS adds a support entry. Resolution requires ARC-030
     and z_goal-to-behavior pathway to be validated.
+  implementation_note: >
+    IMPLEMENTED 2026-04-10. ResourceEncoder class in ree_core/latent/stack.py:
+    world_obs [250] -> Linear(250,64) -> ReLU -> Linear(64,32) -> z_resource [32];
+    resource_prox_head (Linear(32,1) + Sigmoid) -> resource_prox_pred_r [0,1].
+    LatentState fields added: z_resource, resource_prox_pred_r.
+    LatentStack.encode() calls ResourceEncoder when use_resource_encoder=True.
+    Config: LatentStackConfig.use_resource_encoder (False default), z_resource_dim (32 default).
+    agent.update_z_goal() seeds GoalState from z_resource when enabled.
+    agent.compute_resource_encoder_loss() provides MSE proximity supervision.
+    Backward compatible. Validation: V3-EXQ-322 queued.
 
 - id: MECH-135
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
@@ -13051,6 +13076,13 @@
   registered: "2026-04-08"
   depends_on: [SD-011, SD-010, ARC-016]
   location: docs/architecture/sensory_stream_tags.md#sd-019
+  implementation_note: >
+    IMPLEMENTED 2026-04-10. agent.compute_harm_nonredundancy_loss(latent_state) in
+    ree_core/agent.py. Projects z_harm_s and z_harm_a via learned Linear heads to
+    comparison dim; penalty = cosine_similarity^2; optional ARC-016 precision scaling:
+    penalty *= (1 + harm_nonredundancy_precision_scale * e3.current_precision / 500.0).
+    Config: REEConfig.harm_nonredundancy_weight (0.0 default), harm_nonredundancy_precision_scale
+    (0.0 default). Backward compatible. Validation: V3-EXQ-323 queued.
 
 - id: MECH-219
   title: affective_harm_hysteretic_integration
@@ -13334,6 +13366,14 @@
     Geuter et al. (2017, eLife): anterior/posterior insula PE dissociation.
     Horing et al. (2022, J Neurosci): unsigned PE surprise signal in insula.
     Iannetti & Mouraux (2010, J Neurophysiol): pain matrix as salience detector, not nociceptive.
+  implementation_note: >
+    IMPLEMENTED 2026-04-10. agent.compute_harm_accum_loss() in ree_core/agent.py now has
+    conditional PE path: when harm_surprise_pe_enabled=True, maintains self._harm_obs_ema
+    (updated each step at rate harm_obs_ema_alpha=0.1); training target becomes
+    harm_PE * precision_norm where harm_PE = |target - ema| and precision_norm =
+    min(e3.current_precision/500, 3.0). Config: REEConfig.harm_surprise_pe_enabled (False),
+    harm_obs_ema_alpha (0.1). ARC-016 precision wired via e3.current_precision property.
+    Backward compatible. Validation: V3-EXQ-324 queued.
 
 - id: SD-021
   title: "Descending pain modulation: when E3 is committed to a trajectory through expected harm, z_harm_s PE precision is reduced (endogenous analgesia). Commitment gates sensory harm attenuation."
@@ -13382,6 +13422,13 @@
     Tracey & Mantyh (2007, Neuron): cerebral signature of pain and its modulation (review).
     Basbaum & Fields (1984, Annu Rev Neurosci): descending pain modulation (PAG-RVM pathway).
     Eippert et al. (2009, Science): opioidergic brainstem placebo analgesia (direct fMRI).
+  implementation_note: >
+    IMPLEMENTED 2026-04-10. REEAgent.sense() in ree_core/agent.py. After LatentStack.encode(),
+    if harm_descending_mod_enabled=True and beta_gate.is_elevated and z_harm is not None:
+    new_latent.z_harm *= descending_attenuation_factor. z_harm_a NOT modified.
+    Config: REEConfig.harm_descending_mod_enabled (False), descending_attenuation_factor (0.5).
+    Design doc: docs/architecture/sd_021_descending_pain_modulation.md.
+    Backward compatible. Validation: V3-EXQ-325 queued.
 
 - id: SD-022
   title: "Directional limb damage: body extension for genuine z_harm_s / z_harm_a causal independence"
