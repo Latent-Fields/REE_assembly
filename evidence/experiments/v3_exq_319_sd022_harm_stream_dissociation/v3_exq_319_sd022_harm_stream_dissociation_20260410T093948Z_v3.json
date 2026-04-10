@@ -1,0 +1,189 @@
+{
+  "run_id": "v3_exq_319_sd022_harm_stream_dissociation_20260410T093948Z_v3",
+  "experiment_type": "v3_exq_319_sd022_harm_stream_dissociation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-022",
+    "SD-011"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-022": "supports",
+    "SD-011": "supports"
+  },
+  "outcome": "PASS",
+  "timestamp_utc": "20260410T110318Z",
+  "registered_thresholds": {
+    "C1_z_harm_s_drop": 0.3,
+    "C2_z_harm_a_retention": 0.02,
+    "C3_dissociation_score": 0.01,
+    "D_damage_quality": 0.05,
+    "seeds_needed": 3
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": true,
+      "z_harm_s_drop_high": 14.060143502553304,
+      "z_harm_a_retention_high": 0.9104365348815918,
+      "z_harm_a_retention_fresh": 0.4863895773887634,
+      "dissociation_score": 0.4240469574928284,
+      "damage_vector_mean_high": 0.49650901556015015,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": true,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 22.216521072387696,
+          "z_harm_a_on_mean": 0.9474841237068177,
+          "z_harm_s_post_mean": 8.156377569834392,
+          "z_harm_a_post_mean": 0.9104365348815918,
+          "damage_vector_mean": 0.49650901556015015
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 25.45334987640381,
+          "z_harm_a_on_mean": 0.4863895773887634,
+          "z_harm_s_post_mean": 14.95086940129598,
+          "z_harm_a_post_mean": 0.4863895773887634,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": true,
+      "z_harm_s_drop_high": 7.919852511088052,
+      "z_harm_a_retention_high": 0.7039910852909088,
+      "z_harm_a_retention_fresh": 0.423382431268692,
+      "dissociation_score": 0.2806086540222168,
+      "damage_vector_mean_high": 0.49650901556015015,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": true,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 28.76450080871582,
+          "z_harm_a_on_mean": 0.7318042635917663,
+          "z_harm_s_post_mean": 20.844648297627767,
+          "z_harm_a_post_mean": 0.7039910852909088,
+          "damage_vector_mean": 0.49650901556015015
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 24.989489936828612,
+          "z_harm_a_on_mean": 0.423382431268692,
+          "z_harm_s_post_mean": 20.996219189961753,
+          "z_harm_a_post_mean": 0.423382431268692,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": true,
+      "z_harm_s_drop_high": 18.703354994455974,
+      "z_harm_a_retention_high": 0.7431855658690135,
+      "z_harm_a_retention_fresh": 0.5949446558952332,
+      "dissociation_score": 0.14824090997378037,
+      "damage_vector_mean_high": 0.49650901556015015,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": true,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 27.98390350341797,
+          "z_harm_a_on_mean": 0.7672306001186371,
+          "z_harm_s_post_mean": 9.280548508961996,
+          "z_harm_a_post_mean": 0.7431855658690135,
+          "damage_vector_mean": 0.49650901556015015
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 14.43616189956665,
+          "z_harm_a_on_mean": 0.5949446558952332,
+          "z_harm_s_post_mean": 13.458236853281656,
+          "z_harm_a_post_mean": 0.5949446558952332,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": true,
+      "z_harm_s_drop_high": 5.3399058341979995,
+      "z_harm_a_retention_high": 0.7070272703965504,
+      "z_harm_a_retention_fresh": 0.29754638671875,
+      "dissociation_score": 0.40948088367780044,
+      "damage_vector_mean_high": 0.49650901556015015,
+      "c1_z_harm_s_drop_pass": true,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": true,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 21.701321411132813,
+          "z_harm_a_on_mean": 0.7423849701881409,
+          "z_harm_s_post_mean": 16.361415576934814,
+          "z_harm_a_post_mean": 0.7070272703965504,
+          "damage_vector_mean": 0.49650901556015015
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 19.187695121765138,
+          "z_harm_a_on_mean": 0.29754638671875,
+          "z_harm_s_post_mean": 14.691212304433186,
+          "z_harm_a_post_mean": 0.29754638671875,
+          "damage_vector_mean": 0.0
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": false,
+      "z_harm_s_drop_high": -3.1151585896809895,
+      "z_harm_a_retention_high": 0.7625080605347951,
+      "z_harm_a_retention_fresh": 0.40535369515419006,
+      "dissociation_score": 0.3571543653806051,
+      "damage_vector_mean_high": 0.49650901556015015,
+      "c1_z_harm_s_drop_pass": false,
+      "c2_z_harm_a_retention_pass": true,
+      "c3_dissociation_pass": true,
+      "d_damage_quality_pass": true,
+      "condition_results": {
+        "HIGH_DAMAGE": {
+          "z_harm_s_on_mean": 8.72781057357788,
+          "z_harm_a_on_mean": 0.7910987675189972,
+          "z_harm_s_post_mean": 11.84296916325887,
+          "z_harm_a_post_mean": 0.7625080605347951,
+          "damage_vector_mean": 0.49650901556015015
+        },
+        "FRESH": {
+          "z_harm_s_on_mean": 12.097554206848145,
+          "z_harm_a_on_mean": 0.40535369515419006,
+          "z_harm_s_post_mean": 8.373548793792725,
+          "z_harm_a_post_mean": 0.40535369515419006,
+          "damage_vector_mean": 0.0
+        }
+      }
+    }
+  ],
+  "seeds_passing": 4,
+  "experiment_passes": true,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "warmup_episodes": 100,
+    "steps_per_episode": 200,
+    "pre_damage_transits": 50,
+    "threat_on_steps": 30,
+    "offset_steps": 60,
+    "harm_obs_a_dim": 7,
+    "limb_damage_enabled": true
+  }
+}

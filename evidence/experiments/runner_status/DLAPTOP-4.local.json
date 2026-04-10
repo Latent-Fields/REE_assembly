@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 52175,
   "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-10T01:14:08.550823+00:00",
+  "last_updated": "2026-04-10T11:03:18.515854+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -4982,6 +4982,48 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 19035.5
+    },
+    {
+      "queue_id": "V3-EXQ-318",
+      "backlog_id": "",
+      "claim_id": "SD-022",
+      "title": "SD-022 limb damage stream separation validation (3 seeds)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=7: FAIL r2=0.3530 var=0.000609 (r2<0.5:True var>0.001:False) | seed=13: FAIL r2=0.4180 var=0.000375 (r2<0.5:True var>0.001:False) | seed=42: FAIL r2=0.3248 var=0.000420 (r2<0.5:True var>0.001:False)",
+      "started_at": "2026-04-10T01:15:14.586463+00:00",
+      "completed_at": "2026-04-10T04:33:44.633135+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 11837.6
+    },
+    {
+      "queue_id": "V3-EXQ-263b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-023 validation: landmark gradient texture for MECH-216 anticipatory wanting",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL | C2 (landmark_prox_corr > resource_prox_corr in ENABLED): False | ENABLED  landmark_prox_corr=0.3620  resource_prox_corr=0.9116",
+      "started_at": "2026-04-10T04:33:47.595248+00:00",
+      "completed_at": "2026-04-10T09:39:43.405369+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 18355.7
+    },
+    {
+      "queue_id": "V3-EXQ-319",
+      "backlog_id": "",
+      "claim_id": "SD-022",
+      "title": "SD-022 harm stream dissociation: HIGH_DAMAGE vs FRESH matched-threat (5 seeds)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "seed=46: FAIL s_drop=-3.1152(C1>=0.3) a_ret_high=0.7625(C2>=0.02) dissoc=0.3572(C3>=0.01) dmg=0.4965(D>=0.05) | /Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_319_sd022_harm_stream_dissociation.py:628: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Results -> /Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_319_sd022_harm_stream_dissociation/v3_exq_319_sd022_harm_stream_dissociation_20260410T093948Z_v3.json",
+      "started_at": "2026-04-10T09:39:46.878607+00:00",
+      "completed_at": "2026-04-10T11:03:18.513678+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 5011.6
     }
   ]
 }

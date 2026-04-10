@@ -1,0 +1,61 @@
+{
+  "experiment_type": "v3_exq_263b_sd023_mech216_landmark_wanting",
+  "run_id": "v3_exq_263b_sd023_mech216_landmark_wanting_20260410T093942Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-023",
+    "MECH-216"
+  ],
+  "experiment_purpose": "diagnostic",
+  "supersedes": "V3-EXQ-263a",
+  "outcome": "FAIL",
+  "conditions": [
+    "LANDMARK_ENABLED",
+    "LANDMARK_ABLATED"
+  ],
+  "aggregated": {
+    "LANDMARK_ENABLED": {
+      "schema_salience_mean": 0.7665996212022865,
+      "schema_salience_std": 0.18018122604097098,
+      "salience_at_landmark_b": 0.8296699729238897,
+      "salience_at_landmark_b_n": 29783,
+      "salience_at_approach": 0.8955857676480407,
+      "salience_at_approach_n": 51206,
+      "resource_prox_correlation": 0.9115967711321605,
+      "landmark_prox_correlation": 0.3620310362933531,
+      "n_p1_steps": 134704
+    },
+    "LANDMARK_ABLATED": {
+      "schema_salience_mean": 0.7426350803116625,
+      "schema_salience_std": 0.18602979811304468,
+      "salience_at_landmark_b": 0.0,
+      "salience_at_landmark_b_n": 0,
+      "salience_at_approach": 0.8837433588228136,
+      "salience_at_approach_n": 29387,
+      "resource_prox_correlation": 0.8690441322637606,
+      "landmark_prox_correlation": 0.0,
+      "n_p1_steps": 74037
+    }
+  },
+  "acceptance_checks": {
+    "C1_salience_at_landmark_b_higher": true,
+    "C2_landmark_prox_corr_gt_resource_prox_corr": false
+  },
+  "params": {
+    "grid_size": 10,
+    "n_hazards": 2,
+    "n_resources": 3,
+    "p0_episodes": 50,
+    "p1_episodes": 150,
+    "steps_per_episode": 300,
+    "num_seeds": 3,
+    "landmark_radius": 2,
+    "approach_outer": 3,
+    "approach_inner": 1
+  },
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "SD-023": "supports",
+    "MECH-216": "does_not_support"
+  }
+}
