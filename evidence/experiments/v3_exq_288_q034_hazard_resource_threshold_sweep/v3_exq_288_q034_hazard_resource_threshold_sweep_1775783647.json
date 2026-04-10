@@ -1,0 +1,338 @@
+{
+  "run_id": "v3_exq_288_q034_hazard_resource_threshold_sweep_1775783647_v3",
+  "experiment_type": "v3_exq_288_q034_hazard_resource_threshold_sweep",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "Q-034"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260410T011407Z",
+  "hazard_rates": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "resource_rates": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "grid_size": 8,
+  "training_episodes": 200,
+  "eval_episodes": 50,
+  "steps_per_ep": 150,
+  "equivalence_gap": 0.02,
+  "majority_seeds": 2,
+  "drive_weight": 2.0,
+  "use_resource_proximity_head": true,
+  "grid_results": [
+    {
+      "hazard_rate": 0.1,
+      "resource_rate": 0.5,
+      "ratio": 0.2,
+      "num_hazards": 1,
+      "num_resources": 4,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.001523,
+          "planned_harm_rate": 0.001523,
+          "goal_norm_planned": 0.3396
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.001718,
+          "planned_harm_rate": 0.001718,
+          "goal_norm_planned": 0.4192
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.001569,
+          "planned_harm_rate": 0.001569,
+          "goal_norm_planned": 0.5087
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.1,
+      "resource_rate": 0.3,
+      "ratio": 0.3333,
+      "num_hazards": 1,
+      "num_resources": 2,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.001971,
+          "planned_harm_rate": 0.001971,
+          "goal_norm_planned": 0.2818
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.001746,
+          "planned_harm_rate": 0.001746,
+          "goal_norm_planned": 0.2983
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.00168,
+          "planned_harm_rate": 0.00168,
+          "goal_norm_planned": 0.1727
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.3,
+      "resource_rate": 0.5,
+      "ratio": 0.6,
+      "num_hazards": 2,
+      "num_resources": 4,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.041274,
+          "planned_harm_rate": 0.041274,
+          "goal_norm_planned": 0.3553
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.074509,
+          "planned_harm_rate": 0.074509,
+          "goal_norm_planned": 0.4033
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.058918,
+          "planned_harm_rate": 0.058918,
+          "goal_norm_planned": 0.3797
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.1,
+      "resource_rate": 0.1,
+      "ratio": 1.0,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.001788,
+          "planned_harm_rate": 0.001788,
+          "goal_norm_planned": 0.0
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.002255,
+          "planned_harm_rate": 0.002255,
+          "goal_norm_planned": 0.0122
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.005701,
+          "planned_harm_rate": 0.005701,
+          "goal_norm_planned": 0.0062
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.3,
+      "resource_rate": 0.3,
+      "ratio": 1.0,
+      "num_hazards": 2,
+      "num_resources": 2,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.035487,
+          "planned_harm_rate": 0.035487,
+          "goal_norm_planned": 0.2117
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.04862,
+          "planned_harm_rate": 0.04862,
+          "goal_norm_planned": 0.2481
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.050851,
+          "planned_harm_rate": 0.050851,
+          "goal_norm_planned": 0.2394
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.5,
+      "resource_rate": 0.5,
+      "ratio": 1.0,
+      "num_hazards": 4,
+      "num_resources": 4,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.232411,
+          "planned_harm_rate": 0.232411,
+          "goal_norm_planned": 0.3138
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.19704,
+          "planned_harm_rate": 0.19704,
+          "goal_norm_planned": 0.273
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.282962,
+          "planned_harm_rate": 0.282962,
+          "goal_norm_planned": 0.3162
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.5,
+      "resource_rate": 0.3,
+      "ratio": 1.6667,
+      "num_hazards": 4,
+      "num_resources": 2,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.236425,
+          "planned_harm_rate": 0.236425,
+          "goal_norm_planned": 0.1367
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.233925,
+          "planned_harm_rate": 0.233925,
+          "goal_norm_planned": 0.0648
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.224923,
+          "planned_harm_rate": 0.224923,
+          "goal_norm_planned": 0.1543
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.3,
+      "resource_rate": 0.1,
+      "ratio": 3.0,
+      "num_hazards": 2,
+      "num_resources": 1,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.059697,
+          "planned_harm_rate": 0.059697,
+          "goal_norm_planned": 0.0015
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.043927,
+          "planned_harm_rate": 0.043927,
+          "goal_norm_planned": 0.0155
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.077193,
+          "planned_harm_rate": 0.077193,
+          "goal_norm_planned": 0.0004
+        }
+      ]
+    },
+    {
+      "hazard_rate": 0.5,
+      "resource_rate": 0.1,
+      "ratio": 5.0,
+      "num_hazards": 4,
+      "num_resources": 1,
+      "mean_gap": 0.0,
+      "seeds_equivalent": 3,
+      "behavioral_equivalence_score": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "gap": 0.0,
+          "habit_harm_rate": 0.248533,
+          "planned_harm_rate": 0.248533,
+          "goal_norm_planned": 0.0
+        },
+        {
+          "seed": 7,
+          "gap": 0.0,
+          "habit_harm_rate": 0.267888,
+          "planned_harm_rate": 0.267888,
+          "goal_norm_planned": 0.0103
+        },
+        {
+          "seed": 13,
+          "gap": 0.0,
+          "habit_harm_rate": 0.30461,
+          "planned_harm_rate": 0.30461,
+          "goal_norm_planned": 0.0661
+        }
+      ]
+    }
+  ],
+  "threshold_estimate": null,
+  "transition_found": false,
+  "n_cells": 9,
+  "n_cells_equivalent": 9,
+  "mean_gap_all_cells": 0.0
+}

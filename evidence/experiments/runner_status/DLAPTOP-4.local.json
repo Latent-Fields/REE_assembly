@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 52175,
   "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-09T22:23:27.134371+00:00",
+  "last_updated": "2026-04-10T01:14:08.550823+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-288",
-    "backlog_id": "EXP-0095",
-    "claim_id": "Q-034",
-    "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
-    "description": "",
-    "script": "experiments/v3_exq_288_q034_hazard_resource_threshold_sweep.py",
-    "started_at": "2026-04-09T19:56:52.990561+00:00",
-    "progress": {
-      "run_label": "Seed 13 / h0",
-      "runs_done": 23,
-      "runs_total": 27,
-      "episodes_done": 200,
-      "episodes_total": 200,
-      "overall_pct": 88.9
-    },
-    "seconds_elapsed": 8794,
-    "seconds_remaining": 1108,
-    "recent_lines": [
-      "verdict: PASS seed=13 h0.3r0.1 HABIT harm_rate=0.07719 goal_norm=0.000",
-      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 50/200 harm_pos=252 harm_neg=41",
-      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 100/200 harm_pos=504 harm_neg=75",
-      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 150/200 harm_pos=759 harm_neg=102",
-      "[train] condition=PLANNED condition=0.3x0.1 seed=13 ep 200/200 harm_pos=1008 harm_neg=142"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-266",
@@ -40,17 +14,6 @@
       "description": "",
       "estimated_minutes": 186.7,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-288",
-      "backlog_id": "EXP-0095",
-      "claim_id": "Q-034",
-      "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
-      "description": "",
-      "estimated_minutes": 720.0,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -5005,6 +4968,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 908.6
+    },
+    {
+      "queue_id": "V3-EXQ-288",
+      "backlog_id": "EXP-0095",
+      "claim_id": "Q-034",
+      "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "hz_r res_r  ratio  mean_gap equiv verdict | -> FAIL | Status: FAIL",
+      "started_at": "2026-04-09T19:56:52.990561+00:00",
+      "completed_at": "2026-04-10T01:14:08.541748+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 19035.5
     }
   ]
 }
