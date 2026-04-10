@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_258_mech205_surprise_gated_replay_1775672128_v3` at `2026-04-08T18:15:28Z` signatures: none
 - `v3_exq_258_mech205_surprise_gated_replay_1775567619_v3` at `2026-04-07T13:13:39Z` signatures: none
 
 Recurring signatures:

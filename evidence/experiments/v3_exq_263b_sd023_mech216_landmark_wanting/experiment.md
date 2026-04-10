@@ -1,0 +1,20 @@
+# Experiment: v3_exq_263b_sd023_mech216_landmark_wanting
+
+## What it tests
+
+- TODO: describe the invariant or mechanism this experiment validates.
+
+## Failure modes it detects
+
+- TODO: list concrete failure signatures this experiment is expected to surface.
+
+## Design implications
+
+<!-- AUTO-DESIGN-IMPLICATIONS:START -->
+Recent failure runs:
+- `v3_exq_263b_sd023_mech216_landmark_wanting_20260410T093942Z_v3` at `2026-04-10T17:09:43.015476Z` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
+<!-- AUTO-DESIGN-IMPLICATIONS:END -->

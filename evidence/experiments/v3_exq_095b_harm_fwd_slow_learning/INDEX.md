@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_095b_harm_fwd_slow_learning
 
-Generated: `2026-04-10T15:33:03.654201Z`
+Generated: `2026-04-10T17:09:54.430195Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
