@@ -2,18 +2,88 @@
   "schema_version": "v1",
   "runner_pid": 52175,
   "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-10T11:03:18.515854+00:00",
+  "last_updated": "2026-04-10T16:40:44.453206+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-321",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "MECH-090: bistable gate vs legacy per-tick gate",
+    "description": "",
+    "script": "experiments/v3_exq_321_mech090_bistable_gate.py",
+    "started_at": "2026-04-10T15:59:03.336301+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 10,
+      "episodes_done": 0,
+      "episodes_total": 70,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 2501,
+    "seconds_remaining": 5600,
+    "recent_lines": [
+      "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_321_mech090_bistable_gate.py:232: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+      "timestamp = datetime.datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
+      "EXQ-321 start: v3_exq_321_mech090_bistable_gate_20260410T155906Z_v3",
+      "Seed 42",
+      "BISTABLE: training..."
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-266",
-      "backlog_id": "EVB-0047",
-      "claim_id": "Q-020",
-      "title": "Q-020: hippocampal valence geometry discriminative pair",
+      "queue_id": "V3-EXQ-321",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090: bistable gate vs legacy per-tick gate",
       "description": "",
-      "estimated_minutes": 186.7,
-      "status": "claimed",
+      "estimated_minutes": 93.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-323",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-019: harm stream non-redundancy constraint",
+      "description": "",
+      "estimated_minutes": 80.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-325",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021: descending pain modulation -- commitment-gated z_harm_s attenuation",
+      "description": "",
+      "estimated_minutes": 146.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-322",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015: z_resource seeding vs z_world seeding of z_goal",
+      "description": "",
+      "estimated_minutes": 146.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-324",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020: harm surprise PE vs EMA target for z_harm_a",
+      "description": "",
+      "estimated_minutes": 80.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -5024,6 +5094,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 5011.6
+    },
+    {
+      "queue_id": "V3-EXQ-320",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-013: interventional vs observational E2_harm_s training",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL gap_int=0.1621 gap_obs=0.1732 r2=0.9852 | seed=45: PASS gap_int=0.1610 gap_obs=0.1527 r2=0.9875 | seed=46: PASS gap_int=0.1507 gap_obs=0.1147 r2=0.9849",
+      "started_at": "2026-04-10T15:57:52.972996+00:00",
+      "completed_at": "2026-04-10T15:58:59.290125+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 66.3
     }
   ]
 }

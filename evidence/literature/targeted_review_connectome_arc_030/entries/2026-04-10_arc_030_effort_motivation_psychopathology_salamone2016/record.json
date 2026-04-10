@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_030",
+  "entry_id": "2026-04-10_arc_030_effort_motivation_psychopathology_salamone2016",
+  "timestamp_utc": "2026-04-10T12:00:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "Activational and effort-related aspects of motivation: neural mechanisms and implications for psychopathology.",
+    "authors": ["Salamone, John D", "Yohn, Samantha E", "Lopez-Cruz, Laura", "San Miguel, Noemi", "Correa, Merce"],
+    "year": 2016,
+    "venue": "Brain",
+    "doi": "10.1093/brain/aww050",
+    "pmid": "27189581",
+    "citation": "Brain 139(Pt 5):1325-47"
+  },
+  "evidence_class": "review_translational",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Major translational review linking animal models of accumbens DA depletion to clinical syndromes of anergia, psychomotor retardation, and apathy in depression, schizophrenia, and Parkinson's disease. The clinical syndromes are characterized precisely as the behavioral flatness that ARC-030 predicts from pure-NoGo architectures: motivation for effortful approach is selectively impaired while aversive sensitivity and avoidance remain relatively intact. This translational bridge strengthens the claim that symmetric Go/NoGo architecture is an architectural necessity, not a design option.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pure NoGo/avoidance were sufficient for goal-directed behavior, anergia and apathy would not emerge when dopamine-mediated Go signaling is impaired while avoidance sensitivity is preserved.",
+    "If Go and NoGo were equivalent and interchangeable, treating anergia with DA agonists (D1/Go restoration) would not selectively restore approach while leaving avoidance behavior intact."
+  ],
+  "tags": ["arc_030", "behavioral_flatness", "anergia", "apathy", "psychomotor_retardation", "effort_motivation", "D1_approach", "translational", "depression", "parkinson"],
+  "mapping": {
+    "source_claim_statement": "Impairments in behavioural activation and effort-related aspects of motivation are associated with psychiatric symptoms such as anergia, fatigue, lassitude and psychomotor retardation, which cross multiple pathologies, including depression, schizophrenia, and Parkinson's disease.",
+    "ree_translation": "ARC-030 claims that pure NoGo (avoidance-only) BG architecture produces behavioral flatness. This paper provides the translational evidence: in humans and animals, selective loss of the Go/approach signal (via DA depletion) produces exactly this outcome -- behavioral flatness (anergia, apathy, psychomotor retardation) while avoidance responses remain relatively intact. The REE architecture requires Go sub-channels specifically to avoid this failure mode.",
+    "mapping_caveat": "Clinical syndromes involve many brain systems beyond striatum; the DA depletion is global rather than D1-specific. The paper does not directly test the Go/NoGo symmetry claim at the circuit level. Mapping is at the functional / syndrome level rather than mechanistic.",
+    "source_context": "Review integrating animal models (rat T-maze effort tasks, barrier-climbing, progressive-ratio schedules) with human neuropsychology (PD, depression, schizophrenia effort tasks). Also covers neurochemical mechanisms including adenosine-dopamine interactions."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.22,
+    "notes": "High-quality Brain review; mapping fidelity reduced because clinical syndromes are multi-system and involve global DA changes. Transfer risk is moderate-high due to distance from circuit-level D1/D2 dissociation."
+  }
+}

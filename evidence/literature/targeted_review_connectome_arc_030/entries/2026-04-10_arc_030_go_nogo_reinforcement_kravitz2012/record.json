@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_030",
+  "entry_id": "2026-04-10_arc_030_go_nogo_reinforcement_kravitz2012",
+  "timestamp_utc": "2026-04-10T12:00:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "Distinct roles for direct and indirect pathway striatal neurons in reinforcement.",
+    "authors": ["Kravitz, Alexxai V", "Tye, Lynne D", "Kreitzer, Anatol C"],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3100",
+    "pmid": "22544310",
+    "citation": "Nat Neurosci 15(6):816-8"
+  },
+  "evidence_class": "experimental_optogenetic",
+  "evidence_direction": "supports",
+  "confidence": 0.93,
+  "confidence_rationale": "Directly tests the approach/avoidance asymmetry at the reinforcement learning level: optogenetic stimulation of D1 MSNs (direct/Go pathway) induced persistent positive reinforcement; stimulation of D2 MSNs (indirect/NoGo pathway) induced transient punishment/suppression. These are qualitatively distinct outcomes, not merely different magnitudes of the same signal. This is the key evidence that Go and NoGo sub-channels carry non-exchangeable information -- exactly what ARC-030 requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Go and NoGo were symmetric, both D1 and D2 stimulation would produce equivalent learning effects of opposite sign. Instead, D1 produced persistent reinforcement while D2 produced only transient punishment -- a qualitative asymmetry.",
+    "If a pure NoGo architecture were sufficient, D2 stimulation alone would support normal learning; it produced only transient punishment without persistent reinforcement."
+  ],
+  "tags": ["arc_030", "go_nogo", "D1_D2_dissociation", "optogenetic", "reinforcement_learning", "punishment", "reward", "approach_avoidance_asymmetry"],
+  "mapping": {
+    "source_claim_statement": "Stimulating D1 receptor-expressing neurons induced persistent reinforcement, whereas stimulating D2 receptor-expressing neurons induced transient punishment, indicating that activation of these circuits is sufficient to modify the probability of performing future actions.",
+    "ree_translation": "ARC-030 requires symmetric Go (approach) and NoGo (avoidance) sub-channels because they carry distinct information: Go drives persistent approach learning while NoGo drives avoidance/punishment signaling. The qualitative asymmetry (persistent reinforcement vs. transient punishment) matches the architectural requirement that the two channels cannot be collapsed into one. An architecture with only D2/NoGo pathways would lose the persistent approach-learning signal entirely.",
+    "mapping_caveat": "The study measures self-stimulation reinforcement, not naturalistic approach/avoidance in a cost-benefit environment. The 'transient' vs. 'persistent' distinction may partly reflect stimulation protocol differences. However, the qualitative dissociation in learning timescale is robust.",
+    "source_context": "Used optogenetic self-stimulation in dorsomedial striatum; D1-Cre and D2-Cre mice; within-session and across-session comparisons of reinforcement magnitude and persistence."
+  },
+  "confidence_components": {
+    "source_quality": 0.97,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.08,
+    "notes": "Nature Neuroscience letter, same group as Kravitz 2010, more focused on reinforcement than motor control. Mapping fidelity high because the finding is directly about approach vs. avoidance learning signals."
+  }
+}

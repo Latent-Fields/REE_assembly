@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-04-10_mech_163_vta_snc_dissociation_fraser2023",
+  "timestamp_utc": "2026-04-10T12:00:00Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "From Prediction to Action: Dissociable Roles of Ventral Tegmental Area and Substantia Nigra Dopamine Neurons in Instrumental Reinforcement",
+    "authors": ["Fraser, Kurt M", "Pribut, Heather J", "Janak, Patricia H", "Keiflin, Ronald"],
+    "year": 2023,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0028-23.2023"
+  },
+  "evidence_class": "animal_optogenetic_causal",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Optogenetic dissociation directly contrasts VTA vs SNc dopamine neurons in instrumental reinforcement using multiple behavioral tasks in the same study. VTA dopamine imbues flexible, persistent, goal-directed motivational value; SNc dopamine supports time-limited, inflexible, action-specific habit-like learning. This is the cleanest available empirical dissociation of the SNc/dorsal-striatum vs VTA/ventral-striatum axis central to MECH-163. High source quality; mapping fidelity high for the dopaminergic dissociation component.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "VTA dopamine activation sufficient for flexible motivational value attribution",
+    "SNc dopamine activation produces non-scalable, action-specific S-R reinforcement",
+    "only VTA (not SNc) imbues cues with persistent pursuit value"
+  ],
+  "tags": ["mech_163", "VTA", "SNc", "dopamine", "habit", "goal-directed", "optogenetics", "dissociation", "instrumental-reinforcement", "motivation", "model-free", "actor-critic", "rodent"],
+  "mapping": {
+    "source_claim_statement": "VTA dopamine neurons imbue actions and associated cues with motivational value enabling flexible and persistent pursuit (goal-directed), whereas SNc dopamine neurons support time-limited, precise, action-specific non-scalable and inflexible learning (habit-like). This parallels an actor-critic RL architecture with VTA as critic and SNc as actor.",
+    "ree_translation": "MECH-163 specifies SNc/dorsal-striatum as the habit (model-free, S-R) system and VTA/ventral-striatum as the goal-directed (model-based) system. Fraser et al. directly validate this anatomical dissociation at the level of dopamine neuron subtypes: VTA DA -> motivational/goal-directed value, SNc DA -> rigid action-specific habit learning. The actor-critic framing is compatible with MECH-163's parallel systems architecture. This is the strongest available empirical support for the dopaminergic half of MECH-163.",
+    "mapping_caveat": "Study examines instrumental (not prosocial) reinforcement and does not test novel-environment planning or long-horizon accumulation. The 'model-based vs model-free' framing is implicit in flexibility/inflexibility measures rather than explicit tree-search planning. The hippocampal component of MECH-163's goal-directed system is not addressed.",
+    "source_context": "Multi-task rat study using time-limited optogenetic activation of VTA vs SNc dopamine neurons. Manipulations include cue conditioning, action learning, and persistence/flexibility probes. Male and female rats included. JHU and UCSB groups; published J. Neurosci. 2023."
+  },
+  "confidence_components": {
+    "source_quality": 0.91,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.85,
+    "notes": "High-quality optogenetic design with multiple converging tasks. Mapping fidelity very high for the VTA/SNc dissociation core of MECH-163. Transfer risk low: the same dopaminergic anatomy applies in humans. Does not cover long-horizon or novel-context aspects of MECH-163."
+  }
+}

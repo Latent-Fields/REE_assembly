@@ -1,0 +1,104 @@
+{
+  "run_id": "v3_exq_330_sd013_contrastive_counterfactual_dry_20260410T160119Z_v3",
+  "experiment_type": "v3_exq_330_sd013_contrastive_counterfactual",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-013",
+    "SD-003",
+    "ARC-033"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction_per_claim": {
+    "SD-013": "does_not_support",
+    "SD-003": "does_not_support",
+    "ARC-033": "supports"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_forward_r2_pass": true,
+    "c1_vals": [
+      0.9837856157315046,
+      0.9902518357197064,
+      0.9921016682523005
+    ],
+    "c1_seeds_pass": 3,
+    "c2_cf_gap_ratio_pass": false,
+    "c2_ratios": [
+      0.9990039124940636,
+      0.9599522572131204,
+      0.9832130062404933
+    ],
+    "c2_seeds_pass": 0,
+    "c3_sign_correct_pass": true,
+    "c3_vals": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "c3_seeds_pass": 3,
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "CONTRASTIVE",
+      "forward_r2": 0.9921016682523005,
+      "mean_cf_gap": 0.17320531737386136,
+      "attribution_sign_correct": 1.0
+    },
+    {
+      "seed": 42,
+      "condition": "OBSERVATIONAL",
+      "forward_r2": 0.9920241810557395,
+      "mean_cf_gap": 0.17616255712090878,
+      "attribution_sign_correct": 1.0
+    },
+    {
+      "seed": 7,
+      "condition": "CONTRASTIVE",
+      "forward_r2": 0.9837856157315046,
+      "mean_cf_gap": 0.22999742993137293,
+      "attribution_sign_correct": 1.0
+    },
+    {
+      "seed": 7,
+      "condition": "OBSERVATIONAL",
+      "forward_r2": 0.9832874992524929,
+      "mean_cf_gap": 0.23022675592648356,
+      "attribution_sign_correct": 1.0
+    },
+    {
+      "seed": 13,
+      "condition": "CONTRASTIVE",
+      "forward_r2": 0.9902518357197064,
+      "mean_cf_gap": 0.1748529991559815,
+      "attribution_sign_correct": 1.0
+    },
+    {
+      "seed": 13,
+      "condition": "OBSERVATIONAL",
+      "forward_r2": 0.9901042778441347,
+      "mean_cf_gap": 0.18214759936458186,
+      "attribution_sign_correct": 1.0
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "CONTRASTIVE",
+      "OBSERVATIONAL"
+    ],
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 50,
+    "steps_per_ep": 200,
+    "interventional_fraction": 0.3,
+    "interventional_margin": 0.1
+  },
+  "timestamp_utc": "20260410T160119Z"
+}

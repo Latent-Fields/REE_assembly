@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_241b_sd011_second_source_info_gain
 
-Generated: `2026-04-09T21:02:35.089283Z`
+Generated: `2026-04-10T15:33:03.654201Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

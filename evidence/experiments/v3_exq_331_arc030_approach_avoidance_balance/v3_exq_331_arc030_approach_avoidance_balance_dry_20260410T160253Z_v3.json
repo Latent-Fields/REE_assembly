@@ -1,0 +1,120 @@
+{
+  "run_id": "v3_exq_331_arc030_approach_avoidance_balance_dry_20260410T160253Z_v3",
+  "experiment_type": "v3_exq_331_arc030_approach_avoidance_balance",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-030"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_benefit_improvement_pass": false,
+    "c1_seeds_pass": 0,
+    "c1_joint_benefits": [
+      0.0166074924561417,
+      0.0,
+      0.0
+    ],
+    "c1_harm_only_benefits": [
+      0.0166074924561417,
+      0.0,
+      0.0
+    ],
+    "c2_harm_preserved_pass": true,
+    "c2_seeds_pass": 3,
+    "c2_joint_harms": [
+      0.009909391601880391,
+      0.0021058201293150582,
+      0.06580423295497895
+    ],
+    "c2_harm_only_harms": [
+      0.009909391601880391,
+      0.0021058201293150582,
+      0.06580423295497895
+    ],
+    "c3_combined_score_pass": false,
+    "c3_seeds_pass": 0,
+    "c3_joint_scores": [
+      0.006698100854261308,
+      -0.0021058201293150582,
+      -0.06580423295497895
+    ],
+    "c3_harm_only_scores": [
+      0.006698100854261308,
+      -0.0021058201293150582,
+      -0.06580423295497895
+    ],
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "JOINT",
+      "benefit_rate": 0.0,
+      "harm_rate": 0.06580423295497895,
+      "combined_score": -0.06580423295497895,
+      "resource_rate": 0.0
+    },
+    {
+      "seed": 42,
+      "condition": "HARM_ONLY",
+      "benefit_rate": 0.0,
+      "harm_rate": 0.06580423295497895,
+      "combined_score": -0.06580423295497895,
+      "resource_rate": 0.0
+    },
+    {
+      "seed": 7,
+      "condition": "JOINT",
+      "benefit_rate": 0.0166074924561417,
+      "harm_rate": 0.009909391601880391,
+      "combined_score": 0.006698100854261308,
+      "resource_rate": 0.6666666666666666
+    },
+    {
+      "seed": 7,
+      "condition": "HARM_ONLY",
+      "benefit_rate": 0.0166074924561417,
+      "harm_rate": 0.009909391601880391,
+      "combined_score": 0.006698100854261308,
+      "resource_rate": 0.6666666666666666
+    },
+    {
+      "seed": 13,
+      "condition": "JOINT",
+      "benefit_rate": 0.0,
+      "harm_rate": 0.0021058201293150582,
+      "combined_score": -0.0021058201293150582,
+      "resource_rate": 0.0
+    },
+    {
+      "seed": 13,
+      "condition": "HARM_ONLY",
+      "benefit_rate": 0.0,
+      "harm_rate": 0.0021058201293150582,
+      "combined_score": -0.0021058201293150582,
+      "resource_rate": 0.0
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "JOINT",
+      "HARM_ONLY"
+    ],
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 50,
+    "steps_per_ep": 200,
+    "num_hazards": 2,
+    "hazard_harm": 0.1,
+    "drive_weight": 2.0,
+    "goal_weight": 1.0
+  },
+  "timestamp_utc": "20260410T160253Z"
+}

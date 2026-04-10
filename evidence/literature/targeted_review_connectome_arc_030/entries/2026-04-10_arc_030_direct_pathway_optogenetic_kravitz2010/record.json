@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_030",
+  "entry_id": "2026-04-10_arc_030_direct_pathway_optogenetic_kravitz2010",
+  "timestamp_utc": "2026-04-10T12:00:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "Regulation of parkinsonian motor behaviours by optogenetic control of basal ganglia circuitry.",
+    "authors": ["Kravitz, Alexxai V", "Freeze, Benjamin S", "Parker, Philip R L", "Kay, Kenneth", "Thwin, Myo T", "Deisseroth, Karl", "Kreitzer, Anatol C"],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09159",
+    "pmid": "20613723",
+    "citation": "Nature 466(7306):622-6"
+  },
+  "evidence_class": "experimental_optogenetic",
+  "evidence_direction": "supports",
+  "confidence": 0.92,
+  "confidence_rationale": "Landmark Nature paper providing first direct optogenetic proof of Go/NoGo pathway asymmetry: D1 direct pathway activation increases locomotion and approach; D2 indirect pathway activation elicits freezing, bradykinesia, and behavioral suppression. Directly demonstrates that the two channels are not redundant -- excitation of one does not substitute for the other. Bilateral D2 MSN activation produced a parkinsonian state (pure suppression / quiescence), precisely matching ARC-030's prediction that pure NoGo architecture produces behavioral flatness.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If D1 and D2 pathways had symmetric or additive effects, bilateral D2 activation would not produce quiescence distinct from D1 activation.",
+    "If pure NoGo architecture were sufficient for goal-directed behavior, D2-activation animals would still initiate goal-directed locomotion -- they did not."
+  ],
+  "tags": ["arc_030", "go_nogo", "D1_D2_dissociation", "optogenetic", "direct_pathway", "indirect_pathway", "behavioral_flatness", "motor_suppression"],
+  "mapping": {
+    "source_claim_statement": "Bilateral excitation of indirect-pathway (D2) MSNs elicited a parkinsonian state distinguished by increased freezing, bradykinesia and decreased locomotor initiations. Activation of direct-pathway (D1) MSNs reduced freezing and increased locomotion.",
+    "ree_translation": "In the REE three-loop BG model (ARC-030), each loop requires Go (D1/direct) sub-channels to drive approach and NoGo (D2/indirect) sub-channels to signal avoidance. This paper demonstrates that silencing Go while preserving NoGo (pharmacological or optogenetic indirect-pathway over-activation) produces behavioral quiescence -- the behavioral flatness predicted by ARC-030 when only the avoidance sub-channel is active.",
+    "mapping_caveat": "Paper focuses on motor behavior, not explicit approach/avoidance learning in a cost-benefit task. The quiescence effect could reflect motor suppression rather than motivational flatness per se; however, decreased locomotor initiations maps directly onto a failure to approach rewards.",
+    "source_context": "Study used Cre-dependent ChR2 viral expression in D1-Cre and D2-Cre transgenic mice; bilateral striatal stimulation; outcome measures: locomotor speed, freezing duration, locomotor initiations."
+  },
+  "confidence_components": {
+    "source_quality": 0.98,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.10,
+    "notes": "Very high source quality (Nature, landmark optogenetic study). Mapping fidelity slightly reduced because the outcome is motor initiation, not reward-seeking per se, but the mechanistic homology is tight. Low transfer risk: the D1/D2 dissociation is a fundamental circuit property."
+  }
+}

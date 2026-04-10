@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-04-10_mech_163_hippocampus_planning_miller2017",
+  "timestamp_utc": "2026-04-10T12:00:00Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "Dorsal hippocampus contributes to model-based planning",
+    "authors": ["Miller, Kevin J", "Botvinick, Matthew M", "Brody, Carlos D"],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4613"
+  },
+  "evidence_class": "animal_lesion_causal",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Causal evidence via muscimol inactivation in rats directly linking dorsal hippocampus to model-based planning behavior, using formal algorithmic behavioral analysis to distinguish planning from habitual S-R responding. High mapping fidelity to MECH-163's claim that hippocampal-planned system is required for model-based behavior. Rodent-to-human transfer risk moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "hippocampal inactivation impairs model-based but not model-free behavior",
+    "effect specific to planning trials requiring multi-step internal model use"
+  ],
+  "tags": ["mech_163", "hippocampus", "model-based", "planning", "dorsal-hippocampus", "muscimol", "lesion", "causal", "rodent", "novel-environment", "dissociation"],
+  "mapping": {
+    "source_claim_statement": "Dorsal hippocampus is causally required for model-based (goal-directed) planning behavior, demonstrated by muscimol inactivation selectively impairing planned but not habitual responding in a rat task generating many planning trials per session.",
+    "ree_translation": "MECH-163 posits a hippocampally-planned system required for novel contexts and model-based benefit accumulation. Miller et al. provide direct causal evidence that the dorsal hippocampus -- the anchor of MECH-163's 'hippocampally-planned system' -- is necessary for model-based planning, not merely associated with it. This fills the causal gap left by correlational and computational work (Daw 2005, Dolan/Dayan 2013).",
+    "mapping_caveat": "The rat task tests prospective planning via spatial navigation; the translation to prosocial planning and long-horizon benefit accumulation in MECH-163 is inferential. The study does not directly test VTA/ventral striatum involvement, only the hippocampal node.",
+    "source_context": "Animal study using multi-trial planning task adapted from human research. Authors combine behavioral model fitting with causal manipulation. Paper settled a long-running controversy: prior intact-planning studies used tasks insufficiently sensitive to detect planning, masking the hippocampal contribution."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.82,
+    "notes": "Nature Neuroscience, high-impact causal design. Mapping fidelity strong for the hippocampal-planning node of MECH-163. Transfer risk modest: rodent spatial planning to human prosocial long-horizon planning requires extrapolation. The causal necessity claim is clean and directly maps."
+  }
+}

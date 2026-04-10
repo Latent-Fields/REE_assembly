@@ -1,0 +1,137 @@
+{
+  "run_id": "v3_exq_320_sd013_interventional_training_dry",
+  "experiment_type": "v3_exq_320_sd013_interventional_training",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-013",
+    "SD-003"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "SD-013": "does_not_support",
+    "SD-003": "does_not_support"
+  },
+  "outcome": "FAIL",
+  "timestamp_utc": "20260410T152614Z",
+  "registered_thresholds": {
+    "C1_gap_improvement": 0.0,
+    "C2_r2": 0.3,
+    "C3_abs_gap": 0.05,
+    "seeds_needed": 3
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "action_gap_interventional": 0.25971968472003937,
+      "action_gap_observational": 0.29196607172489164,
+      "forward_r2_interventional": 0.9860382445801482,
+      "c1_gap_improvement": false,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.25971968472003937,
+          "forward_r2": 0.9860382445801482,
+          "mean_mse": 0.017347260337213382
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.29196607172489164,
+          "forward_r2": 0.9826350194546298,
+          "mean_mse": 0.02134590381756425
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": false,
+      "action_gap_interventional": 0.27995678782463074,
+      "action_gap_observational": 0.28232323601841924,
+      "forward_r2_interventional": 0.9710812495144078,
+      "c1_gap_improvement": false,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.27995678782463074,
+          "forward_r2": 0.9710812495144078,
+          "mean_mse": 0.03706588622075147
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.28232323601841924,
+          "forward_r2": 0.9757889777902485,
+          "mean_mse": 0.017553998017683627
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": false,
+      "action_gap_interventional": 0.3112522429890103,
+      "action_gap_observational": 0.320966281674125,
+      "forward_r2_interventional": 0.9885022393792807,
+      "c1_gap_improvement": false,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.3112522429890103,
+          "forward_r2": 0.9885022393792807,
+          "mean_mse": 0.021455135765588947
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.320966281674125,
+          "forward_r2": 0.9847425592645787,
+          "mean_mse": 0.03049225788775154
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": true,
+      "action_gap_interventional": 0.25996920115807476,
+      "action_gap_observational": 0.2419616453922712,
+      "forward_r2_interventional": 0.982902846162933,
+      "c1_gap_improvement": true,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.25996920115807476,
+          "forward_r2": 0.982902846162933,
+          "mean_mse": 0.017436851606950823
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.2419616453922712,
+          "forward_r2": 0.9941338262754357,
+          "mean_mse": 0.006654963622657726
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": false,
+      "action_gap_interventional": 0.255250400175219,
+      "action_gap_observational": 0.2614939594641328,
+      "forward_r2_interventional": 0.9830199415509876,
+      "c1_gap_improvement": false,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.255250400175219,
+          "forward_r2": 0.9830199415509876,
+          "mean_mse": 0.02080196406914974
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.2614939594641328,
+          "forward_r2": 0.9677631007847407,
+          "mean_mse": 0.038775423672632314
+        }
+      }
+    }
+  ],
+  "seeds_passing": 1,
+  "experiment_passes": false
+}

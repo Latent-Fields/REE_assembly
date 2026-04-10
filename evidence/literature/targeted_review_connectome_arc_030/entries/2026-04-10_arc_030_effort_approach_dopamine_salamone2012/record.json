@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_030",
+  "entry_id": "2026-04-10_arc_030_effort_approach_dopamine_salamone2012",
+  "timestamp_utc": "2026-04-10T12:00:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "The mysterious motivational functions of mesolimbic dopamine.",
+    "authors": ["Salamone, John D", "Correa, Merce"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.10.021",
+    "pmid": "23141060",
+    "citation": "Neuron 76(3):470-85"
+  },
+  "evidence_class": "review_computational_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Influential review demonstrating that nucleus accumbens dopamine (operating via D1/Go pathway) is specifically required for effort-based approach behavior -- not for hedonic 'liking' or appetite per se. Accumbens DA depletion selectively impairs effortful approach (cost-based decisions) while leaving basic food intake intact. This dissociation directly supports ARC-030: the Go/D1 sub-channel is specifically needed to drive approach under cost, while avoidance signals (D2/NoGo) alone produce quiescence in effortful contexts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If D1/Go pathways were not required for approach, DA depletion would not selectively impair effortful approach while sparing free-choice consumption -- but this is exactly what Salamone's lab showed.",
+    "If NoGo sub-channel alone could sustain goal-directed behavior, animals with accumbens DA depletion would still exert effort to obtain preferred rewards -- they do not."
+  ],
+  "tags": ["arc_030", "D1_approach", "accumbens_dopamine", "effort_motivation", "behavioral_activation", "go_nogo", "incentive_salience"],
+  "mapping": {
+    "source_claim_statement": "Accumbens dopamine does not mediate primary food motivation or appetite, but is involved in appetitive and aversive motivational processes including behavioral activation, exertion of effort, approach behavior, sustained task engagement, Pavlovian processes, and instrumental learning.",
+    "ree_translation": "ARC-030 requires Go (D1) sub-channels for approach because, without them, the agent can represent avoidance signals (harm salience) but cannot generate the effortful approach needed to pursue z_goal. This paper documents the same functional dissociation pharmacologically: dopamine loss = effort deficit (behavioral flatness) despite preserved hedonic valuation. The Go channel specifically energizes approach; NoGo without Go produces anergia.",
+    "mapping_caveat": "This review synthesizes pharmacological (DA depletion) rather than direct optogenetic D1 vs D2 manipulations; it therefore captures the net Go-channel function rather than the D1/D2 sub-channel distinction directly. Also, the paper discusses mesolimbic (accumbens) DA broadly, not exclusively D1 vs D2.",
+    "source_context": "Comprehensive review of lesion, pharmacological, and behavioral-economic studies; primary animal models include rats with accumbens 6-OHDA lesions or DA antagonist infusions in effort-choice tasks (T-maze concurrent chow vs. high-effort high-reward)."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.18,
+    "notes": "High-quality review in Neuron; mapping fidelity slightly reduced because it conflates D1 and D2 effects under global DA depletion rather than isolating D1/D2 sub-channels. Transfer risk moderate because pharmacological depletion affects both D1 and D2 targets."
+  }
+}

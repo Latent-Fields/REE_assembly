@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_116",
+  "entry_id": "2026-04-10_mech_116_pfc_theta_wm_hyman2010",
+  "timestamp_utc": "2026-04-10T10:00:00Z",
+  "claim_ids_tested": ["MECH-116"],
+  "source": {
+    "title": "Working memory performance correlates with prefrontal-hippocampal theta interactions but not with prefrontal neuron firing rates",
+    "authors": ["Hyman JM", "Zilli EA", "Paley AM", "Hasselmo ME"],
+    "year": 2010,
+    "venue": "Frontiers in Integrative Neuroscience",
+    "doi": "10.3389/neuro.07.002.2010",
+    "pmid": "20431726",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20431726/"
+  },
+  "evidence_class": "electrophysiology_multiunit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This is the paper explicitly cited in claims.yaml for MECH-116's frontal-hippocampal theta synchronisation grounding. The key finding directly supports MECH-116: working memory trial outcomes (correct vs. error) were predicted by theta-phase locking between hippocampus and mPFC, not by mPFC firing rates. This dissociation is important -- it implies that the coupling mechanism (theta synchrony), not the sustained-firing rate of individual neurons, is the critical variable for successful goal maintenance across delays. For MECH-116, this shifts some explanatory weight from 'E1 hidden state alone' to 'E1 recurrence coupled to hippocampal theta rhythm via ThetaBuffer' (ARC-032) -- which is consistent with the claim's full formulation. Confidence is 0.80: the paper used a spatial delayed non-match-to-sample task (rats), and the relevant unit is theta-phase entrainment, not goal-context content per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If theta coherence differences between correct and error trials were epiphenomenal (driven by arousal or locomotion speed rather than goal maintenance), the working-memory-specific interpretation would be undermined",
+    "If mPFC firing rate modulation was simply too noisy to detect in the recording method used, the dissociation (theta coherence but not firing rate predicts performance) might be artifactual",
+    "If the task-relevant information was being maintained in hippocampus alone and mPFC was only receiving, not jointly maintaining, this would weaken the bilateral recurrence story in MECH-116"
+  ],
+  "tags": ["mech_116", "prefrontal_cortex", "hippocampus", "theta_oscillations", "theta_coherence", "working_memory", "phase_locking", "frontal_hippocampal", "hyman", "hasselmo"],
+  "mapping": {
+    "source_claim_statement": "In a spatial working memory task, correct trials were predicted by theta-phase entrainment of mPFC neurons to hippocampal theta, whereas error trials showed loss of theta entrainment in a subset of mPFC cells; firing rates did not distinguish correct from error trials.",
+    "ree_translation": "MECH-116 claims E1's LSTM hidden state maintains goal context recurrently. This paper shows that the critical biological mechanism for successful working memory is not the firing rate of PFC neurons (E1's analog) alone, but rather the phase-locked coupling between PFC and hippocampus at theta frequencies -- precisely the mechanism MECH-116 invokes via the ThetaBuffer channel (ARC-032) that carries goal context from hippocampus to E1. The paper directly grounds the theta-mediated coupling between E1 and the hippocampal module as the critical functional interface, not just the E1 hidden state in isolation.",
+    "mapping_caveat": "The task is spatial delayed non-match-to-sample, where the goal is a location. MECH-116 targets goal-context maintenance in a richer action-space with harm and benefit structure. The mapping holds at the level of 'recurrent temporal bridging coupled to hippocampal theta' but does not directly speak to goal-content specificity (what is in the goal representation). The direction of causation in theta coupling is also unclear -- hippocampus may be driving mPFC entrainment rather than a bilateral maintenance system.",
+    "source_context": "Rat electrophysiology; delayed non-match-to-sample spatial task; simultaneous recording of mPFC units and hippocampal LFP; approximately 45% of mPFC neurons showed theta entrainment; theta-entrained cells encoded task-relevant stimuli and behaviors while non-entrained cells signaled errors."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High source quality -- peer reviewed, well-cited, direct electrophysiological recording. Mapping fidelity is good because the claim's biological grounding explicitly invokes Hyman et al. 2010. Transfer risk is moderate: rat spatial task, rodent theta system; MECH-116's computational substrate is an LSTM which approximates but does not replicate theta-driven recurrence."
+  }
+}

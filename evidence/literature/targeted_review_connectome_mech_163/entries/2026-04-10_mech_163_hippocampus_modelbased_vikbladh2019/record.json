@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-04-10_mech_163_hippocampus_modelbased_vikbladh2019",
+  "timestamp_utc": "2026-04-10T12:00:00Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "Hippocampal Contributions to Model-Based Planning and Spatial Memory",
+    "authors": ["Vikbladh, Oliver M", "Meager, Michael R", "King, John", "Blackmon, Karen", "Devinsky, Orrin", "Shohamy, Daphna", "Burgess, Neil", "Daw, Nathaniel D"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.02.014"
+  },
+  "evidence_class": "human_lesion_causal",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Human lesion study (anterior temporal lobectomy with hippocampal resection) demonstrating that hippocampal damage impairs model-based planning in a two-step decision task, with impairment magnitude correlating with right hippocampal lesion size. Provides direct human causal evidence for the hippocampal-planning system in MECH-163. Coauthors include Daw (the computational RL theorist behind the model-free/model-based dissociation framework), increasing the rigor of behavioral classification. Confidence reduced slightly by unilateral lesion design and confound of overall temporal lobe damage.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "model-based planning impaired in hippocampal resection patients",
+    "impairment correlates with right hippocampal lesion size",
+    "planning and spatial memory covary in controls but not patients"
+  ],
+  "tags": ["mech_163", "hippocampus", "model-based", "planning", "human", "lesion", "temporal-lobectomy", "spatial-memory", "dissociation", "goal-directed", "novel-environment"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal resection in epilepsy patients impairs both model-based decision-making (two-step task) and spatial place memory. The model-based planning impairment scales with right hippocampal lesion size, and planning and place memory covary in healthy controls but this relationship is attenuated in patients -- suggesting shared hippocampal substrate for both functions.",
+    "ree_translation": "MECH-163 requires that the hippocampally-planned system be necessary (not just sufficient) for model-based behavior. Vikbladh et al. provide human causal evidence that hippocampal damage impairs model-based planning in direct proportion to lesion magnitude. This bridges the rodent evidence (Miller et al. 2017) to human behavior and directly supports MECH-163's claim that the hippocampal system is required -- not optional -- for model-based goal-directed planning. The covariation between planning and spatial memory in controls (but not patients) supports the REE claim that hippocampal mapping underpins long-horizon benefit accumulation.",
+    "mapping_caveat": "Two-step task is a laboratory proxy for model-based planning; it tests contingency learning over dozens of trials, not prospective long-horizon planning per se. Does not test prosocial planning. Unilateral lesions limit causal inference strength. The 'novel context' component of MECH-163 is not explicitly tested -- patients use a familiar task.",
+    "source_context": "Case-control study: healthy controls vs. anterior temporal lobectomy patients with hippocampal resection. NYU, Columbia, UCL collaboration. Nathaniel Daw as senior author provides strong computational RL framing for model-based classification. Neuron 2019."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.88,
+    "notes": "Human study with direct translational value (no cross-species transfer risk). Neuron publication with strong methodological team. Mapping fidelity high for hippocampal necessity claim, moderate for novel-context and long-horizon aspects. The two-step task operationalizes model-based planning well but is not isomorphic to long-horizon prosocial planning in MECH-163."
+  }
+}

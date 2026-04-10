@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_116",
+  "entry_id": "2026-04-10_mech_116_theta_sequences_goals_wikenheiser2015",
+  "timestamp_utc": "2026-04-10T10:00:00Z",
+  "claim_ids_tested": ["MECH-116"],
+  "source": {
+    "title": "Hippocampal theta sequences reflect current goals",
+    "authors": ["Wikenheiser AM", "Redish AD"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3909",
+    "pmid": "25559082",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25559082/"
+  },
+  "evidence_class": "electrophysiology_multiunit",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "This paper directly tests whether hippocampal theta sequences encode current goals, finding that look-ahead distance in theta sequences varies with goal proximity: sequences project further ahead when the goal is distant and closer when the goal is near. Goal-specificity is the key contribution -- theta sequences are not merely a spatial compression artifact but carry goal-modulated predictive content. For MECH-116, this supports the claim that hippocampal theta carries goal-context information, not just spatial location information, and that this content modulates E1's forward-prediction horizon. Confidence is 0.73: the paper is about place-cell theta sequences in rats, and the REE translation to abstract goal-context maintenance in E1 requires a significant conceptual jump. The 'goal' in the rat task is a valued food location -- a simpler structure than MECH-116's goal representation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If look-ahead in theta sequences is solely determined by running speed and route length rather than by goal value or identity, the goal-specific interpretation would collapse to a purely spatial/motor account",
+    "If goal modulation of theta sequences is only present at the goal approach phase and not during the earlier journey, it would suggest goal anticipation rather than sustained goal representation",
+    "If the effect is replicated by value (reward magnitude) rather than goal identity, the mapping to goal-context content in MECH-116 would be weakened"
+  ],
+  "tags": ["mech_116", "hippocampus", "theta_sequences", "theta_oscillations", "goal_representation", "place_cells", "look_ahead", "spatial_planning", "wikenheiser", "redish"],
+  "mapping": {
+    "source_claim_statement": "In a value-guided decision-making task, hippocampal theta sequences projected further ahead of the animal's current position on journeys to distant goals than to proximal goals; look-ahead extent was predictive of the animal's destination, suggesting theta sequences carry current goal information, not just spatial prediction.",
+    "ree_translation": "MECH-116 claims E1's hidden state maintains goal context (z_goal_latent) recurrently across steps without requiring ongoing benefit signals. Wikenheiser and Redish show that hippocampal theta sequences are dynamically modulated by the current goal -- the theta output from hippocampus to E1 (ThetaBuffer, ARC-032) therefore carries goal-specific information in its temporal structure, not just spatial location. This supports the claim that goal context can be extracted from hippocampal theta coupling and maintained in E1's recurrent state.",
+    "mapping_caveat": "Hippocampal theta sequences are place-cell activity sequences compressed within individual theta cycles -- they represent prospective spatial trajectories. MECH-116's goal representation is a latent vector z_goal_latent encoding intended outcomes in abstract state space, not a sequence of spatial locations. The mapping requires abstracting from 'sequence of future spatial positions modulated by goal proximity' to 'latent goal representation maintained across time'. This is a non-trivial conceptual extension. Additionally, the look-ahead modulation by goal distance may reflect path-integration arithmetic rather than goal-content maintenance per se.",
+    "source_context": "Rat electrophysiology; value-guided decision making on a multiple-T maze with two food reward locations differing in value; CA1 place-cell simultaneous recording; theta sequence look-ahead measured as extent of ahead-of-current-position sequential activation within each theta cycle; modulation by goal proximity and goal identity measured."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Very high source quality -- Nature Neuroscience, direct electrophysiological evidence from simultaneous multi-unit recordings, replicated across sessions. Mapping fidelity is moderate: the conceptual translation from spatial theta sequences to abstract goal-context maintenance requires significant interpretation. Transfer risk is higher because the biological mechanism (place-cell theta sequences) has no direct analog in LSTM recurrent dynamics; the mapping is functional (goal-modulated temporal structure) not mechanistic."
+  }
+}

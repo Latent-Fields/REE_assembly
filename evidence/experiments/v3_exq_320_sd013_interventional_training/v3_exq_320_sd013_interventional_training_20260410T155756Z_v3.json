@@ -1,0 +1,137 @@
+{
+  "run_id": "v3_exq_320_sd013_interventional_training_20260410T155756Z_v3",
+  "experiment_type": "v3_exq_320_sd013_interventional_training",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-013",
+    "SD-003"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-013": "supports",
+    "SD-003": "supports"
+  },
+  "outcome": "PASS",
+  "timestamp_utc": "20260410T155857Z",
+  "registered_thresholds": {
+    "C1_gap_improvement": 0.0,
+    "C2_r2": 0.3,
+    "C3_abs_gap": 0.05,
+    "seeds_needed": 3
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": true,
+      "action_gap_interventional": 0.2585124144951502,
+      "action_gap_observational": 0.13090971261262893,
+      "forward_r2_interventional": 0.9835923713105961,
+      "c1_gap_improvement": true,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.2585124144951502,
+          "forward_r2": 0.9835923713105961,
+          "mean_mse": 0.030497895788478977
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.13090971261262893,
+          "forward_r2": 0.9854755074852999,
+          "mean_mse": 0.024348114983877168
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": true,
+      "action_gap_interventional": 0.1853569167164656,
+      "action_gap_observational": 0.1396785244345665,
+      "forward_r2_interventional": 0.9946918875985695,
+      "c1_gap_improvement": true,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.1853569167164656,
+          "forward_r2": 0.9946918875985695,
+          "mean_mse": 0.014854851738513948
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.1396785244345665,
+          "forward_r2": 0.9801022686491193,
+          "mean_mse": 0.024789808684727178
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": false,
+      "action_gap_interventional": 0.16207913542166352,
+      "action_gap_observational": 0.17323514860537317,
+      "forward_r2_interventional": 0.9851592912041485,
+      "c1_gap_improvement": false,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.16207913542166352,
+          "forward_r2": 0.9851592912041485,
+          "mean_mse": 0.037409018230391666
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.17323514860537317,
+          "forward_r2": 0.963131629760156,
+          "mean_mse": 0.11460571628413163
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": true,
+      "action_gap_interventional": 0.16102349978906136,
+      "action_gap_observational": 0.15265749245882035,
+      "forward_r2_interventional": 0.9874753043061357,
+      "c1_gap_improvement": true,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.16102349978906136,
+          "forward_r2": 0.9874753043061357,
+          "mean_mse": 0.012914780490704018
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.15265749245882035,
+          "forward_r2": 0.9955471415126954,
+          "mean_mse": 0.007114656548947096
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": true,
+      "action_gap_interventional": 0.15071246524651846,
+      "action_gap_observational": 0.11473900179068247,
+      "forward_r2_interventional": 0.9849352482212823,
+      "c1_gap_improvement": true,
+      "c2_r2_maintained": true,
+      "c3_abs_gap": true,
+      "condition_results": {
+        "INTERVENTIONAL": {
+          "action_gap": 0.15071246524651846,
+          "forward_r2": 0.9849352482212823,
+          "mean_mse": 0.014294251963119245
+        },
+        "OBSERVATIONAL": {
+          "action_gap": 0.11473900179068247,
+          "forward_r2": 0.9948285486661568,
+          "mean_mse": 0.013618702864429602
+        }
+      }
+    }
+  ],
+  "seeds_passing": 4,
+  "experiment_passes": 1.0
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_116",
+  "entry_id": "2026-04-10_mech_116_theta_hpc_pfc_joneswilson2005",
+  "timestamp_utc": "2026-04-10T10:00:00Z",
+  "claim_ids_tested": ["MECH-116"],
+  "source": {
+    "title": "Theta rhythms coordinate hippocampal-prefrontal interactions in a spatial memory task",
+    "authors": ["Jones MW", "Wilson MA"],
+    "year": 2005,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.0030402",
+    "pmid": "16279838",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16279838/"
+  },
+  "evidence_class": "electrophysiology_multiunit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Jones and Wilson 2005 established the foundational result that theta rhythms in the 4-12 Hz band coordinate hippocampal-prefrontal interactions specifically during working-memory-demanding spatial navigation, but not during simple locomotion or non-memory behavior. Both CA1 and mPFC neurons showed enhanced theta phase-locking during working-memory-requiring trials, and CA1-mPFC spike correlations were selectively elevated during the same periods. This directly supports the ThetaBuffer coupling mechanism in MECH-116: the hippocampal-to-E1 theta channel (ARC-032) is functionally engaged precisely when goal-context maintenance is required. Confidence is 0.76: the task is spatial (T-maze alternation), the mPFC role is ambiguous (decision-making vs. goal maintenance), and causality is not established.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If increased hippocampal-mPFC theta coherence during spatial memory trials reflects task difficulty or arousal rather than specifically goal-context maintenance, the mapping to MECH-116's working memory substrate would be indirect",
+    "If the mPFC neurons being entrained are motor-planning neurons rather than memory-maintenance neurons, the analogy to E1 goal-context storage would be weakened",
+    "If theta coupling is only present during the decision point (T-junction) and not during the delay or approach phase, it would suggest decision integration rather than sustained goal maintenance"
+  ],
+  "tags": ["mech_116", "hippocampus", "prefrontal_cortex", "theta_oscillations", "theta_coherence", "spatial_memory", "working_memory", "phase_locking", "jones", "wilson", "rodent"],
+  "mapping": {
+    "source_claim_statement": "In a T-maze spatial alternation task requiring working memory, hippocampal CA1 neurons and mPFC neurons both showed selective theta phase-locking during memory-demanding trials; CA1-mPFC spike correlations were enhanced at theta frequency during working memory use; non-working-memory maze running did not produce the same enhancement.",
+    "ree_translation": "The selective engagement of theta-band coupling between hippocampus and mPFC during working-memory-requiring behavior is the biological correlate of the ThetaBuffer channel (ARC-032) that MECH-116 relies upon to convey goal context from the hippocampal module to E1. Jones and Wilson show that this coupling is not tonic but dynamically engaged when goal-directed memory maintenance is behaviourally required -- consistent with MECH-116's claim that E1 maintains goal context 'without requiring ongoing benefit signals' but via recurrent hippocampal-frontal coupling during the delay.",
+    "mapping_caveat": "T-maze alternation is a short-horizon spatial task (seconds); MECH-116 targets goal-context maintenance over multi-step harm-and-benefit trajectories. The content of what is being maintained (spatial location vs. goal/intention) may differ. The study records simultaneously from CA1 and mPFC but does not isolate the direction of coupling (feed-forward from hippocampus to mPFC vs. recurrent). The spatial task also confounds locomotion-related theta with memory-related theta.",
+    "source_context": "Rat electrophysiology; T-maze spatial alternation requiring working memory vs. control linear track running (no memory required); simultaneous CA1 and mPFC tetrode recordings; theta coherence selectively elevated during T-maze but not linear track; spike correlations enhanced at theta frequency (4-12 Hz) during memory task."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Landmark paper establishing theta coordination of hippocampal-prefrontal interactions; published in PLoS Biology with open access, highly cited. Mapping fidelity is good but reduced by spatial-task specificity and inability to isolate goal-content representation from spatial planning. Transfer risk moderate: rodent spatial task, and the LSTM is a feedforward approximation to the theta-driven recurrent coupling described."
+  }
+}

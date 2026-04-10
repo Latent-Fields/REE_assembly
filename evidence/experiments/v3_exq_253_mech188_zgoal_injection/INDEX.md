@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_253_mech188_zgoal_injection
 
-Generated: `2026-04-09T21:02:35.089283Z`
+Generated: `2026-04-10T15:33:03.654201Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

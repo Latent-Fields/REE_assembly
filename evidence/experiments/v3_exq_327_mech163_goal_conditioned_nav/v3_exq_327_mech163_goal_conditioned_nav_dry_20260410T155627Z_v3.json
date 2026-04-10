@@ -1,0 +1,96 @@
+{
+  "run_id": "v3_exq_327_mech163_goal_conditioned_nav_dry_20260410T155627Z_v3",
+  "experiment_type": "v3_exq_327_mech163_goal_conditioned_nav",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-163",
+    "SD-015"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction_per_claim": {
+    "MECH-163": "does_not_support",
+    "SD-015": "does_not_support"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_benefit_ratio_pass": false,
+    "c1_ratios": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "c1_seeds_pass": 0,
+    "c2_prox_r2_advisory": false,
+    "c2_vals": [
+      -3.3887712671425945,
+      -0.7895782655799839,
+      -2.5657455896767116
+    ],
+    "c3_goal_causal_pass": false,
+    "c3_seeds_pass": 0,
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "GOAL_CONDITIONED",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "prox_r2": -2.5657455896767116
+    },
+    {
+      "seed": 42,
+      "condition": "GOAL_ABLATED",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "prox_r2": -2.5657455896767116
+    },
+    {
+      "seed": 7,
+      "condition": "GOAL_CONDITIONED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.009971078771167695,
+      "prox_r2": -3.3887712671425945
+    },
+    {
+      "seed": 7,
+      "condition": "GOAL_ABLATED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.009971078771167695,
+      "prox_r2": -3.3887712671425945
+    },
+    {
+      "seed": 13,
+      "condition": "GOAL_CONDITIONED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.01203281180582734,
+      "prox_r2": -0.7895782655799839
+    },
+    {
+      "seed": 13,
+      "condition": "GOAL_ABLATED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.01203281180582734,
+      "prox_r2": -0.7895782655799839
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "GOAL_CONDITIONED",
+      "GOAL_ABLATED"
+    ],
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 50,
+    "steps_per_ep": 200,
+    "goal_weight": 1.0,
+    "drive_weight": 2.0
+  },
+  "timestamp_utc": "20260410T155627Z"
+}
