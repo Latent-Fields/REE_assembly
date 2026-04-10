@@ -1,30 +1,52 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-04-09T17:40:44.367020+00:00",
-  "last_updated": "2026-04-09T18:40:17.556534+00:00",
-  "idle": true,
+  "runner_pid": 671,
+  "runner_started_at": "2026-04-09T19:52:38.577563+00:00",
+  "last_updated": "2026-04-10T03:44:39.894465+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-265",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-017 sleep phase methods validation (sws/rem pass activation)",
+      "queue_id": "V3-EXQ-288",
+      "backlog_id": "EXP-0095",
+      "claim_id": "Q-034",
+      "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
       "description": "",
-      "estimated_minutes": 17.3,
+      "estimated_minutes": 720.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-266",
-      "backlog_id": "EVB-0047",
-      "claim_id": "Q-020",
-      "title": "Q-020: hippocampal valence geometry discriminative pair",
+      "queue_id": "V3-EXQ-318",
+      "backlog_id": "",
+      "claim_id": "SD-022",
+      "title": "SD-022 limb damage stream separation validation (3 seeds)",
       "description": "",
-      "estimated_minutes": 186.7,
-      "status": "claimed",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-263b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-023 validation: landmark gradient texture for MECH-216 anticipatory wanting",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-319",
+      "backlog_id": "",
+      "claim_id": "SD-022",
+      "title": "SD-022 harm stream dissociation: HIGH_DAMAGE vs FRESH matched-threat (5 seeds)",
+      "description": "",
+      "estimated_minutes": 66.7,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2151,7 +2173,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 3570.2
+    },
+    {
+      "queue_id": "V3-EXQ-266",
+      "backlog_id": "EVB-0047",
+      "claim_id": "Q-020",
+      "title": "Q-020: hippocampal valence geometry discriminative pair",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C3 (consistent seeds 0/2): False  C4 (n_harm_min=58 >= 20): True | verdict: FAIL (1/4 criteria) | Outcome: FAIL (1/4 criteria)",
+      "started_at": "2026-04-09T23:03:31.288222+00:00",
+      "completed_at": "2026-04-10T03:44:39.893710+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 16868.6
     }
-  ],
-  "draining": false
+  ]
 }
