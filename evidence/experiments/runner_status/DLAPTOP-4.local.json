@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 52175,
   "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-10T20:02:13.320079+00:00",
+  "last_updated": "2026-04-10T22:02:28.455387+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-322",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-015: z_resource seeding vs z_world seeding of z_goal",
-    "description": "",
-    "script": "experiments/v3_exq_322_sd015_resource_encoder_seeding.py",
-    "started_at": "2026-04-10T18:42:12.018271+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 10,
-      "episodes_done": 0,
-      "episodes_total": 110,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 4801,
-    "seconds_remaining": 8800,
-    "recent_lines": [
-      "WORLD_SEED: eval 30 eps...",
-      "WORLD_SEED: goal_resource_r=0.0000 benefit_ratio=0.133",
-      "-> FAIL",
-      "Seed 44",
-      "RESOURCE_SEED: training 80 eps..."
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-325",
@@ -39,28 +13,6 @@
       "title": "SD-021: descending pain modulation -- commitment-gated z_harm_s attenuation",
       "description": "",
       "estimated_minutes": 146.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-322",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-015: z_resource seeding vs z_world seeding of z_goal",
-      "description": "",
-      "estimated_minutes": 146.7,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-324",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-020: harm surprise PE vs EMA target for z_harm_a",
-      "description": "",
-      "estimated_minutes": 80.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5114,6 +5066,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 12.2
+    },
+    {
+      "queue_id": "V3-EXQ-322",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015: z_resource seeding vs z_world seeding of z_goal",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL r_res=0.0000 r_world=0.0000 ben_res=0.200 | seed=45: FAIL r_res=0.0000 r_world=0.0000 ben_res=0.133 | seed=46: FAIL r_res=0.0000 r_world=0.0000 ben_res=0.100",
+      "started_at": "2026-04-10T18:42:12.018271+00:00",
+      "completed_at": "2026-04-10T22:02:13.543391+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 11689.1
+    },
+    {
+      "queue_id": "V3-EXQ-324",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020: harm surprise PE vs EMA target for z_harm_a",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=46: FAIL surp_pe=-0.9790 surp_ema=-0.9800 | /Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_324_sd020_harm_surprise_pe.py:319: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Results -> /Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_324_sd020_harm_surprise_pe/v3_exq_324_sd020_harm_surprise_pe_20260410T220218Z_v3.json",
+      "started_at": "2026-04-10T22:02:16.680966+00:00",
+      "completed_at": "2026-04-10T22:02:28.455198+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 11.8
     }
   ]
 }
