@@ -13178,7 +13178,7 @@
 - id: MECH-216
   title: e1_predictive_wanting
   claim_type: mechanism
-  status: candidate
+  status: provisional
   subject: goal.e1_schema_wanting
   implementation_phase: v3
   implementation_note: >
@@ -13215,6 +13215,14 @@
     at approach positions, contact wanting fires at resource position.
   registered: "2026-04-08"
   depends_on: [SD-014, SD-018, MECH-203, INV-065]
+  evidence_quality_note: >
+    Promoted to provisional (governance-2026-04-10): conf=0.834, conflict_ratio=0.25,
+    7 supports / 1 opposing. EXQ-263b (diagnostic dry run, 2026-04-10) confirmed schema
+    salience seeding working: salience_at_landmark_b=0.83 (ENABLED) vs 0.0 (ABLATED),
+    C1 PASS. The wanting substrate populates correctly from E1 schema activations.
+    EXQ-332 (full run with future-target supervision + resource_obs_scale attenuation)
+    queued to test the predictive (not just reactive) wanting criterion -- C2/C3
+    require temporal prediction, not proximity detection.
 
 - id: MECH-217
   title: temporal_wanting_propagation

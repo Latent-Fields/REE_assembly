@@ -23,7 +23,8 @@
     "ARC-033"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "API bug: REEAgent.compute_prediction_loss() takes 1 positional argument but 2 were given. All 6 seeds (3 seeds x 2 conditions) crashed. Superseded by EXQ-329 (PASS 10/10 criteria, API fixed). Does not count against ARC-033.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {

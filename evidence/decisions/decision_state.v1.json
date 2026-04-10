@@ -162,6 +162,15 @@
       "selected_option": "Approve all gate-ready convergence packets for cycle 2026-02-25",
       "timestamp_utc": "2026-02-25T14:21:58.933692Z"
     },
+    "INV-054": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. conf=0.571, conflict_ratio=0.5 (3 supports/1 weakens). EXQ-278 FAIL previously added as does_not_support (phase transition criteria unmet). No new experiments this session. Hold pending conflict-resolution experiments.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-10T18:06:06.632775Z"
+    },
     "MECH-025": {
       "actor": "user",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -513,6 +522,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-29T21:16:41.465228Z"
     },
+    "MECH-120": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. conf=0.668, conflict_ratio=0.444 (7 supports/2 weakens). Scope corrected to V3 last cycle; substrate prerequisites block testing. Hold pending conflict-resolution experiments.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-10T18:06:06.684653Z"
+    },
     "MECH-124": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -576,6 +594,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-04-03T22:00:00Z"
     },
+    "MECH-165": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. conf=0.6, conflict_ratio=0.5 (3 supports/1 weakens). Reverse-replay VALENCE_WANTING propagation. Hold pending conflict-resolution experiments.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-10T18:06:06.734119Z"
+    },
     "MECH-166": {
       "actor": "user",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -584,6 +611,33 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation (correct path).",
       "timestamp_utc": "2026-04-05T11:48:38.245Z"
+    },
+    "MECH-186": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. conf=0.612, conflict_ratio=0.8 (3 supports/2 weakens). High conflict but SerotoninModule implemented in V3. Hold pending dedicated conflict-resolution experiments.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-10T18:06:06.775522Z"
+    },
+    "MECH-188": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. conf=0.592, conflict_ratio=0.5 (3 supports/1 weakens). z_goal persistence under harm. Hold pending conflict-resolution experiments.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-10T18:06:06.862742Z"
+    },
+    "MECH-216": {
+      "actor": "user",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "Promote to provisional. conf=0.834, conflict_ratio=0.25, 7 supports/1 opposing. EXQ-263b (diagnostic dry run) confirmed schema salience seeding working (salience_at_landmark_b=0.83 ENABLED vs 0.0 ABLATED, C1 PASS). Substrate confirmed operational. EXQ-332 (future-target supervision) queued for definitive predictive wanting test.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote now",
+      "timestamp_utc": "2026-04-10T18:05:45.318260Z"
     },
     "Q-006": {
       "actor": "user",
@@ -675,6 +729,15 @@
       "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
       "timestamp_utc": "2026-03-16T18:20:19.361158Z"
     },
+    "Q-020": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Q-020 already resolved via literature synthesis (Resolution A, 2026-04-02): ARC-007 and MECH-073 are co-true. Experimental FAILs (EXQ-266 x2, conditions identical) flagged for /diagnose-errors. The question is closed at the resolution level; experimental validation requires separate /diagnose-errors investigation.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-04-10T18:06:06.975132Z"
+    },
     "Q-021": {
       "actor": "user",
       "decision_needed": "Question narrowing review",
@@ -747,6 +810,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-31T20:20:00.000000Z"
     },
+    "SD-013": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. New evidence this session: EXQ-320 PASS (dry) adds supports; EXQ-330 (dry) reclassified non_contributory. Conflict reduced from 1.0 to ~0.5 (2 supports/1 weakens). Full EXQ-330 run queued to provide definitive interventional vs observational gap evidence.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-10T18:06:07.024550Z"
+    },
     "SD-015": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -765,6 +837,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path).",
       "timestamp_utc": "2026-04-05T11:48:38.245Z"
     },
+    "SD-022": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. New evidence this session: EXQ-319 PASS (dissociation test, supports) brings score to 2 supports/1 opposing (EXQ-318 reclassified non_contributory as diagnostic). Conflict_ratio improved from 1.0 to ~0.5. SD-022 substrate confirmed working by EXQ-319. Hold pending additional replication.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-10T18:06:07.070511Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -775,7 +856,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-04-10T17:09:54.430195Z",
+  "generated_at_utc": "2026-04-10T18:06:16.383024Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

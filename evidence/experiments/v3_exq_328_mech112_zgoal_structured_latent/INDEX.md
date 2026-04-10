@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_328_mech112_zgoal_structured_latent
 
-Generated: `2026-04-10T17:09:54.430195Z`
+Generated: `2026-04-10T18:06:16.383024Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

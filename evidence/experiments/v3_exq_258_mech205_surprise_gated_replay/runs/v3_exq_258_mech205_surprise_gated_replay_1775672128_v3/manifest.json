@@ -23,7 +23,8 @@
     "MECH-205"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by EXQ-258a and EXQ-258b. Two bugs in EXQ-258: (1) checked nonexistent _rbf_layer attr (should be rbf_field); (2) pe_ema_alpha=0.1 tracked PE too fast, keeping mean_surprise near zero. Both fixed in EXQ-258b (PASS). Does not count against MECH-205.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {

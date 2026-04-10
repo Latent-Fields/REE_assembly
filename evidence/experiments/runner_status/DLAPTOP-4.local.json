@@ -2,58 +2,36 @@
   "schema_version": "v1",
   "runner_pid": 52175,
   "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-10T17:17:01.246419+00:00",
+  "last_updated": "2026-04-10T20:02:13.320079+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-321",
+    "queue_id": "V3-EXQ-322",
     "backlog_id": "",
     "claim_id": "",
-    "title": "MECH-090: bistable gate vs legacy per-tick gate",
+    "title": "SD-015: z_resource seeding vs z_world seeding of z_goal",
     "description": "",
-    "script": "experiments/v3_exq_321_mech090_bistable_gate.py",
-    "started_at": "2026-04-10T15:59:03.336301+00:00",
+    "script": "experiments/v3_exq_322_sd015_resource_encoder_seeding.py",
+    "started_at": "2026-04-10T18:42:12.018271+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 10,
       "episodes_done": 0,
-      "episodes_total": 70,
+      "episodes_total": 110,
       "overall_pct": 0.0
     },
-    "seconds_elapsed": 4678,
-    "seconds_remaining": 5600,
+    "seconds_elapsed": 4801,
+    "seconds_remaining": 8800,
     "recent_lines": [
-      "Seed 43",
-      "BISTABLE: training...",
-      "BISTABLE: eval...",
-      "BISTABLE: hold_rate=0.0000 committed_steps=0 premature_releases=0",
-      "LEGACY: training..."
+      "WORLD_SEED: eval 30 eps...",
+      "WORLD_SEED: goal_resource_r=0.0000 benefit_ratio=0.133",
+      "-> FAIL",
+      "Seed 44",
+      "RESOURCE_SEED: training 80 eps..."
     ],
     "ree_version": "v3"
   },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-321",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-090: bistable gate vs legacy per-tick gate",
-      "description": "",
-      "estimated_minutes": 93.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-323",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-019: harm stream non-redundancy constraint",
-      "description": "",
-      "estimated_minutes": 80.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-325",
       "backlog_id": "",
@@ -72,7 +50,7 @@
       "title": "SD-015: z_resource seeding vs z_world seeding of z_goal",
       "description": "",
       "estimated_minutes": 146.7,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5108,6 +5086,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 66.3
+    },
+    {
+      "queue_id": "V3-EXQ-321",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090: bistable gate vs legacy per-tick gate",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL bistable=0.0000 legacy=0.0000 releases_b=0 | seed=45: FAIL bistable=0.0000 legacy=0.0000 releases_b=0 | seed=46: FAIL bistable=0.0000 legacy=0.0000 releases_b=0",
+      "started_at": "2026-04-10T15:59:03.336301+00:00",
+      "completed_at": "2026-04-10T18:41:54.820766+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 9771.4
+    },
+    {
+      "queue_id": "V3-EXQ-323",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-019: harm stream non-redundancy constraint",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=46: FAIL cos_sq_NR=0.0164 cos_sq_BL=0.0110 | /Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_323_sd019_harm_nonredundancy.py:302: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Results -> /Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_323_sd019_harm_nonredundancy/v3_exq_323_sd019_harm_nonredundancy_20260410T184158Z_v3.json",
+      "started_at": "2026-04-10T18:41:56.950436+00:00",
+      "completed_at": "2026-04-10T18:42:09.125103+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12.2
     }
   ]
 }
