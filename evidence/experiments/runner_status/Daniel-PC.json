@@ -2,18 +2,18 @@
   "schema_version": "v1",
   "runner_pid": 21464,
   "runner_started_at": "2026-04-05T13:10:38.210785+00:00",
-  "last_updated": "2026-04-09T08:48:05.321048+00:00",
+  "last_updated": "2026-04-10T09:36:18.911121+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-238c",
+      "queue_id": "V3-EXQ-265",
       "backlog_id": "",
-      "claim_id": "SD-012",
-      "title": "SD-012: Drive Weight Ablation (SD-018)",
+      "claim_id": "",
+      "title": "SD-017 sleep phase methods validation (sws/rem pass activation)",
       "description": "",
-      "estimated_minutes": 64.0,
-      "status": "claimed",
+      "estimated_minutes": 17.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -368,6 +368,48 @@
       "output_file": "",
       "completed_by": "Daniel-PC",
       "actual_secs": 52355.0
+    },
+    {
+      "queue_id": "V3-EXQ-264",
+      "backlog_id": "",
+      "claim_id": "ARC-033",
+      "title": "ARC-033: E2_harm_s forward model validation",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "File \"C:\\Users\\Daniel\\REE_Working\\ree-v3\\experiments\\v3_exq_264_arc033_e2_harm_s_forward.py\", line 227, in run_condition | Results written to C:\\Users\\Daniel\\REE_Working\\ree-v3\\..\\REE_assembly\\evidence\\experiments\\v3_exq_264_arc033_e2_harm_s_forward_20260409T170322Z_v3.json | Outcome: FAIL (0/3 criteria)",
+      "started_at": "2026-04-09T17:03:10.187333+00:00",
+      "completed_at": "2026-04-09T17:03:23.459358+00:00",
+      "output_file": "",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 13.3
+    },
+    {
+      "queue_id": "V3-EXQ-266",
+      "backlog_id": "EVB-0047",
+      "claim_id": "Q-020",
+      "title": "Q-020: hippocampal valence geometry discriminative pair",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C3 (consistent seeds 0/2): False  C4 (n_harm_min=58 >= 20): True | verdict: FAIL (1/4 criteria) | Outcome: FAIL (1/4 criteria)",
+      "started_at": "2026-04-09T17:03:27.295941+00:00",
+      "completed_at": "2026-04-10T02:32:58.096341+00:00",
+      "output_file": "",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 34170.8
+    },
+    {
+      "queue_id": "V3-EXQ-267",
+      "backlog_id": "EVB-0051",
+      "claim_id": "ARC-038",
+      "title": "ARC-038: waking consolidation discriminative evidence",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Ep 100/100 [CONSOLIDATION_ABLATED seed=68 P1] harm_rate=0.0004 | -- [CONSOLIDATION_ABLATED seed=68] Phase0=0.0006 Phase1=0.0005 active_centers=32 verdict:PASS | Outcome: FAIL",
+      "started_at": "2026-04-10T02:33:05.065568+00:00",
+      "completed_at": "2026-04-10T09:36:18.911121+00:00",
+      "output_file": "",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 25393.8
     }
   ]
 }

@@ -1,0 +1,182 @@
+{
+  "experiment_type": "v3_exq_267_arc038_waking_consolidation_discriminative",
+  "run_id": "v3_exq_267_arc038_waking_consolidation_discriminative_20260410T093618Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-038"
+  ],
+  "claim_ids_tested": [
+    "ARC-038"
+  ],
+  "experiment_purpose": "evidence",
+  "dispatch_mode": "discriminative_pair",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260410T093618Z",
+  "evidence_class": "waking_consolidation_necessity",
+  "evidence_direction": "does_not_support",
+  "summary": "ARC-038 discriminative pair: waking consolidation replay (MECH-092) vs ablation. ENABLED Phase1 harm=0.0130, ABLATED Phase1 harm=0.0130. C1 (improvement over warmup): 2/3 seeds. C2 (>=15% relative advantage): 0/3 seeds. Outcome: FAIL.",
+  "pre_registered_thresholds": {
+    "C1": "Phase1 harm_rate < Phase0 in >=2/3 enabled seeds",
+    "C2": "Enabled Phase1 harm < Ablated Phase1 by >=15% relative in >=2/3 seeds",
+    "C3": "Enabled active_centers >= Ablated by >=10% in >=2/3 seeds",
+    "C4": "total_residue > 0 in all conditions (data quality)"
+  },
+  "acceptance_checks": {
+    "C1_enabled_improves_over_warmup": true,
+    "C1_wins": 2,
+    "C2_enabled_beats_ablated_by_threshold": false,
+    "C2_wins": 0,
+    "C3_enabled_more_centers": false,
+    "C3_wins": 0,
+    "C4_data_quality_residue_nonzero": true
+  },
+  "aggregated": {
+    "CONSOLIDATION_ENABLED": {
+      "mean_phase0_harm_rate": 0.012963941428190559,
+      "mean_phase1_harm_rate": 0.012966296534998145,
+      "mean_active_centers": 32.0,
+      "mean_total_residue": 115.82429758707683
+    },
+    "CONSOLIDATION_ABLATED": {
+      "mean_phase0_harm_rate": 0.012963941428190559,
+      "mean_phase1_harm_rate": 0.012966296534998145,
+      "mean_active_centers": 32.0,
+      "mean_total_residue": 115.82429758707683
+    }
+  },
+  "seed_details": [
+    {
+      "seed": 42,
+      "enabled_phase0_harm_rate": 0.037887548067349466,
+      "enabled_phase1_harm_rate": 0.03793971435362973,
+      "ablated_phase1_harm_rate": 0.03793971435362973,
+      "relative_improvement": 0.0,
+      "enabled_active_centers": 32.0,
+      "ablated_active_centers": 32.0,
+      "center_rel_improvement": 0.0,
+      "c1_pass": false,
+      "c2_pass": false,
+      "c3_pass": false
+    },
+    {
+      "seed": 55,
+      "enabled_phase0_harm_rate": 0.0004508084337711334,
+      "enabled_phase1_harm_rate": 0.0004223243799209595,
+      "ablated_phase1_harm_rate": 0.0004223243799209595,
+      "relative_improvement": 0.0,
+      "enabled_active_centers": 32.0,
+      "ablated_active_centers": 32.0,
+      "center_rel_improvement": 0.0,
+      "c1_pass": true,
+      "c2_pass": false,
+      "c3_pass": false
+    },
+    {
+      "seed": 68,
+      "enabled_phase0_harm_rate": 0.0005534677834510804,
+      "enabled_phase1_harm_rate": 0.0005368508714437485,
+      "ablated_phase1_harm_rate": 0.0005368508714437485,
+      "relative_improvement": 0.0,
+      "enabled_active_centers": 32.0,
+      "ablated_active_centers": 32.0,
+      "center_rel_improvement": 0.0,
+      "c1_pass": true,
+      "c2_pass": false,
+      "c3_pass": false
+    }
+  ],
+  "per_seed_results": {
+    "CONSOLIDATION_ENABLED": [
+      {
+        "condition": "CONSOLIDATION_ENABLED",
+        "seed": 42,
+        "consolidation_enabled": true,
+        "mean_phase0_harm_rate": 0.037887548067349466,
+        "mean_phase1_harm_rate": 0.03793971435362973,
+        "residue_active_centers": 32.0,
+        "residue_total": 279.00933837890625,
+        "residue_num_harm_events": 5381.0,
+        "residue_mean_weight": 8.718935012817383
+      },
+      {
+        "condition": "CONSOLIDATION_ENABLED",
+        "seed": 55,
+        "consolidation_enabled": true,
+        "mean_phase0_harm_rate": 0.0004508084337711334,
+        "mean_phase1_harm_rate": 0.0004223243799209595,
+        "residue_active_centers": 32.0,
+        "residue_total": 31.773212432861328,
+        "residue_num_harm_events": 623.0,
+        "residue_mean_weight": 0.992910623550415
+      },
+      {
+        "condition": "CONSOLIDATION_ENABLED",
+        "seed": 68,
+        "consolidation_enabled": true,
+        "mean_phase0_harm_rate": 0.0005534677834510804,
+        "mean_phase1_harm_rate": 0.0005368508714437485,
+        "residue_active_centers": 32.0,
+        "residue_total": 36.69034194946289,
+        "residue_num_harm_events": 717.0,
+        "residue_mean_weight": 1.1465723514556885
+      }
+    ],
+    "CONSOLIDATION_ABLATED": [
+      {
+        "condition": "CONSOLIDATION_ABLATED",
+        "seed": 42,
+        "consolidation_enabled": false,
+        "mean_phase0_harm_rate": 0.037887548067349466,
+        "mean_phase1_harm_rate": 0.03793971435362973,
+        "residue_active_centers": 32.0,
+        "residue_total": 279.00933837890625,
+        "residue_num_harm_events": 5381.0,
+        "residue_mean_weight": 8.718935012817383
+      },
+      {
+        "condition": "CONSOLIDATION_ABLATED",
+        "seed": 55,
+        "consolidation_enabled": false,
+        "mean_phase0_harm_rate": 0.0004508084337711334,
+        "mean_phase1_harm_rate": 0.0004223243799209595,
+        "residue_active_centers": 32.0,
+        "residue_total": 31.773212432861328,
+        "residue_num_harm_events": 623.0,
+        "residue_mean_weight": 0.992910623550415
+      },
+      {
+        "condition": "CONSOLIDATION_ABLATED",
+        "seed": 68,
+        "consolidation_enabled": false,
+        "mean_phase0_harm_rate": 0.0005534677834510804,
+        "mean_phase1_harm_rate": 0.0005368508714437485,
+        "residue_active_centers": 32.0,
+        "residue_total": 36.69034194946289,
+        "residue_num_harm_events": 717.0,
+        "residue_mean_weight": 1.1465723514556885
+      }
+    ]
+  },
+  "params": {
+    "total_episodes": 100,
+    "warmup_episodes": 50,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "num_seeds": 3,
+    "env": {
+      "size": 10,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "contaminated_harm": 0.04,
+      "resource_benefit": 0.3,
+      "use_proxy_fields": true,
+      "resource_respawn_on_consume": true,
+      "proximity_harm_scale": 0.02,
+      "proximity_benefit_scale": 0.02
+    },
+    "harm_rate_improvement_req": 0.15,
+    "min_center_improvement": 0.1
+  },
+  "design_note": "Redesign of EXQ-191 (non_contributory). Key changes: (1) hazard_harm=0.05 so harm_rate is in reachable 0.05-0.10 range; (2) discriminates actual waking-consolidation mode (goal-free MECH-092 replay) vs no replay, not generic weight transfer. ARC-038 depends_on ARC-018+ARC-007+MECH-092 -- all implemented in V3 substrate."
+}

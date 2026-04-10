@@ -1,0 +1,135 @@
+{
+  "experiment_type": "v3_exq_266_q020_valence_geometry_pair",
+  "run_id": "v3_exq_266_q020_valence_geometry_pair_20260410T023257Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "Q-020"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0047",
+  "conditions": [
+    "TERRAIN_SHAPED",
+    "TERRAIN_FLAT"
+  ],
+  "seeds": [
+    42,
+    123
+  ],
+  "registered_thresholds": {
+    "C1_harm_reduction_frac": 0.15,
+    "C2_terrain_harm_corr": 0.1,
+    "C3_seed_pair_pass": 2,
+    "C4_n_harm_min": 20
+  },
+  "metrics": {
+    "harm_rate_TERRAIN_SHAPED": 0.0060999999999999995,
+    "harm_rate_TERRAIN_FLAT": 0.0060999999999999995,
+    "harm_reduction_frac": 0.0,
+    "terrain_harm_corr_TERRAIN_SHAPED": -0.4384068955501535,
+    "terrain_harm_corr_TERRAIN_FLAT": -0.4384068955501535,
+    "seed_pair_pass_harm": 0,
+    "n_harm_min": 58
+  },
+  "acceptance_checks": {
+    "C1_harm_reduction_frac_ge_0.15": false,
+    "C2_terrain_corr_SHAPED_ge_0.10": false,
+    "C3_consistent_across_seeds": false,
+    "C4_data_quality_n_harm_min": true
+  },
+  "criteria_passed": 1,
+  "criteria_total": 4,
+  "evidence_direction": "does_not_support",
+  "params": {
+    "grid_size": 6,
+    "num_hazards": 4,
+    "harm_scale": 0.02,
+    "proximity_harm_scale": 0.05,
+    "warmup_episodes": 300,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "alpha_world": 0.9,
+    "self_dim": 32,
+    "world_dim": 32
+  },
+  "summary": "Discriminative pair for Q-020 Resolution A (co-true: ARC-007 + MECH-073). TERRAIN_SHAPED uses active ResidueField valence geometry; TERRAIN_FLAT ablates valence (valence_enabled=False). harm_rate: SHAPED=0.0061 vs FLAT=0.0061 (reduction=+0.0000). terrain_harm_corr SHAPED=-0.4384 vs FLAT=-0.4384. Outcome: FAIL (1/4).",
+  "per_seed_results": {
+    "TERRAIN_SHAPED": [
+      {
+        "seed": 42,
+        "condition": "TERRAIN_SHAPED",
+        "terrain_shaped": true,
+        "harm_events_train": 1800,
+        "total_steps_train": 1800,
+        "harm_rate_train": 1.0,
+        "harm_events_eval": 64,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0064,
+        "terrain_harm_corr": -1.1114260064798964,
+        "mean_terrain_at_harm": 35.19272059202194,
+        "mean_terrain_at_safe": 35.213048701508995,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 35.2169075012207,
+        "residue_field_harm_events": 1800
+      },
+      {
+        "seed": 123,
+        "condition": "TERRAIN_SHAPED",
+        "terrain_shaped": true,
+        "harm_events_train": 354,
+        "total_steps_train": 60000,
+        "harm_rate_train": 0.0059,
+        "harm_events_eval": 58,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0058,
+        "terrain_harm_corr": 0.23461221537958946,
+        "mean_terrain_at_harm": 3.802394143466292,
+        "mean_terrain_at_safe": 3.801966985882084,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 3.740168809890747,
+        "residue_field_harm_events": 354
+      }
+    ],
+    "TERRAIN_FLAT": [
+      {
+        "seed": 42,
+        "condition": "TERRAIN_FLAT",
+        "terrain_shaped": false,
+        "harm_events_train": 1800,
+        "total_steps_train": 1800,
+        "harm_rate_train": 1.0,
+        "harm_events_eval": 64,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0064,
+        "terrain_harm_corr": -1.1114260064798964,
+        "mean_terrain_at_harm": 35.19272059202194,
+        "mean_terrain_at_safe": 35.213048701508995,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 35.2169075012207,
+        "residue_field_harm_events": 1800
+      },
+      {
+        "seed": 123,
+        "condition": "TERRAIN_FLAT",
+        "terrain_shaped": false,
+        "harm_events_train": 354,
+        "total_steps_train": 60000,
+        "harm_rate_train": 0.0059,
+        "harm_events_eval": 58,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0058,
+        "terrain_harm_corr": 0.23461221537958946,
+        "mean_terrain_at_harm": 3.802394143466292,
+        "mean_terrain_at_safe": 3.801966985882084,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 3.740168809890747,
+        "residue_field_harm_events": 354
+      }
+    ]
+  }
+}
