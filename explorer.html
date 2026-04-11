@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-04-05.1 -->
+<!-- EXPLORER_VERSION: 2026-04-11.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2243,6 +2243,10 @@
           <input id="v3PendingFilter" type="checkbox" style="width:auto;" />
           V3 Pending only
         </label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);" title="Show only claims that have at least one genuine experiment result on the current substrate">
+          <input id="evidencedFilter" type="checkbox" style="width:auto;" />
+          Evidenced substrate only
+        </label>
         <button id="clearFilters" class="primary" style="font-size:12px;padding:6px 10px;">✕ Clear Filters</button>
       </div>
     </section>
@@ -3068,6 +3072,7 @@ END CONFLICT RESOLUTION`;
       govEpochOnly: document.getElementById('govEpochOnly'),
       includeDeps: document.getElementById('includeDeps'),
       v3PendingFilter: document.getElementById('v3PendingFilter'),
+      evidencedFilter: document.getElementById('evidencedFilter'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
       designStateBar: document.getElementById('designStateBar'),
@@ -3227,8 +3232,10 @@ END CONFLICT RESOLUTION`;
             continue;
           }
           mode = null;
-          if (['claim_type', 'subject', 'polarity', 'status', 'location'].includes(key)) {
+          if (['claim_type', 'subject', 'polarity', 'status', 'location', 'implementation_phase'].includes(key)) {
             cur[key] = val.trim();
+          } else if (key === 'v3_pending') {
+            cur.v3_pending = val.trim() === 'true';
           }
           continue;
         }
@@ -3249,10 +3256,12 @@ END CONFLICT RESOLUTION`;
         const idMatch = block.match(/id:\s*([A-Z]{1,6}-\d{3})/i);
         if (!idMatch) return;
         const c = { id: idMatch[1].trim(), depends_on: [] };
-        ['claim_type', 'subject', 'polarity', 'status', 'location'].forEach(key => {
+        ['claim_type', 'subject', 'polarity', 'status', 'location', 'implementation_phase'].forEach(key => {
           const km = block.match(new RegExp(`^\\s*${key}:\\s*(.+)$`, 'm'));
           if (km) c[key] = km[1].trim();
         });
+        const v3pm = block.match(/^\s*v3_pending:\s*(.+)$/m);
+        if (v3pm) c.v3_pending = v3pm[1].trim() === 'true';
         const depLine = block.match(/^\s*depends_on:\s*(.*)$/m);
         if (depLine) {
           const rest = depLine[1].trim();
@@ -3295,6 +3304,9 @@ END CONFLICT RESOLUTION`;
         lifecycle_stage: c.lifecycle_stage || '',
         adjudication_decision_status: c.adjudication_decision_status || '',
         pending_design: c.pending_design || false,
+        v3_pending: c.v3_pending || false,
+        implementation_phase: c.implementation_phase || '',
+        genuine_exp_count: 0,  // merged from claim_evidence.v1.json after load
       };
     }
 
@@ -6812,12 +6824,14 @@ END CONFLICT RESOLUTION`;
       const status = els.statusFilter.value;
       const subjectTerm = (els.subjectFilter.value || '').trim().toLowerCase();
       const v3Only = els.v3PendingFilter && els.v3PendingFilter.checked;
+      const evidencedOnly = els.evidencedFilter && els.evidencedFilter.checked;
 
       return allClaims.filter(c => {
         if (type && c.type !== type) return false;
         if (status && c.status !== status) return false;
         if (subjectTerm && !c.subject.toLowerCase().includes(subjectTerm)) return false;
         if (v3Only && !c.v3_pending && c.implementation_phase !== 'v3') return false;
+        if (evidencedOnly && !(c.genuine_exp_count > 0)) return false;
         if (term) {
           const hay = `${c.id} ${c.subject} ${c.type} ${c.status}`.toLowerCase();
           if (!hay.includes(term)) return false;
@@ -8814,6 +8828,7 @@ END CONFLICT RESOLUTION`;
           status: els.statusFilter.value,
           subject: els.subjectFilter.value,
           v3Pending: els.v3PendingFilter ? els.v3PendingFilter.checked : false,
+          evidencedOnly: els.evidencedFilter ? els.evidencedFilter.checked : false,
         };
         localStorage.setItem('ree_explorer.filters.v1', JSON.stringify(state));
       } catch (_) {}
@@ -8829,6 +8844,7 @@ END CONFLICT RESOLUTION`;
         if (state.status && Array.from(els.statusFilter.options).some(o => o.value === state.status)) els.statusFilter.value = state.status;
         if (typeof state.subject === 'string') els.subjectFilter.value = state.subject;
         if (els.v3PendingFilter && state.v3Pending) els.v3PendingFilter.checked = true;
+        if (els.evidencedFilter && state.evidencedOnly) els.evidencedFilter.checked = true;
       } catch (_) {}
     }
 
@@ -8840,6 +8856,7 @@ END CONFLICT RESOLUTION`;
         els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); saveFilterStateToStorage(); });
         els.includeDeps.addEventListener(evt, () => renderGraph());
         if (els.v3PendingFilter) els.v3PendingFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        if (els.evidencedFilter) els.evidencedFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); saveFilterStateToStorage(); });
       });
 
 
@@ -8849,6 +8866,7 @@ END CONFLICT RESOLUTION`;
         els.statusFilter.value = '';
         els.subjectFilter.value = '';
         if (els.v3PendingFilter) els.v3PendingFilter.checked = false;
+        if (els.evidencedFilter) els.evidencedFilter.checked = false;
         saveFilterStateToStorage();
         renderTable();
         renderGraph();
@@ -9044,6 +9062,23 @@ END CONFLICT RESOLUTION`;
       }
       allClaims = parsed.map(normalizeClaim);
       claimMap = new Map(allClaims.map(c => [c.id, c]));
+
+      // Merge genuine_exp_count from claim_evidence.v1.json
+      try {
+        const evResp = await fetch('evidence/experiments/claim_evidence.v1.json', { cache: 'no-store' });
+        if (evResp.ok) {
+          const evData = await evResp.json();
+          const evClaims = evData && evData.claims ? evData.claims : {};
+          for (const [cid, ev] of Object.entries(evClaims)) {
+            const claim = claimMap.get(cid);
+            if (claim) claim.genuine_exp_count = ev.genuine_exp_count || 0;
+          }
+        }
+      } catch (e) {
+        // non-fatal: filter simply won't show any evidenced claims
+        console.warn('claim_evidence.v1.json load failed:', e);
+      }
+
       conflictsMap = await loadConflicts();
       claimTextCache.clear();
       fileCache.clear();
