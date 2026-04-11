@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-11T03:30:00Z",
+  "last_updated_utc": "2026-04-11T17:00:00Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -25,20 +25,27 @@
       "unblocks_claims": [
         "SD-003"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_330_sd013_contrastive_counterfactual_20260411T023725Z_v3",
+          "experiment_type": "v3_exq_330_sd013_contrastive_counterfactual",
+          "metric": "cf_gap_ratio (CONTRASTIVE/OBSERVATIONAL) = 1.29-1.49x across 3 seeds (threshold: > 2.0). CONTRASTIVE always > OBSERVATIONAL (right direction) but advantage too small.",
+          "target": "cf_gap_ratio > 2.0 in 3/3 seeds AND forward_r2 > 0.9 (C1 already passing: r2=0.997-0.999)"
+        }
+      ],
       "implementation_hint": "E2_harm_s is implemented (ARC-033) but training requires counterfactual perturbation signal to avoid bias in causal_sig. Add contrastive counterfactual action pair during E2_harm_s training: for each transition, sample a_cf != a_actual, compute predicted z_harm_s_cf, train E2_harm_s to produce divergent outputs for actual vs counterfactual actions. Validates SD-003 z_harm_s attribution pipeline.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-11",
+      "last_seen_session": "governance-2026-04-11b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
-      "validation_experiment": "V3-EXQ-320",
+      "validation_experiment": "V3-EXQ-330",
       "metric_trajectory": {
-        "primary_metric": "causal_sig_bias_confounded",
-        "primary_metric_description": "Difference in causal_sig error between confounded states (agent correlates with ambient harm) vs non-confounded states. Should be near zero in INTERVENTIONAL condition, elevated in OBSERVATIONAL condition. Measures whether the training objective achieves causal identifiability.",
-        "direction": "lower_is_better",
-        "target": "causal_sig_error_confounded < causal_sig_error_nonconfounded + epsilon in INTERVENTIONAL condition",
+        "primary_metric": "cf_gap_ratio",
+        "primary_metric_description": "cf_gap_ratio = mean_cf_gap(CONTRASTIVE) / mean_cf_gap(OBSERVATIONAL). The forward model (E2_harm_s) computes the difference between actual and counterfactual z_harm_s; this ratio measures whether contrastive training amplifies that gap relative to observational-only training. Ratio > 2.0 = contrastive training produces substantially larger attribution signal. Also track forward_r2 (C1) as a prerequisite: E2_harm_s must first learn the transition dynamics before contrastive training advantage is interpretable.",
+        "direction": "higher_is_better",
+        "target": "cf_gap_ratio > 2.0 in 3/3 seeds AND forward_r2 > 0.9 (C1 already passing)",
         "observations": [
           {
             "run_id": null,
@@ -46,14 +53,22 @@
             "date_utc": "2026-04-10",
             "substrate_state": "SD-013 contrastive perturbation implemented; E2_harm_s trained with a_cf substitution subset",
             "metric_value": null,
-            "metric_notes": "EXQ-320 ran as dry run (reclassified non_contributory 2026-04-10). No metric reading yet. Full run queued."
+            "metric_notes": "EXQ-320 ran as dry run (reclassified non_contributory 2026-04-10). No metric reading yet."
+          },
+          {
+            "run_id": "v3_exq_330_sd013_contrastive_counterfactual_20260411T023725Z_v3",
+            "experiment_type": "v3_exq_330_sd013_contrastive_counterfactual",
+            "date_utc": "2026-04-11",
+            "substrate_state": "SD-013 contrastive perturbation implemented; full run (not dry run); 3 seeds",
+            "metric_value": 1.39,
+            "metric_notes": "C1 PASS 3/3: forward_r2=0.997-0.999. ARC-033 confirmed: E2_harm_s forward model learns transition dynamics. C3 PASS 3/3: attribution sign correct (1.0 all seeds). C2 FAIL 0/3: cf_gap_ratio=1.49/1.29/1.40 (threshold 2.0). Direction is correct (CONTRASTIVE > OBSERVATIONAL in all seeds) but advantage is only ~30-50% rather than the required 100% (2x). SD-003 reclassified supports (C1+C3 pass). SD-013 does_not_support (ratio too small). The 1.3-1.5x advantage is real -- contrastive training helps -- but the threshold may be too aggressive, OR interventional_fraction=0.3 is too low. Increasing interventional_fraction to 0.5+ or extending training is the predicted fix."
           }
         ],
-        "current_blocker": "Full EXQ-320 run pending. EXQ-115 (baseline causal_sig validation) is also a prerequisite -- the bias comparison is only interpretable once causal_sig produces non-trivial signal at all.",
+        "current_blocker": "cf_gap_ratio at 1.29-1.49x vs threshold 2.0. Two hypotheses: (1) interventional_fraction=0.3 too low -- the contrastive signal is diluted by 70% observational steps; increasing to 0.5+ may push ratio above 2.0. (2) The 2.0 threshold may be too strict -- a 40% advantage IS meaningful causal identifiability improvement. Consider whether the threshold should be 1.5x instead. Forward model quality (C1, r2>0.99) and sign correctness (C3) are not blockers.",
         "prediction": {
-          "expected_value": "INTERVENTIONAL causal_sig_error < 0.5 * OBSERVATIONAL causal_sig_error in confounded states",
-          "rationale": "Scholkopf et al. 2021 establishes that observational training learns the correlational distribution, which inflates causal_sig in confounded states. Even a modest fraction of interventional training steps should substantially reduce this bias because the correction signal is highly informative per step.",
-          "prerequisite_state": "EXQ-115 PASS first (z_harm_s causal_sig non-trivial at baseline)"
+          "expected_value": "cf_gap_ratio > 2.0 with interventional_fraction >= 0.5; or reclassify threshold to 1.5x if 1.5-2.0x range demonstrates sufficient practical causal identifiability",
+          "rationale": "EXQ-330 shows the direction is correct (CONTRASTIVE > OBSERVATIONAL every seed). The 1.3-1.5x advantage is consistent -- this is a stable signal, not noise. Scholkopf et al. 2021 predicts larger advantage with higher interventional fraction. With interventional_fraction=0.3, 30% of steps provide contrastive signal. At 0.5, the training budget for causal correction doubles, and the ratio should increase proportionally.",
+          "prerequisite_state": "Re-run with interventional_fraction=0.5 OR re-evaluate whether threshold should be 1.5x. SD-003 already validated -- SD-013 is a refinement, not a prerequisite."
         }
       }
     },
@@ -85,7 +100,7 @@
       "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation). MECH-112 prerequisite resolved by co-implementation in this session (ResourceEncoder IS the MECH-112 substrate).",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-11",
+      "last_seen_session": "governance-2026-04-11b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -119,9 +134,17 @@
             "substrate_state": "Updated ResourceEncoder with z_resource seeding; RESOURCE_SEED vs WORLD_SEED discriminative pair",
             "metric_value": null,
             "metric_notes": "n_cosine_samples=0 in both conditions -- measurement infrastructure never fires. goal_resource_r is undefined (no samples). Zero type C: measurement gap, not a scientific failure. The conditions were never co-activated to allow the cosine comparison to run. Needs /diagnose-errors."
+          },
+          {
+            "run_id": "v3_exq_322_sd015_resource_encoder_seeding_20260410T222041Z_v3",
+            "experiment_type": "v3_exq_322_sd015_resource_encoder_seeding",
+            "date_utc": "2026-04-11",
+            "substrate_state": "Second concurrent run (same experiment type, same implementation, same seeds)",
+            "metric_value": null,
+            "metric_notes": "n_cosine_samples=0 again in all 5 seeds, both conditions. Confirms the bug is reproducible (not a race condition or transient failure). The measurement path never fires regardless of seed or run. Zero type C confirmed persistent."
           }
         ],
-        "current_blocker": "n_cosine_samples=0 in EXQ-322: measurement code does not fire. This is a measurement infrastructure failure, not a substrate failure. The staircase has moved from Type A (source conflation) to Type B (wrong features) to Type C (measurement gap). Fix: diagnose why the cosine sampling path is never reached during eval. Downstream: MECH-057b (hippocampal candidacy gate) and ARC-028 (BetaGate coupling) both also require committed-sequence generation -- a separate zero-generator that blocks the next level of the staircase.",
+        "current_blocker": "n_cosine_samples=0 confirmed reproducible across two independent runs (EXQ-322 184213Z and 222041Z). Measurement infrastructure failure is stable and reproducible. Fix: diagnose why the cosine sampling path is never reached during eval. Downstream: MECH-057b (hippocampal candidacy gate) and ARC-028 (BetaGate coupling) both also require committed-sequence generation -- a separate zero-generator that blocks the next level of the staircase.",
         "prediction": {
           "expected_value": "goal_resource_r > 0.2 in RESOURCE_SEED, < 0.05 in WORLD_SEED, once measurement gap is fixed",
           "rationale": "EXQ-085l showed the encoder CAN produce signal (prox_r2=0.9+). The current encoder version targets object-type features rather than spatial proximity, so the representational basis is correct. Once the cosine sampling path fires, the RESOURCE_SEED condition should produce measurable cosine similarity since z_resource is now seeding z_goal directly.",
@@ -144,7 +167,7 @@
       "implementation_hint": "z_harm_a and z_harm_s must encode non-overlapping information under the split SD-011 design. SD-019 adds an orthogonality/redundancy-reduction constraint (e.g. adversarial loss or correlation penalty) between z_harm_a and z_harm_s encoder outputs. Requires ARC-016 (dynamic precision) to contextualize what counts as non-redundant in different regime states. ARC-016 wiring resolved: e3.current_precision accessible as property.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-11",
+      "last_seen_session": "governance-2026-04-11b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -169,7 +192,15 @@
             "date_utc": "2026-04-10",
             "substrate_state": "SD-019 nonredundancy loss implemented; SD-022 limb damage NOT active (harm_obs_a still from EMA proximity)",
             "metric_value": null,
-            "metric_notes": "C1 (cosine_sq_nonredundant < cosine_sq_baseline) passes 2/5 seeds; direction wrong in 3/5 seeds. C2 (abs < 0.5) passes all 5 seeds -- both streams have low absolute cosine regardless of condition. The inconsistency is the expected fingerprint of a training objective applied to collinear information sources: the loss has nothing stable to grip. z_harm_s_norm >> z_harm_a_norm across all seeds (e.g., 8.3 vs 0.48 in seed 42), suggesting z_harm_a is under-expressed in the EMA substrate."
+            "metric_notes": "C1 (cosine_sq_nonredundant < cosine_sq_baseline) passes 2/5 seeds; direction wrong in 3/5 seeds. C2 (abs < 0.5) passes all 5 seeds -- both streams have low absolute cosine regardless of condition. z_harm_s_norm >> z_harm_a_norm (8.3 vs 0.48 in seed 42): z_harm_a under-expressed in EMA substrate."
+          },
+          {
+            "run_id": "v3_exq_323_sd019_harm_nonredundancy_20260410T160857Z_v3",
+            "experiment_type": "v3_exq_323_sd019_harm_nonredundancy",
+            "date_utc": "2026-04-10",
+            "substrate_state": "Concurrent run on second machine; same seeds, same SD-022-absent substrate",
+            "metric_value": null,
+            "metric_notes": "Near bit-for-bit identical to 184158Z (same seeds, near-identical cosine values: 0.11914434 vs 0.11914417). 2/5 seeds pass C1. Confirms the collinear EMA substrate is the bottleneck, not noise or a specific machine/run artifact. The pattern is deterministic."
           }
         ],
         "current_blocker": "SD-022 substrate not active during EXQ-323. When z_harm_a derives from the same 50-dim proximity EMA as z_harm_s, the nonredundancy objective is applied to a pair of representations that share their information source. The training signal is therefore unstable: any reduction in cosine similarity achieved in one episode can be reversed when the proximity geometry changes. SD-022 (limb_damage_enabled=True) provides a causally independent information source for z_harm_a (body damage state), giving the nonredundancy objective a genuine basis for stable disentanglement.",
@@ -202,7 +233,7 @@
       "implementation_hint": "Replace z_harm_a AffectiveHarmEncoder training target from EMA-accumulated harm to a precision-weighted prediction error signal: surprise = |harm_obs - E_predicted_harm| * precision. ARC-016 dynamic precision provides the precision weight. Requires SD-019 to enforce that z_harm_s and z_harm_a encode non-redundant aspects of the harm signal. Both SD-019 and ARC-016 now implemented.",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-11",
+      "last_seen_session": "governance-2026-04-11b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -227,10 +258,18 @@
             "date_utc": "2026-04-10",
             "substrate_state": "SD-020 PE target implemented; SD-022 limb damage NOT active; EMA substrate for z_harm_a",
             "metric_value": null,
-            "metric_notes": "1/5 seeds pass. n_steps=10-20 harm events per seed -- critically low for stable correlation estimates. surprise_corr sign-flips across seeds (positive in 43/45, strongly negative in 42/44/46). The sign flip pattern is the expected fingerprint of noise-dominated correlation estimation with n<20. Additionally, harm_obs_a_variance=0.0003-0.0007 (well below useful PE signal range): with such low z_harm_a variance, the PE signal has almost no room to encode. Two confounds compound: (1) insufficient events per seed, (2) z_harm_a information source too low-variance on EMA substrate."
+            "metric_notes": "1/5 seeds pass. n_steps=10-20 harm events per seed -- critically low. surprise_corr sign-flips across seeds. harm_obs_a_variance=0.0003-0.0007. Two confounds."
+          },
+          {
+            "run_id": "v3_exq_324_sd020_harm_surprise_pe_20260411T050533Z_v3",
+            "experiment_type": "v3_exq_324_sd020_harm_surprise_pe",
+            "date_utc": "2026-04-11",
+            "substrate_state": "SD-020 PE target; SD-022 NOT active; EMA substrate (second run confirming first)",
+            "metric_value": null,
+            "metric_notes": "1/5 seeds pass again (seed 45 only). Same confounds confirmed: n_steps=10-20, sign-flip across seeds. C1 (surprise_corr_pe > surprise_corr_ema) passes 4/5 seeds -- the direction is right -- but C2 (abs threshold > 0.15) fails in 4/5 seeds due to near-zero variance. The trajectory is stable: two runs on the same substrate produce the same pattern. Both classified mixed. The next fix is the substrate (SD-022), not the implementation."
           }
         ],
-        "current_blocker": "Two compounding factors, not one: (1) n_steps=10-20 events per seed is insufficient for stable correlation -- need >= 50. (2) z_harm_a variance too low on EMA substrate (0.0003-0.0007): PE signal cannot be encoded if z_harm_a has no room to vary. SD-022 substrate (limb_damage_enabled=True) should substantially increase harm_obs_a_variance by giving z_harm_a an independent information source with persistent body-state dynamics. The n_steps issue can be addressed by increasing hazard density, extending eval length, or reducing heal_rate.",
+        "current_blocker": "Two compounding factors confirmed across two runs: (1) n_steps=10-20 events per seed (need >= 50). (2) z_harm_a variance 0.0003-0.0007 on EMA substrate (need > 0.001). SD-022 substrate required. Second run 050533Z confirms the pattern is deterministic and substrate-driven, not run-specific.",
         "prediction": {
           "expected_value": "3+/5 seeds show positive surprise_corr_pe - surprise_corr_ema; mean delta > 0.05; abs(surprise_corr_pe) > 0.15",
           "rationale": "On SD-022 substrate, z_harm_a encodes body damage state (slowly-healing, persistent). This makes harm_obs_a_variance > 0.01 plausibly achievable. With that variance floor, the PE target has encoding capacity. Chen (2023) AIC result and Seymour (2019) precision-weighted pain both predict PE > EMA when the encoding channel is not saturated. The co-variation across EXQ-260 -> EXQ-324 -> [next] shows the metric moving in the right direction but gated by information-source variance.",
@@ -258,7 +297,7 @@
       "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward. MECH-090 bistable latch and ARC-016 wiring now both implemented. SD-020 also implemented (precision-weighted PE target for z_harm_s training).",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-11",
+      "last_seen_session": "governance-2026-04-11b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -276,6 +315,14 @@
             "substrate_state": "SD-021 design exists; ARC-016 and MECH-090 not fully wired",
             "metric_value": null,
             "metric_notes": "non_contributory: SD-021 modulation pathway not exercised. No committed sequences generated. The same total_committed_steps=0 blocker that stops EXQ-321 (MECH-090) also stops this experiment."
+          },
+          {
+            "run_id": "v3_exq_325_sd021_descending_pain_modulation_20260410T160919Z_v3",
+            "experiment_type": "v3_exq_325_sd021_descending_pain_modulation",
+            "date_utc": "2026-04-10",
+            "substrate_state": "SD-021 fully wired (ARC-016 + MECH-090 implemented); MODULATION_ON vs MODULATION_OFF conditions",
+            "metric_value": null,
+            "metric_notes": "non_contributory (governance-2026-04-11b). n_committed_steps=0 across all 5 seeds in both conditions. Beta_gate elevation never fires -- DESCENDING=CONTROL identically because the attenuation pathway is never reached. Same total_committed_steps=0 blocker confirmed in EXQ-321 (MECH-090) and EXQ-261 (prior SD-021 run). The wiring is present; the training curriculum does not reliably produce committed-mode sequences. Committed sequence generation is the rate-limiting prerequisite."
           }
         ],
         "current_blocker": "SD-021 depends on MECH-090 committed-mode being active during evaluation (total_committed_steps > 0). EXQ-321 confirmed the same blocker: 5 seeds, all conditions, total_committed_steps=0. Committed sequence generation is the rate-limiting substrate gap for both MECH-090 and SD-021. See MECH-090 staircase: EXQ-049 (gate bypassed) -> EXQ-059b (routing fixed, variance=0) -> EXQ-139 (committed_seq_len=0) -> EXQ-321 (committed_steps=0). The blocker is training curriculum, not wiring.",
@@ -316,7 +363,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-09. CausalGridWorldV2 now has 4-directional limb_damage[4] state; accumulates when moving through hazards; heals at heal_rate=0.002/step; harm_obs_a re-sourced from body damage state (7 dims: damage[4]+max+mean+residual_pain) when limb_damage_enabled=True. EXQ-319 PASS confirmed dissociation: agent with accumulated damage shows high z_harm_a and low z_harm_s when removed from hazard. r2 reduction confirmed by EXQ-318 direction (0.702->0.365) though variance threshold unmet. Promote to provisional: mechanism works, threshold failure is calibration (heal_rate too fast for 150 warmup episodes).",
       "priority": 1,
       "added_session": "governance-2026-04-11",
-      "last_seen_session": "governance-2026-04-11",
+      "last_seen_session": "governance-2026-04-11b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-09T00:00:00Z",

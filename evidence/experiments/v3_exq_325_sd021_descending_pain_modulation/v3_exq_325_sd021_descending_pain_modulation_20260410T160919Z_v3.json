@@ -4,15 +4,14 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "claim_ids": [
     "SD-021",
-    "MECH-090",
     "SD-011"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "NON_CONTRIBUTORY 2026-04-11 governance (session b). n_committed_steps=0 across all 5 seeds in both DESCENDING and CONTROL conditions. Beta gate never elevated; SD-021 attenuation path (commitment-gated z_harm_s reduction) never executed. DESCENDING=CONTROL identically (same z_harm values in both conditions). Same substrate gap as EXQ-321 (committed_steps=0 throughout). SD-021 requires beta_gate elevation to occur before it can be tested. MECH-090 removed from claim_ids_tested: the beta gate mechanism itself was never exercised, so no signal about MECH-090 can be derived -- tagging an active claim as does_not_support when it was never measured is a claim_ids accuracy error. SD-011 non_contributory: dual-stream split provides no meaningful signal when commitment is absent.",
   "evidence_direction_per_claim": {
-    "SD-021": "does_not_support",
-    "MECH-090": "does_not_support",
-    "SD-011": "does_not_support"
+    "SD-021": "non_contributory",
+    "SD-011": "non_contributory"
   },
   "outcome": "FAIL",
   "timestamp_utc": "20260410T222039Z",

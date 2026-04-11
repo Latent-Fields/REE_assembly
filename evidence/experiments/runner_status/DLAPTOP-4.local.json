@@ -2,47 +2,36 @@
   "schema_version": "v1",
   "runner_pid": 26926,
   "runner_started_at": "2026-04-11T02:37:21.745705+00:00",
-  "last_updated": "2026-04-11T12:32:03.653780+00:00",
+  "last_updated": "2026-04-11T17:03:13.404301+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-331",
+    "queue_id": "V3-EXQ-328",
     "backlog_id": "",
-    "claim_id": "ARC-030",
-    "title": "ARC-030 approach-avoidance balance with goal seeding",
+    "claim_id": "MECH-112",
+    "title": "MECH-112 z_goal structured latent discriminative pair: SD-012 drive",
     "description": "",
-    "script": "experiments/v3_exq_331_arc030_approach_avoidance_balance.py",
-    "started_at": "2026-04-11T08:53:53.594083+00:00",
+    "script": "experiments/v3_exq_328_mech112_zgoal_structured_latent.py",
+    "started_at": "2026-04-11T13:47:34.809172+00:00",
     "progress": {
-      "run_label": "Seed 13 / JOINT",
-      "runs_done": 4,
+      "run_label": "Seed 13 / DRIVE_ACTIVE",
+      "runs_done": 0,
       "runs_total": 6,
-      "episodes_done": 200,
+      "episodes_done": 50,
       "episodes_total": 250,
-      "overall_pct": 80.0
+      "overall_pct": 3.3
     },
-    "seconds_elapsed": 13090,
-    "seconds_remaining": 2804,
+    "seconds_elapsed": 11739,
+    "seconds_remaining": 56974,
     "recent_lines": [
-      "Seed 13 Condition JOINT",
-      "[train] seed=13 JOINT ep 50/250 phase=P0 benefit=0.000 harm=0.045",
-      "[train] seed=13 JOINT ep 100/250 phase=P0 benefit=0.579 harm=0.058",
-      "[train] seed=13 JOINT ep 150/250 phase=P1 benefit=0.000 harm=0.970",
-      "[train] seed=13 JOINT ep 200/250 phase=P1 benefit=0.000 harm=0.032"
+      "[train] seed=7 DRIVE_ABLATED ep 200/250 phase=P1 contacts=10",
+      "[train] seed=7 DRIVE_ABLATED ep 250/250 phase=P1 contacts=20",
+      "verdict: t0=0.0000 t50=0.0000 ablated=0.0000",
+      "Seed 13 Condition DRIVE_ACTIVE",
+      "[train] seed=13 DRIVE_ACTIVE ep 50/250 phase=P0 contacts=0"
     ],
     "ree_version": "v3"
   },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-331",
-      "backlog_id": "",
-      "claim_id": "ARC-030",
-      "title": "ARC-030 approach-avoidance balance with goal seeding",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-328",
       "backlog_id": "",
@@ -50,7 +39,7 @@
       "title": "MECH-112 z_goal structured latent discriminative pair: SD-012 drive",
       "description": "",
       "estimated_minutes": 200.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5200,6 +5189,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 22587.3
+    },
+    {
+      "queue_id": "V3-EXQ-331",
+      "backlog_id": "",
+      "claim_id": "ARC-030",
+      "title": "ARC-030 approach-avoidance balance with goal seeding",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "=== EXQ-331 FAIL === | C1 benefit_improvement: False joint=[0.00035066269786860433, 0.0008151432173606456, 3.964649898346684e-05] harm_only=[0.00035066269786860433, 0.0009968416301107653, 0.00015778024317515476] | C2 harm_preserved: True joint=[0.0005718308162689209, 0.00048275433644652375, 0.006455844170153141] harm_only=[0.0005718308162689209, 0.0004541158096492291, 0.006432246764600277]",
+      "started_at": "2026-04-11T08:53:53.594083+00:00",
+      "completed_at": "2026-04-11T13:47:31.511031+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 17617.8
     }
   ]
 }

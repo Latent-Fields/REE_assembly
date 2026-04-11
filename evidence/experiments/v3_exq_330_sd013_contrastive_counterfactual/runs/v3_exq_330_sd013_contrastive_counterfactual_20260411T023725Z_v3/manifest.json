@@ -26,9 +26,10 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "does_not_support",
+  "evidence_direction_note": "Per-claim correction 2026-04-11 governance (session b). SD-003 reclassified supports: C1 (forward_r2=0.997-0.999 3/3) and C3 (sign_correct=1.0 3/3) directly support the counterfactual pipeline. SD-003 is validated; C2 failure is specific to SD-013. ARC-033 supports: E2_harm_s forward model works. SD-013 does_not_support: contrastive advantage real but too small (ratio 1.29-1.49x vs threshold 2.0). Overall does_not_support because C2 fails.",
   "evidence_direction_per_claim": {
     "SD-013": "does_not_support",
-    "SD-003": "does_not_support",
+    "SD-003": "supports",
     "ARC-033": "supports"
   },
   "experiment_purpose": "evidence",

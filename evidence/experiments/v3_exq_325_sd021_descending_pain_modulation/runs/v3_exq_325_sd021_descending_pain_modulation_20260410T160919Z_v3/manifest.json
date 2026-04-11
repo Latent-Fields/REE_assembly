@@ -21,15 +21,14 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
     "SD-021",
-    "MECH-090",
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "NON_CONTRIBUTORY 2026-04-11 governance (session b). n_committed_steps=0 across all 5 seeds in both DESCENDING and CONTROL conditions. Beta gate never elevated; SD-021 attenuation path never executed. DESCENDING=CONTROL identically. Same substrate gap as EXQ-321. MECH-090 removed from claim_ids_tested: gate mechanism never called, active claim incorrectly tagged as does_not_support. SD-021 and SD-011 non_contributory: untestable without commitment substrate working.",
   "evidence_direction_per_claim": {
-    "SD-021": "does_not_support",
-    "MECH-090": "does_not_support",
-    "SD-011": "does_not_support"
+    "SD-021": "non_contributory",
+    "SD-011": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {

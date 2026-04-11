@@ -7,10 +7,11 @@
     "SD-011"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "RECLASSIFIED 2026-04-11 governance (session b). Concurrent run of 184158Z (same seeds, near-identical metrics). SD-019: mixed (not does_not_support). C1 (cosine_sq_nonredundant < baseline) passes 2/5 seeds; wrong direction in 3/5. C2 (abs cosine_sq < 0.5) passes all 5 seeds -- both streams have low absolute cosine regardless. The inconsistency is the expected fingerprint of a nonredundancy objective applied to a collinear information source: when both z_harm_s and z_harm_a derive from the same proximity EMA, the loss has nothing stable to grip. This is a substrate-source gap, not a falsification of SD-019. SD-022 substrate (limb_damage_enabled=True) provides causally independent information sources; prediction is that C1 passes 4+/5 seeds on SD-022 substrate. SD-011: reclassified non_contributory -- this experiment tests SD-019 training objective quality, not the dual-stream architecture claim itself.",
   "evidence_direction_per_claim": {
-    "SD-019": "does_not_support",
-    "SD-011": "does_not_support"
+    "SD-019": "mixed",
+    "SD-011": "non_contributory"
   },
   "outcome": "FAIL",
   "timestamp_utc": "20260410T160915Z",

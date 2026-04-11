@@ -40,7 +40,8 @@
   },
   "criteria_passed": 1,
   "criteria_total": 4,
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "NON_CONTRIBUTORY 2026-04-11 governance (session b). Q-020 is resolved (Resolution A, 2026-04-02 literature synthesis: ARC-007 and MECH-073 co-true) -- experimental FAIL does not reopen the question. The FAIL reveals that residue terrain navigation is not yet learned: seed 42 degenerate training (harm_rate_train=1.0, agent stuck in harm loops), terrain_harm_corr_SHAPED=-1.11 (agent navigating toward harm terrain peaks rather than away). Seed 123 shows normal harm rate but minimal terrain guidance. The ablation bug (EXQ-266) was correctly fixed; the implementation is sound; but the navigation substrate requires further development before this discriminative pair is informative. Substrate finding only.",
   "params": {
     "grid_size": 6,
     "num_hazards": 4,

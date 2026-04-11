@@ -837,6 +837,24 @@
       "selected_option": "Wait for V3 substrate implementation (correct path).",
       "timestamp_utc": "2026-04-05T11:48:38.245Z"
     },
+    "SD-020": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. Two EXQ-324 runs both classified mixed due to substrate confounds (n_steps=10-20, EMA z_harm_a variance too low). Re-run required on SD-022 substrate (limb_damage_enabled=True) with >=100 harm events per seed. Literature support strong (4 entries, lit_conf=0.915). conflict_ratio=0.4 from a single mixed run.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-11T16:55:49.227481Z"
+    },
+    "SD-021": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate. All experimental runs non_contributory (n_committed_steps=0 in EXQ-325 and EXQ-321 -- beta_gate elevation never fires). SD-021 attenuation path wired but untestable without commitment. Evidence_quality_note added to claims.yaml. Hold until commitment substrate produces n_committed_steps > 0 consistently.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-11T16:55:54.646444Z"
+    },
     "SD-022": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -856,7 +874,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-04-11T12:16:55.286896Z",
+  "generated_at_utc": "2026-04-11T16:56:03.125957Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

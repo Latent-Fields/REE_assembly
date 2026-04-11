@@ -13413,13 +13413,14 @@
     (0 < alpha_descending < 1). z_harm_a is NOT attenuated (affective load persists
     regardless of commitment -- you can tolerate expected pain but it still matters).
   evidence_quality_note: >
-    No experimental evidence yet. Derived from Chen (2023) descending pathway emphasis
-    and Keltner (2006) finding that expectation modulates sensory transmission through
-    a distinct modulatory network. Keltner showed expectation activates caudal ACC/nCF
-    (modulatory) while suppressing thalamus/S2/insula (sensory) -- this IS descending
-    modulation. The REE implementation maps commitment -> expected harm prediction ->
-    sensory PE attenuation. Biological grounding: endogenous opioid system provides
-    analgesia during committed escape/approach behavior.
+    HOLD AT CANDIDATE 2026-04-11 governance (first decision). All experimental runs
+    non_contributory due to commitment substrate gap: n_committed_steps=0 across all seeds
+    in EXQ-325 and EXQ-321 (beta_gate elevation never fires). DESCENDING=CONTROL identically
+    in all runs -- SD-021 attenuation path is wired but never reached. Requires the
+    beta_gate elevation substrate to work before SD-021 can be tested. Literature
+    support strong (4 lit entries, lit_conf=0.894): Chen 2023 (AIC PE signal), Crawford
+    2021 (PAG brainstem placebo analgesia 7T), Tracey & Mantyh 2007, Basbaum & Fields 1984.
+    Hold until commitment substrate produces n_committed_steps > 0 consistently.
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while

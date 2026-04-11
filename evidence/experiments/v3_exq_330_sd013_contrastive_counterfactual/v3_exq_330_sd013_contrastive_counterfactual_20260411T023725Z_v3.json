@@ -10,10 +10,11 @@
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
     "SD-013": "does_not_support",
-    "SD-003": "does_not_support",
+    "SD-003": "supports",
     "ARC-033": "supports"
   },
   "evidence_direction": "does_not_support",
+  "evidence_direction_note": "Per-claim correction 2026-04-11 governance (session b). SD-003 reclassified supports: C1 (forward_r2=0.997-0.999, 3/3 seeds PASS) and C3 (attribution_sign_correct=1.0, 3/3 seeds PASS) both directly support the counterfactual attribution pipeline. SD-003 is already validated (status=validated, EXQ-030b) -- C2 failure is specific to SD-013's contrastive-training-advantage claim (ratio 1.29-1.49x vs threshold 2.0), not to SD-003 itself. ARC-033 supports: E2_harm_s forward model works (r2>0.99). SD-013 does_not_support: contrastive training advantage exists (right direction) but too small (2x threshold not met). Overall direction remains does_not_support because the primary criterion C2 fails.",
   "outcome": "FAIL",
   "criteria": {
     "c1_forward_r2_pass": true,
