@@ -1,0 +1,142 @@
+{
+  "run_id": "v3_exq_323_sd019_harm_nonredundancy_20260410T160857Z_v3",
+  "experiment_type": "v3_exq_323_sd019_harm_nonredundancy",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-019",
+    "SD-011"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "SD-019": "does_not_support",
+    "SD-011": "does_not_support"
+  },
+  "outcome": "FAIL",
+  "timestamp_utc": "20260410T160915Z",
+  "registered_thresholds": {
+    "C1_cosine_sq_reduced": 0.0,
+    "C2_abs_cosine_sq": 0.5,
+    "C3_min_norm": 0.01,
+    "seeds_needed": 3
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "cosine_sq_nonredundant": 0.11914434758099643,
+      "cosine_sq_baseline": 0.014081638729707762,
+      "z_harm_s_norm_nonredundant": 8.317629684101451,
+      "z_harm_a_norm_nonredundant": 0.48173715580593457,
+      "c1_cosine_sq_reduced": false,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "NONREDUNDANT": {
+          "cosine_sq": 0.11914434758099643,
+          "z_harm_s_norm": 8.317629684101451,
+          "z_harm_a_norm": 0.48173715580593457
+        },
+        "BASELINE": {
+          "cosine_sq": 0.014081638729707762,
+          "z_harm_s_norm": 9.37434400211681,
+          "z_harm_a_norm": 0.8019611835479736
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": true,
+      "cosine_sq_nonredundant": 0.002058186079375446,
+      "cosine_sq_baseline": 0.00429872089298442,
+      "z_harm_s_norm_nonredundant": 5.838849270343781,
+      "z_harm_a_norm_nonredundant": 1.2721536993980407,
+      "c1_cosine_sq_reduced": true,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "NONREDUNDANT": {
+          "cosine_sq": 0.002058186079375446,
+          "z_harm_s_norm": 5.838849270343781,
+          "z_harm_a_norm": 1.2721536993980407
+        },
+        "BASELINE": {
+          "cosine_sq": 0.00429872089298442,
+          "z_harm_s_norm": 5.8158488273620605,
+          "z_harm_a_norm": 0.8668950766324997
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": true,
+      "cosine_sq_nonredundant": 0.011790509208698164,
+      "cosine_sq_baseline": 0.025205155665224247,
+      "z_harm_s_norm_nonredundant": 4.418409737673673,
+      "z_harm_a_norm_nonredundant": 0.6254367123950612,
+      "c1_cosine_sq_reduced": true,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "NONREDUNDANT": {
+          "cosine_sq": 0.011790509208698164,
+          "z_harm_s_norm": 4.418409737673673,
+          "z_harm_a_norm": 0.6254367123950612
+        },
+        "BASELINE": {
+          "cosine_sq": 0.025205155665224247,
+          "z_harm_s_norm": 4.023128487847068,
+          "z_harm_a_norm": 0.5627308000217784
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": false,
+      "cosine_sq_nonredundant": 0.038744052728781335,
+      "cosine_sq_baseline": 8.459552145723137e-05,
+      "z_harm_s_norm_nonredundant": 7.216022418095515,
+      "z_harm_a_norm_nonredundant": 1.1319153492267315,
+      "c1_cosine_sq_reduced": false,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "NONREDUNDANT": {
+          "cosine_sq": 0.038744052728781335,
+          "z_harm_s_norm": 7.216022418095515,
+          "z_harm_a_norm": 1.1319153492267315
+        },
+        "BASELINE": {
+          "cosine_sq": 8.459552145723137e-05,
+          "z_harm_s_norm": 7.629664531120887,
+          "z_harm_a_norm": 0.9320244972522442
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": false,
+      "cosine_sq_nonredundant": 0.016381198447197674,
+      "cosine_sq_baseline": 0.011027188412845135,
+      "z_harm_s_norm_nonredundant": 7.294246530532837,
+      "z_harm_a_norm_nonredundant": 0.5824066281318665,
+      "c1_cosine_sq_reduced": false,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "NONREDUNDANT": {
+          "cosine_sq": 0.016381198447197674,
+          "z_harm_s_norm": 7.294246530532837,
+          "z_harm_a_norm": 0.5824066281318665
+        },
+        "BASELINE": {
+          "cosine_sq": 0.011027188412845135,
+          "z_harm_s_norm": 7.231825304031372,
+          "z_harm_a_norm": 0.7256120145320892
+        }
+      }
+    }
+  ],
+  "seeds_passing": 2,
+  "experiment_passes": false
+}

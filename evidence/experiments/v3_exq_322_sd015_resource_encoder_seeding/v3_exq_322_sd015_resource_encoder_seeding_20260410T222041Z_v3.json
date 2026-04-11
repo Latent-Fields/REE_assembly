@@ -1,0 +1,142 @@
+{
+  "run_id": "v3_exq_322_sd015_resource_encoder_seeding_20260410T222041Z_v3",
+  "experiment_type": "v3_exq_322_sd015_resource_encoder_seeding",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-015",
+    "MECH-112"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "SD-015": "does_not_support",
+    "MECH-112": "does_not_support"
+  },
+  "outcome": "FAIL",
+  "timestamp_utc": "20260411T050531Z",
+  "registered_thresholds": {
+    "C1_resource_r_higher": 0.0,
+    "C2_abs_resource_r": 0.2,
+    "C3_benefit_not_worse": 0.0,
+    "seeds_needed": 3
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "goal_resource_r_resource": 0.0,
+      "goal_resource_r_world": 0.0,
+      "benefit_ratio_resource": 0.13333333333333333,
+      "benefit_ratio_world": 0.13333333333333333,
+      "c1_resource_r_higher": false,
+      "c2_abs_threshold": false,
+      "c3_benefit_not_worse": true,
+      "condition_results": {
+        "RESOURCE_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.13333333333333333,
+          "n_cosine_samples": 0
+        },
+        "WORLD_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.13333333333333333,
+          "n_cosine_samples": 0
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": false,
+      "goal_resource_r_resource": 0.0,
+      "goal_resource_r_world": 0.0,
+      "benefit_ratio_resource": 0.13333333333333333,
+      "benefit_ratio_world": 0.13333333333333333,
+      "c1_resource_r_higher": false,
+      "c2_abs_threshold": false,
+      "c3_benefit_not_worse": true,
+      "condition_results": {
+        "RESOURCE_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.13333333333333333,
+          "n_cosine_samples": 0
+        },
+        "WORLD_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.13333333333333333,
+          "n_cosine_samples": 0
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": false,
+      "goal_resource_r_resource": 0.0,
+      "goal_resource_r_world": 0.0,
+      "benefit_ratio_resource": 0.2,
+      "benefit_ratio_world": 0.2,
+      "c1_resource_r_higher": false,
+      "c2_abs_threshold": false,
+      "c3_benefit_not_worse": true,
+      "condition_results": {
+        "RESOURCE_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.2,
+          "n_cosine_samples": 0
+        },
+        "WORLD_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.2,
+          "n_cosine_samples": 0
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": false,
+      "goal_resource_r_resource": 0.0,
+      "goal_resource_r_world": 0.0,
+      "benefit_ratio_resource": 0.13333333333333333,
+      "benefit_ratio_world": 0.13333333333333333,
+      "c1_resource_r_higher": false,
+      "c2_abs_threshold": false,
+      "c3_benefit_not_worse": true,
+      "condition_results": {
+        "RESOURCE_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.13333333333333333,
+          "n_cosine_samples": 0
+        },
+        "WORLD_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.13333333333333333,
+          "n_cosine_samples": 0
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": false,
+      "goal_resource_r_resource": 0.0,
+      "goal_resource_r_world": 0.0,
+      "benefit_ratio_resource": 0.1,
+      "benefit_ratio_world": 0.1,
+      "c1_resource_r_higher": false,
+      "c2_abs_threshold": false,
+      "c3_benefit_not_worse": true,
+      "condition_results": {
+        "RESOURCE_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.1,
+          "n_cosine_samples": 0
+        },
+        "WORLD_SEED": {
+          "goal_resource_r": 0.0,
+          "benefit_ratio": 0.1,
+          "n_cosine_samples": 0
+        }
+      }
+    }
+  ],
+  "seeds_passing": 0,
+  "experiment_passes": false
+}

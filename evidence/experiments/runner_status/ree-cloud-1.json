@@ -1,52 +1,19 @@
 {
   "schema_version": "v1",
-  "runner_pid": 671,
-  "runner_started_at": "2026-04-09T19:52:38.577563+00:00",
-  "last_updated": "2026-04-10T03:44:39.894465+00:00",
+  "runner_pid": 670,
+  "runner_started_at": "2026-04-10T16:08:54.598722+00:00",
+  "last_updated": "2026-04-11T05:05:51.889562+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-288",
-      "backlog_id": "EXP-0095",
-      "claim_id": "Q-034",
-      "title": "Q-034 hazard/resource ratio threshold sweep (3x3 grid, 3 seeds)",
-      "description": "",
-      "estimated_minutes": 720.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-318",
-      "backlog_id": "",
-      "claim_id": "SD-022",
-      "title": "SD-022 limb damage stream separation validation (3 seeds)",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-263b",
+      "queue_id": "V3-EXQ-321",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-023 validation: landmark gradient texture for MECH-216 anticipatory wanting",
+      "title": "MECH-090: bistable gate vs legacy per-tick gate",
       "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-319",
-      "backlog_id": "",
-      "claim_id": "SD-022",
-      "title": "SD-022 harm stream dissociation: HIGH_DAMAGE vs FRESH matched-threat (5 seeds)",
-      "description": "",
-      "estimated_minutes": 66.7,
-      "status": "pending",
+      "estimated_minutes": 93.3,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2187,6 +2154,62 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 16868.6
+    },
+    {
+      "queue_id": "V3-EXQ-323",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-019: harm stream non-redundancy constraint",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=45: FAIL cos_sq_NR=0.0387 cos_sq_BL=0.0001 | seed=46: FAIL cos_sq_NR=0.0164 cos_sq_BL=0.0110 | Results -> /home/ree/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_323_sd019_harm_nonredundancy/v3_exq_323_sd019_harm_nonredundancy_20260410T160857Z_v3.json",
+      "started_at": "2026-04-10T16:08:55.774158+00:00",
+      "completed_at": "2026-04-10T16:09:16.465751+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 20.7
+    },
+    {
+      "queue_id": "V3-EXQ-325",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021: descending pain modulation -- commitment-gated z_harm_s attenuation",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=0 | seed=45: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=0 | seed=46: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=0",
+      "started_at": "2026-04-10T16:09:18.464010+00:00",
+      "completed_at": "2026-04-10T22:20:39.723757+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 22280.2
+    },
+    {
+      "queue_id": "V3-EXQ-322",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015: z_resource seeding vs z_world seeding of z_goal",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL r_res=0.0000 r_world=0.0000 ben_res=0.200 | seed=45: FAIL r_res=0.0000 r_world=0.0000 ben_res=0.133 | seed=46: FAIL r_res=0.0000 r_world=0.0000 ben_res=0.100",
+      "started_at": "2026-04-10T22:20:40.838084+00:00",
+      "completed_at": "2026-04-11T05:05:31.832280+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 24291.0
+    },
+    {
+      "queue_id": "V3-EXQ-324",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020: harm surprise PE vs EMA target for z_harm_a",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=45: PASS surp_pe=0.5484 surp_ema=0.5305 | seed=46: FAIL surp_pe=-0.9789 surp_ema=-0.9800 | Results -> /home/ree/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_324_sd020_harm_surprise_pe/v3_exq_324_sd020_harm_surprise_pe_20260411T050533Z_v3.json",
+      "started_at": "2026-04-11T05:05:32.915144+00:00",
+      "completed_at": "2026-04-11T05:05:51.889417+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 19.0
     }
   ]
 }
