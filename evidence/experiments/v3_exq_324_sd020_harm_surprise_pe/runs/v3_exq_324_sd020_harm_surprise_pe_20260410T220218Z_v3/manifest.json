@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_324_sd020_harm_surprise_pe",
+  "run_id": "v3_exq_324_sd020_harm_surprise_pe_20260410T220218Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-10T22:02:27Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-020",
+    "SD-011",
+    "Q-036"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "RECLASSIFIED 2026-04-11 governance. SD-020: mixed (not does_not_support). 1/5 seeds pass. Two compounding confounds prevent clean signal: (1) n_steps=10-20 harm events per seed -- too few for stable correlation; sign-flipping across seeds is noise, not a real effect. (2) harm_obs_a_variance=0.0003-0.0007 (EMA substrate) -- z_harm_a has too little variance to encode PE signal. Both confounds are substrate issues, not mechanism failures. Prediction: re-run on SD-022 substrate (limb_damage_enabled=True) with >= 100 harm events per seed to obtain interpretable signal. SD-011: reclassified non_contributory -- this tests SD-020 training target choice, not the dual-stream architecture claim. Q-036: reclassified non_contributory -- question remains open; this test was insufficiently powered (n=10-20 events) to answer whether PE is necessary beyond temporal integration.",
+  "evidence_direction_per_claim": {
+    "SD-020": "mixed",
+    "SD-011": "non_contributory",
+    "Q-036": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

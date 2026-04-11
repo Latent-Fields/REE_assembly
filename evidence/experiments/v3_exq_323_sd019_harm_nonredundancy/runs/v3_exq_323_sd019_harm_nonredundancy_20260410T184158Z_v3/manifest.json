@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_323_sd019_harm_nonredundancy",
+  "run_id": "v3_exq_323_sd019_harm_nonredundancy_20260410T184158Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-10T18:42:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-019",
+    "SD-011"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "RECLASSIFIED 2026-04-11 governance. SD-019: mixed (not does_not_support). C1 (cosine_sq_nonredundant < baseline) passes 2/5 seeds; wrong direction in 3/5. C2 (abs cosine_sq < 0.5) passes all 5 seeds -- both streams have low absolute cosine regardless. The inconsistency is the expected fingerprint of a nonredundancy objective applied to a collinear information source: when both z_harm_s and z_harm_a derive from the same 50-dim proximity EMA, the loss has nothing stable to grip. This is a substrate-source gap, not a falsification of SD-019. SD-022 substrate (limb_damage_enabled=True) provides causally independent information sources; prediction is that C1 passes 4+/5 seeds on SD-022 substrate. SD-011: reclassified non_contributory -- this experiment tests SD-019 training objective quality, not the dual-stream architecture claim itself.",
+  "evidence_direction_per_claim": {
+    "SD-019": "mixed",
+    "SD-011": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

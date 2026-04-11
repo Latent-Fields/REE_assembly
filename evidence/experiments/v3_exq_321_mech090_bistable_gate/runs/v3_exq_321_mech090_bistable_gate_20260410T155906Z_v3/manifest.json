@@ -1,10 +1,10 @@
 {
   "schema_version": "experiment_pack/v1",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "experiment_type": "v3_exq_266_q020_valence_geometry_pair",
-  "run_id": "v3_exq_266_q020_valence_geometry_pair_20260410T034439Z_v3",
+  "experiment_type": "v3_exq_321_mech090_bistable_gate",
+  "run_id": "v3_exq_321_mech090_bistable_gate_20260410T155906Z_v3",
   "status": "FAIL",
-  "timestamp_utc": "",
+  "timestamp_utc": "2026-04-10T18:41:52Z",
   "source_repo": {
     "name": "ree-v3",
     "commit": "",
@@ -20,13 +20,16 @@
   },
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
-    "Q-020"
+    "MECH-090",
+    "ARC-028"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "superseded",
-  "evidence_direction_note": "SUPERSEDED 2026-04-11 governance. Ablation wiring bug: valence_enabled=False only gated SD-014 valence vectors, not the basic harm RBF scalar. TERRAIN_SHAPED and TERRAIN_FLAT conditions were physically identical (harm_rate 0.0061 in both, terrain_harm_corr -0.438 in both, per-seed results byte-for-byte identical). Corrected by EXQ-266a (gates residue_field.accumulate() directly by terrain_shaped flag; dry-run PASS: TERRAIN_FLAT residue_field_total=0.0, TERRAIN_SHAPED=0.355). Does not count against Q-020.",
-  "evidence_direction_per_claim": {},
-  "superseded_by": "v3_exq_266a_q020_valence_geometry_pair_fixed",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "NON_CONTRIBUTORY 2026-04-11 governance. Substrate gap: total_committed_steps=0 across all 5 seeds and both BISTABLE/LEGACY conditions. The agent never enters committed mode during evaluation, so BetaGate behaviour cannot be assessed. This is the same committed-sequence generation gap that blocked EXQ-139 (mean_committed_seq_len_on=0.0). The wiring exists but the training curriculum does not elicit committed mode. Does not weaken MECH-090 or ARC-028.",
+  "evidence_direction_per_claim": {
+    "MECH-090": "non_contributory",
+    "ARC-028": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,

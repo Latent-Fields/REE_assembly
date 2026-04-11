@@ -23,8 +23,10 @@
     "Q-020"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "SUPERSEDED 2026-04-11 governance. Ablation wiring bug: valence_enabled=False only gated SD-014 valence vectors, not the basic harm RBF scalar. TERRAIN_SHAPED and TERRAIN_FLAT conditions were physically identical (harm_rate 0.0061 in both, terrain_harm_corr -0.438 in both, per-seed results byte-for-byte identical). Corrected by EXQ-266a (gates residue_field.accumulate() directly by terrain_shaped flag; dry-run PASS: TERRAIN_FLAT residue_field_total=0.0, TERRAIN_SHAPED=0.355). Does not count against Q-020.",
   "evidence_direction_per_claim": {},
+  "superseded_by": "v3_exq_266a_q020_valence_geometry_pair_fixed",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,

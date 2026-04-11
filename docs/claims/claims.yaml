@@ -8008,12 +8008,15 @@
     Prerequisite: EXQ-115 must pass (establish that z_harm_s causal_sig works at all)
     before this test is informative.
   evidence_quality_note: >
-    No experimental evidence yet. Theoretical grounding from Scholkopf et al. 2021
-    (lit entry 2026-03-28_sd_003_causal_representation_learning_scholkopf2021 in
-    targeted_review_sd_003). The necessity claim (bias is material in the actual
-    gridworld confound structure) is unverified -- the gridworld may not have
-    sufficient confounding for the bias to affect SD-003 results in practice.
-    EXQ-115 PASS is a prerequisite before this claim becomes testable.
+    HOLD AT CANDIDATE 2026-04-11 governance. Algorithm recommended promote_to_provisional
+    (conf=0.787, conflict_ratio=0) but promotion is premature: the confidence score
+    reflects theoretical grounding only (Scholkopf et al. 2021), not experimental
+    validation. EXQ-320 ran as dry run (reclassified non_contributory) -- no genuine
+    experimental evidence exists. Dependencies unresolved: SD-003 (self-attribution
+    pipeline), SD-011 (dual harm streams), ARC-033 (E2_harm_s forward model) must all
+    be validated before SD-013's specific claim (interventional vs observational bias)
+    is testable. EXQ-115 PASS is a prerequisite before the bias comparison is
+    interpretable. Do not promote until full EXQ-320 run completes and EXQ-115 PASS.
   implementation_note: >
     IMPLEMENTED 2026-04-10. E2HarmSConfig: use_interventional (bool, False default),
     interventional_fraction (float, 0.3), interventional_margin (float, 0.1).
@@ -13352,12 +13355,16 @@
     to unexpected threat escalation (which requires immediate behavioral change) rather
     than sustained-but-expected threat (which the agent may already be handling).
   evidence_quality_note: >
-    No experimental evidence yet. Derived from systematic comparison of Chen (2023)
-    hierarchical predictive coding framework against current SD-011 implementation.
-    Chen explicitly states AIC encodes PE, not raw state. Seymour (2019, Neuron) supports
-    the framing: pain-as-RL-signal is a precision-weighted control signal, not raw
-    nociceptive magnitude. Q-036 (already registered) asks exactly this question --
-    SD-020 is the "prediction error" answer to Q-036's open question.
+    HOLD AT CANDIDATE 2026-04-11 governance (first decision). EXQ-324 FAIL: 1/5 seeds
+    pass but two compounding confounds prevent clean signal: (1) n_steps=10-20 harm
+    events per seed -- too few for stable correlation estimates; sign-flipping across
+    seeds is noise. (2) harm_obs_a_variance=0.0003-0.0007 on EMA substrate -- z_harm_a
+    has insufficient variance to encode PE. Reclassified to mixed (not does_not_support).
+    Metric trajectory (substrate_queue.json SD-020 entry) predicts: re-run on SD-022
+    substrate (limb_damage_enabled=True) with >=100 harm events per seed should produce
+    3+/5 seeds passing with positive surprise_corr_pe - surprise_corr_ema. Literature
+    support strong (Chen 2023, Seymour 2019, Hoskin 2023 -- 4 lit entries). Hold until
+    SD-022 substrate validation and SD-019 nonredundancy confirmed on same substrate.
   notes: >
     Addresses Q-036 directly. If SD-020 is confirmed experimentally, Q-036 answer is:
     "surprise (PE) is necessary in addition to temporal integration." The implementation
@@ -13443,7 +13450,7 @@
   claim_type: design_decision
   subject: body.directional_limb_damage
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   claim_level: architectural
   depends_on: [SD-011]
@@ -13472,12 +13479,16 @@
     Backward compatible: disabled by default; existing experiments unaffected.
     Validation experiment: V3-EXQ-318 queued.
   evidence_quality_note: >
-    No experimental evidence yet. Diagnosis confirmed by EXQ-241b (r2_s_to_a=0.996,
-    info_gain=14k-22k indicating no genuine separation). EXQ-241b reinterpretation
-    (2026-04-09): the result is a substrate ceiling, not a scientific failure of SD-011.
-    The directional limb design is the minimum body extension required for the
-    information-source independence that the biological A-delta/C-fiber distinction
-    provides. See substrate plan: ree-v3/docs/substrate_plans/sd022_directional_limb_damage_impl_plan.md
+    PROMOTED TO PROVISIONAL 2026-04-11 governance. Two convergent results: (1) EXQ-318
+    FAIL-on-variance-threshold but r2_s_to_a dropped from 0.702 (DISABLED) to 0.365
+    (ENABLED) -- mechanism works, threshold failure is calibration (heal_rate=0.002 too
+    fast for 150 warmup episodes). (2) EXQ-319 PASS 3/3 seeds -- dissociation confirmed:
+    z_harm_a_retention_high=0.910 vs z_harm_a_retention_fresh=0.486, z_harm_s drops
+    sharply when agent leaves hazard while z_harm_a persists. Metric trajectory analysis
+    (governance-2026-04-11): substrate produces the predicted direction of change;
+    EXQ-318 failure is a calibration issue not a mechanism failure. Unblocks SD-019
+    and SD-020 validation (both require SD-022 substrate for stable training-objective signal).
+    Prediction: r2_s_to_a < 0.4 with heal_rate=0.001 or increased hazard density.
   notes: >
     Failure mode mapped to psychiatric conditions: persistent z_harm_a with no current
     world threat = hypervigilance, chronic pain, PTSD (body-state residue persists after

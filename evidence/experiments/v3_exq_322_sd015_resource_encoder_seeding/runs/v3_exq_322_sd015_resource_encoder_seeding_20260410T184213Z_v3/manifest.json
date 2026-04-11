@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_322_sd015_resource_encoder_seeding",
+  "run_id": "v3_exq_322_sd015_resource_encoder_seeding_20260410T184213Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-10T22:02:12Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-015",
+    "MECH-112"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "NON_CONTRIBUTORY 2026-04-11 governance. Measurement infrastructure failure: n_cosine_samples=0 in both RESOURCE_SEED and WORLD_SEED conditions across all 5 seeds. The cosine similarity measurement between z_goal and z_resource was never computed -- the eval loop never found conditions where both were populated simultaneously, or the measurement path never fired. goal_resource_r is undefined (no samples). Conditions are indistinguishable because no signal was captured. Needs /diagnose-errors to identify why n_cosine_samples=0. Does not weaken SD-015 or MECH-112.",
+  "evidence_direction_per_claim": {
+    "SD-015": "non_contributory",
+    "MECH-112": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}
