@@ -2,18 +2,84 @@
   "schema_version": "v1",
   "runner_pid": 670,
   "runner_started_at": "2026-04-10T16:08:54.598722+00:00",
-  "last_updated": "2026-04-11T05:05:51.889562+00:00",
+  "last_updated": "2026-04-11T09:57:50.694519+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-321",
+      "queue_id": "V3-EXQ-330",
+      "backlog_id": "",
+      "claim_id": "SD-013",
+      "title": "SD-013 contrastive counterfactual training: interventional vs observational",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-331",
+      "backlog_id": "",
+      "claim_id": "ARC-030",
+      "title": "ARC-030 approach-avoidance balance with goal seeding",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-328",
+      "backlog_id": "",
+      "claim_id": "MECH-112",
+      "title": "MECH-112 z_goal structured latent discriminative pair: SD-012 drive",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-329",
+      "backlog_id": "",
+      "claim_id": "ARC-033",
+      "title": "ARC-033 E2_harm_s counterfactual validation (EXQ-264 fix)",
+      "description": "",
+      "estimated_minutes": 300.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-332",
       "backlog_id": "",
       "claim_id": "",
-      "title": "MECH-090: bistable gate vs legacy per-tick gate",
+      "title": "MECH-216 genuinely predictive wanting: future-target supervision + resource visibility attenuation",
       "description": "",
-      "estimated_minutes": 93.3,
-      "status": "claimed",
+      "estimated_minutes": 192.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-326",
+      "backlog_id": "",
+      "claim_id": "SD-015",
+      "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-327",
+      "backlog_id": "",
+      "claim_id": "MECH-163",
+      "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2210,6 +2276,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 19.0
+    },
+    {
+      "queue_id": "V3-EXQ-266a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-020 valence geometry discriminative pair (EXQ-266 ablation fix)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C3 (consistent seeds 0/2): False  C4 (n_harm_min=58 >= 20): True | verdict: FAIL (1/4 criteria) | Outcome: FAIL (1/4 criteria)",
+      "started_at": "2026-04-11T05:07:54.330562+00:00",
+      "completed_at": "2026-04-11T09:57:50.694018+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 17396.4
     }
   ]
 }

@@ -1,0 +1,136 @@
+{
+  "experiment_type": "v3_exq_266a_q020_valence_geometry_pair_fixed",
+  "run_id": "v3_exq_266a_q020_valence_geometry_pair_fixed_20260411T095750Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "Q-020"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "dispatch_mode": "discriminative_pair",
+  "supersedes": "V3-EXQ-266",
+  "conditions": [
+    "TERRAIN_SHAPED",
+    "TERRAIN_FLAT"
+  ],
+  "seeds": [
+    42,
+    123
+  ],
+  "registered_thresholds": {
+    "C1_harm_reduction_frac": 0.15,
+    "C2_terrain_harm_corr": 0.1,
+    "C3_seed_pair_pass": 2,
+    "C4_n_harm_min": 20
+  },
+  "metrics": {
+    "harm_rate_TERRAIN_SHAPED": 0.0060999999999999995,
+    "harm_rate_TERRAIN_FLAT": 0.0060999999999999995,
+    "harm_reduction_frac": 0.0,
+    "terrain_harm_corr_TERRAIN_SHAPED": -0.43840907165202386,
+    "terrain_harm_corr_TERRAIN_FLAT": 0.8414861816949335,
+    "seed_pair_pass_harm": 0,
+    "n_harm_min": 58
+  },
+  "acceptance_checks": {
+    "C1_harm_reduction_frac_ge_0.15": false,
+    "C2_terrain_corr_SHAPED_ge_0.10": false,
+    "C3_consistent_across_seeds": false,
+    "C4_data_quality_n_harm_min": true
+  },
+  "criteria_passed": 1,
+  "criteria_total": 4,
+  "evidence_direction": "does_not_support",
+  "params": {
+    "grid_size": 6,
+    "num_hazards": 4,
+    "harm_scale": 0.02,
+    "proximity_harm_scale": 0.05,
+    "warmup_episodes": 300,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "alpha_world": 0.9,
+    "self_dim": 32,
+    "world_dim": 32
+  },
+  "bug_fix_note": "EXQ-266 ablation bug: cfg.residue.valence_enabled=False only gates SD-014 valence vectors (wanting/liking/etc.), NOT the basic harm scalar accumulation. evaluate() returns the plain RBF harm scalar, so both EXQ-266 conditions were identical. Fix: gate residue_field.accumulate() by terrain_shaped flag directly.",
+  "summary": "Discriminative pair for Q-020 Resolution A (co-true: ARC-007 + MECH-073). TERRAIN_SHAPED: residue.accumulate() called on harm events; TERRAIN_FLAT: residue.accumulate() NOT called (flat terrain). harm_rate: SHAPED=0.0061 vs FLAT=0.0061 (reduction=+0.0000). terrain_harm_corr SHAPED=-0.4384 vs FLAT=0.8415. Outcome: FAIL (1/4).",
+  "per_seed_results": {
+    "TERRAIN_SHAPED": [
+      {
+        "seed": 42,
+        "condition": "TERRAIN_SHAPED",
+        "terrain_shaped": true,
+        "harm_events_train": 1800,
+        "total_steps_train": 1800,
+        "harm_rate_train": 1.0,
+        "harm_events_eval": 64,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0064,
+        "terrain_harm_corr": -1.1114299852704854,
+        "mean_terrain_at_harm": 35.1927205324173,
+        "mean_terrain_at_safe": 35.21304871993748,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 35.2169075012207,
+        "residue_field_harm_events": 1800
+      },
+      {
+        "seed": 123,
+        "condition": "TERRAIN_SHAPED",
+        "terrain_shaped": true,
+        "harm_events_train": 354,
+        "total_steps_train": 60000,
+        "harm_rate_train": 0.0059,
+        "harm_events_eval": 58,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0058,
+        "terrain_harm_corr": 0.2346118419664377,
+        "mean_terrain_at_harm": 3.802394143466292,
+        "mean_terrain_at_safe": 3.801966986313741,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 3.740168809890747,
+        "residue_field_harm_events": 354
+      }
+    ],
+    "TERRAIN_FLAT": [
+      {
+        "seed": 42,
+        "condition": "TERRAIN_FLAT",
+        "terrain_shaped": false,
+        "harm_events_train": 1800,
+        "total_steps_train": 1800,
+        "harm_rate_train": 1.0,
+        "harm_events_eval": 64,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0064,
+        "terrain_harm_corr": 0.9040087167778528,
+        "mean_terrain_at_harm": 0.0779204114805907,
+        "mean_terrain_at_safe": 0.07789524063998879,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 0.0,
+        "residue_field_harm_events": 0
+      },
+      {
+        "seed": 123,
+        "condition": "TERRAIN_FLAT",
+        "terrain_shaped": false,
+        "harm_events_train": 357,
+        "total_steps_train": 60000,
+        "harm_rate_train": 0.00595,
+        "harm_events_eval": 58,
+        "total_steps_eval": 10000,
+        "harm_rate_eval": 0.0058,
+        "terrain_harm_corr": 0.7789636466120141,
+        "mean_terrain_at_harm": 0.07208984627805907,
+        "mean_terrain_at_safe": 0.07206022952016487,
+        "mean_traj_residue": NaN,
+        "n_traj_residue_samples": 10000,
+        "residue_field_total": 0.0,
+        "residue_field_harm_events": 0
+      }
+    ]
+  }
+}
