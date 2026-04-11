@@ -1,18 +1,110 @@
 {
   "schema_version": "v1",
-  "runner_pid": 52175,
-  "runner_started_at": "2026-04-09T17:27:19.228679+00:00",
-  "last_updated": "2026-04-10T22:02:28.455387+00:00",
+  "runner_pid": 26926,
+  "runner_started_at": "2026-04-11T02:37:21.745705+00:00",
+  "last_updated": "2026-04-11T12:32:03.653780+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-331",
+    "backlog_id": "",
+    "claim_id": "ARC-030",
+    "title": "ARC-030 approach-avoidance balance with goal seeding",
+    "description": "",
+    "script": "experiments/v3_exq_331_arc030_approach_avoidance_balance.py",
+    "started_at": "2026-04-11T08:53:53.594083+00:00",
+    "progress": {
+      "run_label": "Seed 13 / JOINT",
+      "runs_done": 4,
+      "runs_total": 6,
+      "episodes_done": 200,
+      "episodes_total": 250,
+      "overall_pct": 80.0
+    },
+    "seconds_elapsed": 13090,
+    "seconds_remaining": 2804,
+    "recent_lines": [
+      "Seed 13 Condition JOINT",
+      "[train] seed=13 JOINT ep 50/250 phase=P0 benefit=0.000 harm=0.045",
+      "[train] seed=13 JOINT ep 100/250 phase=P0 benefit=0.579 harm=0.058",
+      "[train] seed=13 JOINT ep 150/250 phase=P1 benefit=0.000 harm=0.970",
+      "[train] seed=13 JOINT ep 200/250 phase=P1 benefit=0.000 harm=0.032"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-325",
+      "queue_id": "V3-EXQ-331",
+      "backlog_id": "",
+      "claim_id": "ARC-030",
+      "title": "ARC-030 approach-avoidance balance with goal seeding",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-328",
+      "backlog_id": "",
+      "claim_id": "MECH-112",
+      "title": "MECH-112 z_goal structured latent discriminative pair: SD-012 drive",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-329",
+      "backlog_id": "",
+      "claim_id": "ARC-033",
+      "title": "ARC-033 E2_harm_s counterfactual validation (EXQ-264 fix)",
+      "description": "",
+      "estimated_minutes": 300.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-266a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-021: descending pain modulation -- commitment-gated z_harm_s attenuation",
+      "title": "Q-020 valence geometry discriminative pair (EXQ-266 ablation fix)",
       "description": "",
-      "estimated_minutes": 146.7,
+      "estimated_minutes": 186.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-332",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-216 genuinely predictive wanting: future-target supervision + resource visibility attenuation",
+      "description": "",
+      "estimated_minutes": 192.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-326",
+      "backlog_id": "",
+      "claim_id": "SD-015",
+      "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-327",
+      "backlog_id": "",
+      "claim_id": "MECH-163",
+      "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
+      "description": "",
+      "estimated_minutes": 200.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5094,6 +5186,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 11.8
+    },
+    {
+      "queue_id": "V3-EXQ-330",
+      "backlog_id": "",
+      "claim_id": "SD-013",
+      "title": "SD-013 contrastive counterfactual training: interventional vs observational",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS forward_r2=0.999 cf_gap=0.1772 sign_correct=1.000 | === EXQ-330 FAIL === | C3 sign_correct: True (vals=['1.000', '1.000', '1.000'])",
+      "started_at": "2026-04-11T02:37:23.385172+00:00",
+      "completed_at": "2026-04-11T08:53:50.828093+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 22587.3
     }
   ]
 }
