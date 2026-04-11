@@ -13612,4 +13612,224 @@
     V3 scope: implement precision heads but use fixed precision initially; modulate in
     experiments. V4: wire neuromodulatory control (SerotoninModule already exists).
   registered: "2026-04-08"
+
+# Registered 2026-04-11 -- attribution failure mode taxonomy and psychosis substrates
+# Source: conversation developing self-attribution overflow, animated agency bias, pre-coherency gate
+- id: MECH-221
+  title: "z_world must be continuously residualized against z_self predictions; efference-copy subtraction is not limited to SD-003 query time."
+  claim_type: mechanism_hypothesis
+  subject: latent_stack.continuous_self_residualization
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - SD-007
+    - MECH-095
+  notes: >
+    SD-003 provides a query-time counterfactual (E2(z_t, a_actual) - E2(z_t, a_cf)) that
+    answers "did I cause this specific outcome?" at attribution time. MECH-221 is the
+    orthogonal continuous requirement: z_world must never contain self-predicted content in
+    the first place. At each timestep, the contribution of the agent's own motor commands
+    to the observed z_world update must be subtracted before z_world is read by any
+    downstream system (E3, hippocampus, residue field, coherency calculation). This
+    continuous residualization is distinct from SD-007 (reafference subtraction in the
+    z_self domain) in target: SD-007 removes reafference from z_self; MECH-221 removes
+    the forward-projected z_self footprint from z_world. The efference-copy signal must
+    be routed to a z_world decontamination pathway as well as to the MECH-095 comparator.
+    Failure of continuous residualization activates MECH-222 (self-attribution contamination
+    psychosis): self-generated predictions persist in z_world and are confirmed by coherency
+    checks, producing false veridical sense of world responding to self. The continuous
+    nature of the requirement distinguishes it from SD-003 (query-time) and MECH-095
+    (comparator-based detection): residualization must precede all downstream access to
+    z_world, not just at attribution query points.
+  registered: "2026-04-11"
+
+- id: MECH-222
+  title: "Failure of continuous z_self residualization produces self-attribution contamination psychosis: referential delusion and thought broadcasting substrate."
+  claim_type: mechanism_hypothesis
+  subject: pathology.self_attribution_overflow_psychosis
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  competing_claims:
+    - id: MECH-094
+      discrimination: >
+        MECH-094 is tag-loss psychosis: the hypothesis tag write gate fails during replay,
+        opening the post-commit channel during what is structurally a simulation event.
+        Residue accumulates from replayed/simulated content. Mechanism: episodic, triggered
+        at replay boundaries. Clinical fingerprint: PTSD flashback, intrusive vivid memory
+        with affective weight (the simulation feels real because the post-commit somatic
+        channel is open). MECH-222 is efference-copy subtraction failure: self-predicted
+        world content persists continuously in z_world and is confirmed by coherency checks
+        every timestep. Mechanism: continuous, timestep-level contamination. Clinical
+        fingerprint: referential delusion, thought broadcasting, grandiosity with
+        internally consistent delusional logic. Dissociation criterion: MECH-094 fails
+        episodically at replay events; MECH-222 fails continuously during all z_world
+        construction. An agent could exhibit one without the other.
+    - id: MECH-065
+      discrimination: >
+        MECH-065 psychosis arises from precision-ratio miscalibration: the ratio of
+        internal-model precision to external-authority precision is too low, making the
+        RC-conflict lane vulnerable to spoofing by external signals. Directionality is
+        inbound -- external signals override the internal model. Clinical fingerprint:
+        paranoid ideation driven by over-attributed authority to external agents (signals
+        from outside impose on the agent). MECH-222 is the opposite directionality:
+        outbound contamination -- internal self-predictions over-populate z_world and the
+        agent's model imposes itself on the world representation. The agent does not feel
+        controlled by external forces but experiences the world as responding to its own
+        internal states.
+  depends_on:
+    - MECH-221
+    - MECH-094
+    - MECH-065
+    - INV-066
+  notes: >
+    When MECH-221 (continuous z_self residualization) fails, self-generated motor
+    predictions persist in z_world. The coherency calculation (MECH-065 RC-conflict lane;
+    broader verisimilitude signalling) then finds z_world consistent with the agent's
+    own predictions -- not because the world is responding to the agent, but because the
+    agent's predictions were never subtracted. This false coherency is computationally
+    indistinguishable from genuine world confirmation of self-generated content, and the
+    invariant INV-066 is the reason it cannot self-correct. Clinical substrate: the agent
+    experiences world events as caused by or responding to itself. Referential delusion:
+    environmental events are interpreted as self-directed because z_world contains the
+    agent's own prediction footprint. Thought broadcasting: the agent's predicted motor
+    outcomes appear as world-facts, creating the sense that internal states have external
+    reality. Grandiosity: persistent positive predicted outcomes in z_world (never corrected
+    by actual outcome because the subtraction that would expose the gap is missing) create
+    an inflated causal self-model. This is a structurally different failure from MECH-094
+    (episodic tag-loss) and MECH-065 (external signal miscalibration). The three psychosis
+    substrates are registered as distinct claims to enable experimental dissociation (Q-037).
+  registered: "2026-04-11"
+
+- id: MECH-223
+  title: "Animated agency attribution overweighting: systematic bias toward attributing intentional causation to animated/moving entities requires active calibration in the attribution pathway."
+  claim_type: mechanism_hypothesis
+  subject: attribution.animated_agency_overweighting_bias
+  polarity: asserts
+  status: candidate
+  competing_claims:
+    - id: MECH-222
+      discrimination: >
+        MECH-222 is self-attribution overflow (outbound: self-predictions contaminate
+        z_world). MECH-223 is other-attribution overweighting (inbound: animated entities
+        over-attract intentional-causation attribution from the MECH-095 pathway).
+        Both can contribute to ideas of reference but via distinct substrates and with
+        distinguishable clinical signatures. MECH-222 produces a coherent self-referential
+        world model diffusely ('the world responds to me', no specific agent target);
+        MECH-223 produces paranoid ideation directed at specific animated entities
+        ('that person/thing is acting toward me'). Dissociation criterion: ablating
+        MECH-221 without touching MECH-095 calibration should produce MECH-222 symptoms;
+        miscalibrating the MECH-095 prior without disrupting residualization should
+        produce MECH-223 symptoms.
+    - id: MECH-095
+      discrimination: >
+        MECH-095 is the TPJ agency-detection comparator: the functional mechanism
+        comparing efference-copy-predicted z_self change with observed change to determine
+        self-caused vs other-caused attribution. MECH-223 is a calibration claim about
+        MECH-095: the comparator is structurally correct but carries an adaptive prior
+        that systematically overweights agency attribution in animated/biological-motion
+        stimuli. MECH-095 describes the mechanism; MECH-223 describes a systematic bias
+        in the prior of that mechanism. The bias is architecturally separable from the
+        comparator's function.
+  depends_on:
+    - MECH-095
+    - SD-005
+  notes: >
+    The agency detection pathway (MECH-095 / TPJ comparator) receives its primary input
+    through the lateral visual stream specialised for biological motion (MT -> MST ->
+    posterior STS -> TPJ). This stream carries an adaptive prior for detecting intentional
+    agency -- useful for predator detection and social navigation -- that creates a
+    systematic overweighting of agency attribution to animated or moving entities regardless
+    of specific evidence. In a well-calibrated agent this prior is managed by corrective
+    feedback; under attentional narrowing, stress, or substrate damage it dominates and
+    produces paranoid ideation directed at specific animated agents. This is distinct from
+    MECH-222 (where z_world itself is contaminated by self-predictions, producing diffuse
+    self-referential reading of the world), from MECH-065 (where external authority signals
+    override internal model precision, producing general spoofing vulnerability), and from
+    the hostile attribution bias described in MECH-102 notes (which is about violence-script
+    activation under pathway-closure conditions). The animated attribution bias is a prior
+    miscalibration; hostile attribution is a pathway-selection error. Clinical relevance:
+    the bias may be the substrate of referential thinking specifically about people and
+    animals (as opposed to objects) and may co-amplify both MECH-222 and MECH-065 failure
+    modes by directing their effects toward specific animated targets.
+  registered: "2026-04-11"
+
+- id: INV-066
+  title: "z_self subtraction (MECH-221) must precede any coherency-based control plane signal; coherency checks on contaminated z_world generate self-sealing false confirmations."
+  claim_type: invariant
+  subject: control_plane.pre_coherency_gate_ordering
+  polarity: asserts
+  status: active
+  depends_on:
+    - MECH-221
+    - MECH-065
+    - SD-005
+  location: docs/invariants.md#inv-066
+  notes: >
+    The coherency / verisimilitude calculation (MECH-065 RC-conflict lane; broader
+    coherency signalling motifs in the control plane) operates by comparing z_world
+    against sensory observations. This comparison is only veridical if z_world contains
+    exogenous information only -- i.e., if MECH-221 (z_self residualization) has already
+    occurred. If self-generated predictions persist in z_world, coherency checks will
+    find z_world consistent with self-predictions (true by construction) and generate
+    false high-coherency signals. These signals propagate through the control plane as if
+    genuine world confirmations, reinforcing the contamination rather than correcting it.
+    This is a self-sealing failure: contamination produces coherency, and coherency
+    suppresses the correction signal that would otherwise detect contamination. The
+    invariant specifies the required processing order: MECH-221 residualization is a
+    mandatory gate that z_world must pass through before entering any coherency or
+    verisimilitude calculation. Violations are computationally undetectable from within
+    the system -- no downstream coherency signal can identify that it is operating on
+    contaminated z_world. The invariant cannot be enforced post-hoc; it is a pipeline
+    ordering constraint. This has architectural implications for the control plane:
+    as the verisimilitude coherency calculation is extended and refined, each new
+    signalling motif that reads z_world must explicitly be placed downstream of the
+    residualization gate.
+  registered: "2026-04-11"
+
+- id: Q-037
+  title: "Are the three psychosis substrate failure modes (MECH-094 tag-loss, MECH-222 self-attribution overflow, MECH-065/MECH-223 precision/bias) experimentally dissociable in the REE substrate?"
+  claim_type: open_question
+  subject: pathology.psychosis_substrate_dissociability
+  polarity: open
+  status: open
+  implementation_phase: v3
+  depends_on:
+    - MECH-094
+    - MECH-222
+    - MECH-065
+    - MECH-223
+    - INV-066
+  notes: >
+    Three mechanistically distinct psychosis substrates have been registered, each with
+    a different structural locus and predicted clinical fingerprint:
+    (1) MECH-094 tag-loss: hypothesis tag write gate fails during replay; post-commit
+    channel opens during simulation; residue accumulates from simulated/replayed content.
+    Locus: replay event boundary. Clinical fingerprint: PTSD flashback, intrusive vivid
+    memory, affective weight of replay (feels real because post-commit somatic channel
+    is open). Episodic.
+    (2) MECH-222 self-attribution overflow: continuous z_self residualization absent;
+    self-predicted content persists in z_world; coherency checks confirm contamination
+    (INV-066 self-sealing). Locus: z_world construction pipeline. Clinical fingerprint:
+    referential delusion, thought broadcasting, grandiosity with internally consistent
+    delusional logic. Continuous.
+    (3) MECH-065 precision-ratio miscalibration: RC-conflict threshold too low; external
+    authority signals override internal model. Locus: RC-conflict lane threshold. Clinical
+    fingerprint: paranoid ideation driven by specific external agents, ideas of reference
+    toward external sources. Context-triggered (by high-salience external input).
+    Additionally: MECH-223 animated agency overweighting bias amplifies (2) and (3) by
+    directing attribution preferentially at animated entities; it is a bias modifier
+    rather than a primary substrate.
+    The open question has two parts: (A) structural dissociability -- can each failure
+    mode be induced selectively by targeted ablation while leaving the others intact?
+    (B) phenotypic distinctness -- do the induced behavioral signatures match the
+    predicted clinical fingerprints? A positive answer to both would provide strong
+    mechanistic grounding for REE as a psychiatrically-predictive architecture. Answering
+    this requires implementing all three mechanisms and designing ablation experiments
+    that can distinguish continuous z_world contamination (MECH-222), episodic replay
+    flooding (MECH-094), and threshold miscalibration (MECH-065) via distinct behavioral
+    readouts.
+  registered: "2026-04-11"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
