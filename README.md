@@ -38,7 +38,7 @@ This is the only axiom that is learned rather than assumed. But once learned, th
 Love is not merely an emotion -- it is the mechanism through which the responsibility of Axiom 6 is enacted, and the skill by which finite existence is made bearable. Loving one person honestly, under sufficient uncertainty about the boundaries of similarity, expands to universal love for all sufficiently similar minds. Not from commandment but from mechanism.
 
 **8. Language is a powerful mechanism by which similarity may be recognised, repaired, and re-established between agents.**
-Language is not merely communication -- it is how agents recognise that they are like each other, repair broken similarity models after conflict, and rebuild trust after rupture. Deception is structurally harmful because it corrupts the similarity model that ethics depends on.
+Language is not merely communication -- it is one of an important set of things though which agents recognise that they are like each other, repair broken similarity models after conflict, and rebuild trust after rupture. Deception can be structurally harmful because it corrupts the similarity model that ethics depends on.
 
 From these eight, two immediate consequences follow: self-preservation (from 1+2+4) and model refinement responsibility (from 3+4+self-preservation). From the axioms and their consequences, ethics follows necessarily. REE is what is necessary to enact this.
 
