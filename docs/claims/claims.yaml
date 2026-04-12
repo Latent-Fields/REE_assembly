@@ -3217,6 +3217,9 @@
     - INV-029
     - INV-028
     - INV-030
+    - INV-070
+    - INV-071
+    - INV-072
   location: docs/architecture/five_axioms_foundations.md
   notes: >
     Violence is terminal error correction: maximal-energy intervention
@@ -3276,6 +3279,18 @@
     inhibitory mechanisms not present in human biology; equally, the claim permits
     violence as ethically required action when pathway closure is genuine. Both remain
     architecturally untested and warrant scrutiny under V4 ethical validation.
+    DUAL-PATHWAY FORMALISATION (2026-04-12): The 10-axiom ethical system (INV-070
+    epistemic responsibility, INV-071 language, INV-072 violence corollary) formally
+    derives two distinct pathways to violence: (a) similarity collapse -- other agent
+    no longer modelled as sufficiently self-like (Axiom 7 failure, dehumanisation),
+    and (b) threat override -- other agent modelled as threat to sustained existence
+    (Axioms 5-7 conflict). Both require ACCURATE inference (Axiom 4 / INV-070) --
+    hallucinated threats or propaganda-distorted similarity assessments are ethical
+    failures. Love (INV-029 / Axiom 9) functions to maintain self-other equivalence
+    and buffer against premature threat classification. Language (INV-071 / Axiom 10)
+    repairs similarity models that have collapsed. This dual-pathway account extends
+    MECH-102 by providing the mechanistic derivation from axioms and making epistemic
+    responsibility a first-class ethical constraint.
 
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
@@ -13863,3 +13878,541 @@
     readouts.
   registered: "2026-04-11"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
+
+# Thought ingestion 2026-04-12: harm gradient piecewise structure (Mar 28 thought)
+- id: MECH-224
+  title: "harm_eval.piecewise_gradient_structure: E3 harm_eval learns both continuous intensity and discrete mode-transition thresholds."
+  claim_type: mechanism_hypothesis
+  subject: harm_representation.piecewise_gradient
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-024
+    - MECH-071
+  notes: >
+    ARC-024 correctly posits a continuous harm gradient. This claim specifies that the
+    internal structure of harm_eval is piecewise-continuous rather than purely smooth:
+    response topography (form) transitions discretely at threshold imminence levels
+    (pre-encounter -> post-encounter -> circa-strike, per Fanselow predatory imminence
+    continuum), while response vigour varies continuously within each mode.
+    Evidence: Fanselow PIC literature; Mobbs 2007 (vmPFC -> PAG discrete shift at threshold
+    threat imminence, distinct neural signatures above and below the transition point).
+    This is separable from ARC-024's gradient-existence claim -- it is a prediction about
+    the shape of the learned harm_eval output distribution.
+    V3 test: harm_eval output distribution should show bimodal or trimodal clustering
+    (none/low, approach/medium, contact/high) with inter-cluster gaps, not unimodal smooth.
+    V4 test: agent should learn qualitatively distinct defensive strategies (routing
+    modification, freezing, emergency escape) at discrete harm-gradient thresholds.
+    Architectural importance: a pure continuous gradient would not trigger emergency
+    responses until harm is very high; discrete mode-transitions allow abrupt escalation.
+    Likely V4-scope for full three-mode test; V3 can test binary presence/absence of
+    mode transitions in harm_eval output distribution.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-03-28_harm_gradient.md
+
+# Thought ingestion 2026-04-12: verisimilitude formal variables + temporal coherence (Apr 9 thought)
+- id: INV-067
+  title: "V(t): Verisimilitude is the precision-weighted, phase-aligned, hierarchical correspondence between ascending sensory-constrained and descending model-based signals."
+  claim_type: invariant
+  subject: perception.verisimilitude_definition
+  polarity: asserts
+  status: candidate
+  notes: >
+    Formal definition of V(t), the core verisimilitude variable. Three irreducible components:
+    (1) content agreement: C_i(t) = exp(-||a_i - d_i||^2 / sigma_i^2); (2) phase alignment:
+    P_i(t) = (1 + cos(phi_a_i - phi_d_i)) / 2; (3) precision weighting: alpha_i(t).
+    V(t) = sum_i [w_i * alpha_i * C_i * P_i] / sum_i [w_i * alpha_i].
+    Where a_i = ascending sensory-constrained signal at level i, d_i = descending
+    model-based prediction at level i, across the hierarchical latent space.
+    Missing any one component collapses the variable: without content agreement = empty
+    synchrony; without phase agreement = untimed match; without persistence = cannot
+    ground self or planning.
+    Operational definitions: Perception = high V(t), sustained high D_V, strong sensory
+    precision. Imagination = phase-offset from sensory stream, low/segregated V(t).
+    Hallucination (failure) = internal predictions invade sensory phase channel -> false
+    high V(t) without external input.
+    Prerequisite: INV-066 (z_self residualization must precede any verisimilitude
+    calculation -- see INV-066 pre-coherency gate invariant).
+    Extends and formalises: MECH-094 (hypothesis tag), MECH-089 (cross-frequency coupling),
+    the Apr 7 phase-segregation intake (thought_intake_2026-04-07_phase_segregation_perception_imagination.md).
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: INV-068
+  title: "Temporal depth D_V(t): system behaviour must depend on temporal persistence of verisimilitude coupling, not instantaneous V(t) alone."
+  claim_type: invariant
+  subject: perception.temporal_depth_verisimilitude
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-067
+  notes: >
+    D_V(t) = temporal integration of V(t), implemented as exponential moving average:
+    D_V(t + dt) = lambda * D_V(t) + (1 - lambda) * V(t + dt).
+    D_V is the persistence-of-coupling signal. It serves distinct functions from V(t):
+    V(t) = current reality-coupling quality; D_V(t) = sustained existence of that coupling.
+    D_V grounds: self-continuity (persistence of D_self), hippocampal trajectory evaluation
+    (evaluate by predicted future D_V, not just goal attainment), action selection (avoid
+    trajectories where D_V collapses), learning prioritisation.
+    Failure modes keyed to D_V: reduced temporal depth -> derealisation, unstable self;
+    false local coherence (high V(t), low long-term D_V) -> mania/delusion; fragmented
+    coherence -> dissociation; pathological commitment (short-term coherence trap).
+    Formally: J(pi) = sum_k gamma^k * V_hat_pi(t+k) for trajectory selection.
+    D_V can be approximated as exponential smoothing for computational tractability.
+    V(t) may be approximated via prediction error inverses, phase synchrony metrics,
+    or hybrid signals.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: INV-069
+  title: "The self is defined as the dynamically sustained process maintaining high temporal-depth verisimilitude across time, not a static representation."
+  claim_type: invariant
+  subject: self.coherence_trajectory_definition
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-067
+    - INV-068
+  notes: >
+    Self = trajectory maintaining high D_self(t) -- the persistence of coherent self-tagged
+    coupling across time. Not a static identity label, not a fixed latent vector.
+    Formally: V_self(t) = sum_{i in S_self} [w_i * alpha_i * C_i * P_i] /
+    sum_{i in S_self} [w_i * alpha_i], where S_self = subset of latent variables
+    tagged as self-relevant.
+    D_self(t + dt) = lambda * D_self(t) + (1 - lambda) * V_self(t + dt).
+    Disruption -> fragmentation, dissociation, or instability of self-representation.
+    Aligns with philosophical continuity accounts but is mechanistically specified.
+    Self-continuity corresponds to persistence of temporal-depth coherence -- a dynamical
+    systems stability property, not a labelling convention.
+    Implication for architecture: self-model is not a stored object but an ongoing
+    process that must be actively maintained by the TCL (ARC-053).
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: INV-070
+  title: "Epistemic responsibility: agent is responsible for refining world models toward accurate similarity and threat inference; misclassification is morally relevant, not merely practically inconvenient."
+  claim_type: invariant
+  subject: ethics.epistemic_responsibility
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-025
+    - INV-028
+  notes: >
+    The 10th-axiom extension of the five-axiom ethical foundation (INV-025-029).
+    Axiom 3 (INV-025) establishes that action is model-mediated but does not constrain
+    the agent to improve inference or treat misclassification as morally important.
+    Without this invariant, an agent could claim "I acted under my model, therefore
+    my violence was justified" -- the epistemically irresponsible actor loophole.
+    INV-070 closes this loophole: because I act under models, I am responsible for
+    refining those models so that similarity and threat are inferred as accurately as
+    possible. Errors in world-modelling are ethically relevant failures.
+    Consequences: hallucinated threats (psychosis-driven violence), propaganda-distorted
+    similarity (dehumanisation), and motivated misclassification (in-group/out-group bias)
+    are all ethical failures, not excusable as "acting under an honest model."
+    This makes epistemic responsibility a first-class ethical principle, distinct from
+    INV-025's weaker model-mediation claim.
+    Clinical implications: therapy for violence-prone conditions (psychosis, paranoia,
+    dehumanisation) is partly an epistemic intervention -- correcting the model that
+    drives violence-permitting inference, not only the motivational state.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: INV-071
+  title: "Language functions as a mechanism for recognising, repairing, and re-establishing self-other equivalence across agents."
+  claim_type: invariant
+  subject: ethics.language_as_similarity_repair
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-028
+    - INV-070
+    - INV-029
+  notes: >
+    The 10th axiom in the extended ethical system (paired with INV-029 love as mechanism).
+    Love is the motive/relation; language is the bridge/tool. They are operationally
+    complementary, not alternatives.
+    Language functions by: (1) revealing inner states (reducing uncertainty about
+    other-agent models), (2) negotiating threat (updating similarity/threat inference
+    in real time), (3) repairing misclassification (correcting distorted self-other
+    equivalence models), (4) restoring INV-028 (re-establishing belief that others are
+    sufficiently self-like), (5) expanding the category of "sufficiently like me"
+    (extending moral concern to previously excluded agents or groups).
+    Language is a similarity-repair technology. This explains why storytelling, testimony,
+    confession, and dialogue can reduce violence even when material conditions have not yet
+    changed -- they operate directly on the self-other equivalence model that drives
+    violence permissibility (INV-072 / MECH-102).
+    Provides mechanistic grounding for: propaganda analysis (deliberate corruption of
+    similarity inference via language), de-radicalisation (language-mediated repair of
+    distorted models), testimony and truth-and-reconciliation processes.
+    Connects to: predictive processing accounts of language as prior-updating, and to
+    MECH-102 dual-pathway violence model (language can interrupt both similarity collapse
+    and threat-override pathways).
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: INV-072
+  title: "Violence corollary: violence is conditionally permissible only when an agent is not modelled as sufficiently self-like OR poses a genuine threat; both conditions require accurate inference."
+  claim_type: invariant
+  subject: ethics.violence_conditions_corollary
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-028
+    - INV-029
+    - INV-042
+    - INV-070
+    - INV-071
+  notes: >
+    Derived corollary of the 10-axiom system, not a primary claim. Dual-pathway formulation:
+    (a) Similarity collapse: other agent is no longer modelled as sufficiently self-like ->
+    existence is no longer protected by the axiom system -> violence becomes permissible.
+    Clinical: dehumanisation, moral exclusion, out-group bias.
+    (b) Threat override: other agent IS modelled as similar but is predicted to threaten
+    continued existence (self or protected others) -> Axiom 5-7 conflict resolved by
+    conditional violence. Clinical: paranoia (threat inflation), justified self-defence,
+    war/group conflict where in-group = self-like + out-group = similar + threatening.
+    CRITICAL CONSTRAINT: both conditions require ACCURATE inference (INV-070). Hallucinated
+    threat (psychosis), propaganda-distorted similarity (dehumanisation), or motivated
+    misclassification do NOT satisfy the condition -- they are ethical failures, not
+    excusable as "acting under my model."
+    Love (INV-029 / Axiom 9) maintains self-other equivalence and buffers against
+    premature threat classification. Love does two things: (1) increases perceived
+    similarity, (2) buffers against false positive threat detection. Both suppress
+    unnecessary violence without preventing necessary defensive action.
+    Language (INV-071 / Axiom 10) repairs collapsed similarity models, allowing
+    re-entry into the ethical protection space from outside it.
+    Control condition: Preserve other agents IFF (similarity is high) AND (their
+    existence does not threaten protected existence). If either fails, protection drops.
+    Extends MECH-102 (violence as terminal error-correction) with formal dual-pathway
+    derivation from axioms and epistemic responsibility requirement.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: ARC-053
+  title: "Temporal Coherence Loop (TCL): architecture must include a distributed loop responsible for maintaining phase alignment and temporal synchrony necessary for V(t) to be computable."
+  claim_type: arch_commitment
+  subject: architecture.temporal_coherence_loop
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - INV-067
+    - INV-068
+    - MECH-089
+  notes: >
+    V(t) requires that ascending and descending signals meet in the same phase channel
+    at the right moment. Without a temporal coherence mechanism, predictions and inputs
+    miss each other in time, phase-coded multiplexing breaks, and V(t) becomes
+    undefined regardless of content accuracy.
+    The TCL is a distributed control loop (not a single module) that: (1) aligns phase
+    relationships across subsystems, (2) adjusts timing windows and synchrony, (3) enables
+    or prevents coupling between prediction and input, (4) modulates integration windows
+    based on task demands and mode (wake, imagination, sleep).
+    Failure modes: if TCL drifts -> misalignment -> weak coupling -> derealisation or
+    low vividness. If TCL collapses or overcouples -> simulation enters sensory phase ->
+    hallucination-like states.
+    Biophysical substrate hypothesis: inferior olive + cerebellum + thalamus + cortical
+    networks (MECH-226). The inferior olive's historically unclear function may be
+    specifically understood as the phase reference generator enabling this loop.
+    Inputs: prediction-input timing mismatch, phase coherence metrics, D_V trends.
+    Outputs: phase adjustments, temporal integration window tuning, coupling thresholds.
+    TCL must maintain conditions under which V(t) is computable as its primary constraint.
+    Also required for: sleep-phase transitions (mode changes require TCL recalibration),
+    anaesthesia accounts (MECH-227 = TCL disruption), and the pre-coherency gate (INV-066
+    requires that residualization precedes TCL-enabled coherency checks).
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: ARC-054
+  title: "D_V trajectory selection: E3 trajectory selection must optimise predicted temporal-depth verisimilitude D_V over planning horizon H, not instantaneous V(t) alone."
+  claim_type: arch_commitment
+  subject: architecture.dv_trajectory_selection
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - INV-068
+    - ARC-053
+  notes: >
+    Hippocampal rollout evaluation criterion: trajectories are evaluated by predicted
+    future D_V, not just goal attainment. Formally: J(pi) = sum_k gamma^k * V_hat_pi(t+k).
+    E3 selection: pi* = argmax_pi J(pi) subject to survival and harm constraints.
+    Viable futures = those maintaining coherent existence; non-viable futures = collapse
+    of coherence.
+    Optimising instantaneous V(t) alone is insufficient -- it creates short-term coherence
+    traps (high local V, low long-term D_V -> mania/delusion failure mode).
+    kappa_commit (commit threshold) = minimum predicted D_V required to commit to a
+    trajectory. Long horizon H prioritises long-term stability over local coherence.
+    This replaces simple reward maximisation with coherence-persistence maximisation,
+    which is more general: reward becomes a special case of coherence preservation.
+    The architecture naturally generalises: maximising D_V over long H corresponds
+    to the ethical axioms (Axiom 5: preserve existence = avoid D_V collapse; Axiom 7:
+    others' existence = extend D_V tracking).
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: ARC-055
+  title: "Verisimilitude signal availability: V(t) and D_V must be explicitly available to E3 selection and influence E1/E2 learning updates."
+  claim_type: arch_commitment
+  subject: architecture.verisimilitude_signal_availability
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - INV-067
+    - INV-068
+    - ARC-053
+    - ARC-054
+  notes: >
+    Both V(t) and D_V must be available as explicit signals (not emergent epiphenomena)
+    because they influence: (1) E3 trajectory selection (ARC-054); (2) E1 state representation
+    (high D_V -> stable attractors, low D_V -> fragmentation/reorganisation); (3) E2
+    transition model (predict future V(t) and D_V alongside next state); (4) learning
+    update prioritisation (high-D_V states prioritised for consolidation).
+    Control-plane parameters modulating V/D_V: alpha_S (sensory precision) controls weight
+    of sensory coupling; alpha_A (policy precision) commits to high-D_V trajectories;
+    tau_E2 (rollout temperature) determines D_V diversity in planning; H (horizon) sets
+    temporal window for D_V evaluation; kappa_commit (commit threshold) sets minimum D_V
+    required for commitment; g_S (sensory gain) modulates coupling signal magnitude.
+    Practical staging for implementation: Stage 1 = prediction error only (V approx
+    exp(-E)); Stage 2 = add global phase coherence factor; Stage 3 = level-specific
+    phase-aware hierarchical V.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: ARC-056
+  title: "Ethics-as-coherence architecture: ethical trajectory selection is implemented as optimisation of shared temporal-depth coherence across self and represented others."
+  claim_type: arch_commitment
+  subject: architecture.ethics_as_coherence_optimisation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - INV-067
+    - INV-068
+    - INV-069
+    - INV-028
+    - INV-029
+    - INV-070
+    - INV-071
+    - INV-072
+    - ARC-054
+  notes: >
+    The 10-axiom ethical system maps directly onto D_V mechanics, producing unified
+    computational ethics: J_ethical(pi) = beta_self * D_V_self + sum_j beta_j * D_V_j,
+    where beta_j depends on inferred similarity (INV-028), relational commitment (INV-029),
+    and responsibility structure (INV-042).
+    Ethical axiom -> D_V mapping:
+      Axiom 2 (existence has value) -> maintain V(t)
+      Axiom 5 (preserve self) -> avoid trajectories where D_self collapses
+      Axiom 7 (others' responsibility) -> extend D_V tracking to D_{V,j}
+      Axiom 9 (love) -> expand the set whose D_V is optimised
+    Violence condition in D_V terms: beta_j collapse (agent no longer inferred self-like)
+    OR preservation of higher-priority D_V requires sacrificing D_{V,j}.
+    Language (INV-071) -> updates other-agent models, reduces uncertainty in similarity
+    inference, increases shared D_V across agents.
+    Multi-agent ethical conflicts: non-trivial optimisation conflicts require hierarchical
+    or weighted D_V aggregation. Burnout = tracking too many agents' D_V (overextension
+    of beta_j scope).
+    The architecture is substrate-agnostic at the invariant level (INV-067-072) while
+    proposing specific biological implementations at the mechanism level (MECH-225-228).
+    V4 scope: requires ARC-054, ARC-055, INV-067-072, and multi-agent representation
+    of D_{V,j} for other modelled agents.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: MECH-225
+  title: "Oscillatory coupling multiplexing: cross-frequency oscillatory dynamics (gamma/theta/beta/delta) implement phase-based separation of perception, simulation, and action preparation streams."
+  claim_type: mechanism_hypothesis
+  subject: perception.oscillatory_multiplexing
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-089
+    - INV-067
+  notes: >
+    The same E1/E2 substrate can simultaneously encode: incoming sensory-constrained
+    hypothesis (perception channel), counterfactual rollout (imagination channel), and
+    action-committed trajectory (beta-stabilised), with phase offsets and cross-frequency
+    coupling separating them. This extends MECH-089 (CFC packages E1 updates for E3) to
+    the full multiplexing scheme.
+    Phase-channel assignments: gamma = local binding (E1 content); theta = sequencing /
+    hippocampal rollout (E3-hippocampus loop); beta = stabilised action / commitment bias;
+    delta = global state / mode.
+    Shared neurons participate in multiple streams, disambiguated by phase-of-firing
+    relative to oscillatory carriers. This gives a natural multiplexing scheme without
+    needing separate circuits for perception and imagination.
+    Phase separation maintenance (maintained = imagination; collapsed = perception /
+    "this is happening"). Collapse of phase separation = hallucination-like phenomena.
+    Ephaptic coupling (MECH-228) is one physical substrate that helps enforce or bias
+    phase separation.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: MECH-226
+  title: "TCL substrate: Temporal Coherence Loop is implemented as a distributed system involving the inferior olive, cerebellum, thalamus, and cortical networks."
+  claim_type: mechanism_hypothesis
+  subject: architecture.tcl_biophysical_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-053
+    - MECH-225
+  notes: >
+    Biophysical substrate hypothesis for the Temporal Coherence Loop (ARC-053):
+    (1) Inferior olive: phase synchronisation via gap-junction electrical coupling;
+    generates precisely rhythmic timing signals. Historically unclear function --
+    may be specifically interpreted as phase reference generator for reality-coupling.
+    Key properties: electrical coupling (ephaptic-like), precise timing, synchronisation
+    role rather than content processing. Climbing fibres to Purkinje cells provide
+    temporally precise, synchronised input.
+    (2) Cerebellum: timing calibration, predictive alignment of forward models (E2-like).
+    E2 = cerebellum-like. Increasingly implicated in cognitive as well as motor prediction.
+    Uses timing signals from inferior olive rather than originating phase reference.
+    (3) Thalamus (thalamocortical loops): global coordination and gating, synchronises
+    cortical oscillations, gates sensory vs internal signals.
+    (4) Cortical networks: phase-coded representation (E1 substrate). Communication
+    through coherence (Fries) -- effective neural communication via phase alignment.
+    Together: inferior olive provides phase reference -> cerebellum aligns predictions
+    -> thalamus coordinates globally -> cortex implements phase-coded representations.
+    Clinical: cerebellar findings in schizophrenia, timing abnormalities in psychosis,
+    sleep-phase disruptions -- all potentially attributable to TCL disruption.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: MECH-227
+  title: "Anaesthesia as D_V collapse: general anaesthesia abolishes consciousness by disrupting phase alignment, degrading V(t) globally, and collapsing D_V to zero."
+  claim_type: mechanism_hypothesis
+  subject: pathology.anaesthesia_consciousness
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-067
+    - INV-068
+    - ARC-053
+    - MECH-225
+    - MECH-228
+  notes: >
+    Anaesthetics (propofol, sevoflurane, etc.) act via GABA-A potentiation, potassium
+    channel effects, NMDA modulation -- all alter network excitability and synchrony.
+    Mechanism in V(t)/D_V terms:
+    (A) Reduced effective connectivity: ascending and descending signals fail to couple
+    -> C_i(t) drops (content mismatch / ineffective propagation).
+    (B) Phase disruption or over-synchronisation: desynchronisation (no coherent timing)
+    OR excessive low-frequency synchrony (delta-dominance) -> P_i(t) becomes non-informative.
+    (C) Collapse of hierarchical integration: high-level <-> low-level interaction weakens.
+    Result: V(t) -> 0 globally, D_V -> 0 (coupling not sustained even transiently).
+    Conscious experience requires sustained temporal-depth verisimilitude (INV-068);
+    anaesthesia prevents the system from maintaining temporally extended coupling between
+    its internal models and incoming signals.
+    Additional mechanism: the similarity metric used in V(t) computation may itself be
+    distorted under anaesthesia -- noise-dominated similarity (reduced differentiation),
+    over-smoothing (loss of discriminability), or decoupled representation geometry
+    (a_i and d_i live in effectively different spaces -> similarity function meaningless).
+    So anaesthesia may degrade both the SIGNALS and the METRIC used to compare them.
+    Clinical predictions: light sedation = reduced D_V, fluctuating V -> dreamy/unstable;
+    deep anaesthesia = near-zero D_V -> no stable self or reportable experience; emergence
+    = gradual restoration of phase structure and hierarchical coupling -> rising D_V
+    before coherent cognition returns.
+    Unifies: disrupted integration theories, thalamocortical breakdown, posterior hot zone
+    instability -- all grounded in V(t)/D_V collapse mechanics.
+    Loss of consciousness correlates with disrupted long-range cortical connectivity and
+    altered oscillatory patterns (increased slow-wave activity) -- consistent with D_V collapse.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: MECH-228
+  title: "Field-level coherence support (ephaptic coupling): extracellular electric field interactions stabilise phase relationships across neural populations, supporting temporal coherence."
+  claim_type: mechanism_hypothesis
+  subject: architecture.ephaptic_coupling_coherence
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-053
+    - MECH-225
+  notes: >
+    Ephaptic coupling = interaction between neurons via local extracellular electric
+    fields (not synapses). Particularly prominent in tightly packed, synchronised
+    structures: cortex, hippocampus, cerebellum.
+    Function in V(t)/D_V framework: contributes to the physical substrate enforcing or
+    biasing phase alignment across populations, supporting temporal coherence (ARC-053).
+    Not the sole mechanism -- one contributor to the phase coherence scaffold alongside
+    synaptic transmission, gap junctions (inferior olive, MECH-226), and oscillatory dynamics.
+    Properties: fast (no synaptic delay), local but scalable through synchrony, strongest
+    when neurons are aligned and oscillations are coherent. Ideal for stabilising the
+    phase relationships needed for coupling -- reduces phase drift, promotes synchronisation,
+    stabilises coupling windows.
+    Updated P_i(t) formulation with ephaptic contribution:
+    P_i(t) = f(delta_phi_i(t), local field coherence), where ephaptic effects reduce
+    phase drift and promote synchronisation.
+    Anaesthesia link: many anaesthetics change membrane conductance and extracellular
+    ionic environment, reducing effective synchrony -> disrupt conditions under which
+    ephaptic coupling meaningfully stabilises phase -> phase drift -> degraded P_i(t)
+    -> V(t) collapse (MECH-227).
+    Note: inferior olive uses gap junctions (not strictly ephaptic -- distinct mechanism
+    but related category of field-level coupling). Distinguishing synaptic, gap junction,
+    and ephaptic contributions remains active neuroscience research. All three contribute
+    to phase coherence as complementary mechanisms.
+    Role of ephaptic coupling in cognition-level segregation remains debated; role in
+    synchrony is well-supported (Anastassiou & Koch 2015; Fries 2015 communication
+    through coherence).
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: Q-038
+  title: "Is temporal-depth verisimilitude D_V explicitly represented as a signal or does it emerge from distributed dynamics without local representation?"
+  claim_type: open_question
+  subject: perception.dv_representational_status
+  polarity: open
+  status: open
+  implementation_phase: v4
+  depends_on:
+    - INV-068
+    - ARC-053
+  notes: >
+    Two options: (A) D_V is explicitly represented (a dedicated neural/computational
+    signal tracking persistence of coupling), or (B) D_V emerges from distributed dynamics
+    (cross-frequency coupling stability, synchrony persistence, prediction error
+    minimisation history) without a local representation.
+    Option A is computationally tractable (exponential moving average of V(t)) and
+    allows direct influence on E3 selection. Option B is more biologically plausible
+    as an emergent property but harder to use as an explicit control signal.
+    Empirical probes: oscillatory stability metrics, cross-frequency coupling persistence,
+    cerebellar prediction error integration over time.
+    Resolution would clarify ARC-055 (explicit availability requirement) implementation
+    strategy.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: Q-039
+  title: "Which neuromodulatory or control-plane variables directly regulate temporal integration window and phase alignment sensitivity in the TCL?"
+  claim_type: open_question
+  subject: architecture.tcl_control_parameters
+  polarity: open
+  status: open
+  implementation_phase: v4
+  depends_on:
+    - ARC-053
+    - ARC-055
+    - INV-067
+    - INV-068
+  notes: >
+    ARC-055 identifies control-plane parameters (alpha_S, alpha_A, tau_E2, H, kappa_commit,
+    g_S) but does not specify which neuromodulatory systems implement them or which
+    directly regulate TCL operation vs V(t) computation.
+    Open aspects: (1) Does acetylcholine gate temporal integration window? (2) Does
+    noradrenaline regulate phase alignment sensitivity? (3) Does dopamine modulate
+    beta_j (similarity weight in D_V ethical objective)? (4) Which neuromodulator
+    corresponds to kappa_commit (commit threshold)?
+    TCL control vs V(t) control distinction: some parameters regulate whether coupling
+    is possible (TCL -- phase alignment, timing windows), others regulate which signals
+    are allowed to couple (V(t) -- precision weights, channel gating).
+    Resolution would ground ARC-053/ARC-055 in existing neuromodulatory pharmacology
+    and enable testable pharmacological predictions.
+  registered: "2026-04-12"
+  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md

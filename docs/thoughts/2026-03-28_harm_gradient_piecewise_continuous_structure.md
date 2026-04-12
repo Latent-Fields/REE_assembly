@@ -1,8 +1,12 @@
 # Thought: Harm Gradient Has Piecewise-Continuous Structure
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-03-28_harm_gradient.md` (MECH-224)
+
 **Date:** 2026-03-28
 **Source:** Observation from literature pull ARC-024 session (Fanselow 2022 / predatory imminence continuum)
-**Status:** unprocessed
 
 ## Observation
 

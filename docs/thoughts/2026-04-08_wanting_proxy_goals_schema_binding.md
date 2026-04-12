@@ -1,5 +1,10 @@
 # Wanting Guides Approach, Achievement Binds Schema: Proxy Goals and Multi-Level Planning
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-04-08_wanting_proxy_goals.md` (INV-065, MECH-216, MECH-217, MECH-218, ARC-051)
+
 **Date:** 2026-04-08
 **Session:** wanting-gradient-nav + thought-intake
 **Context:** Arose during discussion of SD-015 resolution (VALENCE_WANTING gradient in

@@ -1,8 +1,12 @@
 # Dream Phenomenology and Replay Types
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md` (INV-062, MECH-209)
+
 **Date:** 2026-04-07
 **Source:** Daniel Golden, first-person phenomenological observation
-**Status:** Raw thought — three distinct dream types noted as definite and consistent across instances; acknowledged as possibly not exhaustive
 
 ---
 

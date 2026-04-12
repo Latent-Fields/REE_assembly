@@ -1,5 +1,10 @@
 # Phase Segregation: Perception vs Imagination on Shared Substrate
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-04-07_phase_segregation_perception_imagination.md`
+
 **Date:** 2026-04-07
 **Source:** Daniel Golden, conversation with ChatGPT
 

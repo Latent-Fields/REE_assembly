@@ -311,6 +311,30 @@
     "title": "harm_precision_weighting",
     "type": "architecture_hypothesis"
   },
+  "ARC-053": {
+    "status": "candidate",
+    "subject": "architecture.temporal_coherence_loop",
+    "title": "Temporal Coherence Loop (TCL): architecture must include a distributed loop responsible for maintaining phase alignment and temporal synchrony necessary for V(t) to be computable.",
+    "type": "arch_commitment"
+  },
+  "ARC-054": {
+    "status": "candidate",
+    "subject": "architecture.dv_trajectory_selection",
+    "title": "D_V trajectory selection: E3 trajectory selection must optimise predicted temporal-depth verisimilitude D_V over planning horizon H, not instantaneous V(t) alone.",
+    "type": "arch_commitment"
+  },
+  "ARC-055": {
+    "status": "candidate",
+    "subject": "architecture.verisimilitude_signal_availability",
+    "title": "Verisimilitude signal availability: V(t) and D_V must be explicitly available to E3 selection and influence E1/E2 learning updates.",
+    "type": "arch_commitment"
+  },
+  "ARC-056": {
+    "status": "candidate",
+    "subject": "architecture.ethics_as_coherence_optimisation",
+    "title": "Ethics-as-coherence architecture: ethical trajectory selection is implemented as optimisation of shared temporal-depth coherence across self and represented others.",
+    "type": "arch_commitment"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -867,6 +891,42 @@
     "status": "active",
     "subject": "control_plane.pre_coherency_gate_ordering",
     "title": "z_self subtraction (MECH-221) must precede any coherency-based control plane signal; coherency checks on contaminated z_world generate self-sealing false confirmations.",
+    "type": "invariant"
+  },
+  "INV-067": {
+    "status": "candidate",
+    "subject": "perception.verisimilitude_definition",
+    "title": "V(t): Verisimilitude is the precision-weighted, phase-aligned, hierarchical correspondence between ascending sensory-constrained and descending model-based signals.",
+    "type": "invariant"
+  },
+  "INV-068": {
+    "status": "candidate",
+    "subject": "perception.temporal_depth_verisimilitude",
+    "title": "Temporal depth D_V(t): system behaviour must depend on temporal persistence of verisimilitude coupling, not instantaneous V(t) alone.",
+    "type": "invariant"
+  },
+  "INV-069": {
+    "status": "candidate",
+    "subject": "self.coherence_trajectory_definition",
+    "title": "The self is defined as the dynamically sustained process maintaining high temporal-depth verisimilitude across time, not a static representation.",
+    "type": "invariant"
+  },
+  "INV-070": {
+    "status": "candidate",
+    "subject": "ethics.epistemic_responsibility",
+    "title": "Epistemic responsibility: agent is responsible for refining world models toward accurate similarity and threat inference; misclassification is morally relevant, not merely practically inconvenient.",
+    "type": "invariant"
+  },
+  "INV-071": {
+    "status": "candidate",
+    "subject": "ethics.language_as_similarity_repair",
+    "title": "Language functions as a mechanism for recognising, repairing, and re-establishing self-other equivalence across agents.",
+    "type": "invariant"
+  },
+  "INV-072": {
+    "status": "candidate",
+    "subject": "ethics.violence_conditions_corollary",
+    "title": "Violence corollary: violence is conditionally permissible only when an agent is not modelled as sufficiently self-like OR poses a genuine threat; both conditions require accurate inference.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -2213,6 +2273,36 @@
     "title": "Animated agency attribution overweighting: systematic bias toward attributing intentional causation to animated/moving entities requires active calibration in the attribution pathway.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-224": {
+    "status": "candidate",
+    "subject": "harm_representation.piecewise_gradient",
+    "title": "harm_eval.piecewise_gradient_structure: E3 harm_eval learns both continuous intensity and discrete mode-transition thresholds.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-225": {
+    "status": "candidate",
+    "subject": "perception.oscillatory_multiplexing",
+    "title": "Oscillatory coupling multiplexing: cross-frequency oscillatory dynamics (gamma/theta/beta/delta) implement phase-based separation of perception, simulation, and action preparation streams.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-226": {
+    "status": "candidate",
+    "subject": "architecture.tcl_biophysical_substrate",
+    "title": "TCL substrate: Temporal Coherence Loop is implemented as a distributed system involving the inferior olive, cerebellum, thalamus, and cortical networks.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-227": {
+    "status": "candidate",
+    "subject": "pathology.anaesthesia_consciousness",
+    "title": "Anaesthesia as D_V collapse: general anaesthesia abolishes consciousness by disrupting phase alignment, degrading V(t) globally, and collapsing D_V to zero.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-228": {
+    "status": "candidate",
+    "subject": "architecture.ephaptic_coupling_coherence",
+    "title": "Field-level coherence support (ephaptic coupling): extracellular electric field interactions stabilise phase relationships across neural populations, supporting temporal coherence.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -2433,6 +2523,18 @@
     "status": "open",
     "subject": "pathology.psychosis_substrate_dissociability",
     "title": "Are the three psychosis substrate failure modes (MECH-094 tag-loss, MECH-222 self-attribution overflow, MECH-065/MECH-223 precision/bias) experimentally dissociable in the REE substrate?",
+    "type": "open_question"
+  },
+  "Q-038": {
+    "status": "open",
+    "subject": "perception.dv_representational_status",
+    "title": "Is temporal-depth verisimilitude D_V explicitly represented as a signal or does it emerge from distributed dynamics without local representation?",
+    "type": "open_question"
+  },
+  "Q-039": {
+    "status": "open",
+    "subject": "architecture.tcl_control_parameters",
+    "title": "Which neuromodulatory or control-plane variables directly regulate temporal integration window and phase alignment sensitivity in the TCL?",
     "type": "open_question"
   },
   "SD-001": {
