@@ -69,7 +69,7 @@ These three engines are embedded in a broader system:
 
 ## The commitment boundary
 
-This is the central architectural innovation.
+This is an important architectural necessity to allow for responsibility for actions.
 
 Most systems blur the line between thinking about doing something and doing it. REE draws a hard boundary.
 
