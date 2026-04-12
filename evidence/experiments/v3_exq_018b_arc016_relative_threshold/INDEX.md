@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_018b_arc016_relative_threshold
 
-Generated: `2026-04-11T16:56:03.125957Z`
+Generated: `2026-04-12T09:40:10.014657Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-11T17:00:00Z",
+  "last_updated_utc": "2026-04-12T09:50:00Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -100,7 +100,7 @@
       "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation). MECH-112 prerequisite resolved by co-implementation in this session (ResourceEncoder IS the MECH-112 substrate).",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-11b",
+      "last_seen_session": "governance-2026-04-12",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -142,9 +142,17 @@
             "substrate_state": "Second concurrent run (same experiment type, same implementation, same seeds)",
             "metric_value": null,
             "metric_notes": "n_cosine_samples=0 again in all 5 seeds, both conditions. Confirms the bug is reproducible (not a race condition or transient failure). The measurement path never fires regardless of seed or run. Zero type C confirmed persistent."
+          },
+          {
+            "run_id": "v3_exq_328_mech112_zgoal_structured_latent_20260411T134736Z_v3",
+            "experiment_type": "v3_exq_328_mech112_zgoal_structured_latent",
+            "date_utc": "2026-04-11",
+            "substrate_state": "SD-015 ResourceEncoder implemented; DRIVE_ACTIVE (drive_weight=2.0) vs DRIVE_ABLATED; z_goal seeded from z_resource; 8x8 grid, 3 resources, 150 P0 + 100 P1 episodes",
+            "metric_value": null,
+            "metric_notes": "non_contributory (governance-2026-04-12). z_goal_norm=0.0 in 2/3 seeds: seed 42 (0 contact events -- agent never found resources in 250 eps); seed 7 (20 contact events but z_goal_norm=0.0 exactly at all offsets t=0,10,25,50). Seed 13: z_goal_norm=0.128 constant across all offsets (same at t=0 and t=50), suspicious of EMA initialization artifact. DRIVE_ACTIVE vs DRIVE_ABLATED nearly indistinguishable (0.128 vs 0.108). Zero type D: seeding pathway not firing despite resource contacts -- distinct from type C (cosine measurement gap). The seeding event either does not trigger, or z_goal update magnitude is below observable threshold. 150-episode warmup may be insufficient for ResourceEncoder to produce discriminative z_resource."
           }
         ],
-        "current_blocker": "n_cosine_samples=0 confirmed reproducible across two independent runs (EXQ-322 184213Z and 222041Z). Measurement infrastructure failure is stable and reproducible. Fix: diagnose why the cosine sampling path is never reached during eval. Downstream: MECH-057b (hippocampal candidacy gate) and ARC-028 (BetaGate coupling) both also require committed-sequence generation -- a separate zero-generator that blocks the next level of the staircase.",
+        "current_blocker": "Two confirmed zero types. Zero type C (n_cosine_samples=0, EXQ-322 x2): measurement path never fires. Zero type D (z_goal_norm=0.0 despite contacts, EXQ-328 seeds 7+42): seeding trigger not firing or z_goal update below threshold. Both require diagnosis. Downstream: MECH-057b and ARC-028 also require committed-sequence generation.",
         "prediction": {
           "expected_value": "goal_resource_r > 0.2 in RESOURCE_SEED, < 0.05 in WORLD_SEED, once measurement gap is fixed",
           "rationale": "EXQ-085l showed the encoder CAN produce signal (prox_r2=0.9+). The current encoder version targets object-type features rather than spatial proximity, so the representational basis is correct. Once the cosine sampling path fires, the RESOURCE_SEED condition should produce measurable cosine similarity since z_resource is now seeding z_goal directly.",

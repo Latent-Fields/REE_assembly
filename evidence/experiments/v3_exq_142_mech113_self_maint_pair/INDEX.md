@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_142_mech113_self_maint_pair
 
-Generated: `2026-04-11T16:56:03.125957Z`
+Generated: `2026-04-12T09:40:10.014657Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

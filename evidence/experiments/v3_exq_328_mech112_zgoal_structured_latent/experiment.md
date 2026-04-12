@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_328_mech112_zgoal_structured_latent_20260411T134736Z_v3` at `2026-04-11T13:47:36Z` signatures: none
 - `v3_exq_328_mech112_zgoal_structured_latent_dry_20260410T155804Z_v3` at `2026-04-10T15:58:04Z` signatures: none
 
 Recurring signatures:

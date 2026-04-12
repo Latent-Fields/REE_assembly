@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_328_mech112_zgoal_structured_latent",
+  "run_id": "v3_exq_328_mech112_zgoal_structured_latent_20260411T134736Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-11T13:47:36Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-112",
+    "SD-012"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Substrate gap: 1/3 seeds had 0 contact events; 1/3 seeds had 20 contact events but z_goal_norm=0.0 throughout (goal seeding not firing despite drive_weight=2.0); only 1/3 seeds showed any z_goal activation (0.128 constant, suspicious of EMA init artifact). Measurement mechanism not producing data. Reclassified non_contributory 2026-04-12.",
+  "evidence_direction_per_claim": {
+    "MECH-112": "non_contributory",
+    "SD-012": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

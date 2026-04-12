@@ -8,10 +8,11 @@
   ],
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
-    "MECH-112": "does_not_support",
-    "SD-012": "does_not_support"
+    "MECH-112": "non_contributory",
+    "SD-012": "non_contributory"
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Substrate gap: 1/3 seeds had 0 contact events (agent never found resources); 1/3 seeds had 20 contact events but z_goal_norm=0.0 throughout (goal seeding not firing despite drive_weight=2.0); only 1/3 seeds showed any z_goal activation (0.128 constant across all time offsets, suspicious of EMA initialization artifact). Cannot conclude MECH-112 or SD-012 are wrong when the measurement mechanism itself does not produce data. Consistent with prior SD-012 FAIL cluster (EXQ-085a-d, EXQ-238, EXQ-247, EXQ-325). Reclassified non_contributory 2026-04-12.",
   "outcome": "FAIL",
   "criteria": {
     "c1_goal_seeded_at_contact": false,
