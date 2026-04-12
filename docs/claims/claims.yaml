@@ -10993,6 +10993,35 @@
       CONDITIONAL (architecture-neutral; appropriate where other
       options are contraindicated).
 
+- id: IMPL-027
+  title: "Technical comparison: REE versus Meta AI/KAUST Neural Computers roadmap."
+  claim_type: implementation_note
+  subject: positioning.ree_vs_meta_kaust_neural_computers
+  polarity: records
+  status: candidate
+  depends_on:
+    - INV-025
+    - INV-026
+    - INV-027
+    - INV-028
+    - INV-029
+    - MECH-069
+    - ARC-021
+    - INV-049
+    - IMPL-024
+  location: docs/architecture/comparisons/meta_kaust_neural_computers.md#impl-027
+  source:
+    - docs/architecture/comparisons/meta_kaust_neural_computers.md
+  notes: >
+    Registered 2026-04-12. Comparison document positioning REE against the
+    Meta AI / KAUST "Completely Neural Computer" (CNC) roadmap (Schmidhuber
+    et al., 2025). Maps the four CNC requirements (Turing completeness,
+    universal programmability, behavior consistency, machine-native semantics)
+    onto REE's derived architectural structures. REE addresses all four from
+    first principles; the comparison makes this explicit for technical readers
+    arriving from the NC literature. Also identifies what NC covers that REE
+    does not (I/O interface layer, hardware roadmap, NL programmability).
+
 - id: INV-049
   title: "Any agent that builds a model of the world, acts in that world, and learns from experience cannot safely update its world model while using it to navigate the world; it therefore requires periodic offline phases in which action is suspended and the model is reorganised via replay and simulation -- this is not a biological contingency but a general computational necessity for model-building agents."
   claim_type: invariant

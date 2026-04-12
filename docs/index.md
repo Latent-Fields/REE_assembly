@@ -121,6 +121,18 @@ scores, and governed through an experiment-evidence pipeline.
 
 ---
 
+## Related frameworks
+
+**[REE vs. Neural Computers (Meta AI / KAUST)](architecture/comparisons/meta_kaust_neural_computers.md)**
+The Neural Computers programme (Schmidhuber et al., 2025) proposes unifying
+computation, memory, and I/O as a single learned runtime. Their four
+requirements for a Completely Neural Computer — Turing completeness, universal
+programmability, behavior consistency, and machine-native semantics — map
+directly onto structures REE derives from first principles. The comparison
+document shows the cross-walk.
+
+---
+
 ## Implementation substrates
 
 | Substrate | Status | Role |
