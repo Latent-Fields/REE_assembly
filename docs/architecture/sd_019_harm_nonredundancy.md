@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-019: Affective Harm Non-Redundancy Constraint
 
 **Claim ID:** SD-019  

@@ -1,3 +1,9 @@
+---
+title: Control Plane
+parent: Architecture
+nav_order: 5
+---
+
 # Control Plane (Precision, Gain, and Mode Regulation)
 
 **Claim Type:** architectural_commitment  

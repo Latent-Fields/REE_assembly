@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Astrocyte-Aware Regulatory Stack (Control Plane Mechanism)
 
 **Claim Type:** mechanism_hypothesis  

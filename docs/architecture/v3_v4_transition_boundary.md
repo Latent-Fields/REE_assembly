@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 <!-- TRANSITION_BOUNDARY_VERSION: 2026-04-05.1 -->
 # V3 / V4 Architecture Transition Boundary
 

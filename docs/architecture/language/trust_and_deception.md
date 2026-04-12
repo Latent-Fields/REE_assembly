@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Trust And Deception
 
 **Claim Type:** mechanism_hypothesis  

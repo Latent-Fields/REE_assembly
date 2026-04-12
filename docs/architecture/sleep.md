@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Offline Integration and Sleep
 
 **Claim Type:** architectural_commitment  

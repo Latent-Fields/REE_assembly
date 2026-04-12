@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Residue Integration
 
 **Claim Type:** mechanism_hypothesis  

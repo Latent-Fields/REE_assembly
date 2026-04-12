@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Precision Recalibration
 
 **Claim Type:** mechanism_hypothesis  

@@ -1,3 +1,9 @@
+---
+title: Residue
+parent: Architecture
+nav_order: 8
+---
+
 # Residue Geometry
 
 **Claim Type:** architectural_commitment  

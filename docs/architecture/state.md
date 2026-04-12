@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # State
 
 **Document type:** Architecture reference (standalone — no single Claim ID; anchors candidate INV/ARC claims pending governance)

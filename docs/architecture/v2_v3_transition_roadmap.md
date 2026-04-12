@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # V2 → V3 Transition Roadmap
 
 **Created:** 2026-03-14

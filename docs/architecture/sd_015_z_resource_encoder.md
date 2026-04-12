@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-015: Dedicated z_resource Encoder for Goal-Directed Navigation
 
 **Claim ID:** SD-015  

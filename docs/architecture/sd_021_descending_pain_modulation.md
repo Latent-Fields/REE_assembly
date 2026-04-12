@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-021: Descending Pain Modulation — Commitment-Gated z_harm_s Attenuation
 
 **Status:** candidate  

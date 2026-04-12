@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Language and Symbolic Mediation
 
 **Claim Type:** architectural_commitment  

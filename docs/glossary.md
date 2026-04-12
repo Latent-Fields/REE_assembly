@@ -1,3 +1,8 @@
+---
+title: Glossary
+nav_order: 7
+---
+
 # Glossary
 
 **Claim Type:** implementation_note  

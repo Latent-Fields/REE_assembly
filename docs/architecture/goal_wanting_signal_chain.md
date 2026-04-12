@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Goal / Wanting Signal Chain — Provenance Map
 
 **Scope:** z_goal seeding, wanting pathway, and approach motivation in V3  

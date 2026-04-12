@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Papez Circuit (Functional Analog)
 
 **Claim Type:** mechanism_hypothesis  

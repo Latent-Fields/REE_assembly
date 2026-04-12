@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Arcuate Fasciculus (Functional Analog)
 
 **Claim Type:** mechanism_hypothesis  

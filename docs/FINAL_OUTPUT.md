@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Documentation Refactoring — Final Output (ARCHIVED)
 
 > **Archive notice (2026-03-02):** This file has been relocated to

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Medications, Sleep Architecture, and Dementia Risk
 
 **Related claims:** INV-048, MECH-173, MECH-174, MECH-175, MECH-176, MECH-177, Q-031, Q-032, IMPL-026

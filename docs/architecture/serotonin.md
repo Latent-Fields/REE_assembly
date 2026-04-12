@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Serotonin
 
 **Claim Type:** mechanism_hypothesis  

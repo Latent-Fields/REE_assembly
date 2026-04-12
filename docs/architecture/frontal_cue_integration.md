@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Frontal Cue Integration
 
 **Claim Type:** Architectural Commitment

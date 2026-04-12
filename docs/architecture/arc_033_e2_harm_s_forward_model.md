@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # ARC-033: E2_harm_s Sensory-Discriminative Harm Forward Model
 
 **Claim ID:** ARC-033

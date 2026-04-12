@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Precision Control
 
 **Claim Type:** mechanism_hypothesis  

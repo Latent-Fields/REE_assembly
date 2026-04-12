@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-023: Environmental Gradient Texture (World Extension)
 
 **Status: IMPLEMENTED 2026-04-09**

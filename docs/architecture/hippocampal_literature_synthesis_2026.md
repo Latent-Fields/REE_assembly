@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Hippocampal Literature Synthesis 2026
 
 **Date:** 2026-04-02

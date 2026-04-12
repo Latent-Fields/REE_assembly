@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # vmPFC — Affective and Normative State Preparation
 
 **Claim Type:** architectural_commitment

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # JEPA-Like E1/E2 Representation Reference Contract
 
 **Claim Type:** implementation_note  

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Four-Plane Neuromodulatory Control Model
 
 **Source thought:** Theoretical development session 2026-03-15 (NC-11 through NC-16)

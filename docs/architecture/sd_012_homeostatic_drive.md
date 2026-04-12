@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-012: Homeostatic Drive Modulation
 
 **Claim ID:** SD-012

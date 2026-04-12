@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Mode Manager
 
 **Claim Type:** mechanism_hypothesis  

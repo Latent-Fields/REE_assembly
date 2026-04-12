@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Offline Phase Architecture
 
 This file documents REE's offline consolidation phases.

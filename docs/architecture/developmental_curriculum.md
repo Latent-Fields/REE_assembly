@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Developmental Curriculum and Staged Training
 
 **Claim Type:** architectural_commitment

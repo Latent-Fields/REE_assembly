@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Architecture Snapshot (As of 2026-02-17)
 
 **Date stamp:** 2026-02-17  

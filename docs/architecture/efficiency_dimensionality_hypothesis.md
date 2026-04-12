@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Efficiency and Dimensionality Hypothesis: E1/E2/E3 Multi-Stack vs Single-Stack
 
 **Status:** Working hypothesis — Phase 2 ablations pending

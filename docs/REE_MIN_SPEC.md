@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE minimum instantiation specification (REE‑v0)
 
 **Claim Type:** implementation_note  

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Conflict: Valence Vectors vs μ/κ Stability Overlays
 
 ## Conflicting Claim IDs

@@ -1,3 +1,8 @@
+---
+title: Invariants
+nav_order: 5
+---
+
 # REE Architectural Invariants
 
 **Claim Type:** invariant  

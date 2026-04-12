@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Valenced Hippocampal Map, Amygdala Read/Write, and Therapeutic Geometry
 
 **Source thought:** Theoretical development session 2026-03-15 (NC-01 through NC-09)

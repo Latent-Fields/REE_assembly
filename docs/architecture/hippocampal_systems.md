@@ -1,3 +1,9 @@
+---
+title: Hippocampal Systems
+parent: Architecture
+nav_order: 6
+---
+
 # Hippocampal Systems (Path Memory and Replay)
 
 **Claim Type:** architectural_commitment  

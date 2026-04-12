@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE-v2 Repository Bootstrap Spec
 
 **Document Type:** implementation_bootstrap  

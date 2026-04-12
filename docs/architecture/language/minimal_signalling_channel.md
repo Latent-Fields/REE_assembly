@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Minimal Signalling Channel
 
 **Claim Type:** mechanism_hypothesis  

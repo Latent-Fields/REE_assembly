@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Modes of Cognition as Control-Plane Regimes
 
 **Claim Type:** architectural_commitment  

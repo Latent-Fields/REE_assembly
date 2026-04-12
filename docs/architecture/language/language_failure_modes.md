@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Language Failure Modes
 
 **Claim Type:** mechanism_hypothesis  

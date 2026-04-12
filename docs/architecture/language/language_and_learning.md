@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Language And Learning
 
 **Claim Type:** mechanism_hypothesis  

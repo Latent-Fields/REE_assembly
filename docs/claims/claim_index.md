@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Claim Index
 
 This index lists all claim IDs with one-line summaries and links. For full metadata, see `claims.yaml`.

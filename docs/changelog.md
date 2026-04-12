@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Documentation Refactoring Changelog
 
 **Claim Type:** implementation_note  

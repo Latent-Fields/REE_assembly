@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Trajectory Selection
 
 **Claim Type:** implementation_note  

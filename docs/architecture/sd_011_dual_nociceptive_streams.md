@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-011: Dual Nociceptive Streams
 
 **Claim ID:** SD-011

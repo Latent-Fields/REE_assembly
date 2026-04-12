@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Path Authority And Interrupts
 
 **Claim Type:** mechanism_hypothesis  

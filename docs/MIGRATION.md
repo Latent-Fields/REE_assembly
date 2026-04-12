@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Documentation Migration Summary
 
 **Claim Type:** implementation_note  

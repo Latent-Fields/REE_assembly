@@ -1,3 +1,8 @@
+---
+title: Why This Architecture?
+nav_order: 2
+---
+
 # Deriving Ethical Agency from Necessary Comparators
 
 **Status:** architecture note  

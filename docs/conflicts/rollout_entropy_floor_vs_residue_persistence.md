@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Conflict: Rollout Entropy Floor vs Residue Persistence
 
 ## Conflicting Claim IDs

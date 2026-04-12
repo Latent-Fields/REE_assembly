@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-013: E2_harm_s Interventional Training
 
 **Claim ID:** SD-013  

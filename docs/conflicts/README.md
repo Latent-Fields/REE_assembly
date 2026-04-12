@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Conflict Index
 
 **Claim Type:** implementation_note  

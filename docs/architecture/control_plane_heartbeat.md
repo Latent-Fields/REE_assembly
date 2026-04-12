@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Control Plane Heartbeat Architecture
 
 **Registered:** 2026-03-15

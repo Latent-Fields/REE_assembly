@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-015 HippocampalModule Goal Navigation — Design Session Prompt
 
 **Created:** 2026-04-02

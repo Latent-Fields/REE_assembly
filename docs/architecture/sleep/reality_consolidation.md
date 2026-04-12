@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Reality Consolidation
 
 **Claim Type:** mechanism_hypothesis  

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Temporal Dynamics and Phase Gating
 
 **Claim Type:** architectural_commitment  

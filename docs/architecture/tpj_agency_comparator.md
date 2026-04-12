@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # TPJ Agency-Detection Comparator (MECH-095)
 
 **Claim ID:** MECH-095

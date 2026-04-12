@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Control Plane Signal Map
 
 **Claim Type:** mechanism_hypothesis  

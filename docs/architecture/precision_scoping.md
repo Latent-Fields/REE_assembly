@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Precision Scoping
 
 **Claim Type:** mechanism_hypothesis  

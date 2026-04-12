@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Triple-View Diagram Bundle
 
 This bundle keeps architecture visualization in three synchronized views:

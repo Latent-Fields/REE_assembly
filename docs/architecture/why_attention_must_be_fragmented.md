@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Why Attention Must Be Fragmented
 
 **Claim Type:** mechanism_hypothesis  

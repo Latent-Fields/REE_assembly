@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-020: z_harm_a Encodes Affective Surprise (Precision-Weighted PE)
 
 **Claim ID:** SD-020  

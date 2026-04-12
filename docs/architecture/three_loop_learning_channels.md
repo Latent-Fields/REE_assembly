@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Three-Loop Learning Channel Separation
 
 **Source thought:** `docs/thoughts/2026-03-14_three_bg_systems_error_signals.md`

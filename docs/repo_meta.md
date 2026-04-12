@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Repository Meta Documents
 
 **Claim Type:** implementation_note  

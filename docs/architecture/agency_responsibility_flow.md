@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Agency and Responsibility Flow
 
 **Claim Type:** architectural_commitment  

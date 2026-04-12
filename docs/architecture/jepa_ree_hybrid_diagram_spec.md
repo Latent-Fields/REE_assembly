@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # JEPA to REE Hybrid Diagram Spec
 
 **Claim Type:** implementation_note  

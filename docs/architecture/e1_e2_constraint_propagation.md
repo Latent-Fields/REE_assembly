@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # E1/E2 Constraint Propagation and Perceptual Bias
 
 **Source thought:** Theoretical development session 2026-03-15 (NC-02 through NC-03)

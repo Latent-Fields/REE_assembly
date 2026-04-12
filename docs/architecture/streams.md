@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Architecture Streams and IDs (v1)
 
 This file defines the canonical identifiers shared by:

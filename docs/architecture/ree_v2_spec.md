@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE-v2 Implementation Spec
 
 **Claim Type:** implementation_note

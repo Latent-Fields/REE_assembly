@@ -1,0 +1,123 @@
+{
+  "run_id": "v3_exq_326_wanting_gradient_nav_fix_dry_20260412T101736Z_v3",
+  "experiment_type": "v3_exq_326_wanting_gradient_nav_fix",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-015",
+    "MECH-216",
+    "SD-012"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction_per_claim": {
+    "SD-015": "does_not_support",
+    "MECH-216": "supports",
+    "SD-012": "does_not_support"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_wanting_populated": true,
+    "c1_vals": [
+      0.2386940519325435,
+      0.5111242111590577,
+      0.49847109715749577
+    ],
+    "c3_benefit_ratio_pass": false,
+    "c3_ratios": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "c3_seeds_pass": 0,
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.49847109715749577,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.4859993188611923,
+      "mech216_write_count": 41
+    },
+    {
+      "seed": 42,
+      "condition": "ABLATED",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.0,
+      "mech216_write_count": 0
+    },
+    {
+      "seed": 7,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.009971078771167695,
+      "valence_wanting_mean": 0.2386940519325435,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.4866655485497581,
+      "mech216_write_count": 60
+    },
+    {
+      "seed": 7,
+      "condition": "ABLATED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.009971078771167695,
+      "valence_wanting_mean": 0.0,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.0,
+      "mech216_write_count": 0
+    },
+    {
+      "seed": 13,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.5111242111590577,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.4949955187860082,
+      "mech216_write_count": 41
+    },
+    {
+      "seed": 13,
+      "condition": "ABLATED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.01203281180582734,
+      "valence_wanting_mean": 0.0,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.0,
+      "mech216_write_count": 0
+    }
+  ],
+  "supersedes": "V3-EXQ-259",
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "WITH_WANTING",
+      "ABLATED"
+    ],
+    "wanting_weight": 0.5,
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 50,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 2,
+    "hazard_harm": 0.1
+  },
+  "timestamp_utc": "20260412T101736Z"
+}

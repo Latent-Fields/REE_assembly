@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Psychiatric Failure Modes as Architectural States
 
 *Emergent from EXQ-237a LONG_HORIZON condition. Seed=42. First observed 2026-04-06.*

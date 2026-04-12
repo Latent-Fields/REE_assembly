@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-016: Frontal Cue Integration
 
 **Claim ID:** SD-016

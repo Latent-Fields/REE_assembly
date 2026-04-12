@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Serotonergic Cross-State Substrate Requirements
 
 Created: 2026-04-06

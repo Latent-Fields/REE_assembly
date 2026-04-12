@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-003 Self-Attribution Experiment Design
 
 **Status:** Active design — substrate ready, experiments pending (EXQ-027, EXQ-028)

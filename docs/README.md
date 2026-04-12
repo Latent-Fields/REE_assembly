@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Typed-Claims Documentation System
 
 **Claim Type:** implementation_note  

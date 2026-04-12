@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Conflict: Care Override vs Other-Harm Veto
 
 ## Conflicting Claim IDs

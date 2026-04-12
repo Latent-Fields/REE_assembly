@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-017: Minimal Sleep-Phase Architecture (V3)
 
 **Claim ID:** SD-017

@@ -1,3 +1,8 @@
+---
+title: Failure Modes
+nav_order: 8
+---
+
 # REE failure modes (implementation-focused)
 
 **Claim Type:** implementation_note  

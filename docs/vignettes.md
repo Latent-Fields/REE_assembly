@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Vignettes
-nav_order: 15
+nav_order: 9
 ---
 
 # Vignettes: REE Mechanisms in Biological Systems

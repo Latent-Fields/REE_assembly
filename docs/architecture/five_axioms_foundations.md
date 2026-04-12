@@ -1,3 +1,8 @@
+---
+title: Foundations
+nav_order: 4
+---
+
 # Eight Foundational Axioms and Their Architectural Consequences
 
 **Registered:** 2026-03-18

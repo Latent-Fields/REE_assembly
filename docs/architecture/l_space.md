@@ -1,3 +1,9 @@
+---
+title: L-space
+parent: Architecture
+nav_order: 4
+---
+
 # Latent Stack (L-space)
 
 **Claim Type:** architectural_commitment  

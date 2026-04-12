@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-004 + SD-005 Encoder Co-Design Specification
 
 **Status:** Active design — SD-004 and SD-005 structurally implemented; SD-007 (reafference

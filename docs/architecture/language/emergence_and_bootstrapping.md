@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Emergence And Bootstrapping
 
 **Claim Type:** mechanism_hypothesis  

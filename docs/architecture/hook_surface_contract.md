@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Cross-Version Hook Surface Contract
 
 **Claim Type:** implementation_note  

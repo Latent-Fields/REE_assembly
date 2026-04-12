@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Language And Institutions
 
 **Claim Type:** mechanism_hypothesis  

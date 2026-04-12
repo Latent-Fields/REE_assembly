@@ -1,3 +1,9 @@
+---
+title: Default Mode
+parent: Architecture
+nav_order: 7
+---
+
 # Default Mode (Internal Generative Mode)
 
 **Claim Type:** architectural_commitment  

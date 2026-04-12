@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-022: Directional Limb Damage (Body Extension)
 
 **Status: IMPLEMENTED 2026-04-09**
