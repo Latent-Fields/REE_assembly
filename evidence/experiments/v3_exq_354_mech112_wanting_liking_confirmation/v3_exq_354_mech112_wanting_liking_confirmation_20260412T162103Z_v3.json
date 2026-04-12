@@ -1,0 +1,161 @@
+{
+  "run_id": "v3_exq_354_mech112_wanting_liking_confirmation_20260412T162103Z_v3",
+  "experiment_type": "v3_exq_354_mech112_wanting_liking_confirmation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-112"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-112": "supports"
+  },
+  "outcome": "PASS",
+  "timestamp_utc": "20260412T162423Z",
+  "substrate_fix_note": "SD-015 wiring bug fixed: use_resource_encoder set directly on cfg.latent (not via latent= kwarg to from_dims which silently discards it). harm_signal from env.step() used for z_goal seeding (not pre-step EMA). benefit_threshold WANTING=0.15, LIKING=0.60 (ablated).",
+  "supersedes_note": "EXQ-074f PASS 4/4 used z_world fallback seeding (SD-015 not active). This experiment confirms the dissociation holds with correct ResourceEncoder pathway.",
+  "registered_thresholds": {
+    "C1_resource_rate": 0.05,
+    "C2_wanting_l1_fraction": 0.25,
+    "C3_dissociation_delta": 0.1,
+    "C4_seeds_needed": 2
+  },
+  "wanting_benefit_threshold": 0.15,
+  "liking_benefit_threshold": 0.6,
+  "p0_episodes": 150,
+  "p1_episodes": 100,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "seeds_passing": 3,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": true,
+      "c1_resource_floor": true,
+      "c2_wanting_l1_ge025": true,
+      "c3_dissociation_ge010": true,
+      "wanting_resource_rate": 0.14833333333333334,
+      "liking_resource_rate": 0.37066666666666664,
+      "wanting_l1_fraction": 0.96,
+      "liking_l1_fraction": 0.43,
+      "l1_fraction_dissociation": 0.53,
+      "wanting_goal_norm_final": 4.879202842712402,
+      "wanting_goal_active": true,
+      "condition_results": {
+        "WANTING": {
+          "condition": "WANTING",
+          "resource_rate": 0.14833333333333334,
+          "l1_directed_fraction": 0.96,
+          "l1_directed_steps": 192,
+          "post_reloc_steps": 200,
+          "resource_visits": 445,
+          "total_steps": 3000,
+          "goal_norm_final": 4.879202842712402,
+          "goal_proximity_final": 0.0390201210975647,
+          "goal_active": true
+        },
+        "LIKING": {
+          "condition": "LIKING",
+          "resource_rate": 0.37066666666666664,
+          "l1_directed_fraction": 0.43,
+          "l1_directed_steps": 86,
+          "post_reloc_steps": 200,
+          "resource_visits": 1112,
+          "total_steps": 3000,
+          "goal_norm_final": 0.0,
+          "goal_proximity_final": 0.6761935353279114,
+          "goal_active": false
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": true,
+      "c1_resource_floor": true,
+      "c2_wanting_l1_ge025": true,
+      "c3_dissociation_ge010": true,
+      "wanting_resource_rate": 0.15133333333333332,
+      "liking_resource_rate": 0.36566666666666664,
+      "wanting_l1_fraction": 0.935,
+      "liking_l1_fraction": 0.54,
+      "l1_fraction_dissociation": 0.395,
+      "wanting_goal_norm_final": 5.951371669769287,
+      "wanting_goal_active": true,
+      "condition_results": {
+        "WANTING": {
+          "condition": "WANTING",
+          "resource_rate": 0.15133333333333332,
+          "l1_directed_fraction": 0.935,
+          "l1_directed_steps": 187,
+          "post_reloc_steps": 200,
+          "resource_visits": 454,
+          "total_steps": 3000,
+          "goal_norm_final": 5.951371669769287,
+          "goal_proximity_final": 0.026520682498812675,
+          "goal_active": true
+        },
+        "LIKING": {
+          "condition": "LIKING",
+          "resource_rate": 0.36566666666666664,
+          "l1_directed_fraction": 0.54,
+          "l1_directed_steps": 108,
+          "post_reloc_steps": 200,
+          "resource_visits": 1097,
+          "total_steps": 3000,
+          "goal_norm_final": 0.0,
+          "goal_proximity_final": 0.4933716654777527,
+          "goal_active": false
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": true,
+      "c1_resource_floor": true,
+      "c2_wanting_l1_ge025": true,
+      "c3_dissociation_ge010": true,
+      "wanting_resource_rate": 0.14033333333333334,
+      "liking_resource_rate": 0.343,
+      "wanting_l1_fraction": 0.985,
+      "liking_l1_fraction": 0.43,
+      "l1_fraction_dissociation": 0.5549999999999999,
+      "wanting_goal_norm_final": 4.687472343444824,
+      "wanting_goal_active": true,
+      "condition_results": {
+        "WANTING": {
+          "condition": "WANTING",
+          "resource_rate": 0.14033333333333334,
+          "l1_directed_fraction": 0.985,
+          "l1_directed_steps": 197,
+          "post_reloc_steps": 200,
+          "resource_visits": 421,
+          "total_steps": 3000,
+          "goal_norm_final": 4.687472343444824,
+          "goal_proximity_final": 0.044066086411476135,
+          "goal_active": true
+        },
+        "LIKING": {
+          "condition": "LIKING",
+          "resource_rate": 0.343,
+          "l1_directed_fraction": 0.43,
+          "l1_directed_steps": 86,
+          "post_reloc_steps": 200,
+          "resource_visits": 1029,
+          "total_steps": 3000,
+          "goal_norm_final": 0.0,
+          "goal_proximity_final": 0.5338046550750732,
+          "goal_active": false
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "mean_wanting_l1_fraction": 0.96,
+    "mean_liking_l1_fraction": 0.4666666666666666,
+    "mean_dissociation": 0.49333333333333335,
+    "mean_wanting_resource_rate": 0.14666666666666664
+  }
+}
