@@ -2,47 +2,36 @@
   "schema_version": "v1",
   "runner_pid": 26926,
   "runner_started_at": "2026-04-11T02:37:21.745705+00:00",
-  "last_updated": "2026-04-11T17:03:13.404301+00:00",
+  "last_updated": "2026-04-12T01:20:45.006259+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-328",
+    "queue_id": "V3-EXQ-329",
     "backlog_id": "",
-    "claim_id": "MECH-112",
-    "title": "MECH-112 z_goal structured latent discriminative pair: SD-012 drive",
+    "claim_id": "ARC-033",
+    "title": "ARC-033 E2_harm_s counterfactual validation (EXQ-264 fix)",
     "description": "",
-    "script": "experiments/v3_exq_328_mech112_zgoal_structured_latent.py",
-    "started_at": "2026-04-11T13:47:34.809172+00:00",
+    "script": "experiments/v3_exq_329_arc033_e2_harm_s_counterfactual.py",
+    "started_at": "2026-04-11T19:31:31.853987+00:00",
     "progress": {
-      "run_label": "Seed 13 / DRIVE_ACTIVE",
+      "run_label": "Seed 7 / ACTUAL_VS_CF",
       "runs_done": 0,
-      "runs_total": 6,
-      "episodes_done": 50,
+      "runs_total": 9,
+      "episodes_done": 200,
       "episodes_total": 250,
-      "overall_pct": 3.3
+      "overall_pct": 8.9
     },
-    "seconds_elapsed": 11739,
-    "seconds_remaining": 56974,
+    "seconds_elapsed": 20953,
+    "seconds_remaining": 93802,
     "recent_lines": [
-      "[train] seed=7 DRIVE_ABLATED ep 200/250 phase=P1 contacts=10",
-      "[train] seed=7 DRIVE_ABLATED ep 250/250 phase=P1 contacts=20",
-      "verdict: t0=0.0000 t50=0.0000 ablated=0.0000",
-      "Seed 13 Condition DRIVE_ACTIVE",
-      "[train] seed=13 DRIVE_ACTIVE ep 50/250 phase=P0 contacts=0"
+      "Seed 7 Condition ACTUAL_VS_CF",
+      "[train] seed=7 ACTUAL_VS_CF ep 50/250 phase=P0 replay_buf=5000",
+      "[train] seed=7 ACTUAL_VS_CF ep 100/250 phase=P0 replay_buf=5000",
+      "[train] seed=7 ACTUAL_VS_CF ep 150/250 phase=P1 replay_buf=5000",
+      "[train] seed=7 ACTUAL_VS_CF ep 200/250 phase=P1 replay_buf=5000"
     ],
     "ree_version": "v3"
   },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-328",
-      "backlog_id": "",
-      "claim_id": "MECH-112",
-      "title": "MECH-112 z_goal structured latent discriminative pair: SD-012 drive",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-329",
       "backlog_id": "",
@@ -50,7 +39,7 @@
       "title": "ARC-033 E2_harm_s counterfactual validation (EXQ-264 fix)",
       "description": "",
       "estimated_minutes": 300.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5203,6 +5192,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 17617.8
+    },
+    {
+      "queue_id": "V3-EXQ-328",
+      "backlog_id": "",
+      "claim_id": "MECH-112",
+      "title": "MECH-112 z_goal structured latent discriminative pair: SD-012 drive",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: t0=0.1281 t50=0.1281 ablated=0.0000 | verdict: t0=0.1281 t50=0.1281 ablated=0.1083 | === EXQ-328 FAIL ===",
+      "started_at": "2026-04-11T13:47:34.809172+00:00",
+      "completed_at": "2026-04-11T19:31:28.554366+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 20633.6
     }
   ]
 }
