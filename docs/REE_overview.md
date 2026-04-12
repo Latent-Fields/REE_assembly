@@ -14,7 +14,17 @@ Previous version: `docs/processed/legacy_tree/docs/REE_overview.md`*
 
 ## Why REE Exists
 
-REE begins from five irreducible commitments — things that cannot be abandoned without thought itself becoming incoherent. They are not design choices. They are articles of faith.
+REE begins from a set of irreducible commitments — things that cannot be abandoned without
+thought itself becoming incoherent. They are not design choices. They are articles of faith.
+
+The original formulation had five axioms (INV-025–029). These have been extended and refined
+to eight axioms + two first derivations (see `docs/architecture/five_axioms_foundations.md`
+for the current canonical statement). The expansion was needed to complete the loop: to make
+explicit what the original five left implicit about value, vulnerability, the existential
+necessity of responsibility for others, and language as the mechanism of similarity repair.
+Whether one of the eight is in turn derivable from the others remains an open question (Q-031).
+
+The original five, which remain structurally central:
 
 | Layer | Axiom | Claim |
 |-------|-------|-------|
@@ -127,6 +137,7 @@ See `docs/architecture/developmental_curriculum.md` (INV-043, MECH-158).
 | Question | Document |
 |---------|---------|
 | Why does REE exist? | `docs/architecture/five_axioms_foundations.md` |
+| How is the architecture derived from ethical requirements? | `docs/architecture/ethical_agency_derivation.md` |
 | What are the ethical objectives? | `docs/architecture/five_axioms_foundations.md#inv-042` |
 | How does E1 work? | `docs/architecture/e1.md` |
 | How does E3 commit? | `docs/architecture/e3.md` |

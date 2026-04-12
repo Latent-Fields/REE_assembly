@@ -40,6 +40,7 @@ built to fit the biology.
 
 | Document | What it covers |
 |----------|----------------|
+| [Why this architecture?](architecture/ethical_agency_derivation.md) | Derivation of the REE architecture from the necessary comparators of ethical agency — why the components are what they are |
 | [Architecture overview](architecture/overview.md) | The three irreducible functions (persistence, reachability, commitment) and how E1/E2/E3 implement them |
 | [Core invariants](invariants.md) | Non-negotiable architectural constraints with claim IDs |
 | [Glossary](glossary.md) | Canonical terminology — start here if terms are unfamiliar |
