@@ -3403,7 +3403,16 @@
   claim_type: mechanism_hypothesis
   subject: latent_stack.e2_conceptual_sensorium_motor_model
   polarity: asserts
-  status: candidate
+  status: retiring
+  superseded_by: MECH-231
+  retirement_note: >
+    Direction inverted by converging evidence. Claim asserted E2's planning horizon exceeds
+    E1's; experimental evidence (EXQ-132, EXQ-212) and literature (Wolpert 1998, Zago 2021,
+    Popa 2017) converge that E2 is a short-horizon 1-step predictor while E1 is the longer-
+    horizon model -- the reverse of this claim. Replaced by MECH-231 which captures the
+    corrected direction. Evidence record (2x FAIL + 3x weakening lit) is valid and preserved
+    here; MECH-231 receives new experiments and new literature entries framed against the
+    corrected direction. Registered retirement 2026-04-13.
   depends_on:
     - ARC-021
     - MECH-069
@@ -3442,7 +3451,7 @@
   status: provisional
   implementation_phase: v3
   depends_on:
-    - MECH-070
+    - MECH-231
     - ARC-024
   location: docs/architecture/sd_003_experiment_design.md#mech-071
   source:
@@ -3587,7 +3596,7 @@
     - ARC-007
     - ARC-014
     - ARC-021
-    - MECH-070
+    - MECH-231
   location: docs/architecture/valenced_hippocampal_map.md#arc-022
   source:
     - docs/architecture/valenced_hippocampal_map.md
@@ -8238,7 +8247,7 @@
   depends_on:
     - SD-005
     - MECH-069
-    - MECH-070
+    - MECH-231
   location: docs/architecture/
   source:
     - docs/architecture/sd_004_sd_005_encoder_codesign.md
@@ -14686,3 +14695,55 @@
   source:
     - docs/REE_failure_modes.md
     - docs/architecture/hippocampal_systems.md
+
+- id: MECH-231
+  title: "E2 operates as a short-horizon efference-copy forward model on z_self; its prediction accuracy degrades faster than E1's across multi-step horizons, consistent with a cerebellar 1-step transition predictor."
+  claim_type: mechanism_hypothesis
+  subject: latent_stack.e2_short_horizon_efference_copy
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-13"
+  supersedes: MECH-070
+  depends_on:
+    - ARC-021
+    - MECH-069
+    - MECH-033
+    - ARC-018
+    - SD-005
+  location: docs/architecture/three_loop_learning_channels.md#mech-231
+  source:
+    - docs/architecture/three_loop_learning_channels.md
+    - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
+  notes: >
+    Corrected reformulation of MECH-070. MECH-070 incorrectly asserted E2's planning
+    horizon exceeds E1's; converging experimental (EXQ-132 FAIL, EXQ-212 FAIL 2/4) and
+    literature evidence (Wolpert et al. 1998, Zago et al. 2021, Popa et al. 2017) showed
+    the opposite: E2 degrades faster across prediction horizons than E1, and the
+    biological cerebellar forward model is a short-horizon 1-step device bounded to
+    sub-second timescales.
+    Neurological mapping: E2 = cerebellar (fast efference-copy, z_self domain, training
+    horizon=1-step MSE on z_self). E1 = cortical (slow LSTM, z_world domain,
+    prediction_horizon=20 -- the longer horizon system). This is the Wolpert/Kawato
+    framework: cerebellum provides fast, local motor-sensory forward prediction; cortex
+    provides slow, multi-step world modeling.
+    The rollout_horizon=30 for E2 in planning is a design parameter (how far E3
+    simulates), separate from E2's training horizon (1-step). Rollout quality degrades
+    quickly because E2 is only accurate for 1-step prediction -- this is expected and
+    consistent with this claim.
+    Key architectural consequence: for E2 to contribute to multi-step planning, E1 must
+    co-evolve z_world during rollout (see MECH-135) -- E2 alone cannot sustain coherent
+    multi-step trajectories.
+    Experimental test: discriminative pair. E2 prediction R2 vs E1 prediction R2 across
+    horizons h=1,3,5,10. Pass criterion: slope_e2 < slope_e1 (E2 degrades faster),
+    and r2_e2_h1 > r2_e2_h10 by a significant margin (E2 is accurate at 1-step, not
+    at 10-step). This is the inverse of MECH-070's criteria -- EXQ-212's C1 PASS
+    (E2 better than E1 at h=1) is proto-evidence for this claim; the C2 FAIL for
+    MECH-070 becomes a PASS criterion for MECH-231. New experiment needed to confirm
+    under conditions where both models are adequately trained.
+  evidence_quality_note: >
+    No direct experimental entries yet (2026-04-13). Proto-evidence from MECH-070
+    experiments: EXQ-212 C1 PASS (E2 r2_h1=-19 vs E1 r2_h1=-43 -- E2 better at 1-step)
+    is consistent with this claim's direction, though the overall EXQ-212 framing was
+    as a MECH-070 test. Literature grounding from targeted_review_connectome_mech_070
+    (Wolpert 1998, Zago 2021, Popa 2017) provides biological plausibility; new literature
+    entries targeting MECH-231 directly should be added.
