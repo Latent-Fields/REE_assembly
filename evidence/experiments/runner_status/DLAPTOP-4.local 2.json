@@ -1,36 +1,10 @@
 {
   "schema_version": "v1",
-  "runner_pid": 26926,
+  "runner_pid": null,
   "runner_started_at": "2026-04-11T02:37:21.745705+00:00",
-  "last_updated": "2026-04-11T20:34:16.574558+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-329",
-    "backlog_id": "",
-    "claim_id": "ARC-033",
-    "title": "ARC-033 E2_harm_s counterfactual validation (EXQ-264 fix)",
-    "description": "",
-    "script": "experiments/v3_exq_329_arc033_e2_harm_s_counterfactual.py",
-    "started_at": "2026-04-11T19:31:31.853987+00:00",
-    "progress": {
-      "run_label": "Seed 42 / ACTUAL_VS_CF",
-      "runs_done": 0,
-      "runs_total": 9,
-      "episodes_done": 150,
-      "episodes_total": 250,
-      "overall_pct": 6.7
-    },
-    "seconds_elapsed": 3765,
-    "seconds_remaining": 27029,
-    "recent_lines": [
-      "EXQ-329 start: v3_exq_329_arc033_e2_harm_s_counterfactual_20260411T193133Z_v3",
-      "Seed 42 Condition ACTUAL_VS_CF",
-      "[train] seed=42 ACTUAL_VS_CF ep 50/250 phase=P0 replay_buf=5000",
-      "[train] seed=42 ACTUAL_VS_CF ep 100/250 phase=P0 replay_buf=5000",
-      "[train] seed=42 ACTUAL_VS_CF ep 150/250 phase=P1 replay_buf=5000"
-    ],
-    "ree_version": "v3"
-  },
+  "last_updated": "2026-04-13T18:58:00.595269+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-329",
@@ -5207,5 +5181,6 @@
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 20633.6
     }
-  ]
+  ],
+  "_stale_cleared_note": "Cleared 2026-04-13: PID 26926 dead, EXQ-329 long since completed. Was stuck showing as running in explorer."
 }
