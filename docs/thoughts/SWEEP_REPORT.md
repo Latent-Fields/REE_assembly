@@ -1,21 +1,23 @@
 # Thought Sweep Report
 
-Generated: `2026-04-02T05:55:54.887784Z`
+Generated: `2026-04-12T16:46:39.450628Z`
 
 | metric | count |
 |---|---|
-| total thought files | 66 |
-| processed | 65 |
-| unprocessed | 1 |
-| processed missing `Processed in` links | 0 |
+| total thought files | 73 |
+| processed | 73 |
+| unprocessed | 0 |
+| processed missing `Processed in` links | 3 |
 
 ## Unprocessed Queue
 
-- `2026-03-28_harm_gradient_piecewise_continuous_structure.md`
+- _none_
 
 ## Processed Missing Links
 
-- _none_
+- `2026-04-05_steve_dog_emotional_mirroring.md`
+- `2026-04-06_steve_signal_legibility_language_bootstrap.md`
+- `2026-04-07_cosmic_ethical_threshold.md`
 
 ## Processed Snapshot
 
@@ -78,9 +80,17 @@ Generated: `2026-04-02T05:55:54.887784Z`
 - `2026-03-24_empathy_multiagent_ethics.md` (4 link(s) in `Processed in`)
 - `2026-03-24_mech071_goal_latent_non_contributory_evidence.md` (5 link(s) in `Processed in`)
 - `2026-03-25_goal_hunger_drive_literature_synthesis.md` (2 link(s) in `Processed in`)
+- `2026-03-28_harm_gradient_piecewise_continuous_structure.md` (1 link(s) in `Processed in`)
 - `2026-04-01_Caregivers_childhood_moral_development.md` (3 link(s) in `Processed in`)
 - `2026-04-01_Parietal_systems_thought.md` (3 link(s) in `Processed in`)
 - `2026-04-01_compressed_description_of_what_REE_is.md` (2 link(s) in `Processed in`)
 - `2026-04-01_love_hypothesis.md` (1 link(s) in `Processed in`)
+- `2026-04-05_steve_dog_emotional_mirroring.md` (0 link(s) in `Processed in`)
+- `2026-04-06_steve_signal_legibility_language_bootstrap.md` (0 link(s) in `Processed in`)
+- `2026-04-07_cosmic_ethical_threshold.md` (0 link(s) in `Processed in`)
+- `2026-04-07_dream_phenomenology_replay_types.md` (1 link(s) in `Processed in`)
+- `2026-04-07_phase_segregation_perception_imagination.md` (1 link(s) in `Processed in`)
+- `2026-04-08_wanting_proxy_goals_schema_binding.md` (1 link(s) in `Processed in`)
+- `2026-04-09_verisimilitude.md` (1 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
