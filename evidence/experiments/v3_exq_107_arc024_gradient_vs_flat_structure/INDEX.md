@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_107_arc024_gradient_vs_flat_structure
 
-Generated: `2026-04-13T14:57:22.840249Z`
+Generated: `2026-04-13T19:26:33.297606Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

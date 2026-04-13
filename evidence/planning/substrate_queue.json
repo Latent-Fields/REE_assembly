@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-13T07:30:00Z",
+  "last_updated_utc": "2026-04-13T19:30:00Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -36,7 +36,7 @@
       "implementation_hint": "E2_harm_s is implemented (ARC-033) but training requires counterfactual perturbation signal to avoid bias in causal_sig. Add contrastive counterfactual action pair during E2_harm_s training: for each transition, sample a_cf != a_actual, compute predicted z_harm_s_cf, train E2_harm_s to produce divergent outputs for actual vs counterfactual actions. Validates SD-003 z_harm_s attribution pipeline.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13",
+      "last_seen_session": "governance-2026-04-13-b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -70,7 +70,9 @@
           "rationale": "EXQ-330 shows the direction is correct (CONTRASTIVE > OBSERVATIONAL every seed). The 1.3-1.5x advantage is consistent -- this is a stable signal, not noise. Scholkopf et al. 2021 predicts larger advantage with higher interventional fraction. With interventional_fraction=0.3, 30% of steps provide contrastive signal. At 0.5, the training budget for causal correction doubles, and the ratio should increase proportionally.",
           "prerequisite_state": "Re-run with interventional_fraction=0.5 OR re-evaluate whether threshold should be 1.5x. SD-003 already validated -- SD-013 is a refinement, not a prerequisite."
         }
-      }
+      },
+      "status": "implemented",
+      "implementation_note_update": "SD-013 implementation confirmed complete 2026-04-10 (E2HarmSConfig interventional training). Promoted from candidate to provisional at governance 2026-04-13."
     },
     {
       "sd_id": "SD-015",
@@ -100,7 +102,7 @@
       "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation). MECH-112 prerequisite resolved by co-implementation in this session (ResourceEncoder IS the MECH-112 substrate).",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13",
+      "last_seen_session": "governance-2026-04-13-b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -183,7 +185,7 @@
       "implementation_hint": "z_harm_a and z_harm_s must encode non-overlapping information under the split SD-011 design. SD-019 adds an orthogonality/redundancy-reduction constraint (e.g. adversarial loss or correlation penalty) between z_harm_a and z_harm_s encoder outputs. Requires ARC-016 (dynamic precision) to contextualize what counts as non-redundant in different regime states. ARC-016 wiring resolved: e3.current_precision accessible as property.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13",
+      "last_seen_session": "governance-2026-04-13-b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -249,7 +251,7 @@
       "implementation_hint": "Replace z_harm_a AffectiveHarmEncoder training target from EMA-accumulated harm to a precision-weighted prediction error signal: surprise = |harm_obs - E_predicted_harm| * precision. ARC-016 dynamic precision provides the precision weight. Requires SD-019 to enforce that z_harm_s and z_harm_a encode non-redundant aspects of the harm signal. Both SD-019 and ARC-016 now implemented.",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13",
+      "last_seen_session": "governance-2026-04-13-b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -313,7 +315,7 @@
       "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward. MECH-090 bistable latch and ARC-016 wiring now both implemented. SD-020 also implemented (precision-weighted PE target for z_harm_s training).",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13",
+      "last_seen_session": "governance-2026-04-13-b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -379,7 +381,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-09. CausalGridWorldV2 now has 4-directional limb_damage[4] state; accumulates when moving through hazards; heals at heal_rate=0.002/step; harm_obs_a re-sourced from body damage state (7 dims: damage[4]+max+mean+residual_pain) when limb_damage_enabled=True. EXQ-319 PASS confirmed dissociation: agent with accumulated damage shows high z_harm_a and low z_harm_s when removed from hazard. r2 reduction confirmed by EXQ-318 direction (0.702->0.365) though variance threshold unmet. Promote to provisional: mechanism works, threshold failure is calibration (heal_rate too fast for 150 warmup episodes).",
       "priority": 1,
       "added_session": "governance-2026-04-11",
-      "last_seen_session": "governance-2026-04-13",
+      "last_seen_session": "governance-2026-04-13-b",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-09T00:00:00Z",

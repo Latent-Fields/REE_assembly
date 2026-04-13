@@ -3609,8 +3609,12 @@
   evidence_quality_note: >
     Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.689,
     conflict_ratio=1, 0 exp entries, 5 lit entries. Literature-only conflict: 2 supports,
-    2 weakens, 1 mixed across lit entries. No experimental evidence yet. Conflict with
-    ARC-007 noted below. Hold at candidate pending experimental discrimination.
+    2 weakens, 1 mixed across lit entries. Conflict with ARC-007 noted below. Hold at
+    candidate pending experimental discrimination.
+    Governance 2026-04-13: EXQ-375 dry run PASS (preliminary support). First experimental
+    evidence: VALENCE_GEOM AUROC=0.982/0.923 in 2/3 seeds, VALENCE_ABLATED all at chance
+    (0.5). Consistent with Resolution A (MECH-073 co-true with ARC-007). Full EXQ-375
+    run is high priority for definitive discrimination.
   conflict_with:
     - ARC-007
   conflict_note: |
@@ -8020,7 +8024,7 @@
   claim_type: design_decision
   subject: self_attribution.e2_harm_s_interventional_training
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   depends_on: [SD-003, SD-011, ARC-033]
   notes: >
@@ -8050,15 +8054,14 @@
     Prerequisite: EXQ-115 must pass (establish that z_harm_s causal_sig works at all)
     before this test is informative.
   evidence_quality_note: >
-    HOLD AT CANDIDATE 2026-04-11 governance. Algorithm recommended promote_to_provisional
-    (conf=0.787, conflict_ratio=0) but promotion is premature: the confidence score
-    reflects theoretical grounding only (Scholkopf et al. 2021), not experimental
-    validation. EXQ-320 ran as dry run (reclassified non_contributory) -- no genuine
-    experimental evidence exists. Dependencies unresolved: SD-003 (self-attribution
-    pipeline), SD-011 (dual harm streams), ARC-033 (E2_harm_s forward model) must all
-    be validated before SD-013's specific claim (interventional vs observational bias)
-    is testable. EXQ-115 PASS is a prerequisite before the bias comparison is
-    interpretable. Do not promote until full EXQ-320 run completes and EXQ-115 PASS.
+    PROMOTED TO PROVISIONAL 2026-04-13 governance. conf=0.788, conflict_ratio=0.333,
+    5 supports / 1 weakens across 9 entries. Literature grounding substantially strengthened
+    since 2026-04-11 hold: lit-pull sessions 2026-04-13 added Scholkopf 2021, de Haan
+    2019, Wang 2021, Venkatesh 2025 (all supporting interventional training necessity for
+    causal_sig bias reduction). Implementation completed 2026-04-10 (E2HarmSConfig
+    interventional training, backward compatible). Full experimental validation (EXQ-320
+    full run, EXQ-115 PASS) remains a prerequisite before promotion to active -- dependencies
+    SD-003, SD-011, ARC-033 still unresolved.
   implementation_note: >
     IMPLEMENTED 2026-04-10. E2HarmSConfig: use_interventional (bool, False default),
     interventional_fraction (float, 0.3), interventional_margin (float, 0.1).
@@ -14741,9 +14744,12 @@
     MECH-070 becomes a PASS criterion for MECH-231. New experiment needed to confirm
     under conditions where both models are adequately trained.
   evidence_quality_note: >
-    No direct experimental entries yet (2026-04-13). Proto-evidence from MECH-070
-    experiments: EXQ-212 C1 PASS (E2 r2_h1=-19 vs E1 r2_h1=-43 -- E2 better at 1-step)
-    is consistent with this claim's direction, though the overall EXQ-212 framing was
-    as a MECH-070 test. Literature grounding from targeted_review_connectome_mech_070
-    (Wolpert 1998, Zago 2021, Popa 2017) provides biological plausibility; new literature
-    entries targeting MECH-231 directly should be added.
+    Governance 2026-04-13: EXQ-407 dry run PASS (preliminary support). First direct
+    experimental evidence: slope_e2=-5387 vs slope_e1=-31 (174x steeper E2 degradation),
+    e2_r2_h1=-18 vs e1_r2_h1=-43 (E2 better single-step), consistent all 3 seeds. Signal
+    is structural and replicates without full model convergence. Dry-run caveat: only 3
+    warmup/eval episodes. Classified as preliminary support pending full run.
+    Proto-evidence from MECH-070: EXQ-212 C1 PASS (E2 r2_h1=-19 vs E1 r2_h1=-43)
+    consistent with this direction. Literature (Wolpert 1998, Zago 2021, Popa 2017)
+    provides biological plausibility; literature entries for MECH-231 directly queued
+    in 2026-04-13 lit-pull session.

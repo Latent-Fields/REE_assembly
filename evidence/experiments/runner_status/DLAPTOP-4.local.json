@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 26389,
   "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
-  "last_updated": "2026-04-13T16:58:27.405299+00:00",
+  "last_updated": "2026-04-13T19:37:04.985158+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-326",
@@ -13,21 +13,21 @@
     "script": "experiments/v3_exq_326_wanting_gradient_nav_fix.py",
     "started_at": "2026-04-13T14:47:53.811950+00:00",
     "progress": {
-      "run_label": "Seed 42 / WITH_WANTING",
+      "run_label": "Seed 7 / ABLATED",
       "runs_done": 0,
       "runs_total": 6,
-      "episodes_done": 100,
+      "episodes_done": 0,
       "episodes_total": 250,
-      "overall_pct": 6.7
+      "overall_pct": 0.0
     },
-    "seconds_elapsed": 7834,
-    "seconds_remaining": 39314,
+    "seconds_elapsed": 17351,
+    "seconds_remaining": 12000,
     "recent_lines": [
-      "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
-      "EXQ-326 start: v3_exq_326_wanting_gradient_nav_fix_20260413T144759Z_v3",
-      "Seed 42 Condition WITH_WANTING",
-      "[train] seed=42 WITH_WANTING ep 50/250 phase=P0 resources=0 benefit=0.000",
-      "[train] seed=42 WITH_WANTING ep 100/250 phase=P0 resources=0 benefit=0.000"
+      "[train] seed=7 WITH_WANTING ep 150/250 phase=P1 resources=0 benefit=0.000",
+      "[train] seed=7 WITH_WANTING ep 200/250 phase=P1 resources=0 benefit=0.000",
+      "[train] seed=7 WITH_WANTING ep 250/250 phase=P2 resources=0 benefit=0.000",
+      "verdict: resource_rate=0.120 benefit=0.0004 wanting_mean=31.5616 goal_norm_peak=1.5988 n_seeding=2 sal_mean=0.4045 mech216_writes=25181",
+      "Seed 7 Condition ABLATED"
     ],
     "ree_version": "v3"
   },
