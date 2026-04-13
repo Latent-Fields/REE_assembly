@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-04-13_sd_012_hunger_satiety_reward_sensitivity_cassidy2017",
+  "timestamp_utc": "2026-04-13T12:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "Hunger and Satiety Gauge Reward Sensitivity",
+    "authors": ["Ryan Michael Cassidy", "Qingchun Tong"],
+    "year": 2017,
+    "venue": "Frontiers in Endocrinology",
+    "doi": "10.3389/fendo.2017.00104",
+    "pmid": "28572791",
+    "pmcid": "PMC5435754"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Comprehensive synthesis of hunger/satiety neuroendocrine systems and their bidirectional modulation of mesolimbic dopamine. Directly maps to SD-012's drive_level scaling of benefit signals: hunger mediators (AgRP/NPY, LH orexin, ghrelin) enhance dopaminergic reward sensitivity in proportion to energy deficit; satiety mediators (GLP-1, POMC, leptin) suppress it. The bidirectional scaling is precisely what SD-012's effective_benefit = benefit_exposure * (1 + drive_weight * drive_level) formalises. Transfer risk moderate because the review is rodent-centred and the mapping to a discrete architectural parameter (drive_weight) is inferential rather than directly demonstrated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If dopamine reward modulation by hunger were uniform (not graded by drive magnitude), the drive_weight scaling in SD-012 would lack biological grounding.",
+    "If satiety suppression of dopamine were absolute (full silencing rather than graded reduction), the sated-state effective_benefit ~ benefit_exposure prediction would not hold.",
+    "Evidence is primarily from rodent pharmacology and optogenetics; translation to artificial agents is inferential."
+  ],
+  "tags": ["sd_012", "hunger", "satiety", "dopamine", "incentive_salience", "drive_state", "mesolimbic", "AgRP", "ghrelin", "leptin", "reward_sensitivity"],
+  "mapping": {
+    "source_claim_statement": "Hunger-signalling systems (AgRP/NPY neurons, LH orexin, ghrelin) enhance mesolimbic dopamine reward sensitivity, while satiety signals (NTS GLP-1, POMC, leptin) suppress it. The modulation is bidirectional and graded by energy state.",
+    "ree_translation": "SD-012 formalises this as effective_benefit = benefit_exposure * (1.0 + drive_weight * drive_level), where drive_level = 1.0 - agent_energy. The Cassidy/Tong review provides the biological substrate: at high drive_level (hungry), dopaminergic gain is amplified by AgRP disinhibition and ghrelin; at low drive_level (sated), leptin and GLP-1 suppress gain back toward baseline. The graded, reversible nature of the modulation justifies the linear multiplicative formulation in SD-012.",
+    "mapping_caveat": "The review synthesises systems-level pharmacology; the specific gain function (linear vs. sigmoidal vs. logarithmic) is not resolved. SD-012's linear (1 + drive_weight * drive_level) is a simplification. The review also covers food-specific circuits, not generalised goal-seeking in arbitrary domains.",
+    "source_context": "Rodent studies, some primate and human neuroimaging. Neuroendocrine perspective. Motivation/feeding literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "High source quality as peer-reviewed systematic review in a field journal (Frontiers in Endocrinology). Mapping fidelity is good -- the bidirectional drive-scaled gain is directly what SD-012 implements. Transfer risk is moderate: biological circuits vs discrete architectural parameter, rodent vs artificial agent."
+  }
+}

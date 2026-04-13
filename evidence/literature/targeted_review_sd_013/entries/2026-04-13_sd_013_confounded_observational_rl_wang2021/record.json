@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_013",
+  "entry_id": "2026-04-13_sd_013_confounded_observational_rl_wang2021",
+  "timestamp_utc": "2026-04-13T15:00:00Z",
+  "claim_ids_tested": ["SD-013"],
+  "source": {
+    "title": "Provably Efficient Causal Reinforcement Learning with Confounded Observational Data",
+    "authors": ["Wang, Lingxiao", "Yang, Zhuoran", "Wang, Zhaoran"],
+    "year": 2021,
+    "venue": "Advances in Neural Information Processing Systems 34 (NeurIPS 2021)",
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/b0b79da57b95837f14be95aaa4d54cf8-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Wang et al. (2021) prove formally that a policy learned from confounded observational data -- where unobserved context induces spurious correlations between actions and outcomes -- does not recover the true interventional value function. The paper derives tight upper bounds on the regret achievable using observational data alone, and shows that these bounds are strictly worse than what is achievable with interventional data under the same confounders. This directly supports SD-013: E2_harm_s trained on observational rollouts in confounded states cannot recover the interventional distribution P(z_harm_s | do(a)). The paper proposes deconfounding via adjustment estimators that require either instrumental variables or explicit interventional samples -- the RL equivalent of the counterfactual perturbation steps ARC-033 mandates. Confidence is moderate rather than high because the paper addresses value function estimation (policy evaluation) rather than forward model training; the mapping requires treating E2_harm_s as the entity that must estimate interventional quantities rather than a policy critic.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If E2_harm_s is trained on confounded observational data without explicit interventional perturbation steps, the learned model will encode P(z_harm_s | z_t, a_behavioral) rather than P(z_harm_s | do(a)). Wang et al. show this bias is formally non-zero and scales with the degree of confounding -- in highly confounded states (the agent's behavioral policy correlates strongly with ambient harm patterns), causal_sig will be systematically underestimated or reversed.",
+    "The paper demonstrates that simply increasing the volume of observational data does not reduce confounding bias -- the bound on policy regret due to confounding is irreducible without adjustment. More observational rollouts from the same confounded behavioral policy will converge to the wrong interventional distribution, not toward it.",
+    "The deconfounding adjustment requires either an instrument (a variable that influences action but not outcome except through action) or interventional samples where the confounding correlation is broken. In the REE setting, executing a_cf from the same confounded state serves as the interventional sample -- breaking the behavioral policy's correlation with harm and providing the identifiable contrast needed for causal_sig."
+  ],
+  "tags": ["sd_013", "confounded_observational_data", "causal_rl", "interventional_distribution", "value_function_estimation", "offline_rl", "causal_identifiability"],
+  "mapping": {
+    "source_claim_statement": "In a confounded MDP where an unobserved context variable C influences both the behavioral policy and the reward/transition dynamics, the observational data distribution P(s, a, r, s') reflects the behavioral policy's correlations with C. A value function or model learned from this data will be biased: it conflates the effect of action a with the effect of context C that co-occurs with a under the behavioral policy. The bias is formally non-zero and cannot be reduced by collecting more observational data from the same behavioral policy. Causal adjustment (via instrumental variables or interventional samples) is required for unbiased estimation of interventional quantities.",
+    "ree_translation": "SD-013 maps directly: E2_harm_s's behavioral training data comes from an agent navigating an environment where its own policy induces confounding -- the agent tends to be near hazards under certain states, so harm correlates with agent proximity regardless of action causality. The unobserved context C in Wang et al. corresponds to the agent's state-conditioned behavioral tendency in the REE setting. An E2_harm_s trained on this data learns the behavioral-policy-correlated distribution, not P(z_harm_s | do(a)). The counterfactual perturbation steps in ARC-033 function as interventional samples -- they break the confounding by executing a_cf independently of the behavioral policy's correlations.",
+    "mapping_caveat": "The paper addresses policy evaluation and value function estimation, not forward model training per se. The mathematical results assume the confounding comes from an unobserved context variable in the MDP; SD-013's confounding has a slightly different structure (agent behavioral policy inducing correlation with ambient harm). The formal gap is small but the results do not directly bound E2_harm_s prediction error -- they bound value function regret. The qualitative conclusion (observational data alone cannot identify interventional quantities in confounded settings) transfers cleanly.",
+    "source_context": "Theoretical ML paper; NeurIPS 2021. Proved regret bounds for causal RL under confounding. Authors at Princeton, Northwestern, Georgia Tech. No biological or clinical context."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.28,
+    "notes": "Source quality is high: top-venue NeurIPS paper with formal proofs, no empirical shortcuts. Mapping fidelity is moderate: the result is about policy/value function estimation rather than forward models, but the causal identifiability argument applies to any model that must recover interventional quantities from observational data. Transfer risk is low: confounding bias is a structural property of the data-generating process, not of the specific model class."
+  }
+}

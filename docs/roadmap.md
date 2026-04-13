@@ -14,6 +14,35 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-13)
+
+- **Key governance outcome: EXQ-354 PASS (2026-04-13).** MECH-112 behavioral wanting/liking
+  dissociation confirmed with SD-015 wiring (3/3 seeds). MECH-112 split into MECH-229
+  (behavioral wanting/liking dissociation, active) and MECH-230 (latent z_goal structure,
+  candidate). 7 dry-run FAILs from earlier sessions reclassified as non_contributory. SD-012
+  design doc updated to IMPLEMENTED.
+- **Five new experiments queued (2026-04-13):** V3-EXQ-355 (ARC-038 schema assimilation),
+  V3-EXQ-365 (MECH-104 surprise gate, 5-seed), V3-EXQ-375 (MECH-073 valence geometry),
+  V3-EXQ-385 (INV-049 offline consolidation necessity / sleep ablation), V3-EXQ-395
+  (MECH-220 harm hub behavioral probe). Plus EXQ-328b (MECH-230 full run) and EXQ-326a
+  (SD-015 + MECH-229 nav fix).
+- **SDs moved pending->implemented since last snapshot:** SD-013 (interventional training),
+  SD-015 (ResourceEncoder), SD-017 (minimal sleep infrastructure), SD-018 (resource proximity
+  supervision), SD-019 (affective nonredundancy constraint), SD-020 (affective harm surprise PE),
+  SD-021 (descending pain modulation), SD-022 (directional limb damage), SD-023 (environmental
+  gradient texture). Also: ARC-033, MECH-090 bistable gate, MECH-120 SHY wiring, MECH-203/204
+  serotonin substrate, MECH-205 surprise-gated replay fix, MECH-216 E1 predictive wanting.
+- **481 experiments completed.** 96 PASS, 235 FAIL, 51 ERROR, 99 UNKNOWN.
+- **0 pending review** (as of 2026-04-13T07:19:18Z).
+- **Current bottleneck: first-paper gate.** Active queue (16 items): EXQ-327 (MECH-163
+  goal-conditioned nav paper gate), EXQ-326a (SD-015 + MECH-229 nav fix), EXQ-353 (ARC-033/
+  SD-003/SD-013 interventional vs observational counterfactual), EXQ-321a (MECH-090 bistable
+  gate retest), EXQ-325a (SD-021 descending modulation retest), EXQ-365 (MECH-104 surprise
+  gate), EXQ-355 (ARC-038), EXQ-395 (MECH-220), EXQ-375 (MECH-073), EXQ-385 (INV-049 sleep
+  ablation), and fix iterations EXQ-322a/328a/330a/332/328b/326a.
+
+---
+
 ## Status Snapshot (2026-04-06)
 
 - **SD-011/SD-012 Full E3 Integration (2026-04-05).** z_harm_a now flows through the complete
@@ -578,25 +607,20 @@ Added from V1 learning:
 
 ## Immediate Work Queue (This Cycle)
 
-**Current step: 3.1 -> 3.2 transition — First-Paper Gate Experiments**
+**Current step: First-Paper Gate Experiments (as of 2026-04-13)**
 
-SD-008/009/010/011/012/014 all implemented. ARC-028+MECH-105 hippocampal-BetaGate coupling
-implemented. ARC-033 ResidualHarmForward in ree_core. 0 pending review (clean).
-EXQ-125 currently running (ARC-029 committed mode pair, DLAPTOP-4.local).
+SD-004 through SD-023 all implemented. ARC-033, MECH-090, MECH-120, MECH-203/204, MECH-205,
+MECH-216 implemented. EXQ-354 PASS: MECH-229 behavioral wanting/liking dissociation confirmed.
+MECH-112 split into MECH-229 (active) + MECH-230 (candidate). 0 pending review (clean).
 
-1. **EXQ-125** (ARC-029 committed vs ablated mode harm pair; running): validate committed
-   vs uncommitted mode harm outcomes in stable and volatile environments.
-2. **EXQ-074e** (MECH-112/117 wanting/liking dissociation; supersedes EXQ-074d): tests
-   z_goal_latent vs benefit_eval_head. MECH-124 diagnostic: z_goal salience vs harm salience
-   as V4 risk indicator (consolidation-mediated option-space contraction).
-3. **EXQ-076e** (MECH-116/ARC-032 E1 LSTM goal conditioning; supersedes EXQ-076c):
-   frontal working memory for goal representation over multi-step episodes.
-4. **EXQ-195** (SD-003 z_harm_s counterfactual, post-SD-011): critical re-validation of
-   SD-003 using ResidualHarmForward (ARC-033). Pipeline:
-   `z_harm_s_cf = E2_harm_s(z_harm_s, a_cf)`. Do NOT use HarmBridge (bridge_r2=0).
-5. **EXQ-223** (minimal vertebrate ablation, queued priority 5): PASS already confirmed
-   2026-04-03; queued for a fresh run to confirm repeatability.
-6. **EXQ-184/196** (MECH-033 kernel chain, ARC-018 rollout viability): queued priority 4.
+1. **EXQ-327** (MECH-163 goal-conditioned nav; paper gate primary criterion: benefit_ratio >= 1.3x).
+2. **EXQ-326a** (SD-015 nav integration fix + MECH-229 behavioral dissociation in nav context).
+3. **EXQ-353** (ARC-033/SD-003/SD-013 interventional vs observational counterfactual):
+   critical re-validation of SD-003 interventional pipeline.
+4. **EXQ-321a** (MECH-090 bistable gate retest; E2 world-forward training added to fix EXQ-321).
+5. **EXQ-325a** (SD-021 descending pain modulation retest; E2 world-forward training fix).
+6. **EXQ-365** (MECH-104 surprise gate 5-seed replication).
+7. **EXQ-385** (INV-049 offline consolidation necessity / sleep ablation pair).
 
 ---
 

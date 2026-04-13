@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-04-13_sd_012_neurocircuits_motivation_stuber2023",
+  "timestamp_utc": "2026-04-13T12:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "Neurocircuits for motivation",
+    "authors": ["Garret D. Stuber"],
+    "year": 2023,
+    "venue": "Science",
+    "doi": "10.1126/science.adh8287",
+    "pmid": "37883553"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "High-quality review in Science that synthesises the current state of neurocircuit understanding for diverse motivated behaviours. The paper's core thesis -- that drive-state-specific circuits modulate VTA dopamine neuron activity to reinforce goal-directed actions matching homeostatic need -- is the biological statement that SD-012 formalises computationally. The proposal that common approach/avoidance mechanisms underlie diverse drive states supports SD-012's generalisation of food-energy drive to arbitrary goal-seeking agents. Transfer risk is moderate: the review is empirically grounded in rodent feeding/drinking circuits, and the VTA-dopamine-reinforcement framing is proximal but not identical to REE's z_goal seeding architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If diverse motivated behaviours do not share VTA-dopamine modulation as a common substrate, SD-012's generalisation from food drive to arbitrary goal-directed behaviour would require independent justification.",
+    "If drive-state circuits modulate dopamine in a discrete (on/off) rather than graded manner, the continuous drive_level scaling in SD-012 would overspecify the architecture.",
+    "If the reinforcement function of VTA-DA is not separable from drive-state encoding (i.e., the same neurons do both), there would be no clean architectural separation between z_goal seeding and z_world reward prediction error."
+  ],
+  "tags": ["sd_012", "motivation", "neurocircuits", "VTA", "dopamine", "homeostatic_drive", "goal_directed", "approach_avoidance", "drive_state", "reward_reinforcement"],
+  "mapping": {
+    "source_claim_statement": "Drive-state-specific neural circuits regulate VTA dopamine neuron activity to reinforce ongoing or planned actions that fulfil the current motivational demand. Diverse motivated behaviours share common approach/avoidance mechanisms despite differing in their specific peripheral drive signals.",
+    "ree_translation": "SD-012 is the architectural instantiation of this principle: the agent's energy state (drive_level = 1.0 - agent_energy) modulates the effective benefit signal that seeds z_goal, which in turn drives approach trajectory selection. The Stuber review grounds this: (1) drive-state circuits converge on VTA-DA to reinforce approach under high homeostatic need; (2) multiple drives (food, water, threat-escape) share this common dopaminergic reinforcement substrate, supporting SD-012's generalisation beyond food-seeking; (3) the sensory-interoceptive-to-motor pathway described corresponds to the benefit_exposure -> drive_level * benefit_exposure -> z_goal seeding -> trajectory selection pathway in REE.",
+    "mapping_caveat": "Stuber reviews empirical circuits; the specific computational function by which drive level modulates dopaminergic gain is not formally specified. The framing is circuit-level reinforcement, not a latent-space seeding mechanism. The REE mapping from VTA-DA reinforcement to z_goal seeding requires the additional step that z_goal is the latent encoding of the goal that VTA-DA reinforcement would build.",
+    "source_context": "Rodent empirical literature synthesis. Feeding, drinking, escape behaviours. VTA-dopamine circuits. Published Science 2023 review."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality (Science, leading-edge review). Mapping fidelity moderate: the drive-state->VTA-DA->reinforcement framework maps well onto SD-012's logic but the formal computational translation is inferential. Transfer risk moderate: rodent circuits to artificial agent is a standard domain transfer with established precedent in RL/neuroscience."
+  }
+}

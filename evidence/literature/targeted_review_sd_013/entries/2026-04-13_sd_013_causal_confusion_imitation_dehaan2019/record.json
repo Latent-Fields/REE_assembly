@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_013",
+  "entry_id": "2026-04-13_sd_013_causal_confusion_imitation_dehaan2019",
+  "timestamp_utc": "2026-04-13T14:30:00Z",
+  "claim_ids_tested": ["SD-013"],
+  "source": {
+    "title": "Causal Confusion in Imitation Learning",
+    "authors": ["de Haan, Pim", "Jayaraman, Dinesh", "Levine, Sergey"],
+    "year": 2019,
+    "venue": "Advances in Neural Information Processing Systems 32 (NeurIPS 2019)",
+    "doi": "10.48550/arXiv.1905.11979",
+    "url": "https://proceedings.neurips.cc/paper/2019/hash/947018640bf36a2bb609d3557a285329-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This paper demonstrates empirically and theoretically that a model trained on observational trajectories will learn the correlational distribution P(a|x) -- not the interventional distribution P(a|do(x)) -- and that this mismatch causes failures under distributional shift. This is exactly SD-013's core claim: E2_harm_s trained on observational rollouts learns the correlation between agent presence and ambient harm, not the causal mechanism. The paper's proposed remedy -- targeted environment interaction (interventional probing) -- directly instantiates the ARC-033 requirement for explicit counterfactual perturbation steps in E2_harm_s training. Confidence is moderate rather than high because the paper addresses policy learning (imitation) rather than forward model training; the mechanism of observational bias is formally analogous but the instantiation differs. The paper demonstrates causal confusion across control and driving domains, providing empirical breadth.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If E2_harm_s is trained without counterfactual perturbation steps, it may learn to encode correlational regularities between the agent's presence in hazard-proximal states and elevated harm signals -- exactly the pattern de Haan et al. identify as causal misidentification. The model would then predict elevated z_harm_s whenever the agent is near a hazard zone, regardless of whether the agent's action caused the harm or harm would have occurred anyway.",
+    "The paper shows that adding more correlated observational features without interventional disambiguation can make causal confusion worse, not better. An E2_harm_s trained on richer observational data from confounded environments may have higher apparent predictive accuracy but more severely biased causal_sig estimates.",
+    "Resolution requires targeted interventions that 'break' the spurious correlation -- in SD-013 terms, executing a_cf from the same confounded state and observing the z_harm_s outcome. Without this, the observational symmetry cannot be broken and causal_sig will remain compressed."
+  ],
+  "tags": ["sd_013", "causal_confusion", "observational_bias", "interventional_training", "forward_model", "imitation_learning", "distributional_shift", "counterfactual"],
+  "mapping": {
+    "source_claim_statement": "Behavioral cloning trains policies on observational data, learning P(action|observation). In confounded states -- where the observation correlates with expert action through a non-causal path (e.g., a brake light correlates with braking but is not the cause of braking decisions) -- the policy learns the spurious correlation rather than the causal mechanism. This produces causal misidentification: the policy assigns causal credit to the wrong feature. Targeted interventions (environment probing or expert queries) are required to identify which features are truly causally relevant to the correct action distribution.",
+    "ree_translation": "SD-013 claims that E2_harm_s trained on observational trajectories learns P(z_harm_s_next | z_t, a) -- the correlational distribution -- rather than P(z_harm_s_next | do(a)) -- the interventional distribution. In confounded states where agent proximity to hazards correlates with elevated ambient harm independently of the agent's causal contribution, an observationally-trained E2_harm_s will assign high predicted harm to both a_actual and a_cf, compressing causal_sig toward zero and underestimating the agent's true causal contribution. The ARC-033 remedy -- explicit counterfactual perturbation steps where a_cf is actually executed and the resulting z_harm_s change observed -- is the REE-level analogue of de Haan et al.'s targeted interventions.",
+    "mapping_caveat": "The paper addresses policy learning (imitation), not forward model training. The confounding structure differs: in imitation learning, the confounder is a feature correlated with the expert's action through a non-causal path; in SD-013, the confounder is the agent's presence in a hazard-proximal region, which correlates with elevated harm regardless of the action taken. The formal mechanism is analogous but not identical. Additionally, the paper focuses on single-step action prediction; SD-013 concerns multi-step forward model rollouts for z_harm_s trajectories.",
+    "source_context": "Computational paper; NeurIPS 2019. Benchmark control domains (continuous control) and autonomous driving simulation. No biological or clinical context. Authors at UC Berkeley, UPenn."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is high: NeurIPS top venue, empirically validated across multiple domains, theoretically grounded in do-calculus. Mapping fidelity is moderate: the formal distinction between observational and interventional distributions is directly relevant, but the specific setting (policy imitation vs. forward model training) differs. Transfer risk is low to moderate: the causal confusion mechanism is domain-general and the remedy (interventional data collection) translates directly to E2_harm_s training."
+  }
+}

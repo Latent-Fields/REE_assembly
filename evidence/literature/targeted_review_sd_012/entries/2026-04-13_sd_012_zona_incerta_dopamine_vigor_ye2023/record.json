@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-04-13_sd_012_zona_incerta_dopamine_vigor_ye2023",
+  "timestamp_utc": "2026-04-13T12:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "Zona incerta dopamine neurons encode motivational vigor in food seeking",
+    "authors": ["Qiying Ye", "Jeremiah Nunez", "Xiaobing Zhang"],
+    "year": 2023,
+    "venue": "Science Advances",
+    "doi": "10.1126/sciadv.adi5326",
+    "pmid": "37976360"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Demonstrates that a distinct dopamine population (ZI-DA, not VTA-DA) encodes hunger-driven motivational vigor specifically during food approach. These neurons activate during approach, inhibit during consumption, and track drive state (fasting). This is mechanistically relevant to SD-012: drive_level modulates the vigor (approach motivation) of benefit-seeking, separate from the hedonic value of consumption. The vigor-tracking role of ZI-DA is a candidate biological substrate for the drive_weight scaling in SD-012's effective_benefit formula. Transfer risk is moderate -- ZI is a non-canonical dopamine system whose homologue in artificial architectures is not established. Confidence reduced because the paper is circuit-level (rodent optogenetics/chemogenetics) and does not directly address the computational mechanism by which drive scales reward signals.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If motivational vigor is regulated entirely by VTA-DA rather than ZI-DA, the circuit specificity finding would not generalize and the relevance to SD-012's scalar drive modulation would be indirect.",
+    "If ZI-DA neurons tracked absolute reward value rather than drive-relative vigor, the dissociation between approach and consumption signals would collapse, undermining the wanting/liking architecture.",
+    "The circuit is food-specific; if drive-scaled vigor generalises across goal types, additional evidence in non-food contexts is required."
+  ],
+  "tags": ["sd_012", "zona_incerta", "dopamine", "motivational_vigor", "food_seeking", "fasting", "drive_state", "wanting", "incentive_salience", "approach_motivation"],
+  "mapping": {
+    "source_claim_statement": "ZI dopamine neurons encode motivational vigor (approach motivation) during fasting-induced food seeking; they activate during approach and inhibit during consumption, and their ablation blocks hunger-driven food seeking without affecting VTA-DA pathways.",
+    "ree_translation": "SD-012 posits that drive_level = 1.0 - agent_energy modulates the effective benefit signal that seeds z_goal. The ZI-DA system provides an empirical candidate for the biological substrate of this modulation: a distinct dopamine population tracks energy deficit and scales approach vigor accordingly. Crucially, ZI-DA inhibition during consumption vs. activation during approach maps onto the wanting/liking dissociation that SD-012 builds on -- drive-scaling amplifies approach motivation (z_goal seeding via effective_benefit) without amplifying consummatory hedonic response (liking signal). The ZI-to-PVT circuit could correspond to the drive_level -> effective_benefit -> z_goal pathway in REE.",
+    "mapping_caveat": "The ZI is not a standard component of REE's current architecture (VTA/mesolimbic is the assumed substrate). The homologue of the ZI-PVT circuit in ree-v3 is not defined. This paper supports the functional logic of SD-012 but does not directly ground the architectural choices in ree-v3.",
+    "source_context": "Rodent (mouse), optogenetics, chemogenetics, calcium imaging, operant food-seeking task. Fasting paradigm (18h fast). ZI-to-PVT circuit."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "High source quality: peer-reviewed Science Advances, multi-method approach (ablation, chemogenetics, calcium imaging). Mapping fidelity moderate: functional match (vigor tracking, drive-state sensitivity) is good but the specific circuit (ZI-PVT) has no direct counterpart in ree-v3's current architecture. Transfer risk moderate-high: novel circuit, rodent only."
+  }
+}

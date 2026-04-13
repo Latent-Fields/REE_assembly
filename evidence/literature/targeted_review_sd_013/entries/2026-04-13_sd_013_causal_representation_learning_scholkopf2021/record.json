@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_013",
+  "entry_id": "2026-04-13_sd_013_causal_representation_learning_scholkopf2021",
+  "timestamp_utc": "2026-04-13T15:10:00Z",
+  "claim_ids_tested": ["SD-013"],
+  "source": {
+    "title": "Toward Causal Representation Learning",
+    "authors": ["Scholkopf, Bernhard", "Locatello, Francesco", "Bauer, Stefan", "Ke, Nan Rosemary", "Kalchbrenner, Nal", "Goyal, Anirudh", "Bengio, Yoshua"],
+    "year": 2021,
+    "venue": "Proceedings of the IEEE, 109(5), 612-634",
+    "doi": "10.1109/JPROC.2021.3058954",
+    "url": "https://arxiv.org/abs/2102.11107"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the primary reference cited in the SD-013 claim notes. Scholkopf et al. (2021) provide the foundational theoretical argument that statistical models trained on observational trajectories learn the correlational distribution P(z_harm_s_next | z_t, a) rather than the interventional distribution P(z_harm_s_next | do(a)), and that these distributions diverge in confounded states. The paper establishes that performing an intervention changes the data distribution in ways that make predictions from purely statistical models inaccurate -- this is the core argument SD-013 translates to E2_harm_s. The paper is a high-impact Proceedings of the IEEE review article by leading researchers in causal ML, giving it both authoritative status and broad synthesis value. The mapping to SD-013 is highly direct because the paper explicitly discusses forward models and i.i.d. assumptions. Confidence is higher than the other entries because this paper is the theoretical source from which SD-013's formulation was derived.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Scholkopf et al. establish that statistical learning assumes i.i.d. data drawn from a fixed distribution. When an agent's own actions change the environment (i.e., when the agent intervenes), the distribution shifts. E2_harm_s trained on observational trajectories will produce incorrect predictions for actions that differ from the behavioral policy's distribution -- especially in confounded states where action and harm are spuriously correlated. The failure is not a matter of generalization; it is a matter of the learned distribution being the wrong distribution.",
+    "The paper explicitly discusses that interventional questions -- P(outcome | do(action)) -- are more challenging than prediction questions -- P(outcome | action) -- because interventions take the system out of the i.i.d. setting. An E2_harm_s that treats both a_actual and a_cf as prediction queries on the same distribution will compute a causal_sig that conflates causal and correlational contributions.",
+    "The paper notes that identifying the interventional distribution from observational data requires either additional assumptions (e.g., no unobserved confounders, known causal graph) or interventional data. In environments where the agent's policy is correlated with harm-proximal states, the no-unobserved-confounders assumption is violated, making observational-only training insufficient for causal_sig estimation."
+  ],
+  "tags": ["sd_013", "causal_representation_learning", "interventional_distribution", "observational_bias", "do_calculus", "structural_causal_model", "iid_assumption"],
+  "mapping": {
+    "source_claim_statement": "Machine learning models trained on observational data learn the correlational distribution P(y|x), not the interventional distribution P(y|do(x)). These distributions diverge when the data-generating process includes unobserved confounders -- variables that influence both x and y. Performing an intervention (setting x to a specific value by external manipulation rather than by conditioning on it) changes the data distribution in ways that invalidate predictions from the observational model. Causal representation learning aims to identify high-level causal variables and their causal relations so that interventional predictions can be made from observational training data where possible, and identifies when interventional data is necessary.",
+    "ree_translation": "SD-013 instantiates this argument for E2_harm_s specifically: the forward model trained on observational rollouts learns P(z_harm_s_next | z_t, a_behavioral) -- the correlational distribution conditioned on the behavioral policy. When causal_sig is computed as E2_harm_s(z_t, a_actual) - E2_harm_s(z_t, a_cf), both terms are evaluated by treating a_actual and a_cf as conditioning values in the observational distribution. But a_cf is an intervention -- the agent is asking: what harm would result if I had done this instead? This is a do-operator query: P(z_harm_s | do(a_cf)). The observational model cannot answer do-operator queries reliably in confounded states. ARC-033's counterfactual perturbation steps provide interventional training data that grounds E2_harm_s in the do-operator distribution.",
+    "mapping_caveat": "Scholkopf et al. address the general case of causal representation learning -- the paper is a broad review rather than a specific solution to the E2_harm_s training problem. The paper identifies the problem clearly but does not provide a direct algorithm for training interventionally-grounded forward models in RL. The mapping requires translating the general causal identifiability argument into the specific context of a harm-stream forward model in an RL agent. This translation is what SD-013's claim notes accomplish, citing this paper as the foundational theoretical basis.",
+    "source_context": "Theoretical review paper; Proceedings of the IEEE 2021 (high-impact journal). Authors include Scholkopf (MPI Tuebingen), Bengio (MILA/Montreal), and several leading researchers in causal ML and deep learning. No biological or clinical context, though the paper discusses causal discovery methods with application breadth across sciences."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.18,
+    "notes": "Source quality is very high: Proceedings of the IEEE is a top-tier survey venue, authored by the leading figures in causal ML. Mapping fidelity is high because this is the explicit source cited in the SD-013 claim notes -- the translation has already been worked through by the claim author. Transfer risk is very low: the theoretical argument (observational vs. interventional distribution, do-operator semantics) is directly applicable to any model that must estimate causal effects."
+  }
+}
