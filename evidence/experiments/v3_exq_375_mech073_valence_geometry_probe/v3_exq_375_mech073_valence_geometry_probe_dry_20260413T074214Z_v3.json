@@ -1,0 +1,124 @@
+{
+  "run_id": "v3_exq_375_mech073_valence_geometry_probe_dry_20260413T074214Z_v3",
+  "experiment_type": "v3_exq_375_mech073_valence_geometry_probe",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-073"
+  ],
+  "claim_ids_tested": [
+    "MECH-073"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_class": "discriminative_pair",
+  "evidence_direction": "supports",
+  "outcome": "PASS",
+  "registered_thresholds": {
+    "c1_auroc_geom_min": 0.65,
+    "c2_auroc_ablated_max": 0.6,
+    "c3_min_active_centers": 4,
+    "min_seeds_pass": 2
+  },
+  "criteria": {
+    "c1_valence_geometry_auroc_pass": true,
+    "c1_seeds_pass": 2,
+    "c1_geom_aurocs": [
+      0.9821428571428571,
+      0.17410714285714285,
+      0.9230769230769231
+    ],
+    "c1_threshold": 0.65,
+    "c2_ablated_null_pass": true,
+    "c2_seeds_pass": 3,
+    "c2_ablated_aurocs": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "c2_threshold": 0.6,
+    "c3_active_centers_pass": true,
+    "c3_seeds_pass": 3,
+    "c3_geom_active_centers": [
+      32,
+      32,
+      32
+    ],
+    "c3_threshold": 4,
+    "overall_pass": true
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "VALENCE_GEOM",
+      "harm_valence_auroc": 0.9230769230769231,
+      "harm_active_centers": 32,
+      "n_probe_harm": 13,
+      "n_probe_safe": 47,
+      "n_probe_total": 60
+    },
+    {
+      "seed": 42,
+      "condition": "VALENCE_ABLATED",
+      "harm_valence_auroc": 0.5,
+      "harm_active_centers": 32,
+      "n_probe_harm": 19,
+      "n_probe_safe": 0,
+      "n_probe_total": 19
+    },
+    {
+      "seed": 7,
+      "condition": "VALENCE_GEOM",
+      "harm_valence_auroc": 0.9821428571428571,
+      "harm_active_centers": 32,
+      "n_probe_harm": 4,
+      "n_probe_safe": 56,
+      "n_probe_total": 60
+    },
+    {
+      "seed": 7,
+      "condition": "VALENCE_ABLATED",
+      "harm_valence_auroc": 0.5,
+      "harm_active_centers": 32,
+      "n_probe_harm": 6,
+      "n_probe_safe": 54,
+      "n_probe_total": 60
+    },
+    {
+      "seed": 13,
+      "condition": "VALENCE_GEOM",
+      "harm_valence_auroc": 0.17410714285714285,
+      "harm_active_centers": 32,
+      "n_probe_harm": 4,
+      "n_probe_safe": 56,
+      "n_probe_total": 60
+    },
+    {
+      "seed": 13,
+      "condition": "VALENCE_ABLATED",
+      "harm_valence_auroc": 0.5,
+      "harm_active_centers": 32,
+      "n_probe_harm": 11,
+      "n_probe_safe": 49,
+      "n_probe_total": 60
+    }
+  ],
+  "summary": "MECH-073 valence geometry probe (discriminative pair). VALENCE_GEOM AUROC=[0.9821428571428571, 0.17410714285714285, 0.9230769230769231] vs VALENCE_ABLATED AUROC=[0.5, 0.5, 0.5]. Outcome: PASS. Interpretation: valence is geometrically structured in the hippocampal map (Resolution A supported)",
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "VALENCE_GEOM",
+      "VALENCE_ABLATED"
+    ],
+    "p0_episodes": 80,
+    "p1_episodes": 80,
+    "p2_episodes": 40,
+    "steps_per_ep": 200,
+    "num_hazards": 3,
+    "hazard_harm": 0.15,
+    "grid_size": 8
+  },
+  "timestamp_utc": "20260413T074214Z"
+}

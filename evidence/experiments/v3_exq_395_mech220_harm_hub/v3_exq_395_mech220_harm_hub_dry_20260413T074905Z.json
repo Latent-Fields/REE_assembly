@@ -1,0 +1,143 @@
+{
+  "run_id": "v3_exq_395_mech220_harm_hub_dry_20260413T074905Z",
+  "experiment_type": "v3_exq_395_mech220_harm_hub",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-220"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-220": "weakens"
+  },
+  "outcome": "FAIL",
+  "timestamp_utc": "20260413T074928Z",
+  "design_note": "Prior experiment EXQ-262 was non_contributory: fwd_r2 < -0.89 because ARC-033/E2HarmSForward prerequisite was absent. This experiment uses behavioral harm_rate as primary metric -- does not require E2HarmSForward. Hub is inline HarmHub module (gate_sa: z_harm_s->z_harm_a; gate_as: z_harm_a->z_harm_s). Biological basis: Chen (2023) cingulate-insula hub for pain stream coordination.",
+  "registered_thresholds": {
+    "C1_harm_rate_delta": 0.03,
+    "C2_abs_harm_rate": 0.35,
+    "C3_norm_delta": 0.05,
+    "min_seeds_c1": 2
+  },
+  "hub_weight_enabled": 0.3,
+  "hub_weight_ablated": 0.0,
+  "p0_episodes": 100,
+  "p1_episodes": 100,
+  "eval_episodes": 100,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "seeds_passing": 0,
+  "seeds_c1_pass": 0,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "c1_hub_reduces_harm": false,
+      "c2_abs_harm_rate": true,
+      "c3_hub_enriches_affective": true,
+      "hub_harm_rate": 0.12692307692307692,
+      "ablated_harm_rate": 0.12692307692307692,
+      "harm_rate_delta": 0.0,
+      "hub_z_harm_a_norm": 1.0265460848808288,
+      "ablated_z_harm_a_norm": 0.8910416869016794,
+      "z_harm_a_norm_delta": 0.13550439797914937,
+      "hub_z_harm_s_norm": 0.8097040089277121,
+      "ablated_z_harm_s_norm": 0.7044785407873301,
+      "condition_results": {
+        "HUB_ENABLED": {
+          "condition": "HUB_ENABLED",
+          "harm_rate": 0.12692307692307692,
+          "harm_events": 33,
+          "total_steps": 260,
+          "mean_z_harm_a_norm": 1.0265460848808288,
+          "mean_z_harm_s_norm": 0.8097040089277121
+        },
+        "HUB_ABLATED": {
+          "condition": "HUB_ABLATED",
+          "harm_rate": 0.12692307692307692,
+          "harm_events": 33,
+          "total_steps": 260,
+          "mean_z_harm_a_norm": 0.8910416869016794,
+          "mean_z_harm_s_norm": 0.7044785407873301
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "seed_pass": false,
+      "c1_hub_reduces_harm": false,
+      "c2_abs_harm_rate": true,
+      "c3_hub_enriches_affective": true,
+      "hub_harm_rate": 0.05,
+      "ablated_harm_rate": 0.05,
+      "harm_rate_delta": 0.0,
+      "hub_z_harm_a_norm": 0.7276336453358332,
+      "ablated_z_harm_a_norm": 0.6338933191696803,
+      "z_harm_a_norm_delta": 0.09374032616615291,
+      "hub_z_harm_s_norm": 0.8992870358626047,
+      "ablated_z_harm_s_norm": 0.78011632223924,
+      "condition_results": {
+        "HUB_ENABLED": {
+          "condition": "HUB_ENABLED",
+          "harm_rate": 0.05,
+          "harm_events": 15,
+          "total_steps": 300,
+          "mean_z_harm_a_norm": 0.7276336453358332,
+          "mean_z_harm_s_norm": 0.8992870358626047
+        },
+        "HUB_ABLATED": {
+          "condition": "HUB_ABLATED",
+          "harm_rate": 0.05,
+          "harm_events": 15,
+          "total_steps": 300,
+          "mean_z_harm_a_norm": 0.6338933191696803,
+          "mean_z_harm_s_norm": 0.78011632223924
+        }
+      }
+    },
+    {
+      "seed": 13,
+      "seed_pass": false,
+      "c1_hub_reduces_harm": false,
+      "c2_abs_harm_rate": true,
+      "c3_hub_enriches_affective": true,
+      "hub_harm_rate": 0.07086614173228346,
+      "ablated_harm_rate": 0.07086614173228346,
+      "harm_rate_delta": 0.0,
+      "hub_z_harm_a_norm": 0.7048375458698574,
+      "ablated_z_harm_a_norm": 0.6134156185810961,
+      "z_harm_a_norm_delta": 0.0914219272887613,
+      "hub_z_harm_s_norm": 1.1607420993602182,
+      "ablated_z_harm_s_norm": 1.019988344644937,
+      "condition_results": {
+        "HUB_ENABLED": {
+          "condition": "HUB_ENABLED",
+          "harm_rate": 0.07086614173228346,
+          "harm_events": 18,
+          "total_steps": 254,
+          "mean_z_harm_a_norm": 0.7048375458698574,
+          "mean_z_harm_s_norm": 1.1607420993602182
+        },
+        "HUB_ABLATED": {
+          "condition": "HUB_ABLATED",
+          "harm_rate": 0.07086614173228346,
+          "harm_events": 18,
+          "total_steps": 254,
+          "mean_z_harm_a_norm": 0.6134156185810961,
+          "mean_z_harm_s_norm": 1.019988344644937
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "mean_hub_harm_rate": 0.08259640621845346,
+    "mean_ablated_harm_rate": 0.08259640621845346,
+    "mean_harm_rate_delta": 0.0,
+    "mean_hub_z_harm_a_norm": 0.8196724253621731,
+    "mean_ablated_z_harm_a_norm": 0.7127835415508187,
+    "mean_z_harm_a_norm_delta": 0.10688888381135453
+  }
+}

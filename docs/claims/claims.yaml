@@ -6095,6 +6095,14 @@
     conflict risk note stands: z_goal latent structure (EXQ-328a) still fails at 0.0 norm
     (SD-012 homeostatic drive substrate gap). Split: behavioral wanting/liking circuit PASS;
     z_goal latent structure FAIL (separate substrate requirement).
+    ATOMIC SPLIT (2026-04-13): MECH-112 split into MECH-229 (behavioral wanting/liking
+    dissociation, status: active) and MECH-230 (z_goal latent structure, status: candidate,
+    gated on SD-012). MECH-112 deprecated -- use MECH-229 and MECH-230 for new experiments.
+  split_into:
+    - MECH-229
+    - MECH-230
+  deprecated: true
+  deprecated_note: "Split into MECH-229 (behavioral dissociation) and MECH-230 (latent goal structure) on 2026-04-13. See evidence_quality_note."
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -14373,6 +14381,83 @@
     through coherence).
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+- id: MECH-229
+  title: "E3 produces reliably distinct wanting and liking behavioral signals: wanting drives persistent approach toward goal-encoded locations (incentive salience); liking produces only consummatory response at resource contact."
+  claim_type: mechanism_hypothesis
+  subject: drive.wanting_liking_behavioral_dissociation
+  polarity: asserts
+  status: active
+  implementation_phase: v3
+  split_from: MECH-112
+  registered: "2026-04-13"
+  depends_on:
+    - SD-005
+    - SD-015
+    - ARC-030
+    - MECH-069
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-112
+  notes: >
+    Behavioral arm of the MECH-112 atomic split (2026-04-13). Tests that wanting and liking
+    produce dissociable behavioral signatures independently of z_goal latent structure.
+    Wanting = incentive salience (prospective, approach-driven); liking = hedonic response
+    at contact. Measured by wanting_l1_fraction vs liking_l1_fraction dissociation delta.
+    Evidence: EXQ-074f PASS 4/4 seeds, EXQ-234 PASS 3/3 seeds, EXQ-354 PASS 3/3 seeds
+    (2026-04-04 to 2026-04-12). 10 seeds across 3 independent experiments, all PASS.
+    No conflicting evidence. Promoted to active 2026-04-13.
+    Prior hold_candidate_resolve_conflict (MECH-112) was driven by conflation with the
+    z_goal latent structure arm (now MECH-230). Behavioral dissociation does not require
+    SD-012 homeostatic drive -- z_world fallback seeding is sufficient.
+    Neurological basis: Barch & Dowd 2010 (wanting/liking in schizophrenia);
+    Hollerman et al. 2000 (striatal goal representation). Full literature in MECH-112.
+  evidence_quality_note: |
+    EXQ-074f PASS 4/4 seeds (2026-04-04): wanting_l1_fraction=0.96 vs liking_l1_fraction=0.43,
+    delta=0.53 (z_world fallback seeding). Single-seed replication pending at time of run.
+    EXQ-234 PASS 3/3 seeds (2026-04-05): independent replication. All 4 criteria met.
+    Replicates EXQ-074f with seeds [1,2,3].
+    EXQ-354 PASS 3/3 seeds (2026-04-12): definitive test with correct SD-015 ResourceEncoder
+    wiring. wanting_l1_fraction 0.96/0.935/0.985 vs liking_l1_fraction 0.43/0.54/0.43.
+    Dissociation delta 0.53/0.40/0.55. All >> 0.10 threshold. resource_rate floor met all seeds.
+    Total: 10 seeds, 3 experiments, 0 failures. Promoted to active.
+
+- id: MECH-230
+  title: "E3 maintains a structured latent goal representation (positive attractor in z_goal sub-space, measurable as z_goal_norm > 0) distinct from harm avoidance, enabling hippocampal terrain navigation toward goal states."
+  claim_type: mechanism_hypothesis
+  subject: drive.goal_state_latent_structure
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  split_from: MECH-112
+  registered: "2026-04-13"
+  depends_on:
+    - SD-012
+    - SD-015
+    - SD-005
+    - ARC-007
+    - MECH-069
+    - ARC-030
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-112
+  notes: >
+    Latent structure arm of the MECH-112 atomic split (2026-04-13). Tests that z_goal
+    develops a structured positive attractor distinct from harm avoidance when homeostatic
+    drive (SD-012) is active. Distinguished from MECH-229 (behavioral dissociation):
+    MECH-230 requires z_goal to be populated and structured; MECH-229 only requires
+    behavioral signal dissociation which can be measured via l1_fraction independently.
+    Gate: SD-012 substrate is confirmed IMPLEMENTED (GoalConfig.drive_weight,
+    GoalState.update() drive multiplication -- verified 2026-04-13). Prior experiment
+    failures (EXQ-233, EXQ-238, EXQ-247, EXQ-328) were due to measurement bugs
+    (pre-step EMA seeding), not missing substrate. EXQ-328b queued (2026-04-13) as full
+    real run of the correctly-instrumented script.
+    z_goal latent structure is required for hippocampal goal-terrain navigation
+    (VALENCE_WANTING residue field seeding, goal-directed approach). Without z_goal
+    structure, MECH-229 behavioral signal does not translate to navigation lift (EXQ-326 C3 FAIL).
+  evidence_quality_note: |
+    EXQ-328a dry run (2026-04-12): z_goal_norm=0.0 in all conditions (non_contributory --
+    dry run too short for resource contacts; 3 episodes x 120 steps insufficient).
+    SD-012 substrate confirmed IMPLEMENTED. All prior failures (EXQ-233/238/247/328) due
+    to pre-step EMA seeding measurement bug, not missing substrate.
+    EXQ-328b queued (2026-04-13) as full real run with correct instrumentation.
+    No genuine evidential run completed yet. Claim status: candidate pending EXQ-328b.
 
 - id: Q-038
   title: "Is temporal-depth verisimilitude D_V explicitly represented as a signal or does it emerge from distributed dynamics without local representation?"
