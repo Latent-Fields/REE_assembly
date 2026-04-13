@@ -24,10 +24,10 @@
     "SD-012"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-112": "does_not_support",
-    "SD-012": "does_not_support"
+    "MECH-112": "non_contributory",
+    "SD-012": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -44,5 +44,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Dry run (3 eps x 10 steps): smoke test only, no training signal. Reclassified non_contributory 2026-04-13."
 }
