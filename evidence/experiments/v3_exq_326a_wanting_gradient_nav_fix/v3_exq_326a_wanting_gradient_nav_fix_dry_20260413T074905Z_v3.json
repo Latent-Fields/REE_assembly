@@ -1,0 +1,122 @@
+{
+  "run_id": "v3_exq_326a_wanting_gradient_nav_fix_dry_20260413T074905Z_v3",
+  "experiment_type": "v3_exq_326a_wanting_gradient_nav_fix",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-015",
+    "MECH-229"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "V3-EXQ-326",
+  "evidence_direction_per_claim": {
+    "SD-015": "does_not_support",
+    "MECH-229": "supports"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_wanting_populated": true,
+    "c1_vals": [
+      1.2763000078355415,
+      0.8226162661368878,
+      0.6295336891318988
+    ],
+    "c3_benefit_ratio_pass": false,
+    "c3_ratios": [
+      0.0,
+      0.9580796596369987,
+      6150.986413573988
+    ],
+    "c3_seeds_pass": 1,
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.006150986413573988,
+      "valence_wanting_mean": 0.6295336891318988,
+      "goal_norm_peak": 0.271079957485199,
+      "n_seeding_events": 3,
+      "schema_salience_mean": 0.4272521356741587,
+      "mech216_write_count": 180
+    },
+    {
+      "seed": 42,
+      "condition": "ABLATED",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 0.0,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.0,
+      "mech216_write_count": 0
+    },
+    {
+      "seed": 7,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.0,
+      "mean_benefit_exposure": 0.0,
+      "valence_wanting_mean": 1.2763000078355415,
+      "goal_norm_peak": 0.5829499959945679,
+      "n_seeding_events": 2,
+      "schema_salience_mean": 0.5064258167037258,
+      "mech216_write_count": 180
+    },
+    {
+      "seed": 7,
+      "condition": "ABLATED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.006330858440940977,
+      "valence_wanting_mean": 0.0,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.0,
+      "mech216_write_count": 0
+    },
+    {
+      "seed": 13,
+      "condition": "WITH_WANTING",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.006092165477314418,
+      "valence_wanting_mean": 0.8226162661368878,
+      "goal_norm_peak": 0.42472732067108154,
+      "n_seeding_events": 2,
+      "schema_salience_mean": 0.4735339789544765,
+      "mech216_write_count": 157
+    },
+    {
+      "seed": 13,
+      "condition": "ABLATED",
+      "resource_rate": 0.3333333333333333,
+      "mean_benefit_exposure": 0.006358725410810458,
+      "valence_wanting_mean": 0.0,
+      "goal_norm_peak": 0.0,
+      "n_seeding_events": 0,
+      "schema_salience_mean": 0.0,
+      "mech216_write_count": 0
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "WITH_WANTING",
+      "ABLATED"
+    ],
+    "wanting_weight": 0.5,
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 50,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 2,
+    "hazard_harm": 0.1
+  },
+  "timestamp_utc": "20260413T074905Z",
+  "bug_fix_note": "EXQ-326 fix 1 (SD-015 wiring): cfg.latent.use_resource_encoder=True was never set. from_dims() has no 'latent' kwarg -- the ResourceEncoder was never instantiated. update_z_goal() used z_world fallback instead of z_resource. Fix: set directly on config object after from_dims() (same pattern as EXQ-322a, EXQ-354). EXQ-326 fix 2 (seeding signal): used obs_body[11] (pre-step benefit EMA, ~0 at contact time). Fix: use harm_signal from env.step() on ttype==resource steps. claim_ids updated: MECH-112 split into MECH-229/MECH-230 on 2026-04-13. This experiment tests behavioral dissociation (MECH-229) + SD-015 nav integration. SD-012 removed as primary claim (tested in EXQ-328b)."
+}

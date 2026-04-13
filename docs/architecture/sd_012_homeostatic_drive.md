@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-012
 **Subject:** `environment.homeostatic_drive`
-**Status:** PENDING — not yet implemented
+**Status:** IMPLEMENTED (verified 2026-04-13 — see Implementation Note below)
 **Registered:** 2026-03-25
 **Depends on:** MECH-071, MECH-112, SD-005
 
@@ -115,6 +115,30 @@ It is not:
   reliable z_goal seeding
 - **INV-034 (goal maintenance as necessary co-condition for ethical agency):** Claims about
   genuine agency require a functioning approach drive; SD-012 provides the minimal substrate
+
+---
+
+## Implementation Note (2026-04-13)
+
+The substrate described in the Solution section is **IMPLEMENTED** in ree-v3. Verified by
+source inspection on 2026-04-13:
+
+- `GoalConfig.drive_weight` (float, default 2.0) is present in `ree_core/utils/config.py`.
+- `GoalState.update()` applies `effective_benefit = benefit_exposure * z_goal_seeding_gain * (1.0 + drive_weight * drive_level)` — exactly the drive-scaled seeding specified in Solution (a).
+- `REEConfig.from_dims()` wires `drive_weight` from kwargs into `GoalConfig`.
+
+**Why experiments still failed despite correct implementation:**
+All experiments from EXQ-085a through EXQ-328 used `obs_body[11]` (pre-step benefit_exposure EMA)
+for seeding rather than the post-step `harm_signal` from `env.step()`. The env updates its EMA
+*after* `env.step()`, so at resource contact, `obs_body[11] ≈ 0` and effective_benefit never
+crosses threshold. This is a measurement/instrumentation bug in the experiment scripts, not
+a substrate gap.
+
+**EXQ-328a** (2026-04-12) fixes both the seeding signal and benefit_threshold calibration.
+**EXQ-328b** (2026-04-13) is the first full real run of the correctly-instrumented script.
+
+The "Problem" section above describes the pre-implementation state; the substrate gap it
+describes no longer exists.
 
 ---
 

@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-04-13T08:05:33.706474Z`
+Generated: `2026-04-13T08:23:45.213056Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -20,7 +20,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0011` | `MECH-098` | `candidate` | 0.8 | 0 | 0.243 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0012` | `MECH-116` | `candidate` | 0.8 | 0 | 0.392 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0013` | `MECH-186` | `candidate` | 0.8 | 0 | 0.412 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0014` | `Q-002` | `active` | 0.8 | 0 | 0.376 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0014` | `Q-002` | `active` | 0.8 | 0 | 0.377 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0015` | `Q-003` | `active` | 0.8 | 0 | 0.462 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0016` | `SD-003` | `validated` | 0.783 | 0 | 0.19 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0017` | `ARC-024` | `provisional` | 0.75 | 0 | 0.078 | 0 | no | no | `monitor_and_collect_targeted_evidence` |

@@ -1,0 +1,152 @@
+{
+  "run_id": "v3_exq_328b_mech112_zgoal_structured_latent_dry_20260413T074659Z_v3",
+  "experiment_type": "v3_exq_328b_mech112_zgoal_structured_latent",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-230",
+    "SD-012"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "V3-EXQ-328a",
+  "evidence_direction_per_claim": {
+    "MECH-230": "supports",
+    "SD-012": "supports"
+  },
+  "evidence_direction": "supports",
+  "outcome": "PASS",
+  "criteria": {
+    "c1_goal_seeded_at_contact": true,
+    "c1_vals": [
+      1.1516697406768799,
+      1.7466436326503754,
+      0.0
+    ],
+    "c1_seeds_pass": 2,
+    "c2_goal_persists": true,
+    "c2_vals": [
+      1.1516697406768799,
+      1.7466436326503754,
+      0.0
+    ],
+    "c2_seeds_pass": 2,
+    "c3_ablated_absent": true,
+    "c3_vals": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "c3_seeds_pass": 3,
+    "overall_pass": true
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "DRIVE_ACTIVE",
+      "mean_norm_by_offset": {
+        "0": 0.0,
+        "10": 0.0,
+        "25": 0.0,
+        "50": 0.0
+      },
+      "mean_ablated_norm": 0.0,
+      "num_contact_events": 0,
+      "c1_norm_at_contact": 0.0,
+      "c2_norm_at_t50": 0.0
+    },
+    {
+      "seed": 42,
+      "condition": "DRIVE_ABLATED",
+      "mean_norm_by_offset": {
+        "0": 0.0,
+        "10": 0.0,
+        "25": 0.0,
+        "50": 0.0
+      },
+      "mean_ablated_norm": 0.0,
+      "num_contact_events": 0,
+      "c1_norm_at_contact": 0.0,
+      "c2_norm_at_t50": 0.0
+    },
+    {
+      "seed": 7,
+      "condition": "DRIVE_ACTIVE",
+      "mean_norm_by_offset": {
+        "0": 1.1516697406768799,
+        "10": 1.1516697406768799,
+        "25": 1.1516697406768799,
+        "50": 1.1516697406768799
+      },
+      "mean_ablated_norm": 0.0,
+      "num_contact_events": 2,
+      "c1_norm_at_contact": 1.1516697406768799,
+      "c2_norm_at_t50": 1.1516697406768799
+    },
+    {
+      "seed": 7,
+      "condition": "DRIVE_ABLATED",
+      "mean_norm_by_offset": {
+        "0": 0.0,
+        "10": 0.0,
+        "25": 0.0,
+        "50": 0.0
+      },
+      "mean_ablated_norm": 0.0,
+      "num_contact_events": 2,
+      "c1_norm_at_contact": 0.0,
+      "c2_norm_at_t50": 0.0
+    },
+    {
+      "seed": 13,
+      "condition": "DRIVE_ACTIVE",
+      "mean_norm_by_offset": {
+        "0": 1.7466436326503754,
+        "10": 1.7466436326503754,
+        "25": 1.7466436326503754,
+        "50": 1.7466436326503754
+      },
+      "mean_ablated_norm": 0.0,
+      "num_contact_events": 2,
+      "c1_norm_at_contact": 1.7466436326503754,
+      "c2_norm_at_t50": 1.7466436326503754
+    },
+    {
+      "seed": 13,
+      "condition": "DRIVE_ABLATED",
+      "mean_norm_by_offset": {
+        "0": 0.0,
+        "10": 0.0,
+        "25": 0.0,
+        "50": 0.0
+      },
+      "mean_ablated_norm": 0.0,
+      "num_contact_events": 2,
+      "c1_norm_at_contact": 0.0,
+      "c2_norm_at_t50": 0.0
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "DRIVE_ACTIVE",
+      "DRIVE_ABLATED"
+    ],
+    "p0_episodes": 150,
+    "p1_episodes": 100,
+    "steps_per_ep": 200,
+    "drive_weight": 2.0,
+    "post_contact_steps": [
+      0,
+      10,
+      25,
+      50
+    ],
+    "min_window_steps": 55
+  },
+  "timestamp_utc": "20260413T074659Z",
+  "mech_split_note": "MECH-112 was split into MECH-229 (behavioral wanting/liking dissociation) and MECH-230 (z_goal latent structure) on 2026-04-13. This experiment tests the latent structure arm (MECH-230): does z_goal get populated and persist after resource contact when homeostatic drive is active? EXQ-328a used claim_ids=[MECH-112, SD-012]; EXQ-328b updates to [MECH-230, SD-012] to reflect the split. Science is identical.",
+  "bug_fix_note": "EXQ-328 bug 1: seeded z_goal from obs_body[11] (pre-step benefit_exposure EMA). At resource contact, EMA has not yet been updated (obs_body is from BEFORE env.step()). This gave benefit_raw~0, effective_benefit<threshold, so seeding rarely fired. Fix: use raw harm_signal from env.step() directly. EXQ-328 bug 2: with benefit_threshold=0.1 and resource_benefit=0.5, raw contact benefit (0.5) exceeds threshold even without drive amplification (drive_weight=0). DRIVE_ABLATED would also seed z_goal, making C3 unmeasurable. Fix: set benefit_threshold=0.6 for DRIVE_ABLATED, above resource_benefit (0.5) but below amplified effective_benefit with DRIVE_ACTIVE (~0.8+ at drive_level=0.3). Also added MIN_WINDOW_STEPS guard and increased DRY_RUN_STEPS to 120."
+}
