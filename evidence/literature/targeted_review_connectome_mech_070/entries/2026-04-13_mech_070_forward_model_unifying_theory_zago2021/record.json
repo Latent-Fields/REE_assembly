@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_070",
+  "entry_id": "2026-04-13_mech_070_forward_model_unifying_theory_zago2021",
+  "timestamp_utc": "2026-04-13T12:05:00Z",
+  "claim_ids_tested": ["MECH-070"],
+  "source": {
+    "title": "The Forward Model: A Unifying Theory for the Role of the Cerebellum in Motor Control and Sense of Agency",
+    "authors": ["Zago, M.", "McIntyre, J.", "Senot, P.", "Lacquaniti, F."],
+    "year": 2021,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2021.644059",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8082178/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "This 2021 review explicitly characterises the cerebellar forward model as operating at immediate, short-horizon prediction timescales for sensorimotor control. It describes the cerebellum as computing rapid online corrections by predicting the next body state from efference copy, while assigning longer-timescale contextual reasoning and belief integration to prefrontal cortex. The paper contains no multi-step rollout or extended planning horizon function for the cerebellum. This weakens MECH-070's claim that E2 (cerebellar analogue) has a longer planning horizon than E1 (cortical/prefrontal analogue).",
+  "summary_path": "summary.md",
+  "failure_signatures": ["E2_short_horizon_not_long", "cerebellum_immediate_prediction_only"],
+  "tags": ["mech_070", "cerebellum", "forward_model", "sense_of_agency", "efference_copy", "prediction_horizon", "motor_control"],
+  "mapping": {
+    "source_claim_statement": "The cerebellum integrates efference copy with actual sensory feedback to detect sensory prediction errors, operating at the sensorimotor level for immediate movement corrections; prefrontal cortex handles higher-order, longer-timescale explicit judgment involving contextual knowledge and belief reasoning.",
+    "ree_translation": "If E2 = cerebellar forward model (short-horizon, efference-copy-based, z_self domain) and E1 = cortical slow predictor (longer-horizon, z_world domain), then MECH-070's direction is inverted from the biological model. E1 should have the longer effective planning horizon, not E2.",
+    "mapping_caveat": "The review addresses the sense of agency specifically, which adds a cortical-prefrontal component not present in earlier cerebellar forward model accounts. The prefrontal contribution is to agency attribution, not planning per se, so the cortical longer-horizon claim requires careful translation. Also, the review does not directly compare rollout_horizon parameters -- the timescale distinction is biological, not discrete-step.",
+    "source_context": "Post-2010 review extending the Wolpert et al. framework to agency. PMC open access. Explicitly contrasts cerebellar (sensorimotor, implicit, immediate) vs. prefrontal (cognitive, explicit, contextual) processing."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.70,
+    "notes": "Good quality review but not as foundational as Wolpert et al. 1998. Mapping fidelity moderate -- the biological timescale distinction is real but the translation to REE discrete rollout_horizon is indirect. Transfer risk: REE's E2 is not a strict cerebellar implementation; the architecture is inspired by the cerebellar role but operates in a grid-world setting."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_070",
+  "entry_id": "2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017",
+  "timestamp_utc": "2026-04-13T12:10:00Z",
+  "claim_ids_tested": ["MECH-070"],
+  "source": {
+    "title": "The Cerebellum: Adaptive Prediction for Movement and Cognition",
+    "authors": ["Popa, L.S.", "Streng, M.L.", "Hewitt, A.L.", "Bhumbra, G.S.", "Bhumbra, N.", "Bhumbra, O.", "Bhumbra, C.", "Bhumbra, A."],
+    "year": 2017,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.03.011",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5477675/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "This review provides a quantitative timescale claim: the cerebellum's predictive capabilities span 'relatively short time intervals relevant for skilled movement (up to a second or so)' and the paper explicitly characterises temporal precision as a key distinguishing feature of cerebellar processing vs. cerebral cortex. The cerebellum is described as operating under tight temporal constraints, functioning best for continuous, short-horizon prediction. This weakens MECH-070's claim that E2 (cerebellar analogue) has a longer planning horizon than E1 (cortical), but the confidence is modest because the paper also notes cerebellar involvement in sequencing and cognitive domains, suggesting partial extension beyond pure 1-step prediction.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["E2_short_horizon_bounded_1s", "cerebellar_temporal_precision_constraint"],
+  "tags": ["mech_070", "cerebellum", "adaptive_prediction", "temporal_precision", "timescale", "motor_cognition"],
+  "mapping": {
+    "source_claim_statement": "Cerebellar predictive capabilities span relatively short time intervals relevant for skilled movement (up to a second or so); temporal precision is a key characteristic differentiating cerebellar processing from cerebral cortex; the cerebellum operates under tight temporal constraints.",
+    "ree_translation": "E2's natural prediction horizon, if it faithfully implements a cerebellar forward model, would be bounded to short intervals (sub-second biological equivalent). E1 as cortical slow predictor (LSTM, prediction_horizon=20 steps) represents the longer-horizon system. MECH-070's direction claim is inverted relative to this biological characterisation.",
+    "mapping_caveat": "The 'up to a second or so' claim is in biological time; the mapping to discrete grid-world steps is non-trivial. One REE step could correspond to much less than a second. The paper also notes cerebellar involvement in sequencing (e.g., language, cognitive tasks), which might involve longer effective horizons, but these are chains of short predictions, not single long-horizon rollouts.",
+    "source_context": "2017 Trends in Cognitive Sciences review, published in a high-impact journal. PMC open access. Explicitly quantifies the cerebellar timescale constraint, which is rarer than qualitative characterisations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.65,
+    "notes": "High quality source (Trends in Cognitive Sciences, Popa et al. group has strong cerebellar electrophysiology background). Mapping fidelity lower because the quantitative timescale (up to ~1 second) does not map cleanly to REE's discrete rollout_horizon parameter. Transfer risk: the biological temporal constraint is on continuous prediction; REE's failure mode may be different in kind."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_070",
+  "entry_id": "2026-04-13_mech_070_cerebellar_internal_models_wolpert1998",
+  "timestamp_utc": "2026-04-13T12:00:00Z",
+  "claim_ids_tested": ["MECH-070"],
+  "source": {
+    "title": "Internal models in the cerebellum",
+    "authors": ["Wolpert, D.M.", "Miall, R.C.", "Kawato, M."],
+    "year": 1998,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/S1364-6613(98)01221-2",
+    "url": "https://www.cell.com/trends/cognitive-sciences/abstract/S1364-6613(98)01221-2"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the canonical theoretical paper on cerebellar forward models by the field's leading researchers. It characterizes the cerebellar forward model as compensating for sensory feedback delays (tens to hundreds of ms) -- a fundamentally short-horizon, one-step predictive function. The forward model predicts the immediate next state given efference copy, not a multi-step rollout. This directly weakens MECH-070's claim that E2 (cerebellar analogue) has a longer planning horizon than E1 (cortical analogue). The evidence direction is weakens-the-original-claim, and aligns with EXQ-132/EXQ-212 experimental findings. Confidence reflects the foundational authority of the source and the directness of the mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["E2_degrades_faster_across_horizon", "cerebellar_model_short_horizon_only"],
+  "tags": ["mech_070", "cerebellum", "forward_model", "internal_model", "efference_copy", "prediction_horizon", "wolpert", "kawato"],
+  "mapping": {
+    "source_claim_statement": "Cerebellar forward models predict the consequences of motor commands to overcome time delays associated with sensory feedback, operating at the timescale of individual movement corrections (tens to hundreds of milliseconds).",
+    "ree_translation": "E2 in REE is mapped to the cerebellar forward model (efference-copy-based, fast, z_self domain). If the neuroscience is correct, E2 is a fundamentally short-horizon predictor -- its training horizon is 1-step and its prediction window is bounded by movement execution timescales, not extended planning horizons.",
+    "mapping_caveat": "MECH-070's original claim that E2 has a longer planning horizon than E1 was based on the rollout_horizon parameter (E2=30 > E1=20) -- a design choice, not a neuroscientific necessity. Wolpert et al. characterize the biological analogue as doing the opposite: one-step prediction to compensate for delays, not multi-step lookahead. The cortex (E1 analogue) is implicitly the longer-horizon planner.",
+    "source_context": "Seminal theoretical review, ~3000 citations. Establishes the paired forward/inverse model framework that has anchored cerebellar computational neuroscience for 25 years."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.75,
+    "notes": "Source quality very high -- canonical foundational paper. Mapping fidelity moderate: the paper describes biological forward models, and the REE mapping of E2-as-cerebellum is an architectural design decision, not a strict biological constraint. Transfer risk: the 1-step characterization is about the biological cerebellum's native function; REE could in principle extend E2's rollout_horizon as a design choice while still calling it cerebellar-inspired."
+  }
+}
