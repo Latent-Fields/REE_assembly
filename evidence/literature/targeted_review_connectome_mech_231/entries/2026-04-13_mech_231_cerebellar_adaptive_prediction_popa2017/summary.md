@@ -1,0 +1,21 @@
+# Popa, Streng, Hewitt et al. (2017) -- The Cerebellum: Adaptive Prediction for Movement and Cognition
+
+## What the paper did
+
+Popa and colleagues provide a review of cerebellar predictive functions that explicitly addresses the temporal scope of cerebellar computation. Unlike earlier accounts that characterised the cerebellum purely in terms of motor control, this paper extends the framework to cognitive domains while maintaining a tight focus on temporal precision as the defining feature of cerebellar computation. The central argument is that the cerebellum is built to operate within relatively short time intervals -- up to approximately 1 second for skilled movement prediction -- and that this temporal constraint is what distinguishes cerebellar processing from cerebral cortex. The paper reviews electrophysiological and imaging evidence showing that the cerebellum's predictive signals are tied to the specific timescales of the movements or events being predicted.
+
+## Why this supports MECH-231
+
+The quantitative bound is the distinctive contribution here. Most accounts of cerebellar forward models are qualitatively characterised as short-horizon; Popa et al. put a number on it: up to approximately 1 second. This is significant for MECH-231 because it gives a biologically grounded anchor for what "short horizon" means in the cerebellar analogue. A sub-second biological prediction window maps to a small number of discrete steps in a grid-world environment -- almost certainly fewer than the 20-step prediction horizon assigned to E1 in the V3 architecture. If E2's cerebellar archetype operates within ~1 second, and E1's cortical archetype operates over longer planning horizons, then E2's prediction accuracy should degrade faster across multi-step rollouts. That is precisely what MECH-231 asserts, and what EXQ-132 and EXQ-212 measured in the substrate. The quantitative biological bound here is the strongest single piece of evidence linking the biological characterisation to the expected experimental outcome.
+
+## The contrast with the MECH-070 entry
+
+For MECH-070, this paper weakened the claim by showing that the biological archetype -- the cerebellar forward model -- is the short-horizon system, not the longer-horizon one as MECH-070 required. For MECH-231, the same evidence becomes direct support. The corrected claim accepts the biological characterisation and uses it to predict the E2 degradation pattern. The paper has not changed. The claim has been corrected to match what three independent papers were already saying.
+
+## Limitations
+
+The "up to a second or so" bound is an approximate summary derived from reviewing timing studies in motor control; it is not a precisely derived computational limit. Mapping this biological bound to REE's discrete rollout steps requires a conversion factor -- how long is one grid-world step in biological time? -- which is not formally specified in the REE architecture. The paper also notes cerebellar contributions to sequencing and cognitive tasks, where the temporal precision argument may apply differently. In cerebro-cerebellar loops for language or working memory, the cerebellum's individual contributions may still be short-horizon, but the effective horizon of the full loop could be longer. MECH-231 does not depend on ruling out these extended cognitive roles; it depends only on the claim that E2's native operating range is short, which this paper firmly supports.
+
+## Confidence reasoning
+
+Confidence is set at 0.66, slightly higher than the 0.65 in the MECH-070 weakening entry. The source quality is high -- Trends in Cognitive Sciences, a well-regarded cerebellar group. The quantitative bound is unusual in this literature and provides a more testable anchor than purely qualitative accounts. Mapping fidelity is slightly higher than before because the direction now aligns, though the discrete-step translation remains the main source of uncertainty. Transfer risk is unchanged. Among the three papers in this review, Popa et al. 2017 makes the narrowest, most specific prediction about temporal scope, which makes it the most useful for grounding the experimental predictions in MECH-231 -- and also the most vulnerable to the criticism that biological millisecond bounds do not map cleanly onto discrete planning steps.

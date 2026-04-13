@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_231",
+  "entry_id": "2026-04-13_mech_231_forward_model_unifying_theory_zago2021",
+  "timestamp_utc": "2026-04-13T14:05:00Z",
+  "claim_ids_tested": ["MECH-231"],
+  "source": {
+    "title": "The Forward Model: A Unifying Theory for the Role of the Cerebellum in Motor Control and Sense of Agency",
+    "authors": ["Zago, M.", "McIntyre, J.", "Senot, P.", "Lacquaniti, F."],
+    "year": 2021,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2021.644059",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8082178/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.69,
+  "confidence_rationale": "This 2021 review explicitly assigns short-horizon implicit prediction to the cerebellum and longer-horizon contextual reasoning to prefrontal cortex. The paper characterises the cerebellar forward model as computing rapid online corrections by predicting the next body state from efference copy, while prefrontal cortex handles belief integration and judgment at longer timescales. This directly supports MECH-231's claim that E2 (cerebellar analogue) is the shorter-horizon system and E1 (cortical analogue) is the longer-horizon system -- i.e., E2's prediction accuracy should degrade faster across multi-step horizons. The confidence is similar to the MECH-070 weakening entry; the timescale distinction is clear and the anatomical assignment is explicit, though the REE transfer remains indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_231", "cerebellum", "forward_model", "sense_of_agency", "efference_copy", "prediction_horizon", "motor_control", "prefrontal", "short_horizon"],
+  "mapping": {
+    "source_claim_statement": "The cerebellum integrates efference copy with actual sensory feedback to detect sensory prediction errors, operating at the sensorimotor level for immediate movement corrections; prefrontal cortex handles higher-order, longer-timescale explicit judgment involving contextual knowledge and belief reasoning.",
+    "ree_translation": "E2 maps to the cerebellar forward model (short-horizon, efference-copy-based, z_self domain); E1 maps to the cortical/prefrontal slow predictor (longer-horizon, z_world domain). Zago et al. provide the explicit biological substrate for the E2 < E1 horizon ordering that MECH-231 asserts. The paper's distinction between immediate sensorimotor prediction (cerebellum) and longer-timescale belief reasoning (prefrontal) maps onto the E2/E1 timescale asymmetry.",
+    "mapping_caveat": "The prefrontal contribution in Zago et al. is specifically to agency attribution and conscious sense of agency, not to world-model planning per se. This adds a cognitive overlay not directly present in REE's E1. The timescale distinction is biological and continuous; the translation to REE's discrete rollout_horizon parameter is indirect. The paper does not compare degradation rates across multi-step horizons -- it makes qualitative claims about the division of labour.",
+    "source_context": "Post-2010 review extending the Wolpert et al. framework to sense of agency. PMC open access. Explicitly contrasts cerebellar (sensorimotor, implicit, immediate) vs. prefrontal (cognitive, explicit, contextual) processing. Previously entered for MECH-070 with evidence_direction: weakens. Re-entered here with corrected direction for MECH-231."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.70,
+    "notes": "Good quality review but not as foundational as Wolpert et al. 1998. Mapping fidelity unchanged from the MECH-070 entry: the biological timescale distinction is real and explicit, but the translation to REE's discrete rollout_horizon remains indirect. Transfer risk unchanged: the cerebellar/prefrontal division of labour is in biological continuous-time motor control; REE's grid-world setting is a different domain."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-13T14:57:22.840249Z`
+Generated: `2026-04-13T17:04:45.614097Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -76,6 +76,7 @@ Generated: `2026-04-13T14:57:22.840249Z`
 | `targeted_review_connectome_mech_203` | [`2026-04-09_mech_203_infraslow_dg_serotonin_turi2025`](targeted_review_connectome_mech_203/entries/2026-04-09_mech_203_infraslow_dg_serotonin_turi2025/record.json) | 5 | [`summary`](targeted_review_connectome_mech_203/entries/2026-04-09_mech_203_infraslow_dg_serotonin_turi2025/summary.md) |
 | `targeted_review_connectome_mech_216` | [`2026-04-08_mech_216_successor_representation_gershman2018`](targeted_review_connectome_mech_216/entries/2026-04-08_mech_216_successor_representation_gershman2018/record.json) | 4 | [`summary`](targeted_review_connectome_mech_216/entries/2026-04-08_mech_216_successor_representation_gershman2018/summary.md) |
 | `targeted_review_connectome_mech_220` | [`2026-04-09_mech_220_salience_perceptual_wiech2010`](targeted_review_connectome_mech_220/entries/2026-04-09_mech_220_salience_perceptual_wiech2010/record.json) | 4 | [`summary`](targeted_review_connectome_mech_220/entries/2026-04-09_mech_220_salience_perceptual_wiech2010/summary.md) |
+| `targeted_review_connectome_mech_231` | [`2026-04-13_mech_231_cerebellar_adaptive_prediction_popa2017`](targeted_review_connectome_mech_231/entries/2026-04-13_mech_231_cerebellar_adaptive_prediction_popa2017/record.json) | 3 | [`summary`](targeted_review_connectome_mech_231/entries/2026-04-13_mech_231_cerebellar_adaptive_prediction_popa2017/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_connectome_sd_004` | [`2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/record.json) | 4 | [`summary`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/summary.md) |
 | `targeted_review_connectome_sd_005` | [`2026-03-22_sd005_tpj_agency_attribution_farrer2002`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/record.json) | 4 | [`summary`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/summary.md) |

@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_231",
+  "entry_id": "2026-04-13_mech_231_cerebellar_internal_models_wolpert1998",
+  "timestamp_utc": "2026-04-13T14:00:00Z",
+  "claim_ids_tested": ["MECH-231"],
+  "source": {
+    "title": "Internal models in the cerebellum",
+    "authors": ["Wolpert, D.M.", "Miall, R.C.", "Kawato, M."],
+    "year": 1998,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/S1364-6613(98)01221-2",
+    "url": "https://www.cell.com/trends/cognitive-sciences/abstract/S1364-6613(98)01221-2"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the canonical theoretical paper on cerebellar forward models. It characterises the cerebellar forward model as a one-step delay-compensation device: it receives efference copy, predicts the next sensory state to bridge the feedback delay, then hands back to the sensory system. The paper explicitly does not assign multi-step rollout to the cerebellum -- that role belongs to higher cortical structures. This directly supports MECH-231's reformulation: E2 operates as a short-horizon efference-copy forward model whose prediction accuracy degrades faster than E1's across multi-step horizons, consistent with a cerebellar 1-step transition predictor. Confidence is slightly higher than for the MECH-070 weakening entry because the direction now aligns with rather than opposes the source's characterisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_231", "cerebellum", "forward_model", "internal_model", "efference_copy", "prediction_horizon", "wolpert", "kawato", "short_horizon"],
+  "mapping": {
+    "source_claim_statement": "Cerebellar forward models predict the consequences of motor commands to overcome time delays associated with sensory feedback, operating at the timescale of individual movement corrections (tens to hundreds of milliseconds). The forward model predicts the next state given efference copy -- it is a 1-step predictor, not a multi-step planner.",
+    "ree_translation": "E2 in REE is mapped to the cerebellar forward model (efference-copy-based, fast, z_self domain). Wolpert et al. establish that the biological archetype is a 1-step transition predictor. MECH-231's claim -- that E2's prediction accuracy degrades faster than E1's across multi-step horizons, consistent with a cerebellar 1-step transition predictor -- is precisely what this characterisation predicts. E1 (cortical slow predictor, LSTM) naturally handles longer horizons; E2 (cerebellar forward model) is natively a single-step device.",
+    "mapping_caveat": "The biological 1-step characterisation is about delay compensation in continuous motor control; REE's rollout_horizon governs discrete-step prediction in a grid world. The mapping is architecturally motivated, not experimentally demonstrated in the REE substrate directly. Additionally, MOSAIC extensions of the framework allow chaining of paired models, which could yield longer effective horizons via composition -- though each individual model remains 1-step.",
+    "source_context": "Seminal theoretical review, approximately 3000 citations. Establishes the paired forward/inverse model framework that has anchored cerebellar computational neuroscience for 25 years. Previously entered for MECH-070 with evidence_direction: weakens (because MECH-070 claimed E2 had a longer horizon). Re-entered here with corrected direction for MECH-231."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.75,
+    "notes": "Source quality very high -- canonical foundational paper by the field's primary architects. Mapping fidelity slightly higher than in the MECH-070 entry because the direction of the mapping now aligns: the paper says 1-step predictor, MECH-231 says 1-step predictor. Transfer risk unchanged: the biological short-horizon is for continuous motor control; the discrete grid-world translation remains indirect."
+  }
+}
