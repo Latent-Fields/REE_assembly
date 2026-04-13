@@ -1,18 +1,110 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-04-11T02:37:21.745705+00:00",
-  "last_updated": "2026-04-12T08:06:00.924342+00:00",
-  "idle": true,
-  "current": null,
+  "runner_pid": 26389,
+  "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
+  "last_updated": "2026-04-13T16:58:27.405299+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-326",
+    "backlog_id": "",
+    "claim_id": "SD-015",
+    "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
+    "description": "",
+    "script": "experiments/v3_exq_326_wanting_gradient_nav_fix.py",
+    "started_at": "2026-04-13T14:47:53.811950+00:00",
+    "progress": {
+      "run_label": "Seed 42 / WITH_WANTING",
+      "runs_done": 0,
+      "runs_total": 6,
+      "episodes_done": 100,
+      "episodes_total": 250,
+      "overall_pct": 6.7
+    },
+    "seconds_elapsed": 7834,
+    "seconds_remaining": 39314,
+    "recent_lines": [
+      "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
+      "EXQ-326 start: v3_exq_326_wanting_gradient_nav_fix_20260413T144759Z_v3",
+      "Seed 42 Condition WITH_WANTING",
+      "[train] seed=42 WITH_WANTING ep 50/250 phase=P0 resources=0 benefit=0.000",
+      "[train] seed=42 WITH_WANTING ep 100/250 phase=P0 resources=0 benefit=0.000"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-266a",
+      "queue_id": "V3-EXQ-326",
+      "backlog_id": "",
+      "claim_id": "SD-015",
+      "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-327",
+      "backlog_id": "",
+      "claim_id": "MECH-163",
+      "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-322a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Q-020 valence geometry discriminative pair (EXQ-266 ablation fix)",
+      "title": "SD-015 ResourceEncoder z_goal seeding fix: use_resource_encoder wiring corrected",
       "description": "",
-      "estimated_minutes": 186.7,
+      "estimated_minutes": 106.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-328a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 z_goal structured latent fix: correct seeding signal + drive ablation threshold",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-365",
+      "backlog_id": "EVB-0056",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 surprise gate: discriminative support vs ablation pair (5-seed replication)",
+      "description": "",
+      "estimated_minutes": 400.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-355",
+      "backlog_id": "EVB-0051",
+      "claim_id": "ARC-038",
+      "title": "ARC-038 schema assimilation: discriminative support vs ablation pair",
+      "description": "",
+      "estimated_minutes": 80.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-385",
+      "backlog_id": "EVB-0070",
+      "claim_id": "INV-049",
+      "title": "INV-049 offline consolidation necessity: sleep ablation probe",
+      "description": "",
+      "estimated_minutes": 184.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -29,10 +121,10 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-326",
+      "queue_id": "V3-EXQ-330a",
       "backlog_id": "",
-      "claim_id": "SD-015",
-      "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
+      "claim_id": "",
+      "title": "SD-013 contrastive counterfactual retest: interventional_fraction=0.5 (EXQ-330 fix)",
       "description": "",
       "estimated_minutes": 200.0,
       "status": "pending",
@@ -40,10 +132,76 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-327",
+      "queue_id": "V3-EXQ-353",
       "backlog_id": "",
-      "claim_id": "MECH-163",
-      "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
+      "claim_id": "",
+      "title": "ARC-033/SD-003/SD-013 interventional vs observational training comparison",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-321a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 bistable gate retest: E2 world-forward training added (EXQ-321 fix)",
+      "description": "",
+      "estimated_minutes": 426.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-325a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021 descending pain modulation retest: E2 world-forward training added (EXQ-325 fix)",
+      "description": "",
+      "estimated_minutes": 440.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-395",
+      "backlog_id": "EVB-0114",
+      "claim_id": "MECH-220",
+      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated)",
+      "description": "",
+      "estimated_minutes": 240.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-375",
+      "backlog_id": "EVB-0057",
+      "claim_id": "MECH-073",
+      "title": "MECH-073 valence geometry: discriminative support vs ablation pair",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-328b",
+      "backlog_id": "",
+      "claim_id": "MECH-230",
+      "title": "MECH-230 z_goal latent structure: homeostatic drive ablation (full run)",
+      "description": "",
+      "estimated_minutes": 200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-326a",
+      "backlog_id": "",
+      "claim_id": "SD-015",
+      "title": "SD-015 nav integration fix: z_resource encoder wiring + harm_signal seeding",
       "description": "",
       "estimated_minutes": 200.0,
       "status": "pending",
@@ -5184,6 +5342,5 @@
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 44746.8
     }
-  ],
-  "draining": false
+  ]
 }

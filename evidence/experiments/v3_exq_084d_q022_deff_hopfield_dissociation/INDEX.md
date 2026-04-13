@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_084d_q022_deff_hopfield_dissociation
 
-Generated: `2026-04-13T08:23:45.213056Z`
+Generated: `2026-04-13T14:57:22.840249Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
