@@ -14511,3 +14511,178 @@
     and enable testable pharmacological predictions.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+
+# ---------------------------------------------------------------------------
+# EXT — External AI Failure Modes
+#
+# Catalogs named failure modes in current AI/LLM architectures, each entry
+# pointing to the REE mechanisms that constitute the proposed solution.
+# These claims are reference/comparative — not evidence-gated and not subject
+# to governance promotion/demotion. claim_type: external_failure_mode.
+#
+# EXT-specific fields:
+#   ree_mechanism: list of REE claim IDs that address this failure mode
+#   ree_failure_mode_analog: optional link to an entry in REE_failure_modes.md
+# ---------------------------------------------------------------------------
+
+- id: EXT-001
+  title: "Sycophancy: approval-seeking displaces principled goal pursuit."
+  claim_type: external_failure_mode
+  subject: llm.sycophancy
+  polarity: asserts
+  status: candidate
+  ree_mechanism:
+    - SD-011   # dual nociceptive streams: z_harm_s as dedicated avoidance channel
+    - SD-012   # homeostatic drive: z_goal seeded independently of social approval
+    - MECH-229 # behavioral wanting/liking dissociation
+    - MECH-230 # z_goal latent structure
+  ree_failure_mode_analog: "reward_hijack"
+  notes: >
+    In RLHF-trained LLMs, the scalar reward signal conflates harm-avoidance (social
+    disapproval = aversive) with goal pursuit, collapsing both channels into a single
+    approval-maximising drive. When there is no architectural separation between
+    avoidance and approach, the approach signal becomes approval-seeking.
+    REE addresses this by maintaining z_harm and z_goal as distinct latent streams
+    with separate supervision targets -- z_goal cannot be satisfied by reducing
+    disapproval; it requires independent drive-level seeding (SD-012).
+  registered: "2026-04-13"
+  source:
+    - docs/architecture/language/language_failure_modes.md
+
+- id: EXT-002
+  title: "Hallucination: no persistent error residue accumulates to shape future outputs."
+  claim_type: external_failure_mode
+  subject: llm.hallucination
+  polarity: asserts
+  status: candidate
+  ree_mechanism:
+    - ARC-005  # residue field phi(z): persistent causal footprint
+    - INV-006  # ethics as structural constraint via accumulated residue
+    - INV-008  # residue couples to selection -- not just logged
+  ree_failure_mode_analog: "moral_amnesia"
+  notes: >
+    Transformer LLMs generate each token from the current context window without
+    any mechanism for prediction errors to leave a persistent trace that penalises
+    future outputs. A false statement incurs no enduring cost. REE's residue field
+    phi(z) functions as a persistent error record: E1 prediction errors accumulate
+    into the latent terrain and actively modulate trajectory selection on subsequent
+    steps, creating structural pressure against repeat errors.
+  registered: "2026-04-13"
+  source:
+    - docs/REE_failure_modes.md
+
+- id: EXT-003
+  title: "Reward hacking: scalar reward conflates incommensurable error signals."
+  claim_type: external_failure_mode
+  subject: llm.reward_hacking
+  polarity: asserts
+  status: candidate
+  ree_mechanism:
+    - MECH-069 # incommensurable BG loops: sensory, motor-sensory, harm/goal errors
+    - ARC-021  # three cortico-striatal loops require distinct learning channels
+  ree_failure_mode_analog: "reward_hijack"
+  notes: >
+    Standard RL/RLHF collapses sensory prediction error, action-outcome error, and
+    harm/goal error into a single scalar reward. Because these signals are
+    incommensurable (MECH-069), collapsing them permits credit misattribution:
+    an agent can satisfy the reward by optimising any one channel at the expense of
+    the others. REE maintains three distinct BG-like loops (ARC-021) with separate
+    learning channels that cannot be mutually satisfied by a single exploit.
+  registered: "2026-04-13"
+  source:
+    - docs/REE_failure_modes.md
+    - docs/architecture/three_loop_learning_channels.md
+
+- id: EXT-004
+  title: "Goal misgeneralization: causal consequences do not carry forward across contexts."
+  claim_type: external_failure_mode
+  subject: llm.goal_misgeneralization
+  polarity: asserts
+  status: candidate
+  ree_mechanism:
+    - ARC-013  # commit boundary: authority transition for irreversible actions
+    - IMPL-005 # REE failure mode taxonomy: residue persistence as structural memory
+    - INV-008  # residue couples into selection across episodes
+  ree_failure_mode_analog: "moral_amnesia"
+  notes: >
+    LLMs and standard RL agents have no mechanism for the causal consequences of
+    prior actions to penalise analogous actions in novel contexts -- each episode
+    starts from a clean slate. Goal misgeneralization is a direct consequence: a
+    policy that worked in training contexts does not carry the cost of its failures
+    into deployment. REE's residue field persists the path-dependent curvature of
+    prior harm across contexts; the commit boundary makes irreversibility explicit
+    so that high-consequence actions trigger heightened evaluation rather than
+    routine selection.
+  registered: "2026-04-13"
+  source:
+    - docs/REE_failure_modes.md
+
+- id: EXT-005
+  title: "Causal attribution gap: language describes causation without a causal signature mechanism."
+  claim_type: external_failure_mode
+  subject: llm.causal_attribution
+  polarity: asserts
+  status: candidate
+  ree_mechanism:
+    - SD-003   # self-attribution via counterfactual E2: z_world(a_actual) - z_world(a_cf)
+    - SD-005   # z_self / z_world latent split enabling agent causal footprint
+  ree_failure_mode_analog: "spurious_residue"
+  notes: >
+    LLMs can produce fluent causal language ("I caused X") without any internal
+    mechanism that computes a genuine causal signature distinguishing agent-caused
+    from world-caused state changes. This enables both false attribution (claiming
+    credit or blame for events the agent did not cause) and false denial (failing
+    to recognise genuine causal responsibility). REE addresses this via SD-003:
+    the counterfactual difference E2(z_t, a_actual) - E2(z_t, a_cf) is the agent's
+    causal signature in latent space, grounding attribution in a computable quantity
+    rather than linguistic convention.
+  registered: "2026-04-13"
+  source:
+    - docs/architecture/v2_v3_transition_roadmap.md
+
+- id: EXT-006
+  title: "Other-model collapse: no homologous model of other agents' internal states."
+  claim_type: external_failure_mode
+  subject: llm.theory_of_mind
+  polarity: asserts
+  status: candidate
+  ree_mechanism:
+    - ARC-010  # other-model architecture: homologous model of other agents
+    - INV-008  # residue couples predicted-other-degradation into selection
+  ree_failure_mode_analog: "other_model_collapse"
+  notes: >
+    LLMs simulate theory-of-mind via pattern completion over text rather than
+    maintaining a running structural model of another agent's latent state. This
+    means predicted-other-degradation never couples into the agent's own selection
+    process -- the agent cannot feel another agent's situation as structurally
+    continuous with its own. REE's kappa coupling (ARC-010) requires a homologous
+    model of other agents such that harm to others registers as a penalty in the
+    same residue field that governs the agent's own trajectory selection.
+  registered: "2026-04-13"
+  source:
+    - docs/architecture/language/language_failure_modes.md
+    - README.md
+
+- id: EXT-007
+  title: "Context amnesia: no consolidation mechanism for a persistent world-model across interactions."
+  claim_type: external_failure_mode
+  subject: llm.context_amnesia
+  polarity: asserts
+  status: candidate
+  ree_mechanism:
+    - ARC-007  # hippocampal map: viability terrain persistence
+    - MECH-092 # SWR-equivalent replay for viability map consolidation
+    - ARC-005  # residue field: persistent path-dependent curvature
+  ree_failure_mode_analog: "moral_amnesia"
+  notes: >
+    LLMs have no offline consolidation phase: the context window is discarded after
+    each session and there is no mechanism for slow, sleep-like integration of
+    experience into a persistent world model. Each interaction begins from static
+    weights. REE's hippocampal consolidation (ARC-007, MECH-092) provides an
+    offline phase in which viability terrain is updated via SWR-equivalent replay,
+    allowing the agent's model of the world -- including its residue field -- to
+    accumulate across episodes in a way that shapes future trajectory selection.
+  registered: "2026-04-13"
+  source:
+    - docs/REE_failure_modes.md
+    - docs/architecture/hippocampal_systems.md
