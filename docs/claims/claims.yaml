@@ -6085,6 +6085,16 @@
     is untested. Non-contributory FAILs (EXQ-235) removed from scoring but indicate z_goal
     alignment failure persists outside the wanting pathway. Status: pending_retest_after_substrate
     (gate: EXQ-247 SD-011/SD-012 integration).
+    EXQ-354 PASS 3/3 seeds (2026-04-12): wanting/liking dissociation confirmed with CORRECT
+    ResourceEncoder pathway (SD-015 wiring bug fixed: use_resource_encoder set directly on
+    cfg.latent, not via from_dims kwarg). wanting_l1_fraction 0.96/0.935/0.985 vs
+    liking_l1_fraction 0.43/0.54/0.43; dissociation_delta 0.53/0.40/0.55 (all >> 0.10
+    threshold). resource_rate floor satisfied all seeds. This is the first PASS with the
+    correct SD-015 substrate -- EXQ-074f/234 used z_world fallback seeding. Governance
+    (2026-04-13): accepted as supports for MECH-112 behavioral dissociation arm. Illusory
+    conflict risk note stands: z_goal latent structure (EXQ-328a) still fails at 0.0 norm
+    (SD-012 homeostatic drive substrate gap). Split: behavioral wanting/liking circuit PASS;
+    z_goal latent structure FAIL (separate substrate requirement).
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."

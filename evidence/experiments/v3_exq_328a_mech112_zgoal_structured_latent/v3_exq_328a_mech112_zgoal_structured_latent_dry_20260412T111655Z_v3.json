@@ -8,11 +8,7 @@
   ],
   "experiment_purpose": "evidence",
   "supersedes": "V3-EXQ-328",
-  "evidence_direction_per_claim": {
-    "MECH-112": "does_not_support",
-    "SD-012": "does_not_support"
-  },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "outcome": "FAIL",
   "criteria": {
     "c1_goal_seeded_at_contact": false,
@@ -147,5 +143,6 @@
     "min_window_steps": 55
   },
   "timestamp_utc": "20260412T111655Z",
-  "bug_fix_note": "EXQ-328 seeded z_goal from obs_body[11] (pre-step benefit_exposure EMA). At resource contact, EMA has not yet been updated -- obs_body is from BEFORE env.step(). This gave benefit_raw~0, effective_benefit<threshold, so seeding rarely fired. Fix: use raw harm_signal from env.step() directly. Also added MIN_WINDOW_STEPS guard so t=50 window always completes."
+  "bug_fix_note": "EXQ-328 seeded z_goal from obs_body[11] (pre-step benefit_exposure EMA). At resource contact, EMA has not yet been updated -- obs_body is from BEFORE env.step(). This gave benefit_raw~0, effective_benefit<threshold, so seeding rarely fired. Fix: use raw harm_signal from env.step() directly. Also added MIN_WINDOW_STEPS guard so t=50 window always completes.",
+  "evidence_direction_note": "Smoke/dry-run invocation during script development on 2026-04-12. Run completed in <2 min; insufficient training depth for genuine evidence. Classified non_contributory in governance-2026-04-13."
 }
