@@ -1,119 +1,119 @@
 # Diagnose-Errors Staging Report
 
-**Session**: ree-diagnose-queue-2026-04-13  
-**Generated**: 2026-04-13T15:21:42Z  
-**Mode**: STAGING (scripts drafted, NOT queued — human confirmation required)
+**Session**: cowork-2026-04-14-b / diagnose-errors wave 1
+**Generated**: 2026-04-14T06:00:00Z
+**Mode**: STAGING (headless, autonomous)
 
 ---
 
 ## Summary
 
-5 unaddressed ERRORs identified in `runner_status.json`. All dated March 2026. Root cause for all: **old substrate API incompatibility** — error messages were not captured by the early runner.
+**51 total ERRORs analyzed** across two sessions (2026-04-13 and 2026-04-14).
+
+### This session (2026-04-14): 46 new errors
+
+All 46 new errors are **superseded by later successful iterations**. No new fix scripts required.
+
+| Category | Count |
+|----------|-------|
+| Superseded by later PASS/FAIL/UNKNOWN successor | 42 |
+| Superseded by later PASS/FAIL (paired, both ERROR) | 2 (onboard) |
+| Onboarding smoke tests (non-scientific) | 2 |
+| **Total new errors this session** | **46** |
+
+### Prior session (2026-04-13): 5 errors
 
 | Failed ID | Proposed Fix | Status |
 |-----------|-------------|--------|
-| V3-EXQ-008 | None | SKIP — claim superseded (SD-003 redesigned) |
-| V3-EXQ-038 | V3-EXQ-396 | Awaiting confirmation |
-| V3-EXQ-046 | V3-EXQ-397 | Awaiting confirmation |
+| V3-EXQ-008 | None | SKIP -- claim superseded (SD-003 redesigned) |
+| V3-EXQ-038 | V3-EXQ-396 | **Awaiting human confirmation** |
+| V3-EXQ-046 | V3-EXQ-397 | **Awaiting human confirmation** |
 | V3-EXQ-046b | Covered by V3-EXQ-397 | (re-queue of EXQ-046) |
-| V3-EXQ-057 | None | SKIP — claim superseded (SD-010 validated) |
-
-**Fix scripts written (STAGED, not queued)**:
-- `ree-v3/experiments/v3_exq_396_arc016_precision_sweep.py`
-- `ree-v3/experiments/v3_exq_397_arc007_path_memory_ablation.py`
+| V3-EXQ-057 | None | SKIP -- claim superseded (SD-010 validated) |
 
 ---
 
-## Detailed Diagnoses
+## Error Chain Analysis (2026-04-14 session)
 
-### V3-EXQ-008 — SKIP (Obsolete/Superseded)
+The 46 new errors fall into chains where later lettered iterations ran to completion:
 
-**Claim**: SD-003 z_world counterfactual approach  
-**Error date**: March 2026  
-**Root cause**: Old substrate API incompatibility. Uses deprecated `CausalGridWorld` (not V2) with a custom 3x3 observation subclass (`SmallViewEnv`). The SD-003 z_world counterfactual approach tested here is obsolete.  
-**Why no fix needed**: EXQ-030b PASS validated the z_world architecture; SD-003 was subsequently redesigned to use the z_harm_s pipeline (ARC-033, E2HarmSForward). The current SD-003 evidence path is EXQ-329/330a/353 using the z_harm_s forward model. No new experiment needed for this specific design.  
-**Disposition**: SKIP
+### Claims with PASS evidence from successor runs
 
----
+| Error IDs | Successor | Claim |
+|-----------|-----------|-------|
+| V3-EXQ-074, 074b, 074c, 074d | 074f PASS | MECH-112/117 wanting/liking dissociation |
+| V3-EXQ-248a | 248b PASS (248 also PASS) | Q-034 hazard/resource ratio |
+| V3-EXQ-249a | 249b PASS (249 also PASS) | INV-053 depression attractor |
+| V3-EXQ-251a | 251b PASS (251 also PASS) | MECH-186 VALENCE_WANTING floor |
+| V3-EXQ-254a, 254b | 254c PASS (254 also PASS) | INV-052 single mechanism sufficiency |
+| V3-EXQ-257, 257a | 257b PASS | SD-018 resource proximity supervision |
 
-### V3-EXQ-038 → V3-EXQ-396 — Awaiting Confirmation
+### Claims with FAIL evidence from successor runs
 
-**Claim**: ARC-016 (dynamic precision tracks environment stability), MECH-093 (z_beta modulates heartbeat frequency)  
-**Error date**: 2026-03-19  
-**Root cause**: Old substrate API incompatibility. Likely cause: `update_running_variance()`, `SelectionResult.committed`, or related E3 methods did not exist in the early March substrate. No error message preserved.  
-**Fix applied**: New EXQ ID (V3-EXQ-396) to bypass runner skip. Script content identical to EXQ-038; substrate now compatible.  
-**API verification** (all confirmed present in current ree_core):
-  - `agent.e3.update_running_variance()`
-  - `SelectionResult.committed`
-  - `e3._running_variance` direct assignment
-  - `generate_candidates_random()`
-**Smoke test**: Passed (2026-04-13)  
-**Draft script**: `experiments/v3_exq_396_arc016_precision_sweep.py`  
-**Proposed queue entry**:
-  - queue_id: V3-EXQ-396
-  - priority: 5
-  - machine_affinity: DLAPTOP-4.local
-  - estimated_minutes: 150
-  - seeds: 1, conditions: 10
-  - supersedes: V3-EXQ-038
+| Error IDs | Successor | Claim |
+|-----------|-----------|-------|
+| V3-EXQ-051b | 051c FAIL | Q-007 z_beta volatility injection |
+| V3-EXQ-071 | 071b FAIL | SD-003 rollout-batched attribution |
+| V3-EXQ-071c | 071d FAIL | SD-003 world_forward equivalence |
+| V3-EXQ-072 | 072b FAIL | Q-021 behavioral flatness |
+| V3-EXQ-073 | 073b FAIL | MECH-111 novelty signal |
+| V3-EXQ-074, 074b, 074c, 074d | 074e FAIL, 074f PASS | MECH-112/117 (chain) |
+| V3-EXQ-075, 075b, 075c | 075d FAIL | MECH-113 self-maintenance |
+| V3-EXQ-076, 076b, 076c | 076d/e/f FAIL | MECH-116/ARC-032 E1 goal conditioning |
+| V3-EXQ-084, 084b, 084c | 084d FAIL | Q-022/MECH-118/119 D_eff/Hopfield |
+| V3-EXQ-138 | 138a FAIL | ARC-030 Go/NoGo symmetry |
+| V3-EXQ-192 | 192a FAIL | MECH-075 hippocampal-VTA novelty |
+| V3-EXQ-225a, 225b | 225c FAIL | MECH-112 goal lift redesign |
+| V3-EXQ-237b, 237c | 237d FAIL | MECH-163 dual system discrimination |
+| V3-EXQ-238a, 238b | 238c FAIL | SD-012 drive weight ablation |
+| V3-EXQ-240 | 240a FAIL | ARC-038 waking consolidation probe |
+| V3-EXQ-253a, 253b | 253c FAIL | MECH-188 z_goal PFC injection |
+| V3-EXQ-260, 260a | 260b FAIL | SD-020 z_harm_a surprise PE training |
+| V3-EXQ-261, 261a | 261b FAIL | SD-021 descending pain modulation |
+| V3-EXQ-262, 262a | 262b FAIL | MECH-220 cross-stream harm hub |
 
----
+### Special cases
 
-### V3-EXQ-046 + V3-EXQ-046b → V3-EXQ-397 — Awaiting Confirmation
-
-**Claim**: ARC-007 (path memory: hippocampal proposals navigate residue-field terrain)  
-**Error dates**: EXQ-046: 2026-03-20, EXQ-046b: 2026-03-22  
-**Root cause**: Old substrate API incompatibility. V3-EXQ-046b was a re-queue of the same script after EXQ-046 errored. Both share the same root cause.  
-**Fix applied**: New EXQ ID (V3-EXQ-397) covering both predecessors. Script content identical to EXQ-046; substrate now compatible.  
-**API verification** (all confirmed present in current ree_core):
-  - `agent.hippocampal._get_terrain_action_object_mean()`
-  - `residue_field.evaluate_trajectory()`
-  - `generate_candidates_random()`
-  - `Trajectory.get_world_state_sequence()`
-**Smoke test**: Passed (2026-04-13)  
-**Draft script**: `experiments/v3_exq_397_arc007_path_memory_ablation.py`  
-**claim_ids change**: Original EXQ-046 tagged `["ARC-007", "SD-004"]`. SD-004 removed — it is an architectural prerequisite already implemented, not the variable being measured. The experiment specifically tests whether ablating the residue field degrades hippocampal proposal quality (ARC-007).  
-**Proposed queue entry**:
-  - queue_id: V3-EXQ-397
-  - priority: 5
-  - machine_affinity: DLAPTOP-4.local
-  - estimated_minutes: 120
-  - seeds: 1, conditions: 3
-  - supersedes: V3-EXQ-046b
+| Error IDs | Successor | Notes |
+|-----------|-----------|-------|
+| V3-EXQ-250a | 250b UNKNOWN/INCONCLUSIVE | INV-054 phase-transition recovery: 0/3 PASS, 0/3 FAIL across seeds. Scientific finding (latency metric undefined). Both 250 and 250b returned INCONCLUSIVE. |
+| V3-EXQ-263 | 263a UNKNOWN (PASS), 263b UNKNOWN (FAIL) | MECH-216 E1 predictive wanting. UNKNOWN result type = runner captured text but could not determine formal status. Evidence present in summary fields. 263a/263b status may need result-type correction via separate review. |
+| V3-ONBOARD-smoke-EWIN-PC | -- | Non-scientific onboarding test. No fix needed. |
+| V3-ONBOARD-smoke-ree-cloud-1 | -- | Non-scientific onboarding test. No fix needed. |
 
 ---
 
-### V3-EXQ-046b — Covered by V3-EXQ-397
+## Pending Actions (Human Required)
 
-See V3-EXQ-046 above. EXQ-046b was a re-queue of the same script; both predecessors are superseded by V3-EXQ-397.
+### From prior session (2026-04-13) -- still awaiting confirmation:
+
+#### V3-EXQ-396 (fix for V3-EXQ-038)
+**Claim**: ARC-016 (dynamic precision tracks environment stability), MECH-093 (z_beta modulates heartbeat frequency)
+**Script**: `ree-v3/experiments/v3_exq_396_arc016_precision_sweep.py`
+**Smoke test**: Passed (2026-04-13)
+To queue:
+- queue_id: V3-EXQ-396, priority: 5, machine_affinity: DLAPTOP-4.local
+- estimated_minutes: 150, seeds: 1, conditions: 10
+- supersedes: V3-EXQ-038
+
+#### V3-EXQ-397 (fix for V3-EXQ-046 + V3-EXQ-046b)
+**Claim**: ARC-007 (path memory: hippocampal proposals navigate residue-field terrain)
+**Script**: `ree-v3/experiments/v3_exq_397_arc007_path_memory_ablation.py`
+**Smoke test**: Passed (2026-04-13)
+To queue:
+- queue_id: V3-EXQ-397, priority: 5, machine_affinity: DLAPTOP-4.local
+- estimated_minutes: 120, seeds: 1, conditions: 3
+- supersedes: V3-EXQ-046b
+
+### Optional review action:
+
+**V3-EXQ-263a/263b result type**: Both show `result=UNKNOWN` in runner_status.json with outcome strings in summary fields. If governance scoring needs formal PASS/FAIL status for MECH-216, these manifests may need manual result-type correction. Not urgent -- does not block other work.
 
 ---
 
-### V3-EXQ-057 — SKIP (Obsolete/Superseded)
+## EXQ ID Reservation
 
-**Claim**: SD-010 (nociceptive separation from reafference)  
-**Error date**: March 2026  
-**Root cause**: Old substrate API incompatibility. Imports `HarmEncoder` from `ree_core.latent.stack` — module still exists in current substrate, but original error likely related to early HarmEncoder API or env return format.  
-**Why no fix needed**: SD-010 was validated by EXQ-056c PASS and EXQ-058b PASS. The reafference isolation test in EXQ-057 is a more specific variant that was superseded when SD-010 was validated via a cleaner design.  
-**Disposition**: SKIP
-
----
-
-## Next Steps (Human Action Required)
-
-To activate the staged fixes, confirm and run:
-
-```bash
-# Review scripts:
-cat ree-v3/experiments/v3_exq_396_arc016_precision_sweep.py
-cat ree-v3/experiments/v3_exq_397_arc007_path_memory_ablation.py
-
-# Add to queue (or use /queue-experiment to add with validation):
-# V3-EXQ-396 — ARC-016 precision sweep
-# V3-EXQ-397 — ARC-007 path memory ablation
-```
-
-Both experiments target `DLAPTOP-4.local`. The runner will pick them up automatically in `--auto-sync --loop` mode.
+Reserved range 408-417 for this session. None consumed -- all errors were superseded, no new fix scripts needed.
 
 ---
 
