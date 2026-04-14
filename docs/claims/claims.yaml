@@ -14758,3 +14758,99 @@
     e2_r2_h10=-19063 vs e1_r2_h10=-377 (E2 catastrophically worse at h=10). Consistent
     across seeds 42, 7, 123. Full-run confirmation of dry-run result. Promoted to
     provisional (governance-2026-04-14). conf=0.809, 5 supports / 0 weakens.
+
+- id: MECH-232
+  title: "Dopaminergic modulation of hippocampal place coding at reward-associated locations produces representational expansion (higher information density, finer spatial resolution, more stable place fields), and this expansion -- not an explicit positive valence gradient -- is the mechanism by which approach valence enters hippocampal terrain."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.da_representational_expansion
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-14"
+  depends_on:
+    - ARC-007
+    - SD-004
+    - MECH-229
+  location: docs/architecture/hippocampal_valence_asymmetry.md#mech-232
+  notes: >
+    Derived from literature review of VTA-hippocampal dopaminergic pathway (2026-04-14).
+    Key evidence: Retailleau & Morris 2018 showed local D1 blockade prevents place cell
+    reorientation to reward-relevant features AND causes behavioral perseveration.
+    Lisman & Grace 2005 proposed the hippocampal-VTA loop where DA enhances LTP at
+    reward-associated locations. Wittmann 2005 provided human fMRI confirmation.
+    The mechanism is: dopamine does not add a positive valence tag to hippocampal
+    representations. Instead, it enhances the fidelity, stability, and associative
+    richness of place representations at reward-relevant locations. The approach
+    gradient is implicit in representational quality -- reward locations have more
+    detailed, more durable, more easily reactivated maps. This is fundamentally
+    different from the BLA pathway for threat, which writes explicit valence tags.
+    Testable prediction: in the V3 hippocampal module, DA-modulated representational
+    resolution at reward locations should produce approach behavior without requiring
+    an explicit positive gradient field.
+
+- id: MECH-233
+  title: "Threat and approach valence enter hippocampal terrain through mechanistically asymmetric pathways: BLA writes explicit negative valence via dedicated anxiety/avoidance cells (Jimenez 2018); VTA-DA enhances representational fidelity via LTP modulation and place field sharpening (Retailleau & Morris 2018). The behavioural outputs (avoidance, approach) appear similar but the encoding mechanisms are distinct."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.valence_encoding_asymmetry
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-14"
+  depends_on:
+    - ARC-007
+    - MECH-232
+    - MECH-229
+  location: docs/architecture/hippocampal_valence_asymmetry.md#mech-233
+  notes: >
+    Derived from literature review of BLA vs VTA hippocampal pathways (2026-04-14).
+    The asymmetry: (1) Threat valence is encoded via dedicated valence-coding cells
+    in ventral CA1 that project to LHA (Jimenez 2018). These are NOT place cells --
+    they encode emotional context. The BLA pathway writes explicit avoidance tags
+    that cannot be switched (Redondo 2014 showed BLA engrams resist valence reversal).
+    (2) Approach valence is encoded via dopaminergic modulation of place cell fidelity
+    in the hippocampal-VTA loop. No equivalent "reward cells" or "wanting cells" have
+    been found in hippocampus (Jimenez 2018 explicitly notes this absence).
+    Architectural implication for REE: the harm residue field (explicit negative
+    valence in hippocampal terrain) is biologically accurate and maps directly to
+    the BLA pathway. But a symmetric "wanting gradient" would be biologically
+    inaccurate -- the approach side works through a fundamentally different mechanism.
+    Testable prediction: ablating DA modulation of hippocampal resolution should
+    degrade approach behavior while leaving avoidance intact; ablating explicit
+    valence tags should degrade avoidance while leaving approach intact.
+
+- id: ARC-057
+  title: "Approach behavior toward reward locations emerges from the interaction of DA-mediated representational expansion (MECH-232) and an information-seeking (curiosity) drive operating on the hippocampal map. No explicit approach gradient or wanting field is required in hippocampal terrain."
+  claim_type: architectural_commitment
+  subject: hippocampus.curiosity_approach_emergence
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-14"
+  depends_on:
+    - MECH-232
+    - ARC-007
+    - SD-004
+  location: docs/architecture/hippocampal_valence_asymmetry.md#arc-057
+  notes: >
+    Key architectural insight from 2026-04-14 session. The curiosity/exploration drive
+    seeks information gain (novel or unexplored representational structure). DA-enhanced
+    representational expansion at reward locations creates MORE navigable structure at
+    those locations -- higher information density, more fine-grained distinctions, more
+    associative connections. The curiosity drive naturally follows available structure,
+    producing approach behavior as an emergent property rather than a commanded gradient.
+    The analogy: the agent does the same thing everywhere (explores available map
+    structure), but "available" is asymmetric because dopamine shaped the map. An
+    observer sees preferential navigation toward reward locations and infers an
+    attractive gradient, but there is no gradient -- there is more map.
+    Contrast with threat: BLA-tagged threat locations do not expand the map. They
+    are tagged with explicit avoidance valence, possibly with compressed representation
+    (fast detection, not fine detail). The curiosity drive encounters a wall, not more
+    space.
+    Sub-predictions: (1) DA re-sharpening on each reward encounter maintains the
+    representational expansion, keeping reward locations perpetually richer (wanting-
+    as-maintenance). (2) Already-expanded representations encode incoming resource
+    gradients at higher fidelity, enabling earlier detection from further away
+    (wanting-as-sensitivity). (3) When reward contingency ends and DA modulation
+    ceases, representational expansion decays and approach behavior extinguishes --
+    not because a gradient is removed but because the expansion is no longer maintained.
+    Testable: ablate DA modulation of hippocampal resolution while preserving the
+    curiosity drive. Approach behavior should degrade. Restore DA modulation while
+    ablating curiosity drive. Approach behavior should also degrade (both components
+    necessary). Neither alone sufficient.
