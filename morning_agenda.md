@@ -1,173 +1,179 @@
-# Morning Agenda — 2026-04-13
+# Morning Agenda -- 2026-04-14
 
-Generated: 2026-04-13T06:12:45Z (governance.sh freshly run)
+Generated: 2026-04-14T06:20:00Z
 
 ---
 
 ## Queue Status
 
-- **Total pending: 0** — ALERT: Queue is empty
-- ALERT: Queue low -- 0 pending experiments. Experiments should be queued immediately for the runner.
-- Last experiments ran: 2026-04-12 (dry/smoke runs 10:15-11:16, EXQ-354 real run 16:24)
+- **Total pending: 0** (Mac: 0 | PC: 0 | any: 0)
+- **ALERT: Queue is EMPTY -- experiments must be queued before the runner can do anything.**
+  The runner (DLAPTOP-4.local) is idle. Yesterday's session ran EXQ-326 as the last item
+  (completed 2026-04-14T00:45Z after ~10h). No follow-on experiments were queued.
+  Recommend: open a /queue-experiment or /cowork session to refill the queue.
 
 ---
 
-## Experiments Awaiting Review (8 indexed / 0 runner-only)
+## Experiments Awaiting Review (1 indexed / 1 runner-only)
 
-> **Important note on dry runs:** 7 of the 8 pending experiments have `_dry_` in their run IDs,
-> indicating they were executed as smoke tests (script validation runs), not full experimental
-> runs. Their metrics objects are empty `{}`. Their FAIL outcomes confirm substrate gaps still
-> present but should not be weighted as independent experimental evidence. EXQ-354 (no `_dry_`)
-> is the only genuine scientific run.
+### [V3-EXQ-326] -- v3_exq_326_wanting_gradient_nav_fix -- FAIL
 
----
-
-### [EXQ-354] -- mech112_wanting_liking_confirmation -- PASS
-- **Claims tested:** MECH-112 (candidate) -- E3 structured goal latent / behavioral
-  wanting-liking dissociation
-- **Key metrics:** wanting_l1_fraction=0.96, liking_l1_fraction=0.47, dissociation=0.49,
-  wanting_resource_rate=0.15
-- **Classification:** evidence (real run, not dry)
-- **Governance impact if confirmed:** Supports MECH-112 behavioral dissociation arm. wanting
-  signal reliably exceeds liking fraction (wanting_l1=0.96 >> liking_l1=0.47). Strong signal.
-  Adds to "supports" side of MECH-112 conflict-resolution pile.
-- **Note:** EXQ-328a (same session, same day) FAILED the latent structure aspect of MECH-112.
-  These may be testing complementary sub-mechanisms (behavioral dissociation vs. z_goal
-  structural representation). Atomic split of MECH-112 worth considering.
-
----
-
-### [EXQ-326] x3 -- wanting_gradient_nav_fix -- FAIL (3/6 criteria)
-*(Three runs: 10:15, 10:17, 10:19 UTC -- all dry)*
+- **Run ID:** `v3_exq_326_wanting_gradient_nav_fix_20260413T144759Z_v3`
+- **Supersedes:** V3-EXQ-259 (wanting-gradient navigation fix -- prior iteration)
 - **Claims tested:**
-  - SD-015 (candidate -- z_resource encoder): `does_not_support`
-  - SD-012 (candidate -- homeostatic drive): `does_not_support`
-  - MECH-216 (provisional -- e1_predictive_wanting): `supports`
-- **Key metrics:** Empty -- dry run
-- **Classification:** diagnostic smoke test confirming SD-015 and SD-012 substrate gaps persist
-- **Governance impact if confirmed:** SD-015 and SD-012 continue to fail under nav-fix script.
-  Three runs in 4 minutes is a repeated smoke test, not independent evidence. MECH-216 provisional
-  status is incidentally corroborated.
-- **Note:** 3 near-identical runs in 4 minutes = repeated smoke-test invocations during script
-  development. Treat as a single diagnostic datapoint.
+  - **SD-015** (status: candidate, overall_conf=0.700, 7 entries: 4 supports / 3 weakens)
+    _"Goal-directed navigation requires a dedicated z_resource encoder that captures
+    object-type features separately from z_world."_
+    This run: **does_not_support**
+  - **MECH-216** (status: provisional, overall_conf=0.837, 5 entries: 5 supports / 0 weakens)
+    _"e1_predictive_wanting"_
+    This run: **supports**
+  - **SD-012** (status: candidate, overall_conf=0.745, 14 entries: 9 supports / 4 weakens)
+    _"Goal-directed behavior requires homeostatic drive modulation: z_goal seeding demands
+    drive-scaled benefit exposure."_
+    This run: **does_not_support**
+
+- **Key metrics (3 seeds: 42, 7, 13):**
+  - C1 wanting_populated: PASS (all seeds -- valence_wanting_mean = 108 / 32 / 13 respectively)
+  - C3 benefit_ratio: FAIL -- only seed 13 passes (ratio 2.53 > threshold); seeds 42 and 7
+    give ratios 1.008 and 0.713 (near parity or below)
+  - MECH-216 write_count healthy (21k--25k writes across seeds WITH_WANTING; 0 in ABLATED)
+  - n_seeding_events low: 8 / 2 / 3 across seeds (SD-012 seeding quality concern)
+  - schema_salience_mean ~0.39--0.47 WITH_WANTING; 0.0 ABLATED (good separation)
+
+- **Classification:** evidence (multi-claim: SD-015, MECH-216, SD-012)
+
+- **Governance impact if confirmed:**
+  - MECH-216 (e1_predictive_wanting): adds one more support to an already-high-confidence
+    provisional claim. Low impact directionally, but confirms wanting signal is being generated.
+  - SD-015: adds a weakens entry. Reduces experimental_confidence from 0.586. Consistent with
+    the existing evidence split (now 4 supports / 4 weakens with this run). Will not change
+    status alone, but continues to flag that resource encoding gap is real.
+  - SD-012: adds a 5th weakens entry (existing: 9 supports / 4 weakens). Low n_seeding_events
+    (2--8) is the likely culprit -- consistent with the SD-012 diagnosis that drive-scaled
+    seeding hasn't been solved. This is diagnostic confirmation, not a claim refutation.
+
+- **Interpretation note:** Failure mode is consistent with prior SD-012 failures (weak z_goal
+  seeding). MECH-216 wanting circuitry is functional. The experiment confirms SD-015/SD-012
+  architecture gaps still exist rather than refuting the claims. Logical follow-on: a more
+  targeted SD-015 encoder experiment or an SD-012 seeding mechanism fix (EXQ-326a candidate).
 
 ---
 
-### [EXQ-328a] x2 -- mech112_zgoal_structured_latent -- FAIL (5/10 criteria)
-*(Two runs: 10:25, 11:16 UTC -- both dry)*
-- **Claims tested:**
-  - MECH-112 (candidate): `does_not_support` (latent z_goal structure)
-  - SD-012 (candidate): `does_not_support`
-- **Key metrics:** Empty -- dry run
-- **Classification:** diagnostic -- z_goal latent structure aspect (distinct from behavioral
-  dissociation tested in EXQ-354)
-- **Governance impact if confirmed:** Adds opposing evidence for MECH-112 latent representation
-  arm. Creates intra-MECH-112 split: EXQ-354 (behavioral) PASS vs EXQ-328a (latent) FAIL.
-  SD-012 failure consistent with homeostatic drive substrate gap in substrate_queue.json.
+### [V3-EXQ-326 runner-only] -- UNKNOWN -- needs mark discussed (or /diagnose-errors)
+
+- **Queue ID:** V3-EXQ-326 (runner_status result: UNKNOWN, output_file empty)
+- **Context:** Same experiment as the FAIL above. Runner completed (2026-04-14T00:45Z, ~9.97h
+  on DLAPTOP-4.local) and flat JSON was written to evidence directory, but `output_file` in
+  runner_status is empty -- hence UNKNOWN classification in the runner.
+- **Diagnosis:** Likely a runner output_file path gap -- the flat JSON was written via the
+  experiment's own write path but not registered in runner_status. The FAIL manifest and flat
+  JSON are present and valid. This is an instrumentation issue, not a missing result.
+- **Recommended action:** Mark V3-EXQ-326 as discussed in `discussed_experiment_dirs`
+  (the real result is captured in the indexed FAIL run above). Or run /diagnose-errors
+  to confirm no deeper issue.
 
 ---
 
-### [EXQ-330a] -- sd013_contrastive_counterfactual_frac05 -- FAIL
-*(Single run: 10:20 UTC -- dry)*
-- **Claims tested:**
-  - SD-013 (candidate -- E2_harm_s counterfactual training): `does_not_support`
-  - ARC-033 (candidate -- E2_harm_s forward model architecture): `supports`
-- **Key metrics:** Empty -- dry run
-- **Classification:** diagnostic (SD-013 substrate gap) + evidence corroboration (ARC-033)
-- **Governance impact if confirmed:** SD-013 counterfactual perturbation training still not
-  producing unbiased signal at frac=0.5. ARC-033 per-claim override supports architecture.
+## Errors to Diagnose (1 scientific / 2 onboarding smoke)
+
+- **V3-EXQ-008** (SD-003) -- ERROR -- no lettered successor queued or completed
+  - Title: "SD-003 Larger World + 3x3 Observation"
+  - Old ERROR from early V3 series. SD-003 is highly contested (conflict_ratio=0.788, 70
+    entries). A /diagnose-errors pass should confirm whether a fix is still needed or if
+    later experiments cover the science.
+
+- **V3-ONBOARD-smoke-EWIN-PC** -- ERROR -- Eoin's onboarding smoke test
+  - No scientific claim. Mark as discussed when EWIN-PC onboarding is addressed.
+
+- **V3-ONBOARD-smoke-ree-cloud-1** -- ERROR -- ree-cloud-1 (Hetzner) onboarding smoke
+  - No scientific claim. Mark as discussed when cloud runner is revisited.
 
 ---
 
-### [EXQ-353] -- arc033_sd003_interventional_vs_observational -- FAIL
-*(Single run: 10:24 UTC -- dry)*
-- **Claims tested:**
-  - ARC-033 (candidate): `supports`
-  - SD-003 (validated): `supports`
-  - SD-013 (candidate): `does_not_support`
-- **Key metrics:** Empty -- dry run
-- **Classification:** diagnostic (SD-013 gap) + evidence corroboration (ARC-033, SD-003)
-- **Governance impact if confirmed:** SD-013 is the consistent failure point across EXQ-330a
-  and EXQ-353. ARC-033 and SD-003 accumulate per-claim support from interventional design.
-  SD-003 already validated -- additional corroboration only.
+## Governance Agenda (14 decisions -- all applied, no pending_user items)
 
----
+All 14 governance decisions are already applied. No user decisions are blocking.
 
-## Errors to Diagnose (0)
+**Active conflicts requiring eventual resolution (17 claims):**
 
-All 51 ERROR entries in runner_status.json have successors (lettered iterations or completed
-follow-up runs). No unresolved errors requiring /diagnose-errors.
+| Claim | Status | Conflict ratio | Supports / Weakens |
+|-------|--------|---------------|--------------------|
+| ARC-024 | candidate | 1.000 | 7 / 7 |
+| MECH-098 | candidate | 1.000 | 7 / 7 |
+| SD-007 | candidate | 1.000 | 7 / 7 |
+| ARC-016 | active | 0.952 | 10 / 11 |
+| MECH-071 | candidate | 0.952 | 11 / 10 |
+| SD-003 | candidate | 0.788 | 13 / 20 |
+| SD-005 | candidate | 0.762 | 8 / 13 |
+| SD-004 | candidate | 0.750 | 3 / 5 |
+| MECH-090 | candidate | 0.727 | 7 / 4 |
+| ARC-007 | active | 0.667 | 3 / 6 |
+| ARC-018 | candidate | 0.667 | 2 / 1 |
+| MECH-102 | candidate | 0.462 | 3 / 10 |
+| MECH-089 | candidate | 0.545 | 8 / 3 |
+| MECH-033 | candidate | 0.400 | 4 / 1 |
+| MECH-093 | candidate | 0.400 | 1 / 4 |
+| MECH-095 | candidate | 0.400 | 4 / 1 |
+| MECH-099 | candidate | 0.500 | 3 / 1 |
 
----
+Most conflicts are V3-pending -- new experiments (not governance decisions) are the resolution
+path. ARC-016, SD-003, MECH-071 are the most active (high entry counts, high conflict ratio).
 
-## Governance Agenda (0 pending_user decisions)
+**Pipeline step failure flag:**
+governance_agenda reports `step_failures=1` (governance_maintenance_pipeline, autonomy_triage
+recommends `investigate_and_rerun`). No obvious failure output in today's governance.sh run --
+may be a stale count. Re-run governance.sh if downstream artifacts appear stale.
 
-All 35+ recommendations in promotion_demotion_recommendations.md have `decision_status: applied`.
-No governance decisions queued for user review.
+**Dispatch approval needed:**
+28 high-priority proposals are ready for weekly export (`approved_for_cycle=false`).
+Requires user approval before export.
 
-Current landscape (informational -- no action needed):
-- `promote_to_provisional` (applied 2026-03-29): MECH-057a
-- `hold_candidate_resolve_conflict` (applied): ARC-026, ARC-030, ARC-032, ARC-033, ARC-041,
-  ARC-042, INV-054, MECH-070, MECH-073, MECH-075, MECH-093, MECH-098, MECH-099, MECH-111,
-  MECH-112, MECH-116, MECH-118, MECH-120, MECH-128, MECH-150, MECH-153, MECH-155, MECH-165,
-  MECH-186, MECH-188, SD-011, SD-012, SD-013, SD-015
-- `narrow_open_question` (applied): Q-019, Q-021, Q-022, Q-023, Q-024, Q-033
-- `hold_pending_v3_substrate` (applied): MECH-072, MECH-135
+**2 unprocessed thought intakes (from 2026-03-24):**
+- `thought_intake_2026-03-24_empathy_multiagent_ethics.md`
+- `thought_intake_2026-03-24_mech071_goal_latent_non_contributory_evidence.md`
+Growing stale (3 weeks old). Flag for next /governance or /cowork session.
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-| # | Claim | Priority | Subject | Existing dir? |
-|---|-------|----------|---------|---------------|
-| 1 | SD-013 | high | E2_harm_s counterfactual perturbation training requirement | No -- top priority |
-| 2 | Q-036 | medium | (evidence_backlog item) | No |
-| 3 | SD-019 | medium | (evidence_backlog item) | No |
-| 4 | SD-022 | medium | (evidence_backlog item) | No |
-| 5 | ARC-028 | medium | (evidence_backlog item) | No |
+All top backlog items are `medium` priority. None have existing targeted_review directories.
 
-Also in medium backlog: MECH-057 (no dir), SD-003-prereq (targeted_review_sd_003 exists).
+| # | Claim | Subject | Priority | Existing entries |
+|---|-------|---------|----------|-----------------|
+| 1 | Q-036 | What variables beyond temporal integration drive affective load in harm stream? | medium | 0 |
+| 2 | SD-019 | affective_harm_nonredundancy_constraint | medium | 0 |
+| 3 | SD-022 | Directional limb damage for genuine z_harm_s / z_harm_body | medium | 0 |
+| 4 | ARC-028 | HippocampalModule trajectory completion signal -> BetaGate wiring | medium | 0 |
+| 5 | MECH-229 | E3 wanting/liking behavioral dissociation | medium | 0 |
 
-SD-013 is the clear top target: persistent dry-run failure today (EXQ-330a + EXQ-353), high
-backlog priority, no existing targeted_review_sd_013 directory. A /lit-pull SD-013 session
-would complement upcoming SD-013 experimental fixes.
+SD-022 (registered 2026-04-09) would benefit from early literature grounding before
+experiments are designed. ARC-028 connects directly to upcoming BetaGate / hippocampal work.
 
 ---
 
 ## Serve.py Status
 
-- RUNNING on port 8000
-
----
-
-## Key Priorities for Today
-
-1. **Queue experiments -- CRITICAL.** Queue is empty.
-   - EXQ-330b: SD-013 fix (counterfactual perturbation signal not reaching threshold; run
-     /diagnose-errors on EXQ-330a first to identify root cause)
-   - EXQ-326a: nav-fix follow-up for SD-015 / SD-012 gaps
-   - EXQ-328b: mech112 z_goal latent structure with SD-012 homeostatic fix
-   - Note: EXQ-321a and EXQ-325a were written in yesterday's cowork session -- check whether
-     they are actually present in the queue (queue shows 0 entries; these may have been removed
-     after dry-run failures)
-
-2. **Review EXQ-354 PASS.** Mark as reviewed, accept MECH-112 behavioral supports. Note the
-   MECH-112 behavioral/latent split and decide whether atomic split is warranted.
-
-3. **Batch-review dry runs (EXQ-326 x3, EXQ-328a x2, EXQ-330a, EXQ-353).** Quick batch
-   classification as non_contributory (dry runs, no real metrics). They confirm substrate gaps
-   are still active; no new scientific signal.
-
-4. **Consider /lit-pull SD-013.** Highest-priority unmet literature target.
+- **RUNNING** on port 8000 (Python PID 48099)
 
 ---
 
 ## Blocked Items
 
-None. No TASK_CLAIMS collisions. All previous claims are `done`.
+None. No TASK_CLAIMS collisions detected. All prior claims are `done`.
+
+ree-v3 `git pull` failed with `fatal: bad object refs/heads/main 2` (transient network error).
+Local repo is current at commit 4f1823b (2026-04-13: V3-EXQ-407 MECH-231 discriminative pair).
 
 ---
 
-*Pipeline: governance.sh run at 06:11 UTC. 8 new run-packs synced. 445 claims total.
-ree-v3 pull encountered transient git error (bad object refs/heads/main 2) but local repo
-shows up to date with origin/main -- no data loss.*
+## Recommended Session Priorities
+
+1. **Queue new experiments** (queue is EMPTY -- highest urgency)
+   - Logical follow-ons from EXQ-326: SD-015 z_resource encoder targeted test, or
+     SD-012 seeding mechanism fix (EXQ-326a). Alternatively advance SD-022/SD-023 substrate.
+2. **Review EXQ-326 FAIL** during /governance (mark reviewed in review_tracker.json)
+3. **Mark V3-EXQ-326 UNKNOWN as discussed** in review_tracker.json `discussed_experiment_dirs`
+4. **Dispatch approval** -- 28 high-priority proposals ready for weekly export
+5. **Process 2 stale thought intakes** from 2026-03-24
