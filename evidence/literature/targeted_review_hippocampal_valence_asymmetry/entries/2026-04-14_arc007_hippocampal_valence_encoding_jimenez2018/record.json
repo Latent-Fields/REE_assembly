@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_valence_asymmetry",
+  "entry_id": "2026-04-14_arc007_hippocampal_valence_encoding_jimenez2018",
+  "timestamp_utc": "2026-04-14T18:30:00Z",
+  "claim_ids_tested": ["ARC-007"],
+  "source": {
+    "title": "Anxiety Cells in a Hippocampal-Hypothalamic Circuit",
+    "authors": ["Jessica C Jimenez", "Katy Su", "Alexander R Goldberg", "Victor M Luna", "Jeremy S Biane", "Gokhan Ordek", "Pengcheng Zhou", "Samantha K Ong", "Matthew A Wright", "Larry Zweifel", "Liam Paninski", "Rene Hen", "Mazen A Kheirbek"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.01.016"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Demonstrates that the hippocampus itself encodes valence (anxiety/avoidance), not just neutral context for amygdala to label. Ventral CA1 contains 'anxiety cells' that drive avoidance via the vCA1->LHA pathway. This challenges the traditional view that hippocampus only provides context. For REE, it means the harm residue field having valence directly in the hippocampal terrain is biologically accurate. But the paper only addresses negative valence (anxiety), not approach/wanting — so it speaks to one half of the asymmetry.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Anxiety cells were enriched in vCA1->LHA projection neurons but NOT in vCA1->BA projection neurons. The amygdala-projecting hippocampal cells were context-encoding, not valence-encoding."],
+  "tags": ["arc_007", "hippocampus", "valence_encoding", "anxiety", "avoidance", "ventral_ca1", "calcium_imaging"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus encodes not only neutral but also valence-related contextual information. Ventral CA1 contains anxiety cells activated by anxiogenic environments that are required for avoidance behaviour, enriched in vCA1->LHA projections.",
+    "ree_translation": "The REE residue field (harm avoidance terrain in ARC-007) is biologically grounded: the hippocampus does encode negative valence directly, not just neutral context. The vCA1->LHA pathway is a direct route for hippocampal avoidance signals, distinct from the context->amygdala pathway. This supports the idea that harm/dread CAN be encoded directly in hippocampal terrain. The asymmetry question: no equivalent 'reward cells' or 'wanting cells' have been found in hippocampus with this approach — the positive/approach side appears to work through a different mechanism (dopaminergic modulation rather than dedicated approach-coding cells).",
+    "mapping_caveat": "The paper only addresses negative valence (anxiety). It does not test for positive/approach valence cells. The vCA1 anxiety cells are in ventral hippocampus, which has different connectivity and function from dorsal hippocampus (where place cells dominate). The mapping to REE's residue field (which is more dorsal/spatial in conception) requires bridging the dorsal-ventral functional gradient.",
+    "source_context": "Mice, freely moving calcium imaging (miniature microscopes) and optogenetics in ventral CA1, testing in elevated plus maze and open field (anxiogenic environments)."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.25,
+    "notes": "Excellent methodology (calcium imaging + optogenetics + projection-specific analysis). Mapping to REE's spatial terrain is indirect because the anxiety cells are in ventral CA1 and the environments are aversive contexts not navigational grids."
+  }
+}

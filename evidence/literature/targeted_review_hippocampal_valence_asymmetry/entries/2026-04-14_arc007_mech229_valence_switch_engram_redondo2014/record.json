@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_valence_asymmetry",
+  "entry_id": "2026-04-14_arc007_mech229_valence_switch_engram_redondo2014",
+  "timestamp_utc": "2026-04-14T18:30:00Z",
+  "claim_ids_tested": ["ARC-007", "MECH-229"],
+  "source": {
+    "title": "Bidirectional switch of the valence associated with a hippocampal contextual memory engram",
+    "authors": ["Roger L Redondo", "Joshua Kim", "Autumn L Arons", "Steve Ramirez", "Xu Liu", "Susumu Tonegawa"],
+    "year": 2014,
+    "venue": "Nature",
+    "doi": "10.1038/nature13725"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct optogenetic manipulation of engram cells in DG and BLA with valence reversal paradigm. High source quality (Nature, Tonegawa lab, rigorous controls). The key finding — DG engrams are valence-flexible while BLA engrams are valence-fixed — maps directly onto the REE distinction between hippocampal terrain (which should be updatable) and amygdala valence tagging (which is more rigid). Moderate mapping fidelity because REE's wanting/liking distinction is not identical to the fear/reward reversal tested here, but the structural principle (hippocampus = flexible context, amygdala = fixed valence) is directly relevant.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["BLA engrams could not be switched from fear to reward or vice versa — this challenges any architecture that assumes amygdala valence representations are as malleable as hippocampal ones"],
+  "tags": ["arc_007", "mech_229", "valence_flexibility", "engram", "hippocampus", "amygdala", "optogenetics"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal dentate gyrus engram cells exhibit plasticity such that the valence of a conditioned response evoked by their reactivation can be reversed by re-associating the contextual memory with an opposite-valence unconditioned stimulus. Basolateral amygdala engram cells do not exhibit this plasticity.",
+    "ree_translation": "The hippocampal terrain in REE (ARC-007) must support valence updating — a location previously associated with harm can become associated with wanting, and vice versa. This is consistent with hippocampal engrams being valence-flexible. The amygdala's role is to provide fixed valence tags (liking/dread) that the hippocampus can associate with context but that are themselves less plastic. MECH-229's wanting/liking dissociation maps onto the different plasticity properties: wanting (hippocampal, flexible, updatable) vs liking (more amygdala-adjacent, consummatory, fixed at the moment of contact).",
+    "mapping_caveat": "The paper uses optogenetic reactivation of labelled engram populations, not natural navigation or reward-seeking behaviour. The valence 'switch' is achieved by forced co-activation of an engram with a new US, not by the organism's own experience. REE's wanting/liking distinction does not perfectly align with the fear/reward paradigm used here.",
+    "source_context": "Mice, optogenetic ChR2 labelling of DG or BLA engram cells during fear or reward conditioning, followed by cross-valence reconditioning."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Very high source quality. Mapping fidelity moderate because the paper tests engram valence switching rather than navigation or wanting/liking per se. Transfer risk low — the structural principle (DG flexible, BLA fixed) is likely conserved."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-14T18:02:27.450588Z`
+Generated: `2026-04-14T19:01:14.519997Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -90,6 +90,7 @@ Generated: `2026-04-14T18:02:27.450588Z`
 | `targeted_review_hippocampal_pfc_planning` | [`2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010`](targeted_review_hippocampal_pfc_planning/entries/2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010/record.json) | 2 | [`summary`](targeted_review_hippocampal_pfc_planning/entries/2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010/summary.md) |
 | `targeted_review_hippocampal_remapping` | [`2026-04-02_mech_077_rate_global_remapping_leutgeb2005`](targeted_review_hippocampal_remapping/entries/2026-04-02_mech_077_rate_global_remapping_leutgeb2005/record.json) | 2 | [`summary`](targeted_review_hippocampal_remapping/entries/2026-04-02_mech_077_rate_global_remapping_leutgeb2005/summary.md) |
 | `targeted_review_hippocampal_subfield_architecture` | [`2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019`](targeted_review_hippocampal_subfield_architecture/entries/2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019/record.json) | 4 | [`summary`](targeted_review_hippocampal_subfield_architecture/entries/2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019/summary.md) |
+| `targeted_review_hippocampal_valence_asymmetry` | [`2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005`](targeted_review_hippocampal_valence_asymmetry/entries/2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005/record.json) | 5 | [`summary`](targeted_review_hippocampal_valence_asymmetry/entries/2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005/summary.md) |
 | `targeted_review_inv_029` | [`2026-03-29_inv_029_robust_concern_view_love_sep`](targeted_review_inv_029/entries/2026-03-29_inv_029_robust_concern_view_love_sep/record.json) | 2 | [`summary`](targeted_review_inv_029/entries/2026-03-29_inv_029_robust_concern_view_love_sep/summary.md) |
 | `targeted_review_inv_034` | [`2026-03-29_inv_034_goal_representations_schizophrenia_barch2010`](targeted_review_inv_034/entries/2026-03-29_inv_034_goal_representations_schizophrenia_barch2010/record.json) | 2 | [`summary`](targeted_review_inv_034/entries/2026-03-29_inv_034_goal_representations_schizophrenia_barch2010/summary.md) |
 | `targeted_review_inv_043_caregiver_development` | [`2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021`](targeted_review_inv_043_caregiver_development/entries/2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021/record.json) | 4 | [`summary`](targeted_review_inv_043_caregiver_development/entries/2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021/summary.md) |

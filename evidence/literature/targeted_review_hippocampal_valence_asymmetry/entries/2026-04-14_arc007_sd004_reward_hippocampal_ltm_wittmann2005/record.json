@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_valence_asymmetry",
+  "entry_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
+  "timestamp_utc": "2026-04-14T18:30:00Z",
+  "claim_ids_tested": ["ARC-007", "SD-004"],
+  "source": {
+    "title": "Reward-related FMRI activation of dopaminergic midbrain is associated with enhanced hippocampus-dependent long-term memory formation",
+    "authors": ["Bianca C Wittmann", "Bjorn H Schott", "Sebastian Guderian", "Julietta U Frey", "Hans-Jochen Heinze", "Emrah Duzel"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.01.010"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Human fMRI evidence that reward anticipation activates dopaminergic midbrain regions (substantia nigra/VTA) AND that this activation is associated with enhanced hippocampal long-term memory formation three weeks later. Provides the human translation of the Lisman-Grace loop: reward-related dopamine enhances hippocampal consolidation. Supports the REE architecture where approach valence is encoded through enhanced memory formation rather than valence tagging. Moderate confidence because fMRI is correlational and the specific mechanism (LTP enhancement) is inferred rather than measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_007", "sd_004", "dopamine", "hippocampus", "reward", "memory_consolidation", "fmri", "human"],
+  "mapping": {
+    "source_claim_statement": "Activation of dopaminergic midbrain regions during reward anticipation enhances hippocampus-dependent memory formation. Reward-predicting items are better remembered three weeks later, and midbrain + hippocampal co-activation predicts subsequent memory.",
+    "ree_translation": "In REE, the wanting/approach system enhances hippocampal memory formation for reward-associated contexts. The mechanism is not valence tagging but memory consolidation enhancement — reward-associated locations get better encoded, more persistent representations in the hippocampal map. This is the human-level evidence for the representational sharpening mechanism: the hippocampal map at reward-relevant locations is sharper and more durable, not differently valenced. For ARC-007, the approach gradient is encoded as enhanced representational quality, not as an explicit positive field.",
+    "mapping_caveat": "fMRI provides correlational evidence only. The specific synaptic mechanism (LTP enhancement) is inferred from the animal literature, not directly measured. The task (picture learning with monetary reward) is not a navigation task. The three-week retention test measures declarative/recognition memory, not spatial navigation.",
+    "source_context": "Healthy human adults, fMRI during picture-reward association learning, recognition memory test 3 weeks later."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Good quality human fMRI study. Mapping to REE is moderately indirect — declarative memory enhancement is the dependent measure, not spatial representation or navigation. Transfer risk moderate because the task context is very different from REE's grid-world navigation."
+  }
+}

@@ -196,22 +196,22 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.687, lit_conf=0.832",
+      "confidence_rationale": "exp=9 entry(s), lit=21 entry(s), exp_conf=0.687, lit_conf=0.852",
       "direction_counts": {
         "mixed": 2,
-        "supports": 16,
+        "supports": 21,
         "unknown": 0,
         "weakens": 7
       },
-      "entries_total": 25,
+      "entries_total": 30,
       "evidence_class_counts": {
         "exp:simulation": 9,
-        "lit:behavioral_animal": 1,
+        "lit:behavioral_animal": 2,
         "lit:computational_model": 2,
-        "lit:electrophysiology_single_unit": 5,
-        "lit:fmri_connectivity": 1,
+        "lit:electrophysiology_single_unit": 7,
+        "lit:fmri_connectivity": 2,
         "lit:neuroscience_experiment": 1,
-        "lit:theoretical_review": 6
+        "lit:theoretical_review": 7
       },
       "experimental_confidence": 0.687,
       "fail_runs": 5,
@@ -222,103 +222,95 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "2026-04-04_arc007_inv010_pallial_spatial_memory_rodriguez2002",
-      "latest_timestamp_utc": "2026-04-04T23:50:00Z",
-      "literature_confidence": 0.832,
-      "overall_confidence": 0.76,
+      "latest_run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
+      "latest_timestamp_utc": "2026-04-14T18:30:00Z",
+      "literature_confidence": 0.852,
+      "overall_confidence": 0.769,
       "pass_runs": 4,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
           "confidence": 0.79,
-          "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments \u2014 this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+          "confidence_rationale": "Demonstrates that the hippocampus itself encodes valence (anxiety/avoidance), not just neutral context for amygdala to label. Ventral CA1 contains 'anxiety cells' that drive avoidance via the vCA1->LHA pathway. This challenges the traditional view that hippocampus only provides context. For REE, it means the harm residue field having valence directly in the hippocampal terrain is biologically accurate. But the paper only addresses negative valence (anxiety), not approach/wanting \u2014 so it speaks to one half of the asymmetry.",
           "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "weakens",
-          "experiment_type": "targeted_review_q_020",
-          "failure_signatures": [
-            "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
-            "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
-          ],
-          "run_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:58:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.74,
-          "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) \u2014 the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "weakens",
-          "experiment_type": "targeted_review_q_020",
-          "failure_signatures": [
-            "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
-            "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
-          ],
-          "run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:58:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.76,
-          "confidence_rationale": "High source quality (Neuron, sophisticated HMM analysis of naturalistic fMRI). Strong mapping fidelity for ARC-007's event segmentation specification: the paper directly shows hippocampal activity marking event boundaries in continuous experience, with the degree of hippocampal boundary activity predicting subsequent recall. Transfer risk moderate: narrative perception (continuous video) vs REE's action-based trajectory commitment points.",
-          "evidence_class": "lit:fmri_connectivity",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_event_segmentation",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
           "failure_signatures": [
-            "Hippocampal event boundary activity is specifically predictive of later recall \u2014 boundaries without hippocampal engagement are not well-retained.",
-            "Event structure is hierarchical (short sensory to long contextual), with hippocampus tracking the longer contextual level."
+            "Anxiety cells were enriched in vCA1->LHA projection neurons but NOT in vCA1->BA projection neurons. The amygdala-projecting hippocampal cells were context-encoding, not valence-encoding."
           ],
-          "run_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
+          "run_id": "2026-04-14_arc007_hippocampal_valence_encoding_jimenez2018",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:59:00Z"
+          "timestamp_utc": "2026-04-14T18:30:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
-          "confidence": 0.8,
-          "confidence_rationale": "Canonical theoretical grounding for ARC-007's architectural characterisation of hippocampus as indexer rather than value-computer. The indexing theory explicitly assigns hippocampus a structural-index role, providing direct architectural justification for ARC-007's no-value-computation constraint. Confidence reflects strong theoretical alignment with moderate empirical grounding (indexing theory is influential but not uniformly accepted as a complete account).",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_007",
-          "failure_signatures": [
-            "Indexing theory assigns hippocampus a pure structural-index role: stores sparse indices to cortical patterns, not values or evaluations.",
-            "Pattern completion from partial cue reactivates neocortical episode pattern \u2014 hippocampus serves retrieval, not evaluation."
-          ],
-          "run_id": "2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:59:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.83,
-          "confidence_rationale": "Establishes that the lateral pallium of goldfish (a ray-finned teleost, same class as zebrafish) is functionally homologous to the mammalian hippocampus for spatial memory. LP lesions produce a selective place-task deficit without impairing cue learning -- the hallmark dissociation for hippocampal function. Dorsal and medial pallium lesions do not produce this deficit, confirming anatomical specificity. This is foundational evidence that ARC-007 (hippocampal path memory) is relevant at the zebrafish level and is not a mammalian-only architecture.",
+          "confidence": 0.82,
+          "confidence_rationale": "Direct optogenetic manipulation of engram cells in DG and BLA with valence reversal paradigm. High source quality (Nature, Tonegawa lab, rigorous controls). The key finding \u2014 DG engrams are valence-flexible while BLA engrams are valence-fixed \u2014 maps directly onto the REE distinction between hippocampal terrain (which should be updatable) and amygdala valence tagging (which is more rigid). Moderate mapping fidelity because REE's wanting/liking distinction is not identical to the fear/reward reversal tested here, but the structural principle (hippocampus = flexible context, amygdala = fixed valence) is directly relevant.",
           "evidence_class": "lit:behavioral_animal",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
           "failure_signatures": [
-            "The study uses goldfish, not zebrafish -- the pallial anatomy is broadly conserved across teleosts but not identical.",
-            "The lesion approach cannot distinguish between storage and retrieval deficits, or between map-based navigation and other flexible strategies.",
-            "The hippocampal homology claim for ray-finned fish pallium is based on functional analogy and developmental marker evidence, not confirmed electrophysiological recordings (no place cells demonstrated in goldfish)."
+            "BLA engrams could not be switched from fear to reward or vice versa \u2014 this challenges any architecture that assumes amygdala valence representations are as malleable as hippocampal ones"
           ],
-          "run_id": "2026-04-04_arc007_inv010_pallial_spatial_memory_rodriguez2002",
+          "run_id": "2026-04-14_arc007_mech229_valence_switch_engram_redondo2014",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-04T23:50:00Z"
+          "timestamp_utc": "2026-04-14T18:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.85,
+          "confidence_rationale": "Direct empirical evidence that local hippocampal dopamine controls place cell reorientation to represent reward-relevant spatial dimensions. Blocking D1 receptors locally prevented both the place cell remapping AND the learning. This is the strongest direct evidence that dopamine doesn't just enhance memory consolidation \u2014 it actively reshapes the hippocampal map to align with reward structure. Highly relevant to the REE question of how wanting/reward information enters the terrain.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+          "failure_signatures": [
+            "D1 receptor blockade caused perseveration \u2014 the map froze on the old reward-relevant dimension and could not reorient. This suggests dopamine is required for map updating, not just map formation."
+          ],
+          "run_id": "2026-04-14_arc007_sd004_dopamine_place_cell_reorientation_retailleau2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T18:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.78,
+          "confidence_rationale": "Canonical theoretical paper proposing the hippocampal-VTA functional loop. The model describes the downward arm (hippocampus novelty signal -> subiculum -> accumbens -> ventral pallidum -> VTA) and upward arm (VTA DA release -> hippocampus, enhancing LTP). This directly supports the REE architecture question: approach valence reaches hippocampus via dopaminergic modulation of plasticity, not direct valence injection. The mechanism is representational sharpening (enhanced LTP at reward-associated locations), not explicit positive valence tagging. High influence paper but theoretical \u2014 the specific loop has been partially confirmed but the complete circuit is still debated.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+          "failure_signatures": [
+            "The complete loop (hippocampus -> subiculum -> NAc -> VP -> VTA -> hippocampus) has not been fully validated as a single functional circuit in vivo"
+          ],
+          "run_id": "2026-04-14_arc007_sd004_hippocampal_vta_loop_lisman2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T18:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.75,
+          "confidence_rationale": "Human fMRI evidence that reward anticipation activates dopaminergic midbrain regions (substantia nigra/VTA) AND that this activation is associated with enhanced hippocampal long-term memory formation three weeks later. Provides the human translation of the Lisman-Grace loop: reward-related dopamine enhances hippocampal consolidation. Supports the REE architecture where approach valence is encoded through enhanced memory formation rather than valence tagging. Moderate confidence because fMRI is correlational and the specific mechanism (LTP enhancement) is inferred rather than measured.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+          "failure_signatures": [],
+          "run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T18:30:00Z"
         }
       ],
-      "runs_total": 25,
+      "runs_total": 30,
       "source_counts": {
         "experimental": 9,
-        "literature": 16
+        "literature": 21
       }
     },
     "ARC-011": {
@@ -2158,7 +2150,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.497, lit_conf=0.912",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.496, lit_conf=0.912",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2172,7 +2164,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.497,
+      "experimental_confidence": 0.496,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -4524,7 +4516,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.454, lit_conf=0.877",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.453, lit_conf=0.877",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -4540,7 +4532,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.454,
+      "experimental_confidence": 0.453,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5255,7 +5247,7 @@
       }
     },
     "MECH-047": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.425, lit_conf=0.876",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.424, lit_conf=0.876",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -5268,7 +5260,7 @@
         "lit:connectome_empirical": 2,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.425,
+      "experimental_confidence": 0.424,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5487,7 +5479,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.706, lit_conf=0.874",
+      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.706, lit_conf=0.873",
       "direction_counts": {
         "mixed": 2,
         "supports": 14,
@@ -5520,8 +5512,8 @@
       },
       "latest_run_id": "2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016",
       "latest_timestamp_utc": "2026-04-04T09:00:00Z",
-      "literature_confidence": 0.874,
-      "overall_confidence": 0.832,
+      "literature_confidence": 0.873,
+      "overall_confidence": 0.831,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -5602,7 +5594,7 @@
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.258, lit_conf=0.833",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.257, lit_conf=0.833",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -5615,7 +5607,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.258,
+      "experimental_confidence": 0.257,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5937,7 +5929,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.706, lit_conf=0.824",
+      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.706, lit_conf=0.823",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -5961,7 +5953,7 @@
       },
       "latest_run_id": "2026-04-04_mech_059_precision_dopamine_psychosis_Haarsma2020",
       "latest_timestamp_utc": "2026-04-04T09:00:00Z",
-      "literature_confidence": 0.824,
+      "literature_confidence": 0.823,
       "overall_confidence": 0.794,
       "pass_runs": 1,
       "recent_entries": [
@@ -7507,7 +7499,7 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.786, lit_conf=0.767",
+      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.785, lit_conf=0.767",
       "direction_counts": {
         "mixed": 9,
         "supports": 9,
@@ -7521,7 +7513,7 @@
         "lit:electrophysiology_eeg": 1,
         "lit:electrophysiology_lfp": 2
       },
-      "experimental_confidence": 0.786,
+      "experimental_confidence": 0.785,
       "fail_runs": 10,
       "genuine_exp_count": 16,
       "genuine_exp_direction_counts": {
@@ -7533,7 +7525,7 @@
       "latest_run_id": "2026-04-08_mech090_stn_beta_desync_kuhn2004",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
       "literature_confidence": 0.767,
-      "overall_confidence": 0.777,
+      "overall_confidence": 0.776,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -7863,7 +7855,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.654, lit_conf=0.826",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.653, lit_conf=0.826",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -7878,7 +7870,7 @@
         "lit:electrophysiology_lfp_animal_pharmacological": 1,
         "lit:electrophysiology_meg_human": 1
       },
-      "experimental_confidence": 0.654,
+      "experimental_confidence": 0.653,
       "fail_runs": 6,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -7890,7 +7882,7 @@
       "latest_run_id": "2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
       "literature_confidence": 0.826,
-      "overall_confidence": 0.74,
+      "overall_confidence": 0.739,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -11442,7 +11434,7 @@
       }
     },
     "MECH-165": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.305, lit_conf=0.834",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.304, lit_conf=0.834",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -11456,7 +11448,7 @@
         "lit:experimental_neuroscience": 1,
         "lit:theoretical_neuroscience": 1
       },
-      "experimental_confidence": 0.305,
+      "experimental_confidence": 0.304,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -11468,7 +11460,7 @@
       "latest_run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
       "latest_timestamp_utc": "2026-04-06T00:00:00Z",
       "literature_confidence": 0.834,
-      "overall_confidence": 0.702,
+      "overall_confidence": 0.701,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -13124,7 +13116,7 @@
       }
     },
     "MECH-186": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.359, lit_conf=0.773",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.358, lit_conf=0.773",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -13137,7 +13129,7 @@
         "lit:empirical_human": 2,
         "lit:empirical_rodent": 1
       },
-      "experimental_confidence": 0.359,
+      "experimental_confidence": 0.358,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -14237,16 +14229,17 @@
       }
     },
     "MECH-229": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.813, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.813, lit_conf=0.76",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "exp:simulation": 2
+        "exp:simulation": 2,
+        "lit:behavioral_animal": 1
       },
       "experimental_confidence": 0.813,
       "fail_runs": 1,
@@ -14257,10 +14250,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_326a_wanting_gradient_nav_fix_20260413T172004Z_v3",
-      "latest_timestamp_utc": "2026-04-13T17:20:04Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.813,
+      "latest_run_id": "2026-04-14_arc007_mech229_valence_switch_engram_redondo2014",
+      "latest_timestamp_utc": "2026-04-14T18:30:00Z",
+      "literature_confidence": 0.76,
+      "overall_confidence": 0.795,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -14292,12 +14285,28 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-13T17:20:04Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-229",
+          "confidence": 0.82,
+          "confidence_rationale": "Direct optogenetic manipulation of engram cells in DG and BLA with valence reversal paradigm. High source quality (Nature, Tonegawa lab, rigorous controls). The key finding \u2014 DG engrams are valence-flexible while BLA engrams are valence-fixed \u2014 maps directly onto the REE distinction between hippocampal terrain (which should be updatable) and amygdala valence tagging (which is more rigid). Moderate mapping fidelity because REE's wanting/liking distinction is not identical to the fear/reward reversal tested here, but the structural principle (hippocampus = flexible context, amygdala = fixed valence) is directly relevant.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+          "failure_signatures": [
+            "BLA engrams could not be switched from fear to reward or vice versa \u2014 this challenges any architecture that assumes amygdala valence representations are as malleable as hippocampal ones"
+          ],
+          "run_id": "2026-04-14_arc007_mech229_valence_switch_engram_redondo2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T18:30:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 3,
       "source_counts": {
         "experimental": 2,
-        "literature": 0
+        "literature": 1
       }
     },
     "MECH-230": {
@@ -14519,7 +14528,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.289, lit_conf=0.806",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.288, lit_conf=0.806",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -14533,7 +14542,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.289,
+      "experimental_confidence": 0.288,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -14545,7 +14554,7 @@
       "latest_run_id": "2026-03-29_q001_gamma_vip_coherence_veit2022",
       "latest_timestamp_utc": "2026-03-29T15:00:00Z",
       "literature_confidence": 0.806,
-      "overall_confidence": 0.677,
+      "overall_confidence": 0.676,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -14847,7 +14856,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.445, lit_conf=0.809",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.444, lit_conf=0.809",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -14861,7 +14870,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.445,
+      "experimental_confidence": 0.444,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -15466,7 +15475,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.508, lit_conf=0.861",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.507, lit_conf=0.861",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -15480,7 +15489,7 @@
         "lit:computational_model": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.508,
+      "experimental_confidence": 0.507,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -15492,7 +15501,7 @@
       "latest_run_id": "v3_exq_193_q012_control_constraints_20260404T152932Z_v3",
       "latest_timestamp_utc": "2026-04-04T15:29:32.086395+00:00",
       "literature_confidence": 0.861,
-      "overall_confidence": 0.72,
+      "overall_confidence": 0.719,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -15574,7 +15583,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.74, lit_conf=0.834",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.739, lit_conf=0.834",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -15588,7 +15597,7 @@
         "lit:machine_learning_experiment": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.74,
+      "experimental_confidence": 0.739,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -16894,7 +16903,7 @@
       }
     },
     "Q-034": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.715, lit_conf=0.803",
+      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.714, lit_conf=0.803",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -16909,7 +16918,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.715,
+      "experimental_confidence": 0.714,
       "fail_runs": 1,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -17184,19 +17193,20 @@
       }
     },
     "SD-004": {
-      "confidence_rationale": "exp=8 entry(s), lit=6 entry(s), exp_conf=0.645, lit_conf=0.896",
+      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.645, lit_conf=0.899",
       "direction_counts": {
         "mixed": 0,
-        "supports": 9,
+        "supports": 12,
         "unknown": 0,
         "weakens": 5
       },
-      "entries_total": 14,
+      "entries_total": 17,
       "evidence_class_counts": {
         "exp:simulation": 8,
         "lit:computational_model": 2,
-        "lit:electrophysiology_single_unit": 1,
-        "lit:theoretical_review": 3
+        "lit:electrophysiology_single_unit": 2,
+        "lit:fmri_connectivity": 1,
+        "lit:theoretical_review": 4
       },
       "experimental_confidence": 0.645,
       "fail_runs": 5,
@@ -17207,63 +17217,12 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
-      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
-      "literature_confidence": 0.896,
-      "overall_confidence": 0.771,
+      "latest_run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
+      "latest_timestamp_utc": "2026-04-14T18:30:00Z",
+      "literature_confidence": 0.899,
+      "overall_confidence": 0.772,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.85,
-          "confidence_rationale": "This is the primary computational paper arguing that hippocampal place cells encode a predictive (successor) map rather than purely geometric space. The SR framework directly instantiates the core SD-004 claim that the hippocampal map is organized by future-state structure -- i.e., by what follows from current position under a given policy -- rather than raw sensory coordinates. The mapping to SD-004 requires one extension (from state-successor to action-consequence objects), but the foundational architecture is essentially identical. High-quality journal, large citation base, replicated predictions.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_004",
-          "failure_signatures": [
-            "SR is policy-dependent -- the predictive map changes when behavior changes, implying the map backbone is not a stable action-object library but a policy-contingent weighting",
-            "SR as originally formulated does not compress multi-step action sequences into objects; it represents individual states weighted by future occupancy"
-          ],
-          "run_id": "2026-03-29_sd_004_predictive_map_stachenfeld2017",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.78,
-          "confidence_rationale": "This is the foundational paper introducing the successor representation -- the computational substrate that Stachenfeld et al. (2017) later linked to hippocampal place cells. Dayan shows that representing states by their expected future state-occupancies (discounted, policy-weighted) enables efficient generalisation and long-horizon value computation without per-step simulation. This directly grounds SD-004's planning-horizon claim: action objects as SR units collapse multi-step sequences into single entries, giving the same computational advantage Dayan demonstrated for temporally extended state representations. Confidence below 0.85 because the original paper predates neural binding; the hippocampal link is established by subsequent work.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_004",
-          "failure_signatures": [
-            "SR is defined over primitive states; Dayan does not consider action-object compression -- the extension to action-consequence chunks requires additional theoretical work (temporal abstraction, options framework)",
-            "SR remains policy-dependent; when the agent's policy changes, the SR must be relearned -- this raises the question of whether action objects can serve as a stable map backbone across policy updates"
-          ],
-          "run_id": "2026-03-29_sd_004_successor_representation_dayan1993",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.72,
-          "confidence_rationale": "This paper provides direct electrophysiological evidence that hippocampal sequential activity is not a passive replay of recent spatial experience but a goal-directed prospective computation: look-ahead distance varies with the distance to the current goal. This supports SD-004's requirement that the HippocampalModule's traversal of action-object space be goal-directed rather than purely state-driven. The paper also suggests that planning horizon scales with goal distance -- exactly the long-horizon planning advantage SD-004 claims for action-object navigation. Confidence reduced from peak because the paper operates in raw place-cell space, not action-object space.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_004",
-          "failure_signatures": [
-            "Sequences are of spatial positions, not compressed action objects -- the goal-scaling effect is demonstrated for spatial look-ahead, not for chunked multi-step action sequences",
-            "Look-ahead in theta sequences is typically a few tens of centimetres, far shorter than the 20-step planning horizon SD-004 targets; longer-horizon planning may require sharp-wave ripples rather than theta sequences"
-          ],
-          "run_id": "2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-004",
@@ -17297,12 +17256,58 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.85,
+          "confidence_rationale": "Direct empirical evidence that local hippocampal dopamine controls place cell reorientation to represent reward-relevant spatial dimensions. Blocking D1 receptors locally prevented both the place cell remapping AND the learning. This is the strongest direct evidence that dopamine doesn't just enhance memory consolidation \u2014 it actively reshapes the hippocampal map to align with reward structure. Highly relevant to the REE question of how wanting/reward information enters the terrain.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+          "failure_signatures": [
+            "D1 receptor blockade caused perseveration \u2014 the map froze on the old reward-relevant dimension and could not reorient. This suggests dopamine is required for map updating, not just map formation."
+          ],
+          "run_id": "2026-04-14_arc007_sd004_dopamine_place_cell_reorientation_retailleau2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T18:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.78,
+          "confidence_rationale": "Canonical theoretical paper proposing the hippocampal-VTA functional loop. The model describes the downward arm (hippocampus novelty signal -> subiculum -> accumbens -> ventral pallidum -> VTA) and upward arm (VTA DA release -> hippocampus, enhancing LTP). This directly supports the REE architecture question: approach valence reaches hippocampus via dopaminergic modulation of plasticity, not direct valence injection. The mechanism is representational sharpening (enhanced LTP at reward-associated locations), not explicit positive valence tagging. High influence paper but theoretical \u2014 the specific loop has been partially confirmed but the complete circuit is still debated.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+          "failure_signatures": [
+            "The complete loop (hippocampus -> subiculum -> NAc -> VP -> VTA -> hippocampus) has not been fully validated as a single functional circuit in vivo"
+          ],
+          "run_id": "2026-04-14_arc007_sd004_hippocampal_vta_loop_lisman2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T18:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.75,
+          "confidence_rationale": "Human fMRI evidence that reward anticipation activates dopaminergic midbrain regions (substantia nigra/VTA) AND that this activation is associated with enhanced hippocampal long-term memory formation three weeks later. Provides the human translation of the Lisman-Grace loop: reward-related dopamine enhances hippocampal consolidation. Supports the REE architecture where approach valence is encoded through enhanced memory formation rather than valence tagging. Moderate confidence because fMRI is correlational and the specific mechanism (LTP enhancement) is inferred rather than measured.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+          "failure_signatures": [],
+          "run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T18:30:00Z"
         }
       ],
-      "runs_total": 14,
+      "runs_total": 17,
       "source_counts": {
         "experimental": 8,
-        "literature": 6
+        "literature": 9
       }
     },
     "SD-005": {
@@ -66140,6 +66145,146 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.79,
+      "confidence_rationale": "Demonstrates that the hippocampus itself encodes valence (anxiety/avoidance), not just neutral context for amygdala to label. Ventral CA1 contains 'anxiety cells' that drive avoidance via the vCA1->LHA pathway. This challenges the traditional view that hippocampus only provides context. For REE, it means the harm residue field having valence directly in the hippocampal terrain is biologically accurate. But the paper only addresses negative valence (anxiety), not approach/wanting \u2014 so it speaks to one half of the asymmetry.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [
+        "Anxiety cells were enriched in vCA1->LHA projection neurons but NOT in vCA1->BA projection neurons. The amygdala-projecting hippocampal cells were context-encoding, not valence-encoding."
+      ],
+      "run_id": "2026-04-14_arc007_hippocampal_valence_encoding_jimenez2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.82,
+      "confidence_rationale": "Direct optogenetic manipulation of engram cells in DG and BLA with valence reversal paradigm. High source quality (Nature, Tonegawa lab, rigorous controls). The key finding \u2014 DG engrams are valence-flexible while BLA engrams are valence-fixed \u2014 maps directly onto the REE distinction between hippocampal terrain (which should be updatable) and amygdala valence tagging (which is more rigid). Moderate mapping fidelity because REE's wanting/liking distinction is not identical to the fear/reward reversal tested here, but the structural principle (hippocampus = flexible context, amygdala = fixed valence) is directly relevant.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [
+        "BLA engrams could not be switched from fear to reward or vice versa \u2014 this challenges any architecture that assumes amygdala valence representations are as malleable as hippocampal ones"
+      ],
+      "run_id": "2026-04-14_arc007_mech229_valence_switch_engram_redondo2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.85,
+      "confidence_rationale": "Direct empirical evidence that local hippocampal dopamine controls place cell reorientation to represent reward-relevant spatial dimensions. Blocking D1 receptors locally prevented both the place cell remapping AND the learning. This is the strongest direct evidence that dopamine doesn't just enhance memory consolidation \u2014 it actively reshapes the hippocampal map to align with reward structure. Highly relevant to the REE question of how wanting/reward information enters the terrain.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [
+        "D1 receptor blockade caused perseveration \u2014 the map froze on the old reward-relevant dimension and could not reorient. This suggests dopamine is required for map updating, not just map formation."
+      ],
+      "run_id": "2026-04-14_arc007_sd004_dopamine_place_cell_reorientation_retailleau2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.78,
+      "confidence_rationale": "Canonical theoretical paper proposing the hippocampal-VTA functional loop. The model describes the downward arm (hippocampus novelty signal -> subiculum -> accumbens -> ventral pallidum -> VTA) and upward arm (VTA DA release -> hippocampus, enhancing LTP). This directly supports the REE architecture question: approach valence reaches hippocampus via dopaminergic modulation of plasticity, not direct valence injection. The mechanism is representational sharpening (enhanced LTP at reward-associated locations), not explicit positive valence tagging. High influence paper but theoretical \u2014 the specific loop has been partially confirmed but the complete circuit is still debated.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [
+        "The complete loop (hippocampus -> subiculum -> NAc -> VP -> VTA -> hippocampus) has not been fully validated as a single functional circuit in vivo"
+      ],
+      "run_id": "2026-04-14_arc007_sd004_hippocampal_vta_loop_lisman2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.75,
+      "confidence_rationale": "Human fMRI evidence that reward anticipation activates dopaminergic midbrain regions (substantia nigra/VTA) AND that this activation is associated with enhanced hippocampal long-term memory formation three weeks later. Provides the human translation of the Lisman-Grace loop: reward-related dopamine enhances hippocampal consolidation. Supports the REE architecture where approach valence is encoded through enhanced memory formation rather than valence tagging. Moderate confidence because fMRI is correlational and the specific mechanism (LTP enhancement) is inferred rather than measured.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [],
+      "run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-229",
+      "confidence": 0.82,
+      "confidence_rationale": "Direct optogenetic manipulation of engram cells in DG and BLA with valence reversal paradigm. High source quality (Nature, Tonegawa lab, rigorous controls). The key finding \u2014 DG engrams are valence-flexible while BLA engrams are valence-fixed \u2014 maps directly onto the REE distinction between hippocampal terrain (which should be updatable) and amygdala valence tagging (which is more rigid). Moderate mapping fidelity because REE's wanting/liking distinction is not identical to the fear/reward reversal tested here, but the structural principle (hippocampus = flexible context, amygdala = fixed valence) is directly relevant.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [
+        "BLA engrams could not be switched from fear to reward or vice versa \u2014 this challenges any architecture that assumes amygdala valence representations are as malleable as hippocampal ones"
+      ],
+      "run_id": "2026-04-14_arc007_mech229_valence_switch_engram_redondo2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.85,
+      "confidence_rationale": "Direct empirical evidence that local hippocampal dopamine controls place cell reorientation to represent reward-relevant spatial dimensions. Blocking D1 receptors locally prevented both the place cell remapping AND the learning. This is the strongest direct evidence that dopamine doesn't just enhance memory consolidation \u2014 it actively reshapes the hippocampal map to align with reward structure. Highly relevant to the REE question of how wanting/reward information enters the terrain.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [
+        "D1 receptor blockade caused perseveration \u2014 the map froze on the old reward-relevant dimension and could not reorient. This suggests dopamine is required for map updating, not just map formation."
+      ],
+      "run_id": "2026-04-14_arc007_sd004_dopamine_place_cell_reorientation_retailleau2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.78,
+      "confidence_rationale": "Canonical theoretical paper proposing the hippocampal-VTA functional loop. The model describes the downward arm (hippocampus novelty signal -> subiculum -> accumbens -> ventral pallidum -> VTA) and upward arm (VTA DA release -> hippocampus, enhancing LTP). This directly supports the REE architecture question: approach valence reaches hippocampus via dopaminergic modulation of plasticity, not direct valence injection. The mechanism is representational sharpening (enhanced LTP at reward-associated locations), not explicit positive valence tagging. High influence paper but theoretical \u2014 the specific loop has been partially confirmed but the complete circuit is still debated.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [
+        "The complete loop (hippocampus -> subiculum -> NAc -> VP -> VTA -> hippocampus) has not been fully validated as a single functional circuit in vivo"
+      ],
+      "run_id": "2026-04-14_arc007_sd004_hippocampal_vta_loop_lisman2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.75,
+      "confidence_rationale": "Human fMRI evidence that reward anticipation activates dopaminergic midbrain regions (substantia nigra/VTA) AND that this activation is associated with enhanced hippocampal long-term memory formation three weeks later. Provides the human translation of the Lisman-Grace loop: reward-related dopamine enhances hippocampal consolidation. Supports the REE architecture where approach valence is encoded through enhanced memory formation rather than valence tagging. Moderate confidence because fMRI is correlational and the specific mechanism (LTP enhancement) is inferred rather than measured.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
+      "failure_signatures": [],
+      "run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T18:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -66171,7 +66316,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-14T18:02:27.450588Z",
+  "generated_at_utc": "2026-04-14T19:01:14.519997Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

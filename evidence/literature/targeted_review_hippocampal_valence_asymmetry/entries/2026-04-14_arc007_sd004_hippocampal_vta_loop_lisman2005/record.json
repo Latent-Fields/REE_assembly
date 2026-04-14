@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_valence_asymmetry",
+  "entry_id": "2026-04-14_arc007_sd004_hippocampal_vta_loop_lisman2005",
+  "timestamp_utc": "2026-04-14T18:30:00Z",
+  "claim_ids_tested": ["ARC-007", "SD-004"],
+  "source": {
+    "title": "The hippocampal-VTA loop: controlling the entry of information into long-term memory",
+    "authors": ["John E Lisman", "Anthony A Grace"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.05.002"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical theoretical paper proposing the hippocampal-VTA functional loop. The model describes the downward arm (hippocampus novelty signal -> subiculum -> accumbens -> ventral pallidum -> VTA) and upward arm (VTA DA release -> hippocampus, enhancing LTP). This directly supports the REE architecture question: approach valence reaches hippocampus via dopaminergic modulation of plasticity, not direct valence injection. The mechanism is representational sharpening (enhanced LTP at reward-associated locations), not explicit positive valence tagging. High influence paper but theoretical — the specific loop has been partially confirmed but the complete circuit is still debated.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The complete loop (hippocampus -> subiculum -> NAc -> VP -> VTA -> hippocampus) has not been fully validated as a single functional circuit in vivo"],
+  "tags": ["arc_007", "sd_004", "hippocampal_vta_loop", "dopamine", "novelty", "ltp", "memory_consolidation"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus and VTA form a functional loop. Hippocampal novelty signals are conveyed to VTA, which releases dopamine back to hippocampus, enhancing LTP and learning. This loop controls the entry of information into long-term memory.",
+    "ree_translation": "In REE, the approach/wanting pathway to hippocampal terrain operates through dopaminergic modulation of plasticity (enhanced LTP, better memory formation) rather than direct valence injection. This is fundamentally different from the BLA pathway (direct threat valence tagging). The hippocampal-VTA loop means: reward-associated locations get sharper, more persistent representations — not explicit positive valence labels. For ARC-007, the hippocampal cognitive map encodes reward locations through representational fidelity (stronger place coding) not through a valence field. For SD-004, action objects as map backbone need to interact with this dopaminergic sharpening to encode approach goals.",
+    "mapping_caveat": "The paper is theoretical and synthetic, not a primary empirical study. The specific multi-synapse loop (hippocampus -> subiculum -> NAc -> VP -> VTA) is proposed but not all links have been individually verified in a single preparation. The role of 'salience and goal information' alongside novelty at VTA is acknowledged but not mechanistically specified.",
+    "source_context": "Theoretical review synthesising evidence from rodent electrophysiology, pharmacology, and computational models."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Highly cited canonical paper (>2500 citations). Theoretical rather than empirical, which limits direct evidential weight. Mapping to REE is good because the loop concept directly addresses how approach valence reaches hippocampal representations."
+  }
+}

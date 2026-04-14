@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_valence_asymmetry",
+  "entry_id": "2026-04-14_arc007_sd004_dopamine_place_cell_reorientation_retailleau2018",
+  "timestamp_utc": "2026-04-14T18:30:00Z",
+  "claim_ids_tested": ["ARC-007", "SD-004"],
+  "source": {
+    "title": "Spatial Rule Learning and Corresponding CA1 Place Cell Reorientation Depend on Local Dopamine Release",
+    "authors": ["Aude Retailleau", "Genela Morris"],
+    "year": 2018,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2018.01.081"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Direct empirical evidence that local hippocampal dopamine controls place cell reorientation to represent reward-relevant spatial dimensions. Blocking D1 receptors locally prevented both the place cell remapping AND the learning. This is the strongest direct evidence that dopamine doesn't just enhance memory consolidation — it actively reshapes the hippocampal map to align with reward structure. Highly relevant to the REE question of how wanting/reward information enters the terrain.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["D1 receptor blockade caused perseveration — the map froze on the old reward-relevant dimension and could not reorient. This suggests dopamine is required for map updating, not just map formation."],
+  "tags": ["arc_007", "sd_004", "dopamine", "place_cells", "cognitive_map", "reward", "remapping", "goal_directed"],
+  "mapping": {
+    "source_claim_statement": "Dopaminergic innervation provides reward information to the hippocampus and is critical for the stabilisation of goal-related hippocampal representation, contributing to successful goal-directed behaviour. D1 receptor blockade prevents place cell reorientation to new reward-relevant spatial dimensions.",
+    "ree_translation": "In REE's hippocampal terrain (ARC-007), dopamine from VTA doesn't add a valence tag — it controls which dimensions of the spatial representation are emphasised. When a reward rule changes, dopamine enables the map to reorient to represent the new reward-relevant features. Without dopamine, the map perseverates on old representations. This means the wanting signal's role in the terrain is not 'mark this location as good' but 'reshape the map to make reward-relevant spatial features more prominent.' For SD-004 (action objects), this means the hippocampal backbone should be dopamine-sensitive: action sequences associated with current reward structure get enhanced representation, while stale reward associations lose prominence.",
+    "mapping_caveat": "The task was a set-shifting paradigm (reorienting between orthogonal cue sets), not a free-foraging or navigation task. The place cell reorientation was measured as a change in reference frame, not a change in valence coding per se. The mapping to REE's approach gradient is indirect — the paper shows dopamine reshapes the map, but doesn't directly test whether this produces an approach gradient.",
+    "source_context": "Rats, CA1 single-unit recordings during spatial extra-dimensional set-shift task, with local SCH23390 (D1 antagonist) infusion into hippocampus."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Strong empirical design with local pharmacological manipulation and simultaneous electrophysiology. Set-shifting task is not identical to reward-guided navigation but tests the same principle (map must represent reward-relevant features)."
+  }
+}
