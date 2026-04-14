@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_015",
+  "entry_id": "2026-04-14_sd_015_lec_goal_approach_issa2024",
+  "timestamp_utc": "2026-04-14T14:00:00Z",
+  "claim_ids_tested": ["SD-015"],
+  "source": {
+    "title": "Lateral entorhinal cortex subpopulations represent experiential epochs surrounding reward",
+    "authors": ["Jeremiah B. Issa", "Brian A. Radvansky", "Fei Xuan", "Daniel A. Dombeck"],
+    "year": 2024,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-023-01557-4",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11097142/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Two-photon calcium imaging study with large cell counts, causal optogenetic manipulation, and within-session reward relocation providing strong internal controls. Directly shows a dedicated LEC population for goal approach whose representations shift immediately to reward identity rather than absolute spatial position. The key SD-015 implication is that the navigator encodes 'which reward' (type/identity signal) rather than 'where reward was last seen' (positional signal), which is exactly why z_resource must be reward-type-centric rather than position-centric. Confidence bounded because the 1D virtual track limits generalization to the high-dimensional spatial scenarios in CausalGridWorld, and the task contains no object-type variation (single reward identity), so the paper speaks to reward-relative coding generally rather than multi-object-type discrimination.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If LEC goal-approach populations also encode absolute spatial position strongly (not just reward-relative position), then the 'what' stream interpretation weakens and a dedicated object-type encoder becomes less motivated.",
+    "If hippocampal CA1 already encodes goal approach signals through a different mechanism (e.g., remapping), LEC's role might be redundant with spatial representations rather than complementary to them."
+  ],
+  "tags": ["sd_015", "lateral_entorhinal_cortex", "goal_approach", "reward_representation", "flexible_navigation", "object_relative_coding", "what_stream"],
+  "mapping": {
+    "source_claim_statement": "LEC contains three functionally distinct neuronal subpopulations -- pre-reward (goal approach), reward consumption, and post-reward -- that encode experiential epochs in reward-relative coordinates rather than absolute spatial position. When reward location changes, ~50% of LEC reward cells immediately shift their firing to the new location. Optogenetic LEC inhibition impairs learning of new reward locations but not expression of learned ones. LEC provides reward-centric contextual 'what' information to complement MEC's spatial 'where' information.",
+    "ree_translation": "z_resource must encode object-type identity (or more generally, goal-type identity) in a way that tracks the goal itself rather than a remembered spatial position. The LEC pre-reward population is the biological analogue of the z_resource signal driving goal approach: it ramps up relative to the current goal object regardless of where that object currently is. This is precisely what a CausalGridWorld agent needs -- if resources respawn at random locations, z_world at the new location carries no useful goal-approach signal, but a z_resource encoder that identifies 'this is a food resource' does. The LEC-to-hippocampus projection then binds this goal-type signal with the current spatial context to support flexible, location-independent approach.",
+    "mapping_caveat": "The Issa et al. task uses a single reward type in a 1D virtual environment, so LEC 'goal-approach' cells encode reward presence/approach but do not distinguish between multiple object types. SD-015's z_resource encoder must additionally discriminate between different resource types (food vs. water vs. tool) -- a multi-category discrimination not tested in this study. The mapping from 'reward-relative LEC coding' to 'multi-type object representation' requires an additional inferential step.",
+    "source_context": "Head-fixed mice in 1D virtual reality linear track; reward at fixed then relocated positions. Two-photon calcium imaging of LEC layers II/III, MEC, and CA1. Jaws optogenetic inhibition of LEC."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "High source quality: large-scale imaging, causal manipulation, clear within-session control for reward relocation. Mapping fidelity reduced because the task involves only one reward type, limiting direct inference about multi-type object discrimination. Transfer risk moderate: 1D virtual track is a substantial simplification of CausalGridWorld's 2D environment with multiple resource types."
+  }
+}

@@ -14,6 +14,18 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-14)
+
+- **Key governance outcome: SD-013 promoted candidate->provisional (2026-04-13b governance).** conf=0.788, 5 supports/1 weakens. SD-013 (interventional training bias) now provisional. 7 experiments reclassified non_contributory.
+- **New claim class registered: EXT-001 through EXT-007.** External AI/LLM failure mode catalogue with REE mechanism mappings (sycophancy, hallucination, reward hacking, goal misgeneralization, causal attribution gap, other-model collapse, context amnesia). claims.yaml: 454 claims total.
+- **MECH-231 registered** (E2 short-horizon discriminative pair, cowork-2026-04-13-e). EXQ-407 queued.
+- **EXQ-406 queued** (INV-053 depression attractor replication, 5-seed LONG_HORIZON characterisation, ~240 min).
+- **~481 experiments completed.** 96 PASS, 235 FAIL, 51 ERROR, 99 UNKNOWN.
+- **2 pending review** (as of 2026-04-14T04:18:29Z): v3_exq_326_wanting_gradient_nav_fix FAIL (MECH-216/SD-012/SD-015); V3-EXQ-326 UNKNOWN.
+- **Current bottleneck: first-paper gate.** Active queue (17 items): EXQ-326, EXQ-332, EXQ-330a, EXQ-353, EXQ-322a, EXQ-328a, EXQ-321a, EXQ-325a, EXQ-365, EXQ-355, EXQ-395, EXQ-375, EXQ-385, EXQ-328b, EXQ-326a, EXQ-406 (INV-053 depression attractor), EXQ-407 (MECH-231 E2 short-horizon).
+
+---
+
 ## Status Snapshot (2026-04-13)
 
 - **Key governance outcome: EXQ-354 PASS (2026-04-13).** MECH-112 behavioral wanting/liking
@@ -607,20 +619,22 @@ Added from V1 learning:
 
 ## Immediate Work Queue (This Cycle)
 
-**Current step: First-Paper Gate Experiments (as of 2026-04-13)**
+**Current step: First-Paper Gate Experiments (as of 2026-04-14)**
 
 SD-004 through SD-023 all implemented. ARC-033, MECH-090, MECH-120, MECH-203/204, MECH-205,
 MECH-216 implemented. EXQ-354 PASS: MECH-229 behavioral wanting/liking dissociation confirmed.
-MECH-112 split into MECH-229 (active) + MECH-230 (candidate). 0 pending review (clean).
+MECH-112 split into MECH-229 (active) + MECH-230 (candidate). SD-013 promoted to provisional
+(governance-2026-04-13-b, conf=0.788). MECH-231 registered + EXQ-407 queued. 2 pending review.
 
-1. **EXQ-327** (MECH-163 goal-conditioned nav; paper gate primary criterion: benefit_ratio >= 1.3x).
-2. **EXQ-326a** (SD-015 nav integration fix + MECH-229 behavioral dissociation in nav context).
-3. **EXQ-353** (ARC-033/SD-003/SD-013 interventional vs observational counterfactual):
+1. **EXQ-326a** (SD-015 nav integration fix + MECH-229 behavioral dissociation in nav context).
+2. **EXQ-353** (ARC-033/SD-003/SD-013 interventional vs observational counterfactual):
    critical re-validation of SD-003 interventional pipeline.
-4. **EXQ-321a** (MECH-090 bistable gate retest; E2 world-forward training added to fix EXQ-321).
-5. **EXQ-325a** (SD-021 descending pain modulation retest; E2 world-forward training fix).
-6. **EXQ-365** (MECH-104 surprise gate 5-seed replication).
-7. **EXQ-385** (INV-049 offline consolidation necessity / sleep ablation pair).
+3. **EXQ-321a** (MECH-090 bistable gate retest; E2 world-forward training added to fix EXQ-321).
+4. **EXQ-325a** (SD-021 descending pain modulation retest; E2 world-forward training fix).
+5. **EXQ-365** (MECH-104 surprise gate 5-seed replication).
+6. **EXQ-385** (INV-049 offline consolidation necessity / sleep ablation pair).
+7. **EXQ-406** (INV-053 depression attractor replication; 5-seed LONG_HORIZON characterisation).
+8. **EXQ-407** (MECH-231 E2 short-horizon efference-copy discriminative pair).
 
 ---
 

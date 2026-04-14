@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_138a_arc030_go_nogo_pair
 
-Generated: `2026-04-14T08:47:17.880104Z`
+Generated: `2026-04-14T11:33:26.062378Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

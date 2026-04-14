@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-04-14_mech095_agency_discrepancy_graded_farrer2003",
+  "timestamp_utc": "2026-04-14T14:00:00Z",
+  "claim_ids_tested": ["MECH-095"],
+  "source": {
+    "title": "Modulating the experience of agency: a positron emission tomography study",
+    "authors": ["C. Farrer", "N. Franck", "N. Georgieff", "C.D. Frith", "J. Decety", "M. Jeannerod"],
+    "year": 2003,
+    "venue": "NeuroImage",
+    "doi": "10.1016/s1053-8119(02)00041-1",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12595186/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "This is the most direct empirical test of the comparator hypothesis available in the neuroimaging literature. By parametrically rotating a virtual hand away from the subject's actual movement direction (0 degrees = perfect match, 25 degrees = partial mismatch, 50 degrees = large mismatch, 100% other = no correspondence), the study shows that right inferior parietal lobe activation increases monotonically with the degree of motor-sensory discrepancy. Insula shows the reverse. This dose-response relationship between prediction error magnitude and inferior parietal activation is precisely what a comparator mechanism predicts -- and exactly what MECH-095 requires for graded residue attribution in REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-095 were wrong and the inferior parietal were simply a social cognition region, activation would not be parametrically modulated by the continuous motor-visual discrepancy angle.",
+    "The finding that agency experience degrades gradually rather than suddenly (as discrepancy increases) suggests the REE comparator should produce a graded confidence signal, not a binary switch -- important for how AgencyComparator output is used in residue gating."
+  ],
+  "tags": ["mech_095", "tpj", "inferior_parietal", "graded_discrepancy", "comparator", "pet", "efference_copy", "dose_response", "motor_visual"],
+  "mapping": {
+    "source_claim_statement": "The degree of activity in the right inferior parietal lobe covaries inversely with the experienced sense of agency, mapping onto the discrepancy between the movement executed and the movement seen. The insula shows the reverse covariation. This demonstrates that specific brain areas map onto the experience of causing or controlling an action in a parametric, graded fashion.",
+    "ree_translation": "MECH-095 proposes that the TPJ comparator detects divergence between efference-copy-predicted z_self change and observed z_self change. Farrer et al. (2003) show that the neural homologue of this comparator (right inferior parietal) responds proportionally to the size of the motor-visual discrepancy. In REE, this means the AgencyComparator should output a graded mismatch signal -- not a binary flag -- that scales with ||predicted_z_self - observed_z_self||. This graded signal should then weight the proportion of a state change attributed to z_world vs self-caused. The EXQ-121 FAIL (AUC_COMP_ON=0.411 vs AUC_COMP_ABLATED=0.745) could reflect that the current REE implementation collapses this gradient prematurely or applies it at the wrong architectural stage.",
+    "mapping_caveat": "The study uses visuo-motor rotation as a proxy for motor prediction error -- it introduces discrepancy at the sensory display level, not at the level of internal forward model mismatch. A true efference-copy comparator operates before sensory feedback arrives; the rotation manipulation tests a post-hoc comparison. This means the study captures the comparator output stage, not the feedforward prediction stage. REE's AgencyComparator sits conceptually at the feedforward stage (E2 prediction vs. observation) -- the mapping holds structurally but the temporal sequence differs.",
+    "source_context": "PET study, right-handed male participants, virtual hand task with four conditions (0, 25, 50 degrees rotation plus full-other condition). Analysis used covariation of regional CBF with degree of discrepancy."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "The parametric design is methodologically strong; the dose-response relationship is highly specific to the comparator hypothesis. Mapping fidelity is high because the graded discrepancy maps directly onto the graded z_self mismatch signal in REE. Transfer risk is low-moderate: the study uses a visuomotor task with human subjects, but the computational abstraction (predicted vs observed, graded output) is the same as what REE requires."
+  }
+}

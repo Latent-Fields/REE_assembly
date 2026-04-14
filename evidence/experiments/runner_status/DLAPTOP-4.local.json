@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 26389,
   "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
-  "last_updated": "2026-04-14T08:48:04.774416+00:00",
+  "last_updated": "2026-04-14T11:34:27.747752+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-327",
+    "queue_id": "V3-EXQ-322a",
     "backlog_id": "",
-    "claim_id": "MECH-163",
-    "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
+    "claim_id": "",
+    "title": "SD-015 ResourceEncoder z_goal seeding fix: use_resource_encoder wiring corrected",
     "description": "",
-    "script": "experiments/v3_exq_327_mech163_goal_conditioned_nav.py",
-    "started_at": "2026-04-14T05:48:09.826894+00:00",
+    "script": "experiments/v3_exq_322a_sd015_resource_encoder_seeding.py",
+    "started_at": "2026-04-14T10:56:30.296760+00:00",
     "progress": {
-      "run_label": "Seed 7 / GOAL_ABLATED",
-      "runs_done": 3,
-      "runs_total": 6,
-      "episodes_done": 200,
-      "episodes_total": 250,
-      "overall_pct": 63.3
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 10,
+      "episodes_done": 0,
+      "episodes_total": 80,
+      "overall_pct": 0.0
     },
-    "seconds_elapsed": 10795,
-    "seconds_remaining": 5509,
+    "seconds_elapsed": 2277,
+    "seconds_remaining": 6400,
     "recent_lines": [
-      "Seed 7 Condition GOAL_ABLATED",
-      "[train] seed=7 GOAL_ABLATED ep 50/250 phase=P0 resources=0 benefit=0.000",
-      "[train] seed=7 GOAL_ABLATED ep 100/250 phase=P0 resources=0 benefit=0.000",
-      "[train] seed=7 GOAL_ABLATED ep 150/250 phase=P1 resources=0 benefit=0.000",
-      "[train] seed=7 GOAL_ABLATED ep 200/250 phase=P1 resources=0 benefit=0.000"
+      "WORLD_SEED: eval 30 eps...",
+      "WORLD_SEED: goal_resource_r=0.9955 benefit_ratio=0.133 n_cosine_samples=6000",
+      "-> FAIL",
+      "Seed 43",
+      "RESOURCE_SEED: training 80 eps..."
     ],
     "ree_version": "v3"
   },
@@ -44,24 +44,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-327",
-      "backlog_id": "",
-      "claim_id": "MECH-163",
-      "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-322a",
       "backlog_id": "",
       "claim_id": "",
       "title": "SD-015 ResourceEncoder z_goal seeding fix: use_resource_encoder wiring corrected",
       "description": "",
       "estimated_minutes": 106.7,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5366,6 +5355,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 35883.1
+    },
+    {
+      "queue_id": "V3-EXQ-327",
+      "backlog_id": "",
+      "claim_id": "MECH-163",
+      "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS resource_rate=0.340 benefit=0.0010 prox_r2=0.741 | verdict: PASS resource_rate=0.340 benefit=0.0010 prox_r2=0.741 | === EXQ-327 FAIL ===",
+      "started_at": "2026-04-14T05:48:09.826894+00:00",
+      "completed_at": "2026-04-14T10:56:26.804171+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 18496.9
     }
   ]
 }

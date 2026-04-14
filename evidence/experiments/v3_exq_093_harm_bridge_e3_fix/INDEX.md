@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_093_harm_bridge_e3_fix
 
-Generated: `2026-04-14T08:47:17.880104Z`
+Generated: `2026-04-14T11:33:26.062378Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

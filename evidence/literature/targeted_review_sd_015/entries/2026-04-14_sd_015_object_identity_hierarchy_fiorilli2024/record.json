@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_015",
+  "entry_id": "2026-04-14_sd_015_object_identity_hierarchy_fiorilli2024",
+  "timestamp_utc": "2026-04-14T14:00:00Z",
+  "claim_ids_tested": ["SD-015"],
+  "source": {
+    "title": "Neural correlates of object identity and reward outcome in the sensory cortical-hippocampal hierarchy: coding of motivational information in perirhinal cortex",
+    "authors": ["Joy Fiorilli", "Pietro Marchesi", "Thijs Ruikes", "Guido Huis in 't Veld", "Ross Buckton", "Manuel D. Quintero", "Ingvild Reiten", "Jan G. Bjaalie", "Cyriel M. A. Pennartz"],
+    "year": 2024,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhae002",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10847907/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Multi-region simultaneous recording in rats performing a multisensory object-discrimination task, allowing direct comparison of object-identity coding across the hierarchy. Key finding supporting SD-015: object identity is encoded in sensory cortex (V2L) but NOT in perirhinal cortex, and NOT reliably in hippocampus during sampling -- only afterwards, amodally, following reward. This dissociation suggests object identity representation and motivational/reward coding are handled by distinct circuits, consistent with SD-015's argument that z_resource must be a dedicated object-type encoder separate from reward/goal circuitry. Confidence bounded by limited recording sites (four regions only) and the fact that the task involves object discrimination at a fixed location rather than navigation toward randomly-respawning resources.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If perirhinal cortex were found to strongly encode object identity in a navigation task where animals must approach objects, SD-015's architecture would need to place z_resource retrieval at the perirhinal rather than IT/sensory cortex stage.",
+    "If hippocampus were shown to encode object identity robustly during the approach phase (before reward), it would suggest z_world itself may carry sufficient object-type information, undermining the need for a separate z_resource."
+  ],
+  "tags": ["sd_015", "perirhinal_cortex", "object_identity", "sensory_hierarchy", "hippocampus", "reward_coding", "dissociation", "what_stream"],
+  "mapping": {
+    "source_claim_statement": "In a multisensory object-discrimination task, object identity is encoded in sensory cortex (secondary visual cortex V2L: 9.2% of cells) but perirhinal cortex (PER) encodes trial outcome and goal-location approach rather than object identity. Hippocampus encodes objects amodally -- but only after reward delivery, not during sampling. PER therefore carries motivational rather than perceptual object content.",
+    "ree_translation": "z_resource corresponds to the sensory cortex output stage (V2L/IT), not to perirhinal cortex. Perirhinal cortex corresponds more closely to the goal-approach / outcome-expectation signal -- potentially analogous to the motivational weighting in E3's evaluation stage. Hippocampus corresponds to the late, integrated object-place representation that forms after reward contact. This dissociation supports SD-015's claim that the dedicated object-type encoder must operate early in the processing chain (at the sensory cortex level), before motivational and spatial context are integrated. Trying to extract z_resource from z_world (which is a downstream integrated representation) fails precisely because object identity gets diluted by spatial and motivational context at later processing stages.",
+    "mapping_caveat": "The task uses fixed object locations -- animals approached objects at predetermined positions, not randomly-respawning resources. Therefore this study does not directly test whether object identity encoding in V2L/sensory cortex is spatially invariant. It also does not address whether the early sensory cortex object-identity representation is sufficient for approach across novel spatial positions, which is the central challenge SD-015 addresses.",
+    "source_context": "Male Lister Hooded rats in a 2-alternative forced-choice multisensory object-discrimination task; simultaneous multi-unit recording from S1BF, V2L, PER, and dorsal hippocampus (CA1/CA3/DG); objects at fixed spatial locations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Strong source: simultaneous multi-region recording with rigorous statistical analysis of object-identity decoding across regions. Mapping fidelity is moderate: the study demonstrates where object identity is NOT reliably encoded (perirhinal, hippocampus during sampling) which constrains the REE architecture, but does not directly test spatial invariance of the early sensory-cortex representation. Transfer risk is somewhat higher: fixed object positions in a nose-poke discrimination task versus random-respawn navigation in CausalGridWorld are quite different behavioral contexts."
+  }
+}

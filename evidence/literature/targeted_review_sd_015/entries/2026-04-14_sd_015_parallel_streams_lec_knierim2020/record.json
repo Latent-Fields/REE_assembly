@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_015",
+  "entry_id": "2026-04-14_sd_015_parallel_streams_lec_knierim2020",
+  "timestamp_utc": "2026-04-14T14:00:00Z",
+  "claim_ids_tested": ["SD-015"],
+  "source": {
+    "title": "Parallel processing streams in the hippocampus",
+    "authors": ["Inah Lee", "Douglas GoodSmith", "James J. Knierim"],
+    "year": 2020,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2020.03.004",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8136469/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Review paper synthesizing electrophysiology and lesion evidence across multiple species. Directly describes a dedicated object-identity stream (LEC) that is anatomically and functionally separate from the spatial stream (MEC), paralleling the z_resource / z_world split proposed in SD-015. Confidence bounded by the fact that the LEC 'what' stream is not purely object-type identity -- it also carries egocentric relational and temporal information -- so the mapping is directional rather than isomorphic.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If LEC neurons encode raw positional information as strongly as object identity, the 'what' stream argument weakens and the motivation for a separate z_resource encoder is reduced.",
+    "If hippocampal place cells downstream encode object type independently of location even without LEC input, then z_resource could be derived from z_world rather than requiring a separate encoder."
+  ],
+  "tags": ["sd_015", "lateral_entorhinal_cortex", "medial_entorhinal_cortex", "parallel_streams", "what_where", "hippocampus", "object_identity", "spatial_context"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus receives two anatomically and functionally distinct input streams: the lateral entorhinal cortex (LEC) conveying object-centered, non-spatial ('what') information and the medial entorhinal cortex (MEC) conveying allocentric spatial ('where') information. Dentate gyrus and CA3 bind these streams into configural object+place representations; CA1 integrates separated outputs from both streams.",
+    "ree_translation": "z_resource (ResourceEncoder output) corresponds to the LEC what-stream: an object-type representation invariant to absolute spatial position. z_world (the spatial scene embedding) corresponds to the MEC where-stream. Both are inputs to the hippocampal module, which binds them into episodic object-place memories. SD-015's proposal that goal-directed approach requires a dedicated z_resource encoder rather than reading object type off z_world is directly supported: the brain does not derive object identity from its spatial map; it maintains a parallel dedicated channel.",
+    "mapping_caveat": "LEC in rodents encodes egocentric relational information ('object near left wall') rather than pure categorical object-type features. This means LEC is not a clean 'what' stream in the IT cortex sense -- it blends identity with local relational geometry. The SD-015 ResourceEncoder is designed to extract abstract object-type features invariant to spatial position, which is a stronger invariance requirement than LEC typically satisfies. The mapping is directionally correct but the degree of spatial invariance differs.",
+    "source_context": "Rodent electrophysiology and lesion studies; human fMRI confirmatory evidence cited. Virtual and real maze navigation tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "High-quality review synthesizing a large evidence base. Mapping fidelity is good directionally but the LEC-to-z_resource analogy has a precision limit: LEC is not purely object-type invariant to location. Transfer risk is low because the parallel-streams architecture is conserved across mammalian species."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-04-14_mech095_agency_ownership_metaanalysis_seghezzi2019",
+  "timestamp_utc": "2026-04-14T14:00:00Z",
+  "claim_ids_tested": ["MECH-095"],
+  "source": {
+    "title": "Neurofunctional correlates of body-ownership and sense of agency: A meta-analytical account of self-consciousness",
+    "authors": ["Silvia Seghezzi", "Gianluigi Giannini", "Laura Zapparoli"],
+    "year": 2019,
+    "venue": "Cortex",
+    "doi": "10.1016/j.cortex.2019.08.018",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31629195/"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Meta-analysis across neuroimaging studies with quantitative coordinate comparison (ALE); distinguishes body-ownership from sense-of-agency networks. Mixed for MECH-095: validates that agency has a dedicated neural substrate dissociable from ownership, but challenges TPJ as the primary locus -- the IPL is ownership-specific, not agency-specific. The agency-specific network is SMA/premotor, raising the possibility that the REE AgencyComparator is positioned too far downstream.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the sense-of-agency network is primarily premotor/SMA rather than TPJ, the REE AgencyComparator may need to be positioned at an earlier architectural stage than MECH-095 currently specifies.",
+    "The shared insula activation (body-ownership AND agency) may be more relevant to REE's z_self monitoring than the IPL, which is ownership-specific."
+  ],
+  "tags": ["mech_095", "meta_analysis", "sense_of_agency", "body_ownership", "sma", "inferior_parietal", "insula", "dissociation", "network", "challenges_tpj_localization"],
+  "mapping": {
+    "source_claim_statement": "Body-ownership and sense of agency are dissociable and rely on partly distinct neural networks. Body-ownership is specifically associated with left inferior parietal lobule and left extra-striate body area. Sense of agency is specifically associated with left SMA, left posterior insula, right postcentral gyrus, and right superior temporal lobe. They share activation in left middle insula. The sense of agency network involves premotor and sensorimotor areas generating motor predictions and action monitoring, not primarily TPJ.",
+    "ree_translation": "MECH-095 locates the agency-detection comparator in the TPJ. This meta-analysis raises a localization challenge: the inferior parietal lobule is body-ownership-specific, not sense-of-agency-specific. The agency network is centered on premotor and sensorimotor cortex (SMA, postcentral gyrus, posterior insula). In REE terms, this suggests the true comparator may operate at the level of the motor command generation (SMA-equivalent) and early sensory integration (postcentral/posterior insula) -- earlier in the processing chain than the TPJ. The TPJ may be better characterized as the locus for social attribution (as in Farrer & Frith 2002) rather than the primary agency detection mechanism. This creates a two-stage model: automatic comparator at SMA/posterior insula, deliberative attribution at TPJ/IPL.",
+    "mapping_caveat": "Meta-analyses aggregate across heterogeneous paradigms; the agency studies pooled here may include tasks that emphasize different aspects (intentional binding, rubber hand, joystick control, etc.). The absence of IPL in the agency-specific cluster could reflect paradigm heterogeneity rather than a principled architectural distinction. Also, the meta-analysis pools body-ownership and sense-of-agency as separate constructs -- in REE, these may not map cleanly onto z_self vs z_world.",
+    "source_context": "Quantitative neuroimaging meta-analysis using ALE (activation likelihood estimation) across published fMRI/PET studies of body-ownership (rubber hand illusion and variants) and sense of agency (action-outcome contingency, intentional binding, motor control tasks) in healthy human participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Meta-analysis quality is good but inherits heterogeneity of source studies. Mapping fidelity is moderate -- the body-ownership/agency distinction may not map cleanly onto z_self/z_world in REE. Transfer risk is higher here because the architectural implication (move comparator upstream to SMA/premotor) is a significant challenge to the current MECH-095 specification."
+  }
+}
