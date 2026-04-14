@@ -6,11 +6,28 @@ Generated: 2026-04-14T06:20:00Z
 
 ## Queue Status
 
-- **Total pending: 0** (Mac: 0 | PC: 0 | any: 0)
-- **ALERT: Queue is EMPTY -- experiments must be queued before the runner can do anything.**
-  The runner (DLAPTOP-4.local) is idle. Yesterday's session ran EXQ-326 as the last item
-  (completed 2026-04-14T00:45Z after ~10h). No follow-on experiments were queued.
-  Recommend: open a /queue-experiment or /cowork session to refill the queue.
+- **Total pending/claimed: 18** (Mac/DLAPTOP-4.local: 15 | any: 3)
+- 17 pending + 1 claimed (V3-EXQ-328b, `any` affinity)
+
+Pending experiments:
+- V3-EXQ-326 (DLAPTOP) -- Wanting-gradient nav fix: SD-015, MECH-216, SD-012
+- V3-EXQ-327 (DLAPTOP) -- MECH-163 hippocampal goal-conditioned navigation
+- V3-EXQ-332 (DLAPTOP) -- MECH-216 genuinely predictive wanting: future-target
+- V3-EXQ-330a (DLAPTOP) -- SD-013 contrastive counterfactual retest
+- V3-EXQ-353 (DLAPTOP) -- ARC-033/SD-003/SD-013 interventional vs observational
+- V3-EXQ-322a (DLAPTOP) -- SD-015 ResourceEncoder z_goal seeding fix
+- V3-EXQ-328a (DLAPTOP) -- MECH-112 z_goal structured latent fix
+- V3-EXQ-321a (DLAPTOP) -- MECH-090 bistable gate retest
+- V3-EXQ-325a (DLAPTOP) -- SD-021 descending pain modulation retest
+- V3-EXQ-365 (DLAPTOP) -- MECH-104 surprise gate discriminative probe
+- V3-EXQ-355 (DLAPTOP) -- ARC-038 schema assimilation discriminative probe
+- V3-EXQ-395 (DLAPTOP) -- MECH-220 harm hub behavioral probe
+- V3-EXQ-373 (DLAPTOP) -- MECH-073 valence geometry probe
+- V3-EXQ-385 (DLAPTOP) -- INV-049 offline consolidation / sleep ablation
+- V3-EXQ-406 (DLAPTOP) -- INV-053 depression attractor replication (5-seed)
+- V3-EXQ-326a (any) -- SD-015 nav integration fix: z_resource encoder wiring
+- V3-EXQ-407 (any) -- MECH-231 E2 short-horizon efference-copy discriminative
+- V3-EXQ-328b (any, claimed) -- MECH-230 z_goal latent structure: homeostatic drive
 
 ---
 
@@ -170,10 +187,8 @@ Local repo is current at commit 4f1823b (2026-04-13: V3-EXQ-407 MECH-231 discrim
 
 ## Recommended Session Priorities
 
-1. **Queue new experiments** (queue is EMPTY -- highest urgency)
-   - Logical follow-ons from EXQ-326: SD-015 z_resource encoder targeted test, or
-     SD-012 seeding mechanism fix (EXQ-326a). Alternatively advance SD-022/SD-023 substrate.
-2. **Review EXQ-326 FAIL** during /governance (mark reviewed in review_tracker.json)
-3. **Mark V3-EXQ-326 UNKNOWN as discussed** in review_tracker.json `discussed_experiment_dirs`
-4. **Dispatch approval** -- 28 high-priority proposals ready for weekly export
-5. **Process 2 stale thought intakes** from 2026-03-24
+1. **Review EXQ-326 FAIL** during /governance (mark reviewed in review_tracker.json)
+2. **Mark V3-EXQ-326 UNKNOWN as discussed** in review_tracker.json `discussed_experiment_dirs`
+3. **Dispatch approval** -- 28 high-priority proposals ready for weekly export
+4. **Process 2 stale thought intakes** from 2026-03-24
+5. **Note:** Queue is healthy (18 items, 17 pending). No urgent queuing needed.
