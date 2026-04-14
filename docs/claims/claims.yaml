@@ -13620,6 +13620,69 @@
     obs_dict keys: landmark_a_field_view [25], landmark_b_field_view [25].
     Backward compatible: all defaults 0/disabled. Validation: V3-EXQ-263b queued.
 
+- id: SD-024
+  title: "DA-modulated RBF center density: dopaminergic signal at reward encounters allocates multiple closely-spaced RBF centers in the hippocampal residue field, creating representational expansion at reward locations without requiring environmental richness."
+  claim_type: design_decision
+  subject: hippocampal_module.da_modulated_rbf_density
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-14"
+  depends_on:
+    - SD-004
+    - SD-014
+    - MECH-232
+  location: docs/architecture/sd_024_da_modulated_rbf_density.md
+  notes: >
+    Workaround for ARC-057 substrate constraint: instead of requiring an informationally
+    rich environment, the hippocampal RBF layer itself creates more internal structure at
+    DA-modulated locations. When a reward encounter triggers a phasic DA signal (scaled
+    by benefit_magnitude * drive_level per SD-012), multiple RBF centers are allocated in
+    a local z_world neighborhood with jittered positions. This creates a cluster of
+    closely-spaced centers -- higher representational density -- at reward locations.
+    Harm events continue to allocate single centers (no DA modulation), preserving the
+    MECH-233 asymmetry. The FIFO center lifecycle provides natural decay: when the agent
+    stops encountering reward, the expanded cluster gradually gets overwritten.
+    Key parameters: da_allocation_scale (extra centers per DA), da_jitter_radius (cluster
+    spread), num_centers (increased from 32 to 64+ to accommodate expansion).
+    MECH-094 gate required: replay/simulation events must NOT trigger DA expansion.
+    Informative failure modes: craving (expansion persists after reward removal),
+    anhedonia (DA=0, uniform map, no directional preference), perseveration (DA locked
+    high, all locations expanded, no reorientation).
+    Biologically grounded: Retailleau & Morris 2018 showed place cells reorient to reward
+    features via D1 receptors; rats in uniform corridors still get sharper fields near
+    reward end. The brain allocates more resources regardless of environmental justification.
+
+- id: SD-025
+  title: "Curiosity drive: information-seeking bias in hippocampal trajectory scoring that favors regions of higher representational density in the RBF map."
+  claim_type: design_decision
+  subject: hippocampal_module.curiosity_drive
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-14"
+  depends_on:
+    - SD-024
+    - SD-004
+    - ARC-057
+  location: docs/architecture/sd_024_da_modulated_rbf_density.md#curiosity-drive
+  notes: >
+    The second component of ARC-057: a curiosity/information-seeking drive that biases
+    CEM trajectory scoring toward regions of higher representational density in the
+    hippocampal RBF layer. The drive computes local density (active centers within
+    bandwidth radius, weighted by proximity) and novelty (density * (1 - familiarity)).
+    The curiosity bonus is added to the CEM terrain_score.
+    Critical property: the curiosity drive is uniform -- it does the same computation
+    everywhere. Approach behavior emerges because DA-expanded regions (SD-024) have
+    higher density, so they score higher. The agent does not "know" it is approaching
+    reward; it is simply exploring available representational structure.
+    The familiarity component (visit-count EMA) prevents the agent from endlessly
+    circling already-explored regions, while the density component ensures that
+    DA-expanded regions remain attractive even after visits (because there are more
+    centers to distinguish between).
+    Parameters: curiosity_weight (CEM scoring bonus), familiarity_ema_alpha (decay rate).
+    Both default to 0 for backward compatibility.
+    Test: ARC-057 requires BOTH SD-024 and SD-025 active. Neither alone should produce
+    significant approach behavior (interaction effect, not additive).
+
 - id: MECH-220
   title: harm_stream_hub_coordination
   claim_type: mechanism_hypothesis
