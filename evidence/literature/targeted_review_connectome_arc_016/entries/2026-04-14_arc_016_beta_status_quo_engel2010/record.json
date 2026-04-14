@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-04-14_arc_016_beta_status_quo_engel2010",
+  "timestamp_utc": "2026-04-14T12:00:00Z",
+  "claim_ids_tested": ["ARC-016"],
+  "source": {
+    "title": "Beta-band oscillations -- signalling the status quo?",
+    "authors": ["Andreas K Engel", "Pascal Fries"],
+    "year": 2010,
+    "venue": "Current Opinion in Neurobiology",
+    "volume": "20",
+    "pages": "156-165",
+    "doi": "10.1016/j.conb.2010.02.015",
+    "pmid": "20359884",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/"
+  },
+  "evidence_class": "review_theoretical",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Strong conceptual alignment: the 'status quo' hypothesis for beta directly maps onto ARC-016's committed-mode regime, where high beta suppresses action initiation and maintains the current cognitive/motor state. The review synthesises motor cortex, prefrontal, and pathological data (Parkinson's) converging on a single hypothesis. Moderate confidence because (1) the paper is a theoretical review, not primary data, (2) the mapping requires interpreting 'state maintenance' as equivalent to REE's committed-mode precision regime, and (3) the paper does not directly address threshold-gating or the E3-derived variance mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Beta oscillations correlate with state maintenance but the paper does not demonstrate that transitions between beta regimes are threshold-gated -- the gating mechanism is inferred, not measured.",
+    "The review covers sensorimotor and cognitive beta broadly; ARC-016 specifically requires prefrontal-BG beta gating of commitment, which is a subset of the phenomena covered.",
+    "Mechanism of beta generation and the upstream precision computation (E3 analog) are not addressed -- the paper is descriptive at the oscillatory level, not mechanistic at the circuit level ARC-016 requires."
+  ],
+  "tags": ["arc_016", "beta_oscillations", "status_quo", "motor_cortex", "committed_mode", "state_maintenance", "MECH_090"],
+  "mapping": {
+    "source_claim_statement": "Beta-band oscillations are expressed more strongly when the maintenance of the current sensorimotor or cognitive state is intended or predicted. Pathological exaggeration of beta (as in Parkinson's disease) produces abnormal persistence of the status quo and deterioration of flexible control.",
+    "ree_translation": "ARC-016 proposes committed vs. uncommitted operating modes implemented as distinct precision regimes. Engel & Fries provide the oscillatory signature: high beta = committed mode (status quo maintenance); beta suppression = mode transition (action initiation or cognitive change). In REE terms, the BetaGate engages when E3-derived variance is low (precision is high), which corresponds to the high-beta state that inhibits new action selection and maintains the committed plan. The Parkinson's pathology case (exaggerated beta = inability to exit committed mode) is exactly the failure signature ARC-016 predicts: if the committed-mode regime cannot be released, the agent is stuck. MECH-090 (beta gates E3 propagation to action selection) is directly supported.",
+    "mapping_caveat": "The paper does not distinguish between externally vs. internally generated beta regimes or address how the transition between high-beta (committed) and low-beta (uncommitted) states is triggered. ARC-016 requires the trigger to be E3-derived prediction variance crossing a threshold -- this driving signal is not addressed in the paper.",
+    "source_context": "Theoretical review. Synthesises studies from motor cortex electrophysiology, top-down cognitive processing experiments, and Parkinson's disease pathophysiology. No new primary data."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Current Opinion in Neurobiology, influential review (high citation count). Source quality penalised for being a review (no primary data). Mapping fidelity strong for the committed/uncommitted mode distinction and the BetaGate mechanism; penalised for absence of threshold-gating mechanism. Transfer risk low -- the phenomena described are directly at the level of the neural mechanism ARC-016 invokes."
+  }
+}

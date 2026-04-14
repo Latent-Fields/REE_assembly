@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 26389,
   "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
-  "last_updated": "2026-04-14T04:24:20.004780+00:00",
+  "last_updated": "2026-04-14T08:48:04.774416+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-327",
+    "backlog_id": "",
+    "claim_id": "MECH-163",
+    "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
+    "description": "",
+    "script": "experiments/v3_exq_327_mech163_goal_conditioned_nav.py",
+    "started_at": "2026-04-14T05:48:09.826894+00:00",
+    "progress": {
+      "run_label": "Seed 7 / GOAL_ABLATED",
+      "runs_done": 3,
+      "runs_total": 6,
+      "episodes_done": 200,
+      "episodes_total": 250,
+      "overall_pct": 63.3
+    },
+    "seconds_elapsed": 10795,
+    "seconds_remaining": 5509,
+    "recent_lines": [
+      "Seed 7 Condition GOAL_ABLATED",
+      "[train] seed=7 GOAL_ABLATED ep 50/250 phase=P0 resources=0 benefit=0.000",
+      "[train] seed=7 GOAL_ABLATED ep 100/250 phase=P0 resources=0 benefit=0.000",
+      "[train] seed=7 GOAL_ABLATED ep 150/250 phase=P1 resources=0 benefit=0.000",
+      "[train] seed=7 GOAL_ABLATED ep 200/250 phase=P1 resources=0 benefit=0.000"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-407",
@@ -24,7 +50,7 @@
       "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
       "description": "",
       "estimated_minutes": 200.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },

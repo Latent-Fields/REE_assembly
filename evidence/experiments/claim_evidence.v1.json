@@ -196,7 +196,7 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.689, lit_conf=0.833",
+      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.688, lit_conf=0.832",
       "direction_counts": {
         "mixed": 2,
         "supports": 16,
@@ -213,7 +213,7 @@
         "lit:neuroscience_experiment": 1,
         "lit:theoretical_review": 6
       },
-      "experimental_confidence": 0.689,
+      "experimental_confidence": 0.688,
       "fail_runs": 5,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -224,8 +224,8 @@
       },
       "latest_run_id": "2026-04-04_arc007_inv010_pallial_spatial_memory_rodriguez2002",
       "latest_timestamp_utc": "2026-04-04T23:50:00Z",
-      "literature_confidence": 0.833,
-      "overall_confidence": 0.761,
+      "literature_confidence": 0.832,
+      "overall_confidence": 0.76,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -322,7 +322,7 @@
       }
     },
     "ARC-011": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.788",
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.787",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -344,8 +344,8 @@
       },
       "latest_run_id": "2026-04-04_inv010_arc011_zebrafish_sleep_yokogawa2007",
       "latest_timestamp_utc": "2026-04-04T23:50:00Z",
-      "literature_confidence": 0.788,
-      "overall_confidence": 0.788,
+      "literature_confidence": 0.787,
+      "overall_confidence": 0.787,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -463,22 +463,23 @@
       }
     },
     "ARC-016": {
-      "confidence_rationale": "exp=23 entry(s), lit=6 entry(s), exp_conf=0.697, lit_conf=0.876",
+      "confidence_rationale": "exp=23 entry(s), lit=9 entry(s), exp_conf=0.697, lit_conf=0.87",
       "direction_counts": {
         "mixed": 4,
-        "supports": 14,
+        "supports": 17,
         "unknown": 0,
         "weakens": 11
       },
-      "entries_total": 29,
+      "entries_total": 32,
       "evidence_class_counts": {
         "exp:simulation": 23,
-        "lit:computational_model": 1,
+        "lit:computational_model": 2,
         "lit:connectome_gradient_continuous_landscape": 1,
         "lit:fmri_connectivity": 1,
         "lit:intrinsic_network_competition": 1,
         "lit:metastate_hierarchical_dynamics": 1,
-        "lit:network_switching_salience_control": 1
+        "lit:network_switching_salience_control": 1,
+        "lit:review_theoretical": 2
       },
       "experimental_confidence": 0.697,
       "fail_runs": 14,
@@ -489,63 +490,12 @@
         "unknown": 0,
         "weakens": 11
       },
-      "latest_run_id": "20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3",
-      "latest_timestamp_utc": "2026-04-01T23:01:27.658562Z",
-      "literature_confidence": 0.876,
-      "overall_confidence": 0.786,
+      "latest_run_id": "2026-04-14_arc_016_precision_action_hierarchy_limanowski2024",
+      "latest_timestamp_utc": "2026-04-14T12:00:00Z",
+      "literature_confidence": 0.87,
+      "overall_confidence": 0.783,
       "pass_runs": 9,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.76,
-          "confidence_rationale": "High mapping fidelity for the precision-weighting half of ARC-016's circuit: dopamine modulates prediction error precision (inverse variance of expectations), which in the REE mapping corresponds directly to E3-derived variance setting the weight of prediction errors that drive action selection. Source quality is strong (PLoS Comp Bio, Friston lab). Transfer risk is moderate because the paper models motor action affordances specifically, not a general E3\u2192BetaGate\u2192action_selection circuit.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_016",
-          "failure_signatures": [
-            "The model addresses tonic dopamine modulation of global precision rather than the local, phasic variance computation REE proposes (E3-derived variance from a specific predictive model).",
-            "The affordance/action-selection framing is specific to motor hierarchy; the REE BetaGate operates at a cognitive control level that is not directly modelled.",
-            "Simulated Parkinson's-like deficits are presented as validation, but this requires the transfer from pathological to healthy-optimal to REE agent which is speculative."
-          ],
-          "run_id": "2026-03-28_arc_016_precision_weighting_action_friston2012",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-28T23:55:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.74,
-          "confidence_rationale": "Good mapping to the threshold-gating half of ARC-016's circuit: striatum and pre-SMA activation correlates with response threshold adjustment under speed pressure, directly instantiating the claim that a BG-frontal circuit modulates action-selection gating based on a threshold parameter. Individual variation in striatum activation predicts individual variation in threshold \u2014 confirming the threshold is a circuit-level variable, not just behavioural. Moderate transfer risk from response-speed pressure to REE's precision-derived commitment threshold.",
-          "evidence_class": "lit:fmri_connectivity",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_016",
-          "failure_signatures": [
-            "The threshold manipulation is externally imposed (speed-accuracy cues) not internally derived from prediction uncertainty, unlike ARC-016's E3-derived variance mechanism.",
-            "Pre-SMA/striatum are motor circuit nodes; ARC-016's BetaGate is conceptually at the cognitive control level, requiring an additional inference that the same circuit logic generalises upward.",
-            "fMRI temporal resolution cannot resolve whether threshold is set before or during the deliberation phase, which matters for the E3-derived variance \u2192 threshold \u2192 gate ordering ARC-016 requires."
-          ],
-          "run_id": "2026-03-28_arc_016_threshold_striatum_presma_forstmann2008",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-28T23:55:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_059_arc016_beta_gate_fixed_threshold",
-          "failure_signatures": [],
-          "run_id": "20260320T204910Z_v3_exq_059_arc016_beta_gate_fixed_threshold_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-01T23:01:27.655701Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-016",
@@ -575,16 +525,70 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-01T23:01:27.658562Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.68,
+          "confidence_rationale": "Strong conceptual alignment: the 'status quo' hypothesis for beta directly maps onto ARC-016's committed-mode regime, where high beta suppresses action initiation and maintains the current cognitive/motor state. The review synthesises motor cortex, prefrontal, and pathological data (Parkinson's) converging on a single hypothesis. Moderate confidence because (1) the paper is a theoretical review, not primary data, (2) the mapping requires interpreting 'state maintenance' as equivalent to REE's committed-mode precision regime, and (3) the paper does not directly address threshold-gating or the E3-derived variance mechanism.",
+          "evidence_class": "lit:review_theoretical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_016",
+          "failure_signatures": [
+            "Beta oscillations correlate with state maintenance but the paper does not demonstrate that transitions between beta regimes are threshold-gated -- the gating mechanism is inferred, not measured.",
+            "The review covers sensorimotor and cognitive beta broadly; ARC-016 specifically requires prefrontal-BG beta gating of commitment, which is a subset of the phenomena covered.",
+            "Mechanism of beta generation and the upstream precision computation (E3 analog) are not addressed -- the paper is descriptive at the oscillatory level, not mechanistic at the circuit level ARC-016 requires."
+          ],
+          "run_id": "2026-04-14_arc_016_beta_status_quo_engel2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.7,
+          "confidence_rationale": "Provides a mechanistic computational account of how the STN raises the decision threshold under conflict by receiving conflict signals from the ACC/mediofrontal cortex -- this is a direct model of the threshold-gating mechanism ARC-016 requires. The model simulates multiple inhibition paradigms (antisaccade, Simon, stop-signal) and successfully reproduces the behavioural and neural patterns, adding mechanistic credibility. Confidence moderate because (1) this is a computational model, not empirical primary data about the threshold mechanism, (2) the threshold is driven by response conflict (external) rather than by E3-derived prediction variance (internal), analogous to the Forstmann et al. limitation, and (3) the model operates at the action-cancellation level, while ARC-016's commitment threshold operates at the plan-level cognitive mode.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_016",
+          "failure_signatures": [
+            "The STN threshold-raising mechanism is driven by conflict detection (ACC detecting competing responses), not by E3-derived prediction variance -- the driving signal for the threshold differs from ARC-016's specification.",
+            "The model addresses action inhibition (stopping an ongoing response) rather than mode-switching between committed and uncommitted cognitive regimes -- a conceptually related but distinct phenomenon.",
+            "No empirical validation of the internal threshold variable itself; validation is at the level of task performance (RTs, error rates), not direct measurement of the threshold parameter."
+          ],
+          "run_id": "2026-04-14_arc_016_inhibitory_control_threshold_wiecki2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.72,
+          "confidence_rationale": "Directly addresses the multi-level precision-weighting structure that ARC-016 requires: from policy-level precision (which policies are considered) to motor-execution precision (efference copy gain), with the basal ganglia encoding policy precision and dopamine as the precision neuromodulator. The hierarchical 'mixed model' framing (discrete policy selection + continuous motor control) aligns well with the REE E3/BetaGate/action_selection architecture. Confidence limited by the paper being a review (not primary data) and by the abstract level at which precision-to-threshold conversion is specified -- the paper identifies the role of precision in mode selection but does not formalize a threshold-gating mechanism.",
+          "evidence_class": "lit:review_theoretical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_016",
+          "failure_signatures": [
+            "The paper argues for precision as a continuous modulator across levels, not necessarily as a threshold-gated switch. ARC-016's BetaGate implies a threshold (commit-or-not), not merely a graded precision adjustment.",
+            "The neural substrate for the E3-analog (the agent that computes and adjusts policy-level precision) is discussed at an abstract level -- the paper does not identify a specific prefrontal circuit deriving precision from prediction error in the way ARC-016's E3 does.",
+            "Mixed model hierarchy is primarily grounded in body/limb control; extrapolation to cognitive commitment thresholds involves additional transfer risk."
+          ],
+          "run_id": "2026-04-14_arc_016_precision_action_hierarchy_limanowski2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T12:00:00Z"
         }
       ],
-      "runs_total": 29,
+      "runs_total": 32,
       "source_counts": {
         "experimental": 23,
-        "literature": 6
+        "literature": 9
       }
     },
     "ARC-017": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.494, lit_conf=0.821",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.494, lit_conf=0.82",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -608,7 +612,7 @@
       },
       "latest_run_id": "v3_exq_135_arc017_reality_coherence_pair_20260329T032442Z_v3",
       "latest_timestamp_utc": "2026-03-29T03:24:42Z",
-      "literature_confidence": 0.821,
+      "literature_confidence": 0.82,
       "overall_confidence": 0.657,
       "pass_runs": 0,
       "recent_entries": [
@@ -1385,16 +1389,19 @@
       }
     },
     "ARC-026": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.622, lit_conf=0.731",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.622, lit_conf=0.807",
       "direction_counts": {
-        "mixed": 1,
-        "supports": 3,
+        "mixed": 2,
+        "supports": 5,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 5,
+      "entries_total": 8,
       "evidence_class_counts": {
         "exp:simulation": 3,
+        "lit:computational_model": 1,
+        "lit:electrophysiology_single_unit": 1,
+        "lit:meta_analysis": 1,
         "lit:theoretical_review": 2
       },
       "experimental_confidence": 0.622,
@@ -1406,61 +1413,12 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3",
-      "latest_timestamp_utc": "2026-04-05T09:18:46Z",
-      "literature_confidence": 0.731,
-      "overall_confidence": 0.666,
+      "latest_run_id": "2026-04-14_arc_026_frontal_ramp_approach_regalado2024",
+      "latest_timestamp_utc": "2026-04-14T00:00:00Z",
+      "literature_confidence": 0.807,
+      "overall_confidence": 0.715,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-026",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_039_training_progression",
-          "failure_signatures": [],
-          "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-19T06:07:20Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-026",
-          "confidence": 0.72,
-          "confidence_rationale": "Frankfurt's 'The Reasons of Love' is the most direct philosophical grounding available for both ARC-026 and INV-029. Frankfurt argues that love is constitutively a 'disinterested concern for the existence and flourishing' of what is loved -- it is non-instrumental, oriented toward the beloved's wellbeing for its own sake, and operates through stable volitional dispositions that persist over time. This is directly equivalent to what REE calls 'long-horizon care investment': love is not a transient preference but a structural feature of the agent's will that shapes action across time. Frankfurt also argues that what we love 'necessarily acquires value for us because we love it' -- value is bestowed by caring, not pre-existing in the object. This supports INV-029's claim that love is a coherent agent disposition rather than a derived optimization target. For ARC-026, the relevant implication is that as intelligence increases (deeper modelling of consequences), the agent's capacity to track and promote the wellbeing of what it loves should expand -- Frankfurt's framework gives no reason to expect caring to be crowded out by greater capability, and every reason to expect it to expand as the agent becomes better at identifying what serves the beloved's flourishing. The confidence is moderate rather than high because this is philosophical argument, not empirical evidence, and the expansion-under-intelligence claim (ARC-026's specific empirical prediction) requires additional inference beyond what Frankfurt's framework directly asserts.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_026",
-          "failure_signatures": [
-            "Frankfurt's account is primarily about what love is, not about how it scales with intelligence or capability. The ARC-026 expansion claim (love expands under intelligence rather than being crowded out) is an inference from Frankfurt's account, not a direct prediction.",
-            "Frankfurt's analysis applies to human agents with specific volitional structures -- the transfer to artificial agents or simulated systems requires the additional assumption that volitional structure is implementable in those systems."
-          ],
-          "run_id": "2026-03-29_arc_026_love_reasons_frankfurt2004",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:40:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-026",
-          "confidence": 0.62,
-          "confidence_rationale": "Bratman's philosophy of planning agency provides a structural argument for why long-horizon commitments -- which ARC-026 identifies as the architecture of love-as-care -- are necessary for rational agency and expand in functional scope as planning capacity increases. Bratman argues that intentions (plans) are not reducible to desires plus beliefs: they are sui generis practical attitudes that persist over time, structure deliberation by pruning the space of further planning, and create hierarchical plans that coordinate action across extended timeframes. The key implication for ARC-026 is that as an agent's planning depth increases, the functional reach of its existing commitments expands -- a deeper planner can identify more means to serve a given end, can coordinate more complex action sequences in service of it, and can better navigate obstacles to fulfilling it. This supports the 'love expands under intelligence' claim: long-horizon care commitment is not a fixed-bandwidth resource that gets crowded out by more sophisticated processing; it is a final-end specification whose practical consequences expand as reasoning capability deepens. The confidence is moderate because Bratman's account, like Frankfurt's, does not directly address artificial agents or the specific empirical prediction in ARC-026.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_026",
-          "failure_signatures": [
-            "Bratman's account does not directly address what happens to commitment when planning capacity increases beyond human levels -- his framework is developed for human agents with specific cognitive constraints.",
-            "Plans can be revised or abandoned if new information arrives -- Bratman's system is not committed to permanent expansion of care under intelligence, only that planning structures persist in the absence of defeating conditions."
-          ],
-          "run_id": "2026-03-29_arc_026_long_horizon_care_bratman1987",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:45:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-026",
@@ -1490,12 +1448,69 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-05T09:18:46Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-026",
+          "confidence": 0.5,
+          "confidence_rationale": "The paper provides computational evidence that cooperation and intelligence co-evolve: selection for cooperative strategies selects for greater cognitive capacity, and vice versa. This bidirectional relationship is consistent with ARC-026's direction (intelligence does not crowd out cooperation). However, the mechanism is Machiavellian -- intelligence is selected because it enables better exploitation/navigation of social games, not because it specifically expands benefit-gradient sensitivity. The 'mixed' direction reflects that the paper supports the coexistence claim but does not support the specific asymmetric-scaling sub-claim (approach gradients grow faster than contact avoidance).",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_arc_026",
+          "failure_signatures": [
+            "Intelligence here is strategic/Machiavellian, not specifically approach-gradient sensitivity",
+            "Neural network neuron count as intelligence proxy is underspecified",
+            "Model cycles between cooperation and defection rather than monotonically expanding cooperation",
+            "Does not decompose approach vs avoidance signal quality as a function of cognitive capacity"
+          ],
+          "run_id": "2026-04-14_arc_026_cooperation_intelligence_mcnally2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-026",
+          "confidence": 0.68,
+          "confidence_rationale": "Meta-analysis of 24 studies (26 effect sizes) with r = -0.23 is a robust, replicable finding. The mapping to ARC-026 is indirect: lower delay discounting is a necessary but not sufficient condition for long-horizon benefit detection. The paper measures preference structure, not approach-gradient sensitivity specifically. Transfer risk is moderate because delay discounting involves explicit monetary choice tasks, not the graded spatial approach manifolds ARC-026 posits.",
+          "evidence_class": "lit:meta_analysis",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_026",
+          "failure_signatures": [
+            "Effect size r = -0.23 is small-to-medium; substantial variance unexplained by intelligence",
+            "Yeh et al. 2021 replication with HCP sample (n=1206) found relationship weakened after controlling for SES",
+            "Delay discounting measures explicit choice preference, not implicit approach-gradient learning",
+            "Laboratory monetary tasks may not generalize to naturalistic long-horizon care investment"
+          ],
+          "run_id": "2026-04-14_arc_026_delay_discounting_intelligence_shamosh2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-026",
+          "confidence": 0.55,
+          "confidence_rationale": "Strong mechanistic evidence for a graded approach signal implemented by frontal ramp activity (OFC-to-ACC projections). This directly demonstrates the neural substrate of what ARC-026 calls approach-gradient detection. However, the study is in mice performing cue-reward tasks; mapping to human long-horizon care investment requires substantial transfer. The ramp encodes distance-to-reward within a trial, not across weeks or relational commitments. Signal fidelity for the mechanism is high; ecological validity for love-as-investment is low.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_026",
+          "failure_signatures": [
+            "Mouse model: cortical organization differs from primate frontal hierarchy",
+            "Trial-scale temporal window (seconds to minutes) vs love-relevant horizon (months to years)",
+            "Ramp encodes learned reward proximity, not novel benefit-gradient learning from scratch",
+            "No comparison of approach-ramp vs harm-avoidance circuits to test differential scaling"
+          ],
+          "run_id": "2026-04-14_arc_026_frontal_ramp_approach_regalado2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-14T00:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 3,
-        "literature": 2
+        "literature": 5
       }
     },
     "ARC-027": {
@@ -1609,7 +1624,7 @@
       }
     },
     "ARC-029": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.553, lit_conf=0.828",
+      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.552, lit_conf=0.827",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -1625,7 +1640,7 @@
         "lit:fmri_connectivity": 1,
         "lit:review_neurophysiology": 1
       },
-      "experimental_confidence": 0.553,
+      "experimental_confidence": 0.552,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1636,8 +1651,8 @@
       },
       "latest_run_id": "2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017",
       "latest_timestamp_utc": "2026-04-05T00:00:00Z",
-      "literature_confidence": 0.828,
-      "overall_confidence": 0.691,
+      "literature_confidence": 0.827,
+      "overall_confidence": 0.69,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -1861,7 +1876,7 @@
       }
     },
     "ARC-032": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.439, lit_conf=0.824",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.438, lit_conf=0.824",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -1874,7 +1889,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.439,
+      "experimental_confidence": 0.438,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -1978,7 +1993,7 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=12 entry(s), lit=7 entry(s), exp_conf=0.784, lit_conf=0.858",
+      "confidence_rationale": "exp=12 entry(s), lit=7 entry(s), exp_conf=0.784, lit_conf=0.857",
       "direction_counts": {
         "mixed": 2,
         "supports": 13,
@@ -2004,7 +2019,7 @@
       },
       "latest_run_id": "v3_exq_329_arc033_e2_harm_s_counterfactual_20260411T193133Z_v3",
       "latest_timestamp_utc": "2026-04-11T19:31:33Z",
-      "literature_confidence": 0.858,
+      "literature_confidence": 0.857,
       "overall_confidence": 0.821,
       "pass_runs": 5,
       "recent_entries": [
@@ -2143,7 +2158,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.498, lit_conf=0.912",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.497, lit_conf=0.912",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2157,7 +2172,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.498,
+      "experimental_confidence": 0.497,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2252,7 +2267,7 @@
       }
     },
     "ARC-038": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.298, lit_conf=0.906",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.297, lit_conf=0.906",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2267,7 +2282,7 @@
         "lit:electrophysiology_rodent_causal": 1,
         "lit:review_mechanistic": 2
       },
-      "experimental_confidence": 0.298,
+      "experimental_confidence": 0.297,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2530,7 +2545,7 @@
       }
     },
     "ARC-042": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.396, lit_conf=0.847",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.395, lit_conf=0.847",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2545,7 +2560,7 @@
         "lit:ml_theoretical_empirical": 2,
         "lit:neuroscience_computational": 1
       },
-      "experimental_confidence": 0.396,
+      "experimental_confidence": 0.395,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -2557,7 +2572,7 @@
       "latest_run_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
       "latest_timestamp_utc": "2026-04-05T12:00:00Z",
       "literature_confidence": 0.847,
-      "overall_confidence": 0.622,
+      "overall_confidence": 0.621,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -2859,7 +2874,7 @@
       }
     },
     "INV-010": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.878",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.877",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -2881,8 +2896,8 @@
       },
       "latest_run_id": "2026-04-04_mech120_inv010_shy_zebrafish_suppermpool2024",
       "latest_timestamp_utc": "2026-04-04T23:50:00Z",
-      "literature_confidence": 0.878,
-      "overall_confidence": 0.878,
+      "literature_confidence": 0.877,
+      "overall_confidence": 0.877,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3923,7 +3938,7 @@
       }
     },
     "INV-052": {
-      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.864, lit_conf=0.868",
+      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.864, lit_conf=0.867",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3947,8 +3962,8 @@
       },
       "latest_run_id": "2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008",
       "latest_timestamp_utc": "2026-04-09T15:00:00Z",
-      "literature_confidence": 0.868,
-      "overall_confidence": 0.866,
+      "literature_confidence": 0.867,
+      "overall_confidence": 0.865,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -4388,7 +4403,7 @@
       }
     },
     "MECH-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.453, lit_conf=0.881",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.452, lit_conf=0.881",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4402,7 +4417,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.453,
+      "experimental_confidence": 0.452,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4509,7 +4524,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.455, lit_conf=0.877",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.454, lit_conf=0.877",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -4525,7 +4540,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.455,
+      "experimental_confidence": 0.454,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4537,7 +4552,7 @@
       "latest_run_id": "v3_exq_199_mech025_doing_mode_breath_20260402T204835Z_v3",
       "latest_timestamp_utc": "2026-04-02T20:48:35Z",
       "literature_confidence": 0.877,
-      "overall_confidence": 0.772,
+      "overall_confidence": 0.771,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5240,7 +5255,7 @@
       }
     },
     "MECH-047": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.426, lit_conf=0.876",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.425, lit_conf=0.876",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -5253,7 +5268,7 @@
         "lit:connectome_empirical": 2,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.426,
+      "experimental_confidence": 0.425,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5265,7 +5280,7 @@
       "latest_run_id": "v3_exq_068_mech047_mode_hysteresis_20260323T005235Z_v3",
       "latest_timestamp_utc": "2026-03-23T00:52:35Z",
       "literature_confidence": 0.876,
-      "overall_confidence": 0.764,
+      "overall_confidence": 0.763,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5472,7 +5487,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.708, lit_conf=0.874",
+      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.707, lit_conf=0.874",
       "direction_counts": {
         "mixed": 2,
         "supports": 14,
@@ -5494,7 +5509,7 @@
         "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.708,
+      "experimental_confidence": 0.707,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5506,7 +5521,7 @@
       "latest_run_id": "2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016",
       "latest_timestamp_utc": "2026-04-04T09:00:00Z",
       "literature_confidence": 0.874,
-      "overall_confidence": 0.833,
+      "overall_confidence": 0.832,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -5587,7 +5602,7 @@
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.259, lit_conf=0.833",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.258, lit_conf=0.833",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -5600,7 +5615,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.259,
+      "experimental_confidence": 0.258,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5692,7 +5707,7 @@
       }
     },
     "MECH-057a": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.788, lit_conf=0.858",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.787, lit_conf=0.858",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -5706,7 +5721,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:empirical_neuroscience": 3
       },
-      "experimental_confidence": 0.788,
+      "experimental_confidence": 0.787,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -5922,7 +5937,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.708, lit_conf=0.824",
+      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.707, lit_conf=0.824",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -5935,7 +5950,7 @@
         "lit:machine_learning_experiment": 6,
         "lit:review": 5
       },
-      "experimental_confidence": 0.708,
+      "experimental_confidence": 0.707,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7121,7 +7136,7 @@
       }
     },
     "MECH-075": {
-      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.49, lit_conf=0.779",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.489, lit_conf=0.779",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -7134,7 +7149,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.49,
+      "experimental_confidence": 0.489,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -7146,7 +7161,7 @@
       "latest_run_id": "v3_exq_230_mech075_novelty_diagnostic_20260404T162303Z_v3",
       "latest_timestamp_utc": "2026-04-04T16:23:03Z",
       "literature_confidence": 0.779,
-      "overall_confidence": 0.606,
+      "overall_confidence": 0.605,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -7370,7 +7385,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=6 entry(s), exp_conf=0.733, lit_conf=0.843",
+      "confidence_rationale": "exp=12 entry(s), lit=6 entry(s), exp_conf=0.732, lit_conf=0.843",
       "direction_counts": {
         "mixed": 4,
         "supports": 10,
@@ -7386,7 +7401,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:methodological_critique": 1
       },
-      "experimental_confidence": 0.733,
+      "experimental_confidence": 0.732,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -7398,7 +7413,7 @@
       "latest_run_id": "2026-04-08_mech089_theta_gamma_learning_tort2009",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
       "literature_confidence": 0.843,
-      "overall_confidence": 0.788,
+      "overall_confidence": 0.787,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -7492,7 +7507,7 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.787, lit_conf=0.767",
+      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.786, lit_conf=0.767",
       "direction_counts": {
         "mixed": 9,
         "supports": 9,
@@ -7506,7 +7521,7 @@
         "lit:electrophysiology_eeg": 1,
         "lit:electrophysiology_lfp": 2
       },
-      "experimental_confidence": 0.787,
+      "experimental_confidence": 0.786,
       "fail_runs": 10,
       "genuine_exp_count": 16,
       "genuine_exp_direction_counts": {
@@ -7606,7 +7621,7 @@
       }
     },
     "MECH-091": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.848",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.847",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -7632,8 +7647,8 @@
       },
       "latest_run_id": "2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
-      "literature_confidence": 0.848,
-      "overall_confidence": 0.848,
+      "literature_confidence": 0.847,
+      "overall_confidence": 0.847,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7848,7 +7863,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.655, lit_conf=0.826",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.654, lit_conf=0.826",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -7863,7 +7878,7 @@
         "lit:electrophysiology_lfp_animal_pharmacological": 1,
         "lit:electrophysiology_meg_human": 1
       },
-      "experimental_confidence": 0.655,
+      "experimental_confidence": 0.654,
       "fail_runs": 6,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -8058,7 +8073,7 @@
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.568, lit_conf=0.903",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.567, lit_conf=0.903",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
@@ -8073,7 +8088,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.568,
+      "experimental_confidence": 0.567,
       "fail_runs": 8,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -8085,7 +8100,7 @@
       "latest_run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3",
       "latest_timestamp_utc": "2026-03-28T22:09:39Z",
       "literature_confidence": 0.903,
-      "overall_confidence": 0.736,
+      "overall_confidence": 0.735,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -8282,7 +8297,7 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=20 entry(s), lit=3 entry(s), exp_conf=0.619, lit_conf=0.859",
+      "confidence_rationale": "exp=20 entry(s), lit=3 entry(s), exp_conf=0.618, lit_conf=0.859",
       "direction_counts": {
         "mixed": 7,
         "supports": 7,
@@ -8296,7 +8311,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.619,
+      "experimental_confidence": 0.618,
       "fail_runs": 16,
       "genuine_exp_count": 20,
       "genuine_exp_direction_counts": {
@@ -8394,7 +8409,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.478, lit_conf=0.907",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.477, lit_conf=0.907",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -8409,7 +8424,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:review_theoretical": 1
       },
-      "experimental_confidence": 0.478,
+      "experimental_confidence": 0.477,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -8421,7 +8436,7 @@
       "latest_run_id": "2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value",
       "latest_timestamp_utc": "2026-04-05T22:10:00Z",
       "literature_confidence": 0.907,
-      "overall_confidence": 0.693,
+      "overall_confidence": 0.692,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8519,7 +8534,7 @@
       }
     },
     "MECH-100": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.851, lit_conf=0.754",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.85, lit_conf=0.754",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -8533,7 +8548,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.851,
+      "experimental_confidence": 0.85,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -8637,7 +8652,7 @@
       }
     },
     "MECH-101": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.774, lit_conf=0.824",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.773, lit_conf=0.824",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -8651,7 +8666,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.774,
+      "experimental_confidence": 0.773,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -8755,7 +8770,7 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.575, lit_conf=0.817",
+      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.574, lit_conf=0.817",
       "direction_counts": {
         "mixed": 12,
         "supports": 5,
@@ -8768,7 +8783,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.575,
+      "experimental_confidence": 0.574,
       "fail_runs": 21,
       "genuine_exp_count": 24,
       "genuine_exp_direction_counts": {
@@ -9181,7 +9196,7 @@
       }
     },
     "MECH-111": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.382, lit_conf=0.771",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.381, lit_conf=0.771",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -9194,7 +9209,7 @@
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.382,
+      "experimental_confidence": 0.381,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -9206,7 +9221,7 @@
       "latest_run_id": "v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3",
       "latest_timestamp_utc": "2026-04-02T02:18:31Z",
       "literature_confidence": 0.771,
-      "overall_confidence": 0.538,
+      "overall_confidence": 0.537,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -9524,7 +9539,7 @@
       }
     },
     "MECH-116": {
-      "confidence_rationale": "exp=4 entry(s), lit=6 entry(s), exp_conf=0.439, lit_conf=0.872",
+      "confidence_rationale": "exp=4 entry(s), lit=6 entry(s), exp_conf=0.438, lit_conf=0.872",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -9538,7 +9553,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.439,
+      "experimental_confidence": 0.438,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -9649,7 +9664,7 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.948, lit_conf=0.778",
+      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.947, lit_conf=0.778",
       "direction_counts": {
         "mixed": 2,
         "supports": 6,
@@ -9662,7 +9677,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.948,
+      "experimental_confidence": 0.947,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -9674,7 +9689,7 @@
       "latest_run_id": "v3_exq_234_mech117_wanting_liking_replication_20260405T143337Z_v3",
       "latest_timestamp_utc": "2026-04-05T14:33:37Z",
       "literature_confidence": 0.778,
-      "overall_confidence": 0.88,
+      "overall_confidence": 0.879,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -9997,7 +10012,7 @@
       }
     },
     "MECH-120": {
-      "confidence_rationale": "exp=2 entry(s), lit=7 entry(s), exp_conf=0.36, lit_conf=0.904",
+      "confidence_rationale": "exp=2 entry(s), lit=7 entry(s), exp_conf=0.359, lit_conf=0.903",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -10012,7 +10027,7 @@
         "lit:experimental_neuroscience": 2,
         "lit:theoretical_neuroscience": 2
       },
-      "experimental_confidence": 0.36,
+      "experimental_confidence": 0.359,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -10023,8 +10038,8 @@
       },
       "latest_run_id": "v3_exq_245_mech120_shy_normalisation_20260407T091221Z_v3",
       "latest_timestamp_utc": "2026-04-07T09:12:21Z",
-      "literature_confidence": 0.904,
-      "overall_confidence": 0.686,
+      "literature_confidence": 0.903,
+      "overall_confidence": 0.685,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10910,7 +10925,7 @@
       }
     },
     "MECH-153": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.445, lit_conf=0.858",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.444, lit_conf=0.858",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -10926,7 +10941,7 @@
         "lit:ml_theoretical_empirical": 1,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.445,
+      "experimental_confidence": 0.444,
       "fail_runs": 3,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -11208,7 +11223,7 @@
       }
     },
     "MECH-156": {
-      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.506, lit_conf=0.787",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.505, lit_conf=0.787",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -11220,7 +11235,7 @@
         "exp:simulation": 2,
         "lit:electrophysiology_lfp": 1
       },
-      "experimental_confidence": 0.506,
+      "experimental_confidence": 0.505,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -11232,7 +11247,7 @@
       "latest_run_id": "v3_exq_210_mech156_theta_traversal_probe_1775184493_v3",
       "latest_timestamp_utc": "2026-04-03T03:49:33.793812Z",
       "literature_confidence": 0.787,
-      "overall_confidence": 0.6,
+      "overall_confidence": 0.599,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -11421,7 +11436,7 @@
       }
     },
     "MECH-165": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.306, lit_conf=0.834",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.305, lit_conf=0.834",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -11435,7 +11450,7 @@
         "lit:experimental_neuroscience": 1,
         "lit:theoretical_neuroscience": 1
       },
-      "experimental_confidence": 0.306,
+      "experimental_confidence": 0.305,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -11526,7 +11541,7 @@
       }
     },
     "MECH-166": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.907",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.906",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -11550,8 +11565,8 @@
       },
       "latest_run_id": "2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012",
       "latest_timestamp_utc": "2026-04-06T00:00:00Z",
-      "literature_confidence": 0.907,
-      "overall_confidence": 0.907,
+      "literature_confidence": 0.906,
+      "overall_confidence": 0.906,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -11618,7 +11633,7 @@
       }
     },
     "MECH-168": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.882",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.881",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -11641,8 +11656,8 @@
       },
       "latest_run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
       "latest_timestamp_utc": "2026-04-06T00:30:00Z",
-      "literature_confidence": 0.882,
-      "overall_confidence": 0.882,
+      "literature_confidence": 0.881,
+      "overall_confidence": 0.881,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -11796,7 +11811,7 @@
       }
     },
     "MECH-171": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.887",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.886",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -11819,8 +11834,8 @@
       },
       "latest_run_id": "2026-04-06_mech171_bidirectional_sleep_ad_vanegroo2019",
       "latest_timestamp_utc": "2026-04-06T00:30:00Z",
-      "literature_confidence": 0.887,
-      "overall_confidence": 0.887,
+      "literature_confidence": 0.886,
+      "overall_confidence": 0.886,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -13103,7 +13118,7 @@
       }
     },
     "MECH-186": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.36, lit_conf=0.774",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.359, lit_conf=0.774",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -13116,7 +13131,7 @@
         "lit:empirical_human": 2,
         "lit:empirical_rodent": 1
       },
-      "experimental_confidence": 0.36,
+      "experimental_confidence": 0.359,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -13993,7 +14008,7 @@
       }
     },
     "MECH-216": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.754, lit_conf=0.865",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.753, lit_conf=0.865",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -14007,7 +14022,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.754,
+      "experimental_confidence": 0.753,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -14453,7 +14468,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.29, lit_conf=0.806",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.289, lit_conf=0.806",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -14467,7 +14482,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.29,
+      "experimental_confidence": 0.289,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -14562,7 +14577,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.44, lit_conf=0.827",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.439, lit_conf=0.827",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -14576,7 +14591,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.44,
+      "experimental_confidence": 0.439,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -14588,7 +14603,7 @@
       "latest_run_id": "v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3",
       "latest_timestamp_utc": "2026-04-03T20:24:34Z",
       "literature_confidence": 0.827,
-      "overall_confidence": 0.634,
+      "overall_confidence": 0.633,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -14781,7 +14796,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.446, lit_conf=0.809",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.445, lit_conf=0.809",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -14795,7 +14810,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.446,
+      "experimental_confidence": 0.445,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -15400,7 +15415,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.509, lit_conf=0.861",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.508, lit_conf=0.861",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -15414,7 +15429,7 @@
         "lit:computational_model": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.509,
+      "experimental_confidence": 0.508,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -15508,7 +15523,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.741, lit_conf=0.834",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.74, lit_conf=0.834",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -15522,7 +15537,7 @@
         "lit:machine_learning_experiment": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.741,
+      "experimental_confidence": 0.74,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -15534,7 +15549,7 @@
       "latest_run_id": "v3_exq_153_q013_uncertainty_calibration_20260329T132242Z_v3",
       "latest_timestamp_utc": "2026-03-29T19:05:28.600859Z",
       "literature_confidence": 0.834,
-      "overall_confidence": 0.811,
+      "overall_confidence": 0.81,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -16721,7 +16736,7 @@
       }
     },
     "Q-033": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.832",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.831",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -16744,8 +16759,8 @@
       },
       "latest_run_id": "2024-11-18_q_033_mood_episode_prediction_lim2024",
       "latest_timestamp_utc": "2026-04-06T00:00:00Z",
-      "literature_confidence": 0.832,
-      "overall_confidence": 0.832,
+      "literature_confidence": 0.831,
+      "overall_confidence": 0.831,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -16828,7 +16843,7 @@
       }
     },
     "Q-034": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.716, lit_conf=0.803",
+      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.715, lit_conf=0.803",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -16843,7 +16858,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.716,
+      "experimental_confidence": 0.715,
       "fail_runs": 1,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -16855,7 +16870,7 @@
       "latest_run_id": "v3_exq_288_q034_hazard_resource_threshold_sweep_1775783647_v3",
       "latest_timestamp_utc": "2026-04-10T01:14:07Z",
       "literature_confidence": 0.803,
-      "overall_confidence": 0.76,
+      "overall_confidence": 0.759,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -16954,7 +16969,7 @@
       }
     },
     "SD-003": {
-      "confidence_rationale": "exp=83 entry(s), lit=7 entry(s), exp_conf=0.653, lit_conf=0.848",
+      "confidence_rationale": "exp=83 entry(s), lit=7 entry(s), exp_conf=0.652, lit_conf=0.848",
       "direction_counts": {
         "mixed": 22,
         "supports": 26,
@@ -16969,7 +16984,7 @@
         "lit:empirical_neuroscience": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.653,
+      "experimental_confidence": 0.652,
       "fail_runs": 66,
       "genuine_exp_count": 83,
       "genuine_exp_direction_counts": {
@@ -16981,7 +16996,7 @@
       "latest_run_id": "v3_exq_329_arc033_e2_harm_s_counterfactual_20260411T193133Z_v3",
       "latest_timestamp_utc": "2026-04-11T19:31:33Z",
       "literature_confidence": 0.848,
-      "overall_confidence": 0.751,
+      "overall_confidence": 0.75,
       "pass_runs": 17,
       "recent_entries": [
         {
@@ -18000,7 +18015,7 @@
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=6 entry(s), lit=8 entry(s), exp_conf=0.61, lit_conf=0.879",
+      "confidence_rationale": "exp=6 entry(s), lit=8 entry(s), exp_conf=0.609, lit_conf=0.879",
       "direction_counts": {
         "mixed": 1,
         "supports": 9,
@@ -18017,7 +18032,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.61,
+      "experimental_confidence": 0.609,
       "fail_runs": 5,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -18029,7 +18044,7 @@
       "latest_run_id": "v3_exq_326_wanting_gradient_nav_fix_20260413T144759Z_v3",
       "latest_timestamp_utc": "2026-04-13T14:47:59Z",
       "literature_confidence": 0.879,
-      "overall_confidence": 0.745,
+      "overall_confidence": 0.744,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -18700,7 +18715,7 @@
       }
     },
     "SD-021": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.893",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.892",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -18723,8 +18738,8 @@
       },
       "latest_run_id": "2026-04-09_sd_021_placebo_opioid_eippert2009",
       "latest_timestamp_utc": "2026-04-09T15:00:00Z",
-      "literature_confidence": 0.893,
-      "overall_confidence": 0.893,
+      "literature_confidence": 0.892,
+      "overall_confidence": 0.892,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -18803,7 +18818,7 @@
       }
     },
     "SD-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.767, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.766, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -18814,7 +18829,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.767,
+      "experimental_confidence": 0.766,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -18826,7 +18841,7 @@
       "latest_run_id": "v3_exq_319_sd022_harm_stream_dissociation_20260410T093948Z_v3",
       "latest_timestamp_utc": "2026-04-10T11:03:18Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.767,
+      "overall_confidence": 0.766,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -65724,6 +65739,117 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-026",
+      "confidence": 0.5,
+      "confidence_rationale": "The paper provides computational evidence that cooperation and intelligence co-evolve: selection for cooperative strategies selects for greater cognitive capacity, and vice versa. This bidirectional relationship is consistent with ARC-026's direction (intelligence does not crowd out cooperation). However, the mechanism is Machiavellian -- intelligence is selected because it enables better exploitation/navigation of social games, not because it specifically expands benefit-gradient sensitivity. The 'mixed' direction reflects that the paper supports the coexistence claim but does not support the specific asymmetric-scaling sub-claim (approach gradients grow faster than contact avoidance).",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_arc_026",
+      "failure_signatures": [
+        "Intelligence here is strategic/Machiavellian, not specifically approach-gradient sensitivity",
+        "Neural network neuron count as intelligence proxy is underspecified",
+        "Model cycles between cooperation and defection rather than monotonically expanding cooperation",
+        "Does not decompose approach vs avoidance signal quality as a function of cognitive capacity"
+      ],
+      "run_id": "2026-04-14_arc_026_cooperation_intelligence_mcnally2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-026",
+      "confidence": 0.68,
+      "confidence_rationale": "Meta-analysis of 24 studies (26 effect sizes) with r = -0.23 is a robust, replicable finding. The mapping to ARC-026 is indirect: lower delay discounting is a necessary but not sufficient condition for long-horizon benefit detection. The paper measures preference structure, not approach-gradient sensitivity specifically. Transfer risk is moderate because delay discounting involves explicit monetary choice tasks, not the graded spatial approach manifolds ARC-026 posits.",
+      "evidence_class": "lit:meta_analysis",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_026",
+      "failure_signatures": [
+        "Effect size r = -0.23 is small-to-medium; substantial variance unexplained by intelligence",
+        "Yeh et al. 2021 replication with HCP sample (n=1206) found relationship weakened after controlling for SES",
+        "Delay discounting measures explicit choice preference, not implicit approach-gradient learning",
+        "Laboratory monetary tasks may not generalize to naturalistic long-horizon care investment"
+      ],
+      "run_id": "2026-04-14_arc_026_delay_discounting_intelligence_shamosh2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-026",
+      "confidence": 0.55,
+      "confidence_rationale": "Strong mechanistic evidence for a graded approach signal implemented by frontal ramp activity (OFC-to-ACC projections). This directly demonstrates the neural substrate of what ARC-026 calls approach-gradient detection. However, the study is in mice performing cue-reward tasks; mapping to human long-horizon care investment requires substantial transfer. The ramp encodes distance-to-reward within a trial, not across weeks or relational commitments. Signal fidelity for the mechanism is high; ecological validity for love-as-investment is low.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_026",
+      "failure_signatures": [
+        "Mouse model: cortical organization differs from primate frontal hierarchy",
+        "Trial-scale temporal window (seconds to minutes) vs love-relevant horizon (months to years)",
+        "Ramp encodes learned reward proximity, not novel benefit-gradient learning from scratch",
+        "No comparison of approach-ramp vs harm-avoidance circuits to test differential scaling"
+      ],
+      "run_id": "2026-04-14_arc_026_frontal_ramp_approach_regalado2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.68,
+      "confidence_rationale": "Strong conceptual alignment: the 'status quo' hypothesis for beta directly maps onto ARC-016's committed-mode regime, where high beta suppresses action initiation and maintains the current cognitive/motor state. The review synthesises motor cortex, prefrontal, and pathological data (Parkinson's) converging on a single hypothesis. Moderate confidence because (1) the paper is a theoretical review, not primary data, (2) the mapping requires interpreting 'state maintenance' as equivalent to REE's committed-mode precision regime, and (3) the paper does not directly address threshold-gating or the E3-derived variance mechanism.",
+      "evidence_class": "lit:review_theoretical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_016",
+      "failure_signatures": [
+        "Beta oscillations correlate with state maintenance but the paper does not demonstrate that transitions between beta regimes are threshold-gated -- the gating mechanism is inferred, not measured.",
+        "The review covers sensorimotor and cognitive beta broadly; ARC-016 specifically requires prefrontal-BG beta gating of commitment, which is a subset of the phenomena covered.",
+        "Mechanism of beta generation and the upstream precision computation (E3 analog) are not addressed -- the paper is descriptive at the oscillatory level, not mechanistic at the circuit level ARC-016 requires."
+      ],
+      "run_id": "2026-04-14_arc_016_beta_status_quo_engel2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.7,
+      "confidence_rationale": "Provides a mechanistic computational account of how the STN raises the decision threshold under conflict by receiving conflict signals from the ACC/mediofrontal cortex -- this is a direct model of the threshold-gating mechanism ARC-016 requires. The model simulates multiple inhibition paradigms (antisaccade, Simon, stop-signal) and successfully reproduces the behavioural and neural patterns, adding mechanistic credibility. Confidence moderate because (1) this is a computational model, not empirical primary data about the threshold mechanism, (2) the threshold is driven by response conflict (external) rather than by E3-derived prediction variance (internal), analogous to the Forstmann et al. limitation, and (3) the model operates at the action-cancellation level, while ARC-016's commitment threshold operates at the plan-level cognitive mode.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_016",
+      "failure_signatures": [
+        "The STN threshold-raising mechanism is driven by conflict detection (ACC detecting competing responses), not by E3-derived prediction variance -- the driving signal for the threshold differs from ARC-016's specification.",
+        "The model addresses action inhibition (stopping an ongoing response) rather than mode-switching between committed and uncommitted cognitive regimes -- a conceptually related but distinct phenomenon.",
+        "No empirical validation of the internal threshold variable itself; validation is at the level of task performance (RTs, error rates), not direct measurement of the threshold parameter."
+      ],
+      "run_id": "2026-04-14_arc_016_inhibitory_control_threshold_wiecki2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.72,
+      "confidence_rationale": "Directly addresses the multi-level precision-weighting structure that ARC-016 requires: from policy-level precision (which policies are considered) to motor-execution precision (efference copy gain), with the basal ganglia encoding policy precision and dopamine as the precision neuromodulator. The hierarchical 'mixed model' framing (discrete policy selection + continuous motor control) aligns well with the REE E3/BetaGate/action_selection architecture. Confidence limited by the paper being a review (not primary data) and by the abstract level at which precision-to-threshold conversion is specified -- the paper identifies the role of precision in mode selection but does not formalize a threshold-gating mechanism.",
+      "evidence_class": "lit:review_theoretical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_016",
+      "failure_signatures": [
+        "The paper argues for precision as a continuous modulator across levels, not necessarily as a threshold-gated switch. ARC-016's BetaGate implies a threshold (commit-or-not), not merely a graded precision adjustment.",
+        "The neural substrate for the E3-analog (the agent that computes and adjusts policy-level precision) is discussed at an abstract level -- the paper does not identify a specific prefrontal circuit deriving precision from prediction error in the way ARC-016's E3 does.",
+        "Mixed model hierarchy is primarily grounded in body/limb control; extrapolation to cognitive commitment thresholds involves additional transfer risk."
+      ],
+      "run_id": "2026-04-14_arc_016_precision_action_hierarchy_limanowski2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-14T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -65755,7 +65881,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-14T04:18:27.807609Z",
+  "generated_at_utc": "2026-04-14T08:47:17.880104Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

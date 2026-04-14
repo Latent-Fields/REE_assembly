@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_026",
+  "entry_id": "2026-04-14_arc_026_frontal_ramp_approach_regalado2024",
+  "timestamp_utc": "2026-04-14T00:00:00Z",
+  "claim_ids_tested": ["ARC-026"],
+  "source": {
+    "title": "Neural activity ramps in frontal cortex signal extended motivation during learning",
+    "authors": ["Josue M Regalado", "Ariadna Corredera Asensio", "Theresa Haunold", "Andrew C Toader", "Yan Ran Li", "Lauren A Neal", "Priyamvada Rajasethupathy"],
+    "year": 2024,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.93983.3",
+    "url": "https://elifesciences.org/articles/93983"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Strong mechanistic evidence for a graded approach signal implemented by frontal ramp activity (OFC-to-ACC projections). This directly demonstrates the neural substrate of what ARC-026 calls approach-gradient detection. However, the study is in mice performing cue-reward tasks; mapping to human long-horizon care investment requires substantial transfer. The ramp encodes distance-to-reward within a trial, not across weeks or relational commitments. Signal fidelity for the mechanism is high; ecological validity for love-as-investment is low.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Mouse model: cortical organization differs from primate frontal hierarchy",
+    "Trial-scale temporal window (seconds to minutes) vs love-relevant horizon (months to years)",
+    "Ramp encodes learned reward proximity, not novel benefit-gradient learning from scratch",
+    "No comparison of approach-ramp vs harm-avoidance circuits to test differential scaling"
+  ],
+  "tags": ["arc_026", "approach_gradient", "frontal_cortex", "OFC", "ACC", "ramp_activity", "sustained_motivation", "benefit_detection", "neuroscience"],
+  "mapping": {
+    "source_claim_statement": "OFC-to-ACC projection neurons display ramping activity that persists across consecutive unrewarded cues and peaks at reward-associated cues; chemogenetic inhibition of this circuit disrupts sustained approach behavior during learning.",
+    "ree_translation": "ARC-026 operationalizes 'love' as benefit-gradient sensitivity -- the ability to detect and approach distant sources of benefit across time and space. The OFC-ACC ramp circuit is the mechanistic implementation of exactly this: a graded signal that encodes the agent's proximity to benefit, enabling sustained approach even without intermediate reinforcement. ARC-026 predicts this circuit (or its analog) scales with intelligence/frontal development more than binary harm avoidance circuits do. The Regalado et al. finding establishes that the substrate exists and is necessary for extended approach motivation; it does not directly test scaling with intelligence.",
+    "mapping_caveat": "The paper establishes mechanism, not scaling. To directly support ARC-026 one would need evidence that this ramp circuit develops, grows, or becomes more discriminative as a function of frontal capacity. The paper provides the anatomical/functional substrate for ARC-026's approach-gradient claim but does not test the intelligence-scaling prediction.",
+    "source_context": "Cellular neuroscience using fiber photometry, 2-photon imaging, and chemogenetics in head-fixed mice. Paradigm: self-initiated trials with cue-reward sequences. OFC and ACC targeted. Published eLife 2024."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: multi-method, causal manipulation, published in eLife. Mapping fidelity moderate: the circuit described is structurally what ARC-026 predicts, but the paper does not test intelligence-scaling. Transfer risk moderate-high: mouse, seconds-scale, learned task -- all differ from human relational long-horizon investment."
+  }
+}

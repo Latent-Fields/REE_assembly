@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-04-14_arc_016_inhibitory_control_threshold_wiecki2013",
+  "timestamp_utc": "2026-04-14T12:00:00Z",
+  "claim_ids_tested": ["ARC-016"],
+  "source": {
+    "title": "A computational model of inhibitory control in frontal cortex and basal ganglia",
+    "authors": ["Thomas V Wiecki", "Michael J Frank"],
+    "year": 2013,
+    "venue": "Psychological Review",
+    "volume": "120",
+    "issue": "2",
+    "pages": "329-355",
+    "doi": "10.1037/a0031542",
+    "pmid": "23586447",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23586447/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Provides a mechanistic computational account of how the STN raises the decision threshold under conflict by receiving conflict signals from the ACC/mediofrontal cortex -- this is a direct model of the threshold-gating mechanism ARC-016 requires. The model simulates multiple inhibition paradigms (antisaccade, Simon, stop-signal) and successfully reproduces the behavioural and neural patterns, adding mechanistic credibility. Confidence moderate because (1) this is a computational model, not empirical primary data about the threshold mechanism, (2) the threshold is driven by response conflict (external) rather than by E3-derived prediction variance (internal), analogous to the Forstmann et al. limitation, and (3) the model operates at the action-cancellation level, while ARC-016's commitment threshold operates at the plan-level cognitive mode.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The STN threshold-raising mechanism is driven by conflict detection (ACC detecting competing responses), not by E3-derived prediction variance -- the driving signal for the threshold differs from ARC-016's specification.",
+    "The model addresses action inhibition (stopping an ongoing response) rather than mode-switching between committed and uncommitted cognitive regimes -- a conceptually related but distinct phenomenon.",
+    "No empirical validation of the internal threshold variable itself; validation is at the level of task performance (RTs, error rates), not direct measurement of the threshold parameter."
+  ],
+  "tags": ["arc_016", "STN", "response_threshold", "ACC", "frontal_basal_ganglia", "inhibitory_control", "decision_threshold", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "The ACC detects response conflict and sends a conflict signal to the STN, which raises the decision threshold by making it harder for striatal reward representations to gain control. This fronto-STN circuit implements a threshold-gating mechanism over action selection: under high conflict, the gate is raised (inhibited); under low conflict, the gate permits response execution.",
+    "ree_translation": "ARC-016 requires that the BetaGate acts as a threshold-gated switch between committed and uncommitted modes, with the threshold set by E3-derived precision. Wiecki & Frank provide the mechanistic circuit: ACC -- STN -- threshold -- BG gate. In REE terms, E3 plays the ACC role (detecting uncertainty/conflict in the current plan), the STN-mediated threshold corresponds to the commit threshold, and the BetaGate corresponds to the BG gate releasing or maintaining inhibition. The difference is that ARC-016's driving signal is E3-derived prediction variance rather than perceptual response conflict -- but the circuit topology and gating logic are identical. This paper provides the strongest computational grounding for the threshold mechanism itself.",
+    "mapping_caveat": "Wiecki & Frank model threshold adjustment as conflict-driven (external response competition) rather than variance-driven (internal predictive uncertainty). ARC-016's E3-derived variance requires the same circuit to operate on an internal signal. This is the same limitation as Forstmann et al. 2008, approached from the computational rather than fMRI side. The model also targets inhibitory control of individual actions, not mode-switching between sustained cognitive regimes.",
+    "source_context": "Computational neural circuit model (spiking and rate-coded units) fit to behavioural data from antisaccade, Simon, saccade-override, and stop-signal paradigms. Psychological Review, peer-reviewed. n/a (model paper; no human subjects)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Psychological Review, Frank lab is a leading computational BG group, model validated across multiple paradigms. Source quality good for a computational paper. Mapping fidelity penalised for conflict-driven vs. variance-driven threshold distinction and action-inhibition vs. mode-switching distinction. Transfer risk higher than the other entries because the model level (action selection per trial) is further from ARC-016's level (sustained cognitive mode) than the oscillatory-level or precision-framework literature."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_026",
+  "entry_id": "2026-04-14_arc_026_delay_discounting_intelligence_shamosh2008",
+  "timestamp_utc": "2026-04-14T00:00:00Z",
+  "claim_ids_tested": ["ARC-026"],
+  "source": {
+    "title": "Delay discounting and intelligence: A meta-analysis",
+    "authors": ["Noah A. Shamosh", "Jeremy R. Gray"],
+    "year": 2008,
+    "venue": "Intelligence",
+    "doi": "10.1016/j.intell.2007.09.004",
+    "volume": "36",
+    "issue": "4",
+    "pages": "289-305"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Meta-analysis of 24 studies (26 effect sizes) with r = -0.23 is a robust, replicable finding. The mapping to ARC-026 is indirect: lower delay discounting is a necessary but not sufficient condition for long-horizon benefit detection. The paper measures preference structure, not approach-gradient sensitivity specifically. Transfer risk is moderate because delay discounting involves explicit monetary choice tasks, not the graded spatial approach manifolds ARC-026 posits.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Effect size r = -0.23 is small-to-medium; substantial variance unexplained by intelligence",
+    "Yeh et al. 2021 replication with HCP sample (n=1206) found relationship weakened after controlling for SES",
+    "Delay discounting measures explicit choice preference, not implicit approach-gradient learning",
+    "Laboratory monetary tasks may not generalize to naturalistic long-horizon care investment"
+  ],
+  "tags": ["arc_026", "delay_discounting", "intelligence", "temporal_discounting", "meta_analysis", "long_horizon", "cognitive_capacity"],
+  "mapping": {
+    "source_claim_statement": "Higher intelligence (g) is associated with lower delay discounting (r = -0.23 across 24 studies); individuals with greater cognitive ability prefer larger delayed rewards over smaller immediate ones.",
+    "ree_translation": "ARC-026 predicts that benefit-gradient sensitivity (approach toward distant goods) scales with agent capability faster than contact-detection (binary harm avoidance). Reduced temporal discounting in intelligent agents is precisely what this predicts: a more linear or less steeply discounted value function allows graded future benefit signals to guide behavior. If love = sustained approach investment toward a distant beneficiary, then the cognitive substrate for love-like behavior (low discounting, valuation of future states) grows with intelligence.",
+    "mapping_caveat": "Delay discounting is a proxy for one dimension of long-horizon valuation. ARC-026 specifically contrasts approach-gradient learning (graded, spatially distributed benefit signal) with harm avoidance (binary contact signal). The meta-analysis does not decompose by signal type. The REE translation assumes that long-horizon benefit integration is the cognitive operation linking g to lower discounting.",
+    "source_context": "Behavioral economics / differential psychology. Well-replicated paradigm (real and hypothetical monetary intertemporal choice). Intelligence measured via IQ-proxy tasks. Cross-sectional human adult samples."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.65,
+    "notes": "Source quality high (meta-analysis, no publication bias detected). Mapping fidelity moderate: discounting =/= approach gradient sensitivity but is the closest available empirical proxy. Transfer risk moderate: monetary choice paradigms abstract away from relational/spatial gradient learning."
+  }
+}

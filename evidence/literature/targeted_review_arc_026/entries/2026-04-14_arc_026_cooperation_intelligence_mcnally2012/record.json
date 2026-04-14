@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_026",
+  "entry_id": "2026-04-14_arc_026_cooperation_intelligence_mcnally2012",
+  "timestamp_utc": "2026-04-14T00:00:00Z",
+  "claim_ids_tested": ["ARC-026"],
+  "source": {
+    "title": "Cooperation and the evolution of intelligence",
+    "authors": ["Luke McNally", "Sam P Brown", "Andrew L Jackson"],
+    "year": 2012,
+    "venue": "Proceedings of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rspb.2012.0206"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.50,
+  "confidence_rationale": "The paper provides computational evidence that cooperation and intelligence co-evolve: selection for cooperative strategies selects for greater cognitive capacity, and vice versa. This bidirectional relationship is consistent with ARC-026's direction (intelligence does not crowd out cooperation). However, the mechanism is Machiavellian -- intelligence is selected because it enables better exploitation/navigation of social games, not because it specifically expands benefit-gradient sensitivity. The 'mixed' direction reflects that the paper supports the coexistence claim but does not support the specific asymmetric-scaling sub-claim (approach gradients grow faster than contact avoidance).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Intelligence here is strategic/Machiavellian, not specifically approach-gradient sensitivity",
+    "Neural network neuron count as intelligence proxy is underspecified",
+    "Model cycles between cooperation and defection rather than monotonically expanding cooperation",
+    "Does not decompose approach vs avoidance signal quality as a function of cognitive capacity"
+  ],
+  "tags": ["arc_026", "cooperation", "intelligence", "evolution", "game_theory", "altruism", "neural_network", "evolutionary_game_theory"],
+  "mapping": {
+    "source_claim_statement": "Selection for efficient decision-making in cooperative dilemmas gives rise to selection for greater cognitive abilities; intelligent strategies select for greater intelligence via Machiavellian arms race. Intelligence also facilitates greater extremes of cooperation.",
+    "ree_translation": "ARC-026 predicts love (long-horizon benefit investment) expands under intelligence rather than being crowded out. The McNally et al. finding is that cooperation expands with intelligence at the population level and that transitions to cooperative equilibria drive selection for higher g. This supports the general direction: intelligent agents are not less cooperative, they are more capable of sustaining cooperation. However, the mechanism is strategic contingency (tit-for-tat variants) rather than ARC-026's specific claim about approach gradient vs contact avoidance differential scaling.",
+    "mapping_caveat": "The intelligence-cooperation co-evolution finding is relevant to the claim that love expands under intelligence but addresses a different level of description. ARC-026 is about computational signal structure (approach gradient vs contact signal); McNally et al. address strategic game theory. Cooperation in game theory is not identical to love as long-horizon care investment -- it can be entirely strategic without any benefit-gradient sensitivity.",
+    "source_context": "Computational/theoretical: artificial neural networks in iterated prisoner's dilemma and snowdrift game. Neural network structure (number of neurons) used as intelligence proxy. Evolutionary simulation. Published Proceedings Royal Society B 2012."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Source quality good: published in high-impact venue, neural network methodology is principled. Mapping fidelity moderate-low: game-theoretic cooperation is not the same as approach-gradient benefit sensitivity. Transfer risk moderate: simulation to real agents involves multiple gaps, and the mechanism (strategic contingency) differs from ARC-026's posited mechanism (asymmetric learning scaling)."
+  }
+}

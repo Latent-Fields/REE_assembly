@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-04-14_arc_016_precision_action_hierarchy_limanowski2024",
+  "timestamp_utc": "2026-04-14T12:00:00Z",
+  "claim_ids_tested": ["ARC-016"],
+  "source": {
+    "title": "The Many Roles of Precision in Action",
+    "authors": ["Jakub Limanowski", "Rick A Adams", "James Kilner", "Thomas Parr"],
+    "year": 2024,
+    "venue": "Entropy",
+    "volume": "26",
+    "issue": "9",
+    "pages": "790",
+    "doi": "10.3390/e26090790",
+    "pmid": "39330123",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39330123/"
+  },
+  "evidence_class": "review_theoretical",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Directly addresses the multi-level precision-weighting structure that ARC-016 requires: from policy-level precision (which policies are considered) to motor-execution precision (efference copy gain), with the basal ganglia encoding policy precision and dopamine as the precision neuromodulator. The hierarchical 'mixed model' framing (discrete policy selection + continuous motor control) aligns well with the REE E3/BetaGate/action_selection architecture. Confidence limited by the paper being a review (not primary data) and by the abstract level at which precision-to-threshold conversion is specified -- the paper identifies the role of precision in mode selection but does not formalize a threshold-gating mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper argues for precision as a continuous modulator across levels, not necessarily as a threshold-gated switch. ARC-016's BetaGate implies a threshold (commit-or-not), not merely a graded precision adjustment.",
+    "The neural substrate for the E3-analog (the agent that computes and adjusts policy-level precision) is discussed at an abstract level -- the paper does not identify a specific prefrontal circuit deriving precision from prediction error in the way ARC-016's E3 does.",
+    "Mixed model hierarchy is primarily grounded in body/limb control; extrapolation to cognitive commitment thresholds involves additional transfer risk."
+  ],
+  "tags": ["arc_016", "precision_weighting", "active_inference", "action_selection", "basal_ganglia", "dopamine", "hierarchical_model", "policy_precision"],
+  "mapping": {
+    "source_claim_statement": "Precision plays multiple roles across levels of action: at the policy level (selecting which policy to pursue, with BG encoding policy precision and dopamine modulating it), at the planning level (weighting competing trajectory candidates), and at the execution level (modulating efference copy gain). The BG encodes the precision of predictions about action consequences, and dopamine reports the precision of sensorimotor constructs.",
+    "ree_translation": "ARC-016 proposes that cognitive operating modes are precision-weighting regimes in a shared predictive circuit. Limanowski et al. (2024) provide the formal framework: the BG circuit encodes policy-level precision, dopamine modulates it, and hierarchical mixed models span discrete (policy/mode) and continuous (motor) inference. In REE terms, E3 derives prediction variance as the input to precision estimation; the BetaGate implements the threshold between committed and uncommitted policy-precision regimes. The paper's multi-level architecture is the closest existing formal framework to ARC-016's full circuit description.",
+    "mapping_caveat": "Limanowski et al. treat precision as a continuous parameter that biases inference at each level; ARC-016's BetaGate implies a discrete threshold event. The paper does not resolve whether the precision-to-commitment transition is abrupt (threshold-gated) or gradual. REE's claim of a distinct committed vs. uncommitted *regime* requires the former, which goes beyond what this review demonstrates.",
+    "source_context": "Theoretical review in Entropy (open access), special issue dedicated to Karl Friston. Synthesises hierarchical active inference literature on precision across motor levels. No new primary data."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Open-access review, high theoretical precision, directly addresses the precision-BG-action_selection circuit ARC-016 invokes. Source quality penalised for being a review. Mapping fidelity is the highest of the three new entries -- the hierarchical mixed model framework maps most directly onto REE's architecture. Transfer risk low because the paper explicitly discusses cognitive action selection, not just motor execution."
+  }
+}
