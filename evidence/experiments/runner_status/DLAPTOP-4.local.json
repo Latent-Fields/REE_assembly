@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 26389,
   "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
-  "last_updated": "2026-04-14T11:34:27.747752+00:00",
+  "last_updated": "2026-04-14T16:56:18.005669+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-322a",
+    "queue_id": "V3-EXQ-328a",
     "backlog_id": "",
     "claim_id": "",
-    "title": "SD-015 ResourceEncoder z_goal seeding fix: use_resource_encoder wiring corrected",
+    "title": "MECH-112 z_goal structured latent fix: correct seeding signal + drive ablation threshold",
     "description": "",
-    "script": "experiments/v3_exq_322a_sd015_resource_encoder_seeding.py",
-    "started_at": "2026-04-14T10:56:30.296760+00:00",
+    "script": "experiments/v3_exq_328a_mech112_zgoal_structured_latent.py",
+    "started_at": "2026-04-14T13:50:42.478765+00:00",
     "progress": {
-      "run_label": "starting...",
+      "run_label": "Seed 13 / DRIVE_ACTIVE",
       "runs_done": 0,
-      "runs_total": 10,
-      "episodes_done": 0,
-      "episodes_total": 80,
-      "overall_pct": 0.0
+      "runs_total": 6,
+      "episodes_done": 150,
+      "episodes_total": 250,
+      "overall_pct": 10.0
     },
-    "seconds_elapsed": 2277,
-    "seconds_remaining": 6400,
+    "seconds_elapsed": 11135,
+    "seconds_remaining": 50542,
     "recent_lines": [
-      "WORLD_SEED: eval 30 eps...",
-      "WORLD_SEED: goal_resource_r=0.9955 benefit_ratio=0.133 n_cosine_samples=6000",
-      "-> FAIL",
-      "Seed 43",
-      "RESOURCE_SEED: training 80 eps..."
+      "verdict: t0=0.0000 t50=0.0000 ablated=0.0000 n_contacts=20",
+      "Seed 13 Condition DRIVE_ACTIVE",
+      "[train] seed=13 DRIVE_ACTIVE ep 50/250 phase=P0 contacts=0",
+      "[train] seed=13 DRIVE_ACTIVE ep 100/250 phase=P0 contacts=0",
+      "[train] seed=13 DRIVE_ACTIVE ep 150/250 phase=P0 contacts=0"
     ],
     "ree_version": "v3"
   },
@@ -44,24 +44,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-322a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-015 ResourceEncoder z_goal seeding fix: use_resource_encoder wiring corrected",
-      "description": "",
-      "estimated_minutes": 106.7,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-328a",
       "backlog_id": "",
       "claim_id": "",
       "title": "MECH-112 z_goal structured latent fix: correct seeding signal + drive ablation threshold",
       "description": "",
       "estimated_minutes": 200.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5369,6 +5358,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 18496.9
+    },
+    {
+      "queue_id": "V3-EXQ-322a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015 ResourceEncoder z_goal seeding fix: use_resource_encoder wiring corrected",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL r_res=0.5906 r_world=0.9927 ben_res=0.200 | seed=45: FAIL r_res=0.7976 r_world=0.9927 ben_res=0.200 | seed=46: FAIL r_res=0.5069 r_world=0.9952 ben_res=0.233",
+      "started_at": "2026-04-14T10:56:30.296760+00:00",
+      "completed_at": "2026-04-14T13:50:39.303882+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 10448.9
     }
   ]
 }
