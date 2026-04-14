@@ -90,6 +90,33 @@ there is more map.
    Ablating explicit valence tags degrades avoidance but not approach. Both components
    are independently necessary for their respective behaviors.
 
+## Substrate Constraint: Environmental Complexity
+
+ARC-057 has a minimum environmental complexity requirement that the current
+CausalGridWorld cannot satisfy. The curiosity-approach mechanism depends on
+representational expansion capturing genuinely additional information at reward
+locations. In the real world, this works: any location has near-fractal complexity
+where zooming in reveals more structure (textures, objects, micro-features, social
+history). A richer representation at a reward location captures real information
+that a coarser one misses.
+
+In a grid world, a cell is a cell. There is nothing more to discover at higher
+resolution. Expanding the representation at grid cell (3,4) just encodes the same
+sparse features more redundantly. The curiosity drive has nothing additional to
+explore, so the approach-emergence mechanism cannot operate.
+
+This does NOT affect the threat/avoidance side. Explicit valence tagging (the BLA
+pathway, the harm residue field) works regardless of environmental richness --
+tagging a location as dangerous requires no additional spatial detail. The asymmetry
+between the two pathways means they have different substrate requirements for testing.
+
+Faithful testing of ARC-057 requires either:
+- A richer environment with location-dependent feature complexity
+- A conceptual/mind-map space where "locations" have variable information density
+- Or acceptance that ARC-057 is a theoretical claim grounded in neuroscience
+  literature, testable only when the substrate supports sufficient environmental
+  richness
+
 ## Implications for REE Architecture
 
 - The **harm residue field** is architecturally correct as-is -- it implements the

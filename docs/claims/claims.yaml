@@ -14854,3 +14854,13 @@
     curiosity drive. Approach behavior should degrade. Restore DA modulation while
     ablating curiosity drive. Approach behavior should also degrade (both components
     necessary). Neither alone sufficient.
+    SUBSTRATE CONSTRAINT (2026-04-14): this mechanism requires an environment where
+    representational expansion at a location captures genuinely additional information
+    -- not just the same sparse features at higher fidelity. In a grid world, a cell
+    is a cell; there is nothing more to discover at higher resolution. The real world
+    has near-fractal complexity where zooming in reveals more structure. The current
+    CausalGridWorld cannot test ARC-057 faithfully. Testing the approach side requires
+    either a richer environment with location-dependent feature complexity or a
+    conceptual/mind-map space with variable information density. The threat/avoidance
+    side (harm residue field, explicit tagging) remains testable in the grid world
+    because tagging does not depend on environmental richness.
