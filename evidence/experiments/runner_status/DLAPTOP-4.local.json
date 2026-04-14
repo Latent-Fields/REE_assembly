@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 26389,
   "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
-  "last_updated": "2026-04-13T19:37:04.985158+00:00",
+  "last_updated": "2026-04-14T00:45:57.078315+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-326",
-    "backlog_id": "",
-    "claim_id": "SD-015",
-    "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
-    "description": "",
-    "script": "experiments/v3_exq_326_wanting_gradient_nav_fix.py",
-    "started_at": "2026-04-13T14:47:53.811950+00:00",
-    "progress": {
-      "run_label": "Seed 7 / ABLATED",
-      "runs_done": 0,
-      "runs_total": 6,
-      "episodes_done": 0,
-      "episodes_total": 250,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 17351,
-    "seconds_remaining": 12000,
-    "recent_lines": [
-      "[train] seed=7 WITH_WANTING ep 150/250 phase=P1 resources=0 benefit=0.000",
-      "[train] seed=7 WITH_WANTING ep 200/250 phase=P1 resources=0 benefit=0.000",
-      "[train] seed=7 WITH_WANTING ep 250/250 phase=P2 resources=0 benefit=0.000",
-      "verdict: resource_rate=0.120 benefit=0.0004 wanting_mean=31.5616 goal_norm_peak=1.5988 n_seeding=2 sal_mean=0.4045 mech216_writes=25181",
-      "Seed 7 Condition ABLATED"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-326",
-      "backlog_id": "",
-      "claim_id": "SD-015",
-      "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-327",
       "backlog_id": "",
@@ -5341,6 +5304,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 44746.8
+    },
+    {
+      "queue_id": "V3-EXQ-326",
+      "backlog_id": "",
+      "claim_id": "SD-015",
+      "title": "Wanting-gradient navigation fix (EXQ-259 fix): SD-015, MECH-216, SD-012",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: resource_rate=0.240 benefit=0.0007 wanting_mean=12.8974 goal_norm_peak=2.1087 n_seeding=3 sal_mean=0.4740 mech216_writes=21538 | verdict: resource_rate=0.340 benefit=0.0010 wanting_mean=0.0000 goal_norm_peak=0.0000 n_seeding=0 sal_mean=0.0000 mech216_writes=0 | === EXQ-326 FAIL ===",
+      "started_at": "2026-04-13T14:47:53.811950+00:00",
+      "completed_at": "2026-04-14T00:45:57.065026+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 35883.1
     }
   ]
 }
