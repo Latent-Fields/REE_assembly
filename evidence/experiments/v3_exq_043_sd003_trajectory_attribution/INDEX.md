@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_043_sd003_trajectory_attribution
 
-Generated: `2026-04-14T11:33:26.062378Z`
+Generated: `2026-04-14T18:02:27.450588Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

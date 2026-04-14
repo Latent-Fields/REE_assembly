@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-13T19:30:00Z",
+  "last_updated_utc": "2026-04-14T17:30:00Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -97,12 +97,18 @@
           "experiment_type": "v3_exq_085o_sd015_sorted_rf_enc",
           "metric": "benefit_ratio=0.113 (encoder converges, goal_resource_r_enc=0.574, but navigation lift absent)",
           "target": "benefit_ratio > 0.5 and goal_resource_r_enc > 0.7"
+        },
+        {
+          "run_id": "v3_exq_322a_sd015_resource_encoder_seeding_20260414T105631Z_v3",
+          "experiment_type": "v3_exq_322a_sd015_resource_encoder_seeding",
+          "metric": "goal_resource_r: z_world=0.99 vs z_resource=0.39-0.86 across 5 seeds (z_world consistently dominates)",
+          "target": "goal_resource_r_resource > goal_resource_r_world (z_resource should align z_goal better than z_world)"
         }
       ],
       "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation). MECH-112 prerequisite resolved by co-implementation in this session (ResourceEncoder IS the MECH-112 substrate).",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13-b",
+      "last_seen_session": "governance-2026-04-14",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -160,15 +166,32 @@
             "substrate_state": "SD-015 ResourceEncoder wiring FIXED (use_resource_encoder set directly on cfg.latent). Correct pathway active for first time.",
             "metric_value": 0.96,
             "metric_notes": "PASS 3/3 seeds. wanting_l1_fraction=0.96/0.935/0.985 vs liking_l1_fraction=0.43/0.54/0.43. Dissociation delta=0.53/0.40/0.55. This is behavioral validation of the SD-015 ResourceEncoder pathway. EXQ-074f/234 used z_world fallback; EXQ-354 is the first PASS with the intended SD-015 pipeline. Metric tracked here is wanting_l1_fraction (behavioral proxy) rather than goal_resource_r (cosine) since the wanting/liking pair is the behavioral validation target for MECH-112 + SD-015 integration."
+          },
+          {
+            "run_id": "v3_exq_326a_wanting_gradient_nav_fix_20260413T172004Z_v3",
+            "experiment_type": "v3_exq_326a_wanting_gradient_nav_fix",
+            "date_utc": "2026-04-13",
+            "substrate_state": "SD-015 wiring correct (use_resource_encoder set directly on cfg.latent). Wanting gradient navigation with ResourceEncoder properly active.",
+            "metric_value": "PASS",
+            "metric_notes": "PASS 2/3 seeds (c3_ratios 1.09, 1.43, 704x). Wanting pathway navigation works with correct SD-015 wiring. First PASS for SD-015 behavioral integration. Confirms EXQ-354 pattern with navigation context. Supersedes EXQ-326 (wiring bug)."
+          },
+          {
+            "run_id": "v3_exq_322a_sd015_resource_encoder_seeding_20260414T105631Z_v3",
+            "experiment_type": "v3_exq_322a_sd015_resource_encoder_seeding",
+            "date_utc": "2026-04-14",
+            "substrate_state": "SD-015 wiring correct. Discriminative pair: RESOURCE_SEED (use_resource_encoder=True) vs WORLD_SEED (use_resource_encoder=False). 5 seeds.",
+            "metric_value": 0.39,
+            "metric_notes": "FAIL 0/5 seeds. z_world OUTPERFORMS z_resource for goal alignment (cosine r: 0.99 vs 0.39-0.86). z_resource encoder is present and learns features but z_world's richer scene representation dominates for goal seeding. Zero type E: relative ordering inverted. The encoder IS active and produces signal, but the claim that z_resource should be the BETTER seed is not supported. SD-015 design may need rethinking: perhaps z_resource supplements z_world rather than replacing it."
           }
         ],
-        "current_blocker": "Behavioral dissociation validated (EXQ-354 PASS 3/3 seeds, 2026-04-12). Remaining gap: goal_resource_r cosine metric (EXQ-322 type-C zero) and z_goal latent structure (EXQ-328a type-D zero) still not directly measured. SD-015 implementation validated via behavioral outcome.",
+        "current_blocker": "EXQ-322a (2026-04-14) shows z_world dominates z_resource for goal alignment (0.99 vs 0.39-0.86). The encoder is implemented but inverted: z_world is the better seed. SD-015 claim needs reassessment -- z_resource may need to supplement rather than supplant z_world for goal seeding.",
         "prediction": {
           "expected_value": "goal_resource_r > 0.2 in RESOURCE_SEED, < 0.05 in WORLD_SEED, once measurement gap is fixed",
           "rationale": "EXQ-085l showed the encoder CAN produce signal (prox_r2=0.9+). The current encoder version targets object-type features rather than spatial proximity, so the representational basis is correct. Once the cosine sampling path fires, the RESOURCE_SEED condition should produce measurable cosine similarity since z_resource is now seeding z_goal directly.",
           "prerequisite_state": "/diagnose-errors on EXQ-322 to fix n_cosine_samples=0; then committed-sequence generation must be verified before the downstream gate experiments (MECH-057b, ARC-028) become legible"
         }
-      }
+      },
+      "status": "implemented"
     },
     {
       "sd_id": "SD-019",
@@ -185,7 +208,7 @@
       "implementation_hint": "z_harm_a and z_harm_s must encode non-overlapping information under the split SD-011 design. SD-019 adds an orthogonality/redundancy-reduction constraint (e.g. adversarial loss or correlation penalty) between z_harm_a and z_harm_s encoder outputs. Requires ARC-016 (dynamic precision) to contextualize what counts as non-redundant in different regime states. ARC-016 wiring resolved: e3.current_precision accessible as property.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13-b",
+      "last_seen_session": "governance-2026-04-14",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -227,7 +250,8 @@
           "rationale": "With SD-022 active, z_harm_a information source (body damage) is causally independent from z_harm_s information source (proximity field). The nonredundancy objective now works with genuinely separable representations. The co-variation across EXQ-241, EXQ-318, and EXQ-323 predicts that source independence is the rate-limiting factor for SD-019 consistency.",
           "prerequisite_state": "SD-022 limb_damage_enabled=True with harm_obs_a_variance > 0.001 (requires adequate hazard density or reduced heal_rate)"
         }
-      }
+      },
+      "status": "implemented"
     },
     {
       "sd_id": "SD-020",
@@ -251,7 +275,7 @@
       "implementation_hint": "Replace z_harm_a AffectiveHarmEncoder training target from EMA-accumulated harm to a precision-weighted prediction error signal: surprise = |harm_obs - E_predicted_harm| * precision. ARC-016 dynamic precision provides the precision weight. Requires SD-019 to enforce that z_harm_s and z_harm_a encode non-redundant aspects of the harm signal. Both SD-019 and ARC-016 now implemented.",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13-b",
+      "last_seen_session": "governance-2026-04-14",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -293,7 +317,8 @@
           "rationale": "On SD-022 substrate, z_harm_a encodes body damage state (slowly-healing, persistent). This makes harm_obs_a_variance > 0.01 plausibly achievable. With that variance floor, the PE target has encoding capacity. Chen (2023) AIC result and Seymour (2019) precision-weighted pain both predict PE > EMA when the encoding channel is not saturated. The co-variation across EXQ-260 -> EXQ-324 -> [next] shows the metric moving in the right direction but gated by information-source variance.",
           "prerequisite_state": "SD-022 limb_damage_enabled=True; eval with >= 100 harm events per seed (increase hazard density, eval_episodes, or reduce heal_rate); SD-019 active to prevent z_harm_a from collapsing to a z_harm_s copy"
         }
-      }
+      },
+      "status": "implemented"
     },
     {
       "sd_id": "SD-021",
@@ -315,7 +340,7 @@
       "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward. MECH-090 bistable latch and ARC-016 wiring now both implemented. SD-020 also implemented (precision-weighted PE target for z_harm_s training).",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13-b",
+      "last_seen_session": "governance-2026-04-14",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -349,7 +374,8 @@
           "rationale": "When MECH-090 bistable gate is exercised (committed_steps > 0), the descending modulation pathway is wired and should produce PE suppression. The biological analog (descending PAG-RVM modulation, Basbaum & Fields) is well-established. The question is implementation fidelity, not mechanism plausibility. Once committed sequences are generated, this should be a relatively clean PASS -- the gating mechanism is implemented, just never exercised.",
           "prerequisite_state": "Training curriculum change that reliably elicits committed-mode sequences (total_committed_steps > 100 per eval episode); MECH-090 bistable latch confirmed working on same curriculum"
         }
-      }
+      },
+      "status": "implemented"
     },
     {
       "sd_id": "SD-022",
@@ -381,7 +407,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-09. CausalGridWorldV2 now has 4-directional limb_damage[4] state; accumulates when moving through hazards; heals at heal_rate=0.002/step; harm_obs_a re-sourced from body damage state (7 dims: damage[4]+max+mean+residual_pain) when limb_damage_enabled=True. EXQ-319 PASS confirmed dissociation: agent with accumulated damage shows high z_harm_a and low z_harm_s when removed from hazard. r2 reduction confirmed by EXQ-318 direction (0.702->0.365) though variance threshold unmet. Promote to provisional: mechanism works, threshold failure is calibration (heal_rate too fast for 150 warmup episodes).",
       "priority": 1,
       "added_session": "governance-2026-04-11",
-      "last_seen_session": "governance-2026-04-13-b",
+      "last_seen_session": "governance-2026-04-14",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-09T00:00:00Z",
@@ -430,7 +456,8 @@
           "expected_value": "r2_s_to_a < 0.4 AND harm_obs_a_variance > 0.001 with heal_rate reduced to 0.001 or hazard_density increased",
           "rationale": "EXQ-318 showed the mechanism works (0.37 mean r2 with ENABLED). The variance threshold failure is explained by calibration: with heal_rate=0.002 and 150 warmup episodes, damage doesn't accumulate enough. Reducing heal_rate to 0.001 or doubling eval episodes should cross the variance threshold. EXQ-319 dissociation PASS confirms the qualitative mechanism is sound. Both SD-019 and SD-020 should produce better results on this substrate -- see their metric_trajectory predictions."
         }
-      }
+      },
+      "status": "implemented"
     }
   ]
 }

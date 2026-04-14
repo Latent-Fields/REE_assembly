@@ -14704,7 +14704,7 @@
   claim_type: mechanism_hypothesis
   subject: latent_stack.e2_short_horizon_efference_copy
   polarity: asserts
-  status: candidate
+  status: provisional
   registered: "2026-04-13"
   supersedes: MECH-070
   depends_on:
@@ -14753,3 +14753,8 @@
     consistent with this direction. Literature (Wolpert 1998, Zago 2021, Popa 2017)
     provides biological plausibility; literature entries for MECH-231 directly queued
     in 2026-04-13 lit-pull session.
+    Governance 2026-04-14: EXQ-407 FULL RUN PASS (3 seeds, all 4 criteria). slope_e2=-4095
+    vs slope_e1=-25 (164x ratio). e2_r2_h1=-19 vs e1_r2_h1=-45 (E2 better at h=1);
+    e2_r2_h10=-19063 vs e1_r2_h10=-377 (E2 catastrophically worse at h=10). Consistent
+    across seeds 42, 7, 123. Full-run confirmation of dry-run result. Promoted to
+    provisional (governance-2026-04-14). conf=0.809, 5 supports / 0 weakens.

@@ -3,16 +3,15 @@
   "experiment_type": "v3_exq_322a_sd015_resource_encoder_seeding",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "claim_ids": [
-    "SD-015",
-    "MECH-112"
+    "SD-015"
   ],
   "experiment_purpose": "evidence",
   "supersedes": "V3-EXQ-322",
   "evidence_direction": "does_not_support",
   "evidence_direction_per_claim": {
-    "SD-015": "does_not_support",
-    "MECH-112": "does_not_support"
+    "SD-015": "does_not_support"
   },
+  "claim_ids_correction_note": "MECH-112 removed (deprecated 2026-04-13, split into MECH-229/MECH-230). EXQ-322a tests SD-015 encoder design (does z_resource give better goal-alignment than z_world?) not z_goal latent structure existence (MECH-230) nor behavioral dissociation (MECH-229). Result: z_world beats z_resource (0.99 vs 0.39-0.86 cosine similarity), direct evidence against SD-015's claim that z_resource should be the superior seed.",
   "outcome": "FAIL",
   "timestamp_utc": "20260414T135038Z",
   "registered_thresholds": {

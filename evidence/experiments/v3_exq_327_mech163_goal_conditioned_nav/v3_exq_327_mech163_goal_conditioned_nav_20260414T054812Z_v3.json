@@ -8,10 +8,11 @@
   ],
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
-    "MECH-163": "does_not_support",
-    "SD-015": "does_not_support"
+    "MECH-163": "non_contributory",
+    "SD-015": "non_contributory"
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Goal conditioning had zero effect: GOAL_CONDITIONED and GOAL_ABLATED conditions produced identical resource_rate and benefit_exposure for all 3 seeds (c1_ratios all exactly 1.0). z_goal seeding never fired -- SD-012 homeostatic drive substrate gap. Mechanism under test was not active. This is a substrate failure, not evidence against MECH-163 or SD-015. Substrate flag: SD-012 z_goal seeding gap confirmed active for navigation experiments.",
   "outcome": "FAIL",
   "criteria": {
     "c1_benefit_ratio_pass": false,
