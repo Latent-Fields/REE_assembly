@@ -130,3 +130,8 @@ Faithful testing of ARC-057 requires either:
   approach behavior as an emergent property.
 - This resolves the "wanting-in-terrain" question for ARC-007: the approach signal
   IS in the terrain, but as enhanced representational quality, not as a gradient.
+- **Proxy mechanism policy**: until a richer environment is available, approach
+  behavior in V3/V4 grid world experiments uses proxy mechanisms (explicit gradient,
+  DA-modulated priority, etc.). These experiments must be tagged `approach_proxy`
+  and carry evidence quality notes flagging the proxy. Results may not generalize
+  to ARC-057-enabled substrate. See `docs/roadmap.md` ARC-057 gate section.

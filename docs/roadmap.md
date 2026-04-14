@@ -638,6 +638,58 @@ MECH-112 split into MECH-229 (active) + MECH-230 (candidate). SD-013 promoted to
 
 ---
 
+## ARC-057 Environment-Complexity Gate (2026-04-14)
+
+**Status: PARKED.** ARC-057 (curiosity-approach emergence) cannot be faithfully tested
+in the current CausalGridWorld. The mechanism requires an environment where
+representational expansion at a location captures genuinely additional information --
+near-fractal complexity where zooming in reveals more structure. Grid cells are
+informationally flat: a cell is a cell. See `docs/architecture/hippocampal_valence_asymmetry.md`.
+
+**What this blocks:** Faithful testing of approach-via-representational-expansion (MECH-232),
+the valence encoding asymmetry (MECH-233), and the curiosity-approach emergence (ARC-057).
+
+**What this does NOT block:** The threat/avoidance side (harm residue field, BLA-pathway
+logic) remains fully testable. All existing V3 architecture work continues. The claims
+are registered and constrain future design even without experiments.
+
+### Proxy mechanism policy
+
+Any experiment testing approach behavior in the grid world will necessarily use a **proxy
+mechanism** for the approach signal (e.g., explicit wanting gradient, DA-modulated place
+priority, or direct goal-location bias). This is acceptable for testing downstream
+architecture (commitment gating, trajectory selection, E3 evaluation) but carries a
+contamination risk:
+
+**Results obtained with a proxy approach mechanism may not generalize to an ARC-057-enabled
+agent.** The proxy is a commanded gradient; ARC-057 is emergent from representational
+expansion + curiosity. The downstream architecture may develop implicit dependencies on
+proxy properties (e.g., gradient smoothness, signal strength, spatial extent) that the
+real mechanism would not provide.
+
+### Tagging requirements
+
+1. **Any experiment that tests approach behavior** must declare in its docstring and
+   manifest notes which proxy mechanism it uses for the approach signal.
+2. **Tag**: experiments using a proxy approach mechanism should include `approach_proxy`
+   in their tags. This enables future filtering when ARC-057 becomes testable.
+3. **Evidence interpretation**: PASS results for claims that depend on approach behavior
+   should carry an `evidence_quality_note` stating the proxy was used and results may not
+   transfer to ARC-057-enabled substrate.
+4. **Re-validation queue**: when a richer environment becomes available, all `approach_proxy`
+   tagged experiments form the re-validation backlog.
+
+### What "richer environment" requires
+
+- More sensory input channels (visual texture, object features, spatial micro-structure)
+- Larger latent spaces to encode location-dependent detail
+- Significantly more compute for training
+- Location-dependent information density (some areas genuinely have more to discover)
+
+This is a V5+ concern. V3 and V4 proceed with proxy mechanisms and honest tagging.
+
+---
+
 ## Open Questions
 
 - **SD-010 HarmEncoder architecture**: should z_harm be a separate stream alongside
@@ -648,6 +700,10 @@ MECH-112 split into MECH-229 (active) + MECH-230 (candidate). SD-013 promoted to
 - **SD-006 phase 2**: time-multiplexed multi-rate is phase 1; true asynchronous
   execution (thread-based or event-loop) is still open. HTA (hierarchical temporal
   abstraction) is the recommended direction but not yet designed.
+- **ARC-057 environment substrate**: what is the minimum environment complexity that
+  would enable faithful testing of curiosity-approach emergence? Is a continuous 2D
+  world with procedural texture sufficient, or does it require full 3D/visual input?
+  See ARC-057 gate section above.
 
 ---
 
