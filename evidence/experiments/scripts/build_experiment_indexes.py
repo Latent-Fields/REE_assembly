@@ -214,6 +214,11 @@ def _load_json(path: Path) -> dict[str, Any]:
         return json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError:
         return {}
+    except (TimeoutError, OSError) as exc:
+        # iCloud-offloaded files may raise TimeoutError (errno 60) or OSError (errno 89)
+        # when the cloud sync can't complete in time. Return empty dict to skip gracefully.
+        print(f"WARNING: skipping unreadable file (iCloud/IO timeout) {path}: {exc}")
+        return {}
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"Invalid JSON: {path}: {exc}") from exc
 
@@ -280,6 +285,25 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         if run_dir.parent.name != "runs":
             continue
         experiment_type = run_dir.parent.parent.name
+
+        # Early-exit for pre-epoch runs: parse timestamp from directory name without
+        # reading the manifest file. Directory names follow YYYY-MM-DDTHHMMSSz_... format
+        # (18 chars before the first underscore, e.g. 2026-02-15T145638Z).
+        # This avoids iCloud-offloaded file reads for old synthetic runs.
+        if epoch_start is not None:
+            name = run_dir.name
+            try:
+                if (len(name) >= 18 and name[4] == "-" and name[7] == "-"
+                        and name[10] == "T" and name[17] in ("Z", "z")):
+                    dir_ts = datetime(
+                        int(name[0:4]), int(name[5:7]), int(name[8:10]),
+                        int(name[11:13]), int(name[13:15]), int(name[15:17]),
+                        tzinfo=timezone.utc,
+                    )
+                    if dir_ts < epoch_start:
+                        continue
+            except (ValueError, IndexError):
+                pass  # can't parse from name; fall through to read manifest
 
         manifest = _load_json(manifest_path)
         run_id = str(manifest.get("run_id", run_dir.name))

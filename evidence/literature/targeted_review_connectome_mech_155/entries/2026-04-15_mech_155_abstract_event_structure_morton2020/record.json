@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_155",
+  "entry_id": "2026-04-15_mech_155_abstract_event_structure_morton2020",
+  "timestamp_utc": "2026-04-15T08:38:56Z",
+  "claim_ids_tested": ["MECH-155"],
+  "source": {
+    "title": "Representations of common event structure in medial temporal lobe and frontoparietal cortex support efficient inference",
+    "authors": ["Morton NW", "Schlichting ML", "Preston AR"],
+    "year": 2020,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1912338117"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Demonstrates that hippocampus and frontoparietal cortex form abstract geometric representations of common relational structure across distinct experience contexts, supporting transitive inference without explicit reinforcement to abstract. The hippocampal representation shows pattern completion for within-context retrieval while parahippocampal/parietal cortex supports cross-context vector-based retrieval -- a dissociation directly relevant to MECH-155's claim that planning rollout and concept traversal use the same indexing substrate. Confidence moderated by fMRI-only methodology, by the relatively simple triad-inference task, and by the fact that the geometric structure demonstrated is a simple ordered vector space rather than a full multidimensional cognitive map.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal and frontoparietal regions coded cross-triad relationships with a common geometric structure, representing abstract event relationships (AB, BC --> AC inference) across distinct triads sharing internal relational structure.",
+    "Parahippocampal cortex showed hierarchical representations reflecting both cross-triad and within-triad geometry -- consistent with a general associative indexing layer that encodes relational structure at multiple scales.",
+    "Computational modelling dissociated two retrieval processes: hippocampal pattern completion (within-context retrieval) and parahippocampal/parietal vector-based retrieval (cross-context inference) -- suggesting that the indexing substrate supports not just retrieval but inference through geometric traversal."
+  ],
+  "tags": ["mech_155", "hippocampus", "abstract_structure", "transitive_inference", "cognitive_map", "general_indexing", "planning_rollout", "fmri", "human", "relational_memory"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus and medial temporal lobe form abstract representations that code common geometric structure across distinct event contexts, supporting transitive inference via pattern completion and vector-based retrieval without explicit instruction to abstract.",
+    "ree_translation": "MECH-155 claims that planning rollout and concept traversal use the same indexing substrate as spatial navigation. Morton et al. 2020 is particularly relevant to the planning-rollout and transitive-inference dimensions of this claim: the hippocampus constructs a geometric structure over abstract relational sequences and then traverses that structure to infer indirect relationships (AC from AB + BC). For the REE E1 architecture, this means the same indexed manifold that enables spatial navigation also enables the chaining of relational steps required for planning rollout -- the direction vector that represents an AB relationship is the same kind of entity as a spatial heading vector, only defined over abstract event space.",
+    "mapping_caveat": "The relational structure tested is simple (ordered triads with one latent dimension), not the full multidimensional manifold that MECH-155 invokes. The paper does not demonstrate that the same cells or circuits underlie spatial and abstract indexing -- it shows structural parallelism of fMRI geometry, which is an important constraint but not direct mechanistic identity. The dissociation between hippocampal pattern completion and parahippocampal vector retrieval adds complexity to the simple 'one substrate' narrative of MECH-155.",
+    "source_context": "Human participants, fMRI, pairwise image-association learning (AB, BC pairs from distinct ABC triads), transitive inference test (AC), hippocampus and frontoparietal cortex ROIs, computational modelling of response times"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: PNAS publication, established lab (Preston group, UT Austin), neurocomputational approach with RT modelling. Mapping fidelity moderate: paper addresses the inference/traversal dimension of MECH-155 but in a simpler relational structure than the full cognitive map; the pattern-completion vs. vector-retrieval dissociation adds nuance that MECH-155 does not currently accommodate. Transfer risk moderate: human fMRI only, simple ordered triads rather than continuous multidimensional space."
+  }
+}

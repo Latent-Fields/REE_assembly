@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_230",
+  "entry_id": "2026-04-15_mech_230_vhpc_approach_avoidance_separation_patterson2025",
+  "timestamp_utc": "2026-04-15T08:38:56Z",
+  "claim_ids_tested": ["MECH-230"],
+  "source": {
+    "title": "Ventral hippocampus to nucleus accumbens shell circuit regulates approach decisions during motivational conflict",
+    "authors": ["Patterson, Dylan", "Khan, Nisma", "Collins, Emily A", "Stewart, Norman R", "Sassaninejad, Kian", "Yeates, Dylan", "Lee, Andy C H", "Ito, Rutsuko"],
+    "year": 2025,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.3002722",
+    "url": "https://doi.org/10.1371/journal.pbio.3002722"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Provides direct circuit evidence that the ventral hippocampus (vHPC) specifically encodes approach-biasing signals distinct from avoidance, via the vCA1-NAc shell pathway. This is relevant to MECH-230's distinctness requirement: z_goal and z_harm are implemented through partly distinct hippocampal output circuits. However, the paper reports a *pathway* separation (approach-biasing vCA1-NAc vs. avoidance circuits), not a *latent sub-space* separation within hippocampus itself. The mixed rating reflects that the separation is real but at the circuit level rather than the representational geometry level MECH-230 specifically requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's hippocampal terrain navigation cannot distinguish z_goal from z_harm signals at the output projection level, this paper predicts approach-avoidance behavior would default to avoidance bias, consistent with EXQ-085 failure pattern.",
+    "If inhibiting the approach-biasing circuit output in REE analogue produces avoidance bias specifically during motivational conflict (not during pure avoidance), this would confirm the separation is real."
+  ],
+  "tags": ["mech_230", "approach_avoidance", "hippocampus", "nucleus_accumbens", "circuit_separation", "motivational_conflict", "behavioral_animal"],
+  "mapping": {
+    "source_claim_statement": "The vCA1-to-nucleus accumbens shell pathway is specifically required for approach decisions during motivational conflict (concurrent positive and negative valence cues). Chemogenetic inhibition of this pathway increases avoidance bias and decision latency during conflict, but does not affect pure avoidance or anxiety. The circuit biases decisions toward approach when both reward and punishment signals are simultaneously present.",
+    "ree_translation": "MECH-230 requires that z_goal (approach) is distinct from z_harm (avoidance) within E3's latent space. Patterson et al. show that in the biological hippocampus, the approach-biasing signal is channeled through a specific output pathway (vCA1-NAc shell) separable from avoidance. In REE terms, this supports the claim that goal-approach and harm-avoidance are encoded through distinct mechanisms -- not a single valence dimension. During motivational conflict (REE's simultaneous harm and benefit signals), the z_goal signal must actively compete against z_harm rather than being subsumed by it. The NAc shell as the downstream receiver of vHPC approach bias parallels E3's role in committing to approach vs. avoidance in REE.",
+    "mapping_caveat": "The paper demonstrates *pathway* separation at the output level, not the internal representational geometry of z_goal vs. z_harm within the hippocampus. MECH-230 specifically requires these to occupy distinct latent sub-spaces inside E3 -- Patterson et al. are agnostic about whether this internal separation exists or whether the separation is only visible at the projection target. Additionally, the task uses innate and conditioned approach/avoidance signals, not homeostatic drive goals (SD-012); the motivational context differs from REE's z_goal seeding mechanism.",
+    "source_context": "Male and female Long-Evans rats; chemogenetic (DREADD) pathway-specific inhibition of vCA1-NAc shell projections; approach-avoidance conflict task with concurrent positive and negative valence cues; additional assays for pure avoidance, anxiety, and social preference."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.42,
+    "notes": "Good source quality (PLoS Biology, 2025, causal chemogenetic design, pathway-specific). Mapping fidelity moderate-low: circuit-level separation vs. latent sub-space separation is a real distinction; the paper is informative but indirect for MECH-230's specific claim. Transfer risk is moderate-high: rat in vivo with conditioned approach/avoidance vs. REE's homeostatic goal seeding in a grid environment."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_230",
+  "entry_id": "2026-04-15_mech_230_goal_latent_attractor_naude2024",
+  "timestamp_utc": "2026-04-15T08:38:56Z",
+  "claim_ids_tested": ["MECH-230"],
+  "source": {
+    "title": "Dopamine builds and reveals reward-associated latent behavioral attractors",
+    "authors": ["Naude, Jeremie", "Sarazin, Matthieu X B", "Mondoloni, Sarah", "Hannesse, Bernadette", "Vicq, Eleonore", "Amegandjin, Fabrice", "Mourot, Alexandre", "Faure, Philippe", "Delord, Bruno"],
+    "year": 2024,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-024-53976-x",
+    "url": "https://www.nature.com/articles/s41467-024-53976-x"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong direct evidence that recurrent networks develop stable latent attractors encoding reward-associated goals through dopamine-dependent plasticity. The MAGNet model is close in spirit to REE's z_goal sub-space: an attractor in behavioral/latent state space that is locally accessible after training and globally accessible under motivational neuromodulation. Transfer risk is moderate because (1) the model encodes approach-only goals, not an explicit separation from harm, and (2) the biological substrate is striatal/mesolimbic rather than a hippocampal terrain map.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If z_goal fails to develop a stable positive attractor even when SD-012 drive is active, this paper's mechanism predicts the failure lies in the absence of a motivational neuromodulatory signal equivalent to dopamine excitability widening.",
+    "If z_goal norm stays near zero despite correct homeostatic drive, the attractor basin may not be wide enough -- analogous to latent attractors that are locally stable but globally inaccessible without neuromodulation."
+  ],
+  "tags": ["mech_230", "latent_attractor", "goal_representation", "dopamine", "recurrent_network", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "Dopamine-dependent synaptic plasticity creates latent attractors encoding reward goals in a recurrent network; dopamine neuromodulation widens attractor basins, making goals globally accessible from any state. Validated optogenetically in mice.",
+    "ree_translation": "REE MECH-230 posits z_goal as a structured positive attractor in E3's latent sub-space, distinct from harm avoidance, seeded by homeostatic drive (SD-012). The MAGNet latent attractor maps onto z_goal's role: a persistent goal state that navigation (hippocampal terrain traversal) is oriented toward. The motivational dopamine signal in MAGNet parallels SD-012's drive_level scaling the z_goal seed.",
+    "mapping_caveat": "MAGNet models a scalar behavioral attractor in a single-goal navigational task; it does not demonstrate separation of goal from harm in the same latent space. MECH-230 specifically requires that z_goal and z_harm occupy distinct sub-spaces -- this paper supports the goal-attractor half of that claim but does not directly address the separation from avoidance.",
+    "source_context": "Recurrent network model (MAGNet) + dopamine optogenetic conditioning in mice; navigational approach tasks; no explicit harm/avoidance condition."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Nature Communications, peer-reviewed, in vivo validation). Mapping fidelity good for the attractor-formation half of MECH-230 but incomplete for approach/harm separation. Transfer risk moderate: biological recurrent network to REE's discrete latent sub-space, and biological dopamine to SD-012 drive scalar."
+  }
+}

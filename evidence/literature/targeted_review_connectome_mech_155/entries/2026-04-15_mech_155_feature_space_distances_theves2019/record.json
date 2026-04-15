@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_155",
+  "entry_id": "2026-04-15_mech_155_feature_space_distances_theves2019",
+  "timestamp_utc": "2026-04-15T08:38:56Z",
+  "claim_ids_tested": ["MECH-155"],
+  "source": {
+    "title": "The Hippocampus Encodes Distances in Multidimensional Feature Space",
+    "authors": ["Theves S", "Fernandez G", "Doeller CF"],
+    "year": 2019,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2019.02.035"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct empirical demonstration in humans that hippocampal fMRI multivoxel patterns encode Euclidean distances between points in a learned two-dimensional abstract feature space -- not merely directional tuning (as Constantinescu 2016 showed) but metric distance structure. This extends the general-indexing claim to the distance-metric property that defines a genuine map rather than a mere directional code. Confidence moderated by reliance on fMRI BOLD (mechanism inference, not single-unit), by the specific learned-concept domain used (butterfly morphology dimensions), and by the small sample and single-lab nature of the study.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "After learning a novel concept defined by two continuous feature dimensions (butterfly leg and antenna properties), hippocampal multivoxel patterns discriminated distances between positions in the 2D abstract feature space.",
+    "Univariate hippocampal fMRI adaptation (reduced signal for similar stimuli) tracked proximity in abstract feature space, replicating the distance-metric property seen for physical space.",
+    "Effects were learning-dependent: abstract distance encoding emerged after concept acquisition, not at baseline, consistent with a general-purpose indexing mechanism that activates over structured relational domains."
+  ],
+  "tags": ["mech_155", "hippocampus", "abstract_space", "feature_space", "cognitive_map", "distance_metric", "general_indexing", "fmri", "human", "concept_learning"],
+  "mapping": {
+    "source_claim_statement": "After learning a novel two-dimensional concept, the human hippocampus encodes Euclidean distances between positions in the abstract feature space, using the same distance-metric property previously demonstrated only for physical spatial maps.",
+    "ree_translation": "MECH-155 requires that the same associative indexing substrate that navigates physical space also indexes abstract domains. Theves et al. 2019 is the empirical bridge between the directional-code result of Constantinescu 2016 and full map-like distance structure: it shows the hippocampus computes a metric geometry for abstract feature dimensions, not merely orientation. For the REE architecture, this is the critical result that justifies treating concept traversal and physical navigation as the same substrate operation -- if the hippocampus encodes distances (not just directions) in abstract feature space, then the address-computation machinery that places a latent state on the manifold works equivalently across domains.",
+    "mapping_caveat": "The abstract space is still perceptually grounded (visual stimulus morphology), and distance encoding was demonstrated only after supervised concept learning -- the extent to which this generalises to fully amodal symbolic or planning domains is unestablished. The fMRI-to-mechanism gap means we cannot confirm that the same cell types (place cells, grid cells) underlying spatial distance encoding are operative here, rather than a separate but geometrically similar population. Transfer to REE's E1 latent domain (unsupervised, multimodal, continuous training) requires additional warrant.",
+    "source_context": "Human participants, fMRI, novel concept learning with 2D butterfly stimulus morphology (leg and antenna dimensions), hippocampal ROI and whole-brain analysis, univariate and multivoxel pattern analyses"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.35,
+    "notes": "Source quality good: Current Biology, reputable lab (Doeller group, MPI Leipzig / Kavli Institute), well-controlled design. Mapping fidelity good: the paper directly tests the distance-metric property of hippocampal abstract-space coding, which is the critical extension of the general-indexing claim beyond mere directional tuning. Transfer risk moderate: one abstract domain, fMRI-only, learning-dependent effect raises question about whether the mechanism is truly general or specific to concept-formation tasks."
+  }
+}

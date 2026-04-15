@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_230",
+  "entry_id": "2026-04-15_mech_230_prefrontal_hippocampal_goal_navigation_ito2015",
+  "timestamp_utc": "2026-04-15T08:38:56Z",
+  "claim_ids_tested": ["MECH-230"],
+  "source": {
+    "title": "A prefrontal-thalamo-hippocampal circuit for goal-directed spatial navigation",
+    "authors": ["Ito, Hiroshi T", "Zhang, Sheng-Jia", "Witter, Menno P", "Moser, Edvard I", "Moser, May-Britt"],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature14396",
+    "url": "https://doi.org/10.1038/nature14396"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Provides foundational circuit evidence that hippocampal CA1 requires prefrontal input (via nucleus reuniens) to represent goal-directed trajectories rather than just instantaneous position. Trajectory-dependent CA1 firing is directly relevant to MECH-230's claim that hippocampal terrain navigation can be oriented toward goal states. Confidence is somewhat reduced because the paper does not address the latent sub-space geometry of goal representations per se, nor approach/harm separation -- it establishes the circuit requirement without characterizing the representational structure of the goal state itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If E3-to-hippocampus goal seeding in REE fails to produce trajectory-dependent navigation, the prefrontal driving input modeled in this paper is not being correctly instantiated.",
+    "If hippocampal terrain navigation in REE operates correctly without an active z_goal signal, the trajectory-dependence observed here would be dissociable from z_goal, weakening MECH-230."
+  ],
+  "tags": ["mech_230", "hippocampus", "prefrontal_cortex", "goal_navigation", "trajectory_dependent_firing", "nucleus_reuniens", "electrophysiology"],
+  "mapping": {
+    "source_claim_statement": "Medial prefrontal cortex projects via nucleus reuniens to CA1, and this projection is necessary for trajectory-dependent firing in CA1 during goal-directed navigation. Lesion or optogenetic silencing of nucleus reuniens abolishes trajectory-dependent activity in CA1 but not CA3 (which lacks nucleus reuniens input). The prefrontal-hippocampal circuit encodes the path toward a goal, not just current position.",
+    "ree_translation": "MECH-230 requires that hippocampal terrain navigation is oriented toward z_goal states maintained by E3. Ito et al. establish the biological substrate: prefrontal cortex (E3 analogue) must actively transmit goal-path information to hippocampus (ARC-007 terrain navigator) via a thalamic relay for trajectory-dependent navigation to occur. Without E3's goal signal, hippocampus defaults to positional encoding without prospective goal orientation. This is the circuit-level substrate for z_goal enabling terrain navigation toward goal states.",
+    "mapping_caveat": "The paper characterizes the *circuit requirement* for goal-directed trajectory firing, not the latent representational geometry of the goal state. It does not show that goal representation is a positive attractor distinct from harm -- only that prefrontal input is required for prospective goal-path encoding. The thalamic relay (nucleus reuniens) in biological circuits has no explicit counterpart in current REE architecture, though the functional requirement (E3 goal signal driving hippocampal prospection) is present.",
+    "source_context": "Rat in vivo electrophysiology (single-unit recording); T-maze and W-maze spatial navigation with reward-directed trajectories; lesion and optogenetic silencing of nucleus reuniens."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "Highest source quality (Nature, Moser lab, in vivo electrophysiology with causal intervention). Mapping fidelity moderate: establishes the circuit requirement but not the sub-space geometry MECH-230 specifically tests. Transfer risk moderate-high: rat in vivo to REE's discrete latent architecture; thalamic relay has no explicit REE equivalent. This paper is best understood as foundational circuit evidence that E3 goal-signal is necessary for hippocampal terrain navigation, not as direct evidence for z_goal attractor structure."
+  }
+}

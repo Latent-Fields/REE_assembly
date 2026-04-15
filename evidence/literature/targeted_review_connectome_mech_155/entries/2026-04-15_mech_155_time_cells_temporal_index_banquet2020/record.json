@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_155",
+  "entry_id": "2026-04-15_mech_155_time_cells_temporal_index_banquet2020",
+  "timestamp_utc": "2026-04-15T08:38:56Z",
+  "claim_ids_tested": ["MECH-155"],
+  "source": {
+    "title": "Time as the fourth dimension in the hippocampus",
+    "authors": ["Banquet JP", "Gaussier P", "Cuperlier N", "Hok V", "Save E", "Poucet B", "Quoy M", "Wiener SI"],
+    "year": 2020,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/j.pneurobio.2020.101920"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Comprehensive review establishing that the hippocampus encodes temporal sequences through 'time cells' that tile an elapsed-time axis analogously to place cells tiling a spatial axis -- the same indexing principle extended to the temporal domain. Directly addresses the working-memory-ordering and sequential-planning dimensions of MECH-155. Confidence moderated by the review nature (synthesises rather than generates primary evidence), by the fact that the temporal dimension is a specific extension of spatial indexing rather than the full generalisation MECH-155 invokes, and by the computational models being largely separate from the single-unit experimental evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal time cells fire selectively at specific elapsed times during delay periods, tiling the temporal interval as place cells tile spatial extent -- evidence for a common indexing principle extended to time.",
+    "Sequential ordering during online behavior is coded by ordered neuronal assemblies in hippocampus, with the same transition-coding mechanism (phase precession, theta sequences) that underlies spatial path planning.",
+    "Offline replay during sleep and quiescence reactivates these temporal sequences in forward and reverse order, consistent with the consolidation-through-replay mechanism that depends on the indexed structure being traversable in both directions."
+  ],
+  "tags": ["mech_155", "hippocampus", "time_cells", "temporal_sequence", "working_memory", "sequential_ordering", "general_indexing", "replay", "phase_precession", "review"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus indexes time as a fourth dimension using time cells that tile elapsed-time intervals analogously to place cells tiling space; this temporal indexing underlies sequence learning, working memory ordering, and offline replay across multiple timescales.",
+    "ree_translation": "MECH-155 claims that working memory ordering uses the same associative indexing substrate as spatial navigation. Banquet et al. 2020 is the most direct evidence for this sub-claim: if time cells tile elapsed time using the same phase-precession and theta-sequence machinery as place cells tile spatial paths, then the substrate generalises at least to one additional dimension (time). For the REE E1 architecture, this is significant because working memory ordering -- the ability to maintain and traverse a sequence of items in order -- is precisely what time-cell indexing provides. The transition-coding mechanism (phase precession under theta oscillations) is the same substrate operating over a temporal rather than spatial dimension.",
+    "mapping_caveat": "The review synthesises rodent electrophysiology with some human neurophysiology but the mechanistic evidence is primarily rodent. The temporal domain is one specific extension of the spatial substrate -- it is not the same as demonstrating that conceptual traversal, planning rollout, and working-memory ordering all share the mechanism. The paper's argument is that time is a fourth dimension of the same spatial indexing system, not that all abstract domains are indexed this way. The step from spatial+temporal generalisation to full abstract-domain generalisation (MECH-155's full claim) requires additional evidence.",
+    "source_context": "Multi-species review (primarily rat electrophysiology with human EEG/iEEG correlates); delay-period timing, trace conditioning, sequential memory tasks; single-unit recording, LFP, computational modelling"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.25,
+    "notes": "Source quality good: Progress in Neurobiology (established review journal), multi-lab authors with substantial primary research backgrounds, comprehensive mechanistic synthesis. Mapping fidelity moderate: paper directly addresses working-memory-ordering dimension of MECH-155 but does not address conceptual traversal, planning rollout over abstract state spaces, or the full generality claim. Transfer risk relatively low for the temporal dimension (good mechanistic evidence), but the step to full abstract generalisation is an inference rather than a finding."
+  }
+}

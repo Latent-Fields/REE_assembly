@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_230",
+  "entry_id": "2026-04-15_mech_230_goal_seeking_hippocampus_ofc_muhlekarbe2023",
+  "timestamp_utc": "2026-04-15T08:38:56Z",
+  "claim_ids_tested": ["MECH-230"],
+  "source": {
+    "title": "Goal-seeking compresses neural codes for space in the human hippocampus and orbitofrontal cortex",
+    "authors": ["Muhle-Karbe, Paul S", "Sheahan, Hannah", "Pezzulo, Giovanni", "Spiers, Hugo J", "Chien, Samson", "Schuck, Nicolas W", "Summerfield, Christopher"],
+    "year": 2023,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2023.08.021",
+    "url": "https://doi.org/10.1016/j.neuron.2023.08.021"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Provides strong human neuroimaging evidence that goal-seeking actively reorganizes hippocampal and OFC neural codes so that goal locations cluster together in neural state space -- exactly the kind of structured, goal-positive geometry MECH-230 requires for z_goal. The effect is predictive of learning success. Transfer risk is moderate: fMRI resolution cannot resolve the sub-space separation from harm encoding that MECH-230 specifically requires, and the task involves spatial navigation goals rather than homeostatic drive goals.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hippocampal terrain navigation in REE does not show compressed representations of goal states relative to non-goal states, the representational geometry this paper describes is not being instantiated.",
+    "If z_goal_norm is non-zero but navigation toward goal states fails, the compression geometry may be present without effective coupling to action selection."
+  ],
+  "tags": ["mech_230", "goal_representation", "hippocampus", "orbitofrontal_cortex", "representational_geometry", "fmri", "goal_compression"],
+  "mapping": {
+    "source_claim_statement": "During goal-seeking navigation in a grid world, human hippocampus and OFC compress their spatial codes so that goal locations are represented closer together in neural state space. This compression is captured by a model in which current and prospective goal locations are jointly encoded in a place code, and compression magnitude predicts learning success.",
+    "ree_translation": "REE MECH-230 requires that z_goal forms a structured sub-space distinct from general spatial encoding and from harm. Muhle-Karbe et al. show that goal-relevance actively reorganizes the geometry of hippocampal-OFC space -- goal states cluster together. In REE terms, this supports the prediction that z_goal should be separable from z_world (non-goal space) by a measurable geometric compression, and that this compression should correlate with effective navigation. The OFC involvement directly parallels E3's role as the evaluative component that sets goal salience.",
+    "mapping_caveat": "The paper examines compression of spatial goal representations, not the separation between an approach-goal sub-space and a harm/avoidance sub-space. MECH-230's distinctness requirement (z_goal != -z_harm) is not directly tested. Additionally, the task uses externally cued spatial goals, whereas MECH-230 requires the goal representation to be internally seeded by homeostatic drive (SD-012) -- the motivational source is different.",
+    "source_context": "Human fMRI; healthy adults; grid world spatial navigation task with two successive goal locations; contextual cues indicating goal dependence; no explicit harm/punishment condition."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Top-tier venue (Neuron); well-controlled human fMRI with computational modeling and multi-voxel representational geometry. Mapping fidelity good for the goal-clustering/attractor geometry aspect of MECH-230 but does not test approach-avoidance separation. Transfer risk moderate: human macroscopic fMRI to REE's discrete latent sub-space; also, external vs. homeostatic goal seeding is a genuine difference."
+  }
+}
