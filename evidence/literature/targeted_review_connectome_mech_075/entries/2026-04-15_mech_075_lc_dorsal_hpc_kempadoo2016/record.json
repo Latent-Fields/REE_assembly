@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-04-15_mech_075_lc_dorsal_hpc_kempadoo2016",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Dopamine release from the locus coeruleus to the dorsal hippocampus promotes spatial learning and memory.",
+    "authors": ["Kempadoo, Kimberly A", "Mosharov, Eugene V", "Choi, Se Joon", "Sulzer, David", "Kandel, Eric R"],
+    "year": 2016,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1616515114"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.80,
+  "confidence_rationale": "This is the foundational optogenetic study establishing that dopamine in dorsal HPC originates from LC, not VTA. It directly corrects the naive MECH-075 framing and provides the anatomical substrate for the LC-mediated gain arm. High source quality. Mixed for MECH-075 as a whole because it establishes the dorsal-LC bifurcation but does not test attractor dynamics or threshold setting per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LC dopamine axons are the primary source of dopamine in dorsal hippocampus, not VTA",
+    "Photostimulation of LC axons increases dorsal HPC dopamine as measured by HPLC",
+    "Enhancement of spatial object recognition requires D1/D5 receptor activation",
+    "VTA axons are sparse in dorsal hippocampus despite dense D1/D5 receptor network"
+  ],
+  "tags": ["mech_075", "locus_coeruleus", "dorsal_hippocampus", "dopamine", "spatial_memory", "optogenetics", "D1_D5_receptor"],
+  "mapping": {
+    "source_claim_statement": "Dopaminergic axons in dorsal HPC originate from LC neurons (not VTA); optogenetic release of LC dopamine enhances spatial attention and object recognition via D1/D5 receptors.",
+    "ree_translation": "The gain-setting function MECH-075 attributes to BG/dopaminergic tone on dorsal HPC (E3 viability map) operates through an LC-mediated arousal/novelty signal, not a VTA RPE signal. The MECH-075 bifurcation -- dorsal=LC, ventral=VTA -- is directly licensed by this paper.",
+    "mapping_caveat": "Study uses D1/D5 pharmacology and optogenetics in mouse; does not directly measure attractor dynamics or competitive inhibition. Gain effects on LTP threshold are inferred from behavioral and HPLC data, not from single-unit attractor dynamics.",
+    "source_context": "Mouse, dorsal CA1, spatial navigation paradigm, optogenetic LC axon stimulation"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Canonical paper; high citation count; direct optogenetic dissociation of LC vs VTA contributions. Mapping fidelity reduced because REE claim involves attractor threshold setting, whereas this paper measures behavioral spatial memory and catecholamine release, not attractor basin geometry."
+  }
+}

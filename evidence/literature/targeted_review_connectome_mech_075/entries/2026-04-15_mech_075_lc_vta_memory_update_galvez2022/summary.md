@@ -1,0 +1,17 @@
+# Summary: Galvez-Marquez et al. 2022 -- LC vs VTA in dorsal HPC memory updating
+
+**Entry:** 2026-04-15_mech_075_lc_vta_memory_update_galvez2022
+**DOI:** [10.1073/pnas.2208254119](https://doi.org/10.1073/pnas.2208254119)
+**Claim tested:** MECH-075
+
+---
+
+Galvez-Marquez and colleagues take the Kempadoo anatomical finding and extend it directly into a functionally relevant updating context. The question they ask is clean: when a stored spatial memory needs to be modified -- when the map needs a write -- which dopamine source is doing the gating? They engineered mice expressing Cre under the TH promoter, allowing them to selectively inhibit either LC-CA1 or VTA-CA1 catecholaminergic terminals via photoinhibition during the memory update session. The result was unambiguous: only LC-CA1 inhibition impaired memory updating behavior. VTA-CA1 inhibition had no effect.
+
+Critically, they went further than behavior. In vivo microdialysis confirmed that LC-CA1 photoinhibition -- and not VTA-CA1 inhibition -- reduced extracellular dopamine and noradrenaline in dorsal CA1. This is a direct measurement of the chemical signal whose absence impairs updating, not merely an inference from behavior. Then comes the receptor pharmacology: D1/D5 antagonism disrupted updating, but beta-adrenergic antagonism did not. The dopamine fraction of the LC co-release, acting through D1/D5, is the active gain signal for memory updating. Finally, they showed that LC-CA1 inhibition suppressed LTP induction in Schaffer collaterals -- the synaptic plasticity mechanism that presumably underlies the write. The gain is being set at the level of plasticity threshold.
+
+For MECH-075, this paper is the closest thing to a direct mechanistic test of the dorsal-HPC arm of the claim. MECH-075 posits that dopaminergic tone sets the gain or threshold of hippocampal attractor dynamics. Galvez-Marquez et al. show that LC dopamine release sets the threshold for LTP induction in dorsal CA1, and that blocking this release prevents memory updating. If we accept that "attractor dynamics" in REE's valenced hippocampal map are implemented at the synaptic plasticity level (which is the natural default assumption), then this is precisely the mechanism MECH-075 is claiming. The gap that remains is that the paper does not measure attractor stability or basin geometry directly -- that would require something like population decoding of CA3 pattern completion, which was not done here.
+
+The memory updating context deserves special attention for REE. In the REE framework, the viability map is not a static structure -- it must be updated when new evidence arrives (failed actions, unexpected harm, revised expectations). This reconsolidation-adjacent process is exactly what Galvez-Marquez et al. are studying. The LC activation during memory retrieval and updating maps directly onto what would happen in REE when a stored trajectory evaluation is retrieved for revision after a discrepant outcome. The claim that MECH-075 makes about "gain setting" is not only about initial encoding but about ongoing maintenance and revision of the map -- and this paper speaks directly to that.
+
+**Relevance to EXQ-192a:** This paper strengthens the interpretation that EXQ-192a's null result for a VTA-like novelty loop on dorsal HPC terrain is a source mis-targeting, not a falsification of the gain-setting hypothesis. The functionally relevant source for that probe was LC, not VTA.

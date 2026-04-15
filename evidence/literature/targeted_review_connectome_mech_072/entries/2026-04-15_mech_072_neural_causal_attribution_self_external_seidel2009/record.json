@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_072",
+  "entry_id": "2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-072"],
+  "source": {
+    "title": "Who is to blame? Neural correlates of causal attribution in social situations",
+    "authors": ["Seidel EM", "Eickhoff SB", "Kellermann T", "Schneider F", "Gur RC", "Habel U", "Derntl B"],
+    "year": 2009,
+    "venue": "Social Neuroscience",
+    "doi": "10.1080/17470911003615997",
+    "pmid": "20162490",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20162490/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Direct fMRI evidence that the brain maintains distinct neural systems for internal (self) vs external causal attribution. Internal attributions selectively recruited right TPJ; external attributions recruited a left-lateralised network including TPJ, precuneus, and medial/superior frontal gyrus. Critically for MECH-072, self-serving attribution (positive events internal, negative events external) activated dorsal striatum and dorsal anterior cingulate, suggesting a reward-modulated gate on attribution direction. This is the closest neuroimaging evidence for a biologically implemented discriminator gate operating on causal ownership of outcomes. Confidence capped at 0.62 because: stimuli were verbal social scenarios (not real harm or embodied action); the gate studied is post-hoc attribution of responsibility, not write-time gating of residue accumulation; no aversive outcomes or harm were directly tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Participants evaluated written social sentences -- attribution was a verbal post-hoc judgment, not a real-time action-consequence gate. MECH-072's gate operates at write time during actual action-outcome sequences.",
+    "No direct harm or pain was used; scenarios described social responsibility without aversive reinforcement learning. Residue accumulation logic does not straightforwardly map to blame judgments about fictional scenarios.",
+    "The dorsal striatum activation for self-serving bias reflects a motivational/valence modulation, not a pure causal discriminator. The attribution gate in MECH-072 is a factual judgment (was this foreseeable?) not a self-serving one."
+  ],
+  "tags": ["mech_072", "causal_attribution", "self_external_discrimination", "fmri", "tpj", "dorsal_striatum", "anterior_cingulate", "foreseeable_harm", "discriminator_gate"],
+  "mapping": {
+    "source_claim_statement": "When making causal attribution judgments about social events, the brain dissociates self-directed (internal) from externally-directed attribution using a fronto-temporoparietal network. Self-attribution activates right TPJ; external attribution activates left-lateralised network including medial prefrontal cortex. Self-serving attribution direction (attributing negative outcomes to external causes) activates dorsal striatum and dorsal anterior cingulate, suggesting reward-modulated gating of attribution direction.",
+    "ree_translation": "MECH-072 proposes that residue accumulation is gated by a foreseeable-harm discriminator that assesses whether the outcome was agent-caused. The Seidel finding provides neurobiological grounding for a brain system that maintains distinct computation for self vs external causal attribution of outcomes. The striato-cingulate recruitment for self-serving attribution direction mirrors what MECH-072's gate must do: modify how much harm-attributed residue is written based on a causal ownership judgment. The TPJ dissociation (right for self, left for external) maps onto the REE distinction between the agent's own causal footprint (z_world vs z_self) and external environmental causation.",
+    "mapping_caveat": "The biological circuit for verbal blame attribution in social scenarios is not the same circuit as a write-time gate on residue accumulation during action. MECH-072 needs a mechanism that operates during or immediately after action execution, not during retrospective verbal judgment. The striato-cingulate modulation found here may reflect motivational bias on attribution rather than a pure foreseeable-harm filter. The mapping is at the level of 'the brain maintains a discriminator between self-caused and externally-caused outcomes' -- not the specific gate mechanism MECH-072 proposes.",
+    "source_context": "fMRI, 30 healthy German adults, verbal social scenario paradigm, within-subjects 2x2 design (attribution direction x event valence), random effects GLM."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Moderate source quality (peer-reviewed, Social Neuroscience, n=30, but verbal paradigm). Mapping fidelity moderate: the brain does maintain self vs external attribution discrimination using striato-cingulate-TPJ networks, which is the right level of claim. Transfer risk moderate: verbal retrospective judgment to real-time action gating is a significant mechanistic gap."
+  }
+}

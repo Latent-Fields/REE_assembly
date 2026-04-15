@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-04-15_mech_075_lc_vta_memory_update_galvez2022",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Spatial contextual recognition memory updating is modulated by dopamine release in the dorsal hippocampus from the locus coeruleus.",
+    "authors": ["Galvez-Marquez, Donovan K", "Salgado-Menez, Mildred", "Moreno-Castilla, Perla", "Rodriguez-Duran, Luis", "Escobar, Martha L", "Tecuapetla, Fatuel", "Bermudez-Rattoni, Federico"],
+    "year": 2022,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.2208254119"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct within-study dissociation of LC-CA1 vs VTA-CA1 terminals in memory updating, with microdialysis confirmation that LC inhibition (not VTA) reduces dorsal HPC dopamine and noradrenaline, plus LTP suppression as mechanistic link. Strengthens the dorsal=LC arm of MECH-075 and shows gain effects translate to plasticity threshold (LTP induction). Evidence direction: supports the LC-mediated dorsal gain arm specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Photoinhibition of LC-CA1 (not VTA-CA1) terminals impairs spatial contextual memory updating",
+    "LC-CA1 inhibition reduces both dopamine and noradrenaline in dorsal CA1 by microdialysis",
+    "D1/D5 antagonism but not beta-adrenergic antagonism impairs memory updating behavior",
+    "LC-CA1 inhibition suppresses LTP induction in Schaffer collaterals",
+    "VTA-CA1 inhibition has no effect on dorsal HPC catecholamines or memory updating"
+  ],
+  "tags": ["mech_075", "locus_coeruleus", "dorsal_hippocampus", "memory_updating", "LTP", "D1_D5_receptor", "optogenetics", "dopamine_noradrenaline"],
+  "mapping": {
+    "source_claim_statement": "Memory updating in dorsal HPC requires catecholamine release from LC-CA1 terminals; this operates via D1/D5 receptors and suppresses LTP when blocked; VTA-CA1 terminals are not involved.",
+    "ree_translation": "The LC-mediated gain arm of MECH-075 operates specifically on memory update/write events in the dorsal HPC (E3 viability map). When a stored viability map entry is retrieved and must be updated, LC activation sets the threshold for LTP induction. This is the gain-setting mechanism that MECH-075 claims BG/dopaminergic tone provides -- here shown directly for the LC->dorsal HPC arm. The D1/D5 specificity (not beta-adrenergic) isolates dopamine co-release as the active signal.",
+    "mapping_caveat": "This is a memory reconsolidation/updating paradigm, not a first-encoding paradigm. REE viability map updates (write events after novel outcome) may map onto the reconsolidation context; initial map formation may differ. Also, LTP threshold modulation is inferred from suppression experiments; attractor basin geometry not directly measured.",
+    "source_context": "Mouse, dorsal CA1, spatial object location memory updating, optogenetic terminal inhibition, in vivo microdialysis"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Highly controlled optogenetic dissociation with microdialysis ground truth -- strong source quality. Mapping fidelity: the reconsolidation/updating frame fits REE write-gating well, but the specific attractor dynamics (basin stability, competitive inhibition) are not directly measured. Transfer risk moderate: mouse spatial memory to REE viability map is conceptually tight but computationally unvalidated."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_072",
+  "entry_id": "2026-04-15_mech_072_moral_luck_foreseeability_attribution_young2010",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-072"],
+  "source": {
+    "title": "Investigating the Neural and Cognitive Basis of Moral Luck: It's Not What You Do but What You Know",
+    "authors": ["Young L", "Nichols S", "Saxe R"],
+    "year": 2010,
+    "venue": "Review of Philosophy and Psychology",
+    "doi": "10.1007/s13164-010-0027-y",
+    "pmid": "22558062",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3339027/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Directly tests how foreseeability and belief-state modulate moral blame assignment using both behavioral experiments and fMRI. Key finding: moral luck depends more on whether an agent had justified false beliefs (foreseeability failure) than on the actual bad outcome. Agents who could not have foreseen harm received substantially less blame. fMRI data showed increased TPJ, precuneus, and medial PFC activation during blame judgments where mental state reasoning (what could the agent have known?) was the relevant gate. This maps very directly to MECH-072's foreseeable-harm threshold: the foreseeable-harm gate asks exactly what this study tests behaviorally -- could the agent have anticipated this harm given available information? Confidence is 0.68 because the paradigm is verbal/deliberate (not action-time residue gating), and the fMRI sample is modest (n=19), but the conceptual alignment with the gate mechanism is the highest of any paper found for this review.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Moral luck judgment is an explicit deliberative process; MECH-072 requires an implicit, real-time gate on residue accumulation. The circuits for rapid action-contingent attribution differ from deliberate moral evaluation.",
+    "The study tests blame judgments about agents in stories. REE's foreseeable-harm gate applies to the agent's own self-attribution during learning, not to an observer's blame of another.",
+    "fMRI sample n=19; behavioral effects are robust but the imaging results should be treated as anatomically suggestive rather than definitive."
+  ],
+  "tags": ["mech_072", "moral_luck", "foreseeability", "belief_attribution", "tpj", "medial_pfc", "foreseeable_harm", "causal_attribution", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Moral luck (holding agents responsible for outcomes they could not control) depends primarily on whether the agent had justified false beliefs, not on the bad outcome itself. Agents whose false beliefs were unjustified (bad reasons for not knowing) received more blame than agents with good reasons for not knowing. fMRI showed that moral judgments following bad outcomes engaged TPJ, precuneus, and dorsal/ventral medial PFC -- regions associated with mental state reasoning about what agents could have known.",
+    "ree_translation": "MECH-072's foreseeable-harm gate is architecturally a foreseeability threshold: residue accumulates only when harm was predictable from the agent's available information (z_world state). Young et al. provide the most direct behavioural and neural evidence that human moral cognition implements exactly this gate -- blame is conditioned on what the agent could have known, not merely on whether harm occurred. The medial PFC / TPJ network for mental state reasoning about foreseeability is the biological substrate of the gate MECH-072 describes. The finding that unjustified false beliefs (the agent should have known) produce more blame than justified false beliefs (the agent genuinely could not have known) maps precisely to the distinction MECH-072 draws between foreseeable harm (residue should accumulate) and non-foreseeable harm (gate should block residue).",
+    "mapping_caveat": "Young et al. study moral blame judgment by observers about agents in stories -- not self-attribution during learning. MECH-072's gate is a self-referential learning signal applied in real time during action execution, not a post-hoc deliberate blame assignment. The foreseeability principle is directly supported; the specific architectural implementation (forward model-based discrimination on z_world_delta) is not.",
+    "source_context": "Behavioral experiments (n=24, n=42) and fMRI (n=19), MIT. Verbal moral scenario paradigm with factorial manipulation of outcome valence, belief truth value, and belief justification."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Good source quality (Review of Philosophy and Psychology, multi-study, combines behavioral and fMRI evidence, Saxe lab TPJ expertise). Mapping fidelity is high at the conceptual level: the claim is that foreseeability gates blame, which is exactly MECH-072's principle. Transfer risk is moderate: observer blame vs self-attribution, deliberate vs real-time, verbal vs embodied."
+  }
+}

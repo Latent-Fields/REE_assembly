@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-04-15_mech_075_d1_ltp_threshold_lemon2006",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Dopamine D1/D5 receptors gate the acquisition of novel information through hippocampal long-term potentiation and long-term depression.",
+    "authors": ["Lemon, Neal", "Manahan-Vaughan, Denise"],
+    "year": 2006,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1454-06.2006"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Provides the core synaptic mechanism for MECH-075: D1/D5 activation lowers the threshold for both LTP and LTD induction at hippocampal CA1 synapses in freely moving rats. This is direct evidence that dopaminergic signaling sets the gain/threshold of the plasticity operations that implement attractor dynamics. High source quality (in vivo, freely moving, bilateral electrophysiology with behavioral correlates). Supports the gain-setting mechanism central to MECH-075.",
+  "confidence_rationale": "D1/D5 receptor activation lowers LTP and LTD induction thresholds in freely-moving rat CA1; receptor antagonism prevents both late-phase LTP and novel object-configuration learning. This directly instantiates the gain/threshold-setting component of MECH-075 at the synaptic level. High confidence because freely moving preparation with both pharmacology and electrophysiology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "D1/D5 receptor activation lowers the threshold for both LTP and LTD induction at CA1 synapses",
+    "D1/D5 antagonism prevents late-phase LTP induction by patterned electrical stimulation",
+    "Object-configuration learning and exploration-evoked LTD are prevented by D1/D5 antagonism",
+    "Exploration of empty space evokes D1/D5-dependent late-phase LTP",
+    "Bidirectional threshold gating: both potentiation and depression are under dopaminergic control"
+  ],
+  "tags": ["mech_075", "dopamine", "D1_D5_receptor", "LTP", "LTD", "hippocampus", "CA1", "plasticity_threshold", "novelty_encoding"],
+  "mapping": {
+    "source_claim_statement": "D1/D5 dopamine receptors lower the induction threshold for both LTP and LTD in hippocampal CA1; this bidirectional gating is required for novel information acquisition and is dissociable by learning type.",
+    "ree_translation": "The dopaminergic gain-setting postulated in MECH-075 operates at the level of synaptic plasticity thresholds (LTP/LTD), not just via neuromodulatory state changes. In REE, the viability map attractor landscape is updated by write events -- which are implemented by synaptic changes. MECH-075 claims that dopaminergic tone sets the threshold for those write events. Lemon and Manahan-Vaughan show exactly this: without D1/D5 activation, late-phase synaptic changes (the ones that would stabilize or shift an attractor basin) do not occur.",
+    "mapping_caveat": "Study does not distinguish LC vs VTA source of dopamine -- uses bath pharmacology and systemic injections. Does not directly measure attractor stability or pattern completion. Freely-moving rat is appropriate model but the spatial task is simpler than a multi-alternative viability map scenario.",
+    "source_context": "Rat, CA1, in vivo electrophysiology (field potentials), freely moving, pharmacological D1/D5 manipulation, exploratory spatial tasks"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Strong in vivo preparation in freely moving animals. Bidirectional (LTP and LTD) gating is especially relevant to REE because the viability map needs both strengthening (learning from success) and weakening (learning from failure/harm) of attractor basins. Transfer risk low: rat CA1 pyramidal plasticity is well-conserved and directly relevant to hippocampal map operations."
+  }
+}

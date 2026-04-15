@@ -14,6 +14,19 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-15)
+
+- **New substrate today: MECH-090 Layer 1 (trajectory stepping) + MECH-091 Layer 2 (urgency interrupt) implemented.** REEAgent now steps through committed_trajectory.actions[idx] via _committed_step_idx counter (Layer 1). Layer 2: when beta elevated and z_harm_a.norm() > urgency_interrupt_threshold (default 0.8), gate releases and step counter resets. Both wired in agent.py + E3Config.urgency_interrupt_threshold in config.py (2026-04-15).
+- **New claims registered 2026-04-14: MECH-232 (DA representational expansion as approach mechanism), MECH-233 (asymmetric valence encoding: BLA tags vs VTA expands), ARC-057 (curiosity-approach emergence from DA-expanded map).** Architecture doc: hippocampal_valence_asymmetry.md. MECH-231 promoted candidate->provisional (conf from EXQ-407 PASS, 164x E2/E1 slope ratio).
+- **EXQ-330a PASS (2026-04-15):** SD-013 contrastive counterfactual at interventional_fraction=0.5. forward_r2=0.999, cf_gap confirmed. Advances SD-013 evidence (already provisional conf=0.788).
+- **EXQ-327 PASS (2026-04-14):** MECH-163 goal-conditioned navigation paper gate confirmed.
+- **EXQ-365 PASS (2026-04-14):** MECH-104 surprise gate (5-seed) confirmed.
+- **494 experiments completed.** 100 PASS, 236 FAIL, 51 ERROR, 107 UNKNOWN.
+- **0 pending review** (as of 2026-04-15).
+- **Current bottleneck: first-paper gate.** Active queue (16 items): EXQ-323a (SD-019 nonredundancy), EXQ-326 (SD-015 wanting gradient nav), EXQ-330a (claimed), EXQ-353 (SD-003 interventional vs observational), EXQ-321a (MECH-090 bistable gate retest), EXQ-325a (SD-021 descending modulation retest), EXQ-395 (MECH-220), EXQ-375 (MECH-073), EXQ-328b (claimed), EXQ-326a, EXQ-406 (INV-053), EXQ-407 (MECH-231), EXQ-396a (ARC-016 dual-bug fix), EXQ-396 (ARC-016 sweep), EXQ-397 (ARC-007 path memory), EXQ-418 (SD-017 + SD-016 context action).
+
+---
+
 ## Status Snapshot (2026-04-14)
 
 - **Key governance outcome: SD-013 promoted candidate->provisional (2026-04-13b governance).** conf=0.788, 5 supports/1 weakens. SD-013 (interventional training bias) now provisional. 7 experiments reclassified non_contributory.
@@ -619,22 +632,23 @@ Added from V1 learning:
 
 ## Immediate Work Queue (This Cycle)
 
-**Current step: First-Paper Gate Experiments (as of 2026-04-14)**
+**Current step: First-Paper Gate Experiments (as of 2026-04-15)**
 
-SD-004 through SD-023 all implemented. ARC-033, MECH-090, MECH-120, MECH-203/204, MECH-205,
-MECH-216 implemented. EXQ-354 PASS: MECH-229 behavioral wanting/liking dissociation confirmed.
-MECH-112 split into MECH-229 (active) + MECH-230 (candidate). SD-013 promoted to provisional
-(governance-2026-04-13-b, conf=0.788). MECH-231 registered + EXQ-407 queued. 2 pending review.
+SD-004 through SD-023 all implemented. ARC-033, MECH-090 (bistable + Layer 1 trajectory
+stepping), MECH-091 Layer 2 urgency interrupt, MECH-120, MECH-203/204, MECH-205, MECH-216
+implemented. EXQ-327 PASS (MECH-163 goal-conditioned nav), EXQ-365 PASS (MECH-104 surprise
+gate), EXQ-330a PASS (SD-013 interventional at frac=0.5). MECH-231 promoted provisional.
+MECH-232/233/ARC-057 registered (hippocampal valence asymmetry). 0 pending review.
 
-1. **EXQ-326a** (SD-015 nav integration fix + MECH-229 behavioral dissociation in nav context).
-2. **EXQ-353** (ARC-033/SD-003/SD-013 interventional vs observational counterfactual):
-   critical re-validation of SD-003 interventional pipeline.
-3. **EXQ-321a** (MECH-090 bistable gate retest; E2 world-forward training added to fix EXQ-321).
-4. **EXQ-325a** (SD-021 descending pain modulation retest; E2 world-forward training fix).
-5. **EXQ-365** (MECH-104 surprise gate 5-seed replication).
+1. **EXQ-321a** (MECH-090 bistable gate retest; E2 world-forward training added to fix EXQ-321).
+2. **EXQ-325a** (SD-021 descending pain modulation retest; E2 world-forward training fix).
+3. **EXQ-353** (ARC-033/SD-003/SD-013 interventional vs observational counterfactual):
+   full paired comparison to confirm lift from interventional training.
+4. **EXQ-323a** (SD-019 harm nonredundancy on SD-022 substrate; correct 7-dim harm_obs_a).
+5. **EXQ-396a** (ARC-016 precision sweep dual-bug fix: rv update in training + no eval reset).
 6. **EXQ-385** (INV-049 offline consolidation necessity / sleep ablation pair).
 7. **EXQ-406** (INV-053 depression attractor replication; 5-seed LONG_HORIZON characterisation).
-8. **EXQ-407** (MECH-231 E2 short-horizon efference-copy discriminative pair).
+8. **EXQ-326a** (SD-015 nav + MECH-229 behavioral dissociation in nav context).
 
 ---
 

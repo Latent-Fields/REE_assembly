@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_072",
+  "entry_id": "2026-04-15_mech_072_counterfactual_credit_assignment_mesnard2021",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-072"],
+  "source": {
+    "title": "Counterfactual Credit Assignment in Model-Free Reinforcement Learning",
+    "authors": ["Mesnard T", "Weber T", "Viola F", "Thakoor S", "Saade A", "Harutyunyan A", "Dabney W", "Stepleton T", "Heess N", "Guez A", "Moulines E", "Hutter M", "Buesing L", "Munos R"],
+    "year": 2021,
+    "venue": "ICML 2021 (Proceedings of the 38th International Conference on Machine Learning)",
+    "doi": "10.48550/arXiv.2011.09464",
+    "arxiv_id": "2011.09464",
+    "url": "https://proceedings.mlr.press/v139/mesnard21a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Provides direct computational evidence that credit assignment -- assigning action influence on future outcomes -- requires disentangling agent action effects from external environmental factors and luck. The key contribution is conditioning value functions on future trajectory information (hindsight baseline) while constraining that information to exclude action data, thereby isolating the agent's causal contribution to the outcome. This is structurally identical to what MECH-072's discriminator does: it asks, of the harm that occurred, how much was attributable to the agent's action vs the environment. The paper provides theoretical grounding (low-variance policy gradient estimators from counterfactual conditioning) and empirical results showing that this disentanglement produces better-calibrated credit assignment. Confidence 0.70: very strong computational alignment with MECH-072's mechanism, modest deduction because the paper does not specifically address harm signals or safety -- it treats rewards generically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper addresses credit assignment for arbitrary reward signals, not specifically harm/aversive outcomes. MECH-072 is specifically about harm residue gating; whether the same counterfactual logic scales cleanly to aversive signals with asymmetric learning requirements is not directly tested.",
+    "Model-free setting: the hindsight baseline learns from trajectory data, not from an explicit forward model. MECH-072 uses an explicit forward model (E2 world_forward) to compute z_world_delta. The computational approach is analogous but architecturally different.",
+    "The constraint that hindsight information must exclude action data (to avoid bias) is a theoretical requirement; MECH-072's discriminator receives both z_world_delta and is_agent_caused as inputs, which raises the question of whether action-conditioning introduces bias in the REE architecture."
+  ],
+  "tags": ["mech_072", "counterfactual_credit_assignment", "causal_credit", "agent_environment_discrimination", "reinforcement_learning", "computational_model", "policy_gradient", "hindsight_baseline"],
+  "mapping": {
+    "source_claim_statement": "Credit assignment in RL -- measuring an action's influence on future rewards -- requires disentangling the agent's causal contribution from external factors and stochasticity. Counterfactual conditioning on future trajectory information provides low-variance baselines for policy gradient estimation. Constraining hindsight information to exclude action data preserves unbiasedness while capturing what would have happened from external factors alone.",
+    "ree_translation": "MECH-072's foreseeable-harm gate implements the same core operation: it partitions the harm signal into agent-caused and externally-caused components, gating residue accumulation on the agent-caused portion. Mesnard et al. provide the computational framework: the quantity MECH-072 needs is exactly the counterfactual value -- what would the harm trajectory have been under the same environmental dynamics but without the agent's action? The discriminator on (z_world_delta, is_agent_caused) is an implementation of this counterfactual comparison using the E2 forward model as a dynamics estimator.",
+    "mapping_caveat": "Mesnard et al. work in a model-free setting using trajectory-based hindsight baselines; REE uses an explicit forward model (E2) to compute z_world_delta. The theoretical insight is the same (counterfactual partitioning) but the implementation path differs. Additionally, the paper treats all reward signals symmetrically; MECH-072 specifically applies gating to the harm residue channel, which may have distinct learning dynamics from generic rewards.",
+    "source_context": "Theoretical RL paper from DeepMind / INRIA, published ICML 2021. Tested on illustrative and challenging sequential decision problems. Strong theoretical grounding with empirical validation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (ICML 2021, DeepMind, theoretical proofs + empirical results). Mapping fidelity good: the counterfactual decomposition principle maps directly to MECH-072's discriminator operation. Transfer risk low: both are RL settings; main gap is model-free vs model-based architecture."
+  }
+}

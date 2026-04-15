@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_072",
+  "entry_id": "2026-04-15_mech_072_causal_influence_detection_rl_seitzer2021",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-072"],
+  "source": {
+    "title": "Causal Influence Detection for Improving Efficiency in Reinforcement Learning",
+    "authors": ["Seitzer M", "Scholkopf B", "Martius G"],
+    "year": 2021,
+    "venue": "NeurIPS 2021 (Advances in Neural Information Processing Systems 34)",
+    "doi": "10.48550/arXiv.2106.03443",
+    "arxiv_id": "2106.03443",
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/c1722a7941d61aad6e651a35b65a9c3e-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Provides computational evidence for a forward-model-based method that detects, situation by situation, whether the agent's actions can causally influence environmental entities. This is directly relevant to the discriminator component of MECH-072: a key design question is whether the gate should be a static threshold or a situation-dependent learned function. Seitzer et al. show that causal influence is situation-dependent (an agent can influence object X in some states but not others), and that measuring this via conditional mutual information -- requiring a learned environment forward model -- reliably detects influence states. The gate concept in MECH-072 maps to this: rather than gating on a fixed foreseeability threshold, a conditional mutual information measure over (action, z_world_delta) pairs could detect whether the agent's action was actually in a position to cause the harm. Confidence 0.65: strong computational alignment for the discriminator design principle, but the paper focuses on exploration efficiency rather than harm attribution, so the application domain transfer requires care.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Seitzer et al. focus on improving sample efficiency through influence-aware exploration; harm attribution gating is not addressed. The measure of causal influence (conditional mutual information between action and next-state) is used to prioritise exploration, not to gate residue accumulation.",
+    "The forward model in this paper models full environment dynamics; REE's discriminator uses z_world_delta which is a latent representation, not raw state dynamics. Whether conditional mutual information over latent world-state changes is as reliable as over raw dynamics is not established.",
+    "The paper demonstrates results on robotic manipulation tasks where action-object influence is relatively binary (contact or no contact). MECH-072 operates in a richer space where foreseeable harm involves causal chains through other agents and delayed consequences."
+  ],
+  "tags": ["mech_072", "causal_influence_detection", "forward_model", "conditional_mutual_information", "agent_environment", "situation_dependent", "reinforcement_learning", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "The causal influence of an agent's actions on other environmental entities is situation-dependent: in some states the agent can influence certain objects, in others it cannot. Measuring this via conditional mutual information I(action; next_state | current_state) using a learned forward model of environment dynamics reliably detects these influence states. Integrating this measure into RL algorithms as an intrinsic reward or state weighting substantially improves data efficiency on robotic manipulation tasks.",
+    "ree_translation": "MECH-072's discriminator gate must determine whether the agent could have caused and foreseen the harm in the specific situation where harm occurred. Seitzer et al. provide the computational primitive for the 'could have caused' component: a situation-dependent causal influence measure based on a learned forward model. In REE terms, measuring I(action; z_world_delta | z_world) at the moment of harm would determine whether the agent's action was in a position to influence world-state in the harm direction. Gates that activate only when this mutual information is above threshold would implement situation-dependent foreseeable-harm filtering, and would correctly suppress residue in states where the agent's action had no influence over the harm trajectory.",
+    "mapping_caveat": "Seitzer et al. measure causal influence for exploration -- to find states worth visiting because the agent can do something there. MECH-072 needs causal attribution -- was this agent's action actually responsible for this harm? These are related but distinct operations: the former is prospective (which states are worth exploring), the latter is retrospective (was this harm caused by this action). The conditional mutual information measure supports the 'could have influenced' judgment but does not by itself establish 'did cause' without a counterfactual comparison.",
+    "source_context": "Computational RL paper from MPI-IS (Bernhard Scholkopf lab, NeurIPS 2021). Tested on robotic manipulation benchmarks. Code publicly available. Strong theoretical grounding from causal inference / information theory."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (NeurIPS 2021, Scholkopf lab, solid theoretical grounding). Mapping fidelity moderate: the causal influence detection primitive is directly relevant to the discriminator design, but the use case (exploration vs attribution) differs. Transfer risk low-moderate: both are RL settings with forward models; main gap is exploration vs attribution framing."
+  }
+}

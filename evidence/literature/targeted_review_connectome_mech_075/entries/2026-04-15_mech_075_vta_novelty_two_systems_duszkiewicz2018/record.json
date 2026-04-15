@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018",
+  "timestamp_utc": "2026-04-15T14:00:00Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Novelty and Dopaminergic Modulation of Memory Persistence: A Tale of Two Systems.",
+    "authors": ["Duszkiewicz, Adrian J", "McNamara, Colin G", "Takeuchi, Tomonori", "Genzel, Lisa"],
+    "year": 2018,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2018.10.002"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "High-quality review in a top journal that explicitly synthesizes the LC vs VTA dual-system framework and maps these to distinct types of novelty (distinct vs common novelty) and distinct hippocampal memory operations (episodic vs semantic consolidation). Directly supports the MECH-075 bifurcation framing. Confidence modestly reduced because it is a review/opinion piece, not primary data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "VTA dopamine responds to 'common novelty' (shares features with past experience) and promotes semantic memory via systems consolidation",
+    "LC dopamine responds to 'distinct novelty' (minimal overlap with past experience) and promotes strong episodic memory via local HPC consolidation",
+    "The two systems target distinct hippocampal circuits and operate on different temporal scales",
+    "Dopamine from both sources modulates memory persistence through D1/D5-dependent mechanisms",
+    "LC co-releases noradrenaline and dopamine; both are functional for memory in dorsal HPC"
+  ],
+  "tags": ["mech_075", "locus_coeruleus", "VTA", "novelty", "memory_persistence", "two_systems", "dopamine", "hippocampus", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "VTA and LC represent two distinct dopaminergic systems for hippocampal memory modulation: VTA handles common novelty and long-range semantic consolidation; LC handles distinct novelty and strong initial episodic encoding in HPC.",
+    "ree_translation": "The MECH-075 bifurcation (dorsal=LC, ventral=VTA) maps onto functionally distinct roles: LC gating of dorsal HPC viability map corresponds to the encoding of genuinely novel situations (new map entries), while VTA gating of ventral HPC corresponds to affective/motivational valence assignment and semantic generalization of outcomes. Both arms are required for a complete REE viability map -- episodic entries via LC-dorsal and valence/generalization via VTA-ventral.",
+    "mapping_caveat": "Review/opinion piece -- synthesizes existing data but generates novel theoretical claims not all directly tested. The 'common vs distinct novelty' distinction is a conceptual framework that organizes the literature but may oversimplify. The REE translation adds one more conceptual layer on top of an already theoretical paper.",
+    "source_context": "Review article synthesizing animal and human studies on dopamine, novelty, and hippocampal memory consolidation; covers both LC and VTA literature"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Published in Trends in Neurosciences (high-impact review venue); primary data synthesis is robust. Mapping fidelity reduced because this is a theoretical framework being mapped to another theoretical framework (REE). Transfer risk moderate: the novelty taxonomy (common vs distinct) does not map cleanly to REE categories (new map entry vs valence update) without additional scaffolding."
+  }
+}
