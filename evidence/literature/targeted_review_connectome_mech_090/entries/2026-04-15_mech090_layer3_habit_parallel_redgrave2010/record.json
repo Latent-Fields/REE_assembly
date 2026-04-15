@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-04-15_mech090_layer3_habit_parallel_redgrave2010",
+  "timestamp_utc": "2026-04-15T09:00:00Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Goal-directed and habitual control in the basal ganglia: implications for Parkinson's disease",
+    "authors": [
+      "Peter Redgrave",
+      "Margarita Rodriguez",
+      "Yoland Smith",
+      "Maria C. Rodriguez-Oroz",
+      "Stephane Lehericy",
+      "Hagai Bergman",
+      "Yves Agid",
+      "Mahlon R. DeLong",
+      "Jose A. Obeso"
+    ],
+    "year": 2010,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2915"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "This review provides substantial support for the Layer 3 parallel-channel hypothesis: it explicitly proposes that goal-directed (dorsomedial/associative) and habitual (dorsolateral/sensorimotor) circuits are anatomically segregated and operate simultaneously, competing for behavioral expression rather than one suppressing the other. The driving example (habitual steering + goal-directed conversation) is direct evidence for parallel output. However, the paper also notes that habits dominate under stress and that unexpected events trigger rapid switches from habitual to goal-directed control -- suggesting the competition is dynamic and context-dependent rather than purely parallel. This mixed pattern weakens the strongest form of Interpretation A (fully parallel with independent outputs): competition is real and the systems DO influence each other's expression.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_090", "layer3_parallel_habit", "goal_directed", "habitual", "dorsomedial_striatum", "dorsolateral_striatum", "BG_dual_circuit", "competition", "parallel_channels"],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia contain spatially segregated functional territories: the rostromedial (associative) striatum supports goal-directed control while the caudolateral (sensorimotor) striatum supports habitual control. These circuits course through anatomically distinct regions and operate simultaneously but competitively. Skilled behaviour can decompose into sequenced combinations of goal-directed and habitual control working in concert (e.g., experienced driver steers habitually while conversing goal-directedly). Unexpected events trigger rapid switching from habitual to goal-directed control. Under stress, habitual responding tends to dominate.",
+    "ree_translation": "MECH-090 (beta gates E3-to-action-selection propagation) addresses the E3/deliberative commitment channel. The Layer 3 architectural question is: does the BG biology support a separate E1-direct habitual channel that remains active during deliberative commitment? Redgrave et al. confirm that dorsolateral striatum (sensorimotor/habitual) and dorsomedial striatum (associative/goal-directed) are anatomically distinct circuits that can express outputs in parallel. The driving example -- habitual steering persisting during goal-directed conversation -- is a direct instantiation of Interpretation A (parallel channels). However, the paper describes competition for control during the same action domain, and the stress-dominance and unexpected-event-switch findings suggest the systems can suppress each other's expression. In REE terms: a committed E3 sequence (elevated beta, dorsomedial/associative channel active) would NOT fully suppress the dorsolateral/sensorimotor channel -- habitual responses to threat stimuli could still be expressed. But the two systems would compete if they target the same motor output.",
+    "mapping_caveat": "The review synthesizes rodent and human behavioral plus anatomical data but does not directly record LFP or spiking during committed-sequence execution. The parallel-channel evidence comes primarily from behavioral dissociation (lesion studies and overtraining) and the driving example. The question of whether dorsolateral striatum habitual responses are expressed at the motor output level during an ongoing committed dorsomedial sequence -- as opposed to both being active at the neural level but competing for output -- is not directly tested in this paper.",
+    "source_context": "Theoretical review synthesizing animal lesion studies, human neuroimaging, Parkinson's disease neurophysiology, and anatomical tract-tracing. Focus on dorsal striatum dual-circuit architecture and its breakdown in PD."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Extremely high source quality -- Nature Reviews Neuroscience, heavily cited expert consensus review with multi-species anatomical and behavioral evidence. Mapping fidelity is good: the anatomical segregation and the driving example directly address Interpretation A. Transfer risk is moderate: review does not directly test neural activity during concurrent deliberate+habitual behavior in the same task context; the parallel channel claim rests on behaviorally dissociated evidence rather than simultaneous neural recording during commitment."
+  }
+}

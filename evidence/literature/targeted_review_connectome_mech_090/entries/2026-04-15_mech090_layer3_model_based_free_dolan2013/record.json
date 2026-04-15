@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-04-15_mech090_layer3_model_based_free_dolan2013",
+  "timestamp_utc": "2026-04-15T09:00:00Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Goals and Habits in the Brain",
+    "authors": [
+      "Ray J. Dolan",
+      "Peter Dayan"
+    ],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.09.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "Dolan and Dayan explicitly frame goal-directed (model-based) and habitual (model-free) control as two ends of a spectrum with arbitration mechanisms, rather than as parallel independent channels. The spectrum framing weakens the Interpretation A (fully parallel habitual channel during E3 commitment) -- if the systems exist on a spectrum with arbitration, then commitment to E3 deliberation represents a point on that spectrum where model-based control is strongly weighted, not a state where both systems independently produce motor outputs. The vmPFC-mediated arbitration is described as a blending/weighting mechanism, suggesting that elevated E3 commitment (beta gate) might suppress model-free output by shifting the arbitration weighting. However, the spectrum does not preclude simultaneous computation -- it merely describes which system dominates output. Evidence direction is coded as 'weakens' relative to the strong form of Layer 3 (independent parallel channel) but does not rule out the parallel-computation weaker form.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["habit_goal_directed_spectrum_not_parallel_channels"],
+  "tags": ["mech_090", "layer3_parallel_habit", "model_based", "model_free", "arbitration", "spectrum", "vmPFC", "dual_process"],
+  "mapping": {
+    "source_claim_statement": "Goal-directed and habitual control represent two ends of a spectrum of reflective versus reflexive decision-making. Both model-based (goal-directed) and model-free (habitual) systems are described as computing in parallel, but they are integrated through an arbitration mechanism weighted by relative reliability/uncertainty. The vmPFC integrates both value signals. Dominance of one system is determined by context-specific weighting rather than absolute suppression. The paper reviews four generations of experimental work showing humans shift along this spectrum based on cognitive load, overtraining, stress, and time pressure.",
+    "ree_translation": "The spectrum-plus-arbitration model has a specific implication for MECH-090 and Layer 3. If E3 commitment (elevated beta, MECH-090 gate) represents a state of high model-based weighting, then the BG circuitry would downweight model-free (habitual) output through the arbitration mechanism. This is NOT the same as a separate independent channel -- the vmPFC arbitration means that during committed deliberation, habitual signal IS present but is DOWNWEIGHTED and less likely to reach motor output. This is closer to Interpretation B (urgency interrupt as the dominant escape) than Interpretation A (truly independent parallel channel): the habitual channel runs but its output is gated by the same arbitration mechanism that the beta gate influences. A sufficiently strong urgency signal could shift the arbitration toward model-free, but this is functionally equivalent to an urgency interrupt on the beta gate rather than a truly separate parallel pathway.",
+    "mapping_caveat": "Dolan and Dayan's review focuses on decision-making and choice behavior, not on the motor execution phase of committed action sequences. The spectrum framing is most relevant to the pre-commitment phase (which strategy to adopt) and may not describe the within-sequence dynamics of a committed trajectory execution. During motor execution, the BG may implement committed-sequence beta elevation (MECH-090) in ways that override the arbitration mechanism. The paper's theoretical framework is more applicable to action selection before commitment than to the committed-execution phase addressed by MECH-090.",
+    "source_context": "Theoretical review synthesizing human neuroimaging (fMRI), behavioral economics, and computational decision theory. Four generations of work: original S-R/A-O animal literature, human outcome devaluation/contingency degradation, two-stage Markov decision tasks, and computational integration. No direct electrophysiology of beta or committed-sequence execution."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Very high source quality -- Neuron review by two leading theorists. Mapping fidelity is lower: the spectrum/arbitration model is about pre-commitment strategy weighting, while MECH-090 and Layer 3 concern committed-execution dynamics. The framework does not directly address whether beta-gated committed sequences allow habitual motor output to continue. Transfer risk is moderately high: the paper does not study motor execution electrophysiology and the theoretical framework may not translate to the neural implementation level relevant to the Layer 3 question."
+  }
+}

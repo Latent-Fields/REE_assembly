@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-04-15_mech090_layer3_habit_competition_balleine2010",
+  "timestamp_utc": "2026-04-15T09:00:00Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Human and Rodent Homologies in Action Control: Corticostriatal Determinants of Goal-Directed and Habitual Action",
+    "authors": [
+      "Bernard W. Balleine",
+      "John P. O'Doherty"
+    ],
+    "year": 2010,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/npp.2009.131"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "This review synthesizes rodent and human evidence on corticostriatal action control. Key finding for Layer 3: the systems are explicitly described as both competitive ('their control appears all or none') AND cooperative ('evidence suggests they may at times compete and at others cooperate'). Neural activity in both DMS (goal-directed) and DLS (habitual/putamen) is present simultaneously even when one system's output is selected -- the value signals are computed in parallel and compete for behavioral expression, not suppressed. This supports a parallel-computation model where both systems are always running but compete for motor output. However, the paper does not directly test whether habitual channel output persists during committed goal-directed sequences at the level of motor execution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_090", "layer3_parallel_habit", "goal_directed", "habitual", "DMS", "DLS", "corticostriatal", "competition", "cooperation", "action_control"],
+  "mapping": {
+    "source_claim_statement": "Goal-directed and habitual action control depend on anatomically distinct corticostriatal circuits: prelimbic/medial PFC to dorsomedial striatum (anterior caudate in humans) for goal-directed; sensorimotor cortex to dorsolateral striatum (posterior putamen in humans) for habitual. Control appears all-or-none when tested behaviorally but evidence suggests both systems are simultaneously active and compete for expression. The vmPFC has access to both model-based and model-free values in parallel and independent fashion. Both DMS and putamen activity covaried with planned and cached values even when the competing option was not chosen. Cooperation or competition between systems depends on the cortico-BG network context, not just local striatal interactions.",
+    "ree_translation": "MECH-090 implements beta-gating of the E3 deliberative channel. The Layer 3 question: should there be a separate E1-direct habitual channel that continues running during E3 commitment? Balleine and O'Doherty show that at the NEURAL level, both DMS (E3-equivalent) and DLS (E1-direct-equivalent) compute values in parallel at all times -- the all-or-none appearance at the BEHAVIORAL level is a product of action selection competition, not circuit suppression. This means during an E3-committed sequence, the dorsolateral (habitual) circuit is still computing and could produce outputs IF the action selection competition resolves in its favor. The key question for REE Layer 3 is: does beta elevation in the BG (during E3 commitment) globally suppress DLS output too, or only DMS output? This paper suggests value computation is parallel but does not directly address motor output suppression under elevated beta.",
+    "mapping_caveat": "The paper tests behavioral dissociation (outcome devaluation, contingency degradation) and neuroimaging covariates in humans. Direct evidence for simultaneous motor output from both systems during committed sequences is not demonstrated. The 'parallel and independent valuation' finding is for the value computation stage, not the motor execution stage. During committed motor sequences with high beta, the execution-level dynamics may differ from valuation-level dynamics.",
+    "source_context": "Review of rodent lesion studies (Balleine lab, Yin/Knowlton), human neuroimaging (O'Doherty lab fMRI), and computational models of dual-process action control. Rats in instrumental conditioning; humans in two-stage decision tasks and devaluation procedures."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.38,
+    "notes": "Very high source quality -- landmark Neuropsychopharmacology review synthesizing the Balleine/Yin/O'Doherty tradition, widely cited. Mapping fidelity is moderate-low: the parallel computation finding is at the valuation/planning stage, not at the motor execution stage during committed sequences. The REE question concerns beta-gated motor output during a committed trajectory -- this paper addresses choice competition before action initiation rather than execution-phase gating. Transfer risk is moderate: rodent lesion studies are distant from human committed-trajectory scenarios; human fMRI cannot resolve the temporal dynamics of committed-sequence execution."
+  }
+}
