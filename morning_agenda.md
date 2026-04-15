@@ -1,194 +1,121 @@
-# Morning Agenda -- 2026-04-14
+# Morning Agenda -- 2026-04-15
 
-Generated: 2026-04-14T06:20:00Z
+Generated: 2026-04-15T06:30:00Z
 
 ---
 
 ## Queue Status
 
-- **Total pending/claimed: 18** (Mac/DLAPTOP-4.local: 15 | any: 3)
-- 17 pending + 1 claimed (V3-EXQ-328b, `any` affinity)
-
-Pending experiments:
-- V3-EXQ-326 (DLAPTOP) -- Wanting-gradient nav fix: SD-015, MECH-216, SD-012
-- V3-EXQ-327 (DLAPTOP) -- MECH-163 hippocampal goal-conditioned navigation
-- V3-EXQ-332 (DLAPTOP) -- MECH-216 genuinely predictive wanting: future-target
-- V3-EXQ-330a (DLAPTOP) -- SD-013 contrastive counterfactual retest
-- V3-EXQ-353 (DLAPTOP) -- ARC-033/SD-003/SD-013 interventional vs observational
-- V3-EXQ-322a (DLAPTOP) -- SD-015 ResourceEncoder z_goal seeding fix
-- V3-EXQ-328a (DLAPTOP) -- MECH-112 z_goal structured latent fix
-- V3-EXQ-321a (DLAPTOP) -- MECH-090 bistable gate retest
-- V3-EXQ-325a (DLAPTOP) -- SD-021 descending pain modulation retest
-- V3-EXQ-365 (DLAPTOP) -- MECH-104 surprise gate discriminative probe
-- V3-EXQ-355 (DLAPTOP) -- ARC-038 schema assimilation discriminative probe
-- V3-EXQ-395 (DLAPTOP) -- MECH-220 harm hub behavioral probe
-- V3-EXQ-373 (DLAPTOP) -- MECH-073 valence geometry probe
-- V3-EXQ-385 (DLAPTOP) -- INV-049 offline consolidation / sleep ablation
-- V3-EXQ-406 (DLAPTOP) -- INV-053 depression attractor replication (5-seed)
-- V3-EXQ-326a (any) -- SD-015 nav integration fix: z_resource encoder wiring
-- V3-EXQ-407 (any) -- MECH-231 E2 short-horizon efference-copy discriminative
-- V3-EXQ-328b (any, claimed) -- MECH-230 z_goal latent structure: homeostatic drive
+- Total pending: **14** (any: 11 | Mac DLAPTOP-4.local: 3 | Daniel-PC: 0 | EWIN-PC: 0)
+- **2 stale claimed items** (>6 hours old -- runner may have stopped):
+  - V3-EXQ-330a: claimed by DLAPTOP-4.local at 2026-04-14T23:42Z (~6.5h stale)
+  - V3-EXQ-328b: claimed by ree-cloud-1 at 2026-04-13T08:26Z (~2 days stale)
+- runner_status.json shows `idle=True`, last_updated `2026-04-14T05:48:06Z` -- runner may not be running on any machine. Confirm before queueing work.
+- Pending items by machine affinity:
+  - **any (11):** EXQ-323a, EXQ-326a, EXQ-321a, EXQ-325a, EXQ-395, EXQ-375, EXQ-406, EXQ-407, EXQ-353, EXQ-418, EXQ-326
+  - **DLAPTOP-4.local (3):** EXQ-396a (priority 7), EXQ-396 (priority 5), EXQ-397 (priority 5)
+  - **ree-cloud-1 (0 pending):** EXQ-328b stale-claimed
+  - **Daniel-PC (0)** | **EWIN-PC (0)**
 
 ---
 
-## Experiments Awaiting Review (1 indexed / 1 runner-only)
+## Experiments Awaiting Review (0 indexed / 0 runner-only)
 
-### [V3-EXQ-326] -- v3_exq_326_wanting_gradient_nav_fix -- FAIL
+All experiments reviewed. Nothing pending.
 
-- **Run ID:** `v3_exq_326_wanting_gradient_nav_fix_20260413T144759Z_v3`
-- **Supersedes:** V3-EXQ-259 (wanting-gradient navigation fix -- prior iteration)
-- **Claims tested:**
-  - **SD-015** (status: candidate, overall_conf=0.700, 7 entries: 4 supports / 3 weakens)
-    _"Goal-directed navigation requires a dedicated z_resource encoder that captures
-    object-type features separately from z_world."_
-    This run: **does_not_support**
-  - **MECH-216** (status: provisional, overall_conf=0.837, 5 entries: 5 supports / 0 weakens)
-    _"e1_predictive_wanting"_
-    This run: **supports**
-  - **SD-012** (status: candidate, overall_conf=0.745, 14 entries: 9 supports / 4 weakens)
-    _"Goal-directed behavior requires homeostatic drive modulation: z_goal seeding demands
-    drive-scaled benefit exposure."_
-    This run: **does_not_support**
-
-- **Key metrics (3 seeds: 42, 7, 13):**
-  - C1 wanting_populated: PASS (all seeds -- valence_wanting_mean = 108 / 32 / 13 respectively)
-  - C3 benefit_ratio: FAIL -- only seed 13 passes (ratio 2.53 > threshold); seeds 42 and 7
-    give ratios 1.008 and 0.713 (near parity or below)
-  - MECH-216 write_count healthy (21k--25k writes across seeds WITH_WANTING; 0 in ABLATED)
-  - n_seeding_events low: 8 / 2 / 3 across seeds (SD-012 seeding quality concern)
-  - schema_salience_mean ~0.39--0.47 WITH_WANTING; 0.0 ABLATED (good separation)
-
-- **Classification:** evidence (multi-claim: SD-015, MECH-216, SD-012)
-
-- **Governance impact if confirmed:**
-  - MECH-216 (e1_predictive_wanting): adds one more support to an already-high-confidence
-    provisional claim. Low impact directionally, but confirms wanting signal is being generated.
-  - SD-015: adds a weakens entry. Reduces experimental_confidence from 0.586. Consistent with
-    the existing evidence split (now 4 supports / 4 weakens with this run). Will not change
-    status alone, but continues to flag that resource encoding gap is real.
-  - SD-012: adds a 5th weakens entry (existing: 9 supports / 4 weakens). Low n_seeding_events
-    (2--8) is the likely culprit -- consistent with the SD-012 diagnosis that drive-scaled
-    seeding hasn't been solved. This is diagnostic confirmation, not a claim refutation.
-
-- **Interpretation note:** Failure mode is consistent with prior SD-012 failures (weak z_goal
-  seeding). MECH-216 wanting circuitry is functional. The experiment confirms SD-015/SD-012
-  architecture gaps still exist rather than refuting the claims. Logical follow-on: a more
-  targeted SD-015 encoder experiment or an SD-012 seeding mechanism fix (EXQ-326a candidate).
+_(pending_review.md generated 2026-04-14T18:02:49Z -- governance.sh re-run was in progress at session open but sync_v3_results.py has not yet completed; last known state is 0 pending)_
 
 ---
 
-### [V3-EXQ-326 runner-only] -- UNKNOWN -- needs mark discussed (or /diagnose-errors)
+## Errors to Diagnose (30 unresolved V3 ERRORs)
 
-- **Queue ID:** V3-EXQ-326 (runner_status result: UNKNOWN, output_file empty)
-- **Context:** Same experiment as the FAIL above. Runner completed (2026-04-14T00:45Z, ~9.97h
-  on DLAPTOP-4.local) and flat JSON was written to evidence directory, but `output_file` in
-  runner_status is empty -- hence UNKNOWN classification in the runner.
-- **Diagnosis:** Likely a runner output_file path gap -- the flat JSON was written via the
-  experiment's own write path but not registered in runner_status. The FAIL manifest and flat
-  JSON are present and valid. This is an instrumentation issue, not a missing result.
-- **Recommended action:** Mark V3-EXQ-326 as discussed in `discussed_experiment_dirs`
-  (the real result is captured in the indexed FAIL run above). Or run /diagnose-errors
-  to confirm no deeper issue.
+30 V3 experiments errored with no queued or completed lettered fix detected. Use `/diagnose-errors` for full triage. Summary by recency:
 
----
+**Most recent cluster (no fixes queued):**
+| EXQ ID | Claim(s) | Notes |
+|--------|----------|-------|
+| V3-EXQ-254b | INV-052 | offline consolidation -- needs /diagnose-errors |
+| V3-EXQ-253b | MECH-188 | depressive consolidation via harm residue |
+| V3-EXQ-251a | MECH-186 | replay deficit in depressive attractor |
+| V3-EXQ-250a | INV-054 | waking forward model prerequisite |
+| V3-EXQ-249a | INV-053 | depression attractor -- *EXQ-406 may supersede; confirm* |
+| V3-EXQ-248a | Q-034 | harm stream causal independence |
+| V3-EXQ-238b | SD-012 | homeostatic drive |
+| V3-EXQ-237c | MECH-163 | VTA planned system |
+| V3-EXQ-257a | SD-018 | resource proximity supervision |
+| V3-EXQ-225b | MECH-112 | structured goal representation |
 
-## Errors to Diagnose (1 scientific / 2 onboarding smoke)
+**Older unresolved cluster (260a/261a/262a, 225a, 237b, 238a, 253a, 254a, 071c, 051b, 074b/c/d, 075b/c, 076b/c, 084b/c):** may be superseded by later lettered runs not caught by ID prefix check. Run /diagnose-errors for prioritisation.
 
-- **V3-EXQ-008** (SD-003) -- ERROR -- no lettered successor queued or completed
-  - Title: "SD-003 Larger World + 3x3 Observation"
-  - Old ERROR from early V3 series. SD-003 is highly contested (conflict_ratio=0.788, 70
-    entries). A /diagnose-errors pass should confirm whether a fix is still needed or if
-    later experiments cover the science.
-
-- **V3-ONBOARD-smoke-EWIN-PC** -- ERROR -- Eoin's onboarding smoke test
-  - No scientific claim. Mark as discussed when EWIN-PC onboarding is addressed.
-
-- **V3-ONBOARD-smoke-ree-cloud-1** -- ERROR -- ree-cloud-1 (Hetzner) onboarding smoke
-  - No scientific claim. Mark as discussed when cloud runner is revisited.
+**Special:** V3-ONBOARD-smoke-EWIN-PC -- EWIN machine never onboarded successfully (errored 2026-04-06). No -b smoke queued. EWIN-PC unavailable until fixed.
 
 ---
 
-## Governance Agenda (14 decisions -- all applied, no pending_user items)
+## Governance Agenda -- URGENT (4 mandatory decision checkpoints, deadline 2026-04-17)
 
-All 14 governance decisions are already applied. No user decisions are blocking.
+All 4 items have decision deadline **2026-04-17T19:01Z** -- 2 days away. Each requires a governance decision: `retain_ree | hybridize | retire_ree_claim`.
 
-**Active conflicts requiring eventual resolution (17 claims):**
+- **MECH-230** (candidate) -- mandatory_decision_checkpoint
+  - *Claim:* E3 maintains a structured latent goal representation (positive attractor in z_goal sub-space)
+  - Evidence: 2 exp, 0 lit | confidence: **0.597** | conflict_ratio: **1.00** (fully contested)
+  - EXQ-328b FAIL (full run, 2026-04-14) and EXQ-328a FAIL are the only entries. Very thin evidence base. Decision required before continuing retest loop.
 
-| Claim | Status | Conflict ratio | Supports / Weakens |
-|-------|--------|---------------|--------------------|
-| ARC-024 | candidate | 1.000 | 7 / 7 |
-| MECH-098 | candidate | 1.000 | 7 / 7 |
-| SD-007 | candidate | 1.000 | 7 / 7 |
-| ARC-016 | active | 0.952 | 10 / 11 |
-| MECH-071 | candidate | 0.952 | 11 / 10 |
-| SD-003 | candidate | 0.788 | 13 / 20 |
-| SD-005 | candidate | 0.762 | 8 / 13 |
-| SD-004 | candidate | 0.750 | 3 / 5 |
-| MECH-090 | candidate | 0.727 | 7 / 4 |
-| ARC-007 | active | 0.667 | 3 / 6 |
-| ARC-018 | candidate | 0.667 | 2 / 1 |
-| MECH-102 | candidate | 0.462 | 3 / 10 |
-| MECH-089 | candidate | 0.545 | 8 / 3 |
-| MECH-033 | candidate | 0.400 | 4 / 1 |
-| MECH-093 | candidate | 0.400 | 1 / 4 |
-| MECH-095 | candidate | 0.400 | 4 / 1 |
-| MECH-099 | candidate | 0.500 | 3 / 1 |
+- **ARC-016** (provisional) -- mandatory_decision_checkpoint
+  - *Claim:* Precision-to-commit threshold -- modes are control-plane regimes applied to shared predictive machinery
+  - Evidence: 29 exp, 5 lit | 34 total | confidence: **0.782** | conflict_ratio: **0.966**
+  - EXQ-396a queued (dual-bug fix: rv update in training + no eval reset). Pending retest. Decision required regardless of EXQ-396a result -- conflict ratio is very high.
 
-Most conflicts are V3-pending -- new experiments (not governance decisions) are the resolution
-path. ARC-016, SD-003, MECH-071 are the most active (high entry counts, high conflict ratio).
+- **SD-015** (candidate) -- mandatory_decision_checkpoint
+  - *Claim:* Goal-directed navigation requires dedicated z_resource encoder (object-type features, location-invariant)
+  - Evidence: 24 exp, 6 lit | 30 total | confidence: **0.732** | conflict_ratio: **0.933**
+  - EXQ-326a PASS (2026-04-14, correct wiring) supports. EXQ-322a FAIL (z_world beats z_resource 0.99 vs 0.39-0.86). EXQ-326a is most recent.
 
-**Pipeline step failure flag:**
-governance_agenda reports `step_failures=1` (governance_maintenance_pipeline, autonomy_triage
-recommends `investigate_and_rerun`). No obvious failure output in today's governance.sh run --
-may be a stale count. Re-run governance.sh if downstream artifacts appear stale.
-
-**Dispatch approval needed:**
-28 high-priority proposals are ready for weekly export (`approved_for_cycle=false`).
-Requires user approval before export.
-
-**2 unprocessed thought intakes (from 2026-03-24):**
-- `thought_intake_2026-03-24_empathy_multiagent_ethics.md`
-- `thought_intake_2026-03-24_mech071_goal_latent_non_contributory_evidence.md`
-Growing stale (3 weeks old). Flag for next /governance or /cowork session.
+- **SD-012** (candidate) -- mandatory_decision_checkpoint
+  - *Claim:* Homeostatic drive modulation: z_goal seeding demands non-zero drive_level to produce above-threshold benefit_exposure
+  - Evidence: 31 exp, 8 lit | 39 total | confidence: **0.728** | conflict_ratio: **0.889**
+  - EXQ-328b FAIL (C3 ablation failed, 2026-04-14). Multiple prior FAIL iterations. drive_weight=2.0 default fix is implemented. EXQ-238a/238b both ERROR (no fix queued). Most experiments on this claim are inconclusive or failing.
 
 ---
 
-## Literature Pull Candidates (Top 5)
+## Literature Pull Candidates (Top 5 of 22)
 
-All top backlog items are `medium` priority. None have existing targeted_review directories.
+All 22 items are `medium` priority with no existing targeted review directories:
 
-| # | Claim | Subject | Priority | Existing entries |
-|---|-------|---------|----------|-----------------|
-| 1 | Q-036 | What variables beyond temporal integration drive affective load in harm stream? | medium | 0 |
-| 2 | SD-019 | affective_harm_nonredundancy_constraint | medium | 0 |
-| 3 | SD-022 | Directional limb damage for genuine z_harm_s / z_harm_body | medium | 0 |
-| 4 | ARC-028 | HippocampalModule trajectory completion signal -> BetaGate wiring | medium | 0 |
-| 5 | MECH-229 | E3 wanting/liking behavioral dissociation | medium | 0 |
+| # | Claim | Subject | Priority | Existing lit dirs |
+|---|-------|---------|----------|------------------|
+| 1 | Q-036 | What additional variables beyond temporal integration are required for affective harm encoding? | medium | 0 |
+| 2 | SD-019 | Affective harm nonredundancy constraint (C-fiber / A-delta causal independence) | medium | 0 |
+| 3 | SD-022 | Directional limb damage / genuine z_harm_s vs z_harm_a causal independence | medium | 0 |
+| 4 | ARC-028 | HippocampalModule trajectory completion signal wired to BetaGate | medium | 0 |
+| 5 | MECH-057 | Attribution completion gating | medium | 0 |
 
-SD-022 (registered 2026-04-09) would benefit from early literature grounding before
-experiments are designed. ARC-028 connects directly to upcoming BetaGate / hippocampal work.
+_SD-019 and SD-022 are highest-relevance given active experimental work (EXQ-323a/325a queued). Q-036 is directly relevant to the SD-012/SD-019 decision cluster._
 
 ---
 
 ## Serve.py Status
 
-- **RUNNING** on port 8000 (Python PID 48099)
+- **RUNNING on port 8000** (pid 48099, started Sun 02AM, running caffeinated)
 
 ---
 
 ## Blocked Items
 
-None. No TASK_CLAIMS collisions detected. All prior claims are `done`.
+1. **governance.sh incomplete at session open**: `sync_v3_results.py` (pid 33285) was scanning ~5240 JSON files via sequential I/O (started 05:20AM, ~CPU 0.35s after 65+ minutes -- slow macOS disk cache warming). governance.sh was started in the background and may complete later. Updated `promotion_demotion_recommendations.md` and `claims.json` will not be available until it finishes.
 
-ree-v3 `git pull` failed with `fatal: bad object refs/heads/main 2` (transient network error).
-Local repo is current at commit 4f1823b (2026-04-13: V3-EXQ-407 MECH-231 discriminative pair).
+2. **ree-v3 remote pull failed**: `fatal: bad object refs/heads/main 2` -- corrupt packfile. Fix: `git remote prune origin` then `git fetch` in REE_Working/ree-v3. Local state appears current (HEAD = `9a6d84b` "claim: V3-EXQ-330a -> DLAPTOP-4.local", 2026-04-14).
+
+3. **V3-ONBOARD-smoke-EWIN-PC ERROR**: EWIN-PC (Eoin's machine) never completed onboarding. Original smoke errored 2026-04-06. No -b smoke queued. EWIN-PC cannot claim experiments until resolved.
+
+4. **2 stale claims need clearing**: EXQ-330a (DLAPTOP-4.local) and EXQ-328b (ree-cloud-1). Both runner.json shows idle. If runner is not running, clear claims manually from experiment_queue.json so these experiments can be re-claimed.
 
 ---
 
-## Recommended Session Priorities
+## Recent Work (2026-04-14)
 
-1. **Review EXQ-326 FAIL** during /governance (mark reviewed in review_tracker.json)
-2. **Mark V3-EXQ-326 UNKNOWN as discussed** in review_tracker.json `discussed_experiment_dirs`
-3. **Dispatch approval** -- 28 high-priority proposals ready for weekly export
-4. **Process 2 stale thought intakes** from 2026-03-24
-5. **Note:** Queue is healthy (18 items, 17 pending). No urgent queuing needed.
+| Session | Summary |
+|---------|---------|
+| governance-2026-04-14 | 6 experiments reviewed; MECH-231 promoted candidate->provisional (164x E2/E1 slope ratio); MECH-230 hold_candidate confirmed; 0 pending after rebuild |
+| claims-2026-04-14-valence-terrain | MECH-232, MECH-233, ARC-057 registered (hippocampal valence asymmetry) |
+| litpull-2026-04-14-valence-terrain | 5 lit entries for ARC-007/SD-004; ARC-007 lit_conf 0.852 |
+| sd019-323a-2026-04-14 | V3-EXQ-323a queued: SD-019 nonredundancy on SD-022 substrate (1200 eps, any affinity) |
