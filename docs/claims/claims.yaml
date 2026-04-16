@@ -4342,6 +4342,15 @@
     2016, J Neurosci), so the BG gate is not a dumb switch but an information-carrying
     signal. The claim's specificity -- output gating without internal gating -- holds at
     the BG level but does not generalise to all beta-generating circuits.
+
+    LAYER 3 RESOLUTION (2026-04-15, from lit-pull): MECH-090 BetaGate correctly models
+    same-motor-domain suppression during commitment. A separate parallel habitual channel
+    (Layer 3) is not warranted for single-action-dimension substrates -- within a shared
+    effector pool, habitual and deliberative outputs compete winner-takes-all (MECH-234).
+    Cross-domain parallelism (DMS/DLS to different effectors) is biologically valid but
+    out of scope for CausalGridWorld. The urgency interrupt (Layer 2, implemented
+    2026-04-15) is grounded in vmPFC arbitration weighting toward model-free (MECH-235),
+    not a beta-bypass mechanism.
 - id: MECH-091
   title: "Salient events phase-reset the E3 heartbeat clock."
   claim_type: mechanism_hypothesis
@@ -14929,3 +14938,452 @@
     conceptual/mind-map space with variable information density. The threat/avoidance
     side (harm residue field, explicit tagging) remains testable in the grid world
     because tagging does not depend on environmental richness.
+
+- id: MECH-234
+  title: "DMS (goal-directed) and DLS (habitual) corticostriatal circuits can produce simultaneous parallel motor outputs only when targeting anatomically distinct motor effector pools; within the same effector pool, habitual and goal-directed outputs compete via winner-takes-all basal ganglia selection, not independent parallel expression."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.habitual_deliberate_effector_domain_parallelism
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  depends_on:
+    - MECH-090
+    - ARC-021
+  location: docs/architecture/control_plane_heartbeat.md#mech-234
+  literature_evidence: |
+    Redgrave et al. (2010) Nat Rev Neurosci [DOI: 10.1038/nrn2915]:
+    Anatomically segregated DMS (associative/goal-directed) and DLS (sensorimotor/
+    habitual) corticostriatal circuits are explicitly described as capable of producing
+    simultaneous parallel outputs in DIFFERENT motor domains. The driving-while-
+    conversing example directly instantiates this: habitual steering (DLS) concurrent
+    with goal-directed conversation (DMS). Both systems are always computing.
+    Balleine & O'Doherty (2010) Neuropsychopharmacology [DOI: 10.1038/npp.2009.131]:
+    Confirms parallel value computation; qualifies that MOTOR OUTPUT competition
+    occurs at action-selection level -- both circuits compute but compete for final
+    effector control within a shared pool. Cross-effector parallelism is genuine;
+    same-effector parallelism is winner-takes-all competition.
+  notes: >
+    Derived from Layer 3 lit-pull (2026-04-15). Addresses whether a separate habitual/
+    E1-direct channel should run in parallel with E3 deliberative commitment (MECH-090).
+    The critical distinction is motor effector domain: DMS/DLS are simultaneously active
+    computationally, but their motor outputs compete for the same effector pool. When
+    habitual and deliberate outputs target different effectors (cross-domain), genuine
+    parallel expression is possible and biologically grounded. When they target the same
+    effector (same-domain), basal ganglia winner-takes-all selection forces competition.
+
+    REE DESIGN IMPLICATION: In a single-action-dimension substrate (CausalGridWorld),
+    all outputs compete for the same action channel. MECH-090 BetaGate correctly models
+    same-effector suppression of the habitual channel during commitment. Layer 3 (an
+    independent hardware-level parallel habitual channel) is not warranted for same-domain
+    motor competition -- it would misrepresent the winner-takes-all biology. Layer 1
+    (trajectory stepping through committed plan) + Layer 2 (urgency interrupt via
+    MECH-235 arbitration shift) are the correct implementation. Layer 3 parallelism
+    DOES apply if and when REE is extended to multi-effector environments where different
+    motor pools can be simultaneously commanded.
+
+    The user's intuition that "habitual behaviors continue during planned execution" is
+    biologically valid for CROSS-DOMAIN behaviors (a committed agent can habitably
+    maintain posture, breathing rhythm, hand orientation while deliberating arm trajectory)
+    but not for SAME-DOMAIN behaviors (a committed arm trajectory suppresses habitual arm
+    reflexes via BG winner-takes-all -- a fact exploited by skilled motor training).
+    Spinal withdrawal reflexes remain active (cross-domain: spinal cord level, not BG),
+    which is a different circuit level than the BG gate MECH-090 models.
+
+- id: MECH-235
+  title: "vmPFC arbitration continuously weights model-based (E3/deliberative) vs. model-free (E1/habitual) contributions to action selection on a spectrum, not a binary switch. Commitment (beta-elevated E3) shifts weighting toward model-based without silencing the habitual channel; unexpected threat (urgency signal) shifts weighting toward model-free. The MECH-091 urgency interrupt is the substrate implementation of this arbitration shift, not a bypass of the beta gate."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.vmpfc_arbitration_commitment_urgency
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  depends_on:
+    - MECH-090
+    - MECH-091
+    - ARC-021
+  location: docs/architecture/control_plane_heartbeat.md#mech-235
+  literature_evidence: |
+    Dolan & Dayan (2013) Neuron [DOI: 10.1016/j.neuron.2013.09.007]:
+    Describes model-based and model-free systems as occupying a spectrum rather than
+    discrete on/off states, with vmPFC continuously weighting their contributions.
+    E3 commitment (elevated beta, model-based dominance) shifts the arbitration against
+    habitual output -- habitual signals are downweighted, not independently maintained.
+    The arbitration is dynamic and responsive to urgency signals. Uncertainty and
+    prediction errors (unexpected harm) shift weighting toward model-free (faster,
+    reactive), which is the mechanism by which the urgency interrupt works.
+  notes: >
+    Derived from Layer 3 lit-pull (2026-04-15). Provides biological grounding for the
+    MECH-091 urgency interrupt implementation (Layer 2, urgency_interrupt_threshold in
+    E3Config, implemented 2026-04-15).
+
+    The urgency interrupt (beta_gate.release() when z_harm_a.norm() > threshold) is not
+    a simple veto of the commitment gate. Biologically, it is a vmPFC arbitration shift:
+    unexpected threat signals (prediction errors for harm -- z_harm_a in REE) increase
+    model-free weighting in vmPFC, causing the balance to tip away from the committed
+    deliberative plan toward habitual/reactive outputs. The beta gate release is the
+    downstream consequence of this arbitration shift, not the mechanism itself.
+
+    CLINICAL PREDICTION: The urgency_interrupt_threshold (default 0.8) maps onto
+    individual differences in model-based vs. model-free balance under stress. Agents
+    with low threshold are analogous to anxious individuals who cannot maintain
+    goal-directed plans under mild threat -- they shift to reactive/habitual outputs
+    prematurely. Agents with high threshold are analogous to highly trained responders
+    who maintain task focus under significant threat. This is a testable axis for
+    V3 experiments and connects to MECH-090 commitment robustness.
+
+    ARCHITECTURAL BOUNDARY: MECH-235 applies at the level of the BG/vmPFC arbitration
+    circuit (E3 commitment vs. E1 habitual). It does not apply at the spinal cord level
+    (MECH-234 note: spinal withdrawal reflexes are below this arbitration and remain
+    active independently). Within the BG circuit, the spectrum weighting means that
+    urgency does not reset to pure model-free -- it shifts weighting, with the degree
+    proportional to z_harm_a magnitude. The current threshold implementation
+    (hard interrupt above 0.8) is a simplification; a future implementation could
+    modulate action weighting continuously by urgency magnitude.
+
+# ─── Hippocampal architecture claims: MECH-236 through MECH-243 ───────────────
+# Derived 2026-04-15 from lit-pull on MECH-230 (z_goal latent structure) and
+# MECH-155 (spatial as general associative indexing).
+# MECH-236 through MECH-239: necessary for function.
+# MECH-240 through MECH-243: improvement-tier — system can navigate goals without
+# these; they target efficiency, generalization, and output fidelity. Flagged for
+# later implementation (implementation_phase: v4).
+
+- id: MECH-236
+  title: "Hippocampal trajectory proposals must be conditioned on a goal signal (z_goal) injected from E3 via a dedicated input channel; without this conditioning, the hippocampal module generates only position-based trajectories and cannot produce goal-directed navigation toward target states."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.e3_goal_conditioning
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v3
+  depends_on:
+    - MECH-230
+    - ARC-007
+    - SD-004
+  literature_evidence: |
+    Ito et al. (2015) Nature [DOI: 10.1038/nature14396]:
+    mPFC input via nucleus reuniens is causally required for trajectory-dependent
+    CA1 firing during goal-directed navigation in rodents. When the prefrontal goal
+    signal is disconnected, CA1 activity becomes position-encoding only and loses
+    its trajectory-dependent (goal-conditioned) component. Direct causal evidence
+    that a prefrontal-analogue goal signal is the mechanism that makes hippocampal
+    activity goal-directed rather than purely positional. Maps onto the E3→hippocampal
+    module wiring requirement for REE: z_goal must be read by the hippocampal module
+    during trajectory generation, not only encoded within E3.
+    Lit entry: targeted_review_mech_230/entries/2026-04-15_mech_230_prefrontal_hippocampal_goal_navigation_ito2015/
+  notes: >
+    MECH-230 establishes that z_goal exists as a structured latent attractor in E3.
+    MECH-236 is the coupling claim: z_goal must be injected into the hippocampal
+    trajectory proposal mechanism, not just maintained in E3. Without this wiring,
+    MECH-230 can pass (z_goal has non-zero norm and structure) while hippocampal
+    navigation remains undirected -- the map exists, the goal is encoded, but the
+    navigator is not told where to go.
+
+    TESTABLE PREDICTION: ablate the E3→hippocampal goal input while preserving E3
+    goal encoding (MECH-230 intact). Trajectory proposals should degrade to
+    position-based random walks; C3 goal-terrain navigation metric should fall to
+    chance. Restore the input: navigation should recover proportional to z_goal_norm.
+
+    IMPLEMENTATION NOTE: the goal-conditioning channel is distinct from the
+    hippocampal viability map (residue field). The viability map tells the hippocampus
+    where harm is; the goal signal tells it where to go. Both are required for
+    avoid-harm-while-navigating-to-goal behavior.
+
+- id: MECH-237
+  title: "The z_goal attractor must be globally reachable across the z_goal sub-space — accessible from arbitrary latent starting states — not merely locally stable at a narrow basin; a locally-only-stable attractor fails to seed goal-directed hippocampal navigation from states far from the goal, producing approach behavior only when already near the goal."
+  claim_type: mechanism_hypothesis
+  subject: drive.goal_attractor_global_reachability
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v3
+  depends_on:
+    - MECH-230
+    - SD-012
+  literature_evidence: |
+    Naude et al. (2024) Nature Communications [DOI: 10.1038/s41467-024-53976-x]:
+    Computational model (MAGNet) plus optogenetic validation in mice showing that
+    dopamine-mediated synaptic plasticity widens goal attractor basins in recurrent
+    networks. Without the motivational dopamine signal, the goal attractor exists but
+    is locally stable only -- accessible from nearby states but not globally. With
+    the signal, the basin is expanded so the attractor pulls from across the latent
+    space. Maps directly onto why SD-012 homeostatic drive is gating MECH-230:
+    the substrate for z_goal may exist, but without drive the attractor is too narrow
+    for goal-directed navigation from arbitrary starting states.
+    Lit entry: targeted_review_mech_230/entries/2026-04-15_mech_230_goal_latent_attractor_naude2024/
+  notes: >
+    Refinement of MECH-230. MECH-230 requires z_goal_norm > 0 (attractor exists and
+    is structured). MECH-237 adds the reachability requirement: the attractor must be
+    accessible from the agent's current state, not only from nearby states. This is
+    the difference between a goal representation that the hippocampus can use as a
+    navigation target vs. one that only activates when the agent is already close.
+
+    The EXQ-085 series failures (z_goal_norm < 0.1 across all conditions) are
+    consistent with a locally-stable but globally inaccessible attractor: z_goal
+    exists in principle but the SD-012 drive is not amplifying the basin sufficiently
+    for the agent to reach it from the starting state distribution in the experiment.
+
+    TESTABLE PREDICTION: with SD-012 drive active, z_goal_norm should be elevated
+    not only near goal-proximal states but also from states sampled uniformly across
+    the environment. A globally reachable attractor produces high z_goal_norm from
+    all regions; a locally reachable one produces high z_goal_norm only near the goal.
+    EXQ-328b is testing the existence arm (MECH-230); a follow-on experiment testing
+    from diverse starting states would test MECH-237 specifically.
+
+- id: MECH-238
+  title: "The hippocampal module encodes pairwise distance relations between states in the z_world latent manifold — not only positional tags — providing a metric structure that enables distance-based navigation toward goal states across the residue-field terrain."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.distance_metric_encoding
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v3
+  depends_on:
+    - MECH-155
+    - ARC-007
+    - SD-005
+  literature_evidence: |
+    Theves, Fernandez & Doeller (2019) Current Biology [DOI: 10.1016/j.cub.2019.06.033]:
+    After learning a novel 2D conceptual space (butterfly morphology features), the
+    human hippocampus encodes Euclidean distances between abstract positions via both
+    multivoxel pattern similarity and fMRI adaptation. This extends Constantinescu 2016
+    from directional grid-like codes to full distance-metric encoding, confirming that
+    hippocampal abstract-space coding is genuinely metric, not merely ordinal or
+    directional. For REE: the residue-field terrain must be a metric space (knowing
+    how far a state is from the goal, not just what state it is) for goal-directed
+    trajectory proposals to be well-formed.
+    Lit entry: targeted_review_connectome_mech_155/entries/2026-04-15_mech_155_feature_space_distances_theves2019/
+  notes: >
+    MECH-155 establishes that spatial navigation machinery generalises to abstract
+    latent domains. MECH-238 adds the metric requirement: the generalised indexing
+    substrate must encode distances, not just positions. The distinction matters for
+    trajectory proposals: a lookup table (position → state) can retrieve any state
+    given its tag, but only a metric map (state × state → distance) supports
+    "navigate toward goal" as a well-defined operation.
+
+    DESIGN CONSTRAINT: the hippocampal module's training objective must include a
+    distance-preservation loss (or distance-respecting contrastive objective) over
+    the z_world manifold, not only a reconstruction or classification objective.
+    Without explicit metric supervision, the hippocampal representation may encode
+    categorical structure (what state) but not metric structure (how far).
+
+    RELATIONSHIP TO ARC-007 / SD-004: SD-004 proposes action objects as the
+    hippocampal map backbone. MECH-238 says the backbone must be metric. These are
+    compatible: action objects define the nodes; distances between nodes must be
+    preserved in the representation.
+
+- id: MECH-239
+  title: "The hippocampal indexing substrate includes a temporal dimension implemented via time cells that tile elapsed time using the same phase-precession and theta-sequence machinery as place cells, enabling correct ordering of states within multi-step planning rollouts and working-memory sequences."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.temporal_indexing_time_cells
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v3
+  depends_on:
+    - MECH-155
+    - MECH-089
+    - ARC-032
+  literature_evidence: |
+    Banquet et al. (2020) Progress in Neurobiology:
+    Comprehensive review establishing time cells as the fourth dimension of the
+    hippocampal spatial indexing substrate. Time cells tile elapsed time as place
+    cells tile spatial extent, using identical phase-precession and theta-sequence
+    machinery. Temporal sequential replay occurs offline using the same mechanism
+    as spatial replay. Directly addresses the working-memory-ordering and
+    planning-rollout sequencing sub-claims of MECH-155: the same indexing substrate
+    that handles spatial and abstract latent-domain traversal also handles temporal
+    ordering, using one unified mechanism rather than a separate system.
+    Lit entry: targeted_review_connectome_mech_155/entries/2026-04-15_mech_155_time_cells_temporal_index_banquet2020/
+  notes: >
+    MECH-089 (ThetaBuffer / cross-frequency packaging) establishes that theta
+    oscillations implement sequential traversal. MECH-239 adds the hippocampal
+    substrate specificity: time cells in hippocampus proper tile the temporal
+    dimension using the same phase-precession mechanism as place cells, making the
+    temporal index a first-class dimension of the hippocampal map rather than an
+    add-on.
+
+    CRITICAL FOR PLANNING ROLLOUT: multi-step trajectory proposals require the
+    hippocampus to sequence states in correct temporal order, not just select states
+    that are spatially/abstractly close to the goal. A hippocampal module without
+    temporal indexing would produce trajectory fragments that are locally coherent
+    but temporally unordered -- the correct states retrieved in the wrong sequence.
+
+    RELATIONSHIP TO MECH-089: MECH-089 is the oscillatory mechanism (theta frequency
+    as traversal clock); MECH-239 is the representational substrate (time cells as
+    the indexed variable). Both are required: time cells without theta sequencing
+    produce a static representation of elapsed time; theta sequencing without time
+    cells has no temporal variable to sequence over.
+
+    NOTE: offline temporal replay (consolidation during quiescence) also depends on
+    time cells. This connects MECH-239 to INV-049 (offline consolidation necessity)
+    and MECH-092 (SWR-equivalent replay during micro-DMN). Time cells are both a
+    planning-rollout mechanism and a consolidation substrate.
+
+# ─── Improvement-tier claims (implementation_phase: v4) ─────────────────────
+
+- id: MECH-240
+  title: "SD-012 homeostatic drive_level dynamically scales z_goal attractor basin width — high drive widens the basin so the goal attractor is globally accessible, low drive narrows it to local stability only — enabling motivational-state-dependent modulation of goal-directedness without permanently widening the basin."
+  claim_type: mechanism_hypothesis
+  subject: drive.goal_attractor_basin_scaling
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v4
+  depends_on:
+    - MECH-237
+    - SD-012
+  literature_evidence: |
+    Naude et al. (2024) Nature Communications [DOI: 10.1038/s41467-024-53976-x]:
+    MAGNet model plus optogenetic validation: motivational dopamine (drive signal)
+    widens attractor basins dynamically. The widening is proportional to the
+    motivational signal strength, not binary. Predicts that drive_level in REE
+    should modulate z_goal attractor geometry continuously, not just gate the
+    attractor's existence. An agent with high drive should navigate to goals from
+    farther starting states than an agent with the same goal encoding but lower drive.
+    Lit entry: targeted_review_mech_230/entries/2026-04-15_mech_230_goal_latent_attractor_naude2024/
+  notes: >
+    IMPROVEMENT-TIER CLAIM. The system can function with MECH-237 satisfied by a
+    fixed wide attractor (always globally accessible). MECH-240 adds the motivational
+    dynamics: basin width tracks drive_level, producing a tight, energy-efficient
+    attractor at low drive that expands under high drive. This matters for behavioral
+    flexibility (an agent with no current hunger should not be strongly pulled toward
+    food locations) and metabolic efficiency (narrow basins are cheaper to maintain).
+
+    PRIORITY: implement after MECH-237 is verified experimentally. MECH-240 requires
+    a working globally-reachable attractor (MECH-237) before the dynamic scaling can
+    be meaningfully tested. Implementing MECH-240 before MECH-237 risks conflating
+    the two failure modes (attractor doesn't exist vs. attractor isn't drive-scaled).
+
+    IMPLEMENTATION NOTE: in the SD-012 substrate, drive_weight already scales the
+    goal contribution to action selection. MECH-240 proposes that drive_weight (or a
+    related parameter) should additionally scale the attractor width in the z_goal
+    representation itself -- a change to E3's goal encoding dynamics, not just to
+    the action selection weighting.
+
+- id: MECH-241
+  title: "During active goal pursuit, hippocampal and OFC-analogue representations of goal-proximal states undergo compression -- goal locations cluster more tightly in neural state space -- improving signal-to-noise for goal-directed trajectory selection; the degree of compression predicts planning efficiency across episodes."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.goal_state_representational_compression
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v4
+  depends_on:
+    - MECH-236
+    - MECH-238
+    - MECH-230
+  literature_evidence: |
+    Muhle-Karbe et al. (2023) Neuron [DOI: 10.1016/j.neuron.2023.08.021]:
+    During goal-seeking, hippocampal and OFC neural codes compress around goal
+    locations -- goal states cluster together in neural state space. The degree of
+    compression predicts learning success on the task. Compression is specifically
+    goal-related (it does not affect non-goal locations equally) and emerges during
+    active pursuit. For REE: goal-proximal states in z_world could be represented
+    at higher density/lower noise during active goal pursuit, making the goal attractor
+    sharper and the trajectory gradient cleaner.
+    Lit entry: targeted_review_mech_230/entries/2026-04-15_mech_230_goal_seeking_hippocampus_ofc_muhlekarbe2023/
+  notes: >
+    IMPROVEMENT-TIER CLAIM. Goal-directed navigation works without representational
+    compression (MECH-236 + MECH-237 + MECH-238 are sufficient for basic function).
+    Compression is an efficiency gain: a tighter goal cluster produces a sharper
+    gradient in the metric space, which translates to more reliable trajectory
+    convergence, especially in environments with many distractors or long paths.
+
+    RELATIONSHIP TO MECH-238: MECH-238 requires distance-metric encoding.
+    MECH-241 says the metric geometry is not static -- it sharpens dynamically
+    around current goals during active pursuit. The two are compatible: the metric
+    space is always present, but its local geometry is goal-pursuit-modulated.
+
+    INTERESTING QUESTION FOR GOVERNANCE: is compression a cause of efficient
+    navigation (implement it to improve performance) or a consequence (it emerges
+    when the system is working well)? The Muhle-Karbe finding is correlational
+    (compression predicts success) rather than causal manipulation. Worth flagging
+    as a candidate for V4 governance review rather than assuming the causal direction.
+
+- id: MECH-242
+  title: "Hippocampal trajectory construction operates via two dissociable mechanisms: (1) pattern completion for familiar trajectories (hippocampus-proper), and (2) vector-based construction for novel trajectories assembled from relational components (parahippocampal/parietal-analogue); pattern completion alone is sufficient for navigation within a learned residue field, but vector-based construction is required for generalisation to novel environments not represented in the existing map."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.dual_mode_trajectory_construction
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v4
+  depends_on:
+    - MECH-155
+    - MECH-238
+    - ARC-007
+  literature_evidence: |
+    Morton, Schlichting & Preston (2020) PNAS [DOI: 10.1073/pnas.1911338117]:
+    Hippocampus and frontoparietal cortex form shared geometric representations of
+    abstract relational event structure that support transitive inference (AC from
+    AB+BC). Critically, the paper dissociates hippocampal pattern completion (familiar
+    trajectory recall from partial cues) from parahippocampal/parietal vector-based
+    retrieval (novel trajectory construction from relational components). Both
+    mechanisms operate on the same abstract-space representation but via distinct
+    circuits with different computational profiles.
+    Lit entry: targeted_review_connectome_mech_155/entries/2026-04-15_mech_155_abstract_event_structure_morton2020/
+  notes: >
+    IMPROVEMENT-TIER CLAIM. V3 hippocampal experiments operate in a learned residue
+    field -- the agent navigates a known environment. Pattern completion (mechanism 1)
+    is sufficient for this: the hippocampus retrieves familiar trajectories from
+    partial state cues. V3 does not require novel trajectory assembly from relational
+    components.
+
+    Vector-based construction (mechanism 2) becomes necessary when:
+    (a) the agent must navigate to goals in environments not seen during training
+    (zero-shot transfer), or (b) the agent must construct plans by combining
+    sub-trajectories learned in separate contexts (compositional planning).
+    Both are V4 requirements.
+
+    ARCHITECTURAL IMPLICATION FOR V4: the parahippocampal/parietal-analogue circuit
+    in REE would be a separate module from the hippocampal module proper. It would
+    operate on the same z_world metric space (MECH-238) but via a different
+    computational mechanism -- vector arithmetic over relational components rather
+    than attractor-based pattern completion. The distinction tracks the ARC-021
+    three-loop architecture: different loops may use different trajectory construction
+    mechanisms appropriate to their planning horizons and environmental familiarity.
+
+- id: MECH-243
+  title: "A dedicated hippocampal output pathway (analogous to vCA1 to nucleus accumbens shell) specifically encodes approach bias during motivational conflict -- separately from harm avoidance -- cleanly dissociating the approach signal at the action-selection interface; inhibition of this pathway defaults action selection to avoidance without disrupting harm representation."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.approach_bias_output_pathway
+  polarity: asserts
+  status: candidate
+  registered: "2026-04-15"
+  implementation_phase: v4
+  depends_on:
+    - MECH-230
+    - ARC-007
+    - MECH-069
+  literature_evidence: |
+    Patterson et al. (2025) PLoS Biology [DOI: 10.1371/journal.pbio.3002722]:
+    vCA1 to nucleus accumbens shell pathway specifically encodes approach bias during
+    motivational conflict. Inhibiting this pathway produces avoidance default without
+    affecting pure avoidance behavior or anxiety measures. The pathway is selective
+    for approach signal during conflict, not for reward magnitude per se. Supports
+    clean pathway-level dissociation between approach encoding and harm avoidance
+    at the hippocampal output stage.
+    Lit entry: targeted_review_mech_230/entries/2026-04-15_mech_230_vhpc_approach_avoidance_separation_patterson2025/
+  notes: >
+    IMPROVEMENT-TIER CLAIM. The system can navigate toward goals and avoid harm
+    without a dedicated approach-bias output pathway (MECH-230 + MECH-236 + MECH-237
+    are sufficient for goal-directed navigation; MECH-069 handles approach/avoidance
+    incommensurability at the error signal level). MECH-243 is about output fidelity:
+    a dedicated approach channel produces a cleaner approach signal at the
+    action-selection interface, particularly during motivational conflict where
+    approach and avoidance signals compete.
+
+    RELATIONSHIP TO ARC-057: ARC-057 proposes approach behavior emerges from
+    curiosity drive + DA-expanded hippocampal representation. MECH-243 is compatible
+    with ARC-057: the dedicated output pathway could be the circuit through which the
+    curiosity-driven approach signal reaches the action-selection interface, while
+    a separate harm-avoidance pathway carries the conflict signal. ARC-057 explains
+    why approach occurs; MECH-243 explains how the approach signal is transmitted
+    cleanly to motor output.
+
+    IMPLEMENTATION NOTE: in the current CausalGridWorld single-action-dimension
+    substrate, approach and avoidance share the same action channel, making MECH-243
+    difficult to test. This pathway dissociation becomes testable in a richer substrate
+    where approach (move toward) and avoidance (move away) can be measured as
+    independent output dimensions during simultaneous motivational conflict.
+    Deferred to V4 accordingly.
