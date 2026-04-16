@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_330a_sd013_contrastive_counterfactual_frac05_20260414T234223Z_v3` at `2026-04-14T23:42:23Z` signatures: none
 - `v3_exq_330a_sd013_contrastive_counterfactual_frac05_dry_20260412T102042Z_v3` at `2026-04-12T10:20:42Z` signatures: none
 
 Recurring signatures:

@@ -23,8 +23,9 @@
     "INV-049"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Reclassified non_contributory (governance-2026-04-16): sleep phases not differentiating slot representations (WITH_OFFLINE slot_diversity~0.12 vs WITHOUT~1.0, reversed from expected). Identical per-seed data with EXQ-418 indicates substrate failure. INV-049 requires functioning SWS slot formation to test; measurement gap not claim failure.",
+  "evidence_direction_per_claim": {"INV-049": "non_contributory"},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,

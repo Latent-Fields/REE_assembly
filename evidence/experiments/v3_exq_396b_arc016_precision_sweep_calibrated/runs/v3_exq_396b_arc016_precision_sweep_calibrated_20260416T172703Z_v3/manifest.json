@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_396b_arc016_precision_sweep_calibrated",
+  "run_id": "v3_exq_396b_arc016_precision_sweep_calibrated_20260416T172703Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-16T17:27:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-016",
+    "MECH-093"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "ARC-016 reclassified non_contributory (governance-2026-04-16): calibrated threshold (0.000064) << eval variance (0.001) regardless of hazard_harm; commitment never engages in eval. MECH-093 retained as supports: C1+C2 PASS, Pearson r(hazard_harm, var_diff)=0.891 confirms hazard_harm scales variance independently of calibration issue.",
+  "evidence_direction_per_claim": {
+    "ARC-016": "non_contributory",
+    "MECH-093": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

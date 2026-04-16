@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-14T17:30:00Z",
+  "last_updated_utc": "2026-04-16T21:15:24Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -62,6 +62,22 @@
             "substrate_state": "SD-013 contrastive perturbation implemented; full run (not dry run); 3 seeds",
             "metric_value": 1.39,
             "metric_notes": "C1 PASS 3/3: forward_r2=0.997-0.999. ARC-033 confirmed: E2_harm_s forward model learns transition dynamics. C3 PASS 3/3: attribution sign correct (1.0 all seeds). C2 FAIL 0/3: cf_gap_ratio=1.49/1.29/1.40 (threshold 2.0). Direction is correct (CONTRASTIVE > OBSERVATIONAL in all seeds) but advantage is only ~30-50% rather than the required 100% (2x). SD-003 reclassified supports (C1+C3 pass). SD-013 does_not_support (ratio too small). The 1.3-1.5x advantage is real -- contrastive training helps -- but the threshold may be too aggressive, OR interventional_fraction=0.3 is too low. Increasing interventional_fraction to 0.5+ or extending training is the predicted fix."
+          },
+          {
+            "run_id": "v3_exq_330a_sd013_contrastive_counterfactual_frac05_20260414T234223Z_v3",
+            "experiment_type": "v3_exq_330a_sd013_contrastive_counterfactual_frac05",
+            "date_utc": "2026-04-14",
+            "substrate_state": "SD-013 contrastive perturbation; interventional_fraction=0.5 (increased from 0.3)",
+            "metric_value": null,
+            "metric_notes": "FAIL 7/10 criteria. does_not_support. Increasing interventional_fraction from 0.3 to 0.5 was not sufficient to push cf_gap_ratio above threshold. Direction still correct but ratio below 2.0. Flags for /diagnose-errors: contradicts EXQ-353 PASS on same session."
+          },
+          {
+            "run_id": "v3_exq_353_arc033_sd003_interventional_vs_observational_20260415T060945Z_v3",
+            "experiment_type": "v3_exq_353_arc033_sd003_interventional_vs_observational",
+            "date_utc": "2026-04-15",
+            "substrate_state": "ARC-033 + SD-003 + SD-013 combined interventional vs observational test",
+            "metric_value": null,
+            "metric_notes": "PASS 17/17 criteria. Interventional training distinguishes from observational. All three claims (ARC-033, SD-003, SD-013) tagged as supports. First full PASS for SD-013. Detailed cf_gap_ratio not available (empty metrics.json). CONTRADICTION with EXQ-330a: different experimental design may explain divergence. Flagged for /diagnose-errors."
           }
         ],
         "current_blocker": "cf_gap_ratio at 1.29-1.49x vs threshold 2.0. Two hypotheses: (1) interventional_fraction=0.3 too low -- the contrastive signal is diluted by 70% observational steps; increasing to 0.5+ may push ratio above 2.0. (2) The 2.0 threshold may be too strict -- a 40% advantage IS meaningful causal identifiability improvement. Consider whether the threshold should be 1.5x instead. Forward model quality (C1, r2>0.99) and sign correctness (C3) are not blockers.",
@@ -108,7 +124,7 @@
       "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation). MECH-112 prerequisite resolved by co-implementation in this session (ResourceEncoder IS the MECH-112 substrate).",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-14",
+      "last_seen_session": "governance-2026-04-16",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -208,7 +224,7 @@
       "implementation_hint": "z_harm_a and z_harm_s must encode non-overlapping information under the split SD-011 design. SD-019 adds an orthogonality/redundancy-reduction constraint (e.g. adversarial loss or correlation penalty) between z_harm_a and z_harm_s encoder outputs. Requires ARC-016 (dynamic precision) to contextualize what counts as non-redundant in different regime states. ARC-016 wiring resolved: e3.current_precision accessible as property.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-14",
+      "last_seen_session": "governance-2026-04-16",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -242,6 +258,14 @@
             "substrate_state": "Concurrent run on second machine; same seeds, same SD-022-absent substrate",
             "metric_value": null,
             "metric_notes": "Near bit-for-bit identical to 184158Z (same seeds, near-identical cosine values: 0.11914434 vs 0.11914417). 2/5 seeds pass C1. Confirms the collinear EMA substrate is the bottleneck, not noise or a specific machine/run artifact. The pattern is deterministic."
+          },
+          {
+            "run_id": "v3_exq_323a_sd019_harm_nonredundancy_20260416T172811Z_v3",
+            "experiment_type": "v3_exq_323a_sd019_harm_nonredundancy",
+            "date_utc": "2026-04-16",
+            "substrate_state": "SD-019 nonredundancy loss active; SD-022 limb_damage_enabled=True (body damage substrate)",
+            "metric_value": null,
+            "metric_notes": "PASS all 5 seeds. z_harm_a representationally distinct from z_harm_s; D3 reversal absent. Nonredundancy criterion met. Co-tested with SD-011 and SD-022 -- all three supports. First PASS for SD-019 on production substrate. Prediction confirmed: SD-022 substrate was the rate-limiting factor."
           }
         ],
         "current_blocker": "SD-022 substrate not active during EXQ-323. When z_harm_a derives from the same 50-dim proximity EMA as z_harm_s, the nonredundancy objective is applied to a pair of representations that share their information source. The training signal is therefore unstable: any reduction in cosine similarity achieved in one episode can be reversed when the proximity geometry changes. SD-022 (limb_damage_enabled=True) provides a causally independent information source for z_harm_a (body damage state), giving the nonredundancy objective a genuine basis for stable disentanglement.",
@@ -275,7 +299,7 @@
       "implementation_hint": "Replace z_harm_a AffectiveHarmEncoder training target from EMA-accumulated harm to a precision-weighted prediction error signal: surprise = |harm_obs - E_predicted_harm| * precision. ARC-016 dynamic precision provides the precision weight. Requires SD-019 to enforce that z_harm_s and z_harm_a encode non-redundant aspects of the harm signal. Both SD-019 and ARC-016 now implemented.",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-14",
+      "last_seen_session": "governance-2026-04-16",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -309,6 +333,14 @@
             "substrate_state": "SD-020 PE target; SD-022 NOT active; EMA substrate (second run confirming first)",
             "metric_value": null,
             "metric_notes": "1/5 seeds pass again (seed 45 only). Same confounds confirmed: n_steps=10-20, sign-flip across seeds. C1 (surprise_corr_pe > surprise_corr_ema) passes 4/5 seeds -- the direction is right -- but C2 (abs threshold > 0.15) fails in 4/5 seeds due to near-zero variance. The trajectory is stable: two runs on the same substrate produce the same pattern. Both classified mixed. The next fix is the substrate (SD-022), not the implementation."
+          },
+          {
+            "run_id": "v3_exq_324a_sd020_harm_surprise_pe_20260416T172747Z_v3",
+            "experiment_type": "v3_exq_324a_sd020_harm_surprise_pe",
+            "date_utc": "2026-04-16",
+            "substrate_state": "SD-020 PE target + SD-022 limb_damage_enabled=True",
+            "metric_value": null,
+            "metric_notes": "FAIL (reclassified inconclusive on manifest). 2/5 seeds pass with positive signal (mean_surprise_corr_pe=0.12). n_eval_steps=6-10 per seed still too small. Direction positive but n too small for stable correlation. Inconclusive, not does_not_support. Next: increase eval episodes for >= 100 harm events per seed on SD-022 substrate."
           }
         ],
         "current_blocker": "Two compounding factors confirmed across two runs: (1) n_steps=10-20 events per seed (need >= 50). (2) z_harm_a variance 0.0003-0.0007 on EMA substrate (need > 0.001). SD-022 substrate required. Second run 050533Z confirms the pattern is deterministic and substrate-driven, not run-specific.",
@@ -340,7 +372,7 @@
       "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward. MECH-090 bistable latch and ARC-016 wiring now both implemented. SD-020 also implemented (precision-weighted PE target for z_harm_s training).",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-14",
+      "last_seen_session": "governance-2026-04-16",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -407,7 +439,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-09. CausalGridWorldV2 now has 4-directional limb_damage[4] state; accumulates when moving through hazards; heals at heal_rate=0.002/step; harm_obs_a re-sourced from body damage state (7 dims: damage[4]+max+mean+residual_pain) when limb_damage_enabled=True. EXQ-319 PASS confirmed dissociation: agent with accumulated damage shows high z_harm_a and low z_harm_s when removed from hazard. r2 reduction confirmed by EXQ-318 direction (0.702->0.365) though variance threshold unmet. Promote to provisional: mechanism works, threshold failure is calibration (heal_rate too fast for 150 warmup episodes).",
       "priority": 1,
       "added_session": "governance-2026-04-11",
-      "last_seen_session": "governance-2026-04-14",
+      "last_seen_session": "governance-2026-04-16",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-09T00:00:00Z",
@@ -449,6 +481,14 @@
             "substrate_state": "SD-022 ENABLED; HIGH_DAMAGE vs FRESH agent dissociation paradigm (different from EXQ-318)",
             "metric_value": 0.424,
             "metric_notes": "PASS 3/3 seeds. dissociation_score (seed 42)=0.424: z_harm_a_retention_high=0.910 vs z_harm_a_retention_fresh=0.486. z_harm_s drops sharply when agent leaves hazard (z_harm_s_drop=14.06) while z_harm_a persists (ratio 0.91). Convergent evidence from orthogonal paradigm: the body-state z_harm_a IS causally independent of z_harm_s under SD-022 substrate."
+          },
+          {
+            "run_id": "v3_exq_323a_sd019_harm_nonredundancy_20260416T172811Z_v3",
+            "experiment_type": "v3_exq_323a_sd019_harm_nonredundancy",
+            "date_utc": "2026-04-16",
+            "substrate_state": "SD-022 limb_damage_enabled=True as co-tested substrate in SD-019 nonredundancy experiment",
+            "metric_value": null,
+            "metric_notes": "PASS all 5 seeds (co-test). SD-022 substrate validated for production use. SD-019 nonredundancy criterion met. This is the downstream validation prediction from EXQ-319: the body-damage substrate is production-ready, unblocking SD-019 and SD-020 validation experiments."
           }
         ],
         "current_blocker": null,

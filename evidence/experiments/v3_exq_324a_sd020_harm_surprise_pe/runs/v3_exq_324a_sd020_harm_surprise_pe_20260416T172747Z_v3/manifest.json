@@ -1,0 +1,45 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_324a_sd020_harm_surprise_pe",
+  "run_id": "v3_exq_324a_sd020_harm_surprise_pe_20260416T172747Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-16T17:28:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-020"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_note": "Reclassified inconclusive (governance-2026-04-16): 2/5 seeds pass with positive signal (aggregate mean_surprise_corr_pe=0.12), but n_eval_steps=6-10 per seed is too small for stable correlation. Direction is positive; need more eval steps for definitive scoring.",
+  "evidence_direction_per_claim": {"SD-020": "inconclusive"},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

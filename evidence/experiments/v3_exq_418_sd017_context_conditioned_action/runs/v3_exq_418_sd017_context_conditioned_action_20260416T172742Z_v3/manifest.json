@@ -1,0 +1,45 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_418_sd017_context_conditioned_action",
+  "run_id": "v3_exq_418_sd017_context_conditioned_action_20260416T172742Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-16T17:27:42Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-017"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Reclassified non_contributory (governance-2026-04-16): action_bias_divergence=0.0 everywhere; sleep context not differentiating action policy. Slot_diversity with sleep lower than without (0.12 vs 1.0). Identical per-seed data with EXQ-385 indicates substrate failure. SD-017 requires context representations to differentiate before conditioned action can be tested.",
+  "evidence_direction_per_claim": {"SD-017": "non_contributory"},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

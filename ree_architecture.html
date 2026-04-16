@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<!-- REE Architecture Visualizer — 2026-04-16.1 -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>REE V3 Architecture — Interactive</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --e1: #58a6ff;
+    --e2: #3fb950;
+    --e3: #d2a8ff;
+    --hip: #ffa657;
+    --latent: #79c0ff;
+    --residue: #ff7b72;
+    --clock: #f0e68c;
+    --env: #56d364;
+    --harm: #ff6e5e;
+    --goal: #a5f3a5;
+    --beta: #c9a5ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+
+  /* Header */
+  #header { padding: 10px 18px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+  #header h1 { font-size: 15px; font-weight: 600; color: var(--text); }
+  #header .badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px; font-size: 11px; color: var(--muted); }
+  #header .controls { margin-left: auto; display: flex; gap: 8px; }
+  .btn { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 4px 12px; cursor: pointer; font-size: 12px; transition: all .15s; }
+  .btn:hover { border-color: var(--latent); color: var(--text); }
+  .btn.active { border-color: var(--e1); color: var(--e1); }
+
+  /* Main layout */
+  #main { display: flex; flex: 1; overflow: hidden; }
+  #canvas-wrap { flex: 1; position: relative; overflow: hidden; }
+  canvas { position: absolute; top: 0; left: 0; cursor: grab; }
+  canvas.grabbing { cursor: grabbing; }
+
+  /* Info panel */
+  #panel { width: 320px; background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: width .2s; }
+  #panel.collapsed { width: 0; }
+  #panel-header { padding: 12px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  #panel-title { font-weight: 600; font-size: 13px; }
+  #panel-close { cursor: pointer; color: var(--muted); font-size: 16px; line-height: 1; }
+  #panel-close:hover { color: var(--text); }
+  #panel-body { flex: 1; overflow-y: auto; padding: 14px; }
+  #panel-body::-webkit-scrollbar { width: 4px; }
+  #panel-body::-webkit-scrollbar-track { background: transparent; }
+  #panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .info-section { margin-bottom: 16px; }
+  .info-section h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 8px; }
+  .info-badge { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-size: 11px; margin: 2px; color: var(--text); }
+  .info-badge.pass { border-color: var(--e2); color: var(--e2); }
+  .info-badge.claim { border-color: var(--e3); color: var(--e3); }
+  .info-prop { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #1e252d; font-size: 12px; }
+  .info-prop:last-child { border-bottom: none; }
+  .info-key { color: var(--muted); }
+  .info-val { color: var(--text); font-family: monospace; font-size: 11px; }
+  .info-desc { font-size: 12px; line-height: 1.6; color: var(--muted); }
+  .info-desc b { color: var(--text); }
+
+  /* Legend */
+  #legend { padding: 8px 14px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; flex-shrink: 0; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* Tooltip */
+  #tooltip { position: fixed; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 12px; color: var(--text); pointer-events: none; z-index: 100; display: none; max-width: 200px; }
+
+  /* Step counter */
+  #step-bar { position: absolute; bottom: 10px; left: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 12px; color: var(--muted); }
+  #step-bar span { color: var(--text); font-weight: 600; }
+  #step-label { font-size: 11px; display: block; margin-top: 2px; }
+
+  /* Mini-legend overlay */
+  #hint { position: absolute; top: 10px; right: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--muted); line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <h1>REE V3 — Implemented Architecture</h1>
+  <span class="badge">2026-04-16</span>
+  <div class="controls">
+    <button class="btn active" id="btn-flow" onclick="toggleFlow()">Animate flow</button>
+    <button class="btn" id="btn-labels" onclick="toggleLabels()">Hide labels</button>
+    <button class="btn" onclick="resetView()">Reset view</button>
+  </div>
+</div>
+
+<div id="main">
+  <div id="canvas-wrap">
+    <canvas id="c"></canvas>
+    <div id="step-bar">
+      Step <span id="step-num">0</span>
+      <span id="step-label">E1 ticks every 1 step &bull; E2 every 3 &bull; E3 every 10</span>
+    </div>
+    <div id="hint">
+      Click node for details<br>
+      Scroll/pinch to zoom<br>
+      Drag to pan
+    </div>
+  </div>
+  <div id="panel" class="collapsed">
+    <div id="panel-header">
+      <span id="panel-title">Component</span>
+      <span id="panel-close" onclick="closePanel()">&#x2715;</span>
+    </div>
+    <div id="panel-body" id="panel-content"></div>
+    <div id="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--e1)"></div>E1 (slow)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--e2)"></div>E2 (motor)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--e3)"></div>E3 (planning)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--hip)"></div>Hippocampus</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--residue)"></div>Residue</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--latent)"></div>Latent</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--clock)"></div>Clock/Gate</div>
+    </div>
+  </div>
+</div>
+<div id="tooltip"></div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const NODES = [
+  // Environment
+  { id:'env',    label:'CausalGridWorld V2',  short:'ENV',  x:400, y:80,   w:160, h:50, color:'#56d364', group:'env',
+    detail: {
+      file: 'ree_core/environment/causal_grid_world.py',
+      desc: '<b>10×10 grid world</b> with hazards, resources, contamination, and proxy gradient fields. Ground-truth transition types for supervised training.',
+      props: [['obs body_dim','12'],['obs world_dim','250'],['harm_obs_dim','51'],['harm_obs_a_dim','50'],['harm_history_len','10']],
+      claims: ['SD-010','SD-011','SD-012','SD-015','SD-023'],
+      passing: ['causal_grid_world_baseline','action_loop_completion_gate']
+    }
+  },
+
+  // LatentStack
+  { id:'latent', label:'LatentStack',          short:'LT',   x:400, y:200, w:160, h:50, color:'#79c0ff', group:'latent',
+    detail: {
+      file: 'ree_core/latent/stack.py',
+      desc: '<b>Encodes raw observations</b> into split latent representations. Runs every env step. Produces z_self, z_world, z_harm, z_harm_a, z_resource.',
+      props: [['z_self','32d'],['z_world','32d — alpha=0.9 (SD-008)'],['z_beta','64d'],['z_harm (SD-010)','32d'],['z_harm_a (SD-011)','16d']],
+      claims: ['SD-005','SD-007','SD-008','SD-009','SD-010','SD-011','SD-014','SD-015','MECH-098','MECH-101'],
+      passing: ['EXQ-006 z_world probe','EXQ-014 reafference','EXQ-020 event contrastive','EXQ-023 alpha fix']
+    }
+  },
+
+  // Harm encoders
+  { id:'harm_s', label:'HarmEncoder (SD-010)', short:'Hz_s', x:160, y:200, w:130, h:40, color:'#ff7b72', group:'harm',
+    detail: {
+      file: 'ree_core/latent/stack.py — HarmEncoder',
+      desc: '<b>Sensory-discriminative nociception</b> (A-delta analog). Never subject to reafference. Encodes immediate hazard/resource field proximity.',
+      props: [['input harm_obs','51d'],['output z_harm','32d'],['train signal','harm_proximity MSE']],
+      claims: ['SD-010','MECH-100'],
+      passing: ['EXQ-056c','EXQ-058b']
+    }
+  },
+  { id:'harm_a', label:'AffHarmEncoder (SD-011)',short:'Hz_a', x:160, y:260, w:130, h:40, color:'#ff9585', group:'harm',
+    detail: {
+      file: 'ree_core/latent/stack.py — AffectiveHarmEncoder',
+      desc: '<b>Affective-motivational nociception</b> (C-fiber analog). Encodes accumulated/temporal harm via EMA tau~20 steps. Feeds E3 urgency gate.',
+      props: [['input harm_obs_a','50d'],['input harm_history','10 steps'],['output z_harm_a','16d'],['EMA tau','~20 steps']],
+      claims: ['SD-011','MECH-091'],
+      passing: ['EXQ-178b']
+    }
+  },
+
+  // Clock
+  { id:'clock',  label:'MultiRateClock (SD-006)',short:'CLK', x:640, y:200, w:140, h:50, color:'#f0e68c', group:'clock',
+    detail: {
+      file: 'ree_core/heartbeat/clock.py',
+      desc: '<b>Time-multiplexed execution</b>. Emits tick flags each step. E3 rate is arousal-modulated (MECH-093). Phase-reset on salient events (MECH-091).',
+      props: [['E1 rate','every 1 step'],['E2 rate','every 3 steps'],['E3 rate','every 10 steps'],['theta tick','every E3 tick'],['breath period','configurable']],
+      claims: ['SD-006','ARC-023','MECH-089','MECH-091','MECH-093','MECH-108'],
+      passing: ['validated — foundational for all V3 experiments']
+    }
+  },
+
+  // Beta gate
+  { id:'beta',   label:'BetaGate (MECH-090)', short:'β',    x:640, y:300, w:140, h:40, color:'#c9a5ff', group:'clock',
+    detail: {
+      file: 'ree_core/heartbeat/beta_gate.py',
+      desc: '<b>Bistable commitment latch.</b> Elevates when E3 commits; gates policy propagation during committed trajectory execution. Releases on hippocampal completion signal or urgency interrupt.',
+      props: [['state','elevated / released'],['release trigger','completion >= 0.75 OR urgency > 0.8'],['Layer 1','trajectory stepping (MECH-090)'],['Layer 2','urgency interrupt (MECH-091)']],
+      claims: ['MECH-090','MECH-091'],
+      passing: ['EXQ-178b — layer 2 wired 2026-04-15']
+    }
+  },
+
+  // E1
+  { id:'e1',     label:'E1 DeepPredictor',     short:'E1',   x:160, y:360, w:130, h:50, color:'#58a6ff', group:'e1',
+    detail: {
+      file: 'ree_core/predictors/e1_deep.py',
+      desc: '<b>Slow associative world model.</b> LSTM-based, 20-step horizon. Provides terrain prior for HippocampalModule. Runs SHY homeostasis offline (MECH-120). Schema salience readout (MECH-216).',
+      props: [['input','z_self + z_world (64d)'],['hidden','256d LSTM'],['context mem','16 attention slots'],['train signal','sensory prediction error'],['prediction_horizon','20 steps']],
+      claims: ['ARC-007','MECH-089','MECH-120','MECH-216','INV-049'],
+      passing: ['EXQ-265 sleep queued']
+    }
+  },
+
+  // ThetaBuffer
+  { id:'theta',  label:'ThetaBuffer (MECH-089)',short:'Θ',   x:400, y:310, w:130, h:40, color:'#79c0ff', group:'latent',
+    detail: {
+      file: 'ree_core/agent.py — theta_buffer',
+      desc: '<b>Cross-rate integration.</b> Summarises recent E1 hidden state every E3 tick. E3 never sees raw E1 output — only theta-cycle-averaged summaries.',
+      props: [['buffer size','10 E1 steps'],['output','compressed E1 summary'],['consumer','E3 tick input']],
+      claims: ['MECH-089'],
+      passing: ['foundational — wired in all V3 experiments']
+    }
+  },
+
+  // E2
+  { id:'e2',     label:'E2 FastPredictor',     short:'E2',   x:400, y:420, w:130, h:50, color:'#3fb950', group:'e2',
+    detail: {
+      file: 'ree_core/predictors/e2_fast.py',
+      desc: '<b>Fast motor-sensory transition model.</b> f(z_self, a) → z_self_next. Horizon ~30 steps. Also provides world_forward (z_world) and action_object encoding for Hippocampus. Used for SD-003 counterfactual.',
+      props: [['primary domain','z_self (32d)'],['rollout_horizon','30 steps (> E1 20)'],['action_object_dim','16d'],['train signal','motor-sensory error'],['rate','every 3 steps']],
+      claims: ['SD-003','SD-004','SD-005','MECH-070','ARC-033'],
+      passing: ['EXQ-012 net eval','validated foundational']
+    }
+  },
+
+  // Hippocampus
+  { id:'hip',    label:'HippocampalModule',    short:'HPC',  x:640, y:420, w:140, h:50, color:'#ffa657', group:'hip',
+    detail: {
+      file: 'ree_core/hippocampal/module.py',
+      desc: '<b>Multi-step trajectory planner.</b> CEM over action-object space (SD-004). Value-flat proposals (Q-020). Terrain prior from E1 + residue field. Replay: SWR-equivalent (MECH-092), bidirectional (MECH-165).',
+      props: [['horizon','30 steps'],['proposals','5 candidates'],['CEM iterations','3'],['exploration buffer','50 trajectories'],['completion signal','[0.5, 1.0] → beta gate']],
+      claims: ['SD-004','ARC-007','ARC-028','MECH-092','MECH-105','MECH-165','Q-020'],
+      passing: ['EXQ-003 terrain-guided CEM','EXQ-022 combined mechanisms']
+    }
+  },
+
+  // E3
+  { id:'e3',     label:'E3 TrajectorySelector',short:'E3',   x:400, y:530, w:140, h:50, color:'#d2a8ff', group:'e3',
+    detail: {
+      file: 'ree_core/predictors/e3_selector.py',
+      desc: '<b>Harm evaluator + trajectory scoring.</b> Scores J(ζ) = F(ζ) + λ·M(ζ) + ρ·Φ_R(ζ). Dynamic precision from E3 variance (ARC-016). Commitment on low variance.',
+      props: [['J(z) terms','reality + ethical + residue'],['commit criterion','running_var < 0.05'],['dynamic precision','1/running_variance'],['urgency gate','z_harm_a.norm() > 0.8'],['rate','every 10 steps']],
+      claims: ['ARC-016','MECH-090','MECH-091','MECH-094'],
+      passing: ['EXQ-020','EXQ-040 precision separation','EXQ-059c']
+    }
+  },
+
+  // Residue
+  { id:'residue',label:'ResidueField',         short:'RF',   x:160, y:530, w:130, h:50, color:'#ff7b72', group:'residue',
+    detail: {
+      file: 'ree_core/residue/field.py',
+      desc: '<b>Persistent ethical cost accumulator.</b> RBF field in z_world space. Cannot be erased (invariant). Hypothesis_tag gate prevents replay from writing residue (MECH-094). 4-component valence vectors (SD-014).',
+      props: [['num RBF centers','50'],['domains','harm_field + benefit_terrain (ARC-030)'],['valence comps','wanting / liking / harm_s / surprise'],['MECH-094 gate','hypothesis_tag=True blocks write'],['Φ_R','penalty term in E3 scoring']],
+      claims: ['MECH-094','SD-014','ARC-030','ARC-036','MECH-205'],
+      passing: ['EXQ-020','residue persistence — core invariant validated']
+    }
+  },
+
+  // Goal state
+  { id:'goal',   label:'GoalState (SD-012/15)',short:'GS',   x:640, y:530, w:130, h:50, color:'#a5f3a5', group:'goal',
+    detail: {
+      file: 'ree_core/agent.py — GoalState',
+      desc: '<b>Persistent goal representation.</b> Seeds from ResourceEncoder z_resource (SD-015). Homeostatic drive modulation (SD-012) scales benefit_exposure weight. Frontal wanting signal.',
+      props: [['goal_dim','32d'],['seeding','z_resource (ResourceEncoder)'],['drive_weight','2.0 (SD-012)'],['z_goal_seeding_gain','1.0']],
+      claims: ['SD-012','SD-015','MECH-112','INV-034'],
+      passing: ['EXQ-047+ cluster (SD-012)','EXQ-322 queued (SD-015)']
+    }
+  },
+
+  // Reafference
+  { id:'reaf',   label:'ReafferencePredictor (SD-007)',short:'RAF', x:160, y:130, w:130, h:40, color:'#79c0ff', group:'latent',
+    detail: {
+      file: 'ree_core/latent/stack.py — ReafferencePredictor',
+      desc: '<b>Perspective-shift correction.</b> Predicts Δz_world due to self-motion. Subtracts predicted shift from raw z_world. Trains on empty-space transitions only.',
+      props: [['input','z_world_raw + action_prev'],['output','Δz_world_loco'],['train signal','empty-space transitions only'],['key fix (MECH-101)','input = z_world_raw, not z_self']],
+      claims: ['SD-007','MECH-098','MECH-101'],
+      passing: ['EXQ-014 reafference','EXQ-016 extended']
+    }
+  },
+
+  // Sleep
+  { id:'sleep',  label:'Sleep (SD-017)',        short:'SWS',  x:640, y:130, w:130, h:40, color:'#f0e68c', group:'clock',
+    detail: {
+      file: 'ree_core/agent.py — run_sws_schema_pass / run_rem_attribution_pass',
+      desc: '<b>Offline consolidation.</b> SWS: E1 context memory offline writes + SHY homeostasis (MECH-120). REM: trajectory terrain evaluation without residue writing. Hypothesis_tag=True on all replay.',
+      props: [['SWS','schema pass, E1.shy_normalise()'],['REM','terrain evaluation, no residue write'],['tag','hypothesis_tag=True always'],['status','infrastructure complete; EXQ-265 queued']],
+      claims: ['SD-017','MECH-092','MECH-120','MECH-165','INV-049'],
+      passing: ['MECH-120 wired 2026-04-08']
+    }
+  },
+];
+
+// Edges: [from, to, label, style]
+// style: 'data' | 'train' | 'clock' | 'plan' | 'residue'
+const EDGES = [
+  // ENV → Latent
+  ['env',    'reaf',   'obs_world\n(reafference)', 'data'],
+  ['env',    'latent', 'body_obs\nworld_obs',       'data'],
+  ['env',    'harm_s', 'harm_obs\n[51d]',           'data'],
+  ['env',    'harm_a', 'harm_obs_a\nharm_history',  'data'],
+
+  // Reafference → Latent
+  ['reaf',   'latent', 'Δz_world\ncorrection',      'data'],
+
+  // Harm → Latent
+  ['harm_s', 'latent', 'z_harm_s\n[32d]',           'data'],
+  ['harm_a', 'latent', 'z_harm_a\n[16d]',           'data'],
+
+  // Clock → all
+  ['clock',  'theta',  'theta_tick',                'clock'],
+  ['clock',  'e1',     'e1_tick\n(1/step)',          'clock'],
+  ['clock',  'e2',     'e2_tick\n(1/3 steps)',       'clock'],
+  ['clock',  'e3',     'e3_tick\n(1/10 steps)',      'clock'],
+
+  // Latent → modules
+  ['latent', 'theta',  'z_self+world\n(E1 input)',   'data'],
+  ['latent', 'e2',     'z_self\n(training)',         'data'],
+  ['latent', 'e3',     'z_world\n(scoring)',         'data'],
+  ['latent', 'residue','z_world\n(accumulate)',      'residue'],
+  ['latent', 'goal',   'z_resource\n(seed)',         'data'],
+
+  // Theta → E3
+  ['theta',  'e3',     'E1 summary\n(cross-rate)',   'data'],
+
+  // E1 → Hippocampus
+  ['e1',     'hip',    'terrain prior\n(E1 hidden)', 'plan'],
+
+  // E2 → Hippocampus
+  ['e2',     'hip',    'world_forward\naction_object','plan'],
+
+  // Hippocampus → E3
+  ['hip',    'e3',     'trajectory\ncandidates',     'plan'],
+  ['hip',    'beta',   'completion\nsignal [0.5-1]', 'plan'],
+
+  // Residue → E3
+  ['residue','e3',     'Φ_R penalty\n(terrain cost)','residue'],
+
+  // E3 → Beta gate
+  ['e3',     'beta',   'commit\n(low variance)',     'plan'],
+  ['e3',     'residue','harm eval\n(accumulate)',    'residue'],
+
+  // Beta gate → output
+  ['beta',   'env',    'committed\naction',          'data'],
+
+  // Goal → E3
+  ['goal',   'e3',     'z_goal\n(drive weight)',     'data'],
+
+  // Sleep
+  ['sleep',  'e1',     'SWS schema\n(offline write)','clock'],
+  ['sleep',  'hip',    'REM diverse\nreplay',        'clock'],
+  ['clock',  'sleep',  'quiescent\ntrigger',         'clock'],
+
+  // Replay tag
+  ['hip',    'residue','MECH-094\nhyp_tag gate',     'residue'],
+];
+
+// ============================================================
+// CANVAS / RENDER
+// ============================================================
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+let W, H;
+let pan = {x:0, y:0};
+let zoom = 1;
+let dragging = false;
+let lastMouse = null;
+let hoveredNode = null;
+let selectedNode = null;
+let animFlow = true;
+let showLabels = true;
+let flowT = 0;
+let stepCounter = 0;
+
+function resize() {
+  const wrap = document.getElementById('canvas-wrap');
+  W = wrap.clientWidth;
+  H = wrap.clientHeight;
+  canvas.width = W;
+  canvas.height = H;
+}
+
+function resetView() {
+  // Centre on the node cluster
+  const xs = NODES.map(n=>n.x), ys = NODES.map(n=>n.y);
+  const cx = (Math.min(...xs) + Math.max(...xs)) / 2 + 70;
+  const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+  zoom = Math.min(W/(Math.max(...xs)-Math.min(...xs)+250), H/(Math.max(...ys)-Math.min(...ys)+200), 1.2);
+  pan.x = W/2 - cx*zoom;
+  pan.y = H/2 - cy*zoom;
+}
+
+// Transform world→screen
+function ws(x, y) { return [x*zoom+pan.x, y*zoom+pan.y]; }
+function sw(sx, sy) { return [(sx-pan.x)/zoom, (sy-pan.y)/zoom]; }
+
+// Color by style
+const EDGE_COLORS = {
+  data:    '#4d8fcc',
+  train:   '#3fb950',
+  clock:   '#f0c040',
+  plan:    '#d2a8ff',
+  residue: '#ff7b72',
+};
+
+function nodeRect(n) {
+  const [sx,sy] = ws(n.x - n.w/2, n.y - n.h/2);
+  return { sx, sy, sw: n.w*zoom, sh: n.h*zoom };
+}
+
+function hitNode(mx, my) {
+  for (const n of NODES) {
+    const r = nodeRect(n);
+    if (mx >= r.sx && mx <= r.sx+r.sw && my >= r.sy && my <= r.sy+r.sh) return n;
+  }
+  return null;
+}
+
+function drawRoundRect(x,y,w,h,r,fill,stroke,lw=1) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+  if (fill) { ctx.fillStyle=fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle=stroke; ctx.lineWidth=lw; ctx.stroke(); }
+}
+
+function getNodeEdgePoint(n, dx, dy) {
+  // Returns point on border of node in direction (dx,dy) from center
+  const cx = n.x, cy = n.y;
+  const hw = n.w/2, hh = n.h/2;
+  const slope = Math.abs(dy/dx||1e9);
+  const edgeSlope = hh/hw;
+  let px,py;
+  if (slope < edgeSlope) { // hits left/right
+    px = cx + Math.sign(dx)*hw;
+    py = cy + dy/Math.abs(dx||1e-9)*hw;
+  } else {
+    py = cy + Math.sign(dy)*hh;
+    px = cx + dx/Math.abs(dy||1e-9)*hh;
+  }
+  return [px,py];
+}
+
+function drawEdge(from, to, label, style, t) {
+  const fn = NODES.find(n=>n.id===from);
+  const tn = NODES.find(n=>n.id===to);
+  if (!fn||!tn) return;
+
+  const dx = tn.x - fn.x, dy = tn.y - fn.y;
+  const [fx,fy] = getNodeEdgePoint(fn, dx, dy);
+  const [tx,ty] = getNodeEdgePoint(tn, -dx, -dy);
+  const [sfx,sfy] = ws(fx,fy);
+  const [stx,sty] = ws(tx,ty);
+
+  const col = EDGE_COLORS[style] || '#4d8fcc';
+  const highlight = selectedNode && (selectedNode.id===from || selectedNode.id===to);
+
+  // Slight curve
+  const mx = (sfx+stx)/2, my = (sfy+sty)/2;
+  const perp = {x:-(sty-sfy), y:(stx-sfx)};
+  const pl = Math.sqrt(perp.x**2+perp.y**2);
+  const curve = 18*zoom;
+  const cpx = mx+(pl>0?perp.x/pl*curve:0);
+  const cpy = my+(pl>0?perp.y/pl*curve:0);
+
+  ctx.save();
+  ctx.globalAlpha = highlight ? 0.95 : 0.45;
+  ctx.strokeStyle = col;
+  ctx.lineWidth = (highlight ? 2.5 : 1.5) * zoom;
+  ctx.setLineDash([]);
+  ctx.beginPath();
+  ctx.moveTo(sfx,sfy);
+  ctx.quadraticCurveTo(cpx,cpy,stx,sty);
+  ctx.stroke();
+
+  // Arrow head
+  const angle = Math.atan2(sty-cpy, stx-cpx);
+  const aw = 7*zoom;
+  ctx.fillStyle = col;
+  ctx.beginPath();
+  ctx.moveTo(stx,sty);
+  ctx.lineTo(stx-aw*Math.cos(angle-0.35),sty-aw*Math.sin(angle-0.35));
+  ctx.lineTo(stx-aw*Math.cos(angle+0.35),sty-aw*Math.sin(angle+0.35));
+  ctx.closePath();
+  ctx.fill();
+
+  // Animated flow dot
+  if (animFlow) {
+    const phase = (t*0.6 + (fn.x+fn.y)*0.001) % 1;
+    const bx = bezierPoint(sfx,cpx,stx,phase);
+    const by = bezierPoint(sfy,cpy,sty,phase);
+    ctx.globalAlpha = highlight ? 1 : 0.7;
+    ctx.fillStyle = col;
+    ctx.beginPath();
+    ctx.arc(bx,by,3*zoom,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  // Edge label (only if zoomed in enough)
+  if (showLabels && zoom > 0.6) {
+    const lx = bezierPoint(sfx,cpx,stx,0.45);
+    const ly = bezierPoint(sfy,cpy,sty,0.45);
+    ctx.globalAlpha = highlight ? 0.9 : 0.55;
+    ctx.fillStyle = '#e6edf3';
+    ctx.font = `${Math.max(8,9*zoom)}px monospace`;
+    ctx.textAlign='center';
+    const lines = label.split('\n');
+    lines.forEach((ln,i) => ctx.fillText(ln, lx, ly+(i-lines.length/2+0.5)*11*zoom));
+  }
+
+  ctx.restore();
+}
+
+function bezierPoint(p0,p1,p2,t) {
+  return (1-t)**2*p0 + 2*(1-t)*t*p1 + t**2*p2;
+}
+
+function drawNode(n) {
+  const r = nodeRect(n);
+  const isHovered = hoveredNode===n;
+  const isSelected = selectedNode===n;
+  const glow = isSelected ? 3 : (isHovered ? 2 : 0);
+
+  // Background
+  const bgAlpha = isSelected ? 0.3 : (isHovered ? 0.22 : 0.14);
+  drawRoundRect(r.sx, r.sy, r.sw, r.sh, 7*zoom,
+    hexAlpha(n.color, bgAlpha),
+    isSelected ? n.color : (isHovered ? n.color+'99' : n.color+'55'),
+    (isSelected ? 2.5 : 1.5)*zoom
+  );
+
+  if (glow) {
+    ctx.save();
+    ctx.shadowColor = n.color;
+    ctx.shadowBlur = glow*8*zoom;
+    drawRoundRect(r.sx,r.sy,r.sw,r.sh,7*zoom,null,n.color+'aa',(isSelected?2.5:1.5)*zoom);
+    ctx.restore();
+  }
+
+  // Label
+  ctx.fillStyle = n.color;
+  ctx.textAlign = 'center';
+  if (zoom > 0.5) {
+    ctx.font = `600 ${Math.max(10,11*zoom)}px 'Segoe UI',system-ui`;
+    const lines = n.label.split('\n');
+    lines.forEach((ln,i) => ctx.fillText(ln, r.sx+r.sw/2, r.sy+r.sh/2 + (i-lines.length/2+0.5)*14*zoom));
+  } else {
+    ctx.font = `700 ${Math.max(8,10*zoom)}px monospace`;
+    ctx.fillText(n.short, r.sx+r.sw/2, r.sy+r.sh/2+4*zoom);
+  }
+}
+
+function hexAlpha(hex, alpha) {
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function draw(t) {
+  ctx.clearRect(0,0,W,H);
+  flowT = t/1000;
+
+  // Step counter
+  stepCounter = Math.floor(t/200)%200;
+  document.getElementById('step-num').textContent = stepCounter;
+
+  // Edges first
+  EDGES.forEach(([f,to,lbl,sty]) => drawEdge(f,to,lbl,sty,flowT));
+  // Then nodes
+  NODES.forEach(n => drawNode(n));
+
+  requestAnimationFrame(draw);
+}
+
+// ============================================================
+// INTERACTION
+// ============================================================
+canvas.addEventListener('mousedown', e => {
+  dragging = false;
+  lastMouse = {x:e.clientX, y:e.clientY};
+  canvas.classList.add('grabbing');
+});
+canvas.addEventListener('mousemove', e => {
+  if (lastMouse) {
+    const dx = e.clientX-lastMouse.x, dy = e.clientY-lastMouse.y;
+    if (Math.abs(dx)>3||Math.abs(dy)>3) {
+      dragging = true;
+      pan.x += dx; pan.y += dy;
+      lastMouse = {x:e.clientX, y:e.clientY};
+    }
+  }
+  const rect = canvas.getBoundingClientRect();
+  const [wx,wy] = sw(e.clientX-rect.left, e.clientY-rect.top);
+  const h = NODES.find(n=>wx>=n.x-n.w/2&&wx<=n.x+n.w/2&&wy>=n.y-n.h/2&&wy<=n.y+n.h/2);
+  hoveredNode = h||null;
+  const tip = document.getElementById('tooltip');
+  if (h) {
+    tip.style.display='block';
+    tip.style.left=(e.clientX+12)+'px';
+    tip.style.top=(e.clientY-8)+'px';
+    tip.textContent=h.label+(h.detail.file?'\n'+h.detail.file:'');
+  } else {
+    tip.style.display='none';
+  }
+});
+canvas.addEventListener('mouseup', e => {
+  canvas.classList.remove('grabbing');
+  lastMouse = null;
+  if (!dragging) {
+    const rect = canvas.getBoundingClientRect();
+    const [wx,wy] = sw(e.clientX-rect.left, e.clientY-rect.top);
+    const clicked = NODES.find(n=>wx>=n.x-n.w/2&&wx<=n.x+n.w/2&&wy>=n.y-n.h/2&&wy<=n.y+n.h/2);
+    if (clicked) selectNode(clicked);
+    else { selectedNode=null; closePanel(); }
+  }
+});
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+  const factor = e.deltaY<0?1.12:0.89;
+  pan.x = mx + (pan.x-mx)*factor;
+  pan.y = my + (pan.y-my)*factor;
+  zoom *= factor;
+  zoom = Math.max(0.2, Math.min(3, zoom));
+}, {passive:false});
+
+// Touch support
+let lastTouch = null;
+canvas.addEventListener('touchstart', e=>{
+  if (e.touches.length===1) lastMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};
+});
+canvas.addEventListener('touchmove', e=>{
+  e.preventDefault();
+  if (e.touches.length===1&&lastMouse) {
+    pan.x+=e.touches[0].clientX-lastMouse.x;
+    pan.y+=e.touches[0].clientY-lastMouse.y;
+    lastMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};
+    dragging=true;
+  }
+},{passive:false});
+canvas.addEventListener('touchend', ()=>{ lastMouse=null; });
+
+// ============================================================
+// PANEL
+// ============================================================
+function selectNode(n) {
+  selectedNode = n;
+  document.getElementById('panel-title').textContent = n.label;
+  const d = n.detail;
+  let html = '';
+  if (d.desc) html += `<div class="info-section"><p class="info-desc">${d.desc}</p></div>`;
+  if (d.file) html += `<div class="info-section"><h3>Source</h3><span class="info-badge" style="font-family:monospace;font-size:10px">${d.file}</span></div>`;
+  if (d.props&&d.props.length) {
+    html += `<div class="info-section"><h3>Parameters</h3>`;
+    d.props.forEach(([k,v])=>{ html+=`<div class="info-prop"><span class="info-key">${k}</span><span class="info-val">${v}</span></div>`; });
+    html += `</div>`;
+  }
+  if (d.claims&&d.claims.length) {
+    html += `<div class="info-section"><h3>Claims</h3>`;
+    d.claims.forEach(c=>{ html+=`<span class="info-badge claim">${c}</span>`; });
+    html += `</div>`;
+  }
+  if (d.passing&&d.passing.length) {
+    html += `<div class="info-section"><h3>Validated / Status</h3>`;
+    d.passing.forEach(p=>{ html+=`<span class="info-badge pass">${p}</span>`; });
+    html += `</div>`;
+  }
+  // Connected to
+  const conn = EDGES.filter(e=>e[0]===n.id||e[1]===n.id).map(e=>e[0]===n.id?e[1]:e[0]);
+  const uniq = [...new Set(conn)];
+  if (uniq.length) {
+    html += `<div class="info-section"><h3>Connected to</h3>`;
+    uniq.forEach(id=>{ const cn=NODES.find(x=>x.id===id); if(cn) html+=`<span class="info-badge" style="border-color:${cn.color}44;color:${cn.color}">${cn.label}</span>`; });
+    html += `</div>`;
+  }
+  document.getElementById('panel-body').innerHTML = html;
+  document.getElementById('panel').classList.remove('collapsed');
+}
+
+function closePanel() {
+  selectedNode = null;
+  document.getElementById('panel').classList.add('collapsed');
+}
+
+function toggleFlow() {
+  animFlow = !animFlow;
+  document.getElementById('btn-flow').classList.toggle('active', animFlow);
+}
+function toggleLabels() {
+  showLabels = !showLabels;
+  document.getElementById('btn-labels').textContent = showLabels ? 'Hide labels' : 'Show labels';
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('resize', ()=>{ resize(); });
+resize();
+resetView();
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>

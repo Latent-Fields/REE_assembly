@@ -1247,6 +1247,12 @@
     calibration_gap_approach=0.930. C4 missed (propagation_count=0) because single-agent
     design keeps agent permanently committed — not a mechanism failure.
     ARC-016 core circuit is validated. See ARC-029 for the behavioral consequence layer.
+    EXQ-396a (2026-04-14, x3 runs) and EXQ-396b (2026-04-16): ALL reclassified
+    non_contributory. Calibration issue: train variance (~0.000032-0.000064) << eval
+    variance (~0.001) regardless of hazard_harm level. Commitment threshold never
+    engages in eval; train/eval variance gap prevents differentiation. Not evidence
+    against precision-to-commitment mechanism. Pending recalibration with
+    eval-derived threshold.
   depends_on:
     - ARC-005
     - MECH-059
@@ -4310,6 +4316,9 @@
     committed gate can be re-opened by selective interrupt (surprise-gated variance spike)
     without requiring full de-commitment from all harm contacts. Corroborates the
     gating architecture -- gate holds during expected harm, opens only on genuine surprise.
+    EXQ-049a (2026-04-16, PASS): Bistable concordance confirmed. Committed/uncommitted
+    gate states concordant across full run. Complements EXQ-049e (steady-state two-condition
+    design) and EXQ-062b (surprise selectivity); adds bistable-latch regime validation.
   implementation_note: >
     BISTABLE LATCH IMPLEMENTED 2026-04-10. REEAgent._e3_tick() and select_action() in
     ree_core/agent.py. Config: HeartbeatConfig.beta_gate_bistable (bool, False default).
@@ -4508,6 +4517,10 @@
     by construction. Agent encounters more harm because it IS in high-harm situations, not
     because slowing causes harm. PASS = C1 AND C3. MECH-093 supported. Promote to
     provisional pending multi-seed replication.
+    EXQ-396b (2026-04-16, PASS): First cross-experiment replication. Pearson
+    r(hazard_harm, var_diff)=0.891 across hazard_harm sweep (C1+C2 PASS). Confirms
+    hazard_harm independently scales variance regardless of ARC-016 calibration
+    issue. ARC-016 non_contributory in same run; MECH-093 retained as supports.
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
@@ -4924,6 +4937,8 @@
     discriminative_delta=0.0506-0.0509 all seeds; ABLATED produces 0.0 (perfect discrimination).
     EXQ-204 PASS 4/4 (2026-04-03): surprise gate pair, 3 seeds. harm_spike_rv~1.6-1.9e-6
     on unexpected harm; 0 on non-harm; 0 in ABLATED condition. Strongest evidence to date.
+    EXQ-365 (2026-04-14, PASS): mech104_surprise_gate_pair replication. Additional
+    evidence for surprise-gated de-commitment architecture.
   claim_level: mechanistic
   functional_restatement: >
     When actual harm substantially exceeds predicted harm (prediction error surprise),
@@ -5465,6 +5480,9 @@
     non-contributory (2026-04-06 governance): negative gap reflects missing SD-003 full
     pipeline wiring (counterfactual comparison not correctly structured), not claim failure.
     harm_forward_r2=0.914 (ARC-033 component working). Substrate gap, not claim refutation.
+    EXQ-353 (2026-04-15, PASS, supports): Interventional vs observational training
+    distinguished. SD-003 tagged as supports alongside ARC-033 and SD-013. Confirms
+    the counterfactual pipeline architecture is differentiable via training signal.
   depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033, SD-013]
   location: docs/architecture/sd_003_experiment_design.md
 
@@ -5769,6 +5787,9 @@
     information (harm trajectory over time) that z_harm_s does not receive, resolving the D3
     reversal. Config: LatentStackConfig.harm_history_len (default 0, set 10 to enable).
     EXQ-241a validation queued. Status: ready for retest.
+    EXQ-323a (2026-04-16, PASS): First PASS on body-damage substrate (SD-022 enabled).
+    z_harm_a representationally distinct from z_harm_s across all 5 seeds. D3 reversal
+    absent. Co-tested with SD-019 and SD-022; all three tagged as supports.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -6765,6 +6786,9 @@
     (C4 excellent). Classified non-contributory (2026-04-06 governance): high r2 confirms
     forward model component working (ARC-033 core validated by EXQ-166e). Negative gap reflects
     missing SD-003 counterfactual pipeline wiring, not ARC-033 failure.
+    EXQ-353 (2026-04-15, PASS, supports): Interventional vs observational training
+    distinguished. ARC-033, SD-003, SD-013 all tagged as supports. First clean
+    multi-claim PASS confirming E2_harm_s forward model architecture end-to-end.
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.
@@ -8050,6 +8074,10 @@
     (EXQ-085 series, EXQ-233, EXQ-238). drive_level extraction has never produced
     z_goal_norm > 0.1. Evidence is entirely negative but classified as substrate limitation.
     Status: pending_retest_after_substrate (gate: EXQ-247 SD-011/SD-012 co-integration).
+    EXQ-328a (2026-04-14, PASS, supports): z_goal structured latent confirmed. SD-012
+    tagged as supports (z_goal seeding required for structured latent test to be valid).
+    First PASS with SD-012 substrate active. Co-tested with MECH-112 (deprecated;
+    now MECH-229/230).
 
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
@@ -8094,6 +8122,13 @@
     interventional training, backward compatible). Full experimental validation (EXQ-320
     full run, EXQ-115 PASS) remains a prerequisite before promotion to active -- dependencies
     SD-003, SD-011, ARC-033 still unresolved.
+    EXQ-353 (2026-04-15, PASS, supports): Interventional vs observational conditions
+    distinguished. ARC-033, SD-003, SD-013 all tagged as supports. First clean
+    positive signal for interventional training necessity.
+    EXQ-330a (2026-04-13, FAIL, does_not_support): Contrastive fraction=0.5 FAIL.
+    CONTRADICTION with EXQ-353. Two experiments test different aspects of SD-013
+    with opposite outcomes. Flagged for /diagnose-errors to identify whether this
+    is a design divergence or a confound.
   implementation_note: >
     IMPLEMENTED 2026-04-10. E2HarmSConfig: use_interventional (bool, False default),
     interventional_fraction (float, 0.3), interventional_margin (float, 0.1).
@@ -8438,6 +8473,9 @@
     corrected to non_contributory on manifest. Governance unblocked: claim remains
     candidate/v3. Redesign requires: implement consolidation-mode replay, lower target
     harm rate to ~0.05-0.10, contrast consolidation-enabled vs ablated.
+    EXQ-355 (2026-04-12, non_contributory): ARC-018 and MECH-092 not instantiated --
+    ENABLED and ABLATED conditions identical to 15 decimal places. Reclassified on
+    manifest. Same substrate gap confirmed: redesign requires consolidation-mode replay.
   evidence: []
 
 - id: ARC-039
@@ -10159,6 +10197,12 @@
     (all default False/0). All wired through REEConfig.from_dims(). Validation experiment
     V3-EXQ-265 queued (2 conditions x 3 seeds, ~45 min). Distinguishes from EXQ-242
     (proxy hooks, non_contributory) -- this is the first-class substrate implementation.
+  evidence_quality_note: >
+    EXQ-418 (2026-04-15, non_contributory): action_bias_divergence=0.0 everywhere;
+    identical per-seed data shared with EXQ-385 (INV-049 offline necessity experiment).
+    Cannot distinguish context-conditioned action when action distributions are identical
+    across conditions. Flagged for /diagnose-errors to identify the shared-data scripting
+    issue. Not evidence against SD-017; substrate may be wired correctly.
 
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
@@ -10304,6 +10348,11 @@
     Bayesian contextual inference to be architecturally coherent."
     Mechanistic instantiation: MECH-166 (slot-formation/filling temporal separation),
     SD-017 (SWS-analog + REM-analog design decision), ARC-045 (bidirectional flow).
+  evidence_quality_note: >
+    EXQ-429 (2026-04-16, non_contributory): Experiment ran with dry_run=True and
+    training_episodes=2; n_sleep_cycles=0 in all conditions. No genuine offline/online
+    contrast was produced. Reclassified from does_not_support to non_contributory on
+    manifest. Full run still to be queued. Not evidence against INV-044.
 
 - id: INV-045
   title: "The biological NREM-then-REM sleep phase sequence is the correct computational order, derivable from the logical dependencies between the failure modes each phase addresses; this ordering is not a contingent biological fact but an engineering necessity, and it serves directly as the V4 rewiring specification: each phase specifies what structural change the REE substrate requires to address its failure mode."
@@ -11146,6 +11195,13 @@
     is consistent with INV-049: the experiment demonstrated that without the
     proper slot-forming infrastructure (SD-017), no offline operation -- however
     well-designed -- can produce context-specific representations.
+  evidence_quality_note: >
+    EXQ-385 (2026-04-15, non_contributory): Slot diversity reversed (WITH_OFFLINE
+    slot_diversity~0.12 vs WITHOUT~1.0) -- result artifact from identical per-seed
+    data shared with EXQ-418 (SD-017 context-conditioned action experiment). The
+    offline/online dissociation cannot be tested when both conditions use the same
+    per-seed slot data. Flagged for /diagnose-errors. Not evidence against INV-049;
+    failure is a scripting/data isolation issue, not a claim validity issue.
 
 - id: MECH-178
   title: "Elevated tonic noradrenergic activity (from chronic stress, stimulant exposure, or noradrenaline reuptake inhibitor antidepressants) suppresses REM sleep by maintaining locus coeruleus REM-off firing above the silence threshold required for REM generation, thereby blocking MECH-123 precision recalibration and producing progressive behavioural rigidity equivalent to partial MECH-123 deprivation -- independent of any pharmacological REM suppression."
@@ -13192,6 +13248,11 @@
     penalty *= (1 + harm_nonredundancy_precision_scale * e3.current_precision / 500.0).
     Config: REEConfig.harm_nonredundancy_weight (0.0 default), harm_nonredundancy_precision_scale
     (0.0 default). Backward compatible. Validation: V3-EXQ-323 queued.
+  evidence_quality_note: >
+    EXQ-323a (2026-04-16, PASS, supports): First experimental confirmation. All 5
+    seeds pass nonredundancy criterion. z_harm_a representationally distinct from
+    z_harm_s. Co-tested with SD-011 and SD-022 in same run; all three supported.
+    Promotes toward provisional -- multi-seed confirmation achieved on first genuine run.
 
 - id: MECH-219
   title: affective_harm_hysteretic_integration
@@ -13332,6 +13393,12 @@
     EXQ-332 (full run with future-target supervision + resource_obs_scale attenuation)
     queued to test the predictive (not just reactive) wanting criterion -- C2/C3
     require temporal prediction, not proximity detection.
+    EXQ-332 (2026-04-16, FAIL): First full run with future-target supervision +
+    resource_obs_scale attenuation. C2/C3 (temporal prediction criteria) FAIL.
+    Prior confidence (0.834) was based on EXQ-263b diagnostic dry run, not a
+    genuine evidential run. EXQ-332 is the first real test; result is
+    does_not_support. Flagged for /diagnose-errors: check whether resource_obs_scale
+    attenuation is sufficient for temporal salience encoding.
 
 - id: MECH-217
   title: temporal_wanting_propagation
@@ -13471,6 +13538,10 @@
     3+/5 seeds passing with positive surprise_corr_pe - surprise_corr_ema. Literature
     support strong (Chen 2023, Seymour 2019, Hoskin 2023 -- 4 lit entries). Hold until
     SD-022 substrate validation and SD-019 nonredundancy confirmed on same substrate.
+    EXQ-324a (2026-04-16, inconclusive): 2/5 seeds pass with positive signal
+    (mean_surprise_corr_pe=0.12), but n_eval_steps=6-10 per seed too small for
+    stable correlation. Direction is positive. Reclassified from does_not_support
+    to inconclusive. Hold at candidate until n_eval_steps >= 100 on SD-022 substrate.
   notes: >
     Addresses Q-036 directly. If SD-020 is confirmed experimentally, Q-036 answer is:
     "surprise (PE) is necessary in addition to temporal integration." The implementation
@@ -13596,6 +13667,9 @@
     EXQ-318 failure is a calibration issue not a mechanism failure. Unblocks SD-019
     and SD-020 validation (both require SD-022 substrate for stable training-objective signal).
     Prediction: r2_s_to_a < 0.4 with heal_rate=0.001 or increased hazard density.
+    EXQ-323a (2026-04-16, PASS): SD-022 body-damage substrate validated as co-test in
+    SD-019/SD-011 nonredundancy experiment. z_harm_a functionally distinct from z_harm_s
+    across all 5 seeds. Substrate is production-ready for SD-019/SD-020 experiments.
   notes: >
     Failure mode mapped to psychiatric conditions: persistent z_harm_a with no current
     world threat = hypervigilance, chronic pain, PTSD (body-state residue persists after
