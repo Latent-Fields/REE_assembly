@@ -1,0 +1,61 @@
+{
+  "experiment_type": "v3_exq_332_mech216_predictive_wanting",
+  "run_id": "v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-216",
+    "SD-023"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "V3-EXQ-263b",
+  "outcome": "FAIL",
+  "conditions": [
+    "PREDICTIVE_CUE_ON",
+    "PREDICTIVE_CUE_ABLATED"
+  ],
+  "aggregated": {
+    "PREDICTIVE_CUE_ON": {
+      "future_target_corr": 0.005097431651760694,
+      "resource_prox_corr": -0.13872660633934594,
+      "landmark_prox_corr": -0.2599236059705438,
+      "salience_in_cue_zone_mean": 0.43697561439635846,
+      "salience_in_cue_zone_n": 13566,
+      "schema_salience_mean": 0.43820460516839854,
+      "future_target_mean": 0.0006419753086419753,
+      "n_p1_steps": 162000
+    },
+    "PREDICTIVE_CUE_ABLATED": {
+      "future_target_corr": 0.004633787081960128,
+      "resource_prox_corr": 0.11312952020832691,
+      "landmark_prox_corr": 0.0,
+      "salience_in_cue_zone_mean": 0.0,
+      "salience_in_cue_zone_n": 0,
+      "schema_salience_mean": 0.3802532577380354,
+      "future_target_mean": 0.0007345679012345679,
+      "n_p1_steps": 162000
+    }
+  },
+  "acceptance_checks": {
+    "C1_CUE_ON_future_target_corr_gt_0.10": false,
+    "C2_CUE_ON_future_target_corr_gt_ABLATED": true,
+    "C3_CUE_ON_future_target_corr_gt_resource_prox_corr": true
+  },
+  "params": {
+    "grid_size": 12,
+    "n_hazards": 1,
+    "n_resources": 2,
+    "p0_episodes": 60,
+    "p1_episodes": 180,
+    "steps_per_episode": 300,
+    "num_seeds": 3,
+    "future_window": 10,
+    "resource_obs_scale": 0.3,
+    "landmark_near_radius": 2,
+    "resource_far_radius": 2
+  },
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "MECH-216": "does_not_support",
+    "SD-023": "does_not_support"
+  }
+}

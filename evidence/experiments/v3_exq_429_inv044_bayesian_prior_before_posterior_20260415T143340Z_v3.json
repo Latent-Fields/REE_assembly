@@ -1,0 +1,177 @@
+{
+  "experiment_type": "v3_exq_429_inv044_bayesian_prior_before_posterior",
+  "run_id": "v3_exq_429_inv044_bayesian_prior_before_posterior_20260415T143340Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "INV-044"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260415T143340Z",
+  "dry_run": true,
+  "registered_thresholds": {
+    "C1": "ORDERED mean_sws_slot_diversity > 0.05 in >= 2/3 seeds",
+    "C2": "ORDERED mean_sws_slot_diversity > WAKING final_slot_diversity in >= 2/3 seeds",
+    "C3": "ORDERED rem_terrain_variance >= REM_ONLY rem_terrain_variance in >= 2/3 seeds",
+    "C4": "REM_ONLY slot_diversity < ORDERED slot_diversity in ALL seeds"
+  },
+  "acceptance_checks": {
+    "C1_ordered_div_gt_threshold_2of3": false,
+    "C2_ordered_div_gt_waking_2of3": false,
+    "C3_ordered_rem_tv_ge_remonly_2of3": true,
+    "C4_remonly_div_lt_ordered_all": false
+  },
+  "aggregated": {
+    "ORDERED": {
+      "mean_sws_slot_diversity": 0.0,
+      "mean_final_slot_diversity": 0.7050065671404203,
+      "mean_sws_n_writes": 0.0,
+      "mean_rem_terrain_variance": 0.0,
+      "mean_n_sleep_cycles": 0.0
+    },
+    "REM_ONLY": {
+      "mean_sws_slot_diversity": 0.0,
+      "mean_final_slot_diversity": 0.7050065671404203,
+      "mean_sws_n_writes": 0.0,
+      "mean_rem_terrain_variance": 0.0,
+      "mean_n_sleep_cycles": 0.0
+    },
+    "WAKING_ONLY": {
+      "mean_sws_slot_diversity": 0.7050065671404203,
+      "mean_final_slot_diversity": 0.7050065671404203,
+      "mean_sws_n_writes": 0.0,
+      "mean_rem_terrain_variance": 0.0,
+      "mean_n_sleep_cycles": 1.0
+    }
+  },
+  "per_seed_results": {
+    "ORDERED": [
+      {
+        "condition": "ORDERED",
+        "seed": 42,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.9989497065544128,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 0,
+        "sws_diversity_series": [],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "ORDERED",
+        "seed": 7,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.9987636208534241,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 0,
+        "sws_diversity_series": [],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "ORDERED",
+        "seed": 13,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.11730637401342392,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 0,
+        "sws_diversity_series": [],
+        "rem_terrain_var_series": []
+      }
+    ],
+    "REM_ONLY": [
+      {
+        "condition": "REM_ONLY",
+        "seed": 42,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.9989497065544128,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 0,
+        "sws_diversity_series": [],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "REM_ONLY",
+        "seed": 7,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.9987636208534241,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 0,
+        "sws_diversity_series": [],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "REM_ONLY",
+        "seed": 13,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.11730637401342392,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 0,
+        "sws_diversity_series": [],
+        "rem_terrain_var_series": []
+      }
+    ],
+    "WAKING_ONLY": [
+      {
+        "condition": "WAKING_ONLY",
+        "seed": 42,
+        "mean_sws_slot_diversity": 0.9989497065544128,
+        "final_slot_diversity": 0.9989497065544128,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 1,
+        "sws_diversity_series": [
+          0.9989497065544128
+        ],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "WAKING_ONLY",
+        "seed": 7,
+        "mean_sws_slot_diversity": 0.9987636208534241,
+        "final_slot_diversity": 0.9987636208534241,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 1,
+        "sws_diversity_series": [
+          0.9987636208534241
+        ],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "WAKING_ONLY",
+        "seed": 13,
+        "mean_sws_slot_diversity": 0.11730637401342392,
+        "final_slot_diversity": 0.11730637401342392,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 1,
+        "sws_diversity_series": [
+          0.11730637401342392
+        ],
+        "rem_terrain_var_series": []
+      }
+    ]
+  },
+  "params": {
+    "training_episodes": 2,
+    "steps_per_episode": 150,
+    "sleep_interval": 10,
+    "num_seeds": 3,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6
+  },
+  "evidence_direction": "does_not_support",
+  "summary": "INV-044 test: ORDERED (SWS-then-REM) vs REM_ONLY vs WAKING_ONLY. C1 checks ordered condition installs differentiated context priors (slot_diversity > 0.05). C2 checks ordering advantage over no-sleep baseline. PASS = prior construction before posterior inference yields measurably more differentiated representations, supporting INV-044.",
+  "scenario": "Three-arm discriminative probe of prior-before-posterior ordering necessity",
+  "interpretation": "PASS supports INV-044: SWS slot-formation builds context attractors that online encoding and REM-without-SWS cannot build. The degenerate prior (REM_ONLY) leaves ContextMemory undifferentiated (cosine_sim near 1.0). FAIL would suggest the ordering constraint is not computationally binding in the current substrate, weakening the invariant claim."
+}
