@@ -196,18 +196,19 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=21 entry(s), exp_conf=0.683, lit_conf=0.851",
+      "confidence_rationale": "exp=9 entry(s), lit=23 entry(s), exp_conf=0.683, lit_conf=0.855",
       "direction_counts": {
         "mixed": 2,
-        "supports": 21,
+        "supports": 23,
         "unknown": 0,
         "weakens": 7
       },
-      "entries_total": 30,
+      "entries_total": 32,
       "evidence_class_counts": {
         "exp:simulation": 9,
         "lit:behavioral_animal": 2,
         "lit:computational_model": 2,
+        "lit:connectome_mechanistic_review": 2,
         "lit:electrophysiology_single_unit": 7,
         "lit:fmri_connectivity": 2,
         "lit:neuroscience_experiment": 1,
@@ -222,44 +223,12 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
-      "latest_timestamp_utc": "2026-04-14T18:30:00Z",
-      "literature_confidence": 0.851,
-      "overall_confidence": 0.767,
+      "latest_run_id": "2026-04-16_arc_007_hippocampal_anterior_thalamic_pathways_aggleton2010",
+      "latest_timestamp_utc": "2026-04-16T09:05:00Z",
+      "literature_confidence": 0.855,
+      "overall_confidence": 0.769,
       "pass_runs": 4,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.79,
-          "confidence_rationale": "Demonstrates that the hippocampus itself encodes valence (anxiety/avoidance), not just neutral context for amygdala to label. Ventral CA1 contains 'anxiety cells' that drive avoidance via the vCA1->LHA pathway. This challenges the traditional view that hippocampus only provides context. For REE, it means the harm residue field having valence directly in the hippocampal terrain is biologically accurate. But the paper only addresses negative valence (anxiety), not approach/wanting \u2014 so it speaks to one half of the asymmetry.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
-          "failure_signatures": [
-            "Anxiety cells were enriched in vCA1->LHA projection neurons but NOT in vCA1->BA projection neurons. The amygdala-projecting hippocampal cells were context-encoding, not valence-encoding."
-          ],
-          "run_id": "2026-04-14_arc007_hippocampal_valence_encoding_jimenez2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-14T18:30:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.82,
-          "confidence_rationale": "Direct optogenetic manipulation of engram cells in DG and BLA with valence reversal paradigm. High source quality (Nature, Tonegawa lab, rigorous controls). The key finding \u2014 DG engrams are valence-flexible while BLA engrams are valence-fixed \u2014 maps directly onto the REE distinction between hippocampal terrain (which should be updatable) and amygdala valence tagging (which is more rigid). Moderate mapping fidelity because REE's wanting/liking distinction is not identical to the fear/reward reversal tested here, but the structural principle (hippocampus = flexible context, amygdala = fixed valence) is directly relevant.",
-          "evidence_class": "lit:behavioral_animal",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_valence_asymmetry",
-          "failure_signatures": [
-            "BLA engrams could not be switched from fear to reward or vice versa \u2014 this challenges any architecture that assumes amygdala valence representations are as malleable as hippocampal ones"
-          ],
-          "run_id": "2026-04-14_arc007_mech229_valence_switch_engram_redondo2014",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-14T18:30:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
@@ -305,12 +274,48 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-14T18:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.78,
+          "confidence_rationale": "Comprehensive tract-tracing review of the Papez circuit with detailed topographic mapping of hippocampal-diencephalic-cingulate connectivity. Directly establishes the multiply-interconnected, reciprocal architecture that provides the anatomical substrate for write-profile gating across the circuit. Confidence 0.78 because the review establishes anatomy (what the connections are) rather than functional write-gating directly; the REE translation requires an inferential step from connectivity to gating function.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_papez_circuit_write_gating",
+          "failure_signatures": [
+            "The review is primarily anatomical (tract-tracing); functional write-gating claims require additional electrophysiology or lesion evidence.",
+            "Most data are from rodent tract-tracing studies; human homology is assumed but not always directly tested.",
+            "The review covers general memory functions of the circuit; action-mode specificity (habitual vs deliberate vs simulated) is not directly addressed."
+          ],
+          "run_id": "2026-04-16_arc_007_mech_094_hippocampal_diencephalic_cingulate_bubb2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.76,
+          "confidence_rationale": "Detailed review of parallel direct and indirect hippocampal-anterior thalamic pathways, establishing the distinct functional contributions of each pathway and showing that the anterior thalamic nuclei are necessary (not merely contributing) for episodic memory encoding. The disconnection of hippocampus from anterior thalamus is sufficient to produce amnesia, supporting the claim that trajectory navigation requires this circuit to be intact. Confidence 0.76 because the paper establishes circuit necessity but does not directly address terrain navigation or write-profile gating in the REE sense.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_papez_circuit_write_gating",
+          "failure_signatures": [
+            "The paper frames the hippocampal-anterior thalamic relationship primarily in terms of recollection vs familiarity memory, not terrain navigation per se.",
+            "Parallel pathway functional distinctions are better established in rodents than in humans.",
+            "The specific role of the anterior thalamic nuclei in gating write operations (vs simply relaying context information) is not directly tested."
+          ],
+          "run_id": "2026-04-16_arc_007_hippocampal_anterior_thalamic_pathways_aggleton2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:05:00Z"
         }
       ],
-      "runs_total": 30,
+      "runs_total": 32,
       "source_counts": {
         "experimental": 9,
-        "literature": 21
+        "literature": 23
       }
     },
     "ARC-011": {
@@ -6953,7 +6958,7 @@
       }
     },
     "MECH-073": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.768, lit_conf=0.685",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.767, lit_conf=0.685",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -6967,7 +6972,7 @@
         "lit:electrophysiology_single_unit": 3,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.768,
+      "experimental_confidence": 0.767,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -8030,19 +8035,19 @@
       }
     },
     "MECH-094": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.866",
+      "confidence_rationale": "exp=0 entry(s), lit=7 entry(s), exp_conf=0, lit_conf=0.875",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 7,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 4,
+      "entries_total": 7,
       "evidence_class_counts": {
-        "lit:connectome_mechanistic_review": 1,
+        "lit:connectome_mechanistic_review": 2,
         "lit:fmri_connectivity": 1,
         "lit:meta_analysis": 1,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 3
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -8055,44 +8060,10 @@
       },
       "latest_run_id": "2026-04-16_mech_098_auditory_sis_whitford2019",
       "latest_timestamp_utc": "2026-04-16T16:50:00Z",
-      "literature_confidence": 0.866,
-      "overall_confidence": 0.866,
+      "literature_confidence": 0.875,
+      "overall_confidence": 0.875,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-094",
-          "confidence": 0.65,
-          "confidence_rationale": "Comprehensive neuroimaging review documenting the PTSD neural phenotype: prefrontal hypoactivation (especially mPFC/ACC), amygdala hyperactivity, hippocampal volume reduction and contextual processing failure. The prefrontal-hippocampal disconnection is directly relevant to MECH-094's tag-loss mechanism: prefrontal structures that implement the reality-monitoring / hypothesis-tag function are structurally and functionally compromised in PTSD, leading to the breakdown of simulation/reality boundary that MECH-094 identifies as the PTSD mechanism. Confidence 0.65 because this is a structural/functional MRI review supporting the failure mode, not directly testing the tagging mechanism itself.",
-          "evidence_class": "lit:meta_analysis",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_094",
-          "failure_signatures": [
-            "Correlation between prefrontal hypoactivation and PTSD symptoms does not prove that the mechanism is tag loss rather than, say, failure of fear extinction.",
-            "The MRI review covers the full PTSD neural phenotype; the relevance to MECH-094 specifically requires selecting the prefrontal/hippocampal/contextual components, which is a selective reading."
-          ],
-          "run_id": "2026-03-29_mech_094_ptsd_mri_contextual_kunimatsu2019",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-094",
-          "confidence": 0.82,
-          "confidence_rationale": "This is the most directly relevant paper for MECH-094. Dijkstra et al. review the neural mechanisms by which the brain distinguishes internally generated imagination from externally generated perception -- precisely the computation MECH-094's hypothesis tag implements. Key findings: (1) no single low-level signal unambiguously marks internal vs external origin; (2) higher-order cortical circuits (prefrontal) evaluate first-order sensory/cognitive factors to make the determination; (3) this shares core computations with metacognition; (4) failure of this monitoring explains hallucinations and related symptoms. The parallel with MECH-094 is close: the hypothesis tag is the REE implementation of the reality-monitoring gate, and tag loss maps to the clinical failure modes. Confidence 0.82 because the mapping is direct and the paper is recent and comprehensive, but the review is theoretical rather than providing single mechanistic experiments.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_094",
-          "failure_signatures": [
-            "The review finds that no single signal unambiguously marks internal vs external origin -- reality monitoring is implemented by multi-factor inference, not a single tag. MECH-094 proposes a categorical tag, which is a cleaner mechanism than the multi-factor inference the biology suggests.",
-            "If the brain uses graded signals rather than categorical tagging, the failure mode of tag loss (MECH-094's PTSD mechanism) might be better described as tag degradation rather than binary loss."
-          ],
-          "run_id": "2026-03-29_mech_094_reality_monitoring_dijkstra2022",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-094",
@@ -8114,6 +8085,60 @@
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-094",
           "confidence": 0.78,
+          "confidence_rationale": "Comprehensive tract-tracing review of the Papez circuit with detailed topographic mapping of hippocampal-diencephalic-cingulate connectivity. Directly establishes the multiply-interconnected, reciprocal architecture that provides the anatomical substrate for write-profile gating across the circuit. Confidence 0.78 because the review establishes anatomy (what the connections are) rather than functional write-gating directly; the REE translation requires an inferential step from connectivity to gating function.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_papez_circuit_write_gating",
+          "failure_signatures": [
+            "The review is primarily anatomical (tract-tracing); functional write-gating claims require additional electrophysiology or lesion evidence.",
+            "Most data are from rodent tract-tracing studies; human homology is assumed but not always directly tested.",
+            "The review covers general memory functions of the circuit; action-mode specificity (habitual vs deliberate vs simulated) is not directly addressed."
+          ],
+          "run_id": "2026-04-16_arc_007_mech_094_hippocampal_diencephalic_cingulate_bubb2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-094",
+          "confidence": 0.82,
+          "confidence_rationale": "This paper provides the most direct neurobiological account of confabulation as a failure of temporal context tagging -- specifically the failure to suppress memory traces that are activated but do not pertain to ongoing reality. The orbitofrontal cortex (OFC, particularly posterior medial OFC / Brodmann area 13) normally filters activated memories by their temporal relevance to the present moment. Tag loss in the REE framing (hypothesis_tag failure allowing simulated content to write to phi(z)) maps precisely onto Schnider's OFC reality-filtering failure. Confidence 0.82 because the mechanistic specificity is high and the mapping is direct, not analogical.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_papez_circuit_write_gating",
+          "failure_signatures": [
+            "Schnider's account focuses on failure to suppress irrelevant past memories, whereas MECH-094 addresses failure to suppress simulated/future content -- these are related but not identical failure modes.",
+            "The OFC substrate proposed by Schnider is primarily for ongoing-reality checking, not for distinguishing simulated from experienced content during planning or imagination.",
+            "Confabulation in Schnider's framework is typically associated with orbitofrontal lesions after aneurysm rupture; this is a very specific clinical population."
+          ],
+          "run_id": "2026-04-16_mech_094_confabulation_ongoing_reality_schnider2003",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-094",
+          "confidence": 0.72,
+          "confidence_rationale": "REM sleep is characterised by hallucinosis -- vivid, internally generated perceptual experiences accepted as real during the dream -- combined with hippocampal theta-mediated replay. This is exactly the condition MECH-094 identifies as the write-profile failure mode for REM: the hypothesis_tag should be active to mark replay content as simulated, but when it fails, internally generated content is experienced and potentially written to terrain as if real (confabulation+hallucination compound). Confidence 0.72 because the paper establishes the REM write-profile phenomenologically and neurophysiologically, but the specific hypothesis_tag mechanism is not directly tested.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_094",
+          "failure_signatures": [
+            "The paper describes REM hallucinosis at the level of neuronal systems and consciousness; the specific mechanism by which internally generated replay content might be mis-tagged as real is not directly tested.",
+            "The relationship between REM replay and hippocampal terrain updates (phi(z) writes) is inferred from the memory consolidation literature, not directly demonstrated.",
+            "Whether dreaming involves actual phi(z) writes or merely activation without persistent update is not resolved."
+          ],
+          "run_id": "2026-04-16_mech_094_rem_sleep_hallucinosis_hobson2002",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-094",
+          "confidence": 0.78,
           "confidence_rationale": "Peer-reviewed review paper synthesizing a well-established empirical literature on speaking-induced suppression (SIS) of auditory cortex. Establishes that (1) self-generated speech sounds produce smaller N1 auditory evoked potentials than externally generated sounds, (2) this suppression depends on corollary discharge from speech motor areas, and (3) subnormal SIS in schizophrenia provides a clinical loss-of-function test linking corollary discharge failure to hallucinations and delusions of control. Moderate confidence because it is a review, but the underlying empirical base (Talk-Listen EEG paradigm) is replicated across many labs. Also relevant to MECH-094 (hypothesis tag loss as psychosis mechanism).",
           "evidence_class": "lit:connectome_mechanistic_review",
           "evidence_direction": "supports",
@@ -8129,10 +8154,10 @@
           "timestamp_utc": "2026-04-16T16:50:00Z"
         }
       ],
-      "runs_total": 4,
+      "runs_total": 7,
       "source_counts": {
         "experimental": 0,
-        "literature": 4
+        "literature": 7
       }
     },
     "MECH-095": {
@@ -9153,7 +9178,7 @@
       }
     },
     "MECH-106": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.787, lit_conf=0.873",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.786, lit_conf=0.873",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -9167,7 +9192,7 @@
         "lit:computational_model": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.787,
+      "experimental_confidence": 0.786,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -9179,7 +9204,7 @@
       "latest_run_id": "2026-04-05_mech_106_stn_dynamic_threshold_frank2006",
       "latest_timestamp_utc": "2026-04-05T12:00:00Z",
       "literature_confidence": 0.873,
-      "overall_confidence": 0.839,
+      "overall_confidence": 0.838,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -11205,7 +11230,7 @@
       }
     },
     "MECH-155": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.323, lit_conf=0.882",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.322, lit_conf=0.882",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -11220,7 +11245,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.323,
+      "experimental_confidence": 0.322,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -12301,7 +12326,7 @@
       }
     },
     "MECH-176": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.79",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.789",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -12324,8 +12349,8 @@
       },
       "latest_run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
       "latest_timestamp_utc": "2026-04-05T22:30:00Z",
-      "literature_confidence": 0.79,
-      "overall_confidence": 0.79,
+      "literature_confidence": 0.789,
+      "overall_confidence": 0.789,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -12374,7 +12399,7 @@
       }
     },
     "MECH-177": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.775",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.774",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -12397,8 +12422,8 @@
       },
       "latest_run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
       "latest_timestamp_utc": "2026-04-05T22:30:00Z",
-      "literature_confidence": 0.775,
-      "overall_confidence": 0.775,
+      "literature_confidence": 0.774,
+      "overall_confidence": 0.774,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -14637,6 +14662,147 @@
       "source_counts": {
         "experimental": 2,
         "literature": 3
+      }
+    },
+    "MECH-244": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.785",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:theoretical_review": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-16_mech_244_mech_245_drugs_to_deprivation_corlett2009",
+      "latest_timestamp_utc": "2026-04-16T09:20:00Z",
+      "literature_confidence": 0.785,
+      "overall_confidence": 0.785,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-244",
+          "confidence": 0.8,
+          "confidence_rationale": "This paper provides the most fully developed precision-weighting account of psychosis within the active inference framework. It treats all positive psychotic symptoms -- hallucinosis, delusions, sensory attenuation deficits, catatonia -- as expressions of a single core pathology: aberrant encoding of precision (NMDA receptor dysfunction modulating the gain of prediction error units). This maps directly onto MECH-244's claim that psychosis is a precision-weighting failure where top-down priors persistently dominate. Confidence 0.80 because the theoretical framework is highly developed and consistent with neurobiological data, though direct experimental tests of the precision-weighting account specifically (vs competing models) remain limited.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_state_abstraction_psychiatry",
+          "failure_signatures": [
+            "The paper is primarily theoretical; direct empirical tests of the precision-weighting account in human psychosis samples are not provided within the paper itself.",
+            "Hallucination and delusion are treated as unified expressions of the same precision pathology; MECH-245 (hallucination) argues they are mechanistically distinct -- this paper does not fully support that dissociation.",
+            "The NMDA receptor substrate for precision encoding is mechanistically coherent but not yet definitively established as the primary pathology in all psychosis presentations."
+          ],
+          "run_id": "2026-04-16_mech_244_computational_anatomy_psychosis_adams2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:15:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-244",
+          "confidence": 0.74,
+          "confidence_rationale": "This paper provides a Bayesian framework that begins to distinguish psychosis (aberrant prior dominance) from hallucination (sensory deprivation releasing top-down predictions as percepts) by examining how different pharmacological and perceptual manipulations produce overlapping but distinct symptom patterns. The framework supports both MECH-244 and MECH-245 but does not fully resolve the mechanistic dissociation. Confidence 0.74 because the dissociation evidence is incomplete; the paper is more useful as foundational framework than as direct dissociation evidence.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_state_abstraction_psychiatry",
+          "failure_signatures": [
+            "The paper explicitly treats hallucination and psychosis as arising from the same Bayesian machinery; the dissociation between MECH-244 and MECH-245 is not directly argued.",
+            "The Bayesian framework is presented at a level of abstraction that makes it difficult to map specifically onto E1/E2 circuitry in the REE architecture.",
+            "Sensory deprivation models of hallucination (relevant to MECH-245) are discussed alongside drug models (relevant to MECH-244) without fully resolving whether these are the same or different mechanisms."
+          ],
+          "run_id": "2026-04-16_mech_244_mech_245_drugs_to_deprivation_corlett2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:20:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
+    "MECH-245": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.78",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:clinical_case": 1,
+        "lit:theoretical_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005",
+      "latest_timestamp_utc": "2026-04-16T09:25:00Z",
+      "literature_confidence": 0.78,
+      "overall_confidence": 0.78,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-245",
+          "confidence": 0.74,
+          "confidence_rationale": "This paper provides a Bayesian framework that begins to distinguish psychosis (aberrant prior dominance) from hallucination (sensory deprivation releasing top-down predictions as percepts) by examining how different pharmacological and perceptual manipulations produce overlapping but distinct symptom patterns. The framework supports both MECH-244 and MECH-245 but does not fully resolve the mechanistic dissociation. Confidence 0.74 because the dissociation evidence is incomplete; the paper is more useful as foundational framework than as direct dissociation evidence.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_state_abstraction_psychiatry",
+          "failure_signatures": [
+            "The paper explicitly treats hallucination and psychosis as arising from the same Bayesian machinery; the dissociation between MECH-244 and MECH-245 is not directly argued.",
+            "The Bayesian framework is presented at a level of abstraction that makes it difficult to map specifically onto E1/E2 circuitry in the REE architecture.",
+            "Sensory deprivation models of hallucination (relevant to MECH-245) are discussed alongside drug models (relevant to MECH-244) without fully resolving whether these are the same or different mechanisms."
+          ],
+          "run_id": "2026-04-16_mech_244_mech_245_drugs_to_deprivation_corlett2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:20:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-245",
+          "confidence": 0.78,
+          "confidence_rationale": "Charles Bonnet syndrome provides the clearest clinical dissociation between hallucination (MECH-245) and psychosis (MECH-244): patients experience vivid, complex visual hallucinations with fully preserved insight and no delusions, occurring specifically in the context of visual system deafferentation (eye disease). The deafferentation mechanism -- removal of bottom-up sensory input releasing top-down generative predictions as percepts -- is mechanistically distinct from the precision-weighting failure of MECH-244. Confidence 0.78 because CBS is a selective visual cortex phenomenon; generalisability to other modalities (auditory verbal hallucinations in psychosis) requires an inferential step.",
+          "evidence_class": "lit:clinical_case",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_state_abstraction_psychiatry",
+          "failure_signatures": [
+            "CBS is a deafferentation hallucination in a non-psychotic population; the mechanism may differ from hallucinations within psychosis, where precision dysregulation may also contribute.",
+            "Ffytche distinguishes two CBS subtypes (visual-pathway and brainstem/neurotransmitter); only the former is a clean deafferentation model.",
+            "The paper focuses on visual hallucinations; generalising to auditory verbal hallucinations (the most clinically significant form in psychosis) requires additional evidence."
+          ],
+          "run_id": "2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-16T09:25:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
       }
     },
     "MECH-900": {
@@ -49906,6 +50072,168 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.78,
+      "confidence_rationale": "Comprehensive tract-tracing review of the Papez circuit with detailed topographic mapping of hippocampal-diencephalic-cingulate connectivity. Directly establishes the multiply-interconnected, reciprocal architecture that provides the anatomical substrate for write-profile gating across the circuit. Confidence 0.78 because the review establishes anatomy (what the connections are) rather than functional write-gating directly; the REE translation requires an inferential step from connectivity to gating function.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_papez_circuit_write_gating",
+      "failure_signatures": [
+        "The review is primarily anatomical (tract-tracing); functional write-gating claims require additional electrophysiology or lesion evidence.",
+        "Most data are from rodent tract-tracing studies; human homology is assumed but not always directly tested.",
+        "The review covers general memory functions of the circuit; action-mode specificity (habitual vs deliberate vs simulated) is not directly addressed."
+      ],
+      "run_id": "2026-04-16_arc_007_mech_094_hippocampal_diencephalic_cingulate_bubb2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-094",
+      "confidence": 0.78,
+      "confidence_rationale": "Comprehensive tract-tracing review of the Papez circuit with detailed topographic mapping of hippocampal-diencephalic-cingulate connectivity. Directly establishes the multiply-interconnected, reciprocal architecture that provides the anatomical substrate for write-profile gating across the circuit. Confidence 0.78 because the review establishes anatomy (what the connections are) rather than functional write-gating directly; the REE translation requires an inferential step from connectivity to gating function.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_papez_circuit_write_gating",
+      "failure_signatures": [
+        "The review is primarily anatomical (tract-tracing); functional write-gating claims require additional electrophysiology or lesion evidence.",
+        "Most data are from rodent tract-tracing studies; human homology is assumed but not always directly tested.",
+        "The review covers general memory functions of the circuit; action-mode specificity (habitual vs deliberate vs simulated) is not directly addressed."
+      ],
+      "run_id": "2026-04-16_arc_007_mech_094_hippocampal_diencephalic_cingulate_bubb2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.76,
+      "confidence_rationale": "Detailed review of parallel direct and indirect hippocampal-anterior thalamic pathways, establishing the distinct functional contributions of each pathway and showing that the anterior thalamic nuclei are necessary (not merely contributing) for episodic memory encoding. The disconnection of hippocampus from anterior thalamus is sufficient to produce amnesia, supporting the claim that trajectory navigation requires this circuit to be intact. Confidence 0.76 because the paper establishes circuit necessity but does not directly address terrain navigation or write-profile gating in the REE sense.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_papez_circuit_write_gating",
+      "failure_signatures": [
+        "The paper frames the hippocampal-anterior thalamic relationship primarily in terms of recollection vs familiarity memory, not terrain navigation per se.",
+        "Parallel pathway functional distinctions are better established in rodents than in humans.",
+        "The specific role of the anterior thalamic nuclei in gating write operations (vs simply relaying context information) is not directly tested."
+      ],
+      "run_id": "2026-04-16_arc_007_hippocampal_anterior_thalamic_pathways_aggleton2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:05:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-094",
+      "confidence": 0.82,
+      "confidence_rationale": "This paper provides the most direct neurobiological account of confabulation as a failure of temporal context tagging -- specifically the failure to suppress memory traces that are activated but do not pertain to ongoing reality. The orbitofrontal cortex (OFC, particularly posterior medial OFC / Brodmann area 13) normally filters activated memories by their temporal relevance to the present moment. Tag loss in the REE framing (hypothesis_tag failure allowing simulated content to write to phi(z)) maps precisely onto Schnider's OFC reality-filtering failure. Confidence 0.82 because the mechanistic specificity is high and the mapping is direct, not analogical.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_papez_circuit_write_gating",
+      "failure_signatures": [
+        "Schnider's account focuses on failure to suppress irrelevant past memories, whereas MECH-094 addresses failure to suppress simulated/future content -- these are related but not identical failure modes.",
+        "The OFC substrate proposed by Schnider is primarily for ongoing-reality checking, not for distinguishing simulated from experienced content during planning or imagination.",
+        "Confabulation in Schnider's framework is typically associated with orbitofrontal lesions after aneurysm rupture; this is a very specific clinical population."
+      ],
+      "run_id": "2026-04-16_mech_094_confabulation_ongoing_reality_schnider2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-244",
+      "confidence": 0.8,
+      "confidence_rationale": "This paper provides the most fully developed precision-weighting account of psychosis within the active inference framework. It treats all positive psychotic symptoms -- hallucinosis, delusions, sensory attenuation deficits, catatonia -- as expressions of a single core pathology: aberrant encoding of precision (NMDA receptor dysfunction modulating the gain of prediction error units). This maps directly onto MECH-244's claim that psychosis is a precision-weighting failure where top-down priors persistently dominate. Confidence 0.80 because the theoretical framework is highly developed and consistent with neurobiological data, though direct experimental tests of the precision-weighting account specifically (vs competing models) remain limited.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_state_abstraction_psychiatry",
+      "failure_signatures": [
+        "The paper is primarily theoretical; direct empirical tests of the precision-weighting account in human psychosis samples are not provided within the paper itself.",
+        "Hallucination and delusion are treated as unified expressions of the same precision pathology; MECH-245 (hallucination) argues they are mechanistically distinct -- this paper does not fully support that dissociation.",
+        "The NMDA receptor substrate for precision encoding is mechanistically coherent but not yet definitively established as the primary pathology in all psychosis presentations."
+      ],
+      "run_id": "2026-04-16_mech_244_computational_anatomy_psychosis_adams2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:15:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-244",
+      "confidence": 0.74,
+      "confidence_rationale": "This paper provides a Bayesian framework that begins to distinguish psychosis (aberrant prior dominance) from hallucination (sensory deprivation releasing top-down predictions as percepts) by examining how different pharmacological and perceptual manipulations produce overlapping but distinct symptom patterns. The framework supports both MECH-244 and MECH-245 but does not fully resolve the mechanistic dissociation. Confidence 0.74 because the dissociation evidence is incomplete; the paper is more useful as foundational framework than as direct dissociation evidence.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_state_abstraction_psychiatry",
+      "failure_signatures": [
+        "The paper explicitly treats hallucination and psychosis as arising from the same Bayesian machinery; the dissociation between MECH-244 and MECH-245 is not directly argued.",
+        "The Bayesian framework is presented at a level of abstraction that makes it difficult to map specifically onto E1/E2 circuitry in the REE architecture.",
+        "Sensory deprivation models of hallucination (relevant to MECH-245) are discussed alongside drug models (relevant to MECH-244) without fully resolving whether these are the same or different mechanisms."
+      ],
+      "run_id": "2026-04-16_mech_244_mech_245_drugs_to_deprivation_corlett2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:20:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-245",
+      "confidence": 0.74,
+      "confidence_rationale": "This paper provides a Bayesian framework that begins to distinguish psychosis (aberrant prior dominance) from hallucination (sensory deprivation releasing top-down predictions as percepts) by examining how different pharmacological and perceptual manipulations produce overlapping but distinct symptom patterns. The framework supports both MECH-244 and MECH-245 but does not fully resolve the mechanistic dissociation. Confidence 0.74 because the dissociation evidence is incomplete; the paper is more useful as foundational framework than as direct dissociation evidence.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_state_abstraction_psychiatry",
+      "failure_signatures": [
+        "The paper explicitly treats hallucination and psychosis as arising from the same Bayesian machinery; the dissociation between MECH-244 and MECH-245 is not directly argued.",
+        "The Bayesian framework is presented at a level of abstraction that makes it difficult to map specifically onto E1/E2 circuitry in the REE architecture.",
+        "Sensory deprivation models of hallucination (relevant to MECH-245) are discussed alongside drug models (relevant to MECH-244) without fully resolving whether these are the same or different mechanisms."
+      ],
+      "run_id": "2026-04-16_mech_244_mech_245_drugs_to_deprivation_corlett2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:20:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-245",
+      "confidence": 0.78,
+      "confidence_rationale": "Charles Bonnet syndrome provides the clearest clinical dissociation between hallucination (MECH-245) and psychosis (MECH-244): patients experience vivid, complex visual hallucinations with fully preserved insight and no delusions, occurring specifically in the context of visual system deafferentation (eye disease). The deafferentation mechanism -- removal of bottom-up sensory input releasing top-down generative predictions as percepts -- is mechanistically distinct from the precision-weighting failure of MECH-244. Confidence 0.78 because CBS is a selective visual cortex phenomenon; generalisability to other modalities (auditory verbal hallucinations in psychosis) requires an inferential step.",
+      "evidence_class": "lit:clinical_case",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_state_abstraction_psychiatry",
+      "failure_signatures": [
+        "CBS is a deafferentation hallucination in a non-psychotic population; the mechanism may differ from hallucinations within psychosis, where precision dysregulation may also contribute.",
+        "Ffytche distinguishes two CBS subtypes (visual-pathway and brainstem/neurotransmitter); only the former is a clean deafferentation model.",
+        "The paper focuses on visual hallucinations; generalising to auditory verbal hallucinations (the most clinically significant form in psychosis) requires additional evidence."
+      ],
+      "run_id": "2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:25:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-094",
+      "confidence": 0.72,
+      "confidence_rationale": "REM sleep is characterised by hallucinosis -- vivid, internally generated perceptual experiences accepted as real during the dream -- combined with hippocampal theta-mediated replay. This is exactly the condition MECH-094 identifies as the write-profile failure mode for REM: the hypothesis_tag should be active to mark replay content as simulated, but when it fails, internally generated content is experienced and potentially written to terrain as if real (confabulation+hallucination compound). Confidence 0.72 because the paper establishes the REM write-profile phenomenologically and neurophysiologically, but the specific hypothesis_tag mechanism is not directly tested.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_094",
+      "failure_signatures": [
+        "The paper describes REM hallucinosis at the level of neuronal systems and consciousness; the specific mechanism by which internally generated replay content might be mis-tagged as real is not directly tested.",
+        "The relationship between REM replay and hippocampal terrain updates (phi(z) writes) is inferred from the memory consolidation literature, not directly demonstrated.",
+        "Whether dreaming involves actual phi(z) writes or merely activation without persistent update is not resolved."
+      ],
+      "run_id": "2026-04-16_mech_094_rem_sleep_hallucinosis_hobson2002",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-16T09:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-098",
       "confidence": 0.9,
       "confidence_rationale": "Foundational discovery paper in Science. Electrophysiological recording plus muscimol inactivation of MD thalamus in macaque. Inactivation impairs sequential eye movements requiring internal tracking of prior saccade vector \u2014 direct causal evidence that the SC->MD->FEF pathway carries corollary discharge. High-quality primate data, replicated in subsequent Sommer & Wurtz papers. Directly instantiates the efference-copy-to-prediction pathway required by MECH-098 at the subcortical relay level.",
@@ -50095,7 +50423,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-16T16:38:03.853152Z",
+  "generated_at_utc": "2026-04-16T17:09:49.079955Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

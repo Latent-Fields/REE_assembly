@@ -1,22 +1,37 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
-  "last_updated": "2026-04-15T19:25:28.178931+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-407",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-231 E2 short-horizon efference-copy discriminative pair",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
+  "runner_pid": 11048,
+  "runner_started_at": "2026-04-16T17:24:35.828537+00:00",
+  "last_updated": "2026-04-16T20:24:31.888303+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-321a",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "MECH-090 bistable gate retest: E2 world-forward training added (EXQ-321 fix)",
+    "description": "",
+    "script": "experiments/v3_exq_321a_mech090_bistable_gate.py",
+    "started_at": "2026-04-16T20:06:18.929191+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 10,
+      "episodes_done": 0,
+      "episodes_total": 320,
+      "overall_pct": 0.0
     },
+    "seconds_elapsed": 1093,
+    "seconds_remaining": 25600,
+    "recent_lines": [
+      "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_321a_mech090_bistable_gate.py:309: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+      "timestamp = datetime.datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
+      "EXQ-321a start: v3_exq_321a_mech090_bistable_gate_20260416T200620Z_v3",
+      "Seed 42",
+      "BISTABLE: training 300 eps..."
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
     {
       "queue_id": "V3-EXQ-321a",
       "backlog_id": "",
@@ -24,7 +39,7 @@
       "title": "MECH-090 bistable gate retest: E2 world-forward training added (EXQ-321 fix)",
       "description": "",
       "estimated_minutes": 426.7,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -73,23 +88,45 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-328b",
+      "queue_id": "V3-EXQ-396",
       "backlog_id": "",
-      "claim_id": "MECH-230",
-      "title": "MECH-230 z_goal latent structure: homeostatic drive ablation (full run)",
+      "claim_id": "",
+      "title": "ARC-016 precision threshold sweep: hazard_harm 5-level characterization (EXQ-038 staged fix)",
       "description": "",
-      "estimated_minutes": 200.0,
-      "status": "claimed",
+      "estimated_minutes": 226.7,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-326a",
+      "queue_id": "V3-EXQ-397",
       "backlog_id": "",
-      "claim_id": "SD-015",
-      "title": "SD-015 nav integration fix: z_resource encoder wiring + harm_signal seeding",
+      "claim_id": "",
+      "title": "ARC-007 path memory ablation: residue field zeroing degrades hippo proposals (EXQ-046b staged fix)",
       "description": "",
-      "estimated_minutes": 200.0,
+      "estimated_minutes": 80.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-429",
+      "backlog_id": "EVB-0060",
+      "claim_id": "INV-044",
+      "title": "INV-044: Bayesian Prior-Before-Posterior Necessity (SWS-ordered vs REM-only vs waking-only)",
+      "description": "",
+      "estimated_minutes": 108.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-430",
+      "backlog_id": "EVB-0071",
+      "claim_id": "",
+      "title": "INV-010: Offline Integration Necessity (SLEEP vs NO_SLEEP behavioral comparison)",
+      "description": "",
+      "estimated_minutes": 72.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5367,7 +5404,90 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 26106.4
+    },
+    {
+      "queue_id": "V3-EXQ-396a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-016 precision sweep: dual-bug fix (rv update in training + no eval reset)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "harm_0p1_var_perturbed: 0.0010916010961077968 | harm_0p1_commit_stable: 1.0 | harm_0p1_commit_perturbed: 1.0",
+      "started_at": "2026-04-16T17:24:37.823914+00:00",
+      "completed_at": "2026-04-16T17:25:45.367527+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_396a_arc016_precision_sweep_rv_fix/v3_exq_396a_arc016_precision_sweep_rv_fix_20260416T172544Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 67.5
+    },
+    {
+      "queue_id": "V3-EXQ-396b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-016 precision sweep: EXP-0094 auto-calibration + static training env",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "harm_0p1_var_perturbed: 0.0011571492286627484 | harm_0p1_commit_stable: 0.014084507042253521 | harm_0p1_commit_perturbed: 0.014705882352941176",
+      "started_at": "2026-04-16T17:25:48.084190+00:00",
+      "completed_at": "2026-04-16T17:27:03.998445+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_396b_arc016_precision_sweep_calibrated/v3_exq_396b_arc016_precision_sweep_calibrated_20260416T172703Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 75.9
+    },
+    {
+      "queue_id": "V3-EXQ-418",
+      "backlog_id": "EXP-0106",
+      "claim_id": "SD-017",
+      "title": "SD-017 context-conditioned action: sleep + SD-016 integration (EXP-0106)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_SLEEP_SD016 seed=56 slot_div=1.0077 action_bias_div=0.0000 eval_harm_rate=0.0692 n_safe=488 n_dang=199 | verdict: C1_bias_threshold=False (0/3 seeds), C2_bias_improvement=False (0/3 seeds), C3_slot_div=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-16T17:27:06.432314+00:00",
+      "completed_at": "2026-04-16T17:27:43.472371+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 37.0
+    },
+    {
+      "queue_id": "V3-EXQ-324a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020 affective harm surprise PE retest: SD-022 substrate (7-dim body damage, 8 hazards)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=46: PASS surp_pe=0.9210 surp_ema=-0.1068 c1=True c2=True c3=True | /Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_324a_sd020_harm_surprise_pe.py:462: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Output written: /Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_324a_sd020_harm_surprise_pe_20260416T172747Z_v3.json",
+      "started_at": "2026-04-16T17:27:46.223576+00:00",
+      "completed_at": "2026-04-16T17:28:07.296718+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 21.1
+    },
+    {
+      "queue_id": "V3-EXQ-323a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-019 harm nonredundancy on SD-022 substrate (EXQ-323 fix: SD-022 body damage + enc_a supervision)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=45: PASS cos_sq_NR=0.3641 cos_sq_BL=0.3649 obs_a_norm=0.0697 | seed=46: PASS cos_sq_NR=0.0246 cos_sq_BL=0.1597 obs_a_norm=0.0834 | Results -> /Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_323a_sd019_harm_nonredundancy/v3_exq_323a_sd019_harm_nonredundancy_20260416T172811Z_v3.json",
+      "started_at": "2026-04-16T17:28:10.168150+00:00",
+      "completed_at": "2026-04-16T17:28:29.183356+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 19.0
+    },
+    {
+      "queue_id": "V3-EXQ-049a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 gate wiring regression: two-condition design on Layer 1+2 substrate",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-04-16T17:28:32.224213+00:00",
+      "completed_at": "2026-04-16T20:06:15.908723+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_049a_mech090_bistable_concordance/v3_exq_049a_mech090_bistable_concordance_20260416T200614Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 9463.6
     }
-  ],
-  "draining": false
+  ]
 }

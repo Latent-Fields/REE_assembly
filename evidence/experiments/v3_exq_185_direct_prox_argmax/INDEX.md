@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_185_direct_prox_argmax
 
-Generated: `2026-04-16T16:38:03.853152Z`
+Generated: `2026-04-16T17:09:49.079955Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

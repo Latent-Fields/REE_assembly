@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-16T16:38:03.853152Z",
+  "generated_at_utc": "2026-04-16T17:09:49.079955Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -683,30 +683,13 @@
     },
     {
       "backlog_id": "EVB-0038",
-      "claim_id": "ARC-007",
+      "claim_id": "MECH-216",
       "dispatch_mode": "discriminative_pair",
       "executed_by": "V3-EXQ-176",
       "executed_queue_id": "V3-EXQ-176",
-      "objective": "Run a discriminative support-vs-ablation pair for ARC-007 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0038",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_arc_007",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0039",
-      "claim_id": "MECH-216",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-184",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-216 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0039",
+      "proposal_id": "EXP-0038",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_326_wanting_gradient_nav_fix",
@@ -717,13 +700,13 @@
       ]
     },
     {
-      "backlog_id": "EVB-0040",
+      "backlog_id": "EVB-0039",
       "claim_id": "INV-054",
       "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-196",
+      "executed_by": "V3-EXQ-184",
       "objective": "Run a discriminative support-vs-ablation pair for INV-054 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0040",
+      "proposal_id": "EXP-0039",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_250_inv054_phase_transition_recovery",
@@ -734,13 +717,13 @@
       ]
     },
     {
-      "backlog_id": "EVB-0041",
+      "backlog_id": "EVB-0040",
       "claim_id": "MECH-165",
       "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-197",
+      "executed_by": "V3-EXQ-196",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-165 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0041",
+      "proposal_id": "EXP-0040",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_244_mech165_reverse_replay_diversity",
@@ -751,13 +734,13 @@
       ]
     },
     {
-      "backlog_id": "EVB-0042",
+      "backlog_id": "EVB-0041",
       "claim_id": "MECH-188",
       "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-190",
+      "executed_by": "V3-EXQ-197",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-188 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0042",
+      "proposal_id": "EXP-0041",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_253_mech188_zgoal_injection",
@@ -768,14 +751,13 @@
       ]
     },
     {
-      "backlog_id": "EVB-0043",
+      "backlog_id": "EVB-0042",
       "claim_id": "INV-049",
       "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-215",
-      "executed_queue_id": "V3-EXQ-215",
+      "executed_by": "V3-EXQ-190",
       "objective": "Run a discriminative support-vs-ablation pair for INV-049 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0043",
+      "proposal_id": "EXP-0042",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_385_inv049_offline_consolidation_necessity",
@@ -784,6 +766,24 @@
         "active_conflict",
         "directional_conflict_alert",
         "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0043",
+      "claim_id": "ARC-007",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-215",
+      "executed_queue_id": "V3-EXQ-215",
+      "objective": "Run a discriminative support-vs-ablation pair for ARC-007 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0043",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_arc_007",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert"
       ]
     },
     {
@@ -1662,11 +1662,45 @@
     },
     {
       "backlog_id": "EVB-0095",
+      "claim_id": "MECH-244",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-244 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0095",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_244",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0096",
+      "claim_id": "MECH-245",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-245 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0096",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_245",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0097",
       "claim_id": "ARC-011",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for ARC-011 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0095",
+      "proposal_id": "EXP-0097",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_arc_011",
@@ -1677,12 +1711,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0096",
+      "backlog_id": "EVB-0098",
       "claim_id": "ARC-035",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for ARC-035 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0096",
+      "proposal_id": "EXP-0098",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_arc_035",
@@ -1694,12 +1728,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0097",
+      "backlog_id": "EVB-0099",
       "claim_id": "INV-046",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for INV-046 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0097",
+      "proposal_id": "EXP-0099",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_inv_046",
@@ -1711,12 +1745,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0098",
+      "backlog_id": "EVB-0100",
       "claim_id": "INV-047",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for INV-047 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0098",
+      "proposal_id": "EXP-0100",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_inv_047",
@@ -1728,12 +1762,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0099",
+      "backlog_id": "EVB-0101",
       "claim_id": "MECH-025b",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for MECH-025b via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0099",
+      "proposal_id": "EXP-0101",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_025b",
@@ -1745,12 +1779,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0100",
+      "backlog_id": "EVB-0102",
       "claim_id": "MECH-172",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for MECH-172 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0100",
+      "proposal_id": "EXP-0102",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_172",
@@ -1762,52 +1796,52 @@
       ]
     },
     {
-      "backlog_id": "EVB-0101",
+      "backlog_id": "EVB-0103",
       "claim_id": "onboarding",
       "objective": "Improve literature grounding and confidence for onboarding.",
-      "priority": "medium",
-      "proposal_id": "LIT-0101",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0102",
-      "claim_id": "Q-036",
-      "objective": "Improve literature grounding and confidence for Q-036.",
-      "priority": "medium",
-      "proposal_id": "LIT-0102",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "low_overall_confidence",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0103",
-      "claim_id": "SD-019",
-      "objective": "Improve literature grounding and confidence for SD-019.",
       "priority": "medium",
       "proposal_id": "LIT-0103",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
       "why_now": [
-        "low_overall_confidence",
         "missing_literature_evidence"
       ]
     },
     {
       "backlog_id": "EVB-0104",
+      "claim_id": "Q-036",
+      "objective": "Improve literature grounding and confidence for Q-036.",
+      "priority": "medium",
+      "proposal_id": "LIT-0104",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "low_overall_confidence",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0105",
+      "claim_id": "SD-019",
+      "objective": "Improve literature grounding and confidence for SD-019.",
+      "priority": "medium",
+      "proposal_id": "LIT-0105",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "low_overall_confidence",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0106",
       "claim_id": "SD-022",
       "objective": "Improve literature grounding and confidence for SD-022.",
       "priority": "medium",
-      "proposal_id": "LIT-0104",
+      "proposal_id": "LIT-0106",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -1817,14 +1851,14 @@
       ]
     },
     {
-      "backlog_id": "EVB-0105",
+      "backlog_id": "EVB-0107",
       "claim_id": "ARC-028",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for ARC-028 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0105",
+      "proposal_id": "EXP-0107",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_321_mech090_bistable_gate",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1834,13 +1868,13 @@
       ]
     },
     {
-      "backlog_id": "EVB-0105",
+      "backlog_id": "EVB-0107",
       "claim_id": "ARC-028",
       "objective": "Improve literature grounding and confidence for ARC-028.",
       "priority": "medium",
-      "proposal_id": "LIT-0106",
+      "proposal_id": "LIT-0108",
       "proposal_type": "literature_review",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "REE_assembly",
       "why_now": [
         "insufficient_experimental_replication",
@@ -1849,11 +1883,11 @@
       ]
     },
     {
-      "backlog_id": "EVB-0106",
+      "backlog_id": "EVB-0108",
       "claim_id": "MECH-057",
       "objective": "Improve literature grounding and confidence for MECH-057.",
       "priority": "medium",
-      "proposal_id": "LIT-0107",
+      "proposal_id": "LIT-0109",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -1864,24 +1898,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0107",
+      "backlog_id": "EVB-0109",
       "claim_id": "SD-003-prereq",
       "objective": "Improve literature grounding and confidence for SD-003-prereq.",
       "priority": "medium",
-      "proposal_id": "LIT-0108",
+      "proposal_id": "LIT-0110",
       "proposal_type": "literature_review",
-      "status": "executed",
+      "status": "proposed",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_literature_evidence"
       ]
     },
     {
-      "backlog_id": "EVB-0108",
+      "backlog_id": "EVB-0110",
       "claim_id": "SD-018",
       "objective": "Improve literature grounding and confidence for SD-018.",
       "priority": "medium",
-      "proposal_id": "LIT-0109",
+      "proposal_id": "LIT-0111",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -1891,12 +1925,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0109",
+      "backlog_id": "EVB-0111",
       "claim_id": "MECH-092",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for MECH-092 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0110",
+      "proposal_id": "EXP-0112",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "v3_exq_136_mech092_quiescent_replay_pair",
@@ -1906,40 +1940,10 @@
       ]
     },
     {
-      "backlog_id": "EVB-0110",
+      "backlog_id": "EVB-0112",
       "claim_id": "INV-045",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for INV-045 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0111",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "v3_exq_243_inv045_phase_ordering_necessity",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0111",
-      "claim_id": "MECH-091",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-091 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0112",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "v3_exq_133_mech091_phase_reset_pair",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0112",
-      "claim_id": "MECH-123",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-123 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0113",
       "proposal_type": "experimental",
@@ -1952,11 +1956,43 @@
     },
     {
       "backlog_id": "EVB-0113",
+      "claim_id": "MECH-091",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-091 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0114",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "v3_exq_133_mech091_phase_reset_pair",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0114",
+      "claim_id": "MECH-123",
+      "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-395",
+      "executed_queue_id": "V3-EXQ-395",
+      "objective": "Reduce uncertainty for MECH-123 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0115",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "v3_exq_243_inv045_phase_ordering_necessity",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0115",
       "claim_id": "INV-043",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for INV-043 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0114",
+      "proposal_id": "EXP-0116",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "v3_exq_206_inv043_ethical_capacity_probe",
@@ -1966,16 +2002,14 @@
       ]
     },
     {
-      "backlog_id": "EVB-0114",
+      "backlog_id": "EVB-0116",
       "claim_id": "MECH-166",
       "dispatch_mode": "targeted_probe",
-      "executed_by": "V3-EXQ-395",
-      "executed_queue_id": "V3-EXQ-395",
       "objective": "Reduce uncertainty for MECH-166 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0115",
+      "proposal_id": "EXP-0117",
       "proposal_type": "experimental",
-      "status": "executed",
+      "status": "proposed",
       "suggested_experiment_type": "v3_exq_242_sd017_sleep_phase_ablation",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1983,12 +2017,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0115",
+      "backlog_id": "EVB-0117",
       "claim_id": "MECH-187",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for MECH-187 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0116",
+      "proposal_id": "EXP-0118",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "v3_exq_252_mech187_zgoal_seeding_gain",
@@ -1998,14 +2032,15 @@
       ]
     },
     {
-      "backlog_id": "EVB-0116",
+      "backlog_id": "EVB-0118",
       "claim_id": "MECH-220",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "v3_exq_407_mech231_e2_short_horizon_1776099758_v3",
       "objective": "Reduce uncertainty for MECH-220 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0117",
+      "proposal_id": "EXP-0119",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_262_mech220_harm_hub",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2013,12 +2048,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0117",
+      "backlog_id": "EVB-0119",
       "claim_id": "ARC-045",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for ARC-045 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0118",
+      "proposal_id": "EXP-0120",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "v3_exq_242_sd017_sleep_phase_ablation",
@@ -2028,15 +2063,14 @@
       ]
     },
     {
-      "backlog_id": "EVB-0118",
+      "backlog_id": "EVB-0120",
       "claim_id": "ARC-039",
       "dispatch_mode": "targeted_probe",
-      "executed_by": "v3_exq_407_mech231_e2_short_horizon_1776099758_v3",
       "objective": "Reduce uncertainty for ARC-039 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0119",
+      "proposal_id": "EXP-0121",
       "proposal_type": "experimental",
-      "status": "executed",
+      "status": "proposed",
       "suggested_experiment_type": "v3_exq_214_arc039_entorhinal_consolidation_probe",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2044,12 +2078,12 @@
       ]
     },
     {
-      "backlog_id": "EVB-0119",
+      "backlog_id": "EVB-0121",
       "claim_id": "MECH-097",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for MECH-097 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0120",
+      "proposal_id": "EXP-0122",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "v3_exq_137_mech097_pps_commit_locus_pair",
@@ -2059,11 +2093,11 @@
       ]
     },
     {
-      "backlog_id": "EVB-0120",
+      "backlog_id": "EVB-0122",
       "claim_id": "MECH-122",
       "objective": "Improve literature grounding and confidence for MECH-122.",
       "priority": "medium",
-      "proposal_id": "LIT-0121",
+      "proposal_id": "LIT-0123",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -2077,19 +2111,19 @@
       "executed_by": "cowork-2026-04-04-d",
       "objective": "Improve literature grounding and confidence for Q-019.",
       "priority": "medium",
-      "proposal_id": "LIT-0122",
+      "proposal_id": "LIT-0124",
       "proposal_type": "literature_review",
       "status": "executed",
       "target_repo": "REE_assembly",
       "why_now": []
     },
     {
-      "backlog_id": "EVB-0121",
+      "backlog_id": "EVB-0123",
       "claim_id": "Q-025",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for Q-025 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0123",
+      "proposal_id": "EXP-0125",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_q_025",
@@ -2099,37 +2133,9 @@
       ]
     },
     {
-      "backlog_id": "EVB-0121",
+      "backlog_id": "EVB-0123",
       "claim_id": "Q-025",
       "objective": "Improve literature grounding and confidence for Q-025.",
-      "priority": "low",
-      "proposal_id": "LIT-0124",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "no_evidence_for_open_question"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0122",
-      "claim_id": "Q-026",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-026 via targeted experiment runs.",
-      "priority": "low",
-      "proposal_id": "EXP-0125",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_026",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "no_evidence_for_open_question"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0122",
-      "claim_id": "Q-026",
-      "objective": "Improve literature grounding and confidence for Q-026.",
       "priority": "low",
       "proposal_id": "LIT-0126",
       "proposal_type": "literature_review",
@@ -2140,24 +2146,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0123",
-      "claim_id": "Q-027",
+      "backlog_id": "EVB-0124",
+      "claim_id": "Q-026",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-027 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-026 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0127",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_027",
+      "suggested_experiment_type": "claim_probe_q_026",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0123",
-      "claim_id": "Q-027",
-      "objective": "Improve literature grounding and confidence for Q-027.",
+      "backlog_id": "EVB-0124",
+      "claim_id": "Q-026",
+      "objective": "Improve literature grounding and confidence for Q-026.",
       "priority": "low",
       "proposal_id": "LIT-0128",
       "proposal_type": "literature_review",
@@ -2168,24 +2174,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0124",
-      "claim_id": "Q-028",
+      "backlog_id": "EVB-0125",
+      "claim_id": "Q-027",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-028 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-027 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0129",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_028",
+      "suggested_experiment_type": "claim_probe_q_027",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0124",
-      "claim_id": "Q-028",
-      "objective": "Improve literature grounding and confidence for Q-028.",
+      "backlog_id": "EVB-0125",
+      "claim_id": "Q-027",
+      "objective": "Improve literature grounding and confidence for Q-027.",
       "priority": "low",
       "proposal_id": "LIT-0130",
       "proposal_type": "literature_review",
@@ -2196,24 +2202,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0125",
-      "claim_id": "Q-029",
+      "backlog_id": "EVB-0126",
+      "claim_id": "Q-028",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-029 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-028 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0131",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_029",
+      "suggested_experiment_type": "claim_probe_q_028",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0125",
-      "claim_id": "Q-029",
-      "objective": "Improve literature grounding and confidence for Q-029.",
+      "backlog_id": "EVB-0126",
+      "claim_id": "Q-028",
+      "objective": "Improve literature grounding and confidence for Q-028.",
       "priority": "low",
       "proposal_id": "LIT-0132",
       "proposal_type": "literature_review",
@@ -2224,24 +2230,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0126",
-      "claim_id": "Q-030",
+      "backlog_id": "EVB-0127",
+      "claim_id": "Q-029",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-030 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-029 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0133",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_030",
+      "suggested_experiment_type": "claim_probe_q_029",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0126",
-      "claim_id": "Q-030",
-      "objective": "Improve literature grounding and confidence for Q-030.",
+      "backlog_id": "EVB-0127",
+      "claim_id": "Q-029",
+      "objective": "Improve literature grounding and confidence for Q-029.",
       "priority": "low",
       "proposal_id": "LIT-0134",
       "proposal_type": "literature_review",
@@ -2252,24 +2258,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0127",
-      "claim_id": "Q-031",
+      "backlog_id": "EVB-0128",
+      "claim_id": "Q-030",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-031 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-030 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0135",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_031",
+      "suggested_experiment_type": "claim_probe_q_030",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0127",
-      "claim_id": "Q-031",
-      "objective": "Improve literature grounding and confidence for Q-031.",
+      "backlog_id": "EVB-0128",
+      "claim_id": "Q-030",
+      "objective": "Improve literature grounding and confidence for Q-030.",
       "priority": "low",
       "proposal_id": "LIT-0136",
       "proposal_type": "literature_review",
@@ -2280,24 +2286,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0128",
-      "claim_id": "Q-032",
+      "backlog_id": "EVB-0129",
+      "claim_id": "Q-031",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-032 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-031 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0137",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_032",
+      "suggested_experiment_type": "claim_probe_q_031",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0128",
-      "claim_id": "Q-032",
-      "objective": "Improve literature grounding and confidence for Q-032.",
+      "backlog_id": "EVB-0129",
+      "claim_id": "Q-031",
+      "objective": "Improve literature grounding and confidence for Q-031.",
       "priority": "low",
       "proposal_id": "LIT-0138",
       "proposal_type": "literature_review",
@@ -2308,24 +2314,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0129",
-      "claim_id": "Q-037",
+      "backlog_id": "EVB-0130",
+      "claim_id": "Q-032",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-037 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-032 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0139",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_037",
+      "suggested_experiment_type": "claim_probe_q_032",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0129",
-      "claim_id": "Q-037",
-      "objective": "Improve literature grounding and confidence for Q-037.",
+      "backlog_id": "EVB-0130",
+      "claim_id": "Q-032",
+      "objective": "Improve literature grounding and confidence for Q-032.",
       "priority": "low",
       "proposal_id": "LIT-0140",
       "proposal_type": "literature_review",
@@ -2336,24 +2342,24 @@
       ]
     },
     {
-      "backlog_id": "EVB-0130",
-      "claim_id": "Q-038",
+      "backlog_id": "EVB-0131",
+      "claim_id": "Q-037",
       "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for Q-038 via targeted experiment runs.",
+      "objective": "Reduce uncertainty for Q-037 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0141",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_038",
+      "suggested_experiment_type": "claim_probe_q_037",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
       ]
     },
     {
-      "backlog_id": "EVB-0130",
-      "claim_id": "Q-038",
-      "objective": "Improve literature grounding and confidence for Q-038.",
+      "backlog_id": "EVB-0131",
+      "claim_id": "Q-037",
+      "objective": "Improve literature grounding and confidence for Q-037.",
       "priority": "low",
       "proposal_id": "LIT-0142",
       "proposal_type": "literature_review",
@@ -2364,12 +2370,40 @@
       ]
     },
     {
-      "backlog_id": "EVB-0131",
+      "backlog_id": "EVB-0132",
+      "claim_id": "Q-038",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for Q-038 via targeted experiment runs.",
+      "priority": "low",
+      "proposal_id": "EXP-0143",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_q_038",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0132",
+      "claim_id": "Q-038",
+      "objective": "Improve literature grounding and confidence for Q-038.",
+      "priority": "low",
+      "proposal_id": "LIT-0144",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0133",
       "claim_id": "Q-039",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for Q-039 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0143",
+      "proposal_id": "EXP-0145",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_q_039",
@@ -2379,11 +2413,11 @@
       ]
     },
     {
-      "backlog_id": "EVB-0131",
+      "backlog_id": "EVB-0133",
       "claim_id": "Q-039",
       "objective": "Improve literature grounding and confidence for Q-039.",
       "priority": "low",
-      "proposal_id": "LIT-0144",
+      "proposal_id": "LIT-0146",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -2732,8 +2766,8 @@
       "target_repo": "ree-v3"
     }
   ],
-  "n_executed": 87,
-  "n_proposed_exp": 61,
+  "n_executed": 88,
+  "n_proposed_exp": 62,
   "n_proposed_lit": 27,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

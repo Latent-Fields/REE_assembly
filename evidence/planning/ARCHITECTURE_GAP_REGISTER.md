@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-04-16T16:38:03.853152Z`
+Generated: `2026-04-16T17:09:49.079955Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -16,7 +16,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0007` | `SD-012` | `candidate` | 0.842 | 0 | 0.269 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0008` | `SD-005` | `implemented` | 0.815 | 0.333 | 0.179 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0009` | `ARC-032` | `candidate` | 0.8 | 0.143 | 0.399 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0010` | `MECH-073` | `candidate` | 0.8 | 0.6 | -0.083 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0010` | `MECH-073` | `candidate` | 0.8 | 0.6 | -0.082 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0011` | `MECH-116` | `candidate` | 0.8 | 0 | 0.398 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0012` | `MECH-186` | `candidate` | 0.8 | 0 | 0.419 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0013` | `Q-002` | `active` | 0.8 | 0 | 0.383 | 0 | no | no | `mandatory_decision_checkpoint` |
@@ -33,7 +33,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0024` | `MECH-070` | `retiring` | 0.286 | 0.75 | 0.319 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0025` | `INV-045` | `candidate` | 0 | 1 | 0.254 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0026` | `INV-053` | `stable` | 0 | 0.5 | -0.045 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0027` | `MECH-177` | `candidate` | 0 | 0.5 | 0.775 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0027` | `MECH-177` | `candidate` | 0 | 0.5 | 0.774 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0028` | `MECH-181` | `candidate` | 0 | 0.5 | 0.722 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0029` | `MECH-187` | `candidate` | 0 | 0.5 | 0.084 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0030` | `Q-006` | `active` | 0 | 0.5 | 0.295 | 0 | no | no | `monitor_and_collect_targeted_evidence` |

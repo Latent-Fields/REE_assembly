@@ -1,13 +1,13 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-16T16:38:03.853152Z`
+Generated: `2026-04-16T17:09:49.079955Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
 
 | claim_id | conflict_types | supports | weakens | conflict_ratio | latest | entries_considered |
 |---|---|---|---|---|---|---|
-| `ARC-007` | directional, source_disagreement, mixed_evidence | 20 | 7 | 0.519 | `2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005` | 33 |
+| `ARC-007` | directional, source_disagreement, mixed_evidence | 22 | 7 | 0.483 | `2026-04-16_arc_007_hippocampal_anterior_thalamic_pathways_aggleton2010` | 35 |
 | `ARC-016` | directional, source_disagreement, mixed_evidence | 15 | 16 | 0.968 | `v3_exq_396a_arc016_precision_sweep_rv_fix_20260414T211102Z_v3` | 36 |
 | `ARC-018` | directional | 15 | 3 | 0.333 | `v3_exq_196_arc018_rollout_viability_pair_20260404T164611Z_v3` | 20 |
 | `ARC-024` | directional, mixed_evidence | 15 | 9 | 0.75 | `v3_exq_071d_rollout_batched_attribution_20260401T232311Z_v3` | 35 |
@@ -73,13 +73,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-007
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=20, weakens=7, conflict_ratio=0.519, overall_confidence=0.767
+- Evidence breakdown: supports=22, weakens=7, conflict_ratio=0.483, overall_confidence=0.769
 - Recent entries:
-  - `2026-04-14T18:30:00Z` `literature` `targeted_review_hippocampal_valence_asymmetry` direction=`supports` confidence=0.79
-  - `2026-04-14T18:30:00Z` `literature` `targeted_review_hippocampal_valence_asymmetry` direction=`supports` confidence=0.82
   - `2026-04-14T18:30:00Z` `literature` `targeted_review_hippocampal_valence_asymmetry` direction=`supports` confidence=0.85
   - `2026-04-14T18:30:00Z` `literature` `targeted_review_hippocampal_valence_asymmetry` direction=`supports` confidence=0.78
   - `2026-04-14T18:30:00Z` `literature` `targeted_review_hippocampal_valence_asymmetry` direction=`supports` confidence=0.75
+  - `2026-04-16T09:00:00Z` `literature` `targeted_review_papez_circuit_write_gating` direction=`supports` confidence=0.78
+  - `2026-04-16T09:05:00Z` `literature` `targeted_review_papez_circuit_write_gating` direction=`supports` confidence=0.76
 - Recurring failure signatures:
   - `v2_verdict_fail:path_memory_ablation` (1)
   - `The paper does not provide evidence that harm or causal attribution specifically is used as an organising axis for hippocampal maps — the non-spatial examples are relational/semantic, not harm-weighted.` (1)
