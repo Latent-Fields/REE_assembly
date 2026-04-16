@@ -170,7 +170,8 @@
     "sws_consolidation_steps": 8,
     "rem_attribution_steps": 6
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "This manifest was a dry_run (2 episodes, 0 sleep cycles). Script is correct; dry_run flag caused n_sleep_cycles=0 and criteria to fail trivially. Superseded by the runner's full execution of V3-EXQ-429 (pending in queue).",
   "summary": "INV-044 test: ORDERED (SWS-then-REM) vs REM_ONLY vs WAKING_ONLY. C1 checks ordered condition installs differentiated context priors (slot_diversity > 0.05). C2 checks ordering advantage over no-sleep baseline. PASS = prior construction before posterior inference yields measurably more differentiated representations, supporting INV-044.",
   "scenario": "Three-arm discriminative probe of prior-before-posterior ordering necessity",
   "interpretation": "PASS supports INV-044: SWS slot-formation builds context attractors that online encoding and REM-without-SWS cannot build. The degenerate prior (REM_ONLY) leaves ContextMemory undifferentiated (cosine_sim near 1.0). FAIL would suggest the ordering constraint is not computationally binding in the current substrate, weakening the invariant claim."

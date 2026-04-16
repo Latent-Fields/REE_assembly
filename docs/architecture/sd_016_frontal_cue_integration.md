@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-016
 **Subject:** `e1.frontal_cue_indexed_integration`
-**Status:** PENDING -- not yet implemented
+**Status:** IMPLEMENTED -- 2026-04-16
 **Registered:** 2026-03-31
 **Depends on:** SD-005, SD-010, ARC-035
 **Blocks:** MECH-150, MECH-151, MECH-152, ARC-041, INV-040 (cannot be validated until implemented)

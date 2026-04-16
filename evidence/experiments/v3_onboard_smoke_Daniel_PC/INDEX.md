@@ -1,6 +1,6 @@
 # Experiment Index: v3_onboard_smoke_Daniel_PC
 
-Generated: `2026-04-16T21:14:47.699127Z`
+Generated: `2026-04-16T21:57:58.781126Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

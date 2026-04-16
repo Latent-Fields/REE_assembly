@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-16T21:14:47.699127Z`
+Generated: `2026-04-16T21:57:58.781126Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -192,7 +192,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-030
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=10, weakens=6, conflict_ratio=0.75, overall_confidence=0.745
+- Evidence breakdown: supports=10, weakens=6, conflict_ratio=0.75, overall_confidence=0.744
 - Recent entries:
   - `2026-04-10T12:00:00Z` `literature` `targeted_review_connectome_arc_030` direction=`supports` confidence=0.85
   - `2026-04-10T12:00:00Z` `literature` `targeted_review_connectome_arc_030` direction=`supports` confidence=0.83
@@ -597,7 +597,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-111
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.534
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.533
 - Recent entries:
   - `2026-03-28T14:53:19Z` `experimental` `v3_exq_073b_mech111_novelty_signal` direction=`mixed` confidence=0.5
   - `2026-03-29T04:34:58Z` `experimental` `v3_exq_141_mech111_novelty_drive_pair` direction=`weakens` confidence=0.75
