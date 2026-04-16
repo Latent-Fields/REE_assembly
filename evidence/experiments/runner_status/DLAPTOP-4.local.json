@@ -1,36 +1,10 @@
 {
   "schema_version": "v1",
-  "runner_pid": 26389,
+  "runner_pid": null,
   "runner_started_at": "2026-04-13T14:16:20.395523+00:00",
-  "last_updated": "2026-04-14T18:03:16.163754+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-328a",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "MECH-112 z_goal structured latent fix: correct seeding signal + drive ablation threshold",
-    "description": "",
-    "script": "experiments/v3_exq_328a_mech112_zgoal_structured_latent.py",
-    "started_at": "2026-04-14T13:50:42.478765+00:00",
-    "progress": {
-      "run_label": "Seed 13 / DRIVE_ABLATED",
-      "runs_done": 0,
-      "runs_total": 6,
-      "episodes_done": 200,
-      "episodes_total": 250,
-      "overall_pct": 13.3
-    },
-    "seconds_elapsed": 15154,
-    "seconds_remaining": 64634,
-    "recent_lines": [
-      "Seed 13 Condition DRIVE_ABLATED",
-      "[train] seed=13 DRIVE_ABLATED ep 50/250 phase=P0 contacts=0",
-      "[train] seed=13 DRIVE_ABLATED ep 100/250 phase=P0 contacts=0",
-      "[train] seed=13 DRIVE_ABLATED ep 150/250 phase=P0 contacts=0",
-      "[train] seed=13 DRIVE_ABLATED ep 200/250 phase=P1 contacts=9"
-    ],
-    "ree_version": "v3"
-  },
+  "last_updated": "2026-04-15T19:25:28.178931+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-407",
@@ -39,83 +13,6 @@
       "title": "MECH-231 E2 short-horizon efference-copy discriminative pair",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-328a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-112 z_goal structured latent fix: correct seeding signal + drive ablation threshold",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-365",
-      "backlog_id": "EVB-0056",
-      "claim_id": "MECH-104",
-      "title": "MECH-104 surprise gate: discriminative support vs ablation pair (5-seed replication)",
-      "description": "",
-      "estimated_minutes": 400.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-355",
-      "backlog_id": "EVB-0051",
-      "claim_id": "ARC-038",
-      "title": "ARC-038 schema assimilation: discriminative support vs ablation pair",
-      "description": "",
-      "estimated_minutes": 80.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-385",
-      "backlog_id": "EVB-0070",
-      "claim_id": "INV-049",
-      "title": "INV-049 offline consolidation necessity: sleep ablation probe",
-      "description": "",
-      "estimated_minutes": 184.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-332",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-216 genuinely predictive wanting: future-target supervision + resource visibility attenuation",
-      "description": "",
-      "estimated_minutes": 192.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-330a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-013 contrastive counterfactual retest: interventional_fraction=0.5 (EXQ-330 fix)",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-353",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-033/SD-003/SD-013 interventional vs observational training comparison",
-      "description": "",
-      "estimated_minutes": 200.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5372,6 +5269,105 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 10448.9
+    },
+    {
+      "queue_id": "V3-EXQ-328a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 z_goal structured latent fix: correct seeding signal + drive ablation threshold",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: t0=6.3229 t50=6.3229 ablated=0.0000 n_contacts=21 | verdict: t0=1.3469 t50=1.3469 ablated=1.3974 n_contacts=21 | === EXQ-328a PASS ===",
+      "started_at": "2026-04-14T13:50:42.478765+00:00",
+      "completed_at": "2026-04-14T18:12:18.242797+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 15695.7
+    },
+    {
+      "queue_id": "V3-EXQ-365",
+      "backlog_id": "EVB-0056",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 surprise gate: discriminative support vs ablation pair (5-seed replication)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed21_on_n_harm_steps: 197.0 | seed21_off_harm_spike: 0.0 | seed21_off_n_harm_steps: 226.0",
+      "started_at": "2026-04-14T18:12:22.183314+00:00",
+      "completed_at": "2026-04-14T20:38:27.269143+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_365_mech104_surprise_gate_pair/v3_exq_365_mech104_surprise_gate_pair_20260414T181223Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 8765.0
+    },
+    {
+      "queue_id": "V3-EXQ-355",
+      "backlog_id": "EVB-0051",
+      "claim_id": "ARC-038",
+      "title": "ARC-038 schema assimilation: discriminative support vs ablation pair",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[train] CONSOLIDATION_ABLATED seed=68 ep 100/100 [P1] harm_rate=0.0004 consol_loss=0.00000 | verdict: [CONSOLIDATION_ABLATED seed=68] P0=0.0006 P1=0.0005 centers=32 consol_loss=0.00000 PASS | verdict: FAIL",
+      "started_at": "2026-04-14T20:39:43.867631+00:00",
+      "completed_at": "2026-04-14T22:02:08.987671+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4945.1
+    },
+    {
+      "queue_id": "V3-EXQ-385",
+      "backlog_id": "EVB-0070",
+      "claim_id": "INV-049",
+      "title": "INV-049 offline consolidation necessity: sleep ablation probe",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_OFFLINE seed=56 slot_div=1.0077 late_pred_loss=0.0000 eval_harm_rate=0.0692 | verdict: C1_slot_diversity=False (0/3 seeds), C2_pred_loss=False (0/3 seeds), C3_harm=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-14T22:02:39.129170+00:00",
+      "completed_at": "2026-04-14T22:03:09.571889+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 30.4
+    },
+    {
+      "queue_id": "V3-EXQ-332",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-216 genuinely predictive wanting: future-target supervision + resource visibility attenuation",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "CUE_ON  landmark_prox_corr:    -0.2599 | ABLATED future_target_corr:    0.0046 | ABLATED resource_prox_corr:    0.1131",
+      "started_at": "2026-04-14T22:03:40.332183+00:00",
+      "completed_at": "2026-04-14T23:42:06.051935+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 5905.7
+    },
+    {
+      "queue_id": "V3-EXQ-330a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-013 contrastive counterfactual retest: interventional_fraction=0.5 (EXQ-330 fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS forward_r2=0.999 cf_gap=0.1591 sign_correct=1.000 | === EXQ-330a FAIL === | C3 sign_correct: True (vals=['1.000', '1.000', '1.000'])",
+      "started_at": "2026-04-14T23:42:20.944919+00:00",
+      "completed_at": "2026-04-15T06:09:17.140699+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 23216.1
+    },
+    {
+      "queue_id": "V3-EXQ-353",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-033/SD-003/SD-013 interventional vs observational training comparison",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: forward_r2=0.999 cf_gap=0.1732 cf_shuffled=0.0000 cf_gap_ratio=173215.4 sign_correct=1.000 | === EXQ-353 PASS === | C4 sign_correct (INTV >= 0.6): True",
+      "started_at": "2026-04-15T06:09:43.704539+00:00",
+      "completed_at": "2026-04-15T13:24:50.296569+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 26106.4
     }
-  ]
+  ],
+  "draining": false
 }

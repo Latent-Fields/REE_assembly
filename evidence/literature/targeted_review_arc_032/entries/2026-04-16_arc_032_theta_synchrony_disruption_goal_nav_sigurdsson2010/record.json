@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_032",
+  "entry_id": "2026-04-16_arc_032_theta_synchrony_disruption_goal_nav_sigurdsson2010",
+  "timestamp_utc": "2026-04-16T18:15:00Z",
+  "claim_ids_tested": ["ARC-032"],
+  "source": {
+    "title": "Impaired hippocampal-prefrontal synchrony in a genetic mouse model of schizophrenia",
+    "authors": ["Sigurdsson T", "Stark KL", "Karayiorgou M", "Gogos JA", "Gordon JA"],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature08855",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2864584/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Sigurdsson et al. provide the strongest available causal evidence that hippocampal-prefrontal theta synchrony is *necessary* for goal-directed navigation learning. By using a genetic model (Df(16)A+/- mice, 22q11.2 microdeletion) that selectively impairs this synchrony, they show that reduced theta coupling at task onset predicts slower goal acquisition and that the synchrony deficit correlates with, not just accompanies, behavioural impairment. This is the disruption angle explicitly targeted in the lit-pull request: when the frontal-hippocampal theta channel is degraded, goal navigation fails. The Nature venue and causal genetic design elevate source quality significantly above correlational recording studies. Mapping fidelity is moderate: the schizophrenia model may have circuit-level impairments beyond the theta channel, and the task (T-maze spatial WM) tests acquisition rather than maintenance of goal-directed navigation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Df(16)A+/- mice have additional impairments (e.g. motor deficits, reward processing deficits) that explain the navigation failure independently of theta synchrony, the causal interpretation would be confounded",
+    "If theta synchrony is impaired in this model but only as a downstream consequence of hippocampal or prefrontal dysfunction, rather than a primary mechanism, the coupling itself may be epiphenomenal",
+    "If theta coherence deficits are transient during learning onset but recover at asymptote, the mechanism may support acquisition but not ongoing goal maintenance, limiting applicability to the ThetaBuffer steady-state framing in ARC-032"
+  ],
+  "tags": ["arc_032", "theta_oscillations", "prefrontal_hippocampal", "goal_directed", "disruption", "schizophrenia", "sigurdsson", "gordon", "causal"],
+  "mapping": {
+    "source_claim_statement": "Df(16)A+/- mice modeling a 22q11.2 schizophrenia-risk microdeletion show significantly reduced theta-frequency coherence between hippocampus and prefrontal cortex during a spatial working memory T-maze task. Pre-training theta coherence predicted the rate of task acquisition: mice with lower initial coherence took longer to learn. The impaired animals showed weaker phase-locking of prefrontal neurons to hippocampal theta oscillations. Disruption of this coupling is sufficient to impair goal-directed spatial navigation.",
+    "ree_translation": "ARC-032 claims that the frontal-hippocampal theta channel (E1 ThetaBuffer -> E3 trajectory scoring) is the primary pathway for goal context delivery. Sigurdsson et al. provide the loss-of-function complement to the correlational evidence: when the theta synchrony channel is structurally degraded, goal-directed learning fails. In REE terms, this corresponds to what would happen if the MECH-089 ThetaBuffer were ablated or degraded -- E3 would be navigating without reliable goal-context input, producing undirected or random trajectories. The paper quantifies a direct relationship between theta channel integrity and goal-navigation competence.",
+    "mapping_caveat": "The Df(16)A+/- model affects multiple circuit components simultaneously; the theta coherence impairment is the most prominent measure but may not be the sole cause of the navigation deficit. The mouse mPFC-hippocampal circuit is an analog of the rat/primate system but with additional species and pathological transfer risks. The task tests acquisition (learning to navigate to a goal) rather than maintenance (using a stable goal representation), which may engage somewhat different aspects of the E1-E3 theta channel.",
+    "source_context": "Df(16)A+/- genetic mouse model (22q11.2 microdeletion, schizophrenia risk); spatial working memory T-maze; simultaneous hippocampal CA1 and medial PFC LFP recording; theta coherence and unit phase-locking analysis; comparison of wild-type vs. mutant during task acquisition across multiple days."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.38,
+    "notes": "Nature venue, strong causal genetic design, pre-training coherence as predictor is particularly compelling evidence of necessity. Mapping fidelity moderately reduced because the task is acquisition-focused and the model has pathological circuit changes that could confound a clean mapping to the REE ThetaBuffer mechanism. Transfer risk elevated by pathological model: the disruption of theta synchrony in a schizophrenia mouse is not the same as ablating the theta channel in a healthy navigating agent."
+  }
+}

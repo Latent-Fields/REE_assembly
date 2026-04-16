@@ -131,8 +131,6 @@ Recent failure runs:
 - `20260226T194415_claim_probe_mech_057_ree_v1_minimal` at `2026-02-26T19:44:15Z` signatures: mech057:attribution_loop_not_differentiated, mech057:gating_loop_not_differentiated
 
 Recurring signatures:
-- `ledger_editing` occurred in 4 FAIL run(s); latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`
-- `domination_lock_in` occurred in 4 FAIL run(s); latest `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal`
 - `mech057:attribution_loop_not_differentiated` occurred in 2 FAIL run(s); latest `20260226T222404_claim_probe_mech_057_ree_v1_minimal`
 - `mech057:gating_loop_not_differentiated` occurred in 2 FAIL run(s); latest `20260226T222404_claim_probe_mech_057_ree_v1_minimal`
 - `mech057:action_prediction_gap` occurred in 1 FAIL run(s); latest `exp_0025_20260225T191852357612Z`
@@ -141,10 +139,10 @@ Recurring signatures:
 - `v2_verdict_fail:attribution_completion_gating` occurred in 1 FAIL run(s); latest `20260315T094933_attribution_completion_gating_v2`
 
 Suggested design TODOs:
-- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (4 FAIL run(s), latest `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech057:attribution_loop_not_differentiated` (2 FAIL run(s), latest `20260226T222404_claim_probe_mech_057_ree_v1_minimal`).
 - [ ] Investigate signature `mech057:gating_loop_not_differentiated` (2 FAIL run(s), latest `20260226T222404_claim_probe_mech_057_ree_v1_minimal`).
 - [ ] Investigate signature `mech057:action_prediction_gap` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
 - [ ] Investigate signature `mech057:consequence_model_drift` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
+- [ ] Investigate signature `mech057:lineage_integrity_drop` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
+- [ ] Investigate signature `v2_verdict_fail:attribution_completion_gating` (1 FAIL run(s), latest `20260315T094933_attribution_completion_gating_v2`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

@@ -12,17 +12,11 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `2026-02-21T150650Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal` at `2026-02-21T15:06:50Z` signatures: q017:control_axis_stability_drop, q017:control_axis_entropy_collapse
-- `2026-02-21T150650Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal` at `2026-02-21T15:06:50Z` signatures: q017:control_axis_stability_drop, q017:control_axis_policy_loss_spike, q017:control_axis_entropy_collapse
-- `2026-02-21T150650Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal` at `2026-02-21T15:06:50Z` signatures: q017:control_axis_stability_drop, q017:control_axis_policy_loss_spike, q017:control_axis_entropy_collapse
+- `exp_0001_20260215T180629490159Z` at `2026-02-15T18:06:29.490159Z` signatures: none
+- `exp_0001_20260215T173859397881Z` at `2026-02-15T17:38:59.397881Z` signatures: none
+- `exp_0033_20260215T164313755068Z` at `2026-02-15T16:43:13.755068Z` signatures: none
 
 Recurring signatures:
-- `q017:control_axis_stability_drop` occurred in 36 FAIL run(s); latest `2026-02-21T150650Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`
-- `q017:control_axis_entropy_collapse` occurred in 36 FAIL run(s); latest `2026-02-21T150650Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`
-- `q017:control_axis_policy_loss_spike` occurred in 25 FAIL run(s); latest `2026-02-21T150650Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal`
 
 Suggested design TODOs:
-- [ ] Investigate signature `q017:control_axis_stability_drop` (36 FAIL run(s), latest `2026-02-21T150650Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`).
-- [ ] Investigate signature `q017:control_axis_entropy_collapse` (36 FAIL run(s), latest `2026-02-21T150650Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`).
-- [ ] Investigate signature `q017:control_axis_policy_loss_spike` (25 FAIL run(s), latest `2026-02-21T150650Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

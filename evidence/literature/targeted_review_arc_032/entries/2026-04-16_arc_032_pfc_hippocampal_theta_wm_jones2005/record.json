@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_032",
+  "entry_id": "2026-04-16_arc_032_pfc_hippocampal_theta_wm_jones2005",
+  "timestamp_utc": "2026-04-16T18:10:00Z",
+  "claim_ids_tested": ["ARC-032"],
+  "source": {
+    "title": "Theta Rhythms Coordinate Hippocampal-Prefrontal Interactions in a Spatial Memory Task",
+    "authors": ["Jones MW", "Wilson MA"],
+    "year": 2005,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.0030402",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1283536/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Jones & Wilson provide the clearest available evidence that theta-frequency coupling is the mechanism by which mPFC and hippocampus coordinate during goal-directed spatial working memory. The critical finding for ARC-032 is that the theta coherence increase is task-selective: it is elevated during working memory choice epochs versus forced-turn epochs that require navigation without memory retrieval. This selectivity -- theta coupling tracks goal-context demand, not locomotion per se -- directly supports the ARC-032 claim that theta packaging is the goal-communication channel between the frontal E1 module and hippocampal E3. Source quality is high (tetrode recordings from both structures simultaneously, clear behavioural dissociation). Mapping fidelity is moderate-high: the mPFC recording locus in rat corresponds most closely to the vmPFC/prelimbic cortex rather than DLPFC, but the functional analogy to E1 goal-context maintenance is defensible given that rat mPFC implements working memory for spatial goals.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If mPFC-hippocampal theta coherence during choice epochs reflects hippocampal drive of mPFC (hippocampus setting the rhythm, mPFC receiving) rather than frontal goal signal delivery, the directional framing of ARC-032 would be reversed",
+    "If theta coherence is equally elevated during non-memory tasks that require similar locomotion speed, the goal-context specificity would be undermined",
+    "If disruption of mPFC activity abolishes theta coherence but not hippocampal navigation, the coherence may be epiphenomenal to goal encoding rather than causal"
+  ],
+  "tags": ["arc_032", "theta_oscillations", "prefrontal_hippocampal", "spatial_working_memory", "goal_directed", "coherence", "jones", "wilson"],
+  "mapping": {
+    "source_claim_statement": "Correlated firing between hippocampal CA1 and medial prefrontal cortex is selectively enhanced during spatial working memory demands. CA1-mPFC theta LFP coherence peaked during memory-dependent choice epochs (0.32) compared to forced-turn epochs (0.19), and prefrontal neurons showed stronger phase-locking to hippocampal theta during correct vs. error trials. The coordination is task-selective, not a function of locomotion.",
+    "ree_translation": "The theta channel between E1 (frontal working memory, mPFC analog) and E3 (hippocampal navigator, CA1 analog) is specifically recruited when goal-context information must guide trajectory selection. ARC-032 posits that E1 goal-context is delivered to E3 via the MECH-089 ThetaBuffer -- a slow (theta-rate) packaging mechanism. Jones & Wilson's task selectivity finding supports the claim that this channel is not a constant oscillatory coupling but a demand-sensitive communication pathway that activates when goal context is required for decision-making.",
+    "mapping_caveat": "Recording locus is rat prelimbic/infralimbic mPFC rather than primate DLPFC. Rat mPFC working memory content (recent spatial choice) is narrower than the E1 goal context described in REE (maintained goal identity across many steps). The study cannot distinguish whether mPFC is sending goal context to hippocampus or hippocampus is sending spatial state to mPFC -- the coherence measure is symmetric. The causal direction of theta-coupled information flow remains an inference here.",
+    "source_context": "Rat spatial working memory T-maze (continuous alternation); tetrode recordings from hippocampal CA1 and medial PFC simultaneously; comparison across working memory choice epochs, forced-turn epochs, and baseline periods; 4-12 Hz theta LFP coherence and unit phase-locking analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "High source quality: PLoS Biology, rigorous simultaneous recording design, clean behavioural dissociation between WM and non-WM epochs. Mapping fidelity good: the task selectivity finding (theta coherence up during goal-context demand) is the core prediction of ARC-032's theta channel. Transfer risk modest: rat-to-REE transfer requires accepting that prelimbic mPFC is a functional analog of E1's LSTM goal-context buffer, which is reasonable but not identical."
+  }
+}

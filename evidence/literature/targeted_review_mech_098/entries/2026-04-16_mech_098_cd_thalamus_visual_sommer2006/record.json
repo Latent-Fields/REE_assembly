@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_098",
+  "entry_id": "2026-04-16_mech_098_cd_thalamus_visual_sommer2006",
+  "timestamp_utc": "2026-04-16T16:40:00Z",
+  "claim_ids_tested": ["MECH-098"],
+  "source": {
+    "title": "Influence of the thalamus on spatial visual processing in frontal cortex",
+    "authors": ["Marc A. Sommer", "Robert H. Wurtz"],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature05279",
+    "url": "https://doi.org/10.1038/nature05279"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.92,
+  "confidence_rationale": "High-impact Nature paper. Demonstrates causal link between thalamic corollary discharge (SC->MD->FEF) and spatial visual processing: (1) temporal/spatial properties of thalamic CD predict FEF receptive field shifts before saccades, and (2) MD inactivation impairs the spatial visual processing of individual FEF neurons. Establishes that efference copy from thalamus directly modulates how cortex processes incoming visual input -- the first direct causal bridge between corollary discharge and visual perception. Very high source quality and mapping fidelity for MECH-098.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study focuses on predictive remapping of visual receptive fields before saccades -- a spatial updating function; it does not directly test subtraction of reafferent optic flow components from world-state representations.",
+    "Domain remains oculomotor; the mechanism for full-body locomotion or egocentric perspective shifts during navigation is not directly studied."
+  ],
+  "tags": [
+    "mech_098",
+    "corollary_discharge",
+    "thalamus",
+    "mediodorsal_thalamus",
+    "frontal_eye_field",
+    "visual_processing",
+    "predictive_remapping",
+    "efference_copy",
+    "spatial_visual_stability",
+    "primate"
+  ],
+  "mapping": {
+    "source_claim_statement": "The mediodorsal thalamus relays a corollary discharge of saccades from superior colliculus to frontal eye field; this thalamic CD drives predictive shifts in the visual receptive fields of FEF neurons, and inactivating the thalamic relay causally impairs those spatial visual processing changes.",
+    "ree_translation": "MECH-098 asserts that the encoder subtracts predicted self-caused sensory change (from the efference copy via E2_self) before E2_world operates, so that only genuine world-state changes are represented in z_world. This paper establishes the biological circuit: the thalamic corollary discharge arrives at frontal cortex before the saccade, and its spatial/temporal properties match the visual processing changes seen in cortex. When the CD is removed, cortical visual processing is degraded. This is exactly the cancellation mechanism: the efference copy signal reaching cortex is used to anticipate and suppress the incoming reafferent signal. The causal inactivation result (FEF neurons lose their predictive remapping when thalamic CD is blocked) is the strongest available evidence for the functional necessity of the efference-copy-to-cortex route.",
+    "mapping_caveat": "Predictive remapping of receptive fields is a spatial updating operation (where will the stimulus be after my saccade?) rather than a subtraction of self-motion optic flow from the visual stream. These are related but distinguishable mechanisms. For full MECH-098 coverage, the optic flow cancellation in MSTd (Gu 2008, covered in reafference_streams directory) is the more direct match; Sommer 2006 covers the cortical-level causal mechanism by which efference copy reaches and modulates visual cortex.",
+    "source_context": "Macaque macaca mulatta; oculomotor tasks including delayed saccades; single-unit electrophysiology + muscimol inactivation of mediodorsal thalamus during cortical recording"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Nature-level paper, causal design, high replication status. Mapping fidelity slightly below 1.0 because predictive remapping and reafference flow cancellation are related but distinguishable operations. Transfer risk low: the causal link between efference copy and cortical visual modulation is a general principle confirmed in multiple species and modalities."
+  }
+}

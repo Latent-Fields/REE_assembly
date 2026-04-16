@@ -207,7 +207,7 @@ realized-outcome channel — which drives residue accumulation — is suppressed
 different affective texture of imagination vs. real experience is the phenomenological signature
 of this suppression: the absence of the full somatic post-commit signal. φ(z) is read during
 imagination (producing attenuated aversive affect), but not written to.
-Pathological failure: loss of the hypothesis tag (PTSD flashback, psychosis) opens the
+Pathological failure: loss of the hypothesis tag (confabulation: simulated replay written as real experience -- MECH-094; distinct from psychosis MECH-244 and hallucination MECH-245) opens the
 post-commit channel during replay, accumulating residue from simulated content (MECH-076).
 The damage in rumination is tag loss, not excessive vividness.
 	4.	Hypothesis tagging

@@ -101,20 +101,8 @@ Suggested run_id suffix pattern:
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
 - `20260226T194240_claim_probe_mech_056_ree_v1_minimal` at `2026-02-26T19:42:40Z` signatures: none
-- `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal` at `2026-02-22T20:37:15Z` signatures: ledger_editing, domination_lock_in
-- `2026-02-22T203713Z_claim-probe-mech-056_seed11_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal` at `2026-02-22T20:37:13Z` signatures: ledger_editing, domination_lock_in
 
 Recurring signatures:
-- `ledger_editing` occurred in 35 FAIL run(s); latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`
-- `domination_lock_in` occurred in 26 FAIL run(s); latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`
-- `explanation_policy_divergence` occurred in 18 FAIL run(s); latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`
-- `mech056:valence_mapping_competition` occurred in 3 FAIL run(s); latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`
-- `mech056:latent_geometry_distortion` occurred in 3 FAIL run(s); latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`
 
 Suggested design TODOs:
-- [ ] Investigate signature `ledger_editing` (35 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (26 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `explanation_policy_divergence` (18 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech056:valence_mapping_competition` (3 FAIL run(s), latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech056:latent_geometry_distortion` (3 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

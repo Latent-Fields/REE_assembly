@@ -4102,7 +4102,7 @@
 # Registered 2026-03-15 — imagination / residue write gate cluster
 # Source: phenomenological analysis of imagination vs experience distinction
 - id: MECH-094
-  title: "Hypothesis tag is a categorical write gate separating simulation from committed residue updates; tag loss is the PTSD mechanism."
+  title: "Hypothesis tag is a categorical write gate separating simulation from committed residue updates; tag loss is the confabulation mechanism (simulated events written to hippocampal terrain as if real)."
   claim_type: mechanism_hypothesis
   subject: default_mode.hypothesis_tag_residue_write_gate
   polarity: asserts
@@ -4125,23 +4125,26 @@
     - docs/architecture/default_mode.md
     - docs/architecture/control_plane_heartbeat.md
   notes: >
-    The hypothesis tag — marking internally generated trajectories as non-committal —
+    The hypothesis tag -- marking internally generated trajectories as non-committal --
     is the primary mechanism implementing ARC-014 constraint 3 (no residue update
     during Default Mode). The tag is categorical, not a precision attenuation parameter:
-    it routes simulation signals away from the φ(z) write pathway entirely. Attenuation
-    of φ(z) readout during imagination is a secondary effect; route separation is primary.
+    it routes simulation signals away from the phi(z) write pathway entirely. Attenuation
+    of phi(z) readout during imagination is a secondary effect; route separation is primary.
     Mechanism: during DMN/simulation, only the pre-commit error channel (MECH-060) is
-    active; the post-commit realized-outcome channel — which drives residue accumulation
-    — is suppressed. The qualitatively different affective texture of imagination vs.
+    active; the post-commit realized-outcome channel -- which drives residue accumulation
+    -- is suppressed. The qualitatively different affective texture of imagination vs.
     real experience is the phenomenological signature of this channel suppression: the
     absence of the full somatic/post-commit signal. Implements INV-011 (imagination without
     belief update) and INV-019 (rehearsal/durable-update separation) at the mechanism
-    level. Pathological failure: when the hypothesis tag is lost (PTSD flashback,
-    psychosis), the post-commit channel opens during what is structurally a replay event,
-    and φ(z) begins accumulating residue from simulated/replayed content — the mechanism
-    of MECH-076 (map structural deformation). The damage in rumination is tag loss, not
-    excessive vividness. Simulation-driven viability map updates (MECH-092) are safe
-    precisely because replay carries the hypothesis tag throughout.
+    level. Pathological failure: when the hypothesis tag is lost (confabulation: simulated
+    or replayed content accumulates in phi(z) as if real experience), the post-commit
+    channel opens during what is structurally a replay event, and phi(z) begins
+    accumulating residue from simulated/replayed content -- the mechanism of MECH-076
+    (map structural deformation). The damage in rumination is tag loss, not excessive
+    vividness. This is mechanistically distinct from psychosis (prior-dominated precision
+    failure, MECH-244) and hallucination (generative prediction without sensory grounding,
+    MECH-245), which require separate mechanisms. Simulation-driven viability map updates
+    (MECH-092) are safe precisely because replay carries the hypothesis tag throughout.
 # Registered 2026-03-15 — control plane heartbeat architecture cluster
 # Source: conversation developing heartbeat model from MECH-057a FAIL analysis
 - id: ARC-023
@@ -15387,3 +15390,70 @@
     where approach (move toward) and avoidance (move away) can be measured as
     independent output dimensions during simultaneous motivational conflict.
     Deferred to V4 accordingly.
+
+# Registered 2026-04-16 -- psychiatric failure mode cluster (confabulation/psychosis/hallucination distinction)
+# Source: clinician review of MECH-094 precision -- mechanistic disambiguation of tag-loss vs precision failure vs generative dominance
+- id: MECH-244
+  title: "Psychosis is a precision-weighting failure where prior beliefs persistently dominate sensory evidence; the generative model becomes self-sealing and sensory update is suppressed."
+  claim_type: mechanism_hypothesis
+  subject: psychiatric.psychosis_precision_weighting_failure
+  polarity: asserts
+  status: candidate
+  claim_level: functional
+  depends_on:
+    - MECH-094
+    - INV-011
+  location: docs/architecture/default_mode.md
+  source:
+    - docs/architecture/default_mode.md
+  notes: >
+    Distinct from confabulation (MECH-094 tag loss). In confabulation, simulated content
+    is written to the residue field as real because the hypothesis tag is absent -- the
+    agent later "remembers" the simulation as real experience. In psychosis, the failure
+    is upstream: the agent's current-moment generative predictions persistently outweigh
+    sensory evidence, producing beliefs that contradict incoming percepts. Mechanistically:
+    precision on sensory prediction errors (z_e1, z_e2 mismatch signals) is downregulated
+    relative to prior-belief precision, so PE cannot correct the model. Clinical correlate:
+    dopaminergic dysregulation of precision-weighting (Friston/Corlett active inference
+    account). In REE terms: the E1/E2 bottom-up error signal is discounted to near zero
+    relative to the top-down prediction; the world model becomes unfalsifiable by
+    experience. This is not tag loss -- the hypothesis tag may be intact -- but a failure
+    of Bayesian updating from the environment. Relationship to MECH-201 (frame confusion
+    synthetic->real): psychosis can co-occur with frame confusion, but the primary
+    mechanism is precision failure, not absent tag. PTSD (MECH-094 confabulation pathway)
+    and psychosis can produce clinically similar symptoms (intrusive "memories") via
+    different mechanisms.
+
+- id: MECH-245
+  title: "Hallucination is a generative-model dominance failure where top-down predictions produce percepts without corresponding bottom-up sensory grounding."
+  claim_type: mechanism_hypothesis
+  subject: psychiatric.hallucination_generative_dominance
+  polarity: asserts
+  status: candidate
+  claim_level: functional
+  depends_on:
+    - MECH-094
+    - MECH-244
+    - INV-011
+  location: docs/architecture/default_mode.md
+  source:
+    - docs/architecture/default_mode.md
+  notes: >
+    Distinct from confabulation (MECH-094) and psychosis (MECH-244). Confabulation is a
+    memory encoding failure (simulated content written as real). Psychosis is a belief
+    updating failure (current beliefs resist sensory correction). Hallucination is a
+    perceptual generation failure: the generative model (E1/E2 predictions) produces
+    outputs in the sensory channels that are experienced as percepts, in the absence of
+    corresponding environmental stimuli. In REE terms: E1 top-down predictions propagate
+    forward as if they were received sensory signals, bypassing or overwhelming the
+    bottom-up mismatch check. The agent perceives things that are not there. Clinical
+    correlates: psychotic hallucinations (auditory verbal), hypnagogic hallucinations
+    (sleep onset, generative model insufficiently suppressed -- see MECH-094 notes re
+    REM), Charles Bonnet syndrome (deafferentation releasing generative prediction).
+    Relationship to MECH-094: hypothesis_tag is NOT the primary protection against
+    hallucination; the tag governs write-through to phi(z), not percept generation.
+    Hallucination prevention requires that bottom-up PE signals remain competitive with
+    top-down predictions -- a precision balance issue (related to MECH-244) rather than a
+    tagging issue. However, hallucinations during REM may be tag-mediated: MECH-094 notes
+    that hallucinatory content during REM accumulates in the residue field if the tag is
+    absent -- this is a confabulation+hallucination compound failure.

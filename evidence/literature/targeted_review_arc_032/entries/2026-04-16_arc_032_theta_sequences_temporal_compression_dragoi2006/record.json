@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_032",
+  "entry_id": "2026-04-16_arc_032_theta_sequences_temporal_compression_dragoi2006",
+  "timestamp_utc": "2026-04-16T18:20:00Z",
+  "claim_ids_tested": ["ARC-032"],
+  "source": {
+    "title": "Temporal Encoding of Place Sequences by Hippocampal Cell Assemblies",
+    "authors": ["Dragoi G", "Buzsaki G"],
+    "year": 2006,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2006.02.023",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16600862/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Dragoi & Buzsaki establish the mechanistic basis for why theta oscillations are the natural packaging unit for sequential spatial information in the hippocampus: each theta cycle compresses a window of past, present, and future location representations into a single temporal frame via coordinated CA1/CA3 ensemble dynamics. This is the mechanistic foundation for ARC-032's ThetaBuffer claim -- the hypothesis that E1 goal-context is delivered to E3 at theta rate is biologically grounded precisely because theta cycles are the natural sampling unit for integrating sequential position information. However, the paper does not directly address frontal input to hippocampus or goal-directed vs. non-goal-directed navigation; it characterizes the within-hippocampus theta sequence mechanism rather than the inter-regional goal communication claimed in ARC-032. Confidence is moderate-high for mechanism support but not a direct test of the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If theta sequences represent only a kinematic compression of spatial trajectories (speed-dependent) rather than a goal-context packaging mechanism, the translation from temporal encoding to goal communication in ARC-032 would be unsupported",
+    "If CA3->CA1 phase-offset dynamics can account for all theta sequence structure without any prefrontal input, the theta channel may be an entirely within-hippocampus phenomenon with no frontal goal-context component"
+  ],
+  "tags": ["arc_032", "theta_oscillations", "hippocampus", "theta_sequences", "temporal_compression", "place_cells", "dragoi", "buzsaki", "packaging_mechanism"],
+  "mapping": {
+    "source_claim_statement": "Within each theta cycle in a linear maze, hippocampal CA1 place cells representing spatially ordered locations are activated in temporally compressed sequence. The temporal correlations between place cell pairs are stronger than predicted by a common theta pacemaker, indicating that synaptic interactions within cell assemblies organize the sequences. CA1 and CA3 ensembles fire preferentially on opposite phases of theta cycles, with CA3 sequences binding CA1 representations of overlapping past, present, and future locations into single episodic theta frames.",
+    "ree_translation": "ARC-032 proposes that E1 goal context reaches E3 via a theta-rate delivery mechanism (MECH-089 ThetaBuffer). Dragoi & Buzsaki establish why theta cycles are the natural packaging unit: they are the timescale at which the hippocampus integrates current position with recent past and immediate future trajectory. If goal-context is a slow signal maintained by E1 (consistent with its LSTM hidden state), delivering it at theta rate is computationally appropriate -- it is sampled at the same rate at which E3 is constructing its positional sequence narrative. The CA3->CA1 phase offset mechanism suggests that the theta cycle creates a natural 'slot' where incoming context information can influence trajectory scoring at each cycle.",
+    "mapping_caveat": "Dragoi & Buzsaki characterize within-hippocampus theta sequence dynamics; they do not record from or manipulate prefrontal cortex. The claim that prefrontal goal context is *delivered* at theta rate -- rather than just correlated with hippocampal theta -- requires the Jones & Wilson and Benchenane type evidence, not this paper alone. The sequences in this paper were studied in a linear maze where spatial goal-directedness is implicit (the end of the track is always the goal); distinguishing goal-context from positional context is not possible in this design.",
+    "source_context": "Rat linear maze navigation; CA1 and CA3 simultaneous tetrode recordings; theta LFP and single-unit phase analysis; comparison of actual temporal correlations vs. pacemaker-model prediction; analysis of CA1/CA3 phase preferences."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "High source quality: Neuron, foundational paper, well-cited, rigorous single-unit and LFP analysis. Mapping fidelity moderate: the paper establishes the mechanistic basis for theta-cycle packaging of sequential information, which supports the plausibility of the ThetaBuffer mechanism, but does not directly test the frontal-to-hippocampal goal communication claim. It is a mechanistic foundation paper rather than a direct test of ARC-032. Transfer risk modest: rat hippocampus theta sequences are the same core phenomenon as the REE theta packaging claim."
+  }
+}

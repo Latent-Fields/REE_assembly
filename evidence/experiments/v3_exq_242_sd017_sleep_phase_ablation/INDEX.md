@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_242_sd017_sleep_phase_ablation
 
-Generated: `2026-04-14T18:02:27.450588Z`
+Generated: `2026-04-16T16:38:03.853152Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

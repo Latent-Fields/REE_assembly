@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_032",
+  "entry_id": "2026-04-16_arc_032_goal_path_sequences_swr_pfeiffer2013",
+  "timestamp_utc": "2026-04-16T18:25:00Z",
+  "claim_ids_tested": ["ARC-032"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Pfeiffer BE", "Foster DJ"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3990408/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Pfeiffer & Foster demonstrate that hippocampal place cells generate sequences specifically biased toward a remembered goal location before goal-directed navigation begins. This directly shows that the hippocampus encodes goal-directed trajectories -- providing strong evidence for the E3 goal-path computation component of ARC-032. However, the sequences are carried by sharp-wave ripple (SWR) events, not theta oscillations: theta power was actually reduced before and after trajectory events. This is a partial contradiction of ARC-032's theta-channel framing. The paper supports the goal-directedness claim while undermining the specific theta mechanism claim. The mixed direction reflects the goal-encoding support combined with the theta-mechanism tension.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If goal-directed hippocampal path sequences are SWR-based rather than theta-based, ARC-032's specific claim that the E1->E3 goal pathway operates via theta packaging (ThetaBuffer, MECH-089) would require revision to also incorporate an SWR-based channel for goal delivery",
+    "If SWR-based goal sequences can be generated entirely within hippocampus without frontal input, the goal delivery channel from E1 may be unnecessary for immediate navigational planning and only needed for longer-horizon goal maintenance"
+  ],
+  "tags": ["arc_032", "hippocampus", "goal_directed", "place_cells", "trajectory_sequences", "sharp_wave_ripples", "swr", "theta_caveat", "pfeiffer", "foster"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, rat hippocampal CA1 place cells generate brief (~104ms) population sequence events (trajectory events) during sharp-wave ripples that encode spatial trajectories biased to progress from the current location toward the remembered HOME goal location. These events predict subsequent navigation behavior and are goal-specific: they preferentially encode paths toward the current goal rather than other previously visited locations, even for novel start-goal combinations. Theta power is decreased (not increased) around trajectory events.",
+    "ree_translation": "ARC-032 proposes that E1 goal context reaches E3 via a theta-rate channel. Pfeiffer & Foster confirm the goal-directed sequence computation in E3 (hippocampal navigator generates goal-biased trajectories before acting) but attribute the carrier mechanism to SWR events rather than theta oscillations. This creates a nuanced picture: goal delivery to hippocampus may use multiple channels with different timescales. Theta coupling (Jones & Wilson, Benchenane) may support sustained goal-context maintenance across the working memory delay, while SWR-mediated events may support the rapid trajectory planning bursts that immediately precede navigation. ARC-032's theta-channel framing captures the sustained maintenance pathway but may need to be read as complementary to an SWR-based rapid-planning channel.",
+    "mapping_caveat": "The dissociation between theta-mediated coherence (Jones & Wilson) and SWR-mediated goal sequences (Pfeiffer & Foster) may reflect different phases of goal-directed navigation: sustained goal maintenance vs. immediate path planning. ARC-032's ThetaBuffer claim most directly maps to the sustained maintenance phase. The SWR mechanism is operationally distinct and does not invalidate the theta channel claim, but does suggest the goal-communication architecture is more complex than a single theta pathway. Species and task transfer (rat open arena, single HOME goal per session) to REE's multi-goal trajectory scoring requires caution.",
+    "source_context": "Rat spatial memory task in open 2m x 2m arena with multiple reward wells; alternating RANDOM and HOME reward phases; simultaneous CA1 tetrode recording of ~100-250 place cells; Bayesian decoding of trajectory events during SWR population bursts; comparison of trajectory events during HOME-seeking vs. RANDOM phases and for novel vs. familiar start-goal combinations."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "High source quality: Nature, landmark paper, rigorous Bayesian decoding of large ensembles, clean goal-direction manipulation. Mapping fidelity moderate: strong support for goal-directed sequence encoding in hippocampus (E3 component of ARC-032) but direct tension with the theta-channel mechanism (SWR not theta as carrier). The mixed direction reflects this split evidence pattern. The paper is best read as a nuancing of ARC-032 rather than a refutation -- SWR and theta are complementary timescales in hippocampal goal navigation, not competing alternatives."
+  }
+}

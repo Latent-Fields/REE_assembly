@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_098",
+  "entry_id": "2026-04-16_mech_098_cerebellar_somatosensory_blakemore1999",
+  "timestamp_utc": "2026-04-16T16:45:00Z",
+  "claim_ids_tested": ["MECH-098"],
+  "source": {
+    "title": "The cerebellum contributes to somatosensory cortical activity during self-produced tactile stimulation",
+    "authors": ["Sarah J. Blakemore", "Daniel M. Wolpert", "Chris D. Frith"],
+    "year": 1999,
+    "venue": "NeuroImage",
+    "doi": "10.1006/nimg.1999.0478",
+    "url": "https://doi.org/10.1006/nimg.1999.0478"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Well-replicated fMRI study in humans, Blakemore-Wolpert-Frith collaboration combining clinical neuroscience and computational motor control expertise. Demonstrates that (1) self-produced tactile stimulation evokes less somatosensory cortex activation than externally produced stimulation, and (2) cerebellar activity during self-produced touch regresses on somatosensory cortical attenuation (but not for externally produced touch). Provides direct human fMRI evidence that the cerebellar forward model generates the sensory prediction used to attenuate cortical response to self-generated touch. Cross-modal complement to visual reafference evidence -- shows the cancellation principle operates in somatosensory domain via cerebellum->thalamus->somatosensory cortex route.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study uses tactile stimulation of the hand, not proprioceptive/vestibular self-motion signals -- the somatosensory reafference domain, not the visual optic flow domain central to MECH-098.",
+    "fMRI regression analysis establishes correlational functional coupling; direct causal inactivation of the cerebellar-to-cortical prediction route was not tested.",
+    "The delay manipulation (adding delay between movement and tactile feedback) reduces somatosensory attenuation, consistent with the forward model but also consistent with attention or temporal expectation accounts."
+  ],
+  "tags": [
+    "mech_098",
+    "cerebellum",
+    "forward_model",
+    "reafference_cancellation",
+    "somatosensory",
+    "self_generated",
+    "tactile_attenuation",
+    "fmri",
+    "human",
+    "blakemore_wolpert"
+  ],
+  "mapping": {
+    "source_claim_statement": "Cerebellar activity during self-produced tactile stimulation predicts the degree of attenuation in somatosensory cortex; the cerebellum is proposed to generate a prediction of the sensory consequences of movement, and when prediction is accurate, this signal attenuates the cortical response to the expected (reafferent) stimulus.",
+    "ree_translation": "MECH-098 proposes that z_world subtracts predicted self-caused sensory change (from E2_self's efference copy prediction) before E2_world operates. This paper demonstrates the functional implementation of that subtraction in humans: the cerebellar forward model (analogous to E2_self in REE) generates a prediction of the sensory consequence of the motor command, and this prediction is routed through thalamus to somatosensory cortex where it attenuates the cortical response to the reafferent signal. The regression result (cerebellar activity -> somatosensory attenuation only during self-produced touch) is evidence for the directed functional coupling from predictor to cancellation gate that MECH-098 requires.",
+    "mapping_caveat": "The tactile/somatosensory domain is a different modality from the visual perspective-shift cancellation in MECH-098. The paper supports the general principle that cerebellar forward models attenuate cortical responses to predicted self-generated stimuli, but the specific mechanism for visual reafference (MSTd congruent/incongruent neurons, vestibular + visual + efference copy convergence) is not studied here. The generalization from somatosensory touch to visual optic flow is a cross-domain transfer.",
+    "source_context": "Healthy human adults; fMRI; participants produced tactile stimulation of own palm via a joystick-controlled device (self-produced vs. externally produced), with manipulations of delay and force; regression analysis between cerebellar and somatosensory cortex BOLD signal"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: NeuroImage, Blakemore-Wolpert-Frith collaboration, well-replicated across multiple subsequent tickling/self-touch studies. Mapping fidelity moderate: the paper supports the general forward model cancellation principle but in somatosensory domain, not visual domain. Transfer risk moderate: somatosensory-to-visual generalization is supported by the multi-modal reafference literature but is not demonstrated within this study."
+  }
+}

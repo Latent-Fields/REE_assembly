@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_098",
+  "entry_id": "2026-04-16_mech_098_auditory_sis_whitford2019",
+  "timestamp_utc": "2026-04-16T16:50:00Z",
+  "claim_ids_tested": ["MECH-098", "MECH-094"],
+  "source": {
+    "title": "Speaking-Induced Suppression of the Auditory Cortex in Humans and Its Relevance to Schizophrenia",
+    "authors": ["Thomas J. Whitford"],
+    "year": 2019,
+    "venue": "Biological Psychiatry: Cognitive Neuroscience and Neuroimaging",
+    "doi": "10.1016/j.bpsc.2019.05.011",
+    "url": "https://doi.org/10.1016/j.bpsc.2019.05.011"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Peer-reviewed review paper synthesizing a well-established empirical literature on speaking-induced suppression (SIS) of auditory cortex. Establishes that (1) self-generated speech sounds produce smaller N1 auditory evoked potentials than externally generated sounds, (2) this suppression depends on corollary discharge from speech motor areas, and (3) subnormal SIS in schizophrenia provides a clinical loss-of-function test linking corollary discharge failure to hallucinations and delusions of control. Moderate confidence because it is a review, but the underlying empirical base (Talk-Listen EEG paradigm) is replicated across many labs. Also relevant to MECH-094 (hypothesis tag loss as psychosis mechanism).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The SIS mechanism relies on a prediction of intended vocalization from speech motor cortex (inferior frontal gyrus) to auditory cortex -- this is inner speech / vocal motor prediction, not the egocentric spatial perspective-shift prediction of MECH-098.",
+    "N1 suppression indexes neural attenuation at ~100ms; the perceptual experience of hearing one's own voice remains intact despite N1 suppression, suggesting SIS is a sub-perceptual modulation rather than a full cancellation of self-generated sound.",
+    "Schizophrenia SIS deficit may reflect disrupted frontal-temporal connectivity rather than a fault in the forward model prediction itself."
+  ],
+  "tags": [
+    "mech_098",
+    "mech_094",
+    "corollary_discharge",
+    "auditory_cortex",
+    "speaking_induced_suppression",
+    "N1_suppression",
+    "efference_copy",
+    "self_generated_speech",
+    "schizophrenia",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Self-generated speech sounds produce smaller N1 auditory evoked potentials than external sounds via corollary discharge from speech motor areas (inferior frontal gyrus) to auditory cortex; subnormal suppression in schizophrenia may explain auditory hallucinations (inner speech not tagged as self-generated) and delusions of control (movements not tagged as self-caused).",
+    "ree_translation": "MECH-098 requires that z_world be protected from self-caused sensory changes by efference copy cancellation. The auditory SIS literature shows this mechanism in the speech domain: efference copy from motor planning areas reaches auditory cortex before the sound arrives, reducing the cortical N1 response to anticipated self-generated sound. In REE architecture, this is equivalent to E2_self generating a forward prediction and routing it to the encoder to suppress the expected reafferent component. The schizophrenia angle connects to MECH-094: if the hypothesis tag (self vs. other origin marker) is lost, the reafference cancellation gate fails, and the agent's own outputs are processed as external events -- the hallucination / delusion of control mechanism. This paper provides a clinical loss-of-function validation for the functional necessity of corollary discharge tagging.",
+    "mapping_caveat": "The SIS mechanism is specific to vocalization and inner speech -- a very different motor domain from egocentric spatial navigation. The prediction being cancelled is the acoustic consequence of vocal motor commands, not the optic flow consequence of body translation. The cross-domain transfer to MECH-098's visual perspective-shift mechanism is supported by the general principle of forward-model reafference cancellation but requires additional steps. The MECH-094 connection (hypothesis tag loss -> hallucinations) is stronger than the MECH-098 connection within this paper.",
+    "source_context": "Human participants; EEG (N1 ERP); Talk-Listen paradigm (participants speak and listen to same speech sound, or just listen); review synthesizes ~30 years of SIS literature including multiple schizophrenia cohort studies"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality good: peer-reviewed review, well-replicated empirical base, Biol Psychiatry CNI. Mapping fidelity moderate-low: the paper is about vocal motor corollary discharge to auditory cortex, not about visual/spatial efference copy for perspective-shift cancellation. Transfer risk is the main limitation -- auditory-to-visual domain transfer is a substantive assumption. Included because (1) the SIS literature is the best-replicated human evidence for corollary discharge cancellation, (2) the schizophrenia loss-of-function evidence supports MECH-094 tagging claims, and (3) the review explicitly generalizes the mechanism to motor control in other domains."
+  }
+}

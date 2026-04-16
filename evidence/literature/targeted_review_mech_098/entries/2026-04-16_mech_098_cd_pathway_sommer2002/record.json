@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_098",
+  "entry_id": "2026-04-16_mech_098_cd_pathway_sommer2002",
+  "timestamp_utc": "2026-04-16T16:35:00Z",
+  "claim_ids_tested": ["MECH-098"],
+  "source": {
+    "title": "A pathway in primate brain for internal monitoring of movements",
+    "authors": ["Marc A. Sommer", "Robert H. Wurtz"],
+    "year": 2002,
+    "venue": "Science",
+    "doi": "10.1126/science.1069590",
+    "url": "https://doi.org/10.1126/science.1069590"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.90,
+  "confidence_rationale": "Foundational discovery paper in Science. Electrophysiological recording plus muscimol inactivation of MD thalamus in macaque. Inactivation impairs sequential eye movements requiring internal tracking of prior saccade vector — direct causal evidence that the SC->MD->FEF pathway carries corollary discharge. High-quality primate data, replicated in subsequent Sommer & Wurtz papers. Directly instantiates the efference-copy-to-prediction pathway required by MECH-098 at the subcortical relay level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Single saccade generation is unimpaired after MD inactivation — the corollary discharge signal is not required for generating movements themselves, only for sensory prediction during sequences.",
+    "The pathway is studied exclusively in the oculomotor domain; generalization to limb or egocentric spatial updating is inferred, not directly demonstrated."
+  ],
+  "tags": [
+    "mech_098",
+    "corollary_discharge",
+    "efference_copy",
+    "superior_colliculus",
+    "mediodorsal_thalamus",
+    "frontal_eye_field",
+    "saccade",
+    "internal_monitoring",
+    "primate"
+  ],
+  "mapping": {
+    "source_claim_statement": "A pathway from superior colliculus through mediodorsal thalamus to frontal eye field conveys corollary discharge signals about upcoming eye movements; inactivating this pathway disrupts sequential but not single saccades, consistent with loss of internal movement monitoring.",
+    "ree_translation": "MECH-098 requires that E2_self generates an efference copy prediction of the expected perspective shift before the motor command is executed. The SC->MD->FEF pathway is the primate substrate for exactly this: a subcortical-to-cortical corollary discharge that arrives in frontal cortex before the saccade lands, allowing the visual system to anticipate and cancel the incoming reafferent shift. In REE terms, this is the efference copy feed into the reafference cancellation gate.",
+    "mapping_caveat": "The REE mechanism operates on egocentric view latents (z_self) in a gridworld — the oculomotor corollary discharge studied here is an eye-movement-specific instance of the same computational principle. Transfer requires that the cortical reafference cancellation mechanism is not modality-specific to the oculomotor system.",
+    "source_context": "Macaque macaca mulatta; oculomotor double-step task; electrophysiological recording + muscimol inactivation of mediodorsal thalamus"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Source quality high: Science, causal inactivation design, n sufficient for single-unit work. Mapping fidelity good: the paper directly demonstrates that an efference copy signal in the SC->MD->FEF pathway is used for internal monitoring of movement, which is the computational heart of MECH-098. Transfer risk modest: the oculomotor domain is the most studied instantiation of corollary discharge; the principle generalizes across motor modalities (Blakemore et al. shows it in somatosensory; Whitford in auditory), so domain-specificity is not a fatal limitation."
+  }
+}
