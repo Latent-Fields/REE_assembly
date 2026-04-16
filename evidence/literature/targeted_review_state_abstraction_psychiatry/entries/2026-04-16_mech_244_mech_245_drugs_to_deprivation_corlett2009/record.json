@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_state_abstraction_psychiatry",
+  "entry_id": "2026-04-16_mech_244_mech_245_drugs_to_deprivation_corlett2009",
+  "timestamp_utc": "2026-04-16T09:20:00Z",
+  "claim_ids_tested": ["MECH-244", "MECH-245"],
+  "source": {
+    "title": "From drugs to deprivation: a Bayesian framework for understanding models of psychosis",
+    "authors": ["Corlett PR", "Frith CD", "Fletcher PC"],
+    "year": 2009,
+    "venue": "Psychopharmacology",
+    "doi": "10.1007/s00213-009-1561-0",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19475401/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This paper provides a Bayesian framework that begins to distinguish psychosis (aberrant prior dominance) from hallucination (sensory deprivation releasing top-down predictions as percepts) by examining how different pharmacological and perceptual manipulations produce overlapping but distinct symptom patterns. The framework supports both MECH-244 and MECH-245 but does not fully resolve the mechanistic dissociation. Confidence 0.74 because the dissociation evidence is incomplete; the paper is more useful as foundational framework than as direct dissociation evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper explicitly treats hallucination and psychosis as arising from the same Bayesian machinery; the dissociation between MECH-244 and MECH-245 is not directly argued.",
+    "The Bayesian framework is presented at a level of abstraction that makes it difficult to map specifically onto E1/E2 circuitry in the REE architecture.",
+    "Sensory deprivation models of hallucination (relevant to MECH-245) are discussed alongside drug models (relevant to MECH-244) without fully resolving whether these are the same or different mechanisms."
+  ],
+  "tags": ["mech_244", "mech_245", "psychosis", "hallucination", "bayesian_framework", "prediction_error", "dopamine", "sensory_deprivation", "top_down", "bottom_up", "prior_beliefs"],
+  "mapping": {
+    "source_claim_statement": "Different psychosis-inducing manipulations (dopaminergic drugs, NMDA antagonists, sensory deprivation) produce overlapping but distinct symptom profiles. A Bayesian framework that maps onto frontostriatal and cortical prediction error circuits can account for both the similarities and differences: drugs that boost prediction error signaling without corresponding prediction errors (DA agonists, NMDA antagonists) produce aberrant salience and delusion-like states; sensory deprivation removes the bottom-up grounding that normally constrains top-down predictions, allowing prior beliefs to propagate as percepts (hallucinations). In both cases, the balance between priors and sensory evidence is disrupted, but via different entry points.",
+    "ree_translation": "For MECH-244: the dopaminergic and NMDA antagonist accounts in this paper describe how the E1 bottom-up error signal becomes aberrant -- too noisy, too strong, or misdirected -- producing a world model that is updated by spurious signals rather than by genuine prediction errors. The generative model learns associations that are not grounded in actual causal structure, producing delusion-like fixed beliefs. For MECH-245: the sensory deprivation account describes a distinct mechanism -- removing bottom-up sensory input allows E1 top-down predictions to propagate forward without correction, appearing as percepts. This is not a failure of precision weighting per se (MECH-244) but a failure of bottom-up grounding: the top-down generative model runs without the sensory anchor that would normally constrain it. The paper begins to suggest these are two different entry points into the same Bayesian machinery, which is exactly the mechanistic dissociation MECH-244 and MECH-245 require.",
+    "mapping_caveat": "The paper does not explicitly argue for a mechanistic dissociation between psychosis and hallucination; it uses both as examples within a unified Bayesian framework. The dissociation is implicit in the different manipulations (drugs vs deprivation) and symptom profiles, but is not the paper's primary claim. REE should cite this paper as supporting framework for both MECH-244 and MECH-245, not as direct evidence for their dissociation.",
+    "source_context": "Review by Corlett, Frith, and Fletcher (Cambridge Brain Mapping Unit), published in Psychopharmacology 2009. Part of a series of papers developing the prediction error/Bayesian account of psychosis from the Cambridge group, following Corlett's experimental work with ketamine and causal learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.22,
+    "notes": "High source quality: influential review from a leading group, widely cited in computational psychiatry. Mapping fidelity moderate: the framework maps onto both MECH-244 and MECH-245 but does not cleanly separate them. Transfer risk low: developed specifically for human clinical phenomenology."
+  }
+}

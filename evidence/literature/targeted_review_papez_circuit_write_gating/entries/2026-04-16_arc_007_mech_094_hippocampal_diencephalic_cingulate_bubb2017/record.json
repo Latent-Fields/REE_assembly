@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_papez_circuit_write_gating",
+  "entry_id": "2026-04-16_arc_007_mech_094_hippocampal_diencephalic_cingulate_bubb2017",
+  "timestamp_utc": "2026-04-16T09:00:00Z",
+  "claim_ids_tested": ["ARC-007", "MECH-094"],
+  "source": {
+    "title": "Hippocampal-diencephalic-cingulate networks for memory and emotion: An anatomical guide",
+    "authors": ["Bubb EJ", "Kinnavane L", "Aggleton JP"],
+    "year": 2017,
+    "venue": "Brain and Neuroscience Advances",
+    "doi": "10.1177/2398212817723443",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28944298/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Comprehensive tract-tracing review of the Papez circuit with detailed topographic mapping of hippocampal-diencephalic-cingulate connectivity. Directly establishes the multiply-interconnected, reciprocal architecture that provides the anatomical substrate for write-profile gating across the circuit. Confidence 0.78 because the review establishes anatomy (what the connections are) rather than functional write-gating directly; the REE translation requires an inferential step from connectivity to gating function.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review is primarily anatomical (tract-tracing); functional write-gating claims require additional electrophysiology or lesion evidence.",
+    "Most data are from rodent tract-tracing studies; human homology is assumed but not always directly tested.",
+    "The review covers general memory functions of the circuit; action-mode specificity (habitual vs deliberate vs simulated) is not directly addressed."
+  ],
+  "tags": ["arc_007", "mech_094", "papez_circuit", "hippocampus", "anterior_thalamus", "cingulate_cortex", "mammillary_bodies", "fornix", "write_gating", "episodic_memory", "connectome"],
+  "mapping": {
+    "source_claim_statement": "The hippocampal-diencephalic-cingulate network comprises the hippocampus/parahippocampal regions, mammillary bodies, anterior thalamic nuclei, and cingulate gyrus, connected by multiple reciprocal pathways (not a simple serial loop). The circuit is topographically organised into parallel sub-pathways that presumably reflect multiple functional streams. Damage anywhere in the circuit produces episodic memory deficits. The mammillary bodies are an exception: they receive hippocampal output (via fornix) but their projections back to hippocampus are indirect (via anterior thalamus and cingulate).",
+    "ree_translation": "For ARC-007: the hippocampal-diencephalic-cingulate network is the anatomical substrate through which trajectory proposals (E3 planning) receive write-enabling signals. The anterior thalamic nuclei, receiving both hippocampal and mammillary input and projecting to cingulate and retrosplenial cortex, are positioned as a convergence node where action-mode context (deliberate vs habitual vs simulated) could gate whether phi(z) updates propagate. For MECH-094: the multiple reciprocal pathways in this circuit include the cingulate-to-hippocampal feedback that is anatomically positioned to implement the hypothesis_tag signal - cingulate cortex (particularly ACC/RSC) projects back to hippocampus via entorhinal cortex and can carry top-down state information that would gate encoding. When this top-down signal is absent or disrupted (tag loss), hippocampal encoding proceeds without the gating that marks content as simulated.",
+    "mapping_caveat": "The functional interpretation of this anatomy as a write-gate is inferred from the topology of connections and from lesion data showing encoding failure when circuit nodes are damaged. The paper does not directly test action-mode-specific write-gating. The transition from 'anatomy supports gating' to 'anatomy implements hypothesis_tag' requires additional inferential steps.",
+    "source_context": "Review paper integrating rodent and human tract-tracing data, published in Brain and Neuroscience Advances (Cardiff University group, Aggleton lab). Focuses on updating the original Papez serial-loop concept with evidence for parallel, reciprocal pathways."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "High source quality: comprehensive, authoritative review from the leading group on anterior thalamic nuclei and hippocampal memory circuits. Mapping fidelity moderate: anatomy is established; functional gating interpretation is inferred. Transfer risk low: human and rodent data both included; episodic memory function of this circuit is well-conserved."
+  }
+}

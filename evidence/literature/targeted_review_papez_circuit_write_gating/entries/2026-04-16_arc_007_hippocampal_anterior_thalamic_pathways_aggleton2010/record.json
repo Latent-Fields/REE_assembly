@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_papez_circuit_write_gating",
+  "entry_id": "2026-04-16_arc_007_hippocampal_anterior_thalamic_pathways_aggleton2010",
+  "timestamp_utc": "2026-04-16T09:05:00Z",
+  "claim_ids_tested": ["ARC-007"],
+  "source": {
+    "title": "Hippocampal-anterior thalamic pathways for memory: uncovering a network of direct and indirect actions",
+    "authors": ["Aggleton JP", "O'Mara SM", "Vann SD", "Wright NF", "Tsanov M", "Erichsen JT"],
+    "year": 2010,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/j.1460-9568.2010.07251.x",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20550571/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Detailed review of parallel direct and indirect hippocampal-anterior thalamic pathways, establishing the distinct functional contributions of each pathway and showing that the anterior thalamic nuclei are necessary (not merely contributing) for episodic memory encoding. The disconnection of hippocampus from anterior thalamus is sufficient to produce amnesia, supporting the claim that trajectory navigation requires this circuit to be intact. Confidence 0.76 because the paper establishes circuit necessity but does not directly address terrain navigation or write-profile gating in the REE sense.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper frames the hippocampal-anterior thalamic relationship primarily in terms of recollection vs familiarity memory, not terrain navigation per se.",
+    "Parallel pathway functional distinctions are better established in rodents than in humans.",
+    "The specific role of the anterior thalamic nuclei in gating write operations (vs simply relaying context information) is not directly tested."
+  ],
+  "tags": ["arc_007", "hippocampus", "anterior_thalamus", "episodic_memory", "papez_circuit", "mammillary_bodies", "retrosplenial_cortex", "recollection", "spatial_memory", "extended_hippocampal_system"],
+  "mapping": {
+    "source_claim_statement": "Multiple parallel direct and indirect pathways connect the hippocampus to the anterior thalamic nuclei, including: (1) the postcommissural fornix -> mammillary bodies -> mammillothalamic tract pathway; (2) direct subicular projections to anterior thalamic nuclei; (3) indirect projections via retrosplenial cortex. The anterior thalamic nuclei are necessary for recollective (not familiarity-based) episodic memory and for spatial memory. Disconnection studies in rodents show that severing hippocampal-anterior thalamic connections is sufficient to impair spatial memory even when both hippocampus and anterior thalamus are structurally intact.",
+    "ree_translation": "For ARC-007: the anterior thalamic nuclei are a critical relay in the circuit through which hippocampal map navigation operates. They are not simply a downstream target; they receive, integrate, and return processed information to the hippocampus. The disconnection finding is directly relevant: hippocampal map navigation (trajectory proposals navigating residue-field terrain) requires the full anterior thalamic relay to be functional. If the circuit is disrupted, the hippocampus cannot build or navigate its terrain map even if both E3 and the hippocampus are structurally intact. This is the anatomical substrate that makes Papez circuit integrity a necessary condition for the kind of navigation ARC-007 describes.",
+    "mapping_caveat": "The paper addresses episodic and spatial memory broadly; it does not distinguish between navigating stored terrain maps (the ARC-007 claim) and encoding new spatial experiences. The relevance to residue-field terrain navigation is analogical rather than direct. The disconnection experiments use lesions of the postcommissural fornix or mammillary bodies, not selective disruption of the write-gating function specifically.",
+    "source_context": "Multi-disciplinary review from Aggleton, O'Mara and colleagues, integrating neurophysiology, tract-tracing, lesion studies, and neuropsychology. Published in European Journal of Neuroscience, 2010. Covers rodent and human data across multiple methods."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.28,
+    "notes": "Excellent source quality: authoritative multi-method review by the leading group in this area. Mapping fidelity moderate: the circuit necessity claim maps well onto ARC-007 but the specific terrain navigation framing is an analogical extension. Transfer risk low-moderate: rodent-human homology for this circuit is well-supported but not complete."
+  }
+}

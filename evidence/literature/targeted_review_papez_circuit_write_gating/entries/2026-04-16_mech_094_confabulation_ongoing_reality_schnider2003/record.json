@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_papez_circuit_write_gating",
+  "entry_id": "2026-04-16_mech_094_confabulation_ongoing_reality_schnider2003",
+  "timestamp_utc": "2026-04-16T09:10:00Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "Spontaneous confabulation and the adaptation of thought to ongoing reality",
+    "authors": ["Schnider A"],
+    "year": 2003,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn1179",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12894241/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This paper provides the most direct neurobiological account of confabulation as a failure of temporal context tagging -- specifically the failure to suppress memory traces that are activated but do not pertain to ongoing reality. The orbitofrontal cortex (OFC, particularly posterior medial OFC / Brodmann area 13) normally filters activated memories by their temporal relevance to the present moment. Tag loss in the REE framing (hypothesis_tag failure allowing simulated content to write to phi(z)) maps precisely onto Schnider's OFC reality-filtering failure. Confidence 0.82 because the mechanistic specificity is high and the mapping is direct, not analogical.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Schnider's account focuses on failure to suppress irrelevant past memories, whereas MECH-094 addresses failure to suppress simulated/future content -- these are related but not identical failure modes.",
+    "The OFC substrate proposed by Schnider is primarily for ongoing-reality checking, not for distinguishing simulated from experienced content during planning or imagination.",
+    "Confabulation in Schnider's framework is typically associated with orbitofrontal lesions after aneurysm rupture; this is a very specific clinical population."
+  ],
+  "tags": ["mech_094", "confabulation", "orbitofrontal_cortex", "reality_monitoring", "temporal_context", "hippocampus", "source_tagging", "write_gate", "simulation_vs_reality"],
+  "mapping": {
+    "source_claim_statement": "Spontaneous confabulation is not a memory disorder per se but a failure of temporal context monitoring: the patient cannot distinguish memories that pertain to ongoing reality from memories that are currently activated but pertain to a different time or context. The orbitofrontal cortex (posterior medial OFC) normally suppresses currently irrelevant activated memories -- it acts as a reality filter that prevents non-current memories from driving behavior. Damage to this filter (typically from anterior communicating artery aneurysm rupture affecting basal forebrain and OFC connections) causes patients to act on inappropriate memories as if they are presently relevant.",
+    "ree_translation": "MECH-094 identifies the hypothesis_tag as the mechanism preventing simulated/replayed content from being written to hippocampal terrain as if it were experienced. Schnider's OFC reality filter is the biological substrate of this tagging function: it implements the 'is this content pertaining to now?' check that, in REE terms, determines whether phi(z) updates should be committed. Tag loss in MECH-094 corresponds to OFC reality-filter failure in Schnider's framework: without the filter, activated memory traces (or in the REE case, simulated trajectories) are treated as current, and their consequences propagate to terrain updates as if the events actually occurred. The confabulation mechanism and the MECH-094 tag-loss mechanism are formally equivalent: both involve a failure of temporal/contextual gating that allows non-current content to influence the agent's terrain state.",
+    "mapping_caveat": "Schnider's confabulating patients fail to suppress past memories intruding into the present; MECH-094 specifically addresses simulated/future content being written as if experienced. These are related but have different temporal directions (past intrusion vs future-as-present). The OFC substrate Schnider identifies is specifically the posterior medial OFC / basal forebrain junction; whether this is the same substrate as the hypothesis_tag in MECH-094 is not established. The mapping is mechanistically tight but requires acknowledging the directional asymmetry.",
+    "source_context": "Nature Reviews Neuroscience review by Armin Schnider (Geneva), summarising his programme of research on spontaneous confabulation, including the orbitofrontal reality-filtering model and the experimental paradigm showing that confabulators fail to suppress currently irrelevant memory traces (Nature Neuroscience 1999 companion paper: PMID 10412065)."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.22,
+    "notes": "Excellent source quality: landmark NRN review by the field-defining researcher. High mapping fidelity: Schnider's OFC reality-filter is mechanistically very close to the hypothesis_tag function in MECH-094. Transfer risk is low: confabulation is a well-characterized clinical phenomenon in humans; the OFC substrate is well-established from lesion studies."
+  }
+}

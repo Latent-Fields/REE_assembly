@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_state_abstraction_psychiatry",
+  "entry_id": "2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005",
+  "timestamp_utc": "2026-04-16T09:25:00Z",
+  "claim_ids_tested": ["MECH-245"],
+  "source": {
+    "title": "Visual hallucinations and the Charles Bonnet syndrome",
+    "authors": ["Ffytche DH"],
+    "year": 2005,
+    "venue": "Current Psychiatry Reports",
+    "doi": "10.1007/s11920-005-0050-3",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15935130/"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Charles Bonnet syndrome provides the clearest clinical dissociation between hallucination (MECH-245) and psychosis (MECH-244): patients experience vivid, complex visual hallucinations with fully preserved insight and no delusions, occurring specifically in the context of visual system deafferentation (eye disease). The deafferentation mechanism -- removal of bottom-up sensory input releasing top-down generative predictions as percepts -- is mechanistically distinct from the precision-weighting failure of MECH-244. Confidence 0.78 because CBS is a selective visual cortex phenomenon; generalisability to other modalities (auditory verbal hallucinations in psychosis) requires an inferential step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CBS is a deafferentation hallucination in a non-psychotic population; the mechanism may differ from hallucinations within psychosis, where precision dysregulation may also contribute.",
+    "Ffytche distinguishes two CBS subtypes (visual-pathway and brainstem/neurotransmitter); only the former is a clean deafferentation model.",
+    "The paper focuses on visual hallucinations; generalising to auditory verbal hallucinations (the most clinically significant form in psychosis) requires additional evidence."
+  ],
+  "tags": ["mech_245", "hallucination", "charles_bonnet_syndrome", "deafferentation", "generative_model", "top_down", "visual_cortex", "thalamocortical", "bottom_up_suppression", "insight_preserved"],
+  "mapping": {
+    "source_claim_statement": "Charles Bonnet syndrome is defined by complex visual hallucinations occurring in the context of visual impairment (eye disease), with preserved insight (the patient knows the experiences are not real) and absence of cognitive impairment or psychosis. Two subtypes are identified: one linked directly to visual pathway pathology (deafferentation releasing visual cortex from bottom-up input), producing hallucinations of the type and content predicted by the visual area no longer receiving input; one linked to brainstem/ascending neurotransmitter pathology, producing a different phenomenological profile. The deafferentation subtype demonstrates that hallucination can arise from top-down generative predictions propagating forward in the absence of bottom-up grounding.",
+    "ree_translation": "MECH-245 claims hallucination is a generative-model dominance failure: E1 top-down predictions propagate as if received sensory signals because bottom-up grounding is absent. CBS provides the cleanest clinical demonstration: when the retina or visual pathway is damaged, the visual cortex loses its sensory anchor, and the top-down generative predictions it would normally receive as corrections (via the prediction error cascade) are instead experienced as percepts. The REE translation is that E1's generative model -- which normally updates phi(z) through the sensory prediction error -- continues generating predictions but receives no error signal to correct them. Those predictions propagate forward as if sensory in origin. This is mechanistically distinct from MECH-244: in CBS, precision weighting is intact, insight is preserved, and there are no delusions. The world model correctly identifies the experiences as hallucinatory (preserved insight = precision weighting over the meta-cognition is intact); what is missing is the sensory bottom-up that would normally suppress the top-down.",
+    "mapping_caveat": "CBS is a visual-modality phenomenon in a non-psychotic population with preserved insight; this makes it a cleaner model for MECH-245 mechanistically but limits generalisability to auditory verbal hallucinations in psychosis, where insight is often absent and precision weighting is also disrupted. The hallucinations in psychosis may involve both MECH-245 (generative dominance) and MECH-244 (precision failure) simultaneously; CBS is useful precisely because it isolates MECH-245 without MECH-244 contamination.",
+    "source_context": "Review by Dominic Ffytche (Institute of Psychiatry, London), published in Current Psychiatry Reports 2005. Ffytche is the leading researcher on CBS phenomenology and the neuro-phenomenological dissociation of visual hallucination subtypes. The paper draws on fMRI studies of hallucinating CBS patients and proposes the thalamocortical burst-firing mechanism for the visual pathway subtype."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.35,
+    "notes": "Good source quality: authoritative review by the leading CBS researcher. Mapping fidelity good: deafferentation mechanism is exactly what MECH-245 requires. Transfer risk moderate: visual deafferentation in a non-psychotic population; generalisability to auditory hallucinations in psychosis requires inferential steps."
+  }
+}

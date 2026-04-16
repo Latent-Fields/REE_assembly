@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_state_abstraction_psychiatry",
+  "entry_id": "2026-04-16_mech_244_computational_anatomy_psychosis_adams2013",
+  "timestamp_utc": "2026-04-16T09:15:00Z",
+  "claim_ids_tested": ["MECH-244"],
+  "source": {
+    "title": "The Computational Anatomy of Psychosis",
+    "authors": ["Adams RA", "Stephan KE", "Brown HR", "Frith CD", "Friston KJ"],
+    "year": 2013,
+    "venue": "Frontiers in Psychiatry",
+    "doi": "10.3389/fpsyt.2013.00047",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23750138/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This paper provides the most fully developed precision-weighting account of psychosis within the active inference framework. It treats all positive psychotic symptoms -- hallucinosis, delusions, sensory attenuation deficits, catatonia -- as expressions of a single core pathology: aberrant encoding of precision (NMDA receptor dysfunction modulating the gain of prediction error units). This maps directly onto MECH-244's claim that psychosis is a precision-weighting failure where top-down priors persistently dominate. Confidence 0.80 because the theoretical framework is highly developed and consistent with neurobiological data, though direct experimental tests of the precision-weighting account specifically (vs competing models) remain limited.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper is primarily theoretical; direct empirical tests of the precision-weighting account in human psychosis samples are not provided within the paper itself.",
+    "Hallucination and delusion are treated as unified expressions of the same precision pathology; MECH-245 (hallucination) argues they are mechanistically distinct -- this paper does not fully support that dissociation.",
+    "The NMDA receptor substrate for precision encoding is mechanistically coherent but not yet definitively established as the primary pathology in all psychosis presentations."
+  ],
+  "tags": ["mech_244", "psychosis", "precision_weighting", "active_inference", "predictive_coding", "dopamine", "NMDA", "hallucinosis", "delusions", "top_down", "bottom_up", "generative_model"],
+  "mapping": {
+    "source_claim_statement": "Psychotic symptoms -- hallucinations, delusions, abnormal eye movements, sensory attenuation deficits, catatonia -- are all expressions of a single core pathology: aberrant encoding of precision (the confidence or inverse uncertainty associated with beliefs at different levels of the cortical hierarchy). Precision is encoded by the post-synaptic gain of prediction error units, regulated by NMDA receptors and dopaminergic neuromodulation. When precision is aberrantly allocated -- too high to prior beliefs, too low to sensory prediction errors -- the generative model becomes self-sealing: top-down predictions dominate bottom-up sensory evidence, producing percepts that are not grounded in current sensory input (hallucinosis) and beliefs that are not updated by contrary evidence (delusions).",
+    "ree_translation": "MECH-244 states that psychosis is a precision-weighting failure where prior beliefs persistently dominate sensory evidence; the generative model becomes self-sealing and sensory update is suppressed. Adams et al. 2013 is the canonical formal articulation of this claim in the active inference framework. The REE translation is: in the E1/E2 architecture, the bottom-up prediction error signal (sensory mismatch driving E1 updates) is discounted relative to top-down predictions (the prior generative model). The world model encoded in E1/E2 cannot be updated by experience because precision is aberrantly concentrated at the prior level. This is mechanistically distinct from confabulation (MECH-094, which is a write-gate failure allowing simulated content to enter phi(z)) and from hallucination (MECH-245, which is generative dominance producing false percepts); psychosis involves the world model itself becoming unfalsifiable by incoming sensory evidence.",
+    "mapping_caveat": "Adams et al. treat hallucination and delusion as co-expressed expressions of the same precision pathology; the REE framework requires these to be mechanistically distinct (MECH-244 vs MECH-245). The paper's unified account does not fully support the dissociation required by REE's three-way taxonomy. Additionally, the precision-weighting account does not specify which component of the REE architecture (E1 encoder, E2 transition model, or E3 evaluation) is most directly disrupted; the translation to the specific E1/E2 error signal framing requires additional inference.",
+    "source_context": "Theoretical review by Adams (UCL/Cambridge), Stephan (ETH Zurich), Frith and Friston (UCL). Published in Frontiers in Psychiatry 2013 as part of the active inference programme. Over 760 citations; represents the current orthodoxy in computational psychiatry accounts of psychosis."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "Exceptional source quality: high-impact paper from the founders of the active inference framework. Mapping fidelity good: precision-weighting failure maps directly to MECH-244 but the unified treatment of hallucination and delusion slightly complicates the dissociation from MECH-245 required by REE. Transfer risk low: the framework is developed for human psychosis specifically."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_094",
+  "entry_id": "2026-04-16_mech_094_rem_sleep_hallucinosis_hobson2002",
+  "timestamp_utc": "2026-04-16T09:30:00Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "The cognitive neuroscience of sleep: neuronal systems, consciousness and learning",
+    "authors": ["Hobson JA", "Pace-Schott EF"],
+    "year": 2002,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn915",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12209117/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "REM sleep is characterised by hallucinosis -- vivid, internally generated perceptual experiences accepted as real during the dream -- combined with hippocampal theta-mediated replay. This is exactly the condition MECH-094 identifies as the write-profile failure mode for REM: the hypothesis_tag should be active to mark replay content as simulated, but when it fails, internally generated content is experienced and potentially written to terrain as if real (confabulation+hallucination compound). Confidence 0.72 because the paper establishes the REM write-profile phenomenologically and neurophysiologically, but the specific hypothesis_tag mechanism is not directly tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper describes REM hallucinosis at the level of neuronal systems and consciousness; the specific mechanism by which internally generated replay content might be mis-tagged as real is not directly tested.",
+    "The relationship between REM replay and hippocampal terrain updates (phi(z) writes) is inferred from the memory consolidation literature, not directly demonstrated.",
+    "Whether dreaming involves actual phi(z) writes or merely activation without persistent update is not resolved."
+  ],
+  "tags": ["mech_094", "rem_sleep", "hallucinosis", "dreaming", "hippocampus", "theta_oscillations", "replay", "memory_consolidation", "write_gate", "simulation_vs_reality", "hypothesis_tag"],
+  "mapping": {
+    "source_claim_statement": "REM sleep is characterised by hallucinosis (vivid internally generated percepts accepted as real during the dream state), illogic (violations of narrative and causal coherence), and emotionality. The neurophysiological substrate includes: aminergic demodulation (reduced noradrenaline and serotonin), cholinergic dominance (acetylcholine levels equivalent to or exceeding waking), activation of limbic and paralimbic structures, and deactivation of the dorsolateral prefrontal cortex. Hippocampal theta rhythms are present during REM, consistent with memory replay and reactivation of waking experiences. The aminergic demodulation is proposed to account for the loss of executive monitoring that would otherwise flag internally generated content as non-real.",
+    "ree_translation": "MECH-094 identifies the hypothesis_tag as the mechanism preventing simulated or replayed content from being written to hippocampal terrain as if real. The REM state described by Hobson and Pace-Schott is the condition under which this tag is most at risk: hippocampal theta replay is active (replay is occurring), but the dorsolateral prefrontal deactivation and aminergic demodulation remove the executive monitoring and neuromodulatory context that would normally maintain the tag. In REE terms, REM creates a write-profile where replay content is being processed at the hippocampal level (theta oscillations, reactivation), but the top-down cingulate-to-hippocampus signal that maintains the hypothesis_tag (marking content as simulated) is degraded by prefrontal deactivation. The result is what Hobson calls hallucinosis: the replay content is experienced as if real (tag failure), and may be written to phi(z) terrain as if it were actual experience (confabulation compound). This is the specific REM write-profile failure mode in the REE architecture.",
+    "mapping_caveat": "Whether replay during REM actually produces persistent phi(z) terrain updates (vs. transient activation without lasting encoding) is not established. The memory consolidation literature suggests REM contributes to certain types of procedural and emotional memory consolidation, but the directionality (hippocampus -> neocortex in NREM vs. the reverse in REM) and the terrain-update implications are not directly addressed by Hobson and Pace-Schott. The hypothesis_tag failure is inferred from the known neurophysiology (prefrontal deactivation, aminergic withdrawal) rather than directly demonstrated.",
+    "source_context": "Comprehensive review by J. Allan Hobson and Edward Pace-Schott (Harvard Medical School), published in Nature Reviews Neuroscience September 2002 (volume 3, pages 679-693). Hobson is the originator of the activation-synthesis hypothesis of dreaming. This review integrates functional neuroimaging, neurophysiology, and computational models of sleep-dependent memory consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.28,
+    "notes": "Excellent source quality: landmark NRN review by the field-defining researcher in sleep neuroscience. Mapping fidelity good but not direct: the REM hallucinosis phenotype and its neurophysiological correlates map cleanly onto the MECH-094 tag-loss scenario for REM sleep, but the specific phi(z) write-profile implications require inferential steps. Transfer risk low-moderate: the review covers human and animal data; the specific hippocampal terrain update mechanism is a REE-specific construct."
+  }
+}
