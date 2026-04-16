@@ -134,7 +134,7 @@ Replay outputs are hypotheses.
 They only become commitments if:
 	•	E3 later selects a trajectory during task-engaged mode
 
-**Micro-quiescence replay (MECH-092):** The same replay mechanism operates at shorter timescales during quiescent E3 heartbeat cycles — brief inter-action gaps within an otherwise active session. This is the within-session, intra-action equivalent of full DMN replay: same hippocampal SWR-equivalent machinery, operating at seconds rather than minutes. Viability map consolidation via micro-quiescence replay is safe because all internally-generated replay carries the hypothesis tag (MECH-094), blocking φ(z) writes regardless of timescale.
+**Micro-quiescence replay (MECH-092):** The same replay mechanism operates at shorter timescales during quiescent E3 heartbeat cycles — brief inter-action gaps within an otherwise active session. This is the within-session, intra-action equivalent of full DMN replay: same hippocampal SWR-equivalent machinery, operating at seconds rather than minutes. Viability map consolidation via micro-quiescence replay is safe because the source-monitoring and neuromodulatory mechanisms implementing the simulation/real distinction (MECH-094) remain active during quiescent replay -- the same write-profile protections operative during deliberate simulation apply at shorter timescales.
 
 ⸻
 
@@ -200,19 +200,23 @@ It may not directly modify z_S.
 	2.	No forced commitment
 It may not trigger E3 collapse.
 	3.	No residue update
-Ethical curvature φ(z) must remain unchanged. Implemented via the hypothesis tag (MECH-094):
-internally generated trajectories are categorically routed away from the φ(z) write pathway.
-During DMN, only the pre-commit simulation error channel is active (MECH-060); the post-commit
-realized-outcome channel — which drives residue accumulation — is suppressed. The qualitatively
-different affective texture of imagination vs. real experience is the phenomenological signature
-of this suppression: the absence of the full somatic post-commit signal. φ(z) is read during
-imagination (producing attenuated aversive affect), but not written to.
-Pathological failure: loss of the hypothesis tag (confabulation: simulated replay written as real experience -- MECH-094; distinct from psychosis MECH-244 and hallucination MECH-245) opens the
-post-commit channel during replay, accumulating residue from simulated content (MECH-076).
-The damage in rumination is tag loss, not excessive vividness.
-	4.	Hypothesis tagging
-Generated trajectories must be explicitly non-committal (implements INV-011, INV-019).
-The tag is categorical, not a precision parameter — route separation is primary, attenuation secondary.
+Ethical curvature φ(z) must remain unchanged. Implemented via the simulation/real distinction
+(MECH-094): the functional requirement that internally generated trajectories do not accumulate
+in φ(z) as committed experience. The biological implementation is distributed across source
+monitoring (MECH-248), temporal context filtering (OFC; Schnider 2003), and neuromodulatory
+mode-setting (ACh/NE balance; MECH-249) -- not a single categorical gate. During DMN, only
+the pre-commit simulation error channel is active (MECH-060); the post-commit realized-outcome
+channel -- which drives residue accumulation -- is not engaged. φ(z) is read during imagination
+(producing attenuated aversive affect), but not written to.
+Pathological failure: when the simulation/real distinction fails -- confabulation (MECH-094) --
+simulated replay accumulates in φ(z) as if committed experience, driving map deformation
+(MECH-076). The damage in rumination is failure of source monitoring and/or neuromodulatory
+write-protection, not excessive vividness. Distinct from psychosis (MECH-244, MECH-246,
+MECH-247) and hallucination (MECH-245), which are separate failure modes.
+	4.	Simulation/real distinction
+Generated trajectories must not update the viability map as committed experience (implements
+INV-011, INV-019). The distinction is maintained by overlapping biological mechanisms
+(MECH-248, MECH-249), not by a single switch. Updated 2026-04-16.
 
 These constraints preserve safety, corrigibility, and identity.
 

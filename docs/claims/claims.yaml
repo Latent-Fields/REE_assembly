@@ -4102,49 +4102,69 @@
 # Registered 2026-03-15 — imagination / residue write gate cluster
 # Source: phenomenological analysis of imagination vs experience distinction
 - id: MECH-094
-  title: "Hypothesis tag is a categorical write gate separating simulation from committed residue updates; tag loss is the confabulation mechanism (simulated events written to hippocampal terrain as if real)."
+  title: "The system maintains a functional distinction between simulation-mode content and real-experience content, such that simulation content does not accumulate in the viability map as committed experience; failures of this distinction produce confabulation (simulated events encoded as real)."
   claim_type: mechanism_hypothesis
-  subject: default_mode.hypothesis_tag_residue_write_gate
+  subject: default_mode.simulation_real_distinction_write_profile
   polarity: asserts
   status: candidate
   claim_level: functional
   evidence_quality_note: |
-    EXQ-140 reclassified non_contributory (2026-04-09): hypothesis tag as categorical
-    phi(z) write gate is not implemented in ree_core -- proxy used replay-with-noise vs
-    replay-without-noise as a stand-in, which cannot test the gate when the gate is absent.
-    FAIL reflects substrate gap, not claim failure. Manifest evidence_direction corrected
-    to non_contributory. Claim held pending explicit tag-gate implementation.
+    EXQ-140 reclassified non_contributory (2026-04-09): substrate gap -- no explicit
+    simulation/real distinction mechanism implemented in ree_core. Claim held pending
+    implementation of one or more of the candidate biological mechanisms (MECH-248
+    source monitoring, MECH-249 neuromodulatory mode-setting). Updated 2026-04-16:
+    'hypothesis_tag as categorical gate' language removed; claim reframed as functional
+    requirement whose biological implementation is distributed and pending lit-pull
+    evidence (EVB-0134, EVB-0135).
   depends_on:
     - ARC-014
     - INV-011
     - INV-019
     - MECH-060
     - MECH-029
+    - MECH-248
+    - MECH-249
   location: docs/architecture/default_mode.md#mech-094
   source:
     - docs/architecture/default_mode.md
     - docs/architecture/control_plane_heartbeat.md
   notes: >
-    The hypothesis tag -- marking internally generated trajectories as non-committal --
-    is the primary mechanism implementing ARC-014 constraint 3 (no residue update
-    during Default Mode). The tag is categorical, not a precision attenuation parameter:
-    it routes simulation signals away from the phi(z) write pathway entirely. Attenuation
-    of phi(z) readout during imagination is a secondary effect; route separation is primary.
-    Mechanism: during DMN/simulation, only the pre-commit error channel (MECH-060) is
-    active; the post-commit realized-outcome channel -- which drives residue accumulation
-    -- is suppressed. The qualitatively different affective texture of imagination vs.
-    real experience is the phenomenological signature of this channel suppression: the
-    absence of the full somatic/post-commit signal. Implements INV-011 (imagination without
-    belief update) and INV-019 (rehearsal/durable-update separation) at the mechanism
-    level. Pathological failure: when the hypothesis tag is lost (confabulation: simulated
-    or replayed content accumulates in phi(z) as if real experience), the post-commit
-    channel opens during what is structurally a replay event, and phi(z) begins
-    accumulating residue from simulated/replayed content -- the mechanism of MECH-076
-    (map structural deformation). The damage in rumination is tag loss, not excessive
-    vividness. This is mechanistically distinct from psychosis (prior-dominated precision
-    failure, MECH-244) and hallucination (generative prediction without sensory grounding,
-    MECH-245), which require separate mechanisms. Simulation-driven viability map updates
-    (MECH-092) are safe precisely because replay carries the hypothesis tag throughout.
+    The functional requirement registered by MECH-094 is that simulation-mode content --
+    internally generated trajectories, rehearsal, imagination -- must not accumulate in
+    phi(z) as committed experience. This is what must be true for the architecture to
+    maintain the separation between what the agent has done and what it has only rehearsed.
+    The biological implementation is not a single categorical gate but a distributed set of
+    overlapping mechanisms: source monitoring (frontoparietal network -- distinguishing
+    internally generated from externally received content; candidate implementation:
+    MECH-248), temporal context filtering (OFC/basal forebrain -- suppressing
+    non-currently-relevant activated content; Schnider 2003), and neuromodulatory
+    mode-setting (ACh/NE balance -- setting hippocampal encoding mode as a continuous
+    state variable rather than a binary gate; candidate implementation: MECH-249). The
+    'hypothesis_tag' shorthand refers to the combined functional effect of these
+    mechanisms, not a specific identifiable circuit element.
+    During DMN/simulation mode, the functional effect is that only pre-commit simulation
+    error (MECH-060) is active at the terrain-update level; the post-commit
+    realized-outcome channel is not engaged. This is the condition that prevents phi(z)
+    terrain from being updated by simulated trajectories as if they were committed
+    experience. The qualitatively different affective texture of imagination vs. real
+    experience -- muted, hypothetical, without full somatic grounding -- is consistent
+    with this functional separation, though the precise mechanistic implementation awaits
+    the MECH-248/249 evidence. Implements INV-011 (imagination without belief update)
+    and INV-019 (rehearsal/durable-update separation) at the functional level.
+    Pathological failure: when the simulation/real distinction fails -- confabulation --
+    simulated or replayed content accumulates in phi(z) as if real experience (MECH-076
+    map deformation). The confabulation mechanism is the failure of source monitoring
+    and/or temporal context filtering (Schnider 2003), not excessive vividness or
+    intensity of simulation. In rumination, repeated simulated-harm trajectories
+    accumulate as if they were real harm experiences. This is mechanistically distinct
+    from psychosis (prior-dominated precision failure, MECH-244; or signal-degradation
+    pathway, MECH-246; or trauma-shaped prior pathway, MECH-247) and hallucination
+    (generative model dominance without bottom-up grounding, MECH-245), which require
+    separate mechanisms. Simulation-driven viability map updates (MECH-092) are safe to
+    the degree that the source-monitoring and neuromodulatory mechanisms distinguishing
+    simulation from reality are intact. Updated 2026-04-16 based on Papez circuit
+    lit-pull discussion: categorical gate language removed, functional framing adopted,
+    biological implementation candidates MECH-248/249 registered.
 # Registered 2026-03-15 — control plane heartbeat architecture cluster
 # Source: conversation developing heartbeat model from MECH-057a FAIL analysis
 - id: ARC-023
@@ -15407,22 +15427,37 @@
   source:
     - docs/architecture/default_mode.md
   notes: >
-    Distinct from confabulation (MECH-094 tag loss). In confabulation, simulated content
-    is written to the residue field as real because the hypothesis tag is absent -- the
-    agent later "remembers" the simulation as real experience. In psychosis, the failure
-    is upstream: the agent's current-moment generative predictions persistently outweigh
-    sensory evidence, producing beliefs that contradict incoming percepts. Mechanistically:
-    precision on sensory prediction errors (z_e1, z_e2 mismatch signals) is downregulated
-    relative to prior-belief precision, so PE cannot correct the model. Clinical correlate:
-    dopaminergic dysregulation of precision-weighting (Friston/Corlett active inference
-    account). In REE terms: the E1/E2 bottom-up error signal is discounted to near zero
-    relative to the top-down prediction; the world model becomes unfalsifiable by
-    experience. This is not tag loss -- the hypothesis tag may be intact -- but a failure
-    of Bayesian updating from the environment. Relationship to MECH-201 (frame confusion
-    synthetic->real): psychosis can co-occur with frame confusion, but the primary
-    mechanism is precision failure, not absent tag. PTSD (MECH-094 confabulation pathway)
-    and psychosis can produce clinically similar symptoms (intrusive "memories") via
-    different mechanisms.
+    Distinct from confabulation (MECH-094 simulation/real distinction failure). In
+    confabulation, simulated content is written to the residue field as real because
+    the source-monitoring and/or temporal context mechanisms fail -- the agent later
+    "remembers" the simulation as real experience. In psychosis (this claim, MECH-244),
+    the failure is upstream: the agent's current-moment generative predictions persistently
+    outweigh sensory evidence, producing beliefs that contradict incoming percepts.
+    Mechanistically: precision on sensory prediction errors (z_e1, z_e2 mismatch signals)
+    is downregulated relative to prior-belief precision, so PE cannot correct the model.
+    Clinical correlate: dopaminergic dysregulation of precision-weighting (Friston/Corlett
+    active inference account; Adams et al. 2013, Corlett et al. 2009). In REE terms: the
+    E1/E2 bottom-up error signal is discounted relative to the top-down prediction; the
+    world model becomes unfalsifiable by experience. This is not source-monitoring failure
+    -- the simulation/real distinction (MECH-094) may be intact -- but a failure of
+    Bayesian updating from the environment.
+    MECH-244 is one of three pathways to psychotic symptoms in the REE framework. All
+    three are mechanistically distinct and therapeutically distinguishable:
+    (A) MECH-244 (this claim): DA/NMDA precision-weighting failure -- prior beliefs
+    dominate because the error signal is compromised. Strong evidence (Adams 2013,
+    Corlett 2009). Responds to antipsychotics targeting DA/NMDA precision mechanisms.
+    (B) MECH-246: Signal-degradation / pareidolia pathway -- sufficiently noisy or
+    ambiguous bottom-up signals produce false percepts via correct Bayesian inference
+    on degraded input, without formal precision failure. Early psychosis as-if quality,
+    stimulant-induced distortions. May respond to perceptual/environmental intervention.
+    (C) MECH-247: Trauma-shaped hypervigilant prior pathway -- pathological prior
+    structure generates strong top-down predictions from minimal threat-relevant signals.
+    Precision weighting may be intact; the Bayesian update is working correctly on
+    pathological priors. Responds to trauma-focused therapy rather than (or in addition
+    to) antipsychotics. Psychosis is likely multifactorial in both genesis and
+    maintenance; individual patients may have contributions from all three pathways.
+    Registered 2026-04-16: pathways B and C added based on clinical input from Daniel
+    Golden (consultant psychiatrist); registered as MECH-246, MECH-247.
 
 - id: MECH-245
   title: "Hallucination is a generative-model dominance failure where top-down predictions produce percepts without corresponding bottom-up sensory grounding."
@@ -15450,10 +15485,156 @@
     correlates: psychotic hallucinations (auditory verbal), hypnagogic hallucinations
     (sleep onset, generative model insufficiently suppressed -- see MECH-094 notes re
     REM), Charles Bonnet syndrome (deafferentation releasing generative prediction).
-    Relationship to MECH-094: hypothesis_tag is NOT the primary protection against
-    hallucination; the tag governs write-through to phi(z), not percept generation.
-    Hallucination prevention requires that bottom-up PE signals remain competitive with
-    top-down predictions -- a precision balance issue (related to MECH-244) rather than a
-    tagging issue. However, hallucinations during REM may be tag-mediated: MECH-094 notes
-    that hallucinatory content during REM accumulates in the residue field if the tag is
-    absent -- this is a confabulation+hallucination compound failure.
+    Relationship to MECH-094: the simulation/real distinction (MECH-094) is NOT the
+    primary protection against hallucination; that distinction governs write-through to
+    phi(z), not percept generation. Hallucination prevention requires that bottom-up PE
+    signals remain competitive with top-down predictions -- a precision balance issue
+    (related to MECH-244) rather than a source-monitoring issue. However, hallucinations
+    during REM may involve compound failure: MECH-094 notes that hallucinatory content
+    during REM can accumulate in the residue field if the simulation/real mechanisms are
+    compromised -- this is a confabulation+hallucination compound failure.
+
+# Registered 2026-04-16 -- Papez circuit lit-pull discussion
+# Source: clinical input from Daniel Golden (consultant psychiatrist) + discussion of
+#         Adams 2013, Ffytche 2005, Corlett 2009 evidence limitations
+- id: MECH-246
+  title: "Psychotic-like symptoms can arise from signal-degradation pareidolia: sufficiently noisy or ambiguous bottom-up perceptual signals allow correct Bayesian inference to produce false percepts, without requiring formal precision-weighting failure."
+  claim_type: mechanism_hypothesis
+  subject: psychiatric.pareidolia_signal_degradation_pathway
+  polarity: asserts
+  status: candidate
+  claim_level: functional
+  depends_on:
+    - MECH-244
+    - MECH-245
+  location: docs/architecture/default_mode.md
+  source:
+    - docs/architecture/default_mode.md
+  notes: >
+    Distinct from MECH-244 (precision-weighting failure) and MECH-245 (generative model
+    dominance from absent bottom-up input). In this pathway, the precision-weighting
+    system is intact but the bottom-up signal is too degraded, sparse, or ambiguous to
+    constrain Bayesian inference sufficiently. The generative model makes pattern-
+    completion errors that happen to be wrong -- not because the model resists updating,
+    but because the evidence is insufficient to correct strong priors. The agent is doing
+    correct Bayesian inference on bad data. Clinical correlates: perceptual distortions
+    under sleep deprivation, stimulant-induced psychosis without clear delusional
+    structure, early psychosis with as-if quality before full conviction develops,
+    sensory threshold alterations from intoxication or metabolic disturbance. This
+    pathway predicts that symptoms should remit when signal quality is restored
+    (sleep, sobriety, resolution of metabolic disturbance) and may not require
+    antipsychotic precision correction. Distinguished from MECH-244 by preserved
+    insight and signal-dependency of symptoms; distinguished from MECH-245 by the
+    presence of bottom-up input (however degraded) rather than its absence. Pending
+    targeted literature evidence (EVB-0137). Registered 2026-04-16 from clinical
+    discussion with Daniel Golden (consultant psychiatrist).
+
+- id: MECH-247
+  title: "Trauma-shaped hypervigilant priors can generate psychotic-like symptoms by structuring top-down predictions to respond strongly to minimal threat-relevant signals, producing perceptual errors and false beliefs without primary precision-weighting dysregulation."
+  claim_type: mechanism_hypothesis
+  subject: psychiatric.trauma_prior_psychosis_pathway
+  polarity: asserts
+  status: candidate
+  claim_level: functional
+  depends_on:
+    - MECH-094
+    - MECH-244
+    - MECH-245
+    - MECH-076
+  location: docs/architecture/default_mode.md
+  source:
+    - docs/architecture/default_mode.md
+  notes: >
+    Distinct from MECH-244 (precision-weighting failure) and MECH-246 (signal-
+    degradation pareidolia). In this pathway, the prior distributions themselves are
+    pathologically structured by traumatic experience: threat-relevant signals generate
+    strong top-down predictions that trigger MECH-245-like generative dominance from
+    minimal bottom-up evidence. Precision weighting may be intact -- the Bayesian update
+    is working correctly on pathological priors shaped by past real harm. The terrain
+    deformation mechanism (MECH-076) may be directly involved: accumulated residue from
+    real trauma deforms phi(z) in ways that generate threat-organized priors for future
+    perception and inference. Clinical correlates: trauma-organized paranoid ideation,
+    pseudo-hallucinations in complex PTSD, psychotic symptoms organized around themes
+    from real past threat experience, voice-hearing content organized around themes of
+    abuse or threat. This pathway predicts that normalizing precision-weighting
+    (antipsychotics) may be insufficient without also addressing the prior structure
+    (trauma-focused therapy). Distinguishes psychosis arising from prior-shaping via
+    real experience from psychosis arising from neurochemical precision dysregulation.
+    The REE mechanism: real harm accumulated in phi(z) via MECH-076 creates terrain
+    that generates expectation-congruent threat predictions even from minimal sensory
+    input. Pending targeted literature evidence (EVB-0138). Registered 2026-04-16 from
+    clinical discussion with Daniel Golden (consultant psychiatrist).
+
+- id: MECH-248
+  title: "Source monitoring (frontoparietal network; Johnson-Raye tradition) is a candidate biological implementation of the simulation/real distinction required by MECH-094 -- distinguishing internally generated from externally received content at the level of memory encoding and attribution."
+  claim_type: mechanism_hypothesis
+  subject: default_mode.source_monitoring_frontoparietal_implementation
+  polarity: asserts
+  status: candidate
+  claim_level: implementation
+  depends_on:
+    - MECH-094
+    - INV-011
+    - INV-019
+  location: docs/architecture/default_mode.md
+  source:
+    - docs/architecture/default_mode.md
+  notes: >
+    Johnson and Raye's source monitoring framework identifies a frontoparietal network
+    responsible for distinguishing the origin of mental content: internally generated
+    (imagination, planning, rehearsal) vs. externally received (perception). Source
+    monitoring failure corresponds directly to MECH-094's functional failure: the agent
+    cannot determine whether a memory trace was internally generated (should not update
+    phi(z) as committed experience) or received externally (should). This is a more
+    direct implementation candidate for MECH-094's functional requirement than the OFC
+    temporal context filter (Schnider 2003), which addresses relevance-gating of real
+    memories rather than the simulation/reality distinction per se. The prefrontal-
+    parietal basis of reality monitoring is supported by imaging and lesion studies
+    (Mitchell 2009, Simons et al. 2008); the precise mapping to REE's phi(z) write
+    pathway requires targeted literature review. Corollary discharge and efference copy
+    (Frith 1992, 2014) are related mechanisms for self/other attribution that may
+    implement an analogous distinction at the motor prediction level. The REE
+    architecture requires source monitoring to operate not just for motor content but for
+    all internally generated trajectories, including imaginative simulation and
+    hippocampal replay. Pending targeted literature evidence (EVB-0134). Registered
+    2026-04-16 following identification of Schnider 2003 temporal/epistemic distinction
+    gap in MECH-094 mapping.
+
+- id: MECH-249
+  title: "Acetylcholine/noradrenaline balance implements action-mode-specific hippocampal write profiles as a continuous neuromodulatory state variable, providing the biological substrate of mode-dependent memory encoding differences across deliberate action, habit, simulation, SWS, and REM states."
+  claim_type: mechanism_hypothesis
+  subject: default_mode.neuromodulatory_encoding_mode_profile
+  polarity: asserts
+  status: candidate
+  claim_level: implementation
+  depends_on:
+    - MECH-094
+    - MECH-030
+    - MECH-121
+    - MECH-122
+  location: docs/architecture/default_mode.md
+  source:
+    - docs/architecture/default_mode.md
+  notes: >
+    Hippocampal encoding mode is continuously set by the ACh/NE neuromodulatory context
+    rather than by a discrete categorical gate. High ACh + high NE (aroused, deliberate
+    waking action) strongly enables encoding; low ACh + low NE (automatic/habitual
+    action) reduces hippocampal dependence and engagement; high ACh + low aminergic
+    tone (REM sleep) produces theta oscillations and reactivation without the aminergic
+    modulation that supports reality monitoring (Hasselmo 1999, 2006; Hobson and
+    Pace-Schott 2002). SWS consolidation operates in a distinct neuromodulatory register:
+    low ACh, declining NE, delta dominance, SWR-mediated hippocampus-to-cortex transfer.
+    These state differences are continuous and overlapping, not binary transitions. In
+    REE terms, the write profile for each action mode is an emergent property of the
+    neuromodulatory context, not a discrete tag applied to content. MECH-094's functional
+    requirement (simulation content must not update phi(z) as real experience) is
+    partially implemented by the neuromodulatory conditions that differ between deliberate
+    waking encoding and simulation/REM states. The REM vulnerability identified in Hobson
+    and Pace-Schott 2002 (aminergic withdrawal during REM removing one layer of
+    multi-mechanism protection) is a direct prediction of this account: neuromodulatory
+    write-protection is degraded during REM, making it the state most vulnerable to
+    simulation/real confusion (MECH-094 compound failure). The architectural implication
+    is that the write-profile is a graded, state-dependent property of the encoding
+    context, not a switch that is either on or off. Pending targeted literature evidence
+    (EVB-0135). Registered 2026-04-16 following identification of the action-mode
+    write-profile gap and discussion of Hobson 2002 neuromodulatory findings.
