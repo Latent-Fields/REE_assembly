@@ -2381,6 +2381,66 @@
     "title": "Threat and approach valence enter hippocampal terrain through mechanistically asymmetric pathways: BLA writes explicit negative valence via dedicated anxiety/avoidance cells (Jimenez 2018); VTA-DA enhances representational fidelity via LTP modulation and place field sharpening (Retailleau & Morris 2018). The behavioural outputs (avoidance, approach) appear similar but the encoding mechanisms are distinct.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-234": {
+    "status": "candidate",
+    "subject": "control_plane.habitual_deliberate_effector_domain_parallelism",
+    "title": "DMS (goal-directed) and DLS (habitual) corticostriatal circuits can produce simultaneous parallel motor outputs only when targeting anatomically distinct motor effector pools; within the same effector pool, habitual and goal-directed outputs compete via winner-takes-all basal ganglia selection, not independent parallel expression.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-235": {
+    "status": "candidate",
+    "subject": "control_plane.vmpfc_arbitration_commitment_urgency",
+    "title": "vmPFC arbitration continuously weights model-based (E3/deliberative) vs. model-free (E1/habitual) contributions to action selection on a spectrum, not a binary switch. Commitment (beta-elevated E3) shifts weighting toward model-based without silencing the habitual channel; unexpected threat (urgency signal) shifts weighting toward model-free. The MECH-091 urgency interrupt is the substrate implementation of this arbitration shift, not a bypass of the beta gate.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-236": {
+    "status": "candidate",
+    "subject": "hippocampus.e3_goal_conditioning",
+    "title": "Hippocampal trajectory proposals must be conditioned on a goal signal (z_goal) injected from E3 via a dedicated input channel; without this conditioning, the hippocampal module generates only position-based trajectories and cannot produce goal-directed navigation toward target states.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-237": {
+    "status": "candidate",
+    "subject": "drive.goal_attractor_global_reachability",
+    "title": "The z_goal attractor must be globally reachable across the z_goal sub-space \u2014 accessible from arbitrary latent starting states \u2014 not merely locally stable at a narrow basin; a locally-only-stable attractor fails to seed goal-directed hippocampal navigation from states far from the goal, producing approach behavior only when already near the goal.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-238": {
+    "status": "candidate",
+    "subject": "hippocampus.distance_metric_encoding",
+    "title": "The hippocampal module encodes pairwise distance relations between states in the z_world latent manifold \u2014 not only positional tags \u2014 providing a metric structure that enables distance-based navigation toward goal states across the residue-field terrain.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-239": {
+    "status": "candidate",
+    "subject": "hippocampus.temporal_indexing_time_cells",
+    "title": "The hippocampal indexing substrate includes a temporal dimension implemented via time cells that tile elapsed time using the same phase-precession and theta-sequence machinery as place cells, enabling correct ordering of states within multi-step planning rollouts and working-memory sequences.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-240": {
+    "status": "candidate",
+    "subject": "drive.goal_attractor_basin_scaling",
+    "title": "SD-012 homeostatic drive_level dynamically scales z_goal attractor basin width \u2014 high drive widens the basin so the goal attractor is globally accessible, low drive narrows it to local stability only \u2014 enabling motivational-state-dependent modulation of goal-directedness without permanently widening the basin.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-241": {
+    "status": "candidate",
+    "subject": "hippocampus.goal_state_representational_compression",
+    "title": "During active goal pursuit, hippocampal and OFC-analogue representations of goal-proximal states undergo compression -- goal locations cluster more tightly in neural state space -- improving signal-to-noise for goal-directed trajectory selection; the degree of compression predicts planning efficiency across episodes.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-242": {
+    "status": "candidate",
+    "subject": "hippocampus.dual_mode_trajectory_construction",
+    "title": "Hippocampal trajectory construction operates via two dissociable mechanisms: (1) pattern completion for familiar trajectories (hippocampus-proper), and (2) vector-based construction for novel trajectories assembled from relational components (parahippocampal/parietal-analogue); pattern completion alone is sufficient for navigation within a learned residue field, but vector-based construction is required for generalisation to novel environments not represented in the existing map.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-243": {
+    "status": "candidate",
+    "subject": "hippocampus.approach_bias_output_pathway",
+    "title": "A dedicated hippocampal output pathway (analogous to vCA1 to nucleus accumbens shell) specifically encodes approach bias during motivational conflict -- separately from harm avoidance -- cleanly dissociating the approach signal at the action-selection interface; inhibition of this pathway defaults action selection to avoidance without disrupting harm representation.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
