@@ -15638,3 +15638,47 @@
     context, not a switch that is either on or off. Pending targeted literature evidence
     (EVB-0135). Registered 2026-04-16 following identification of the action-mode
     write-profile gap and discussion of Hobson 2002 neuromodulatory findings.
+
+- id: MECH-250
+  title: "The end of exhalation (expiration phase) provides a hard, periodic release
+    signal for committed motor programs via respiratory-motor coupling -- a breath-timed
+    gate-release mechanism distinct from hippocampal completion (ARC-028) and urgency
+    interrupt (MECH-091)."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.respiratory_phase_gate_release
+  polarity: asserts
+  status: candidate
+  claim_level: implementation
+  depends_on:
+    - MECH-090
+    - MECH-108
+    - ARC-028
+    - MECH-091
+  location: docs/architecture/control_plane_heartbeat.md
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Observed across species that planned motor actions are preferentially released at
+    the end of exhalation: dogs time action initiation to a sharp outbreath; vocal
+    production in humans is almost exclusively on expiration; skilled motor actions
+    (e.g., throwing, striking) cluster at the exhale-end phase. The mechanism is
+    respiratory-motor coupling: relaxation of the diaphragm and accessory respiratory
+    muscles at end-expiration reduces core tension, providing a brief window of reduced
+    postural load in which committed motor programs can propagate to effectors without
+    fighting against the inspiratory drive. In REE terms this is a THIRD release
+    pathway for the MECH-090 bistable beta gate (alongside hippocampal completion
+    ARC-028 and urgency interrupt MECH-091): the expiratory phase-boundary fires a
+    hard gate-release signal, briefly opening the policy-propagation channel regardless
+    of hippocampal completion quality or harm escalation. Crucially, this is
+    mechanistically distinct from MECH-108 (BreathOscillator), which already softens
+    the commit threshold during the sweep phase to create periodic uncommitted windows.
+    MECH-250 is not a threshold-softening effect but a positive release trigger: it
+    actively drives beta_gate.release() at the exhale-end boundary, enabling biological
+    breath-timed action initiation. The coupling also explains why the BreathOscillator
+    sweep phase (MECH-108) and the gate release event (MECH-250) can be temporally
+    coordinated: the sweep opens the evaluation window and the respiratory boundary
+    fires the release, yielding breath-organised motor output. Implementation would
+    extend BetaGate with receive_respiratory_phase(phase) -> release at EXHALE_END,
+    driven by the MultiRateClock breath cycle state. Registered 2026-04-16 from
+    empirical observation (dogs releasing planned actions with a sharp outbreathing)
+    during MECH-090 bistable gate development.
