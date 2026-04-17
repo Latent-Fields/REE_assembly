@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_019",
+  "entry_id": "2026-04-17_sd_019_affective_pain_systems_price2000",
+  "timestamp_utc": "2026-04-17T08:43:25Z",
+  "claim_ids_tested": ["SD-019"],
+  "source": {
+    "title": "Psychological and neural mechanisms of the affective dimension of pain.",
+    "authors": ["Price, D D"],
+    "year": 2000,
+    "venue": "Science",
+    "doi": "10.1126/science.288.5472.1769",
+    "pmid": "10846154"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Authoritative review by the leading investigator in pain affect dissociation research, published in Science. Directly addresses the dual-pathway architecture: direct spinal-to-limbic inputs (via paleospinothalamic/medial thalamus) alongside the cortico-limbic route through somatosensory cortex. The existence of a direct paleospinothalamic input to the ACC/limbic system -- bypassing S1 -- provides explicit anatomical grounding for why z_harm_a can carry information unavailable in z_harm_s. The 'secondary affect' construct (emotions about future implications of pain) also maps cleanly onto the motivational urgency and commitment-modulation function ascribed to z_harm_a. Confidence slightly below the Rainville empirical paper because this is a review synthesising rather than generating primary data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the 'direct' spinal-to-limbic pathway is quantitatively minor in humans (as some lesion studies suggest), z_harm_a could still be functionally downstream of z_harm_s and hence recoverable from it with a learned transformation.",
+    "The review does not resolve whether temporal integration in z_harm_a is a property of the input stream (C-fiber slow accumulation) or of the cortical attractor dynamics in ACC; both would produce nonredundancy, but by different mechanisms with different experimental signatures."
+  ],
+  "tags": ["sd_019", "pain_affect", "dual_pain_pathways", "paleospinothalamic", "medial_thalamus", "anterior_cingulate", "affective_motivational", "nociception"],
+  "mapping": {
+    "source_claim_statement": "The affective dimension of pain involves serial interactions between pain sensation intensity, pain unpleasantness, and secondary affect (emotions about future implications). These dimensions engage parallel and serial pathways: spinal projections to limbic structures via medial thalamic nuclei (direct paleospinothalamic route), and somatosensory cortex feeding via a cortico-limbic pathway. Both routes converge on ACC and related structures that establish emotional valence and response priorities.",
+    "ree_translation": "SD-019 is directly grounded by this architecture. z_harm_s corresponds to the neospinothalamic/lateral system (S1, SII: where/how intense). z_harm_a corresponds to the paleospinothalamic/medial system input to ACC and limbic structures (how unpleasant, how motivationally urgent). The direct paleospinothalamic route means z_harm_a receives input independent of the route that feeds z_harm_s, providing architectural nonredundancy at the input level. The 'secondary affect' layer -- evaluating future implications -- maps onto z_harm_a's role in commitment modulation and urgency signaling in REE.",
+    "mapping_caveat": "The paleospinothalamic/medial thalamus route carries predominantly C-fiber input, which is consistent with z_harm_a's temporal integration property (C-fibers accumulate rather than discriminate). However, the biological system does not maintain these pathways as strictly independent -- cross-talk occurs at multiple levels. The REE claim that z_harm_a must be nonrecoverable from z_harm_s is stronger than what the anatomy strictly requires; it is an additional engineering constraint on top of the biological finding.",
+    "source_context": "Human and animal data synthesis; primarily thermal and mechanical pain paradigms; review of PET/fMRI and lesion evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.15,
+    "notes": "Science review by D.D. Price -- a principal investigator in the field -- carrying high authority. Mapping fidelity is strong for the architectural claim but the 'nonrecoverability' operationalisation in REE goes beyond what the biological review explicitly claims. Transfer risk is low: direct human/primate relevance."
+  }
+}

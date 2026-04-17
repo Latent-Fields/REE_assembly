@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_019",
+  "entry_id": "2026-04-17_sd_019_pain_affect_acc_rainville1997",
+  "timestamp_utc": "2026-04-17T08:43:25Z",
+  "claim_ids_tested": ["SD-019"],
+  "source": {
+    "title": "Pain affect encoded in human anterior cingulate but not somatosensory cortex.",
+    "authors": ["Rainville, P", "Duncan, G H", "Price, D D", "Carrier, B", "Bushnell, M C"],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.277.5328.968",
+    "pmid": "9252330"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Landmark PET study with direct experimental manipulation (hypnotic suggestion selectively altering unpleasantness without changing intensity). Clean double dissociation: ACC activity tracks unpleasantness, S1 activity tracks intensity. This maps with very high fidelity onto the SD-019 claim that z_harm_a (affective/motivational) and z_harm_s (sensory-discriminative) are representationally nonredundant -- the two streams are dissociable in the direction predicted. High source quality (Science, 1997, repeatedly replicated). Mapping fidelity is strong but not perfect: hypnotic modulation is a cognitive-top-down manipulation rather than a bottom-up test of stream architecture, and the study uses heat pain applied to the hand rather than tissue-damage-driven harm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ACC solely mediates unpleasantness via top-down attentional modulation rather than being a structural node in an independent nociceptive pathway, then the nonredundancy demonstrated here would be context-dependent rather than a substrate property.",
+    "Subjects show variable hypnotic susceptibility; a low-susceptibility cohort might fail to show the dissociation, suggesting individual differences in stream separability.",
+    "Warm (non-noxious) condition activates S1 without strong ACC activation, which is consistent -- but also shows the dissociation is strongest at noxious intensities, leaving open whether the separation holds across the full range of stimulus levels relevant to REE training."
+  ],
+  "tags": ["sd_019", "pain_affect", "anterior_cingulate", "somatosensory_cortex", "dual_pain_pathways", "nociception", "affective_motivational"],
+  "mapping": {
+    "source_claim_statement": "Hypnotic suggestions that selectively alter pain unpleasantness (without changing perceived intensity) produce significant changes in ACC activity, with no corresponding change in primary somatosensory cortex. Conversely, suggestions that alter intensity modulate S1 but not ACC.",
+    "ree_translation": "SD-019 requires that z_harm_a (affective harm stream) and z_harm_s (sensory-discriminative harm stream) encode representationally distinct aspects of nociceptive information. The Rainville data provide direct biological support: the two dimensions are processed by separable neural substrates (ACC vs S1), dissociable under experimental manipulation. A valid z_harm_a implementation must therefore not be recoverable as a monotone transform of z_harm_s -- matching the double-dissociation finding that affect and intensity are independently modulable.",
+    "mapping_caveat": "The REE streams are spinal/subcortical at entry (z_harm_s via A-delta spinothalamic projections, z_harm_a via C-fiber paleospinothalamic projections), whereas this study measures cortical output of those pathways. The dissociation demonstrated here is at the cortical level and may not fully characterise the input-layer separation. Additionally, temporal integration -- the key property emphasized in SD-019 -- is not directly measured; the study manipulates steady-state unpleasantness, not the integrative dynamics over accumulated threat load.",
+    "source_context": "Human adults, PET imaging, noxious heat (47 deg C) applied to hand, hypnotic susceptibility pre-screened, Montreal cohort."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "Source quality is near-ceiling: Science, landmark paper, replicated multiple times including by the same group (Hofbauer 2001). Mapping fidelity is high for the nonredundancy property but attenuated because temporal integration dynamics are not tested directly. Transfer risk is low: humans, thermal pain, canonical nociception."
+  }
+}

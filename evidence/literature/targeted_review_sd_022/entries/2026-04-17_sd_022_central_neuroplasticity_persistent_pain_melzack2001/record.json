@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_022",
+  "entry_id": "2026-04-17_sd_022_central_neuroplasticity_persistent_pain_melzack2001",
+  "timestamp_utc": "2026-04-17T08:43:25Z",
+  "claim_ids_tested": ["SD-022"],
+  "source": {
+    "title": "Central neuroplasticity and pathological pain.",
+    "authors": ["Melzack, R", "Coderre, T J", "Katz, J", "Vaccarino, A L"],
+    "year": 2001,
+    "venue": "Annals of the New York Academy of Sciences",
+    "doi": "10.1111/j.1749-6632.2001.tb05822.x",
+    "pmid": "12000018"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Review by Melzack (gate control theory co-originator) covering the core biological mechanism that SD-022 is designed to instantiate: pain signals persisting in the CNS after the peripheral source is removed or blocked. Phantom limb pain is the canonical example -- pain perceived in an absent limb, without ongoing peripheral input, arising from central sensitization and cortical reorganization. This is the precise analogue of z_harm_a remaining elevated after z_harm_s drops to near-zero when an agent leaves a hazard zone. Preemptive analgesia evidence (blocking the afferent barrage before injury prevents later chronic pain) shows that the central state is written at injury time and persists independently. High source quality; mapping to SD-022 is close but the translation from human chronic pain to a simulated 4-limb grid-world agent requires explicit acknowledgement of the proxy gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Phantom limb pain involves cortical reorganization over weeks-to-months, whereas the SD-022 limb damage model resets much faster (heal_rate=0.002/step, healing within ~500 steps). The timescale mismatch is a proxy risk: the REE body-state mechanism may be too fast to produce the representational persistence that makes phantom limb pain informative.",
+    "In humans, peripheral nerve block after established chronic pain often does not resolve the pain, suggesting CNS autonomy -- but in healthy subjects the same block does resolve acute pain. SD-022 needs to produce persistent z_harm_a even in 'healthy' (non-damaged) training conditions, not just under pathological central sensitization.",
+    "Central sensitization requires repeated or sustained noxious input to establish; REE training episodes may not be long enough to produce the requisite synaptic potentiation."
+  ],
+  "tags": ["sd_022", "central_sensitization", "phantom_limb_pain", "persistent_pain", "neuroplasticity", "body_damage_state", "peripheral_input_absent"],
+  "mapping": {
+    "source_claim_statement": "Noxious stimulation induces activity-dependent central sensitization -- wind-up, expanded receptive fields, enhanced flexion reflexes -- that outlasts the original peripheral input. Phantom limb pain demonstrates that pain can be maintained entirely by central mechanisms after the peripheral source is removed. Preemptive analgesia blocks this central writing step, preventing later chronification.",
+    "ree_translation": "SD-022 argues that a body-state harm signal (limb_damage accumulating from hazard traversal) provides a source for z_harm_a that is causally independent of current world proximity. Melzack 2001's central sensitization evidence provides biological grounding: after tissue damage, harm signals persist in the CNS even when peripheral input is blocked or absent. The limb damage state in CausalGridWorldV2 is a simplified model of this: damage accumulates during hazard exposure and heals slowly, producing a body-derived z_harm_a that remains elevated after the agent leaves the hazard zone -- analogous to chronic/phantom pain. The dissociation target in SD-022 experiments (z_harm_a_retention_high >> z_harm_a_retention_fresh) maps directly onto the phantom limb dissociation.",
+    "mapping_caveat": "SD-022 operates at a behavioural/representational level in a grid-world, whereas Melzack 2001 describes molecular synaptic mechanisms (NMDA receptors, NMDA-mediated wind-up, cortical map reorganization). The proxy is valid at the computational level but the specific timescale parameters (heal_rate, damage_increment) are engineering choices not biologically calibrated. Additionally, the REE model does not implement a genuine sensitization mechanism; the persistence derives from slow healing of an explicit damage state, not from activity-dependent potentiation of nociceptive neurons.",
+    "source_context": "Primarily human and rat data; combines clinical (phantom limb, preemptive analgesia) and preclinical (wind-up recordings, receptive field mapping) evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Melzack, canonical author; Ann NY Acad Sci review). Mapping fidelity is good for the conceptual-level claim (body-state persists after peripheral source removed) but attenuated by the mechanistic gap: REE uses explicit damage state, not synaptic sensitization. Transfer risk elevated because REE's grid-world agents are far from human nociceptive architecture."
+  }
+}

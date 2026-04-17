@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_022",
+  "entry_id": "2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019",
+  "timestamp_utc": "2026-04-17T08:43:25Z",
+  "claim_ids_tested": ["SD-022"],
+  "source": {
+    "title": "The Interaction Between Chronic Pain and PTSD.",
+    "authors": ["Kind, Shelley", "Otis, John D"],
+    "year": 2019,
+    "venue": "Current Pain and Headache Reports",
+    "doi": "10.1007/s11916-019-0828-3",
+    "pmid": "31781875"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Clinical review documenting the high comorbidity of chronic pain and PTSD, with evidence that each condition amplifies the other. This supports SD-022's 'failure mode' framing: persistent z_harm_a in the absence of current threat corresponds to the PTSD hypervigilance state -- a body that remains in a threat-state even when the external world is safe. The mutual-maintenance model (PTSD and chronic pain share neural substrates including heightened amygdala reactivity and impaired extinction) provides biological grounding for the failure mode. Lower confidence than Melzack 2001 because this is a clinical-comorbidity review without direct mechanistic experiments, and the mapping to z_harm_a specifically (rather than the broader threat state) requires several inferential steps.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The mechanisms linking PTSD and chronic pain are correlational; the shared neural substrates (amygdala, insula, ACC) are the same regions that process both conditions, but this does not demonstrate that the body-state channel (z_harm_a) is the mediating variable rather than a higher-level cognitive appraisal.",
+    "PTSD-induced chronic pain amplification may involve cognitive reappraisal and attention mechanisms that are absent in the REE agent architecture; the model may not produce the analogous failure mode even with SD-022 implemented."
+  ],
+  "tags": ["sd_022", "ptsd", "chronic_pain", "hypervigilance", "persistent_threat", "body_state", "comorbidity", "affective_load"],
+  "mapping": {
+    "source_claim_statement": "PTSD and chronic pain are highly comorbid; individuals with both conditions report greater symptoms, disability, and opioid use than those with either condition alone. Shared mechanisms include central sensitization, heightened amygdala reactivity, impaired fear extinction, and mutual-maintenance cycles where pain triggers trauma memories and hyperarousal amplifies pain perception.",
+    "ree_translation": "SD-022's notes section explicitly identifies the REE-target failure modes as hypervigilance, chronic pain, and PTSD -- persistent z_harm_a with near-zero z_harm_s (body-state residue without current threat). The Kind & Otis review grounds this in the human clinical literature: PTSD is characterized by a body that maintains a threat response state (hyperarousal, somatic symptoms) in the absence of the original threat -- i.e., elevated affective harm load without current sensory-discriminative harm input. The comorbidity with chronic pain further supports the claim that these two harm channels can dissociate in the pathological direction, and that the body-state channel (limb damage in SD-022) is a valid substrate for modelling these failure modes.",
+    "mapping_caveat": "This review documents the phenomenological and clinical overlap between PTSD and chronic pain; it does not provide direct evidence that body-damage-state persistence (as distinct from fear memory or cognitive appraisal) is the mechanistic link. The SD-022 design isolates the body-state channel explicitly, but the biology is more distributed. Mapping confidence would be higher if a study specifically manipulated body-damage without affective appraisal -- which is difficult to do in humans.",
+    "source_context": "Clinical human population (primarily veterans/trauma survivors); review of treatment trials and neuroimaging studies of PTSD-chronic pain comorbidity."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Moderate source quality: peer-reviewed clinical review, Current Pain and Headache Reports, but not a primary empirical study. Mapping fidelity reduced because the PTSD/chronic pain literature does not distinguish the body-damage channel from the fear-memory/cognitive-appraisal channels that SD-022 is specifically targeting. Transfer risk elevated by the clinical-to-model gap."
+  }
+}
