@@ -1092,7 +1092,14 @@
     "type": "invariant"
   },
   "INV-064": {
-    "invariant_type": "grey_zone",
+    "emergent_from": [
+      "ARC-001",
+      "ARC-002",
+      "ARC-003",
+      "ARC-019"
+    ],
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
     "status": "candidate",
     "subject": "development.maturational_sequence",
     "title": "e1_e2_e3_maturational_sequence_necessity",

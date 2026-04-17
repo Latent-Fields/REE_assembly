@@ -13510,9 +13510,13 @@
 - id: INV-064
   title: e1_e2_e3_maturational_sequence_necessity
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
+  invariant_type: emergent
+  emergent_from:
+    - ARC-001
+    - ARC-002
+    - ARC-003
     - ARC-019
+  pending_substrate_reconfirmation: true
   status: candidate
   subject: development.maturational_sequence
   description: >
@@ -13539,7 +13543,18 @@
     maturational sequence is not merely a constraint to work around -- it is the
     correct curriculum order for building a competent E3.
   registered: "2026-04-07"
-  depends_on: [INV-055, INV-056, MECH-212, MECH-213]
+  depends_on: [INV-055, INV-056, ARC-001, ARC-002, ARC-003, ARC-019, MECH-212, MECH-213]
+  session_c_resolution: >
+    Session C batch 2026-04-17: classified emergent on
+    [ARC-001, ARC-002, ARC-003, ARC-019]. The title explicitly names E1/E2/E3
+    — the engines whose maturation order is asserted — so the engine ARCs
+    underwrite the invariant's subject matter. ARC-019 (staged developmental
+    curriculum) provides the substrate that specifies the ordering itself.
+    All four are load-bearing: retract any engine ARC and the corresponding
+    term in the sequence has no referent; retract ARC-019 and the "sequence"
+    concept is not stateable as a curriculum constraint. ARC-001/002/003 are
+    active; ARC-019 is provisional, so pending_substrate_reconfirmation: true
+    (propagates from the lowest-status substrate per governance rule).
 
 - id: MECH-214
   title: goal_referent_e1_representability
