@@ -2836,9 +2836,7 @@
 - id: INV-019
   title: "Rehearsal traversal and irreversible durable write must remain separated."
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - ARC-014
+  invariant_type: universal
   subject: meta.selection_compression_boundary
   polarity: asserts
   status: candidate
@@ -2852,14 +2850,17 @@
     - docs/invariants.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
   notes: >
-    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
-    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
+    Resolved universal in Session C batch 2026-04-17. Rationale: direct consequence of
+    INV-011 (imagination without belief update) extended to any channel that both
+    explores and writes durably. The principle -- no channel may permit unrestricted
+    exploration and unrestricted durable write simultaneously -- is an information-
+    flow-architecture invariant that holds for any agent combining simulation with
+    memory. ARC-014 (Default Mode) is the REE-specific implementation locus but does
+    not underwrite the subject.
 - id: INV-020
   title: "Constraint stores are authority-stratified from direct observational/symbolic writes."
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - ARC-020
+  invariant_type: universal
   subject: meta.authority_stratification_boundary
   polarity: asserts
   status: candidate
@@ -2874,15 +2875,21 @@
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
   notes: >
-    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
-    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
+    Resolved universal in Session C batch 2026-04-17. Rationale: the principle --
+    any architecture with multiple write channels requires typed authority
+    separation between them -- is a substrate-neutral information-flow constraint.
+    "Constraint stores" and "direct observational/symbolic writes" are architecture-
+    neutral category terms, not REE-specific machinery. ARC-020 is the REE-specific
+    implementation of this principle in the offline-consolidation pipeline but does
+    not underwrite the subject.
 - id: INV-021
   title: "Responsibility-bearing durable updates occur only at typed commit boundaries."
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - SD-026
+  invariant_type: emergent
+  emergent_from:
     - ARC-003
+    - SD-026
+  pending_substrate_reconfirmation: true
   subject: meta.commit_boundary_irreversibility
   polarity: asserts
   status: candidate
@@ -2890,6 +2897,8 @@
     - INV-012
     - MECH-061
     - Q-015
+    - ARC-003
+    - SD-026
   location: docs/invariants.md#inv-021
   source:
     - docs/invariants.md
@@ -2898,8 +2907,15 @@
     - docs/thoughts/2026-02-24_determinism_action_gating_boundary.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
   notes: >
-    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
-    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
+    Resolved emergent in Session C batch 2026-04-17. Rationale: structural
+    generalisation of INV-012 (Session A's worked emergent example) -- the claim
+    imports "responsibility-bearing" from INV-012, which is itself emergent on
+    SD-026 (prospective precision template write channel makes "commitment" a
+    load-bearing ethical concept). Additionally, "typed commit boundary" requires
+    ARC-003 (E3's commit action) to be a real architectural feature. Without
+    ARC-003 the invariant names no feature; without SD-026 "responsibility" has no
+    coherent referent. pending_substrate_reconfirmation set because SD-026 is
+    candidate.
 - id: INV-022
   title: "Trust/precision allocation must remain heterogeneous, not a single scalar."
   claim_type: invariant

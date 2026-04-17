@@ -49,13 +49,13 @@ Session B stops before committing `claims.yaml` pending user confirmation. The r
 
 ## Summary
 
-- Clear universal: 39
-- Clear emergent: 22
-- Grey zone: 7
+- Clear universal: 41
+- Clear emergent: 23
+- Grey zone: 4
 - Reclassified (out of claim_type: invariant): 4
 - Sum: 72
 
-Retroactive flag count (`pending_substrate_reconfirmation: true`): 19
+Retroactive flag count (`pending_substrate_reconfirmation: true`): 20
 Checkpoint threshold triggered: **yes**
 
 Session C batch progress (2026-04-17):
@@ -63,7 +63,10 @@ Session C batch progress (2026-04-17):
   after schema extension.
 - Group 2 (INV-004/005/006): resolved universal (no re-wording); mechanism-
   agnosticism notes in docs/invariants.md already support the universal reading.
-- Groups 3, 4 pending.
+- Group 3 (INV-019/020/021): INV-019 and INV-020 resolved universal (information-
+  flow principles stateable without REE substrate); INV-021 resolved emergent on
+  [ARC-003, SD-026] paralleling INV-012's emergent-on-SD-026 reasoning.
+- Group 4 pending.
 
 ---
 
@@ -169,6 +172,23 @@ vocabulary. They would survive a substantially different E1/E2/E3 substrate.
 - **Title:** Agency is required; passive predictors are not REE.
 - **Rationale:** Definitional boundary claim about what counts as agentive; holds across
   substrates.
+
+### INV-019
+- **Title:** Rehearsal traversal and irreversible durable write must remain separated.
+- **Resolved:** 2026-04-17 in Session C batch (Group 3).
+- **Outcome:** universal (no re-wording).
+- **Rationale:** Direct consequence of INV-011 extended to any channel that both explores
+  and writes durably; substrate-neutral information-flow constraint. ARC-014 (Default
+  Mode) is the REE-specific implementation locus but does not underwrite the subject.
+
+### INV-020
+- **Title:** Constraint stores are authority-stratified from direct observational/symbolic
+  writes.
+- **Resolved:** 2026-04-17 in Session C batch (Group 3).
+- **Outcome:** universal (no re-wording).
+- **Rationale:** Substrate-neutral information-flow constraint: any architecture with
+  multiple write channels requires typed authority separation. ARC-020 is the REE-specific
+  implementation in the offline-consolidation pipeline but does not underwrite the subject.
 
 ### INV-022
 - **Title:** Trust/precision allocation must remain heterogeneous, not a single scalar.
@@ -294,6 +314,18 @@ Each entry's subject matter becomes ill-defined if the listed substrate is retra
   classified in Session A — unchanged.)
 - **Substrate status at audit:** candidate
 - **pending_substrate_reconfirmation applied:** yes (already set in Session A)
+
+### INV-021
+- **Title:** Responsibility-bearing durable updates occur only at typed commit boundaries.
+- **emergent_from:** [ARC-003, SD-026]
+- **Resolved:** 2026-04-17 in Session C batch (Group 3).
+- **Outcome:** emergent on [ARC-003, SD-026].
+- **Rationale:** Structural generalisation of INV-012 (responsibility via commitment).
+  "Responsibility-bearing" imports INV-012's SD-026 dependency; "typed commit boundary"
+  requires ARC-003 (E3's commit action) to be a real architectural feature. ARC-003 added
+  to depends_on; SD-026 added to depends_on.
+- **Substrate status at audit:** ARC-003 active; SD-026 candidate.
+- **pending_substrate_reconfirmation applied:** yes (SD-026 candidate).
 
 ### INV-033
 - **Title:** REE agents require second-order epistemic access to their own model confidence,
@@ -512,64 +544,9 @@ Each entry carries a self-contained follow-up prompt for a Session C_n auditor.
 <!-- INV-004, INV-005, INV-006 resolved universal in Session C batch Group 2 (2026-04-17) -- see Clear Universal section -->
 
 
-### INV-019
-- **Title:** Rehearsal traversal and irreversible durable write must remain separated.
-- **Why ambiguous:** The separation principle is decision-theoretic (simulation vs
-  commitment — see INV-011), but "rehearsal traversal" and "durable write" are REE-specific
-  vocabulary tied to DMN rollouts (ARC-014) and memory-write loci (MECH-060, listed in deps).
-- **Candidate classifications:**
-  - universal (extension of INV-011 — "any agent capable of simulation must separate the
-    simulation path from the path that commits to memory")
-  - emergent on: [ARC-014] (Default Mode enables safe imagination without commitment) —
-    would need ARC-014 added to depends_on.
-- **Follow-up prompt for Session C_n:**
-  > INV-019 ("Rehearsal traversal and irreversible durable write must remain separated.")
-  > appears to be a substrate-flavoured restatement of INV-011's universal "imagination
-  > without belief update" principle. Decide: (a) universal, justified as a direct
-  > consequence of INV-011 under any architecture with durable memory (preferred if
-  > possible — restate to remove "rehearsal traversal / durable write" phrasing), or (b)
-  > emergent on ARC-014 (Default Mode) because the particular separation regime this
-  > invariant asserts is ARC-014-resident. Check whether MECH-060 already names the
-  > load-bearing substrate.
+<!-- INV-019, INV-020 resolved universal in Session C batch Group 3 (2026-04-17) -- see Clear Universal section -->
+<!-- INV-021 resolved emergent on [ARC-003, SD-026] in Session C batch Group 3 (2026-04-17) -- see Clear Emergent section -->
 
-### INV-020
-- **Title:** Constraint stores are authority-stratified from direct observational/symbolic
-  writes.
-- **Why ambiguous:** "Constraint stores" and "authority stratification" are REE-specific
-  architectural terms (see MECH-064, MECH-065 in deps), but the principle (write-channel
-  stratification by type) can be stated architecturally-neutrally.
-- **Candidate classifications:**
-  - universal (re-stated as: "any architecture with multiple write channels requires typed
-    authority separation between them")
-  - emergent on: [ARC-020] (offline consolidation protected by typed authority/write
-    boundaries) — ARC-020 would need to be added to depends_on.
-- **Follow-up prompt for Session C_n:**
-  > INV-020 ("Constraint stores are authority-stratified from direct observational/symbolic
-  > writes.") depends on MECH-064/065 but no SD/ARC substrate. Check whether ARC-020
-  > (typed authority/write boundaries in offline consolidation) is the load-bearing
-  > substrate for this invariant's subject. If yes, classify emergent on ARC-020 (and add
-  > to depends_on). If the claim is fundamentally about any multi-channel architecture,
-  > restate universally.
-
-### INV-021
-- **Title:** Responsibility-bearing durable updates occur only at typed commit boundaries.
-- **Why ambiguous:** Structurally parallel to INV-012 (both centre on commitment), but
-  `depends_on` is [INV-012, MECH-061, Q-015] — no SD/ARC IDs. The "commit boundary" is
-  REE's architectural commitment (ARC-003 / SD-026), but the invariant does not declare
-  that dependency.
-- **Candidate classifications:**
-  - emergent on: [SD-026] (via INV-012 — the commitment-as-load-bearing substrate). Adding
-    SD-026 to `depends_on` is defensible because INV-021 is in practice a generalisation of
-    INV-012.
-  - emergent on: [ARC-003, SD-026] (E3's commit action + the prospective-precision
-    substrate that gives commitment its ethical content)
-- **Follow-up prompt for Session C_n:**
-  > INV-021 ("Responsibility-bearing durable updates occur only at typed commit boundaries.")
-  > is a structural parallel to INV-012 (Session A's worked emergent example). Decide
-  > whether to classify emergent on SD-026 only (treating INV-021 as a generalisation of
-  > INV-012), or on ARC-003 + SD-026 (E3's commit action + SD-026's commitment content),
-  > and add the chosen substrate to depends_on. Refer to INV-012's emergent-on-SD-026
-  > rationale in the audit registry and the architecture doc for the load-bearing argument.
 
 ### INV-024
 - **Title:** Offline consolidation and online commitment must remain isolated at

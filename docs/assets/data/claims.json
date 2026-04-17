@@ -676,21 +676,26 @@
     "type": "invariant"
   },
   "INV-019": {
-    "invariant_type": "grey_zone",
+    "invariant_type": "universal",
     "status": "candidate",
     "subject": "meta.selection_compression_boundary",
     "title": "Rehearsal traversal and irreversible durable write must remain separated.",
     "type": "invariant"
   },
   "INV-020": {
-    "invariant_type": "grey_zone",
+    "invariant_type": "universal",
     "status": "candidate",
     "subject": "meta.authority_stratification_boundary",
     "title": "Constraint stores are authority-stratified from direct observational/symbolic writes.",
     "type": "invariant"
   },
   "INV-021": {
-    "invariant_type": "grey_zone",
+    "emergent_from": [
+      "ARC-003",
+      "SD-026"
+    ],
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
     "status": "candidate",
     "subject": "meta.commit_boundary_irreversibility",
     "title": "Responsibility-bearing durable updates occur only at typed commit boundaries.",
