@@ -11681,15 +11681,17 @@
 - id: INV-051
   title: "There exists an optimal range of daily Model Error Load (MEL): insufficient MEL (extreme monotony, isolation, institutional under-stimulation) produces progressive model rigidity via under-stimulation of the learning drive even when sleep architecture is intact; excessive MEL (acute trauma, overwhelming novelty, extreme responsibility) produces overload insomnia and incomplete update even with extended sleep opportunity."
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
+  invariant_type: emergent
+  emergent_from:
     - SD-017
+  pending_substrate_reconfirmation: true
   subject: architecture.mel_optimal_range_requirement
   polarity: asserts
   status: candidate
   depends_on:
     - INV-050
     - INV-049
+    - SD-017
     - MECH-181
   notes: >
     Registered 2026-04-06. INV-051 is the bounding invariant on MEL: the
@@ -11722,6 +11724,14 @@
     cannot match the demand. Cognitive reserve interventions (education, social
     engagement, learning new skills, enriched environments) operate by keeping
     MEL in the optimal range, particularly as brain reserve declines with age.
+    Session C batch 2026-04-17: classified emergent on SD-017 (paralleling
+    INV-050). The upper-bound failure mode ("overnight update capacity" being
+    exceeded) and the lower-bound failure mode (the third learning drive
+    failing to activate absent offline phases) are both stated in terms of
+    SD-017's sleep-phase infrastructure; the MEL-range concept is not
+    stateable without a substrate that defines offline update capacity.
+    Added SD-017 to depends_on. SD-017 is provisional, so
+    pending_substrate_reconfirmation: true.
 
 - id: MECH-179
   title: "Prediction error type determines which sleep phase is demanded for processing: episodic, spatial, and factual errors (incorrect world-state predictions) primarily demand NREM-mediated schema replay (MECH-121) for prior correction; emotional, social, and identity-threatening errors primarily demand REM-mediated simulation and recalibration (MECH-123) for policy and salience update."
