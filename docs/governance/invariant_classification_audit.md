@@ -49,17 +49,21 @@ Session B stops before committing `claims.yaml` pending user confirmation. The r
 
 ## Summary
 
-- Clear universal: 36
+- Clear universal: 39
 - Clear emergent: 22
-- Grey zone: 10
+- Grey zone: 7
 - Reclassified (out of claim_type: invariant): 4
 - Sum: 72
 
 Retroactive flag count (`pending_substrate_reconfirmation: true`): 19
 Checkpoint threshold triggered: **yes**
 
-Session C batch progress (2026-04-17): Group 1 (INV-047/048/061/062) reclassified to
-`claim_type: derived_prediction` after schema extension. Groups 2, 3, 4 pending.
+Session C batch progress (2026-04-17):
+- Group 1 (INV-047/048/061/062): reclassified to `claim_type: derived_prediction`
+  after schema extension.
+- Group 2 (INV-004/005/006): resolved universal (no re-wording); mechanism-
+  agnosticism notes in docs/invariants.md already support the universal reading.
+- Groups 3, 4 pending.
 
 ---
 
@@ -84,6 +88,33 @@ vocabulary. They would survive a substantially different E1/E2/E3 substrate.
 - **Title:** Language emerges as functional self-representation, not a bolt-on.
 - **Rationale:** Functional-role claim about language stateable in any cognitive architecture
   with representations and agents.
+
+### INV-004
+- **Title:** Post-commit consequence traces are persistent, not resettable.
+- **Resolved:** 2026-04-17 in Session C batch (Group 2).
+- **Outcome:** universal (no re-wording).
+- **Rationale:** Decision-theoretic assertion of action-effect irreversibility.
+  Reference doc (`docs/invariants.md#inv-004`) already carries an explicit mechanism-
+  agnosticism note; "post-commit consequence traces" is implementation-level vocabulary,
+  not substrate-dependent content.
+
+### INV-005
+- **Title:** Harm to others contributes via mirror modelling, not symbolic rules.
+- **Resolved:** 2026-04-17 in Session C batch (Group 2).
+- **Outcome:** universal (no re-wording).
+- **Rationale:** The load-bearing claim is the simulation-vs-symbolic-rules distinction as
+  the ethical mechanism for other-harm contribution -- substrate-agnostic. "Mirror
+  modelling" is used in the general cognitive-science sense; ARC-010 grounds the invariant
+  at the REE-specific implementation level but does not underwrite its subject.
+
+### INV-006
+- **Title:** Post-commit consequence traces cannot be erased, only integrated.
+- **Resolved:** 2026-04-17 in Session C batch (Group 2).
+- **Outcome:** universal (no re-wording).
+- **Rationale:** Decision-theoretic non-erasability property of past committed-action
+  effects in any agent-world with persistent state. Reference doc carries a mechanism-
+  agnosticism note paralleling INV-004's. The integration-vs-erasure dichotomy does not
+  require any specific offline-consolidation substrate to be stateable.
 
 ### INV-007
 - **Title:** Language cannot override embodied harm sensing.
@@ -478,68 +509,8 @@ These entries could plausibly resolve as universal (by re-statement) or as emerg
 specific substrate, but the audit is not confident enough to force a verdict in one session.
 Each entry carries a self-contained follow-up prompt for a Session C_n auditor.
 
-### INV-004
-- **Title:** Post-commit consequence traces are persistent, not resettable.
-- **Why ambiguous:** "Post-commit" and "consequence traces" are REE-specific terms
-  (commitment boundary + residue field), but the underlying principle — irreversibility of
-  committed action effects — is stateable in pure decision-theoretic vocabulary. As written
-  the invariant has empty `depends_on`, so there is no explicit substrate anchor to treat
-  as emergent-of.
-- **Candidate classifications:**
-  - universal (re-stated as: "actions, once committed, leave persistent state changes that
-    cannot be erased by subsequent decisions")
-  - emergent on: [ARC-003, ARC-013] (commitment + residue field) — would require adding
-    these to `depends_on`
-- **Follow-up prompt for Session C_n:**
-  > INV-004 ("Post-commit consequence traces are persistent, not resettable.") has empty
-  > `depends_on` and references the REE-specific "post-commit" / "consequence traces"
-  > terminology. Decide: (a) restate the invariant in substrate-neutral decision-theoretic
-  > terms and classify as universal (preferred if possible — this is essentially a
-  > restatement of action-irreversibility), or (b) keep the wording and classify as emergent
-  > on ARC-003 (commitment) and ARC-013 (residue field as persistent latent-space curvature),
-  > adding these to `depends_on`. If restated, update the title, subject, and notes so the
-  > registry reflects the universal framing. Read the invariant, `docs/invariants.md#inv-004`,
-  > and ARC-003/ARC-013 entries before deciding. Update the audit registry's grey-zone entry
-  > with the decision and rationale.
+<!-- INV-004, INV-005, INV-006 resolved universal in Session C batch Group 2 (2026-04-17) -- see Clear Universal section -->
 
-### INV-005
-- **Title:** Harm to others contributes via mirror modelling, not symbolic rules.
-- **Why ambiguous:** Empty `depends_on`, but the invariant explicitly names "mirror
-  modelling" — which is ARC-010's substrate. The principle "harm-to-others grounded in
-  simulation, not symbolic rules" is decision-theoretic, but "mirror modelling" is a
-  specific architectural choice. Auditor uncertain whether the claim intends the general
-  principle or the specific mechanism.
-- **Candidate classifications:**
-  - universal (re-stated as: "harm-to-others must be grounded in simulative/empathic
-    mechanisms, not symbolic rule evaluation")
-  - emergent on: [ARC-010] (mirror modelling and coupling) — requires adding ARC-010 to
-    `depends_on`.
-- **Follow-up prompt for Session C_n:**
-  > INV-005 ("Harm to others contributes via mirror modelling, not symbolic rules.")
-  > literally names mirror modelling (ARC-010) in the title. Decide whether the load-bearing
-  > claim is (a) the general principle that other-harm is grounded in simulation rather than
-  > symbolic rules (universal — rewrite title to remove "mirror modelling" specifically),
-  > or (b) the specific architectural commitment that ARC-010's mirror modelling substrate
-  > is the implementation locus (emergent on ARC-010, add to `depends_on`). Read ARC-010 and
-  > the sources in INV-005 before deciding.
-
-### INV-006
-- **Title:** Post-commit consequence traces cannot be erased, only integrated.
-- **Why ambiguous:** Same class as INV-004 — "post-commit consequence traces" phrasing is
-  REE-specific but the irreversibility principle is general. Adds an integration claim
-  (only-integrated, not erased) which overlaps with sleep/consolidation (ARC-011/SD-017).
-- **Candidate classifications:**
-  - universal (re-stated as: action effects are integrated into subsequent world state,
-    never reverted)
-  - emergent on: [ARC-003, ARC-013, ARC-011] (commitment + residue + offline consolidation)
-- **Follow-up prompt for Session C_n:**
-  > INV-006 ("Post-commit consequence traces cannot be erased, only integrated.") pairs with
-  > INV-004 but adds an integration claim that may require offline-consolidation substrate
-  > (ARC-011 or SD-017). Decide the classification jointly with INV-004. If INV-004 is
-  > re-stated as universal, consider whether INV-006 can follow, or whether the integration
-  > claim is substrate-dependent in a way that INV-004 is not. Options: (a) universal with
-  > restatement, (b) emergent on ARC-003+ARC-013+ARC-011, (c) split the invariant into a
-  > universal irreversibility claim and an emergent integration claim.
 
 ### INV-019
 - **Title:** Rehearsal traversal and irreversible durable write must remain separated.

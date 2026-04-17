@@ -69,7 +69,7 @@
 - id: INV-004
   title: "Post-commit consequence traces are persistent, not resettable."
   claim_type: invariant
-  invariant_type: grey_zone
+  invariant_type: universal
   subject: consequence.persistence
   polarity: asserts
   status: active
@@ -78,14 +78,18 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
   notes: >
-    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
-    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
+    Resolved universal in Session C batch 2026-04-17. Rationale: the claim is a
+    decision-theoretic assertion of action-effect irreversibility, stateable without
+    any substrate commitment; the reference doc (docs/invariants.md#inv-004) already
+    carries an explicit mechanism-agnosticism note ("does not require residue
+    geometry specifically; implementations may realize persistence through residue
+    fields, hippocampal/path memory, model updates, or a hybrid"), and "post-commit
+    consequence traces" is implementation-level vocabulary rather than
+    substrate-dependent content.
 - id: INV-005
   title: "Harm to others contributes via mirror modelling, not symbolic rules."
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - ARC-010
+  invariant_type: universal
   subject: ethics.mechanism
   polarity: asserts
   status: active
@@ -94,12 +98,18 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
   notes: >
-    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
-    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
+    Resolved universal in Session C batch 2026-04-17. Rationale: the load-bearing
+    claim is the simulation-vs-symbolic-rules distinction as the ethical mechanism
+    for other-harm contribution -- a decision-theoretic / ethical claim that applies
+    to any agent architecture capable of modelling other agents. "Mirror modelling"
+    here is used in the general cognitive-science sense (simulative understanding of
+    others) rather than as a commitment to a specific ARC-010 implementation; ARC-010
+    grounds this invariant at the REE-specific level (docs/invariants.md line 405)
+    but does not underwrite its subject.
 - id: INV-006
   title: "Post-commit consequence traces cannot be erased, only integrated."
   claim_type: invariant
-  invariant_type: grey_zone
+  invariant_type: universal
   subject: consequence.non_erasability
   polarity: denies
   status: active
@@ -108,8 +118,15 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
   notes: >
-    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
-    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
+    Resolved universal in Session C batch 2026-04-17. Rationale: the claim is a
+    decision-theoretic assertion that past committed-action effects can only be
+    incorporated into subsequent state, never reverted -- a non-erasability property
+    of any agent in any world with persistent state. The reference doc
+    (docs/invariants.md#inv-006) already carries a mechanism-agnosticism note ("an
+    invariant about irreversible accountability memory, not about any single storage
+    mechanism; residue geometry remains one candidate architectural realization"),
+    confirming the universal reading. The integration-vs-erasure dichotomy does not
+    require any specific offline-consolidation substrate to be stateable.
 - id: INV-007
   title: "Language cannot override embodied harm sensing."
   claim_type: invariant
