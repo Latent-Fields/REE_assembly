@@ -1,10 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-04-17T15:48:29Z`  
+Generated: `2026-04-17T20:42:58Z`  
 Last review: `2026-04-17T14:17:55Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_431_sd003_causal_discrimination_dry_20260417T142339Z_v3` | 2026-04-17T14:23 | SD-003, SD-013 | — |
+| `v3_exq_431_sd003_causal_discrimination_dry_20260417T143459Z_v3` | 2026-04-17T14:34 | SD-003, SD-013 | — |
 
 ---
 

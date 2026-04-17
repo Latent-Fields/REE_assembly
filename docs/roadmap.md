@@ -21,6 +21,7 @@ nav_order: 6
 - **EXQ-321a FAIL (2026-04-17):** MECH-090 bistable gate still failing. Root causes: 4-bug chain (shared training deepcopy on autograd tensors, spike timing vs E3-tick alignment, bistable config silently dropped via **kwargs). EXQ-321b queued with all 4 fixes; dry-run 3/3 seeds PASS.
 - **766 runs indexed** (per morning digest 2026-04-17). **2 pending review** (EXQ-321a FAIL + UNKNOWN runner entry).
 - **SD-016 lit-pull (2026-04-17):** Additional 3 entries added to targeted_review_sd_019 (wind-up/central sensitization, Craig 2003 interoception/insula, pain asymbolia). SD-022 lit-pull added 2 entries. Index now 706 lit entries total.
+- **Deployment gating note added (2026-04-17):** V3 is treated as a sandbox-only scientific substrate. High-capability or externally connected REE deployment is gated on V4 social/developmental completion. See `docs/governance/deployment_gating.md`.
 - **Current bottleneck: first-paper gate.** Active queue (18 items): EXQ-326 (SD-015/MECH-216/SD-012 wanting nav fix), EXQ-330a (SD-013 claimed), EXQ-321b (MECH-090 bistable fix), EXQ-325a (SD-021 descending modulation claimed), EXQ-395 (MECH-220), EXQ-375 (MECH-073), EXQ-328b (MECH-230 claimed), EXQ-326a (SD-015/MECH-229 nav), EXQ-406 (INV-053), EXQ-407 (MECH-231), EXQ-396 (ARC-016), EXQ-397 (ARC-007), EXQ-429 (INV-044), EXQ-430 (INV-010), EXQ-418a (SD-016+SD-017 fix), EXQ-385a (INV-049 SHY fix), EXQ-355a (ARC-038 optimizer fix), EXQ-324b (SD-020 eval fix).
 
 ---
@@ -363,6 +364,11 @@ See MECH-163 (dual goal-directed systems: habit vs hippocampally-planned).
 V3 tests whether the machinery works. V4 tests whether the machinery develops correctly.
 The ARC-043 stack makes this precise: V3 exercises Layers 6-9; V4 must exercise Layers
 2-5 dynamically, with caregiving, developmental phases, and social residue.*
+
+**Deployment constraint:** V3 may be used as a sandboxed scientific substrate, but
+serious capability scale-up or external-world connectivity is deferred until V4
+social/developmental completion. Language alone is not treated as sufficient
+safety. See `docs/governance/deployment_gating.md`.
 
 ---
 

@@ -1,0 +1,183 @@
+{
+  "run_id": "v3_exq_431_sd003_causal_discrimination_dry_20260417T142339Z_v3",
+  "experiment_type": "v3_exq_431_sd003_causal_discrimination",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-003",
+    "SD-013"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction_per_claim": {
+    "SD-003": "does_not_support",
+    "SD-013": "supports"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_forward_r2_pass": true,
+    "c1_vals": [
+      0.9633267441212401,
+      0.9652671634172977,
+      0.9587883452643
+    ],
+    "c1_seeds_pass": 3,
+    "c2_learned_ratio_pass": false,
+    "c2_ratios": [
+      0.0,
+      0.8741769115359315,
+      1.1732710300707327
+    ],
+    "c2_seeds_pass": 0,
+    "c3_sufficient_stats_pass": false,
+    "c3_details": [
+      {
+        "n_env": 0,
+        "n_agent": 0,
+        "ok": false
+      },
+      {
+        "n_env": 1,
+        "n_agent": 0,
+        "ok": false
+      },
+      {
+        "n_env": 2,
+        "n_agent": 0,
+        "ok": false
+      }
+    ],
+    "c3_seeds_pass": 0,
+    "d1_env_vs_agent_causal_ratio": [
+      0.0,
+      18831829.726696014,
+      17919567.227363586
+    ],
+    "d2_env_contact_vs_approach_ratio": [
+      0.0,
+      1.0946659036180164,
+      1.0325855887353406
+    ],
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "TRAINED",
+      "forward_r2_p1": 0.9587883452643,
+      "causal_sig_means": {
+        "env_caused_hazard": 0.17919567227363586,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.17354074493050575
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 2,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 4
+      },
+      "p2_forward_r2": 0.991906519444807
+    },
+    {
+      "seed": 42,
+      "condition": "RANDOM",
+      "forward_r2_p1": 0.0,
+      "causal_sig_means": {
+        "env_caused_hazard": 0.15273169428110123,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.17607367783784866
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 2,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 4
+      },
+      "p2_forward_r2": 0.6943009840061936
+    },
+    {
+      "seed": 7,
+      "condition": "TRAINED",
+      "forward_r2_p1": 0.9633267441212401,
+      "causal_sig_means": {
+        "env_caused_hazard": 0.0,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.23470675845940908
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 0,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 15
+      },
+      "p2_forward_r2": 0.9867168373076929
+    },
+    {
+      "seed": 7,
+      "condition": "RANDOM",
+      "forward_r2_p1": 0.0,
+      "causal_sig_means": {
+        "env_caused_hazard": 0.0,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.265367317199707
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 0,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 10
+      },
+      "p2_forward_r2": 0.7744424310233139
+    },
+    {
+      "seed": 13,
+      "condition": "TRAINED",
+      "forward_r2_p1": 0.9652671634172977,
+      "causal_sig_means": {
+        "env_caused_hazard": 0.18831829726696014,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.1720326691865921
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 1,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 9
+      },
+      "p2_forward_r2": 0.9863769080941552
+    },
+    {
+      "seed": 13,
+      "condition": "RANDOM",
+      "forward_r2_p1": 0.0,
+      "causal_sig_means": {
+        "env_caused_hazard": 0.2154235541820526,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.2163950933350457
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 1,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 9
+      },
+      "p2_forward_r2": 0.6040004036194974
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "TRAINED",
+      "RANDOM"
+    ],
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 100,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 3,
+    "hazard_harm": 0.3,
+    "interventional_fraction": 0.5,
+    "c2_learned_ratio": 2.0,
+    "c3_min_env_events": 5,
+    "c3_min_agent_events": 5
+  },
+  "timestamp_utc": "20260417T142339Z"
+}
