@@ -24,10 +24,11 @@
     "SD-012"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "2026-04-17: Reclassified from does_not_support to non_contributory. The FAIL reflects a substrate gap -- the wiring from the E1 frontal goal representation to hippocampal terrain navigation is not yet implemented. z_goal_norm=0 cannot distinguish 'goal not structured' from 'goal not wired to hippocampal system'. EXQ-328b cannot test MECH-230's hippocampal navigation prediction until that wiring exists. Similarly, SD-012 seeding cannot be evaluated via this experiment since the downstream readout (hippocampal terrain navigation lift) depends on the same missing substrate.",
   "evidence_direction_per_claim": {
-    "MECH-230": "does_not_support",
-    "SD-012": "does_not_support"
+    "MECH-230": "non_contributory",
+    "SD-012": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {

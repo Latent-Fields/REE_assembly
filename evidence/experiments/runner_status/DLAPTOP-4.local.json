@@ -2,47 +2,36 @@
   "schema_version": "v1",
   "runner_pid": 11048,
   "runner_started_at": "2026-04-16T17:24:35.828537+00:00",
-  "last_updated": "2026-04-17T04:21:02.696243+00:00",
+  "last_updated": "2026-04-17T10:47:02.827741+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-321a",
+    "queue_id": "V3-EXQ-325a",
     "backlog_id": "",
     "claim_id": "",
-    "title": "MECH-090 bistable gate retest: E2 world-forward training added (EXQ-321 fix)",
+    "title": "SD-021 descending pain modulation retest: E2 world-forward training added (EXQ-325 fix)",
     "description": "",
-    "script": "experiments/v3_exq_321a_mech090_bistable_gate.py",
-    "started_at": "2026-04-16T20:06:18.929191+00:00",
+    "script": "experiments/v3_exq_325a_sd021_descending_pain_modulation.py",
+    "started_at": "2026-04-17T09:08:09.515634+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 10,
       "episodes_done": 0,
-      "episodes_total": 320,
+      "episodes_total": 330,
       "overall_pct": 0.0
     },
-    "seconds_elapsed": 29684,
-    "seconds_remaining": 25600,
+    "seconds_elapsed": 5933,
+    "seconds_remaining": 26400,
     "recent_lines": [
-      "LEGACY: eval 20 eps...",
-      "LEGACY: hold_rate=1.0000 committed_steps=4000 premature_releases=0",
-      "-> FAIL",
-      "Seed 45",
-      "BISTABLE: training 300 eps..."
+      "DESCENDING: training 300 eps...",
+      "DESCENDING: rv_after_train=0.0000 committed_flag=True",
+      "DESCENDING: eval 30 eps...",
+      "DESCENDING: z_harm_s_ratio=1.0000 z_harm_a_ratio=1.0000 committed_steps=6000",
+      "CONTROL: training 300 eps..."
     ],
     "ree_version": "v3"
   },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-321a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-090 bistable gate retest: E2 world-forward training added (EXQ-321 fix)",
-      "description": "",
-      "estimated_minutes": 426.7,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-325a",
       "backlog_id": "",
@@ -50,7 +39,7 @@
       "title": "SD-021 descending pain modulation retest: E2 world-forward training added (EXQ-325 fix)",
       "description": "",
       "estimated_minutes": 440.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5488,6 +5477,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_049a_mech090_bistable_concordance/v3_exq_049a_mech090_bistable_concordance_20260416T200614Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 9463.6
+    },
+    {
+      "queue_id": "V3-EXQ-321a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 bistable gate retest: E2 world-forward training added (EXQ-321 fix)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL bistable=1.0000 legacy=1.0000 releases_b=0 | seed=45: FAIL bistable=1.0000 legacy=1.0000 releases_b=0 | seed=46: FAIL bistable=1.0000 legacy=1.0000 releases_b=0",
+      "started_at": "2026-04-16T20:06:18.929191+00:00",
+      "completed_at": "2026-04-17T09:08:05.928715+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 46906.7
     }
   ]
 }

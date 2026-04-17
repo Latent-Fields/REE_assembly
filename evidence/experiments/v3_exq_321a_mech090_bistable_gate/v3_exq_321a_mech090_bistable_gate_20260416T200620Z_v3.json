@@ -1,0 +1,149 @@
+{
+  "run_id": "v3_exq_321a_mech090_bistable_gate_20260416T200620Z_v3",
+  "experiment_type": "v3_exq_321a_mech090_bistable_gate",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "supersedes": "v3_exq_321_mech090_bistable_gate",
+  "registered_thresholds": {
+    "C1_bistable_hold_rate_higher": 0.0,
+    "C2_bistable_hold_rate_floor": 0.7,
+    "C3_committed_steps": 1,
+    "seeds_needed": 3
+  },
+  "outcome": "FAIL",
+  "timestamp_utc": "20260417T090804Z",
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 1.0,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 0,
+      "c1_bistable_higher": false,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": false,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 1.0,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 0,
+      "c1_bistable_higher": false,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": false,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 1.0,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 0,
+      "c1_bistable_higher": false,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": false,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 1.0,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 0,
+      "c1_bistable_higher": false,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": false,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 1.0,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 0,
+      "c1_bistable_higher": false,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 4000,
+          "total_beta_elevated_committed": 4000,
+          "n_premature_releases": 0
+        }
+      }
+    }
+  ],
+  "seeds_passing": 0,
+  "experiment_passes": false,
+  "fix_notes": "EXQ-321 had frozen running_variance=0.50 (no E2 world-forward training). Fix: added wf_buf + wf_opt + update_running_variance per step; extended TRAIN_EPISODES 50->300. claim_ids reduced to [MECH-090] only -- ARC-028 tests release signal, not hold property."
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_180_resource_prox_gradient_diag
 
-Generated: `2026-04-17T04:17:52.721465Z`
+Generated: `2026-04-17T10:46:22.723302Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
