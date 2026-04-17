@@ -2954,9 +2954,11 @@
 - id: INV-024
   title: "Offline consolidation and online commitment must remain isolated at responsibility-bearing write loci."
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
+  invariant_type: emergent
+  emergent_from:
     - ARC-020
+    - SD-026
+  pending_substrate_reconfirmation: true
   subject: meta.offline_online_update_locus_isolation
   polarity: asserts
   status: candidate
@@ -2964,6 +2966,7 @@
     - INV-021
     - INV-023
     - ARC-020
+    - SD-026
     - MECH-067
   location: docs/invariants.md#inv-024
   source:
@@ -2971,8 +2974,16 @@
     - docs/architecture/sleep.md
     - docs/architecture/agency_responsibility_flow.md
   notes: >
-    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
-    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
+    Session C batch 2026-04-17: classified emergent on [ARC-020, SD-026]. The
+    invariant is a conjunctive emergence — it requires both the offline write-
+    boundary substrate (ARC-020 typed authority/write boundaries that protect
+    offline consolidation) AND the commitment substrate (SD-026 prospective
+    precision template write channel that gives "responsibility-bearing"
+    content via INV-012/INV-021). Without ARC-020 the "offline consolidation"
+    locus is not a typed object with protected writes; without SD-026 the
+    "responsibility-bearing" qualifier on the write locus has no subject
+    matter. Both substrates are below active (ARC-020 candidate, SD-026
+    candidate) so pending_substrate_reconfirmation: true.
 
 # Five foundational axioms — registered 2026-03-18
 - id: INV-025
