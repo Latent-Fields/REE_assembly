@@ -40,6 +40,25 @@ python scripts/build_claims_json.py   # rebuilds docs/assets/data/claims.json fo
 ```
 
 `governance.sh` runs `build_claims_json.py` automatically as its final step.
+`build_claims_json.py` runs `scripts/validate_claims.py` first (warn-only mode currently).
+
+## Invariant Types
+
+See `docs/architecture/invariant_types.md` for the full schema and governance rule.
+
+Every `claim_type: invariant` entry must carry `invariant_type: universal | emergent | grey_zone`.
+Emergent invariants additionally carry `emergent_from: [SD-.., ARC-..]` listing substrate designs
+that give the invariant its subject matter.
+
+**Governance rule:** when a substrate in some invariant's `emergent_from` drops below `active`
+status, the invariant gets `pending_substrate_reconfirmation: true`. This does not demote the
+invariant — it marks that the claim cannot be cited as supporting evidence for new claims until
+governance explicitly reconfirms or reclassifies it. Universal invariants are never flagged.
+
+`scripts/validate_claims.py` enforces the schema. Runs in warn-only mode during the audit
+transition; flips to `--strict` once the audit registry
+(`docs/governance/invariant_classification_audit.md`, populated by Session B) is cleared of
+`grey_zone` entries, or on explicit governance decision.
 
 ## Experiment Review Protocol
 

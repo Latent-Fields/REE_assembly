@@ -1,3 +1,37 @@
+# ============================================================================
+# REE Claims Registry
+# ============================================================================
+#
+# Top-level schema (common fields):
+#   id            e.g. INV-001, ARC-003, MECH-057, SD-026, Q-019, IMPL-...
+#   title         one-line human-readable summary
+#   claim_type    invariant | architecture | mechanism | substrate_design |
+#                 open_question | implementation
+#   subject       dotted-path topic (e.g. ethics.emergence, attention.dan)
+#   polarity      asserts | denies    (optional)
+#   status        candidate | provisional | active | retracted | superseded
+#   depends_on    list of claim IDs this entry references
+#   location      anchor in reference doc (docs/invariants.md, etc.)
+#   source        list of source paths
+#   notes         free text
+#
+# Invariant-specific schema (claim_type: invariant) -- enforced by
+# scripts/validate_claims.py (see docs/architecture/invariant_types.md):
+#   invariant_type            universal | emergent | grey_zone   (MANDATORY)
+#   emergent_from             list of SD-/ARC-IDs; required and non-empty
+#                             when invariant_type: emergent; must be absent
+#                             or empty when universal; optional on grey_zone
+#   candidate_emergent_from   optional, grey_zone only
+#   pending_substrate_reconfirmation
+#                             boolean flag; set true when a substrate in
+#                             emergent_from drops below 'active' status
+#
+# The validator runs in warn-only mode during the audit transition.
+# After the audit registry at docs/governance/invariant_classification_audit.md
+# is cleared of grey_zone entries (or on explicit governance decision),
+# the validator flips to --strict in governance.sh.
+# ============================================================================
+
 - id: INV-001
   title: "No explicit ethics module or moral scoring layer."
   claim_type: invariant
@@ -112,6 +146,10 @@
 - id: INV-012
   title: "Responsibility arises through commitment, not prediction alone."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-026
+  pending_substrate_reconfirmation: true
   subject: commitment.epistemology
   polarity: asserts
   status: active
@@ -121,15 +159,20 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
   notes: >
-    depends_on SD-026 added 2026-04-17: INV-012's coherence requires a
-    mechanism by which deliberate/willed attention can be distinguished
-    from reflexive/residue-driven attention. Without such a mechanism,
-    "commitment" reduces to "whatever was already conditioned," and the
-    invariant loses its ethical content. SD-026 (prospective precision
-    template write channel, DAN analogue) is that mechanism. Note: this
-    is the first invariant to depend on a substrate design; worth
-    governance review for whether the pattern should generalise to other
-    invariants with implicit substrate requirements.
+    Formalised as the first emergent invariant 2026-04-17 (Session A of
+    invariant-types governance cycle, plan doc
+    docs/thoughts/2026-04-17_invariant_types_governance.md, architecture
+    doc docs/architecture/invariant_types.md). INV-012's coherence
+    requires a mechanism by which deliberate/willed attention can be
+    distinguished from reflexive/residue-driven attention. Without such a
+    mechanism, "commitment" reduces to "whatever was already conditioned,"
+    and the invariant loses its ethical content. SD-026 (prospective
+    precision template write channel, DAN analogue) is that mechanism.
+    pending_substrate_reconfirmation=true applied retroactively per Q4
+    resolution: SD-026 is currently 'candidate', so the flag fires until
+    SD-026 reaches active or is reclassified by governance. Flag is
+    orthogonal to status: INV-012 remains active but cannot be cited as
+    supporting evidence for new claims until substrate reconfirmation.
 - id: INV-013
   title: "Cognition is predictive, iterative, and multi-timescale."
   claim_type: invariant
