@@ -13371,9 +13371,10 @@
 - id: INV-063
   title: minimum_entropy_intake_sleep_dependency
   claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
+  invariant_type: emergent
+  emergent_from:
     - SD-017
+  pending_substrate_reconfirmation: true
   status: candidate
   subject: sleep.entropy_intake
   description: >
@@ -13400,7 +13401,15 @@
     learning requires action-outcome variation). This is a novel prediction that bridges
     environmental psychiatry, chronobiology, and the REE sleep framework.
   registered: "2026-04-07"
-  depends_on: [INV-049, MECH-121, MECH-205, MECH-209, MECH-210, MECH-211]
+  depends_on: [INV-049, SD-017, MECH-121, MECH-205, MECH-209, MECH-210, MECH-211]
+  session_c_resolution: >
+    Session C batch 2026-04-17: classified emergent on SD-017, paralleling
+    the sleep-cluster decisions on INV-045/046/050/062. The "entropy intake"
+    concept is defined relative to sleep functions (schema consolidation,
+    contrastive replay, E1 world-model updating, E2 motor-sequence learning);
+    without SD-017 the four sleep functions it presupposes have no substrate.
+    Added SD-017 to depends_on. SD-017 is provisional, so
+    pending_substrate_reconfirmation: true.
 
 - id: MECH-211
   title: schema_consolidation_as_search_grammar
