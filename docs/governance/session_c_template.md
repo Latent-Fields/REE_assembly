@@ -25,6 +25,13 @@ by Session B. The session produces a governance decision:
 - **retract** — the invariant is ill-formed regardless of substrate
   and should be withdrawn. Status moves to `retracted`, `invariant_type`
   stays `grey_zone` with a retraction note.
+- **reclassify claim_type** — the claim is well-formed but is not an
+  invariant of the REE architecture; it is a clinical, phenomenological,
+  or empirical *prediction* that holds only conditional on REE modelling
+  the target domain correctly. The entry moves out of `claim_type:
+  invariant` to a more appropriate type (typically a prediction or
+  derived-prediction type). Flagged for this outcome during Session B
+  user review: INV-047, INV-048, INV-061, INV-062 (see audit registry).
 
 Only one of these outcomes lands per session. If the session cannot
 reach a clear outcome after genuine effort, the correct result is a
@@ -162,6 +169,33 @@ In claims.yaml, for the target invariant:
 - Update `notes` with: "Retracted in Session C_n <YYYY-MM-DD>.
   Rationale: <two sentences — what was ill-formed and why no substrate
   choice fixes it>."
+
+### Outcome: reclassify claim_type
+
+Applies when the entry is a well-formed prediction about a target domain
+(e.g., human psychiatric syndromes, clinical pharmacology, dream
+phenomenology) rather than an architectural invariant of REE. This is
+a governance-level decision — if the schema does not yet include a
+dedicated prediction claim_type, pause and flag the gap to the user
+rather than forcing a type that does not exist.
+
+If the target claim_type exists:
+- Change `claim_type` from `invariant` to the appropriate type.
+- Remove `invariant_type` and `candidate_emergent_from` fields (no
+  longer meaningful off the invariant track).
+- Preserve `emergent_from` only if the new claim_type schema supports
+  it (most prediction types will not).
+- Update `notes` with: "Reclassified from claim_type: invariant in
+  Session C_n <YYYY-MM-DD>. Rationale: <one sentence — why this is a
+  prediction rather than an architectural invariant>."
+- Move the entry to the appropriate section of `docs/invariants.md`
+  or to its new reference doc; update `location` field.
+
+If the target claim_type does not yet exist in the schema:
+- Leave the entry as-is in claims.yaml.
+- Update the audit registry entry noting the schema gap.
+- Surface the gap to the user as a governance schema decision. Do
+  **not** invent a claim_type in this session.
 
 ### Outcome: narrower grey-zone (cannot decide)
 
