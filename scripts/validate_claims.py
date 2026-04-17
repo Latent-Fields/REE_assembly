@@ -43,6 +43,13 @@ SUBSTRATE_CLAIM_TYPES = {
     "architecture_hypothesis",
 }
 
+# Statuses that count as terminal-positive for the flag-drift check.
+# 'implemented' is included per 2026-04-17 governance decision: SD-005 and other
+# 'implemented' substrates are wired into the codebase and should not trigger
+# pending_substrate_reconfirmation drift warnings. If governance later wants
+# 'resolved' / 'validated' / 'stable' treated the same way, extend this set.
+ACTIVE_EQUIVALENT_STATUSES = {"active", "implemented"}
+
 
 def build_substrate_status_map(claims):
     """Return {substrate_id: status} for all substrate claims."""
@@ -111,11 +118,11 @@ def validate_invariant(claim, substrate_status=None):
         ]
         below_active = [
             (s, st) for s, st in substrate_statuses
-            if st is not None and st != "active"
+            if st is not None and st not in ACTIVE_EQUIVALENT_STATUSES
         ]
         all_known_active = (
             substrate_statuses
-            and all(st == "active" for _, st in substrate_statuses)
+            and all(st in ACTIVE_EQUIVALENT_STATUSES for _, st in substrate_statuses)
         )
         if flag_set and all_known_active:
             issues.append((

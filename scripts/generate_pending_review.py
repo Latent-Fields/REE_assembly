@@ -40,6 +40,7 @@ RUNNER_STATUS_DIR = EVIDENCE_DIR / "runner_status"           # per-machine split
 OUTPUT = EVIDENCE_DIR / "pending_review.md"
 CLAIMS_YAML = ROOT / "docs" / "claims" / "claims.yaml"
 RECOMMENDATIONS_MD = EVIDENCE_DIR / "promotion_demotion_recommendations.md"
+SUBSTRATE_STATUS_SNAPSHOT = EVIDENCE_DIR / "substrate_status_snapshot.json"
 
 SUBSTRATE_CLAIM_TYPES = {
     "design_decision",
@@ -339,14 +340,42 @@ def _governance_prompt_for_substrate(status: str) -> str:
     return "re-confirm when substrate is promoted"
 
 
+def _load_substrate_snapshot() -> dict | None:
+    """Return prior-run {substrate_id: status} snapshot, or None if absent."""
+    if not SUBSTRATE_STATUS_SNAPSHOT.exists():
+        return None
+    try:
+        with open(SUBSTRATE_STATUS_SNAPSHOT) as f:
+            data = json.load(f)
+        return data.get("substrate_status") or {}
+    except Exception as e:
+        print(
+            f"[warn] could not read {SUBSTRATE_STATUS_SNAPSHOT.name}: {e} "
+            "-- treating as first run",
+            file=sys.stderr,
+        )
+        return None
+
+
+def _write_substrate_snapshot(current: dict[str, str]) -> None:
+    """Write {substrate_id: status} snapshot for next run's diff."""
+    payload = {
+        "generated_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "substrate_status": current,
+    }
+    SUBSTRATE_STATUS_SNAPSHOT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+
+
 def build_substrate_change_section() -> str:
     """Build the 'Substrate changes with dependent invariants' section body.
 
-    TODO(change-detection): there is currently no prior-run artifact for
-    substrate status, so this emits the full list of substrates that have
-    dependent emergent invariants on every run. When a prior-run snapshot is
-    added (e.g., cache of {substrate_id: status} per governance run), filter
-    this to substrates whose status actually changed.
+    Change detection: compares current substrate statuses against a prior-run
+    snapshot cached at `evidence/experiments/substrate_status_snapshot.json`.
+    - First run (no snapshot): emit the full list of substrates with dependent
+      emergent invariants, then write the snapshot.
+    - Subsequent runs: emit only substrates whose status changed (or whose
+      dependent-invariants list changed membership), and refresh the snapshot.
+    - No changes this run: emit the empty-case header.
     """
     if not CLAIMS_YAML.exists():
         return (
@@ -376,13 +405,41 @@ def build_substrate_change_section() -> str:
         for s in inv.get("emergent_from") or []:
             dependents.setdefault(s, []).append(inv)
 
+    current_status = {
+        sid: sub.get("status", "unknown")
+        for sid, sub in substrates.items()
+    }
+    prior_status = _load_substrate_snapshot()
+    first_run = prior_status is None
+
+    # Decide which substrates to report.
+    if first_run:
+        report_sids = sorted(
+            sid for sid in dependents if sid in substrates
+        )
+        change_note = (
+            "First run with change detection enabled -- full list of "
+            "substrates with dependent emergent invariants. Subsequent runs "
+            "will show only substrates whose status changed."
+        )
+    else:
+        changed = {
+            sid for sid, st in current_status.items()
+            if prior_status.get(sid) != st
+        }
+        # Newly-appeared substrates (not in prior snapshot) also count.
+        changed |= {
+            sid for sid in current_status
+            if sid not in prior_status
+        }
+        report_sids = sorted(sid for sid in changed if sid in dependents)
+        change_note = None  # filled in per case below
+
+    _write_substrate_snapshot(current_status)
+
     lines = [SUBSTRATE_SECTION_HEADER, ""]
 
-    active_substrates_with_deps = [
-        sid for sid in dependents
-        if sid in substrates
-    ]
-    if not active_substrates_with_deps:
+    if not report_sids:
         lines += [
             "No substrate status changes this run. "
             "No dependent invariants flagged.",
@@ -390,31 +447,37 @@ def build_substrate_change_section() -> str:
         ]
         return "\n".join(lines) + "\n"
 
+    if change_note is None:
+        change_note = (
+            f"{len(report_sids)} substrate(s) with dependent emergent "
+            "invariants changed status since the prior governance run."
+        )
     lines += [
-        "Full list of substrates with dependent emergent invariants "
-        "(per-run change detection not yet implemented -- see TODO in "
-        "`scripts/generate_pending_review.py`).",
+        change_note,
         "",
-        "| Substrate | Status | Dependent invariant | Inv status | Flag | Governance prompt |",
-        "|-----------|--------|---------------------|------------|------|-------------------|",
+        "| Substrate | Prior | Current | Dependent invariant | Inv status | Flag | Governance prompt |",
+        "|-----------|-------|---------|---------------------|------------|------|-------------------|",
     ]
-    for sid in sorted(dependents.keys()):
+    for sid in report_sids:
         sub = substrates.get(sid)
         if sub is None:
             lines.append(
-                f"| `{sid}` | (not found in claims.yaml) | -- | -- | -- | -- |"
+                f"| `{sid}` | -- | (not found in claims.yaml) | -- | -- | -- | -- |"
             )
             continue
-        sub_status = sub.get("status", "?")
-        prompt = _governance_prompt_for_substrate(sub_status)
+        cur_status = current_status.get(sid, "?")
+        prior = "(new)" if first_run or (
+            prior_status is not None and sid not in prior_status
+        ) else prior_status.get(sid, "?")
+        prompt = _governance_prompt_for_substrate(cur_status)
         for inv in sorted(dependents[sid], key=lambda i: i.get("id", "")):
             inv_id = inv.get("id", "?")
             inv_status = inv.get("status", "?")
             flag = bool(inv.get("pending_substrate_reconfirmation"))
             flag_str = "true" if flag else "false"
             lines.append(
-                f"| `{sid}` | `{sub_status}` | `{inv_id}` | `{inv_status}` "
-                f"| {flag_str} | {prompt} |"
+                f"| `{sid}` | `{prior}` | `{cur_status}` | `{inv_id}` "
+                f"| `{inv_status}` | {flag_str} | {prompt} |"
             )
     lines.append("")
     return "\n".join(lines) + "\n"

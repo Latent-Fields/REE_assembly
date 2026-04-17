@@ -171,15 +171,19 @@ but is no longer semantic — these entries are predictions, not invariants.
 
 Session D completed **2026-04-17**. `scripts/validate_claims.py --strict` is now the gate at
 the top of `scripts/governance.sh` — malformed invariants block the whole pipeline. The
-validator additionally emits flag-drift WARNs when `pending_substrate_reconfirmation` is
-inconsistent with current substrate status. `scripts/generate_pending_review.py` appends a
-"Substrate changes with dependent invariants" section to
-`evidence/experiments/promotion_demotion_recommendations.md` listing every substrate with
-dependent emergent invariants and a per-invariant governance prompt.
+validator treats `active` and `implemented` as terminal-positive (no flag-drift WARN); if
+governance later wants `resolved`/`validated`/`stable` treated the same way, extend
+`ACTIVE_EQUIVALENT_STATUSES` in `validate_claims.py`. The validator additionally emits
+flag-drift WARNs when `pending_substrate_reconfirmation` is inconsistent with current
+substrate status.
 
-Per-run change detection (only-substrates-whose-status-changed) is a follow-up: currently the
-full list is emitted on every run. See the TODO in
-`scripts/generate_pending_review.py::build_substrate_change_section`.
+`scripts/generate_pending_review.py` appends a "Substrate changes with dependent invariants"
+section to `evidence/experiments/promotion_demotion_recommendations.md`. Change detection is
+snapshot-based: prior substrate statuses are cached in
+`evidence/experiments/substrate_status_snapshot.json`, and the section lists only substrates
+whose status changed since the previous run (or the full list on first run, with `(new)` as
+prior). When no statuses changed, the section states so explicitly rather than emitting the
+full list.
 
 ---
 
