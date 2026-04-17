@@ -50,15 +50,15 @@ Session B stops before committing `claims.yaml` pending user confirmation. The r
 ## Summary
 
 - Clear universal: 41
-- Clear emergent: 23
-- Grey zone: 4
+- Clear emergent: 27
+- Grey zone: 0
 - Reclassified (out of claim_type: invariant): 4
 - Sum: 72
 
-Retroactive flag count (`pending_substrate_reconfirmation: true`): 20
+Retroactive flag count (`pending_substrate_reconfirmation: true`): 32
 Checkpoint threshold triggered: **yes**
 
-Session C batch progress (2026-04-17):
+Session C batch complete (2026-04-17):
 - Group 1 (INV-047/048/061/062): reclassified to `claim_type: derived_prediction`
   after schema extension.
 - Group 2 (INV-004/005/006): resolved universal (no re-wording); mechanism-
@@ -66,7 +66,15 @@ Session C batch progress (2026-04-17):
 - Group 3 (INV-019/020/021): INV-019 and INV-020 resolved universal (information-
   flow principles stateable without REE substrate); INV-021 resolved emergent on
   [ARC-003, SD-026] paralleling INV-012's emergent-on-SD-026 reasoning.
-- Group 4 pending.
+- Group 4 (INV-024/051/063/064): INV-024 resolved emergent on [ARC-020, SD-026]
+  (conjunctive offline-write-boundary + commitment); INV-051 and INV-063 resolved
+  emergent on SD-017 (sleep-cluster parallel); INV-064 resolved emergent on
+  [ARC-001, ARC-002, ARC-003, ARC-019] (engines + curriculum).
+
+All grey-zone entries from Session B are now resolved. Registry has 0 grey_zone
+entries; the audit gate condition for flipping `scripts/validate_claims.py` to
+`--strict` mode is satisfied (per `REE_assembly/CLAUDE.md` "Invariant Types"
+section). Flip is a governance decision, not automatic.
 
 ---
 
@@ -533,6 +541,56 @@ Each entry's subject matter becomes ill-defined if the listed substrate is retra
 - **Substrate status at audit:** implemented (treated as active-equivalent)
 - **pending_substrate_reconfirmation applied:** no
 
+### INV-024
+- **Title:** Offline consolidation and online commitment must remain isolated at
+  responsibility-bearing write loci.
+- **Resolved:** 2026-04-17 in Session C batch (Group 4).
+- **emergent_from:** [ARC-020, SD-026]
+- **Rationale:** Conjunctive emergence. ARC-020 (typed offline write boundaries) underwrites
+  the "offline consolidation write locus" as a typed object; SD-026 (prospective precision
+  template write channel) underwrites the "responsibility-bearing" qualifier by giving
+  INV-012/INV-021's commitment concept its subject matter. Retract either and the
+  invariant's subject becomes ill-defined.
+- **Substrate status at audit:** ARC-020 candidate, SD-026 candidate.
+- **pending_substrate_reconfirmation applied:** yes.
+
+### INV-051
+- **Title:** Optimal range of daily Model Error Load (MEL).
+- **Resolved:** 2026-04-17 in Session C batch (Group 4).
+- **emergent_from:** [SD-017]
+- **Rationale:** Parallels the sleep-cluster decision on INV-050. Both upper-bound failure
+  ("overnight update capacity exceeded") and lower-bound failure ("third learning drive
+  unstimulated absent offline phases") are stated in SD-017 vocabulary; the MEL-range
+  concept is not stateable without a substrate that defines offline update capacity.
+  Added SD-017 to depends_on.
+- **Substrate status at audit:** SD-017 provisional.
+- **pending_substrate_reconfirmation applied:** yes.
+
+### INV-063
+- **Title:** Minimum entropy intake sleep dependency.
+- **Resolved:** 2026-04-17 in Session C batch (Group 4).
+- **emergent_from:** [SD-017]
+- **Rationale:** Parallels the sleep-cluster decisions on INV-045/046/050/062. The
+  "entropy intake" concept is defined relative to the four sleep functions (schema
+  consolidation, contrastive replay, E1 world-model updating, E2 motor-sequence learning);
+  without SD-017 those functions have no substrate and the entropy-dependency claim has
+  no subject. Added SD-017 to depends_on.
+- **Substrate status at audit:** SD-017 provisional.
+- **pending_substrate_reconfirmation applied:** yes.
+
+### INV-064
+- **Title:** E1/E2/E3 maturational sequence necessity.
+- **Resolved:** 2026-04-17 in Session C batch (Group 4).
+- **emergent_from:** [ARC-001, ARC-002, ARC-003, ARC-019]
+- **Rationale:** The title explicitly names the three engines — retract any of ARC-001/002/003
+  and the corresponding term in the maturational sequence has no referent. ARC-019 (staged
+  developmental curriculum) supplies the "sequence" concept as a curriculum constraint.
+  All four chosen together because the claim conjoins both the ordered objects and the
+  ordering itself. Added all four to depends_on.
+- **Substrate status at audit:** ARC-001/002/003 active, ARC-019 provisional.
+- **pending_substrate_reconfirmation applied:** yes (propagates from lowest-status
+  substrate per governance rule).
+
 ---
 
 ## Grey Zone
@@ -548,24 +606,8 @@ Each entry carries a self-contained follow-up prompt for a Session C_n auditor.
 <!-- INV-021 resolved emergent on [ARC-003, SD-026] in Session C batch Group 3 (2026-04-17) -- see Clear Emergent section -->
 
 
-### INV-024
-- **Title:** Offline consolidation and online commitment must remain isolated at
-  responsibility-bearing write loci.
-- **Why ambiguous:** Crosses both the commitment substrate (INV-021 / INV-012) and the
-  offline substrate (ARC-020 / SD-017). The claim is a conjunctive emergence: it relies on
-  both substrate clusters simultaneously.
-- **Candidate classifications:**
-  - emergent on: [ARC-020] (offline write-boundary typing) — already in depends_on.
-  - emergent on: [ARC-020, SD-026] (offline substrate + commitment substrate) — needs
-    SD-026 added to depends_on.
-- **Follow-up prompt for Session C_n:**
-  > INV-024 ("Offline consolidation and online commitment must remain isolated at
-  > responsibility-bearing write loci.") depends on INV-021/INV-023/ARC-020. Decide whether
-  > to classify emergent on ARC-020 alone (the typed write boundary in offline consolidation)
-  > or on ARC-020 plus SD-026 (because "responsibility-bearing" imports INV-012's
-  > substrate dependency). Note that Session C's decisions on INV-021/INV-024 should be
-  > made jointly with INV-004/INV-006 since they all centre on the commitment/post-commit
-  > cluster.
+<!-- INV-024 resolved emergent on [ARC-020, SD-026] in Session C batch Group 4 (2026-04-17) -- see Clear Emergent section -->
+
 
 <!-- INV-047, INV-048, INV-061, INV-062 moved to "Reclassified" section below (Session C batch, 2026-04-17) -->
 
@@ -573,22 +615,8 @@ Each entry carries a self-contained follow-up prompt for a Session C_n auditor.
 <!-- INV-048 moved to "Reclassified" section (Session C batch, 2026-04-17) -->
 
 
-### INV-051
-- **Title:** There exists an optimal range of daily Model Error Load (MEL).
-- **Why ambiguous:** Extends INV-050 (emergent on SD-017 per this audit), but its own
-  depends_on is [INV-050, INV-049, MECH-181] with no SD/ARC. The MEL-range claim is a
-  general learning-theoretic proposition that could stand independently, or a substrate-
-  specific claim about SD-017's throughput.
-- **Candidate classifications:**
-  - universal (under-/over-stimulation of any model-update drive produces degenerate
-    outcomes — derivable from learning-theory without SD-017)
-  - emergent on: [SD-017] (MEL is an SD-017-resident drive)
-- **Follow-up prompt for Session C_n:**
-  > INV-051 ("Optimal range of daily Model Error Load MEL.") extends INV-050. Decide
-  > classification jointly. If INV-050 is emergent on SD-017 (as this audit set it), INV-051
-  > most likely is too — but verify whether "MEL" is a concept that requires SD-017 to be
-  > stateable or whether it generalises to any model-building agent's error throughput.
-  > Check MECH-181 and SD-017 design doc.
+<!-- INV-051 resolved emergent on SD-017 in Session C batch Group 4 (2026-04-17) -- see Clear Emergent section -->
+
 
 <!-- INV-061 moved to "Reclassified" section (Session C batch, 2026-04-17) -->
 
@@ -596,34 +624,10 @@ Each entry carries a self-contained follow-up prompt for a Session C_n auditor.
 <!-- INV-062 moved to "Reclassified" section (Session C batch, 2026-04-17) -->
 
 
-### INV-063
-- **Title:** Minimum entropy intake sleep dependency.
-- **Why ambiguous:** Depends on INV-049/MECH-121/205/209/210/211 — MECH-only, no SD/ARC.
-  Load-bearing substrate is likely SD-017 (the MEL/throughput argument is sleep-phase-
-  resident) but the invariant does not declare it.
-- **Candidate classifications:**
-  - emergent on: [SD-017] — add to depends_on.
-  - universal: unlikely without significant restatement, as the "entropy intake" concept
-    is defined relative to sleep functions.
-- **Follow-up prompt for Session C_n:**
-  > INV-063 ("Minimum entropy intake sleep dependency.") depends only on MECHs. Add SD-017
-  > to depends_on and classify emergent, paralleling the sleep-cluster decisions on
-  > INV-045/INV-046/INV-050/INV-062.
+<!-- INV-063 resolved emergent on SD-017 in Session C batch Group 4 (2026-04-17) -- see Clear Emergent section -->
 
-### INV-064
-- **Title:** E1/E2/E3 maturational sequence necessity.
-- **Why ambiguous:** The title explicitly names E1/E2/E3 — clearly emergent on ARC-001/002/003
-  — but `depends_on` is [INV-055, INV-056, MECH-212, MECH-213] with no ARC. Adding
-  ARC-001/002/003 is defensible because the subject is literally those substrates' maturation.
-- **Candidate classifications:**
-  - emergent on: [ARC-001, ARC-002, ARC-003] — add to depends_on.
-  - emergent on: [ARC-019] (staged developmental curriculum, which defines the maturational
-    sequence) — add to depends_on. Possibly plus the three engine ARCs.
-- **Follow-up prompt for Session C_n:**
-  > INV-064 ("E1/E2/E3 maturational sequence necessity.") names the three engines explicitly
-  > but has no ARC in depends_on. Choose emergent_from: [ARC-001, ARC-002, ARC-003] (the
-  > engines whose maturation is being ordered) or [ARC-019] (the developmental-curriculum
-  > substrate that specifies the ordering) or both. Add to depends_on accordingly.
+
+<!-- INV-064 resolved emergent on [ARC-001, ARC-002, ARC-003, ARC-019] in Session C batch Group 4 (2026-04-17) -- see Clear Emergent section -->
 
 ---
 
