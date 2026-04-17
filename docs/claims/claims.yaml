@@ -10158,6 +10158,51 @@
     Note: user confirmed V4 mechanisms being pulled into V3 scope -- MECH-165 substrate
     (reverse replay scheduler, exploration source material) should be planned for V3.
 
+- id: SD-016
+  title: "E1 must expose a z_world-only ContextMemory query path that produces two downstream signals: an action-affordance bias for E2 (MECH-151) and a terrain precision weight for E3 harm/goal scoring (MECH-152); the existing bulk generate_prior() path is insufficient because it blends z_self and z_world and produces no cue-specific modulation."
+  claim_type: design_decision
+  subject: e1.frontal_cue_indexed_integration
+  polarity: asserts
+  status: implemented
+  implementation_phase: v3
+  registered_utc: 2026-03-31
+  depends_on:
+    - SD-005
+    - SD-010
+    - ARC-035
+  status_note: >
+    IMPLEMENTED 2026-04-16. E1DeepPredictor.extract_cue_context(z_world) added to
+    ree_core/predictors/e1_deep.py. Three new projections gated by sd016_enabled=True:
+    world_query_proj (Linear 32->128), cue_action_proj (Linear 64->16), cue_terrain_proj
+    (Linear 64->2). Agent._e1_tick() caches action_bias and terrain_weight each tick;
+    passes to E2.action_object() and E3.score_trajectory() respectively. Supervised
+    terrain_loss (lambda=0.1) trains cue_terrain_proj against hazard_field_view proxy.
+    Backward compatible: sd016_enabled=False default. Validation: V3-EXQ-418a queued.
+  functional_restatement: >
+    E1's ContextMemory stores 16 associative slots and can in principle retrieve hazard-relevant
+    associations when z_world encodes a cue-dense context. But no downstream pathway existed
+    to act on this retrieval in a cue-specific way. Two distinct effects were missing: (1)
+    action-affordance bias: hazard-associated cues should upweight avoidance action-objects
+    in E2's affordance space before harm occurs; (2) terrain precision modulation: E3 should
+    sharpen harm scoring when contextual cues predict elevated danger, relaxing in safe contexts.
+    This maps to the vmPFC somatic-marker circuit (Bechara et al. 1997 Iowa Gambling Task):
+    intact participants show anticipatory SCR before selecting from a bad deck, driven by cue
+    context not immediate feedback. vmPFC lesion patients respond only to immediate outcomes.
+    SD-016 implements the architectural prerequisite for this pre-SCR analog: cue-indexed E1
+    retrieval feeding forward into E2 affordance and E3 scoring precision before harm contact.
+    The z_world-only query (not [z_self, z_world]) ensures retrieval reflects exteroceptive
+    sensory context, matching vmPFC/OFC afferent anatomy (convergent sensory, not interoceptive).
+  location: docs/architecture/sd_016_frontal_cue_integration.md
+  source:
+    - docs/architecture/frontal_cue_integration.md
+    - docs/architecture/vmPFC.md
+  blocks:
+    - MECH-150
+    - MECH-151
+    - MECH-152
+    - ARC-041
+    - INV-040
+
 - id: SD-017
   title: "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated."
   claim_type: design_decision
