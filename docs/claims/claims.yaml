@@ -115,10 +115,21 @@
   subject: commitment.epistemology
   polarity: asserts
   status: active
-  depends_on: []
+  depends_on:
+    - SD-026
   location: docs/invariants.md#inv-012
   source:
     - docs/processed/legacy_tree/docs/invariants.md
+  notes: >
+    depends_on SD-026 added 2026-04-17: INV-012's coherence requires a
+    mechanism by which deliberate/willed attention can be distinguished
+    from reflexive/residue-driven attention. Without such a mechanism,
+    "commitment" reduces to "whatever was already conditioned," and the
+    invariant loses its ethical content. SD-026 (prospective precision
+    template write channel, DAN analogue) is that mechanism. Note: this
+    is the first invariant to depend on a substrate design; worth
+    governance review for whether the pattern should generalise to other
+    invariants with implicit substrate requirements.
 - id: INV-013
   title: "Cognition is predictive, iterative, and multi-timescale."
   claim_type: invariant
@@ -15948,3 +15959,236 @@
     driven by the MultiRateClock breath cycle state. Registered 2026-04-16 from
     empirical observation (dogs releasing planned actions with a sharp outbreathing)
     during MECH-090 bistable gate development.
+
+- id: SD-026
+  title: "Goal-directed perception requires a prospective precision-template write channel from z_goal to the E1 prior, anatomically analogous to the dorsal attention network (FEF/IPS -> V1) feedback, distinct from residue-geometry (history-driven) sampling bias."
+  claim_type: design_decision
+  subject: attention.prospective_precision_write_channel
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: 2026-04-17
+  depends_on:
+    - SD-012
+    - SD-014
+    - INV-034
+    - INV-037
+    - INV-038
+    - INV-009
+    - MECH-007
+  functional_restatement: >
+    SD-012 establishes that drive-scaled benefit can seed z_goal. EXQ-085f/g
+    confirmed z_goal_norm > 0.1 is achievable. EXQ-085h through 085l then
+    failed navigation (benefit_ratio) consistently: seeding works, but
+    z_goal is behaviorally inert because no channel exists by which it
+    biases E1 sampling toward goal-relevant features. Residue geometry
+    (ARC-007) biases sampling toward previously-mattering locations
+    (history-driven) but cannot bias toward prospective template features
+    (goal-driven). Without a prospective write channel, z_goal can only
+    affect behavior via E3 trajectory re-ranking after the fact;
+    perception itself remains goal-agnostic.
+
+    Proposed mechanism (V3 minimum): z_goal is projected through a
+    template projection into a precision-space vector, written additively
+    to the E1 prior via a dedicated dan_feedback channel with fast decay
+    (tau on the order of seconds in env-steps). Residue geometry retains
+    its slow decay. Both channels write to the same E1-prior register via
+    additive combination; sources and dynamics are distinct.
+
+    SEPARABLE-FROM (not a dependency, a boundary): ARC-007 (residue
+    geometry). ARC-007 and SD-026 share the E1-prior register but are
+    distinct sources with distinct dynamics -- ARC-007 writes from
+    retrospective outcomes with slow decay; SD-026 writes from prospective
+    intent with fast decay.
+
+    STRUCTURAL LOAD-BEARING FOR: INV-012 (responsibility through
+    commitment). Without a prospective channel, REE has no mechanism
+    for *willed* perception -- only reflexive residue-driven attention.
+    INV-012's coherence requires deliberate vs reflexive attention to be
+    mechanistically distinguishable; SD-026 is the mechanism that makes
+    that distinction possible. INV-012 depends_on updated accordingly.
+  notes: >
+    Anatomical grounding: Corbetta & Shulman (2002) dorsal attention
+    network (FEF + IPS) writes feedback to V1/V4 producing prospective
+    gain modulation before stimuli arrive. Moore & Armstrong (2003): FEF
+    stimulation produces V4 selectivity shifts for attended features.
+    Summerfield et al. (2006): prospective template distinct from
+    reactive adjustment. In predictive-processing terms, DAN writes
+    "expected precision" on specified feature channels.
+
+    Decomposition (see docs/thoughts/2026-04-17_attention_coverage_audit.md):
+    H3 (template as first-class precision-space object, compiled from
+    stored goal by vmPFC-dlPFC) is deferred to V4. SD-026 is the V3
+    minimum: a differentiable projection z_goal -> template_vec ->
+    additive prior bias is sufficient to validate the channel exists
+    and is separable from residue.
+
+    Boundary vs neighboring claims:
+    - MECH-081 (NA as attentional snap): MECH-081 is EXOGENOUS / bottom-up
+      stimulus-driven salience. SD-026 is ENDOGENOUS / top-down goal-driven
+      template. Both may write gain to E1 but sources are orthogonal; they
+      are complementary, not redundant. Full attention system = NA snap
+      (MECH-081) + DAN template (SD-026) + fragmentation across control
+      axes (MECH-007).
+    - ARC-044 (attentional lapses for exploration): ARC-044 governs the
+      TEMPORAL gating of attention engagement (when to release into
+      exploration). SD-026 governs the CONTENT of attention when engaged
+      (what to amplify). Orthogonal axes -- ARC-044 can release a SD-026
+      template, and SD-026 templates can be re-engaged after ARC-044
+      lapses. Neither subsumes the other.
+    - ARC-007 (residue geometry): see SEPARABLE-FROM above.
+
+    Pressure-tested against residue-redundancy hypothesis: distinct on
+    direction of causality (retrospective vs prospective), neuromodulation
+    (DA-gated vs ACh/NA-gated), clinical dissociation (amnestic vs frontal
+    syndromes), representational format (episodic specificity vs
+    cross-situational feature generality), and REE-specific ethical
+    commitment argument (INV-012 requires deliberate vs reflexive
+    attention to be distinguishable). Registered 2026-04-17 from
+    attention coverage audit session.
+  evidence_quality_note: |
+    No direct experiments yet. Testing is gated on SD-014 (z_resource
+    separation): without a crisp resource representation, a DAN template
+    ablation is confounded -- template quality and target quality cannot
+    be disentangled. Do not queue SD-026 validation EXQ until SD-014 is
+    at least provisional.
+
+    Predicted failure mode in EXQ-085h-l navigation (z_goal seeds but
+    does not bias sampling) is consistent with SD-026 being the missing
+    piece. First validation experiment (queued post-SD-014) should:
+    (a) verify z_goal seeds (SD-012), (b) verify z_resource separates
+    (SD-014), (c) enable/disable dan_feedback channel as ablation,
+    (d) measure benefit_ratio against random baseline, (e) measure
+    feature-channel precision on goal-relevant vs irrelevant dimensions.
+    Prediction: dan_feedback=on lifts benefit_ratio substantially;
+    dan_feedback=off replicates EXQ-085h-l behavior (seed-but-inert).
+
+- id: MECH-251
+  title: "z_goal projects to a precision template vector that is additively written to the E1 prior via the dan_feedback channel with fast exponential decay, separable in dynamics and source from residue-geometry bias."
+  claim_type: mechanism_hypothesis
+  subject: attention.dan_feedback_precision_write
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: 2026-04-17
+  depends_on:
+    - SD-026
+    - ARC-007
+    - INV-009
+  functional_restatement: >
+    Implementation for SD-026. template_vec = template_proj(z_goal) where
+    template_proj is Linear(goal_dim, prior_dim). effective_prior =
+    alpha_residue * residue_bias + alpha_dan * template_vec, with
+    alpha_dan decaying exponentially from the last z_goal update (tau on
+    the order of seconds in env-steps). Residue bias retains its slow
+    timescale (episodes). Both contribute additively to precision weights
+    in the E1 encoder. Ablation toggle: sd026_enabled (default off during
+    initial validation).
+  notes: >
+    Deliberately minimal for V3. Does not commit to vmPFC-dlPFC template
+    compilation (H3, deferred to V4). Does not commit to capacity-limited
+    selection (H2, V3/V4 boundary, pulvinar-TRN gate). Tests only whether
+    a separable prospective channel is necessary for z_goal to produce
+    behavioral lift. Falsifiable: if dan_feedback=off still produces
+    benefit_ratio lift once z_goal seeds, SD-026 is wrong and residue
+    alone suffices. Registered 2026-04-17.
+
+- id: MECH-252
+  title: "SWS hippocampal-neocortical replay consolidates goal-value prediction error into updates of stored goal representations (content update), not into attentional-template parameters."
+  claim_type: mechanism_hypothesis
+  subject: sleep.sws_stored_goal_consolidation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: mechanistic
+  registered_utc: 2026-04-17
+  depends_on:
+    - SD-017
+    - INV-010
+    - INV-049
+    - INV-037
+    - INV-038
+  functional_restatement: >
+    During daytime operation, goal-value prediction error is accumulated:
+    did pursuing goal G actually satisfy homeostatic drive / produce
+    predicted benefit? This error is long-horizon, episodic, sparse.
+    Its legitimate update target is the stored goal representation
+    (what the agent wants), not the attentional template (how the agent
+    finds it).
+
+    Proposed mechanism: SWS hippocampal-neocortical replay selectively
+    routes goal-value error to stored-goal parameters. Slow oscillations
+    and sharp-wave ripples coordinate cortical consolidation of
+    drive-outcome associations (Balleine & Dickinson 1998; Diekelmann &
+    Born 2010). The specificity is substrate-level: SWS replay has
+    access to episodic outcome structure but lacks the varied associative
+    replay characteristic of REM, making it well-suited to content
+    updates and ill-suited to feature-generality updates.
+  notes: >
+    Paired with MECH-253 (REM template consolidation). Together they
+    constitute the phase-separated consolidation that creates and
+    maintains the stored-goal vs attentional-template distinction.
+
+    Clinical prediction: SWS disruption should produce selective
+    goal-value instability -- the agent continues to search effectively
+    for previous goals but shows noisy/shifting preferences. Dissociable
+    from REM disruption predictions under MECH-253.
+
+    No evidence expected until SD-017 implementation complete. Registered
+    in the pre-implementation claim matrix per user policy of capturing
+    ideas at time of insight. V4-scoped: depends on full sleep-phase
+    architecture (SD-017) being implemented.
+
+- id: MECH-253
+  title: "REM sleep, with varied associative replay and attenuated noradrenergic tone, consolidates template-performance prediction error into updates of z_goal -> attentional-template projection weights (feature-specification update), not into stored-goal content."
+  claim_type: mechanism_hypothesis
+  subject: sleep.rem_template_consolidation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: mechanistic
+  registered_utc: 2026-04-17
+  depends_on:
+    - SD-017
+    - SD-026
+    - INV-010
+    - INV-049
+    - INV-037
+  functional_restatement: >
+    During daytime operation, template-performance error is accumulated:
+    did the deployed precision template successfully identify goal-relevant
+    content during search? This error is within-episode, denser, and
+    cross-situational. Its legitimate update target is the template
+    projection weights (template_proj in MECH-251), not stored goal
+    content.
+
+    Proposed mechanism: REM sleep's varied associative replay, combined
+    with attenuated noradrenergic tone (which reduces the fidelity
+    penalty on replay divergence), consolidates template-performance
+    error into template_proj updates. REM's cross-situational variance
+    is exactly what feature-generality learning requires: the same
+    stored goal paired with different contextual instantiations across
+    replay episodes lets the projection learn which features are
+    goal-diagnostic vs situational.
+  notes: >
+    Paired with MECH-252 (SWS stored-goal consolidation). Phase-separated
+    consolidation creates and maintains the stored-goal / template
+    distinction. Without REM, template projection drifts toward stored
+    goal content (template collapses into retrieval); without SWS,
+    stored goals drift toward whatever the template currently finds
+    (goals collapse into salience).
+
+    Clinical prediction: REM disruption should selectively impair
+    goal-directed search quality (template performance) before producing
+    goal-amnesia. Partial REM deprivation should degrade template-driven
+    search with relative sparing of stored-goal retrieval. Dissociable
+    from MECH-252 predictions. Consistent with long-standing findings
+    that REM deprivation impairs procedural / implicit learning more
+    than declarative recall (Smith 2001; Diekelmann & Born 2010).
+
+    No evidence expected until SD-017 implementation complete. Registered
+    in the pre-implementation claim matrix per user policy. V4-scoped:
+    depends on SD-017 phase architecture and SD-026 template channel
+    being implemented.

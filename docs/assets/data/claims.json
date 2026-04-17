@@ -2483,6 +2483,24 @@
     "title": "The end of exhalation (expiration phase) provides a hard, periodic release signal for committed motor programs via respiratory-motor coupling -- a breath-timed gate-release mechanism distinct from hippocampal completion (ARC-028) and urgency interrupt (MECH-091).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-251": {
+    "status": "candidate",
+    "subject": "attention.dan_feedback_precision_write",
+    "title": "z_goal projects to a precision template vector that is additively written to the E1 prior via the dan_feedback channel with fast exponential decay, separable in dynamics and source from residue-geometry bias.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-252": {
+    "status": "candidate",
+    "subject": "sleep.sws_stored_goal_consolidation",
+    "title": "SWS hippocampal-neocortical replay consolidates goal-value prediction error into updates of stored goal representations (content update), not into attentional-template parameters.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-253": {
+    "status": "candidate",
+    "subject": "sleep.rem_template_consolidation",
+    "title": "REM sleep, with varied associative replay and attenuated noradrenergic tone, consolidates template-performance prediction error into updates of z_goal -> attentional-template projection weights (feature-specification update), not into stored-goal content.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -2865,6 +2883,12 @@
     "status": "candidate",
     "subject": "hippocampal_module.curiosity_drive",
     "title": "Curiosity drive: information-seeking bias in hippocampal trajectory scoring that favors regions of higher representational density in the RBF map.",
+    "type": "design_decision"
+  },
+  "SD-026": {
+    "status": "candidate",
+    "subject": "attention.prospective_precision_write_channel",
+    "title": "Goal-directed perception requires a prospective precision-template write channel from z_goal to the E1 prior, anatomically analogous to the dorsal attention network (FEF/IPS -> V1) feedback, distinct from residue-geometry (history-driven) sampling bias.",
     "type": "design_decision"
   }
 }
