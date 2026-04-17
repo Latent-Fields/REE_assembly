@@ -32,7 +32,12 @@ Session D does **not** classify any invariants (that's C_n), does
 ## 2. Read These First
 
 1. `REE_assembly/docs/architecture/invariant_types.md` — schema and
-   governance rules, especially §"Governance Cycle".
+   governance rules, especially §"Governance Cycle". Note: this doc now
+   includes a §"Related: `derived_prediction` claim_type" section added
+   during the Session C batch (2026-04-17). `derived_prediction` entries
+   are out of scope for every Session D task — they carry no
+   `invariant_type` or `emergent_from` fields and the validator ignores
+   them. Read the section so you are not surprised by the new type.
 2. `REE_assembly/docs/thoughts/2026-04-17_invariant_types_governance.md`
    — planning doc, especially §5 (pipeline changes) and §8
    (execution order: Session D is the last entry).
@@ -156,6 +161,9 @@ report the error to the user and stop.
 - Verify every claim entry with `claim_type: invariant` has
   `invariant_type` set (strict validator would have caught this, but
   confirm explicitly).
+- Verify every claim entry with `claim_type: derived_prediction` does
+  **not** carry `invariant_type` or `emergent_from` (those fields are
+  meaningful only on invariants). Mirror check of the invariant-side rule.
 
 ---
 
