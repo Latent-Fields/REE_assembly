@@ -2807,6 +2807,12 @@
     "title": "Goal-directed navigation requires a dedicated z_resource encoder that captures object-type features invariant to spatial location, separate from z_world.",
     "type": "design_decision"
   },
+  "SD-016": {
+    "status": "implemented",
+    "subject": "e1.frontal_cue_indexed_integration",
+    "title": "E1 must expose a z_world-only ContextMemory query path that produces two downstream signals: an action-affordance bias for E2 (MECH-151) and a terrain precision weight for E3 harm/goal scoring (MECH-152); the existing bulk generate_prior() path is insufficient because it blends z_self and z_world and produces no cue-specific modulation.",
+    "type": "design_decision"
+  },
   "SD-017": {
     "status": "provisional",
     "subject": "sleep_phase.minimal_sleep_infrastructure_v3",

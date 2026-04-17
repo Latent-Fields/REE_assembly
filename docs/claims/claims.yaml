@@ -13763,11 +13763,24 @@
     the minimum world richness required for MECH-216 to produce genuine anticipatory
     wanting rather than reactive proximity detection. world_obs_dim: 250 -> 300.
   evidence_quality_note: >
-    No experimental evidence yet. Identified as substrate gap 2026-04-09 from EXQ-263a
-    analysis: even after API fixes, MECH-216 will likely produce artifactual salience
-    because E1 has no leading-indicator signal to predict. EXQ-241b substrate diagnosis
-    (same session) independently confirmed the world is too sparse for stream separation
-    experiments. See substrate plan: ree-v3/docs/substrate_plans/sd023_environmental_gradient_texture_impl_plan.md
+    1:1 experimental conflict -- adjudication pending. EXQ-263b (2026-04-10, supports,
+    conf=0.55): salience elevated near Landmark B positions (C1 pass); landmark_prox_corr
+    > 0 but < resource_prox_corr (C2 fail). SD-023 tagged supports; MECH-216 does_not_support.
+    EXQ-332 (2026-04-14, does_not_support, conf=0.75): future_target_corr~=0.005 in BOTH
+    conditions. Root cause identified 2026-04-17: implementation gap in EXQ-332 training
+    curriculum. future_target_mean=0.0006 across 162k P1 steps (~10 resource contacts
+    total); MSE loss dominated by zero-class; schema_readout_head learns constant-zero
+    output. The ~0 correlation is a supervision-density artifact, NOT evidence against the
+    design principle. Lit-pull 2026-04-17 (4 entries, lit_conf=0.876, all supports):
+    O'Keefe & Burgess 1996 (place fields anchored to neutral geometry), Wang 2020 (surface-
+    texture boundaries structure place cells -- most direct support), Schultz 1997 (DA
+    prediction transfer to distal cues), Yaghoubi 2026 (hippocampal predictive temporal
+    coding shifts to reward-predicting cues). Literature strongly grounds the design
+    principle. Adjudication: V3-EXQ-332a queued (8x8 grid + 4 resources + FUTURE_WINDOW=30
+    to fix sparse-label problem; C3 quality gate guards against recurrence). Governance
+    decision (retain_ree/hybridize/retire) pending EXQ-332a result, deadline 2026-04-20.
+    If C3 fails again in 332a, result is non_contributory and a redesigned measurement
+    approach is needed before the decision can be made.
   notes: >
     The principle "all objects emit, each type distinctively" is biologically grounded:
     in natural environments every object has a detectable presence (olfactory, acoustic,
