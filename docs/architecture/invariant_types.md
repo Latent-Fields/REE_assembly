@@ -133,6 +133,40 @@ The change is structural: make the registry represent a relationship that alread
 
 ---
 
+## Related: `derived_prediction` claim_type
+
+Introduced 2026-04-17 as part of Session C batch grey-zone resolution.
+
+Some entries previously carried as `claim_type: invariant` are not invariants of
+the REE architecture itself — they are predictions about a target domain (human
+psychiatric syndromes, clinical pharmacology, dream phenomenology, cognitive
+pathology progression) that hold **only conditional on REE being a correct model
+of that target domain**. That conditional is a separate commitment from the
+architectural invariants, with different failure modes and different governance
+implications.
+
+- A universal invariant holds in any agent.
+- An emergent invariant holds in any agent with the relevant substrates.
+- A `derived_prediction` holds iff (a) the architecture's invariants hold **and**
+  (b) REE correctly models the domain the prediction targets. Falsification of a
+  `derived_prediction` can therefore reflect either a wrong architectural claim or
+  a wrong domain-modelling assumption — these must be distinguished during
+  investigation.
+
+`derived_prediction` entries do **not** carry `invariant_type` or `emergent_from`
+fields (those are meaningful only on invariants). They may carry a free-form
+`prediction_domain` note in `notes` or as a dedicated field. Validator ignores
+`derived_prediction` entries (no invariant-schema checks apply). Governance
+moves these entries out of the invariants section of any reference doc into a
+predictions section or dedicated `docs/predictions/` file when convenient; the
+location change is not required for the type change to take effect.
+
+First reclassifications under this type: INV-047, INV-048, INV-061, INV-062
+(Session C batch, 2026-04-17). The 'INV-' ID prefix is retained for provenance
+but is no longer semantic — these entries are predictions, not invariants.
+
+---
+
 ## References
 
 - Planning doc: `docs/thoughts/2026-04-17_invariant_types_governance.md`

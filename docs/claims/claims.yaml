@@ -10773,10 +10773,8 @@
 
 - id: INV-047
   title: "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile."
-  claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - SD-017
+  claim_type: derived_prediction
+  prediction_domain: clinical_neurology
   subject: dementia.staged_decline_phase_dependency_prediction
   polarity: asserts
   status: candidate
@@ -10785,6 +10783,11 @@
     - INV-045
     - MECH-168
   notes: >
+    Reclassified from claim_type: invariant in Session C batch 2026-04-17.
+    Rationale: this is a clinical prediction about Alzheimer's staged decline,
+    which holds only conditional on REE correctly modelling human cognition --
+    a domain-modelling assumption distinct from REE's architectural invariants
+    (per Daniel's 2026-04-17 objection, audit registry INV-047).
     Registered 2026-04-05. The glymphatic clearance hypothesis (amyloid
     accumulation without sleep; Xie/Nedergaard 2013) predicts substrate
     damage that should be diffuse across the consolidation pipeline, not
@@ -11003,10 +11006,8 @@
 
 - id: INV-048
   title: "Any pharmacological agent that disrupts sleep architecture produces equivalent attribution pipeline degradation to behavioral sleep deprivation, proportional to which phase(s) are disrupted and the duration of exposure -- the pipeline is mechanism-agnostic and responds only to phase fidelity."
-  claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - SD-017
+  claim_type: derived_prediction
+  prediction_domain: clinical_pharmacology
   subject: sleep.pharmacological_disruption_pipeline_equivalence
   polarity: asserts
   status: candidate
@@ -11017,6 +11018,12 @@
     - MECH-121
     - MECH-123
   notes: >
+    Reclassified from claim_type: invariant in Session C batch 2026-04-17.
+    Rationale: this is a clinical pharmacological prediction about human sleep
+    disruption; it holds only conditional on REE correctly modelling human sleep
+    and consolidation -- a domain-modelling assumption distinct from REE's
+    architectural invariants (per Daniel's 2026-04-17 objection, audit registry
+    INV-048).
     Registered 2026-04-05. The attribution pipeline (INV-045/INV-046) makes no
     mechanistic distinction between sleep deprivation caused by behavioral
     factors and sleep deprivation caused by pharmacological suppression of
@@ -12718,10 +12725,8 @@
 
 - id: INV-061
   title: "Derealization, delusion, PTSD flashbacks, anxiety, mania, impulsivity, and commitment paralysis share a common architectural substrate: undertrained real/synthetic frame distinction from insufficient pretend play."
-  claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - ARC-049
+  claim_type: derived_prediction
+  prediction_domain: clinical_psychiatry
   subject: psychiatric.frame_confusion_unified_etiology
   polarity: asserts
   status: candidate
@@ -12732,7 +12737,7 @@
     - MECH-201
     - MECH-202
   location: docs/architecture/psychiatric_failure_modes.md
-  notes: "The REE architecture distinguishes real from synthetic/hypothetical frames via the hypothesis tag (MECH-094, agent-internal) and play frame tag (ARC-049, bilateral). Pretend play (MECH-198) is where these co-operate for the first time. When pretend play is absent or insufficient, the frame-distinction mechanism is undertrained. The resulting adult failure modes are not independent disorders but different failure signatures of the same mechanism, varying by (a) direction of confusion: real->synthetic (derealization cluster, MECH-200) vs synthetic->real (delusion cluster, MECH-201), and (b) affected subsystem: frame tag, commitment gate (MECH-202), or threat evaluation. This provides a unified developmental etiology for conditions that are clinically distinct but architecturally related."
+  notes: "Reclassified from claim_type: invariant in Session C batch 2026-04-17. Rationale: this is a clinical psychiatric prediction about a shared substrate for human frame-confusion disorders; it holds only conditional on REE correctly modelling human developmental frame-distinction -- a domain-modelling assumption distinct from REE's architectural invariants (per Daniel's 2026-04-17 objection, audit registry INV-061). The REE architecture distinguishes real from synthetic/hypothetical frames via the hypothesis tag (MECH-094, agent-internal) and play frame tag (ARC-049, bilateral). Pretend play (MECH-198) is where these co-operate for the first time. When pretend play is absent or insufficient, the frame-distinction mechanism is undertrained. The resulting adult failure modes are not independent disorders but different failure signatures of the same mechanism, varying by (a) direction of confusion: real->synthetic (derealization cluster, MECH-200) vs synthetic->real (delusion cluster, MECH-201), and (b) affected subsystem: frame tag, commitment gate (MECH-202), or threat evaluation. This provides a unified developmental etiology for conditions that are clinically distinct but architecturally related."
 
 - id: MECH-200
   title: "Frame confusion (real->synthetic direction): the agent treats real consequences as synthetic, producing derealization, manic commitment, and dissociative states."
@@ -13095,10 +13100,8 @@
 # Source: Daniel Golden first-person observation; three-type dream taxonomy
 - id: INV-062
   title: "Dream phenomenology is a first-person window onto active offline sleep process: four structurally distinct dream types map onto four computationally distinct sleep functions -- harm-contrastive replay, goal-contrastive replay, NREM semantic consolidation, and REM world-model free-running."
-  claim_type: invariant
-  invariant_type: grey_zone
-  candidate_emergent_from:
-    - SD-017
+  claim_type: derived_prediction
+  prediction_domain: dream_phenomenology
   subject: dream_phenomenology.replay_type_signature
   polarity: asserts
   status: candidate
@@ -13116,6 +13119,12 @@
     - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
     - evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md
   notes: >
+    Reclassified from claim_type: invariant in Session C batch 2026-04-17.
+    Rationale: this is a phenomenological prediction about the structure of human
+    dream experience; it holds only conditional on REE correctly modelling human
+    offline cognition -- a domain-modelling assumption distinct from REE's
+    architectural invariants (per Daniel's 2026-04-17 objection, audit registry
+    INV-062).
     Four structurally distinct dream types observed consistently by DG (first-person
     phenomenological data; noted as definite types but not claimed to be exhaustive):
     Type 1 (stress/escape frustration): trying to get away from something; everything
