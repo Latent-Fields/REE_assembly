@@ -1,14 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-04-17T11:50:27Z`  
-Last review: `2026-04-16T21:15:24Z`  
-Pending: **2** item(s) -- 0 PASS, 1 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_321a_mech090_bistable_gate_20260416T200620Z_v3` | 2026-04-17T09:08 | MECH-090 | — |
+Generated: `2026-04-17T15:46:12Z`  
+Last review: `2026-04-17T14:17:55Z`  
+Pending: **13** item(s) -- 0 PASS, 0 FAIL, 13 runner-only (ERROR/UNKNOWN/smoke)
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -16,7 +10,19 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
-| `V3-EXQ-321a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-321b` | ERROR | `?` | ERROR |
+| `V3-EXQ-395` | ERROR | `?` | ERROR |
+| `V3-EXQ-375` | ERROR | `?` | ERROR |
+| `V3-EXQ-406` | ERROR | `?` | ERROR |
+| `V3-EXQ-396` | ERROR | `?` | ERROR |
+| `V3-EXQ-397` | ERROR | `?` | ERROR |
+| `V3-EXQ-429` | ERROR | `?` | ERROR |
+| `V3-EXQ-430` | ERROR | `?` | ERROR |
+| `V3-EXQ-324b` | ERROR | `?` | ERROR |
+| `V3-EXQ-418a` | ERROR | `?` | ERROR |
+| `V3-EXQ-385a` | ERROR | `?` | ERROR |
+| `V3-EXQ-355a` | ERROR | `?` | ERROR |
+| `V3-EXQ-325a` | ERROR | `?` | ERROR |
 
 ---
 
