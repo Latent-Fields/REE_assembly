@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_227_arc029_discrepancy_diagnostic
 
-Generated: `2026-04-16T21:57:58.781126Z`
+Generated: `2026-04-17T02:30:58.637947Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

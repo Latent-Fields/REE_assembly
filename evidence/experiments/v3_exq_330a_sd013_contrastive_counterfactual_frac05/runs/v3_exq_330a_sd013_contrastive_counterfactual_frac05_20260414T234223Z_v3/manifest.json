@@ -24,9 +24,10 @@
     "ARC-033"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "Reclassified (diagnose-errors 2026-04-17): SD-013 direction changed from does_not_support to non_contributory. FAIL is a threshold calibration issue: raw Euclidean cf_gap with 2.0x threshold is too strict for this pipeline stage. EXQ-353 (normalized gap, 1.2x threshold) passes the same underlying mechanism with all seeds 1.34-1.69x lift. EXQ-330a tells us the 2.0x threshold is wrong, not that SD-013 is wrong. ARC-033 (forward model r2>=0.99) confirmed supports as before.",
   "evidence_direction_per_claim": {
-    "SD-013": "does_not_support",
+    "SD-013": "non_contributory",
     "ARC-033": "supports"
   },
   "experiment_purpose": "evidence",

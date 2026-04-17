@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-16T21:57:58.781126Z`
+Generated: `2026-04-17T02:30:58.637947Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -64,7 +64,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-010` | directional, mixed_evidence | 7 | 1 | 0.25 | `20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3` | 25 |
 | `SD-011` | directional, mixed_evidence | 22 | 5 | 0.37 | `v3_exq_241b_sd011_second_source_info_gain_20260408T231939Z_v3` | 55 |
 | `SD-012` | directional, source_disagreement, mixed_evidence | 11 | 8 | 0.842 | `v3_exq_328a_mech112_zgoal_structured_latent_20260414T135044Z_v3` | 40 |
-| `SD-013` | directional | 6 | 2 | 0.5 | `v3_exq_353_arc033_sd003_interventional_vs_observational_20260415T060945Z_v3` | 11 |
+| `SD-013` | directional | 6 | 1 | 0.286 | `v3_exq_353_arc033_sd003_interventional_vs_observational_20260415T060945Z_v3` | 11 |
 | `SD-015` | directional, source_disagreement, mixed_evidence | 8 | 7 | 0.933 | `2026-04-14_sd_015_parallel_streams_lec_knierim2020` | 30 |
 | `SD-023` | directional | 1 | 1 | 1 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 2 |
 
@@ -172,7 +172,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-029
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, overall_confidence=0.687
+- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, overall_confidence=0.686
 - Recent entries:
   - `2026-04-04T10:01:44Z` `experimental` `v3_exq_227_arc029_discrepancy_diagnostic` direction=`non_contributory` confidence=0
   - `2026-04-05T00:00:00Z` `literature` `targeted_review_arc_029` direction=`supports` confidence=0.67
@@ -212,7 +212,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-032
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=6, weakens=4, conflict_ratio=0.8, overall_confidence=0.651
+- Evidence breakdown: supports=6, weakens=4, conflict_ratio=0.8, overall_confidence=0.65
 - Recent entries:
   - `2026-04-05T14:16:58Z` `experimental` `v3_exq_228a_arc032_theta_bypass_behavioral` direction=`non_contributory` confidence=0
   - `2026-04-16T18:10:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.82
@@ -346,7 +346,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-070
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=1, weakens=6, conflict_ratio=0.286, overall_confidence=0.59
+- Evidence breakdown: supports=1, weakens=6, conflict_ratio=0.286, overall_confidence=0.589
 - Recent entries:
   - `2026-04-03T03:49:33.796558Z` `experimental` `v3_exq_212_mech070_e2_motor_model_pair` direction=`weakens` confidence=0.55
   - `2026-04-03T21:37:43Z` `experimental` `v3_exq_212_mech070_e2_motor_model_pair` direction=`weakens` confidence=0.75
@@ -716,7 +716,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-128
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, overall_confidence=0.611
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, overall_confidence=0.61
 - Recent entries:
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.65
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.72
@@ -935,7 +935,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-001
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.675
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.674
 - Recent entries:
   - `2026-03-29T08:46:02Z` `experimental` `v3_exq_146_q001_entity_binding_pair` direction=`weakens` confidence=0.75
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_001` direction=`mixed` confidence=0.62
@@ -1018,7 +1018,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-034
 - Conflict types: directional
-- Evidence breakdown: supports=8, weakens=1, conflict_ratio=0.222, overall_confidence=0.756
+- Evidence breakdown: supports=8, weakens=1, conflict_ratio=0.222, overall_confidence=0.755
 - Recent entries:
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_q_034` direction=`supports` confidence=0.6
   - `2026-04-09T15:30:00Z` `literature` `targeted_review_q_034` direction=`supports` confidence=0.66
@@ -1175,12 +1175,12 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-013
 - Conflict types: directional
-- Evidence breakdown: supports=6, weakens=2, conflict_ratio=0.5, overall_confidence=0.784
+- Evidence breakdown: supports=6, weakens=1, conflict_ratio=0.286, overall_confidence=0.797
 - Recent entries:
   - `2026-04-13T15:00:00Z` `literature` `targeted_review_sd_013` direction=`supports` confidence=0.74
   - `2026-04-13T15:05:00Z` `literature` `targeted_review_sd_013` direction=`supports` confidence=0.71
   - `2026-04-13T15:10:00Z` `literature` `targeted_review_sd_013` direction=`supports` confidence=0.82
-  - `2026-04-14T23:42:23Z` `experimental` `v3_exq_330a_sd013_contrastive_counterfactual_frac05` direction=`weakens` confidence=0.75
+  - `2026-04-14T23:42:23Z` `experimental` `v3_exq_330a_sd013_contrastive_counterfactual_frac05` direction=`non_contributory` confidence=0
   - `2026-04-15T06:09:45Z` `experimental` `v3_exq_353_arc033_sd003_interventional_vs_observational` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `If E2_harm_s is trained without counterfactual perturbation steps, it may learn to encode correlational regularities between the agent's presence in hazard-proximal states and elevated harm signals -- exactly the pattern de Haan et al. identify as causal misidentification. The model would then predict elevated z_harm_s whenever the agent is near a hazard zone, regardless of whether the agent's action caused the harm or harm would have occurred anyway.` (1)
