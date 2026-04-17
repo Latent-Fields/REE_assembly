@@ -10,9 +10,17 @@ Currently enforces the invariant-type schema introduced 2026-04-17:
   - emergent_from must be a subset of depends_on
   - grey_zone entries pass regardless of emergent_from content
 
+Flag-drift warnings (WARN-level, no exit effect):
+  - pending_substrate_reconfirmation: true but all substrates in emergent_from
+    are active -> flag is stale, can be cleared.
+  - pending_substrate_reconfirmation: false/absent but at least one substrate
+    in emergent_from is below active -> invariant should be flagged.
+  The flag is a governance artifact, not an auto-derived value. Warnings
+  surface drift between flag state and substrate status; governance decides.
+
 Modes:
   --warn      (default) print issues, exit 0
-  --strict    print issues, exit 1 if any ERROR
+  --strict    print issues, exit 1 if any ERROR (Session D default in governance.sh)
   --audit     print classification counts only (no validation)
 
 Called at the top of build_claims_json.py and governance.sh.
@@ -29,6 +37,25 @@ CLAIMS_YAML = REPO_ROOT / "docs" / "claims" / "claims.yaml"
 
 VALID_INVARIANT_TYPES = {"universal", "emergent", "grey_zone"}
 
+SUBSTRATE_CLAIM_TYPES = {
+    "design_decision",
+    "architectural_commitment",
+    "architecture_hypothesis",
+}
+
+
+def build_substrate_status_map(claims):
+    """Return {substrate_id: status} for all substrate claims."""
+    status_map = {}
+    for c in claims:
+        if not isinstance(c, dict):
+            continue
+        if c.get("claim_type") in SUBSTRATE_CLAIM_TYPES:
+            sid = c.get("id")
+            if sid:
+                status_map[sid] = c.get("status", "unknown")
+    return status_map
+
 
 def load_claims():
     if not CLAIMS_YAML.exists():
@@ -42,8 +69,13 @@ def load_claims():
     return claims
 
 
-def validate_invariant(claim):
-    """Return list of (level, msg) tuples for issues on one invariant."""
+def validate_invariant(claim, substrate_status=None):
+    """Return list of (level, msg) tuples for issues on one invariant.
+
+    substrate_status: optional mapping {substrate_id: status} used for
+    flag-drift warnings on `pending_substrate_reconfirmation`. If None,
+    flag-drift checks are skipped.
+    """
     issues = []
     cid = claim.get("id", "<no-id>")
     itype = claim.get("invariant_type")
@@ -70,6 +102,34 @@ def validate_invariant(claim):
             issues.append(("ERROR", f"{cid}: invariant_type=universal must have empty/absent emergent_from (found {efrom})"))
     # grey_zone: permissive, no constraint on emergent_from / candidate_emergent_from
 
+    # Flag-drift warnings: pending_substrate_reconfirmation vs substrate status.
+    # Warnings only -- the flag is a governance artifact, not auto-derived.
+    if substrate_status is not None and itype == "emergent" and efrom:
+        flag_set = bool(claim.get("pending_substrate_reconfirmation"))
+        substrate_statuses = [
+            (s, substrate_status.get(s)) for s in efrom
+        ]
+        below_active = [
+            (s, st) for s, st in substrate_statuses
+            if st is not None and st != "active"
+        ]
+        all_known_active = (
+            substrate_statuses
+            and all(st == "active" for _, st in substrate_statuses)
+        )
+        if flag_set and all_known_active:
+            issues.append((
+                "WARN",
+                f"{cid}: flag is stale -- all substrates now active, "
+                f"pending_substrate_reconfirmation can be cleared.",
+            ))
+        elif (not flag_set) and below_active:
+            s, st = below_active[0]
+            issues.append((
+                "WARN",
+                f"{cid}: should be flagged -- substrate {s} is {st}.",
+            ))
+
     return issues
 
 
@@ -95,9 +155,10 @@ def main():
             print(f"  {k}: {v}")
         return 0
 
+    substrate_status = build_substrate_status_map(claims)
     all_issues = []
     for c in invariants:
-        all_issues.extend(validate_invariant(c))
+        all_issues.extend(validate_invariant(c, substrate_status=substrate_status))
 
     errors = [msg for lvl, msg in all_issues if lvl == "ERROR"]
     warnings = [msg for lvl, msg in all_issues if lvl == "WARN"]

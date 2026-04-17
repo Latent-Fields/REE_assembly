@@ -55,10 +55,17 @@ status, the invariant gets `pending_substrate_reconfirmation: true`. This does n
 invariant — it marks that the claim cannot be cited as supporting evidence for new claims until
 governance explicitly reconfirms or reclassifies it. Universal invariants are never flagged.
 
-`scripts/validate_claims.py` enforces the schema. Runs in warn-only mode during the audit
-transition; flips to `--strict` once the audit registry
-(`docs/governance/invariant_classification_audit.md`, populated by Session B) is cleared of
-`grey_zone` entries, or on explicit governance decision.
+`scripts/validate_claims.py` enforces the schema. `governance.sh` runs it in `--strict` mode
+as a gate at the top of the pipeline — a malformed invariant blocks the entire run. The
+defence-in-depth call inside `build_claims_json.py` remains warn-only so site rebuilds that
+bypass governance.sh still surface drift without blocking.
+
+The validator also emits flag-drift WARNs comparing `pending_substrate_reconfirmation` against
+current substrate status (stale flag when all substrates active; missing flag when any
+substrate below active). These are informational — the flag is a governance artifact, not an
+auto-derived value. The substrate-change summary in
+`evidence/experiments/promotion_demotion_recommendations.md` lists every substrate with
+dependent emergent invariants after each governance run.
 
 ## Experiment Review Protocol
 

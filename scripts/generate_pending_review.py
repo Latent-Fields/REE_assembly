@@ -29,6 +29,8 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
+import yaml
+
 ROOT = Path(__file__).resolve().parent.parent
 EVIDENCE_DIR = ROOT / "evidence" / "experiments"
 CLAIM_EVIDENCE = EVIDENCE_DIR / "claim_evidence.v1.json"
@@ -36,6 +38,15 @@ REVIEW_TRACKER = EVIDENCE_DIR / "review_tracker.json"
 RUNNER_STATUS = EVIDENCE_DIR / "runner_status.json"          # legacy monolithic
 RUNNER_STATUS_DIR = EVIDENCE_DIR / "runner_status"           # per-machine split
 OUTPUT = EVIDENCE_DIR / "pending_review.md"
+CLAIMS_YAML = ROOT / "docs" / "claims" / "claims.yaml"
+RECOMMENDATIONS_MD = EVIDENCE_DIR / "promotion_demotion_recommendations.md"
+
+SUBSTRATE_CLAIM_TYPES = {
+    "design_decision",
+    "architectural_commitment",
+    "architecture_hypothesis",
+}
+SUBSTRATE_SECTION_HEADER = "## Substrate changes with dependent invariants"
 
 
 def load_tracker() -> tuple[set, set, str]:
@@ -316,12 +327,143 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     )
 
 
+def _governance_prompt_for_substrate(status: str) -> str:
+    """One-line prompt per dependent invariant based on substrate status."""
+    if status == "superseded":
+        return "transfer to successor"
+    if status in ("retracted", "demoted"):
+        return "re-derive or retract"
+    if status == "active":
+        return "re-confirm (flag can be cleared)"
+    # candidate, provisional, and unrecognised values
+    return "re-confirm when substrate is promoted"
+
+
+def build_substrate_change_section() -> str:
+    """Build the 'Substrate changes with dependent invariants' section body.
+
+    TODO(change-detection): there is currently no prior-run artifact for
+    substrate status, so this emits the full list of substrates that have
+    dependent emergent invariants on every run. When a prior-run snapshot is
+    added (e.g., cache of {substrate_id: status} per governance run), filter
+    this to substrates whose status actually changed.
+    """
+    if not CLAIMS_YAML.exists():
+        return (
+            f"{SUBSTRATE_SECTION_HEADER}\n\n"
+            "claims.yaml not found -- section skipped.\n"
+        )
+
+    with open(CLAIMS_YAML, encoding="utf-8") as f:
+        claims = yaml.safe_load(f) or []
+
+    substrates: dict[str, dict] = {}
+    invariants: list[dict] = []
+    for c in claims:
+        if not isinstance(c, dict):
+            continue
+        ct = c.get("claim_type")
+        if ct in SUBSTRATE_CLAIM_TYPES:
+            sid = c.get("id")
+            if sid:
+                substrates[sid] = c
+        elif ct == "invariant" and c.get("invariant_type") == "emergent":
+            invariants.append(c)
+
+    # substrate_id -> list of dependent invariants
+    dependents: dict[str, list[dict]] = {}
+    for inv in invariants:
+        for s in inv.get("emergent_from") or []:
+            dependents.setdefault(s, []).append(inv)
+
+    lines = [SUBSTRATE_SECTION_HEADER, ""]
+
+    active_substrates_with_deps = [
+        sid for sid in dependents
+        if sid in substrates
+    ]
+    if not active_substrates_with_deps:
+        lines += [
+            "No substrate status changes this run. "
+            "No dependent invariants flagged.",
+            "",
+        ]
+        return "\n".join(lines) + "\n"
+
+    lines += [
+        "Full list of substrates with dependent emergent invariants "
+        "(per-run change detection not yet implemented -- see TODO in "
+        "`scripts/generate_pending_review.py`).",
+        "",
+        "| Substrate | Status | Dependent invariant | Inv status | Flag | Governance prompt |",
+        "|-----------|--------|---------------------|------------|------|-------------------|",
+    ]
+    for sid in sorted(dependents.keys()):
+        sub = substrates.get(sid)
+        if sub is None:
+            lines.append(
+                f"| `{sid}` | (not found in claims.yaml) | -- | -- | -- | -- |"
+            )
+            continue
+        sub_status = sub.get("status", "?")
+        prompt = _governance_prompt_for_substrate(sub_status)
+        for inv in sorted(dependents[sid], key=lambda i: i.get("id", "")):
+            inv_id = inv.get("id", "?")
+            inv_status = inv.get("status", "?")
+            flag = bool(inv.get("pending_substrate_reconfirmation"))
+            flag_str = "true" if flag else "false"
+            lines.append(
+                f"| `{sid}` | `{sub_status}` | `{inv_id}` | `{inv_status}` "
+                f"| {flag_str} | {prompt} |"
+            )
+    lines.append("")
+    return "\n".join(lines) + "\n"
+
+
+def append_substrate_change_section() -> None:
+    """Write the substrate-change section into promotion_demotion_recommendations.md.
+
+    Idempotent: if the section already exists in the file, it is replaced.
+    Otherwise the section is appended. If the recommendations file does not
+    exist yet (e.g., indexer hasn't been run), the section is skipped --
+    governance.sh runs the indexer before this script.
+    """
+    section = build_substrate_change_section()
+    if not RECOMMENDATIONS_MD.exists():
+        print(
+            "[warn] promotion_demotion_recommendations.md not found -- "
+            "substrate-change section skipped (run build_experiment_indexes.py first)",
+            file=sys.stderr,
+        )
+        return
+
+    existing = RECOMMENDATIONS_MD.read_text()
+    marker = SUBSTRATE_SECTION_HEADER
+    idx = existing.find(marker)
+    if idx == -1:
+        if not existing.endswith("\n"):
+            existing += "\n"
+        new_content = existing + "\n" + section
+    else:
+        # Strip the existing section (everything from the marker to EOF) and
+        # replace with the regenerated section. The section is always the last
+        # block in the file.
+        prefix = existing[:idx].rstrip("\n") + "\n\n"
+        new_content = prefix + section
+    RECOMMENDATIONS_MD.write_text(new_content)
+    print(
+        f"Appended substrate-change section to "
+        f"{RECOMMENDATIONS_MD.relative_to(ROOT)}"
+    )
+
+
 def main():
     reviewed, discussed, last_review_utc = load_tracker()
     indexed_run_ids = load_indexed_run_ids()
     runs = load_pending_entries(reviewed)
     runner_undiscussed = load_runner_status_undiscussed(reviewed, discussed, indexed_run_ids)
     write_pending_review(runs, runner_undiscussed, last_review_utc)
+    append_substrate_change_section()
 
 
 if __name__ == "__main__":

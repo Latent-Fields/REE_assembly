@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-17T20:42:56.216990Z`
+Generated: `2026-04-17T20:53:21.016284Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -758,3 +758,57 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
+
+## Substrate changes with dependent invariants
+
+Full list of substrates with dependent emergent invariants (per-run change detection not yet implemented -- see TODO in `scripts/generate_pending_review.py`).
+
+| Substrate | Status | Dependent invariant | Inv status | Flag | Governance prompt |
+|-----------|--------|---------------------|------------|------|-------------------|
+| `ARC-001` | `active` | `INV-064` | `candidate` | true | re-confirm (flag can be cleared) |
+| `ARC-002` | `active` | `INV-064` | `candidate` | true | re-confirm (flag can be cleared) |
+| `ARC-003` | `active` | `INV-021` | `candidate` | true | re-confirm (flag can be cleared) |
+| `ARC-003` | `active` | `INV-035` | `candidate` | false | re-confirm (flag can be cleared) |
+| `ARC-003` | `active` | `INV-036` | `candidate` | false | re-confirm (flag can be cleared) |
+| `ARC-003` | `active` | `INV-064` | `candidate` | true | re-confirm (flag can be cleared) |
+| `ARC-004` | `active` | `INV-035` | `candidate` | false | re-confirm (flag can be cleared) |
+| `ARC-007` | `active` | `INV-035` | `candidate` | false | re-confirm (flag can be cleared) |
+| `ARC-007` | `active` | `INV-036` | `candidate` | false | re-confirm (flag can be cleared) |
+| `ARC-007` | `active` | `INV-039` | `candidate` | true | re-confirm (flag can be cleared) |
+| `ARC-010` | `active` | `INV-056` | `candidate` | true | re-confirm (flag can be cleared) |
+| `ARC-016` | `provisional` | `INV-033` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-018` | `active` | `INV-036` | `candidate` | false | re-confirm (flag can be cleared) |
+| `ARC-019` | `provisional` | `INV-043` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-019` | `provisional` | `INV-055` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-019` | `provisional` | `INV-056` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-019` | `provisional` | `INV-064` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-020` | `candidate` | `INV-024` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-030` | `candidate` | `INV-034` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-035` | `candidate` | `INV-037` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-035` | `candidate` | `INV-038` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-038` | `candidate` | `INV-039` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-040` | `candidate` | `INV-043` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-041` | `candidate` | `INV-040` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-042` | `candidate` | `INV-041` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-046` | `candidate` | `INV-055` | `candidate` | true | re-confirm when substrate is promoted |
+| `ARC-049` | `candidate` | `INV-060` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-005` | `implemented` | `INV-040` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-005` | `implemented` | `INV-066` | `active` | false | re-confirm when substrate is promoted |
+| `SD-011` | `candidate` | `INV-053` | `stable` | true | re-confirm when substrate is promoted |
+| `SD-012` | `candidate` | `INV-041` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-012` | `candidate` | `INV-052` | `stable` | true | re-confirm when substrate is promoted |
+| `SD-012` | `candidate` | `INV-053` | `stable` | true | re-confirm when substrate is promoted |
+| `SD-014` | `candidate` | `INV-054` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-014` | `candidate` | `INV-056` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-014` | `candidate` | `INV-065` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-015` | `candidate` | `INV-065` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-016` | `implemented` | `INV-041` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-017` | `provisional` | `INV-045` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-017` | `provisional` | `INV-046` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-017` | `provisional` | `INV-050` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-017` | `provisional` | `INV-051` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-017` | `provisional` | `INV-063` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-026` | `candidate` | `INV-012` | `active` | true | re-confirm when substrate is promoted |
+| `SD-026` | `candidate` | `INV-021` | `candidate` | true | re-confirm when substrate is promoted |
+| `SD-026` | `candidate` | `INV-024` | `candidate` | true | re-confirm when substrate is promoted |
+

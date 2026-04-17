@@ -167,6 +167,22 @@ but is no longer semantic — these entries are predictions, not invariants.
 
 ---
 
+## Pipeline Status
+
+Session D completed **2026-04-17**. `scripts/validate_claims.py --strict` is now the gate at
+the top of `scripts/governance.sh` — malformed invariants block the whole pipeline. The
+validator additionally emits flag-drift WARNs when `pending_substrate_reconfirmation` is
+inconsistent with current substrate status. `scripts/generate_pending_review.py` appends a
+"Substrate changes with dependent invariants" section to
+`evidence/experiments/promotion_demotion_recommendations.md` listing every substrate with
+dependent emergent invariants and a per-invariant governance prompt.
+
+Per-run change detection (only-substrates-whose-status-changed) is a follow-up: currently the
+full list is emitted on every run. See the TODO in
+`scripts/generate_pending_review.py::build_substrate_change_section`.
+
+---
+
 ## References
 
 - Planning doc: `docs/thoughts/2026-04-17_invariant_types_governance.md`

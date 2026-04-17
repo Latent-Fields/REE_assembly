@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_327_mech163_goal_conditioned_nav
 
-Generated: `2026-04-17T20:42:56.216990Z`
+Generated: `2026-04-17T20:53:21.016284Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

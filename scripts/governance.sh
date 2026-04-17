@@ -31,6 +31,13 @@ done
 
 echo "=== REE Governance Pipeline ==="
 
+echo "--- Step 0: Validating claims.yaml (strict) ---"
+if ! "$PYTHON" scripts/validate_claims.py --strict; then
+  echo "" >&2
+  echo "ERROR: validate_claims.py --strict failed. Fix claims.yaml before running governance." >&2
+  exit 1
+fi
+
 if [ "$V2" -eq 1 ]; then
   echo "--- Step 1/4: Syncing V2 results from ree-v2/ ---"
   "$PYTHON" evidence/experiments/scripts/sync_v2_results.py
