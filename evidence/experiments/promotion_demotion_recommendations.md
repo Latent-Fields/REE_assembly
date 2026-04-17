@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-17T10:46:22.723302Z`
+Generated: `2026-04-17T11:50:25.583997Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -730,7 +730,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-019
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.844, conflict_ratio=0, exp_entries=3, lit_entries=2; directions supports=3, weakens=0, mixed=2, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.888, conflict_ratio=0, exp_entries=3, lit_entries=5; directions supports=6, weakens=0, mixed=2, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_019",
+  "entry_id": "2026-04-17_sd_019_interoception_insula_craig2003",
+  "timestamp_utc": "2026-04-17T11:00:00Z",
+  "claim_ids_tested": ["SD-019"],
+  "source": {
+    "title": "Interoception: the sense of the physiological condition of the body.",
+    "authors": ["Craig, A D"],
+    "year": 2003,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn1153",
+    "pmid": "12894801"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Highly influential review by A.D. (Bud) Craig establishing the lamina I spinothalamocortical pathway as the substrate for interoception -- the sense of the physiological condition of the body. Craig identifies the posterior and anterior insula (reached via lamina I --> VMpo thalamus) as the primary cortical terminus for the affective/homeostatic body state signal, structurally distinct from S1/S2 (reached via dorsal horn --> VPc thalamus --> neospinothalamic route). The insular pathway is dominated by C-fiber and small A-delta afferents carrying warm, itch, and homeostatic pain signals -- precisely the input types characterized by temporal integration (C-fiber slow accumulation) rather than instantaneous intensity discrimination (A-delta sharp pain). This covers a distinct angle not present in Price 2000 (which focuses on ACC) or Rainville 1997 (which focuses on ACC vs S1): Craig's contribution is to establish the INSULA as the primary cortical representation of the body's affective/interoceptive state, receiving input via an entirely separate thalamic nucleus (VMpo) from the sensory-discriminative S1/S2 pathway (which receives via VPc). This maps the z_harm_s --> z_harm_a nonredundancy onto the VPc-->S1/S2 vs. VMpo-->insula anatomical split, providing an additional, orthogonal biological support. Confidence slightly lower than Price/Rainville because: (1) Craig's claim that VMpo is a dedicated interoceptive relay is contested in the primate literature; (2) the lamina I --> VMpo pathway specificity is better established in non-human primates than in rodents, creating higher transfer risk to CausalGridWorldV2; (3) the role of the insula as THE primary interoceptive cortex vs. one of several convergence zones remains debated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The VMpo nucleus as a dedicated interoceptive relay is contested: some investigators argue VMpo is not clearly distinct from adjacent posterior thalamic nuclei in humans, reducing the strength of the anatomical separation between the two cortical pathways.",
+    "The lamina I --> VMpo --> insula pathway may overlap with the lamina I --> mediodorsal thalamus --> ACC pathway that Price 2000 emphasises for pain affect; both pathways may carry similar information, meaning this entry and Price 2000 may not be as independent as their focus on different cortical targets implies.",
+    "If z_harm_a's computational role maps more strongly onto the ACC-mediated motivational urgency (Price 2000) than onto the insula-mediated body state representation (Craig 2003), the mapping fidelity of this entry would be reduced."
+  ],
+  "tags": ["sd_019", "interoception", "insula", "lamina_I", "vmpо_thalamus", "spinothalamocortical", "c_fibers", "affective_body_map", "homeostatic_pain", "interoceptive_cortex"],
+  "mapping": {
+    "source_claim_statement": "Lamina I spinal neurons carrying C-fiber and small A-delta nociceptive, thermal, and interoceptive signals project via the spinothalamocortical tract to VMpo (ventromedial posterior) thalamus, which in turn projects to the posterior and anterior insula. This pathway is anatomically distinct from the dorsal horn --> VPc (ventroposterior parvicellular) thalamus --> S1/S2 pathway that carries the sensory-discriminative (intensity/localization) aspects of pain. The posterior insula receives the primary interoceptive body state map; the anterior insula integrates this with limbic context to generate the 'global emotional moment' -- the agent's current physiological and affective state.",
+    "ree_translation": "SD-019's dual-stream nonredundancy is architecturally grounded by two distinct cortical terminus pathways: VPc-->S1/S2 (corresponding to z_harm_s: instantaneous sensory-discriminative harm encoding) and VMpo-->insula (corresponding to z_harm_a: homeostatic/affective body state encoding). The VMpo-->insula pathway carries C-fiber and small A-delta input, which is already temporally integrated via wind-up (Woolf & Salter 2000) before reaching the cortex. The insula's role as an integrative body state map -- updated continuously from homeostatic signals including nociceptive C-fiber input -- supports z_harm_a's function of encoding accumulated threat burden as a persistent motivational state, distinct from the instantaneous intensity read-out in z_harm_s.",
+    "mapping_caveat": "Craig's framework emphasises the insula as the primary interoceptive cortex, whereas Price 2000 emphasises the ACC for pain affect. Both may be correct for different aspects of z_harm_a's function (body state homeostasis for the insula, motivational urgency/commitment modulation for the ACC). The REE architecture does not explicitly distinguish these sub-functions, so both entries are compatible. The rodent/primate specificity of the VMpo pathway reduces confidence in direct transfer to CausalGridWorldV2, which uses a simplified harm observation without distinct thalamic relays.",
+    "source_context": "Non-human primate (macaque) and human neuroanatomy and neurophysiology; thermal, itch, and nociceptive stimuli; lamina I recording and tract-tracing; fMRI and lesion evidence in humans."
+  },
+  "confidence_components": {
+    "source_quality": 0.91,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.22,
+    "notes": "Source quality high: highly cited NRN review, Craig is the leading investigator of the lamina I-insula pathway, paper remains influential despite some contested details. Mapping fidelity attenuated because the VMpo specificity is debated and the insula-vs-ACC emphasis requires reconciliation with Price 2000. Transfer risk slightly elevated: the lamina I-VMpo pathway evidence is strongest in non-human primates and the REE environment lacks visceral interoceptive channels."
+  }
+}

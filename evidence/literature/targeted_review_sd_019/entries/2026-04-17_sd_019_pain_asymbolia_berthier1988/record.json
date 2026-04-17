@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_019",
+  "entry_id": "2026-04-17_sd_019_pain_asymbolia_berthier1988",
+  "timestamp_utc": "2026-04-17T11:00:00Z",
+  "claim_ids_tested": ["SD-019"],
+  "source": {
+    "title": "Asymbolia for pain: a sensory-limbic disconnection syndrome.",
+    "authors": ["Berthier, M", "Starkstein, S", "Leiguarda, R"],
+    "year": 1988,
+    "venue": "Annals of Neurology",
+    "doi": null,
+    "pmid": "3415152"
+  },
+  "evidence_class": "clinical_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Landmark clinical case series documenting pain asymbolia -- the selective abolition of the affective and motivational response to pain following insular cortex and SII lesions, while the sensory-discriminative capacity (detection, localization, intensity rating) remains intact. Six patients are described with lesions involving the dominant hemisphere insular cortex and secondary somatosensory cortex (SII). All patients could reliably detect noxious stimuli, localize them, and produce verbal pain intensity ratings, but showed markedly reduced or absent aversive responses: no distress, no avoidance behavior, no complaints of suffering, and sometimes active approach to the painful stimulus. This is the EXACT clinical dissociation that SD-019 requires at the computational level: z_harm_s (sensory-discriminative) remains intact while z_harm_a (affective-motivational) is selectively ablated. Berthier et al. interpret the syndrome as a 'sensory-limbic disconnection' -- the sensory pathway to S1/S2 remains functional, but the route from sensory areas through the insular cortex to limbic structures is severed, preventing the affective response from being driven by sensory harm signals. This provides the strongest direct clinical support for the claim that z_harm_s and z_harm_a are nonredundant: an organism can have normal z_harm_s with a functionally ablated z_harm_a, and the ablation maps to a specific anatomical circuit (insula/SII region) rather than to sensory cortex. Price 2000 references pain asymbolia as supporting evidence but does not provide primary clinical data -- this entry provides the primary source. Confidence slightly below Rainville 1997 because: (1) small n=6 case series without matched controls; (2) no DOI (1988 paper); (3) lesion localization precision limited by 1988 CT/MRI standards; (4) behavioral assessment of pain asymbolia is complex and may conflate multiple constructs including attention and emotional expression.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pain asymbolia reflects a deficit in emotional expression or in the motor output of aversive behavior rather than in the encoding of pain affect itself, then the dissociation may not map cleanly onto z_harm_s/z_harm_a -- the patient might still encode z_harm_a internally but fail to translate it into behavior.",
+    "Insular/SII lesions are large and heterogeneous in this case series; the syndrome could reflect damage to several functionally distinct regions simultaneously, making it difficult to attribute the dissociation specifically to a z_harm_a circuit component.",
+    "Some pain asymbolia patients retain pain-related autonomic responses (heart rate, galvanic skin response) despite absent behavioral distress, suggesting that harm signals can still modulate some systems even when overt affective behavior is abolished -- the ablation of z_harm_a's behavioral output may not equal total absence of the affective representation."
+  ],
+  "tags": ["sd_019", "pain_asymbolia", "insular_cortex", "SII", "clinical_lesion", "sensory_limbic_disconnection", "affective_pain_ablation", "pain_affect_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Patients with dominant hemisphere insular cortex and SII lesions exhibit pain asymbolia: they can detect, localize, and rate the intensity of noxious stimuli (sensory-discriminative function intact) but show absent or dramatically reduced affective and motivational responses to pain (no distress, no avoidance, no suffering complaints). The syndrome is interpreted as a sensory-limbic disconnection: the sensory pathway is intact but its connection to limbic structures via the insular cortex is severed.",
+    "ree_translation": "SD-019 claims that z_harm_a (affective-motivational harm stream) and z_harm_s (sensory-discriminative harm stream) are nonredundant -- an agent can have normal z_harm_s with ablated z_harm_a, or elevated z_harm_a with reduced z_harm_s. Pain asymbolia is the biological proof-of-concept: an organism with a specific circuit lesion (insular cortex/SII) exhibits precisely the z_harm_s intact / z_harm_a ablated state that SD-019 requires to be architecturally possible. The behavioral consequence (no avoidance despite intact intensity detection) maps onto what REE would predict if z_harm_a's output to E3 commitment gating were removed while z_harm_s's output to E2_harm_s forward prediction remained intact: the agent could still predict harm spatially and temporally but would fail to weight that harm as motivationally urgent.",
+    "mapping_caveat": "Pain asymbolia patients retain intact sensory discrimination but their z_harm_a-equivalent is not merely reduced -- it appears functionally disconnected from behavior. REE's z_harm_a is not a hard-wired circuit but a learned representation; its failure mode would more likely be representational collapse (z_harm_a --> smoothed copy of z_harm_s) than complete behavioral disconnection. The clinical lesion data therefore supports the principle of nonredundancy but does not predict the specific failure mode addressed by compute_harm_nonredundancy_loss.",
+    "source_context": "6 patients with stroke or tumor lesions involving dominant hemisphere insular cortex and SII; CT/MRI localization; clinical behavioral assessment; thermal and mechanical nociceptive stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.15,
+    "notes": "Source quality is good but not ceiling: Annals of Neurology 1988, frequently cited, but n=6 case series without controls and 1988-era imaging. Mapping fidelity is high for the nonredundancy dissociation direction: the z_harm_s intact / z_harm_a ablated state is exactly what SD-019 requires to be architecturally possible. Transfer risk is low: the dissociation is at a functional/circuit level that is architecture-agnostic."
+  }
+}

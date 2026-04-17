@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-17T10:46:22.723302Z`
+Generated: `2026-04-17T11:50:25.583997Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -165,7 +165,7 @@ Generated: `2026-04-17T10:46:22.723302Z`
 | `targeted_review_sd_013` | [`2026-04-13_sd_013_causal_representation_learning_scholkopf2021`](targeted_review_sd_013/entries/2026-04-13_sd_013_causal_representation_learning_scholkopf2021/record.json) | 4 | [`summary`](targeted_review_sd_013/entries/2026-04-13_sd_013_causal_representation_learning_scholkopf2021/summary.md) |
 | `targeted_review_sd_015` | [`2026-04-14_sd_015_parallel_streams_lec_knierim2020`](targeted_review_sd_015/entries/2026-04-14_sd_015_parallel_streams_lec_knierim2020/record.json) | 6 | [`summary`](targeted_review_sd_015/entries/2026-04-14_sd_015_parallel_streams_lec_knierim2020/summary.md) |
 | `targeted_review_sd_017` | [`2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/record.json) | 4 | [`summary`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/summary.md) |
-| `targeted_review_sd_019` | [`2026-04-17_sd_019_pain_affect_acc_rainville1997`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_affect_acc_rainville1997/record.json) | 2 | [`summary`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_affect_acc_rainville1997/summary.md) |
+| `targeted_review_sd_019` | [`2026-04-17_sd_019_pain_asymbolia_berthier1988`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/record.json) | 5 | [`summary`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/summary.md) |
 | `targeted_review_sd_022` | [`2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/record.json) | 2 | [`summary`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-04-05_mech123_rem_precision_recalibration_walker2009`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/record.json) | 5 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |

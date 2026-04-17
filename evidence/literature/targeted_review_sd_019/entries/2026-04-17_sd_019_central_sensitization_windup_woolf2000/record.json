@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_019",
+  "entry_id": "2026-04-17_sd_019_central_sensitization_windup_woolf2000",
+  "timestamp_utc": "2026-04-17T11:00:00Z",
+  "claim_ids_tested": ["SD-019"],
+  "source": {
+    "title": "Neuronal plasticity: increasing the gain in pain.",
+    "authors": ["Woolf, C J", "Salter, M W"],
+    "year": 2000,
+    "venue": "Science",
+    "doi": "10.1126/science.288.5472.1765",
+    "pmid": "10846153"
+  },
+  "evidence_class": "cellular_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Landmark Science review by Woolf and Salter on activity-dependent plasticity in nociceptive spinal circuits. Directly addresses the temporal summation mechanism (wind-up) produced by C-fiber afferent input: repeated slow unmyelinated C-fiber volleys cause progressive amplitude increases in dorsal horn neuron responses via NMDA-receptor-mediated central sensitization. This phenomenon does not occur with A-delta (fast, myelinated) fibers at comparable inter-stimulus intervals. The A-delta pathway encodes instantaneous intensity; the C-fiber pathway drives temporal integration through wind-up and subsequent central sensitization. This mechanistically grounds SD-019's core claim that z_harm_a (the affective/motivational stream, receiving predominantly C-fiber input via the paleospinothalamic route) accumulates over time in a history-dependent manner that cannot be reconstructed from instantaneous z_harm_s values. Confidence is high given source quality (Science, Woolf is the field's principal investigator of central sensitization) and the direct relevance of wind-up to the temporal-integration property. Slight attenuation: wind-up is a spinal cord phenomenon whereas z_harm_a is implemented at higher levels; the nonrecoverability constraint in REE is stronger than spinal wind-up alone requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Wind-up requires specific stimulation frequencies (>0.3 Hz) for C-fibers; below this rate, temporal summation does not accumulate. If the harm event rate in CausalGridWorldV2 training episodes is too low, the temporal integration property of z_harm_a may not be reliably triggered.",
+    "Central sensitization is partly reversible via pharmacological blockade (NMDA antagonists), which suggests the temporal integration effect is not hardwired but contingent on NMDA plasticity. REE's z_harm_a uses a harm-history FIFO buffer -- a different implementation that does not require ongoing NMDA dynamics.",
+    "Some A-delta afferents project via the paleospinothalamic route too, reducing the clean separation between A-delta/neospinothalamic and C-fiber/paleospinothalamic that the REE dual-stream architecture assumes."
+  ],
+  "tags": ["sd_019", "central_sensitization", "wind_up", "c_fibers", "temporal_summation", "nmda_receptor", "dorsal_horn", "nociceptive_plasticity", "temporal_integration"],
+  "mapping": {
+    "source_claim_statement": "Repeated C-fiber afferent input produces progressive increases in dorsal horn neuron response amplitude (wind-up) through NMDA-receptor-dependent temporal summation. Central sensitization extends this effect beyond the stimulus period, maintaining elevated nociceptive gain. A-delta fibers at the same inter-stimulus intervals do not produce equivalent temporal summation. These mechanisms underlie the persistence and accumulation of pain affect (second pain, burning component) relative to the rapidly decaying first pain (A-delta mediated).",
+    "ree_translation": "SD-019 requires that z_harm_a encodes temporally integrated threat load, not a monotone transform of instantaneous harm intensity (z_harm_s). The wind-up mechanism provides the biological grounding for why this nonredundancy is structurally inevitable: the C-fiber-dominated paleospinothalamic pathway (which drives the affective/motivational response) carries a signal that has been temporally summed and amplified at the spinal level before it ever reaches the brain. z_harm_s (A-delta dominated, neospinothalamic) reflects instantaneous intensity; z_harm_a (C-fiber dominated, paleospinothalamic) reflects accumulated and amplified load. A network trained with harm_history input should therefore produce a z_harm_a that carries information not present in any single-timestep z_harm_s value.",
+    "mapping_caveat": "The wind-up / central sensitization mechanism is in the spinal cord; REE implements the analogous temporal integration via a harm-history FIFO buffer in the harm encoder, not spinal NMDA dynamics. The key property carried over is temporal accumulation, not the specific mechanism. The critical claim (z_harm_a is nonrecoverable from z_harm_s) still requires experimental validation at the encoder level.",
+    "source_context": "Animal (rodent and cat) and human electrophysiology; mechanical, heat, and chemical nociceptive stimuli; spinal dorsal horn recording; pharmacological NMDA blockade."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.18,
+    "notes": "Source quality near-ceiling: Woolf is the principal investigator of central sensitization; Science 2000 review is one of the most cited papers in the pain field. Mapping fidelity is strong for the temporal integration property but attenuated because the implementation level differs (spinal vs encoder-level). Transfer risk low: the temporal integration property is a computational principle that generalises across substrate."
+  }
+}

@@ -14,6 +14,17 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-17)
+
+- **New substrate: SD-016 (frontal cue-indexed integration) implemented 2026-04-16.** E1 queries ContextMemory via z_world using world_query_proj; cue_action_proj provides affordance bias to E2; cue_terrain_proj provides (w_harm, w_goal) terrain precision weights to E3. Config: E1Config.sd016_enabled (default False, backward compatible). Design doc: `REE_assembly/docs/architecture/sd_016_frontal_cue_integration.md`. Validation experiment V3-EXQ-418a queued with terrain_loss fix.
+- **Governance 2026-04-16 completed: 16 experiments reviewed.** 5 PASS: EXQ-049a (MECH-090 bistable concordance, Layer 1+2 regression), EXQ-365 (MECH-104 surprise gate, 5-seed), EXQ-353 (ARC-033/SD-003/SD-013 interventional vs observational counterfactual), EXQ-323a (SD-019 affective nonredundancy on SD-022 substrate), EXQ-328a (MECH-090 bistable + SD-012). 11 FAIL/non_contributory/inconclusive including EXQ-385/418 (INV-049/SD-017, identical per-seed data — SHY collapse root cause identified), EXQ-355 (ARC-038 optimizer contamination), EXQ-330a (SD-013, later PASS in EXQ-330a — already confirmed 2026-04-15), EXQ-324a (SD-020 inconclusive, eval termination bug). 9 manifest reclassifications. 4 fix scripts written and queued (EXQ-418a, EXQ-385a, EXQ-355a, EXQ-324b).
+- **EXQ-321a FAIL (2026-04-17):** MECH-090 bistable gate still failing. Root causes: 4-bug chain (shared training deepcopy on autograd tensors, spike timing vs E3-tick alignment, bistable config silently dropped via **kwargs). EXQ-321b queued with all 4 fixes; dry-run 3/3 seeds PASS.
+- **766 runs indexed** (per morning digest 2026-04-17). **2 pending review** (EXQ-321a FAIL + UNKNOWN runner entry).
+- **SD-016 lit-pull (2026-04-17):** Additional 3 entries added to targeted_review_sd_019 (wind-up/central sensitization, Craig 2003 interoception/insula, pain asymbolia). SD-022 lit-pull added 2 entries. Index now 706 lit entries total.
+- **Current bottleneck: first-paper gate.** Active queue (18 items): EXQ-326 (SD-015/MECH-216/SD-012 wanting nav fix), EXQ-330a (SD-013 claimed), EXQ-321b (MECH-090 bistable fix), EXQ-325a (SD-021 descending modulation claimed), EXQ-395 (MECH-220), EXQ-375 (MECH-073), EXQ-328b (MECH-230 claimed), EXQ-326a (SD-015/MECH-229 nav), EXQ-406 (INV-053), EXQ-407 (MECH-231), EXQ-396 (ARC-016), EXQ-397 (ARC-007), EXQ-429 (INV-044), EXQ-430 (INV-010), EXQ-418a (SD-016+SD-017 fix), EXQ-385a (INV-049 SHY fix), EXQ-355a (ARC-038 optimizer fix), EXQ-324b (SD-020 eval fix).
+
+---
+
 ## Status Snapshot (2026-04-15)
 
 - **New substrate today: MECH-090 Layer 1 (trajectory stepping) + MECH-091 Layer 2 (urgency interrupt) implemented.** REEAgent now steps through committed_trajectory.actions[idx] via _committed_step_idx counter (Layer 1). Layer 2: when beta elevated and z_harm_a.norm() > urgency_interrupt_threshold (default 0.8), gate releases and step counter resets. Both wired in agent.py + E3Config.urgency_interrupt_threshold in config.py (2026-04-15).
