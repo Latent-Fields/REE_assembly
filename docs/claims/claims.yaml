@@ -5797,6 +5797,17 @@
     takes z_harm_s (attribution) and z_harm_a (commit gating) as separate inputs. E2_harm_s
     forward model is a prerequisite (ARC-033). See thought intake
     evidence/planning/thought_intake_2026-03-24_dual_nociceptive_streams.md
+    Implementation calibration (from lit-pull 2026-04-17): The stream separation should
+    occur at the encoder level, not the sensor level. A-delta and C-fibers converge on
+    wide-dynamic-range (WDR) neurons in the spinal dorsal horn -- the clean peripheral
+    separation is partially blurred before the signal ascends (Basbaum et al. 2009). The
+    separation re-emerges supraspinally via distinct thalamic targets (VPL vs intralaminar
+    nuclei). HarmEncoderS and HarmEncoderA therefore both receive harm_obs input and learn
+    separate projections -- they should NOT be given pre-split sensor streams as input.
+    Soft separation: both streams are active under both conditions; it is differential
+    loading that distinguishes them (Bentley et al. 2004). The two encoders should not be
+    orthogonally constrained -- their separation emerges from distinct training targets
+    (forward-predictable vs EMA-integrated), not from a hard independence requirement.
 
 # Registered 2026-03-21 — Respiratory oscillator cluster
 # Source: cross-species behavioural observation (dog + human exhalation on plan abandonment)
@@ -8220,6 +8231,40 @@
 
     Prerequisite for EXP-0098 (wanting/liking dissociation validation) and for the full ARC-036
     experimental programme. Registered 2026-03-29.
+    Kennedy & Shapiro (2009) nuance: hippocampal drive-state gating of w is conditional on
+    goal-directedness. The same CA1 populations showed distinct representations under hunger
+    vs thirst only during hippocampus-dependent goal-directed tasks, not during random
+    foraging. The w update rule should therefore be modulated not just by raw drive_level
+    but by whether the current visit is part of an active goal-directed trajectory (E3
+    committed or planning). Incidental visits during exploration phases should produce weaker
+    w updates even under high drive. This is not currently reflected in the update rule.
+    Lansink et al. (2009) architectural support: hippocampus leads ventral striatum
+    temporally in sleep replay of place-reward pairs (hippocampus fires first, striatum
+    follows). This confirms the node-as-write-address architecture: the spatial map node
+    is the retrieval cue that drives reactivation of valence information, not the reverse.
+    If reward signals drove replay, striatum would lead -- the observed hippocampal
+    precedence supports storing valence at the node level (SD-014) rather than in a
+    downstream reward buffer.
+    SD-021 cross-connection: when SD-021 is active (commitment-gated z_harm_s attenuation),
+    harm nodes traversed during committed trajectories will have their h values undersampled
+    during execution. Post-commitment, the actual harm signal creates a surprise (s) spike
+    at those nodes, driving their preferential replay via the s-weighted prioritization
+    rule (EVB-0132). SD-014 thus provides the consolidation mechanism that corrects the
+    h field after SD-021's analgesia gate closes. The two claims are architecturally coupled:
+    SD-021 creates the stale-h condition; SD-014 replay resolves it offline.
+  evidence_quality_note: >
+    HOLD AT CANDIDATE (lit-pull 2026-04-17, no experimental evidence yet). Literature base
+    established: 4 entries in targeted_review_sd_014 (lit_conf=0.813). Smith/Berridge 2011
+    (VP triple dissociation: distinct opioid vs DA populations for liking vs wanting --
+    strongest mechanistic grounding for w/l separation). Kennedy/Shapiro 2009 (hippocampal
+    map reconfigures under drive state but only during goal-directed tasks -- w update rule
+    should be conditioned on goal-directedness, not just drive_level). Carey/van der Meer
+    2019 (post-revaluation replay is anti-preference: stale nodes replayed over
+    currently-preferred -- implies priority ∝ s x drive_relevance, not ∝ w alone; EVB-0132
+    registered for dedicated replay-gate experiment). Lansink 2009 (hippocampus leads
+    striatum in sleep replay -- supports node-as-write-address architecture).
+    Two experiments required before implementation: EXP-0098 (approach behaviour / w/l
+    dissociation) and EVB-0132 revaluation paradigm (replay gate function).
   experimental_test: >
     Discriminative pair (EXP-0098). Two conditions: UNIFIED_VALUE (single composite reward
     signal, current architecture) vs DISSOCIATED_VALENCE (separate w and l tracking, SD-014
@@ -13686,9 +13731,25 @@
     in EXQ-325 and EXQ-321 (beta_gate elevation never fires). DESCENDING=CONTROL identically
     in all runs -- SD-021 attenuation path is wired but never reached. Requires the
     beta_gate elevation substrate to work before SD-021 can be tested. Literature
-    support strong (4 lit entries, lit_conf=0.894): Chen 2023 (AIC PE signal), Crawford
-    2021 (PAG brainstem placebo analgesia 7T), Tracey & Mantyh 2007, Basbaum & Fields 1984.
+    support now 8 lit entries (lit_conf=0.852, updated 2026-04-17): Chen 2023 (AIC PE
+    signal), Crawford 2021 (PAG brainstem 7T), Tracey & Mantyh 2007, Basbaum & Fields
+    1984, Petrovic 2002 (rACC-brainstem co-activation), Hofbauer 2001 (S1/ACC double
+    dissociation -- sensory hypnosis modulates S1 not ACC, directly grounds z_harm_s
+    selective attenuation), Hohmann 2005 (PAG endocannabinoid SIA, opioid-independent),
+    Wager 2004 (prefrontal anticipation predicts analgesic magnitude).
     Hold until commitment substrate produces n_committed_steps > 0 consistently.
+    Implementation constraint (Hohmann 2005): the descending attenuation cannot be
+    implemented as a single opioid-release pathway. PAG endocannabinoid synthesis is
+    context-triggered and opioid-independent; the SD-021 gate should be modelled as a
+    graded context-sensitive suppression, not a binary mu-opioid switch.
+    Design tension (Wager 2004): placebo analgesia -- the closest human analog to
+    commitment-gated harm acceptance -- shows ACC reduction during pain experience,
+    suggesting both z_harm_s and z_harm_a may be suppressed. SD-021 requires z_harm_a
+    to persist. Resolution: expectancy-based placebo (belief revision) and commitment-gated
+    analgesia (trajectory resolution) may recruit overlapping but non-identical pgACC
+    subregions. Hofbauer 2001 double dissociation shows the architecture for selective
+    S1-only suppression exists; whether commitment specifically recruits it (vs also
+    suppressing ACC) is an open empirical question that EXQ-325b should probe.
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while
@@ -13697,6 +13758,15 @@
     during committed action). Connects to MECH-090 (beta gating) and MECH-094 (hypothesis
     tag). During beta-elevated commitment, the agent is executing, not planning -- sensory
     PE precision should be reduced.
+    SD-014 cross-connection: committed harm-accepting trajectories partially suppress
+    z_harm_s PE during execution. When commitment ends, harm nodes traversed will have
+    stored h values (SD-014 valence vector) that underestimate experienced harm (z_harm_s
+    was attenuated). The mismatch between stored h and post-commitment actual harm signal
+    constitutes a surprise (s component) spike at those nodes, driving preferential
+    post-execution replay. Commitment-gated analgesia (SD-021) thus creates the conditions
+    for surprise-weighted consolidation of harm experience after the trajectory completes
+    (SD-014). Consistent with Carey et al. (2019): replay prioritises nodes with stale
+    valence estimates. Registered as design note 2026-04-17.
   registered: "2026-04-08"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
   literature_confidence: 0.852
