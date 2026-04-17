@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_023",
+  "entry_id": "2026-04-17_sd_023_dopamine_prediction_error_distal_cue_schultz1997",
+  "timestamp_utc": "2026-04-17T12:36:30Z",
+  "claim_ids_tested": ["SD-023"],
+  "source": {
+    "title": "A neural substrate of prediction and reward",
+    "authors": ["Schultz, W", "Dayan, P", "Montague, P R"],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.275.5306.1593",
+    "pmid": "9054347"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Schultz et al. 1997 demonstrated that primate dopamine neurons shift their activity from encoding the reward itself to encoding the earliest predictive cue in the chain. After conditioning, dopamine responds at the first conditioned stimulus (CS1) that predicts a later CS2 which predicts reward -- not at the reward delivery. This is the canonical biological demonstration that predictive signals travel backward in time to the most distal available cue. This directly supports the MECH-216 component of SD-023: Landmark B (placed near resources) is intended to fire E1's predictive wanting signal BEFORE resource proximity rises. The TD-learning framework formalises exactly this: a predictive representation arising at a distal environmental feature that co-occurs reliably with a downstream reward. The confidence is moderate rather than high because the TD/dopamine mechanism is about learning temporal associations, whereas SD-023 requires E1 to learn these associations from gradient texture -- an additional learning step not directly evidenced here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Schultz et al. 1997 describes dopamine-level prediction error signals, not LSTM world-model prediction. E1 in REE is a sensory prediction error machine, not a value-learning machine. The temporal structure argument is valid, but the specific mechanism (TD error in DA neurons vs. sensory prediction error in E1 LSTM) is different.",
+    "The cue-reward transfer in this work depends on explicit Pavlovian pairings: the CS must reliably co-occur with reward. Landmark B in SD-023 is placed near resources but may not co-occur perfectly, especially if resources are consumed and respawn. If the pairing is noisy, the predictive signal may not emerge.",
+    "This paper does not address whether the gradient texture itself (as opposed to a discrete CS) is sufficient to drive predictive coding in a non-dopaminergic world-model system like E1."
+  ],
+  "tags": ["sd_023", "dopamine", "temporal_difference", "prediction_error", "distal_cue", "anticipatory_wanting", "mech_216", "reward_prediction"],
+  "mapping": {
+    "source_claim_statement": "After conditioning, dopamine neurons respond to the earliest available conditioned stimulus rather than to reward delivery. The dopamine signal effectively represents a temporal prediction error: it fires whenever reward is predicted but not yet received, and is suppressed when reward occurs as expected. This maps formally onto the TD learning algorithm.",
+    "ree_translation": "SD-023 argues that Landmark B (a neutral object placed near resources) provides E1 with an anticipatory signal: as the agent approaches Landmark B, its LSTM world model should begin predicting resource encounter before proximity to the resource itself rises. Schultz et al. 1997 provides the biological principle: environmental cues that reliably co-occur with upcoming reward generate predictive neural firing BEFORE the reward is encountered. MECH-216 (anticipatory/predictive wanting) is the REE instantiation of this principle, and SD-023 is the design decision that makes Landmark B the environmental carrier of this predictive signal. The gradient field ensures the landmark is detectable at distance (as olfactory/visual gradients are in natural environments), giving E1 the temporal window to build the prediction.",
+    "mapping_caveat": "The biological mechanism (midbrain DA prediction error) is distinct from E1's LSTM sensory prediction error. Schultz 1997 describes value-based anticipatory signalling, while SD-023/MECH-216 describes sensory world-model prediction. The functional analogy holds (distal cue generates anticipatory state) but the circuits differ. The grid-world's landmark gradient is a designed approximation to the rich multisensory cues that drive DA conditioning in real environments.",
+    "source_context": "Primate (monkey) midbrain dopamine neurons; single-unit recordings during Pavlovian and instrumental conditioning; liquid reward; multiple CS stages."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Extremely high source quality (Schultz, highly cited, Science; foundational TD neuroscience paper). Mapping fidelity is moderate: the functional principle (distal cue generates anticipatory state before reward) is exactly what SD-023 and MECH-216 require, but the mechanism (DA value prediction vs. LSTM sensory prediction error) differs substantially. Transfer risk is moderate-high due to the mechanism gap."
+  }
+}

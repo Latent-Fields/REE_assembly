@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_023",
+  "entry_id": "2026-04-17_sd_023_place_fields_geometric_determinants_okeefe1996",
+  "timestamp_utc": "2026-04-17T12:36:30Z",
+  "claim_ids_tested": ["SD-023"],
+  "source": {
+    "title": "Geometric determinants of the place fields of hippocampal neurons",
+    "authors": ["O'Keefe, J", "Burgess, N"],
+    "year": 1996,
+    "venue": "Nature",
+    "doi": "10.1038/381425a0",
+    "pmid": "8632799"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "O'Keefe and Burgess 1996 demonstrated that place cell firing fields are geometrically anchored to environmental boundaries and walls. Even neutral geometric features (walls of rectangular enclosures with no intrinsic reward value) determine the location and shape of each place field. When walls were stretched, place fields elongated proportionally. This directly supports the SD-023 claim that neutral landmark objects with characteristic spatial gradients are necessary environmental features -- the biological evidence shows that geometry and environmental texture (not reward alone) structure hippocampal world-model representations. However, the paper uses geometric walls rather than discrete objects with gradient fields, so the translation to Landmark-A/B objects in CausalGridWorldV2 requires an extrapolation step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study uses rectangular walls as the primary environmental feature, not discrete objects with gradient fields. The REE Landmark A/B design relies on point-source or zone-bounded gradient objects, which are qualitatively different from wall-distance tuning.",
+    "Place cells fire at a single preferred location in a given environment regardless of whether the agent has encountered a reward there. SD-023 requires that landmark gradients provide temporal structure for E1 prediction, which goes beyond the spatial firing shown here.",
+    "The boundary-vector model derived from this work predicts that place fields near walls exist for allocentric navigation -- not that they provide predictive temporal signals to an LSTM world model."
+  ],
+  "tags": ["sd_023", "place_cells", "landmarks", "environmental_geometry", "hippocampus", "spatial_map", "world_model_structure"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place cells have firing fields whose location and shape are determined by the geometry of the enclosure -- specifically, each field is a sum of gaussian tuning curves oriented perpendicular to nearby walls. Neutral environmental geometry anchors the spatial map.",
+    "ree_translation": "SD-023 argues that neutral landmark objects (Landmark A, Landmark B) with characteristic gradient fields are necessary to give CausalGridWorldV2 sufficient environmental texture. O'Keefe and Burgess 1996 provides the canonical biological grounding: even uninstructed geometric features (walls) structure hippocampal spatial maps. By extension, objects with non-trivial spatial signatures would do the same. The Landmark-A role (navigation anchor) maps directly to the boundary-vector geometry: a stable object at a fixed location provides a reference frame for the LSTM world model just as walls provide reference frames for place cells.",
+    "mapping_caveat": "The mapping from wall-based place field geometry to object-gradient-based temporal prediction for an LSTM is an extrapolation. The original study measures spatial firing fields, not temporal prediction error signals. The REE claim specifically requires that E1's LSTM uses the gradient texture to generate temporal predictions before resource proximity rises -- this is a forward-model application beyond the scope of the original spatial-map evidence.",
+    "source_context": "Rat hippocampus CA1 in-vivo single-unit recordings; rectangular enclosures with systematic size manipulation; no reward or landmark objects -- geometry alone."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Extremely high source quality (O'Keefe, Nobel Prize work; Nature; landmark paper in spatial neuroscience). Mapping fidelity is moderate: the core principle (neutral environmental features structure the spatial map) supports SD-023's ecological grounding, but the specific mechanism (wall geometry vs. object gradients, spatial firing vs. temporal LSTM prediction) differs. Transfer risk is moderate-high because REE requires temporal predictive structure from gradients, while this paper shows spatial geometric anchoring."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_023",
+  "entry_id": "2026-04-17_sd_023_surface_texture_boundaries_place_cells_wang2020",
+  "timestamp_utc": "2026-04-17T12:36:30Z",
+  "claim_ids_tested": ["SD-023"],
+  "source": {
+    "title": "Hippocampal Place Cells Encode Local Surface-Texture Boundaries",
+    "authors": ["Wang, Chia-Hsuan", "Monaco, Joseph D", "Knierim, James J"],
+    "year": 2020,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2020.01.083",
+    "pmid": "32109393"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This paper provides the most direct biological grounding for SD-023's core claim. Wang et al. 2020 showed that ~40% of place field edges concentrate near surface-texture boundaries -- well above the chance rate of 33% -- even when textures were flat and presented no physical barrier or navigational obstruction. Neural population vectors decorrelated more sharply across texture boundaries than within texture zones. This establishes that hippocampal spatial representation is sensitive to environmental texture (not just walls, rewards, or explicit landmarks) at a fine-grained level. The SD-023 proposal that gradient fields around Landmark objects provide E1 with environmental texture to structure its world model is directly supported: if texture alone (without reward or navigational function) modulates hippocampal representations, then adding texture-gradient objects is ecologically motivated and architecturally coherent. The study is in rats on tracks and platforms, limiting direct transfer to a grid-world LSTM, but the principle is clear.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper shows that texture boundaries affect where place field edges fall, but it does not show that texture per se generates temporal prediction signals. SD-023 requires that E1's LSTM uses gradient texture to form anticipatory predictions, not just to segment space.",
+    "The effect size is modest: only ~40% of edges near boundaries vs. 33% chance. The representation is sensitive to texture but not dominated by it.",
+    "The study uses 1D tracks and 2D platforms in laboratory conditions -- far from the rich multi-object CausalGridWorldV2 environment envisioned by SD-023."
+  ],
+  "tags": ["sd_023", "place_cells", "surface_texture", "landmarks", "hippocampus", "environmental_texture", "spatial_segmentation", "world_model_structure"],
+  "mapping": {
+    "source_claim_statement": "Approximately 40% of place field edges concentrate at surface-texture boundary locations -- significantly above the 33% chance baseline. Neural population vectors show sharper decorrelation across texture boundaries than within zones. These effects arise from flat texture differences with no physical barrier or reward association.",
+    "ree_translation": "SD-023 adds neutral Landmark objects (A: navigation anchor, B: predictive resource cue) specifically to give world_obs richer environmental texture. Wang et al. 2020 provides direct biological justification: in real hippocampal circuits, even uninstructed surface textures without reward or barrier function modulate the spatial map structure. Landmark-A and Landmark-B gradient fields would analogously provide texture variation in world_obs that E1's LSTM can use to form distinct spatiotemporal states. The finding that hippocampal representation sharpens at texture boundaries (not just walls) is the biological precedent for inserting gradient-emitting neutral objects into CausalGridWorldV2.",
+    "mapping_caveat": "Wang et al. 2020 measures spatial boundary encoding, not temporal prediction generation. E1 in REE is an LSTM world-model (temporal forward predictor), not a spatial map generator. The transfer requires an additional assumption: that the gradient texture activates distinct input patterns to E1 that enable temporal sequence prediction. This step is plausible but not directly evidenced here.",
+    "source_context": "Rat hippocampus CA1 and CA3 single-unit recordings; 1D circular tracks and 2D platforms with flat surface-texture panels; no reward or physical barrier at texture boundaries."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Knierim lab, Current Biology, in-vivo electrophysiology). Mapping fidelity is high for the ecological grounding claim (neutral texture modulates hippocampal spatial representation) -- this is directly what SD-023 argues at the biological level. Transfer risk is moderate: the mechanism (texture -> spatial map segmentation) requires extension to temporal prediction for full support of MECH-216."
+  }
+}

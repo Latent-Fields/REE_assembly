@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_023",
+  "entry_id": "2026-04-17_sd_023_hippocampus_predictive_reward_coding_yaghoubi2026",
+  "timestamp_utc": "2026-04-17T12:36:30Z",
+  "claim_ids_tested": ["SD-023"],
+  "source": {
+    "title": "Predictive coding of reward in the hippocampus",
+    "authors": ["Yaghoubi, Mohammad", "Kumar, M Ganesh", "Nieto-Posadas, Andres", "Mosser, Coralie-Anne", "Gisiger, Thomas", "Wilson, Emmanuel", "Pehlevan, Cengiz", "Williams, Sylvain", "Brandon, Mark P"],
+    "year": 2026,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-025-09958-0",
+    "pmid": "41535460"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Yaghoubi et al. 2026 directly demonstrates that hippocampal neurons shift their temporal coding from reward-encoding to predictive-cue encoding as learning progresses. Over weeks of training, place cells active at the reward site gradually moved their peak firing backward in time to events preceding the reward. A temporal difference model of place field evolution successfully replicated this shift. This is strong evidence that the hippocampus operates as a learning predictive map, not a static spatial register. This supports SD-023 in two ways: (1) the hippocampal world model is inherently predictive and will develop anticipatory representations IF appropriate distal predictive cues exist in the environment -- precisely what Landmark B provides; (2) the TD-place-field model is directly analogous to E1's LSTM world-model learning from temporal sequences in world_obs. The paper was published January 2026, making it highly current. Confidence is slightly attenuated because the study concerns reward-predicting place cells specifically, while SD-023's Landmark B is a non-reward landmark near resources -- but the principle (structured environment enables predictive temporal coding) transfers cleanly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The backward shift in Yaghoubi et al. 2026 depends on the agent repeatedly visiting the same trajectory. In CausalGridWorldV2, if the agent does not develop consistent routes near Landmark B, the temporal displacement of the predictive signal may not emerge.",
+    "The study observes predictive coding for reward itself -- the place fields shift backward relative to a fixed reward location. Landmark B in SD-023 is predictive of resource proximity, not a reward signal per se. If the agent does not assign motivational value to resources (z_goal not firing), the hippocampal-analogous predictive remapping may not occur.",
+    "This is a 2026 paper; methodological critique and replication are still pending."
+  ],
+  "tags": ["sd_023", "hippocampus", "predictive_coding", "reward_prediction", "temporal_coding", "place_cells", "world_model", "mech_216", "temporal_difference_learning"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal neurons gradually shift their activity from encoding current reward to encoding predictive cues over weeks of learning. The representation of reward in hippocampal neurons decreases while representation of reward-predicting environmental events increases. Individual neurons shift firing backward in time. A temporal difference model of place field evolution replicates this pattern.",
+    "ree_translation": "SD-023 argues that Landmark B provides E1 with an anticipatory temporal structure: as the agent approaches the landmark gradient (detectable at distance), E1's LSTM should begin predicting resource encounter before proximity rises. Yaghoubi et al. 2026 provides exactly the biological demonstration that this kind of predictive temporal remapping occurs in hippocampal circuits given appropriate environmental structure. The TD-place-field model in the paper is functionally homologous to E1 as a temporal prediction model. Landmark B is the environmental feature that enables the temporal displacement -- without it (flat world_obs), there is no distal cue for E1 to shift its prediction to. This is the strongest single paper for SD-023's MECH-216 component.",
+    "mapping_caveat": "The study requires repeated reward-linked trajectories for the predictive shift to develop. SD-023's gradient texture provides the sensory basis for this learning but does not guarantee consistent route behavior. Additionally, the paper uses biological hippocampal circuits (full pyramidal cell populations, theta sequences) while E1 is a single LSTM -- the temporal integration mechanism differs, though the functional principle is shared.",
+    "source_context": "Mouse hippocampus CA1; in-vivo electrophysiology and calcium imaging; weeks-long training on reward-based navigation task; temporal difference computational model."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "High source quality (Nature, multi-lab study, computational model validation). Mapping fidelity is high: the specific claim that hippocampus-as-predictive-map develops distal-cue representations given structured environments is directly what SD-023 requires architecturally. Transfer risk is moderate (biological hippocampus vs. LSTM, full-reward vs. resource-proximity prediction)."
+  }
+}
