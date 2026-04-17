@@ -2501,6 +2501,18 @@
     "title": "REM sleep, with varied associative replay and attenuated noradrenergic tone, consolidates template-performance prediction error into updates of z_goal -> attentional-template projection weights (feature-specification update), not into stored-goal content.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-254": {
+    "status": "candidate",
+    "subject": "attention.boundary_gate_selection",
+    "title": "At each E3 heartbeat cycle, a top-k selection over active E1/E2 latents determines which content enters E3 deliberation. Selection weights combine precision, z_goal-derived template gain, and noradrenergic bottom-up salience.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-255": {
+    "status": "candidate",
+    "subject": "attention.vmpfc_dlpfc_template_compiler",
+    "title": "Template compilation is implemented by vmPFC value-content projection composed with dlPFC context-gated rule projection, integrated into a precision-space template vector that is the input to the SD-026 dan_feedback channel.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -2889,6 +2901,18 @@
     "status": "candidate",
     "subject": "attention.prospective_precision_write_channel",
     "title": "Goal-directed perception requires a prospective precision-template write channel from z_goal to the E1 prior, anatomically analogous to the dorsal attention network (FEF/IPS -> V1) feedback, distinct from residue-geometry (history-driven) sampling bias.",
+    "type": "design_decision"
+  },
+  "SD-027": {
+    "status": "candidate",
+    "subject": "attention.access_gate_at_boundary",
+    "title": "Capacity-limited selection for E3 access occurs at the E1/E2 -> E3 boundary via a pulvinar-TRN analogue gate, not inside E3. The gate selects which active E1/E2 content is broadcast to E3 per heartbeat cycle; selection is distinct from (and upstream of) the MECH-089 theta-gamma packaging operation.",
+    "type": "design_decision"
+  },
+  "SD-028": {
+    "status": "candidate",
+    "subject": "attention.template_as_first_class_object",
+    "title": "An attentional template is a first-class precision-space object, compiled from stored-goal content and current context by a vmPFC-dlPFC translator circuit, distinct from both the stored goal itself (content) and the SD-026 write channel (transport).",
     "type": "design_decision"
   }
 }

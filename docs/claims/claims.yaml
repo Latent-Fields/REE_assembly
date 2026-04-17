@@ -16192,3 +16192,248 @@
     in the pre-implementation claim matrix per user policy. V4-scoped:
     depends on SD-017 phase architecture and SD-026 template channel
     being implemented.
+
+- id: SD-027
+  title: "Capacity-limited selection for E3 access occurs at the E1/E2 -> E3 boundary via a pulvinar-TRN analogue gate, not inside E3. The gate selects which active E1/E2 content is broadcast to E3 per heartbeat cycle; selection is distinct from (and upstream of) the MECH-089 theta-gamma packaging operation."
+  claim_type: design_decision
+  subject: attention.access_gate_at_boundary
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: architectural
+  registered_utc: 2026-04-17
+  depends_on:
+    - MECH-007         # attention fragmentation (rules out unitary selection inside E3)
+    - MECH-089         # theta-gamma packaging -- shares substrate; selection is upstream of packaging
+    - MECH-081         # NA snap modulates selection weights
+    - SD-026           # z_goal template modulates selection weights
+    - INV-009          # attention is precision modulation
+  functional_restatement: >
+    MECH-089 establishes that E3 receives packaged/batched summaries of E1
+    activity rather than raw frame-by-frame output. Packaging answers "how
+    is content formatted" but does not answer "which content is formatted."
+    In biology these are distinct operations: TRN (thalamic reticular
+    nucleus, Crick's attentional searchlight) provides capacity-limited
+    inhibitory gating; pulvinar (higher-order thalamic relay) mediates
+    cortical-cortical coordination. Together they implement selection-
+    for-broadcast at a boundary upstream of cortical deliberation.
+
+    SD-027 asserts the same functional separation for REE: a dedicated
+    gate sits at the E1/E2 -> E3 boundary, selecting a capacity-limited
+    subset of active latents per heartbeat cycle for packaging and
+    forwarding to E3. Selection weights are a product of precision, the
+    z_goal template (SD-026), and bottom-up salience (MECH-081).
+
+    Putting selection inside E3 would collapse it with deliberation and
+    violate MECH-007 (fragmentation forbids unitary attention). Putting
+    it at the boundary preserves the fragmentation: selection (TRN-like),
+    packaging (MECH-089), deliberation (E3).
+
+    V3 minimum viable implementation: fixed-k top-k selector over active
+    z_world components. V4: dynamic capacity modulation + full pulvinar-
+    TRN analogue with lateral inhibition. Registering as V4 because the
+    full form is V4-scoped; V3 retrofit is possible but optional and
+    gated on SD-026 landing.
+  notes: >
+    Anatomical grounding: Crick (1984) "function of the thalamic reticular
+    complex: the searchlight hypothesis." Kastner et al. (2004) pulvinar
+    attentional modulation. Saalmann et al. (2012) pulvinar synchronizes
+    information transmission between cortical areas. Wimmer et al. (2015)
+    TRN thalamic gating selective attention.
+
+    Explanatory pairings:
+    - MECH-092 (micro-DMN / quiescent replay): only coherent against the
+      backdrop of an access gate that is sometimes in quiescent mode.
+      SD-027 provides the substrate that makes MECH-092 well-formed.
+    - MECH-090 (beta gates E3 -> action_selection): SD-027 is the
+      INPUT-side gate (E1/E2 -> E3); MECH-090 is the OUTPUT-side gate
+      (E3 -> action). Together they bracket E3 deliberation.
+
+    Hole covered: H2 in docs/thoughts/2026-04-17_attention_coverage_audit.md
+    "Selection for access / workspace broadcast." Distinct from global
+    workspace theory in that SD-027 does NOT commit to a single global
+    workspace; it commits to a boundary gate, consistent with REE's
+    fragmentation architecture.
+
+    Hard V4 scope note: V4 requires substrate for lateral inhibition and
+    dynamic capacity modulation that V3 does not have. Simple V3 top-k
+    retrofit is feasible but is a partial approximation.
+  evidence_quality_note: |
+    No direct experiments. V3 retrofit could be tested if prioritised:
+    measure behavior with selection gate active (top-k, k=5) vs gate
+    disabled (all content forwarded). Predictions: disabled gate -> E3
+    update stability degrades under high-activity conditions; committed-
+    mode precision fluctuations increase. Not queuing an EXQ yet --
+    testing SD-026 is the higher priority, and SD-027 validation is more
+    meaningful once SD-026 provides goal-modulated selection weights.
+
+- id: MECH-254
+  title: "At each E3 heartbeat cycle, a top-k selection over active E1/E2 latents determines which content enters E3 deliberation. Selection weights combine precision, z_goal-derived template gain, and noradrenergic bottom-up salience."
+  claim_type: mechanism_hypothesis
+  subject: attention.boundary_gate_selection
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: mechanistic
+  registered_utc: 2026-04-17
+  depends_on:
+    - SD-027
+    - SD-026
+    - MECH-081
+    - MECH-089
+  functional_restatement: >
+    Implementation for SD-027. At E3 heartbeat tick t:
+      w_i = precision_i * (1 + alpha_goal * <template_vec, z_i>
+                             + alpha_na  * na_signal_i)
+      selected = top_k(w_i, k)
+      packaged = theta_gamma_package(selected)    # MECH-089
+      E3.consume(packaged)
+
+    alpha_goal scales z_goal / template contribution (SD-026 / MECH-251).
+    alpha_na scales bottom-up snap contribution (MECH-081). Both may be
+    tuned per mode (committed vs exploratory). Capacity k is a fixed
+    floor in V3/V4-minimum (k ~ 3-7); V4-full adds dynamic modulation.
+  notes: >
+    Deliberately minimal. Does not commit to lateral inhibition between
+    selected items (a TRN-like feature); this is deferred to V4-full.
+    Does not commit to soft-attention over weights vs hard top-k; either
+    is compatible with SD-027 provided capacity is enforced.
+
+    Falsifiable: if ablating the gate (letting all E1/E2 content through
+    to E3) produces no stability or behavior degradation, SD-027 is wrong
+    and E3 has sufficient internal selection capacity. Converse: if gate
+    ablation produces pathological rumination, attentional overload, or
+    E3 update instability, SD-027 is supported.
+
+    Companion to MECH-251 (SD-026 implementation). Both can be
+    toggled independently: sd026_enabled controls the template write
+    channel; sd027_enabled controls the boundary gate. This permits
+    factorial ablation -- four cells: {both off, gate only, template
+    only, both on} -- to dissect contributions.
+
+- id: SD-028
+  title: "An attentional template is a first-class precision-space object, compiled from stored-goal content and current context by a vmPFC-dlPFC translator circuit, distinct from both the stored goal itself (content) and the SD-026 write channel (transport)."
+  claim_type: design_decision
+  subject: attention.template_as_first_class_object
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: architectural
+  registered_utc: 2026-04-17
+  depends_on:
+    - SD-026           # template compiler output is consumed by the SD-026 write channel
+    - INV-034          # goal maintenance necessary for ethical agency
+    - INV-037          # stored vs active distinction
+    - INV-038          # EVR pattern
+    - MECH-007         # attention fragmentation
+  functional_restatement: >
+    SD-026 establishes the write CHANNEL (FEF/IPS -> V1 feedback
+    analogue). MECH-251 gives a minimal implementation of that channel
+    as a direct projection z_goal -> template_vec. SD-028 asserts that
+    the *template_vec itself* is a first-class object with its own
+    compilation semantics, not merely an output of z_goal projection.
+
+    Distinction:
+    - Stored goal = CONTENT ("an apple," "reach the target," a value
+      representation). Persistent across contexts.
+    - Attentional template = PRECISION-SPACE VECTOR specifying which
+      features to amplify ("red, round, hand-sized" or whatever the
+      sensory instantiation demands). Context-dependent; recompiled
+      as context changes.
+    - Same stored goal generates DIFFERENT templates in different
+      contexts (apple-in-fruit-bowl vs apple-in-tree).
+
+    Compilation: template_vec = compile(stored_goal, current_context).
+    Anatomically, vmPFC supplies value/goal content, dlPFC supplies
+    executive rules / task-set / contextual constraints; integration
+    produces the feature-precision specification. This is the canonical
+    fronto-parietal top-down attention pathway under Corbetta-Shulman.
+
+    V3 cannot realise SD-028 faithfully because V3 does not decompose
+    vmPFC vs dlPFC; the minimal MECH-251 projection is effectively
+    "compiler = linear map," which is SD-028 degenerate to a single
+    parameter matrix. V4 is required for context-dependent compilation.
+
+    STRUCTURAL LOAD-BEARING FOR: INV-012 (responsibility through
+    commitment) -- extension of the SD-026 argument. A commitment
+    requires not just a prospective channel (SD-026) but a content-vs-
+    template distinction (SD-028). Without SD-028, "commitment" can
+    still be tied to perception, but cannot be re-specified across
+    contexts -- the committed agent would be a template-automaton rather
+    than a template-deployer. SD-028 is what makes committed attention
+    *skilled* rather than merely *engaged*.
+  notes: >
+    Anatomical grounding: Miller & Cohen (2001) integrative theory of
+    PFC function -- dlPFC maintains rule/task representations that
+    bias processing elsewhere. Wallis et al. (2001) single neurons in
+    PFC encoding abstract rules. Badre & Nee (2018) frontal cortical
+    hierarchy for executive control. vmPFC value integration: Hare et
+    al. (2009), Rangel & Clithero (2014). The value-vs-rule split maps
+    onto the stored-goal-vs-template compilation task.
+
+    Clinical dissociation:
+    - vmPFC damage -> impoverished goal content; patients lose "what
+      they want" but can still deploy instructed templates on demand
+      (Bechara & Damasio).
+    - dlPFC damage -> intact goal content, impoverished template
+      deployment; perseveration, distractibility, failure to translate
+      stored goals into appropriate search sets. These are dissociable
+      syndromes, consistent with separate compiler components.
+
+    Hole covered: H3 in docs/thoughts/2026-04-17_attention_coverage_audit.md
+    "Attentional template as a first-class object."
+
+    V4-scoped. Registered in the pre-implementation claim matrix per
+    user policy.
+  evidence_quality_note: |
+    No evidence expected until V4 vmPFC-dlPFC decomposition is
+    implemented. The minimal MECH-251 form (direct z_goal projection)
+    will provide a V3 baseline against which SD-028's context-dependent
+    compilation can be compared: if a single static projection suffices
+    to produce goal-conditioned behavior across contexts, SD-028 is
+    unnecessary and H3 is wrong. If behavior fails to generalize across
+    context variations despite working template writing, SD-028 is
+    supported and V4 compiler work is justified.
+
+- id: MECH-255
+  title: "Template compilation is implemented by vmPFC value-content projection composed with dlPFC context-gated rule projection, integrated into a precision-space template vector that is the input to the SD-026 dan_feedback channel."
+  claim_type: mechanism_hypothesis
+  subject: attention.vmpfc_dlpfc_template_compiler
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: mechanistic
+  registered_utc: 2026-04-17
+  depends_on:
+    - SD-028
+    - SD-026
+    - INV-037
+  functional_restatement: >
+    Implementation for SD-028. Compilation proceeds in three stages:
+
+      z_goal_content = vmPFC_proj(z_goal)            # value/content
+      rule_bias      = dlPFC_proj(z_context, task)   # rule/task-set
+      template_vec   = integrate(z_goal_content, rule_bias)
+
+    integrate() is a learned gating -- in the minimal form, a product or
+    additive combination with a learned mixing weight. More expressive
+    forms (tensor factorisation, hyper-network) are V4+ implementation
+    choices and not committed here.
+
+    template_vec is then written via the SD-026 dan_feedback channel
+    (MECH-251). Under this decomposition, MECH-251's template_proj is
+    not a primitive projection but the degenerate limit of MECH-255 when
+    rule_bias is null -- giving a clean V3 -> V4 continuity.
+  notes: >
+    Design continuity: the MECH-251 V3 implementation naturally subsumes
+    into MECH-255 V4 by adding the rule_bias term. No breaking changes
+    to the attention pipeline -- V3 behavior = V4 with dlPFC_proj = 0.
+
+    Falsifiable at V4: if template_vec from MECH-251 (no context
+    conditioning) matches performance of MECH-255 (with context
+    conditioning) across diverse contexts, MECH-255 is unnecessary
+    and SD-028 is wrong. Predicted: context-dependent contexts
+    (goal-same, sensory-different) show MECH-255 outperforming MECH-251.
+
+    No evidence expected until V4. Registered in the pre-implementation
+    claim matrix per user policy.
