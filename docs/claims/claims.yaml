@@ -8229,6 +8229,12 @@
     relative to UNIFIED_VALUE agent, without globally reducing goal-directed behavior
     (maintained approach to high-liking nodes). Tests that the wanting/liking dissociation
     is behaviourally consequential and that SD-014 recording enables the agent to track it.
+    NOTE: EXP-0098 tests approach behaviour only. A second experiment is needed to test the
+    replay prioritization function (surprise-weighted vs wanting-weighted). EVB-0132 registered
+    2026-04-17: Carey et al. (2019) showed post-revaluation replay is anti-preference (stale
+    nodes replayed over currently-preferred nodes), implying priority ∝ s x drive_relevance
+    rather than priority ∝ w. A naive w-maximizing replay gate could pass EXP-0098 while
+    producing wrong consolidation dynamics. Revaluation paradigm needed before implementation.
   literature_confidence: 0.813
   literature_evidence: |
     4 entries in evidence/literature/targeted_review_sd_014/.
