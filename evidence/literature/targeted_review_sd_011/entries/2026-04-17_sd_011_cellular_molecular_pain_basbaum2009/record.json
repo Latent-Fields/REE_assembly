@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-17_sd_011_cellular_molecular_pain_basbaum2009",
+  "timestamp_utc": "2026-04-17T17:10:16Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Cellular and molecular mechanisms of pain.",
+    "authors": ["Basbaum AI", "Bautista DM", "Scherrer G", "Julius D"],
+    "year": 2009,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2009.09.028",
+    "pmid": "19837031",
+    "pmc": "PMC2852643",
+    "volume": "139",
+    "issue": "2",
+    "pages": "267-284"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Authoritative Cell review from four leading pain researchers (Julius Nobel laureate 2021). Directly characterises A-delta vs C-fiber afferent populations, their distinct thalamic projection targets (VPL via neospinothalamic for A-delta fast pain; medial thalamic intralaminar nuclei via paleospinothalamic for C-fiber slow/burning pain), and the molecular basis of differential temporal integration. Mapping to z_harm_s/z_harm_a is strong. Slight caveat: the review emphasises molecular transducers (TRP channels, ASIC) rather than the latent-variable encoding SD-011 proposes, so REE translation adds a representational framing the original does not assert.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A-delta and C-fiber projections shown to converge on identical thalamic nuclei without segregation",
+    "Fast/slow pain distinction shown to be purely peripheral with no central encoding difference",
+    "Affective dimension shown to arise at spinal not supraspinal level"
+  ],
+  "tags": ["sd_011", "a_delta_c_fiber", "spinothalamic_tract", "thalamic_targets", "molecular_pain", "fiber_types", "temporal_integration"],
+  "mapping": {
+    "source_claim_statement": "A-delta fibers project via the neospinothalamic tract to VPL thalamus and somatosensory cortex (fast, well-localised, first pain); C-fibers project via the paleospinothalamic tract to medial thalamic intralaminar nuclei and thence to ACC and insula (slow, burning, poorly localised second pain).",
+    "ree_translation": "In REE, z_harm_s (sensory-discriminative) is the latent representation downstream of the A-delta/neospinothalamic/VPL projection: tracks stimulus proximity and intensity with low lag and is forward-predictable from action. z_harm_a (affective-motivational) is the latent downstream of the C-fiber/paleospinothalamic/medial-thalamic projection: integrates slowly, persists beyond stimulus offset, and captures homeostatic deviation rather than momentary nociception.",
+    "mapping_caveat": "The review describes anatomy and molecular transduction; it does not speak to latent variable encoding or forward-model predictability. The REE claim that z_harm_s is 'forward-predictable from action' is an architectural inference, not directly supported by Basbaum et al. The review also notes convergence at spinal and supraspinal levels (WDR neurons) which partially complicates the clean separation the SD-011 design assumes.",
+    "source_context": "Review written in the context of analgesic drug development and genetic dissection of pain pathways using transgenic mouse models. The A-delta/C-fiber distinction is well-established and uncontroversial in the literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Source quality is very high (top-tier journal, author credentials, >5000 citations). Mapping fidelity is good for the anatomical/pathway claim but drops for the predictive/forward-model framing which is REE-specific. Transfer risk is moderate because rodent molecular work may not fully generalise to human nociceptive architecture."
+  }
+}

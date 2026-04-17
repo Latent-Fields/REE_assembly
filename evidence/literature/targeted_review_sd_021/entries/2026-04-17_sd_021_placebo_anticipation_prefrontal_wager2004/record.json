@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_021",
+  "entry_id": "2026-04-17_sd_021_placebo_anticipation_prefrontal_wager2004",
+  "timestamp_utc": "2026-04-17T17:08:03Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "Placebo-induced changes in FMRI in the anticipation and experience of pain.",
+    "authors": ["Tor D Wager", "James K Rilling", "Edward E Smith", "Alex Sokolik", "Kenneth L Casey", "Richard J Davidson", "Stephen M Kosslyn", "Robert M Rose", "Jonathan D Cohen"],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1093065"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Wager 2004 is the landmark human fMRI study showing that placebo analgesia involves two phases: increased prefrontal activity during pain anticipation, followed by decreased activity in pain-sensitive regions (thalamus, insula, ACC) during pain experience. This two-phase structure maps directly onto the SD-021 mechanism: E3 pre-commit planning (anticipation phase) engages the descending inhibitory pathway, which then reduces z_harm_s PE precision during actual pain exposure. The prefrontal cortex during anticipation is the REE correlate of E3 commitment output activating pgACC -> PAG. The reduced ACC/insula activity during pain experience represents the downstream effect -- suppressed processing of nociceptive input. Two experiments reported using both heat pain and electric shock, with consistent findings. Transfer risk from expectation-based placebo to commitment-gated analgesia remains moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["prefrontal_anticipation_pain_reduction_absent", "placebo_acts_only_on_affect_not_sensory_regions"],
+  "tags": ["sd_021", "placebo_analgesia", "prefrontal_cortex", "anticipation", "thalamus", "insula", "ACC", "fMRI", "top_down", "precision_reduction", "commitment_gated"],
+  "mapping": {
+    "source_claim_statement": "Placebo analgesia is associated with increased prefrontal activity during pain anticipation and decreased activity in pain-sensitive regions (thalamus, insula, ACC) during pain experience.",
+    "ree_translation": "The anticipation-phase prefrontal activation is the fMRI correlate of E3 pre-commit trajectory resolution engaging the pgACC -> PAG -> RVM pathway. The pain-experience-phase reduction in thalamus, insula, and ACC activity is the correlate of reduced z_harm_s PE precision -- less nociceptive signal reaching cortical integration stages. The temporal sequence (prefrontal up during anticipation, pain regions down during experience) matches the mechanistic sequence in SD-021 (commitment -> descending inhibition -> reduced sensory-discriminative PE).",
+    "mapping_caveat": "Placebo expectation is not equivalent to E3 commitment; placebo acts on anticipated outcome, E3 commitment involves resolved trajectory selection with resource allocation. The ACC reduction here may reflect both sensory-discriminative and affective-motivational suppression conflated -- the study does not separately manipulate intensity vs unpleasantness as Hofbauer 2001 and Rainville 1997 do. Reduced ACC activity in a placebo context may partly reflect suppressed affective processing, which would be at odds with the SD-021 requirement that z_harm_a persists.",
+    "source_context": "Two fMRI experiments; Experiment 1: electric shock, n=24; Experiment 2: painful heat, n=23. Placebo cream applied to forearm. Between-subjects comparison of high vs low placebo responders also reported."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Landmark paper with two independent experiments and large samples; mapping caveat about ACC reduction potentially conflating sensory and affective suppression is non-trivial for SD-021's selective attenuation claim; high source quality partially offsets mapping uncertainty"
+  }
+}

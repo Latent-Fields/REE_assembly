@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_021",
+  "entry_id": "2026-04-17_sd_021_rACC_brainstem_opioid_placebo_petrovic2002",
+  "timestamp_utc": "2026-04-17T17:08:03Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "Placebo and opioid analgesia-- imaging a shared neuronal network.",
+    "authors": ["Predrag Petrovic", "Eija Kalso", "Karl Magnus Petersson", "Martin Ingvar"],
+    "year": 2002,
+    "venue": "Science",
+    "doi": "10.1126/science.1067176"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Strong convergent evidence: PET imaging in humans shows that both opioid analgesia (remifentanil) and placebo analgesia share increased rACC activity and rACC-brainstem functional covariation. This directly grounds the cortical-initiation component of SD-021 -- the rACC/pgACC driving descending modulation via brainstem. Sample is n=16 male volunteers; effect replicated across opioid and placebo conditions, which strengthens the inference that the pathway is a general top-down mechanism rather than drug-specific. Limitation: PET resolution does not resolve brainstem substructure (PAG vs RVM); the connectivity measure is correlational. Overall high mapping fidelity to SD-021 cortical initiation claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["rACC_brainstem_covariation_absent", "placebo_opioid_network_dissociable"],
+  "tags": ["sd_021", "rACC", "pgACC", "brainstem", "opioid_analgesia", "placebo_analgesia", "descending_inhibition", "cortical_initiation", "PET"],
+  "mapping": {
+    "source_claim_statement": "Both opioid and placebo analgesia are associated with increased rACC activity and rACC-brainstem covariation; this shared network is not activated during pain alone.",
+    "ree_translation": "In SD-021 terms, E3 commitment to a pain-accepting trajectory recruits a cortical (pgACC-equivalent) node that gates the descending inhibitory pathway. The rACC-brainstem covariation observed here is the functional correlate of commitment gating z_harm_s PE precision reduction.",
+    "mapping_caveat": "PET cannot distinguish PAG from RVM within brainstem. The 'commitment' construct in REE (E3 planning horizon acceptance of harm) is broader than placebo expectation; placebo may not involve the same depth of trajectory-level commitment as voluntary pain acceptance during goal pursuit.",
+    "source_context": "16 male volunteers; remifentanil vs placebo vs pain-only conditions; PET with H2O15. Key finding: rACC-brainstem covariation present in both analgesic conditions but not pain-only."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "High-impact Science paper with replication across opioid/placebo; PET resolution limits brainstem specificity; placebo-to-commitment transfer is plausible but not identity"
+  }
+}

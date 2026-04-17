@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_014",
+  "entry_id": "2026-04-17_sd_014_hippocampal_drive_state_representations_kennedy2009",
+  "timestamp_utc": "2026-04-17T17:10:26Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Motivational states activate distinct hippocampal representations to guide goal-directed behaviors",
+    "authors": ["Kennedy, Pamela J.", "Shapiro, Matthew L."],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.0903259106"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct hippocampal electrophysiology showing that hunger vs. thirst drive states activate distinct CA1 ensemble representations of the same spatial environment during goal-directed (memory-dependent) tasks. This is strong evidence that hippocampal map nodes encode drive-state-gated valence information -- i.e., the same location node fires differently depending on which motivational state is active. Supports the drive-state-gated replay prioritisation claim in SD-014. Confidence docked slightly because the effect is measured at ensemble representation level rather than valence-vector component level; the paper does not dissect wanting vs. liking separately.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hippocampal representations were identical regardless of hunger vs. thirst state, the drive-state gating component of SD-014 valence vectors would lack hippocampal grounding",
+    "If the effect appeared equally in random foraging (non-goal-directed) as in memory-guided tasks, this would suggest the modulation is not tied to goal-directed valence encoding"
+  ],
+  "tags": ["sd_014", "hippocampus", "place_cells", "drive_state", "hunger", "thirst", "motivational_state", "CA1", "goal_directed", "ensemble_coding", "valence_gating"],
+  "mapping": {
+    "source_claim_statement": "Motivational state (hunger vs. thirst) differentially activates hippocampal CA1 ensemble representations when the same locations are visited during memory-guided goal-directed behavior; the effect is not present during random foraging when motivation is incidental to behavior.",
+    "ree_translation": "SD-014 stipulates that replay prioritisation is weighted by drive-state-gated valence relevance. This paper shows that the hippocampal map itself is modulated by drive state: food-relevant nodes are not simply flagged by fixed valence values but by which motivational state is currently active. The w component specifically -- wanting, drive-scaled incentive salience -- must therefore be computed relative to the current drive state rather than being a fixed stored value. A hungry agent should see its food-location nodes activated more strongly than its water-location nodes, and vice versa when thirsty. This is exactly what Kennedy and Shapiro observe at the ensemble level.",
+    "mapping_caveat": "The paper measures ensemble rate-map overlap (correlation across sessions with different drive states) rather than sub-fields of a valence vector. The specific wanting-vs-liking separation in SD-014 is not tested. The study also uses food vs. water as distinguishable rewards -- so the drive state and the reward type are confounded (hunger predicts food; thirst predicts water). A cleaner test for SD-014 would hold reward type constant and vary drive state independently.",
+    "source_context": "Rat electrophysiology; dorsal CA1 tetrode recording; two-choice memory task vs. random foraging; alternating food-deprivation and water-deprivation sessions; same spatial environment throughout."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.15,
+    "notes": "PNAS publication, direct hippocampal recording, within-subject design comparing drive states. Mapping fidelity is good -- this is explicitly about hippocampal spatial representations under different motivational states, which is the right level for SD-014. Transfer risk is low; rat hippocampal place cell literature is among the most reproducible in systems neuroscience."
+  }
+}

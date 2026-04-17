@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_021",
+  "entry_id": "2026-04-17_sd_021_endocannabinoid_sia_pag_hohmann2005",
+  "timestamp_utc": "2026-04-17T17:08:03Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "An endocannabinoid mechanism for stress-induced analgesia.",
+    "authors": ["Andrea G Hohmann", "Richard L Suplita", "Nathan M Bolton", "Mark H Neely", "Darren Fegley", "Regina Mangieri", "Jocelyn F Krey", "J Michael Walker", "Philip V Holmes", "Jonathon D Crystal", "Andrea Duranti", "Andrea Tontini", "Marco Mor", "Giorgio Tarzia", "Daniele Piomelli"],
+    "year": 2005,
+    "venue": "Nature",
+    "doi": "10.1038/nature03658"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This paper provides the behavioral and pharmacological evidence for the PAG as a critical locus for endogenous analgesia during stress/goal-conflict states, and establishes that this mechanism is opioid-independent. The opioid independence is significant for SD-021 because it demonstrates the generality of PAG-mediated descending inhibition beyond the opioid system. Endocannabinoid release in the PAG in response to stress maps onto the idea that aversive/high-stakes contexts (approximating commitment to harm-accepting trajectories) trigger the very molecular machinery of the descending inhibitory pathway. Transfer risk is moderate: stress-induced analgesia is not identical to commitment-gated analgesia -- stress can occur without planning horizon commitment, and the endocannabinoid mechanism may not be the primary mediator in voluntary goal-directed contexts. However, the PAG localization and the triggering by aversive context are directly relevant to SD-021.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["pag_endocannabinoid_sia_blocked", "stress_analgesia_not_pag_mediated"],
+  "tags": ["sd_021", "PAG", "endocannabinoid", "stress_induced_analgesia", "2-AG", "anandamide", "CB1", "opioid_independent", "descending_inhibition", "behavioral_animal"],
+  "mapping": {
+    "source_claim_statement": "Non-opioid stress-induced analgesia is mediated by PAG release of 2-AG and anandamide acting on CB1 receptors; CB1 blockade in PAG prevents SIA.",
+    "ree_translation": "In SD-021 terms, the PAG is the relay node where top-down signals from pgACC (E3 commitment output) engage the descending inhibitory pathway. This paper shows that the PAG is also capable of locally generating analgesia-mediating molecules (endocannabinoids) in response to aversive context -- without requiring cortical opioid release. This supports the principle that commitment-gated analgesia can engage multiple molecular mechanisms at the PAG relay.",
+    "mapping_caveat": "Stress-induced analgesia is triggered by aversive context, not by intentional trajectory commitment. Rodent model; endocannabinoid-mediated SIA may play a different role than opioidergic analgesia in humans. The paper does not address the selectivity of sensory-discriminative vs affective-motivational suppression.",
+    "source_context": "Rat model; continuous foot shock as stressor; CB1 receptor antagonism (SR141716A) injected directly into PAG; 2-AG and anandamide measured by mass spectrometry in midbrain PAG extracts."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High-quality Nature paper with causal pharmacological evidence; mapping fidelity is moderate because SIA mechanism (stress + endocannabinoid) differs from commitment-gated precision modulation; the PAG localization is directly supportive but the opioid-independence complicates translation to human voluntary analgesia"
+  }
+}

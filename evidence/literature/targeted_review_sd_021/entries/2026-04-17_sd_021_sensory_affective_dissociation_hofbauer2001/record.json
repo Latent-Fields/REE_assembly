@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_021",
+  "entry_id": "2026-04-17_sd_021_sensory_affective_dissociation_hofbauer2001",
+  "timestamp_utc": "2026-04-17T17:08:03Z",
+  "claim_ids_tested": ["SD-021"],
+  "source": {
+    "title": "Cortical representation of the sensory dimension of pain.",
+    "authors": ["R K Hofbauer", "P Rainville", "G H Duncan", "M C Bushnell"],
+    "year": 2001,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.2001.86.1.402"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "This paper provides the double dissociation evidence most critical to the SD-021 claim. Hypnotic suggestions targeting pain intensity specifically modulated S1 cortical activity (sensory-discriminative dimension), while the companion Rainville 1997 paper showed that suggestions targeting pain unpleasantness specifically modulated ACC activity (affective-motivational dimension). Together they demonstrate that these two pain dimensions are neurally separable and independently modulable by top-down signals. This maps directly to the SD-021 assertion that z_harm_s (sensory-discriminative) is attenuated during commitment while z_harm_a (affective-motivational) persists. Transfer risk is moderate because hypnotic suggestion is a different top-down mechanism than E3 commitment, and S1/ACC are proximal cortical substrates rather than final spinal transmission targets.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["s1_acc_dissociation_absent", "sensory_affective_pain_dimensions_inseparable"],
+  "tags": ["sd_021", "sensory_discriminative", "affective_motivational", "pain_dissociation", "ACC", "S1", "hypnosis", "PET", "double_dissociation", "z_harm_s", "z_harm_a"],
+  "mapping": {
+    "source_claim_statement": "Hypnotic modulation of pain intensity (sensory-discriminative) produces specific changes in S1 activity, while modulation of pain unpleasantness (affective-motivational) produces specific changes in ACC activity. These form a double dissociation.",
+    "ree_translation": "The z_harm_s / z_harm_a distinction in SD-021 maps directly onto this double dissociation. Commitment-gated descending inhibition in SD-021 selectively reduces z_harm_s PE precision (the sensory-discriminative channel) without suppressing z_harm_a (affective-motivational channel, ACC-mediated). This paper provides the cortical substrate evidence that these are genuinely separable dimensions with independent top-down modulation handles.",
+    "mapping_caveat": "Hypnotic modulation engages top-down signals via expectation/suggestion, not commitment. S1 activity (cortical) is not the same as spinal-level z_harm_s PE precision; spinal gate control is the relevant locus for SD-021 and is only inferred, not measured, from the cortical signal. The double dissociation is at the cortical representation level, not at the ascending input level.",
+    "source_context": "10 volunteers; PET with tonic warm and noxious heat to hand; four conditions (alert control, hypnosis control, increased intensity suggestion, decreased intensity suggestion). Companion paper to Rainville 1997 which showed ACC modulation for unpleasantness."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Double dissociation is the gold-standard evidence design for functional independence claims. Transfer risk is moderate: mechanism (hypnosis vs commitment) and measurement level (cortical representation vs spinal PE precision) both differ from the SD-021 claim target"
+  }
+}

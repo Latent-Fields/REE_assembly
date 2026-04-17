@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-17_sd_011_fentanyl_intensity_unpleasantness_gracely1979",
+  "timestamp_utc": "2026-04-17T17:10:16Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Narcotic analgesia: fentanyl reduces the intensity but not the unpleasantness of painful tooth pulp sensations.",
+    "authors": ["Gracely RH", "Dubner R", "McGrath PA"],
+    "year": 1979,
+    "venue": "Science",
+    "doi": "10.1126/science.424753",
+    "pmid": "424753",
+    "volume": "203",
+    "issue": "4386",
+    "pages": "1261-1263"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Double-blind RCT in Science showing pharmacological dissociation: fentanyl (mu-opioid agonist) reduces sensory intensity ratings but NOT unpleasantness ratings of tooth pulp pain. This is a clean intervention study with matched sensory and affective verbal descriptor scales, n=40, crossover design. Directly demonstrates that the sensory-discriminative and affective-motivational dimensions can be independently modulated by a pharmacological agent. Strong evidence for SD-011 separation. Caveat: the dose used may have been subthreshold for full opioid analgesia, and tooth pulp pain is a somewhat specific model. Retroactively: later work (including Price et al. 1985) refined the dose-effect relationship and found higher doses also reduce unpleasantness, which needs acknowledgment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Fentanyl reduces both intensity and unpleasantness equally (no dissociation)",
+    "Fentanyl reduces unpleasantness without reducing intensity",
+    "Descriptor scales shown to not capture the sensory/affective distinction"
+  ],
+  "tags": ["sd_011", "opioid", "fentanyl", "sensory_intensity", "unpleasantness", "pharmacological_dissociation", "clinical_intervention", "gracely", "pain_dimensions"],
+  "mapping": {
+    "source_claim_statement": "Intravenous fentanyl significantly reduced ratings of pain sensory intensity (using intensity verbal descriptors) without reducing ratings of unpleasantness (using affective verbal descriptors) in a double-blind crossover trial of tooth pulp stimulation in 40 subjects.",
+    "ree_translation": "If fentanyl acts preferentially on the sensory-discriminative stream (z_harm_s) at the doses used, this pharmacological dissociation is strong evidence for independent neural substrates. The intensity (z_harm_s-relevant) signal is attenuated; the unpleasantness (z_harm_a-relevant) signal persists. In the REE model, this corresponds to a drug that reduces the instantaneous nociceptive signal strength in z_harm_s while leaving the accumulated homeostatic deviation in z_harm_a intact or even slightly elevated (due to the persisting afferent barrage without effective intensity attenuation).",
+    "mapping_caveat": "Subsequent work suggested that at higher doses, mu-opioids do reduce unpleasantness. The dose-dependence complicates the mapping: it may be that the dissociation is a threshold effect rather than stream-specific pharmacology. Also, opioid receptors are present in both dorsal horn and supraspinal sites; the mechanism of selective intensity reduction is not fully resolved. The claim maps well to SD-011 qualitatively but the mechanistic route is uncertain.",
+    "source_context": "Published in Science in 1979, this was one of the first demonstrations of the double-dimension model of pain in a pharmacological context. Gracely and Dubner had been developing matched verbal descriptor scales (the Gracely scales) as a rigorous alternative to simple numeric ratings. The paper was intended to validate the scales as well as to characterise opioid analgesia."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.22,
+    "notes": "Excellent source: Science, double-blind RCT, validated scales, leading pain researchers. Mapping fidelity slightly lower due to dose-response caveat (high-dose opioids reduce both dimensions) and uncertainty about which neural level the dissociation occurs at. Transfer risk moderate: tooth pulp is a specific model, and the pharmacology of the dissociation involves complexity not captured in SD-011."
+  }
+}

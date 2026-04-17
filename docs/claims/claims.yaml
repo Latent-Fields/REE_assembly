@@ -8008,6 +8008,17 @@
     (3) Approach pull activation must precede trajectory generation to produce systematic
     approach-weighted candidates, not just occasionally approach-consistent outputs.
     Registered 2026-03-25.
+  literature_confidence: 0.798
+  literature_evidence: |
+    4 entries in evidence/literature/targeted_review_sd_011/.
+    Basbaum, Bautista, Scherrer & Julius (2009, Cell): A-delta/neospinothalamic/VPL vs
+    C-fiber/paleospinothalamic/medial-thalamic/ACC separation with molecular and temporal detail.
+    Price, Harkins & Baker (1987, Pain): VAS study -- affective unpleasantness independently
+    elevated in chronic pain and selectively reducible by attentional focus.
+    Bentley, Watson, Treede et al. (2004, Clin Neurophysiol): EEG/LEP study -- N300-T7 (S2,
+    lateral system) selectively enhanced by localisation vs unpleasantness attention.
+    Gracely, Dubner & McGrath (1979, Science): fentanyl reduces sensory intensity but NOT
+    unpleasantness -- pharmacological dissociation of z_harm_s vs z_harm_a.
 
 - id: SD-012
   title: "Goal-directed behavior requires homeostatic drive modulation: z_goal seeding demands drive-scaled benefit signals."
@@ -8218,6 +8229,19 @@
     relative to UNIFIED_VALUE agent, without globally reducing goal-directed behavior
     (maintained approach to high-liking nodes). Tests that the wanting/liking dissociation
     is behaviourally consequential and that SD-014 recording enables the agent to track it.
+  literature_confidence: 0.813
+  literature_evidence: |
+    4 entries in evidence/literature/targeted_review_sd_014/.
+    Smith, Berridge & Aldridge (2011, PNAS): VP electrophysiology triple dissociation --
+    opioid amplifies liking + proximal cue firing; DA amplifies wanting only; distinct cell
+    populations. Grounds the w/l separation at the single-unit level.
+    Kennedy & Shapiro (2009, PNAS): same CA1 populations represent space differently under
+    hunger vs thirst during goal-directed tasks -- hippocampal map reconfigures under drive
+    state. Directly grounds the drive-state-scaled w component.
+    Carey, Tanaka & van der Meer (2019, Nature Neuroscience): awake SWR replay content
+    biased by motivational revaluation -- confirms drive-state modulates replay content.
+    Lansink et al. (2009, PLoS Biology): hippocampus leads ventral striatum in sleep replay
+    of place-reward pairs -- consolidation mechanism for valence components.
 
 - id: SD-015
   title: "Goal-directed navigation requires a dedicated z_resource encoder that captures object-type features invariant to spatial location, separate from z_world."
@@ -13669,13 +13693,22 @@
     PE precision should be reduced.
   registered: "2026-04-08"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
-  literature_confidence: 0.894
+  literature_confidence: 0.852
   literature_evidence: |
-    4 entries in evidence/literature/targeted_review_connectome_sd_021/.
+    8 entries across targeted_review_connectome_sd_021 (4) and targeted_review_sd_021 (4).
     Crawford et al. (2021, PNAS): brainstem mechanisms of placebo analgesia (7T fMRI; PAG, LC).
     Tracey & Mantyh (2007, Neuron): cerebral signature of pain and its modulation (review).
     Basbaum & Fields (1984, Annu Rev Neurosci): descending pain modulation (PAG-RVM pathway).
     Eippert et al. (2009, Science): opioidergic brainstem placebo analgesia (direct fMRI).
+    Petrovic et al. (2002, Science): rACC-brainstem covariation during opioid and placebo
+    analgesia -- cortical initiation of descending modulation confirmed.
+    Hofbauer et al. (2001, J Neurophysiol): double dissociation -- intensity hypnosis modulates
+    S1 not ACC; unpleasantness hypnosis modulates ACC not S1. Directly grounds z_harm_s vs
+    z_harm_a selective attenuation in SD-021.
+    Hohmann et al. (2005, Nature): CB1 blockade in PAG blocks non-opioid SIA -- PAG as
+    multi-mechanism context-sensitive relay.
+    Wager et al. (2004, Science): prefrontal anticipatory activity predicts placebo analgesic
+    magnitude; thalamus/insula/ACC down during pain -- anticipation-phase top-down gating.
   implementation_note: >
     IMPLEMENTED 2026-04-10. REEAgent.sense() in ree_core/agent.py. After LatentStack.encode(),
     if harm_descending_mod_enabled=True and beta_gate.is_elevated and z_harm is not None:

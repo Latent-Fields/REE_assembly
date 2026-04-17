@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-17_sd_011_lateral_pain_localization_bentley2004",
+  "timestamp_utc": "2026-04-17T17:10:16Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Differential effects on the laser evoked potential of selectively attending to pain localisation versus pain unpleasantness.",
+    "authors": ["Bentley DE", "Watson A", "Treede RD", "Barrett G", "Youell PD", "Kulkarni B", "Jones AKP"],
+    "year": 2004,
+    "venue": "Clinical Neurophysiology",
+    "doi": "10.1016/j.clinph.2004.03.010",
+    "pmid": "15261863",
+    "volume": "115",
+    "issue": "8",
+    "pages": "1846-1856"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "EEG study with 21 healthy subjects directly comparing neural responses to localisation vs unpleasantness attention tasks during laser-evoked pain. The finding that N300-T7 (contralateral temporal/S2) is selectively enhanced during localisation but not unpleasantness directly confirms that the lateral pain system (S1/S2 pathway, z_harm_s analog) is preferentially engaged by sensory-discriminative processing. Co-authored by Treede, a leading figure in nociceptive electrophysiology. Modest sample size and some uncertainty about precise source localisation limit confidence slightly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "N300-T7 amplitude equivalent for localisation and unpleasantness tasks (no lateral system selectivity)",
+    "Medial system indices (FCz, P450) shown to be differentially modulated by localisation task",
+    "Both tasks shown to enhance lateral and medial components equally"
+  ],
+  "tags": ["sd_011", "lateral_pain_system", "laser_evoked_potential", "S1_S2", "localisation", "unpleasantness", "EEG", "attention", "treede", "sensory_discriminative"],
+  "mapping": {
+    "source_claim_statement": "N300-T7 (reflecting S2/posterior insula activity) is significantly greater during attention to pain location (sensory-discriminative processing) than during attention to pain unpleasantness. This confirms a role for the lateral pain system in localisation, distinct from the medial system's role in affective-motivational processing.",
+    "ree_translation": "z_harm_s is the latent variable downstream of the lateral pain system (A-delta/VPL/S1-S2 projection). Bentley et al. show that attending to WHERE pain is (the task z_harm_s must support -- proximity encoding for action guidance) selectively upregulates this pathway. Attending to HOW UNPLEASANT it is (the task z_harm_a supports -- motivational weighting for drive escalation) does not additionally recruit S2. This is the functional double dissociation SD-011 requires: z_harm_s for spatial-discriminative encoding; z_harm_a for affective-motivational encoding.",
+    "mapping_caveat": "The study uses attention manipulation, not pathway lesion, so both systems are active in both conditions -- the dissociation is in the degree of engagement, not absolute separation. The N300-T7 source estimate (S2/posterior insula) is from scalp EEG with limited spatial resolution. The study does not directly probe medial thalamic or ACC involvement, which would be the z_harm_a side of the dissociation.",
+    "source_context": "Written in the context of understanding how top-down attention modulates distinct pain processing streams. Rolf-Detlef Treede is one of the leading researchers in laser evoked potentials and has extensively characterised the lateral vs medial pain system distinction."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.18,
+    "notes": "Good journal, strong experimental design with matched attention tasks, well-cited. Mapping fidelity good: the selectivity of N300-T7 for localisation maps cleanly onto z_harm_s being the discriminative stream. Low transfer risk: this is human EEG of the exact pathway SD-011 formalises."
+  }
+}

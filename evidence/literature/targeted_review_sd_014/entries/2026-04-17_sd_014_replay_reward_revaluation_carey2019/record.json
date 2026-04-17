@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_014",
+  "entry_id": "2026-04-17_sd_014_replay_reward_revaluation_carey2019",
+  "timestamp_utc": "2026-04-17T17:10:26Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Reward revaluation biases hippocampal replay content away from the preferred outcome",
+    "authors": ["Carey, Alyssa A.", "Tanaka, Youki", "van der Meer, Matthijs A. A."],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-019-0464-6"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "High-quality Nature Neuroscience study directly showing that motivational state (food vs. water restriction) biases awake hippocampal SWR replay content. Replay was anti-correlated with behavioral preference: when food-restricted animals preferred food, replay over-represented water-arm sequences, and vice versa. This is direct evidence that drive-state-gated valence modulates replay content -- specifically that the unrestricted (less salient wanting) arm was replayed more. The result is counterintuitive relative to naive priority-replay models and suggests the drive-state weighting of replay involves planning for low-salience alternatives, not just reinforcing preferred routes. This complicates but does not undermine SD-014's replay prioritisation claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If replay content matched behavioral preference (food-restricted = food-arm replay), this would support a simpler value-biased replay model rather than SD-014's drive-state-gated alternative-planning view",
+    "If the replay bias were absent in the inter-trial period (resting, not post-choice), this would suggest the effect is about error correction rather than drive-state gating of the map"
+  ],
+  "tags": ["sd_014", "hippocampus", "replay", "sharp_wave_ripple", "reward_revaluation", "drive_state", "food", "water", "T_maze", "SWR", "motivational_state", "replay_content", "awake_replay"],
+  "mapping": {
+    "source_claim_statement": "Awake hippocampal SWR replay content in dorsal CA1 is biased away from the behaviorally preferred arm following motivational state revaluation (food vs. water restriction); the bias appears before the animal has experienced the session and does not reverse with experience.",
+    "ree_translation": "SD-014 claims replay prioritisation is weighted by drive-state-gated valence relevance. This paper shows that motivational state (which arm is currently restricted, i.e., which has high wanting) does bias replay content -- but in the counterintuitive direction: the currently desired arm is replayed less. One interpretation consistent with SD-014 is that the wanting component (w) of location nodes raises the salience of goal-proximal planning from non-preferred alternatives, because the animal needs to update its model of how to reach food when water is freely available (and vice versa). The replay of the non-restricted arm may represent the agent constructing counterfactual plans or updating value estimates for the secondary option. This is precisely what the s (surprise) and w (wanting) components in SD-014 would jointly generate: surprise at a revalued outcome triggers exploration of less-visited paths; wanting then weights which paths matter for planning.",
+    "mapping_caveat": "The anti-preference direction of the bias is genuinely puzzling for any simple drive-state priority-replay account. SD-014 would need to explain why the non-preferred arm is replayed more during restriction -- possibly via a planning-for-alternatives or counterfactual-evaluation role. The study uses dorsal CA1 in an appetitive T-maze; whether this generalises to the action-object map nodes in SD-014's design is uncertain. The measure is sequence content (which arm sequences appear in SWRs), not which specific valence components of individual nodes drive the bias.",
+    "source_context": "Rat electrophysiology; dorsal CA1 tetrode recording during awake rest between T-maze choices; food vs. water restriction alternated between sessions; 4 male Long-Evans rats; SWR detection and sequence decoding."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.18,
+    "notes": "Nature Neuroscience, rigorous electrophysiology, careful within-subject revaluation design. Mapping fidelity is good in that the paper directly tests drive-state effects on replay content, but the anti-preference direction is not straightforwardly predicted by SD-014's naive replay prioritisation claim and requires interpretive work. Transfer risk is low for the hippocampal mechanism itself but the specific planning role attributed to non-preferred arm replay is inferred."
+  }
+}

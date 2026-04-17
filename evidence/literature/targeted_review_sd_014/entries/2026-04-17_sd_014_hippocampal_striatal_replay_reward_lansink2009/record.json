@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_014",
+  "entry_id": "2026-04-17_sd_014_hippocampal_striatal_replay_reward_lansink2009",
+  "timestamp_utc": "2026-04-17T17:10:26Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Hippocampus leads ventral striatum in replay of place-reward information",
+    "authors": ["Lansink, Carien S.", "Goltstein, Pieter M.", "Lankelma, Jan V.", "McNaughton, Bruce L.", "Pennartz, Cyriel M. A."],
+    "year": 2009,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.1000173"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct multineuron recording demonstrating coordinated sleep replay between hippocampal place cells and reward-related ventral striatal neurons, with hippocampus leading striatum in temporal order. This provides mechanistic evidence for how hippocampal spatial nodes interact with mesolimbic reward signals during offline consolidation -- directly relevant to how the l (liking) and w (wanting) components of SD-014 valence vectors get written during replay. The leading role of hippocampus in the sequence suggests that hippocampal map nodes actively drive the reactivation of reward-value information, not just passively receive it. Confidence docked slightly because the study is about sleep replay (not awake SWRs) and the reward measure is place-cell pairing with ventral striatal reward units, not a dissected valence vector.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ventral striatum led hippocampus in replay sequences, this would suggest value signals drive map reactivation rather than the map driving value updates -- less compatible with SD-014's active node-level valence storage",
+    "If replay pairs were random across cell types (place vs. reward-selective neurons), it would undermine the claim that reward-valence information is preferentially consolidated with spatial maps"
+  ],
+  "tags": ["sd_014", "hippocampus", "ventral_striatum", "replay", "sleep", "place_cells", "reward", "place_reward", "consolidation", "SWR", "multineuron_recording", "valence_encoding"],
+  "mapping": {
+    "source_claim_statement": "During slow-wave sleep, hippocampal place cells reactivate in coordination with reward-related ventral striatal neurons, with the hippocampal cell typically firing before the striatal cell; this coordination is strongest for hippocampal place cells paired with striatal neurons that fired to the same reward locations during the prior waking experience.",
+    "ree_translation": "SD-014 requires that hippocampal map nodes store valence information (w, l, h, s) that is updated and consolidated offline. The Lansink et al. result shows that hippocampal place nodes and mesolimbic reward nodes co-reactivate during sleep, with the hippocampus leading -- consistent with a model where the map node 'drives' reactivation of its associated valence signal for Hebbian weight update. The temporal ordering (hippocampus first) suggests the spatial tag in the map node is the retrieval cue for the reward/valence information, not the other way around. This is precisely the write-mechanism SD-014 implies: during offline replay, the map node activates the valence circuit associated with that location to strengthen the local valence estimate.",
+    "mapping_caveat": "The paper measures replay of place-reward cell pairs at a binary level (did this hippocampal place cell co-reactivate with that striatal reward cell?). It does not distinguish whether the striatal reward signal represents wanting vs. liking vs. prediction error. The study is in sleep; SD-014's valence updates during waking approach and consummatory contact are a separate question. Also, the ventral striatum is not the same as the mesolimbic opioid system that writes l (liking) -- the VP is not measured here. The evidence bears most directly on the offline consolidation phase of all four valence components, not on their specific update rules during waking.",
+    "source_context": "Rat electrophysiology; simultaneous hippocampal CA1 and ventral striatum multineuron recording during waking exploration and subsequent slow-wave sleep; reward at fixed location on circular track; open-access PLoS Biology publication."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.73,
+    "transfer_risk": 0.15,
+    "notes": "PLoS Biology, simultaneous recording across two brain regions during natural sleep, strong statistical approach for cross-regional replay detection. Mapping fidelity is moderate: the paper supports the offline consolidation and hippocampus-leads mechanism but does not resolve the w/l/h/s distinctions within the valence vector. Transfer risk is low for the hippocampal replay mechanism."
+  }
+}

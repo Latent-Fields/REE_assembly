@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-17_sd_011_sensory_affective_dissociation_price1987",
+  "timestamp_utc": "2026-04-17T17:10:16Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Sensory-affective relationships among different types of clinical and experimental pain.",
+    "authors": ["Price DD", "Harkins SW", "Baker C"],
+    "year": 1987,
+    "venue": "Pain",
+    "doi": "10.1016/0304-3959(87)90065-0",
+    "pmid": "2952934",
+    "volume": "28",
+    "issue": "3",
+    "pages": "297-307"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Classic empirical human study directly demonstrating independent modulation of sensory intensity vs affective unpleasantness ratings in multiple pain populations. The finding that cancer and chronic pain patients elevate affective ratings disproportionately relative to sensory ratings -- while experimental pain shows the reverse pattern -- is precisely the dissociation SD-011 relies on. Confidence slightly limited by reliance on VAS self-report (shared method variance risk) and sample heterogeneity, but the cross-group replication strengthens the core claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "VAS sensory and affective ratings shown to be fully correlated across all conditions (no dissociation)",
+    "Contextual manipulation shown to affect both dimensions equally",
+    "Cancer vs experimental pain difference shown to be due to intensity rather than selectively elevated affect"
+  ],
+  "tags": ["sd_011", "sensory_affective", "pain_dimensions", "behavioral_dissociation", "VAS", "clinical_pain", "experimental_pain", "price_harkins"],
+  "mapping": {
+    "source_claim_statement": "The affective dimension of clinical pain can be selectively augmented by perceived threat to health or life, independently of sensory intensity. Cancer and chronic pain patients give higher VAS affective than sensory ratings; experimental pain subjects give lower affective than sensory ratings. Attentional focus (birth vs pain) reduces affective but not sensory VAS in labour pain.",
+    "ree_translation": "z_harm_s (sensory-discriminative) corresponds to the 'VAS sensory' rating -- tracking momentary intensity with relatively direct relationship to stimulus parameters. z_harm_a (affective-motivational) corresponds to the 'VAS affective' rating -- sensitive to contextual threat appraisal, accumulated distress, and perceived health consequences. The dissociation between the two VAS dimensions across pain contexts directly maps to the SD-011 claim that z_harm_a integrates homeostatic deviation and threat context independently of z_harm_s.",
+    "mapping_caveat": "The paper uses psychophysical ratings, not neural measurements. The claim that VAS sensory maps onto z_harm_s and VAS affective onto z_harm_a is theoretically motivated but not proven -- the paper is agnostic about whether two distinct neural streams underlie these ratings. The data could also be explained by a single dimension with context-dependent weighting. The labour pain paradigm is also confounded by attention manipulation.",
+    "source_context": "Written in the context of developing the affective pain VAS (which became a standard measure alongside the McGill Pain Questionnaire). Price and Harkins were developing the theoretical framework of sensory-affective pain dimensions that Price formalised in his 2000 Science review."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Strong empirical paper in Pain (core venue), well-cited foundational work. Mapping fidelity is good because the two-VAS methodology directly operationalises the sensory/affective split. Transfer risk is low -- the behavioural dissociation is about human phenomenology which is the target level of explanation for REE."
+  }
+}

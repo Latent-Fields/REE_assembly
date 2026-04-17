@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_014",
+  "entry_id": "2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011",
+  "timestamp_utc": "2026-04-17T17:10:26Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Disentangling pleasure from incentive salience and learning signals in brain reward circuitry",
+    "authors": ["Smith, Kyle S.", "Berridge, Kent C.", "Aldridge, J. Wayne"],
+    "year": 2011,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.1101920108"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "High-quality PNAS electrophysiology study directly dissociating wanting and liking at single-neuron population level in nucleus accumbens-to-ventral pallidum circuit. Distinct neuronal subpopulations and firing rate dynamics tracked hedonic impact vs. incentive salience vs. learned prediction separately. Direct mechanistic evidence for the w/l separation in SD-014. Transfer risk is moderate -- the dissociation is in mesolimbic reward circuitry, not hippocampal map nodes directly, so the inference that hippocampal valence nodes should store these as separate registers (rather than hippocampus just inheriting mesolimbic signals) is an additional architectural step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a single neuron type tracked both wanting and liking together, this would undermine the w/l separation in SD-014",
+    "If opioid vs. dopamine manipulations produced equivalent behavioral and neural patterns, the dissociation would collapse"
+  ],
+  "tags": ["sd_014", "wanting", "liking", "incentive_salience", "dissociation", "nucleus_accumbens", "ventral_pallidum", "opioid", "dopamine", "electrophysiology"],
+  "mapping": {
+    "source_claim_statement": "Distinct neuronal subpopulations in the ventral pallidum track hedonic impact (liking), incentive salience (wanting), and Pavlovian prediction (learning) as separable signals; opioid microinjection selectively amplifies liking and reward-proximal wanting, while dopamine microinjection amplifies only wanting.",
+    "ree_translation": "SD-014's w (wanting) and l (liking) components of the hippocampal valence vector must be stored as distinct registers because they are read and written by mechanistically distinct circuits: wanting is mesolimbic-DA-gated and updated on approach; liking is opioid-gated and updated on consummatory contact. This paper provides the clearest neural proof-of-separation -- different cell populations with different pharmacological keys.",
+    "mapping_caveat": "The dissociation is demonstrated in the NAc-to-VP pathway, not inside hippocampal map nodes. SD-014 proposes that hippocampal nodes encode the downstream consequence of this dissociation -- i.e., store pre-computed w and l values for each location. The paper shows the source circuits are truly separate, which is a prerequisite for the SD-014 design to make sense: you cannot collapse w and l into one register if they originate from distinct mesolimbic channels. But the paper does not speak to how or whether hippocampal place cells inherit separate w vs. l signals.",
+    "source_context": "Rat electrophysiology; ventral pallidum single-unit recording concurrent with intraaccumbens opioid (DAMGO) vs. dopamine-agonist (amphetamine) microinjections; sucrose reward; Pavlovian conditioning paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Source quality is excellent -- PNAS, multi-method (electrophysiology + pharmacology + behavioral taste reactivity), direct mechanistic. Mapping fidelity is good but indirect: dissociation shown in VP, inference to hippocampal node-level encoding is an extra step. Transfer risk is low-to-moderate: rat data, well-established circuitry, but the hippocampal uptake of these signals is not shown here."
+  }
+}
