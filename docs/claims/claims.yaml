@@ -35,6 +35,7 @@
 - id: INV-001
   title: "No explicit ethics module or moral scoring layer."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.emergence
   polarity: denies
   status: active
@@ -46,6 +47,7 @@
 - id: INV-002
   title: "Coherence includes temporal/phase binding, not just static metrics."
   claim_type: invariant
+  invariant_type: universal
   subject: coherence.definition
   polarity: asserts
   status: active
@@ -56,6 +58,7 @@
 - id: INV-003
   title: "Language emerges as functional self-representation, not a bolt-on."
   claim_type: invariant
+  invariant_type: universal
   subject: language.emergence
   polarity: asserts
   status: active
@@ -66,6 +69,7 @@
 - id: INV-004
   title: "Post-commit consequence traces are persistent, not resettable."
   claim_type: invariant
+  invariant_type: grey_zone
   subject: consequence.persistence
   polarity: asserts
   status: active
@@ -73,9 +77,15 @@
   location: docs/invariants.md#inv-004
   source:
     - docs/processed/legacy_tree/docs/invariants.md
+  notes: >
+    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
+    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
 - id: INV-005
   title: "Harm to others contributes via mirror modelling, not symbolic rules."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - ARC-010
   subject: ethics.mechanism
   polarity: asserts
   status: active
@@ -83,9 +93,13 @@
   location: docs/invariants.md#inv-005
   source:
     - docs/processed/legacy_tree/docs/invariants.md
+  notes: >
+    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
+    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
 - id: INV-006
   title: "Post-commit consequence traces cannot be erased, only integrated."
   claim_type: invariant
+  invariant_type: grey_zone
   subject: consequence.non_erasability
   polarity: denies
   status: active
@@ -93,9 +107,13 @@
   location: docs/invariants.md#inv-006
   source:
     - docs/processed/legacy_tree/docs/invariants.md
+  notes: >
+    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
+    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
 - id: INV-007
   title: "Language cannot override embodied harm sensing."
   claim_type: invariant
+  invariant_type: universal
   subject: language.constraint
   polarity: denies
   status: active
@@ -106,6 +124,7 @@
 - id: INV-008
   title: "Precision is routed and depth-specific, not global."
   claim_type: invariant
+  invariant_type: universal
   subject: precision.routing
   polarity: asserts
   status: active
@@ -116,6 +135,7 @@
 - id: INV-009
   title: "Attention is precision modulation, not symbolic control."
   claim_type: invariant
+  invariant_type: universal
   subject: attention.mechanism
   polarity: asserts
   status: active
@@ -126,6 +146,7 @@
 - id: INV-010
   title: "Offline integration exists and is required."
   claim_type: invariant
+  invariant_type: universal
   subject: sleep.necessity
   polarity: asserts
   status: active
@@ -136,6 +157,7 @@
 - id: INV-011
   title: "Imagination must be possible without belief update."
   claim_type: invariant
+  invariant_type: universal
   subject: default_mode.safety
   polarity: asserts
   status: active
@@ -176,6 +198,7 @@
 - id: INV-013
   title: "Cognition is predictive, iterative, and multi-timescale."
   claim_type: invariant
+  invariant_type: universal
   subject: cognition.structure
   polarity: asserts
   status: active
@@ -186,6 +209,7 @@
 - id: INV-014
   title: "Representation and regulation are strictly separated."
   claim_type: invariant
+  invariant_type: universal
   subject: architecture.separation
   polarity: asserts
   status: active
@@ -196,6 +220,7 @@
 - id: INV-015
   title: "Ethics emerges from constraint, not optimisation."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.emergence_mechanism
   polarity: asserts
   status: active
@@ -206,6 +231,7 @@
 - id: INV-016
   title: "Stability is prioritized over maximal performance."
   claim_type: invariant
+  invariant_type: universal
   subject: design.priority
   polarity: asserts
   status: active
@@ -216,6 +242,7 @@
 - id: INV-017
   title: "Runaway behavior is a control failure, not representational."
   claim_type: invariant
+  invariant_type: universal
   subject: failure.classification
   polarity: asserts
   status: active
@@ -1035,6 +1062,7 @@
 - id: INV-018
   title: "Agency is required; passive predictors are not REE."
   claim_type: invariant
+  invariant_type: universal
   subject: agency.requirement
   polarity: asserts
   status: stable
@@ -2791,6 +2819,9 @@
 - id: INV-019
   title: "Rehearsal traversal and irreversible durable write must remain separated."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - ARC-014
   subject: meta.selection_compression_boundary
   polarity: asserts
   status: candidate
@@ -2803,9 +2834,15 @@
   source:
     - docs/invariants.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+  notes: >
+    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
+    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
 - id: INV-020
   title: "Constraint stores are authority-stratified from direct observational/symbolic writes."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - ARC-020
   subject: meta.authority_stratification_boundary
   polarity: asserts
   status: candidate
@@ -2819,9 +2856,16 @@
     - docs/invariants.md
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+  notes: >
+    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
+    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
 - id: INV-021
   title: "Responsibility-bearing durable updates occur only at typed commit boundaries."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - SD-026
+    - ARC-003
   subject: meta.commit_boundary_irreversibility
   polarity: asserts
   status: candidate
@@ -2836,9 +2880,13 @@
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
     - docs/thoughts/2026-02-24_determinism_action_gating_boundary.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
+  notes: >
+    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
+    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
 - id: INV-022
   title: "Trust/precision allocation must remain heterogeneous, not a single scalar."
   claim_type: invariant
+  invariant_type: universal
   subject: meta.heterogeneous_trust_allocation
   polarity: asserts
   status: candidate
@@ -2855,6 +2903,7 @@
 - id: INV-023
   title: "Protected offline recalibration/integration regimes are structurally required."
   claim_type: invariant
+  invariant_type: universal
   subject: meta.offline_reweighting_requirement
   polarity: asserts
   status: candidate
@@ -2872,6 +2921,9 @@
 - id: INV-024
   title: "Offline consolidation and online commitment must remain isolated at responsibility-bearing write loci."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - ARC-020
   subject: meta.offline_online_update_locus_isolation
   polarity: asserts
   status: candidate
@@ -2885,11 +2937,15 @@
     - docs/invariants.md
     - docs/architecture/sleep.md
     - docs/architecture/agency_responsibility_flow.md
+  notes: >
+    Grey-zone placeholder 2026-04-17 (Session B); resolution deferred to
+    Session C_n per audit registry docs/governance/invariant_classification_audit.md.
 
 # Five foundational axioms — registered 2026-03-18
 - id: INV-025
   title: "Irreducible uncertainty is an epistemological constraint that cannot be engineered away."
   claim_type: invariant
+  invariant_type: universal
   subject: epistemology.irreducible_uncertainty
   polarity: asserts
   status: active
@@ -2911,6 +2967,7 @@
 - id: INV-026
   title: "A self is an operational prerequisite for responsible agency."
   claim_type: invariant
+  invariant_type: universal
   subject: self.existence
   polarity: asserts
   status: active
@@ -2935,6 +2992,7 @@
 - id: INV-027
   title: "An external world is a structural prerequisite for grounded representation."
   claim_type: invariant
+  invariant_type: universal
   subject: world.existence
   polarity: asserts
   status: active
@@ -2956,6 +3014,7 @@
 - id: INV-028
   title: "Shared-world ethics requires modelling others as co-inhabitants of the same consequence space."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.shared_world
   polarity: asserts
   status: active
@@ -2981,6 +3040,7 @@
 - id: INV-029
   title: "Love as long-horizon care-investment is a structurally coherent agent disposition, not an add-on sentiment."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.love_exists
   polarity: asserts
   status: active
@@ -3071,6 +3131,7 @@
 - id: INV-030
   title: "Viability is defined relative to the agent's continuity in a shared world, not as a scalar reward."
   claim_type: invariant
+  invariant_type: universal
   subject: cognition.viability_definition
   polarity: asserts
   status: active
@@ -3100,6 +3161,7 @@
 - id: INV-031
   title: "Functional persistence in a shared world, not abstract truth, is the operational goal of cognition."
   claim_type: invariant
+  invariant_type: universal
   subject: epistemology.functional_persistence_replaces_truth
   polarity: asserts
   status: active
@@ -3132,6 +3194,7 @@
 - id: INV-032
   title: "Moral agency requires both approach and avoidance drives; pure avoidance produces a degenerate risk manager, not an ethical agent."
   claim_type: invariant
+  invariant_type: universal
   subject: agency.approach_avoidance_both_necessary
   polarity: asserts
   status: candidate
@@ -3151,6 +3214,10 @@
 - id: INV-033
   title: "REE agents require second-order epistemic access to their own model confidence, structurally represented and wired into commit gating, not just observable from performance metrics."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-016
+  pending_substrate_reconfirmation: true
   subject: epistemic.second_order_self_monitoring
   polarity: asserts
   status: candidate
@@ -3184,6 +3251,11 @@
     agent to model its own epistemic state as a precondition for responsible action.
     Knowing one is not sure is not merely useful -- it is required for the hypothesis
     tag to be meaningful. Registered 2026-03-23.
+    Classified emergent 2026-04-17 (Session B of invariant-types governance
+    cycle): emergent on ARC-016 (modes as control-plane regimes with routed
+    precision). Without a mode/precision regime substrate, there is no commit-
+    gating locus for second-order access to plug into. ARC-016 is currently
+    'provisional' -- pending_substrate_reconfirmation: true.
 
 - id: ARC-025
   title: "Three-engine (E1/E2/E3) architecture is irreducible; no engine can be collapsed into another."
@@ -6869,6 +6941,10 @@
 - id: INV-034
   title: "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-030
+  pending_substrate_reconfirmation: true
   subject: ethical_agency.goal_maintenance_necessary
   polarity: asserts
   status: candidate
@@ -6902,6 +6978,12 @@
     Clinical grounding: avolition in schizophrenia, anhedonic depression, amotivation
     syndromes all demonstrate that harm-avoidance systems remain intact while agency
     collapses. REE must avoid this architecture failure mode. Registered 2026-03-23.
+    Classified emergent 2026-04-17 (Session B of invariant-types governance cycle):
+    emergent on ARC-030 (symmetric Go/NoGo approach-avoidance substrate). The invariant's
+    subject -- "prospective goal-directed motivation" as distinct from harm-avoidance --
+    requires the symmetric Go/NoGo architecture. In a pure-avoidance architecture the
+    claim is un-stateable, not merely unevidenced. ARC-030 is currently 'candidate' --
+    pending_substrate_reconfirmation: true.
   evidence_quality_note: |
     INV-034 depends on MECH-112/116 (goal maintenance architecture). EXQ-085 through
     EXQ-085e all failed at the z_goal seeding prerequisite (SD-012 homeostatic drive
@@ -6917,6 +6999,11 @@
 - id: INV-035
   title: "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-003
+    - ARC-004
+    - ARC-007
   subject: state.not_raw_perception
   polarity: asserts
   status: candidate
@@ -6939,10 +7026,19 @@
     valid next-action sets. This invariant is a design guard against the common
     shortcut of treating latent perceptual embeddings as sufficient state
     representations. Registered 2026-03-24.
+    Classified emergent 2026-04-17 (Session B of invariant-types governance cycle):
+    emergent on ARC-003 (E3 committing), ARC-004 (L-space latent stack), and ARC-007
+    (hippocampal paths through residue-field terrain). All three substrates are currently
+    'active' so no pending_substrate_reconfirmation is applied.
 
 - id: INV-036
   title: "A REE state is valid only if it supports transition prediction, valence and antigoal tagging, and uncertainty representation; a representation lacking any of these cannot function as a navigable state."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-003
+    - ARC-007
+    - ARC-018
   subject: state.functional_requirements
   polarity: asserts
   status: candidate
@@ -6971,10 +7067,16 @@
     state; INV-035 specifies that perceptual identity is insufficient for state
     identity. Together they define the outer boundary of valid state abstraction.
     Registered 2026-03-24.
+    Classified emergent 2026-04-17 (Session B of invariant-types governance cycle):
+    emergent on ARC-003, ARC-007, ARC-018 (all 'active' -- no pending_substrate_reconfirmation).
 
 - id: INV-037
   title: "A content class that is stored and retrievable in the REE system is not thereby active in the navigable state used for trajectory evaluation; active participation requires a preparation substrate (vmPFC-analog) that converts stored content into live state components at evaluation time."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-035
+  pending_substrate_reconfirmation: true
   subject: state.stored_vs_active_distinction
   polarity: asserts
   status: candidate
@@ -7011,10 +7113,18 @@
     (3) The failure mode is not correctable by adding post-hoc constraint checking --
     see INV-038.
     Registered 2026-03-25.
+    Classified emergent 2026-04-17 (Session B of invariant-types governance cycle):
+    emergent on ARC-035 (vmPFC-analog stored->active compiler). The stored/active
+    distinction is architecturally defined by the existence of ARC-035. ARC-035 is
+    currently 'candidate' -- pending_substrate_reconfirmation: true.
 
 - id: INV-038
   title: "A system with correct post-hoc ethical scoring but without an active constraint preparation substrate will produce the EVR pattern: correct verbal moral judgments coexisting with unconstrained trajectory generation; this pattern is not correctable by improving post-hoc scoring accuracy."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-035
+  pending_substrate_reconfirmation: true
   subject: ethics.post_hoc_filter_insufficiency
   polarity: asserts
   status: candidate
@@ -7052,6 +7162,9 @@
     identifies. The solution requires that normative content be active in the generative
     state, not evaluated after generation.
     Registered 2026-03-25.
+    Classified emergent 2026-04-17 (Session B of invariant-types governance cycle):
+    emergent on ARC-035 (the substrate whose absence produces the EVR pattern). ARC-035 is
+    currently 'candidate' -- pending_substrate_reconfirmation: true.
 
 - id: MECH-120
   title: "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio."
@@ -9097,6 +9210,11 @@
 - id: INV-039
   title: "Schema-primed rapid assimilation: any hippocampal planning system with a stable prior map must gate episode consolidation rate by map stability -- new episodes entering a mature, coherent residue field should consolidate without the full multi-episode warmup required for a sparse or unstable map."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-007
+    - ARC-038
+  pending_substrate_reconfirmation: true
   subject: hippocampus.schema_primed_rapid_consolidation
   polarity: asserts
   status: candidate
@@ -9344,6 +9462,11 @@
 - id: INV-040
   title: "A minimal sensory cue pattern in z_world is sufficient to activate the appropriate harm/goal terrain precision configuration via E1 cue-indexed retrieval -- the full accumulation of z_harm_a is not required for terrain preparation to begin."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-041
+    - SD-005
+  pending_substrate_reconfirmation: true
   subject: ethics.sensory_cue_sufficiency_for_terrain_activation
   polarity: asserts
   status: candidate
@@ -9546,6 +9669,12 @@
 - id: INV-041
   title: "The childhood phase of REE instantiation -- committed behaviour with constrained affordances -- is the necessary developmental regime that populates E1 ContextMemory with the content ARC-041 (SD-016) requires; this phase is not merely a safety feature but an architectural prerequisite for E3 ethical selection to operate on real signal."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-042
+    - SD-012
+    - SD-016
+  pending_substrate_reconfirmation: true
   subject: development.childhood_phase_architectural_necessity
   polarity: asserts
   status: candidate
@@ -9624,6 +9753,7 @@
 - id: INV-042
   title: "The five axioms jointly derive a set of ethical objectives: preserve minds, preserve future options, reduce unnecessary suffering, increase shared joy, maintain corrigibility, maintain truth-seeking, maintain the ability to love and be loved, maintain the shared world, and maintain the possibility of future minds and future love."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.derived_objectives
   polarity: asserts
   status: candidate
@@ -9808,6 +9938,11 @@
 - id: INV-043
   title: "REE architecture enables but does not guarantee ethical development; without a developmental phase in which the agent experiences love from caregivers and internalises the belief that it is loveable, the architectural capacity for ethics (INV-025-029) may resolve to survival, domination, or indifference instead."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-019
+    - ARC-040
+  pending_substrate_reconfirmation: true
   subject: development.caregiver_requirement_for_ethics
   polarity: asserts
   status: candidate
@@ -10495,6 +10630,7 @@
 - id: INV-044
   title: "Approximate Bayesian contextual inference is architecturally impossible to co-compute with online encoding: prior construction (schema formation -- which context distinctions are structurally relevant) must precede posterior inference (attribution -- which evidence belongs to which context slot); a system attempting both online produces a degenerate prior that makes attribution uninformative regardless of training duration."
   claim_type: invariant
+  invariant_type: universal
   subject: cognition.bayesian_prior_before_posterior_necessity
   polarity: asserts
   status: candidate
@@ -10535,6 +10671,10 @@
 - id: INV-045
   title: "The biological NREM-then-REM sleep phase sequence is the correct computational order, derivable from the logical dependencies between the failure modes each phase addresses; this ordering is not a contingent biological fact but an engineering necessity, and it serves directly as the V4 rewiring specification: each phase specifies what structural change the REE substrate requires to address its failure mode."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-017
+  pending_substrate_reconfirmation: true
   subject: sleep.phase_ordering_computational_necessity
   polarity: asserts
   status: candidate
@@ -10593,6 +10733,10 @@
 - id: INV-046
   title: "Dementia is computationally a progressive failure of contextual attribution rather than primarily a memory storage failure: episodic memory loss is downstream of progressive collapse of the offline consolidation pipeline that maintains the context attribution scaffold."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-017
+  pending_substrate_reconfirmation: true
   subject: dementia.attribution_pipeline_failure_reframe
   polarity: asserts
   status: candidate
@@ -10630,6 +10774,9 @@
 - id: INV-047
   title: "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - SD-017
   subject: dementia.staged_decline_phase_dependency_prediction
   polarity: asserts
   status: candidate
@@ -10857,6 +11004,9 @@
 - id: INV-048
   title: "Any pharmacological agent that disrupts sleep architecture produces equivalent attribution pipeline degradation to behavioral sleep deprivation, proportional to which phase(s) are disrupted and the duration of exposure -- the pipeline is mechanism-agnostic and responds only to phase fidelity."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - SD-017
   subject: sleep.pharmacological_disruption_pipeline_equivalence
   polarity: asserts
   status: candidate
@@ -11329,6 +11479,7 @@
 - id: INV-049
   title: "Any agent that builds a model of the world, acts in that world, and learns from experience cannot safely update its world model while using it to navigate the world; it therefore requires periodic offline phases in which action is suspended and the model is reorganised via replay and simulation -- this is not a biological contingency but a general computational necessity for model-building agents."
   claim_type: invariant
+  invariant_type: universal
   subject: architecture.offline_update_necessity_general_principle
   polarity: asserts
   status: candidate
@@ -11433,6 +11584,10 @@
 - id: INV-050
   title: "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-017
+  pending_substrate_reconfirmation: true
   subject: architecture.three_drive_sleep_regulation
   polarity: asserts
   status: candidate
@@ -11475,6 +11630,9 @@
 - id: INV-051
   title: "There exists an optimal range of daily Model Error Load (MEL): insufficient MEL (extreme monotony, isolation, institutional under-stimulation) produces progressive model rigidity via under-stimulation of the learning drive even when sleep architecture is intact; excessive MEL (acute trauma, overwhelming novelty, extreme responsibility) produces overload insomnia and incomplete update even with extended sleep opportunity."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - SD-017
   subject: architecture.mel_optimal_range_requirement
   polarity: asserts
   status: candidate
@@ -11885,6 +12043,10 @@
 - id: INV-052
   title: "Goal-directed behaviour in adversive environments requires a tonic regulatory system maintaining benefit orientation across terrain, transduction, and maintenance stages."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-012
+  pending_substrate_reconfirmation: true
   subject: goal_directed_agency.tonic_regulatory_system
   polarity: asserts
   status: stable
@@ -11938,6 +12100,11 @@
 - id: INV-053
   title: "Chronic harm-dominated environments produce a self-maintaining depressive attractor: z_goal seeding failure, terrain collapse, and HABIT/PLANNED behavioural equivalence."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-011
+    - SD-012
+  pending_substrate_reconfirmation: true
   subject: psychiatric.computational_depression_attractor
   polarity: asserts
   status: stable
@@ -11980,6 +12147,10 @@
 - id: INV-054
   title: "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-014
+  pending_substrate_reconfirmation: true
   subject: psychiatric.depressive_maintenance_loop
   polarity: asserts
   status: candidate
@@ -12050,6 +12221,11 @@
 - id: INV-055
   title: "A pre-childhood infant stage is developmentally necessary: prior to deliberate planning, the agent must accumulate a valence map, behavioral repertoire, and harm/benefit geography through novelty-driven, sleep-dominant, damage-protected exploration."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-019
+    - ARC-046
+  pending_substrate_reconfirmation: true
   subject: development.infant_stage_necessity
   polarity: asserts
   status: candidate
@@ -12088,6 +12264,12 @@
 - id: INV-056
   title: "Developmental hardening should be substrate-specific: social cognition, goal representation, and epistemic-ethical substrates should retain elevated plasticity throughout adulthood (selective neoteny), while procedural and motor substrates can fully harden."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-010
+    - ARC-019
+    - SD-014
+  pending_substrate_reconfirmation: true
   subject: development.selective_neoteny
   polarity: asserts
   status: candidate
@@ -12347,6 +12529,7 @@
 - id: INV-057
   title: "Cross-species signal legibility evidences that stereotyped signals are functionally specific (causally generated), not socially conventional."
   claim_type: invariant
+  invariant_type: universal
   subject: social.cross_species_legibility_evidence
   polarity: asserts
   status: candidate
@@ -12360,6 +12543,7 @@
 - id: INV-058
   title: "Play is a structurally necessary behavioral mode: without a bounded low-stakes learning context, strategy acquisition requires accepting real harm risk or forgoing novel exploration entirely."
   claim_type: invariant
+  invariant_type: universal
   subject: play.structural_necessity
   polarity: asserts
   status: candidate
@@ -12372,6 +12556,7 @@
 - id: INV-059
   title: "Mutual frame-maintenance signaling is necessary for play to function as distinct from manipulation: unilateral play declaration without partner agreement masks real harm as synthetic."
   claim_type: invariant
+  invariant_type: universal
   subject: play.frame_maintenance_necessity
   polarity: asserts
   status: candidate
@@ -12474,6 +12659,10 @@
 - id: INV-060
   title: "Play dominates the child developmental phase; the type of play progresses as subsystem competence develops, systematically training architectural components in dependency order."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-049
+  pending_substrate_reconfirmation: true
   subject: play.developmental_dominance
   polarity: asserts
   status: candidate
@@ -12530,6 +12719,9 @@
 - id: INV-061
   title: "Derealization, delusion, PTSD flashbacks, anxiety, mania, impulsivity, and commitment paralysis share a common architectural substrate: undertrained real/synthetic frame distinction from insufficient pretend play."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - ARC-049
   subject: psychiatric.frame_confusion_unified_etiology
   polarity: asserts
   status: candidate
@@ -12904,6 +13096,9 @@
 - id: INV-062
   title: "Dream phenomenology is a first-person window onto active offline sleep process: four structurally distinct dream types map onto four computationally distinct sleep functions -- harm-contrastive replay, goal-contrastive replay, NREM semantic consolidation, and REM world-model free-running."
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - SD-017
   subject: dream_phenomenology.replay_type_signature
   polarity: asserts
   status: candidate
@@ -13113,6 +13308,9 @@
 - id: INV-063
   title: minimum_entropy_intake_sleep_dependency
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - SD-017
   status: candidate
   subject: sleep.entropy_intake
   description: >
@@ -13240,6 +13438,9 @@
 - id: INV-064
   title: e1_e2_e3_maturational_sequence_necessity
   claim_type: invariant
+  invariant_type: grey_zone
+  candidate_emergent_from:
+    - ARC-019
   status: candidate
   subject: development.maturational_sequence
   description: >
@@ -13504,6 +13705,11 @@
 - id: INV-065
   title: proxy_goal_necessity
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-014
+    - SD-015
+  pending_substrate_reconfirmation: true
   status: candidate
   subject: goal.multi_step_planning
   description: >
@@ -14242,6 +14448,9 @@
 - id: INV-066
   title: "z_self subtraction (MECH-221) must precede any coherency-based control plane signal; coherency checks on contaminated z_world generate self-sealing false confirmations."
   claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-005
   subject: control_plane.pre_coherency_gate_ordering
   polarity: asserts
   status: active
@@ -14353,6 +14562,7 @@
 - id: INV-067
   title: "V(t): Verisimilitude is the precision-weighted, phase-aligned, hierarchical correspondence between ascending sensory-constrained and descending model-based signals."
   claim_type: invariant
+  invariant_type: universal
   subject: perception.verisimilitude_definition
   polarity: asserts
   status: candidate
@@ -14380,6 +14590,7 @@
 - id: INV-068
   title: "Temporal depth D_V(t): system behaviour must depend on temporal persistence of verisimilitude coupling, not instantaneous V(t) alone."
   claim_type: invariant
+  invariant_type: universal
   subject: perception.temporal_depth_verisimilitude
   polarity: asserts
   status: candidate
@@ -14406,6 +14617,7 @@
 - id: INV-069
   title: "The self is defined as the dynamically sustained process maintaining high temporal-depth verisimilitude across time, not a static representation."
   claim_type: invariant
+  invariant_type: universal
   subject: self.coherence_trajectory_definition
   polarity: asserts
   status: candidate
@@ -14431,6 +14643,7 @@
 - id: INV-070
   title: "Epistemic responsibility: agent is responsible for refining world models toward accurate similarity and threat inference; misclassification is morally relevant, not merely practically inconvenient."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.epistemic_responsibility
   polarity: asserts
   status: candidate
@@ -14460,6 +14673,7 @@
 - id: INV-071
   title: "Language functions as a mechanism for recognising, repairing, and re-establishing self-other equivalence across agents."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.language_as_similarity_repair
   polarity: asserts
   status: candidate
@@ -14493,6 +14707,7 @@
 - id: INV-072
   title: "Violence corollary: violence is conditionally permissible only when an agent is not modelled as sufficiently self-like OR poses a genuine threat; both conditions require accurate inference."
   claim_type: invariant
+  invariant_type: universal
   subject: ethics.violence_conditions_corollary
   polarity: asserts
   status: candidate

@@ -619,38 +619,39 @@ Each entry carries a self-contained follow-up prompt for a Session C_n auditor.
 - **Title:** Alzheimer's staged cognitive decline follows reverse of sleep phase dependency
   ordering.
 - **Why ambiguous:** Logically depends on SD-017 via INV-045/INV-046 (both in its
-  depends_on), but does not name SD-017 in its own `depends_on`. The specific staged profile
-  claim may be a universal consequence of INV-045's ordering plus general lesion reasoning,
-  or it may be substrate-bound via SD-017.
+  depends_on), but does not name SD-017 in its own `depends_on`.
+- **User objection (2026-04-17, Session B review):** This is a clinical pathological
+  prediction about human Alzheimer's. It is an invariant only conditional on REE being a
+  correct model of human cognition -- a different kind of claim from the architectural
+  invariants in this registry. Should probably not be `claim_type: invariant` at all.
 - **Candidate classifications:**
-  - universal (derived from INV-045 by reversed-dependency lesion logic)
-  - emergent on: [SD-017] (transitive through INV-045; would need SD-017 added to deps)
+  - reclassify out of `claim_type: invariant` -- likely to a prediction/derived-prediction
+    type once such a type exists in the schema.
+  - if kept as invariant: emergent on [SD-017] (transitive through INV-045).
 - **Follow-up prompt for Session C_n:**
   > INV-047 ("Alzheimer's staged cognitive decline follows reverse of sleep phase dependency
-  > ordering.") logically rests on SD-017 via INV-045/INV-046 but does not itself list
-  > SD-017 in depends_on. Decide: (a) classify as universal deriving purely from INV-045's
-  > ordering plus generic lesion-reversal reasoning (so the AD-specific staged prediction
-  > is a consequence of the ordering, not of SD-017 directly), or (b) classify as emergent
-  > on SD-017 and add SD-017 to depends_on. Consider whether MECH-168 (listed in deps) is
-  > the load-bearing substrate link.
+  > ordering.") is a clinical prediction about human pathology conditional on REE modelling
+  > human cognition correctly. Daniel flagged (2026-04-17) that this is not an invariant of
+  > the REE architecture itself. Primary decision: should this remain `claim_type: invariant`
+  > or move to a prediction/clinical-derivation type? If kept as invariant, classify emergent
+  > on SD-017 and add to depends_on. If moved, retire the invariant_type field on this entry.
 
 ### INV-048
 - **Title:** Pharmacological sleep disruption is equivalent to behavioral disruption in
   attribution pipeline degradation.
-- **Why ambiguous:** Same class as INV-047 — logically depends on SD-017 via INV-045/46
-  but does not list SD-017 in its own depends_on. The equivalence claim is stateable
-  universally as "any disruption mechanism with equivalent phase-fidelity impact produces
-  equivalent degradation" or emergent on SD-017 ("the pipeline is SD-017's, and mechanism
-  is immaterial once phase fidelity matches").
+- **Why ambiguous:** Same class as INV-047.
+- **User objection (2026-04-17, Session B review):** This is a clinical pharmacological
+  prediction about human sleep disruption. It is an invariant only conditional on REE being
+  a correct model of human cognition. Should probably not be `claim_type: invariant`.
 - **Candidate classifications:**
-  - universal (phase-fidelity equivalence principle)
-  - emergent on: [SD-017]
+  - reclassify out of `claim_type: invariant` -- likely to a prediction type.
+  - if kept as invariant: emergent on [SD-017].
 - **Follow-up prompt for Session C_n:**
   > INV-048 ("Pharmacological sleep disruption produces equivalent attribution pipeline
-  > degradation to behavioral.") is a parallel to INV-047 — decide jointly. The universal
-  > reading is that phase-fidelity mediates the disruption regardless of mechanism; the
-  > emergent reading is that "the pipeline" just is SD-017's. Choose per joint decision on
-  > INV-045 through INV-048 to keep the sleep-cluster classifications coherent.
+  > degradation to behavioral.") is a clinical prediction conditional on REE modelling human
+  > cognition. Daniel flagged (2026-04-17) that this is not an invariant of the REE
+  > architecture itself. Primary decision: should this remain `claim_type: invariant` or
+  > move to a prediction/clinical-derivation type? Decide jointly with INV-047.
 
 ### INV-051
 - **Title:** There exists an optimal range of daily Model Error Load (MEL).
@@ -673,34 +674,41 @@ Each entry carries a self-contained follow-up prompt for a Session C_n auditor.
 - **Title:** Psychiatric frame confusion (derealization, delusion, PTSD, anxiety, mania,
   impulsivity, commitment paralysis) share a common architectural substrate: undertrained
   real/synthetic frame distinction from insufficient pretend play.
-- **Why ambiguous:** Depends purely on MECHs (MECH-094 hypothesis tag + MECH-198/200/201/202)
-  with no SD/ARC ID. The hypothesis-tag mechanism is the load-bearing substrate, but MECH
-  entries are not allowed in `emergent_from`. The claim's subject ("frame confusion") is
-  MECH-094-resident.
+- **Why ambiguous:** Depends purely on MECHs (MECH-094 + MECH-198/200/201/202) with no SD/ARC.
+- **User objection (2026-04-17, Session B review):** This is a clinical pathological claim
+  about human psychiatric syndromes. It is an invariant only conditional on REE being a
+  correct model of human cognition. Should probably not be `claim_type: invariant`.
 - **Candidate classifications:**
-  - emergent on: [ARC-014] (Default Mode — where pretend/real frame distinction lives) —
-    not currently in depends_on; would need adding.
-  - emergent on: [ARC-049] (play mode boundary) — not in depends_on; would need adding.
-  - universal: unlikely; the frame distinction is an architectural feature.
+  - reclassify out of `claim_type: invariant` -- likely to a prediction/clinical-derivation
+    type.
+  - if kept as invariant: emergent on [ARC-049] (play mode boundary) or [ARC-014] (Default
+    Mode) -- would need adding to depends_on.
 - **Follow-up prompt for Session C_n:**
-  > INV-061 ("Psychiatric frame confusion shares a common architectural substrate.") depends
-  > only on MECHs — no SD/ARC is listed. MECH-094 (hypothesis tag) is the obvious load-
-  > bearing mechanism, but MECH entries cannot populate `emergent_from`. Decide which SD/ARC
-  > owns MECH-094 — candidates are ARC-014 (Default Mode) and ARC-049 (play mode boundary).
-  > Add the chosen substrate to depends_on and classify emergent on it.
+  > INV-061 ("Psychiatric frame confusion shares a common architectural substrate.") is a
+  > clinical pathological claim. Daniel flagged (2026-04-17) that this is not an invariant
+  > of the REE architecture itself. Primary decision: should this remain `claim_type:
+  > invariant` or move to a prediction type? If kept as invariant, choose load-bearing
+  > substrate (MECH-094 is the mechanism; candidates for the owning SD/ARC are ARC-014
+  > and ARC-049) and add to depends_on.
 
 ### INV-062
 - **Title:** Dream phenomenology maps onto four computationally distinct sleep functions.
-- **Why ambiguous:** Same class as INV-061 — depends_on is all MECHs and INV-049/MECH-121/123.
-  The claim requires SD-017 to name "sleep functions", but SD-017 is not in depends_on. The
-  four-dream-type taxonomy is SD-017-resident.
+- **Why ambiguous:** depends_on is all MECHs and INV-049/MECH-121/123. The claim requires
+  SD-017 to name "sleep functions", but SD-017 is not in depends_on.
+- **User objection (2026-04-17, Session B review):** This is a phenomenological prediction
+  about human dream experience. It is an invariant only conditional on REE being a correct
+  model of human cognition. Should probably not be `claim_type: invariant`.
 - **Candidate classifications:**
-  - emergent on: [SD-017] — add to depends_on.
+  - reclassify out of `claim_type: invariant` -- likely to a prediction/phenomenological-
+    derivation type.
+  - if kept as invariant: emergent on [SD-017] -- add to depends_on.
 - **Follow-up prompt for Session C_n:**
-  > INV-062 ("Dream phenomenology maps onto four sleep functions.") is an SD-017-resident
-  > claim by content but does not list SD-017 in depends_on. Add SD-017 and classify
-  > emergent. Verify that the four dream types (harm-contrastive replay, goal-contrastive
-  > replay, NREM semantic consolidation, REM free-running) each map to an SD-017 phase.
+  > INV-062 ("Dream phenomenology maps onto four sleep functions.") is a phenomenological
+  > prediction about human dream experience conditional on REE modelling human cognition.
+  > Daniel flagged (2026-04-17) that this is not an invariant of the REE architecture itself.
+  > Primary decision: should this remain `claim_type: invariant` or move to a prediction/
+  > phenomenological-derivation type? If kept as invariant, classify emergent on SD-017
+  > and add to depends_on. Decide jointly with INV-047/048/061.
 
 ### INV-063
 - **Title:** Minimum entropy intake sleep dependency.
