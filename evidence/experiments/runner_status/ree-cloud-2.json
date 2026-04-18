@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 3055,
   "runner_started_at": "2026-04-18T20:08:38.546483+00:00",
-  "last_updated": "2026-04-18T22:58:01.048966+00:00",
+  "last_updated": "2026-04-18T23:00:20.064638+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -46,17 +46,6 @@
       "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 86.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 104.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -1749,6 +1738,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-2",
       "actual_secs": 35.6
+    },
+    {
+      "queue_id": "V3-EXQ-418b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_SLEEP_SD016 seed=56 slot_div=0.1525 action_bias_div=0.0000 eval_harm_rate=0.0692 n_safe=488 n_dang=199 | verdict: C1_bias_threshold=False (0/3 seeds), C2_bias_improvement=False (0/3 seeds), C3_slot_div=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-18T22:58:03.706075+00:00",
+      "completed_at": "2026-04-18T23:00:20.064493+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 136.4
     }
   ]
 }
