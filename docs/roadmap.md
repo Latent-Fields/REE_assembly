@@ -14,6 +14,54 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-18)
+
+- **SD-003 superseded.** After 28 accumulated FAILs across the two-pass counterfactual
+  architecture, SD-003 was flipped to `superseded` with `superseded_by: [MECH-256, SD-029]`.
+  New claims registered: MECH-256 (general single-pass forward-model comparator,
+  stream-agnostic; Frith/Shergill/Haggard/Blakemore biology), MECH-257 (dual-function
+  single-substrate E2: comparator vs evaluator, controller-gated), SD-029 (concrete
+  z_harm_s instantiation of MECH-256), SD-030 (z_self stream, V4-deferred), SD-031
+  (z_world stream, V4-deferred). Architecture doc:
+  `docs/architecture/self_attribution_per_stream.md`. claims.yaml: 491 claims (+5).
+- **V3-EXQ-433 queued (SD-003 successor test, next-up).** Event-conditioned single-pass
+  comparator test on z_harm_s: residual = z_harm_s_observed − E2_harm_s(z_harm_s_{t−1},
+  a_actual). SD-013 interventional training (fraction=0.5) during P1; P2 uses event-density
+  controller that extends up to 200 episodes until ≥20 env-caused and ≥20 agent-caused
+  hazards per seed (fixes EXQ-431 sample starvation). Criteria: C1 forward_r2 ≥ 0.9, C2
+  self/ext attenuation ratio ∈ [0.3, 0.7] (Shergill), C3 approach SNR > 3, C4 density
+  floor; PASS needs 3/4 seeds. Substrate prerequisites (ARC-033, SD-013, SD-011) all
+  implemented — SD-029 is a read-mode claim over existing substrate.
+- **Governance cycle 2026-04-18 (governance-2026-04-18-15z).** 2 `pending_user`
+  recommendations applied as `hold_pending_v3_substrate`: SD-014 (implementation_phase=v3,
+  4 supports/0 weakens lit-only) and SD-023 (override of indexer's promote_to_provisional
+  to hold, with EXQ-332a indexed non_contributory). Pipeline clean (validator OK 68/68,
+  772 runs indexed). **Pending review cleared: 0.**
+- **New lit-pulls (wave 1):** LIT-0092 (MECH-104 LC-NE volatility; Sara 2009 Nat Rev
+  Neurosci filled triangulation), LIT-0097 (INV-053 depression attractor; Huys/Daw/Dayan
+  2015 added as HDD contrast class — HDD and INV-053 are complementary not identical).
+  Plus three lit-pulls informing SD-003 successor design (comparator, evaluator, mode
+  distinction modes). Literature entries: 741 (+14).
+- **New experiments queued (wave 2):** V3-EXQ-434 (INV-053 depression attractor replication,
+  5-seed LONG_HORIZON), V3-EXQ-435 (INV-054 phase-transition recovery, sustained-crossing
+  criterion, supersedes EXQ-278), V3-EXQ-436 (SD-017 sleep phase ablation redesign with
+  context-conditioned harm threshold, supersedes EXQ-242).
+- **ree-cloud-2 onboarded.** Second Hetzner cloud worker (CX22 nbg1, IPv4 116.203.216.181)
+  brought online. Parameterised systemd service template; cloud-scaler.yml extended to a
+  two-server loop (ree-worker-1/ree-cloud-1 + ree-worker-2/ree-cloud-2); validator
+  whitelist extended; contributor JSON registered. First real claim was V3-EXQ-355b
+  (ARC-038 schema assimilation) rather than the dedicated smoke, because the runner's
+  iteration order put the smoke behind any-affinity items — de facto pipeline verification.
+- **772 runs indexed; 517 queue-level completions in runner_status.json**
+  (102 PASS / 238 FAIL / 63 ERROR / 114 UNKNOWN).
+- **Current bottleneck: SD-003 successor architecture validation + first-paper gate.**
+  Active queue (17 items): V3-ONBOARD-smoke-ree-cloud-2, V3-EXQ-433 (SD-029 event-conditioned
+  comparator, next-up), V3-EXQ-326, V3-EXQ-330a, V3-EXQ-328b, V3-EXQ-326a, V3-EXQ-407,
+  V3-EXQ-332, V3-EXQ-321c, V3-EXQ-325b, V3-EXQ-355b, V3-EXQ-418b, V3-EXQ-434, V3-EXQ-435,
+  V3-EXQ-436, V3-EXQ-406b, V3-EXQ-429b.
+
+---
+
 ## Status Snapshot (2026-04-17)
 
 - **New substrate: SD-016 (frontal cue-indexed integration) implemented 2026-04-16.** E1 queries ContextMemory via z_world using world_query_proj; cue_action_proj provides affordance bias to E2; cue_terrain_proj provides (w_harm, w_goal) terrain precision weights to E3. Config: E1Config.sd016_enabled (default False, backward compatible). Design doc: `REE_assembly/docs/architecture/sd_016_frontal_cue_integration.md`. Validation experiment V3-EXQ-418a queued with terrain_loss fix.
@@ -649,23 +697,31 @@ Added from V1 learning:
 
 ## Immediate Work Queue (This Cycle)
 
-**Current step: First-Paper Gate Experiments (as of 2026-04-15)**
+**Current step: SD-003 Successor Validation + First-Paper Gate (as of 2026-04-18)**
 
 SD-004 through SD-023 all implemented. ARC-033, MECH-090 (bistable + Layer 1 trajectory
 stepping), MECH-091 Layer 2 urgency interrupt, MECH-120, MECH-203/204, MECH-205, MECH-216
-implemented. EXQ-327 PASS (MECH-163 goal-conditioned nav), EXQ-365 PASS (MECH-104 surprise
-gate), EXQ-330a PASS (SD-013 interventional at frac=0.5). MECH-231 promoted provisional.
-MECH-232/233/ARC-057 registered (hippocampal valence asymmetry). 0 pending review.
+implemented. **SD-003 superseded 2026-04-18** by MECH-256 + SD-029 + MECH-257. Governance
+cycle 2026-04-18 applied 2 hold_pending_v3_substrate (SD-014, SD-023). 0 pending review.
+Second Hetzner worker (ree-cloud-2) onboarded.
 
-1. **EXQ-321a** (MECH-090 bistable gate retest; E2 world-forward training added to fix EXQ-321).
-2. **EXQ-325a** (SD-021 descending pain modulation retest; E2 world-forward training fix).
-3. **EXQ-353** (ARC-033/SD-003/SD-013 interventional vs observational counterfactual):
-   full paired comparison to confirm lift from interventional training.
-4. **EXQ-323a** (SD-019 harm nonredundancy on SD-022 substrate; correct 7-dim harm_obs_a).
-5. **EXQ-396a** (ARC-016 precision sweep dual-bug fix: rv update in training + no eval reset).
-6. **EXQ-385** (INV-049 offline consolidation necessity / sleep ablation pair).
-7. **EXQ-406** (INV-053 depression attractor replication; 5-seed LONG_HORIZON characterisation).
-8. **EXQ-326a** (SD-015 nav + MECH-229 behavioral dissociation in nav context).
+1. **V3-EXQ-433** (SD-029 event-conditioned single-pass comparator on z_harm_s — decisive
+   test of the new self-attribution topology after SD-003 supersession; next-up priority=60).
+2. **V3-ONBOARD-smoke-ree-cloud-2** (second Hetzner worker calibration smoke).
+3. **V3-EXQ-321c** (MECH-090 bistable vs legacy gate hold rate, spike-aligned E3-tick fix).
+4. **V3-EXQ-325b** (SD-021 descending pain modulation retest, E2 world-forward training fix).
+5. **V3-EXQ-330a** (SD-013 contrastive counterfactual retest).
+6. **V3-EXQ-418b** (SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss).
+7. **V3-EXQ-326 / V3-EXQ-326a** (SD-015 wanting-gradient nav and MECH-229 behavioral
+   dissociation fix).
+8. **V3-EXQ-434 / V3-EXQ-406b** (INV-053 depression attractor replication; 5-seed
+   LONG_HORIZON characterisation).
+9. **V3-EXQ-435** (INV-054 phase-transition recovery, sustained-crossing criterion,
+   supersedes EXQ-278).
+10. **V3-EXQ-436** (SD-017 sleep phase ablation redesign with context-conditioned harm
+    threshold, supersedes EXQ-242).
+11. **V3-EXQ-429b** (INV-044 Bayesian prior-before-posterior; SWS-ordered vs REM-only).
+12. **V3-EXQ-407** (MECH-231 E2 short-horizon efference-copy discriminative pair).
 
 ---
 
