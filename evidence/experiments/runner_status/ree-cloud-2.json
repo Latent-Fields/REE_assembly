@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 3055,
   "runner_started_at": "2026-04-18T20:08:38.546483+00:00",
-  "last_updated": "2026-04-18T22:57:21.552928+00:00",
+  "last_updated": "2026-04-18T22:58:01.048966+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -35,17 +35,6 @@
       "title": "MECH-090 bistable vs legacy gate hold rate: spike-aligned E3-tick test (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 52.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-324c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 86.7,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -1746,6 +1735,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-2",
       "actual_secs": 52.3
+    },
+    {
+      "queue_id": "V3-EXQ-324c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=45: PASS surp_pe=0.4409 surp_ema=0.1949 n_eval=400 c1=True c2=True c3=True | seed=46: FAIL surp_pe=0.0643 surp_ema=0.2608 n_eval=400 c1=False c2=False c3=True | Output written: /home/ree/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_324b_sd020_harm_surprise_pe_20260418T225726Z_v3.json",
+      "started_at": "2026-04-18T22:57:25.494806+00:00",
+      "completed_at": "2026-04-18T22:58:01.048461+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 35.6
     }
   ]
 }
