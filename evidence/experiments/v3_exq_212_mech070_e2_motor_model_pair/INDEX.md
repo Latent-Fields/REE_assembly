@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_212_mech070_e2_motor_model_pair
 
-Generated: `2026-04-17T21:09:57.099324Z`
+Generated: `2026-04-18T14:48:15.156999Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -8,10 +8,11 @@
   ],
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
-    "SD-003": "does_not_support",
-    "SD-013": "supports"
+    "SD-003": "superseded",
+    "SD-013": "superseded"
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Governance-2026-04-18: Superseded by full run v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3. This dry run produced near-zero event counts (n_agent=0 across all seeds in c3_details) and was exploratory; it is replaced by the full run with matching config + longer episode budget. Excluded from confidence/conflict scoring.",
   "outcome": "FAIL",
   "criteria": {
     "c1_forward_r2_pass": true,

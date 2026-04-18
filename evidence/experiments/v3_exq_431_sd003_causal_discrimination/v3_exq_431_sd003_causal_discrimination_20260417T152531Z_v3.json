@@ -8,10 +8,11 @@
   ],
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
-    "SD-003": "does_not_support",
+    "SD-003": "non_contributory",
     "SD-013": "supports"
   },
   "evidence_direction": "does_not_support",
+  "evidence_direction_note": "Governance-2026-04-18: SD-003 per-claim direction reclassified from does_not_support to non_contributory. agent_caused_hazard event counts were catastrophically skewed across seeds (seed 42=1, seed 7=156, seed 13=2), preventing C3 learned_lift from being evaluated on a balanced sample. Forward R2 PASS (0.998/0.988/0.998) confirms the E2_harm_s pipeline converges; C3 FAIL is a sampling-starvation artifact of the environment config, not a refutation of SD-003. SD-013 per-claim direction stays supports (interventional-training differentiation via C1/C2 PASS).",
   "outcome": "FAIL",
   "criteria": {
     "c1_forward_r2_pass": true,

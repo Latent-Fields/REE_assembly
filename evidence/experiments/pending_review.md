@@ -1,15 +1,17 @@
 # Pending Experiment Review
 
-Generated: `2026-04-17T21:06:04Z`  
-Last review: `2026-04-17T14:17:55Z`  
-Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-04-18T15:07:11Z`  
+Last review: `2026-04-18T15:07:03Z`  
+Pending: **2** item(s) -- 0 PASS, 0 FAIL, 2 runner-only (ERROR/UNKNOWN/smoke)
 
-## FAIL (action required)
+## Needs discussion (ERROR / UNKNOWN / smoke)
 
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_431_sd003_causal_discrimination_dry_20260417T142339Z_v3` | 2026-04-17T14:23 | SD-003, SD-013 | — |
-| `v3_exq_431_sd003_causal_discrimination_dry_20260417T143459Z_v3` | 2026-04-17T14:34 | SD-003, SD-013 | — |
+These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
+
+| Queue ID | Result | Script | Notes |
+|----------|--------|--------|-------|
+| `V3-EXQ-431` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-332a` | UNKNOWN | `?` | UNKNOWN |
 
 ---
 

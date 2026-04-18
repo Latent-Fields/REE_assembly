@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-16T21:15:24Z",
+  "last_updated_utc": "2026-04-18T15:07:03Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -36,7 +36,7 @@
       "implementation_hint": "E2_harm_s is implemented (ARC-033) but training requires counterfactual perturbation signal to avoid bias in causal_sig. Add contrastive counterfactual action pair during E2_harm_s training: for each transition, sample a_cf != a_actual, compute predicted z_harm_s_cf, train E2_harm_s to produce divergent outputs for actual vs counterfactual actions. Validates SD-003 z_harm_s attribution pipeline.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-13-b",
+      "last_seen_session": "governance-2026-04-18",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -367,12 +367,18 @@
           "experiment_type": "v3_exq_261_sd021_descending_pain_mod",
           "metric": "non_contributory: SD-021 requires commitment-gated precision modulation of z_harm_s; ARC-016 and MECH-090 not fully implemented",
           "target": "z_harm_s PE suppressed during committed trajectories (endogenous analgesia analog); measurable as lower z_harm_s_norm during COMMITTED vs UNCOMMITTED episodes under matched harm exposure"
+        },
+        {
+          "run_id": "v3_exq_325a_sd021_descending_pain_modulation_20260417T090811Z_v3",
+          "experiment_type": "v3_exq_325a_sd021_descending_pain_modulation",
+          "metric": "DESCENDING and CONTROL conditions produced bit-identical z_harm_s_mean_committed and z_harm_a_mean_committed values per seed (matching to 10 decimal places) despite n_committed_steps=6000 in both. Condition-dispatch bug: harm_descending_mod_enabled flag not routed differentially.",
+          "target": "z_harm_s_norm ratio (committed/uncommitted) < 0.7 in MODULATION_ON vs no effect in MODULATION_OFF, with measurable DESCENDING vs CONTROL divergence"
         }
       ],
       "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward. MECH-090 bistable latch and ARC-016 wiring now both implemented. SD-020 also implemented (precision-weighted PE target for z_harm_s training).",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-16",
+      "last_seen_session": "governance-2026-04-18",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -398,9 +404,17 @@
             "substrate_state": "SD-021 fully wired (ARC-016 + MECH-090 implemented); MODULATION_ON vs MODULATION_OFF conditions",
             "metric_value": null,
             "metric_notes": "non_contributory (governance-2026-04-11b). n_committed_steps=0 across all 5 seeds in both conditions. Beta_gate elevation never fires -- DESCENDING=CONTROL identically because the attenuation pathway is never reached. Same total_committed_steps=0 blocker confirmed in EXQ-321 (MECH-090) and EXQ-261 (prior SD-021 run). The wiring is present; the training curriculum does not reliably produce committed-mode sequences. Committed sequence generation is the rate-limiting prerequisite."
+          },
+          {
+            "run_id": "v3_exq_325a_sd021_descending_pain_modulation_20260417T090811Z_v3",
+            "experiment_type": "v3_exq_325a_sd021_descending_pain_modulation",
+            "date_utc": "2026-04-17",
+            "substrate_state": "Commit substrate now fires (n_committed_steps=6000 both conditions) after beta_gate_bistable=True fix; SD-021 wiring in place",
+            "metric_value": null,
+            "metric_notes": "non_contributory (governance-2026-04-18). Commit substrate is no longer the blocker -- DESCENDING and CONTROL produced bit-identical values per seed, indicating harm_descending_mod_enabled flag is not dispatched differentially between conditions. Condition-dispatch bug in the experiment harness. Flagged for /diagnose-errors."
           }
         ],
-        "current_blocker": "SD-021 depends on MECH-090 committed-mode being active during evaluation (total_committed_steps > 0). EXQ-321 confirmed the same blocker: 5 seeds, all conditions, total_committed_steps=0. Committed sequence generation is the rate-limiting substrate gap for both MECH-090 and SD-021. See MECH-090 staircase: EXQ-049 (gate bypassed) -> EXQ-059b (routing fixed, variance=0) -> EXQ-139 (committed_seq_len=0) -> EXQ-321 (committed_steps=0). The blocker is training curriculum, not wiring.",
+        "current_blocker": "Condition-dispatch bug: EXQ-325a confirmed commit substrate now fires (6000 committed steps/condition) but DESCENDING and CONTROL conditions produce bit-identical outputs. harm_descending_mod_enabled flag is not being routed differentially in the harness. /diagnose-errors must resolve the dispatch routing before SD-021 can be validated.",
         "prediction": {
           "expected_value": "z_harm_s_norm ratio < 0.7 in MODULATION_ON once committed sequences are reliably generated",
           "rationale": "When MECH-090 bistable gate is exercised (committed_steps > 0), the descending modulation pathway is wired and should produce PE suppression. The biological analog (descending PAG-RVM modulation, Basbaum & Fields) is well-established. The question is implementation fidelity, not mechanism plausibility. Once committed sequences are generated, this should be a relatively clean PASS -- the gating mechanism is implemented, just never exercised.",

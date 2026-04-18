@@ -5653,6 +5653,13 @@
     EXQ-353 (2026-04-15, PASS, supports): Interventional vs observational training
     distinguished. SD-003 tagged as supports alongside ARC-033 and SD-013. Confirms
     the counterfactual pipeline architecture is differentiable via training signal.
+    EXQ-431 (2026-04-17, full run, FAIL): Originally tagged does_not_support for SD-003.
+    Governance reclassified to non_contributory (2026-04-18): agent_caused_hazard event
+    counts catastrophically skewed (seed 42=1, seed 7=156, seed 13=2); C3 learned_lift
+    fails on sample starvation, not mechanism refutation. C1 forward_r2 PASS (0.998/0.988/0.998)
+    confirms ARC-033 forward model sound. Dry-run predecessors (T142339Z, T143459Z) marked
+    superseded. SD-003 adjudication pending a re-run with event-density controls that guarantee
+    a minimum agent_caused_hazard count per seed.
   depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033, SD-013]
   location: docs/architecture/sd_003_experiment_design.md
 
@@ -5871,7 +5878,7 @@
   claim_type: design_decision
   subject: harm_stream.dual_nociceptive_streams
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   claim_level: architectural
   depends_on: [SD-010, ARC-027]
@@ -5960,6 +5967,11 @@
     EXQ-323a (2026-04-16, PASS): First PASS on body-damage substrate (SD-022 enabled).
     z_harm_a representationally distinct from z_harm_s across all 5 seeds. D3 reversal
     absent. Co-tested with SD-019 and SD-022; all three tagged as supports.
+    Governance decision (2026-04-18): promoted candidate -> provisional. conf=0.844,
+    conflict=0.32, 26 supports / 5 weakens / 3 mixed across 42 experiments + 17 lit.
+    Downstream claims (SD-003, SD-013, SD-021, ARC-033) cascade off SD-011; promotion
+    reflects its structural role and strong convergent evidence. Full stable status
+    withheld pending SD-003 / ARC-033 resolution + conflict ratio below 0.3.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -8366,6 +8378,14 @@
     shuffled-action baseline with a 1.2x threshold and passes (all seeds 1.34-1.69x
     lift). EXQ-330a's FAIL is a threshold calibration issue, not mechanism failure.
     SD-013 direction remains supports.
+    EXQ-431 (2026-04-17, full run): SD-013 tagged supports. Interventional vs random
+    conditions distinguished at forward_r2 and sign_correct_env level (C1/C2 PASS).
+    Now 10 experimental entries (9 supports / 1 weakens effective).
+    Governance decision (2026-04-18): hold at provisional. Recommendation was
+    promote_to_stable but dependencies SD-003, SD-011, ARC-033 remain candidate
+    (SD-011 promoted to provisional this session). Stable status would be premature
+    given unresolved upstream substrate gaps. Revisit once SD-003 C3 sample-starvation
+    is resolved and ARC-033 resolves its conflict.
   implementation_note: >
     IMPLEMENTED 2026-04-10. E2HarmSConfig: use_interventional (bool, False default),
     interventional_fraction (float, 0.3), interventional_margin (float, 0.1).
@@ -8476,6 +8496,10 @@
     striatum in sleep replay -- supports node-as-write-address architecture).
     Two experiments required before implementation: EXP-0098 (approach behaviour / w/l
     dissociation) and EVB-0132 revaluation paradigm (replay gate function).
+    Governance decision (2026-04-18): hold_pending_v3_substrate confirmed. SD-014
+    depends on SD-011 and SD-012 (still candidate/provisional) plus ARC-036, and
+    no evidential experiments have run yet. V3-EXQ-432 (SD-014 validation) queued
+    to produce first evidence.
   experimental_test: >
     Discriminative pair (EXP-0098). Two conditions: UNIFIED_VALUE (single composite reward
     signal, current architecture) vs DISSOCIATED_VALENCE (separate w and l tracking, SD-014
@@ -13882,6 +13906,14 @@
     genuine evidential run. EXQ-332 is the first real test; result is
     does_not_support. Flagged for /diagnose-errors: check whether resource_obs_scale
     attenuation is sufficient for temporal salience encoding.
+    EXQ-332a (2026-04-18, diagnostic FAIL, non_contributory per governance
+    2026-04-18): C1 future_target_corr=0.013 and C3 positive_label_rate=0.00128
+    (threshold 0.10) mean the supervision density is two orders of magnitude
+    below what the diagnostic requires. This is a measurement/design gap, not a
+    mechanism refutation -- the current future-target-window scheme does not
+    produce enough positive labels to learn predictive structure. Measurement
+    redesign (reward-dense episodes, longer windows, or denser aux signal)
+    required before MECH-216 can be re-adjudicated. Hold at provisional.
 
 - id: MECH-217
   title: temporal_wanting_propagation
@@ -14097,6 +14129,13 @@
     subregions. Hofbauer 2001 double dissociation shows the architecture for selective
     S1-only suppression exists; whether commitment specifically recruits it (vs also
     suppressing ACC) is an open empirical question that EXQ-325b should probe.
+    EXQ-325a (2026-04-17, FAIL) reclassified non_contributory by governance
+    2026-04-18: DESCENDING and CONTROL conditions produced bit-identical values per
+    seed (z_harm_s_mean_committed and z_harm_a_mean_committed match to 10 decimal
+    places across conditions) despite n_committed_steps=6000 in both (commit substrate
+    now fires). Condition-dispatch bug: harm_descending_mod_enabled flag is not being
+    routed differentially between conditions. Flagged for /diagnose-errors. Hold at
+    candidate pending dispatch fix and re-run (EXQ-325b).
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while
@@ -14237,6 +14276,14 @@
     decision (retain_ree/hybridize/retire) pending EXQ-332a result, deadline 2026-04-20.
     If C3 fails again in 332a, result is non_contributory and a redesigned measurement
     approach is needed before the decision can be made.
+    EXQ-332a (2026-04-18, FAIL, non_contributory per governance 2026-04-18):
+    C3 positive_label_rate=0.00128 (threshold 0.10) -- sparse-label problem
+    recurred despite the 332a redesign. Governance decision: HOLD at candidate.
+    Adjudication blocked until measurement redesign delivers sufficient label
+    density; defer retain_ree/hybridize/retire call past 2026-04-20 deadline.
+    Next substrate iteration must guarantee >=10% positive-label density across
+    training (e.g. reward-dense curriculum, longer future window, or denser aux
+    supervision).
   notes: >
     The principle "all objects emit, each type distinctively" is biologically grounded:
     in natural environments every object has a detectable presence (olfactory, acoustic,
@@ -15147,7 +15194,7 @@
   claim_type: mechanism_hypothesis
   subject: drive.goal_state_latent_structure
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   split_from: MECH-112
   registered: "2026-04-13"
@@ -15189,6 +15236,11 @@
     Governance decision (2026-04-17): hold at candidate -- substrate gap. EXQ-328b
     non_contributory. No new experiments until E1-frontal->hippocampal navigation
     wiring is implemented.
+    Governance decision (2026-04-18): promoted candidate -> provisional. conf=0.814,
+    conflict=0, 4 supports / 0 weakens / 1 mixed after EXQ-328a/328b reclassifications.
+    Substrate gap (E1-frontal -> hippocampal goal projection) still blocks full
+    validation -- promotion reflects current evidence strength + zero conflict, not
+    closure of the substrate question.
 
 - id: Q-038
   title: "Is temporal-depth verisimilitude D_V explicitly represented as a signal or does it emerge from distributed dynamics without local representation?"

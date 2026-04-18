@@ -6,7 +6,11 @@
     "SD-021"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-021": "non_contributory"
+  },
+  "evidence_direction_note": "Governance-2026-04-18: Reclassified from does_not_support to non_contributory. DESCENDING and CONTROL conditions produced bit-identical values per seed (z_harm_s_mean_committed and z_harm_a_mean_committed match to 10 decimal places across conditions), indicating harm_descending_mod_enabled flag is not being dispatched differentially between conditions. This is a condition-dispatch bug (or both conditions share the same code path), not a refutation of SD-021. n_committed_steps=6000 in both conditions confirms the beta_gate commit substrate is working. Flagged for /diagnose-errors -- investigate config routing for descending_attenuation_factor in the experiment harness.",
   "supersedes": "v3_exq_325_sd021_descending_pain_modulation",
   "registered_thresholds": {
     "C1_z_harm_s_ratio_reduced": 0.0,
