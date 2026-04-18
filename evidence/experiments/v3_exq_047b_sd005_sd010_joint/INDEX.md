@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_047b_sd005_sd010_joint
 
-Generated: `2026-04-18T17:26:34.010307Z`
+Generated: `2026-04-18T17:52:44.789788Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

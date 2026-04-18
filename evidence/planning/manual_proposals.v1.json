@@ -510,7 +510,10 @@
       "priority": "high",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "proposed",
+      "status": "executed",
+      "executed_by": "V3-EXQ-433",
+      "executed_queue_id": "V3-EXQ-433",
+      "executed_utc": "2026-04-18T17:33:05Z",
       "objective": "First V3 test of SD-029 (single-pass z_harm_s comparator). Replace mean-cf-gap with event-conditioned residual analysis on approach-to-harm events; include event-density controls (guaranteed minimum agent-caused-hazard events per seed) to fix the EXQ-431 sample-starvation failure mode.",
       "design": "Train E2_harm_s with SD-013 interventional contrast (counterfactual perturbation during training). Evaluate residual_harm = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual) per step. Tag steps by event type (approach-to-harm, self-caused-hazard, externally-caused-hazard, baseline). Compute residual magnitude per event class, expect partial attenuation on self-caused relative to externally-caused (Shergill ~50% pattern). PASS: C1 forward_r2 >= 0.9; C2 self-vs-external attenuation ratio between 0.3-0.7 (partial, not binary); C3 SNR > 3 on approach-to-harm events. Event-density control: reject seeds with <20 agent-caused-hazard events; resample until density target met. 4 seeds.",
       "claims_tested": [

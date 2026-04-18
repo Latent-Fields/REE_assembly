@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 47366,
   "runner_started_at": "2026-04-18T14:16:12.997822+00:00",
-  "last_updated": "2026-04-18T15:38:54.326789+00:00",
+  "last_updated": "2026-04-18T17:58:06.698736+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-375a",
@@ -13,21 +13,21 @@
     "script": "experiments/v3_exq_375_mech073_valence_geometry_probe.py",
     "started_at": "2026-04-18T14:16:14.511889+00:00",
     "progress": {
-      "run_label": "Seed 42 / VALENCE_GEOM",
+      "run_label": "Seed 7 / VALENCE_ABLATED",
       "runs_done": 0,
       "runs_total": 6,
-      "episodes_done": 160,
+      "episodes_done": 80,
       "episodes_total": 200,
-      "overall_pct": 13.3
+      "overall_pct": 6.7
     },
-    "seconds_elapsed": 4960,
-    "seconds_remaining": 21930,
+    "seconds_elapsed": 13312,
+    "seconds_remaining": 57398,
     "recent_lines": [
-      "Seed 42 Condition VALENCE_GEOM",
-      "[train] seed=42 VALENCE_GEOM ep 40/200 phase=P0 benefit=0.581 harm=1.148",
-      "[train] seed=42 VALENCE_GEOM ep 80/200 phase=P0 benefit=0.000 harm=0.781",
-      "[train] seed=42 VALENCE_GEOM ep 120/200 phase=P1 benefit=0.000 harm=0.583",
-      "[train] seed=42 VALENCE_GEOM ep 160/200 phase=P1 benefit=0.000 harm=0.641"
+      "[train] seed=7 VALENCE_GEOM ep 200/200 phase=P2 benefit=0.598 harm=0.388",
+      "verdict: auroc=0.9769 centers=32 n_harm=92 n_safe=7908",
+      "Seed 7 Condition VALENCE_ABLATED",
+      "[train] seed=7 VALENCE_ABLATED ep 40/200 phase=P0 benefit=0.000 harm=0.053",
+      "[train] seed=7 VALENCE_ABLATED ep 80/200 phase=P0 benefit=1.179 harm=0.205"
     ],
     "ree_version": "v3"
   },
