@@ -1,23 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 3200,
-  "runner_started_at": "2026-04-17T15:16:22.084784+00:00",
-  "last_updated": "2026-04-17T15:16:23.975050+00:00",
+  "runner_pid": 63876,
+  "runner_started_at": "2026-04-17T15:19:26.090278+00:00",
+  "last_updated": "2026-04-18T04:08:10.802122+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-332a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-216 predictive wanting adjudication: dense environment fix (EXQ-332 sparse-label fix)",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "V3-EXQ-195",
@@ -536,6 +524,34 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 0.1
+    },
+    {
+      "queue_id": "V3-EXQ-431",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-003 causal attribution discrimination: signed directionality test (TRAINED vs RANDOM)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "C2 sign_correct_env (>=0.65): True (vals=['0.667', '0.724', '0.639']) | D1 agent_caused sign_correct: ['0.737', '0.500', '1.000'] (n=[156, 2, 1]) | D2 approach sign_correct trained/random: ['0.696', '0.569', '0.581'] / ['0.276', '0.699', '0.762']",
+      "started_at": "2026-04-17T15:25:29.999947+00:00",
+      "completed_at": "2026-04-17T21:01:09.864221+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 20140.2
+    },
+    {
+      "queue_id": "V3-EXQ-332a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-216 predictive wanting adjudication: dense environment fix (EXQ-332 sparse-label fix)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL | C1 (CUE_ON future_target_corr > 0.10): False  [0.0128] | CUE_ON  landmark_prox_corr:  -0.0354",
+      "started_at": "2026-04-17T21:01:15.206307+00:00",
+      "completed_at": "2026-04-18T04:08:10.802122+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 25615.9
     }
   ]
 }

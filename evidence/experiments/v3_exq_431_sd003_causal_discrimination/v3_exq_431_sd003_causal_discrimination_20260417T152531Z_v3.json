@@ -1,0 +1,225 @@
+{
+  "run_id": "v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3",
+  "experiment_type": "v3_exq_431_sd003_causal_discrimination",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-003",
+    "SD-013"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction_per_claim": {
+    "SD-003": "does_not_support",
+    "SD-013": "supports"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_forward_r2_pass": true,
+    "c1_vals": [
+      0.9882817163536931,
+      0.9980991332697361,
+      0.998001520581665
+    ],
+    "c1_seeds_pass": 3,
+    "c2_sign_correct_env_pass": true,
+    "c2_vals": [
+      0.6666666666666666,
+      0.7241379310344828,
+      0.639344262295082
+    ],
+    "c2_seeds_pass": 2,
+    "c3_learned_lift_pass": false,
+    "c3_lifts": [
+      0.28735632183908044,
+      -0.082313681868743,
+      -0.2302209550962223
+    ],
+    "c3_seeds_pass": 1,
+    "c4_sufficient_stats_pass": true,
+    "c4_details": [
+      {
+        "n_env": 12,
+        "n_approach": 477,
+        "ok": false
+      },
+      {
+        "n_env": 29,
+        "n_approach": 339,
+        "ok": true
+      },
+      {
+        "n_env": 61,
+        "n_approach": 547,
+        "ok": true
+      }
+    ],
+    "c4_seeds_pass": 2,
+    "d1_agent_caused_sign_correct": [
+      0.7371794871794872,
+      0.5,
+      1.0
+    ],
+    "d1_agent_caused_n": [
+      156,
+      2,
+      1
+    ],
+    "d2_approach_sign_correct_trained": [
+      0.6960167714884696,
+      0.5693215339233039,
+      0.5813528336380256
+    ],
+    "d2_approach_sign_correct_random": [
+      0.2764084507042254,
+      0.6990740740740741,
+      0.7616580310880829
+    ],
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "TRAINED",
+      "forward_r2": 0.998001520581665,
+      "sign_correct": {
+        "env_caused_hazard": 0.639344262295082,
+        "agent_caused_hazard": 1.0,
+        "hazard_approach": 0.5813528336380256
+      },
+      "causal_sig_mean": {
+        "env_caused_hazard": 0.19481707193323825,
+        "agent_caused_hazard": 0.1942298412322998,
+        "hazard_approach": 0.18625855834054772
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 61,
+        "agent_caused_hazard": 1,
+        "hazard_approach": 547
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "RANDOM",
+      "forward_r2": 0.0,
+      "sign_correct": {
+        "env_caused_hazard": 0.8695652173913043,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.7616580310880829
+      },
+      "causal_sig_mean": {
+        "env_caused_hazard": 0.17071840944497482,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.16957271894333895
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 23,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 193
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "TRAINED",
+      "forward_r2": 0.9882817163536931,
+      "sign_correct": {
+        "env_caused_hazard": 0.6666666666666666,
+        "agent_caused_hazard": 0.7371794871794872,
+        "hazard_approach": 0.6960167714884696
+      },
+      "causal_sig_mean": {
+        "env_caused_hazard": 0.16941694853206477,
+        "agent_caused_hazard": 0.14383044471152318,
+        "hazard_approach": 0.14843855707650414
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 12,
+        "agent_caused_hazard": 156,
+        "hazard_approach": 477
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "RANDOM",
+      "forward_r2": 0.0,
+      "sign_correct": {
+        "env_caused_hazard": 0.3793103448275862,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.2764084507042254
+      },
+      "causal_sig_mean": {
+        "env_caused_hazard": 0.2680974471671828,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.2628376244659155
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 58,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 568
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "TRAINED",
+      "forward_r2": 0.9980991332697361,
+      "sign_correct": {
+        "env_caused_hazard": 0.7241379310344828,
+        "agent_caused_hazard": 0.5,
+        "hazard_approach": 0.5693215339233039
+      },
+      "causal_sig_mean": {
+        "env_caused_hazard": 0.21723330740270944,
+        "agent_caused_hazard": 0.21709004044532776,
+        "hazard_approach": 0.22650978404336272
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 29,
+        "agent_caused_hazard": 2,
+        "hazard_approach": 339
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "RANDOM",
+      "forward_r2": 0.0,
+      "sign_correct": {
+        "env_caused_hazard": 0.8064516129032258,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.6990740740740741
+      },
+      "causal_sig_mean": {
+        "env_caused_hazard": 0.2123989212897516,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.2121142952668446
+      },
+      "causal_sig_counts": {
+        "env_caused_hazard": 31,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 216
+      }
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "conditions": [
+      "TRAINED",
+      "RANDOM"
+    ],
+    "p0_episodes": 100,
+    "p1_episodes": 100,
+    "p2_episodes": 100,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 3,
+    "hazard_harm": 0.3,
+    "interventional_fraction": 0.5,
+    "c2_sign_correct_env_thresh": 0.65,
+    "c3_learned_lift": 0.1,
+    "c4_min_env_events": 20,
+    "c4_min_approach_events": 20
+  },
+  "timestamp_utc": "20260417T152531Z"
+}
