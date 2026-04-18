@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 3055,
   "runner_started_at": "2026-04-18T20:08:38.546483+00:00",
-  "last_updated": "2026-04-18T23:02:09.263687+00:00",
+  "last_updated": "2026-04-18T23:12:15.278598+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -46,17 +46,6 @@
       "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 86.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-436",
-      "backlog_id": "EXP-0106",
-      "claim_id": "",
-      "title": "SD-017 sleep phase ablation redesign with context-conditioned harm threshold",
-      "description": "",
-      "estimated_minutes": 400.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -1755,6 +1744,20 @@
       "output_file": "/home/ree/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_onboard_smoke_ree_cloud_2/v3_onboard_smoke_ree_cloud_2_20260418T230208Z.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 106.0
+    },
+    {
+      "queue_id": "V3-EXQ-436",
+      "backlog_id": "EXP-0106",
+      "claim_id": "",
+      "title": "SD-017 sleep phase ablation redesign with context-conditioned harm threshold",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "c2_behavioral_harm_reduction: {'wins': 0, 'pass': False, 'desc': 'harm_dang(SWS_THEN_REM) < harm_dang(WAKING_ONLY) in >=3/5 seeds'} | c3_safe_specificity: {'count_ok': 15, 'pass': True, 'desc': 'harm_rate_safe < 0.05 in >=60% of runs'} | Output written to: /home/ree/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_436_sd017_context_cond_harm_thresh/v3_exq_436_sd017_context_cond_harm_thresh_20260418T230213Z_v3.json",
+      "started_at": "2026-04-18T23:02:12.429015+00:00",
+      "completed_at": "2026-04-18T23:12:15.278034+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 602.8
     }
   ]
 }
