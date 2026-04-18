@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_dual_function_mode_distinction",
+  "entry_id": "2026-04-18_e2_dual_shenhav2013_evc",
+  "timestamp_utc": "2026-04-18T16:49:53Z",
+  "claim_ids_tested": ["MECH-E2-DUAL-FUNCTION", "ARC-033"],
+  "source": {
+    "title": "The expected value of control: an integrative theory of anterior cingulate cortex function.",
+    "authors": ["Shenhav A", "Botvinick MM", "Cohen JD"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.07.007",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23889930/"
+  },
+  "evidence_class": "computational_theory_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "The EVC framework describes dACC as a controller that allocates cognitive control based on three arguments -- expected payoff, required control, and effort cost. Mapped to the E2 dual-function question, this supports the existence of a separate arbitration signal that decides how a forward model is used (pre-action evaluation weight vs. outcome monitoring weight) rather than a separate forward-model substrate per mode. The theory is therefore more consistent with a single-process-with-mode-dependent-readout account than with an architecturally dual-mode substrate, which is partial support for MECH-E2-DUAL-FUNCTION framed as a controller-gated readout mechanism, but weakens any framing that requires two disjoint E2 populations. Confidence held at 0.58 because the theory is computational/integrative rather than direct electrophysiology; it describes control allocation, not forward-model reuse per se, and the mapping to E2 attribution-vs-evaluation is architectural by analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If attribution (retrospective) and evaluation (prospective) use genuinely distinct neural populations with non-overlapping tuning, then EVC's single-controller-over-shared-substrate account does not transfer; a dual-mode MECH claim with separate E2_attribution and E2_evaluation substrates would be required.",
+    "If dACC's control signal turns out to be itself compositional (one subregion for attribution cost, another for evaluation cost), the apparent single-process account dissolves into a multi-module one, weakening the inference that E2 can be single-process with readout."
+  ],
+  "tags": ["e2_dual_function", "mode_distinction", "shenhav", "evc", "dacc", "control_allocation", "arc_033"],
+  "mapping": {
+    "source_claim_statement": "dACC computes the expected value of control by integrating expected payoff, amount of control required, and cost of cognitive effort. The same region outputs a unified control-allocation signal rather than distinct signals per task mode; different downstream regions read this signal differently depending on ongoing task demands.",
+    "ree_translation": "For the E2 dual-function question, EVC provides precedent for a single forward-model substrate whose output is read differently by downstream circuits depending on an upstream controller signal. E2 would compute rollouts; a controller (candidate: dACC/z_beta / E3 arbitration) would specify whether the rollout is used for prospective evaluation or retrospective attribution. This favours a single-process + mode-dependent readout account of MECH-E2-DUAL-FUNCTION rather than two dedicated E2 substrates.",
+    "mapping_caveat": "EVC is a theory of cognitive control allocation, not forward-model reuse. The mapping asserts that if the brain economises on substrate by having one controller gate mode across a shared representational resource, it would probably do the same for a forward model. This is architectural-precedent reasoning, not direct evidence that E2 (or its biological analogue) is read bimodally.",
+    "source_context": "Review in Neuron by Princeton group (Shenhav, Botvinick, Cohen). Integrative theory drawing on fMRI, lesion, single-unit, and computational modelling work. Widely cited benchmark for control-allocation accounts of PFC function."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (Neuron review, canonical reference). Mapping fidelity moderate-low: EVC does not directly address forward-model reuse across prospective/retrospective modes, so the inference is structural rather than empirical. Transfer risk is non-trivial because control-allocation machinery and forward-model substrate may not share design principles."
+  }
+}

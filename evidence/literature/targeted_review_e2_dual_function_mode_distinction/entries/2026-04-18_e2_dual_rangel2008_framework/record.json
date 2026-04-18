@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_dual_function_mode_distinction",
+  "entry_id": "2026-04-18_e2_dual_rangel2008_framework",
+  "timestamp_utc": "2026-04-18T16:49:53Z",
+  "claim_ids_tested": ["MECH-E2-DUAL-FUNCTION", "ARC-033"],
+  "source": {
+    "title": "A framework for studying the neurobiology of value-based decision making.",
+    "authors": ["Rangel A", "Camerer C", "Montague PR"],
+    "year": 2008,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2357",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/"
+  },
+  "evidence_class": "theoretical_framework_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Rangel, Camerer and Montague explicitly decompose value-based decision making into stages (representation, valuation, action selection, outcome evaluation, learning). They flag three distinct valuation systems: Pavlovian, habitual, and goal-directed. Crucially for the E2 mode question, their framework identifies valuation (prospective) and outcome evaluation (retrospective) as distinct computational stages that can (at least partly) share substrate -- the same model-based predictor is used for rollouts during goal-directed valuation and for generating prediction errors during outcome evaluation. This is mixed evidence: it supports a mode distinction at the computational-stage level (attribution vs evaluation) while also supporting shared substrate across modes (the goal-directed forward model). The exact position the paper takes is closer to: one forward-model substrate, two consumers. Confidence 0.62 -- higher than the Shenhav entries because the framework directly discusses model-based prediction and its dual use.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If habitual (model-free) and goal-directed (model-based) systems are as cleanly separated as the framework asserts, then one might argue for a dual-substrate E2 where the model-based forward model is itself decomposed into a prospective and retrospective variant. The framework leaves this ambiguous.",
+    "If the prediction-error signal feeding outcome evaluation turns out to use a different forward model (e.g. cerebellar sensorimotor) than the one used for goal-directed valuation (e.g. OFC/vmPFC value prediction), then the shared-substrate interpretation does not hold and the E2 mapping weakens."
+  ],
+  "tags": ["e2_dual_function", "mode_distinction", "rangel", "valuation", "model_based", "prediction_error", "arc_033"],
+  "mapping": {
+    "source_claim_statement": "Value-based decision making decomposes into five stages: representation, valuation, action selection, outcome evaluation, and learning. Three valuation systems (Pavlovian, habitual, goal-directed) operate in parallel. Goal-directed valuation uses a forward model of action consequences; outcome evaluation uses prediction errors that reflect the same or closely related model. Computational stages are distinct, but substrate overlap is acknowledged and expected.",
+    "ree_translation": "For E2, the Rangel framework supports the useful and likely correct picture that attribution (retrospective prediction-error computation after action) and evaluation (prospective rollout scoring before action) are distinct computational stages, not distinct substrates. One forward model supplies the prediction that both stages consume. This maps cleanly to a single-process E2 read by two consumers -- an attributional comparator during outcome evaluation, and an evaluative summariser during valuation/rollout. The framework does not, by itself, force the dual-substrate view.",
+    "mapping_caveat": "The framework is broad and does not commit to a specific neural implementation of the forward model. The model-free vs model-based distinction is strong, but within model-based valuation the framework leaves open whether prospective and retrospective uses share substrate or parcellate. Transfer to the specific E2 design question therefore requires interpretive inference rather than direct import.",
+    "source_context": "Nature Reviews Neuroscience (2008), widely cited foundational framework paper for neuroeconomics. Establishes the decomposition terminology used by most subsequent work on valuation and model-based decision making."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Very high source quality (Nature Reviews Neuroscience, foundational). Mapping fidelity moderate: the framework discusses forward-model use at the stage level, which is closer to our question than Shenhav's control-allocation focus, but still not a direct demonstration of within-population mode reuse."
+  }
+}

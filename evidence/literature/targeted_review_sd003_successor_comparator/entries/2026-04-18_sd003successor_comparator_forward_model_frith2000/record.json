@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_comparator",
+  "entry_id": "2026-04-18_sd003successor_comparator_forward_model_frith2000",
+  "timestamp_utc": "2026-04-18T16:49:50Z",
+  "claim_ids_tested": ["SD-003-SUCCESSOR", "ARC-033"],
+  "source": {
+    "title": "Abnormalities in the awareness and control of action.",
+    "authors": ["Frith CD", "Blakemore SJ", "Wolpert DM"],
+    "year": 2000,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2000.0734",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1692910/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical statement of the comparator model of agency attribution. The architecture it specifies -- a forward model that predicts sensory consequences of a motor command, a comparator that flags the mismatch between prediction and reafference, and the proposal that delusions of control arise when this comparator signal is corrupted -- is a direct biological precedent for a single-pass E2_harm_s forward model that generates a predicted next-state and compares it to observed next-state. This is cleaner than the retired SD-003 two-pass counterfactual (actual vs counterfactual action rollouts) and matches the biology more closely. Confidence moderate-high because the model is theoretical and draws on multiple experimental strands, and because the signal is described in generic sensorimotor terms rather than as a harm-specific mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The comparator signal as described in Frith 2000 is generic sensorimotor (proprioceptive and exteroceptive feedback) -- it does not specifically predict harm or nociceptive outcomes. Mapping to E2_harm_s requires an inference step that the forward-model-plus-comparator architecture extends to a harm-specific channel, which the paper does not establish.",
+    "The paper emphasises post-hoc comparison of actual and predicted sensory consequences. If the REE agent needs the comparator signal to gate attribution *before* the outcome settles (e.g. as part of commitment-boundary logic), the biological precedent is weaker.",
+    "Schizophrenia delusions of control are attributed to impairment in representing intended movements -- a failure mode in the predictor. The paper does not strongly dissociate predictor failure from comparator failure. REE would need separate diagnostics for each."
+  ],
+  "tags": ["sd-003-successor", "arc-033", "comparator_model", "forward_model", "efference_copy", "agency_attribution", "schizophrenia", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "Awareness and control of action rest on a forward model that predicts the sensory consequences of a motor command. A comparator flags the discrepancy between predicted and actual sensory feedback. Delusions of control in schizophrenia reflect failures in this comparator or its inputs: patients can no longer properly link intentions to actions.",
+    "ree_translation": "The REE successor to the retired two-pass SD-003 pipeline should be a single-pass comparator: E2_harm_s(z_harm_s_t, a_t) produces z_harm_s_pred, and the residual z_harm_s_obs - z_harm_s_pred is the agency signal. Action-caused changes are what the agent predicted; world-caused changes are what it did not. This inherits Frith 2000's architecture directly and drops the counterfactual rollout a_cf that z_world-only E2 made infeasible under SD-010 / SD-011.",
+    "mapping_caveat": "Frith 2000 frames the comparator on generic sensorimotor reafference -- tactile, proprioceptive, visual consequences of limb movement. E2_harm_s operates on a narrower, more affectively-loaded channel (nociceptive proximity / harm_obs_s). The transfer assumes the comparator architecture is substrate-independent, i.e. that any predictable reafferent channel can host it. This is plausible (the cerebellar forward model is not modality-specific) but not directly shown by Frith 2000.",
+    "source_context": "Review in Philosophical Transactions B summarising the Frith-Blakemore-Wolpert programme on motor awareness and its breakdown in schizophrenia. Integrates experimental findings from the same lab (e.g. the tickle studies, force-matching) into a unified forward-model / comparator account."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (PhilTransB, highly cited canonical review by the architects of the comparator model). Mapping fidelity moderate-high because the architecture transfers cleanly but the channel (generic sensorimotor vs harm-specific) differs. Transfer risk moderate-low: the forward-model / comparator motif is domain-general in computational terms, and REE already assumes a learnable E2_harm_s in ARC-033."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_dual_function_mode_distinction",
+  "entry_id": "2026-04-18_e2_dual_diba2007_forward_reverse",
+  "timestamp_utc": "2026-04-18T16:49:53Z",
+  "claim_ids_tested": ["MECH-E2-DUAL-FUNCTION", "ARC-033", "ARC-018"],
+  "source": {
+    "title": "Forward and reverse hippocampal place-cell sequences during ripples.",
+    "authors": ["Diba K", "Buzsaki G"],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1961",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17828259/"
+  },
+  "evidence_class": "rodent_electrophysiology",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct electrophysiological demonstration that the same hippocampal place-cell population expresses temporal sequences in two distinct temporal modes within a single behavioural session: forward sequences before a run (anticipatory, prospective), reverse sequences at the end of a run (retrospective, reflecting just-completed trajectory). Both modes ride on sharp-wave ripple events and use overlapping cell populations. The forward/reverse directionality is the strongest biological instance of a single substrate expressing bidirectional predictive/retrospective readouts tied to behavioural phase. Direction is supports (not mixed) because the paper directly shows the behavioural-phase-dependent readout of one population in two computational modes. Confidence 0.72 -- the highest in this pull because the mapping to attribution (retrospective) vs. evaluation (prospective) is unusually crisp.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Forward and reverse sequences in the hippocampus are time-compressed within sharp-wave ripples; both fall within consolidation-style events rather than spanning the evaluation-vs-attribution division we care about in E2. If the attribution-vs-evaluation distinction in E2 is supposed to happen at action-timescale (online, not during SWR), then the Diba/Buzsaki result may not transfer cleanly.",
+    "Reverse replay has been linked specifically to credit assignment / reward attribution in subsequent literature (Foster & Wilson); forward replay has been linked to planning. If these dissociations turn out to recruit different sub-circuits (e.g. PFC-hippocampal loops vs ventral-striatal loops), the single-substrate reading weakens and a partial dual-substrate view becomes defensible."
+  ],
+  "tags": ["e2_dual_function", "mode_distinction", "diba", "buzsaki", "forward_replay", "reverse_replay", "sharp_wave_ripples", "hippocampus", "arc_018", "arc_033"],
+  "mapping": {
+    "source_claim_statement": "Temporal spike sequences from hippocampal place neurons of rats on an elevated track recurred in reverse order at the end of a run, but in forward order in anticipation of the run, both coinciding with sharp-wave ripple events. Vector distances between place fields were reflected in the temporal structure of these sequences. The same hippocampal population expresses both forward and reverse sequences depending on the behavioural phase; bidirectional sequence re-enactment may contribute to episodic memory by supporting both prospective and retrospective association.",
+    "ree_translation": "For E2, this is the cleanest biological mapping available for the dual-function question. Forward sequences before action correspond to prospective-rollout / evaluative readout; reverse sequences after action correspond to retrospective-attribution readout. Both use the same underlying cell population, differing only in temporal compression direction and behavioural phase. This directly supports MECH-E2-DUAL-FUNCTION framed as a single forward-model substrate read in attributional vs. evaluative modes under behavioural/controller gating, and weakens any framing that requires two disjoint E2 substrates.",
+    "mapping_caveat": "The Diba/Buzsaki finding is about hippocampal sequence replay riding on sharp-wave ripples, which are a specific (fast, compressed, offline-style) event. E2 in REE is proposed to operate online during action selection and during outcome evaluation, which is a different temporal regime. The transfer asserts that the principle of bidirectional readout of one substrate generalises beyond the SWR regime to online forward-model use; this is reasonable but not directly demonstrated by the paper.",
+    "source_context": "Nature Neuroscience 2007, from Buzsaki lab. Canonical paper on forward/reverse replay. Cited >2000 times; followed up by substantial literature tying reverse replay to credit assignment (Foster & Wilson 2006, Ambrose/Pfeiffer/Foster 2016) and forward replay/preplay to prospective planning (Pfeiffer & Foster 2013)."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.48,
+    "notes": "Nature Neuroscience, Buzsaki lab, widely replicated. Mapping fidelity high because forward/reverse directionality maps almost directly onto prospective/retrospective modes in the E2 question. Transfer risk is moderate because the phenomenon is observed in hippocampal SWR events, not online forward-model use."
+  }
+}

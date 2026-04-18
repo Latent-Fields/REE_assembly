@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_252_mech187_zgoal_seeding_gain
 
-Generated: `2026-04-18T15:30:03.597584Z`
+Generated: `2026-04-18T16:56:59.369451Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

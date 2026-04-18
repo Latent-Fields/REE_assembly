@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_evaluator",
+  "entry_id": "2026-04-18_mech_033_prioritized_replay_mattar2018",
+  "timestamp_utc": "2026-04-18T16:48:57Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033", "MECH-102"],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay.",
+    "authors": ["Mattar MG", "Daw ND"],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30349103/"
+  },
+  "evidence_class": "computational_theoretical",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "A computational theory that unifies hippocampal replay with model-based planning by deriving replay order from expected-value-of-computation. The key insight for SD-003-successor: the same memory (forward-model state transitions) is replayed in two modes — forward for planning (evaluator-mode rollouts before action) and reverse/prioritized for credit assignment (comparator-mode after outcome). This is the most explicit theoretical statement that the evaluator and comparator operations share the same forward-model substrate but run it in different directions/modes. Confidence 0.82 because it is a landmark Nature Neuroscience theoretical paper, fits empirical replay data across many studies, and directly addresses the question 'same substrate, different modes' that drives the SD-003 successor design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The framework derives the value of computation from expected-future-reward; a harm-stream analogue (expected-future-harm-avoidance) has the right structure but is not tested in the paper.",
+    "The theory assumes a unified state-space; REE's stream-separated architecture (SD-010) would require two separate prioritized-replay processes running in parallel, which the paper does not model."
+  ],
+  "tags": ["arc_018", "mech_033", "mech_102", "replay", "prioritized_sweeping", "planning", "credit_assignment", "forward_reverse", "evaluator_comparator", "unified_substrate"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay is a form of prioritized memory access in which specific state transitions are reactivated in the order that maximizes the expected improvement in future reward. Forward replay during planning propagates value from anticipated future reward to current states (supporting pre-action decision making). Reverse replay following outcomes propagates value from realized reward backward along the path of recent experience (supporting credit assignment). Both operations use the same underlying state-transition model (the forward model learned from experience) but traverse it in different directions and with different prioritization rules. The framework predicts empirical replay statistics (content, direction, frequency) across multiple published datasets.",
+    "ree_translation": "For the SD-003 successor evaluator/comparator question, this is the most direct theoretical statement available that the two modes share a substrate: a single forward model of state transitions is replayed forward for planning (evaluator mode, pre-action) and reverse for credit assignment (comparator mode, post-outcome). For ARC-018 and MECH-033, the theory gives a principled algorithm for when and in what order the hippocampus should generate rollouts — and it reproduces empirical data. For REE's dual-function E2, this argues strongly that E2_harm_s could plausibly serve both evaluator and comparator roles with the same underlying forward model, traversed in different modes. For MECH-102, the framework suggests a natural failure mode: terminal error correction implies the prioritized-replay algorithm has selected a state-space region where no low-energy coordination paths have positive value, forcing high-energy action.",
+    "mapping_caveat": "The Mattar-Daw framework is reward-based; an analogous harm-based formulation has the same mathematical structure (prioritize states whose updated value most reduces expected future harm) but has not been empirically validated. The theory assumes a unified state-transition model; REE's stream separation (SD-010/SD-011, z_world vs z_harm_s) would require two separate prioritized-replay processes, which the paper does not address. The claim that evaluator and comparator share a substrate is theoretical — well-grounded but not directly tested at single-neuron resolution.",
+    "source_context": "Nature Neuroscience theoretical paper, Mattar and Daw, 2018. Fits replay content, direction, and frequency statistics from multiple independent empirical datasets using a single algorithm: expected-value-of-computation (EVB). The paper is widely regarded as the theoretical unification of hippocampal replay and model-based planning."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.28,
+    "notes": "Very high source quality (Nature Neuroscience, Mattar + Daw). Mapping fidelity unusually high for the same-substrate-different-modes question, which is exactly what the paper formalizes. Transfer risk lower than most theoretical papers here because the reward-to-harm analogy preserves the mathematical structure of the theory."
+  }
+}

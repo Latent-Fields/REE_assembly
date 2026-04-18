@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_evaluator",
+  "entry_id": "2026-04-18_mech_102_frontal_reward_learning_rushworth2011",
+  "timestamp_utc": "2026-04-18T16:48:57Z",
+  "claim_ids_tested": ["ARC-018", "MECH-102"],
+  "source": {
+    "title": "Frontal Cortex and Reward-Guided Learning and Decision-Making.",
+    "authors": ["Rushworth MFS", "Noonan MP", "Boorman ED", "Walton ME", "Behrens TE"],
+    "year": 2011,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2011.05.014",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21689596/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Authoritative review dissociating the functional roles of different frontal regions (OFC, vmPFC, ACC, lateral PFC) in reward-guided action selection. Core claim relevant here: OFC and vmPFC compute expected value of options before action (evaluator role), distinct from ACC's role in action-outcome learning (comparator / credit assignment role). This is the clearest statement of the evaluator-comparator dissociation at the frontal level, and it directly supports the architectural separation between pre-action value estimation and post-action attribution that the SD-003 successor needs. Confidence 0.72 because the dissociation is cleaner in some contexts than others, and the review does not adjudicate whether both circuits share the same forward model or maintain separate forward models.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the vmPFC value signal depends on state representations computed by the same forward model that ACC uses for credit assignment, the circuits are not as separated as the functional dissociation suggests, and the SD-003-successor 'same substrate, different modes' reading becomes stronger.",
+    "Lesion data is sometimes ambiguous between 'region computes X' and 'region provides inputs to region that computes X'; the review is cautious about this but the transfer risk to REE is real."
+  ],
+  "tags": ["arc_018", "mech_102", "vmPFC", "OFC", "ACC", "expected_value", "evaluator", "decision_making", "frontal_cortex"],
+  "mapping": {
+    "source_claim_statement": "Different subregions of frontal cortex support dissociable components of reward-guided decision-making: OFC and vmPFC encode expected value of options prior to choice and support value-based action selection; ACC is involved in action-outcome learning, effort cost integration, and detection of when to deploy control; lateral PFC supports rule-based selection and inhibitory control. Lesion, neuroimaging, and single-unit evidence converge on this dissociation. Expected-value signals in vmPFC/OFC are present before the action is made and tracked across the decision process.",
+    "ree_translation": "The functional dissociation Rushworth et al. describe maps onto the SD-003-successor's evaluator/comparator distinction: vmPFC/OFC is the pre-action evaluator (scores candidate rollouts before commitment); ACC is the post-action comparator / credit-assignment circuit. For ARC-018, this gives the downstream readout for hippocampally generated rollouts: the hippocampus proposes, vmPFC/OFC scores, ACC then updates based on realised outcome. For MECH-102 (violence as terminal error correction), the review is relevant because it describes the normal-mode evaluator (vmPFC/OFC continuous expected-value tracking); terminal-error-correction behaviour implies this evaluator's estimates have collapsed or the action space it can score has collapsed.",
+    "mapping_caveat": "The review dissociates frontal regions by function; it does not commit to whether those regions share a forward model or maintain separate ones. The REE SD-003-successor question — whether E2_harm_s is the same forward model accessed in two modes, or two separate models — is not directly answered. The paper suggests the *readout* circuits are different (vmPFC for evaluation, ACC for comparator); it is silent on the forward model itself. Transfer risk is that REE's harm-stream separation (SD-010) does not have a clean frontal-cortex analogue in this review.",
+    "source_context": "Neuron review, Rushworth lab — senior authors with sustained contributions to OFC/vmPFC/ACC decision-making work. Synthesises two decades of lesion, fMRI, and electrophysiology data. The functional dissociation it codifies (vmPFC = evaluator, ACC = comparator) became a standard reference for decision-neuroscience architecture."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Neuron review, senior authors). Mapping fidelity good for the evaluator/comparator readout distinction. Transfer risk moderate because the review addresses readout circuits but not forward-model substrate structure, which is where the SD-003-successor's central architectural question sits."
+  }
+}

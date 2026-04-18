@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_evaluator",
+  "entry_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+  "timestamp_utc": "2026-04-18T16:48:57Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033", "MECH-102"],
+  "source": {
+    "title": "Model-based influences on humans' choices and striatal prediction errors.",
+    "authors": ["Daw ND", "Gershman SJ", "Seymour B", "Dayan P", "Dolan RJ"],
+    "year": 2011,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2011.02.027",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21435563/"
+  },
+  "evidence_class": "empirical_fmri_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical dissociation of model-based (forward-model rollout-based) and model-free (cached-value) contributions to human action selection, with fMRI evidence that both signals coexist in ventral striatum. Critical for the SD-003 successor question: it demonstrates that pre-action value estimation uses both rollout-based and model-free pathways in the same brain, and that behavior reflects a weighted mixture. This establishes the evaluator mode as a real, measurable computation and constrains where forward-model rollouts feed value signals. Confidence 0.78 because it is high-quality primary data in Neuron, central to a decade of computational neuroscience, and directly addresses forward-model-based value computation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the two-step task's model-based/model-free dissociation conflates forward-model rollout depth with other properties (planning horizon, effortful computation), then the mapping to REE's evaluator mode is partial.",
+    "The paper shows model-based signals in striatum but cannot directly address hippocampal rollout generation — the forward-model substrate is inferred, not recorded."
+  ],
+  "tags": ["arc_018", "mech_033", "mech_102", "model_based", "model_free", "striatum", "prediction_error", "two_step_task", "evaluator"],
+  "mapping": {
+    "source_claim_statement": "Using a two-step Markov decision task, humans exhibit a behavioral mixture of model-based (forward-model rollout-based, transition-aware) and model-free (cached stimulus-response) control. fMRI BOLD responses at the time of reward feedback in ventral striatum reflect both model-based and model-free prediction errors simultaneously. This contradicts the prior theoretical expectation that striatal prediction-error signals are purely model-free; instead, ventral striatum integrates both sources. Individual differences in the weighting between systems correlate with behavioral markers.",
+    "ree_translation": "For ARC-018 and MECH-033, this paper establishes that forward-model-based (rollout-based) action selection is a real, measurable computation in humans that feeds striatal value signals — supporting the broader architecture in which hippocampal rollouts feed downstream evaluators. For the SD-003-successor evaluator/comparator distinction, the Daw paper is important because it shows ventral striatum computes *prediction errors from both sources* at outcome time. That is, the same region runs a comparator operation on outputs of the model-based forward-model-rollout system AND on outputs of the cached-value system. This suggests the comparator substrate can be shared across forward-model types — which is a partial argument against strict stream separation at the comparator level.",
+    "mapping_caveat": "The two-step task is not a harm-stream task; the forward model at issue is an abstract state-transition model of an abstract task, not a harm forward model or a world forward model in REE's sense. The fMRI localisation to ventral striatum is informative about readout circuitry, not about where the forward model is computed. The paper supports the existence of pre-action rollout-based evaluation but does not adjudicate whether REE's evaluator should use the same forward model in two modes (evaluator + comparator) or two separate models.",
+    "source_context": "Neuron paper, Daw and colleagues, widely regarded as the definitional demonstration that model-based and model-free control mix in human behavior and that both feed striatal prediction errors. The two-step task became the de facto behavioral probe for the model-based/model-free distinction for the next decade; over 3000 citations."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.40,
+    "notes": "Very high source quality -- Neuron, Daw, high-citation canonical paper. Mapping fidelity good for the general forward-model-based-evaluator architecture; lower for REE's specific stream separation question. Transfer risk moderate -- abstract task, not harm domain."
+  }
+}

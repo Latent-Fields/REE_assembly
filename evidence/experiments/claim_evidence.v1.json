@@ -676,23 +676,27 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=6 entry(s), lit=18 entry(s), exp_conf=0.746, lit_conf=0.859",
+      "confidence_rationale": "exp=6 entry(s), lit=25 entry(s), exp_conf=0.746, lit_conf=0.867",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 20,
+        "mixed": 1,
+        "supports": 26,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 24,
+      "entries_total": 31,
       "evidence_class_counts": {
         "exp:simulation": 6,
         "lit:behavioral_human": 1,
         "lit:computational_model": 2,
         "lit:computational_neuroscience_model": 3,
+        "lit:computational_theoretical": 1,
         "lit:electrophysiology_lfp": 1,
         "lit:electrophysiology_single_unit": 5,
+        "lit:empirical_fmri_behavioral": 1,
+        "lit:empirical_neurophysiology": 1,
         "lit:neuroscience_experiment": 3,
-        "lit:theoretical_review": 3
+        "lit:rodent_electrophysiology": 2,
+        "lit:theoretical_review": 5
       },
       "experimental_confidence": 0.746,
       "fail_runs": 2,
@@ -703,98 +707,102 @@
         "unknown": 0,
         "weakens": 3
       },
-      "latest_run_id": "v3_exq_196_arc018_rollout_viability_pair_20260401T195627Z_v3",
-      "latest_timestamp_utc": "2026-04-18T12:40:10.830657Z",
-      "literature_confidence": 0.859,
-      "overall_confidence": 0.802,
+      "latest_run_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+      "latest_timestamp_utc": "2026-04-18T16:49:53Z",
+      "literature_confidence": 0.867,
+      "overall_confidence": 0.807,
       "pass_runs": 4,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.78,
-          "confidence_rationale": "Nature Neuroscience, bat CA1 single-unit recordings, clean two-population dissociation (contextual vs pure time cells). The finding that hippocampus contains a dedicated population encoding elapsed time independent of spatial context directly motivates a design requirement for E3 rollout time-tagging. Transfer risk is moderate: bat hippocampus, and the 'time' in REE rollouts is agent-internal steps rather than clock time. The social imitation component (time cells triggered by another's landing) is particularly novel and REE-relevant.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
-          "failure_signatures": [
-            "Pure time cells represent elapsed time only within a single anchor event's window; they do not naturally bridge across multiple sequential events without re-triggering.",
-            "Contextual time cells shift their temporal tuning with spatial context, meaning temporal credit from time cells is inherently context-confounded in spatial tasks."
-          ],
-          "run_id": "2026-03-30_hippo_time_cells_omer2022",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-018",
           "confidence": 0.82,
-          "confidence_rationale": "High source quality (Journal of Neuroscience, in vivo rodent tetrodes, well-replicated finding). Strong mapping fidelity for ARC-018 prospective rollout: CA3 ensembles sweep forward through possible trajectories at choice points, which is the neural implementation of ARC-018's counterfactual rollout function. Mapping fidelity for MECH-033 is moderate: the data show trajectory-forward sweeps in CA3 but do not characterise E2-equivalent action-consequence structures. Transfer risk moderate: spatial navigation task, rodent CA3.",
-          "evidence_class": "lit:electrophysiology_single_unit",
+          "confidence_rationale": "A computational theory that unifies hippocampal replay with model-based planning by deriving replay order from expected-value-of-computation. The key insight for SD-003-successor: the same memory (forward-model state transitions) is replayed in two modes \u2014 forward for planning (evaluator-mode rollouts before action) and reverse/prioritized for credit assignment (comparator-mode after outcome). This is the most explicit theoretical statement that the evaluator and comparator operations share the same forward-model substrate but run it in different directions/modes. Confidence 0.82 because it is a landmark Nature Neuroscience theoretical paper, fits empirical replay data across many studies, and directly addresses the question 'same substrate, different modes' that drives the SD-003 successor design.",
+          "evidence_class": "lit:computational_theoretical",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
           "failure_signatures": [
-            "CA3 neural ensembles transiently encode positions ahead of the animal at decision points \u2014 the encoded position sweeps down each arm of the maze before commitment.",
-            "Prospective encoding is transient and occurs specifically at choice points, not during continuous running."
+            "The framework derives the value of computation from expected-future-reward; a harm-stream analogue (expected-future-harm-avoidance) has the right structure but is not tested in the paper.",
+            "The theory assumes a unified state-space; REE's stream-separated architecture (SD-010) would require two separate prioritized-replay processes running in parallel, which the paper does not model."
           ],
-          "run_id": "2026-04-02_arc_018_vte_lookahead_johnson2007",
+          "run_id": "2026-04-18_mech_033_prioritized_replay_mattar2018",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:59:00Z"
+          "timestamp_utc": "2026-04-18T16:48:57Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.76,
-          "confidence_rationale": "High source quality (Neuron, simultaneous HPC-PFC recordings). Strong mapping fidelity for MECH-163: the paper directly demonstrates that HPC-PFC theta coherence peaks at choice points (commitment boundary analogue) after learning, and that the resulting cell assemblies are selectively replayed during sleep. Transfer risk moderate: rodent Y-maze spatial rule learning.",
-          "evidence_class": "lit:electrophysiology_lfp",
+          "confidence": 0.72,
+          "confidence_rationale": "Authoritative review dissociating the functional roles of different frontal regions (OFC, vmPFC, ACC, lateral PFC) in reward-guided action selection. Core claim relevant here: OFC and vmPFC compute expected value of options before action (evaluator role), distinct from ACC's role in action-outcome learning (comparator / credit assignment role). This is the clearest statement of the evaluator-comparator dissociation at the frontal level, and it directly supports the architectural separation between pre-action value estimation and post-action attribution that the SD-003 successor needs. Confidence 0.72 because the dissociation is cleaner in some contexts than others, and the review does not adjudicate whether both circuits share the same forward model or maintain separate forward models.",
+          "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_pfc_planning",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
           "failure_signatures": [
-            "HPC-PFC theta coherence peaks at choice points specifically, not during continuous running between choice points.",
-            "The coherence effect is strongest after rule acquisition \u2014 it marks learned rather than novel decisions."
+            "If the vmPFC value signal depends on state representations computed by the same forward model that ACC uses for credit assignment, the circuits are not as separated as the functional dissociation suggests, and the SD-003-successor 'same substrate, different modes' reading becomes stronger.",
+            "Lesion data is sometimes ambiguous between 'region computes X' and 'region provides inputs to region that computes X'; the review is cautious about this but the transfer risk to REE is real."
           ],
-          "run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+          "run_id": "2026-04-18_mech_102_frontal_reward_learning_rushworth2011",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:59:00Z"
+          "timestamp_utc": "2026-04-18T16:48:57Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_172_arc018_rollout_viability_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_172_arc018_rollout_viability_pair_20260330T070425Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-18T12:40:10.791836Z"
+          "confidence": 0.78,
+          "confidence_rationale": "Canonical dissociation of model-based (forward-model rollout-based) and model-free (cached-value) contributions to human action selection, with fMRI evidence that both signals coexist in ventral striatum. Critical for the SD-003 successor question: it demonstrates that pre-action value estimation uses both rollout-based and model-free pathways in the same brain, and that behavior reflects a weighted mixture. This establishes the evaluator mode as a real, measurable computation and constrains where forward-model rollouts feed value signals. Confidence 0.78 because it is high-quality primary data in Neuron, central to a decade of computational neuroscience, and directly addresses forward-model-based value computation.",
+          "evidence_class": "lit:empirical_fmri_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "If the two-step task's model-based/model-free dissociation conflates forward-model rollout depth with other properties (planning horizon, effortful computation), then the mapping to REE's evaluator mode is partial.",
+            "The paper shows model-based signals in striatum but cannot directly address hippocampal rollout generation \u2014 the forward-model substrate is inferred, not recorded."
+          ],
+          "run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_196_arc018_rollout_viability_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_196_arc018_rollout_viability_pair_20260401T195627Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-18T12:40:10.830657Z"
+          "confidence": 0.72,
+          "confidence_rationale": "Direct electrophysiological demonstration that the same hippocampal place-cell population expresses temporal sequences in two distinct temporal modes within a single behavioural session: forward sequences before a run (anticipatory, prospective), reverse sequences at the end of a run (retrospective, reflecting just-completed trajectory). Both modes ride on sharp-wave ripple events and use overlapping cell populations. The forward/reverse directionality is the strongest biological instance of a single substrate expressing bidirectional predictive/retrospective readouts tied to behavioural phase. Direction is supports (not mixed) because the paper directly shows the behavioural-phase-dependent readout of one population in two computational modes. Confidence 0.72 -- the highest in this pull because the mapping to attribution (retrospective) vs. evaluation (prospective) is unusually crisp.",
+          "evidence_class": "lit:rodent_electrophysiology",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "Forward and reverse sequences in the hippocampus are time-compressed within sharp-wave ripples; both fall within consolidation-style events rather than spanning the evaluation-vs-attribution division we care about in E2. If the attribution-vs-evaluation distinction in E2 is supposed to happen at action-timescale (online, not during SWR), then the Diba/Buzsaki result may not transfer cleanly.",
+            "Reverse replay has been linked specifically to credit assignment / reward attribution in subsequent literature (Foster & Wilson); forward replay has been linked to planning. If these dissociations turn out to recruit different sub-circuits (e.g. PFC-hippocampal loops vs ventral-striatal loops), the single-substrate reading weakens and a partial dual-substrate view becomes defensible."
+          ],
+          "run_id": "2026-04-18_e2_dual_diba2007_forward_reverse",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-018",
+          "confidence": 0.7,
+          "confidence_rationale": "Direct electrophysiological evidence that the same hippocampal cellular assembly expresses temporally structured sequences both before an experience (preplay) and after it (replay), using overlapping but not identical sequences. This is the cleanest biological case of a single predictive-sequence substrate read in two different modes -- prospective anticipation and retrospective consolidation -- within the same neural population. Maps directly onto the E2 dual-function question: preplay corresponds roughly to prospective rollout / evaluation mode, replay corresponds roughly to retrospective attribution / consolidation mode. The paper supports single-substrate-plus-mode-dependent-readout. Direction marked mixed because the paper also emphasises that preplay sequences are a pre-configured subset, which opens the door to sub-population specialisation (partial dual-substrate interpretation). Confidence 0.70 because the evidence is direct, from a canonical electrophysiology paper, with tight experimental controls.",
+          "evidence_class": "lit:rodent_electrophysiology",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If preplay sequences involve a distinct subset of cells from replay sequences in a systematic, non-overlapping way, the single-substrate interpretation weakens -- preplay and replay would use distinct sub-populations even within the same anatomical region.",
+            "The transfer to E2 assumes the hippocampal sequence precedent generalises to forward-model dynamics prediction. Hippocampus does spatial/episodic sequencing; E2 does action-consequence dynamics. The principle of sequence reuse may not be equivalent to forward-model reuse."
+          ],
+          "run_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
         }
       ],
-      "runs_total": 24,
+      "runs_total": 31,
       "source_counts": {
         "experimental": 6,
-        "literature": 18
+        "literature": 25
       }
     },
     "ARC-021": {
@@ -1160,7 +1168,7 @@
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=30 entry(s), lit=3 entry(s), exp_conf=0.725, lit_conf=0.821",
+      "confidence_rationale": "exp=30 entry(s), lit=3 entry(s), exp_conf=0.724, lit_conf=0.821",
       "direction_counts": {
         "mixed": 10,
         "supports": 14,
@@ -1173,7 +1181,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.725,
+      "experimental_confidence": 0.724,
       "fail_runs": 23,
       "genuine_exp_count": 30,
       "genuine_exp_direction_counts": {
@@ -1185,7 +1193,7 @@
       "latest_run_id": "v3_exq_071d_rollout_batched_attribution_20260401T232311Z_v3",
       "latest_timestamp_utc": "2026-04-01T23:23:11Z",
       "literature_confidence": 0.821,
-      "overall_confidence": 0.773,
+      "overall_confidence": 0.772,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -1280,7 +1288,7 @@
       }
     },
     "ARC-025": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.757, lit_conf=0.715",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.756, lit_conf=0.715",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -1293,7 +1301,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.757,
+      "experimental_confidence": 0.756,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -1866,7 +1874,7 @@
       }
     },
     "ARC-032": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.429, lit_conf=0.868",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.428, lit_conf=0.868",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -1880,7 +1888,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.429,
+      "experimental_confidence": 0.428,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -1990,20 +1998,24 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=14 entry(s), lit=7 entry(s), exp_conf=0.818, lit_conf=0.856",
+      "confidence_rationale": "exp=14 entry(s), lit=16 entry(s), exp_conf=0.818, lit_conf=0.85",
       "direction_counts": {
-        "mixed": 2,
-        "supports": 15,
+        "mixed": 6,
+        "supports": 20,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 21,
+      "entries_total": 30,
       "evidence_class_counts": {
         "exp:simulation": 14,
+        "lit:behavioral_human": 1,
         "lit:computational_model": 1,
+        "lit:computational_theory_review": 1,
         "lit:empirical_study": 1,
-        "lit:fmri_connectivity": 3,
-        "lit:theoretical_review": 2
+        "lit:fmri_connectivity": 4,
+        "lit:rodent_electrophysiology": 2,
+        "lit:theoretical_framework_review": 1,
+        "lit:theoretical_review": 5
       },
       "experimental_confidence": 0.818,
       "fail_runs": 8,
@@ -2014,92 +2026,102 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3",
-      "latest_timestamp_utc": "2026-04-18T12:40:11.154737Z",
-      "literature_confidence": 0.856,
-      "overall_confidence": 0.837,
+      "latest_run_id": "2026-04-18_e2_dual_shenhav2016_dacc",
+      "latest_timestamp_utc": "2026-04-18T16:49:53Z",
+      "literature_confidence": 0.85,
+      "overall_confidence": 0.834,
       "pass_runs": 6,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-033",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:simulation",
+          "confidence": 0.72,
+          "confidence_rationale": "Direct electrophysiological demonstration that the same hippocampal place-cell population expresses temporal sequences in two distinct temporal modes within a single behavioural session: forward sequences before a run (anticipatory, prospective), reverse sequences at the end of a run (retrospective, reflecting just-completed trajectory). Both modes ride on sharp-wave ripple events and use overlapping cell populations. The forward/reverse directionality is the strongest biological instance of a single substrate expressing bidirectional predictive/retrospective readouts tied to behavioural phase. Direction is supports (not mixed) because the paper directly shows the behavioural-phase-dependent readout of one population in two computational modes. Confidence 0.72 -- the highest in this pull because the mapping to attribution (retrospective) vs. evaluation (prospective) is unusually crisp.",
+          "evidence_class": "lit:rodent_electrophysiology",
           "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_330a_sd013_contrastive_counterfactual_frac05",
-          "failure_signatures": [],
-          "run_id": "v3_exq_330a_sd013_contrastive_counterfactual_frac05_20260414T234223Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-14T23:42:23Z"
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "Forward and reverse sequences in the hippocampus are time-compressed within sharp-wave ripples; both fall within consolidation-style events rather than spanning the evaluation-vs-attribution division we care about in E2. If the attribution-vs-evaluation distinction in E2 is supposed to happen at action-timescale (online, not during SWR), then the Diba/Buzsaki result may not transfer cleanly.",
+            "Reverse replay has been linked specifically to credit assignment / reward attribution in subsequent literature (Foster & Wilson); forward replay has been linked to planning. If these dissociations turn out to recruit different sub-circuits (e.g. PFC-hippocampal loops vs ventral-striatal loops), the single-substrate reading weakens and a partial dual-substrate view becomes defensible."
+          ],
+          "run_id": "2026-04-18_e2_dual_diba2007_forward_reverse",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_353_arc033_sd003_interventional_vs_observational",
-          "failure_signatures": [],
-          "run_id": "v3_exq_353_arc033_sd003_interventional_vs_observational_20260415T060945Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-15T06:09:45Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_166e_sd003_harm_delta_predictor",
-          "failure_signatures": [],
-          "run_id": "v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-18T12:40:10.786978Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "failure_signatures": [],
-          "run_id": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-18T12:40:10.797847Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
+          "confidence": 0.7,
+          "confidence_rationale": "Direct electrophysiological evidence that the same hippocampal cellular assembly expresses temporally structured sequences both before an experience (preplay) and after it (replay), using overlapping but not identical sequences. This is the cleanest biological case of a single predictive-sequence substrate read in two different modes -- prospective anticipation and retrospective consolidation -- within the same neural population. Maps directly onto the E2 dual-function question: preplay corresponds roughly to prospective rollout / evaluation mode, replay corresponds roughly to retrospective attribution / consolidation mode. The paper supports single-substrate-plus-mode-dependent-readout. Direction marked mixed because the paper also emphasises that preplay sequences are a pre-configured subset, which opens the door to sub-population specialisation (partial dual-substrate interpretation). Confidence 0.70 because the evidence is direct, from a canonical electrophysiology paper, with tight experimental controls.",
+          "evidence_class": "lit:rodent_electrophysiology",
           "evidence_direction": "mixed",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_247_sd011_sd012_integration",
-          "failure_signatures": [],
-          "run_id": "v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-18T12:40:11.154737Z"
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If preplay sequences involve a distinct subset of cells from replay sequences in a systematic, non-overlapping way, the single-substrate interpretation weakens -- preplay and replay would use distinct sub-populations even within the same anatomical region.",
+            "The transfer to E2 assumes the hippocampal sequence precedent generalises to forward-model dynamics prediction. Hippocampus does spatial/episodic sequencing; E2 does action-consequence dynamics. The principle of sequence reuse may not be equivalent to forward-model reuse."
+          ],
+          "run_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.62,
+          "confidence_rationale": "Rangel, Camerer and Montague explicitly decompose value-based decision making into stages (representation, valuation, action selection, outcome evaluation, learning). They flag three distinct valuation systems: Pavlovian, habitual, and goal-directed. Crucially for the E2 mode question, their framework identifies valuation (prospective) and outcome evaluation (retrospective) as distinct computational stages that can (at least partly) share substrate -- the same model-based predictor is used for rollouts during goal-directed valuation and for generating prediction errors during outcome evaluation. This is mixed evidence: it supports a mode distinction at the computational-stage level (attribution vs evaluation) while also supporting shared substrate across modes (the goal-directed forward model). The exact position the paper takes is closer to: one forward-model substrate, two consumers. Confidence 0.62 -- higher than the Shenhav entries because the framework directly discusses model-based prediction and its dual use.",
+          "evidence_class": "lit:theoretical_framework_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If habitual (model-free) and goal-directed (model-based) systems are as cleanly separated as the framework asserts, then one might argue for a dual-substrate E2 where the model-based forward model is itself decomposed into a prospective and retrospective variant. The framework leaves this ambiguous.",
+            "If the prediction-error signal feeding outcome evaluation turns out to use a different forward model (e.g. cerebellar sensorimotor) than the one used for goal-directed valuation (e.g. OFC/vmPFC value prediction), then the shared-substrate interpretation does not hold and the E2 mapping weakens."
+          ],
+          "run_id": "2026-04-18_e2_dual_rangel2008_framework",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.58,
+          "confidence_rationale": "The EVC framework describes dACC as a controller that allocates cognitive control based on three arguments -- expected payoff, required control, and effort cost. Mapped to the E2 dual-function question, this supports the existence of a separate arbitration signal that decides how a forward model is used (pre-action evaluation weight vs. outcome monitoring weight) rather than a separate forward-model substrate per mode. The theory is therefore more consistent with a single-process-with-mode-dependent-readout account than with an architecturally dual-mode substrate, which is partial support for MECH-E2-DUAL-FUNCTION framed as a controller-gated readout mechanism, but weakens any framing that requires two disjoint E2 populations. Confidence held at 0.58 because the theory is computational/integrative rather than direct electrophysiology; it describes control allocation, not forward-model reuse per se, and the mapping to E2 attribution-vs-evaluation is architectural by analogy.",
+          "evidence_class": "lit:computational_theory_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If attribution (retrospective) and evaluation (prospective) use genuinely distinct neural populations with non-overlapping tuning, then EVC's single-controller-over-shared-substrate account does not transfer; a dual-mode MECH claim with separate E2_attribution and E2_evaluation substrates would be required.",
+            "If dACC's control signal turns out to be itself compositional (one subregion for attribution cost, another for evaluation cost), the apparent single-process account dissolves into a multi-module one, weakening the inference that E2 can be single-process with readout."
+          ],
+          "run_id": "2026-04-18_e2_dual_shenhav2013_evc",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.55,
+          "confidence_rationale": "This 2016 Nature Neuroscience update defends the EVC theory of dACC against foraging-based alternatives and stresses that the region's activity tracks control allocation across many experimental contexts without needing task-mode-specific subregions. That cross-context generality is the relevant structural analogue for the E2 mode question: a single representational resource can serve multiple task functions when a controller specifies the read-out weights. Supports MECH-E2-DUAL-FUNCTION framed as single-process-plus-gated-readout, and weakens any framing that requires architecturally distinct E2 populations per mode. Confidence 0.55: the evidence is precedent-by-analogy rather than direct forward-model evidence.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If dACC itself turns out to decompose into task-mode-specific subregions (foraging value, cognitive effort, conflict), the single-process-plus-readout precedent collapses and the default expectation for E2 shifts back toward a dual-substrate account.",
+            "If the brain's mode arbitration is local to sensory-motor forward models (cerebellum, M1) rather than a downstream controller, the Shenhav-style controller analogy may not transfer to E2."
+          ],
+          "run_id": "2026-04-18_e2_dual_shenhav2016_dacc",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
         }
       ],
-      "runs_total": 21,
+      "runs_total": 30,
       "source_counts": {
         "experimental": 14,
-        "literature": 7
+        "literature": 16
       }
     },
     "ARC-035": {
@@ -2262,7 +2284,7 @@
       }
     },
     "ARC-038": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.288, lit_conf=0.905",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.287, lit_conf=0.905",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2277,7 +2299,7 @@
         "lit:electrophysiology_rodent_causal": 1,
         "lit:review_mechanistic": 2
       },
-      "experimental_confidence": 0.288,
+      "experimental_confidence": 0.287,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2289,7 +2311,7 @@
       "latest_run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
       "latest_timestamp_utc": "2026-04-05T00:00:00Z",
       "literature_confidence": 0.905,
-      "overall_confidence": 0.751,
+      "overall_confidence": 0.75,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3004,7 +3026,7 @@
       }
     },
     "INV-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.412, lit_conf=0.799",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.411, lit_conf=0.799",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -3016,7 +3038,7 @@
         "exp:simulation": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.412,
+      "experimental_confidence": 0.411,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4398,7 +4420,7 @@
       }
     },
     "MECH-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.443, lit_conf=0.88",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.442, lit_conf=0.88",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4412,7 +4434,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.443,
+      "experimental_confidence": 0.442,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5012,21 +5034,24 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=11 entry(s), lit=14 entry(s), exp_conf=0.893, lit_conf=0.838",
+      "confidence_rationale": "exp=11 entry(s), lit=18 entry(s), exp_conf=0.893, lit_conf=0.854",
       "direction_counts": {
         "mixed": 1,
-        "supports": 21,
+        "supports": 25,
         "unknown": 0,
         "weakens": 3
       },
-      "entries_total": 25,
+      "entries_total": 29,
       "evidence_class_counts": {
         "exp:simulation": 11,
         "lit:computational_model": 2,
         "lit:computational_neuroscience_model": 3,
+        "lit:computational_theoretical": 1,
         "lit:electrophysiology_single_unit": 5,
+        "lit:empirical_fmri_behavioral": 1,
+        "lit:empirical_neurophysiology": 1,
         "lit:neuroscience_experiment": 3,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 2
       },
       "experimental_confidence": 0.893,
       "fail_runs": 2,
@@ -5037,72 +5062,12 @@
         "unknown": 0,
         "weakens": 2
       },
-      "latest_run_id": "v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3",
-      "latest_timestamp_utc": "2026-04-18T12:40:10.812220Z",
-      "literature_confidence": 0.838,
-      "overall_confidence": 0.865,
+      "latest_run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+      "latest_timestamp_utc": "2026-04-18T16:48:57Z",
+      "literature_confidence": 0.854,
+      "overall_confidence": 0.873,
       "pass_runs": 9,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_184_mech033_kernel_chain_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-04T16:15:54.239023+00:00"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_308_mech033_kernel_chain_discriminative",
-          "failure_signatures": [],
-          "run_id": "v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-09T18:39:08Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_171_mech033_kernel_chain_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_171_mech033_kernel_chain_pair_20260329T213946Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-18T12:40:10.789330Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_171_mech033_kernel_chain_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_171_mech033_kernel_chain_pair_20260330T070404Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-18T12:40:10.790375Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-033",
@@ -5117,12 +5082,80 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-18T12:40:10.812220Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.75,
+          "confidence_rationale": "Canonical synthesis of evidence that hippocampal internally generated sequences (theta sequences, replay, preplay) function as forward-model rollouts recruited for goal-directed action selection. Explicitly frames these sequences as tools for value computation, not mere memory retrieval. Supports ARC-018 (hippocampus generates rollouts for viability/value mapping) and MECH-033 (rollouts seed downstream evaluation). The paper distinguishes pre-action evaluation (theta sequences, preplay, vicarious trial-and-error) from post-action consolidation (awake replay, SWRs) -- directly relevant to SD-003 successor's distinction between evaluator and comparator modes. Confidence capped at 0.75 because the paper is a synthesis rather than a direct test of a specific algorithmic substrate; the mapping from biology to REE's E2_harm_s forward model is by analogy at the functional level.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "If the hippocampal forward sweeps serve primarily memory indexing rather than action value computation, the REE evaluator-mode mapping weakens; the authors themselves note that a single unified function has not been proven.",
+            "The paper treats the hippocampus-OFC-striatal circuit as a single evaluation system; if REE's E2_harm_s must be strictly separated from world-dynamics rollouts (SD-010/SD-011), the biological precedent for stream-separated evaluators is weak here."
+          ],
+          "run_id": "2026-04-18_arc_018_internally_generated_sequences_pezzulo2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.8,
+          "confidence_rationale": "Direct empirical demonstration that CA1 alternates between representations of two possible upcoming trajectories on every theta cycle (~125 ms) during choice behaviour. This is a primary, quantitative demonstration of pre-action forward-model rollouts in a decision context. Maps tightly onto the SD-003 successor's evaluator-mode requirement: the brain evaluates candidate futures before commitment, not as post-hoc attribution. Confidence 0.80 because the paper is high-quality primary data in Cell, directly tests pre-action future representation, and uses rigorous decoder analysis. Lower than 0.90 because the paper is about spatial trajectories, not harm-stream evaluation specifically; ARC-033's harm-stream separation is not addressed.",
+          "evidence_class": "lit:empirical_neurophysiology",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "If the alternation is automatic sensory-driven prediction rather than value-computation substrate, the mapping to a deliberate evaluator degrades.",
+            "The paper shows CA1 represents the two trajectories but does not directly test whether the downstream evaluator (OFC/vmPFC/striatum) scores them \u2014 the readout step is inferred, not measured."
+          ],
+          "run_id": "2026-04-18_arc_018_subsecond_cycling_futures_kay2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.82,
+          "confidence_rationale": "A computational theory that unifies hippocampal replay with model-based planning by deriving replay order from expected-value-of-computation. The key insight for SD-003-successor: the same memory (forward-model state transitions) is replayed in two modes \u2014 forward for planning (evaluator-mode rollouts before action) and reverse/prioritized for credit assignment (comparator-mode after outcome). This is the most explicit theoretical statement that the evaluator and comparator operations share the same forward-model substrate but run it in different directions/modes. Confidence 0.82 because it is a landmark Nature Neuroscience theoretical paper, fits empirical replay data across many studies, and directly addresses the question 'same substrate, different modes' that drives the SD-003 successor design.",
+          "evidence_class": "lit:computational_theoretical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "The framework derives the value of computation from expected-future-reward; a harm-stream analogue (expected-future-harm-avoidance) has the right structure but is not tested in the paper.",
+            "The theory assumes a unified state-space; REE's stream-separated architecture (SD-010) would require two separate prioritized-replay processes running in parallel, which the paper does not model."
+          ],
+          "run_id": "2026-04-18_mech_033_prioritized_replay_mattar2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.78,
+          "confidence_rationale": "Canonical dissociation of model-based (forward-model rollout-based) and model-free (cached-value) contributions to human action selection, with fMRI evidence that both signals coexist in ventral striatum. Critical for the SD-003 successor question: it demonstrates that pre-action value estimation uses both rollout-based and model-free pathways in the same brain, and that behavior reflects a weighted mixture. This establishes the evaluator mode as a real, measurable computation and constrains where forward-model rollouts feed value signals. Confidence 0.78 because it is high-quality primary data in Neuron, central to a decade of computational neuroscience, and directly addresses forward-model-based value computation.",
+          "evidence_class": "lit:empirical_fmri_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "If the two-step task's model-based/model-free dissociation conflates forward-model rollout depth with other properties (planning horizon, effortful computation), then the mapping to REE's evaluator mode is partial.",
+            "The paper shows model-based signals in striatum but cannot directly address hippocampal rollout generation \u2014 the forward-model substrate is inferred, not recorded."
+          ],
+          "run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
         }
       ],
-      "runs_total": 25,
+      "runs_total": 29,
       "source_counts": {
         "experimental": 11,
-        "literature": 14
+        "literature": 18
       }
     },
     "MECH-040": {
@@ -6572,7 +6605,7 @@
       }
     },
     "MECH-070": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.459, lit_conf=0.749",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.458, lit_conf=0.749",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -6585,7 +6618,7 @@
         "lit:connectome_predictive_coding": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.459,
+      "experimental_confidence": 0.458,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -8359,7 +8392,7 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=20 entry(s), lit=7 entry(s), exp_conf=0.655, lit_conf=0.922",
+      "confidence_rationale": "exp=20 entry(s), lit=7 entry(s), exp_conf=0.654, lit_conf=0.922",
       "direction_counts": {
         "mixed": 7,
         "supports": 11,
@@ -8376,7 +8409,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.655,
+      "experimental_confidence": 0.654,
       "fail_runs": 16,
       "genuine_exp_count": 20,
       "genuine_exp_direction_counts": {
@@ -8841,18 +8874,20 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.565, lit_conf=0.816",
+      "confidence_rationale": "exp=24 entry(s), lit=8 entry(s), exp_conf=0.565, lit_conf=0.852",
       "direction_counts": {
         "mixed": 12,
-        "supports": 5,
+        "supports": 9,
         "unknown": 0,
         "weakens": 11
       },
-      "entries_total": 28,
+      "entries_total": 32,
       "evidence_class_counts": {
         "exp:simulation": 24,
         "lit:computational_model": 1,
-        "lit:theoretical_review": 3
+        "lit:computational_theoretical": 1,
+        "lit:empirical_fmri_behavioral": 1,
+        "lit:theoretical_review": 5
       },
       "experimental_confidence": 0.565,
       "fail_runs": 21,
@@ -8863,71 +8898,12 @@
         "unknown": 0,
         "weakens": 11
       },
-      "latest_run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
-      "latest_timestamp_utc": "2026-03-29T13:30:00Z",
-      "literature_confidence": 0.816,
-      "overall_confidence": 0.691,
+      "latest_run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+      "latest_timestamp_utc": "2026-04-18T16:48:57Z",
+      "literature_confidence": 0.852,
+      "overall_confidence": 0.708,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_123_mech102_harm_gradient_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_123_mech102_harm_gradient_pair_20260328T221151Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-28T22:11:51Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.67,
-          "confidence_rationale": "Axelrod's iterated prisoner's dilemma framework is one of the most rigorous formal models of when cooperation breaks down and defection (analogous to conflict/violence) becomes the equilibrium strategy. The core finding -- that cooperation persists when the shadow of the future is long enough, and collapses when repeat interaction is no longer expected -- maps directly onto MECH-102's claim that violence emerges when coordination pathways are unavailable. Axelrod's 'provocability' condition (immediate retaliation to defection) and 'forgiveness' condition (return to cooperation after defection is punished) together imply a threshold structure where escalation to high-energy conflict is reserved for cases where the cooperative equilibrium cannot be restored. Confidence is moderate-high because the formal structure is compelling, but the translation from iterated PD to REE's error-correction framework requires non-trivial interpretation.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_102",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_mech_102_evolution_cooperation_axelrod1984",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.7,
-          "confidence_rationale": "Berkowitz's reformulation directly frames aggression/violence as triggered by goal-path blockage (pathway exhaustion), with negative affect as the mediating mechanism. This maps plausibly onto MECH-102's claim that violence is triggered when coordination pathways become unavailable. The fit is strongest for the individual level. Transfer risk is moderate because Berkowitz is modelling emotional aggression in individuals, not architectural error-correction in systems, and his model does not distinguish low-energy vs. high-energy intervention paths in the REE sense.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_102",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_mech_102_frustration_aggression_berkowitz1989",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.62,
-          "confidence_rationale": "The General Aggression Model (GAM) provides a comprehensive unifying framework for human aggression that is relevant but ambivalent toward MECH-102. The GAM posits that aggression emerges from interaction of situational inputs and person variables, processed through cognition, affect, and arousal. This is consistent with MECH-102 in that it acknowledges aggression is not the default response -- it requires triggering conditions. However, the GAM does not specifically frame violence as 'terminal' or require exhaustion of low-energy pathways before aggression is selected. The GAM's episodic appraisal and reappraisal component is the strongest connection: it implies that aggressive action is selected after evaluation of available responses, which allows for a reading consistent with MECH-102's escalation ladder. Confidence is moderate because the mapping requires selective reading of the GAM.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_mech_102",
-          "failure_signatures": [
-            "The GAM does not require prior exhaustion of non-violent coordination alternatives before aggression is triggered -- it can be activated by hostile attribution bias, provocation cues, or script activation without pathway closure."
-          ],
-          "run_id": "2026-03-29_mech_102_general_aggression_model_anderson2002",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-102",
@@ -8943,12 +8919,80 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.75,
+          "confidence_rationale": "Canonical synthesis of evidence that hippocampal internally generated sequences (theta sequences, replay, preplay) function as forward-model rollouts recruited for goal-directed action selection. Explicitly frames these sequences as tools for value computation, not mere memory retrieval. Supports ARC-018 (hippocampus generates rollouts for viability/value mapping) and MECH-033 (rollouts seed downstream evaluation). The paper distinguishes pre-action evaluation (theta sequences, preplay, vicarious trial-and-error) from post-action consolidation (awake replay, SWRs) -- directly relevant to SD-003 successor's distinction between evaluator and comparator modes. Confidence capped at 0.75 because the paper is a synthesis rather than a direct test of a specific algorithmic substrate; the mapping from biology to REE's E2_harm_s forward model is by analogy at the functional level.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "If the hippocampal forward sweeps serve primarily memory indexing rather than action value computation, the REE evaluator-mode mapping weakens; the authors themselves note that a single unified function has not been proven.",
+            "The paper treats the hippocampus-OFC-striatal circuit as a single evaluation system; if REE's E2_harm_s must be strictly separated from world-dynamics rollouts (SD-010/SD-011), the biological precedent for stream-separated evaluators is weak here."
+          ],
+          "run_id": "2026-04-18_arc_018_internally_generated_sequences_pezzulo2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.82,
+          "confidence_rationale": "A computational theory that unifies hippocampal replay with model-based planning by deriving replay order from expected-value-of-computation. The key insight for SD-003-successor: the same memory (forward-model state transitions) is replayed in two modes \u2014 forward for planning (evaluator-mode rollouts before action) and reverse/prioritized for credit assignment (comparator-mode after outcome). This is the most explicit theoretical statement that the evaluator and comparator operations share the same forward-model substrate but run it in different directions/modes. Confidence 0.82 because it is a landmark Nature Neuroscience theoretical paper, fits empirical replay data across many studies, and directly addresses the question 'same substrate, different modes' that drives the SD-003 successor design.",
+          "evidence_class": "lit:computational_theoretical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "The framework derives the value of computation from expected-future-reward; a harm-stream analogue (expected-future-harm-avoidance) has the right structure but is not tested in the paper.",
+            "The theory assumes a unified state-space; REE's stream-separated architecture (SD-010) would require two separate prioritized-replay processes running in parallel, which the paper does not model."
+          ],
+          "run_id": "2026-04-18_mech_033_prioritized_replay_mattar2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.72,
+          "confidence_rationale": "Authoritative review dissociating the functional roles of different frontal regions (OFC, vmPFC, ACC, lateral PFC) in reward-guided action selection. Core claim relevant here: OFC and vmPFC compute expected value of options before action (evaluator role), distinct from ACC's role in action-outcome learning (comparator / credit assignment role). This is the clearest statement of the evaluator-comparator dissociation at the frontal level, and it directly supports the architectural separation between pre-action value estimation and post-action attribution that the SD-003 successor needs. Confidence 0.72 because the dissociation is cleaner in some contexts than others, and the review does not adjudicate whether both circuits share the same forward model or maintain separate forward models.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "If the vmPFC value signal depends on state representations computed by the same forward model that ACC uses for credit assignment, the circuits are not as separated as the functional dissociation suggests, and the SD-003-successor 'same substrate, different modes' reading becomes stronger.",
+            "Lesion data is sometimes ambiguous between 'region computes X' and 'region provides inputs to region that computes X'; the review is cautious about this but the transfer risk to REE is real."
+          ],
+          "run_id": "2026-04-18_mech_102_frontal_reward_learning_rushworth2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.78,
+          "confidence_rationale": "Canonical dissociation of model-based (forward-model rollout-based) and model-free (cached-value) contributions to human action selection, with fMRI evidence that both signals coexist in ventral striatum. Critical for the SD-003 successor question: it demonstrates that pre-action value estimation uses both rollout-based and model-free pathways in the same brain, and that behavior reflects a weighted mixture. This establishes the evaluator mode as a real, measurable computation and constrains where forward-model rollouts feed value signals. Confidence 0.78 because it is high-quality primary data in Neuron, central to a decade of computational neuroscience, and directly addresses forward-model-based value computation.",
+          "evidence_class": "lit:empirical_fmri_behavioral",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_evaluator",
+          "failure_signatures": [
+            "If the two-step task's model-based/model-free dissociation conflates forward-model rollout depth with other properties (planning horizon, effortful computation), then the mapping to REE's evaluator mode is partial.",
+            "The paper shows model-based signals in striatum but cannot directly address hippocampal rollout generation \u2014 the forward-model substrate is inferred, not recorded."
+          ],
+          "run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:48:57Z"
         }
       ],
-      "runs_total": 28,
+      "runs_total": 32,
       "source_counts": {
         "experimental": 24,
-        "literature": 4
+        "literature": 8
       }
     },
     "MECH-103": {
@@ -9030,7 +9074,7 @@
       }
     },
     "MECH-104": {
-      "confidence_rationale": "exp=11 entry(s), lit=4 entry(s), exp_conf=0.904, lit_conf=0.893",
+      "confidence_rationale": "exp=11 entry(s), lit=4 entry(s), exp_conf=0.903, lit_conf=0.893",
       "direction_counts": {
         "mixed": 3,
         "supports": 11,
@@ -9043,7 +9087,7 @@
         "lit:computational_model": 1,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.904,
+      "experimental_confidence": 0.903,
       "fail_runs": 4,
       "genuine_exp_count": 11,
       "genuine_exp_direction_counts": {
@@ -9268,7 +9312,7 @@
       }
     },
     "MECH-111": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.372, lit_conf=0.769",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.371, lit_conf=0.769",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -9281,7 +9325,7 @@
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.372,
+      "experimental_confidence": 0.371,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -9293,7 +9337,7 @@
       "latest_run_id": "v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3",
       "latest_timestamp_utc": "2026-04-02T02:18:31Z",
       "literature_confidence": 0.769,
-      "overall_confidence": 0.531,
+      "overall_confidence": 0.53,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -9611,7 +9655,7 @@
       }
     },
     "MECH-116": {
-      "confidence_rationale": "exp=4 entry(s), lit=6 entry(s), exp_conf=0.429, lit_conf=0.871",
+      "confidence_rationale": "exp=4 entry(s), lit=6 entry(s), exp_conf=0.428, lit_conf=0.871",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -9625,7 +9669,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.429,
+      "experimental_confidence": 0.428,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -9736,7 +9780,7 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.938, lit_conf=0.777",
+      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.937, lit_conf=0.777",
       "direction_counts": {
         "mixed": 2,
         "supports": 6,
@@ -9749,7 +9793,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.938,
+      "experimental_confidence": 0.937,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -9761,7 +9805,7 @@
       "latest_run_id": "v3_exq_234_mech117_wanting_liking_replication_20260405T143337Z_v3",
       "latest_timestamp_utc": "2026-04-05T14:33:37Z",
       "literature_confidence": 0.777,
-      "overall_confidence": 0.874,
+      "overall_confidence": 0.873,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -10710,7 +10754,7 @@
       }
     },
     "MECH-135": {
-      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.803, lit_conf=0.831",
+      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.802, lit_conf=0.831",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -10724,7 +10768,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.803,
+      "experimental_confidence": 0.802,
       "fail_runs": 2,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -10997,7 +11041,7 @@
       }
     },
     "MECH-153": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.464, lit_conf=0.857",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.463, lit_conf=0.857",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -11013,7 +11057,7 @@
         "lit:ml_theoretical_empirical": 1,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.464,
+      "experimental_confidence": 0.463,
       "fail_runs": 3,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -14812,6 +14856,128 @@
         "literature": 1
       }
     },
+    "MECH-E2-DUAL-FUNCTION": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.817",
+      "direction_counts": {
+        "mixed": 3,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:computational_theory_review": 1,
+        "lit:rodent_electrophysiology": 2,
+        "lit:theoretical_framework_review": 1,
+        "lit:theoretical_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-18_e2_dual_shenhav2016_dacc",
+      "latest_timestamp_utc": "2026-04-18T16:49:53Z",
+      "literature_confidence": 0.817,
+      "overall_confidence": 0.817,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-E2-DUAL-FUNCTION",
+          "confidence": 0.72,
+          "confidence_rationale": "Direct electrophysiological demonstration that the same hippocampal place-cell population expresses temporal sequences in two distinct temporal modes within a single behavioural session: forward sequences before a run (anticipatory, prospective), reverse sequences at the end of a run (retrospective, reflecting just-completed trajectory). Both modes ride on sharp-wave ripple events and use overlapping cell populations. The forward/reverse directionality is the strongest biological instance of a single substrate expressing bidirectional predictive/retrospective readouts tied to behavioural phase. Direction is supports (not mixed) because the paper directly shows the behavioural-phase-dependent readout of one population in two computational modes. Confidence 0.72 -- the highest in this pull because the mapping to attribution (retrospective) vs. evaluation (prospective) is unusually crisp.",
+          "evidence_class": "lit:rodent_electrophysiology",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "Forward and reverse sequences in the hippocampus are time-compressed within sharp-wave ripples; both fall within consolidation-style events rather than spanning the evaluation-vs-attribution division we care about in E2. If the attribution-vs-evaluation distinction in E2 is supposed to happen at action-timescale (online, not during SWR), then the Diba/Buzsaki result may not transfer cleanly.",
+            "Reverse replay has been linked specifically to credit assignment / reward attribution in subsequent literature (Foster & Wilson); forward replay has been linked to planning. If these dissociations turn out to recruit different sub-circuits (e.g. PFC-hippocampal loops vs ventral-striatal loops), the single-substrate reading weakens and a partial dual-substrate view becomes defensible."
+          ],
+          "run_id": "2026-04-18_e2_dual_diba2007_forward_reverse",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-E2-DUAL-FUNCTION",
+          "confidence": 0.7,
+          "confidence_rationale": "Direct electrophysiological evidence that the same hippocampal cellular assembly expresses temporally structured sequences both before an experience (preplay) and after it (replay), using overlapping but not identical sequences. This is the cleanest biological case of a single predictive-sequence substrate read in two different modes -- prospective anticipation and retrospective consolidation -- within the same neural population. Maps directly onto the E2 dual-function question: preplay corresponds roughly to prospective rollout / evaluation mode, replay corresponds roughly to retrospective attribution / consolidation mode. The paper supports single-substrate-plus-mode-dependent-readout. Direction marked mixed because the paper also emphasises that preplay sequences are a pre-configured subset, which opens the door to sub-population specialisation (partial dual-substrate interpretation). Confidence 0.70 because the evidence is direct, from a canonical electrophysiology paper, with tight experimental controls.",
+          "evidence_class": "lit:rodent_electrophysiology",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If preplay sequences involve a distinct subset of cells from replay sequences in a systematic, non-overlapping way, the single-substrate interpretation weakens -- preplay and replay would use distinct sub-populations even within the same anatomical region.",
+            "The transfer to E2 assumes the hippocampal sequence precedent generalises to forward-model dynamics prediction. Hippocampus does spatial/episodic sequencing; E2 does action-consequence dynamics. The principle of sequence reuse may not be equivalent to forward-model reuse."
+          ],
+          "run_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-E2-DUAL-FUNCTION",
+          "confidence": 0.62,
+          "confidence_rationale": "Rangel, Camerer and Montague explicitly decompose value-based decision making into stages (representation, valuation, action selection, outcome evaluation, learning). They flag three distinct valuation systems: Pavlovian, habitual, and goal-directed. Crucially for the E2 mode question, their framework identifies valuation (prospective) and outcome evaluation (retrospective) as distinct computational stages that can (at least partly) share substrate -- the same model-based predictor is used for rollouts during goal-directed valuation and for generating prediction errors during outcome evaluation. This is mixed evidence: it supports a mode distinction at the computational-stage level (attribution vs evaluation) while also supporting shared substrate across modes (the goal-directed forward model). The exact position the paper takes is closer to: one forward-model substrate, two consumers. Confidence 0.62 -- higher than the Shenhav entries because the framework directly discusses model-based prediction and its dual use.",
+          "evidence_class": "lit:theoretical_framework_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If habitual (model-free) and goal-directed (model-based) systems are as cleanly separated as the framework asserts, then one might argue for a dual-substrate E2 where the model-based forward model is itself decomposed into a prospective and retrospective variant. The framework leaves this ambiguous.",
+            "If the prediction-error signal feeding outcome evaluation turns out to use a different forward model (e.g. cerebellar sensorimotor) than the one used for goal-directed valuation (e.g. OFC/vmPFC value prediction), then the shared-substrate interpretation does not hold and the E2 mapping weakens."
+          ],
+          "run_id": "2026-04-18_e2_dual_rangel2008_framework",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-E2-DUAL-FUNCTION",
+          "confidence": 0.58,
+          "confidence_rationale": "The EVC framework describes dACC as a controller that allocates cognitive control based on three arguments -- expected payoff, required control, and effort cost. Mapped to the E2 dual-function question, this supports the existence of a separate arbitration signal that decides how a forward model is used (pre-action evaluation weight vs. outcome monitoring weight) rather than a separate forward-model substrate per mode. The theory is therefore more consistent with a single-process-with-mode-dependent-readout account than with an architecturally dual-mode substrate, which is partial support for MECH-E2-DUAL-FUNCTION framed as a controller-gated readout mechanism, but weakens any framing that requires two disjoint E2 populations. Confidence held at 0.58 because the theory is computational/integrative rather than direct electrophysiology; it describes control allocation, not forward-model reuse per se, and the mapping to E2 attribution-vs-evaluation is architectural by analogy.",
+          "evidence_class": "lit:computational_theory_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If attribution (retrospective) and evaluation (prospective) use genuinely distinct neural populations with non-overlapping tuning, then EVC's single-controller-over-shared-substrate account does not transfer; a dual-mode MECH claim with separate E2_attribution and E2_evaluation substrates would be required.",
+            "If dACC's control signal turns out to be itself compositional (one subregion for attribution cost, another for evaluation cost), the apparent single-process account dissolves into a multi-module one, weakening the inference that E2 can be single-process with readout."
+          ],
+          "run_id": "2026-04-18_e2_dual_shenhav2013_evc",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-E2-DUAL-FUNCTION",
+          "confidence": 0.55,
+          "confidence_rationale": "This 2016 Nature Neuroscience update defends the EVC theory of dACC against foraging-based alternatives and stresses that the region's activity tracks control allocation across many experimental contexts without needing task-mode-specific subregions. That cross-context generality is the relevant structural analogue for the E2 mode question: a single representational resource can serve multiple task functions when a controller specifies the read-out weights. Supports MECH-E2-DUAL-FUNCTION framed as single-process-plus-gated-readout, and weakens any framing that requires architecturally distinct E2 populations per mode. Confidence 0.55: the evidence is precedent-by-analogy rather than direct forward-model evidence.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+          "failure_signatures": [
+            "If dACC itself turns out to decompose into task-mode-specific subregions (foraging value, cognitive effort, conflict), the single-process-plus-readout precedent collapses and the default expectation for E2 shifts back toward a dual-substrate account.",
+            "If the brain's mode arbitration is local to sensory-motor forward models (cerebellum, M1) rather than a downstream controller, the Shenhav-style controller analogy may not transfer to E2."
+          ],
+          "run_id": "2026-04-18_e2_dual_shenhav2016_dacc",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:53Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
+      }
+    },
     "Q-001": {
       "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.28, lit_conf=0.804",
       "direction_counts": {
@@ -17314,7 +17480,7 @@
       }
     },
     "SD-003": {
-      "confidence_rationale": "exp=84 entry(s), lit=7 entry(s), exp_conf=0.663, lit_conf=0.847",
+      "confidence_rationale": "exp=84 entry(s), lit=7 entry(s), exp_conf=0.662, lit_conf=0.847",
       "direction_counts": {
         "mixed": 22,
         "supports": 27,
@@ -17329,7 +17495,7 @@
         "lit:empirical_neuroscience": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.663,
+      "experimental_confidence": 0.662,
       "fail_runs": 66,
       "genuine_exp_count": 84,
       "genuine_exp_direction_counts": {
@@ -17424,6 +17590,114 @@
       "source_counts": {
         "experimental": 84,
         "literature": 7
+      }
+    },
+    "SD-003-SUCCESSOR": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.872",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1,
+        "lit:fmri_connectivity": 1,
+        "lit:theoretical_review": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-18_sd003successor_tickle_cancellation_blakemore1998",
+      "latest_timestamp_utc": "2026-04-18T16:49:50Z",
+      "literature_confidence": 0.872,
+      "overall_confidence": 0.872,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003-SUCCESSOR",
+          "confidence": 0.68,
+          "confidence_rationale": "Modern synthesis that both endorses and complicates the comparator model. Haggard accepts that the comparator / forward-model is a real mechanism and probably the dominant contributor in healthy agents, but argues that agency in the brain is multi-factorial: prospective signals (intention, selection, motor preparation) and retrospective signals (outcome compatibility, cue integration) combine with the sensorimotor comparator to produce the overall sense of agency. For REE this is mixed evidence: it supports a comparator as the scaffold (good for ARC-033), but warns that a single residual comparator will not reproduce the full biological phenomenon. Healthy volunteers rely more on prediction, schizophrenia patients more on retrospective reconstruction -- a clinical dissociation worth noting in the SD-003 successor design.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_sd003_successor_comparator",
+          "failure_signatures": [
+            "Haggard argues that the comparator alone does not fully determine the sense of agency -- prospective intention signals and retrospective outcome signals also contribute via optimal cue integration. An REE agent that only computes z_harm_s_obs - z_harm_s_pred will have a thinner agency signal than the biological system it claims to model.",
+            "The review reports that schizophrenia patients construct agency retrospectively when the predictive comparator fails. If REE's E2_harm_s is weak or poorly calibrated, the agent may reconstruct agency from outcomes in a way that produces systematic false attribution -- a failure mode to test explicitly.",
+            "Cue integration is reliability-weighted: unreliable cues have less influence. REE needs a precision estimate on the comparator residual to weight it correctly, not a raw subtraction. This adds an estimation problem the retired SD-003 design did not have."
+          ],
+          "run_id": "2026-04-18_sd003successor_agency_synthesis_haggard2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003-SUCCESSOR",
+          "confidence": 0.72,
+          "confidence_rationale": "Canonical statement of the comparator model of agency attribution. The architecture it specifies -- a forward model that predicts sensory consequences of a motor command, a comparator that flags the mismatch between prediction and reafference, and the proposal that delusions of control arise when this comparator signal is corrupted -- is a direct biological precedent for a single-pass E2_harm_s forward model that generates a predicted next-state and compares it to observed next-state. This is cleaner than the retired SD-003 two-pass counterfactual (actual vs counterfactual action rollouts) and matches the biology more closely. Confidence moderate-high because the model is theoretical and draws on multiple experimental strands, and because the signal is described in generic sensorimotor terms rather than as a harm-specific mechanism.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_comparator",
+          "failure_signatures": [
+            "The comparator signal as described in Frith 2000 is generic sensorimotor (proprioceptive and exteroceptive feedback) -- it does not specifically predict harm or nociceptive outcomes. Mapping to E2_harm_s requires an inference step that the forward-model-plus-comparator architecture extends to a harm-specific channel, which the paper does not establish.",
+            "The paper emphasises post-hoc comparison of actual and predicted sensory consequences. If the REE agent needs the comparator signal to gate attribution *before* the outcome settles (e.g. as part of commitment-boundary logic), the biological precedent is weaker.",
+            "Schizophrenia delusions of control are attributed to impairment in representing intended movements -- a failure mode in the predictor. The paper does not strongly dissociate predictor failure from comparator failure. REE would need separate diagnostics for each."
+          ],
+          "run_id": "2026-04-18_sd003successor_comparator_forward_model_frith2000",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003-SUCCESSOR",
+          "confidence": 0.78,
+          "confidence_rationale": "Clean behavioural demonstration of a core prediction of the comparator model: self-generated sensory inputs are systematically attenuated relative to identical externally-generated inputs. The force-matching paradigm quantifies attenuation -- when asked to match a target force by pressing directly with their own finger, participants over-produced force; when they matched via a joystick (so the force was still externally generated), they reproduced it accurately. The intercept shift (0.53 N) and 49% slope increase in the direct condition relative to indirect are the strength of the forward-model prediction, measured behaviourally. This is the cleanest available behavioural signature of a working comparator. Confidence high, capped at 0.78 because the stimuli are somatosensory pressure and the transfer to nociceptive harm is an inference.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_comparator",
+          "failure_signatures": [
+            "The task uses innocuous tactile force, not nociception. The inference that the same attenuation mechanism operates for harm-proximity signals requires that the forward model is modality-general, which is plausible but not directly shown.",
+            "The attenuation operates concurrently with action (during matching), not post-hoc. If the REE successor uses the comparator to gate residue accumulation after action completion, the biological timing is not identical.",
+            "The paradigm measures perceptual attenuation, not explicit agency judgment. Attenuation is a necessary but not sufficient condition for agency attribution -- an agent could have attenuated reafference yet still fail to attribute the action to itself."
+          ],
+          "run_id": "2026-04-18_sd003successor_force_attenuation_shergill2003",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003-SUCCESSOR",
+          "confidence": 0.8,
+          "confidence_rationale": "fMRI evidence that self-generated tactile stimulation produces attenuated somatosensory cortex response relative to identical externally-generated stimulation, localising the cancellation to a cerebellar forward-model signal. This is the neural signature of the comparator operating: the cerebellum predicts, the predicted consequences are subtracted, and both S1 and cerebellar activity drop when prediction matches observation. For REE, the paper supplies the neural mechanism that underwrites Shergill 2003's behavioural attenuation. Confidence high because the paradigm is clean and the finding has been replicated across multiple studies.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd003_successor_comparator",
+          "failure_signatures": [
+            "Tickle stimulation is innocuous tactile input, not nociception. Whether the same cerebellar forward-model cancellation operates for harm signals is assumed but not shown.",
+            "The cancellation is strongest when self-generation is temporally immediate; even small introduced delays (100-200 ms) restore the tickle sensation. This suggests the comparator has a narrow temporal window, which REE must match -- z_harm_s_pred and z_harm_s_obs need to be aligned at the correct timestep.",
+            "The cerebellar role suggests specialised hardware, not a generic neural-network function. An REE implementation that tries to learn E2_harm_s end-to-end from a general architecture may struggle to match biological performance without inductive biases analogous to cerebellar circuit structure."
+          ],
+          "run_id": "2026-04-18_sd003successor_tickle_cancellation_blakemore1998",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T16:49:50Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
       }
     },
     "SD-003-prereq": {
@@ -18697,7 +18971,7 @@
       }
     },
     "SD-015": {
-      "confidence_rationale": "exp=7 entry(s), lit=6 entry(s), exp_conf=0.645, lit_conf=0.874",
+      "confidence_rationale": "exp=7 entry(s), lit=6 entry(s), exp_conf=0.644, lit_conf=0.874",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -18712,7 +18986,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.645,
+      "experimental_confidence": 0.644,
       "fail_runs": 5,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -18724,7 +18998,7 @@
       "latest_run_id": "2026-04-14_sd_015_parallel_streams_lec_knierim2020",
       "latest_timestamp_utc": "2026-04-14T14:00:00Z",
       "literature_confidence": 0.874,
-      "overall_confidence": 0.76,
+      "overall_confidence": 0.759,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -18923,7 +19197,7 @@
       }
     },
     "SD-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.299, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.298, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 0,
@@ -18934,7 +19208,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.299,
+      "experimental_confidence": 0.298,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -18946,7 +19220,7 @@
       "latest_run_id": "v3_exq_257_sd018_resource_prox_validation_20260406T171952Z_v3",
       "latest_timestamp_utc": "2026-04-06T17:19:52Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.299,
+      "overall_confidence": 0.298,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -51469,6 +51743,575 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.75,
+      "confidence_rationale": "Canonical synthesis of evidence that hippocampal internally generated sequences (theta sequences, replay, preplay) function as forward-model rollouts recruited for goal-directed action selection. Explicitly frames these sequences as tools for value computation, not mere memory retrieval. Supports ARC-018 (hippocampus generates rollouts for viability/value mapping) and MECH-033 (rollouts seed downstream evaluation). The paper distinguishes pre-action evaluation (theta sequences, preplay, vicarious trial-and-error) from post-action consolidation (awake replay, SWRs) -- directly relevant to SD-003 successor's distinction between evaluator and comparator modes. Confidence capped at 0.75 because the paper is a synthesis rather than a direct test of a specific algorithmic substrate; the mapping from biology to REE's E2_harm_s forward model is by analogy at the functional level.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the hippocampal forward sweeps serve primarily memory indexing rather than action value computation, the REE evaluator-mode mapping weakens; the authors themselves note that a single unified function has not been proven.",
+        "The paper treats the hippocampus-OFC-striatal circuit as a single evaluation system; if REE's E2_harm_s must be strictly separated from world-dynamics rollouts (SD-010/SD-011), the biological precedent for stream-separated evaluators is weak here."
+      ],
+      "run_id": "2026-04-18_arc_018_internally_generated_sequences_pezzulo2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.8,
+      "confidence_rationale": "Direct empirical demonstration that CA1 alternates between representations of two possible upcoming trajectories on every theta cycle (~125 ms) during choice behaviour. This is a primary, quantitative demonstration of pre-action forward-model rollouts in a decision context. Maps tightly onto the SD-003 successor's evaluator-mode requirement: the brain evaluates candidate futures before commitment, not as post-hoc attribution. Confidence 0.80 because the paper is high-quality primary data in Cell, directly tests pre-action future representation, and uses rigorous decoder analysis. Lower than 0.90 because the paper is about spatial trajectories, not harm-stream evaluation specifically; ARC-033's harm-stream separation is not addressed.",
+      "evidence_class": "lit:empirical_neurophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the alternation is automatic sensory-driven prediction rather than value-computation substrate, the mapping to a deliberate evaluator degrades.",
+        "The paper shows CA1 represents the two trajectories but does not directly test whether the downstream evaluator (OFC/vmPFC/striatum) scores them \u2014 the readout step is inferred, not measured."
+      ],
+      "run_id": "2026-04-18_arc_018_subsecond_cycling_futures_kay2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.82,
+      "confidence_rationale": "A computational theory that unifies hippocampal replay with model-based planning by deriving replay order from expected-value-of-computation. The key insight for SD-003-successor: the same memory (forward-model state transitions) is replayed in two modes \u2014 forward for planning (evaluator-mode rollouts before action) and reverse/prioritized for credit assignment (comparator-mode after outcome). This is the most explicit theoretical statement that the evaluator and comparator operations share the same forward-model substrate but run it in different directions/modes. Confidence 0.82 because it is a landmark Nature Neuroscience theoretical paper, fits empirical replay data across many studies, and directly addresses the question 'same substrate, different modes' that drives the SD-003 successor design.",
+      "evidence_class": "lit:computational_theoretical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "The framework derives the value of computation from expected-future-reward; a harm-stream analogue (expected-future-harm-avoidance) has the right structure but is not tested in the paper.",
+        "The theory assumes a unified state-space; REE's stream-separated architecture (SD-010) would require two separate prioritized-replay processes running in parallel, which the paper does not model."
+      ],
+      "run_id": "2026-04-18_mech_033_prioritized_replay_mattar2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.72,
+      "confidence_rationale": "Authoritative review dissociating the functional roles of different frontal regions (OFC, vmPFC, ACC, lateral PFC) in reward-guided action selection. Core claim relevant here: OFC and vmPFC compute expected value of options before action (evaluator role), distinct from ACC's role in action-outcome learning (comparator / credit assignment role). This is the clearest statement of the evaluator-comparator dissociation at the frontal level, and it directly supports the architectural separation between pre-action value estimation and post-action attribution that the SD-003 successor needs. Confidence 0.72 because the dissociation is cleaner in some contexts than others, and the review does not adjudicate whether both circuits share the same forward model or maintain separate forward models.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the vmPFC value signal depends on state representations computed by the same forward model that ACC uses for credit assignment, the circuits are not as separated as the functional dissociation suggests, and the SD-003-successor 'same substrate, different modes' reading becomes stronger.",
+        "Lesion data is sometimes ambiguous between 'region computes X' and 'region provides inputs to region that computes X'; the review is cautious about this but the transfer risk to REE is real."
+      ],
+      "run_id": "2026-04-18_mech_102_frontal_reward_learning_rushworth2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.78,
+      "confidence_rationale": "Canonical dissociation of model-based (forward-model rollout-based) and model-free (cached-value) contributions to human action selection, with fMRI evidence that both signals coexist in ventral striatum. Critical for the SD-003 successor question: it demonstrates that pre-action value estimation uses both rollout-based and model-free pathways in the same brain, and that behavior reflects a weighted mixture. This establishes the evaluator mode as a real, measurable computation and constrains where forward-model rollouts feed value signals. Confidence 0.78 because it is high-quality primary data in Neuron, central to a decade of computational neuroscience, and directly addresses forward-model-based value computation.",
+      "evidence_class": "lit:empirical_fmri_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the two-step task's model-based/model-free dissociation conflates forward-model rollout depth with other properties (planning horizon, effortful computation), then the mapping to REE's evaluator mode is partial.",
+        "The paper shows model-based signals in striatum but cannot directly address hippocampal rollout generation \u2014 the forward-model substrate is inferred, not recorded."
+      ],
+      "run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.75,
+      "confidence_rationale": "Canonical synthesis of evidence that hippocampal internally generated sequences (theta sequences, replay, preplay) function as forward-model rollouts recruited for goal-directed action selection. Explicitly frames these sequences as tools for value computation, not mere memory retrieval. Supports ARC-018 (hippocampus generates rollouts for viability/value mapping) and MECH-033 (rollouts seed downstream evaluation). The paper distinguishes pre-action evaluation (theta sequences, preplay, vicarious trial-and-error) from post-action consolidation (awake replay, SWRs) -- directly relevant to SD-003 successor's distinction between evaluator and comparator modes. Confidence capped at 0.75 because the paper is a synthesis rather than a direct test of a specific algorithmic substrate; the mapping from biology to REE's E2_harm_s forward model is by analogy at the functional level.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the hippocampal forward sweeps serve primarily memory indexing rather than action value computation, the REE evaluator-mode mapping weakens; the authors themselves note that a single unified function has not been proven.",
+        "The paper treats the hippocampus-OFC-striatal circuit as a single evaluation system; if REE's E2_harm_s must be strictly separated from world-dynamics rollouts (SD-010/SD-011), the biological precedent for stream-separated evaluators is weak here."
+      ],
+      "run_id": "2026-04-18_arc_018_internally_generated_sequences_pezzulo2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.8,
+      "confidence_rationale": "Direct empirical demonstration that CA1 alternates between representations of two possible upcoming trajectories on every theta cycle (~125 ms) during choice behaviour. This is a primary, quantitative demonstration of pre-action forward-model rollouts in a decision context. Maps tightly onto the SD-003 successor's evaluator-mode requirement: the brain evaluates candidate futures before commitment, not as post-hoc attribution. Confidence 0.80 because the paper is high-quality primary data in Cell, directly tests pre-action future representation, and uses rigorous decoder analysis. Lower than 0.90 because the paper is about spatial trajectories, not harm-stream evaluation specifically; ARC-033's harm-stream separation is not addressed.",
+      "evidence_class": "lit:empirical_neurophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the alternation is automatic sensory-driven prediction rather than value-computation substrate, the mapping to a deliberate evaluator degrades.",
+        "The paper shows CA1 represents the two trajectories but does not directly test whether the downstream evaluator (OFC/vmPFC/striatum) scores them \u2014 the readout step is inferred, not measured."
+      ],
+      "run_id": "2026-04-18_arc_018_subsecond_cycling_futures_kay2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.82,
+      "confidence_rationale": "A computational theory that unifies hippocampal replay with model-based planning by deriving replay order from expected-value-of-computation. The key insight for SD-003-successor: the same memory (forward-model state transitions) is replayed in two modes \u2014 forward for planning (evaluator-mode rollouts before action) and reverse/prioritized for credit assignment (comparator-mode after outcome). This is the most explicit theoretical statement that the evaluator and comparator operations share the same forward-model substrate but run it in different directions/modes. Confidence 0.82 because it is a landmark Nature Neuroscience theoretical paper, fits empirical replay data across many studies, and directly addresses the question 'same substrate, different modes' that drives the SD-003 successor design.",
+      "evidence_class": "lit:computational_theoretical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "The framework derives the value of computation from expected-future-reward; a harm-stream analogue (expected-future-harm-avoidance) has the right structure but is not tested in the paper.",
+        "The theory assumes a unified state-space; REE's stream-separated architecture (SD-010) would require two separate prioritized-replay processes running in parallel, which the paper does not model."
+      ],
+      "run_id": "2026-04-18_mech_033_prioritized_replay_mattar2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.78,
+      "confidence_rationale": "Canonical dissociation of model-based (forward-model rollout-based) and model-free (cached-value) contributions to human action selection, with fMRI evidence that both signals coexist in ventral striatum. Critical for the SD-003 successor question: it demonstrates that pre-action value estimation uses both rollout-based and model-free pathways in the same brain, and that behavior reflects a weighted mixture. This establishes the evaluator mode as a real, measurable computation and constrains where forward-model rollouts feed value signals. Confidence 0.78 because it is high-quality primary data in Neuron, central to a decade of computational neuroscience, and directly addresses forward-model-based value computation.",
+      "evidence_class": "lit:empirical_fmri_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the two-step task's model-based/model-free dissociation conflates forward-model rollout depth with other properties (planning horizon, effortful computation), then the mapping to REE's evaluator mode is partial.",
+        "The paper shows model-based signals in striatum but cannot directly address hippocampal rollout generation \u2014 the forward-model substrate is inferred, not recorded."
+      ],
+      "run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.75,
+      "confidence_rationale": "Canonical synthesis of evidence that hippocampal internally generated sequences (theta sequences, replay, preplay) function as forward-model rollouts recruited for goal-directed action selection. Explicitly frames these sequences as tools for value computation, not mere memory retrieval. Supports ARC-018 (hippocampus generates rollouts for viability/value mapping) and MECH-033 (rollouts seed downstream evaluation). The paper distinguishes pre-action evaluation (theta sequences, preplay, vicarious trial-and-error) from post-action consolidation (awake replay, SWRs) -- directly relevant to SD-003 successor's distinction between evaluator and comparator modes. Confidence capped at 0.75 because the paper is a synthesis rather than a direct test of a specific algorithmic substrate; the mapping from biology to REE's E2_harm_s forward model is by analogy at the functional level.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the hippocampal forward sweeps serve primarily memory indexing rather than action value computation, the REE evaluator-mode mapping weakens; the authors themselves note that a single unified function has not been proven.",
+        "The paper treats the hippocampus-OFC-striatal circuit as a single evaluation system; if REE's E2_harm_s must be strictly separated from world-dynamics rollouts (SD-010/SD-011), the biological precedent for stream-separated evaluators is weak here."
+      ],
+      "run_id": "2026-04-18_arc_018_internally_generated_sequences_pezzulo2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.82,
+      "confidence_rationale": "A computational theory that unifies hippocampal replay with model-based planning by deriving replay order from expected-value-of-computation. The key insight for SD-003-successor: the same memory (forward-model state transitions) is replayed in two modes \u2014 forward for planning (evaluator-mode rollouts before action) and reverse/prioritized for credit assignment (comparator-mode after outcome). This is the most explicit theoretical statement that the evaluator and comparator operations share the same forward-model substrate but run it in different directions/modes. Confidence 0.82 because it is a landmark Nature Neuroscience theoretical paper, fits empirical replay data across many studies, and directly addresses the question 'same substrate, different modes' that drives the SD-003 successor design.",
+      "evidence_class": "lit:computational_theoretical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "The framework derives the value of computation from expected-future-reward; a harm-stream analogue (expected-future-harm-avoidance) has the right structure but is not tested in the paper.",
+        "The theory assumes a unified state-space; REE's stream-separated architecture (SD-010) would require two separate prioritized-replay processes running in parallel, which the paper does not model."
+      ],
+      "run_id": "2026-04-18_mech_033_prioritized_replay_mattar2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.72,
+      "confidence_rationale": "Authoritative review dissociating the functional roles of different frontal regions (OFC, vmPFC, ACC, lateral PFC) in reward-guided action selection. Core claim relevant here: OFC and vmPFC compute expected value of options before action (evaluator role), distinct from ACC's role in action-outcome learning (comparator / credit assignment role). This is the clearest statement of the evaluator-comparator dissociation at the frontal level, and it directly supports the architectural separation between pre-action value estimation and post-action attribution that the SD-003 successor needs. Confidence 0.72 because the dissociation is cleaner in some contexts than others, and the review does not adjudicate whether both circuits share the same forward model or maintain separate forward models.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the vmPFC value signal depends on state representations computed by the same forward model that ACC uses for credit assignment, the circuits are not as separated as the functional dissociation suggests, and the SD-003-successor 'same substrate, different modes' reading becomes stronger.",
+        "Lesion data is sometimes ambiguous between 'region computes X' and 'region provides inputs to region that computes X'; the review is cautious about this but the transfer risk to REE is real."
+      ],
+      "run_id": "2026-04-18_mech_102_frontal_reward_learning_rushworth2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.78,
+      "confidence_rationale": "Canonical dissociation of model-based (forward-model rollout-based) and model-free (cached-value) contributions to human action selection, with fMRI evidence that both signals coexist in ventral striatum. Critical for the SD-003 successor question: it demonstrates that pre-action value estimation uses both rollout-based and model-free pathways in the same brain, and that behavior reflects a weighted mixture. This establishes the evaluator mode as a real, measurable computation and constrains where forward-model rollouts feed value signals. Confidence 0.78 because it is high-quality primary data in Neuron, central to a decade of computational neuroscience, and directly addresses forward-model-based value computation.",
+      "evidence_class": "lit:empirical_fmri_behavioral",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_evaluator",
+      "failure_signatures": [
+        "If the two-step task's model-based/model-free dissociation conflates forward-model rollout depth with other properties (planning horizon, effortful computation), then the mapping to REE's evaluator mode is partial.",
+        "The paper shows model-based signals in striatum but cannot directly address hippocampal rollout generation \u2014 the forward-model substrate is inferred, not recorded."
+      ],
+      "run_id": "2026-04-18_mech_102_model_based_striatal_pe_daw2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:48:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.68,
+      "confidence_rationale": "Modern synthesis that both endorses and complicates the comparator model. Haggard accepts that the comparator / forward-model is a real mechanism and probably the dominant contributor in healthy agents, but argues that agency in the brain is multi-factorial: prospective signals (intention, selection, motor preparation) and retrospective signals (outcome compatibility, cue integration) combine with the sensorimotor comparator to produce the overall sense of agency. For REE this is mixed evidence: it supports a comparator as the scaffold (good for ARC-033), but warns that a single residual comparator will not reproduce the full biological phenomenon. Healthy volunteers rely more on prediction, schizophrenia patients more on retrospective reconstruction -- a clinical dissociation worth noting in the SD-003 successor design.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "Haggard argues that the comparator alone does not fully determine the sense of agency -- prospective intention signals and retrospective outcome signals also contribute via optimal cue integration. An REE agent that only computes z_harm_s_obs - z_harm_s_pred will have a thinner agency signal than the biological system it claims to model.",
+        "The review reports that schizophrenia patients construct agency retrospectively when the predictive comparator fails. If REE's E2_harm_s is weak or poorly calibrated, the agent may reconstruct agency from outcomes in a way that produces systematic false attribution -- a failure mode to test explicitly.",
+        "Cue integration is reliability-weighted: unreliable cues have less influence. REE needs a precision estimate on the comparator residual to weight it correctly, not a raw subtraction. This adds an estimation problem the retired SD-003 design did not have."
+      ],
+      "run_id": "2026-04-18_sd003successor_agency_synthesis_haggard2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.72,
+      "confidence_rationale": "Canonical statement of the comparator model of agency attribution. The architecture it specifies -- a forward model that predicts sensory consequences of a motor command, a comparator that flags the mismatch between prediction and reafference, and the proposal that delusions of control arise when this comparator signal is corrupted -- is a direct biological precedent for a single-pass E2_harm_s forward model that generates a predicted next-state and compares it to observed next-state. This is cleaner than the retired SD-003 two-pass counterfactual (actual vs counterfactual action rollouts) and matches the biology more closely. Confidence moderate-high because the model is theoretical and draws on multiple experimental strands, and because the signal is described in generic sensorimotor terms rather than as a harm-specific mechanism.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "The comparator signal as described in Frith 2000 is generic sensorimotor (proprioceptive and exteroceptive feedback) -- it does not specifically predict harm or nociceptive outcomes. Mapping to E2_harm_s requires an inference step that the forward-model-plus-comparator architecture extends to a harm-specific channel, which the paper does not establish.",
+        "The paper emphasises post-hoc comparison of actual and predicted sensory consequences. If the REE agent needs the comparator signal to gate attribution *before* the outcome settles (e.g. as part of commitment-boundary logic), the biological precedent is weaker.",
+        "Schizophrenia delusions of control are attributed to impairment in representing intended movements -- a failure mode in the predictor. The paper does not strongly dissociate predictor failure from comparator failure. REE would need separate diagnostics for each."
+      ],
+      "run_id": "2026-04-18_sd003successor_comparator_forward_model_frith2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.78,
+      "confidence_rationale": "Clean behavioural demonstration of a core prediction of the comparator model: self-generated sensory inputs are systematically attenuated relative to identical externally-generated inputs. The force-matching paradigm quantifies attenuation -- when asked to match a target force by pressing directly with their own finger, participants over-produced force; when they matched via a joystick (so the force was still externally generated), they reproduced it accurately. The intercept shift (0.53 N) and 49% slope increase in the direct condition relative to indirect are the strength of the forward-model prediction, measured behaviourally. This is the cleanest available behavioural signature of a working comparator. Confidence high, capped at 0.78 because the stimuli are somatosensory pressure and the transfer to nociceptive harm is an inference.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "The task uses innocuous tactile force, not nociception. The inference that the same attenuation mechanism operates for harm-proximity signals requires that the forward model is modality-general, which is plausible but not directly shown.",
+        "The attenuation operates concurrently with action (during matching), not post-hoc. If the REE successor uses the comparator to gate residue accumulation after action completion, the biological timing is not identical.",
+        "The paradigm measures perceptual attenuation, not explicit agency judgment. Attenuation is a necessary but not sufficient condition for agency attribution -- an agent could have attenuated reafference yet still fail to attribute the action to itself."
+      ],
+      "run_id": "2026-04-18_sd003successor_force_attenuation_shergill2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.8,
+      "confidence_rationale": "fMRI evidence that self-generated tactile stimulation produces attenuated somatosensory cortex response relative to identical externally-generated stimulation, localising the cancellation to a cerebellar forward-model signal. This is the neural signature of the comparator operating: the cerebellum predicts, the predicted consequences are subtracted, and both S1 and cerebellar activity drop when prediction matches observation. For REE, the paper supplies the neural mechanism that underwrites Shergill 2003's behavioural attenuation. Confidence high because the paradigm is clean and the finding has been replicated across multiple studies.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "Tickle stimulation is innocuous tactile input, not nociception. Whether the same cerebellar forward-model cancellation operates for harm signals is assumed but not shown.",
+        "The cancellation is strongest when self-generation is temporally immediate; even small introduced delays (100-200 ms) restore the tickle sensation. This suggests the comparator has a narrow temporal window, which REE must match -- z_harm_s_pred and z_harm_s_obs need to be aligned at the correct timestep.",
+        "The cerebellar role suggests specialised hardware, not a generic neural-network function. An REE implementation that tries to learn E2_harm_s end-to-end from a general architecture may struggle to match biological performance without inductive biases analogous to cerebellar circuit structure."
+      ],
+      "run_id": "2026-04-18_sd003successor_tickle_cancellation_blakemore1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003-SUCCESSOR",
+      "confidence": 0.68,
+      "confidence_rationale": "Modern synthesis that both endorses and complicates the comparator model. Haggard accepts that the comparator / forward-model is a real mechanism and probably the dominant contributor in healthy agents, but argues that agency in the brain is multi-factorial: prospective signals (intention, selection, motor preparation) and retrospective signals (outcome compatibility, cue integration) combine with the sensorimotor comparator to produce the overall sense of agency. For REE this is mixed evidence: it supports a comparator as the scaffold (good for ARC-033), but warns that a single residual comparator will not reproduce the full biological phenomenon. Healthy volunteers rely more on prediction, schizophrenia patients more on retrospective reconstruction -- a clinical dissociation worth noting in the SD-003 successor design.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "Haggard argues that the comparator alone does not fully determine the sense of agency -- prospective intention signals and retrospective outcome signals also contribute via optimal cue integration. An REE agent that only computes z_harm_s_obs - z_harm_s_pred will have a thinner agency signal than the biological system it claims to model.",
+        "The review reports that schizophrenia patients construct agency retrospectively when the predictive comparator fails. If REE's E2_harm_s is weak or poorly calibrated, the agent may reconstruct agency from outcomes in a way that produces systematic false attribution -- a failure mode to test explicitly.",
+        "Cue integration is reliability-weighted: unreliable cues have less influence. REE needs a precision estimate on the comparator residual to weight it correctly, not a raw subtraction. This adds an estimation problem the retired SD-003 design did not have."
+      ],
+      "run_id": "2026-04-18_sd003successor_agency_synthesis_haggard2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003-SUCCESSOR",
+      "confidence": 0.72,
+      "confidence_rationale": "Canonical statement of the comparator model of agency attribution. The architecture it specifies -- a forward model that predicts sensory consequences of a motor command, a comparator that flags the mismatch between prediction and reafference, and the proposal that delusions of control arise when this comparator signal is corrupted -- is a direct biological precedent for a single-pass E2_harm_s forward model that generates a predicted next-state and compares it to observed next-state. This is cleaner than the retired SD-003 two-pass counterfactual (actual vs counterfactual action rollouts) and matches the biology more closely. Confidence moderate-high because the model is theoretical and draws on multiple experimental strands, and because the signal is described in generic sensorimotor terms rather than as a harm-specific mechanism.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "The comparator signal as described in Frith 2000 is generic sensorimotor (proprioceptive and exteroceptive feedback) -- it does not specifically predict harm or nociceptive outcomes. Mapping to E2_harm_s requires an inference step that the forward-model-plus-comparator architecture extends to a harm-specific channel, which the paper does not establish.",
+        "The paper emphasises post-hoc comparison of actual and predicted sensory consequences. If the REE agent needs the comparator signal to gate attribution *before* the outcome settles (e.g. as part of commitment-boundary logic), the biological precedent is weaker.",
+        "Schizophrenia delusions of control are attributed to impairment in representing intended movements -- a failure mode in the predictor. The paper does not strongly dissociate predictor failure from comparator failure. REE would need separate diagnostics for each."
+      ],
+      "run_id": "2026-04-18_sd003successor_comparator_forward_model_frith2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003-SUCCESSOR",
+      "confidence": 0.78,
+      "confidence_rationale": "Clean behavioural demonstration of a core prediction of the comparator model: self-generated sensory inputs are systematically attenuated relative to identical externally-generated inputs. The force-matching paradigm quantifies attenuation -- when asked to match a target force by pressing directly with their own finger, participants over-produced force; when they matched via a joystick (so the force was still externally generated), they reproduced it accurately. The intercept shift (0.53 N) and 49% slope increase in the direct condition relative to indirect are the strength of the forward-model prediction, measured behaviourally. This is the cleanest available behavioural signature of a working comparator. Confidence high, capped at 0.78 because the stimuli are somatosensory pressure and the transfer to nociceptive harm is an inference.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "The task uses innocuous tactile force, not nociception. The inference that the same attenuation mechanism operates for harm-proximity signals requires that the forward model is modality-general, which is plausible but not directly shown.",
+        "The attenuation operates concurrently with action (during matching), not post-hoc. If the REE successor uses the comparator to gate residue accumulation after action completion, the biological timing is not identical.",
+        "The paradigm measures perceptual attenuation, not explicit agency judgment. Attenuation is a necessary but not sufficient condition for agency attribution -- an agent could have attenuated reafference yet still fail to attribute the action to itself."
+      ],
+      "run_id": "2026-04-18_sd003successor_force_attenuation_shergill2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003-SUCCESSOR",
+      "confidence": 0.8,
+      "confidence_rationale": "fMRI evidence that self-generated tactile stimulation produces attenuated somatosensory cortex response relative to identical externally-generated stimulation, localising the cancellation to a cerebellar forward-model signal. This is the neural signature of the comparator operating: the cerebellum predicts, the predicted consequences are subtracted, and both S1 and cerebellar activity drop when prediction matches observation. For REE, the paper supplies the neural mechanism that underwrites Shergill 2003's behavioural attenuation. Confidence high because the paradigm is clean and the finding has been replicated across multiple studies.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd003_successor_comparator",
+      "failure_signatures": [
+        "Tickle stimulation is innocuous tactile input, not nociception. Whether the same cerebellar forward-model cancellation operates for harm signals is assumed but not shown.",
+        "The cancellation is strongest when self-generation is temporally immediate; even small introduced delays (100-200 ms) restore the tickle sensation. This suggests the comparator has a narrow temporal window, which REE must match -- z_harm_s_pred and z_harm_s_obs need to be aligned at the correct timestep.",
+        "The cerebellar role suggests specialised hardware, not a generic neural-network function. An REE implementation that tries to learn E2_harm_s end-to-end from a general architecture may struggle to match biological performance without inductive biases analogous to cerebellar circuit structure."
+      ],
+      "run_id": "2026-04-18_sd003successor_tickle_cancellation_blakemore1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.72,
+      "confidence_rationale": "Direct electrophysiological demonstration that the same hippocampal place-cell population expresses temporal sequences in two distinct temporal modes within a single behavioural session: forward sequences before a run (anticipatory, prospective), reverse sequences at the end of a run (retrospective, reflecting just-completed trajectory). Both modes ride on sharp-wave ripple events and use overlapping cell populations. The forward/reverse directionality is the strongest biological instance of a single substrate expressing bidirectional predictive/retrospective readouts tied to behavioural phase. Direction is supports (not mixed) because the paper directly shows the behavioural-phase-dependent readout of one population in two computational modes. Confidence 0.72 -- the highest in this pull because the mapping to attribution (retrospective) vs. evaluation (prospective) is unusually crisp.",
+      "evidence_class": "lit:rodent_electrophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "Forward and reverse sequences in the hippocampus are time-compressed within sharp-wave ripples; both fall within consolidation-style events rather than spanning the evaluation-vs-attribution division we care about in E2. If the attribution-vs-evaluation distinction in E2 is supposed to happen at action-timescale (online, not during SWR), then the Diba/Buzsaki result may not transfer cleanly.",
+        "Reverse replay has been linked specifically to credit assignment / reward attribution in subsequent literature (Foster & Wilson); forward replay has been linked to planning. If these dissociations turn out to recruit different sub-circuits (e.g. PFC-hippocampal loops vs ventral-striatal loops), the single-substrate reading weakens and a partial dual-substrate view becomes defensible."
+      ],
+      "run_id": "2026-04-18_e2_dual_diba2007_forward_reverse",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.7,
+      "confidence_rationale": "Direct electrophysiological evidence that the same hippocampal cellular assembly expresses temporally structured sequences both before an experience (preplay) and after it (replay), using overlapping but not identical sequences. This is the cleanest biological case of a single predictive-sequence substrate read in two different modes -- prospective anticipation and retrospective consolidation -- within the same neural population. Maps directly onto the E2 dual-function question: preplay corresponds roughly to prospective rollout / evaluation mode, replay corresponds roughly to retrospective attribution / consolidation mode. The paper supports single-substrate-plus-mode-dependent-readout. Direction marked mixed because the paper also emphasises that preplay sequences are a pre-configured subset, which opens the door to sub-population specialisation (partial dual-substrate interpretation). Confidence 0.70 because the evidence is direct, from a canonical electrophysiology paper, with tight experimental controls.",
+      "evidence_class": "lit:rodent_electrophysiology",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If preplay sequences involve a distinct subset of cells from replay sequences in a systematic, non-overlapping way, the single-substrate interpretation weakens -- preplay and replay would use distinct sub-populations even within the same anatomical region.",
+        "The transfer to E2 assumes the hippocampal sequence precedent generalises to forward-model dynamics prediction. Hippocampus does spatial/episodic sequencing; E2 does action-consequence dynamics. The principle of sequence reuse may not be equivalent to forward-model reuse."
+      ],
+      "run_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.72,
+      "confidence_rationale": "Direct electrophysiological demonstration that the same hippocampal place-cell population expresses temporal sequences in two distinct temporal modes within a single behavioural session: forward sequences before a run (anticipatory, prospective), reverse sequences at the end of a run (retrospective, reflecting just-completed trajectory). Both modes ride on sharp-wave ripple events and use overlapping cell populations. The forward/reverse directionality is the strongest biological instance of a single substrate expressing bidirectional predictive/retrospective readouts tied to behavioural phase. Direction is supports (not mixed) because the paper directly shows the behavioural-phase-dependent readout of one population in two computational modes. Confidence 0.72 -- the highest in this pull because the mapping to attribution (retrospective) vs. evaluation (prospective) is unusually crisp.",
+      "evidence_class": "lit:rodent_electrophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "Forward and reverse sequences in the hippocampus are time-compressed within sharp-wave ripples; both fall within consolidation-style events rather than spanning the evaluation-vs-attribution division we care about in E2. If the attribution-vs-evaluation distinction in E2 is supposed to happen at action-timescale (online, not during SWR), then the Diba/Buzsaki result may not transfer cleanly.",
+        "Reverse replay has been linked specifically to credit assignment / reward attribution in subsequent literature (Foster & Wilson); forward replay has been linked to planning. If these dissociations turn out to recruit different sub-circuits (e.g. PFC-hippocampal loops vs ventral-striatal loops), the single-substrate reading weakens and a partial dual-substrate view becomes defensible."
+      ],
+      "run_id": "2026-04-18_e2_dual_diba2007_forward_reverse",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.7,
+      "confidence_rationale": "Direct electrophysiological evidence that the same hippocampal cellular assembly expresses temporally structured sequences both before an experience (preplay) and after it (replay), using overlapping but not identical sequences. This is the cleanest biological case of a single predictive-sequence substrate read in two different modes -- prospective anticipation and retrospective consolidation -- within the same neural population. Maps directly onto the E2 dual-function question: preplay corresponds roughly to prospective rollout / evaluation mode, replay corresponds roughly to retrospective attribution / consolidation mode. The paper supports single-substrate-plus-mode-dependent-readout. Direction marked mixed because the paper also emphasises that preplay sequences are a pre-configured subset, which opens the door to sub-population specialisation (partial dual-substrate interpretation). Confidence 0.70 because the evidence is direct, from a canonical electrophysiology paper, with tight experimental controls.",
+      "evidence_class": "lit:rodent_electrophysiology",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If preplay sequences involve a distinct subset of cells from replay sequences in a systematic, non-overlapping way, the single-substrate interpretation weakens -- preplay and replay would use distinct sub-populations even within the same anatomical region.",
+        "The transfer to E2 assumes the hippocampal sequence precedent generalises to forward-model dynamics prediction. Hippocampus does spatial/episodic sequencing; E2 does action-consequence dynamics. The principle of sequence reuse may not be equivalent to forward-model reuse."
+      ],
+      "run_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.62,
+      "confidence_rationale": "Rangel, Camerer and Montague explicitly decompose value-based decision making into stages (representation, valuation, action selection, outcome evaluation, learning). They flag three distinct valuation systems: Pavlovian, habitual, and goal-directed. Crucially for the E2 mode question, their framework identifies valuation (prospective) and outcome evaluation (retrospective) as distinct computational stages that can (at least partly) share substrate -- the same model-based predictor is used for rollouts during goal-directed valuation and for generating prediction errors during outcome evaluation. This is mixed evidence: it supports a mode distinction at the computational-stage level (attribution vs evaluation) while also supporting shared substrate across modes (the goal-directed forward model). The exact position the paper takes is closer to: one forward-model substrate, two consumers. Confidence 0.62 -- higher than the Shenhav entries because the framework directly discusses model-based prediction and its dual use.",
+      "evidence_class": "lit:theoretical_framework_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If habitual (model-free) and goal-directed (model-based) systems are as cleanly separated as the framework asserts, then one might argue for a dual-substrate E2 where the model-based forward model is itself decomposed into a prospective and retrospective variant. The framework leaves this ambiguous.",
+        "If the prediction-error signal feeding outcome evaluation turns out to use a different forward model (e.g. cerebellar sensorimotor) than the one used for goal-directed valuation (e.g. OFC/vmPFC value prediction), then the shared-substrate interpretation does not hold and the E2 mapping weakens."
+      ],
+      "run_id": "2026-04-18_e2_dual_rangel2008_framework",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.58,
+      "confidence_rationale": "The EVC framework describes dACC as a controller that allocates cognitive control based on three arguments -- expected payoff, required control, and effort cost. Mapped to the E2 dual-function question, this supports the existence of a separate arbitration signal that decides how a forward model is used (pre-action evaluation weight vs. outcome monitoring weight) rather than a separate forward-model substrate per mode. The theory is therefore more consistent with a single-process-with-mode-dependent-readout account than with an architecturally dual-mode substrate, which is partial support for MECH-E2-DUAL-FUNCTION framed as a controller-gated readout mechanism, but weakens any framing that requires two disjoint E2 populations. Confidence held at 0.58 because the theory is computational/integrative rather than direct electrophysiology; it describes control allocation, not forward-model reuse per se, and the mapping to E2 attribution-vs-evaluation is architectural by analogy.",
+      "evidence_class": "lit:computational_theory_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If attribution (retrospective) and evaluation (prospective) use genuinely distinct neural populations with non-overlapping tuning, then EVC's single-controller-over-shared-substrate account does not transfer; a dual-mode MECH claim with separate E2_attribution and E2_evaluation substrates would be required.",
+        "If dACC's control signal turns out to be itself compositional (one subregion for attribution cost, another for evaluation cost), the apparent single-process account dissolves into a multi-module one, weakening the inference that E2 can be single-process with readout."
+      ],
+      "run_id": "2026-04-18_e2_dual_shenhav2013_evc",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.55,
+      "confidence_rationale": "This 2016 Nature Neuroscience update defends the EVC theory of dACC against foraging-based alternatives and stresses that the region's activity tracks control allocation across many experimental contexts without needing task-mode-specific subregions. That cross-context generality is the relevant structural analogue for the E2 mode question: a single representational resource can serve multiple task functions when a controller specifies the read-out weights. Supports MECH-E2-DUAL-FUNCTION framed as single-process-plus-gated-readout, and weakens any framing that requires architecturally distinct E2 populations per mode. Confidence 0.55: the evidence is precedent-by-analogy rather than direct forward-model evidence.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If dACC itself turns out to decompose into task-mode-specific subregions (foraging value, cognitive effort, conflict), the single-process-plus-readout precedent collapses and the default expectation for E2 shifts back toward a dual-substrate account.",
+        "If the brain's mode arbitration is local to sensory-motor forward models (cerebellum, M1) rather than a downstream controller, the Shenhav-style controller analogy may not transfer to E2."
+      ],
+      "run_id": "2026-04-18_e2_dual_shenhav2016_dacc",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-E2-DUAL-FUNCTION",
+      "confidence": 0.72,
+      "confidence_rationale": "Direct electrophysiological demonstration that the same hippocampal place-cell population expresses temporal sequences in two distinct temporal modes within a single behavioural session: forward sequences before a run (anticipatory, prospective), reverse sequences at the end of a run (retrospective, reflecting just-completed trajectory). Both modes ride on sharp-wave ripple events and use overlapping cell populations. The forward/reverse directionality is the strongest biological instance of a single substrate expressing bidirectional predictive/retrospective readouts tied to behavioural phase. Direction is supports (not mixed) because the paper directly shows the behavioural-phase-dependent readout of one population in two computational modes. Confidence 0.72 -- the highest in this pull because the mapping to attribution (retrospective) vs. evaluation (prospective) is unusually crisp.",
+      "evidence_class": "lit:rodent_electrophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "Forward and reverse sequences in the hippocampus are time-compressed within sharp-wave ripples; both fall within consolidation-style events rather than spanning the evaluation-vs-attribution division we care about in E2. If the attribution-vs-evaluation distinction in E2 is supposed to happen at action-timescale (online, not during SWR), then the Diba/Buzsaki result may not transfer cleanly.",
+        "Reverse replay has been linked specifically to credit assignment / reward attribution in subsequent literature (Foster & Wilson); forward replay has been linked to planning. If these dissociations turn out to recruit different sub-circuits (e.g. PFC-hippocampal loops vs ventral-striatal loops), the single-substrate reading weakens and a partial dual-substrate view becomes defensible."
+      ],
+      "run_id": "2026-04-18_e2_dual_diba2007_forward_reverse",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-E2-DUAL-FUNCTION",
+      "confidence": 0.7,
+      "confidence_rationale": "Direct electrophysiological evidence that the same hippocampal cellular assembly expresses temporally structured sequences both before an experience (preplay) and after it (replay), using overlapping but not identical sequences. This is the cleanest biological case of a single predictive-sequence substrate read in two different modes -- prospective anticipation and retrospective consolidation -- within the same neural population. Maps directly onto the E2 dual-function question: preplay corresponds roughly to prospective rollout / evaluation mode, replay corresponds roughly to retrospective attribution / consolidation mode. The paper supports single-substrate-plus-mode-dependent-readout. Direction marked mixed because the paper also emphasises that preplay sequences are a pre-configured subset, which opens the door to sub-population specialisation (partial dual-substrate interpretation). Confidence 0.70 because the evidence is direct, from a canonical electrophysiology paper, with tight experimental controls.",
+      "evidence_class": "lit:rodent_electrophysiology",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If preplay sequences involve a distinct subset of cells from replay sequences in a systematic, non-overlapping way, the single-substrate interpretation weakens -- preplay and replay would use distinct sub-populations even within the same anatomical region.",
+        "The transfer to E2 assumes the hippocampal sequence precedent generalises to forward-model dynamics prediction. Hippocampus does spatial/episodic sequencing; E2 does action-consequence dynamics. The principle of sequence reuse may not be equivalent to forward-model reuse."
+      ],
+      "run_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-E2-DUAL-FUNCTION",
+      "confidence": 0.62,
+      "confidence_rationale": "Rangel, Camerer and Montague explicitly decompose value-based decision making into stages (representation, valuation, action selection, outcome evaluation, learning). They flag three distinct valuation systems: Pavlovian, habitual, and goal-directed. Crucially for the E2 mode question, their framework identifies valuation (prospective) and outcome evaluation (retrospective) as distinct computational stages that can (at least partly) share substrate -- the same model-based predictor is used for rollouts during goal-directed valuation and for generating prediction errors during outcome evaluation. This is mixed evidence: it supports a mode distinction at the computational-stage level (attribution vs evaluation) while also supporting shared substrate across modes (the goal-directed forward model). The exact position the paper takes is closer to: one forward-model substrate, two consumers. Confidence 0.62 -- higher than the Shenhav entries because the framework directly discusses model-based prediction and its dual use.",
+      "evidence_class": "lit:theoretical_framework_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If habitual (model-free) and goal-directed (model-based) systems are as cleanly separated as the framework asserts, then one might argue for a dual-substrate E2 where the model-based forward model is itself decomposed into a prospective and retrospective variant. The framework leaves this ambiguous.",
+        "If the prediction-error signal feeding outcome evaluation turns out to use a different forward model (e.g. cerebellar sensorimotor) than the one used for goal-directed valuation (e.g. OFC/vmPFC value prediction), then the shared-substrate interpretation does not hold and the E2 mapping weakens."
+      ],
+      "run_id": "2026-04-18_e2_dual_rangel2008_framework",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-E2-DUAL-FUNCTION",
+      "confidence": 0.58,
+      "confidence_rationale": "The EVC framework describes dACC as a controller that allocates cognitive control based on three arguments -- expected payoff, required control, and effort cost. Mapped to the E2 dual-function question, this supports the existence of a separate arbitration signal that decides how a forward model is used (pre-action evaluation weight vs. outcome monitoring weight) rather than a separate forward-model substrate per mode. The theory is therefore more consistent with a single-process-with-mode-dependent-readout account than with an architecturally dual-mode substrate, which is partial support for MECH-E2-DUAL-FUNCTION framed as a controller-gated readout mechanism, but weakens any framing that requires two disjoint E2 populations. Confidence held at 0.58 because the theory is computational/integrative rather than direct electrophysiology; it describes control allocation, not forward-model reuse per se, and the mapping to E2 attribution-vs-evaluation is architectural by analogy.",
+      "evidence_class": "lit:computational_theory_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If attribution (retrospective) and evaluation (prospective) use genuinely distinct neural populations with non-overlapping tuning, then EVC's single-controller-over-shared-substrate account does not transfer; a dual-mode MECH claim with separate E2_attribution and E2_evaluation substrates would be required.",
+        "If dACC's control signal turns out to be itself compositional (one subregion for attribution cost, another for evaluation cost), the apparent single-process account dissolves into a multi-module one, weakening the inference that E2 can be single-process with readout."
+      ],
+      "run_id": "2026-04-18_e2_dual_shenhav2013_evc",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-E2-DUAL-FUNCTION",
+      "confidence": 0.55,
+      "confidence_rationale": "This 2016 Nature Neuroscience update defends the EVC theory of dACC against foraging-based alternatives and stresses that the region's activity tracks control allocation across many experimental contexts without needing task-mode-specific subregions. That cross-context generality is the relevant structural analogue for the E2 mode question: a single representational resource can serve multiple task functions when a controller specifies the read-out weights. Supports MECH-E2-DUAL-FUNCTION framed as single-process-plus-gated-readout, and weakens any framing that requires architecturally distinct E2 populations per mode. Confidence 0.55: the evidence is precedent-by-analogy rather than direct forward-model evidence.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_dual_function_mode_distinction",
+      "failure_signatures": [
+        "If dACC itself turns out to decompose into task-mode-specific subregions (foraging value, cognitive effort, conflict), the single-process-plus-readout precedent collapses and the default expectation for E2 shifts back toward a dual-substrate account.",
+        "If the brain's mode arbitration is local to sensory-motor forward models (cerebellum, M1) rather than a downstream controller, the Shenhav-style controller analogy may not transfer to E2."
+      ],
+      "run_id": "2026-04-18_e2_dual_shenhav2016_dacc",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T16:49:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -51500,7 +52343,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-18T15:30:03.597584Z",
+  "generated_at_utc": "2026-04-18T16:56:59.369451Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_evaluator",
+  "entry_id": "2026-04-18_arc_018_internally_generated_sequences_pezzulo2014",
+  "timestamp_utc": "2026-04-18T16:48:57Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033", "MECH-102"],
+  "source": {
+    "title": "Internally generated sequences in learning and executing goal-directed behavior.",
+    "authors": ["Pezzulo G", "van der Meer MAA", "Lansink CS", "Pennartz CMA"],
+    "year": 2014,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2014.06.011",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25070269/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Canonical synthesis of evidence that hippocampal internally generated sequences (theta sequences, replay, preplay) function as forward-model rollouts recruited for goal-directed action selection. Explicitly frames these sequences as tools for value computation, not mere memory retrieval. Supports ARC-018 (hippocampus generates rollouts for viability/value mapping) and MECH-033 (rollouts seed downstream evaluation). The paper distinguishes pre-action evaluation (theta sequences, preplay, vicarious trial-and-error) from post-action consolidation (awake replay, SWRs) -- directly relevant to SD-003 successor's distinction between evaluator and comparator modes. Confidence capped at 0.75 because the paper is a synthesis rather than a direct test of a specific algorithmic substrate; the mapping from biology to REE's E2_harm_s forward model is by analogy at the functional level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the hippocampal forward sweeps serve primarily memory indexing rather than action value computation, the REE evaluator-mode mapping weakens; the authors themselves note that a single unified function has not been proven.",
+    "The paper treats the hippocampus-OFC-striatal circuit as a single evaluation system; if REE's E2_harm_s must be strictly separated from world-dynamics rollouts (SD-010/SD-011), the biological precedent for stream-separated evaluators is weak here."
+  ],
+  "tags": ["arc_018", "mech_033", "mech_102", "hippocampus", "forward_model", "theta_sequences", "preplay", "replay", "goal_directed", "evaluator"],
+  "mapping": {
+    "source_claim_statement": "Internally generated hippocampal sequences (theta sequences during behavior, preplay before experience, awake replay during pauses) encode trajectories through state-space that can be used for learning, planning, and evaluation of goal-directed action. Theta sequences in particular sweep ahead of the animal's position toward goals, suggesting pre-action forward-model rollouts for value estimation. The hippocampal system operates in coordination with ventral striatum and prefrontal regions as a distributed evaluation circuit.",
+    "ree_translation": "ARC-018's rollout-viability-mapping claim maps onto theta-sequence + preplay forward sweeps: the hippocampus generates candidate action-object trajectories before commitment, and downstream circuitry (E3 in REE, vmPFC/OFC/vStriatum biologically) scores them. MECH-033's E2-seeded rollouts correspond to the E2-action-consequence kernels chained into hippocampal trajectories. The paper's distinction between pre-action theta sequences and post-action replay is the biological precedent for the SD-003 successor's separation of evaluator (pre-action value estimation) from comparator (post-action attribution).",
+    "mapping_caveat": "The paper does not isolate a dedicated harm-stream forward model. Its evaluation circuitry is domain-general (reward-weighted state values), whereas ARC-033 claims E2_harm_s must be a separate forward model from E2.world_forward. The paper therefore supports the general rollout-evaluator architecture but is neutral or mildly weakening with respect to the claim that the forward model used for evaluation must be harm-stream-specific.",
+    "source_context": "Review article in Trends in Cognitive Sciences; Pezzulo has been central to the active-inference / model-based planning literature for over a decade. Frames the hippocampus-PFC-ventral-striatum loop as a planning system in which forward sweeps generate candidate trajectories that are then evaluated by downstream value circuits."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Very high source quality -- canonical review in TiCS, senior authors (Pezzulo, Pennartz). Mapping fidelity good for ARC-018 and MECH-033 at the functional level. Transfer risk moderate: the paper does not directly address harm-stream separation and treats the evaluator circuit as unitary."
+  }
+}

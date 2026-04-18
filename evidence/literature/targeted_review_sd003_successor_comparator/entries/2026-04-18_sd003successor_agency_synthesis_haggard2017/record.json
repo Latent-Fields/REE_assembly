@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_comparator",
+  "entry_id": "2026-04-18_sd003successor_agency_synthesis_haggard2017",
+  "timestamp_utc": "2026-04-18T16:49:50Z",
+  "claim_ids_tested": ["SD-003-SUCCESSOR", "ARC-033"],
+  "source": {
+    "title": "Sense of agency in the human brain.",
+    "authors": ["Haggard P"],
+    "year": 2017,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn.2017.14",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28251993/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Modern synthesis that both endorses and complicates the comparator model. Haggard accepts that the comparator / forward-model is a real mechanism and probably the dominant contributor in healthy agents, but argues that agency in the brain is multi-factorial: prospective signals (intention, selection, motor preparation) and retrospective signals (outcome compatibility, cue integration) combine with the sensorimotor comparator to produce the overall sense of agency. For REE this is mixed evidence: it supports a comparator as the scaffold (good for ARC-033), but warns that a single residual comparator will not reproduce the full biological phenomenon. Healthy volunteers rely more on prediction, schizophrenia patients more on retrospective reconstruction -- a clinical dissociation worth noting in the SD-003 successor design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Haggard argues that the comparator alone does not fully determine the sense of agency -- prospective intention signals and retrospective outcome signals also contribute via optimal cue integration. An REE agent that only computes z_harm_s_obs - z_harm_s_pred will have a thinner agency signal than the biological system it claims to model.",
+    "The review reports that schizophrenia patients construct agency retrospectively when the predictive comparator fails. If REE's E2_harm_s is weak or poorly calibrated, the agent may reconstruct agency from outcomes in a way that produces systematic false attribution -- a failure mode to test explicitly.",
+    "Cue integration is reliability-weighted: unreliable cues have less influence. REE needs a precision estimate on the comparator residual to weight it correctly, not a raw subtraction. This adds an estimation problem the retired SD-003 design did not have."
+  ],
+  "tags": ["sd-003-successor", "arc-033", "sense_of_agency", "cue_integration", "comparator_model", "prospective_retrospective", "schizophrenia", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "The sense of agency in the human brain arises from multiple converging signals: a prospective intentional / motor-preparation signal, a sensorimotor comparator signal comparing predicted and observed reafference, and a retrospective outcome-compatibility signal. These are integrated following optimal cue-integration principles, with each cue weighted by its reliability. Healthy volunteers lean predictive (they rely on the comparator); schizophrenia patients lean retrospective (they reconstruct agency from outcomes after the fact).",
+    "ree_translation": "For the SD-003 successor, the comparator residual (z_harm_s_obs - z_harm_s_pred) should not be the sole agency signal. REE needs to combine it with: a prospective term (was this action intended / selected with high commitment strength?) and a retrospective term (does the outcome match goal / harm expectations independently of E2_harm_s). The minimal single-pass design should implement the comparator first; a later enrichment should add cue-integration with precision-weighted combination of prospective and retrospective signals (suggesting a natural extension point once MECH-094 hypothesis-tag architecture is mature).",
+    "mapping_caveat": "Haggard 2017 is written about whole-brain agency attribution for ordinary voluntary action. REE's SD-003 problem is narrower: attributing changes in harm proximity to self vs environment, not attributing I-did-that for arbitrary actions. The cue-integration framework scales up cleanly in principle but may be overkill for the specific harm-attribution task. A single-cue comparator may be enough for REE's immediate needs while still leaving the architecture open to future enrichment.",
+    "source_context": "Nature Reviews Neuroscience synthesis by Patrick Haggard, the leading figure on intentional binding and experimental agency research post-2000. The review integrates findings from his own lab (intentional binding, sensory attenuation), the Frith / Wolpert lab (comparator model), and the broader literature (fMRI, clinical dissociations). It is the current canonical statement of the field and corrects the Frith 2000 account where needed."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Nature Reviews Neuroscience, by the leading experimentalist in the field). Mapping fidelity moderate because the paper is scope-broad (whole-brain agency) while REE needs something narrower (harm-attribution). Transfer risk moderate: Haggard's main message -- comparator is necessary but not sufficient -- is a useful corrective to any REE design that treats the residual as the whole story, but the correction may not be needed for the minimal single-pass successor."
+  }
+}

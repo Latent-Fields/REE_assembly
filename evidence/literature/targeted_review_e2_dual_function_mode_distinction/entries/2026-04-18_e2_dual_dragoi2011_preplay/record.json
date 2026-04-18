@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_dual_function_mode_distinction",
+  "entry_id": "2026-04-18_e2_dual_dragoi2011_preplay",
+  "timestamp_utc": "2026-04-18T16:49:53Z",
+  "claim_ids_tested": ["MECH-E2-DUAL-FUNCTION", "ARC-033", "ARC-018"],
+  "source": {
+    "title": "Preplay of future place cell sequences by hippocampal cellular assemblies.",
+    "authors": ["Dragoi G", "Tonegawa S"],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09633",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21179088/"
+  },
+  "evidence_class": "rodent_electrophysiology",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Direct electrophysiological evidence that the same hippocampal cellular assembly expresses temporally structured sequences both before an experience (preplay) and after it (replay), using overlapping but not identical sequences. This is the cleanest biological case of a single predictive-sequence substrate read in two different modes -- prospective anticipation and retrospective consolidation -- within the same neural population. Maps directly onto the E2 dual-function question: preplay corresponds roughly to prospective rollout / evaluation mode, replay corresponds roughly to retrospective attribution / consolidation mode. The paper supports single-substrate-plus-mode-dependent-readout. Direction marked mixed because the paper also emphasises that preplay sequences are a pre-configured subset, which opens the door to sub-population specialisation (partial dual-substrate interpretation). Confidence 0.70 because the evidence is direct, from a canonical electrophysiology paper, with tight experimental controls.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If preplay sequences involve a distinct subset of cells from replay sequences in a systematic, non-overlapping way, the single-substrate interpretation weakens -- preplay and replay would use distinct sub-populations even within the same anatomical region.",
+    "The transfer to E2 assumes the hippocampal sequence precedent generalises to forward-model dynamics prediction. Hippocampus does spatial/episodic sequencing; E2 does action-consequence dynamics. The principle of sequence reuse may not be equivalent to forward-model reuse."
+  ],
+  "tags": ["e2_dual_function", "mode_distinction", "dragoi", "tonegawa", "preplay", "replay", "hippocampus", "arc_018", "arc_033"],
+  "mapping": {
+    "source_claim_statement": "Temporal sequences of place cell firing expressed during a novel spatial experience occur on a significant number of occasions during the resting or sleeping period preceding the experience. Preplay sequences and replay sequences are expressed by overlapping hippocampal cellular assemblies, suggesting that internal sequence dynamics during rest organise assemblies into reusable templates that serve both prospective encoding of novel experience and retrospective consolidation of familiar experience.",
+    "ree_translation": "For the E2 mode question, Dragoi and Tonegawa provide the strongest biological precedent available: one hippocampal assembly substrate expresses predictive sequences both prospectively (preplay, prior to experience) and retrospectively (replay, after experience). Translated to E2, this argues that a single forward-model substrate can be read in both evaluative (prospective) and attributional (retrospective) modes, with the mode governed by the behavioural/task state rather than by which sub-population is active. The paper also naturally supports ARC-018 (hippocampal rollout + viability mapping), which is a closely related claim.",
+    "mapping_caveat": "The hippocampal place-cell sequence substrate is not identical to the E2 forward-model substrate in REE. E2 is cast as a transition model on z_gamma (conceptual sensorium), not as a place-cell sequence. The inference is that the sequence-reuse principle generalises to forward-model reuse -- this is architectural-principle transfer, not implementation transfer. Additionally, preplay cells are drawn from a pre-configured subset of the broader assembly, which admits a partial dual-substrate reading at the cell-level even while the population-level interpretation is single-substrate.",
+    "source_context": "Nature 2011 (published online Dec 2010) from Tonegawa lab at MIT. Canonical demonstration of preplay. Tight single-unit / cell-assembly electrophysiology in freely moving rodents. Followed by extensive replication (Dragoi & Tonegawa 2013 PNAS, and many others)."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.55,
+    "notes": "Nature publication, Tonegawa lab, rigorous methodology, widely replicated. Mapping fidelity high because this is direct evidence of bimodal readout of a shared substrate. Transfer risk is moderate because hippocampal sequence representation may or may not generalise to forward-model dynamics prediction."
+  }
+}

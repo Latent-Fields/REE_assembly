@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_evaluator",
+  "entry_id": "2026-04-18_arc_018_subsecond_cycling_futures_kay2020",
+  "timestamp_utc": "2026-04-18T16:48:57Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033"],
+  "source": {
+    "title": "Constant Sub-second Cycling between Representations of Possible Futures in the Hippocampus.",
+    "authors": ["Kay K", "Chung JE", "Sosa M", "Schor JS", "Karlsson MP", "Larkin MC", "Liu DF", "Frank LM"],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.01.014",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32084331/"
+  },
+  "evidence_class": "empirical_neurophysiology",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct empirical demonstration that CA1 alternates between representations of two possible upcoming trajectories on every theta cycle (~125 ms) during choice behaviour. This is a primary, quantitative demonstration of pre-action forward-model rollouts in a decision context. Maps tightly onto the SD-003 successor's evaluator-mode requirement: the brain evaluates candidate futures before commitment, not as post-hoc attribution. Confidence 0.80 because the paper is high-quality primary data in Cell, directly tests pre-action future representation, and uses rigorous decoder analysis. Lower than 0.90 because the paper is about spatial trajectories, not harm-stream evaluation specifically; ARC-033's harm-stream separation is not addressed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the alternation is automatic sensory-driven prediction rather than value-computation substrate, the mapping to a deliberate evaluator degrades.",
+    "The paper shows CA1 represents the two trajectories but does not directly test whether the downstream evaluator (OFC/vmPFC/striatum) scores them — the readout step is inferred, not measured."
+  ],
+  "tags": ["arc_018", "mech_033", "hippocampus", "theta_cycling", "prospective_coding", "possible_futures", "pre_action", "evaluator", "CA1"],
+  "mapping": {
+    "source_claim_statement": "In rats approaching a choice point on a T-maze, CA1 place-cell ensembles alternated between coherent representations of the left and the right future arm on successive theta cycles (~125 ms each). The alternation was present constantly during the approach, did not require the animal to stop, and was decoded with high fidelity using Bayesian population decoders. This represents the first direct demonstration that the hippocampus maintains parallel representations of mutually exclusive possible futures at sub-second resolution before action commitment.",
+    "ree_translation": "ARC-018's claim that the hippocampus generates explicit rollouts for viability mapping is directly supported: CA1 is empirically cycling through candidate trajectories before action. MECH-033's claim that E2-forward-prediction kernels seed these rollouts is consistent with the theta-nested kernel-chaining picture — each theta cycle is one forward-model rollout. For the SD-003 successor question, this is the strongest primary evidence that pre-action evaluation and post-hoc attribution are implemented by different operations: the sub-second cycling is a pre-action evaluator signal (forward trajectories weighted and scored), not a post-hoc comparator signal (actual vs counterfactual after the fact).",
+    "mapping_caveat": "The paper demonstrates the existence of parallel future representations but does not directly measure value assignment to each representation, nor the selection mechanism that terminates the alternation at commitment. The inference that this constitutes an 'evaluator' depends on the downstream readout, which is not recorded here. REE's E2_harm_s forward model is a harm-proximity predictor, not a spatial-trajectory predictor; the biological precedent is architectural (parallel rollouts in a dedicated forward-model circuit) rather than content-specific.",
+    "source_context": "Primary empirical paper in Cell, Frank lab — one of the most methodologically rigorous hippocampal groups. Uses large-scale CA1 recordings and population decoding to demonstrate alternating future representations. Follow-up to a decade of work (Johnson & Redish 2007 VTE, Pfeiffer & Foster 2013 preplay) showing that CA1 represents possible futures. This paper shows that representation is constant and cycling, not only at explicit decision points."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Top-tier source (Cell, Frank lab). Mapping fidelity high for the pre-action-evaluator architecture; moderate for the specific question of whether evaluator circuitry is stream-separated from comparator circuitry. Transfer risk moderate because the paper studies spatial trajectories, which map onto E2.world_forward but not directly onto E2_harm_s."
+  }
+}

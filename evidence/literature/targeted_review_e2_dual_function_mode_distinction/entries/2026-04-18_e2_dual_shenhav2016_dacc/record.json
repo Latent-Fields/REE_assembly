@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_dual_function_mode_distinction",
+  "entry_id": "2026-04-18_e2_dual_shenhav2016_dacc",
+  "timestamp_utc": "2026-04-18T16:49:53Z",
+  "claim_ids_tested": ["MECH-E2-DUAL-FUNCTION", "ARC-033"],
+  "source": {
+    "title": "Dorsal anterior cingulate cortex and the value of control.",
+    "authors": ["Shenhav A", "Cohen JD", "Botvinick MM"],
+    "year": 2016,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4384",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27669989/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "This 2016 Nature Neuroscience update defends the EVC theory of dACC against foraging-based alternatives and stresses that the region's activity tracks control allocation across many experimental contexts without needing task-mode-specific subregions. That cross-context generality is the relevant structural analogue for the E2 mode question: a single representational resource can serve multiple task functions when a controller specifies the read-out weights. Supports MECH-E2-DUAL-FUNCTION framed as single-process-plus-gated-readout, and weakens any framing that requires architecturally distinct E2 populations per mode. Confidence 0.55: the evidence is precedent-by-analogy rather than direct forward-model evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If dACC itself turns out to decompose into task-mode-specific subregions (foraging value, cognitive effort, conflict), the single-process-plus-readout precedent collapses and the default expectation for E2 shifts back toward a dual-substrate account.",
+    "If the brain's mode arbitration is local to sensory-motor forward models (cerebellum, M1) rather than a downstream controller, the Shenhav-style controller analogy may not transfer to E2."
+  ],
+  "tags": ["e2_dual_function", "mode_distinction", "shenhav", "dacc", "control_allocation", "foraging", "arc_033"],
+  "mapping": {
+    "source_claim_statement": "dACC is best understood through the EVC theory as specifying the optimal allocation of control by evaluating expected value of control -- a single integrative function that accounts for the region's sensitivity to reward, conflict, effort, and foraging-like decisions, without requiring mode-specific sub-divisions.",
+    "ree_translation": "Translated to REE, the finding suggests that a single forward-model substrate (E2) can subserve multiple task modes (attribution vs. evaluation) without requiring architecturally distinct sub-populations, provided that a controller signal (dACC-analogue) gates read-out. This directly supports the single-process-plus-readout formulation of MECH-E2-DUAL-FUNCTION.",
+    "mapping_caveat": "The paper's domain is cognitive control allocation, not forward-model prediction. Its authority over the E2 mode question is indirect. A second caveat is that dACC may be coupled to forward-model regions (cerebellum, ventral striatum) rather than sitting inside them; thus the controller-and-substrate decomposition may not be interchangeable with the E2-internal mode question.",
+    "source_context": "Nature Neuroscience Perspective (2016), update to the 2013 EVC theory. Explicitly contrasts with foraging-based accounts of dACC, arguing the EVC framework is more comprehensive. Relevant here because it sharpens the single-controller claim against decompositional alternatives."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Nature Neuroscience Perspective, canonical follow-up to Shenhav 2013. Mapping fidelity is moderate-low for the same reason as the 2013 entry: the subject is control allocation, not forward-model reuse. Transfer risk is non-trivial because dACC's architecture may not be a good template for E2's."
+  }
+}

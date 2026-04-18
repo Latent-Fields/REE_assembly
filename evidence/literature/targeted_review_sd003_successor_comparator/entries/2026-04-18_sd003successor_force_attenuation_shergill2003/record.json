@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd003_successor_comparator",
+  "entry_id": "2026-04-18_sd003successor_force_attenuation_shergill2003",
+  "timestamp_utc": "2026-04-18T16:49:50Z",
+  "claim_ids_tested": ["SD-003-SUCCESSOR", "ARC-033"],
+  "source": {
+    "title": "Two eyes for an eye: the neuroscience of force escalation.",
+    "authors": ["Shergill SS", "Bays PM", "Frith CD", "Wolpert DM"],
+    "year": 2003,
+    "venue": "Science",
+    "doi": "10.1126/science.1085327",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12855800/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Clean behavioural demonstration of a core prediction of the comparator model: self-generated sensory inputs are systematically attenuated relative to identical externally-generated inputs. The force-matching paradigm quantifies attenuation -- when asked to match a target force by pressing directly with their own finger, participants over-produced force; when they matched via a joystick (so the force was still externally generated), they reproduced it accurately. The intercept shift (0.53 N) and 49% slope increase in the direct condition relative to indirect are the strength of the forward-model prediction, measured behaviourally. This is the cleanest available behavioural signature of a working comparator. Confidence high, capped at 0.78 because the stimuli are somatosensory pressure and the transfer to nociceptive harm is an inference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The task uses innocuous tactile force, not nociception. The inference that the same attenuation mechanism operates for harm-proximity signals requires that the forward model is modality-general, which is plausible but not directly shown.",
+    "The attenuation operates concurrently with action (during matching), not post-hoc. If the REE successor uses the comparator to gate residue accumulation after action completion, the biological timing is not identical.",
+    "The paradigm measures perceptual attenuation, not explicit agency judgment. Attenuation is a necessary but not sufficient condition for agency attribution -- an agent could have attenuated reafference yet still fail to attribute the action to itself."
+  ],
+  "tags": ["sd-003-successor", "arc-033", "force_matching", "sensory_attenuation", "forward_model", "efference_copy", "behavioral"],
+  "mapping": {
+    "source_claim_statement": "When participants reproduced a target force by pressing directly on their own finger (self-generated), they systematically over-produced force relative to the target. When the same force reproduction was mediated via a joystick controlling a torque motor (externally generated), reproduction was accurate. The direct condition showed an intercept increase of roughly 0.53 N and a slope increase of about 49% relative to the indirect condition. This attenuation is attributed to a forward model predicting the sensory consequences of the self-generated action and subtracting them from perception.",
+    "ree_translation": "The force-matching result quantifies the comparator output: when the forward model fires (self-generated), predicted reafference is subtracted from perception, producing attenuation. Translated to REE, this means E2_harm_s should produce a z_harm_s_pred that is subtracted from the observed harm signal when generating the comparator residual. The magnitude of attenuation (roughly half in the direct condition) sets a biological calibration target: in a validation experiment, if E2_harm_s is working, self-caused harm changes should register with reduced magnitude in the residual stream relative to environment-caused harm changes of identical physical intensity.",
+    "mapping_caveat": "Two steps of inference separate this paper from an REE prediction. First, force sensation is not harm. Second, the attenuation measured here is perceptual (the sensation feels weaker) rather than attributional (the subject does or does not treat it as self-caused). REE needs both: a magnitude reduction in the predicted-versus-observed residual, and an attribution decision based on that residual. Shergill 2003 speaks directly to the first and only indirectly to the second.",
+    "source_context": "Brevia (short report) in Science, from the same lab as Frith 2000 and Blakemore 1998. Originally framed as an explanation for tit-for-tat force escalation in children -- each side genuinely perceives the other's hit as harder, because the self-generated return hit is attenuated in their own perception. The force-matching paradigm has since become a standard behavioural assay for forward-model function."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high (Science, clean behavioural paradigm with strong internal control via the joystick indirect condition). Mapping fidelity moderate-high: the quantitative prediction (attenuation magnitude) transfers directly to REE as a calibration target, but the channel differs (force sensation vs harm proximity). Transfer risk moderate-low: the forward model is assumed modality-general, and nothing in the data contradicts this."
+  }
+}
