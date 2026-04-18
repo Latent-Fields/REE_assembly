@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_330a_sd013_contrastive_counterfactual_frac05
 
-Generated: `2026-04-17T21:06:03.057338Z`
+Generated: `2026-04-17T21:09:57.099324Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
