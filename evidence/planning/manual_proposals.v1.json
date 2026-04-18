@@ -501,6 +501,39 @@
       "status": "proposed",
       "added_utc": "2026-04-06",
       "notes": "Design-forward analysis DR-6: missing link is between context_memory readout and action selection. The simplest proxy is context-conditioned harm_eval threshold."
+    },
+    {
+      "proposal_id": "EXP-0146",
+      "added_utc": "2026-04-18",
+      "claim_id": "SD-029",
+      "proposal_type": "experimental",
+      "priority": "high",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "proposed",
+      "objective": "First V3 test of SD-029 (single-pass z_harm_s comparator). Replace mean-cf-gap with event-conditioned residual analysis on approach-to-harm events; include event-density controls (guaranteed minimum agent-caused-hazard events per seed) to fix the EXQ-431 sample-starvation failure mode.",
+      "design": "Train E2_harm_s with SD-013 interventional contrast (counterfactual perturbation during training). Evaluate residual_harm = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual) per step. Tag steps by event type (approach-to-harm, self-caused-hazard, externally-caused-hazard, baseline). Compute residual magnitude per event class, expect partial attenuation on self-caused relative to externally-caused (Shergill ~50% pattern). PASS: C1 forward_r2 >= 0.9; C2 self-vs-external attenuation ratio between 0.3-0.7 (partial, not binary); C3 SNR > 3 on approach-to-harm events. Event-density control: reject seeds with <20 agent-caused-hazard events; resample until density target met. 4 seeds.",
+      "claims_tested": [
+        "SD-029",
+        "MECH-256"
+      ],
+      "notes": "Successor-to-SD-003 test. Single-pass comparator, no counterfactual branch. Script to be written as v3_exq_433_sd029_eventcond_comparator.py; not yet queued -- pending script implementation."
+    },
+    {
+      "proposal_id": "EXP-0147",
+      "added_utc": "2026-04-18",
+      "claim_id": "MECH-257",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "proposed",
+      "objective": "Test MECH-257 dual-function claim: does a single E2_harm_s substrate support both retrospective comparator (SD-029 attribution) and prospective rollout-scoring (evaluator) effectively, or does joint training degrade one mode relative to mode-split baselines?",
+      "design": "Three-arm ablation. Arm A: E2_harm_s trained comparator-only (post-action residual loss). Arm B: trained evaluator-only (rollout value loss). Arm C: trained jointly with mode-label gating input. Measure per-arm: comparator SNR on approach-to-harm events; evaluator accuracy (predicted vs realised trajectory value) at horizon k=5,10. PASS (MECH-257 supported): Arm C >= 85% of Arm A's comparator SNR AND >= 85% of Arm B's evaluator accuracy. FAIL: Arm C significantly degrades one or both modes -> separate substrates required. 4 seeds.",
+      "claims_tested": [
+        "MECH-257"
+      ],
+      "notes": "Follow-up to EXP-0146. Queue only after SD-029 comparator baseline establishes a reproducible signal."
     }
   ]
 }

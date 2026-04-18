@@ -2705,6 +2705,18 @@
     "title": "Template compilation is implemented by vmPFC value-content projection composed with dlPFC context-gated rule projection, integrated into a precision-space template vector that is the input to the SD-026 dan_feedback channel.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-256": {
+    "status": "candidate",
+    "subject": "self_attribution.forward_model_comparator_general",
+    "title": "Self-attribution is implemented by a forward-model comparator: for any reafferent latent stream z_x with an efference-copy-driven forward model E2_x, the residual (z_x_observed - E2_x(z_x_{t-1}, a_actual)) is the agency signal on that stream.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-257": {
+    "status": "candidate",
+    "subject": "forward_model.dual_function_gated_readout",
+    "title": "E2_x is a dual-function substrate: one forward model read in two modes, retrospective comparator (attribution) and prospective rollout-scoring (evaluation), arbitrated by a controller gating signal.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -2952,7 +2964,7 @@
     "type": "design_decision"
   },
   "SD-003": {
-    "status": "validated",
+    "status": "superseded",
     "subject": "self_attribution.counterfactual_e2_pipeline",
     "title": "Self-attribution via counterfactual E2: causal signature = E2(z_t, a_actual) minus E2(z_t, a_counterfactual).",
     "type": "design_decision"
@@ -3105,6 +3117,24 @@
     "status": "candidate",
     "subject": "attention.template_as_first_class_object",
     "title": "An attentional template is a first-class precision-space object, compiled from stored-goal content and current context by a vmPFC-dlPFC translator circuit, distinct from both the stored goal itself (content) and the SD-026 write channel (transport).",
+    "type": "design_decision"
+  },
+  "SD-029": {
+    "status": "candidate",
+    "subject": "self_attribution.comparator_z_harm_s",
+    "title": "Single-pass agency attribution via forward-model comparator on the z_harm_s reafferent stream: residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual).",
+    "type": "design_decision"
+  },
+  "SD-030": {
+    "status": "candidate",
+    "subject": "self_attribution.comparator_z_self",
+    "title": "Single-pass agency attribution on the z_self (motor-proprioceptive) reafferent stream: residual = z_self_observed - E2_self(z_self_{t-1}, a_actual).",
+    "type": "design_decision"
+  },
+  "SD-031": {
+    "status": "candidate",
+    "subject": "self_attribution.comparator_z_world",
+    "title": "Single-pass agency attribution on the z_world (causal-footprint) reafferent stream: residual = z_world_observed - E2_world(z_world_{t-1}, a_actual).",
     "type": "design_decision"
   }
 }

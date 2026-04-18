@@ -5612,7 +5612,24 @@
   claim_type: design_decision
   subject: self_attribution.counterfactual_e2_pipeline
   polarity: asserts
-  status: validated
+  status: superseded
+  superseded_by: [MECH-256, SD-029]
+  superseded_utc: 2026-04-18
+  supersession_note: >
+    Superseded 2026-04-18 by MECH-256 (general single-pass forward-model comparator
+    as the mechanism for self-attribution) with SD-029 as the concrete z_harm_s
+    instantiation. Reasons: (1) 28 FAILs accumulated across V2+V3 iterations with
+    no PASS on the two-pass counterfactual architecture since the z_world -> z_harm_s
+    stream migration; (2) biological precedent gap -- Frith 2000, Shergill 2003, and
+    Blakemore 1998 evidence a single-pass comparator (residual = observed -
+    E2(prev_state, a_actual)), not a two-pass counterfactual; (3) three-pull literature
+    synthesis 2026-04-18 (comparator/evaluator/mode-distinction, 14 entries) converged
+    on single-pass comparator as the biologically grounded architecture, with one
+    E2 substrate read in two modes (MECH-257). The counterfactual E2 rollout remains
+    conceptually coherent but is not the primary biological attribution mechanism;
+    SD-029 captures what the literature actually evidences. ARC-033 forward model
+    component is carried forward unchanged. Existing evidence chain (EXQ-030b/115/166a/
+    195/353/431) remains in the historical record; new V3 evidence accrues to SD-029.
   status_note: >
     EXQ-030b PASS (2026-03-18): validated on z_world pipeline -- causal_sig =
     E3(z_world_actual) - E3(z_world_cf), world_forward_r2=0.947, attribution_gap=0.035,
@@ -16792,6 +16809,158 @@
     context variations despite working template writing, SD-028 is
     supported and V4 compiler work is justified.
 
+- id: SD-029
+  title: "Single-pass agency attribution via forward-model comparator on the z_harm_s reafferent stream: residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual)."
+  claim_type: design_decision
+  subject: self_attribution.comparator_z_harm_s
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-18
+  supersedes: SD-003
+  instantiates: MECH-256
+  depends_on:
+    - SD-011           # dual nociceptive streams (z_harm_s as separate stream)
+    - ARC-033          # E2_harm_s forward model substrate
+    - SD-013           # interventional vs observational training of E2_harm_s
+    - MECH-256         # general comparator mechanism this SD instantiates
+  functional_restatement: >
+    Concrete V3 instantiation of the general comparator mechanism (MECH-256) on
+    the sensory-discriminative harm stream. At each step:
+
+      residual_harm = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual)
+      causal_sig    = f(residual_harm, event_context)
+
+    No counterfactual branch. No E2(a_cf) call. The forward prediction on the
+    actually-taken action is the reference; the residual IS the agency signal.
+    This matches Blakemore 1998 (tactile cancellation), Shergill 2003 (force
+    attenuation, ~50% partial not binary), and Frith 2000 (comparator model of
+    self-other distinction).
+
+    PASS criteria sketch (to be formalised in the experiment design doc):
+      C1: forward_r2(E2_harm_s) >= 0.9 on reafferent z_harm_s stream.
+      C2: residual magnitude partially attenuated for self-caused vs
+          externally-caused harm events (Shergill partial-attenuation pattern,
+          not a binary gate).
+      C3: residual signal-to-noise > threshold on approach-to-harm events
+          specifically -- event-conditioned, not mean over all steps
+          (EXQ-431 lesson: sample-starved means are uninformative).
+
+    Interventional training (SD-013) is required: E2_harm_s must see
+    counterfactual perturbations during training to learn P(z_harm_s | do(a))
+    rather than the correlational P(z_harm_s | z_t, a).
+  notes: >
+    Biological grounding (three-pull synthesis 2026-04-18, 14 entries):
+    - Frith 2000 PhilTransB (single-pass comparator; schizophrenia as comparator failure)
+    - Shergill 2003 Science (force-matching partial attenuation)
+    - Haggard 2017 NatRevNeurosci (cue-integration of prospective + retrospective agency signals)
+    - Blakemore 1998 NatNeurosci (self-tickle cancellation; timing-sensitive to 100-200ms)
+
+    Open nociceptive-transfer caveat: the canonical comparator literature
+    evidences the mechanism on sensorimotor / tactile / force streams.
+    Extension to nociceptive streams is plausible (descending pain modulation
+    in PAG/RVM shares the efference-copy structure) but not directly
+    demonstrated in the four canonical papers. This is the main mapping risk.
+
+    V3 readiness: ARC-033 (E2_harm_s) implementation is in place per the
+    2026-04 substrate queue. SD-013 interventional training wiring required;
+    EXQ-330a result already shows forward_r2 ~0.998 (C1 trivially meetable);
+    C2 and C3 are the open criteria.
+  evidence_quality_note: >
+    Successor to SD-003's evidence chain. The z_harm_s pipeline runs that
+    informed SD-003 (EXQ-330, 330a, 353, 431) are relevant diagnostics but
+    their cf_gap-structured criteria do not map directly onto the single-pass
+    comparator criteria. A fresh experiment tagged SD-029 with event-conditioned
+    residual analysis is required before SD-029 can be provisionally promoted.
+    First test: an event-conditioned reanalysis of EXQ-330a traces against
+    approach-to-harm events.
+  location: docs/architecture/self_attribution_per_stream.md
+
+- id: SD-030
+  title: "Single-pass agency attribution on the z_self (motor-proprioceptive) reafferent stream: residual = z_self_observed - E2_self(z_self_{t-1}, a_actual)."
+  claim_type: design_decision
+  subject: self_attribution.comparator_z_self
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: architectural
+  registered_utc: 2026-04-18
+  instantiates: MECH-256
+  depends_on:
+    - SD-005           # self/world latent split (z_self separated from z_world)
+    - MECH-256         # general comparator mechanism
+  functional_restatement: >
+    V4-scoped analogue of SD-029 on the motor-proprioceptive reafferent stream.
+    z_self carries the sensory consequences of the agent's own motor actions
+    (force, position change, proprioceptive reafference). Self-attribution on
+    this stream answers "did I cause this movement / this tactile event?" --
+    the canonical Blakemore-tickle / Shergill-force domain.
+
+      residual_self = z_self_observed - E2_self(z_self_{t-1}, a_actual)
+
+    In biology this is the cerebellar internal-model loop (Wolpert, Miall,
+    Ito): the cerebellum predicts the sensory consequences of motor commands;
+    the spinal cord / brainstem / S1-S2 compare observed reafference against
+    the prediction; residual is attenuated for self-generated signals.
+
+    Not currently queued for V3. Registered as a placeholder for V4 motor-
+    proprioceptive self-attribution work once z_self is a first-class latent
+    with its own forward model substrate.
+  notes: >
+    Biological grounding is strongest for this SD of the three per-stream
+    instantiations -- Blakemore 1998 (tactile cancellation), Shergill 2003
+    (force), Wolpert & Flanagan 2001 (motor forward models) are all
+    squarely on z_self territory. V3 deprioritises this because V3 does not
+    have a clean z_self stream with its own forward model; E2 currently
+    operates on z_gamma (combined self/world). Waiting for V4 z_self
+    materialisation (SD-005 expansion) before implementing.
+  evidence_quality_note: >
+    No V3 evidence expected. V4 target. Registered pre-implementation so the
+    per-stream attribution topology is explicit in the claim matrix.
+  location: docs/architecture/self_attribution_per_stream.md
+
+- id: SD-031
+  title: "Single-pass agency attribution on the z_world (causal-footprint) reafferent stream: residual = z_world_observed - E2_world(z_world_{t-1}, a_actual)."
+  claim_type: design_decision
+  subject: self_attribution.comparator_z_world
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: architectural
+  registered_utc: 2026-04-18
+  instantiates: MECH-256
+  depends_on:
+    - SD-005           # self/world split
+    - SD-010           # harm-stream separation (ensures z_world remains distinct from z_harm)
+    - MECH-256         # general comparator mechanism
+  functional_restatement: >
+    V4-scoped analogue on the world-state reafferent stream. z_world captures
+    the causal footprint of the agent's actions on external world state --
+    non-harm, non-self consequences ("I moved the block," "the door opened
+    because of me"). Self-attribution on this stream is the basis for moral
+    attribution of non-harm consequences and for ResidueField-style causal
+    tracking.
+
+      residual_world = z_world_observed - E2_world(z_world_{t-1}, a_actual)
+
+    Biological analogue: parietal outcome-prediction circuits and the
+    posterior-parietal / MD-thalamus / colliculus corollary-discharge loops
+    (Sommer & Wurtz) that track self-caused external changes. Also overlaps
+    with the ACC/insula outcome-attribution pathway.
+
+    V3 currently treats z_world attribution implicitly through ResidueField
+    updates; SD-031 would make it an explicit comparator-structured signal.
+  notes: >
+    V3 does not run this claim. It is registered to make the per-stream
+    topology complete: harm (SD-029, active), self (SD-030, V4), world
+    (SD-031, V4). Without SD-031 on the roadmap, moral attribution of
+    non-harm consequences would have no explicit substrate claim.
+  evidence_quality_note: >
+    No V3 evidence expected. V4 target. Registered pre-implementation.
+  location: docs/architecture/self_attribution_per_stream.md
+
 - id: MECH-255
   title: "Template compilation is implemented by vmPFC value-content projection composed with dlPFC context-gated rule projection, integrated into a precision-space template vector that is the input to the SD-026 dan_feedback channel."
   claim_type: mechanism_hypothesis
@@ -16834,3 +17003,173 @@
 
     No evidence expected until V4. Registered in the pre-implementation
     claim matrix per user policy.
+
+- id: MECH-256
+  title: "Self-attribution is implemented by a forward-model comparator: for any reafferent latent stream z_x with an efference-copy-driven forward model E2_x, the residual (z_x_observed - E2_x(z_x_{t-1}, a_actual)) is the agency signal on that stream."
+  claim_type: mechanism_hypothesis
+  subject: self_attribution.forward_model_comparator_general
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-18
+  depends_on:
+    - ARC-033          # E2_harm_s forward model (concrete substrate for SD-029)
+    - SD-013           # interventional training requirement
+  functional_restatement: >
+    A single, stream-agnostic computational claim about the agency-attribution
+    mechanism. For any reafferent latent stream z_x that has an efference-copy-
+    driven forward model E2_x, self-attribution proceeds by single-pass
+    comparator:
+
+      predicted_z_x = E2_x(z_x_{t-1}, a_actual)
+      residual_z_x  = z_x_observed - predicted_z_x
+      causal_sig    = f(residual_z_x, context)
+
+    Note: one forward pass. No counterfactual (no second call to E2 with a_cf).
+    The forward prediction on the actually-taken action is the reference; the
+    residual IS the agency signal. Self-caused events produce attenuated
+    residuals (the prediction succeeds); externally-caused events produce
+    large residuals (the prediction fails).
+
+    Instantiations:
+    - SD-029: z_x = z_harm_s (sensory-discriminative harm stream, V3-active).
+    - SD-030: z_x = z_self (motor-proprioceptive, V4-deferred).
+    - SD-031: z_x = z_world (causal-footprint, V4-deferred).
+
+    The mechanism is uniform across streams; the substrates (E2_harm_s, E2_self,
+    E2_world) are stream-specific forward models with stream-specific training
+    requirements.
+
+    Falsifiable: if single-pass comparator residuals cannot distinguish
+    self-caused from externally-caused events on any reafferent stream
+    with a well-fit forward model (forward_r2 > 0.9), MECH-256 is refuted.
+    The converse -- if a two-pass counterfactual strictly outperforms
+    single-pass comparator on the same stream -- would weaken it.
+  notes: >
+    Biological grounding (three-pull synthesis 2026-04-18, 14 literature entries):
+
+    Comparator mechanism is stream-agnostic computationally but substrates
+    are stream-specific anatomically:
+    - Motor-proprioceptive: cerebellum (Wolpert, Miall, Ito -- canonical
+      forward-model locus).
+    - Self-touch / tactile: cerebellum -> S1/S2 cancellation (Blakemore 1998).
+    - Self-vocalization: HVC-analogue corollary discharge -> auditory cortex
+      (songbird; Crapse & Sommer 2008 review).
+    - Oculomotor: colliculus / MD thalamus corollary discharge -> parietal
+      (Sommer & Wurtz).
+    - Electrosensory (fish): electric-organ corollary discharge -> ELL
+      cancellation (Bell).
+    - Nociceptive agency: ACC / insula self-vs-other attribution of pain
+      (descending pain modulation PAG/RVM).
+
+    Frith 2000 frames schizophrenia's agency breakdown as comparator failure;
+    clinical phenomenology (auditory hallucinations vs passivity experiences
+    vs thought insertion) is stream-specific, consistent with multiple
+    stream-specific comparators rather than a single unified one.
+
+    Haggard 2017 synthesises: sense of agency is built from multiple
+    stream-specific comparators weighted by precision (cue-integration model).
+    This maps cleanly onto REE's per-stream SD topology plus a downstream
+    integration step (left open; likely ACC/insula at V4).
+
+    MECH-257 registers the reading-mode distinction (comparator vs evaluator)
+    over the same E2_x substrate.
+  evidence_quality_note: >
+    Literature pull 2026-04-18 (targeted_review_sd003_successor_comparator,
+    4 entries, mean confidence ~0.75, all supports): Frith 2000, Shergill 2003,
+    Haggard 2017, Blakemore 1998. Four-paper convergence on single-pass
+    comparator as the biologically-grounded mechanism.
+
+    Empirical V3 evidence accrues through the per-stream SD instantiations
+    (SD-029 first). MECH-256 itself is the stream-agnostic statement; evidence
+    for the mechanism is the sum of evidence on its instantiations.
+  location: docs/architecture/self_attribution_per_stream.md
+
+- id: MECH-257
+  title: "E2_x is a dual-function substrate: one forward model read in two modes, retrospective comparator (attribution) and prospective rollout-scoring (evaluation), arbitrated by a controller gating signal."
+  claim_type: mechanism_hypothesis
+  subject: forward_model.dual_function_gated_readout
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-18
+  depends_on:
+    - MECH-256         # general comparator claim; evaluator is the other reading
+    - ARC-018          # rollout scoring / hippocampal proposal circuit
+    - ARC-023          # heartbeat control plane that could host the gating signal
+    - MECH-094         # hypothesis tag / commitment boundary state
+  functional_restatement: >
+    For each reafferent stream z_x, the forward model E2_x is a single
+    substrate read in two distinct modes:
+
+    Mode 1 -- retrospective comparator (attribution, post-action):
+      residual = z_x_observed - E2_x(z_x_{t-1}, a_actual)
+      -- computed after the action has been taken; residual IS the agency signal.
+
+    Mode 2 -- prospective rollout-scoring (evaluation, pre-action):
+      for candidate action a_i:
+        predicted_trajectory = E2_x-rollout(z_x_t, a_i, horizon=k)
+        value(a_i) = f(predicted_trajectory)
+      -- computed before the action; used to rank candidates for action
+      selection.
+
+    Both modes share the same learned E2_x weights. A controller signal (at
+    V3 candidate: the commitment boundary state / hypothesis tag MECH-094;
+    at V4 candidate: dACC EVC signal following Shenhav 2013/2016, or
+    heartbeat-phase gating following ARC-023) determines which mode is
+    active.
+
+    Falsifiable: if a single forward-model substrate cannot support both
+    modes effectively (i.e. training for evaluator degrades comparator
+    performance or vice versa), MECH-257 is refuted and the architecture
+    must split into two substrates per stream (E2_x_comparator, E2_x_evaluator)
+    doubling the parameter count.
+  notes: >
+    Biological grounding (three-pull synthesis 2026-04-18, 10 literature entries
+    across the evaluator + mode-distinction pulls):
+
+    Strongest single piece of evidence: Mattar & Daw 2018 (Nat Neurosci,
+    "Prioritized memory access explains planning and hippocampal replay").
+    Forward replay (planning / evaluator) and reverse replay (credit
+    assignment / comparator-adjacent) derive from one prioritized-memory-
+    access algorithm over a shared forward model.
+
+    Direct biological precedent: within-session mode switching in one
+    hippocampal population --
+    - Diba & Buzsaki 2007 Nat Neurosci: forward / reverse replay in CA1 ripples.
+    - Dragoi & Tonegawa 2011 Nature: preplay of future place-cell sequences
+      from the same cells that express replay of past trajectories.
+    - Kay et al 2020 Cell (Frank lab): sub-second cycling between alternative
+      futures in CA1.
+
+    Evaluator-mode readouts: Pezzulo 2014 (hippocampal sequences as forward
+    rollouts), Rushworth 2011 (vmPFC/OFC value aggregation of rollouts),
+    Daw 2011 (model-based striatal prediction errors).
+
+    Arbitration: Shenhav 2013/2016 EVC theory gives a dACC-centred
+    cost/benefit arbitrator between control modes; Rangel/Camerer/Montague
+    2008 framework places the goal-directed / habitual arbitration in a
+    single value-integration circuit. These converge on single-substrate
+    with controller-gated readout rather than dual-substrate with
+    parallel computation.
+
+    Verdict from lit synthesis: moderate-high confidence (~0.7) that the
+    single-substrate-with-gated-readout formulation matches biology better
+    than a dual-substrate alternative. The decisive test would be
+    single-unit / two-photon recording from a forward-model-coding
+    population showing the same units contribute to both retrospective
+    prediction-error and prospective rollout-evaluation within one
+    session. No such paper in the pull; this is a stated open question.
+  evidence_quality_note: >
+    Literature pull 2026-04-18 (targeted_review_sd003_successor_evaluator,
+    5 entries, and targeted_review_e2_dual_function_mode_distinction,
+    5 entries; combined mean confidence ~0.68). Biological precedent moderate-
+    high; V3 empirical test would require an experiment that trains E2_x for
+    both modes on the same weights and measures whether mode-specific
+    performance degrades relative to mode-split baselines. Not yet queued.
+  location: docs/architecture/self_attribution_per_stream.md
+
