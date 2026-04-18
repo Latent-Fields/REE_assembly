@@ -23,13 +23,13 @@ mode-distinction).
 
 ## Claim Topology
 
-| Claim    | Scope                                                    | Status    | Phase |
-|----------|----------------------------------------------------------|-----------|-------|
-| MECH-256 | General comparator mechanism, stream-agnostic            | candidate | V3    |
-| MECH-257 | Dual-function (comparator vs evaluator), gated readout   | candidate | V3    |
-| SD-029   | z_harm_s comparator (active V3 implementation)           | candidate | V3    |
-| SD-030   | z_self comparator (motor-proprioceptive)                 | candidate | V4    |
-| SD-031   | z_world comparator (causal footprint)                    | candidate | V4    |
+| Claim    | Scope                                                    | Status    | Phase | Doc |
+|----------|----------------------------------------------------------|-----------|-------|-----|
+| MECH-256 | General comparator mechanism, stream-agnostic            | candidate | V3    | this doc |
+| MECH-257 | Dual-function (comparator vs evaluator), gated readout   | candidate | V3    | this doc |
+| SD-029   | z_harm_s comparator (active V3 implementation)           | candidate | V3    | [arc_033_e2_harm_s_forward_model.md](arc_033_e2_harm_s_forward_model.md) |
+| SD-030   | z_self comparator (motor-proprioceptive)                 | candidate | V4    | [sd_030_e2_self_forward_model.md](sd_030_e2_self_forward_model.md) |
+| SD-031   | z_world comparator (causal footprint)                    | candidate | V4    | [sd_031_e2_world_forward_model.md](sd_031_e2_world_forward_model.md) |
 
 SD-003 is superseded by MECH-256 + SD-029 as of 2026-04-18.
 
