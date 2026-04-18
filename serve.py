@@ -1064,7 +1064,7 @@ def main():
     _detect_existing_runners()
     os.chdir(SERVE_DIR)
 
-    server = http.server.HTTPServer(("0.0.0.0", args.port), Handler)
+    server = http.server.ThreadingHTTPServer(("0.0.0.0", args.port), Handler)
 
     def shutdown(sig, frame):
         print("\n[serve] Shutting down.", flush=True)
