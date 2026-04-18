@@ -2175,7 +2175,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.53, lit_conf=0.911",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.529, lit_conf=0.911",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2189,7 +2189,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.53,
+      "experimental_confidence": 0.529,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2201,7 +2201,7 @@
       "latest_run_id": "v3_exq_176_arc036_valence_dimension_probe_20260330T070447Z_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.793574Z",
       "literature_confidence": 0.911,
-      "overall_confidence": 0.759,
+      "overall_confidence": 0.758,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4074,19 +4074,20 @@
       }
     },
     "INV-053": {
-      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.855, lit_conf=0.814",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.855, lit_conf=0.814",
       "direction_counts": {
-        "mixed": 2,
+        "mixed": 3,
         "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 7,
+      "entries_total": 8,
       "evidence_class_counts": {
         "exp:simulation": 3,
         "lit:behavioral_human": 2,
         "lit:computational_model": 1,
-        "lit:connectome_mechanistic_review": 1
+        "lit:connectome_mechanistic_review": 1,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.855,
       "fail_runs": 0,
@@ -4097,30 +4098,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_268_inv053_depression_attractor_replication_20260409T194136Z_v3",
-      "latest_timestamp_utc": "2026-04-09T19:41:36Z",
+      "latest_run_id": "2026-04-18_inv_053_decision_theoretic_depression_huys2015",
+      "latest_timestamp_utc": "2026-04-18T18:10:16Z",
       "literature_confidence": 0.814,
       "overall_confidence": 0.834,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "INV-053",
-          "confidence": 0.62,
-          "confidence_rationale": "This is the canonical paper in the Huys/Dayan computational psychiatry lineage and directly grounds the framing that INV-053 is designed to extend. The paper models depression via decision-tree pruning: serotonin inhibits branches with negative expected value, and a drop in serotonin causes failure to prune bad thoughts, leading to large negative prediction errors. This is a Q-value / value-learning account -- the failure is in the valuation and inhibition of action sequences, not in the substrate that generates goals. The paper supports INV-053 indirectly (it establishes that chronic negative prediction errors are computationally coherent as a depression mechanism) but at a different architectural layer. It does not speak to terrain/seeding collapse as the primary locus. Confidence reflects: high source quality, good indirect support for attractor dynamics, but distinct mechanism from INV-053's core claim.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_inv_053",
-          "failure_signatures": [
-            "Persistent large negative prediction errors following disinhibited aversive thought chains",
-            "Serotonin drop -> failure to prune negative-value decision branches -> rumination",
-            "Significant aversive shift in reinforcement statistics from behavioural disinhibition"
-          ],
-          "run_id": "2026-04-06_inv_053_qt_serotonin_inhibition_dayan2008",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-06T16:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "INV-053",
@@ -4184,12 +4167,30 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-09T19:41:36Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-053",
+          "confidence": 0.6,
+          "confidence_rationale": "This is the canonical decision-theoretic account of depression from the Huys/Daw/Dayan lineage, explicitly framing depression as a maladaptive self-propelling spiral arising from dysfunction in Bayesian evaluation and state-estimation mechanisms. It is directly relevant as the contrast class that INV-053 must be positioned against: the paper locates the failure at the level of decision variables (pessimistic valuations, pruning failures, model-based reasoning errors), while INV-053 locates it one layer below, at the terrain/seeding substrate that generates motivational states in the first place. The self-perpetuation argument in section 4 overlaps conceptually with INV-054 (depressive maintenance loop) but via different mechanics. High source quality as a flagship Annual Review paper; moderate mapping fidelity since the mechanisms proposed operate at a distinct computational layer.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_053",
+          "failure_signatures": [
+            "Pessimistic evaluation of decision variables (reward, cost, transition probabilities) via Bayesian priors biased toward loss",
+            "Failure of model-based evaluation -- pruning aversive branches becomes impossible, leading to rumination on negative futures",
+            "Miscalibration between subject's internal model and environmental statistics becomes self-perpetuating through action selection that reinforces the biased model"
+          ],
+          "run_id": "2026-04-18_inv_053_decision_theoretic_depression_huys2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T18:10:16Z"
         }
       ],
-      "runs_total": 7,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 3,
-        "literature": 4
+        "literature": 5
       }
     },
     "INV-054": {
@@ -5731,7 +5732,7 @@
       }
     },
     "MECH-057a": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.778, lit_conf=0.857",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.777, lit_conf=0.857",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -5745,7 +5746,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:empirical_neuroscience": 3
       },
-      "experimental_confidence": 0.778,
+      "experimental_confidence": 0.777,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -7169,7 +7170,7 @@
       }
     },
     "MECH-075": {
-      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.511, lit_conf=0.885",
+      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.51, lit_conf=0.885",
       "direction_counts": {
         "mixed": 4,
         "supports": 4,
@@ -7184,7 +7185,7 @@
         "lit:electrophysiology_single_unit": 3,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.511,
+      "experimental_confidence": 0.51,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -7434,7 +7435,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=6 entry(s), exp_conf=0.723, lit_conf=0.841",
+      "confidence_rationale": "exp=12 entry(s), lit=6 entry(s), exp_conf=0.722, lit_conf=0.841",
       "direction_counts": {
         "mixed": 4,
         "supports": 10,
@@ -7450,7 +7451,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:methodological_critique": 1
       },
-      "experimental_confidence": 0.723,
+      "experimental_confidence": 0.722,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -7462,7 +7463,7 @@
       "latest_run_id": "2026-04-08_mech089_theta_gamma_learning_tort2009",
       "latest_timestamp_utc": "2026-04-08T17:00:00Z",
       "literature_confidence": 0.841,
-      "overall_confidence": 0.782,
+      "overall_confidence": 0.781,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -8160,7 +8161,7 @@
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=9 entry(s), lit=7 entry(s), exp_conf=0.558, lit_conf=0.904",
+      "confidence_rationale": "exp=9 entry(s), lit=7 entry(s), exp_conf=0.557, lit_conf=0.904",
       "direction_counts": {
         "mixed": 5,
         "supports": 7,
@@ -8177,7 +8178,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.558,
+      "experimental_confidence": 0.557,
       "fail_runs": 8,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -8513,7 +8514,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.468, lit_conf=0.906",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.467, lit_conf=0.906",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -8528,7 +8529,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:review_theoretical": 1
       },
-      "experimental_confidence": 0.468,
+      "experimental_confidence": 0.467,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -8540,7 +8541,7 @@
       "latest_run_id": "2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value",
       "latest_timestamp_utc": "2026-04-05T22:10:00Z",
       "literature_confidence": 0.906,
-      "overall_confidence": 0.687,
+      "overall_confidence": 0.686,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8756,7 +8757,7 @@
       }
     },
     "MECH-101": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.764, lit_conf=0.823",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.763, lit_conf=0.823",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -8770,7 +8771,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.764,
+      "experimental_confidence": 0.763,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -9074,18 +9075,18 @@
       }
     },
     "MECH-104": {
-      "confidence_rationale": "exp=11 entry(s), lit=4 entry(s), exp_conf=0.903, lit_conf=0.893",
+      "confidence_rationale": "exp=11 entry(s), lit=5 entry(s), exp_conf=0.903, lit_conf=0.901",
       "direction_counts": {
         "mixed": 3,
-        "supports": 11,
+        "supports": 12,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 15,
+      "entries_total": 16,
       "evidence_class_counts": {
         "exp:simulation": 11,
         "lit:computational_model": 1,
-        "lit:connectome_mechanistic_review": 3
+        "lit:connectome_mechanistic_review": 4
       },
       "experimental_confidence": 0.903,
       "fail_runs": 4,
@@ -9096,26 +9097,12 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_365_mech104_surprise_gate_pair_20260414T181223Z_v3",
-      "latest_timestamp_utc": "2026-04-14T20:38:26Z",
-      "literature_confidence": 0.893,
-      "overall_confidence": 0.898,
+      "latest_run_id": "2026-04-18_mech_104_lc_ne_cognition_review_sara2009",
+      "latest_timestamp_utc": "2026-04-18T18:10:54Z",
+      "literature_confidence": 0.901,
+      "overall_confidence": 0.902,
       "pass_runs": 7,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-104",
-          "confidence": 0.79,
-          "confidence_rationale": "Yu and Dayan make the most explicit theoretical case in the literature for a clean dissociation between expected uncertainty (tracked by ACh) and unexpected uncertainty (tracked by NE). Unexpected uncertainty -- defined as uncertainty arising from violations of the generative model itself, i.e., the world has changed -- is proposed to drive NE-mediated attentional reorienting. This maps with high fidelity onto MECH-104's claim that unexpected harm (a prime trigger of unexpected uncertainty) elevates NE and enables de-commitment. Confidence docked because this is a computational model with limited direct LC-NE causal data; the ACh/NE dissociation is an inference from behavioral pharmacology rather than direct recording.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_104",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_mech_104_unexpected_uncertainty_ne_yudayan2005",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-104",
@@ -9175,12 +9162,26 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-14T20:38:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-104",
+          "confidence": 0.82,
+          "confidence_rationale": "Sara's 2009 review in Nature Reviews Neuroscience is the canonical synthesis of how the locus coeruleus and its noradrenergic output shape attention, perception, and memory across forebrain targets. For MECH-104 specifically, the paper carries two strands of support: (1) the LC is described as the sole source of noradrenaline and is phasically driven by unexpected, behaviorally significant events, which maps onto the 'unexpected harm spike' language in MECH-104; (2) Sara lays out the role of NE in disrupting ongoing cognitive sets and biasing the system toward memory retrieval and encoding of salient contingencies, which is the substrate for the REE-level 'de-commitment' operation. Confidence is moderate-high: source quality is high (Nature Reviews Neuroscience, canonical author), but the paper is a narrative review rather than a single experimental study, and the mapping from 'noradrenergic modulation of cognition' to 'commitment-uncertainty upward impulse proportional to prediction-error surprise' still requires a computational bridge that the paper does not itself provide.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_104",
+          "failure_signatures": [],
+          "run_id": "2026-04-18_mech_104_lc_ne_cognition_review_sara2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-18T18:10:54Z"
         }
       ],
-      "runs_total": 15,
+      "runs_total": 16,
       "source_counts": {
         "experimental": 11,
-        "literature": 4
+        "literature": 5
       }
     },
     "MECH-106": {
@@ -9427,7 +9428,7 @@
       }
     },
     "MECH-112": {
-      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.815, lit_conf=0.898",
+      "confidence_rationale": "exp=16 entry(s), lit=6 entry(s), exp_conf=0.814, lit_conf=0.898",
       "direction_counts": {
         "mixed": 4,
         "supports": 14,
@@ -9441,7 +9442,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.815,
+      "experimental_confidence": 0.814,
       "fail_runs": 9,
       "genuine_exp_count": 16,
       "genuine_exp_direction_counts": {
@@ -11356,7 +11357,7 @@
       }
     },
     "MECH-156": {
-      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.53, lit_conf=0.786",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.529, lit_conf=0.786",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -11368,7 +11369,7 @@
         "exp:simulation": 2,
         "lit:electrophysiology_lfp": 1
       },
-      "experimental_confidence": 0.53,
+      "experimental_confidence": 0.529,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -14139,7 +14140,7 @@
       }
     },
     "MECH-216": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.59, lit_conf=0.864",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.589, lit_conf=0.864",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -14153,7 +14154,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.59,
+      "experimental_confidence": 0.589,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -14562,7 +14563,7 @@
       }
     },
     "MECH-231": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.825, lit_conf=0.797",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.824, lit_conf=0.797",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -14574,7 +14575,7 @@
         "exp:simulation": 2,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.825,
+      "experimental_confidence": 0.824,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -15307,7 +15308,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.48, lit_conf=0.808",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.479, lit_conf=0.808",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -15321,7 +15322,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.48,
+      "experimental_confidence": 0.479,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -15506,7 +15507,7 @@
       }
     },
     "Q-006": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.48, lit_conf=0.741",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.479, lit_conf=0.741",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -15520,7 +15521,7 @@
         "lit:meta_analysis": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.48,
+      "experimental_confidence": 0.479,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -15532,7 +15533,7 @@
       "latest_run_id": "v3_exq_151_q006_ethics_developmental_20260329T131721Z_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.756852Z",
       "literature_confidence": 0.741,
-      "overall_confidence": 0.676,
+      "overall_confidence": 0.675,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -15926,7 +15927,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.53, lit_conf=0.859",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.529, lit_conf=0.859",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -15940,7 +15941,7 @@
         "lit:computational_model": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.53,
+      "experimental_confidence": 0.529,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -16034,7 +16035,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.775, lit_conf=0.833",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.774, lit_conf=0.833",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -16048,7 +16049,7 @@
         "lit:machine_learning_experiment": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.775,
+      "experimental_confidence": 0.774,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -16549,7 +16550,7 @@
       }
     },
     "Q-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.775, lit_conf=0.799",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.774, lit_conf=0.799",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -16562,7 +16563,7 @@
         "lit:behavioral_human": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.775,
+      "experimental_confidence": 0.774,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -18210,7 +18211,7 @@
       }
     },
     "SD-008": {
-      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.957, lit_conf=0.745",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.956, lit_conf=0.745",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -18223,7 +18224,7 @@
         "lit:computational_model": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.957,
+      "experimental_confidence": 0.956,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -19611,7 +19612,7 @@
       }
     },
     "SD-022": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.821, lit_conf=0.777",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.82, lit_conf=0.777",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -19623,7 +19624,7 @@
         "exp:simulation": 2,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.821,
+      "experimental_confidence": 0.82,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -19635,7 +19636,7 @@
       "latest_run_id": "2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019",
       "latest_timestamp_utc": "2026-04-17T08:43:25Z",
       "literature_confidence": 0.777,
-      "overall_confidence": 0.799,
+      "overall_confidence": 0.798,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -19711,7 +19712,7 @@
       }
     },
     "SD-023": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.325, lit_conf=0.876",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.324, lit_conf=0.876",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -19723,7 +19724,7 @@
         "exp:simulation": 1,
         "lit:electrophysiology_single_unit": 4
       },
-      "experimental_confidence": 0.325,
+      "experimental_confidence": 0.324,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -52312,6 +52313,38 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-053",
+      "confidence": 0.6,
+      "confidence_rationale": "This is the canonical decision-theoretic account of depression from the Huys/Daw/Dayan lineage, explicitly framing depression as a maladaptive self-propelling spiral arising from dysfunction in Bayesian evaluation and state-estimation mechanisms. It is directly relevant as the contrast class that INV-053 must be positioned against: the paper locates the failure at the level of decision variables (pessimistic valuations, pruning failures, model-based reasoning errors), while INV-053 locates it one layer below, at the terrain/seeding substrate that generates motivational states in the first place. The self-perpetuation argument in section 4 overlaps conceptually with INV-054 (depressive maintenance loop) but via different mechanics. High source quality as a flagship Annual Review paper; moderate mapping fidelity since the mechanisms proposed operate at a distinct computational layer.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_053",
+      "failure_signatures": [
+        "Pessimistic evaluation of decision variables (reward, cost, transition probabilities) via Bayesian priors biased toward loss",
+        "Failure of model-based evaluation -- pruning aversive branches becomes impossible, leading to rumination on negative futures",
+        "Miscalibration between subject's internal model and environmental statistics becomes self-perpetuating through action selection that reinforces the biased model"
+      ],
+      "run_id": "2026-04-18_inv_053_decision_theoretic_depression_huys2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T18:10:16Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-104",
+      "confidence": 0.82,
+      "confidence_rationale": "Sara's 2009 review in Nature Reviews Neuroscience is the canonical synthesis of how the locus coeruleus and its noradrenergic output shape attention, perception, and memory across forebrain targets. For MECH-104 specifically, the paper carries two strands of support: (1) the LC is described as the sole source of noradrenaline and is phasically driven by unexpected, behaviorally significant events, which maps onto the 'unexpected harm spike' language in MECH-104; (2) Sara lays out the role of NE in disrupting ongoing cognitive sets and biasing the system toward memory retrieval and encoding of salient contingencies, which is the substrate for the REE-level 'de-commitment' operation. Confidence is moderate-high: source quality is high (Nature Reviews Neuroscience, canonical author), but the paper is a narrative review rather than a single experimental study, and the mapping from 'noradrenergic modulation of cognition' to 'commitment-uncertainty upward impulse proportional to prediction-error surprise' still requires a computational bridge that the paper does not itself provide.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_104",
+      "failure_signatures": [],
+      "run_id": "2026-04-18_mech_104_lc_ne_cognition_review_sara2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-18T18:10:54Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -52343,7 +52376,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-18T17:52:44.789788Z",
+  "generated_at_utc": "2026-04-18T18:24:32.411984Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

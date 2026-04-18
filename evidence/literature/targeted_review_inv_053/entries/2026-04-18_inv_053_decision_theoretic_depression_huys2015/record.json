@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_053",
+  "entry_id": "2026-04-18_inv_053_decision_theoretic_depression_huys2015",
+  "timestamp_utc": "2026-04-18T18:10:16Z",
+  "claim_ids_tested": ["INV-053"],
+  "source": {
+    "title": "Depression: a decision-theoretic analysis",
+    "authors": ["Quentin J. M. Huys", "Nathaniel D. Daw", "Peter Dayan"],
+    "year": 2015,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev-neuro-071714-033928",
+    "pmid": "25705929",
+    "url": "https://doi.org/10.1146/annurev-neuro-071714-033928"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "This is the canonical decision-theoretic account of depression from the Huys/Daw/Dayan lineage, explicitly framing depression as a maladaptive self-propelling spiral arising from dysfunction in Bayesian evaluation and state-estimation mechanisms. It is directly relevant as the contrast class that INV-053 must be positioned against: the paper locates the failure at the level of decision variables (pessimistic valuations, pruning failures, model-based reasoning errors), while INV-053 locates it one layer below, at the terrain/seeding substrate that generates motivational states in the first place. The self-perpetuation argument in section 4 overlaps conceptually with INV-054 (depressive maintenance loop) but via different mechanics. High source quality as a flagship Annual Review paper; moderate mapping fidelity since the mechanisms proposed operate at a distinct computational layer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pessimistic evaluation of decision variables (reward, cost, transition probabilities) via Bayesian priors biased toward loss",
+    "Failure of model-based evaluation -- pruning aversive branches becomes impossible, leading to rumination on negative futures",
+    "Miscalibration between subject's internal model and environmental statistics becomes self-perpetuating through action selection that reinforces the biased model"
+  ],
+  "tags": ["inv_053", "computational_psychiatry", "huys_dayan_lineage", "decision_theory", "bayesian", "depression", "model_based_rl", "pruning", "aberrant_valuation", "self_propagating_spiral", "review"],
+  "mapping": {
+    "source_claim_statement": "Depression is analysed as dysfunction in the brain's Bayesian decision-making machinery: pessimistic evaluations of decision variables (rewards, costs, transitions) arise from specific failures of evaluation or state estimation, and the miscalibration between agent and environment is self-perpetuating -- an account primarily situated within model-based reasoning. The authors propose that the 'malignant transformation' from transient symptom to disorder is the self-propelling spiral of miscalibration and pessimistic action selection.",
+    "ree_translation": "INV-053 and INV-054 share the structural intuition that depression is a self-sustaining attractor, but locate the attractor at a different computational layer. Huys/Daw/Dayan place the dysfunction in decision variables: the agent still has goals and motivations, but evaluates them with a pessimistic bias that action selection then confirms. INV-053 places the dysfunction at the substrate that generates goals -- the VALENCE_WANTING terrain and z_goal seeding. In REE terms: the HDD framework assumes the goal representation exists and fails at evaluation; INV-053 claims the goal representation itself fails to form when benefit_exposure drops below the SD-012 seeding threshold. This is why INV-053 predicts HABIT/PLANNED behavioural equivalence (no goal-directed mode to differentiate from habitual) rather than pessimistic-but-still-goal-directed action, which is the HDD signature.",
+    "mapping_caveat": "The HDD framework is explicitly within Bayesian decision theory and does not address motivational substrate or goal-seeding mechanisms because that level of analysis is not its target -- the authors presuppose goals exist and study how their evaluation goes wrong. Treating HDD as evidence 'against' INV-053 would be a category error; it is better read as the contrast class that INV-053 complements. The two layers are compatible: an agent could have both substrate collapse (INV-053) and aberrant evaluation of whatever goals remain (HDD). The REE paper's framing contribution is to introduce the substrate layer as architecturally separable and empirically distinguishable via the HABIT/PLANNED gap signature. Transfer risk is moderate: HDD works largely with normative Bayesian models; INV-053 sits within a specific substrate architecture (CausalGridWorldV2 + LatentStack) and may not straightforwardly translate into the HDD formalism.",
+    "source_context": "Annual Review of Neuroscience (2015) -- selective review article covering Bayesian decision theory as applied to depression. Draws on authors' prior computational work (Huys et al. on pruning, Dayan on serotonin and inhibition, Daw on model-based vs model-free control). Not empirical itself; references animal and human behavioural and neuroimaging studies as supporting evidence for the decision-theoretic framing. Canonical reference for the computational psychiatry subfield's treatment of depression."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality -- Annual Review of Neuroscience, flagship review from the three principal authors of the computational decision-theoretic account of depression. Mapping fidelity is modest because the paper addresses a distinct computational layer (decision variables, not motivational substrate). Transfer risk is moderate-to-low conceptually (both frameworks are computational and address depression as a dynamical attractor) but higher formally (the Bayesian decision-theoretic mathematics do not directly import the terrain/seeding ontology of INV-053). Confidence weighted toward mapping_fidelity because this is a framing/architecture claim, not an empirical one -- what matters is whether the paper validates the layer INV-053 operates at, and the honest answer is: it operates at a different, adjacent layer, which is exactly why INV-053 needs to be positioned as a complementary (not competing) account."
+  }
+}

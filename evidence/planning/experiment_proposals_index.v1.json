@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-18T17:52:44.789788Z",
+  "generated_at_utc": "2026-04-18T18:24:32.411984Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -1675,11 +1675,13 @@
       "backlog_id": "EVB-0096",
       "claim_id": "ARC-011",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-434",
+      "executed_queue_id": "V3-EXQ-434",
       "objective": "Reduce uncertainty for ARC-011 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0096",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_arc_011",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2474,7 +2476,7 @@
       "priority": "high",
       "proposal_id": "LIT-0092",
       "proposal_type": "literature",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "REE_assembly"
     },
     {
@@ -2613,20 +2615,24 @@
     },
     {
       "claim_id": "INV-053",
+      "executed_by": "V3-EXQ-434",
+      "executed_queue_id": "V3-EXQ-434",
       "objective": "Systematically replicate and characterize the computational depression attractor from EXQ-237a seed=42. Establish that z_harm_a elevation + z_goal failure -> HABIT/PLANNED flattening is robust across seeds.",
       "priority": "high",
       "proposal_id": "EXP-0096",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
       "claim_id": "INV-054",
+      "executed_by": "V3-EXQ-435",
+      "executed_queue_id": "V3-EXQ-435",
       "objective": "Test the phase-transition recovery prediction: once the depression attractor is established (LONG_HORIZON), switching to LOW_HARM environment produces non-linear delayed recovery, not immediate improvement.",
       "priority": "high",
       "proposal_id": "EXP-0097",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -2672,7 +2678,7 @@
       "priority": "high",
       "proposal_id": "LIT-0097",
       "proposal_type": "literature",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "REE_assembly"
     },
     {
@@ -2737,11 +2743,13 @@
     {
       "claim_id": "SD-017",
       "dispatch_mode": "redesign",
+      "executed_by": "V3-EXQ-436",
+      "executed_queue_id": "V3-EXQ-436",
       "objective": "Redesigned sleep phase ablation with context-conditioned action selection. EXQ-242 showed slot differentiation works (4/5 seeds) but agent doesn't use context knowledge. Add context->action pathway.",
       "priority": "high",
       "proposal_id": "EXP-0106",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -2767,9 +2775,9 @@
       "target_repo": "ree-v3"
     }
   ],
-  "n_executed": 88,
-  "n_proposed_exp": 65,
-  "n_proposed_lit": 25,
+  "n_executed": 94,
+  "n_proposed_exp": 61,
+  "n_proposed_lit": 23,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }

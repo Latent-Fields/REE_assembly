@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_104",
+  "entry_id": "2026-04-18_mech_104_lc_ne_cognition_review_sara2009",
+  "timestamp_utc": "2026-04-18T18:10:54Z",
+  "claim_ids_tested": ["MECH-104"],
+  "source": {
+    "title": "The locus coeruleus and noradrenergic modulation of cognition.",
+    "authors": ["Sara SJ"],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2573",
+    "pmid": "19190638"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Sara's 2009 review in Nature Reviews Neuroscience is the canonical synthesis of how the locus coeruleus and its noradrenergic output shape attention, perception, and memory across forebrain targets. For MECH-104 specifically, the paper carries two strands of support: (1) the LC is described as the sole source of noradrenaline and is phasically driven by unexpected, behaviorally significant events, which maps onto the 'unexpected harm spike' language in MECH-104; (2) Sara lays out the role of NE in disrupting ongoing cognitive sets and biasing the system toward memory retrieval and encoding of salient contingencies, which is the substrate for the REE-level 'de-commitment' operation. Confidence is moderate-high: source quality is high (Nature Reviews Neuroscience, canonical author), but the paper is a narrative review rather than a single experimental study, and the mapping from 'noradrenergic modulation of cognition' to 'commitment-uncertainty upward impulse proportional to prediction-error surprise' still requires a computational bridge that the paper does not itself provide.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_104", "locus_coeruleus", "norepinephrine", "volatility", "commitment", "cognitive_flexibility", "memory_consolidation", "attention", "neuromodulation"],
+  "mapping": {
+    "source_claim_statement": "The locus coeruleus is the sole source of forebrain noradrenaline and is phasically activated by behaviorally significant, unexpected events. Noradrenergic release in cortical and hippocampal targets modulates attention, perception, memory encoding, and memory retrieval, and has a central role in behavioral flexibility. Dysfunction of the LC-NE system is implicated in psychiatric and neurodegenerative disease, where loss of this modulatory signal degrades the ability to allocate attention and update internal models.",
+    "ree_translation": "Sara's review supplies the biological scaffolding that MECH-104 is a computational re-description of. The LC-NE system is the neuroanatomical implementation of the volatility interrupt: unexpected harm events (one member of the class of 'behaviorally significant unexpected events' Sara describes) would phasically activate LC, and the resulting NE release in prefrontal and control-plane targets would correspond to the upward impulse on the commitment-uncertainty estimate that MECH-104 predicts. Sara's emphasis on NE as a modulator of memory updating and behavioral flexibility also grounds the downstream consequence of the interrupt in REE: once the commitment gate releases, the agent must re-encode the new contingency and re-plan, exactly the cognitive operations Sara attributes to NE.",
+    "mapping_caveat": "Sara's review is a narrative synthesis that integrates attentional, mnemonic, and arousal-based roles of NE. It does not formalise the LC signal as a prediction-error or surprise signal, and the specific computational form of MECH-104 (variance impulse proportional to harm-prediction error) is an REE overlay, not a claim the paper itself makes. Several cited mechanisms (NE in hippocampal memory consolidation, NE in cortical signal-to-noise modulation) operate at timescales and target populations distinct from the fast control-plane interrupt MECH-104 describes, so one must be careful not to read all NE effects as instances of the REE volatility interrupt.",
+    "source_context": "Narrative review; multi-species synthesis (primarily rodent and primate electrophysiology and pharmacology, with human imaging and clinical references); integrates LC anatomy, phasic vs tonic firing, and downstream NE effects on attention, memory, and cognition."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (Nature Reviews Neuroscience, canonical review by a central author in the LC-NE field). Mapping fidelity is moderate-high -- the biological picture Sara paints is the substrate MECH-104 is a computational abstraction of, but the specific surprise-gated variance-impulse form is not in the paper. Transfer risk is low-moderate: most of the mechanistic claims are grounded in primate and rodent recordings with converging human evidence, and the LC-NE system is evolutionarily conserved."
+  }
+}

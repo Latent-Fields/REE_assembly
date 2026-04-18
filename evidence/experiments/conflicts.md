@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-18T17:52:44.789788Z`
+Generated: `2026-04-18T18:24:32.411984Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -33,7 +33,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-098` | directional, source_disagreement, mixed_evidence | 12 | 12 | 1 | `v3_exq_110_c1fail_20260328T161637Z_v3` | 31 |
 | `MECH-099` | directional, source_disagreement, mixed_evidence | 7 | 4 | 0.727 | `2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value` | 13 |
 | `MECH-102` | directional, source_disagreement, mixed_evidence | 9 | 11 | 0.9 | `2026-04-18_mech_102_model_based_striatal_pe_daw2011` | 32 |
-| `MECH-104` | directional, mixed_evidence | 11 | 1 | 0.167 | `v3_exq_365_mech104_surprise_gate_pair_20260414T181223Z_v3` | 15 |
+| `MECH-104` | directional, mixed_evidence | 12 | 1 | 0.154 | `2026-04-18_mech_104_lc_ne_cognition_review_sara2009` | 16 |
 | `MECH-111` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3` | 5 |
 | `MECH-112` | directional, mixed_evidence | 15 | 7 | 0.636 | `v3_exq_225_mech112_goal_lift_redesign_1775274103_v3` | 56 |
 | `MECH-116` | directional, source_disagreement | 6 | 4 | 0.8 | `2026-04-10_mech_116_theta_sequences_goals_wikenheiser2015` | 13 |
@@ -444,7 +444,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-089
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=11, weakens=5, conflict_ratio=0.625, overall_confidence=0.782
+- Evidence breakdown: supports=11, weakens=5, conflict_ratio=0.625, overall_confidence=0.781
 - Recent entries:
   - `2026-03-28T20:01:34Z` `experimental` `v3_exq_122_mech089_theta_integration_pair` direction=`weakens` confidence=0.75
   - `2026-03-28T22:10:59Z` `experimental` `v3_exq_122_mech089_theta_integration_pair` direction=`weakens` confidence=0.75
@@ -544,7 +544,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-099
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.687
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.686
 - Recent entries:
   - `2026-03-27T15:56:05Z` `experimental` `v3_exq_098b_mech099_agency_attribution` direction=`mixed` confidence=0.5
   - `2026-04-05T22:10:00Z` `literature` `targeted_review_mech_099` direction=`supports` confidence=0.82
@@ -584,13 +584,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-104
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=11, weakens=1, conflict_ratio=0.167, overall_confidence=0.898
+- Evidence breakdown: supports=12, weakens=1, conflict_ratio=0.154, overall_confidence=0.902
 - Recent entries:
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_104` direction=`supports` confidence=0.79
   - `2026-04-01T23:17:34Z` `experimental` `v3_exq_197_mech104_volatility_interrupt_pair` direction=`supports` confidence=0.75
   - `2026-04-03T02:05:40Z` `experimental` `v3_exq_204_mech104_surprise_gate_pair` direction=`supports` confidence=0.75
   - `2026-04-13T07:43:19Z` `experimental` `v3_exq_365_mech104_surprise_gate_pair` direction=`mixed` confidence=0.5
   - `2026-04-14T20:38:26Z` `experimental` `v3_exq_365_mech104_surprise_gate_pair` direction=`supports` confidence=0.75
+  - `2026-04-18T18:10:54Z` `literature` `targeted_review_connectome_mech_104` direction=`supports` confidence=0.82
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.

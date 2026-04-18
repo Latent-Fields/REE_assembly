@@ -109,8 +109,10 @@
         "Sara (2009) - The locus coeruleus and noradrenergic modulation of cognition",
         "Bouret & Sara (2005) - Network reset: a simplified overarching theory of locus coeruleus noradrenaline function"
       ],
-      "status": "proposed",
-      "added_utc": "2026-03-22"
+      "status": "executed",
+      "added_utc": "2026-03-22",
+      "executed_utc": "2026-04-18T18:10:54Z",
+      "executed_note": "All four key sources now grounded in targeted_review_connectome_mech_104: Yu & Dayan 2005 (yudayan2005), Aston-Jones & Cohen 2005 (astonjones2005), Bouret & Sara 2005 (bouret2005), Sara 2009 (sara2009, added this session); Sara & Bouret 2012 orienting/reorienting (sarabouret2012) supplements as bonus source."
     },
     {
       "proposal_id": "LIT-0093",
@@ -311,9 +313,11 @@
       "priority": "high",
       "objective": "Systematically replicate and characterize the computational depression attractor from EXQ-237a seed=42. Establish that z_harm_a elevation + z_goal failure -> HABIT/PLANNED flattening is robust across seeds.",
       "design": "Multi-seed (5 seeds) replication of LONG_HORIZON condition from EXQ-237a (high hazard/resource ratio). Measure per seed: z_harm_a_mean, z_goal_norm, HABIT_harm_rate, PLANNED_harm_rate, behavioral_equivalence_score. PASS: >=4/5 seeds show z_goal_norm < 0.1 AND |HABIT_harm_rate - PLANNED_harm_rate| < 0.02 (modes indistinguishable).",
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-04-06",
-      "notes": "EXQ-237a seed=42 is preliminary evidence. This experiment provides the systematic replication needed to register INV-053 as active. Run before MECH-186/187/188 experiments."
+      "notes": "EXQ-237a seed=42 is preliminary evidence. This experiment provides the systematic replication needed to register INV-053 as active. Run before MECH-186/187/188 experiments.",
+      "executed_by": "V3-EXQ-434",
+      "executed_queue_id": "V3-EXQ-434"
     },
     {
       "proposal_id": "EXP-0097",
@@ -323,9 +327,12 @@
       "priority": "high",
       "objective": "Test the phase-transition recovery prediction: once the depression attractor is established (LONG_HORIZON), switching to LOW_HARM environment produces non-linear delayed recovery, not immediate improvement.",
       "design": "Phase 1: train 3 seeds in LONG_HORIZON until depression attractor established (z_goal_norm < 0.1 for 50+ episodes). Phase 2: switch to LOW_HARM environment, continue training 300 additional episodes. Measure recovery trajectory: z_goal_norm and HABIT/PLANNED gap over phase 2 episodes. PASS: recovery trajectory shows latency >50 phase-2 episodes before z_goal_norm crosses 0.3 threshold (demonstrating delayed/phase-transition recovery, not immediate). FAIL: z_goal_norm recovers within 10 episodes (graded not phase-transition).",
-      "status": "proposed",
+      "status": "executed",
+      "executed_by": "V3-EXQ-435",
+      "executed_queue_id": "V3-EXQ-435",
+      "executed_utc": "2026-04-18T18:17:19Z",
       "added_utc": "2026-04-06",
-      "notes": "INV-054 maintenance loop predicts that the depressive state is self-maintaining: z_goal absent -> no terrain exploration -> terrain stays collapsed. Recovery requires accumulated terrain re-exposure to cross a threshold. This is a unique prediction distinguishing INV-054 from simple reward-signal insufficiency accounts."
+      "notes": "INV-054 maintenance loop predicts that the depressive state is self-maintaining: z_goal absent -> no terrain exploration -> terrain stays collapsed. Recovery requires accumulated terrain re-exposure to cross a threshold. This is a unique prediction distinguishing INV-054 from simple reward-signal insufficiency accounts. V3-EXQ-435 supersedes V3-EXQ-278 with sustained-crossing recovery criterion (10 consecutive eps above 0.3, avg over last 30 steps) to distinguish attractor escape from single-episode bounces."
     },
     {
       "proposal_id": "EXP-0098",
@@ -389,9 +396,10 @@
         "Eshel & Roiser (2010) - Reward and punishment processing in depression (Biological Psychiatry) -- anhedonia as reward sensitivity deficit",
         "Treadway & Zald (2011) - Reconsidering anhedonia in depression: lessons from translational neuroscience (Neuroscience and Biobehavioral Reviews) -- wanting vs liking in clinical anhedonia"
       ],
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-04-06",
-      "notes": "Key framing contribution: REE locates depression at the terrain/seeding layer, not the value-learning layer. This is architecturally distinct from existing computational psychiatry models and should be documented as such in the paper."
+      "executed_utc": "2026-04-18T18:10:16Z",
+      "notes": "Key framing contribution: REE locates depression at the terrain/seeding layer, not the value-learning layer. This is architecturally distinct from existing computational psychiatry models and should be documented as such in the paper. Executed 2026-04-18: 4 of 5 proposed sources already covered in targeted_review_inv_053 (Adams 2016, Dayan 2008, Eshel 2010, Treadway 2010); added Huys/Daw/Dayan 2015 decision-theoretic review as 5th entry (the proposal's '2021' date was incorrect -- the Annual Review paper is 2015, PMID 25705929)."
     },
     {
       "proposal_id": "LIT-0098",
@@ -498,7 +506,10 @@
       "objective": "Redesigned sleep phase ablation with context-conditioned action selection. EXQ-242 showed slot differentiation works (4/5 seeds) but agent doesn't use context knowledge. Add context->action pathway.",
       "design": "Add context-conditioned harm_eval threshold: harm_threshold = f(active_context_slot). In DANGEROUS context, lower threshold (more cautious). In SAFE context, higher threshold (more exploratory). Re-run EXQ-242 conditions (WAKING_ONLY, SWS_ONLY, SWS_THEN_REM). PASS: C1 (slot diff) AND C2 (harm rate benefit from context-conditioning). 5 seeds.",
       "supersedes": "EXQ-242 (diagnostic: slot differentiation works but no behavioral path)",
-      "status": "proposed",
+      "status": "executed",
+      "executed_by": "V3-EXQ-436",
+      "executed_queue_id": "V3-EXQ-436",
+      "executed_utc": "2026-04-18T18:18:26Z",
       "added_utc": "2026-04-06",
       "notes": "Design-forward analysis DR-6: missing link is between context_memory readout and action selection. The simplest proxy is context-conditioned harm_eval threshold."
     },
