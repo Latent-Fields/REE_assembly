@@ -2,58 +2,30 @@
   "schema_version": "v1",
   "runner_pid": 47366,
   "runner_started_at": "2026-04-18T14:16:12.997822+00:00",
-  "last_updated": "2026-04-18T18:28:23.074502+00:00",
+  "last_updated": "2026-04-18T21:27:42.517831+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-375a",
-    "backlog_id": "EVB-0057",
+    "queue_id": "V3-EXQ-385b",
+    "backlog_id": "",
     "claim_id": "",
-    "title": "MECH-073 valence geometry: discriminative support vs ablation pair (EWIN-PC requeue)",
+    "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EWIN-PC requeue)",
     "description": "",
-    "script": "experiments/v3_exq_375_mech073_valence_geometry_probe.py",
-    "started_at": "2026-04-18T14:16:14.511889+00:00",
+    "script": "experiments/v3_exq_385a_inv049_offline_consolidation_necessity.py",
+    "started_at": "2026-04-18T21:27:42.517692+00:00",
     "progress": {
-      "run_label": "Seed 7 / VALENCE_ABLATED",
+      "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 6,
-      "episodes_done": 160,
-      "episodes_total": 200,
-      "overall_pct": 13.3
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
     },
-    "seconds_elapsed": 15128,
-    "seconds_remaining": 62604,
-    "recent_lines": [
-      "Seed 7 Condition VALENCE_ABLATED",
-      "[train] seed=7 VALENCE_ABLATED ep 40/200 phase=P0 benefit=0.000 harm=0.053",
-      "[train] seed=7 VALENCE_ABLATED ep 80/200 phase=P0 benefit=1.179 harm=0.205",
-      "[train] seed=7 VALENCE_ABLATED ep 120/200 phase=P1 benefit=0.000 harm=0.270",
-      "[train] seed=7 VALENCE_ABLATED ep 160/200 phase=P1 benefit=0.000 harm=0.151"
-    ],
+    "seconds_elapsed": 0,
+    "seconds_remaining": 6240,
+    "recent_lines": [],
     "ree_version": "v3"
   },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-375a",
-      "backlog_id": "EVB-0057",
-      "claim_id": "",
-      "title": "MECH-073 valence geometry: discriminative support vs ablation pair (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-395a",
-      "backlog_id": "EVB-0114",
-      "claim_id": "",
-      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated) (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-397a",
       "backlog_id": "",
@@ -61,17 +33,6 @@
       "title": "ARC-007 path memory ablation: residue field zeroing degrades hippo proposals (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 104.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-432",
-      "backlog_id": "EVB-0132",
-      "claim_id": "",
-      "title": "SD-014 replay gate: surprise-weighted vs wanting-weighted prioritization (Carey 2019 replication)",
-      "description": "",
-      "estimated_minutes": 156.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -94,7 +55,7 @@
       "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 104.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5527,6 +5488,48 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 85665.6
+    },
+    {
+      "queue_id": "V3-EXQ-375a",
+      "backlog_id": "EVB-0057",
+      "claim_id": "",
+      "title": "MECH-073 valence geometry: discriminative support vs ablation pair (EWIN-PC requeue)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[train] seed=13 VALENCE_ABLATED ep 200/200 phase=P2 benefit=0.000 harm=0.337 | verdict: auroc=0.5000 centers=32 n_harm=404 n_safe=3521 | === EXQ-375 PASS ===",
+      "started_at": "2026-04-18T14:16:14.511889+00:00",
+      "completed_at": "2026-04-18T20:25:41.244902+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 22166.6
+    },
+    {
+      "queue_id": "V3-EXQ-395a",
+      "backlog_id": "EVB-0114",
+      "claim_id": "",
+      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated) (EWIN-PC requeue)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "mean_hub_z_harm_a_norm: 0.8365 | mean_ablated_z_harm_a_norm: 0.7274 | mean_z_harm_a_norm_delta: 0.1091",
+      "started_at": "2026-04-18T20:25:42.705598+00:00",
+      "completed_at": "2026-04-18T20:26:58.244100+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_395_mech220_harm_hub/v3_exq_395_mech220_harm_hub_20260418T202544Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 75.5
+    },
+    {
+      "queue_id": "V3-EXQ-432",
+      "backlog_id": "EVB-0132",
+      "claim_id": "",
+      "title": "SD-014 replay gate: surprise-weighted vs wanting-weighted prioritization (Carey 2019 replication)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[RESULT] cond=C_ABLATION seed=13 n_replay_starts=250 mean_wanting@start=501.79593 mean_surprise@start=0.00000 s_writes_d2=0 mean_harm_test=1.4319 | [SEED 13] FAIL P1=False P2=False P3=False a_s@start=0.00000 b_s@start=0.00000 a_w@start=515.15893 b_w@start=501.79698 n_writes=0 | Overall: FAIL",
+      "started_at": "2026-04-18T20:27:00.286693+00:00",
+      "completed_at": "2026-04-18T21:27:40.069927+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3639.8
     }
   ]
 }
