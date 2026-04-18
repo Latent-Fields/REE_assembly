@@ -1,0 +1,297 @@
+{
+  "experiment_type": "v3_exq_429_inv044_bayesian_prior_before_posterior",
+  "run_id": "v3_exq_429_inv044_bayesian_prior_before_posterior_20260418T075824Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "INV-044"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "timestamp_utc": "20260418T075824Z",
+  "dry_run": false,
+  "registered_thresholds": {
+    "C1": "ORDERED mean_sws_slot_diversity > 0.05 in >= 2/3 seeds",
+    "C2": "ORDERED mean_sws_slot_diversity > WAKING final_slot_diversity in >= 2/3 seeds",
+    "C3": "ORDERED rem_terrain_variance >= REM_ONLY rem_terrain_variance in >= 2/3 seeds",
+    "C4": "REM_ONLY slot_diversity < ORDERED slot_diversity in ALL seeds"
+  },
+  "acceptance_checks": {
+    "C1_ordered_div_gt_threshold_2of3": true,
+    "C2_ordered_div_gt_waking_2of3": true,
+    "C3_ordered_rem_tv_ge_remonly_2of3": true,
+    "C4_remonly_div_lt_ordered_all": true
+  },
+  "aggregated": {
+    "ORDERED": {
+      "mean_sws_slot_diversity": 0.2897591551170788,
+      "mean_final_slot_diversity": 0.16501138359308243,
+      "mean_sws_n_writes": 8.0,
+      "mean_rem_terrain_variance": 0.04483357973354754,
+      "mean_n_sleep_cycles": 9.0
+    },
+    "REM_ONLY": {
+      "mean_sws_slot_diversity": 0.0,
+      "mean_final_slot_diversity": 0.18283349772294363,
+      "mean_sws_n_writes": 0.0,
+      "mean_rem_terrain_variance": 0.04483357973354754,
+      "mean_n_sleep_cycles": 9.0
+    },
+    "WAKING_ONLY": {
+      "mean_sws_slot_diversity": 0.17666464298963547,
+      "mean_final_slot_diversity": 0.17666464298963547,
+      "mean_sws_n_writes": 0.0,
+      "mean_rem_terrain_variance": 0.0,
+      "mean_n_sleep_cycles": 1.0
+    }
+  },
+  "per_seed_results": {
+    "ORDERED": [
+      {
+        "condition": "ORDERED",
+        "seed": 42,
+        "mean_sws_slot_diversity": 0.41897474394904244,
+        "final_slot_diversity": 0.2465551495552063,
+        "mean_sws_n_writes": 8.0,
+        "mean_rem_terrain_variance": 0.020678619050610123,
+        "n_sleep_cycles": 9,
+        "sws_diversity_series": [
+          0.9915812015533447,
+          0.8253897428512573,
+          0.4036193788051605,
+          0.2960284352302551,
+          0.2635488212108612,
+          0.2543008625507355,
+          0.24188552796840668,
+          0.24786357581615448,
+          0.2465551495552063
+        ],
+        "rem_terrain_var_series": [
+          0.009302698229551728,
+          0.04321601337762438,
+          0.04061799397086772,
+          0.01745375415424159,
+          0.009733323244511717,
+          0.002273686180269389,
+          0.00381734738030875,
+          0.045827031018929015,
+          0.013865723899186833
+        ]
+      },
+      {
+        "condition": "ORDERED",
+        "seed": 7,
+        "mean_sws_slot_diversity": 0.4036435650454627,
+        "final_slot_diversity": 0.24722766876220703,
+        "mean_sws_n_writes": 8.0,
+        "mean_rem_terrain_variance": 0.10943102363283913,
+        "n_sleep_cycles": 9,
+        "sws_diversity_series": [
+          0.989147424697876,
+          0.7629774808883667,
+          0.36220303177833557,
+          0.277998149394989,
+          0.2536238431930542,
+          0.24829615652561188,
+          0.24784132838249207,
+          0.243477001786232,
+          0.24722766876220703
+        ],
+        "rem_terrain_var_series": [
+          0.05057783909469057,
+          0.35978909999009073,
+          0.09279791542012895,
+          0.029099993044585267,
+          0.1688999714025575,
+          0.07708548857984472,
+          0.034567476777864516,
+          0.04288203963562232,
+          0.12917938875016768
+        ]
+      },
+      {
+        "condition": "ORDERED",
+        "seed": 13,
+        "mean_sws_slot_diversity": 0.04665915635673122,
+        "final_slot_diversity": 0.0012513324618339539,
+        "mean_sws_n_writes": 8.0,
+        "mean_rem_terrain_variance": 0.004391096517193372,
+        "n_sleep_cycles": 9,
+        "sws_diversity_series": [
+          0.34621694684028625,
+          0.025345172733068466,
+          0.027307676151394844,
+          0.006822171155363321,
+          0.0062442501075565815,
+          0.0028267453890293837,
+          0.00246950495056808,
+          0.0014486074214801192,
+          0.0012513324618339539
+        ],
+        "rem_terrain_var_series": [
+          0.002870867490625607,
+          0.006777881178348446,
+          0.003932399769727368,
+          0.005922382845510536,
+          0.0033595646487915884,
+          0.005166528278245943,
+          0.0034776001758483545,
+          0.00392399014371689,
+          0.004088654123925611
+        ]
+      }
+    ],
+    "REM_ONLY": [
+      {
+        "condition": "REM_ONLY",
+        "seed": 42,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.1448620706796646,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.020678619050610123,
+        "n_sleep_cycles": 9,
+        "sws_diversity_series": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rem_terrain_var_series": [
+          0.009302698229551728,
+          0.04321601337762438,
+          0.04061799397086772,
+          0.01745375415424159,
+          0.009733323244511717,
+          0.002273686180269389,
+          0.00381734738030875,
+          0.045827031018929015,
+          0.013865723899186833
+        ]
+      },
+      {
+        "condition": "REM_ONLY",
+        "seed": 7,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.14250418543815613,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.10943102363283913,
+        "n_sleep_cycles": 9,
+        "sws_diversity_series": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rem_terrain_var_series": [
+          0.05057783909469057,
+          0.35978909999009073,
+          0.09279791542012895,
+          0.029099993044585267,
+          0.1688999714025575,
+          0.07708548857984472,
+          0.034567476777864516,
+          0.04288203963562232,
+          0.12917938875016768
+        ]
+      },
+      {
+        "condition": "REM_ONLY",
+        "seed": 13,
+        "mean_sws_slot_diversity": 0.0,
+        "final_slot_diversity": 0.26113423705101013,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.004391096517193372,
+        "n_sleep_cycles": 9,
+        "sws_diversity_series": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rem_terrain_var_series": [
+          0.002870867490625607,
+          0.006777881178348446,
+          0.003932399769727368,
+          0.005922382845510536,
+          0.0033595646487915884,
+          0.005166528278245943,
+          0.0034776001758483545,
+          0.00392399014371689,
+          0.004088654123925611
+        ]
+      }
+    ],
+    "WAKING_ONLY": [
+      {
+        "condition": "WAKING_ONLY",
+        "seed": 42,
+        "mean_sws_slot_diversity": 0.14747002720832825,
+        "final_slot_diversity": 0.14747002720832825,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 1,
+        "sws_diversity_series": [
+          0.14747002720832825
+        ],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "WAKING_ONLY",
+        "seed": 7,
+        "mean_sws_slot_diversity": 0.1196136549115181,
+        "final_slot_diversity": 0.1196136549115181,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 1,
+        "sws_diversity_series": [
+          0.1196136549115181
+        ],
+        "rem_terrain_var_series": []
+      },
+      {
+        "condition": "WAKING_ONLY",
+        "seed": 13,
+        "mean_sws_slot_diversity": 0.26291024684906006,
+        "final_slot_diversity": 0.26291024684906006,
+        "mean_sws_n_writes": 0.0,
+        "mean_rem_terrain_variance": 0.0,
+        "n_sleep_cycles": 1,
+        "sws_diversity_series": [
+          0.26291024684906006
+        ],
+        "rem_terrain_var_series": []
+      }
+    ]
+  },
+  "params": {
+    "training_episodes": 90,
+    "steps_per_episode": 150,
+    "sleep_interval": 10,
+    "num_seeds": 3,
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6
+  },
+  "evidence_direction": "supports",
+  "summary": "INV-044 test: ORDERED (SWS-then-REM) vs REM_ONLY vs WAKING_ONLY. C1 checks ordered condition installs differentiated context priors (slot_diversity > 0.05). C2 checks ordering advantage over no-sleep baseline. PASS = prior construction before posterior inference yields measurably more differentiated representations, supporting INV-044.",
+  "scenario": "Three-arm discriminative probe of prior-before-posterior ordering necessity",
+  "interpretation": "PASS supports INV-044: SWS slot-formation builds context attractors that online encoding and REM-without-SWS cannot build. The degenerate prior (REM_ONLY) leaves ContextMemory undifferentiated (cosine_sim near 1.0). FAIL would suggest the ordering constraint is not computationally binding in the current substrate, weakening the invariant claim."
+}

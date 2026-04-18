@@ -1,11 +1,78 @@
 {
   "schema_version": "v1",
-  "runner_pid": 63876,
+  "runner_pid": null,
   "runner_started_at": "2026-04-17T15:19:26.090278+00:00",
-  "last_updated": "2026-04-18T04:08:10.802122+00:00",
-  "idle": false,
+  "last_updated": "2026-04-18T21:07:40.406119+00:00",
+  "idle": true,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-432",
+      "backlog_id": "EVB-0132",
+      "claim_id": "",
+      "title": "SD-014 replay gate: surprise-weighted vs wanting-weighted prioritization (Carey 2019 replication)",
+      "description": "",
+      "estimated_minutes": 156.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-355b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-038 schema assimilation probe: optimizer isolation fix (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 104.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-321c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 bistable vs legacy gate hold rate: spike-aligned E3-tick test (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 52.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-324c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-325b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-418b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 104.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "V3-EXQ-195",
@@ -552,6 +619,105 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 25615.9
+    },
+    {
+      "queue_id": "V3-EXQ-406a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "INV-053 depression attractor replication: 5-seed LONG_HORIZON characterisation (EWIN-PC requeue)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=17 goal_norm=0.000 behav_equiv=0.00000 accum_harm=1.19715 -> attractor=PASS | -> PASS decision=retain_ree direction=supports | Status: PASS",
+      "started_at": "2026-04-18T04:10:26.847031+00:00",
+      "completed_at": "2026-04-18T06:19:26.868114+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 7740.1
+    },
+    {
+      "queue_id": "V3-EXQ-429a",
+      "backlog_id": "EVB-0060",
+      "claim_id": "",
+      "title": "INV-044: Bayesian Prior-Before-Posterior Necessity (SWS-ordered vs REM-only vs waking-only) (EWIN-PC requeue)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict [WAKING_ONLY seed=7]: sws_div=0.1196 final_div=0.1196 rem_tv=0.0000 n_cycles=1 | verdict [WAKING_ONLY seed=13]: sws_div=0.2629 final_div=0.2629 rem_tv=0.0000 n_cycles=1 | verdict: PASS",
+      "started_at": "2026-04-18T06:19:32.243482+00:00",
+      "completed_at": "2026-04-18T07:58:24.651823+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 5932.5
+    },
+    {
+      "queue_id": "V3-EXQ-430a",
+      "backlog_id": "EVB-0071",
+      "claim_id": "",
+      "title": "INV-010: Offline Integration Necessity (SLEEP vs NO_SLEEP behavioral comparison) (EWIN-PC requeue)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "[WinError 5] Access is denied: 'C:\\\\Users\\\\Eoin\\\\REE_Working\\\\REE_assembly\\\\evidence\\\\experiments\\\\runner_status\\\\EWIN-PC.tmp' -> 'C:\\\\Users\\\\Eoin\\\\REE_Working\\\\REE_assembly\\\\evidence\\\\experiments\\\\runner_status\\\\EWIN-PC.json'",
+      "started_at": "2026-04-18T07:58:29.637814+00:00",
+      "completed_at": "2026-04-18T08:04:00.386036+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 330.8
+    },
+    {
+      "queue_id": "V3-EXQ-375a",
+      "backlog_id": "EVB-0057",
+      "claim_id": "",
+      "title": "MECH-073 valence geometry: discriminative support vs ablation pair (EWIN-PC requeue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[train] seed=13 VALENCE_ABLATED ep 200/200 phase=P2 benefit=0.597 harm=1.148 | verdict: auroc=0.5000 centers=32 n_harm=383 n_safe=1458 | === EXQ-375 PASS ===",
+      "started_at": "2026-04-18T08:04:03.628991+00:00",
+      "completed_at": "2026-04-18T18:05:42.548664+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 36099.4
+    },
+    {
+      "queue_id": "V3-EXQ-395a",
+      "backlog_id": "EVB-0114",
+      "claim_id": "",
+      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated) (EWIN-PC requeue)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "mean_hub_z_harm_a_norm: 0.8365 | mean_ablated_z_harm_a_norm: 0.7274 | mean_z_harm_a_norm_delta: 0.1091",
+      "started_at": "2026-04-18T18:05:49.152550+00:00",
+      "completed_at": "2026-04-18T18:08:59.833937+00:00",
+      "output_file": "C:\\Users\\Eoin\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_395_mech220_harm_hub\\v3_exq_395_mech220_harm_hub_20260418T180551Z_v3.json",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 190.7
+    },
+    {
+      "queue_id": "V3-EXQ-397a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-007 path memory ablation: residue field zeroing degrades hippo proposals (EWIN-PC requeue)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 3221225786",
+      "started_at": "2026-04-18T18:09:03.137920+00:00",
+      "completed_at": "2026-04-18T21:06:42.201806+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 10659.2
+    },
+    {
+      "queue_id": "V3-EXQ-385b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EWIN-PC requeue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_OFFLINE seed=56 slot_div=1.0077 late_pred_loss=0.0000 eval_harm_rate=0.0692 | verdict: C1_slot_diversity=False (0/3 seeds), C2_pred_loss=False (0/3 seeds), C3_harm=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-18T21:06:46.214083+00:00",
+      "completed_at": "2026-04-18T21:07:39.026353+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 52.8
     }
-  ]
+  ],
+  "draining": false
 }
