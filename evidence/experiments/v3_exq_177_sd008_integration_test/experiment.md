@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_177_sd008_integration_test_20260329T215657Z_v3` at `2026-03-30T18:15:19.144549Z` signatures: none
+- `v3_exq_177_sd008_integration_test_20260329T215657Z_v3` at `2026-04-18T12:40:10.794634Z` signatures: none
 
 Recurring signatures:
 

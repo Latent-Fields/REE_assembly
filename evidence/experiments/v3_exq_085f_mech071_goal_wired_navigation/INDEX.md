@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_085f_mech071_goal_wired_navigation
 
-Generated: `2026-04-18T14:48:15.156999Z`
+Generated: `2026-04-18T15:30:03.597584Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

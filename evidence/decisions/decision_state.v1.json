@@ -819,6 +819,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-04-10T18:06:07.024550Z"
     },
+    "SD-014": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "implementation_phase=v3, 4 supports / 0 weakens from literature only (lit_conf=0.813, targeted_review_sd_014). No experimental evidence yet. Hold at candidate until V3 evidence arrives.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-04-18T15:27:52.655498Z"
+    },
     "SD-015": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -864,6 +873,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-04-10T18:06:07.070511Z"
     },
+    "SD-023": {
+      "actor": "user",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate despite 0.747 confidence. implementation_phase=v3 triggers V3-pending gate; evidence_quality_note flags '1:1 experimental conflict -- adjudication pending'. EXQ-332a (indexed 2026-04-18) non_contributory for SD-023 (FAIL), reinforcing the open adjudication. Await SD-023 implementation-gap fix and confirming run before promoting.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Hold until one additional confirming run (better robustness, slower progress)",
+      "timestamp_utc": "2026-04-18T15:29:57.324309Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -874,7 +892,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-04-18T14:48:15.156999Z",
+  "generated_at_utc": "2026-04-18T15:30:03.597584Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

@@ -1,84 +1,143 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-04-16T17:24:35.828537+00:00",
-  "last_updated": "2026-04-18T08:56:26.754244+00:00",
-  "idle": true,
-  "current": null,
+  "runner_pid": 47366,
+  "runner_started_at": "2026-04-18T14:16:12.997822+00:00",
+  "last_updated": "2026-04-18T15:38:54.326789+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-375a",
+    "backlog_id": "EVB-0057",
+    "claim_id": "",
+    "title": "MECH-073 valence geometry: discriminative support vs ablation pair (EWIN-PC requeue)",
+    "description": "",
+    "script": "experiments/v3_exq_375_mech073_valence_geometry_probe.py",
+    "started_at": "2026-04-18T14:16:14.511889+00:00",
+    "progress": {
+      "run_label": "Seed 42 / VALENCE_GEOM",
+      "runs_done": 0,
+      "runs_total": 6,
+      "episodes_done": 160,
+      "episodes_total": 200,
+      "overall_pct": 13.3
+    },
+    "seconds_elapsed": 4960,
+    "seconds_remaining": 21930,
+    "recent_lines": [
+      "Seed 42 Condition VALENCE_GEOM",
+      "[train] seed=42 VALENCE_GEOM ep 40/200 phase=P0 benefit=0.581 harm=1.148",
+      "[train] seed=42 VALENCE_GEOM ep 80/200 phase=P0 benefit=0.000 harm=0.781",
+      "[train] seed=42 VALENCE_GEOM ep 120/200 phase=P1 benefit=0.000 harm=0.583",
+      "[train] seed=42 VALENCE_GEOM ep 160/200 phase=P1 benefit=0.000 harm=0.641"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-395",
-      "backlog_id": "EVB-0114",
-      "claim_id": "MECH-220",
-      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated)",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-375",
+      "queue_id": "V3-EXQ-375a",
       "backlog_id": "EVB-0057",
-      "claim_id": "MECH-073",
-      "title": "MECH-073 valence geometry: discriminative support vs ablation pair",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-406",
-      "backlog_id": "EXP-0096",
       "claim_id": "",
-      "title": "INV-053 depression attractor replication: 5-seed LONG_HORIZON characterisation",
+      "title": "MECH-073 valence geometry: discriminative support vs ablation pair (EWIN-PC requeue)",
       "description": "",
-      "estimated_minutes": 400.0,
+      "estimated_minutes": 104.0,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-395a",
+      "backlog_id": "EVB-0114",
+      "claim_id": "",
+      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated) (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 104.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-396",
+      "queue_id": "V3-EXQ-397a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "ARC-016 precision threshold sweep: hazard_harm 5-level characterization (EXQ-038 staged fix)",
+      "title": "ARC-007 path memory ablation: residue field zeroing degrades hippo proposals (EWIN-PC requeue)",
       "description": "",
-      "estimated_minutes": 226.7,
+      "estimated_minutes": 104.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-397",
+      "queue_id": "V3-EXQ-432",
+      "backlog_id": "EVB-0132",
+      "claim_id": "",
+      "title": "SD-014 replay gate: surprise-weighted vs wanting-weighted prioritization (Carey 2019 replication)",
+      "description": "",
+      "estimated_minutes": 156.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-355b",
       "backlog_id": "",
       "claim_id": "",
-      "title": "ARC-007 path memory ablation: residue field zeroing degrades hippo proposals (EXQ-046b staged fix)",
+      "title": "ARC-038 schema assimilation probe: optimizer isolation fix (EWIN-PC requeue)",
       "description": "",
-      "estimated_minutes": 80.0,
+      "estimated_minutes": 104.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-429",
-      "backlog_id": "EVB-0060",
-      "claim_id": "INV-044",
-      "title": "INV-044: Bayesian Prior-Before-Posterior Necessity (SWS-ordered vs REM-only vs waking-only)",
-      "description": "",
-      "estimated_minutes": 108.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-430",
-      "backlog_id": "EVB-0071",
+      "queue_id": "V3-EXQ-385b",
+      "backlog_id": "",
       "claim_id": "",
-      "title": "INV-010: Offline Integration Necessity (SLEEP vs NO_SLEEP behavioral comparison)",
+      "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EWIN-PC requeue)",
       "description": "",
-      "estimated_minutes": 72.0,
+      "estimated_minutes": 104.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-321c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 bistable vs legacy gate hold rate: spike-aligned E3-tick test (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 52.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-324c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-325b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-418b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
+      "description": "",
+      "estimated_minutes": 104.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5469,6 +5528,5 @@
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 85665.6
     }
-  ],
-  "draining": false
+  ]
 }
