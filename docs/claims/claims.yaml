@@ -8809,6 +8809,7 @@
     ENABLED and ABLATED conditions identical to 15 decimal places. Reclassified on
     manifest. Same substrate gap confirmed: redesign requires consolidation-mode replay.
     EXQ-355a FAIL (2026-04-18, weakens): Optimizer-isolation fix (e3_consolidation_opt scoped to harm_eval_head only) did not restore differential signal. Phase0 harm=Phase1 harm=ablated harm (all 0.0130) across 3 seeds; C2 0/3 and C3 0/3. Architectural abstraction of waking-consolidation necessity may need refinement -- current implementation does not produce measurable dependence on consolidation mode.
+    EXQ-355a reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the bit-identical ENABLED=ABLATED Phase1 harm rate (per-seed match to 10+ decimal places) is understood as a write-gating-propagation failure, not evidence against ARC-038. Consolidation loss accumulates (harm_eval_head IS updated) but updates do not reach Phase1 online action selection. Missing substrate: MECH-261 (mode-conditioned write gating). pending_retest_after_substrate once MECH-261 implemented. Useful-before-implementation: lit-pull on waking-consolidation -> action-selection propagation (systems consolidation, hippocampal-cortical dialogue).
   evidence: []
 
 - id: ARC-039
@@ -12297,6 +12298,7 @@
     the full chronicity prediction to emerge. INV-054 held at candidate;
     conflict ratio now elevated (2 opposing, 3 supporting).
     EXQ-435 FAIL (2026-04-18, weakens, supersedes EXQ-278): Depression attractor established 3/3 seeds but recovery_type='graded' (smooth linear ramp) in every seed, not sustained phase transition. Sustained-crossing criterion (10 consecutive eps >= 0.3 goal_norm) not met. Goal_norm fluctuates stochastically without clear threshold crossing. Either phase-transition dynamics are not present at this architectural level, or a different metric than goal_norm threshold captures the transition.
+    EXQ-435 reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the graded recovery pattern is recognised as a substrate expressivity issue, not evidence against INV-054. ree-v3 currently has no bistable / discrete-mode primitive; all drive and commitment dynamics use smooth updates, so graded recovery is the only output the substrate can produce. The phase-transition INV-054 predicts requires discrete operating_mode state. Missing substrate: SD-032a (salience-network coordinator outputting discrete operating_mode variable) + MECH-259 (salience-network switch threshold, discrete vs graded). pending_retest_after_substrate once SD-032a + MECH-259 implemented. Manifest evidence_direction updated to non_contributory.
 
 - id: Q-034
   title: "Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?"
@@ -14165,6 +14167,7 @@
     routed differentially between conditions. Flagged for /diagnose-errors. Hold at
     candidate pending dispatch fix and re-run (EXQ-325b).
     EXQ-325a FAIL (2026-04-18, weakens): z_harm_s_ratio=1.0 identically in DESCENDING and CONTROL across 5 seeds, so attenuation not measurable despite running-variance fix and beta-gate bistable enabled. Descending pathway not engaging in committed state. Mechanism either requires substrate wiring not yet present, or the ratio metric is the wrong instrumentation for this claim.
+    EXQ-325a reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the bit-identical DESCENDING=CONTROL signature is recognised as the same failure mode as EXQ-395 MECH-220 harm-hub (descending output has no downstream consumer). The missing substrate is SD-032c (AIC-analog interoceptive salience / urgency-interrupt), the proper consumer of descending-modulation state. pending_retest_after_substrate once SD-032c implemented. Manifest evidence_direction updated to non_contributory.
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while

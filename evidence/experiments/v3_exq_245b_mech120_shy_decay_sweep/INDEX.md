@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_245b_mech120_shy_decay_sweep
 
-Generated: `2026-04-19T10:48:51.205185Z`
+Generated: `2026-04-19T10:59:35.875794Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
