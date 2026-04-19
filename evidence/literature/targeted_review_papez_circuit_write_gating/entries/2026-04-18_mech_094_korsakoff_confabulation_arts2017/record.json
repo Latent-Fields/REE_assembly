@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_papez_circuit_write_gating",
+  "entry_id": "2026-04-18_mech_094_korsakoff_confabulation_arts2017",
+  "timestamp_utc": "2026-04-18T22:04:59Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "Korsakoff's syndrome: a critical review",
+    "authors": [
+      "Nicolaas J. M. Arts",
+      "Serge J. W. Walvoort",
+      "Roy P. C. Kessels"
+    ],
+    "year": 2017,
+    "venue": "Neuropsychiatric Disease and Treatment",
+    "doi": "10.2147/NDT.S130078",
+    "pmid": "29225466"
+  },
+  "evidence_class": "clinical_syndrome_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Clinical review of Korsakoff's syndrome that directly connects Papez-circuit lesion pattern (mammillary bodies, mediodorsal + anterior thalamic nuclei, fornix) to the specific clinical profile of anterograde amnesia plus confabulation. Strong mapping to MECH-094 because the hypothesis_tag write-gate hypothesis predicts that severing the tag-delivery pathway should produce exactly this phenotype: preserved retrieval of old content but failure to distinguish true from confabulated memories. Source quality is high (authoritative review, human neuroanatomical correlation). Mapping fidelity is high for the confabulation arm of MECH-094; transfer risk is low (human data).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Korsakoff confabulation were dissociable from Papez circuit damage -- i.e. produced by purely frontal lesions without mammillary / anterior-thalamic involvement -- then MECH-094's placement of the write gate in the Papez circuit (with OFC as tag-delivery source) is weakened.",
+    "If confabulation severity does not correlate with mammillary / fornix / anterior thalamic damage across Korsakoff patients, the circuit-specificity of the write-gate hypothesis is weakened."
+  ],
+  "tags": ["mech-094", "korsakoff", "confabulation", "mammillary", "thalamus", "papez", "amnesia", "hypothesis-tag"],
+  "mapping": {
+    "source_claim_statement": "Korsakoff's syndrome is a chronic neuropsychiatric syndrome caused by thiamine deficiency (typically in alcohol-use disorder) producing characteristic lesions in the mammillary bodies, mediodorsal and anterior thalamic nuclei, fornix, and other Papez-circuit structures. The clinical profile is a disproportionate anterograde amnesia with confabulation, executive dysfunction, and relatively preserved procedural and remote memory. Confabulation in Korsakoff is not random; it reflects failure to monitor and gate memory output rather than loss of the underlying content.",
+    "ree_translation": "Korsakoff is the clinical footprint of a broken hypothesis_tag delivery pathway (MECH-094). Content retrieval is largely intact (remote memory, procedural) but the write / reality-monitoring gate is damaged, so confabulated reconstructions are passed through without the tag that distinguishes simulated from actual experience. This is the clinical signature predicted by the write-gate hypothesis: not loss of memory, but loss of the marker that identifies what is real. The lesion localisation (mammillary + anterior + mediodorsal thalamic) is exactly the Papez subnetwork that Dillingham 2015 identified as the two-stream relay and that Schnider 2003 connected to OFC reality filtering.",
+    "mapping_caveat": "The review does not directly localise a write-gating projection. It establishes the lesion-phenotype correlation; the causal story about hypothesis-tag failure is an inference. Alcohol-related co-morbidities (cortical atrophy, broader executive dysfunction) complicate the pure-Papez attribution. Confabulation in Korsakoff is predominantly spontaneous / provoked rather than the OFC-reality-filter pattern Schnider 2003 described; the two phenotypes may tap distinct arms of the write-gate.",
+    "source_context": "Narrative review of the clinical and neuropsychological literature; human diagnostic and imaging data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.15,
+    "notes": "Authoritative clinical review; mapping to MECH-094 is direct for the lesion-phenotype correlation but inferential for the mechanistic claim (tag delivery specifically, vs a more general monitoring failure); human data so transfer risk is minimal."
+  }
+}

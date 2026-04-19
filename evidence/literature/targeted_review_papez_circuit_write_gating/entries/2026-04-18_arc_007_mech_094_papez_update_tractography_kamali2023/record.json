@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_papez_circuit_write_gating",
+  "entry_id": "2026-04-18_arc_007_mech_094_papez_update_tractography_kamali2023",
+  "timestamp_utc": "2026-04-18T22:04:59Z",
+  "claim_ids_tested": ["ARC-007", "MECH-094"],
+  "source": {
+    "title": "The Cortico-Limbo-Thalamo-Cortical Circuits: An Update to the Original Papez Circuit of the Human Limbic System",
+    "authors": [
+      "Arash Kamali",
+      "Sofia Milosavljevic",
+      "Anusha Gandhi",
+      "Kinsey R. Lano",
+      "Parnian Shobeiri",
+      "Farzaneh Ghazi Sherbaf",
+      "Haris I. Sair",
+      "Roy F. Riascos",
+      "Khader M. Hasan"
+    ],
+    "year": 2023,
+    "venue": "Brain Topography",
+    "doi": "10.1007/s10548-023-00955-y",
+    "pmid": "37148369"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Recent tractography-based review of the limbic system, explicitly updating the classical Papez circuit with modern diffusion MRI connectivity. Directly substantiates the reciprocal multi-pathway topology the 2026-04-16 synthesis relied on from Bubb 2017. Mapping fidelity is high for architectural claims (ARC-007 hippocampal map navigation and MECH-094 top-down tag delivery both require these pathways). Source quality is moderate -- review of imaging data, not mechanistic electrophysiology. Transfer risk from human tractography to the agent architecture is standard.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Tractography cannot resolve the directional write-gating hypothesis; diffusion MRI shows structural connectivity but not which projections carry tag-delivery signals.",
+    "The review consolidates the limbic system as multi-circuit, which contradicts any REE design that tries to locate the hypothesis_tag in a single anatomical node."
+  ],
+  "tags": ["arc-007", "mech-094", "papez", "tractography", "limbic", "cingulate", "thalamus"],
+  "mapping": {
+    "source_claim_statement": "The original Papez circuit (cingulate / entorhinal / parahippocampal / hippocampus / hypothalamus / thalamus) is anatomically incomplete; diffusion tractography reveals a richer cortico-limbo-thalamo-cortical architecture incorporating prefrontal/orbitofrontal cortex, septum, amygdala, and anterior temporal lobes as core components of the limbic network, with multiple reciprocal fibre pathways rather than a serial loop.",
+    "ree_translation": "The anatomical substrate for MECH-094 top-down hypothesis_tag delivery to hippocampal encoding includes prefrontal/orbitofrontal input alongside cingulate input, consistent with Schnider 2003's OFC reality filter. The substrate for ARC-007 hippocampal map navigation is a multiply-connected network, not a single linear pathway -- severing any one pathway is predicted to produce graded rather than binary deficits.",
+    "mapping_caveat": "Tractography establishes structural connectivity, not functional write-gating. The paper does not directly test whether any of the identified pathways mediates mode-specific encoding; that functional specificity must be inferred.",
+    "source_context": "Human diffusion-weighted imaging review; healthy adult reference anatomy."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Review, not primary data; high mapping fidelity because the claim is architectural; moderate transfer risk because human anatomy is the canonical target for REE biological grounding."
+  }
+}

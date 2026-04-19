@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_papez_circuit_write_gating",
+  "entry_id": "2026-04-18_mech_094_source_monitoring_dissociation_lavalle2020",
+  "timestamp_utc": "2026-04-18T22:04:59Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "Source monitoring in schizophrenia: A systematic review and meta-analysis",
+    "authors": [
+      "Layla Lavallé",
+      "Jérôme Brunelin",
+      "Clément Dondé",
+      "Frédéric Haesebaert",
+      "Marine Mondino"
+    ],
+    "year": 2020,
+    "venue": "European Psychiatry",
+    "doi": "10.1192/j.eurpsy.2020.48",
+    "pmid": "32406366"
+  },
+  "evidence_class": "clinical_meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Systematic review and meta-analysis of source-monitoring deficits in schizophrenia. Directly addresses the confabulation / psychosis / hallucination distinction the memory note flagged as a gap for MECH-094. Source monitoring is the clinical operationalisation of the 'is this content internally or externally caused' question that MECH-094's hypothesis_tag is meant to answer. Meta-analytic convergence on specific sub-component deficits (external-source monitoring worst, internal-source monitoring also impaired, reality monitoring most robustly impaired) is exactly the signature pattern predicted if the write-gate has distinguishable sub-components. Confidence is moderate-high: source quality is high (meta-analysis), mapping fidelity is high for the MECH-094 sub-component refinement, transfer risk is low (human clinical data).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If source-monitoring deficits in schizophrenia were equally distributed across internal / external / reality-monitoring components, the sub-component differentiation of MECH-094 (tag loss vs tag mis-delivery vs tag-source confusion) would lose clinical grounding.",
+    "If patients with confabulation without hallucination showed the same source-monitoring profile as patients with hallucination without confabulation, the distinction MECH-094 needs to make (confabulation = tag loss; hallucination = tag mis-delivery) would be unsupported."
+  ],
+  "tags": ["mech-094", "schizophrenia", "source-monitoring", "hallucination", "reality-monitoring", "hypothesis-tag", "clinical-dissociation"],
+  "mapping": {
+    "source_claim_statement": "Schizophrenia produces systematic deficits on source-monitoring tasks that differentiate (a) external source monitoring (did source A or source B say this?), (b) internal source monitoring (did I think this or say this?), and (c) reality monitoring (did I imagine this or actually perceive it?). The meta-analysis finds the largest effect sizes for reality-monitoring deficits, with patients systematically attributing internally generated content to external sources -- the pattern consistent with the positive symptoms of hallucination and delusion.",
+    "ree_translation": "This paper gives MECH-094 the clinical-phenotype dissociation it needs. Confabulation (Korsakoff pattern, Arts 2017) is failure of the write-gate to deliver tags at all -- the system runs without markers distinguishing true from simulated. Hallucination (schizophrenia pattern, this paper) is failure of tag assignment: the write-gate delivers tags but with systematically inverted source attribution, so internally-generated content is labelled external. These are mechanistically distinct failure modes of the same general architecture. The distinction maps to REE: tag loss vs tag mis-delivery are separate failure modes with different clinical and computational signatures.",
+    "mapping_caveat": "Source-monitoring paradigms are behavioural; they do not directly measure a write-gating signal. The circuit substrate for the schizophrenia source-monitoring deficit is not fully settled (candidates include prefrontal, temporal, and limbic dysfunction). The interpretation that external / internal / reality monitoring map onto separable sub-components of the write-gate is a theoretical extrapolation -- this paper supports the component separation behaviourally, not mechanistically.",
+    "source_context": "Systematic review + meta-analysis of clinical source-monitoring task data in schizophrenia populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.15,
+    "notes": "Meta-analytic, human clinical; mapping to MECH-094 sub-components is strong behaviourally but the circuit-level mapping between task components and specific write-gate sub-components is theoretical rather than measured."
+  }
+}

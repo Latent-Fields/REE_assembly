@@ -2,27 +2,33 @@
   "schema_version": "v1",
   "runner_pid": 47366,
   "runner_started_at": "2026-04-18T14:16:12.997822+00:00",
-  "last_updated": "2026-04-18T21:27:42.517831+00:00",
+  "last_updated": "2026-04-19T01:10:07.920949+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-385b",
+    "queue_id": "V3-EXQ-325b",
     "backlog_id": "",
     "claim_id": "",
-    "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EWIN-PC requeue)",
+    "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
     "description": "",
-    "script": "experiments/v3_exq_385a_inv049_offline_consolidation_necessity.py",
-    "started_at": "2026-04-18T21:27:42.517692+00:00",
+    "script": "experiments/v3_exq_325a_sd021_descending_pain_modulation.py",
+    "started_at": "2026-04-18T21:29:21.780809+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
-      "runs_total": 6,
+      "runs_total": 5,
       "episodes_done": 0,
       "episodes_total": 130,
       "overall_pct": 0.0
     },
-    "seconds_elapsed": 0,
-    "seconds_remaining": 6240,
-    "recent_lines": [],
+    "seconds_elapsed": 13246,
+    "seconds_remaining": 5200,
+    "recent_lines": [
+      "CONTROL: eval 30 eps...",
+      "CONTROL: z_harm_s_ratio=1.0000 z_harm_a_ratio=1.0000 committed_steps=6000",
+      "-> FAIL",
+      "Seed 43",
+      "DESCENDING: training 300 eps..."
+    ],
     "ree_version": "v3"
   },
   "queue": [
@@ -49,17 +55,6 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-385b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-321c",
       "backlog_id": "",
       "claim_id": "",
@@ -71,24 +66,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-324c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 86.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-325b",
       "backlog_id": "",
       "claim_id": "",
       "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 86.7,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5530,6 +5514,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 3639.8
+    },
+    {
+      "queue_id": "V3-EXQ-385b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EWIN-PC requeue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_OFFLINE seed=56 slot_div=1.0077 late_pred_loss=0.0000 eval_harm_rate=0.0692 | verdict: C1_slot_diversity=False (0/3 seeds), C2_pred_loss=False (0/3 seeds), C3_harm=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-18T21:27:42.517692+00:00",
+      "completed_at": "2026-04-18T21:28:41.471176+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 59.0
+    },
+    {
+      "queue_id": "V3-EXQ-324c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=46: FAIL surp_pe=0.0643 surp_ema=0.2608 n_eval=400 c1=False c2=False c3=True | /Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_324b_sd020_harm_surprise_pe.py:444: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Output written: /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_324b_sd020_harm_surprise_pe_20260418T212847Z_v3.json",
+      "started_at": "2026-04-18T21:28:44.240880+00:00",
+      "completed_at": "2026-04-18T21:29:18.415388+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 34.2
     }
   ]
 }

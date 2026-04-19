@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_papez_circuit_write_gating",
+  "entry_id": "2026-04-18_arc_007_mech_094_mammillary_parallel_streams_dillingham2015",
+  "timestamp_utc": "2026-04-18T22:04:59Z",
+  "claim_ids_tested": ["ARC-007", "MECH-094"],
+  "source": {
+    "title": "How do mammillary body inputs contribute to anterior thalamic function?",
+    "authors": [
+      "Christopher M. Dillingham",
+      "Aura Frizzati",
+      "Andrew J. D. Nelson",
+      "Seralynne D. Vann"
+    ],
+    "year": 2015,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2014.07.025",
+    "pmid": "25107491"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Strong, specific claim about mammillary body function that reframes the Papez circuit from a serial loop into two parallel streams (medial body / memory via ventral tegmental nucleus of Gudden; lateral body / head direction via dorsal tegmental nucleus). Directly supports the write-gating hypothesis because the two streams converge on anterior thalamus but carry different information types -- exactly the architecture expected if different action modes route through different Papez subpaths. Source quality is high (rigorous review with lesion, electrophysiology, and tracer evidence); mapping fidelity is high for the two-stream architectural claim; transfer risk is moderate (rodent data, but anterior-thalamic anatomy is well-conserved).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the mammillary bodies are a pure hippocampal relay (the pre-2015 consensus the review overturns), then the REE write-gating hypothesis loses its anatomical substrate for non-hippocampal control signals entering the Papez loop.",
+    "The two-stream architecture predicts that selective lesions to VTN-Gudden should impair memory write without impairing head-direction tracking; selective lesions to DTN-Gudden should do the opposite. If this double dissociation fails, the two-stream model (and its REE mapping) is weakened."
+  ],
+  "tags": ["arc-007", "mech-094", "mammillary", "anterior-thalamus", "tegmental-nucleus", "gudden", "head-direction", "papez"],
+  "mapping": {
+    "source_claim_statement": "The mammillary bodies are not a passive hippocampal relay. They receive substantial non-hippocampal input from the ventral and dorsal tegmental nuclei of Gudden. The medial mammillary body (VTN-Gudden input) supports memory processes via the anterior medial thalamic nucleus; the lateral mammillary body (DTN-Gudden input) generates head-direction signals via the anterior dorsal thalamic nucleus. These two parallel streams converge on anterior thalamus and support distinct aspects of spatial memory.",
+    "ree_translation": "The mammillary-anterior-thalamic relay in the Papez circuit is dual-channel, not single-channel. This is the structural substrate for mode-specific write profiles: different action modes (or different latent streams) can route through different Papez sub-pathways. Candidate mapping: z_world-domain hippocampal proposals route through the medial-mammillary / AM-thalamus channel; egocentric / head-direction signals route through the lateral-mammillary / AD-thalamus channel. The two channels can be independently gated.",
+    "mapping_caveat": "The paper does not identify any specific write-gating signal. The two-stream architecture is necessary for mode-specific gating but not sufficient to prove it -- the gate-bearing projection remains unidentified. Rodent anatomy; human homology is well-established for mammillary bodies but the Gudden tegmental nuclei are less well-characterised in humans.",
+    "source_context": "Review, primarily rodent lesion and electrophysiology literature; some non-human primate data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Review cites strong primary literature; mapping to write-gating is architectural (direct) rather than functional (inferential); transfer risk is normal for rodent-to-human anatomy in a well-conserved subcortical system."
+  }
+}

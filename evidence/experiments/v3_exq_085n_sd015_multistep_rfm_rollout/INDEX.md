@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_085n_sd015_multistep_rfm_rollout
 
-Generated: `2026-04-18T18:24:32.411984Z`
+Generated: `2026-04-18T22:13:04.819825Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
