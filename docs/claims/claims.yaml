@@ -17187,3 +17187,542 @@
     performance degrades relative to mode-split baselines. Not yet queued.
   location: docs/architecture/self_attribution_per_stream.md
 
+- id: SD-032
+  title: "Cingulate integration substrate: a network-level module with AIC, dACC/aMCC, pMCC, pACC, and PCC analog subdivisions bound by a salience-network coordinator. Primary output: operating-mode variable plus behavioural-adjustment-magnitude signal."
+  claim_type: design_decision
+  subject: cingulate.integration_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-011           # dual nociceptive streams (prerequisite, already active)
+    - SD-012           # homeostatic drive / interoceptive baseline (required by SD-032c)
+    - SD-020           # harm_surprise_PE (pain forward model, upgraded to prerequisite)
+    - SD-021           # descending pain modulation (folds into SD-032c)
+    - MECH-091         # salient-event phase reset (specific AIC->dACC mechanism)
+    - MECH-094         # hypothesis tag / write gate (generalised by MECH-261)
+    - MECH-220         # cingulate-insula harm hub (weakened by EXQ-395; replaced by this cluster)
+  functional_restatement: >
+    ree-v3 currently produces z_harm_a but has no coordinated substrate
+    for integrating it with cognitive control, urgency interrupt, effort
+    credit assignment, or offline-mode coordination. This SD registers a
+    cingulate integration substrate comprising five functional subdivisions
+    (SD-032a through SD-032e) bound by a network-level salience-network
+    coordinator (SD-032a).
+
+    Key architectural claim: Options A / B / C from the z_harm_a consumer
+    investigation (add affective cost to trajectory scoring / forward-
+    rollout affective cost / urgency interrupt) are not alternatives --
+    they are different subdivisions' jobs, sequenced by the salience-
+    network coordinator. Option B (forward rollout) is prerequisite --
+    z_harm_a enters as a precision-weighted prediction error (MECH-258),
+    not as a raw magnitude. Option A (integration into action value) is
+    the dACC/aMCC function (SD-032b). Option C (urgency interrupt) is
+    what the salience-network coordinator produces when precision exceeds
+    a switch threshold (MECH-259) -- it fires as a whole-system mode
+    change, not a local cost modification.
+
+    Operating mode (from SD-032a) gates downstream substrates: write-gates
+    on E3, access to offline replay, policy commitment, and autonomic
+    coupling. This generalises MECH-094's hypothesis tag to a mode-
+    conditioned write gate (MECH-261).
+
+    Implementation order (minimum viable first):
+      1. Pain forward model (SD-020 + MECH-258: upgrade from provisional
+         to prerequisite; build E2_harm_a shared-substrate with E2_harm_s).
+      2. Homeostatic drive baseline (SD-012: required by SD-032c gating).
+      3. dACC-analog (SD-032b): MINIMUM VIABLE substrate that resolves the
+         EXQ-395 wiring gap -- integrates z_harm_a PE with control demand
+         and writes a striatal-analog action-value target.
+      4. AIC-analog + salience-network coordinator (SD-032c + SD-032a):
+         adds the urgency-interrupt / mode-switching function.
+      5. Mode-conditioned write gating (MECH-261): generalises MECH-094.
+      6. PCC-analog (SD-032d) and pACC autonomic coupling (SD-032e):
+         refinements.
+
+    Steps 1-3 constitute the minimum viable cingulate substrate. The full
+    cluster (steps 1-6) is the complete architectural target.
+
+    Falsifiable: if a ree-v3 implementation of SD-032b alone reproduces
+    the expected behavioural changes (z_harm_a varying trajectory
+    selection; chronic-pain-like ACC-NAc plasticity shift under sustained
+    harm) without requiring the coordinator (SD-032a), then the network-
+    level framing is over-specification. Conversely, if SD-032b alone
+    fails to produce coherent mode switching on salient events (e.g.,
+    agent continues committed trajectory despite z_harm_a spike), then
+    the coordinator is required -- and piecemeal subdivision wiring is
+    not sufficient.
+  notes: >
+    Biological grounding from targeted_review_cingulate_integration_substrate
+    (9 entries, 2026-04-19). Synthesis at
+    evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md.
+
+    Strongest single support: Shackman et al 2011 (Nat Rev Neurosci)
+    coordinate-based meta-analysis of 380+ studies showing dACC/aMCC as
+    a common substrate for pain, negative affect, and cognitive control.
+    Network-level framing from Menon & Uddin 2010 (Brain Struct Funct)
+    establishing the salience network (AIC + dACC) as a coordinator that
+    switches between DMN and CEN on salient events. Subdivision anatomy
+    from Vogt 2005 (Nat Rev Neurosci); computational form from Seymour
+    2019 (Neuron) framing pain as a precision-weighted control signal in
+    active inference.
+
+    Conjectured origin of four recent FAILs: EXQ-395 MECH-220, EXQ-325a
+    SD-021, EXQ-355a ARC-038, EXQ-435 INV-054 may all be surface
+    expressions of the missing salience-network coordinator. Each FAIL
+    shows a signal computed correctly at the substrate level but not
+    producing coherent downstream behaviour because the coordinator for
+    mode selection / network switching does not exist.
+
+    MECH-220 (cingulate-insula harm hub) weakened by EXQ-395 is retained
+    in the claim graph but its intended function is now subsumed by
+    SD-032 + SD-032a.
+  evidence_quality_note: >
+    Registered pre-implementation on the basis of 9-entry lit-pull
+    (2026-04-19); mean confidence ~0.80 across entries. No V3
+    experimental evidence yet; dACC-analog implementation (SD-032b) is
+    the first testable target. A design doc
+    (docs/architecture/sd_032_cingulate_integration_substrate.md) is
+    pending.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: SD-032a
+  title: "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger."
+  claim_type: design_decision
+  subject: cingulate.salience_network_coordinator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-032
+  depends_on:
+    - SD-032           # parent cluster
+    - SD-032b          # dACC-analog (contributor signal)
+    - SD-032c          # AIC-analog (primary trigger source)
+    - SD-032d          # PCC-analog (attention-partition contributor)
+    - MECH-259         # switch threshold mechanism
+  functional_restatement: >
+    Network-level coordinator that binds the cingulate subdivisions into
+    a coherent salience network. Reads signals from all five subdivisions
+    and outputs:
+
+      (i) operating_mode: a discrete mode variable in
+          {external_task, internal_planning, internal_replay,
+          offline_consolidation}
+      (ii) mode_switch_trigger: boolean, fires when the salience-weighted
+          input from SD-032c (AIC-analog) or any other subdivision
+          exceeds the switch threshold (MECH-259)
+
+    On mode_switch_trigger, the coordinator transitions operating_mode
+    atomically and broadcasts the new mode to downstream gates
+    (E3 write-gate, policy commitment, replay access, autonomic
+    coupling). Mode transitions are discrete, not graded -- though the
+    switch threshold itself may be graded and learnable.
+
+    Biological analogue: the AIC-dACC coupled salience network (Menon &
+    Uddin 2010) that switches between large-scale brain networks (DMN
+    vs CEN) on salient events.
+
+    Falsifiable: if a ree-v3 architecture with independently operating
+    SD-032b/c/d/e (no coordinator) reproduces coordinated mode switching
+    on salient events, SD-032a is over-specification. Conversely, if
+    subdivision activity is observed to be uncorrelated or
+    uncoordinated under a single-coordinator design, the coordinator is
+    doing nothing and needs redesign.
+  notes: >
+    Network-level framing from Menon & Uddin 2010 (Brain Struct Funct);
+    mode-switching function from Craig 2009 (Nat Rev Neurosci) AIC account.
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: SD-032b
+  title: "dACC/aMCC-analog (adaptive control): module that reads z_harm_a precision-weighted prediction error, z_conflict, and control-demand signals; outputs behavioural-adjustment magnitude; writes to a learnable striatal-analog action-value target."
+  claim_type: design_decision
+  subject: cingulate.dacc_analog_adaptive_control
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-032
+  depends_on:
+    - SD-032           # parent cluster
+    - SD-020           # harm_surprise_PE (upgraded to prerequisite; MECH-258)
+    - MECH-258         # precision-weighted PE drives dACC policy update
+    - MECH-260         # bias suppression against recency / monostrategy
+    - SD-003           # counterfactual agency attribution (shares E2_harm_a forward-model substrate)
+    - ARC-033          # E2_harm_s forward model (parallel architecture; E2_harm_a reuses substrate)
+  functional_restatement: >
+    The dACC-analog is the MINIMUM VIABLE cingulate substrate: it alone
+    resolves the EXQ-395 z_harm_a wiring gap.
+
+    Inputs:
+      - z_harm_a_PE: prediction error from E2_harm_a forward model
+        (precision-weighted; see MECH-258)
+      - z_conflict: difference between top-ranked and runner-up
+        trajectory values (or similar conflict signal from E3)
+      - control_demand: expected-value-of-control estimate (how much
+        policy revision is warranted by current context)
+
+    Computation: integrated adaptive-control function following Shackman
+    et al 2011 (adaptive control hypothesis) with computational form
+    given by Seymour 2019 (precision-weighted pain as control signal)
+    and Shenhav 2013/2016 EVC. Output is a behavioural-adjustment
+    magnitude.
+
+    Output target: a striatal-analog action-value module (Baliki et al
+    2010 ACC-NAc coupling) with a learnable weight. Dopamine-analog
+    credit-assignment via SD-003 counterfactual attribution reshapes the
+    ACC -> striatum weight based on whether actions successfully reduced
+    z_harm_a.
+
+    Falsifiable: if the dACC-analog output does not shift action
+    selection toward harm-reducing trajectories with magnitude scaling
+    as the precision-weighted PE, the module has failed to reproduce
+    Baliki's NAc-pain-value coupling. If implementation produces
+    coordinated behavioural change WITHOUT needing a separate
+    coordinator (SD-032a), SD-032 parent cluster should be simplified.
+  notes: >
+    This is the first substrate to implement in the cluster. Resolves
+    EXQ-395 MECH-220 wiring gap. Primary architectural grounding:
+    Shackman 2011 (dACC as integration hub), Baliki 2010 (ACC-NAc
+    pathway for affective pain to action value), Seymour 2019
+    (precision-weighted control-signal form).
+  evidence_quality_note: >
+    Registered pre-implementation. Minimum-viable target. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: SD-032c
+  title: "AIC-analog (interoceptive salience / urgency interrupt): module that integrates interoceptive baseline (drive/fatigue from SD-012) with affective-pain signal (z_harm_a), detects salient events, and triggers a network-switch signal to the salience-network coordinator (SD-032a)."
+  claim_type: design_decision
+  subject: cingulate.aic_analog_salience_urgency
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-032
+  depends_on:
+    - SD-032           # parent cluster
+    - SD-032a          # coordinator (receives switch trigger)
+    - SD-012           # homeostatic drive (interoceptive baseline; required)
+    - SD-021           # descending pain modulation (folded into this module)
+    - MECH-091         # salient-event phase reset (specific AIC->dACC mechanism)
+    - MECH-259         # switch threshold
+  functional_restatement: >
+    AIC-analog gates the urgency-interrupt pathway. It is NOT the
+    affective-pain consumer (that is SD-032b). It is the module that
+    decides when the current operating mode is no longer sustainable and
+    must be interrupted.
+
+    Inputs:
+      - z_harm_a: affective pain signal (also read by SD-032b for smooth
+        integration)
+      - drive_level, fatigue, metabolic estimate (from SD-012): the
+        interoceptive baseline against which z_harm_a is evaluated
+      - other salient-event signals: unexpected z_goal drop, surprise
+        on reward prediction, detection of irreversibility
+
+    Computation: salience = f(z_harm_a, interoceptive_baseline, ...);
+    if salience exceeds switch threshold (MECH-259), fire network-switch
+    trigger to SD-032a.
+
+    Also subsumes SD-021 descending pain modulation (currently broken
+    in EXQ-325a): in biology, the descending pain-modulation pathway
+    from ACC/AIC / periaqueductal gray attenuates sensory pain during
+    committed action. In ree-v3, SD-032c modulates z_harm_s gain as a
+    function of current operating mode (attenuated during committed
+    external_task, unattenuated during internal_planning).
+
+    Falsifiable: if ree-v3 implementation does not produce the expected
+    interoceptive-baseline dependence (same z_harm_a triggers different
+    behaviour in depleted vs well-resourced agent), SD-032c is failing
+    to gate on interoceptive state -- the gating design is wrong.
+  notes: >
+    Biological grounding: Craig 2009 (Nat Rev Neurosci) AIC as
+    interoceptive-salience hub with direct autonomic and motor efferents;
+    Menon & Uddin 2010 salience network coupling. SD-021 folded here
+    because the descending-modulation function in biology lives in this
+    pathway.
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: SD-032d
+  title: "PCC-analog (attention partition / metastability): module coordinating transitions between external-task and internal (replay / planning / consolidation) modes; contributes a mode-stability parameter to the salience-network coordinator (SD-032a)."
+  claim_type: design_decision
+  subject: cingulate.pcc_analog_attention_partition
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-032
+  depends_on:
+    - SD-032           # parent cluster
+    - SD-032a          # coordinator
+    - INV-049          # sleep necessity (offline phase coordination)
+    - MECH-092         # micro-quiescence replay
+    - MECH-094         # hypothesis tag (write gating during mode)
+  functional_restatement: >
+    PCC-analog handles the external-vs-internal attention partition. It
+    is NOT the primary trigger for mode switching (that is SD-032c). It
+    is the module that (i) biases toward internal cognition when task
+    demands drop, (ii) coordinates within-session offline phases
+    (micro-quiescence replay, MECH-092; sleep, INV-049), and (iii)
+    contributes a mode-stability parameter -- how committed the current
+    mode should be -- to SD-032a.
+
+    Biological analogue: PCC as DMN core node with Leech & Sharp 2013
+    "Arousal, Balance, Breadth" framing. PCC activity high during
+    internally-directed cognition, low during externally-directed
+    attention.
+
+    Conservative computational specification: PCC-analog outputs a
+    scalar stability parameter in [0, 1] that modulates the switch
+    threshold (MECH-259) in SD-032a. High stability = coordinator
+    resists mode transitions; low stability = transitions happen at
+    lower salience levels. Stability is itself a function of recent
+    task success, fatigue, and time-since-last-offline-phase.
+  notes: >
+    PCC is the least-tight anatomical mapping in the cluster (Leech &
+    Sharp 2013 "ABB" model is a proposal, not consensus). Implementation
+    should stay conservative: external-vs-internal attention coordinator
+    plus mode-stability parameter. Over-fitting the full metastability
+    framework is likely over-commitment.
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: SD-032e
+  title: "pACC-autonomic coupling: module connecting affective-pain stream (z_harm_a) to valence/drive update pathway. Provides the affective-pain -> autonomic/visceral coupling that Vogt 2005 and Craig 2009 locate in perigenual/subgenual ACC."
+  claim_type: design_decision
+  subject: cingulate.pacc_autonomic_coupling
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-032
+  depends_on:
+    - SD-032           # parent cluster
+    - SD-011           # z_harm_a stream (input)
+    - SD-012           # homeostatic drive / valence state (update target)
+  functional_restatement: >
+    pACC-analog provides a write-path from z_harm_a into the homeostatic /
+    valence-state vector (SD-012). In biology, perigenual and subgenual
+    ACC drive autonomic and endocrine responses to pain; in ree-v3, this
+    pathway ensures sustained affective pain shifts the agent's
+    interoceptive baseline (drive_level, valence) over longer timescales
+    than a single action cycle.
+
+    Distinct from SD-032b (which consumes z_harm_a for action-value) and
+    from SD-032c (which uses interoceptive baseline to gate salience).
+    SD-032e is the write-back channel that slowly updates the baseline
+    itself.
+
+    Behavioural prediction: sustained z_harm_a exposure produces drift
+    in homeostatic state (drive_level), which in turn modulates
+    SD-032c's salience threshold, producing the chronic-pain-like
+    sensitization Baliki 2012 documents. Without SD-032e, z_harm_a has
+    no path into long-timescale state; the agent cannot become
+    "chronically stressed" from sustained harm exposure.
+  notes: >
+    Biological grounding: Vogt 2005 (pACC/sgACC autonomic role);
+    Craig 2009 (AIC-ACC coupling to autonomic efferents). Lowest-priority
+    subdivision in the implementation order -- refines SD-012 over time
+    but is not required for the minimum-viable substrate.
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: MECH-258
+  title: "z_harm_a enters action selection as a precision-weighted prediction error (harm_surprise_PE, SD-020) against an internal pain forward model (E2_harm_a), not as a raw magnitude. Upgrades SD-020 from provisional to prerequisite for SD-032b (dACC-analog)."
+  claim_type: mechanism_hypothesis
+  subject: cingulate.precision_weighted_pain_PE
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-020           # harm_surprise_PE (the substrate MECH-258 is the control claim over)
+    - SD-032b          # dACC-analog (consumer of the PE)
+    - ARC-033          # E2_harm_s forward model (parallel architecture; E2_harm_a is the affective analog)
+    - SD-003           # counterfactual attribution (uses the same forward-model substrate)
+  functional_restatement: >
+    Mechanism claim underlying SD-032b: the dACC-analog reads z_harm_a
+    as a precision-weighted prediction error against E2_harm_a, not as
+    a raw magnitude. This gives the context-dependence the biology
+    documents: the same nociceptive input produces large behavioural
+    adjustment when precision is high (uncontrollable, unexpected pain)
+    and small adjustment when precision is low (expected, controllable
+    pain).
+
+    Computational form:
+      PE = z_harm_a_observed - E2_harm_a(z_harm_a_prev, a_taken)
+      precision = f(variance of recent PE, controllability estimate)
+      dACC_input = precision * PE
+
+    E2_harm_a shares substrate with E2_harm_s (ARC-033) -- same forward
+    model architecture, different input stream. Both are members of the
+    per-stream forward-model family (MECH-256/257).
+
+    Falsifiable: if a non-precision-weighted (raw-magnitude) consumer
+    of z_harm_a reproduces the chronic-pain-like behavioural patterns
+    Baliki 2010/2012 documents (ACC-NAc coupling shift under sustained
+    harm), then precision weighting is unnecessary overhead.
+  notes: >
+    Biological grounding: Seymour 2019 (Neuron) pain-as-precision-signal
+    framework. Upgrades SD-020 status: from provisional (limited evidence)
+    to prerequisite-for-cingulate-substrate (required for SD-032b to work).
+  evidence_quality_note: >
+    Registered pre-implementation. E2_harm_a is a new module; V3 test
+    should verify that shared-substrate E2_harm_s + E2_harm_a forward
+    models achieve comparable per-stream accuracy to independent
+    models (following MECH-257 single-substrate-with-gated-readout
+    pattern).
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: MECH-259
+  title: "Salience-network switch threshold: when the precision-weighted salience of any input to the salience-network coordinator (SD-032a) exceeds a threshold, the coordinator fires a whole-system mode switch rather than producing an incremental policy update."
+  claim_type: mechanism_hypothesis
+  subject: cingulate.switch_threshold
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-032a          # coordinator
+    - SD-032c          # AIC-analog (primary trigger source)
+    - MECH-091         # phase-reset mechanism (pre-existing analog)
+    - MECH-258         # precision-weighted PE (the magnitude compared against threshold)
+  functional_restatement: >
+    Mechanism that converts graded salience signals into a discrete mode-
+    switch operation. Below threshold, salience-weighted inputs modulate
+    ongoing behaviour smoothly (via SD-032b adaptive control). Above
+    threshold, the coordinator interrupts the current mode and switches
+    to a more appropriate one (external_task -> internal_planning on
+    severe harm signal; internal_planning -> external_task on urgent
+    external cue; etc.).
+
+    The threshold itself should be (i) modulated by PCC-analog's
+    mode-stability parameter (SD-032d), (ii) learnable from experience
+    (agents learn when interrupts are warranted), and (iii) gated on
+    current operating mode (higher threshold during committed action,
+    lower during planning / replay).
+
+    Biological analogue: salience-network switching in Menon & Uddin
+    2010 is described as discrete network reconfiguration on detection,
+    not graded modulation.
+
+    Falsifiable: if ree-v3 implementation produces coherent behaviour
+    with a purely graded / continuous coordinator (no discrete mode
+    switches), MECH-259 is over-specification and the coordinator
+    should be redesigned as a graded-modulation layer.
+  notes: >
+    This mechanism is what makes "urgency interrupt" (original Option C)
+    different from "large adaptive-control adjustment" (large magnitude
+    Option A): the former is a mode change; the latter is a smooth
+    update within mode.
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: MECH-260
+  title: "dACC-analog bias suppression against recency / monostrategy: the dACC module writes a counter-bias that resists repeating the last-rewarded trajectory when long-term value information demands exploration. Candidate explanation of the monostrategy failure observed in fishtank_viz and earlier queue-diversity results."
+  claim_type: mechanism_hypothesis
+  subject: cingulate.dacc_bias_suppression
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-032b          # dACC-analog (the module that hosts this function)
+  functional_restatement: >
+    Mechanism hypothesis. Scholl, Kolling et al 2015 (J Neurosci) show
+    dACC + lateral aPFC actively suppress an amygdala/vmPFC bias toward
+    recently-rewarded choices; participants relying more on dACC show
+    more rational long-term learning, while those relying more on
+    vmPFC/amygdala show monostrategy-like bias to recent outcomes.
+
+    Translated to ree-v3: dACC-analog (SD-032b) outputs a counter-bias
+    on trajectory selection that weights against recently-executed
+    trajectories when integrated long-term value favours exploration.
+    This is distinct from SD-032b's primary adaptive-control function
+    (which computes adjustment magnitude) -- it is an additional output
+    channel that shapes the *diversity* of trajectory selection.
+
+    Candidate explanation for the monostrategy failure: fishtank_viz
+    showed the agent repeating the same route despite available
+    alternatives; SD-032b-with-MECH-260 absent is the minimal
+    architecture consistent with that observation.
+
+    Falsifiable: if implementing SD-032b without MECH-260 suppression
+    resolves the monostrategy failure, MECH-260 is unnecessary. If
+    SD-032b + MECH-260 still produces monostrategy, the bias-
+    suppression framing is wrong and the fix lies elsewhere (probably
+    in exploration noise / entropy regularisation, not in dACC output).
+  notes: >
+    Registered on the strength of a single paper (Scholl/Kolling 2015);
+    warrants a follow-up lit-pull on MCC effort-value + bias suppression
+    (Rushworth lab beyond Scholl/Kolling) before committing to the
+    specific computational form.
+  evidence_quality_note: >
+    Single-paper evidence. Lower confidence than the other MECH claims
+    in this cluster. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+- id: MECH-261
+  title: "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates."
+  claim_type: mechanism_hypothesis
+  subject: cingulate.mode_conditioned_write_gating
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-032a          # coordinator (source of operating_mode)
+    - MECH-094         # hypothesis tag (the specific tag this generalises)
+    - INV-049          # sleep necessity (coordinates with consolidation mode)
+    - MECH-092         # micro-quiescence replay
+  functional_restatement: >
+    MECH-094 (hypothesis tag) specified a single categorical write-gate
+    controlling whether simulated / replayed content can write to
+    memory. MECH-261 generalises: the operating mode (from SD-032a) is
+    a discrete variable in {external_task, internal_planning,
+    internal_replay, offline_consolidation}, and each substrate has
+    gate logic keyed to this mode.
+
+    Examples:
+      - E3 policy update: enabled in external_task, disabled in
+        internal_replay (replay must not overwrite policy directly).
+      - Episodic memory write: enabled in external_task and
+        offline_consolidation, gated by hypothesis-tag in
+        internal_planning (simulated-only writes get tagged not
+        committed).
+      - Autonomic coupling (SD-032e): active in external_task,
+        attenuated in internal_planning / replay.
+      - SD-021 descending pain modulation (folded into SD-032c):
+        attenuates z_harm_s gain during external_task commitment,
+        unattenuated otherwise.
+
+    Falsifiable: if ree-v3 implementation produces coherent behaviour
+    with per-substrate local gating logic (no shared operating-mode
+    variable), MECH-261 is over-specification -- gating is local.
+  notes: >
+    This is the mechanism that ties operating mode (SD-032a output) to
+    the broader substrate graph. It makes explicit the intuition that
+    MECH-094's hypothesis tag is a special case of a more general
+    mode-variable write-gate family.
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-032 parent.
+  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md

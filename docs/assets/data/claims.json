@@ -2717,6 +2717,30 @@
     "title": "E2_x is a dual-function substrate: one forward model read in two modes, retrospective comparator (attribution) and prospective rollout-scoring (evaluation), arbitrated by a controller gating signal.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-258": {
+    "status": "candidate",
+    "subject": "cingulate.precision_weighted_pain_PE",
+    "title": "z_harm_a enters action selection as a precision-weighted prediction error (harm_surprise_PE, SD-020) against an internal pain forward model (E2_harm_a), not as a raw magnitude. Upgrades SD-020 from provisional to prerequisite for SD-032b (dACC-analog).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-259": {
+    "status": "candidate",
+    "subject": "cingulate.switch_threshold",
+    "title": "Salience-network switch threshold: when the precision-weighted salience of any input to the salience-network coordinator (SD-032a) exceeds a threshold, the coordinator fires a whole-system mode switch rather than producing an incremental policy update.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-260": {
+    "status": "candidate",
+    "subject": "cingulate.dacc_bias_suppression",
+    "title": "dACC-analog bias suppression against recency / monostrategy: the dACC module writes a counter-bias that resists repeating the last-rewarded trajectory when long-term value information demands exploration. Candidate explanation of the monostrategy failure observed in fishtank_viz and earlier queue-diversity results.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-261": {
+    "status": "candidate",
+    "subject": "cingulate.mode_conditioned_write_gating",
+    "title": "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3135,6 +3159,42 @@
     "status": "candidate",
     "subject": "self_attribution.comparator_z_world",
     "title": "Single-pass agency attribution on the z_world (causal-footprint) reafferent stream: residual = z_world_observed - E2_world(z_world_{t-1}, a_actual).",
+    "type": "design_decision"
+  },
+  "SD-032": {
+    "status": "candidate",
+    "subject": "cingulate.integration_substrate",
+    "title": "Cingulate integration substrate: a network-level module with AIC, dACC/aMCC, pMCC, pACC, and PCC analog subdivisions bound by a salience-network coordinator. Primary output: operating-mode variable plus behavioural-adjustment-magnitude signal.",
+    "type": "design_decision"
+  },
+  "SD-032a": {
+    "status": "candidate",
+    "subject": "cingulate.salience_network_coordinator",
+    "title": "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger.",
+    "type": "design_decision"
+  },
+  "SD-032b": {
+    "status": "candidate",
+    "subject": "cingulate.dacc_analog_adaptive_control",
+    "title": "dACC/aMCC-analog (adaptive control): module that reads z_harm_a precision-weighted prediction error, z_conflict, and control-demand signals; outputs behavioural-adjustment magnitude; writes to a learnable striatal-analog action-value target.",
+    "type": "design_decision"
+  },
+  "SD-032c": {
+    "status": "candidate",
+    "subject": "cingulate.aic_analog_salience_urgency",
+    "title": "AIC-analog (interoceptive salience / urgency interrupt): module that integrates interoceptive baseline (drive/fatigue from SD-012) with affective-pain signal (z_harm_a), detects salient events, and triggers a network-switch signal to the salience-network coordinator (SD-032a).",
+    "type": "design_decision"
+  },
+  "SD-032d": {
+    "status": "candidate",
+    "subject": "cingulate.pcc_analog_attention_partition",
+    "title": "PCC-analog (attention partition / metastability): module coordinating transitions between external-task and internal (replay / planning / consolidation) modes; contributes a mode-stability parameter to the salience-network coordinator (SD-032a).",
+    "type": "design_decision"
+  },
+  "SD-032e": {
+    "status": "candidate",
+    "subject": "cingulate.pacc_autonomic_coupling",
+    "title": "pACC-autonomic coupling: module connecting affective-pain stream (z_harm_a) to valence/drive update pathway. Provides the affective-pain -> autonomic/visceral coupling that Vogt 2005 and Craig 2009 locate in perigenual/subgenual ACC.",
     "type": "design_decision"
   }
 }
