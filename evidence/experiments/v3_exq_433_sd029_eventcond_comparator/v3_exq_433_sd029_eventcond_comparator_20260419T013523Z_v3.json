@@ -8,10 +8,11 @@
   ],
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
-    "SD-029": "does_not_support",
+    "SD-029": "non_contributory",
     "MECH-256": "supports"
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Reclassified 2026-04-19T12:56:29Z from does_not_support to non_contributory. Root cause of overall FAIL is event-distribution collapse in 3/4 seeds, not falsification of SD-029. Event counts: seed 91 had 303 agent-caused / 0 env-caused hazards (bimodal exploit policy); seeds 13 and 42 had ~91-114 env-caused but only 1-2 agent-caused (bimodal avoid policy). Only seed 7 had workable balance (177/23). The C4 event-density controller (extend to cap=200 eps for >=20 of each event type) cannot escape this bimodality because it depends on the agent's own exploratory policy -- extending episodes does not change behavioral mode. C2 attenuation and C3 approach SNR are uninterpretable when an event class has near-zero samples (seed 91 C2=0.0, C3=0.0 driven by zero env-caused denominator). MECH-256 C1 forward_r2=0.983-0.9998 across 4/4 seeds is independent of event balance and remains supports (forward model learns transitions regardless of which event type dominates the sample). SD-029 cannot be evaluated until event-balance is addressed in evaluation design -- pending_retest_after_eval_balance_fix. Proposed follow-up EXQ-433a will decouple evaluation from behavioral sample frequency via counter-balanced policy mixing or per-class reweighted evaluation.",
   "outcome": "FAIL",
   "criteria": {
     "c1_forward_r2_pass": true,
