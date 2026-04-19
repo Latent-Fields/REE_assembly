@@ -23,6 +23,7 @@ API (POST, called by the Experiments tab in the explorer):
     /api/runner/status            -- JSON status of both runners (includes draining flag)
     /api/review/tracker        -- GET: reviewed/discussed state from review_tracker.json
     /api/review/discuss        -- POST {dir_name, discussed}: toggle discussed_experiment_dirs
+    /api/regression/preflight  -- GET: ree-v3 preflight suite result (cached 60s)
 
 The runners write progress to evidence/experiments/runner_status.json,
 which the explorer polls automatically when the Experiments tab is open.
@@ -125,6 +126,99 @@ RUNNERS = {
 }
 
 DEFAULT_PORT = 8000
+
+# ── Preflight badge ──────────────────────────────────────────────────────────
+# Memoised result of `pytest tests/preflight` for the regression-suite badge
+# in the explorer. Cached for _PREFLIGHT_TTL seconds so a clicked refresh
+# doesn't spawn pytest on every paint.
+_PREFLIGHT_TTL = 60
+_preflight_cache: dict | None = None
+_preflight_cache_at: float = 0.0
+_preflight_lock = threading.Lock()
+
+
+def run_preflight_suite() -> dict:
+    """Run ree-v3/tests/preflight and return a serialisable result dict.
+
+    Fields: ok (bool), passed (int), failed (int), duration_s (float),
+    cached_at (iso8601 Z), tail (last stdout lines, <=40), error (str|None).
+    Memoised for _PREFLIGHT_TTL seconds.
+    """
+    global _preflight_cache, _preflight_cache_at
+    with _preflight_lock:
+        now = time.time()
+        if _preflight_cache is not None and (now - _preflight_cache_at) < _PREFLIGHT_TTL:
+            return _preflight_cache
+
+        ree_v3 = SERVE_DIR.parent / "ree-v3"
+        preflight_dir = ree_v3 / "tests" / "preflight"
+        if not preflight_dir.exists():
+            result = {
+                "ok": False,
+                "passed": 0,
+                "failed": 0,
+                "duration_s": 0.0,
+                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "tail": [],
+                "error": f"preflight directory missing: {preflight_dir}",
+            }
+            _preflight_cache = result
+            _preflight_cache_at = now
+            return result
+
+        start = time.time()
+        try:
+            proc = subprocess.run(
+                [V3_PYTHON, "-m", "pytest", "-q", "--tb=line", str(preflight_dir)],
+                cwd=str(ree_v3),
+                capture_output=True,
+                text=True,
+                timeout=120,
+            )
+            duration = time.time() - start
+            out = (proc.stdout or "") + (proc.stderr or "")
+            # Parse "N passed" / "N failed" from pytest summary.
+            passed = 0
+            failed = 0
+            m_pass = re.search(r"(\d+)\s+passed", out)
+            m_fail = re.search(r"(\d+)\s+failed", out)
+            if m_pass:
+                passed = int(m_pass.group(1))
+            if m_fail:
+                failed = int(m_fail.group(1))
+            tail = out.splitlines()[-40:]
+            result = {
+                "ok": proc.returncode == 0,
+                "passed": passed,
+                "failed": failed,
+                "duration_s": round(duration, 3),
+                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "tail": tail,
+                "error": None if proc.returncode == 0 else f"exit {proc.returncode}",
+            }
+        except subprocess.TimeoutExpired:
+            result = {
+                "ok": False,
+                "passed": 0,
+                "failed": 0,
+                "duration_s": round(time.time() - start, 3),
+                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "tail": [],
+                "error": "timeout",
+            }
+        except Exception as exc:
+            result = {
+                "ok": False,
+                "passed": 0,
+                "failed": 0,
+                "duration_s": round(time.time() - start, 3),
+                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "tail": [],
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+        _preflight_cache = result
+        _preflight_cache_at = now
+        return result
 
 # ── GitHub fallback ───────────────────────────────────────────────────────────
 
@@ -906,6 +1000,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/runner/status":
             body = json.dumps(runner_status()).encode()
+            self._json_response(body)
+            return
+        if path == "/api/regression/preflight":
+            body = json.dumps(run_preflight_suite()).encode()
             self._json_response(body)
             return
         # STUB /api/machines -- future endpoint returning status of all known machines
