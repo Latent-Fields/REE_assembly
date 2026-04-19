@@ -14203,7 +14203,7 @@
       }
     },
     "MECH-205": {
-      "confidence_rationale": "exp=2 entry(s), lit=8 entry(s), exp_conf=0.803, lit_conf=0.868",
+      "confidence_rationale": "exp=2 entry(s), lit=8 entry(s), exp_conf=0.802, lit_conf=0.868",
       "direction_counts": {
         "mixed": 0,
         "supports": 10,
@@ -14218,7 +14218,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:fmri_connectivity": 3
       },
-      "experimental_confidence": 0.803,
+      "experimental_confidence": 0.802,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -15228,6 +15228,143 @@
       "source_counts": {
         "experimental": 0,
         "literature": 15
+      }
+    },
+    "MECH-264": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.775",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:fmri_connectivity": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-19_pfc_cluster_frontopolar_counterfactual_value_boorman2009",
+      "latest_timestamp_utc": "2026-04-19T11:47:33Z",
+      "literature_confidence": 0.775,
+      "overall_confidence": 0.775,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-264",
+          "confidence": 0.85,
+          "confidence_rationale": "High-quality Neuron fMRI study with a Bayesian reinforcement-learning model directly extracting trial-by-trial counterfactual-option value and showing it tracked by lateral frontopolar activity. Double-dissociation between vmPFC (current decision value) and lateral frontopolar cortex (counterfactual option value) is clean and directly relevant to SD-033e. The 2011 PLOS Biology follow-up (Boorman et al) extends this with counterfactual learning signals. This is the single strongest mechanistic entry for frontopolar's role in V4-relevant deliberative function.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If lateral frontopolar activity had tracked chosen-option value rather than counterfactual-option value, the vmPFC/frontopolar dissociation would collapse and both regions would reduce to scalar value coding.",
+            "If individual variation in frontopolar activity had not predicted the propensity to switch to the better counterfactual option, the functional ascription (frontopolar computes evidence for switching) would weaken from causal to epiphenomenal."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_frontopolar_counterfactual_value_boorman2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:47:33Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-265": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.867",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 1,
+        "lit:theoretical_review": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-19_pfc_cluster_frontopolar_lesion_exploration_mansouri2015",
+      "latest_timestamp_utc": "2026-04-19T11:47:33Z",
+      "literature_confidence": 0.867,
+      "overall_confidence": 0.867,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-265",
+          "confidence": 0.86,
+          "confidence_rationale": "Nature Reviews Neuroscience synthesis by four frontopolar specialists (Mansouri from the primate-lesion side, Koechlin from the information-theoretic-branching side, Rosa from the comparative anatomy side, Buckley from the lesion/behavioral side). Integrates a decade of work into a single framing: FPC monitors the relative importance of current vs alternative goals and supports parallel-goal monitoring with switching. This is the most integrative account available and directly supports proposing a renamed V4 operating mode in MECH-261.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If imaging evidence for FPC activity scaling with the relative importance / expected-value difference between current and alternative goals had been weak or absent, the synthesis would collapse to a less specific 'executive monitoring' claim.",
+            "If human vs non-human primate frontopolar function had failed to show the qualitative divergence the review proposes (uniquely human capacity for parallel-goal monitoring), the V4-specific framing in REE would need softening."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_frontopolar_competing_goals_synthesis_mansouri2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:47:33Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-265",
+          "confidence": 0.82,
+          "confidence_rationale": "TiCS review synthesising a decade of fMRI and lesion evidence into a coherent gateway framing. Directly load-bearing for MECH-261: the proposed frontopolar function (switch between stimulus-oriented and stimulus-independent attending) is exactly what MECH-261's operating_mode vector formalises at a substrate level. High mapping fidelity, widely cited, still actively built on in current literature.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If medial BA 10 had not shown preferential activity during stimulus-oriented attending vs lateral BA 10 during stimulus-independent attending, the anatomical refinement of the gateway would fail and the function would collapse into generic PFC activity.",
+            "If patients with BA 10 lesions showed no greater disruption of transitions between stimulus-oriented and stimulus-independent states than other frontal patients, the gateway framing would not be substrate-specific."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_frontopolar_gateway_hypothesis_burgess2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:47:33Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-265",
+          "confidence": 0.82,
+          "confidence_rationale": "Selective bilateral lesion study in macaques with both FPC-lesion and PCC-lesion groups plus controls. Localisation is clean (selective aspiration lesions post-training) which is the key advance over human lesion studies where frontopolar damage rarely occurs in isolation. The paradoxical finding \u2014 FPC lesions IMPROVE task focus under distraction while IMPAIRING rapid learning of novel alternative rules \u2014 is the exact dissociation you want to see for a substrate specialised for disengagement / exploration. Translates cleanly to SD-033e specification.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If FPC-lesioned monkeys had shown reduced performance on the WCST rule-switching task itself, the ascription of FPC to disengagement-for-exploration rather than general rule-switching would collapse.",
+            "If FPC-lesioned monkeys had shown no deficit on rapid learning of novel alternative rules, the claim that frontopolar substrate specifically supports exploration of novel options would weaken to a null result."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_frontopolar_lesion_exploration_mansouri2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:47:33Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
       }
     },
     "MECH-900": {
@@ -54220,6 +54357,74 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-264",
+      "confidence": 0.85,
+      "confidence_rationale": "High-quality Neuron fMRI study with a Bayesian reinforcement-learning model directly extracting trial-by-trial counterfactual-option value and showing it tracked by lateral frontopolar activity. Double-dissociation between vmPFC (current decision value) and lateral frontopolar cortex (counterfactual option value) is clean and directly relevant to SD-033e. The 2011 PLOS Biology follow-up (Boorman et al) extends this with counterfactual learning signals. This is the single strongest mechanistic entry for frontopolar's role in V4-relevant deliberative function.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If lateral frontopolar activity had tracked chosen-option value rather than counterfactual-option value, the vmPFC/frontopolar dissociation would collapse and both regions would reduce to scalar value coding.",
+        "If individual variation in frontopolar activity had not predicted the propensity to switch to the better counterfactual option, the functional ascription (frontopolar computes evidence for switching) would weaken from causal to epiphenomenal."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_frontopolar_counterfactual_value_boorman2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:47:33Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-265",
+      "confidence": 0.86,
+      "confidence_rationale": "Nature Reviews Neuroscience synthesis by four frontopolar specialists (Mansouri from the primate-lesion side, Koechlin from the information-theoretic-branching side, Rosa from the comparative anatomy side, Buckley from the lesion/behavioral side). Integrates a decade of work into a single framing: FPC monitors the relative importance of current vs alternative goals and supports parallel-goal monitoring with switching. This is the most integrative account available and directly supports proposing a renamed V4 operating mode in MECH-261.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If imaging evidence for FPC activity scaling with the relative importance / expected-value difference between current and alternative goals had been weak or absent, the synthesis would collapse to a less specific 'executive monitoring' claim.",
+        "If human vs non-human primate frontopolar function had failed to show the qualitative divergence the review proposes (uniquely human capacity for parallel-goal monitoring), the V4-specific framing in REE would need softening."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_frontopolar_competing_goals_synthesis_mansouri2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:47:33Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-265",
+      "confidence": 0.82,
+      "confidence_rationale": "TiCS review synthesising a decade of fMRI and lesion evidence into a coherent gateway framing. Directly load-bearing for MECH-261: the proposed frontopolar function (switch between stimulus-oriented and stimulus-independent attending) is exactly what MECH-261's operating_mode vector formalises at a substrate level. High mapping fidelity, widely cited, still actively built on in current literature.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If medial BA 10 had not shown preferential activity during stimulus-oriented attending vs lateral BA 10 during stimulus-independent attending, the anatomical refinement of the gateway would fail and the function would collapse into generic PFC activity.",
+        "If patients with BA 10 lesions showed no greater disruption of transitions between stimulus-oriented and stimulus-independent states than other frontal patients, the gateway framing would not be substrate-specific."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_frontopolar_gateway_hypothesis_burgess2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:47:33Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-265",
+      "confidence": 0.82,
+      "confidence_rationale": "Selective bilateral lesion study in macaques with both FPC-lesion and PCC-lesion groups plus controls. Localisation is clean (selective aspiration lesions post-training) which is the key advance over human lesion studies where frontopolar damage rarely occurs in isolation. The paradoxical finding \u2014 FPC lesions IMPROVE task focus under distraction while IMPAIRING rapid learning of novel alternative rules \u2014 is the exact dissociation you want to see for a substrate specialised for disengagement / exploration. Translates cleanly to SD-033e specification.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If FPC-lesioned monkeys had shown reduced performance on the WCST rule-switching task itself, the ascription of FPC to disengagement-for-exploration rather than general rule-switching would collapse.",
+        "If FPC-lesioned monkeys had shown no deficit on rapid learning of novel alternative rules, the claim that frontopolar substrate specifically supports exploration of novel options would weaken to a null result."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_frontopolar_lesion_exploration_mansouri2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:47:33Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-033e",
       "confidence": 0.86,
       "confidence_rationale": "Nature Reviews Neuroscience synthesis by four frontopolar specialists (Mansouri from the primate-lesion side, Koechlin from the information-theoretic-branching side, Rosa from the comparative anatomy side, Buckley from the lesion/behavioral side). Integrates a decade of work into a single framing: FPC monitors the relative importance of current vs alternative goals and supports parallel-goal monitoring with switching. This is the most integrative account available and directly supports proposing a renamed V4 operating mode in MECH-261.",
@@ -54353,7 +54558,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-19T11:57:40.445792Z",
+  "generated_at_utc": "2026-04-19T12:22:58.403983Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

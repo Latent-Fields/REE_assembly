@@ -17803,6 +17803,13 @@
     2026-04-19 from deliberative_branching after the SD-033e Prong D
     frontopolar lit-pull; zero schema cost since the data structure
     is dict-keyed on mode names, not a fixed tuple.)
+
+    2026-04-19 third update: MECH-264 (frontopolar counterfactual-
+    value tracking) and MECH-265 (frontopolar relative-importance
+    monitoring) operate WITHIN SD-033e and are gated by MECH-261's
+    operating-mode vector, but are functionally distinct from MECH-261
+    -- MECH-261 gates writes ACROSS substrates, while MECH-264/265
+    are within-substrate computations inside SD-033e.
   evidence_quality_note: >
     Registered pre-implementation. 5 literature entries support the
     underlying biology of mode-conditioned write gating
@@ -18176,6 +18183,8 @@
     - SD-033           # parent cluster
     - SD-033a          # rostral extension of the lateral-PFC abstraction gradient
     - MECH-261         # forward-compatible operating_mode should reserve a parallel_goal_deliberation mode
+    - MECH-264         # frontopolar counterfactual-value tracking -- primary mechanism implementing SD-033e's Boorman function
+    - MECH-265         # frontopolar relative-importance monitoring -- primary mechanism implementing SD-033e's Mansouri 2017 function
   functional_restatement: >
     V4-scope module maintaining counterfactual-value estimates for
     alternatives to the current course of action, mediating
@@ -18274,8 +18283,10 @@
     Functional spec broadened 2026-04-19 from "branching / nested
     control" to "parallel-goal deliberation" (see Prong D synthesis).
     Mechanism claims MECH-264 (counterfactual value tracking) and
-    MECH-265 (relative-importance monitoring) to be registered in a
-    subsequent governance session. Do not implement pre-V4.
+    MECH-265 (relative-importance monitoring) registered 2026-04-19
+    as the primary mechanisms grounding the four-function spec; see
+    their entries for Boorman/Mansouri/Burgess literature attribution.
+    Do not implement pre-V4.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: MECH-262
   title: "Rule-selective persistence in lateral-PFC-analog: stimulus-abstracted rule representations in SD-033a persist across simulated time steps without external drive, remain selective through distractor events, and emerge through training rather than being innate."
@@ -18396,5 +18407,150 @@
     Registered pre-implementation. Aggregate support from two
     complementary entries in targeted_review_pfc_subdivision_architecture
     (Rudebeck & Murray confidence 0.83; Stalnaker et al confidence 0.80).
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: MECH-264
+  title: "Frontopolar counterfactual-value tracking: SD-033e maintains, in parallel with SD-033c's chosen-option value signal, a running estimate of the value of unchosen alternatives. A switch-to-alternative decision is signalled when the counterfactual estimate exceeds the chosen estimate by a threshold-sensitive margin."
+  claim_type: mechanism_hypothesis
+  subject: pfc.frontopolar_counterfactual_value_tracking
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-033e          # primary substrate this mechanism lives in
+    - SD-033c          # vmPFC-analog (chosen-option value); MECH-264 is the counterfactual sibling signal
+    - MECH-151         # vmPFC value integration -- adjacent mechanism operating on chosen-option value
+  functional_restatement: >
+    SD-033e maintains, in parallel with SD-033c's chosen-option value
+    signal, a running estimate of the value of unchosen alternatives.
+    This counterfactual-value estimate dissociates from chosen-option
+    value at the substrate level: SD-033c integrates value for the
+    action currently committed to; SD-033e integrates value for the
+    action(s) not committed to. Both signals coexist trial by trial.
+
+    Switch logic. When the counterfactual-option value estimate exceeds
+    the chosen-option value estimate by a threshold-sensitive margin,
+    SD-033e signals a switch-to-alternative. Individual variation in
+    the magnitude of this counterfactual signal predicts propensity to
+    switch, consistent with Boorman et al 2009 Neuron (model-based
+    fMRI; lateral frontopolar cortex tracks counterfactual-option
+    value; individual variation predicts switch propensity).
+
+    Distinct from MECH-151. MECH-151 (vmPFC value integration) operates
+    on the chosen-option value stream in SD-033c. MECH-264 is the
+    sibling computation over unchosen alternatives in SD-033e. Same
+    form of computation, different substrate, different input stream.
+
+    Falsifiable (primary): if lateral-FPC-analog activity in a V4
+    implementation tracks chosen-option value rather than counterfactual-
+    option value during simulated three-alternative decision tasks,
+    MECH-264 fails at source and SD-033e collapses functionally into
+    SD-033c. In that case the OFC/vmPFC/FPC value architecture is
+    over-specified at REE's level of description and the frontopolar
+    subdivision should be folded into the vmPFC-analog.
+  notes: >
+    Registered pre-implementation as part of the Prong D frontopolar
+    lit-pull follow-up (2026-04-19,
+    targeted_review_pfc_subdivision_architecture). Grounds one of the
+    four converging frontopolar functions identified in the Prong D
+    synthesis (counterfactual value tracking). Paired with MECH-265
+    (relative-importance monitoring across >2 goals), which covers a
+    distinct over-all-goals signal rather than pairwise chosen-vs-
+    counterfactual.
+
+    V3 implication: do NOT implement. V4-scope mechanism. The
+    operating_mode vocabulary reserved in MECH-261 already accommodates
+    the future parallel_goal_deliberation mode name under which this
+    mechanism will run.
+  evidence_quality_note: >
+    Registered pre-implementation (V4 scope). Literature grounding:
+    Boorman et al 2009 Neuron as primary (model-based fMRI, lateral
+    FPC tracks counterfactual option value; individual variation
+    predicts switch propensity). Secondary support from Mansouri et al
+    2015 PNAS (primate FPC lesions impair rapid learning of novel
+    alternative rules) and Mansouri et al 2017 NRN synthesis
+    (integrates counterfactual tracking as one of four frontopolar
+    functions).
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: MECH-265
+  title: "Frontopolar relative-importance monitoring across competing goals: SD-033e maintains a representation of relative importance across a set of active goals (parallel, not pairwise), enabling parallel-goal monitoring and flexible switching. Lesion analogue should reproduce the Mansouri 2015 over-focus + novel-rule-impairment phenotype."
+  claim_type: mechanism_hypothesis
+  subject: pfc.frontopolar_relative_importance_monitoring
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-033e          # primary substrate this mechanism lives in
+    - MECH-264         # related but distinct: MECH-264 is pairwise chosen-vs-counterfactual, MECH-265 is over-all-goals
+    - MECH-261         # adjacent: MECH-261 gates writes ACROSS substrates, MECH-265 operates WITHIN SD-033e
+  functional_restatement: >
+    SD-033e maintains a representation of relative importance across a
+    set of active goals -- a parallel signal, not a pairwise chosen-vs-
+    counterfactual comparison. Distinguishes from MECH-264: where
+    MECH-264 covers the pairwise chosen vs single-counterfactual value
+    race, MECH-265 covers the monitoring of >=2 alternative goals
+    simultaneously with a flexible switching policy across them.
+
+    This is the load-bearing computation in the Mansouri et al 2017
+    Nature Reviews Neuroscience integrative synthesis: frontopolar
+    cortex monitors the relative importance of current vs alternative
+    goals and, in humans specifically, supports parallel monitoring of
+    multiple goals with flexible switching. It subsumes the Koechlin
+    & Summerfield 2007 branching framing as one special case (where
+    the alternatives reduce to two: current execution + one pending
+    task).
+
+    Lesion phenotype. The behavioural signature under ablation is
+    specified by Mansouri et al 2015 PNAS: selective bilateral FPC
+    lesions in macaques produce (a) paradoxical over-focus on the
+    current task under distraction, and (b) impaired rapid learning of
+    novel alternative rules. MECH-265 predicts the V4 FPC-analog
+    ablation should reproduce both effects in simulation.
+
+    Falsifiable (primary): if V4 FPC-analog ablation does NOT
+    reproduce the over-focus + novel-rule-impairment phenotype in
+    simulation, MECH-265 fails. Either the relative-importance-
+    monitoring computation does not live in the frontopolar substrate
+    in REE, or the substrate-level role is correct but the specific
+    mechanism is mis-specified.
+
+    Distinct from MECH-261. MECH-261 gates writes ACROSS substrates
+    via the operating-mode vector. MECH-265 operates WITHIN SD-033e,
+    computing a local ranking over goals. MECH-261's gateway-style
+    external/internal switching is the meta-level context MECH-265
+    runs inside.
+  notes: >
+    Registered pre-implementation as part of the Prong D frontopolar
+    lit-pull follow-up (2026-04-19,
+    targeted_review_pfc_subdivision_architecture). The "gateway
+    hypothesis" substrate-level role (Burgess/Dumontheil/Gilbert 2007)
+    is one of the functions this mechanism rides on -- the gateway
+    defines when internal alternatives are being attended to, and
+    MECH-265 specifies what happens to them when they are.
+
+    Paired with MECH-264 (counterfactual value tracking). The two
+    together ground the four-converging-functions framing in the
+    Prong D synthesis: MECH-264 carries the Boorman counterfactual
+    function, MECH-265 carries the Mansouri 2017 relative-importance
+    function plus the Mansouri 2015 disengagement-for-exploration
+    lesion signature.
+
+    V3 implication: do NOT implement. V4-scope mechanism. The
+    parallel_goal_deliberation mode name reserved in MECH-261
+    accommodates it.
+  evidence_quality_note: >
+    Registered pre-implementation (V4 scope). Literature grounding:
+    Mansouri et al 2017 Nature Reviews Neuroscience as load-bearing
+    integrative synthesis (relative-importance monitoring; human-
+    specific parallel-goal capacity). Primate lesion evidence from
+    Mansouri et al 2015 PNAS (selective FPC lesions produce paradoxical
+    over-focus under distraction + impaired rapid learning of novel
+    alternative rules). Gateway-function support from Burgess/
+    Dumontheil/Gilbert 2007 TiCS.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 
