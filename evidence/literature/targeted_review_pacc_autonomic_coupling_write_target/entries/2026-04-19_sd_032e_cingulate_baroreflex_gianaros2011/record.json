@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pacc_autonomic_coupling_write_target",
+  "entry_id": "2026-04-19_sd_032e_cingulate_baroreflex_gianaros2011",
+  "timestamp_utc": "2026-04-19T17:56:45Z",
+  "claim_ids_tested": ["SD-032e"],
+  "source": {
+    "title": "Anterior cingulate activity and heart rate variability in major depression: an intermediate phenotype perspective on autonomic dysregulation",
+    "authors": ["Gianaros PJ", "Onyewuenyi IC", "Sheu LK", "Christie IC", "Critchley HD"],
+    "year": 2011,
+    "venue": "Human Brain Mapping",
+    "doi": "10.1002/hbm.21315",
+    "pmid": "21567664"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Provides the strongest direct evidence that perigenual/subgenual ACC connects bidirectionally with brainstem autonomic effectors on fast timescales, via PAG and medulla. Evidence for fast-effector route is clean. Evidence for SD-032e's slow-baseline write path is INDIRECT — the paper establishes the anatomical substrate for fast autonomic control but does not isolate a slow-drift pathway. 'Mixed' direction because the paper supports an alternative architecture (fast effector write) competitive with the slow-baseline framing SD-032e adopts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE agents under sustained z_harm_a exposure primarily show fast-timescale autonomic-analog oscillations rather than slow drive_level drift, the correct write target may be a fast-effector module SD-032e has not scoped.",
+    "If SD-032e's slow-EMA write succeeds behaviourally but fast autonomic variables (heart-rate-analog / precision / arousal) are unperturbed in exactly the regimes where Gianaros 2011 predicts they should be, the implementation has routed around a genuinely fast pathway."
+  ],
+  "tags": ["sd_032e", "autonomic", "baroreflex", "fast_effector", "pacc_brainstem", "write_target"],
+  "mapping": {
+    "source_claim_statement": "Perigenual and subgenual ACC show reliable functional coupling with brainstem autonomic effectors (periaqueductal grey, medulla) during stress and emotional challenge. Individual differences in pgACC/sgACC-brainstem coupling predict heart rate variability and baroreflex sensitivity, especially in depression.",
+    "ree_translation": "pACC/sgACC has two viable output paths: a fast autonomic-effector route (ACC-PAG-medulla-heart on sub-second to seconds timescale) and a slow setpoint-write route (ACC to interoceptive/valence baseline on minutes-to-hours timescale). SD-032e chose the slow route. Gianaros 2011 provides direct evidence for the fast route and is silent on the slow route. Both routes can coexist biologically; SD-032e's scoping choice is defensible but not unique.",
+    "mapping_caveat": "This paper evidences a DIFFERENT architecture than SD-032e proposes. It does not falsify SD-032e — the two routes are compatible biologically — but it shows that any complete cingulate-autonomic substrate will eventually need a fast-effector pathway too. REE currently has no fast-autonomic analogue (no heart-rate-variability-analogue variable, no PAG-analogue module). Using Gianaros to support SD-032e's slow-baseline write is mis-citing the paper.",
+    "source_context": "Human fMRI in resting state and under stress tasks, with concurrent ECG. Mixed-age adult samples, with and without depression."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Good source quality. Mapping fidelity low because the paper evidences an alternative (fast-effector) architecture rather than the slow-baseline one SD-032e adopts. Included in this scoping review specifically to document that the fast-effector route exists in the literature and must be explicitly scoped out of SD-032e rather than silently ignored."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pacc_autonomic_coupling_write_target",
+  "entry_id": "2026-04-19_sd_032e_acc_mglur5_plasticity_guo2018",
+  "timestamp_utc": "2026-04-19T17:56:45Z",
+  "claim_ids_tested": ["SD-032e"],
+  "source": {
+    "title": "Long-Term Potentiation at C-fiber Synapses in the Anterior Cingulate Cortex Contributes to Chronic Pain",
+    "authors": ["Guo J", "Gong L", "Bi XL", "Chen YH", "Yuan SS"],
+    "year": 2018,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhx117",
+    "pmid": "28520841"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Strong mechanistic rodent evidence that sustained C-fibre (affective-pain) input drives LTP-like plasticity in ACC synapses, producing a persistent shift in ACC responsiveness that outlasts the originating nociceptive input. This is the canonical cellular mechanism by which sustained z_harm_a would write a drift into a downstream baseline; it also bears on sleep/offline normalisation by showing the plasticity has an explicit timecourse. Mapping fidelity moderate: rodent ACC LTP is a cellular mechanism, not a direct validation of writing into drive_level specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the REE slow-write EMA saturates within a single episode (timescale minutes), it is mis-modelling the biology, which operates over days of sustained input.",
+    "If the ACC-mGluR5 literature shows the plasticity is partially reversed during sleep/offline states (supported by sleep-deprivation-and-pain studies) and SD-032e has no offline decay, SD-032e systematically underestimates recovery."
+  ],
+  "tags": ["sd_032e", "acc_plasticity", "chronic_pain", "ltp", "mglur5", "slow_timescale", "offline_decay"],
+  "mapping": {
+    "source_claim_statement": "Sustained C-fibre (nociceptive affective) input into rodent ACC drives long-term potentiation at ACC synapses via mGluR5-dependent plasticity. This LTP is necessary for the maintenance of chronic pain phenotype and pharmacological blockade reverses both the plasticity and the behavioural sensitisation.",
+    "ree_translation": "SD-032e's core architectural move — sustained z_harm_a produces a persistent shift in a downstream variable via slow-plasticity-like accumulation — has direct cellular-mechanism support in this literature. The EMA of sustained z_harm_a is a reasonable high-level abstraction of synaptic LTP at ACC. The write target in the biology is local ACC synaptic efficacy, which translates to REE as a bias/gain term that ACC applies downstream, NOT necessarily drive_level per se. Closest REE equivalent is a learned scaling factor that pACC-analog writes onto its downstream output.",
+    "mapping_caveat": "Rodent-to-agent transfer is always non-trivial. The biology is a synaptic-efficacy change local to ACC, not a write into a separate interoceptive baseline module. A literal mapping would put the 'setpoint' inside pACC itself as an internal gain state, and route its downstream effect through pACC's output connections. SD-032e currently proposes writing directly into drive_level, which compresses two biological steps (ACC plasticity, then ACC-modulated influence on downstream interoceptive processing) into one. Reasonable simplification for a first substrate; the SD doc should note it.",
+    "source_context": "Adult male rat ACC slice and in-vivo electrophysiology with peripheral nerve injury chronic-pain model. Behavioural sensitisation correlates with ACC LTP over 7-14 days."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.55,
+    "notes": "Rodent neurophysiology in a well-replicated chronic-pain paradigm. Mapping fidelity higher than the fMRI papers because the mechanism (slow plasticity from sustained affective-pain input) maps cleanly onto SD-032e's EMA abstraction. Transfer risk moderate because the biology is cellular and REE is behavioural-level, but the abstraction is clean."
+  }
+}

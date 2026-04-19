@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pacc_autonomic_coupling_write_target",
+  "entry_id": "2026-04-19_sd_032e_sgacc_mood_setpoint_mayberg2005",
+  "timestamp_utc": "2026-04-19T17:56:45Z",
+  "claim_ids_tested": ["SD-032e"],
+  "source": {
+    "title": "Deep brain stimulation for treatment-resistant depression",
+    "authors": ["Mayberg HS", "Lozano AM", "Voon V", "McNeely HE", "Seminowicz D", "Hamani C", "Schwalb JM", "Kennedy SH"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.02.014",
+    "pmid": "15748841"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Foundational clinical evidence that sgACC (Brodmann area 25) behaves like a setpoint node whose sustained activity biases affective valence. DBS-induced suppression reverses depressive phenotypes, implying sgACC persistently writes into a mood/valence baseline. Mapping to SD-032e's drive_level is INDIRECT — sgACC here modulates affect/mood, a distinct axis from REE's interoceptive drive. Confidence moderate: the paper supports the 'pACC/sgACC writes to a slow affective setpoint' claim cleanly, but places the target at valence rather than interoceptive drive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the REE analogue of sustained z_harm_a exposure does not bias any slow affective/valence-signed variable, the sgACC-setpoint mapping is falsified and SD-032e should not invoke Mayberg as justification.",
+    "If the write target in REE ends up being a pure energetic drive_level with no valence sign, the sgACC literature is being misapplied — Mayberg evidences a valenced setpoint write, not a homeostatic scalar."
+  ],
+  "tags": ["sd_032e", "sgacc", "mood_setpoint", "valence", "ba25", "dbs"],
+  "mapping": {
+    "source_claim_statement": "Chronic high activity of sgACC (BA25) sustains depressive mood state; deep brain stimulation that suppresses sgACC produces durable clinical remission across six treatment-resistant patients. This positions sgACC as a bias/setpoint node rather than a reactive signal generator.",
+    "ree_translation": "The REE interpretation that most directly matches the clinical finding is: pACC/sgACC writes into a valence-signed affective baseline, not an unsigned homeostatic drive. If SD-032e is to cite Mayberg as evidence, the write target should be a drive_level component that carries affective sign (closer to SD-012's benefit_exposure scaling), or a separate valence setpoint variable registered alongside drive_level.",
+    "mapping_caveat": "Mayberg 2005 is a small, open-label clinical series (n=6). It does not isolate sgACC from adjacent structures (DBS current spreads). The REE translation conflates 'mood setpoint' with 'drive_level' — this is architecturally plausible but is a real mapping stretch that should be noted in the SD-032e spec rather than elided. Valence and interoceptive drive are distinct constructs in the neuroscience literature.",
+    "source_context": "Open-label clinical trial, n=6 treatment-resistant depression patients, sgACC/subcallosal cingulate DBS, 6-month follow-up with PET imaging pre/post."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Source quality moderate-high: seminal paper, widely replicated by later DBS trials (though some RCTs failed, complicating the story). Mapping fidelity limited by the valence-vs-drive distinction. Transfer risk elevated because the clinical effect depends on a dopamine- and serotonin-rich milieu the REE agent does not instantiate."
+  }
+}

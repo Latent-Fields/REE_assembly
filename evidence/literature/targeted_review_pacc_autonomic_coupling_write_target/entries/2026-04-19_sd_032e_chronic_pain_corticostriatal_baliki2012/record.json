@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pacc_autonomic_coupling_write_target",
+  "entry_id": "2026-04-19_sd_032e_chronic_pain_corticostriatal_baliki2012",
+  "timestamp_utc": "2026-04-19T17:56:45Z",
+  "claim_ids_tested": ["SD-032e"],
+  "source": {
+    "title": "Corticostriatal functional connectivity predicts transition to chronic back pain",
+    "authors": ["Baliki MN", "Petre B", "Torbey S", "Herrmann KM", "Huang L", "Schnitzer TJ", "Fields HL", "Apkarian AV"],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3153",
+    "pmid": "22751038"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong longitudinal human imaging dataset directly addressing the slow-drift question SD-032e is built around. The drift localises to corticostriatal (mPFC-NAc) circuitry rather than pACC-to-interoceptive-baseline, so mapping_fidelity is moderate: the paper licenses the *general* claim that sustained nociceptive exposure reshapes a slow homeostatic/reward baseline, but does not directly evidence a pACC write into SD-012's drive_level. Transfer risk is moderate because REE's drive_level is a single scalar while the paper demonstrates distributed network-level reorganisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If sustained z_harm_a produces no measurable drift in any slow homeostatic variable over long horizons, SD-032e is falsified in the direction this paper anticipates.",
+    "If the drift is observable but is mediated entirely by dopaminergic/NAc-analog circuitry and bypasses the interoceptive baseline, SD-032e's choice of drive_level as the write target is mislocalised — the correct target would be a reward-predictor module that REE does not currently have."
+  ],
+  "tags": ["sd_032e", "chronic_pain", "slow_drift", "corticostriatal", "write_target"],
+  "mapping": {
+    "source_claim_statement": "Individuals who transition from subacute to chronic back pain show progressive reorganisation of mPFC-NAc functional connectivity; this corticostriatal pattern predicts transition better than properties of the nociceptive input itself.",
+    "ree_translation": "Sustained affective-pain exposure (persistent z_harm_a) drives slow reshaping of a baseline homeostatic/reward signal. In REE terms, this licenses the general SD-032e architecture: z_harm_a must be able to influence a slow-timescale variable that then gates salience and action evaluation. The paper does NOT specify the target as drive_level per se; it localises the drift in corticostriatal (reward/valuation) circuitry.",
+    "mapping_caveat": "REE's drive_level is an interoceptive/energetic scalar (SD-012), not a reward-predictor. Baliki 2012 evidences a slow-plasticity reshaping in mPFC-NAc, which is architecturally closer to a value/reward baseline than to a homeostatic drive. Citing this paper as direct support for 'pACC writes into drive_level' overreaches. It supports the broader thesis that sustained nociceptive input shifts some slow baseline; it does NOT disambiguate which baseline.",
+    "source_context": "Longitudinal human fMRI, n=39 subacute back pain patients, 3 scans over ~1 year; 16 healthy controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "High source quality (Nature Neuroscience, longitudinal design, published reanalyses). Mapping fidelity pulled down because the paper localises drift in reward circuitry, not interoceptive baseline. Transfer risk moderate: human clinical-to-agent is always non-trivial, but the architectural claim (slow drift exists) transfers cleanly; the specific target does not."
+  }
+}
