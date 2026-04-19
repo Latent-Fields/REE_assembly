@@ -2741,6 +2741,18 @@
     "title": "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates. Operating mode is implemented as a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, not a one-hot categorical.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-262": {
+    "status": "candidate",
+    "subject": "pfc.lateral_pfc_rule_selective_persistence",
+    "title": "Rule-selective persistence in lateral-PFC-analog: stimulus-abstracted rule representations in SD-033a persist across simulated time steps without external drive, remain selective through distractor events, and emerge through training rather than being innate.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-263": {
+    "status": "candidate",
+    "subject": "pfc.ofc_state_space_specific_outcome",
+    "title": "OFC-analog state-space and specific-outcome representation: SD-033b represents both a structured cognitive map of the current task state space and the specific outcomes expected from actions in each state. Value signals ride on top of this structured representation rather than being stored in it directly.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3195,6 +3207,42 @@
     "status": "candidate",
     "subject": "cingulate.pacc_autonomic_coupling",
     "title": "pACC-autonomic coupling: module connecting affective-pain stream (z_harm_a) to valence/drive update pathway. Provides the affective-pain -> autonomic/visceral coupling that Vogt 2005 and Craig 2009 locate in perigenual/subgenual ACC.",
+    "type": "design_decision"
+  },
+  "SD-033": {
+    "status": "candidate",
+    "subject": "pfc.subdivision_architecture",
+    "title": "PFC subdivision architecture: a network-level module with lateral-PFC-analog (mid-lateral rule/goal), OFC-analog (specific-outcome prediction and task-structure map), vmPFC-analog (value integration), premotor/SMA-analog (sequence execution), and frontopolar-analog (branching / nested control; V4 scope) subdivisions. Primary output: the rule/policy context that gates action selection and the natural write target for MECH-261 mode-conditioned gating.",
+    "type": "design_decision"
+  },
+  "SD-033a": {
+    "status": "candidate",
+    "subject": "pfc.lateral_pfc_analog_rule_goal",
+    "title": "Lateral-PFC-analog (mid-lateral rule/goal substrate): module that holds stimulus-abstracted rule and goal representations across delays, persists through simulated distractors, and projects bias signals into E3 action selection. Primary write target for MECH-261 under external_task and internal_planning modes.",
+    "type": "design_decision"
+  },
+  "SD-033b": {
+    "status": "candidate",
+    "subject": "pfc.ofc_analog_outcome_structure",
+    "title": "OFC-analog (specific-outcome prediction and task-structure cognitive map): module that represents the state space of the current task and the specific outcomes expected from actions in each state. E2's natural substrate address for harm-predictive rollouts; distinct from scalar value integration (SD-033c).",
+    "type": "design_decision"
+  },
+  "SD-033c": {
+    "status": "candidate",
+    "subject": "pfc.vmpfc_analog_value_integration",
+    "title": "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster.",
+    "type": "design_decision"
+  },
+  "SD-033d": {
+    "status": "candidate",
+    "subject": "pfc.premotor_sma_analog_sequence_execution",
+    "title": "Premotor/SMA-analog (sequence execution substrate): module that holds candidate action sequences, binds actions to states, and executes committed sequences. Largely implemented inside E3's existing trajectory-selection machinery; registered for claim-graph completeness.",
+    "type": "design_decision"
+  },
+  "SD-033e": {
+    "status": "candidate",
+    "subject": "pfc.frontopolar_analog_branching",
+    "title": "Frontopolar-analog (branching / nested control substrate): V4-scope module supporting explicit counterfactual-branching, maintenance of pending cognitive operations while executing current ones, and return-from-suspension capability. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4.",
     "type": "design_decision"
   }
 }

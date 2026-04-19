@@ -17700,6 +17700,9 @@
     - MECH-092         # micro-quiescence replay
     - ARC-038          # viability map (one write target)
     - ARC-039          # entorhinal grid loop (offline consolidation target)
+    - SD-033a          # lateral-PFC-analog rule/goal substrate (primary write target)
+    - SD-033b          # OFC-analog specific-outcome / state-space substrate (secondary write target)
+    - SD-033c          # vmPFC-analog value substrate (gated under mode-specific rules)
   functional_restatement: >
     MECH-094 (hypothesis tag) specified a single categorical write-gate
     controlling whether simulated / replayed content can write to
@@ -17728,16 +17731,23 @@
       - Cortical-sensory buffer: write-enabled in internal_replay and
         offline_consolidation (Rothschild/Eban/Frank 2017
         cortical-hippocampal-cortical loop during SWRs).
-      - PFC-analog policy / rule-level substrate: write-enabled in
-        internal_replay and offline_consolidation (Peyrache et al 2009
-        SWR-coupled rule-learning replay in mPFC).
+      - Lateral-PFC-analog (SD-033a) rule/goal substrate:
+        write-enabled in internal_replay and offline_consolidation
+        (Peyrache et al 2009 SWR-coupled rule-learning replay in mPFC).
+        This is the primary consolidation target for replayed
+        rule content.
+      - OFC-analog (SD-033b) specific-outcome / state-space substrate:
+        consolidative writes during offline_consolidation (slow
+        updating of the task-structure cognitive map from accumulated
+        real-outcome experience); speculative writes during
+        internal_planning (counterfactual outcome queries).
       - Autonomic coupling (SD-032e): active in external_task,
         attenuated in internal_planning / replay.
 
     (3) MODE-DRIVEN GATE EXAMPLES (illustrative, not exhaustive):
       - E3 policy update: high weight on external_task; near-zero in
         internal_replay (replay must not overwrite policy directly,
-        it propagates via the PFC-analog substrate).
+        it propagates via the lateral-PFC-analog substrate SD-033a).
       - Episodic memory commit: high weight on external_task and
         offline_consolidation; hypothesis-tagged (MECH-094) in
         internal_planning.
@@ -17778,6 +17788,17 @@
     Salience-network-as-coordinator framing remains a REE-specific
     overlay not directly validated in rodent replay literature; see
     EXP-0148 as its causal test.
+
+    2026-04-19 second update: depends_on extended with SD-033a/b/c
+    and write-target text updated to name the lateral-PFC-analog
+    (SD-033a) substrate and OFC-analog (SD-033b) substrate explicitly.
+    The earlier "PFC-analog policy / rule-level substrate" phrasing
+    was a hanging architectural reference -- the SD-033 cluster
+    registration (same session) gives it a substrate address. Also:
+    MECH-261's operating_mode_vector data structure should be
+    implemented as a dictionary keyed on mode names so that a future
+    deliberative_branching mode (V4, when SD-033e is implemented)
+    can be added without disruptive schema changes.
   evidence_quality_note: >
     Registered pre-implementation. 5 literature entries support the
     underlying biology of mode-conditioned write gating
@@ -17787,3 +17808,534 @@
     REE-specific and has no direct rodent validation -- it requires
     the EXP-0148 ablation test after V3 implementation.
   location: evidence/literature/targeted_review_systems_consolidation_waking_propagation/synthesis.md
+- id: SD-033
+  title: "PFC subdivision architecture: a network-level module with lateral-PFC-analog (mid-lateral rule/goal), OFC-analog (specific-outcome prediction and task-structure map), vmPFC-analog (value integration), premotor/SMA-analog (sequence execution), and frontopolar-analog (branching / nested control; V4 scope) subdivisions. Primary output: the rule/policy context that gates action selection and the natural write target for MECH-261 mode-conditioned gating."
+  claim_type: design_decision
+  subject: pfc.subdivision_architecture
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-032a          # salience-network coordinator (produces operating_mode that MECH-261 uses to gate writes into SD-033 subdivisions)
+    - MECH-094         # hypothesis tag (generalised by MECH-261 into these subdivisions)
+    - MECH-261         # mode-conditioned write gating (primary consumer of this substrate)
+    - ARC-035          # vmPFC value-regulation hub (SD-033c subsumes existing function)
+    - MECH-116         # dlPFC LSTM working memory (existing, adjacent to SD-033a)
+    - MECH-151         # vmPFC value integration (existing, folds into SD-033c)
+    - MECH-152         # vmPFC value integration (existing, folds into SD-033c)
+    - MECH-235         # vmPFC-related mechanism (existing, folds into SD-033c)
+  functional_restatement: >
+    MECH-261 commits to writing into "a PFC-analog policy/rule-level
+    substrate" but ree-v3 has no registered substrate corresponding to
+    the functions primate and human PFC actually performs. This SD
+    registers a PFC subdivision cluster comprising five functional
+    subdivisions bound by the SD-032a salience-network coordinator
+    (via operating_mode + MECH-261 write gating).
+
+    Rationale. PFC is not a monolith. Biologically, it subdivides into
+    at least: (i) lateral-PFC for stimulus-abstracted rule / goal
+    representation (Miller & Cohen 2001, Mansouri/Freedman/Buckley
+    2020), (ii) OFC for specific-outcome prediction and task-structure
+    cognitive maps distinct from scalar value (Rudebeck & Murray 2014,
+    Stalnaker/Cooch/Schoenbaum 2015), (iii) vmPFC for subjective value
+    integration (already partly covered by ARC-035 / MECH-151 / MECH-152),
+    (iv) premotor/SMA for sequence execution (already implemented
+    inside E3's trajectory-selection machinery; registered here for
+    claim-graph completeness), and (v) frontopolar cortex for branching
+    and nested control (Koechlin & Summerfield 2007) -- which is V4
+    scope. Lateral PFC is itself gradient-organised caudal-to-rostral
+    (Badre & Nee 2018); this cluster captures the mid-lateral level as
+    SD-033a and defers frontopolar to SD-033e.
+
+    The SD-032 (cingulate) and SD-033 (PFC) clusters together form the
+    cognitive-control backbone of ree-v3. SD-032a is the coordinator;
+    SD-033a is the substrate that holds the rules/goals the coordinator's
+    operating_mode gates writes into. This architectural split matches
+    the primate/human biology and keeps MECH-261 honest -- there is
+    now an actual substrate for it to reference.
+
+    Implementation order (minimum viable first):
+      1. Lateral-PFC-analog (SD-033a): MINIMUM VIABLE substrate.
+         Provides the rule / goal representation MECH-261 writes into.
+      2. OFC-analog (SD-033b): second priority. Gives E2 harm-prediction
+         and task-structure representation a proper substrate address
+         (currently implicit, mixed into generic E2 state).
+      3. vmPFC-analog (SD-033c): registration of existing function
+         (ARC-035 / MECH-151 / MECH-152) as a SD-033 cluster subdivision.
+         No new implementation needed; this is a graph-consolidation step.
+      4. Premotor/SMA-analog (SD-033d): already implemented inside E3.
+         Registered here so the claim graph mirrors the biology rather
+         than implying a premotor-less architecture.
+      5. Frontopolar-analog (SD-033e): V4 scope. Hooks only in V3
+         (reserve a deliberative_branching mode name for the operating
+         vector; do not implement the substrate yet).
+
+    Steps 1 and 2 are the V3 implementation targets. Steps 3-4 are
+    registration-only. Step 5 is deferred.
+
+    Falsifiable: if a ree-v3 implementation without an explicit
+    lateral-PFC-analog substrate (SD-033a) reproduces the expected
+    behavioural signatures of rule-conditioned action selection --
+    stimulus-abstracted rule generalisation, rule-selective persistence
+    across distractor events, training-dependent emergence of rule
+    representations -- then the SD-033a separation is over-specification
+    and mid-lateral PFC function is adequately covered by existing E3
+    machinery. Conversely, if E3 alone cannot reproduce these signatures,
+    SD-033a is required.
+  notes: >
+    Biological grounding from targeted_review_pfc_subdivision_architecture
+    (7 entries, 2026-04-19; synthesis at
+    evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md).
+    Mean literature confidence 0.80 across three prongs: prong A
+    (lateral-PFC rule representation: Miller & Cohen 2001, Badre & Nee
+    2018, Mansouri et al 2020); prong B (OFC/vmPFC dissociation:
+    Rudebeck & Murray 2014, Stalnaker et al 2015); prong C (premotor/SMA
+    + frontopolar: Tanji & Hoshi 2008, Koechlin & Summerfield 2007).
+
+    SD-033 follows the SD-032 cluster template. Both clusters registered
+    2026-04-19 (same session), together forming the cognitive-control
+    backbone: SD-032 = coordinator + evaluative integration; SD-033 =
+    rule/goal/outcome substrate that the coordinator gates writes into.
+
+    This registration is a pre-emptive fix for the lumping failure mode
+    that produced SD-003 -> SD-010 -> SD-011 late splits on the
+    nociceptive side. Rather than implementing a single "PFC-analog"
+    module and later re-splitting it, register the subdivisions up
+    front using the primate-biology parcellation as the template.
+
+    Frontopolar-analog (SD-033e) is registered V4-scope to signal the
+    architectural intent without committing implementation. When V4
+    design begins, a follow-up lit-pull on frontopolar function
+    (Burgess, Boorman, Christoff, Mansouri 2015) will be required.
+  evidence_quality_note: >
+    Registered pre-implementation on the basis of 7-entry lit-pull
+    (2026-04-19); mean confidence 0.80 across entries. No V3
+    experimental evidence yet; SD-033a implementation is the first
+    testable target. A design doc
+    (docs/architecture/sd_033_pfc_subdivision_architecture.md) is
+    pending.
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: SD-033a
+  title: "Lateral-PFC-analog (mid-lateral rule/goal substrate): module that holds stimulus-abstracted rule and goal representations across delays, persists through simulated distractors, and projects bias signals into E3 action selection. Primary write target for MECH-261 under external_task and internal_planning modes."
+  claim_type: design_decision
+  subject: pfc.lateral_pfc_analog_rule_goal
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-033
+  depends_on:
+    - SD-033           # parent cluster
+    - MECH-261         # primary consumer of this substrate
+    - MECH-262         # rule-selective persistence (grounds this claim)
+    - MECH-116         # dlPFC LSTM working memory (adjacent, may overlap)
+  functional_restatement: >
+    Mid-lateral PFC analogue holding the currently active rule and goal
+    in a stimulus-abstracted format -- representation of the rule that
+    applies rather than of the specific stimulus the rule is operating
+    on (Mansouri et al 2020). The substrate must:
+
+      (i) represent rules abstracted over the specific stimulus space
+          (category rules, same/different rules, goal-state predicates);
+      (ii) persist rule-selective activity across simulated time steps
+          without external drive (so MECH-261 has a stable target);
+      (iii) project bias signals into E3's trajectory-selection machinery
+          (top-down biasing, not direct action control -- Miller & Cohen
+          2001 framing);
+      (iv) accept writes under MECH-261 gating: licensed during
+          external_task and internal_planning; consolidative during
+          offline_consolidation; suppressed during internal_replay (so
+          imagined sequences do not overwrite the held rule).
+
+    This is the MINIMUM VIABLE addition to ree-v3 for MECH-261 to have
+    a real target. Without SD-033a, MECH-261's "write gating on a
+    PFC-analog" is vacuous.
+
+    Falsifiable: if ree-v3's existing E3 sequence-selection machinery
+    reproduces rule-abstracted generalisation (transfer to novel
+    stimuli under the same rule), rule-selective persistence across
+    distractor events, and training-dependent rule emergence without
+    an explicit lateral-PFC-analog substrate, SD-033a is over-
+    specification.
+  notes: >
+    Biological grounding: Miller & Cohen 2001 (rule-as-top-down-bias
+    framing, Annu Rev Neurosci), Mansouri et al 2020 (stimulus-abstracted
+    rule neurons in primate lateral PFC, Nat Rev Neurosci), Badre & Nee
+    2018 (caudal-rostral abstraction gradient locating the mid-lateral
+    level, Trends Cogn Sci).
+
+    This is the SD-033 cluster's V3 implementation priority. Design doc
+    will address: format of rule representation (population code vs
+    distributed embedding vs explicit symbolic), persistence mechanism
+    (recurrent activity vs synaptic hold), bias-signal projection
+    (multiplicative gain vs additive shift into E3 trajectory scores).
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-033 parent.
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: SD-033b
+  title: "OFC-analog (specific-outcome prediction and task-structure cognitive map): module that represents the state space of the current task and the specific outcomes expected from actions in each state. E2's natural substrate address for harm-predictive rollouts; distinct from scalar value integration (SD-033c)."
+  claim_type: design_decision
+  subject: pfc.ofc_analog_outcome_structure
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-033
+  depends_on:
+    - SD-033           # parent cluster
+    - MECH-263         # OFC state-space / specific-outcome representation (grounds this claim)
+    - MECH-261         # gating of writes under operating_mode
+  functional_restatement: >
+    OFC analogue holding two related representations:
+
+      (i) specific-outcome prediction: given a state and candidate
+          action, what particular outcome is expected (not just its
+          scalar value) -- Rudebeck & Murray 2014 "oracle" framing;
+      (ii) task-structure cognitive map: a structured representation
+          of what states the agent can be in, what transitions are
+          possible, and what outcome structure each state predicts --
+          Stalnaker/Cooch/Schoenbaum 2015 framing.
+
+    These are complementary framings of the same substrate: the
+    cognitive map carries structured outcome predictions, and
+    specific-outcome queries are resolved against it. ree-v3's E2 is
+    already a specific-outcome predictor computationally; SD-033b
+    gives it a biological substrate address and makes its
+    representational content (state-space structure) explicit.
+
+    MECH-261 write gating on SD-033b: writes licensed during
+    internal_planning (speculative outcome prediction over
+    counterfactual branches); suppressed during internal_replay
+    (so imagined rollouts do not overwrite the learned task model);
+    consolidative writes during offline_consolidation (slow updating
+    from accumulated real-outcome experience -- systems-consolidation
+    target; Frankland & Bontempi 2005); active read during
+    external_task.
+
+    Falsifiable: if E2's harm-prediction behaviour and ree-v3's
+    rule-conditioned outcome-generalisation can be reproduced without
+    distinguishing a state-structure substrate from a scalar-value
+    substrate (SD-033c), the OFC/vmPFC functional dissociation does
+    not apply at REE's level of description and SD-033b collapses
+    back into SD-033c.
+  notes: >
+    Biological grounding: Rudebeck & Murray 2014 (Neuron) for the
+    OFC-as-oracle framing on selective-lesion evidence; Stalnaker,
+    Cooch & Schoenbaum 2015 (Nat Neurosci) for the OFC-as-cognitive-map
+    framing. Both argue against the pure "OFC does value" reading;
+    REE takes them as complementary accounts of the same structured
+    outcome representation.
+
+    Fills a gap identified in the 2026-04-19 PFC subdivision audit:
+    existing REE claims lump OFC under vmPFC. SD-033b registers the
+    OFC function separately so E2 predictions have a biologically
+    proper substrate address, distinct from the subjective-valuation
+    function covered by SD-033c / ARC-035 / MECH-151 / MECH-152.
+  evidence_quality_note: >
+    Registered pre-implementation. See SD-033 parent.
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: SD-033c
+  title: "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster."
+  claim_type: design_decision
+  subject: pfc.vmpfc_analog_value_integration
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-033
+  depends_on:
+    - SD-033           # parent cluster
+    - ARC-035          # existing vmPFC value-regulation hub claim
+    - MECH-151         # existing vmPFC value integration
+    - MECH-152         # existing vmPFC value integration
+    - MECH-235         # existing vmPFC-related mechanism
+    - MECH-261         # gating of writes under operating_mode
+  functional_restatement: >
+    Scalar-value integration substrate. Reads specific-outcome
+    predictions from SD-033b (OFC-analog), affective / harm signals
+    from SD-032 (cingulate cluster), and homeostatic drive from SD-012,
+    and produces a unified subjective-value signal that downstream
+    selection machinery (E3, BG-analog) consults.
+
+    This subdivision does NOT represent specific outcomes or task
+    structure -- that is SD-033b's job (per Rudebeck & Murray 2014
+    dissociation and Stalnaker et al 2015 cognitive-map framing).
+    SD-033c carries the scalar value that rides on top of those
+    representations.
+
+    SD-033c is largely a claim-graph consolidation step rather than a
+    new substrate: existing claims (ARC-035, MECH-151, MECH-152,
+    MECH-235) already cover the computational function. SD-033c
+    registers it as a named subdivision of the SD-033 cluster so the
+    PFC substrate graph is complete and mirrors the biology.
+
+    MECH-261 write gating on SD-033c: writes during external_task
+    (value updates from realised outcomes); consolidative writes
+    during offline_consolidation; reduced gain during internal_replay
+    so replayed trajectories do not directly overwrite value estimates
+    (this is what forces replay to propagate via SD-033a / SD-033b
+    rather than writing straight into value).
+  notes: >
+    Biological grounding: existing REE claims (ARC-035, MECH-151,
+    MECH-152, MECH-235) plus the PFC lit-pull's evidence that vmPFC
+    value integration is dissociable from OFC-analog outcome prediction
+    (Rudebeck & Murray 2014, Stalnaker et al 2015).
+
+    v3_pending intentionally false: this subdivision's computational
+    function is already covered by existing claims and does not
+    require new V3 implementation work. This is a graph-consolidation
+    subdivision, not a new substrate.
+  evidence_quality_note: >
+    Registered pre-implementation as a subdivision consolidating
+    existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions.
+    No new evidence requirement beyond what those claims already carry.
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: SD-033d
+  title: "Premotor/SMA-analog (sequence execution substrate): module that holds candidate action sequences, binds actions to states, and executes committed sequences. Largely implemented inside E3's existing trajectory-selection machinery; registered for claim-graph completeness."
+  claim_type: design_decision
+  subject: pfc.premotor_sma_analog_sequence_execution
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-033
+  depends_on:
+    - SD-033           # parent cluster
+    - SD-033a          # upstream rule/goal substrate
+    - MECH-094         # hypothesis tag on sequence commits (specific case of MECH-261)
+    - MECH-261         # mode-conditioned write gating on sequence updates
+  functional_restatement: >
+    Downstream executive substrate that receives the rule/goal context
+    from SD-033a and proposes, selects, and executes action sequences
+    in service of it. In primate biology this corresponds to pre-SMA
+    (sequence planning, set-switching), SMA proper (sequence execution),
+    and dorsal premotor cortex (stimulus-action binding) -- Tanji &
+    Hoshi 2008.
+
+    In ree-v3, this function is largely already implemented inside E3's
+    trajectory-proposal and selection machinery. SD-033d registers it
+    as a named subdivision of SD-033 so the claim graph mirrors the
+    biology rather than implying a premotor-less architecture. No new
+    implementation is required for SD-033d itself; its function is
+    redistributed across existing E3 machinery.
+
+    MECH-261 write gating on SD-033d: sequence-level writes
+    (hypothesis-tagged via MECH-094) are licensed during external_task
+    and internal_planning; suppressed during internal_replay unless
+    the hypothesis tag is explicitly set; consolidated during
+    offline_consolidation.
+
+    Architectural note: Tanji & Hoshi describe a lateral-PFC -> pre-SMA
+    -> SMA -> dorsal premotor functional gradient. REE's SD-033a ->
+    SD-033d relation captures the rule -> sequence-execution segment
+    of this gradient. Finer-grained premotor subdivision is not
+    registered here -- it can be added later if experimental evidence
+    motivates it.
+  notes: >
+    Biological grounding: Tanji & Hoshi 2008 (Physiol Rev) executive
+    behavioral control synthesis.
+
+    Registered V3 scope because the function exists but as a
+    registration-only step, not a new implementation target. If future
+    evidence shows that E3's trajectory machinery inadequately covers
+    the pre-SMA / SMA / premotor distinctions, SD-033d can be split
+    into SD-033d-i / d-ii / d-iii along Tanji & Hoshi's subdivisions.
+  evidence_quality_note: >
+    Registered pre-implementation as a graph-completeness subdivision
+    mapping existing E3 sequence-selection machinery onto the
+    primate/human premotor biology.
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: SD-033e
+  title: "Frontopolar-analog (branching / nested control substrate): V4-scope module supporting explicit counterfactual-branching, maintenance of pending cognitive operations while executing current ones, and return-from-suspension capability. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4."
+  claim_type: design_decision
+  subject: pfc.frontopolar_analog_branching
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  instantiates: SD-033
+  depends_on:
+    - SD-033           # parent cluster
+    - SD-033a          # rostral extension of the lateral-PFC abstraction gradient
+    - MECH-261         # forward-compatible operating_mode should reserve a deliberative_branching mode
+  functional_restatement: >
+    The most rostral (frontopolar / BA 10) end of the Badre & Nee 2018
+    caudal-rostral abstraction gradient in lateral PFC. Supports
+    explicit branching and nested control: holding a pending cognitive
+    operation in abeyance while executing a current one, then
+    returning to the suspended operation.
+
+    This is the substrate REE's V4 long-horizon ethical reasoning will
+    eventually depend on -- explicit counterfactual weighing of parallel
+    policies is what Frankfurt-style reflective endorsement of first-
+    order motivations requires, and the Koechlin & Summerfield 2007
+    information-theoretic framing identifies frontopolar cortex as the
+    anatomical substrate for this function.
+
+    V3 commitment: do NOT implement SD-033e. Reserve schema forward-
+    compatibility only. Specifically, the operating_mode vocabulary
+    (currently {external_task, internal_planning, internal_replay,
+    offline_consolidation}) should reserve a future mode name
+    (candidate: deliberative_branching) so that V4 can be added without
+    disruptive schema changes. MECH-261's gate logic should be
+    implemented as a dictionary keyed on mode names rather than a
+    fixed 4-tuple.
+
+    V4 commitment: before implementation, a follow-up lit-pull on
+    frontopolar function is required. The Koechlin & Summerfield 2007
+    entry in targeted_review_pfc_subdivision_architecture is the
+    entry point, not the complete survey -- Burgess, Boorman,
+    Christoff, and the Mansouri 2015 frontopolar review should all be
+    pulled when V4 design begins.
+  notes: >
+    Biological grounding (entry-level only): Koechlin & Summerfield
+    2007 (Trends Cogn Sci) information-theoretic approach to PFC
+    executive function, identifying frontopolar cortex as the
+    branching substrate. Note the V4 follow-up lit-pull requirement.
+
+    Registering this subdivision pre-emptively rather than waiting
+    until V4 design begins serves two purposes: (1) it signals the
+    architectural intent so that V3 design choices (especially
+    MECH-261's gate-logic data structure and the operating_mode
+    vocabulary) stay forward-compatible; (2) it prevents the same
+    late-split failure mode that produced SD-010/SD-011 from
+    recurring at the V3/V4 boundary.
+  evidence_quality_note: >
+    V4-scope registration. Evidence base is intentionally thin
+    (one entry-level paper) because detailed lit-pull is deferred
+    until V4 design starts. Do not implement pre-V4.
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: MECH-262
+  title: "Rule-selective persistence in lateral-PFC-analog: stimulus-abstracted rule representations in SD-033a persist across simulated time steps without external drive, remain selective through distractor events, and emerge through training rather than being innate."
+  claim_type: mechanism_hypothesis
+  subject: pfc.lateral_pfc_rule_selective_persistence
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-033a          # substrate this mechanism instantiates
+    - MECH-261         # write-gate context within which persistence operates
+    - MECH-116         # dlPFC LSTM working memory (adjacent mechanism)
+  functional_restatement: >
+    Mechanism implementing the three signatures that distinguish a
+    genuine rule substrate from generic working memory:
+
+      (1) STIMULUS-ABSTRACTED FORMAT. The representation encodes the
+          rule that applies, not the specific stimulus the rule
+          operates on. Generalisation signature: transfer to novel
+          stimuli under the same rule produces similar representational
+          activity. (Mansouri et al 2020.)
+
+      (2) DISTRACTOR-RESISTANT PERSISTENCE. Rule-selective activity
+          persists through intervening events (simulated distractor
+          stimuli, internal_replay events, micro-quiescence cycles per
+          MECH-092) without being overwritten. This is what makes
+          MECH-261's write-suppression-during-replay gate coherent:
+          there has to be a stable target for the gate to protect.
+          (Miller & Cohen 2001 top-down-bias framing; Mansouri et al
+          2020 delay persistence.)
+
+      (3) TRAINING-DEPENDENT EMERGENCE. Rule-selective representations
+          develop over many task exposures -- they are not innate.
+          In ree-v3, this corresponds to slow-consolidation writes
+          from hippocampal-cortical dialogue during offline_consolidation
+          mode (connects to MECH-261 consolidation branch and to the
+          Frankland & Bontempi 2005 systems-consolidation framework
+          grounded in the 2026-04-19 systems-consolidation lit-pull).
+
+    Falsifiable: if a lateral-PFC-analog implementation shows
+    stimulus-bound persistence (fires only for trained stimuli, fails
+    to generalise) or distractor-fragile persistence (representation
+    collapses when internal_replay events intervene), MECH-262 is
+    violated at source and the SD-033a substrate does not meet its
+    functional spec.
+  notes: >
+    Directly grounds SD-033a in the primate single-unit literature
+    (Mansouri et al 2020 Nat Rev Neurosci synthesis). Provides three
+    concrete measurable signatures for V3 implementation verification.
+
+    The third signature (training-dependent emergence) ties SD-033a
+    to the systems-consolidation mechanism already grounded by the
+    Frankland & Bontempi 2005 + Peyrache et al 2009 entries -- this
+    is how rules get consolidated into the lateral-PFC substrate
+    during offline phases.
+  evidence_quality_note: >
+    Registered pre-implementation. Grounded by Mansouri et al 2020
+    (NRN, confidence 0.85 in targeted_review_pfc_subdivision_architecture).
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/entries/2026-04-19_pfc_cluster_abstract_rules_mansouri2020/summary.md
+- id: MECH-263
+  title: "OFC-analog state-space and specific-outcome representation: SD-033b represents both a structured cognitive map of the current task state space and the specific outcomes expected from actions in each state. Value signals ride on top of this structured representation rather than being stored in it directly."
+  claim_type: mechanism_hypothesis
+  subject: pfc.ofc_state_space_specific_outcome
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-19
+  depends_on:
+    - SD-033b          # substrate this mechanism instantiates
+    - MECH-261         # write-gate context for outcome/model updates
+  functional_restatement: >
+    Mechanism implementing the OFC-analog's representational content.
+    Two complementary framings, treated as co-present rather than as
+    alternatives:
+
+      (i) SPECIFIC-OUTCOME PREDICTION (Rudebeck & Murray 2014). Given
+          a state s and an action a, SD-033b produces a prediction
+          of the specific outcome -- its identity, modality, and
+          expected magnitude -- not just a scalar value estimate.
+          Devaluation sensitivity: if the value of outcome o changes
+          while the state-action -> outcome mapping does not, behaviour
+          changes appropriately because the outcome representation
+          itself is structured.
+
+      (ii) COGNITIVE MAP OF TASK STRUCTURE (Stalnaker/Cooch/Schoenbaum
+          2015). SD-033b carries a representation of what states the
+          agent can be in, what transitions are available, and what
+          structural roles each state plays in the current task --
+          including discriminating between states that differ only
+          in their latent structural role (same sensory input, same
+          reward, different position in the task).
+
+    These framings are compatible: the cognitive map carries structured
+    outcome predictions, and specific-outcome queries are resolved
+    against it. Together they define what SD-033b is for, and what
+    separates it from the scalar-value substrate SD-033c.
+
+    Falsifiable: if SD-033b activity encodes scalar value without
+    discriminating between same-value / different-outcome-identity
+    states, or fails the devaluation-sensitivity test, MECH-263 is
+    violated and SD-033b is functionally indistinguishable from
+    SD-033c -- in which case the OFC/vmPFC dissociation does not
+    carry at REE's level of description and the subdivision should
+    be collapsed.
+  notes: >
+    Grounded jointly by Rudebeck & Murray 2014 (Neuron, OFC-as-oracle,
+    selective-lesion evidence) and Stalnaker et al 2015 (Nat Neurosci,
+    OFC-as-cognitive-map, explicitly critical of pure value reading).
+    Treating these as co-present framings of the same substrate rather
+    than as alternatives matches REE's model-based architecture: E2
+    queries a structured task model for specific-outcome predictions.
+  evidence_quality_note: >
+    Registered pre-implementation. Aggregate support from two
+    complementary entries in targeted_review_pfc_subdivision_architecture
+    (Rudebeck & Murray confidence 0.83; Stalnaker et al confidence 0.80).
+  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+
