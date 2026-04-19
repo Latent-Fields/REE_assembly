@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 47366,
   "runner_started_at": "2026-04-18T14:16:12.997822+00:00",
-  "last_updated": "2026-04-19T12:24:41.348248+00:00",
+  "last_updated": "2026-04-19T12:39:36.076345+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-430b",
-    "backlog_id": "EVB-0071",
-    "claim_id": "",
-    "title": "INV-010 offline integration necessity (EWIN-PC WinError 5 requeue)",
-    "description": "",
-    "script": "experiments/v3_exq_430_inv010_offline_integration_necessity.py",
-    "started_at": "2026-04-19T11:48:33.921058+00:00",
-    "progress": {
-      "run_label": "Seed 13 / NO_SLEEP",
-      "runs_done": 0,
-      "runs_total": 6,
-      "episodes_done": 0,
-      "episodes_total": 90,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 2167,
-    "seconds_remaining": 6240,
-    "recent_lines": [
-      "[train] label seed=13 ep 80/90 cond=SLEEP eval harm=0.3314 benefit=0.0000",
-      "[train] label seed=13 ep 90/90 cond=SLEEP eval harm=0.5239 benefit=0.0000",
-      "[cond_done] SLEEP seed=13 eval_harm=0.2405 eval_benefit=0.0356 sws_div=0.0831 final_div=0.0063",
-      "verdict: N/A (per-condition partial result)",
-      "Seed 13 Condition NO_SLEEP"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-430b",
-      "backlog_id": "EVB-0071",
-      "claim_id": "",
-      "title": "INV-010 offline integration necessity (EWIN-PC WinError 5 requeue)",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-397b",
       "backlog_id": "",
@@ -5537,6 +5500,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 87.2
+    },
+    {
+      "queue_id": "V3-EXQ-430b",
+      "backlog_id": "EVB-0071",
+      "claim_id": "",
+      "title": "INV-010 offline integration necessity (EWIN-PC WinError 5 requeue)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: N/A (per-condition partial result) | C1 (SLEEP harm < NO_SLEEP harm in 0/3): False | verdict: FAIL",
+      "started_at": "2026-04-19T11:48:33.921058+00:00",
+      "completed_at": "2026-04-19T12:39:36.066912+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3062.1
     }
   ]
 }
