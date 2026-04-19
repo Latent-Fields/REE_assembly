@@ -678,7 +678,7 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=6 entry(s), lit=25 entry(s), exp_conf=0.745, lit_conf=0.866",
+      "confidence_rationale": "exp=6 entry(s), lit=25 entry(s), exp_conf=0.744, lit_conf=0.866",
       "direction_counts": {
         "mixed": 1,
         "supports": 26,
@@ -700,7 +700,7 @@
         "lit:rodent_electrophysiology": 2,
         "lit:theoretical_review": 5
       },
-      "experimental_confidence": 0.745,
+      "experimental_confidence": 0.744,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -1516,7 +1516,7 @@
       }
     },
     "ARC-027": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.911, lit_conf=0.858",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.91, lit_conf=0.858",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -1529,7 +1529,7 @@
         "lit:connectome_fear_circuit": 2,
         "lit:review_nociception_anatomy": 1
       },
-      "experimental_confidence": 0.911,
+      "experimental_confidence": 0.91,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -1541,7 +1541,7 @@
       "latest_run_id": "20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.597275Z",
       "literature_confidence": 0.858,
-      "overall_confidence": 0.885,
+      "overall_confidence": 0.884,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -2000,7 +2000,7 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=14 entry(s), lit=16 entry(s), exp_conf=0.817, lit_conf=0.849",
+      "confidence_rationale": "exp=14 entry(s), lit=16 entry(s), exp_conf=0.816, lit_conf=0.849",
       "direction_counts": {
         "mixed": 6,
         "supports": 20,
@@ -2019,7 +2019,7 @@
         "lit:theoretical_framework_review": 1,
         "lit:theoretical_review": 5
       },
-      "experimental_confidence": 0.817,
+      "experimental_confidence": 0.816,
       "fail_runs": 8,
       "genuine_exp_count": 14,
       "genuine_exp_direction_counts": {
@@ -2031,7 +2031,7 @@
       "latest_run_id": "2026-04-18_e2_dual_shenhav2016_dacc",
       "latest_timestamp_utc": "2026-04-18T16:49:53Z",
       "literature_confidence": 0.849,
-      "overall_confidence": 0.833,
+      "overall_confidence": 0.832,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -2127,16 +2127,17 @@
       }
     },
     "ARC-035": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.716",
+      "confidence_rationale": "exp=0 entry(s), lit=8 entry(s), exp_conf=0, lit_conf=0.896",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 8,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 8,
       "evidence_class_counts": {
-        "lit:connectome_mechanistic_review": 1
+        "lit:connectome_mechanistic_review": 5,
+        "lit:theoretical_review": 3
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -2147,33 +2148,102 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
-      "latest_timestamp_utc": "2026-04-02T23:55:00Z",
-      "literature_confidence": 0.716,
-      "overall_confidence": 0.716,
+      "latest_run_id": "2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014",
+      "latest_timestamp_utc": "2026-04-19T11:26:11Z",
+      "literature_confidence": 0.896,
+      "overall_confidence": 0.896,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-035",
-          "confidence": 0.74,
-          "confidence_rationale": "Authoritative review by two of the field's leading memory researchers. Relevant to MECH-163 (multi-step planning via HPC-PFC coupling) and ARC-035 (vmPFC content interface to hippocampal nodes). The review synthesizes the division of labor: HPC for encoding and replay, PFC for goal-directed retrieval, schema application, and top-down gating. This division is the anatomical foundation for ARC-035's claim that vmPFC loads content (goals, values) into hippocampal trajectory nodes rather than computing trajectories itself.",
-          "evidence_class": "lit:connectome_mechanistic_review",
+          "confidence": 0.8,
+          "confidence_rationale": "Systematic review of fMRI + lesion evidence for a caudal-rostral gradient in lateral PFC: posterior regions (premotor/pre-PMd) handle concrete stimulus-response mappings, mid-lateral PFC handles task-set rules, and rostrolateral/frontopolar PFC handles abstract/branching policy. Directly supports REE's need to distinguish multiple write-target levels within the lateral-PFC analogue. Recent, well-cited, methodologically synthetic.",
+          "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_pfc_planning",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
           "failure_signatures": [
-            "The review does not directly address multi-step planning or lookahead \u2014 its focus is on encoding/retrieval interplay, not sequential decision-making. The link to MECH-163's planning specification requires inference."
+            "If functional gradients in lateral PFC did not track abstraction level, the hierarchical-control framing would collapse back into Miller & Cohen's undifferentiated PFC.",
+            "If disrupting rostral PFC did not selectively impair branching/nested tasks while sparing flat rule tasks, the gradient would be a parcellation artefact."
           ],
-          "run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
+          "run_id": "2026-04-19_pfc_cluster_hierarchical_control_badre2018",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:55:00Z"
+          "timestamp_utc": "2026-04-19T11:26:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-035",
+          "confidence": 0.82,
+          "confidence_rationale": "Canonical integrative theory of PFC as the substrate for active maintenance of task rules/goals that bias processing in posterior cortex. Extensively corroborated by two decades of follow-up work. Maps cleanly onto REE's need for a rule/policy-level substrate that MECH-261 writes into, though the 2001 framing predates the dACC/lateral-PFC dissociations that later refined it.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If lateral PFC lesions did not selectively impair rule-guided behaviour while sparing stimulus-response behaviour, the 'active rule maintenance' function would be misplaced.",
+            "If posterior cortical bias effects could be produced without sustained PFC activity, the top-down biasing mechanism would be redundant."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:26:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-035",
+          "confidence": 0.78,
+          "confidence_rationale": "Physiological Reviews synthesis from the Tanji lab focused on lateral PFC, pre-SMA, SMA, and premotor cortex contributions to executive sequence control. Provides the premotor/SMA-analog substrate boundary for REE \u2014 important for deciding which functions belong inside the lateral-PFC analogue vs in adjacent premotor/SMA substrates. Slightly older (2008) but canonical.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If pre-SMA and lateral PFC neurons showed identical functional properties for sequence ordering and rule holding, the distinction REE relies on (lateral-PFC for rules, premotor/SMA for sequence execution) would collapse.",
+            "If SMA lesions produced selective rule-memory deficits rather than sequence-execution deficits, the substrate boundaries would need redrawing."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_lateral_pfc_executive_tanji2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:26:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-035",
+          "confidence": 0.8,
+          "confidence_rationale": "Nature Neuroscience review explicitly critical of the 'OFC does value' framing, from the Schoenbaum lab. Argues OFC represents cognitive maps of task structure (state spaces), not value per se. Complements Rudebeck & Murray 2014: both point toward dissociating OFC from vmPFC but give different accounts of what OFC specifically does. Useful for REE because it frames OFC's function in terms compatible with model-based planning.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If OFC-lesioned animals showed selective value-tracking deficits while leaving task-structure representation intact, the 'cognitive map' framing would be wrong and the pure value-representation framing would be back in play.",
+            "If OFC activity did not discriminate between states that differ only in their latent task-structural role (same reward, same stimuli, different context), the cognitive-map claim would fail at source."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_ofc_critical_review_stalnaker2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:26:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-035",
+          "confidence": 0.83,
+          "confidence_rationale": "Neuron review from one of the canonical primate OFC/vmPFC-lesion labs (Murray), arguing on selective-lesion grounds for a functional dissociation between OFC (specific-outcome prediction / credit assignment) and vmPFC (value integration / subjective valuation). Directly addresses the REE audit finding that OFC and vmPFC are currently lumped.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If OFC and vmPFC lesions produced identical behavioural deficits in outcome-prediction tasks, the dissociation would collapse and REE's one-module-for-value framing would be defensible.",
+            "If OFC-lesioned animals retained normal credit assignment on reward-devaluation tasks, the 'outcome oracle' role would be misplaced."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:26:11Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 8
       }
     },
     "ARC-036": {
@@ -9767,19 +9837,19 @@
       }
     },
     "MECH-116": {
-      "confidence_rationale": "exp=4 entry(s), lit=6 entry(s), exp_conf=0.427, lit_conf=0.871",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.427, lit_conf=0.879",
       "direction_counts": {
         "mixed": 0,
-        "supports": 6,
+        "supports": 7,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 10,
+      "entries_total": 11,
       "evidence_class_counts": {
         "exp:simulation": 4,
         "lit:electrophysiology_multiunit": 3,
         "lit:electrophysiology_single_unit": 2,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 2
       },
       "experimental_confidence": 0.427,
       "fail_runs": 4,
@@ -9790,29 +9860,12 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "2026-04-10_mech_116_theta_sequences_goals_wikenheiser2015",
-      "latest_timestamp_utc": "2026-04-10T10:00:00Z",
-      "literature_confidence": 0.871,
-      "overall_confidence": 0.649,
+      "latest_run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
+      "latest_timestamp_utc": "2026-04-19T11:26:11Z",
+      "literature_confidence": 0.879,
+      "overall_confidence": 0.653,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-116",
-          "confidence": 0.82,
-          "confidence_rationale": "Direct single-unit recordings from DLPFC in primates demonstrate stimulus-selective sustained firing across delay periods, providing the canonical biological substrate that MECH-116 maps to. The analogy to LSTM recurrent hidden state is structurally tight: both maintain information across time via recurrent dynamics without requiring ongoing sensory input. Mapping caveat lowers confidence from 0.9: biological persistent activity involves active maintenance through recurrent excitation and NMDA receptor dynamics, whereas LSTM gating is a learned approximation. Transfer risk is moderate.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_116",
-          "failure_signatures": [
-            "If DLPFC sustained firing required continuous sensory refresh rather than recurrent maintenance, the LSTM analogy would fail",
-            "If delay-period activity encoded motor preparation rather than sensory memory content, the goal-context mapping would be undermined"
-          ],
-          "run_id": "2026-03-29_mech_116_dlpfc_sustained_firing_goldmanrakic1995",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-116",
@@ -9883,12 +9936,29 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-10T10:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-116",
+          "confidence": 0.82,
+          "confidence_rationale": "Canonical integrative theory of PFC as the substrate for active maintenance of task rules/goals that bias processing in posterior cortex. Extensively corroborated by two decades of follow-up work. Maps cleanly onto REE's need for a rule/policy-level substrate that MECH-261 writes into, though the 2001 framing predates the dACC/lateral-PFC dissociations that later refined it.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
+          "failure_signatures": [
+            "If lateral PFC lesions did not selectively impair rule-guided behaviour while sparing stimulus-response behaviour, the 'active rule maintenance' function would be misplaced.",
+            "If posterior cortical bias effects could be produced without sustained PFC activity, the top-down biasing mechanism would be redundant."
+          ],
+          "run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:26:11Z"
         }
       ],
-      "runs_total": 10,
+      "runs_total": 11,
       "source_counts": {
         "experimental": 4,
-        "literature": 6
+        "literature": 7
       }
     },
     "MECH-117": {
@@ -11346,7 +11416,7 @@
       }
     },
     "MECH-155": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.351, lit_conf=0.881",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.35, lit_conf=0.881",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -11361,7 +11431,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.351,
+      "experimental_confidence": 0.35,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -15038,18 +15108,19 @@
       }
     },
     "MECH-261": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.883",
+      "confidence_rationale": "exp=0 entry(s), lit=12 entry(s), exp_conf=0, lit_conf=0.893",
       "direction_counts": {
         "mixed": 0,
-        "supports": 5,
+        "supports": 12,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 5,
+      "entries_total": 12,
       "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 4,
         "lit:electrophysiology_multisensory": 1,
         "lit:electrophysiology_single_unit": 1,
-        "lit:theoretical_review": 3
+        "lit:theoretical_review": 6
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -15060,102 +15131,102 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
-      "latest_timestamp_utc": "2026-04-19T11:01:41Z",
-      "literature_confidence": 0.883,
-      "overall_confidence": 0.883,
+      "latest_run_id": "2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014",
+      "latest_timestamp_utc": "2026-04-19T11:26:11Z",
+      "literature_confidence": 0.893,
+      "overall_confidence": 0.893,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-261",
           "confidence": 0.8,
-          "confidence_rationale": "Direct synthesis of the human fMRI literature demonstrating that awake post-encoding reactivation of prior experiences (during rest periods or task breaks) both consolidates those memories and biases subsequent cognitive processing. This is the most explicit available statement of the MECH-261 central claim: content active in internal_replay mode propagates forward into external_task mode and shapes subsequent action. Confidence 0.80 because the review is human fMRI (less mechanistic resolution than rodent electrophysiology) but the cognitive-bias findings directly test the forward propagation claim that MECH-261 depends on.",
+          "confidence_rationale": "Systematic review of fMRI + lesion evidence for a caudal-rostral gradient in lateral PFC: posterior regions (premotor/pre-PMd) handle concrete stimulus-response mappings, mid-lateral PFC handles task-set rules, and rostrolateral/frontopolar PFC handles abstract/branching policy. Directly supports REE's need to distinguish multiple write-target levels within the lateral-PFC analogue. Recent, well-cited, methodologically synthetic.",
           "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
           "failure_signatures": [
-            "The forward-propagation bias is documented for perceptual and memory-bias effects rather than direct action-selection effects. A MECH-261 implementation that assumes replay->action coupling in V3 is extrapolating from cognitive-bias to action-bias, which this review supports but does not directly validate.",
-            "The persistence of a prior brain state (e.g., emotional arousal) into a subsequent task period is presented as a continuous blending rather than a discrete gate event, suggesting the mode variable may be better modelled as a continuous state than a categorical switch."
+            "If functional gradients in lateral PFC did not track abstraction level, the hierarchical-control framing would collapse back into Miller & Cohen's undifferentiated PFC.",
+            "If disrupting rostral PFC did not selectively impair branching/nested tasks while sparing flat rule tasks, the gradient would be a parcellation artefact."
           ],
-          "run_id": "2026-04-19_mech_261_awake_reactivation_biases_cognition_tambini2019",
+          "run_id": "2026-04-19_pfc_cluster_hierarchical_control_badre2018",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-19T11:01:41Z"
+          "timestamp_utc": "2026-04-19T11:26:11Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-261",
           "confidence": 0.82,
-          "confidence_rationale": "This review is the strongest single piece of biological grounding for MECH-261's internal_replay mode. Carr, Jadhav, and Frank argue explicitly that awake SWRs subserve two distinct functions -- consolidation (writing) and retrieval (reading) -- and that these occur on different subpopulations of SWR events, behaviourally segregated by task context. That segregation IS a mode-conditioned write gate in biological form. Confidence high (0.82) because the mapping is direct; reduced from ~0.9 because the paper is a review rather than a single definitive experiment, and because it does not explicitly commit to a categorical mode variable.",
+          "confidence_rationale": "Canonical integrative theory of PFC as the substrate for active maintenance of task rules/goals that bias processing in posterior cortex. Extensively corroborated by two decades of follow-up work. Maps cleanly onto REE's need for a rule/policy-level substrate that MECH-261 writes into, though the 2001 framing predates the dACC/lateral-PFC dissociations that later refined it.",
           "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
           "failure_signatures": [
-            "Awake SWRs occur on two functionally distinguishable subpopulations (consolidation-like vs retrieval-like). A MECH-261 implementation that treats internal_replay as a single mode may miss the within-mode functional heterogeneity this paper documents.",
-            "The consolidation / retrieval distinction is partially task-contextual rather than mode-contextual -- a rat mid-trajectory shows retrieval-like SWRs even while behaviourally engaged. This complicates a strict external_task=no-replay-writes interpretation of MECH-261."
+            "If lateral PFC lesions did not selectively impair rule-guided behaviour while sparing stimulus-response behaviour, the 'active rule maintenance' function would be misplaced.",
+            "If posterior cortical bias effects could be produced without sustained PFC activity, the top-down biasing mechanism would be redundant."
           ],
-          "run_id": "2026-04-19_mech_261_awake_replay_substrate_carr2011",
+          "run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-19T11:01:41Z"
+          "timestamp_utc": "2026-04-19T11:26:11Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-261",
           "confidence": 0.78,
-          "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
-          "evidence_class": "lit:electrophysiology_multisensory",
+          "confidence_rationale": "Physiological Reviews synthesis from the Tanji lab focused on lateral PFC, pre-SMA, SMA, and premotor cortex contributions to executive sequence control. Provides the premotor/SMA-analog substrate boundary for REE \u2014 important for deciding which functions belong inside the lateral-PFC analogue vs in adjacent premotor/SMA substrates. Slightly older (2008) but canonical.",
+          "evidence_class": "lit:connectome_mechanistic_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
           "failure_signatures": [
-            "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
-            "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+            "If pre-SMA and lateral PFC neurons showed identical functional properties for sequence ordering and rule holding, the distinction REE relies on (lateral-PFC for rules, premotor/SMA for sequence execution) would collapse.",
+            "If SMA lesions produced selective rule-memory deficits rather than sequence-execution deficits, the substrate boundaries would need redrawing."
           ],
-          "run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+          "run_id": "2026-04-19_pfc_cluster_lateral_pfc_executive_tanji2008",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-19T11:01:41Z"
+          "timestamp_utc": "2026-04-19T11:26:11Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-261",
-          "confidence": 0.75,
-          "confidence_rationale": "Rat mPFC ensemble recording during post-learning slow-wave sleep. Response-selection-related PFC patterns replay preferentially in transient bouts coincident with hippocampal sharp-wave-ripple complexes. This is the most direct demonstration that rule-learning and action-relevant (not just sensory or spatial) content propagates from hippocampus to PFC via SWR-coupled replay. Confidence 0.75 because it is sleep data and the patterns are rule-shift-selection-related rather than trajectory-level action commands -- the mapping to V3 action selection is clean but one inferential step removed.",
-          "evidence_class": "lit:electrophysiology_single_unit",
+          "confidence": 0.8,
+          "confidence_rationale": "Nature Neuroscience review explicitly critical of the 'OFC does value' framing, from the Schoenbaum lab. Argues OFC represents cognitive maps of task structure (state spaces), not value per se. Complements Rudebeck & Murray 2014: both point toward dissociating OFC from vmPFC but give different accounts of what OFC specifically does. Useful for REE because it frames OFC's function in terms compatible with model-based planning.",
+          "evidence_class": "lit:connectome_mechanistic_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
           "failure_signatures": [
-            "Replay is measured during slow-wave sleep, not during waking internal_replay. The MECH-261 claim for waking-mode propagation to action-relevant cortex requires extension of this work into awake quiescence -- which subsequent work has begun but this paper does not test.",
-            "The PFC patterns that replay are rule-selection-related ensemble signatures, not action commands per se. Translation to action-selection bias in REE is defensible but one step beyond the direct finding."
+            "If OFC-lesioned animals showed selective value-tracking deficits while leaving task-structure representation intact, the 'cognitive map' framing would be wrong and the pure value-representation framing would be back in play.",
+            "If OFC activity did not discriminate between states that differ only in their latent task-structural role (same reward, same stimuli, different context), the cognitive-map claim would fail at source."
           ],
-          "run_id": "2026-04-19_mech_261_pfc_rule_learning_replay_peyrache2009",
+          "run_id": "2026-04-19_pfc_cluster_ofc_critical_review_stalnaker2015",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-19T11:01:41Z"
+          "timestamp_utc": "2026-04-19T11:26:11Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-261",
-          "confidence": 0.68,
-          "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
-          "evidence_class": "lit:theoretical_review",
+          "confidence": 0.83,
+          "confidence_rationale": "Neuron review from one of the canonical primate OFC/vmPFC-lesion labs (Murray), arguing on selective-lesion grounds for a functional dissociation between OFC (specific-outcome prediction / credit assignment) and vmPFC (value integration / subjective valuation). Directly addresses the REE audit finding that OFC and vmPFC are currently lumped.",
+          "evidence_class": "lit:connectome_mechanistic_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "experiment_type": "targeted_review_pfc_subdivision_architecture",
           "failure_signatures": [
-            "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
-            "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+            "If OFC and vmPFC lesions produced identical behavioural deficits in outcome-prediction tasks, the dissociation would collapse and REE's one-module-for-value framing would be defensible.",
+            "If OFC-lesioned animals retained normal credit assignment on reward-devaluation tasks, the 'outcome oracle' role would be misplaced."
           ],
-          "run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+          "run_id": "2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-04-19T11:01:41Z"
+          "timestamp_utc": "2026-04-19T11:26:11Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 12,
       "source_counts": {
         "experimental": 0,
-        "literature": 5
+        "literature": 12
       }
     },
     "MECH-900": {
@@ -15437,7 +15508,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.461, lit_conf=0.826",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.46, lit_conf=0.826",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -15451,7 +15522,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.461,
+      "experimental_confidence": 0.46,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -15547,7 +15618,7 @@
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.329, lit_conf=0.816",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.328, lit_conf=0.816",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -15561,7 +15632,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.329,
+      "experimental_confidence": 0.328,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -17329,7 +17400,7 @@
       }
     },
     "Q-022": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.542, lit_conf=0.759",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.541, lit_conf=0.759",
       "direction_counts": {
         "mixed": 3,
         "supports": 2,
@@ -17342,7 +17413,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.542,
+      "experimental_confidence": 0.541,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -17354,7 +17425,7 @@
       "latest_run_id": "v3_exq_084d_q022_deff_hopfield_dissociation_20260402T033313Z_v3",
       "latest_timestamp_utc": "2026-04-02T03:33:13Z",
       "literature_confidence": 0.759,
-      "overall_confidence": 0.629,
+      "overall_confidence": 0.628,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -18742,7 +18813,7 @@
       }
     },
     "SD-010": {
-      "confidence_rationale": "exp=19 entry(s), lit=3 entry(s), exp_conf=0.865, lit_conf=0.833",
+      "confidence_rationale": "exp=19 entry(s), lit=3 entry(s), exp_conf=0.864, lit_conf=0.833",
       "direction_counts": {
         "mixed": 14,
         "supports": 7,
@@ -18755,7 +18826,7 @@
         "lit:connectome_mechanistic_review": 2,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.865,
+      "experimental_confidence": 0.864,
       "fail_runs": 15,
       "genuine_exp_count": 19,
       "genuine_exp_direction_counts": {
@@ -18767,7 +18838,7 @@
       "latest_run_id": "20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.597275Z",
       "literature_confidence": 0.833,
-      "overall_confidence": 0.849,
+      "overall_confidence": 0.848,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -20350,7 +20421,7 @@
       }
     },
     "onboarding": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.753, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.752, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -20361,7 +20432,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.753,
+      "experimental_confidence": 0.752,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -20373,7 +20444,7 @@
       "latest_run_id": "v3_onboard_smoke_ree_cloud_1_20260409T081904Z_v3",
       "latest_timestamp_utc": "2026-04-09T08:19:04Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.753,
+      "overall_confidence": 0.752,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -53720,6 +53791,261 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.85,
+      "confidence_rationale": "Nature Reviews Neuroscience synthesis of single-unit + lesion + imaging evidence specifically on abstract-rule representation in primate PFC. Authors span three major labs (Mansouri, Freedman, Buckley) with complementary methodological strengths. Directly on-point for the question 'where does a lateral-PFC analogue hold the current rule such that MECH-261 can write into it?'",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If abstract-rule neurons were absent in dorsolateral PFC but present in OFC or vmPFC, REE's 'rules go to lateral PFC, values go to vmPFC/OFC' partition would be wrong.",
+        "If rule-selective neurons required stimulus-driven updates to persist, the active-maintenance framing that MECH-261 relies on would collapse."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_abstract_rules_mansouri2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.72,
+      "confidence_rationale": "Trends review framing a formal information-theoretic account of PFC executive function, with frontopolar cortex as the substrate for branching / nested cognitive control \u2014 holding a pending task while executing a current task, or managing parallel policies. Directly on-point for V4 scoping decision: REE's internal_planning mode will ultimately need this kind of branching capability. 2007 framing has been refined since but remains foundational.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If frontopolar lesions did not selectively impair branching / nested task performance while sparing flat-task performance, the functional ascription would fail.",
+        "If frontopolar activity scaled with simple working memory load rather than with branching depth specifically, the information-theoretic framing would collapse."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_frontopolar_branching_koechlin2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.8,
+      "confidence_rationale": "Systematic review of fMRI + lesion evidence for a caudal-rostral gradient in lateral PFC: posterior regions (premotor/pre-PMd) handle concrete stimulus-response mappings, mid-lateral PFC handles task-set rules, and rostrolateral/frontopolar PFC handles abstract/branching policy. Directly supports REE's need to distinguish multiple write-target levels within the lateral-PFC analogue. Recent, well-cited, methodologically synthetic.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If functional gradients in lateral PFC did not track abstraction level, the hierarchical-control framing would collapse back into Miller & Cohen's undifferentiated PFC.",
+        "If disrupting rostral PFC did not selectively impair branching/nested tasks while sparing flat rule tasks, the gradient would be a parcellation artefact."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_hierarchical_control_badre2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical integrative theory of PFC as the substrate for active maintenance of task rules/goals that bias processing in posterior cortex. Extensively corroborated by two decades of follow-up work. Maps cleanly onto REE's need for a rule/policy-level substrate that MECH-261 writes into, though the 2001 framing predates the dACC/lateral-PFC dissociations that later refined it.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If lateral PFC lesions did not selectively impair rule-guided behaviour while sparing stimulus-response behaviour, the 'active rule maintenance' function would be misplaced.",
+        "If posterior cortical bias effects could be produced without sustained PFC activity, the top-down biasing mechanism would be redundant."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.78,
+      "confidence_rationale": "Physiological Reviews synthesis from the Tanji lab focused on lateral PFC, pre-SMA, SMA, and premotor cortex contributions to executive sequence control. Provides the premotor/SMA-analog substrate boundary for REE \u2014 important for deciding which functions belong inside the lateral-PFC analogue vs in adjacent premotor/SMA substrates. Slightly older (2008) but canonical.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If pre-SMA and lateral PFC neurons showed identical functional properties for sequence ordering and rule holding, the distinction REE relies on (lateral-PFC for rules, premotor/SMA for sequence execution) would collapse.",
+        "If SMA lesions produced selective rule-memory deficits rather than sequence-execution deficits, the substrate boundaries would need redrawing."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_lateral_pfc_executive_tanji2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.8,
+      "confidence_rationale": "Nature Neuroscience review explicitly critical of the 'OFC does value' framing, from the Schoenbaum lab. Argues OFC represents cognitive maps of task structure (state spaces), not value per se. Complements Rudebeck & Murray 2014: both point toward dissociating OFC from vmPFC but give different accounts of what OFC specifically does. Useful for REE because it frames OFC's function in terms compatible with model-based planning.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If OFC-lesioned animals showed selective value-tracking deficits while leaving task-structure representation intact, the 'cognitive map' framing would be wrong and the pure value-representation framing would be back in play.",
+        "If OFC activity did not discriminate between states that differ only in their latent task-structural role (same reward, same stimuli, different context), the cognitive-map claim would fail at source."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_ofc_critical_review_stalnaker2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.83,
+      "confidence_rationale": "Neuron review from one of the canonical primate OFC/vmPFC-lesion labs (Murray), arguing on selective-lesion grounds for a functional dissociation between OFC (specific-outcome prediction / credit assignment) and vmPFC (value integration / subjective valuation). Directly addresses the REE audit finding that OFC and vmPFC are currently lumped.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If OFC and vmPFC lesions produced identical behavioural deficits in outcome-prediction tasks, the dissociation would collapse and REE's one-module-for-value framing would be defensible.",
+        "If OFC-lesioned animals retained normal credit assignment on reward-devaluation tasks, the 'outcome oracle' role would be misplaced."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-116",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical integrative theory of PFC as the substrate for active maintenance of task rules/goals that bias processing in posterior cortex. Extensively corroborated by two decades of follow-up work. Maps cleanly onto REE's need for a rule/policy-level substrate that MECH-261 writes into, though the 2001 framing predates the dACC/lateral-PFC dissociations that later refined it.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If lateral PFC lesions did not selectively impair rule-guided behaviour while sparing stimulus-response behaviour, the 'active rule maintenance' function would be misplaced.",
+        "If posterior cortical bias effects could be produced without sustained PFC activity, the top-down biasing mechanism would be redundant."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.85,
+      "confidence_rationale": "Nature Reviews Neuroscience synthesis of single-unit + lesion + imaging evidence specifically on abstract-rule representation in primate PFC. Authors span three major labs (Mansouri, Freedman, Buckley) with complementary methodological strengths. Directly on-point for the question 'where does a lateral-PFC analogue hold the current rule such that MECH-261 can write into it?'",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If abstract-rule neurons were absent in dorsolateral PFC but present in OFC or vmPFC, REE's 'rules go to lateral PFC, values go to vmPFC/OFC' partition would be wrong.",
+        "If rule-selective neurons required stimulus-driven updates to persist, the active-maintenance framing that MECH-261 relies on would collapse."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_abstract_rules_mansouri2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.72,
+      "confidence_rationale": "Trends review framing a formal information-theoretic account of PFC executive function, with frontopolar cortex as the substrate for branching / nested cognitive control \u2014 holding a pending task while executing a current task, or managing parallel policies. Directly on-point for V4 scoping decision: REE's internal_planning mode will ultimately need this kind of branching capability. 2007 framing has been refined since but remains foundational.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If frontopolar lesions did not selectively impair branching / nested task performance while sparing flat-task performance, the functional ascription would fail.",
+        "If frontopolar activity scaled with simple working memory load rather than with branching depth specifically, the information-theoretic framing would collapse."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_frontopolar_branching_koechlin2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.8,
+      "confidence_rationale": "Systematic review of fMRI + lesion evidence for a caudal-rostral gradient in lateral PFC: posterior regions (premotor/pre-PMd) handle concrete stimulus-response mappings, mid-lateral PFC handles task-set rules, and rostrolateral/frontopolar PFC handles abstract/branching policy. Directly supports REE's need to distinguish multiple write-target levels within the lateral-PFC analogue. Recent, well-cited, methodologically synthetic.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If functional gradients in lateral PFC did not track abstraction level, the hierarchical-control framing would collapse back into Miller & Cohen's undifferentiated PFC.",
+        "If disrupting rostral PFC did not selectively impair branching/nested tasks while sparing flat rule tasks, the gradient would be a parcellation artefact."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_hierarchical_control_badre2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical integrative theory of PFC as the substrate for active maintenance of task rules/goals that bias processing in posterior cortex. Extensively corroborated by two decades of follow-up work. Maps cleanly onto REE's need for a rule/policy-level substrate that MECH-261 writes into, though the 2001 framing predates the dACC/lateral-PFC dissociations that later refined it.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If lateral PFC lesions did not selectively impair rule-guided behaviour while sparing stimulus-response behaviour, the 'active rule maintenance' function would be misplaced.",
+        "If posterior cortical bias effects could be produced without sustained PFC activity, the top-down biasing mechanism would be redundant."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.78,
+      "confidence_rationale": "Physiological Reviews synthesis from the Tanji lab focused on lateral PFC, pre-SMA, SMA, and premotor cortex contributions to executive sequence control. Provides the premotor/SMA-analog substrate boundary for REE \u2014 important for deciding which functions belong inside the lateral-PFC analogue vs in adjacent premotor/SMA substrates. Slightly older (2008) but canonical.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If pre-SMA and lateral PFC neurons showed identical functional properties for sequence ordering and rule holding, the distinction REE relies on (lateral-PFC for rules, premotor/SMA for sequence execution) would collapse.",
+        "If SMA lesions produced selective rule-memory deficits rather than sequence-execution deficits, the substrate boundaries would need redrawing."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_lateral_pfc_executive_tanji2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.8,
+      "confidence_rationale": "Nature Neuroscience review explicitly critical of the 'OFC does value' framing, from the Schoenbaum lab. Argues OFC represents cognitive maps of task structure (state spaces), not value per se. Complements Rudebeck & Murray 2014: both point toward dissociating OFC from vmPFC but give different accounts of what OFC specifically does. Useful for REE because it frames OFC's function in terms compatible with model-based planning.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If OFC-lesioned animals showed selective value-tracking deficits while leaving task-structure representation intact, the 'cognitive map' framing would be wrong and the pure value-representation framing would be back in play.",
+        "If OFC activity did not discriminate between states that differ only in their latent task-structural role (same reward, same stimuli, different context), the cognitive-map claim would fail at source."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_ofc_critical_review_stalnaker2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.83,
+      "confidence_rationale": "Neuron review from one of the canonical primate OFC/vmPFC-lesion labs (Murray), arguing on selective-lesion grounds for a functional dissociation between OFC (specific-outcome prediction / credit assignment) and vmPFC (value integration / subjective valuation). Directly addresses the REE audit finding that OFC and vmPFC are currently lumped.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_pfc_subdivision_architecture",
+      "failure_signatures": [
+        "If OFC and vmPFC lesions produced identical behavioural deficits in outcome-prediction tasks, the dissociation would collapse and REE's one-module-for-value framing would be defensible.",
+        "If OFC-lesioned animals retained normal credit assignment on reward-devaluation tasks, the 'outcome oracle' role would be misplaced."
+      ],
+      "run_id": "2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:26:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -53751,7 +54077,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-19T11:15:39.052959Z",
+  "generated_at_utc": "2026-04-19T11:31:53.017201Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

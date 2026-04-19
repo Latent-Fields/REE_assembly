@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014",
+  "timestamp_utc": "2026-04-19T11:26:11Z",
+  "claim_ids_tested": ["ARC-035", "MECH-261"],
+  "source": {
+    "title": "The orbitofrontal oracle: cortical mechanisms for the prediction and evaluation of specific behavioral outcomes",
+    "authors": ["Peter H. Rudebeck", "Elisabeth A. Murray"],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2014.10.049"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Neuron review from one of the canonical primate OFC/vmPFC-lesion labs (Murray), arguing on selective-lesion grounds for a functional dissociation between OFC (specific-outcome prediction / credit assignment) and vmPFC (value integration / subjective valuation). Directly addresses the REE audit finding that OFC and vmPFC are currently lumped.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC and vmPFC lesions produced identical behavioural deficits in outcome-prediction tasks, the dissociation would collapse and REE's one-module-for-value framing would be defensible.",
+    "If OFC-lesioned animals retained normal credit assignment on reward-devaluation tasks, the 'outcome oracle' role would be misplaced."
+  ],
+  "tags": ["arc_035", "mech_261", "ofc", "vmpfc", "credit_assignment", "outcome_prediction", "pfc_subdivision"],
+  "mapping": {
+    "source_claim_statement": "Selective OFC lesions (sparing adjacent vmPFC) impair the ability to predict specific expected outcomes of particular actions and to update behaviour when outcomes change, while selective vmPFC lesions impair subjective valuation and choice integration without disrupting specific-outcome prediction.",
+    "ree_translation": "OFC and vmPFC are separable write targets with distinct functions. OFC-analog in REE is the credit-assignment / specific-outcome-prediction substrate (what E2's harm-prediction model feeds into). vmPFC-analog is the value-integration substrate (already tracked in ARC-035 and MECH-151/152). MECH-261 write gating must treat these as two modules, not one.",
+    "mapping_caveat": "The 2014 review relies heavily on fiber-sparing excitotoxic lesion work in macaques. The OFC/vmPFC boundary in primates maps onto rodent structures imperfectly (rodent OFC is sometimes more vmPFC-like functionally). REE should treat the functional dissociation as robust in primates but be cautious about quantitative mapping when importing rodent-specific findings.",
+    "source_context": "Primate selective-lesion (macaque, bilateral fiber-sparing); reward-devaluation, stimulus-outcome learning, and reversal-learning paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Neuron review, Murray lab, methodologically careful). Mapping fidelity strong because the functional dissociation maps directly onto a gap in REE's current claim graph. Transfer risk moderate: the OFC/vmPFC distinction is crisp in macaques and humans but rodent structures don't cleanly align."
+  }
+}

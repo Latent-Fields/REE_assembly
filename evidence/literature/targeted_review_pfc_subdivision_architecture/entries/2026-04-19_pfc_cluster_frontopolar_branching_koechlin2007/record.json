@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_frontopolar_branching_koechlin2007",
+  "timestamp_utc": "2026-04-19T11:26:11Z",
+  "claim_ids_tested": ["ARC-035", "MECH-261"],
+  "source": {
+    "title": "An information theoretical approach to prefrontal executive function",
+    "authors": ["Etienne Koechlin", "Christopher Summerfield"],
+    "year": 2007,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2007.04.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Trends review framing a formal information-theoretic account of PFC executive function, with frontopolar cortex as the substrate for branching / nested cognitive control — holding a pending task while executing a current task, or managing parallel policies. Directly on-point for V4 scoping decision: REE's internal_planning mode will ultimately need this kind of branching capability. 2007 framing has been refined since but remains foundational.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If frontopolar lesions did not selectively impair branching / nested task performance while sparing flat-task performance, the functional ascription would fail.",
+    "If frontopolar activity scaled with simple working memory load rather than with branching depth specifically, the information-theoretic framing would collapse."
+  ],
+  "tags": ["arc_035", "mech_261", "frontopolar", "branching", "nested_control", "v4_scope", "pfc_subdivision"],
+  "mapping": {
+    "source_claim_statement": "Frontopolar cortex (BA 10) supports branching and nested control — the ability to hold a pending cognitive operation in abeyance while executing a current one, to manage parallel policies, and to switch back into a suspended task. This sits at the apex of a caudal-rostral abstraction hierarchy in lateral PFC.",
+    "ree_translation": "Provides the biological grounding for what is almost certainly V4 scope in REE: an explicit branching / counterfactual-comparison substrate. REE's internal_planning mode is the natural home for frontopolar-analogue function. V3 should provide the hooks (operating_mode_vector, MECH-261 write-gating) but not implement frontopolar-analogue itself. Scoping call: V3 stops at mid-lateral rule-holding; V4 adds frontopolar branching.",
+    "mapping_caveat": "Frontopolar function is the least well-mapped region in the PFC subdivision literature — it is phylogenetically newest in primates and has the sparsest single-unit coverage. The 2007 framing has been refined by subsequent work (Burgess, Mansouri, Boorman) but remains the most-cited entry point. REE should treat frontopolar-analogue as a well-motivated V4 target but not over-commit to one specific computational framing.",
+    "source_context": "Human fMRI + patient lesion studies on branching, prospective memory, and nested-task paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is solid (TiCS review, Koechlin lab) but not at Nature Reviews / Neuron level. Mapping fidelity moderate: the function described matches what REE's V4 will need, but the precise computational implementation is still under dispute in the field. Transfer risk higher than other entries because frontopolar cortex is the most humanised / least cross-species substrate in the PFC hierarchy."
+  }
+}

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-19T10:59:35.875794Z`
+Generated: `2026-04-19T11:31:53.017201Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -36,7 +36,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-104` | directional, mixed_evidence | 12 | 1 | 0.154 | `2026-04-18_mech_104_lc_ne_cognition_review_sara2009` | 16 |
 | `MECH-111` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3` | 5 |
 | `MECH-112` | directional, mixed_evidence | 15 | 7 | 0.636 | `v3_exq_225_mech112_goal_lift_redesign_1775274103_v3` | 56 |
-| `MECH-116` | directional, source_disagreement | 6 | 4 | 0.8 | `2026-04-10_mech_116_theta_sequences_goals_wikenheiser2015` | 13 |
+| `MECH-116` | directional, source_disagreement | 7 | 4 | 0.727 | `2026-04-19_pfc_cluster_integrative_theory_miller2001` | 14 |
 | `MECH-118` | directional, source_disagreement, mixed_evidence | 4 | 2 | 0.667 | `v3_exq_084d_q022_deff_hopfield_dissociation_20260402T033313Z_v3` | 7 |
 | `MECH-120` | directional, source_disagreement | 7 | 2 | 0.444 | `v3_exq_245b_mech120_shy_decay_sweep_20260408T213214Z_v3` | 11 |
 | `MECH-124` | directional | 5 | 1 | 0.333 | `v3_exq_224_mech124_zgoal_salience_diag_20260404T022857Z_v3` | 6 |
@@ -232,7 +232,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-033
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=20, weakens=4, conflict_ratio=0.333, overall_confidence=0.833
+- Evidence breakdown: supports=20, weakens=4, conflict_ratio=0.333, overall_confidence=0.832
 - Recent entries:
   - `2026-04-18T16:49:53Z` `literature` `targeted_review_e2_dual_function_mode_distinction` direction=`supports` confidence=0.72
   - `2026-04-18T16:49:53Z` `literature` `targeted_review_e2_dual_function_mode_distinction` direction=`mixed` confidence=0.7
@@ -639,13 +639,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-116
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=6, weakens=4, conflict_ratio=0.8, overall_confidence=0.649
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.653
 - Recent entries:
-  - `2026-04-04T02:26:47Z` `experimental` `v3_exq_076f_mech116_arc032_e1_goal_conditioning` direction=`non_contributory` confidence=0
   - `2026-04-04T10:36:58Z` `experimental` `v3_exq_228_mech116_arc032_theta_bypass_ablation` direction=`non_contributory` confidence=0
   - `2026-04-10T10:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.8
   - `2026-04-10T10:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.76
   - `2026-04-10T10:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.73
+  - `2026-04-19T11:26:11Z` `literature` `targeted_review_pfc_subdivision_architecture` direction=`supports` confidence=0.82
 - Recurring failure signatures:
   - `If prefrontal cooling disrupted motor execution rather than memory maintenance, the delay-period function would be artifactual` (1)
   - `If the deficit was due to attentional disruption rather than working memory, the maintenance analogy to LSTM recurrence would not follow` (1)
@@ -1098,7 +1098,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-010
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, overall_confidence=0.849
+- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, overall_confidence=0.848
 - Recent entries:
   - `2026-03-24T17:25:12Z` `experimental` `v3_exq_093_harm_bridge_e3_fix` direction=`mixed` confidence=0.5
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_sd_010` direction=`supports` confidence=0.7

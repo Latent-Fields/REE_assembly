@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_lateral_pfc_executive_tanji2008",
+  "timestamp_utc": "2026-04-19T11:26:11Z",
+  "claim_ids_tested": ["ARC-035", "MECH-261"],
+  "source": {
+    "title": "Role of the lateral prefrontal cortex in executive behavioral control",
+    "authors": ["Jun Tanji", "Eiji Hoshi"],
+    "year": 2008,
+    "venue": "Physiological Reviews",
+    "doi": "10.1152/physrev.00014.2007"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Physiological Reviews synthesis from the Tanji lab focused on lateral PFC, pre-SMA, SMA, and premotor cortex contributions to executive sequence control. Provides the premotor/SMA-analog substrate boundary for REE — important for deciding which functions belong inside the lateral-PFC analogue vs in adjacent premotor/SMA substrates. Slightly older (2008) but canonical.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pre-SMA and lateral PFC neurons showed identical functional properties for sequence ordering and rule holding, the distinction REE relies on (lateral-PFC for rules, premotor/SMA for sequence execution) would collapse.",
+    "If SMA lesions produced selective rule-memory deficits rather than sequence-execution deficits, the substrate boundaries would need redrawing."
+  ],
+  "tags": ["arc_035", "mech_261", "lateral_pfc", "pre_sma", "premotor", "sequence_control", "pfc_subdivision"],
+  "mapping": {
+    "source_claim_statement": "Lateral PFC and adjacent premotor/SMA regions form a functionally graded executive-control system. Lateral PFC handles rule selection and goal maintenance; pre-SMA handles sequence planning and set-switching; SMA and dorsal premotor cortex handle sequence execution and stimulus-response mapping. These regions are interconnected but functionally separable.",
+    "ree_translation": "Gives REE the substrate boundary it needs between the lateral-PFC-analogue (rules, goals) and the premotor/SMA-analogue (committed sequences, stimulus-action bindings). In REE terms, existing E3 sequence-selection machinery most closely maps to premotor/SMA-analogue function; the lateral-PFC analogue is upstream, setting the rule context that E3 operates within. MECH-261 write gating differs between these: rule writes during external_task + internal_planning, sequence-execution writes primarily during external_task.",
+    "mapping_caveat": "The 2008 review predates much of the pre-SMA/SMA boundary literature that has since been refined. It also relies on primate single-unit work that doesn't perfectly translate to rodent premotor organisation. REE should treat the broad lateral-PFC vs premotor/SMA distinction as robust but not over-commit to the 2008 paper's specific anatomical parcels.",
+    "source_context": "Primate single-unit recording, lesion, and microstimulation work on rule/sequence tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Physiological Reviews, Tanji lab). Mapping fidelity moderate-strong: the distinction between rule-holding and sequence-execution substrates is exactly what REE needs. Transfer risk moderate: the specific anatomical parcels used in 2008 have been refined since, and rodent-primate mapping is imperfect for premotor/SMA structures."
+  }
+}

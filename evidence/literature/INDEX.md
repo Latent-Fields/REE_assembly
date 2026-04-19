@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-19T11:09:14.592499Z`
+Generated: `2026-04-19T11:31:53.017201Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -132,6 +132,7 @@ Generated: `2026-04-19T11:09:14.592499Z`
 | `targeted_review_paper_fm3_schema_prior` | [`2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012`](targeted_review_paper_fm3_schema_prior/entries/2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012/record.json) | 3 | [`summary`](targeted_review_paper_fm3_schema_prior/entries/2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012/summary.md) |
 | `targeted_review_paper_fm4_precision_staleness` | [`2026-04-06_mech_123_predictive_coding_precision_rao1999`](targeted_review_paper_fm4_precision_staleness/entries/2026-04-06_mech_123_predictive_coding_precision_rao1999/record.json) | 3 | [`summary`](targeted_review_paper_fm4_precision_staleness/entries/2026-04-06_mech_123_predictive_coding_precision_rao1999/summary.md) |
 | `targeted_review_papez_circuit_write_gating` | [`2026-04-18_mech_094_source_monitoring_dissociation_lavalle2020`](targeted_review_papez_circuit_write_gating/entries/2026-04-18_mech_094_source_monitoring_dissociation_lavalle2020/record.json) | 7 | [`summary`](targeted_review_papez_circuit_write_gating/entries/2026-04-18_mech_094_source_monitoring_dissociation_lavalle2020/summary.md) |
+| `targeted_review_pfc_subdivision_architecture` | [`2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014`](targeted_review_pfc_subdivision_architecture/entries/2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014/record.json) | 7 | [`summary`](targeted_review_pfc_subdivision_architecture/entries/2026-04-19_pfc_cluster_orbitofrontal_oracle_rudebeck2014/summary.md) |
 | `targeted_review_q_001` | [`2026-03-29_q001_gamma_vip_coherence_veit2022`](targeted_review_q_001/entries/2026-03-29_q001_gamma_vip_coherence_veit2022/record.json) | 4 | [`summary`](targeted_review_q_001/entries/2026-03-29_q001_gamma_vip_coherence_veit2022/summary.md) |
 | `targeted_review_q_002` | [`2026-03-29_q002_spatial_threshold_ca_surge_lines2024`](targeted_review_q_002/entries/2026-03-29_q002_spatial_threshold_ca_surge_lines2024/record.json) | 4 | [`summary`](targeted_review_q_002/entries/2026-03-29_q002_spatial_threshold_ca_surge_lines2024/summary.md) |
 | `targeted_review_q_003` | [`2026-03-29_q003_network_ca_multiplexing_cahill2024`](targeted_review_q_003/entries/2026-03-29_q003_network_ca_multiplexing_cahill2024/record.json) | 4 | [`summary`](targeted_review_q_003/entries/2026-03-29_q003_network_ca_multiplexing_cahill2024/summary.md) |

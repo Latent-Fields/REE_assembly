@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_hierarchical_control_badre2018",
+  "timestamp_utc": "2026-04-19T11:26:11Z",
+  "claim_ids_tested": ["MECH-261", "ARC-035"],
+  "source": {
+    "title": "Frontal Cortex and the Hierarchical Control of Behavior",
+    "authors": ["David Badre", "Derek Evan Nee"],
+    "year": 2018,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.11.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Systematic review of fMRI + lesion evidence for a caudal-rostral gradient in lateral PFC: posterior regions (premotor/pre-PMd) handle concrete stimulus-response mappings, mid-lateral PFC handles task-set rules, and rostrolateral/frontopolar PFC handles abstract/branching policy. Directly supports REE's need to distinguish multiple write-target levels within the lateral-PFC analogue. Recent, well-cited, methodologically synthetic.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If functional gradients in lateral PFC did not track abstraction level, the hierarchical-control framing would collapse back into Miller & Cohen's undifferentiated PFC.",
+    "If disrupting rostral PFC did not selectively impair branching/nested tasks while sparing flat rule tasks, the gradient would be a parcellation artefact."
+  ],
+  "tags": ["mech_261", "pfc_subdivision", "hierarchical_control", "frontopolar", "abstraction_gradient"],
+  "mapping": {
+    "source_claim_statement": "Lateral PFC implements a caudal-to-rostral hierarchy where progressively more anterior regions represent progressively more abstract, temporally extended, and contextually embedded action policies.",
+    "ree_translation": "Provides the architectural template for REE's lateral-PFC-analogue: it is not one flat substrate but a gradient. Premotor/SMA-analog handles sequence execution; mid-lateral holds current rule; frontopolar-analog (V4 scope) handles branching/meta-control. MECH-261 write gating must respect this gradient.",
+    "mapping_caveat": "Hierarchical-control framing is well supported for primates and humans in controlled tasks, but the strict caudal-rostral ordering has been contested (some authors argue for a domain-based rather than abstraction-based organisation). REE should implement the gradient as a soft ordering, not a strict stack.",
+    "source_context": "Primate and human fMRI; task-set, set-shifting, and branching-task paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is high (Trends review, well-cited). Mapping fidelity is strong because the paper explicitly frames the gradient in computational terms that align with REE's multi-level control vocabulary. Transfer risk is moderate: REE doesn't need the strict caudal-rostral ordering to hold, only the claim that multiple levels of abstraction are separable write targets."
+  }
+}

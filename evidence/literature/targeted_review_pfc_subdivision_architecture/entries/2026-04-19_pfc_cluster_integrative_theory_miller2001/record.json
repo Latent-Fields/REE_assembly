@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
+  "timestamp_utc": "2026-04-19T11:26:11Z",
+  "claim_ids_tested": ["MECH-261", "MECH-116", "ARC-035"],
+  "source": {
+    "title": "An integrative theory of prefrontal cortex function",
+    "authors": ["Earl K. Miller", "Jonathan D. Cohen"],
+    "year": 2001,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.24.1.167"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical integrative theory of PFC as the substrate for active maintenance of task rules/goals that bias processing in posterior cortex. Extensively corroborated by two decades of follow-up work. Maps cleanly onto REE's need for a rule/policy-level substrate that MECH-261 writes into, though the 2001 framing predates the dACC/lateral-PFC dissociations that later refined it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If lateral PFC lesions did not selectively impair rule-guided behaviour while sparing stimulus-response behaviour, the 'active rule maintenance' function would be misplaced.",
+    "If posterior cortical bias effects could be produced without sustained PFC activity, the top-down biasing mechanism would be redundant."
+  ],
+  "tags": ["mech_261", "pfc_subdivision", "rule_representation", "top_down_bias", "working_memory"],
+  "mapping": {
+    "source_claim_statement": "PFC maintains representations of task-relevant rules, goals, and context over delays and uses these representations to bias processing in sensory, motor, and limbic cortices toward task-appropriate responses.",
+    "ree_translation": "Provides the biological substrate for a lateral-PFC-analog module in REE that holds the currently active rule/policy and projects bias signals into action selection. This is the target MECH-261 writes into during internal_planning / external_task modes but must not be overwritten during internal_replay.",
+    "mapping_caveat": "The 2001 paper treats PFC as a unified functional unit; subsequent work (Badre & Nee 2018, Rudebeck & Murray 2014, Mansouri 2020) dissociates lateral-PFC rule representation from vmPFC value, OFC credit assignment, and dACC conflict/effort. REE must not import the 2001 unified-PFC framing wholesale.",
+    "source_context": "Primate single-unit + human lesion/fMRI review; task rules in delayed-match-to-sample and Wisconsin Card Sort contexts."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Source quality is very high (foundational, extensively replicated). Mapping fidelity is moderate: the paper's 'PFC' needs to be read as 'lateral-PFC specifically' when ported into REE, because later work showed the functional heterogeneity the 2001 framing papered over. Transfer risk is low for the rule-maintenance function itself; higher if REE inherits the unified-PFC treatment uncritically."
+  }
+}
