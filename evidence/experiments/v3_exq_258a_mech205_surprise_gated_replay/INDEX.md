@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_258a_mech205_surprise_gated_replay
 
-Generated: `2026-04-19T08:46:37.182063Z`
+Generated: `2026-04-19T09:30:52.020407Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

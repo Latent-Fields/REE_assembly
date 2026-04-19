@@ -1391,7 +1391,7 @@
       }
     },
     "ARC-026": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.611, lit_conf=0.806",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.61, lit_conf=0.806",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -1406,7 +1406,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.611,
+      "experimental_confidence": 0.61,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1418,7 +1418,7 @@
       "latest_run_id": "2026-04-14_arc_026_frontal_ramp_approach_regalado2024",
       "latest_timestamp_utc": "2026-04-14T00:00:00Z",
       "literature_confidence": 0.806,
-      "overall_confidence": 0.709,
+      "overall_confidence": 0.708,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -1753,7 +1753,7 @@
       }
     },
     "ARC-030": {
-      "confidence_rationale": "exp=7 entry(s), lit=9 entry(s), exp_conf=0.595, lit_conf=0.91",
+      "confidence_rationale": "exp=7 entry(s), lit=9 entry(s), exp_conf=0.594, lit_conf=0.91",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -1772,7 +1772,7 @@
         "lit:review_translational": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.595,
+      "experimental_confidence": 0.594,
       "fail_runs": 6,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -2564,7 +2564,7 @@
       }
     },
     "ARC-042": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.417, lit_conf=0.845",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.416, lit_conf=0.845",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2579,7 +2579,7 @@
         "lit:ml_theoretical_empirical": 2,
         "lit:neuroscience_computational": 1
       },
-      "experimental_confidence": 0.417,
+      "experimental_confidence": 0.416,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -3734,17 +3734,18 @@
       }
     },
     "INV-049": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.876",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.912",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 3,
+      "entries_total": 4,
       "evidence_class_counts": {
         "lit:computational_theory_review": 2,
-        "lit:neuroscience_theory_review": 1
+        "lit:neuroscience_theory_review": 1,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -3755,10 +3756,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-06_inv_049_shy_offline_necessity_tononi2006",
-      "latest_timestamp_utc": "2026-04-06T00:00:00Z",
-      "literature_confidence": 0.876,
-      "overall_confidence": 0.876,
+      "latest_run_id": "2026-04-19_cingulate_pcc_arousal_attention_leech2013",
+      "latest_timestamp_utc": "2026-04-19T09:16:25Z",
+      "literature_confidence": 0.912,
+      "overall_confidence": 0.912,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3802,12 +3803,29 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-06T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-049",
+          "confidence": 0.72,
+          "confidence_rationale": "Canonical review of PCC function covering DMN, arousal, attentional breadth, and internal-vs-external attention switching. Supports treating PCC-analog as a network-metastability tuner in the cingulate substrate cluster -- distinct from ACC/MCC/AIC roles. Moderate confidence because PCC function is genuinely heterogeneous and the review's 'Arousal, Balance, Breadth' model is a proposal rather than settled consensus.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_cingulate_integration_substrate",
+          "failure_signatures": [
+            "A substrate without a PCC-analog will fail to implement the internal/external attention switch cleanly. ree-v3 currently has offline phases (INV-049 sleep, MECH-092 micro-quiescence replay) but no explicit coordinator that switches between internal-generated and external-directed cognition.",
+            "Leech & Sharp's metastability framing predicts that PCC damage produces unstable network dynamics -- brain-state transitions that are either too rigid or too noisy. A ree-v3 without PCC-analog risks the same: either over-committed to one mode (monostrategy) or too noisy (no coherent policy emerges). Either failure mode is already observed empirically."
+          ],
+          "run_id": "2026-04-19_cingulate_pcc_arousal_attention_leech2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T09:16:25Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 3
+        "literature": 4
       }
     },
     "INV-050": {
@@ -4721,7 +4739,7 @@
       }
     },
     "MECH-026": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.439, lit_conf=0.874",
+      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.438, lit_conf=0.874",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4738,7 +4756,7 @@
         "lit:human_hyperdirect_movement_inhibition": 1,
         "lit:meta_analysis": 1
       },
-      "experimental_confidence": 0.439,
+      "experimental_confidence": 0.438,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4838,7 +4856,7 @@
       }
     },
     "MECH-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.439, lit_conf=0.878",
+      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.438, lit_conf=0.878",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4855,7 +4873,7 @@
         "lit:fmri_connectivity": 1,
         "lit:spontaneous_thought_default_mode": 1
       },
-      "experimental_confidence": 0.439,
+      "experimental_confidence": 0.438,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -6854,7 +6872,7 @@
       }
     },
     "MECH-072": {
-      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.921, lit_conf=0.818",
+      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.92, lit_conf=0.818",
       "direction_counts": {
         "mixed": 4,
         "supports": 7,
@@ -6869,7 +6887,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.921,
+      "experimental_confidence": 0.92,
       "fail_runs": 4,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -7682,20 +7700,21 @@
       }
     },
     "MECH-091": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.846",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.858",
       "direction_counts": {
         "mixed": 1,
-        "supports": 4,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 5,
+      "entries_total": 6,
       "evidence_class_counts": {
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_intracranial": 1,
         "lit:electrophysiology_scalp_eeg": 1,
         "lit:review_computational_mechanistic": 1,
-        "lit:review_methodological_critical": 1
+        "lit:review_methodological_critical": 1,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -7706,26 +7725,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007",
-      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
-      "literature_confidence": 0.846,
-      "overall_confidence": 0.846,
+      "latest_run_id": "2026-04-19_cingulate_aic_interoception_salience_craig2009",
+      "latest_timestamp_utc": "2026-04-19T09:16:25Z",
+      "literature_confidence": 0.858,
+      "overall_confidence": 0.858,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-091",
-          "confidence": 0.68,
-          "confidence_rationale": "Good mechanistic support for phase reset as a general neural mechanism triggered by salient/unexpected stimuli; thalamocortical neurons identified as key phase-reset substrate. Confidence tempered because the review covers general phase-reset mechanisms, and the specific link to basal ganglia-thalamo-E3 heartbeat reset (MECH-091) requires additional inference.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_091",
-          "failure_signatures": [],
-          "run_id": "2026-03-16_mech091_phase_reset_information_transmission_pmc2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-16T12:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-091",
@@ -7795,12 +7800,29 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-091",
+          "confidence": 0.8,
+          "confidence_rationale": "Canonical case for AIC as integrator of interoceptive, emotional, and salient signals with direct wiring to autonomic urgency and to the ACC-AIC salience network. Directly supports Option C (urgency-interrupt role) but clearly separates it from Option A (action-value integration, which is an ACC job). High source quality, strong mapping fidelity for the AIC-interrupt role. Transfer risk moderate because Craig's 'global emotional moment' construct is phenomenological.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_cingulate_integration_substrate",
+          "failure_signatures": [
+            "A substrate that routes affective pain through a single action-value channel without a separate salience/interrupt channel will fail to produce the 'sudden urgent break from committed behaviour' pattern that AIC is supposed to mediate -- the agent will integrate affective cost smoothly rather than interrupting.",
+            "Craig argues the AIC also represents internal body state (interoception). A ree-v3 substrate with no interoceptive input (drive_level, fatigue, metabolic state) will lack the baseline against which affective pain is evaluated for urgency -- the same nociception should be urgent for a depleted agent, tolerable for a well-resourced one."
+          ],
+          "run_id": "2026-04-19_cingulate_aic_interoception_salience_craig2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T09:16:25Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 0,
-        "literature": 5
+        "literature": 6
       }
     },
     "MECH-092": {
@@ -7924,7 +7946,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=10 entry(s), lit=4 entry(s), exp_conf=0.715, lit_conf=0.825",
+      "confidence_rationale": "exp=10 entry(s), lit=4 entry(s), exp_conf=0.714, lit_conf=0.825",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -7939,7 +7961,7 @@
         "lit:electrophysiology_lfp_animal_pharmacological": 1,
         "lit:electrophysiology_meg_human": 1
       },
-      "experimental_confidence": 0.715,
+      "experimental_confidence": 0.714,
       "fail_runs": 7,
       "genuine_exp_count": 10,
       "genuine_exp_direction_counts": {
@@ -7951,7 +7973,7 @@
       "latest_run_id": "v3_exq_396b_arc016_precision_sweep_calibrated_20260416T172703Z_v3",
       "latest_timestamp_utc": "2026-04-16T17:27:03Z",
       "literature_confidence": 0.825,
-      "overall_confidence": 0.77,
+      "overall_confidence": 0.769,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -9905,7 +9927,7 @@
       }
     },
     "MECH-118": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.576, lit_conf=0.816",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.575, lit_conf=0.816",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -9919,7 +9941,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.576,
+      "experimental_confidence": 0.575,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -10023,7 +10045,7 @@
       }
     },
     "MECH-119": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.871, lit_conf=0.803",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.87, lit_conf=0.803",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -10036,7 +10058,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.871,
+      "experimental_confidence": 0.87,
       "fail_runs": 3,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -14033,7 +14055,7 @@
       }
     },
     "MECH-205": {
-      "confidence_rationale": "exp=2 entry(s), lit=8 entry(s), exp_conf=0.803, lit_conf=0.869",
+      "confidence_rationale": "exp=2 entry(s), lit=8 entry(s), exp_conf=0.803, lit_conf=0.868",
       "direction_counts": {
         "mixed": 0,
         "supports": 10,
@@ -14059,8 +14081,8 @@
       },
       "latest_run_id": "v3_exq_258b_mech205_surprise_gated_replay_1775725472_v3",
       "latest_timestamp_utc": "2026-04-09T09:04:32Z",
-      "literature_confidence": 0.869,
-      "overall_confidence": 0.843,
+      "literature_confidence": 0.868,
+      "overall_confidence": 0.842,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -16940,7 +16962,7 @@
       }
     },
     "Q-021": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.492, lit_conf=0.803",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.491, lit_conf=0.803",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -16953,7 +16975,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.492,
+      "experimental_confidence": 0.491,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -16965,7 +16987,7 @@
       "latest_run_id": "v3_exq_072b_q021_behavioral_flatness_20260402T012059Z_v3",
       "latest_timestamp_utc": "2026-04-02T01:20:59Z",
       "literature_confidence": 0.803,
-      "overall_confidence": 0.679,
+      "overall_confidence": 0.678,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -17827,7 +17849,7 @@
       }
     },
     "SD-004": {
-      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.635, lit_conf=0.898",
+      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.634, lit_conf=0.898",
       "direction_counts": {
         "mixed": 0,
         "supports": 12,
@@ -17842,7 +17864,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 4
       },
-      "experimental_confidence": 0.635,
+      "experimental_confidence": 0.634,
       "fail_runs": 5,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -17854,7 +17876,7 @@
       "latest_run_id": "2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005",
       "latest_timestamp_utc": "2026-04-14T18:30:00Z",
       "literature_confidence": 0.898,
-      "overall_confidence": 0.767,
+      "overall_confidence": 0.766,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -18587,14 +18609,14 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=14 entry(s), lit=17 entry(s), exp_conf=0.829, lit_conf=0.906",
+      "confidence_rationale": "exp=14 entry(s), lit=18 entry(s), exp_conf=0.828, lit_conf=0.907",
       "direction_counts": {
         "mixed": 1,
-        "supports": 26,
+        "supports": 27,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 31,
+      "entries_total": 32,
       "evidence_class_counts": {
         "exp:simulation": 14,
         "lit:behavioral_human": 2,
@@ -18605,9 +18627,9 @@
         "lit:fmri_connectivity": 1,
         "lit:fmri_lesion": 1,
         "lit:meta_analysis": 1,
-        "lit:theoretical_review": 3
+        "lit:theoretical_review": 4
       },
-      "experimental_confidence": 0.829,
+      "experimental_confidence": 0.828,
       "fail_runs": 8,
       "genuine_exp_count": 14,
       "genuine_exp_direction_counts": {
@@ -18616,27 +18638,12 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
-      "latest_timestamp_utc": "2026-04-18T12:40:11.181505Z",
-      "literature_confidence": 0.906,
+      "latest_run_id": "2026-04-19_cingulate_affective_sensory_dissociation_price2000",
+      "latest_timestamp_utc": "2026-04-19T09:16:25Z",
+      "literature_confidence": 0.907,
       "overall_confidence": 0.868,
       "pass_runs": 6,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "failure_signatures": [],
-          "run_id": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-18T12:40:10.797847Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-011",
@@ -18696,16 +18703,33 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-18T12:40:11.181505Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.82,
+          "confidence_rationale": "Canonical formulation of the sensory-discriminative vs affective-motivational dissociation. Direct anatomical support (ACC/AIC vs S1/S2), hypnotic-dissociation evidence, and two-stage model (pain unpleasantness -> secondary affective response) directly motivate the dual-stream substrate ree-v3 already implements. High source quality, high mapping fidelity; slight transfer risk because the paper treats affective pain as a subjective report rather than an action-selection signal.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_cingulate_integration_substrate",
+          "failure_signatures": [
+            "Models that collapse sensory and affective pain into a single scalar cost will fail to predict the clinical dissociation (cingulotomy patients still detect noxious stimuli but no longer rate them as unpleasant).",
+            "Affective pain in Price's two-stage model is at least partly generated post-hoc from secondary appraisal (harm implications, suffering expectations) -- a consumer that only reads instantaneous z_harm_a and never updates it with trajectory-level consequence inference would underweight the very signal the theory says matters."
+          ],
+          "run_id": "2026-04-19_cingulate_affective_sensory_dissociation_price2000",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T09:16:25Z"
         }
       ],
-      "runs_total": 31,
+      "runs_total": 32,
       "source_counts": {
         "experimental": 14,
-        "literature": 17
+        "literature": 18
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=7 entry(s), lit=8 entry(s), exp_conf=0.67, lit_conf=0.878",
+      "confidence_rationale": "exp=7 entry(s), lit=8 entry(s), exp_conf=0.669, lit_conf=0.878",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -18722,7 +18746,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.67,
+      "experimental_confidence": 0.669,
       "fail_runs": 5,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -18734,7 +18758,7 @@
       "latest_run_id": "v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:11.154737Z",
       "literature_confidence": 0.878,
-      "overall_confidence": 0.774,
+      "overall_confidence": 0.773,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -19323,7 +19347,7 @@
       }
     },
     "SD-019": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.853, lit_conf=0.918",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.852, lit_conf=0.918",
       "direction_counts": {
         "mixed": 2,
         "supports": 6,
@@ -19338,7 +19362,7 @@
         "lit:connectome_mechanistic_review": 2,
         "lit:fmri_lesion": 1
       },
-      "experimental_confidence": 0.853,
+      "experimental_confidence": 0.852,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -19350,7 +19374,7 @@
       "latest_run_id": "2026-04-17_sd_019_pain_asymbolia_berthier1988",
       "latest_timestamp_utc": "2026-04-17T11:00:00Z",
       "literature_confidence": 0.918,
-      "overall_confidence": 0.886,
+      "overall_confidence": 0.885,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -19450,16 +19474,17 @@
       }
     },
     "SD-020": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.911, lit_conf=0.912",
+      "confidence_rationale": "exp=4 entry(s), lit=5 entry(s), exp_conf=0.911, lit_conf=0.914",
       "direction_counts": {
         "mixed": 2,
-        "supports": 6,
+        "supports": 7,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 8,
+      "entries_total": 9,
       "evidence_class_counts": {
         "exp:simulation": 4,
+        "lit:computational_model": 1,
         "lit:fmri_connectivity": 3,
         "lit:theoretical_review": 1
       },
@@ -19472,28 +19497,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_324b_sd020_harm_surprise_pe_20260418T225726Z_v3",
-      "latest_timestamp_utc": "2026-04-18T22:58:00Z",
-      "literature_confidence": 0.912,
+      "latest_run_id": "2026-04-19_cingulate_pain_precision_signal_seymour2019",
+      "latest_timestamp_utc": "2026-04-19T09:16:25Z",
+      "literature_confidence": 0.914,
       "overall_confidence": 0.912,
       "pass_runs": 2,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-020",
-          "confidence": 0.72,
-          "confidence_rationale": "Influential theoretical review arguing that pain-matrix activity (including insula) reflects salience/surprise detection rather than pain-specific processing. Directly supports the SD-020 claim that affective harm encoding tracks unexpectedness rather than raw magnitude. Confidence is moderate because it is a review/theoretical position paper rather than direct empirical measurement of PE coding, and does not itself quantify the PE component \u2014 that empirical work came in later studies building on this framework.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_020",
-          "failure_signatures": [
-            "If insula responses were shown to correlate purely with nociceptive intensity irrespective of saliency, this framework would be undermined."
-          ],
-          "run_id": "2026-04-09_sd_020_pain_matrix_salience_iannetti2010",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-09T15:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-020",
@@ -19553,12 +19562,29 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-18T22:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-020",
+          "confidence": 0.82,
+          "confidence_rationale": "Direct computational framing of pain as a precision-weighted control signal in a reinforcement-learning/active-inference framework. Bridges the biology (pain pathways, cingulate/insular circuitry) to decision-theoretic architectures in ree-v3's computational vocabulary. High source quality (lead-authored Neuron review by the Bayesian pain researcher), high mapping fidelity for the computational form question, moderate transfer risk because framework assumes precision-weighting implementation that ree-v3 has not yet built.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_cingulate_integration_substrate",
+          "failure_signatures": [
+            "Treating pain as a fixed scalar cost (not precision-weighted) will fail to reproduce the context-dependence Seymour documents: the same nociception produces large action change when context predicts the pain is controllable, small action change when context predicts it is not. ree-v3's current architecture (z_harm_a as fixed-magnitude latent) is in this failure mode.",
+            "Seymour argues pain is a *control* signal (drives active inference / policy updates) not primarily a *valence* signal. A substrate that reads z_harm_a only into valence-type updates (commit threshold, lambda_ethical scaling) will not reproduce the control-adjustment function -- which is exactly where ree-v3 is broken."
+          ],
+          "run_id": "2026-04-19_cingulate_pain_precision_signal_seymour2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T09:16:25Z"
         }
       ],
-      "runs_total": 8,
+      "runs_total": 9,
       "source_counts": {
         "experimental": 4,
-        "literature": 4
+        "literature": 5
       }
     },
     "SD-021": {
@@ -52967,6 +52993,74 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-049",
+      "confidence": 0.72,
+      "confidence_rationale": "Canonical review of PCC function covering DMN, arousal, attentional breadth, and internal-vs-external attention switching. Supports treating PCC-analog as a network-metastability tuner in the cingulate substrate cluster -- distinct from ACC/MCC/AIC roles. Moderate confidence because PCC function is genuinely heterogeneous and the review's 'Arousal, Balance, Breadth' model is a proposal rather than settled consensus.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "failure_signatures": [
+        "A substrate without a PCC-analog will fail to implement the internal/external attention switch cleanly. ree-v3 currently has offline phases (INV-049 sleep, MECH-092 micro-quiescence replay) but no explicit coordinator that switches between internal-generated and external-directed cognition.",
+        "Leech & Sharp's metastability framing predicts that PCC damage produces unstable network dynamics -- brain-state transitions that are either too rigid or too noisy. A ree-v3 without PCC-analog risks the same: either over-committed to one mode (monostrategy) or too noisy (no coherent policy emerges). Either failure mode is already observed empirically."
+      ],
+      "run_id": "2026-04-19_cingulate_pcc_arousal_attention_leech2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-091",
+      "confidence": 0.8,
+      "confidence_rationale": "Canonical case for AIC as integrator of interoceptive, emotional, and salient signals with direct wiring to autonomic urgency and to the ACC-AIC salience network. Directly supports Option C (urgency-interrupt role) but clearly separates it from Option A (action-value integration, which is an ACC job). High source quality, strong mapping fidelity for the AIC-interrupt role. Transfer risk moderate because Craig's 'global emotional moment' construct is phenomenological.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "failure_signatures": [
+        "A substrate that routes affective pain through a single action-value channel without a separate salience/interrupt channel will fail to produce the 'sudden urgent break from committed behaviour' pattern that AIC is supposed to mediate -- the agent will integrate affective cost smoothly rather than interrupting.",
+        "Craig argues the AIC also represents internal body state (interoception). A ree-v3 substrate with no interoceptive input (drive_level, fatigue, metabolic state) will lack the baseline against which affective pain is evaluated for urgency -- the same nociception should be urgent for a depleted agent, tolerable for a well-resourced one."
+      ],
+      "run_id": "2026-04-19_cingulate_aic_interoception_salience_craig2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical formulation of the sensory-discriminative vs affective-motivational dissociation. Direct anatomical support (ACC/AIC vs S1/S2), hypnotic-dissociation evidence, and two-stage model (pain unpleasantness -> secondary affective response) directly motivate the dual-stream substrate ree-v3 already implements. High source quality, high mapping fidelity; slight transfer risk because the paper treats affective pain as a subjective report rather than an action-selection signal.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "failure_signatures": [
+        "Models that collapse sensory and affective pain into a single scalar cost will fail to predict the clinical dissociation (cingulotomy patients still detect noxious stimuli but no longer rate them as unpleasant).",
+        "Affective pain in Price's two-stage model is at least partly generated post-hoc from secondary appraisal (harm implications, suffering expectations) -- a consumer that only reads instantaneous z_harm_a and never updates it with trajectory-level consequence inference would underweight the very signal the theory says matters."
+      ],
+      "run_id": "2026-04-19_cingulate_affective_sensory_dissociation_price2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-020",
+      "confidence": 0.82,
+      "confidence_rationale": "Direct computational framing of pain as a precision-weighted control signal in a reinforcement-learning/active-inference framework. Bridges the biology (pain pathways, cingulate/insular circuitry) to decision-theoretic architectures in ree-v3's computational vocabulary. High source quality (lead-authored Neuron review by the Bayesian pain researcher), high mapping fidelity for the computational form question, moderate transfer risk because framework assumes precision-weighting implementation that ree-v3 has not yet built.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "failure_signatures": [
+        "Treating pain as a fixed scalar cost (not precision-weighted) will fail to reproduce the context-dependence Seymour documents: the same nociception produces large action change when context predicts the pain is controllable, small action change when context predicts it is not. ree-v3's current architecture (z_harm_a as fixed-magnitude latent) is in this failure mode.",
+        "Seymour argues pain is a *control* signal (drives active inference / policy updates) not primarily a *valence* signal. A substrate that reads z_harm_a only into valence-type updates (commit threshold, lambda_ethical scaling) will not reproduce the control-adjustment function -- which is exactly where ree-v3 is broken."
+      ],
+      "run_id": "2026-04-19_cingulate_pain_precision_signal_seymour2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -52998,7 +53092,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-19T08:46:37.182063Z",
+  "generated_at_utc": "2026-04-19T09:30:52.020407Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
@@ -53078,6 +53172,41 @@
       "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-04-18T12:40:10.776768Z"
+    },
+    {
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "run_id": "2026-04-19_cingulate_acc_nac_value_baliki2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "run_id": "2026-04-19_cingulate_acc_subdivisions_vogt2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "run_id": "2026-04-19_cingulate_dacc_effort_learning_scholl2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "run_id": "2026-04-19_cingulate_dacc_integration_shackman2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
+    },
+    {
+      "experiment_type": "targeted_review_cingulate_integration_substrate",
+      "run_id": "2026-04-19_cingulate_salience_network_switching_menon2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T09:16:25Z"
     }
   ]
 }

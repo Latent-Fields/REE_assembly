@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-19T08:46:37.182063Z`
+Generated: `2026-04-19T09:30:52.020407Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -576,7 +576,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-021
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: overall_conf=0.679, conflict_ratio=0, exp_entries=2, lit_entries=3; directions supports=3, weakens=0, mixed=2, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.678, conflict_ratio=0, exp_entries=2, lit_entries=3; directions supports=3, weakens=0, mixed=2, unknown=0, conflict_ratio=0
 - Evidence quality note: narrow_open_question (2026-03-29): two independent pathways to behavioral flatness already identified in notes. Pathway A (drive absence, ARC-030) tested by EXQ-072; Pathway B (self-incoherence-gated commit suppression, MECH-113/114) untested. Definitive test requires both pathways. No experimental evidence yet -- question narrowing applied to focus on discriminating between the two pathways.
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -728,7 +728,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-020
 - Current status: `provisional`
 - Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.926, conflict_ratio=0, exp_entries=6, lit_entries=4; directions supports=6, weakens=0, mixed=2, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.927, conflict_ratio=0, exp_entries=6, lit_entries=5; directions supports=7, weakens=0, mixed=2, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `promote_to_stable`
 - Options (pros/cons):
@@ -778,8 +778,3 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
-
-## Substrate changes with dependent invariants
-
-No substrate status changes this run. No dependent invariants flagged.
-

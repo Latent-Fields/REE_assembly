@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cingulate_integration_substrate",
+  "entry_id": "2026-04-19_cingulate_acc_nac_value_baliki2010",
+  "timestamp_utc": "2026-04-19T09:16:25Z",
+  "claim_ids_tested": [],
+  "source": {
+    "title": "Predicting value of pain and analgesia: nucleus accumbens response to noxious stimuli changes in patients with chronic back pain",
+    "authors": ["Marwan N. Baliki", "Paul Y. Geha", "Howard L. Fields", "A. Vania Apkarian"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.03.002",
+    "pmid": "20399736"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Direct fMRI empirical evidence that affective pain signals get translated into action-value via an ACC-NAc pathway, with NAc encoding the predicted value of pain cessation. Strongest available empirical support for Option A (affective pain biases action-value). Limited by fMRI temporal resolution and indirect inference from chronic-pain contrast, not a prospective causal manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate that wires z_harm_a only to avoidance cost but not to reward prediction will fail to reproduce the chronic-pain NAc contrast: in healthy subjects NAc tracks pain-offset value (reward-like), in chronic pain it reverses. This is a canonical failure mode of single-channel pain substrates.",
+    "The ACC-NAc coupling Baliki reports is vulnerable: chronic pain patients show the coupling shift, implying it is plastic. A ree-v3 implementation that hard-codes the ACC-analog -> striatal action-value weight will not reproduce the plasticity, so will not capture why pain reshapes action selection over learning."
+  ],
+  "tags": ["cingulate_substrate", "acc", "nac", "action_value", "affective_pain", "baliki"],
+  "mapping": {
+    "source_claim_statement": "Functional MRI with onset/offset pain stimuli in healthy controls and chronic back pain patients shows NAc encodes the predicted value of pain cessation -- pain onset produces a deactivation and pain offset produces an activation whose magnitude tracks expected relief. In chronic back pain patients this response pattern is altered: the offset activation is reduced, and functional connectivity between medial prefrontal / ACC and NAc is shifted. The authors argue the ACC-striatal pathway is the route by which pain signals enter action-value computations.",
+    "ree_translation": "This is the empirical foundation for Option A in the z_harm_a consumer question. The biology says: affective pain reaches action selection by modulating a striatal action-value representation, with ACC/mPFC as the upstream source. For ree-v3, this argues the dACC-analog module identified by Shackman should write to a striatal-analog action-value target, and that z_harm_a should contribute to action value indirectly via this coupling rather than directly being added to trajectory cost. The plasticity finding (ACC-NAc coupling changes in chronic pain) argues the weight should be learnable, not fixed.",
+    "mapping_caveat": "This is fMRI on a clinical contrast (healthy vs chronic back pain), not a prospective causal manipulation. We infer the ACC -> NAc -> action-value pathway from connectivity and correlation; direct demonstration that the coupling is causal for action selection would require optogenetic or pharmacological work in non-humans. The conclusion is that the pathway exists and is plastic, not that it is the sole route by which affective pain biases behaviour.",
+    "source_context": "Human fMRI, thermal-pain paradigm with phasic onset and offset, healthy controls vs chronic back pain patients."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.40,
+    "notes": "Strong fMRI work published in Neuron with clinical replication in later Apkarian lab papers. Transfer risk is moderate because (a) human fMRI temporal resolution cannot distinguish feedforward from feedback, (b) the ree-v3 action-value representation does not yet have a clean striatal-analog target to receive the affective-pain signal."
+  }
+}

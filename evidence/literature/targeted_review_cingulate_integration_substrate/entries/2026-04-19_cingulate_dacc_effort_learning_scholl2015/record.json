@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cingulate_integration_substrate",
+  "entry_id": "2026-04-19_cingulate_dacc_effort_learning_scholl2015",
+  "timestamp_utc": "2026-04-19T09:16:25Z",
+  "claim_ids_tested": [],
+  "source": {
+    "title": "The Good, the Bad, and the Irrelevant: Neural Mechanisms of Learning Real and Hypothetical Rewards and Effort",
+    "authors": ["Jacqueline Scholl", "Nils Kolling", "Natalie Nelissen", "Marco K. Wittmann", "Catherine J. Harmer", "Matthew F. S. Rushworth"],
+    "year": 2015,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0396-15.2015",
+    "pmid": "26269633"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct fMRI evidence that dACC encodes effort-value credit-assignment signals specifically, dissociable from vmPFC reward learning and from amygdala bias signals. Supports the dACC-as-credit-assignment-for-costly-actions view that the cingulate substrate needs. Rushworth-lab quality with explicit separation of cost and reward learning. Moderate transfer risk because effort maps onto cost-of-harm in a non-trivial way.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate where dACC-analog conflates reward and effort/cost credit assignment will misweight actions when cost and reward covary. Scholl shows these signals are separated in biology; collapsing them is a known-failure pathway.",
+    "The paper documents a vmPFC -> amygdala bias toward recent real rewards that is *suppressed* by dACC. A ree-v3 without this suppression circuit will chase recent-salient-reward rather than long-term expected value -- a failure mode that maps onto monostrategy (seen empirically in fishtank_viz)."
+  ],
+  "tags": ["cingulate_substrate", "dacc", "effort", "credit_assignment", "learning_signal", "rushworth"],
+  "mapping": {
+    "source_claim_statement": "Human fMRI in a learning task dissociating reward and effort: dACC activity tracks effort learning signals specifically, separate from vmPFC (which tracks reward learning) and from amygdala (which tracks recent-real-reward bias). Importantly, dACC and lateral anterior PFC together *suppress* the amygdala/vmPFC bias toward recent real rewards, driving learning that is guided by long-term informational content rather than by the most recent real outcome.",
+    "ree_translation": "For the cingulate substrate this gives two specific mechanisms. First, the dACC-analog should have a distinct credit-assignment pathway for *costly* actions (effort, harm) that is separate from the reward-learning pathway (vmPFC-analog). z_harm_a feeds this cost pathway; rewards feed the vmPFC-analog. Second, the dACC-analog should also act as a *bias suppressor*: it actively resists monostrategy (repeating the last-rewarded choice) by writing a counter-bias based on integrated long-term value. This second role is adjacent to the issues seen in fishtank_viz (monostrategy) and is a potential claim in its own right.",
+    "mapping_caveat": "Scholl's effort is physical/cognitive effort, not pain-driven harm. The transfer from effort-learning signal to affective-harm-learning signal is reasonable given Shackman's meta-analytic convergence (dACC handles both), but the paper does not directly test pain. Also, the bias-suppression finding is a subtlety of this task's design (real vs hypothetical rewards); whether a similar mechanism operates during harm/avoidance learning is inferred.",
+    "source_context": "Human fMRI, two-arm bandit task with concurrent reward and effort tracking, real vs hypothetical outcome conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Rushworth-lab fMRI, J Neurosci. Strong on cost/reward dissociation; moderate transfer because effort != pain and the specific task design (real vs hypothetical) doesn't cleanly map to ree-v3 paradigms."
+  }
+}

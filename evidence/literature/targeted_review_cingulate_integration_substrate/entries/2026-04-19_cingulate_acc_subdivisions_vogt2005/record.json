@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cingulate_integration_substrate",
+  "entry_id": "2026-04-19_cingulate_acc_subdivisions_vogt2005",
+  "timestamp_utc": "2026-04-19T09:16:25Z",
+  "claim_ids_tested": [],
+  "source": {
+    "title": "Pain and emotion interactions in subregions of the cingulate gyrus",
+    "authors": ["Brent A. Vogt"],
+    "year": 2005,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn1704",
+    "pmid": "15995724"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Cingulate-substrate anatomy is the single most important scoping input for the new SD cluster. Vogt's four-region parcellation (ACC / MCC / PCC / RSC) with distinct cytoarchitecture and distinct pain-response profiles is the canonical anatomical frame. Very high source quality, very high mapping fidelity for 'where to put the substrate,' moderate transfer risk because some human/primate differences exist.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Modelling the cingulate as a single homogeneous region will collapse functions that Vogt shows are anatomically and computationally distinct: pain affect (pACC/sgACC), effortful action selection (aMCC), motor preparation (pMCC), and memory/attention (PCC). A single 'z_cingulate' latent will not recover the three-way partition experiments require.",
+    "The pACC/sgACC role in visceral/autonomic modulation of pain means that a substrate missing endocrine/autonomic efferents will not reproduce the 'suffering amplifies pain sensitivity' phenomenon the biology predicts -- harm_rate will be externally dictated, not internally regulated."
+  ],
+  "tags": ["cingulate_substrate", "acc_subdivisions", "mcc", "pcc", "anatomy"],
+  "mapping": {
+    "source_claim_statement": "The cingulate gyrus is not a unitary structure. It comprises four cytoarchitecturally and functionally distinct regions: anterior cingulate cortex (ACC; further split into perigenual pACC and subgenual sgACC) for emotional/affective processing and autonomic regulation; midcingulate cortex (MCC; split into anterior aMCC and posterior pMCC) for action-outcome evaluation and motor control; posterior cingulate cortex (PCC) for memory/orientation; and retrosplenial cortex (RSC) for spatial-contextual memory. Pain affect, effortful action selection, motor engagement, and contextual retrieval each live in a different subregion.",
+    "ree_translation": "The new SD cluster (cingulate integration substrate) cannot be a single module. It needs to parallel the anatomy: a pACC-like module for affective-pain -> autonomic/valence coupling, an aMCC-like module for effort-value and action-outcome credit assignment, a pMCC-like module for motor gating (this is adjacent to MECH-090 beta propagation gate), and a PCC-like module for offline/contextual retrieval (adjacent to INV-049 sleep and MECH-092 micro-quiescence replay). The z_harm_a consumer question then becomes specifically an aMCC-domain question, while the urgency-interrupt role (Option C) is more an AIC-pACC question.",
+    "mapping_caveat": "Vogt's parcellation is based on macaque and human cytoarchitecture; the functional boundaries are sharper anatomically than they are computationally. ree-v3 does not need to recapitulate four separate modules -- it needs four separable *computations* that can share substrate. Treating the anatomy as a hard architectural constraint would be over-fitting to biology.",
+    "source_context": "Comprehensive anatomical and functional review; cytoarchitecture + tract-tracing in macaque, lesion and fMRI in humans, with pain-specific focus."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Vogt is the canonical anatomical reference for cingulate parcellation; the review has held up against later work. Moderate transfer risk because the anatomical parcellation doesn't translate one-to-one into separable computations in a unified latent architecture -- ree-v3 can in principle compute all four functions in one module if the signals are separable."
+  }
+}

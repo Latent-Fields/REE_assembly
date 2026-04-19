@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cingulate_integration_substrate",
+  "entry_id": "2026-04-19_cingulate_pcc_arousal_attention_leech2013",
+  "timestamp_utc": "2026-04-19T09:16:25Z",
+  "claim_ids_tested": ["INV-049"],
+  "source": {
+    "title": "The role of the posterior cingulate cortex in cognition and disease",
+    "authors": ["Robert Leech", "David J. Sharp"],
+    "year": 2013,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awt162",
+    "pmid": "23869106"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical review of PCC function covering DMN, arousal, attentional breadth, and internal-vs-external attention switching. Supports treating PCC-analog as a network-metastability tuner in the cingulate substrate cluster -- distinct from ACC/MCC/AIC roles. Moderate confidence because PCC function is genuinely heterogeneous and the review's 'Arousal, Balance, Breadth' model is a proposal rather than settled consensus.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate without a PCC-analog will fail to implement the internal/external attention switch cleanly. ree-v3 currently has offline phases (INV-049 sleep, MECH-092 micro-quiescence replay) but no explicit coordinator that switches between internal-generated and external-directed cognition.",
+    "Leech & Sharp's metastability framing predicts that PCC damage produces unstable network dynamics -- brain-state transitions that are either too rigid or too noisy. A ree-v3 without PCC-analog risks the same: either over-committed to one mode (monostrategy) or too noisy (no coherent policy emerges). Either failure mode is already observed empirically."
+  ],
+  "tags": ["cingulate_substrate", "pcc", "dmn", "attention", "metastability", "inv_049"],
+  "mapping": {
+    "source_claim_statement": "PCC is heterogeneous: dorsal and ventral subdivisions have distinct functions. Activity varies with arousal, with breadth and focus of attention, and with whether cognition is internally-directed (autobiographical memory, future planning, DMN) or externally-directed (task-focused attention). The Leech/Sharp 'Arousal, Balance, Breadth' model proposes dorsal PCC tunes whole-brain metastability -- adjusts how stable network activity is over time -- which in turn shapes attentional focus and the balance between internal and external cognition.",
+    "ree_translation": "The PCC-analog in the new cingulate substrate is the control-plane module responsible for mode-switching between external action and internal cognition (planning / replay / imagination). ree-v3 has pieces of this (commit-state boundary, INV-049 offline phases, MECH-092 micro-quiescence replay, MECH-094 hypothesis tag) but no coordinated controller that selects between them based on arousal/urgency. Leech & Sharp's metastability framing suggests the PCC-analog should tune the agent's 'brain-state stability' parameter -- stable for committed action, unstable for exploration and replay. This is computationally adjacent to the urgency-interrupt role (AIC) but operates on a different variable (network stability vs immediate switch trigger).",
+    "mapping_caveat": "PCC function is genuinely contested in the literature. Leech & Sharp's model is a synthesising proposal, not a settled consensus. Directly borrowing the 'tunes metastability' operation as a ree-v3 module may be over-reaching -- the simpler extraction is 'PCC-analog handles offline/internal attention vs external/task attention switching.' Also, Leech & Sharp focus heavily on clinical populations (TBI, Alzheimer's), which is further from REE's paradigms than healthy-control work.",
+    "source_context": "Comprehensive review of PCC anatomy, physiology, and function; synthesises human fMRI, lesion (especially TBI), and clinical data; proposes a new functional model."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Brain review, well-regarded but the 'ABB' model is a proposal not a field consensus. PCC is the least-tight anatomical mapping to a clean ree-v3 function -- the role is real but the computational specification is least crisp of any region in this pull."
+  }
+}

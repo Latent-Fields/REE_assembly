@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cingulate_integration_substrate",
+  "entry_id": "2026-04-19_cingulate_pain_precision_signal_seymour2019",
+  "timestamp_utc": "2026-04-19T09:16:25Z",
+  "claim_ids_tested": ["SD-020"],
+  "source": {
+    "title": "Pain: A Precision Signal for Reinforcement Learning and Control",
+    "authors": ["Ben Seymour"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.01.055",
+    "pmid": "30897355"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct computational framing of pain as a precision-weighted control signal in a reinforcement-learning/active-inference framework. Bridges the biology (pain pathways, cingulate/insular circuitry) to decision-theoretic architectures in ree-v3's computational vocabulary. High source quality (lead-authored Neuron review by the Bayesian pain researcher), high mapping fidelity for the computational form question, moderate transfer risk because framework assumes precision-weighting implementation that ree-v3 has not yet built.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Treating pain as a fixed scalar cost (not precision-weighted) will fail to reproduce the context-dependence Seymour documents: the same nociception produces large action change when context predicts the pain is controllable, small action change when context predicts it is not. ree-v3's current architecture (z_harm_a as fixed-magnitude latent) is in this failure mode.",
+    "Seymour argues pain is a *control* signal (drives active inference / policy updates) not primarily a *valence* signal. A substrate that reads z_harm_a only into valence-type updates (commit threshold, lambda_ethical scaling) will not reproduce the control-adjustment function -- which is exactly where ree-v3 is broken."
+  ],
+  "tags": ["cingulate_substrate", "pain", "precision", "active_inference", "reinforcement_learning", "computational", "sd_020"],
+  "mapping": {
+    "source_claim_statement": "Seymour reframes pain from a scalar aversive signal into a precision-weighted control signal within a reinforcement-learning / active-inference framework. Pain magnitude, predictability, and controllability are separate computational quantities: raw nociception is aversive, but the behavioural response is determined by the *precision* (inverse-variance weighting) the organism assigns to the pain prediction error. High-precision pain drives large policy updates; low-precision pain is absorbed or ignored. The framework integrates this with the ACC-insula integration and with the ACC-striatal value coupling documented empirically.",
+    "ree_translation": "This is the paper that provides the *computational form* for the cingulate substrate's integration. It tells us: (i) z_harm_a should not enter action selection as a raw magnitude -- it should enter as a precision-weighted prediction error against an internal pain model (SD-020, harm_surprise_PE, is exactly this); (ii) the precision weighting is the adjustment magnitude Shackman's 'adaptive control hypothesis' demands; (iii) the dACC-analog module is the natural home for the precision-weighted computation, receiving pain prediction errors from AIC and outputting policy-update signals to striatal action-value. This gives us the algorithmic specification Shackman 2011 left open.",
+    "mapping_caveat": "Seymour's framework assumes a well-specified forward model for pain prediction -- ree-v3 does not yet have this cleanly. SD-020 (harm_surprise_PE) is currently provisional. Adopting the precision-weighted framing commits ree-v3 to implementing a pain forward model (probably E2_harm_a, an analog of the SD-003 counterfactual E2) and to maintaining an uncertainty estimate on its predictions. This is substantial downstream substrate work -- the framing is clean but expensive.",
+    "source_context": "Theoretical review integrating Bayesian brain, active inference, and pain-RL literatures. Author is the lead researcher on Bayesian pain. Cites primate electrophysiology, human fMRI/psychophysics, and computational models."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.35,
+    "notes": "High-quality Neuron review, computational framing is the one ree-v3 uses natively. Transfer risk is moderate because the framework is prescriptive rather than only descriptive -- adopting it commits ree-v3 to specific implementation choices (forward model, precision weighting) that are themselves substantial pieces of work."
+  }
+}

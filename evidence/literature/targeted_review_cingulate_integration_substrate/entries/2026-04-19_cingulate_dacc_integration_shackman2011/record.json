@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cingulate_integration_substrate",
+  "entry_id": "2026-04-19_cingulate_dacc_integration_shackman2011",
+  "timestamp_utc": "2026-04-19T09:16:25Z",
+  "claim_ids_tested": [],
+  "source": {
+    "title": "The integration of negative affect, pain and cognitive control in the cingulate cortex",
+    "authors": ["Alexander J. Shackman", "Tim V. Salomons", "Heleen A. Slagter", "Andrew S. Fox", "Jameel J. Winter", "Richard J. Davidson"],
+    "year": 2011,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2994",
+    "pmid": "21331082"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Meta-analysis of 380+ neuroimaging studies demonstrating dACC/aMCC as the common substrate for pain, negative affect, AND cognitive control -- strongest possible evidence that the cingulate serves as a genuine integration hub rather than a region-of-responsibility for one of these three. Very high source quality (large-scale quantitative meta-analysis). Direct mapping: dACC/aMCC is the z_harm_a action-selection consumer substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate that keeps affective-pain processing, action-conflict monitoring, and cognitive-control allocation in separate modules will fail to reproduce the Shackman meta-analytic convergence -- it will also fail to scale: the biological economy of integrating these three signals in one region exists because they are computationally interdependent.",
+    "The 'adaptive control hypothesis' Shackman proposes says dACC drives behavioural adjustment scaled to negative affect. A consumer of z_harm_a that does not *also* have access to goal/reward signals and cognitive-conflict signals will misfire: it will adjust behaviour whenever affective pain is high, even when no action is available to reduce it -- the opposite of what adaptive control demands."
+  ],
+  "tags": ["cingulate_substrate", "dacc", "mcc", "integration", "adaptive_control", "meta_analysis"],
+  "mapping": {
+    "source_claim_statement": "Quantitative meta-analysis of 380+ fMRI/PET studies across three domains (pain, negative affect, cognitive control) demonstrates a common cingulate substrate: dACC/aMCC activates for all three with overlapping peak coordinates. The authors propose the 'adaptive control hypothesis': dACC integrates negative affect (including pain) with cognitive-control demands to generate behavioural adjustments whose magnitude and direction track the current need for control. dACC is the hub where 'something is aversive' meets 'what should we do differently.'",
+    "ree_translation": "This is the paper that specifies what the z_harm_a *action-selection* consumer should look like. It is not a pure cost adder (Option A alone), because that does not integrate cognitive control. It is not a pure forward-rollout cost (Option B alone), because that does not integrate conflict. It is the joint computation: affective cost + conflict + control demand -> behavioural adjustment magnitude. ree-v3 has none of this integration. Trajectory scoring in E3 adds harm cost but does not read cognitive conflict or control demand. The new SD cluster must specify a dACC-analog module that reads (z_harm_a, z_conflict, z_control_demand) and writes an adjustment signal that reshapes trajectory selection at the policy level.",
+    "mapping_caveat": "Shackman's meta-analysis establishes co-localization but not the computational form of the integration. The 'adaptive control hypothesis' is a framework, not a specific algorithm. Mapping to ree-v3 requires committing to a computational form -- probably an expected-value-of-control type calculation (Shenhav 2013) -- that the meta-analysis itself does not pin down. Also, the meta-analysis is over human fMRI, which has limited temporal resolution; the specific dynamics of integration (which signal enters first, how they combine) require electrophysiology.",
+    "source_context": "Coordinate-based quantitative meta-analysis (ALE / activation likelihood estimation) over 380+ neuroimaging studies, human subjects."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Meta-analysis is the highest-confidence form of integrative evidence; this is the single strongest argument for treating the cingulate as an integration substrate. Mapping is strong in principle but requires additional computational specification (from Shenhav/Rushworth lines of work) to become implementable."
+  }
+}

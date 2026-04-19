@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_cingulate_integration_substrate",
+  "entry_id": "2026-04-19_cingulate_aic_interoception_salience_craig2009",
+  "timestamp_utc": "2026-04-19T09:16:25Z",
+  "claim_ids_tested": ["MECH-091"],
+  "source": {
+    "title": "How do you feel--now? The anterior insula and human awareness",
+    "authors": ["A. D. (Bud) Craig"],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2555",
+    "pmid": "19096369"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Canonical case for AIC as integrator of interoceptive, emotional, and salient signals with direct wiring to autonomic urgency and to the ACC-AIC salience network. Directly supports Option C (urgency-interrupt role) but clearly separates it from Option A (action-value integration, which is an ACC job). High source quality, strong mapping fidelity for the AIC-interrupt role. Transfer risk moderate because Craig's 'global emotional moment' construct is phenomenological.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate that routes affective pain through a single action-value channel without a separate salience/interrupt channel will fail to produce the 'sudden urgent break from committed behaviour' pattern that AIC is supposed to mediate -- the agent will integrate affective cost smoothly rather than interrupting.",
+    "Craig argues the AIC also represents internal body state (interoception). A ree-v3 substrate with no interoceptive input (drive_level, fatigue, metabolic state) will lack the baseline against which affective pain is evaluated for urgency -- the same nociception should be urgent for a depleted agent, tolerable for a well-resourced one."
+  ],
+  "tags": ["cingulate_substrate", "aic", "salience", "interoception", "urgency_interrupt", "mech_091"],
+  "mapping": {
+    "source_claim_statement": "The anterior insular cortex (AIC) integrates interoceptive (bodily-state) signals with emotional and cognitive signals to produce a 'global emotional moment' -- a unified representation of subjective feeling. It sits at the hub of the salience network (with dACC/aMCC), responds to salient events of all modalities, and has direct efferent projections to autonomic and motor control regions that allow it to trigger rapid state change. AIC-ACC salience network mediates switching between large-scale brain networks when salient events demand it.",
+    "ree_translation": "The AIC/salience-network role is Option C in the z_harm_a question: urgency-interrupt on committed behaviour when affective pain (or any other salient signal) exceeds threshold. This is computationally distinct from Option A (adding affective cost to trajectory score in ongoing action selection) -- it operates at a *different timescale* and on a *different control surface* (commitment / phase reset / network switching) rather than incremental cost integration. ree-v3 already has a stub (urgency_weight in commit threshold), but that stub is (a) off by default and (b) only modulates commitment, not full network-state switching. This paper argues the urgency mechanism should *also* phase-reset E3 (connects to MECH-091) and should be gated on interoceptive baseline, not on affective pain magnitude alone.",
+    "mapping_caveat": "Craig's framework is heavily phenomenological -- 'global emotional moment' is a consciousness construct, not a control signal. The bridge to action-selection timing requires treating his model as a *computational* one, which he does not fully commit to. Also, Craig treats AIC as hierarchically above ACC; more recent work (Menon/Uddin 2010) treats them as network peers. For ree-v3, the peer-network framing is more useful.",
+    "source_context": "Review drawing on human fMRI, primate tract-tracing, and clinical lesion data; focused on subjective-feeling representation but with direct claims about salience-network structure."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Craig is the canonical citation for AIC-as-salience-hub, though subsequent work has updated the details. The mapping to urgency-interrupt in ree-v3 is clear; the mapping to phenomenological consciousness constructs is not load-bearing for the substrate work."
+  }
+}
