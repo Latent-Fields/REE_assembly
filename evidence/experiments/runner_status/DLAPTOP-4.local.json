@@ -2,10 +2,70 @@
   "schema_version": "v1",
   "runner_pid": 95619,
   "runner_started_at": "2026-04-19T14:28:42.144896+00:00",
-  "last_updated": "2026-04-19T20:55:32.949126+00:00",
+  "last_updated": "2026-04-19T22:47:56.649896+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-445",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-032b dACC-analog adaptive control validation -- 3-arm ablation (OFF / ON-independent / ON-shared-trunk)",
+    "description": "",
+    "script": "experiments/v3_exq_445_sd032b_dacc_analog.py",
+    "started_at": "2026-04-19T20:56:40.577359+00:00",
+    "progress": {
+      "run_label": "Seed 7 / OFF",
+      "runs_done": 0,
+      "runs_total": 9,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 6676,
+    "seconds_remaining": 9360,
+    "recent_lines": [
+      "[seed=42 ON_INDEPENDENT] forward_r2=0.937 entropy=0.000 mean_bias_abs=3374526.2594 eval_harm=0.3209",
+      "Seed 42 Condition ON_SHARED",
+      "[seed=42 ON_SHARED] forward_r2=0.937 entropy=0.000 mean_bias_abs=3374526.2594 eval_harm=0.3209",
+      "Seed 7",
+      "Seed 7 Condition OFF"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-445",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC-analog adaptive control validation -- 3-arm ablation (OFF / ON-independent / ON-shared-trunk)",
+      "description": "",
+      "estimated_minutes": 156.0,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-446",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032a salience-network coordinator validation -- 2-arm ablation + synthetic injection + V4 extensibility",
+      "description": "",
+      "estimated_minutes": 69.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-447",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032d PCC-analog metastability scalar -- substrate validation (deterministic arithmetic + agent integration)",
+      "description": "",
+      "estimated_minutes": 138.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",

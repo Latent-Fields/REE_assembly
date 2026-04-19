@@ -1,6 +1,6 @@
 {
   "schema_version": "contributions/v1",
-  "last_updated": "2026-04-19T08:46:52Z",
+  "last_updated": "2026-04-19T21:58:24Z",
   "compute": {
     "cost_model": {
       "electricity_kwh_rate": 0.27,
@@ -29,12 +29,12 @@
         "hardware": "Apple M2 Air 8GB",
         "tdp_watts": 15,
         "gpu_watts": 0,
-        "total_cpu_hours": 281.587,
-        "total_experiments": 271,
+        "total_cpu_hours": 307.174,
+        "total_experiments": 280,
         "first_run": "2026-03-22T01:42:13.931249+00:00",
-        "last_run": "2026-04-18T08:55:55.567291+00:00",
-        "estimated_electricity_cost_eur": 1.1404,
-        "estimated_cloud_equivalent_cost_usd": 11.714
+        "last_run": "2026-04-19T20:55:32.932374+00:00",
+        "estimated_electricity_cost_eur": 1.2441,
+        "estimated_cloud_equivalent_cost_usd": 12.7784
       },
       "Daniel-PC": {
         "display_name": "CyberPower PC (i5-8600K + RTX 2060 Super)",
@@ -55,12 +55,25 @@
         "hardware": "AMD Ryzen 7 8700F, RTX 5070 12GB, 32GB DDR5",
         "tdp_watts": 65,
         "gpu_watts": 150,
-        "total_cpu_hours": 36.545,
-        "total_experiments": 22,
+        "total_cpu_hours": 50.97,
+        "total_experiments": 25,
         "first_run": "2026-04-05T00:18:52.367318+00:00",
-        "last_run": "2026-04-18T04:08:10.802122+00:00",
-        "estimated_electricity_cost_eur": 2.1215,
-        "estimated_cloud_equivalent_cost_usd": 1.5203
+        "last_run": "2026-04-19T04:56:18.203713+00:00",
+        "estimated_electricity_cost_eur": 2.9588,
+        "estimated_cloud_equivalent_cost_usd": 2.1204
+      },
+      "ree-cloud-1": {
+        "display_name": "Hetzner CX22 Cloud Worker",
+        "owner": "Daniel Golden",
+        "hardware": "Hetzner CX22 (2x shared vCPU, 4 GB RAM, no GPU)",
+        "tdp_watts": 20,
+        "gpu_watts": 0,
+        "total_cpu_hours": 50.429,
+        "total_experiments": 34,
+        "first_run": "2026-04-06T15:55:57.691885+00:00",
+        "last_run": "2026-04-19T07:38:40.652145+00:00",
+        "estimated_electricity_cost_eur": 0.2723,
+        "estimated_cloud_equivalent_cost_usd": 2.0979
       },
       "Mac": {
         "display_name": "Mac",
@@ -75,23 +88,23 @@
         "estimated_electricity_cost_eur": 0.0607,
         "estimated_cloud_equivalent_cost_usd": 0.6239
       },
-      "ree-cloud-1": {
-        "display_name": "Hetzner CX22 Cloud Worker",
+      "ree-cloud-2": {
+        "display_name": "Hetzner CX22 Cloud Worker (second)",
         "owner": "Daniel Golden",
         "hardware": "Hetzner CX22 (2x shared vCPU, 4 GB RAM, no GPU)",
         "tdp_watts": 20,
         "gpu_watts": 0,
-        "total_cpu_hours": 38.963,
-        "total_experiments": 31,
-        "first_run": "2026-04-06T15:55:57.691885+00:00",
-        "last_run": "2026-04-14T04:53:10.327108+00:00",
-        "estimated_electricity_cost_eur": 0.2104,
-        "estimated_cloud_equivalent_cost_usd": 1.6208
+        "total_cpu_hours": 11.647,
+        "total_experiments": 7,
+        "first_run": "2026-04-18T22:56:27.214359+00:00",
+        "last_run": "2026-04-19T07:58:05.269732+00:00",
+        "estimated_electricity_cost_eur": 0.0629,
+        "estimated_cloud_equivalent_cost_usd": 0.4845
       }
     },
     "totals": {
-      "cpu_hours": 462.497,
-      "experiments": 512
+      "cpu_hours": 525.622,
+      "experiments": 534
     }
   },
   "decisions": {
@@ -118,14 +131,14 @@
   "coding": {
     "baseline_method": "git_co_authorship",
     "baseline_date": "2026-04-19",
-    "total_lines_analyzed": 5228654,
-    "total_commits_analyzed": 2443,
+    "total_lines_analyzed": 5261238,
+    "total_commits_analyzed": 2505,
     "contributors": {
       "Claude (Anthropic)": {
-        "lines_added": 979349,
-        "commits": 936,
-        "proportion_by_lines": 0.1873,
-        "proportion_by_commits": 0.3831,
+        "lines_added": 999465,
+        "commits": 957,
+        "proportion_by_lines": 0.19,
+        "proportion_by_commits": 0.382,
         "basis": "git_history_co_authorship"
       },
       "Codex (OpenAI)": {
@@ -136,10 +149,10 @@
         "basis": "git_history_co_authorship"
       },
       "Daniel Golden": {
-        "lines_added": 4249305,
-        "commits": 1504,
-        "proportion_by_lines": 0.8127,
-        "proportion_by_commits": 0.6156,
+        "lines_added": 4261773,
+        "commits": 1545,
+        "proportion_by_lines": 0.81,
+        "proportion_by_commits": 0.6168,
         "basis": "git_history_co_authorship"
       }
     },

@@ -6,10 +6,11 @@
     "MECH-220"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-220": "weakens"
+    "MECH-220": "non_contributory"
   },
+  "evidence_direction_note": "Reclassified non_contributory (governance 2026-04-19): harm_rate_delta=0.0 in all 3 seeds with identical harm_events per condition, indicating HUB_ENABLED vs HUB_ABLATED produced no behavioral differentiation. Symptom of missing SD-032b (dACC-analog cingulate integration substrate). SD-032b now IMPLEMENTED 2026-04-19; V3-EXQ-445 queued as retest. Treated as diagnostic probe of substrate wiring, not evidence against MECH-220.",
   "outcome": "FAIL",
   "timestamp_utc": "20260418T202657Z",
   "design_note": "Prior experiment EXQ-262 was non_contributory: fwd_r2 < -0.89 because ARC-033/E2HarmSForward prerequisite was absent. This experiment uses behavioral harm_rate as primary metric -- does not require E2HarmSForward. Hub is inline HarmHub module (gate_sa: z_harm_s->z_harm_a; gate_as: z_harm_a->z_harm_s). Biological basis: Chen (2023) cingulate-insula hub for pain stream coordination.",

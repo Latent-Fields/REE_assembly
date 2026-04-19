@@ -17,6 +17,22 @@ exists, that the world can harm it, that others exist and are like it — and
 asking what computational structures those commitments strictly require. The
 architecture follows from the requirements. It is not a design; it is a derivation.
 
+REE argues that ethical agency requires specific computational capacities, not
+just rules or reward shaping. An agent must be able to distinguish self from
+world and self from other, separate imagined action from real action, attribute
+responsibility for its effects, learn from mistakes, and keep care structurally
+live in how it evaluates trajectories. On this view, ethical behaviour is not
+something added on top of intelligence, but something that depends on the right
+substrate for accountable action.
+
+Computational psychiatry is one of REE's main validation paths. If those
+capacities are genuinely required, then their failure should produce
+recognizable regime breakdowns rather than arbitrary errors: depression,
+dementia, OCD, mania, psychosis, and related disturbances can be understood as
+failures in the same substrate that underwrites agency, responsibility, and
+care. Psychiatry is therefore not separate from the project, but one of the
+main ways its architectural claims can be tested.
+
 ---
 
 ## What the derivation found

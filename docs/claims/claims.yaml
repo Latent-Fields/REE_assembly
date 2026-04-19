@@ -171,6 +171,14 @@
   location: docs/invariants.md#inv-010
   source:
     - docs/processed/legacy_tree/docs/invariants.md
+  evidence_quality_note: |
+    EXQ-430 reclassified non_contributory (governance 2026-04-19): C1 (SLEEP harm <
+    NO_SLEEP) failed 0/3 seeds with seed 13 anomaly (4.7x variance vs seeds 42/7).
+    SWS slots differentiated (C3 3/3) but did not translate to behavioral harm
+    reduction -- symptom of missing MECH-261 mode-conditioned offline-write gating
+    substrate. SD-032 cluster now IMPLEMENTED 2026-04-19; retest eligibility depends
+    on MECH-261 substrate maturity. Not evidence against INV-010 (universal
+    invariant; supported by literature).
 - id: INV-011
   title: "Imagination must be possible without belief update."
   claim_type: invariant
@@ -4282,7 +4290,7 @@
   claim_type: mechanism_hypothesis
   subject: default_mode.simulation_real_distinction_write_profile
   polarity: asserts
-  status: candidate
+  status: provisional
   claim_level: functional
   evidence_quality_note: |
     EXQ-140 reclassified non_contributory (2026-04-09): substrate gap -- no explicit
@@ -4291,7 +4299,10 @@
     source monitoring, MECH-249 neuromodulatory mode-setting). Updated 2026-04-16:
     'hypothesis_tag as categorical gate' language removed; claim reframed as functional
     requirement whose biological implementation is distributed and pending lit-pull
-    evidence (EVB-0134, EVB-0135).
+    evidence (EVB-0134, EVB-0135). Promoted candidate -> provisional 2026-04-19
+    (governance): 12 supporting runs, 0 opposing, conf 0.856. EXQ-448 (SD-032e pACC
+    autonomic) PASS confirmed first concrete wiring via hypothesis_tag skip (50 skipped,
+    drive_bias held at 0).
   depends_on:
     - ARC-014
     - INV-011
@@ -10614,6 +10625,7 @@
     across conditions. Flagged for /diagnose-errors to identify the shared-data scripting
     issue. Not evidence against SD-017; substrate may be wired correctly.
     EXQ-418a + EXQ-436 (2026-04-18, non_contributory -- governance 2026-04-19): Two experiments produce zero differential signal across seeds (action_bias_div=0.0 in EXQ-418a all seeds/conditions; slot metrics identical across WAKING/SWS_ONLY/SWS_THEN_REM in EXQ-436). Shared anomaly suggests context-conditioning substrate not wired through to policy/slot structure. Reclassified as diagnostic of substrate wiring rather than test of SD-017. Flagged for further substrate investigation.
+    EXQ-418a rerun 2026-04-19T10:24 (non_contributory -- governance 2026-04-19): Second occurrence of same zero-differential-signal pattern (action_bias_div=0.0 in both WITH_SLEEP_SD016 and WITHOUT_SLEEP_SD016 conditions, all seeds). Confirms wiring gap persists; same diagnostic classification applied.
 
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
@@ -14427,6 +14439,12 @@
   status: candidate
   implementation_phase: v3
   depends_on: [SD-011, SD-020, SD-021, ARC-016]
+  evidence_quality_note: |
+    EXQ-395 reclassified non_contributory (governance 2026-04-19): harm_rate_delta=0.0
+    in all 3 seeds with identical harm_events per condition (HUB_ENABLED vs HUB_ABLATED).
+    Symptom of missing SD-032b (dACC-analog cingulate integration substrate), not evidence
+    against MECH-220. SD-032b now IMPLEMENTED 2026-04-19; V3-EXQ-445 queued as retest.
+    Claim held pending that retest.
   description: >
     A lightweight cross-stream coordination mechanism (harm hub) allows z_harm_s and
     z_harm_a to share context without collapsing into a single stream. The hub implements

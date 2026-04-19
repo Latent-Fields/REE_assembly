@@ -137,6 +137,8 @@ These are not metaphors. They are architectural predictions, testable against cl
 
 ## Current state
 
+REE is an independent research programme developed so far by a single researcher.
+
 REE is implemented across several repositories:
 
 - **REE_assembly** (this repository): the canonical architecture, claims registry, governance pipeline, and experiment evidence. Over 200 registered claims (invariants, architectural commitments, mechanism hypotheses, open questions) under active governance.

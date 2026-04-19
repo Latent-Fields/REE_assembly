@@ -388,7 +388,11 @@
     "rem_attribution_steps": 6,
     "harm_threshold_c3": 0.02
   },
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-010": "non_contributory"
+  },
+  "evidence_direction_note": "Reclassified non_contributory (governance 2026-04-19): C1 (SLEEP harm < NO_SLEEP) failed 0/3 seeds with seed 13 anomaly (4.7x variance vs seeds 42/7). SWS slots differentiated (C3 3/3) but did not translate to behavioral harm reduction -- symptom of missing MECH-261 mode-conditioned offline-write gating substrate. SD-032 cluster now IMPLEMENTED 2026-04-19; retest eligibility depends on MECH-261 substrate maturity. Treated as diagnostic probe of substrate wiring, not evidence against INV-010.",
   "summary": "INV-010 test: SLEEP (periodic sleep cycles) vs NO_SLEEP (online only). C1 primary: SLEEP harm avoidance better in 0/3 seeds. C3 sanity: sleep cycle installs differentiated slots in 3/3 seeds. Outcome: FAIL.",
   "scenario": "Two-arm probe: periodic offline integration vs continuous online learning",
   "interpretation": "PASS supports INV-010 ('Offline integration exists and is required'): agents with periodic sleep cycles accumulate less harm in eval episodes, and the SWS pass functionally installs differentiated context priors. Both halves of INV-010 confirmed: offline integration exists (C3) and improves behavioral outcomes (C1). FAIL would suggest the current substrate does not yet show measurable behavioral benefit from offline integration -- likely requires longer training, more complex environments, or fuller sleep pipeline (V4 scope)."
