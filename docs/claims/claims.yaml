@@ -17428,6 +17428,40 @@
     mode-switching function from Craig 2009 (Nat Rev Neurosci) AIC account.
   evidence_quality_note: >
     Registered pre-implementation. See SD-032 parent.
+  implementation_note: >
+    IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/salience_coordinator.py
+    (SalienceCoordinator, SalienceCoordinatorConfig, DEFAULT_MODE_NAMES,
+    DEFAULT_GATE_WEIGHTS). Non-trainable arithmetic. Reads SD-032b dACC
+    bundle (pe / foraging_value / choice_difficulty), SD-012 drive_level,
+    and the agent offline-mode flag (proxy for SD-032d stability scalar
+    until SD-032d lands). Registered input slots aic_salience /
+    pcc_stability / pacc_autonomic are no-op until SD-032c/d/e land --
+    callers extend via update_signal(name, value). Outputs operating_mode
+    (soft probability vector over four V3 modes via softmax over per-mode
+    affinity logits, default biased to external_task), discrete current_mode
+    updated only on threshold crossing (hysteresis), and MECH-259
+    mode_switch_trigger boolean. Hosts MECH-261 dict-keyed write-gate
+    registry populated from the SD-032 spec table; write_gate(target_name)
+    returns the soft-weighted sum. mode_names is a list (not a fixed tuple)
+    and register_target allows V4 substrates (SD-033e
+    parallel_goal_deliberation) to register their own gate profile without
+    coordinator schema changes. Integrated into ree_core/agent.py
+    REEAgent.select_action immediately after the dACC bundle is built;
+    ticks on every action selection.
+    Config: REEConfig.use_salience_coordinator (bool, default False).
+    Sub-knobs: salience_switch_threshold (default 1.0),
+    salience_stability_scaling (1.0), salience_softmax_temperature (1.0),
+    salience_external_task_bias (1.0), salience_dacc_pe_weight (1.0),
+    salience_dacc_foraging_weight (0.5), salience_apply_to_dacc_bias
+    (False -- when True, scales dACC score_bias by the e3_policy
+    write-gate so internal_replay attenuates dACC influence on action
+    selection).
+    Backward compatible: use_salience_coordinator=False by default; existing
+    experiments unaffected. DACCtoE3Adapter is RETAINED as the score_bias
+    source until SD-033 substrates consume operating_mode natively (staged
+    removal). MECH-094: not authored here -- MECH-261 generalises MECH-094
+    via the per-target gate registry.
+    Validation experiment: V3-EXQ-446 queued.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: SD-032b
   title: "dACC/aMCC-analog (adaptive control): module that reads z_harm_a precision-weighted prediction error, z_conflict, and control-demand signals; outputs behavioural-adjustment magnitude; writes to a learnable striatal-analog action-value target."
@@ -17771,6 +17805,19 @@
     update within mode.
   evidence_quality_note: >
     Registered pre-implementation. See SD-032 parent.
+  implementation_note: >
+    IMPLEMENTED 2026-04-19 within SalienceCoordinator
+    (ree_core/cingulate/salience_coordinator.py). effective_threshold =
+    switch_threshold * (1 + stability_scaling * pcc_stability). Trigger
+    fires when salience_aggregate (weighted sum of dacc_pe + future
+    aic_salience) exceeds effective_threshold AND argmax(operating_mode)
+    differs from the discretely-held current_mode. Discrete mode update
+    happens only on trigger (Schmitt-trigger hysteresis), not every tick;
+    prevents flicker when soft vector hovers near a boundary. Threshold is
+    a Python float (not learnable in V3 minimum-viable; spec allows
+    learnable refinement in a follow-up). Validation experiment: V3-EXQ-446
+    measures trigger fire rate under synthetic high-PE injection vs
+    baseline.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: MECH-260
   title: "dACC-analog bias suppression against recency / monostrategy: the dACC module writes a counter-bias that resists repeating the last-rewarded trajectory when long-term value information demands exploration. Candidate explanation of the monostrategy failure observed in fishtank_viz and earlier queue-diversity results."
@@ -17971,6 +18018,29 @@
     coordinator overlay (operating_mode driven by SD-032a output) is
     REE-specific and has no direct rodent validation -- it requires
     the EXP-0148 ablation test after V3 implementation.
+  implementation_note: >
+    PARTIALLY IMPLEMENTED 2026-04-19 within SalienceCoordinator
+    (ree_core/cingulate/salience_coordinator.py). The MECH-261 write-gate
+    registry is a dict-of-dicts: outer key = target substrate name
+    (sd_033a, sd_033b, sd_033c, sd_033d, hc_viability, sensory_buffer,
+    autonomic, e3_policy), inner key = mode name. write_gate(target_name)
+    returns the soft-weighted sum sum_{mode} operating_mode[mode] *
+    weights[target][mode], clamped to [0, 1]. Soft-weighted (Carr/Jadhav/
+    Frank 2011 mixed-subpopulation biology), not one-hot. Default weights
+    populated from the spec table in
+    sd_032_cingulate_integration_substrate.md. mode_names is a list and
+    register_target(name, weights) accepts new mode keys, so V4 SD-033e
+    parallel_goal_deliberation can be added without coordinator schema
+    changes.
+    Substrate-side application is NOT yet implemented -- SD-033 substrates
+    do not yet exist in ree-v3, so the gates are produced but not consumed
+    downstream except via the optional salience_apply_to_dacc_bias path
+    (scales the dACC score_bias by write_gate("e3_policy")). Full MECH-261
+    consumption requires SD-033a/b/c/d substrate landings; the coordinator
+    side is in place to be consumed when those land.
+    Validation experiment: V3-EXQ-446 confirms gate values are in [0, 1]
+    and respond to operating_mode changes; full forward-propagation bias
+    test (EXP-0148) deferred until SD-033 substrates land.
   location: evidence/literature/targeted_review_systems_consolidation_waking_propagation/synthesis.md
 - id: SD-033
   title: "PFC subdivision architecture: a network-level module with lateral-PFC-analog (mid-lateral rule/goal), OFC-analog (specific-outcome prediction and task-structure map), vmPFC-analog (value integration), premotor/SMA-analog (sequence execution), and frontopolar-analog (branching / nested control; V4 scope) subdivisions. Primary output: the rule/policy context that gates action selection and the natural write target for MECH-261 mode-conditioned gating."

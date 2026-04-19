@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-032 (parent) + SD-032a–e (subdivisions)
 **Subject:** `cingulate.integration_substrate`
-**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; parent cluster still pre-implementation.
+**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; SD-032a IMPLEMENTED 2026-04-19; parent cluster still pre-implementation.
 **Registered:** 2026-04-19
 **Depends on:** SD-011, SD-012, SD-020, SD-021, MECH-091, MECH-094, MECH-220
 **Paired with:** SD-033 (PFC subdivision architecture) — together form the V3 cognitive-control backbone
@@ -36,6 +36,38 @@ The lit-pull (`targeted_review_cingulate_integration_substrate`, 9 entries) refr
 Network-level module whose inputs are the five subdivisions' signals and whose outputs are (i) `operating_mode`: a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, and (ii) `mode_switch_trigger`: a boolean that fires when any subdivision's precision-weighted salience exceeds the MECH-259 threshold. Mode transitions are discrete (atomic broadcast to all downstream gates); the threshold itself may be graded and learnable. The `operating_mode` vector is the primary input to MECH-261's write-gating family.
 
 **Substrate signature:** an ablation of SD-032a (forcing `operating_mode` to a fixed external_task vector) should abolish coordinated mode switching without affecting the within-mode computations in SD-032b/c/d/e.
+
+**Implementation (2026-04-19):** `ree_core/cingulate/salience_coordinator.py`
+(`SalienceCoordinator`, `SalienceCoordinatorConfig`, `DEFAULT_MODE_NAMES`,
+`DEFAULT_GATE_WEIGHTS`). Non-trainable arithmetic. Reads SD-032b dACC
+bundle (`pe`, `foraging_value`, `choice_difficulty`), SD-012 `drive_level`,
+and the agent offline-mode flag (proxy for SD-032d stability). Registered
+input slots `aic_salience`, `pcc_stability`, `pacc_autonomic` are no-op
+until SD-032c/d/e land -- callers extend via `update_signal(name, value)`.
+Outputs (i) `operating_mode` soft probability vector over the four V3 modes
+(softmax over per-mode affinity logits, default biased to external_task),
+(ii) discrete `current_mode` updated only on threshold crossing
+(hysteresis), (iii) MECH-259 `mode_switch_trigger` boolean fired when
+salience aggregate exceeds `switch_threshold * (1 + stability_scaling *
+pcc_stability)` AND the soft-vector argmax differs from the current mode.
+Hosts MECH-261 dict-keyed write-gate registry (`{target: {mode: weight}}`)
+populated from the spec table; `write_gate(target_name)` returns the
+soft-weighted sum. `register_target(name, weights)` allows V4 substrates
+(e.g. SD-033e parallel_goal_deliberation) to register their own gate
+profile without coordinator schema changes -- mode_names is also a list,
+not a fixed-arity tuple. Integrated into `ree_core/agent.py
+REEAgent.select_action` immediately after the dACC bundle is built; ticks
+on every action selection. Config flag `REEConfig.use_salience_coordinator`
+(default False); knobs `salience_switch_threshold` (default 1.0),
+`salience_stability_scaling` (1.0), `salience_softmax_temperature` (1.0),
+`salience_external_task_bias` (1.0), `salience_dacc_pe_weight` (1.0),
+`salience_dacc_foraging_weight` (0.5), `salience_apply_to_dacc_bias`
+(False -- when True, scales the dACC score_bias by the e3_policy
+write-gate so internal_replay attenuates dACC influence on action
+selection). DACCtoE3Adapter is RETAINED as the score_bias source until
+SD-033 substrates consume `operating_mode` natively (staged removal).
+MECH-094: not authored here -- coordinator emits the gate that MECH-094
+generalises to. Validation experiment: V3-EXQ-446 queued.
 
 ### SD-032b — dACC / aMCC-analog (adaptive control)
 
