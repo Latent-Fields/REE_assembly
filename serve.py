@@ -315,6 +315,60 @@ def save_review_tracker(data: dict) -> None:
     REVIEW_TRACKER_FILE.write_text(json.dumps(data, indent=2) + "\n")
 
 
+# Cache of experiment dir_name -> set(run_id). Rebuilt every _DIR_RUN_TTL seconds
+# so the explorer can resolve `reviewed_run_ids` back to dir_names for the
+# "discussed" badge without a startup migration. Scanning ~430 dirs takes ~2s.
+_DIR_RUN_CACHE: dict = {"built_at": 0.0, "map": {}}
+_DIR_RUN_TTL = 60.0
+
+
+def _build_dir_to_runs() -> dict:
+    """Scan evidence/experiments/ and build {dir_name: {run_id, ...}}.
+
+    Reads manifest.json under each experiment dir (and any flat *.json files
+    with a run_id field) so that runs marked in reviewed_run_ids can be matched
+    back to their parent directory.
+    """
+    exp_root = SERVE_DIR / "evidence" / "experiments"
+    result: dict = {}
+    if not exp_root.is_dir():
+        return result
+    for d in exp_root.iterdir():
+        if not d.is_dir():
+            continue
+        if d.name in ("runner_status", "schemas", "scripts"):
+            continue
+        runs: set = set()
+        for m in d.glob("**/manifest.json"):
+            try:
+                data = json.loads(m.read_text())
+                rid = data.get("run_id")
+                if rid:
+                    runs.add(rid)
+            except Exception:
+                pass
+        for j in d.glob("*.json"):
+            try:
+                data = json.loads(j.read_text())
+                if isinstance(data, dict):
+                    rid = data.get("run_id")
+                    if rid:
+                        runs.add(rid)
+            except Exception:
+                pass
+        if runs:
+            result[d.name] = runs
+    return result
+
+
+def get_dir_to_runs() -> dict:
+    now = time.time()
+    if now - _DIR_RUN_CACHE["built_at"] > _DIR_RUN_TTL:
+        _DIR_RUN_CACHE["map"] = _build_dir_to_runs()
+        _DIR_RUN_CACHE["built_at"] = now
+    return _DIR_RUN_CACHE["map"]
+
+
 def read_merged_runner_status() -> dict:
     """Read and merge per-machine runner_status files into a single view.
 
@@ -916,30 +970,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/review/tracker":
             data = load_review_tracker()
-            # Derive experiment dir names from reviewed_run_ids so that previously
-            # reviewed runs show as "discussed" in the explorer without a migration.
-            # run_id formats:
-            #   "20260316T061908_path_memory_ablation_v2"         (timestamp-first)
-            #   "20260320T155338Z_v3_exq_056_sd010_..._v3"        (timestamp-first V3)
-            #   "v3_exq_048b_mech057b_..._20260320T223120Z_v3"    (type-first V3)
-            #   "2026-02-13T224000Z_commit-dual-error-channels_..." (ISO timestamp-first)
-            reviewed_dirs = set()
-            for run_id in data.get("reviewed_run_ids", []):
-                # Strip leading timestamp (digits, T, Z, colon, hyphen, dot)
-                name = re.sub(r'^[\dTZ:.\-]+_', '', run_id)
-                # Strip trailing _v1/_v2/_v3
-                name = re.sub(r'_v[123]$', '', name)
-                # Strip embedded trailing timestamp (type-first format):
-                # "v3_exq_048b_..._20260320T223120Z" -> "v3_exq_048b_..."
-                name = re.sub(r'_\d{8}T\d{6}Z?$', '', name)
-                # Strip trailing _seed\d+ and further suffixes
-                name = re.sub(r'_seed\d+.*$', '', name)
-                name = re.sub(r'_s\d+_.*$', '', name)
-                # Normalize hyphens to underscores
-                name = name.replace('-', '_')
-                if name:
-                    reviewed_dirs.add(name)
-            # Merge explicit discussed list with reviewed-derived dirs
+            # Map reviewed_run_ids back to experiment dir_names via manifests on
+            # disk so previously-reviewed runs show as "discussed" in the explorer
+            # (explorer.html matches by dir_name only). Ad-hoc regex derivation
+            # misses claim_probe_* dirs whose manifest run_ids don't match the
+            # dir name (e.g. claim_probe_arc_016 contains precision_regime_probe).
+            reviewed_set = set(data.get("reviewed_run_ids", []))
+            reviewed_dirs = {
+                dir_name for dir_name, runs in get_dir_to_runs().items()
+                if runs & reviewed_set
+            }
             discussed = list(set(data.get("discussed_experiment_dirs", [])) | reviewed_dirs)
             body = json.dumps({
                 "discussed_experiment_dirs": discussed,
