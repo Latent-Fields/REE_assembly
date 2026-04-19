@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 22984,
   "runner_started_at": "2026-04-18T21:21:49.184446+00:00",
-  "last_updated": "2026-04-19T04:56:18.203713+00:00",
+  "last_updated": "2026-04-19T04:57:07.066227+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -25,17 +25,6 @@
       "description": "",
       "estimated_minutes": 104.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-324c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 86.7,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -775,6 +764,20 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 27267.6
+    },
+    {
+      "queue_id": "V3-EXQ-324c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-020 harm surprise PE: multi-episode eval fix (EWIN-PC requeue)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=46: FAIL surp_pe=0.0643 surp_ema=0.2608 n_eval=400 c1=False c2=False c3=True | C:\\Users\\Eoin\\REE_Working\\ree-v3\\experiments\\v3_exq_324b_sd020_harm_surprise_pe.py:444: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Output written: C:\\Users\\Eoin\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_324b_sd020_harm_surprise_pe_20260419T045630Z_v3.json",
+      "started_at": "2026-04-19T04:56:28.448961+00:00",
+      "completed_at": "2026-04-19T04:57:07.054247+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 38.6
     }
   ]
 }
