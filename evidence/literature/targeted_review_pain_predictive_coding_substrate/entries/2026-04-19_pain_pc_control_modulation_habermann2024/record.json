@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_control_modulation_habermann2024",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "How control modulates pain",
+    "authors": ["Marie Habermann", "Andreas Strube", "Christian Buchel"],
+    "year": 2024,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2024.09.014"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "2024 review from the Buchel lab integrating control-over-pain effects into a Bayesian pain model. Places anterior insula, MFG, and ACC as the substrate of control-modulation, linked via precision-weighted expectations. Supports the MECH-258 framing (precision-weighted PE). Lower weight because it is review-level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A raw-magnitude model of pain-into-action-value (not precision-weighted) is argued against by the control literature this review synthesises.",
+    "Does not directly address stream-substrate sharing."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "predictive_coding", "control", "precision", "buchel", "2024"],
+  "mapping": {
+    "source_claim_statement": "Control over pain modulates perceived pain via changes in expectation and their precision. The anterior insula, middle frontal gyrus, and ACC are the neurobiological substrate. The effect is predicted by a Bayesian pain model with precision-weighted integration.",
+    "ree_translation": "Supports the precision-weighted PE formulation in MECH-258: 'PE = z_harm_a_observed - E2_harm_a(...); dACC_input = precision * PE'. The review brings control (our SD-032c-ish signal) into the same Bayesian model, which is architecturally consistent with a shared-substrate forward model whose precision is modulated by ACC/AIC signals.",
+    "mapping_caveat": "Does not directly test within-pain stream separation. Relevant to MECH-258 formulation more than to the shared-vs-parallel decision.",
+    "source_context": "2024 review, Trends in Cognitive Sciences."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "High-quality venue, but review-level. Mapping is primarily to MECH-258's precision-weighting, not the sharing decision."
+  }
+}

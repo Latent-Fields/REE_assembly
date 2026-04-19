@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_modality_specific_insula_fazeli2018",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "Pain-Related Expectation and Prediction Error Signals in the Anterior Insula Are Not Related to Aversiveness",
+    "authors": ["Sepideh Fazeli", "Christian Buchel"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0671-18.2018"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Directly tests whether the pain PE signal in ventral anterior insula is pain-specific or a general aversive-event signal by crossing painful stimuli with aversive pictures in a cross-modal expectation paradigm. Pain-specific PE, not general aversiveness, drives the ventral anterior insula integration. Strong design, clean fMRI dissociation. Most relevant for arguing that the pain forward model must be modality-specific at the integration stage.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A fully shared aversive-event forward model is falsified by modality-specific PE signals.",
+    "If a single forward model generated both pain PE and non-pain aversive PE, ventral anterior insula should respond to both; it does not."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "predictive_coding", "modality_specificity", "buchel"],
+  "mapping": {
+    "source_claim_statement": "The ventral anterior insula integrates pain intensity with pain-specific expectations and prediction errors. Modality-mismatched cues (aversive picture cue paired with pain delivery) eliminate the integration signal. The effect is pain-selective, not general-aversive.",
+    "ree_translation": "The forward model that generates the PE consumed by SD-032b must be modality-specific to pain. A generic aversiveness predictor is insufficient. Within the pain family, this argues against collapsing across sub-modalities (affective vs sensory-discriminative) but does not resolve whether those two share a common trunk.",
+    "mapping_caveat": "Fazeli distinguishes pain from non-pain aversive events, not within-pain sub-modalities. It establishes modality-specificity at the coarse level. It is not a direct test of E2_harm_a vs E2_harm_s separation.",
+    "source_context": "Human fMRI, cross-modal expectancy paradigm (pain vs aversive pictures), healthy males."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Mapping fidelity lowered because it speaks to between-modality specificity (pain vs pictures), not within-modality sub-stream separation (A-delta vs C). Still strong because it shows the predictive machinery is at least stream-indexed."
+  }
+}

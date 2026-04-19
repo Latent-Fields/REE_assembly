@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_s1_acc_model_song2021",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "Predictive coding models for pain perception",
+    "authors": ["Yuru Song", "Mingchen Yao", "Helen Kemprecos", "Aine Byrne", "Zhengdong Xiao", "Qiaosheng Zhang", "Amrita Singh", "Jing Wang", "Zhe S Chen"],
+    "year": 2021,
+    "venue": "Journal of Computational Neuroscience",
+    "doi": "10.1007/s10827-021-00780-x"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Most REE-relevant paper in the pull. Builds a biophysical predictive-coding model with S1 (sensory-discriminative) and ACC (affective-emotional) as two coupled but distinct populations, fit to rat LFP data from both regions. This is essentially the computational architecture REE is proposing with E2_harm_s (SD-032b's upstream sensory predictor) and E2_harm_a (upstream affective predictor) as two coupled populations. Direct empirical + computational grounding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A single unified pain forward model is falsified: S1 and ACC populations have distinct temporal dynamics and require separate model variables.",
+    "A fully decoupled parallel model is also weakened: the paper models S1 and ACC with explicit coupling terms, not as independent populations."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "predictive_coding", "s1_acc_coupling", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "Pain is a multidimensional experience involving sensory-discriminative (S1) and affective-emotional (ACC) processes. A predictive-coding model with coupled but distinct S1 and ACC populations reproduces LFP dynamics in both naive and chronic-pain animals, including expectation effects, placebo/nocebo, and chronic-pain alterations.",
+    "ree_translation": "Direct biological and computational precedent for REE's architecture. S1 and ACC carry distinct forward-prediction populations (-> z_harm_s and z_harm_a in REE) but are coupled at the network level (-> shared trunk or crosstalk between E2_harm_s and E2_harm_a). The paper's coupling parameters are the computational analog of what REE would call shared-substrate weights.",
+    "mapping_caveat": "Rat LFP data (not human) and a population-level model (not a neural network forward model). The coupling between S1 and ACC in the model is phenomenological, not cast as a literal shared latent trunk.",
+    "source_context": "Rodent electrophysiology + computational model, naive and chronic-pain conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "Transfer risk elevated because rat LFP to REE computational agent is a long mapping path. Mapping fidelity is very high because the architecture directly parallels ours."
+  }
+}

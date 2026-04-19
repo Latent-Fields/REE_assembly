@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_temporal_spectral_strube2021",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "The temporal and spectral characteristics of expectations and prediction errors in pain and thermoception",
+    "authors": ["Andreas Strube", "Michael Rose", "Sepideh Fazeli", "Christian Buchel"],
+    "year": 2021,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.62809"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "EEG temporal/spectral characterisation of pain predictive coding. Shows alpha-to-beta activity reflects expectation, and gamma activity is negatively modulated by prediction errors. The finding that pain PE inverts the typical sensory-cortex gamma-PE signature (which normally increases with PE) suggests pain uses a distinct computational dialect even within predictive coding. Useful but not architecturally decisive -- it says 'pain PC uses different oscillatory code' rather than 'pain has N forward models'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pain forward prediction used the same oscillatory code as visual/auditory PC, these data would show positive gamma PE modulation; they show the opposite.",
+    "Does not falsify either the shared-substrate or parallel-substrate architecture directly."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "predictive_coding", "eeg", "buchel"],
+  "mapping": {
+    "source_claim_statement": "Alpha-to-beta oscillatory activity tracks stimulus intensity expectation; gamma-band activity is negatively modulated by the absolute prediction error. This pattern differs from the positive gamma-PE coupling in visual and auditory perception but resembles the gamma-for-correct pattern in working memory.",
+    "ree_translation": "The pain PE signal has a distinct oscillatory fingerprint. In REE terms, this is evidence that the pain forward-prediction implementation is not just a re-parameterised visual predictive coder. It is agnostic on whether E2_harm_a and E2_harm_s share substrate, but it does say that whatever substrate is chosen, the PE computation has a pain-specific computational character.",
+    "mapping_caveat": "EEG cannot distinguish A-delta from C-fiber streams. The temporal profile is averaged across both. The finding speaks to pain-vs-non-pain modality dialect, not within-pain stream architecture.",
+    "source_context": "Human EEG, probabilistic heat-pain expectation paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Mapping fidelity low because the paper does not address the shared-vs-separate question directly. Included because it tightens the biological constraints on MECH-258 and indicates pain PC has a distinct oscillatory regime."
+  }
+}

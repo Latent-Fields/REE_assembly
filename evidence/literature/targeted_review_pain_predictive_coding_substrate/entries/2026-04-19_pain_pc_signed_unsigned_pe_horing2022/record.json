@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_signed_unsigned_pe_horing2022",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "The human insula processes both modality-independent and pain-selective learning signals",
+    "authors": ["Bjorn Horing", "Christian Buchel"],
+    "year": 2022,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.3001540"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Single most informative paper in the pull. It decomposes insula PE signals into modality-independent (unsigned, anterior insula, pain and sound) and modality-specific (signed, dorsal posterior insula, pain only). This is exactly the shape of architecture needed to distinguish 'shared trunk' from 'fully separate' forward models. Large N (47), within-subject design, PLoS Biology peer review. Directly resolves the biological architecture question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A single modality-shared forward model is falsified: signed pain-specific PE is topographically distinct from general unsigned aversive PE.",
+    "A set of fully independent per-modality forward models is also weakened: the unsigned anterior-insula PE is shared across pain and sound, suggesting some common surprise computation."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "predictive_coding", "signed_pe", "buchel"],
+  "mapping": {
+    "source_claim_statement": "Anterior insula codes unsigned prediction errors (magnitude of surprise) for both pain and aversive sound. Dorsal posterior insula codes signed intensity prediction errors specifically for pain. The insula thus carries both a modality-general surprise signal and a modality-specific learning signal.",
+    "ree_translation": "The biology supports a two-layer architecture: a shared 'surprise magnitude' computation (modality-general, could be implemented as a shared trunk) plus a modality-specific signed-PE computation (which must be per-stream). For REE, this maps onto 'shared trunk with stream-specific heads': E2_harm_a and E2_harm_s would share an expectation-generating substrate but diverge for signed, stream-specific PE computation. MECH-258's precision-weighted PE is modality-specific; it must be computed per-stream.",
+    "mapping_caveat": "Horing tested pain vs sound, not within-pain sub-modalities. It directly supports the modality-specificity of signed PEs across aversive modalities; the transfer to A-delta vs C-fiber is by analogy.",
+    "source_context": "Human fMRI, N=47, associative learning task crossing pain and aversive sound with skin-conductance measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Mapping fidelity high because the paper explicitly addresses the question of shared vs modality-specific PE machinery. Transfer risk reduced because the architectural logic is substrate-agnostic."
+  }
+}

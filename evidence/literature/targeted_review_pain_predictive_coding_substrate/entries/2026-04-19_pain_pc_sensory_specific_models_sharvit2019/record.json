@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_sensory_specific_models_sharvit2019",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "Sensory-specific predictive models in the human anterior insula",
+    "authors": ["Gil Sharvit", "Patrik Vuilleumier", "Corrado Corradi-Dell'Acqua"],
+    "year": 2019,
+    "venue": "F1000Research",
+    "doi": "10.12688/f1000research.17961.1"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Synthesis commentary comparing two independent cross-modal pain-expectancy studies (Sharvit 2018, Fazeli & Buchel 2018). Argues explicitly that the anterior insula runs sensory-specific predictive models, with analogous but dissociable machinery for pain, disgust, and other aversive modalities. Lower weight than empirical entries because it is a commentary/review, but valuable for the architectural synthesis it provides.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A single cross-modal aversive predictive model is falsified by sensory-specificity of the anterior insula PE.",
+    "Does not directly test within-pain stream separation."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "predictive_coding", "sensory_specificity", "review"],
+  "mapping": {
+    "source_claim_statement": "The anterior insula maintains multiple sensory-specific prospective models, one per aversive modality (pain, disgust), rather than a single general unpleasantness predictor. Sub-portions of the middle-anterior insula differentiate expectancy signals from prediction-error signals.",
+    "ree_translation": "Sensory-specific prospective models in the same anatomical region is the biological precedent for REE's per-stream forward-model family (MECH-256/257 -- single substrate with gated readout). By extension, within pain, it is coherent to have one shared substrate that exposes different heads for z_harm_s and z_harm_a. The paper supports option (a).",
+    "mapping_caveat": "The studies reviewed distinguish pain from disgust, not A-delta from C-fiber within pain. The within-pain extrapolation is by analogy.",
+    "source_context": "Review/commentary paper synthesising two empirical fMRI studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Source quality lower because it is a review/commentary rather than primary empirical data. Mapping fidelity high because it directly frames the architectural question."
+  }
+}

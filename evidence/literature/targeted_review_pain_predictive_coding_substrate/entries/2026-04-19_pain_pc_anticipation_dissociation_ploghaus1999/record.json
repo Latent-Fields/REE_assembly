@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_anticipation_dissociation_ploghaus1999",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "Dissociating pain from its anticipation in the human brain",
+    "authors": ["A Ploghaus", "I Tracey", "J S Gati", "S Clare", "R S Menon", "P M Matthews", "J N Rawlins"],
+    "year": 1999,
+    "venue": "Science",
+    "doi": "10.1126/science.284.5422.1979"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Canonical early paper establishing that pain anticipation activates distinct-but-adjacent sites to pain experience itself (medial frontal lobe, insular cortex, cerebellum). Foundational for all subsequent predictive-coding-in-pain work. Old (1999) but repeatedly replicated, and cited as the origin point by essentially all papers in this corpus.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A single unified pain forecast-plus-experience substrate is falsified by the anatomical separation of anticipation and experience sites.",
+    "Early paper with modest N and first-generation fMRI; replication in larger modern studies is what gives it durable weight."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "anticipation", "foundational", "tracey", "ploghaus"],
+  "mapping": {
+    "source_claim_statement": "Anticipation of pain activates sites within medial frontal lobe, insular cortex, and cerebellum that are distinct from, but adjacent to, the sites mediating pain experience itself.",
+    "ree_translation": "Biological precedent for keeping the forward predictor (E2_harm_a / E2_harm_s) functionally distinct from the consumer (dACC-analog SD-032b). Supports that the prediction machinery and the experience machinery are not the same module. Less direct evidence on whether there are one or two forward predictors.",
+    "mapping_caveat": "1999 study with first-generation fMRI and small N by modern standards. Adjacent-but-distinct anatomy in Science-era fMRI is a coarse spatial claim.",
+    "source_context": "Human fMRI, cued pain anticipation, healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "Downweighted for being an older small-N fMRI study, upweighted because it is canonical and has been replicated at larger scales since."
+  }
+}

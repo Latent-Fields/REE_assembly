@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pain_predictive_coding_substrate",
+  "entry_id": "2026-04-19_pain_pc_insula_intensity_dissociation_geuter2017",
+  "timestamp_utc": "2026-04-19T13:15:03Z",
+  "claim_ids_tested": ["MECH-258", "SD-032b"],
+  "source": {
+    "title": "Functional dissociation of stimulus intensity encoding and predictive coding of pain in the insula",
+    "authors": ["Stephan Geuter", "Sabrina Boll", "Falk Eippert", "Christian Buchel"],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.24770"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Direct fMRI dissociation of sensory-intensity encoding (posterior insula) from predictive-coding integration (anterior insula) in a probabilistic heat-pain paradigm. High source quality (Buchel lab, eLife, adequate N, autonomic measures replicate the BOLD finding). Maps cleanly onto REE's question: the z_harm_s analog is encoded elsewhere than where z_harm_a predictive integration happens. Slight ambiguity: Geuter does not directly test whether there are two independent forward models; it shows anatomical dissociation of consumers, which is consistent with shared or separate forward models upstream.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Shared substrate is falsified if posterior insula (intensity) and anterior insula (integration) are driven by a single common predictor rather than two separable signal streams.",
+    "A unified pain forecast that simply branches at readout would predict identical temporal signatures in both regions; Geuter shows divergent response patterns."
+  ],
+  "tags": ["mech-258", "sd-032b", "pain", "predictive_coding", "insula", "buchel"],
+  "mapping": {
+    "source_claim_statement": "Anterior insula responses follow a predictive-coding pattern (expectation + prediction error integration), whereas posterior insula encodes stimulus intensity.",
+    "ree_translation": "The consumer of z_harm_a (affective PE integration, SD-032b) is anatomically and functionally distinct from the consumer of z_harm_s (intensity encoding, sensory-discriminative stream). The paper supports a split at the consumer side. Whether the upstream forward models are shared is not directly tested.",
+    "mapping_caveat": "Geuter is silent on the forward-model architecture upstream. It shows two different consumers of pain signals, not two independent predictors. A single forward model with two readouts is consistent with these data.",
+    "source_context": "Human fMRI, probabilistic heat-pain cued paradigm, healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Healthy human fMRI -> REE computational agent. Low-to-moderate transfer risk because the architectural question (where does integration happen relative to intensity) is substrate-agnostic."
+  }
+}

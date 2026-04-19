@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-19T12:22:58.403983Z`
+Generated: `2026-04-19T13:23:05.621314Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -128,6 +128,7 @@ Generated: `2026-04-19T12:22:58.403983Z`
 | `targeted_review_mech_230` | [`2026-04-15_mech_230_vhpc_approach_avoidance_separation_patterson2025`](targeted_review_mech_230/entries/2026-04-15_mech_230_vhpc_approach_avoidance_separation_patterson2025/record.json) | 4 | [`summary`](targeted_review_mech_230/entries/2026-04-15_mech_230_vhpc_approach_avoidance_separation_patterson2025/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_medications_sleep_dementia` | [`2026-04-05_mech176_suvorexant_alzheimer_herring2020`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/record.json) | 10 | [`summary`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/summary.md) |
+| `targeted_review_pain_predictive_coding_substrate` | [`2026-04-19_pain_pc_temporal_spectral_strube2021`](targeted_review_pain_predictive_coding_substrate/entries/2026-04-19_pain_pc_temporal_spectral_strube2021/record.json) | 9 | [`summary`](targeted_review_pain_predictive_coding_substrate/entries/2026-04-19_pain_pc_temporal_spectral_strube2021/summary.md) |
 | `targeted_review_paper_fm2_replay_ordering` | [`2026-04-06_mech165_salient_replay_priority_huelingo2023`](targeted_review_paper_fm2_replay_ordering/entries/2026-04-06_mech165_salient_replay_priority_huelingo2023/record.json) | 4 | [`summary`](targeted_review_paper_fm2_replay_ordering/entries/2026-04-06_mech165_salient_replay_priority_huelingo2023/summary.md) |
 | `targeted_review_paper_fm3_schema_prior` | [`2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012`](targeted_review_paper_fm3_schema_prior/entries/2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012/record.json) | 3 | [`summary`](targeted_review_paper_fm3_schema_prior/entries/2026-04-06_inv_044_mech_166_schema_novelty_memory_vankesteren2012/summary.md) |
 | `targeted_review_paper_fm4_precision_staleness` | [`2026-04-06_mech_123_predictive_coding_precision_rao1999`](targeted_review_paper_fm4_precision_staleness/entries/2026-04-06_mech_123_predictive_coding_precision_rao1999/record.json) | 3 | [`summary`](targeted_review_paper_fm4_precision_staleness/entries/2026-04-06_mech_123_predictive_coding_precision_rao1999/summary.md) |
