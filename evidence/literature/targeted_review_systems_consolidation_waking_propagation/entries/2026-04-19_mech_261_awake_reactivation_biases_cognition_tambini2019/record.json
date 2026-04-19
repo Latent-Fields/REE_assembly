@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_systems_consolidation_waking_propagation",
+  "entry_id": "2026-04-19_mech_261_awake_reactivation_biases_cognition_tambini2019",
+  "timestamp_utc": "2026-04-19T11:01:41Z",
+  "claim_ids_tested": ["MECH-261"],
+  "source": {
+    "title": "Awake Reactivation of Prior Experiences Consolidates Memories and Biases Cognition",
+    "authors": ["Arielle Tambini", "Lila Davachi"],
+    "year": 2019,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.07.008",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1364661319301834"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct synthesis of the human fMRI literature demonstrating that awake post-encoding reactivation of prior experiences (during rest periods or task breaks) both consolidates those memories and biases subsequent cognitive processing. This is the most explicit available statement of the MECH-261 central claim: content active in internal_replay mode propagates forward into external_task mode and shapes subsequent action. Confidence 0.80 because the review is human fMRI (less mechanistic resolution than rodent electrophysiology) but the cognitive-bias findings directly test the forward propagation claim that MECH-261 depends on.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The forward-propagation bias is documented for perceptual and memory-bias effects rather than direct action-selection effects. A MECH-261 implementation that assumes replay->action coupling in V3 is extrapolating from cognitive-bias to action-bias, which this review supports but does not directly validate.",
+    "The persistence of a prior brain state (e.g., emotional arousal) into a subsequent task period is presented as a continuous blending rather than a discrete gate event, suggesting the mode variable may be better modelled as a continuous state than a categorical switch."
+  ],
+  "tags": ["mech_261", "awake_reactivation", "waking_consolidation", "cognitive_bias", "tambini_davachi", "hippocampal_cortical_dialogue"],
+  "mapping": {
+    "source_claim_statement": "Spontaneous reactivation of recently encoded experiences during awake rest periods both strengthens those memories (consolidation) and biases the encoding and processing of new information that arrives afterward. The persistence of brain states associated with prior events into subsequent neutral periods produces mixed activity patterns that influence how the new events are represented.",
+    "ree_translation": "MECH-261's claim that the operating-mode variable gates write propagation has a direct corollary: content written during internal_replay mode should be readable and consequential in the subsequent external_task mode. Tambini and Davachi synthesise evidence that this is exactly what happens in humans -- awake reactivation during rest periods biases subsequent cognition. The mapping to REE: V3 should expect that material replayed during micro-quiescence (MECH-092, INV-049) is not a closed-loop within the replay substrate; it leaks forward and shapes action selection in the next external_task episode. MECH-261's gate architecture is what regulates this leakage.",
+    "mapping_caveat": "The evidence is primarily about cognitive bias (how subsequent stimuli are encoded, perceived, or remembered) rather than direct action-selection bias. REE ultimately cares about action selection, not perception, so there is a step from this literature's claims to MECH-261's full downstream target. The bridge is credible -- if replay biases how a stimulus is represented, then any policy that reads that representation inherits the bias -- but the literature supporting this bridge is weaker than the literature on the initial bias itself.",
+    "source_context": "Review of ~20 human fMRI studies (2010-2018), mostly from the Davachi lab and collaborators, using post-encoding rest-period MVPA analyses to detect spontaneous reactivation and its downstream effects."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Trends in Cognitive Sciences; Davachi lab, one of the anchor labs for human awake-reactivation work). Mapping fidelity high because the review explicitly frames awake reactivation as both consolidation and cognition-biasing -- which is MECH-261's central prediction. Transfer risk moderate: human fMRI is coarser than the mechanism-level claims MECH-261 makes, and the action-selection bridge is inferred rather than directly shown."
+  }
+}

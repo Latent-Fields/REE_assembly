@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_systems_consolidation_waking_propagation",
+  "entry_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+  "timestamp_utc": "2026-04-19T11:01:41Z",
+  "claim_ids_tested": ["MECH-261", "INV-049", "ARC-039"],
+  "source": {
+    "title": "The organization of recent and remote memories",
+    "authors": ["Paul W. Frankland", "Bruno Bontempi"],
+    "year": 2005,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn1607",
+    "url": "https://www.nature.com/articles/nrn1607"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
+    "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+  ],
+  "tags": ["mech_261", "inv_049", "arc_039", "systems_consolidation", "hippocampal_cortical_dialogue", "frankland_bontempi"],
+  "mapping": {
+    "source_claim_statement": "Memory traces initially depend on the medial temporal lobe / hippocampus and become progressively reorganised into neocortical networks over a time course of days to months, with sleep-related hippocampal-cortical dialogue driving this reorganisation.",
+    "ree_translation": "The substrate that stores a viability-map trace shifts over repeated consolidation opportunities: initial acquisition writes are hippocampal (MECH-092 waking SWR, ARC-038 map substrate), later durable storage is cortical (ARC-039 grid/cortical loop). MECH-261's claim that gates differ by operating mode (external_task vs internal_replay vs offline_consolidation) is necessary if the write substrate itself differs by mode -- otherwise the mode variable has no downstream consequence to gate.",
+    "mapping_caveat": "Frankland and Bontempi describe the anatomical redistribution of memory traces but do not posit a discrete operating-mode variable that gates which substrate is eligible to write. The REE translation reads categorical mode gating into a continuous biological process. The bridge is that if hippocampal-cortical dialogue can proceed in offline consolidation but is suppressed during external-task commitment (as downstream literature suggests), then a mode variable is a reasonable abstraction of the biology -- but this paper alone does not license the categorical form.",
+    "source_context": "Narrative review of rodent and human lesion, imaging, and electrophysiology studies spanning the 1990s-early 2000s. Hippocampal-cortical consolidation framework (standard consolidation theory and multiple trace theory both discussed)."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Nature Reviews, one of the foundational systems-consolidation reviews, ~5000 citations). Mapping fidelity moderated because the paper does not use a mode-variable framing; it describes anatomical redistribution. Transfer risk is the risk that treating graded hippocampal-cortical handoff as a discrete mode gate oversimplifies the biology."
+  }
+}

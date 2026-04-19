@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_systems_consolidation_waking_propagation",
+  "entry_id": "2026-04-19_mech_261_pfc_rule_learning_replay_peyrache2009",
+  "timestamp_utc": "2026-04-19T11:01:41Z",
+  "claim_ids_tested": ["MECH-261", "ARC-039"],
+  "source": {
+    "title": "Replay of rule-learning related neural patterns in the prefrontal cortex during sleep",
+    "authors": ["Adrien Peyrache", "Mehdi Khamassi", "Karim Benchenane", "Sidney I. Wiener", "Francesco P. Battaglia"],
+    "year": 2009,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2337",
+    "url": "https://www.nature.com/articles/nn.2337"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Rat mPFC ensemble recording during post-learning slow-wave sleep. Response-selection-related PFC patterns replay preferentially in transient bouts coincident with hippocampal sharp-wave-ripple complexes. This is the most direct demonstration that rule-learning and action-relevant (not just sensory or spatial) content propagates from hippocampus to PFC via SWR-coupled replay. Confidence 0.75 because it is sleep data and the patterns are rule-shift-selection-related rather than trajectory-level action commands -- the mapping to V3 action selection is clean but one inferential step removed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay is measured during slow-wave sleep, not during waking internal_replay. The MECH-261 claim for waking-mode propagation to action-relevant cortex requires extension of this work into awake quiescence -- which subsequent work has begun but this paper does not test.",
+    "The PFC patterns that replay are rule-selection-related ensemble signatures, not action commands per se. Translation to action-selection bias in REE is defensible but one step beyond the direct finding."
+  ],
+  "tags": ["mech_261", "arc_039", "pfc_replay", "swr_coupling", "rule_learning", "peyrache_battaglia", "hippocampal_cortical_dialogue"],
+  "mapping": {
+    "source_claim_statement": "During slow-wave sleep following rule-shift learning, rat medial prefrontal cortex ensembles replay the learning-related neural patterns in transient highly synchronised bouts. These bouts are largely coincident with hippocampal sharp-wave-ripple complexes, consistent with SWR-coupled hippocampal-to-PFC information transfer.",
+    "ree_translation": "MECH-261 requires that the internal_replay and offline_consolidation modes can propagate replayed content into cortical substrates that carry action-selection-relevant representations, not just sensory or spatial representations. Peyrache and colleagues demonstrate that hippocampal-SWR-coupled replay reaches medial PFC -- the cortical structure most directly implicated in action-rule representation. For V3, this supports a design in which internal_replay and offline_consolidation modes produce writes into a PFC-analog substrate (rule / meta-control level), distinct from the cortical-sensory writes demonstrated in the Rothschild 2017 entry.",
+    "mapping_caveat": "The rule-shift patterns are cognitive-control ensemble signatures, not motor action commands. REE's z_policy or action-selection representation may or may not be directly analogous. The additional step from 'replay reaches rule-representing PFC' to 'replay modulates subsequent action selection' is biologically plausible but not directly tested in this paper. This paper is sleep-only; its extension to waking internal_replay requires the Carr 2011 and Tambini 2019 entries.",
+    "source_context": "Multi-tetrode recording in rat mPFC during a cross-modal rule-shift task, with simultaneous hippocampal LFP. Post-learning slow-wave sleep. Explained-variance analysis (EV/REV) on PFC ensemble patterns before, during, and after learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (Nature Neuroscience, Battaglia / Wiener labs, rigorous explained-variance methodology). Mapping fidelity high for the rule-representation-level claim but drops for the action-selection extrapolation. Transfer risk moderate: sleep-to-waking and rule-representation-to-action-selection are both standard but not independently validated in this paper."
+  }
+}

@@ -2395,17 +2395,19 @@
       }
     },
     "ARC-039": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.8",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.883",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 5,
       "evidence_class_counts": {
         "lit:behavioral_animal": 1,
-        "lit:electrophysiology_single_unit": 1
+        "lit:electrophysiology_multisensory": 1,
+        "lit:electrophysiology_single_unit": 2,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -2416,10 +2418,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-03-30_hippo_time_cells_omer2022",
-      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
-      "literature_confidence": 0.8,
-      "overall_confidence": 0.8,
+      "latest_run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+      "latest_timestamp_utc": "2026-04-19T11:01:41Z",
+      "literature_confidence": 0.883,
+      "overall_confidence": 0.883,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2455,12 +2457,63 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-039",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
+            "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+          ],
+          "run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-039",
+          "confidence": 0.75,
+          "confidence_rationale": "Rat mPFC ensemble recording during post-learning slow-wave sleep. Response-selection-related PFC patterns replay preferentially in transient bouts coincident with hippocampal sharp-wave-ripple complexes. This is the most direct demonstration that rule-learning and action-relevant (not just sensory or spatial) content propagates from hippocampus to PFC via SWR-coupled replay. Confidence 0.75 because it is sleep data and the patterns are rule-shift-selection-related rather than trajectory-level action commands -- the mapping to V3 action selection is clean but one inferential step removed.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "Replay is measured during slow-wave sleep, not during waking internal_replay. The MECH-261 claim for waking-mode propagation to action-relevant cortex requires extension of this work into awake quiescence -- which subsequent work has begun but this paper does not test.",
+            "The PFC patterns that replay are rule-selection-related ensemble signatures, not action commands per se. Translation to action-selection bias in REE is defensible but one step beyond the direct finding."
+          ],
+          "run_id": "2026-04-19_mech_261_pfc_rule_learning_replay_peyrache2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-039",
+          "confidence": 0.68,
+          "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
+            "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+          ],
+          "run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 5
       }
     },
     "ARC-041": {
@@ -3734,18 +3787,18 @@
       }
     },
     "INV-049": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.912",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.898",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 4,
+      "entries_total": 5,
       "evidence_class_counts": {
         "lit:computational_theory_review": 2,
         "lit:neuroscience_theory_review": 1,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 2
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -3756,10 +3809,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-19_cingulate_pcc_arousal_attention_leech2013",
-      "latest_timestamp_utc": "2026-04-19T09:16:25Z",
-      "literature_confidence": 0.912,
-      "overall_confidence": 0.912,
+      "latest_run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+      "latest_timestamp_utc": "2026-04-19T11:01:41Z",
+      "literature_confidence": 0.898,
+      "overall_confidence": 0.898,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3820,12 +3873,29 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-19T09:16:25Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-049",
+          "confidence": 0.68,
+          "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
+            "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+          ],
+          "run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
         }
       ],
-      "runs_total": 4,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 4
+        "literature": 5
       }
     },
     "INV-050": {
@@ -7826,21 +7896,23 @@
       }
     },
     "MECH-092": {
-      "confidence_rationale": "exp=0 entry(s), lit=10 entry(s), exp_conf=0, lit_conf=0.902",
+      "confidence_rationale": "exp=0 entry(s), lit=12 entry(s), exp_conf=0, lit_conf=0.904",
       "direction_counts": {
         "mixed": 1,
-        "supports": 9,
+        "supports": 11,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 10,
+      "entries_total": 12,
       "evidence_class_counts": {
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_lfp_and_behavior": 1,
+        "lit:electrophysiology_multisensory": 1,
         "lit:electrophysiology_rodent": 1,
         "lit:electrophysiology_single_unit": 3,
         "lit:electrophysiology_single_unit_and_lfp": 2,
-        "lit:review_mechanistic": 2
+        "lit:review_mechanistic": 2,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -7851,40 +7923,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024",
-      "latest_timestamp_utc": "2026-04-08T17:00:00Z",
-      "literature_confidence": 0.902,
-      "overall_confidence": 0.902,
+      "latest_run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+      "latest_timestamp_utc": "2026-04-19T11:01:41Z",
+      "literature_confidence": 0.904,
+      "overall_confidence": 0.904,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.78,
-          "confidence_rationale": "Review establishes that SWR replay during slow-wave sleep AND quiet wakefulness serves memory consolidation and offline processing (planning). CA3 recurrent excitatory dynamics are the primary generator. Newly identifies CA2 region as an additional circuit influence on SWR generation and information content, in a task- and state-dependent manner. This expands the canonical CA3->CA1 model and directly maps onto the E3 hippocampal module needing CA3-equivalent recurrent dynamics. State-dependency (task vs. quiescence) is directly relevant to the ARC-038 waking-consolidation mode. Confidence 0.78: review with newer circuitry claims (CA2 role is emerging, not yet consensus).",
-          "evidence_class": "lit:review_mechanistic",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_038",
-          "failure_signatures": [],
-          "run_id": "2026-04-05_arc_038_mech_092_swr_circuitry_mchugh2023",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T00:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.8,
-          "confidence_rationale": "Authoritative review synthesizing evidence that SWR events during sleep AND waking rest coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. Key claims: (1) SWR-directed reactivation occurs during both sleep and waking rest; (2) this coordinates brain-wide memory trace reinstatement; (3) the hippocampus organizes the reactivation process. The review addresses both offline states (sleep and rest), directly supporting the waking-consolidation component of ARC-038. Confidence moderate-high for a review: synthesizes multiple rodent and human electrophysiology studies.",
-          "evidence_class": "lit:review_mechanistic",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_038",
-          "failure_signatures": [],
-          "run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-05T00:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-092",
@@ -7937,12 +7981,46 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-08T17:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.82,
+          "confidence_rationale": "This review is the strongest single piece of biological grounding for MECH-261's internal_replay mode. Carr, Jadhav, and Frank argue explicitly that awake SWRs subserve two distinct functions -- consolidation (writing) and retrieval (reading) -- and that these occur on different subpopulations of SWR events, behaviourally segregated by task context. That segregation IS a mode-conditioned write gate in biological form. Confidence high (0.82) because the mapping is direct; reduced from ~0.9 because the paper is a review rather than a single definitive experiment, and because it does not explicitly commit to a categorical mode variable.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "Awake SWRs occur on two functionally distinguishable subpopulations (consolidation-like vs retrieval-like). A MECH-261 implementation that treats internal_replay as a single mode may miss the within-mode functional heterogeneity this paper documents.",
+            "The consolidation / retrieval distinction is partially task-contextual rather than mode-contextual -- a rat mid-trajectory shows retrieval-like SWRs even while behaviourally engaged. This complicates a strict external_task=no-replay-writes interpretation of MECH-261."
+          ],
+          "run_id": "2026-04-19_mech_261_awake_replay_substrate_carr2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
+            "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+          ],
+          "run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
         }
       ],
-      "runs_total": 10,
+      "runs_total": 12,
       "source_counts": {
         "experimental": 0,
-        "literature": 10
+        "literature": 12
       }
     },
     "MECH-093": {
@@ -14957,6 +15035,127 @@
       "source_counts": {
         "experimental": 0,
         "literature": 1
+      }
+    },
+    "MECH-261": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.883",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 5,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:electrophysiology_multisensory": 1,
+        "lit:electrophysiology_single_unit": 1,
+        "lit:theoretical_review": 3
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+      "latest_timestamp_utc": "2026-04-19T11:01:41Z",
+      "literature_confidence": 0.883,
+      "overall_confidence": 0.883,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-261",
+          "confidence": 0.8,
+          "confidence_rationale": "Direct synthesis of the human fMRI literature demonstrating that awake post-encoding reactivation of prior experiences (during rest periods or task breaks) both consolidates those memories and biases subsequent cognitive processing. This is the most explicit available statement of the MECH-261 central claim: content active in internal_replay mode propagates forward into external_task mode and shapes subsequent action. Confidence 0.80 because the review is human fMRI (less mechanistic resolution than rodent electrophysiology) but the cognitive-bias findings directly test the forward propagation claim that MECH-261 depends on.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "The forward-propagation bias is documented for perceptual and memory-bias effects rather than direct action-selection effects. A MECH-261 implementation that assumes replay->action coupling in V3 is extrapolating from cognitive-bias to action-bias, which this review supports but does not directly validate.",
+            "The persistence of a prior brain state (e.g., emotional arousal) into a subsequent task period is presented as a continuous blending rather than a discrete gate event, suggesting the mode variable may be better modelled as a continuous state than a categorical switch."
+          ],
+          "run_id": "2026-04-19_mech_261_awake_reactivation_biases_cognition_tambini2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-261",
+          "confidence": 0.82,
+          "confidence_rationale": "This review is the strongest single piece of biological grounding for MECH-261's internal_replay mode. Carr, Jadhav, and Frank argue explicitly that awake SWRs subserve two distinct functions -- consolidation (writing) and retrieval (reading) -- and that these occur on different subpopulations of SWR events, behaviourally segregated by task context. That segregation IS a mode-conditioned write gate in biological form. Confidence high (0.82) because the mapping is direct; reduced from ~0.9 because the paper is a review rather than a single definitive experiment, and because it does not explicitly commit to a categorical mode variable.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "Awake SWRs occur on two functionally distinguishable subpopulations (consolidation-like vs retrieval-like). A MECH-261 implementation that treats internal_replay as a single mode may miss the within-mode functional heterogeneity this paper documents.",
+            "The consolidation / retrieval distinction is partially task-contextual rather than mode-contextual -- a rat mid-trajectory shows retrieval-like SWRs even while behaviourally engaged. This complicates a strict external_task=no-replay-writes interpretation of MECH-261."
+          ],
+          "run_id": "2026-04-19_mech_261_awake_replay_substrate_carr2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-261",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
+            "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+          ],
+          "run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-261",
+          "confidence": 0.75,
+          "confidence_rationale": "Rat mPFC ensemble recording during post-learning slow-wave sleep. Response-selection-related PFC patterns replay preferentially in transient bouts coincident with hippocampal sharp-wave-ripple complexes. This is the most direct demonstration that rule-learning and action-relevant (not just sensory or spatial) content propagates from hippocampus to PFC via SWR-coupled replay. Confidence 0.75 because it is sleep data and the patterns are rule-shift-selection-related rather than trajectory-level action commands -- the mapping to V3 action selection is clean but one inferential step removed.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "Replay is measured during slow-wave sleep, not during waking internal_replay. The MECH-261 claim for waking-mode propagation to action-relevant cortex requires extension of this work into awake quiescence -- which subsequent work has begun but this paper does not test.",
+            "The PFC patterns that replay are rule-selection-related ensemble signatures, not action commands per se. Translation to action-selection bias in REE is defensible but one step beyond the direct finding."
+          ],
+          "run_id": "2026-04-19_mech_261_pfc_rule_learning_replay_peyrache2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-261",
+          "confidence": 0.68,
+          "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+          "failure_signatures": [
+            "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
+            "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+          ],
+          "run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-19T11:01:41Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
       }
     },
     "MECH-900": {
@@ -53334,6 +53533,193 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-039",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
+        "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+      ],
+      "run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-039",
+      "confidence": 0.75,
+      "confidence_rationale": "Rat mPFC ensemble recording during post-learning slow-wave sleep. Response-selection-related PFC patterns replay preferentially in transient bouts coincident with hippocampal sharp-wave-ripple complexes. This is the most direct demonstration that rule-learning and action-relevant (not just sensory or spatial) content propagates from hippocampus to PFC via SWR-coupled replay. Confidence 0.75 because it is sleep data and the patterns are rule-shift-selection-related rather than trajectory-level action commands -- the mapping to V3 action selection is clean but one inferential step removed.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "Replay is measured during slow-wave sleep, not during waking internal_replay. The MECH-261 claim for waking-mode propagation to action-relevant cortex requires extension of this work into awake quiescence -- which subsequent work has begun but this paper does not test.",
+        "The PFC patterns that replay are rule-selection-related ensemble signatures, not action commands per se. Translation to action-selection bias in REE is defensible but one step beyond the direct finding."
+      ],
+      "run_id": "2026-04-19_mech_261_pfc_rule_learning_replay_peyrache2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-039",
+      "confidence": 0.68,
+      "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
+        "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+      ],
+      "run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-049",
+      "confidence": 0.68,
+      "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
+        "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+      ],
+      "run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.82,
+      "confidence_rationale": "This review is the strongest single piece of biological grounding for MECH-261's internal_replay mode. Carr, Jadhav, and Frank argue explicitly that awake SWRs subserve two distinct functions -- consolidation (writing) and retrieval (reading) -- and that these occur on different subpopulations of SWR events, behaviourally segregated by task context. That segregation IS a mode-conditioned write gate in biological form. Confidence high (0.82) because the mapping is direct; reduced from ~0.9 because the paper is a review rather than a single definitive experiment, and because it does not explicitly commit to a categorical mode variable.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "Awake SWRs occur on two functionally distinguishable subpopulations (consolidation-like vs retrieval-like). A MECH-261 implementation that treats internal_replay as a single mode may miss the within-mode functional heterogeneity this paper documents.",
+        "The consolidation / retrieval distinction is partially task-contextual rather than mode-contextual -- a rat mid-trajectory shows retrieval-like SWRs even while behaviourally engaged. This complicates a strict external_task=no-replay-writes interpretation of MECH-261."
+      ],
+      "run_id": "2026-04-19_mech_261_awake_replay_substrate_carr2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
+        "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+      ],
+      "run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.8,
+      "confidence_rationale": "Direct synthesis of the human fMRI literature demonstrating that awake post-encoding reactivation of prior experiences (during rest periods or task breaks) both consolidates those memories and biases subsequent cognitive processing. This is the most explicit available statement of the MECH-261 central claim: content active in internal_replay mode propagates forward into external_task mode and shapes subsequent action. Confidence 0.80 because the review is human fMRI (less mechanistic resolution than rodent electrophysiology) but the cognitive-bias findings directly test the forward propagation claim that MECH-261 depends on.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "The forward-propagation bias is documented for perceptual and memory-bias effects rather than direct action-selection effects. A MECH-261 implementation that assumes replay->action coupling in V3 is extrapolating from cognitive-bias to action-bias, which this review supports but does not directly validate.",
+        "The persistence of a prior brain state (e.g., emotional arousal) into a subsequent task period is presented as a continuous blending rather than a discrete gate event, suggesting the mode variable may be better modelled as a continuous state than a categorical switch."
+      ],
+      "run_id": "2026-04-19_mech_261_awake_reactivation_biases_cognition_tambini2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.82,
+      "confidence_rationale": "This review is the strongest single piece of biological grounding for MECH-261's internal_replay mode. Carr, Jadhav, and Frank argue explicitly that awake SWRs subserve two distinct functions -- consolidation (writing) and retrieval (reading) -- and that these occur on different subpopulations of SWR events, behaviourally segregated by task context. That segregation IS a mode-conditioned write gate in biological form. Confidence high (0.82) because the mapping is direct; reduced from ~0.9 because the paper is a review rather than a single definitive experiment, and because it does not explicitly commit to a categorical mode variable.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "Awake SWRs occur on two functionally distinguishable subpopulations (consolidation-like vs retrieval-like). A MECH-261 implementation that treats internal_replay as a single mode may miss the within-mode functional heterogeneity this paper documents.",
+        "The consolidation / retrieval distinction is partially task-contextual rather than mode-contextual -- a rat mid-trajectory shows retrieval-like SWRs even while behaviourally engaged. This complicates a strict external_task=no-replay-writes interpretation of MECH-261."
+      ],
+      "run_id": "2026-04-19_mech_261_awake_replay_substrate_carr2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
+        "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+      ],
+      "run_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.75,
+      "confidence_rationale": "Rat mPFC ensemble recording during post-learning slow-wave sleep. Response-selection-related PFC patterns replay preferentially in transient bouts coincident with hippocampal sharp-wave-ripple complexes. This is the most direct demonstration that rule-learning and action-relevant (not just sensory or spatial) content propagates from hippocampus to PFC via SWR-coupled replay. Confidence 0.75 because it is sleep data and the patterns are rule-shift-selection-related rather than trajectory-level action commands -- the mapping to V3 action selection is clean but one inferential step removed.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "Replay is measured during slow-wave sleep, not during waking internal_replay. The MECH-261 claim for waking-mode propagation to action-relevant cortex requires extension of this work into awake quiescence -- which subsequent work has begun but this paper does not test.",
+        "The PFC patterns that replay are rule-selection-related ensemble signatures, not action commands per se. Translation to action-selection bias in REE is defensible but one step beyond the direct finding."
+      ],
+      "run_id": "2026-04-19_mech_261_pfc_rule_learning_replay_peyrache2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-261",
+      "confidence": 0.68,
+      "confidence_rationale": "Canonical review establishing that consolidation is a time-extended, substrate-redistributive process in which initially hippocampus-dependent memories become progressively cortex-dependent. This supports the MECH-261 architectural commitment that different operating modes engage different substrates (hippocampal during acquisition/retrieval, cortical during consolidated use). Confidence moderated because the review frames consolidation in terms of recent-vs-remote anatomy rather than the discrete categorical operating-mode variable MECH-261 posits; the biology is more continuous than the mode framing.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_systems_consolidation_waking_propagation",
+      "failure_signatures": [
+        "Systems consolidation is a continuous, graded process (hippocampal-cortical interplay changes progressively over days-to-months), not a discrete mode flip -- a MECH-261 implementation that uses a strictly categorical operating_mode variable will miss the graded hippocampal-cortical handoff documented here.",
+        "The review emphasises that consolidation occurs largely offline (sleep-dependent), while MECH-261 must also cover waking reactivation and online propagation -- over-reliance on this paper biases the design toward offline-only consolidation."
+      ],
+      "run_id": "2026-04-19_mech_261_systems_consolidation_review_frankland2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-19T11:01:41Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -53365,7 +53751,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-19T10:59:35.875794Z",
+  "generated_at_utc": "2026-04-19T11:09:14.592499Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_systems_consolidation_waking_propagation",
+  "entry_id": "2026-04-19_mech_261_awake_replay_substrate_carr2011",
+  "timestamp_utc": "2026-04-19T11:01:41Z",
+  "claim_ids_tested": ["MECH-261", "MECH-092"],
+  "source": {
+    "title": "Hippocampal replay in the awake state: a potential substrate for memory consolidation and retrieval",
+    "authors": ["Margaret F. Carr", "Shantanu P. Jadhav", "Loren M. Frank"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2732",
+    "url": "https://www.nature.com/articles/nn.2732"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This review is the strongest single piece of biological grounding for MECH-261's internal_replay mode. Carr, Jadhav, and Frank argue explicitly that awake SWRs subserve two distinct functions -- consolidation (writing) and retrieval (reading) -- and that these occur on different subpopulations of SWR events, behaviourally segregated by task context. That segregation IS a mode-conditioned write gate in biological form. Confidence high (0.82) because the mapping is direct; reduced from ~0.9 because the paper is a review rather than a single definitive experiment, and because it does not explicitly commit to a categorical mode variable.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Awake SWRs occur on two functionally distinguishable subpopulations (consolidation-like vs retrieval-like). A MECH-261 implementation that treats internal_replay as a single mode may miss the within-mode functional heterogeneity this paper documents.",
+    "The consolidation / retrieval distinction is partially task-contextual rather than mode-contextual -- a rat mid-trajectory shows retrieval-like SWRs even while behaviourally engaged. This complicates a strict external_task=no-replay-writes interpretation of MECH-261."
+  ],
+  "tags": ["mech_261", "mech_092", "awake_swr", "waking_consolidation", "carr_jadhav_frank", "hippocampal_replay"],
+  "mapping": {
+    "source_claim_statement": "Awake hippocampal SWRs reactivate previously experienced trajectories and are a likely substrate for both ongoing memory consolidation and retrieval-for-planning. Consolidation-related reactivations occur preferentially during periods of immobility or reward consumption (quiescence), while retrieval-for-planning reactivations occur preferentially before or during active behaviour.",
+    "ree_translation": "The internal_replay operating mode in MECH-261 corresponds biologically to the quiescence-flanked awake SWR population that Carr, Jadhav, and Frank identify as consolidation-oriented. The planning-related awake SWR population corresponds to MECH-261's internal_planning mode. The fact that these two awake SWR populations co-exist in the same animal but occur in systematically different behavioural contexts is direct biological support for a mode-conditioned write gate: the same substrate (SWR generator) produces behaviourally-gated output that writes to different downstream substrates depending on whether the animal is quiescent or planning.",
+    "mapping_caveat": "The Carr et al. distinction is context-driven (quiescence vs active), not mode-driven in the salience-network sense. REE's MECH-261 posits the salience network (SD-032a) as the coordinator of the mode variable; this paper does not address the salience network at all. The mapping is that behavioural context (quiescence / planning / active task) correlates with both the SWR subpopulation and the salience-network state -- but the causal arrow is unresolved. MECH-261 asserts the salience network drives the mode; Carr et al. allow for mode emerging from behavioural-context-dependent hippocampal dynamics directly.",
+    "source_context": "Review of rodent hippocampal SWR electrophysiology, primarily from the Frank, Wilson, Buzsaki, and Foster labs. Covers 2006-2010 awake-SWR literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Nature Neuroscience review, Frank lab, one of the anchor syntheses of the awake-SWR literature). High mapping fidelity because the review explicitly distinguishes consolidation-like vs retrieval-like awake SWRs -- which maps directly onto MECH-261's internal_replay vs internal_planning modes. Transfer risk moderate: rodent-to-REE mapping is standard for the substrate claims in this cluster, but the role of the salience network as mode coordinator is a REE-specific overlay that this paper does not evaluate."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_systems_consolidation_waking_propagation",
+  "entry_id": "2026-04-19_mech_261_cortical_hippocampal_loop_rothschild2017",
+  "timestamp_utc": "2026-04-19T11:01:41Z",
+  "claim_ids_tested": ["MECH-261", "MECH-092", "ARC-039"],
+  "source": {
+    "title": "A cortical-hippocampal-cortical loop of information processing during memory consolidation",
+    "authors": ["Gideon Rothschild", "Elad Eban", "Loren M. Frank"],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4457",
+    "url": "https://www.nature.com/articles/nn.4457"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct simultaneous recording in rat auditory cortex and hippocampus during sleep SWRs showing bidirectional information flow: cortical patterns precede and predict hippocampal SWR content, and hippocampal SWR content predicts subsequent cortical reactivation. This is the cleanest empirical demonstration that hippocampal replay causally propagates forward into cortical substrates -- the necessary biological condition for MECH-261's claim that internal_replay can write to downstream cortical representations that feed action selection. Confidence 0.78 because this is sleep data, not waking -- extrapolating to waking consolidation requires the Carr/Jadhav/Frank and Tambini/Davachi bridges.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The bidirectional loop is demonstrated during sleep, not waking. A MECH-261 implementation that relies on an equivalent cortical-hippocampal-cortical loop being available during waking internal_replay may be assuming biology that this paper does not establish.",
+    "The cortical side of the loop is auditory cortex (a sensory cortex). Whether the same dialogue extends to action-selection-relevant cortex (dorsolateral PFC, premotor, striatum) is not directly tested here -- the Peyrache 2009 entry fills that gap but is also sleep-only."
+  ],
+  "tags": ["mech_261", "mech_092", "arc_039", "hippocampal_cortical_dialogue", "swr_replay", "rothschild_frank"],
+  "mapping": {
+    "source_claim_statement": "During slow-wave sleep, simultaneous recordings from rat auditory cortex and hippocampus reveal a triphasic information flow: (i) auditory cortical patterns precede and predict hippocampal SWR content, (ii) hippocampal SWR content predicts subsequent auditory cortical reactivation, (iii) the loop thus forms a cortex -> hippocampus -> cortex circuit around each SWR event.",
+    "ree_translation": "MECH-261 requires that in the internal_replay and offline_consolidation modes, hippocampal-analog replay content can propagate forward into cortical-analog substrates that are themselves consumers for later action selection. Rothschild, Eban, and Frank provide the proof of principle that this forward propagation is real: hippocampal SWR content does, empirically, drive downstream cortical reactivation with a detectable temporal signature. For V3, this licences an implementation in which internal_replay triggers both a read from the map substrate (ARC-038) AND a write into a cortical-analog buffer that feeds policy updates in the subsequent external_task mode.",
+    "mapping_caveat": "The paper is slow-wave-sleep data, not waking data. The MECH-261 use case of highest interest -- waking replay during micro-quiescence propagating forward into the next action-selection opportunity -- is a bridge that requires awake-SWR data (Carr 2011 entry) and behavioural bias data (Tambini 2019 entry) to complete. Additionally, auditory cortex is a sensory representation; extending the cortical-hippocampal-cortical loop to action-relevant cortex (PFC, premotor) is a plausible but untested extrapolation here.",
+    "source_context": "Rat simultaneous tetrode recording in primary auditory cortex (A1) and CA1 hippocampus during natural NREM sleep following auditory exposure. Cross-correlation and decoding analyses."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (Nature Neuroscience, Frank lab, direct simultaneous electrophysiology with clean decoding analyses). Mapping fidelity moderate because the paper addresses the forward propagation question cleanly but in sensory cortex and during sleep. Transfer risk is the central caveat: extending sleep-cortical-hippocampal-cortical loop findings to waking micro-quiescence in action-relevant cortex requires the other entries in this pull to hold."
+  }
+}
