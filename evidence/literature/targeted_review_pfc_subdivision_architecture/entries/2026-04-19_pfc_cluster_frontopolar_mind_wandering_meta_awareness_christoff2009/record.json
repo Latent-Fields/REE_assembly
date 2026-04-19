@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_frontopolar_mind_wandering_meta_awareness_christoff2009",
+  "timestamp_utc": "2026-04-19T11:47:33Z",
+  "claim_ids_tested": ["SD-033e", "MECH-261"],
+  "source": {
+    "title": "Experience sampling during fMRI reveals default network and executive system contributions to mind wandering",
+    "authors": ["Kalina Christoff", "Alan M. Gordon", "Jonathan Smallwood", "Rachelle Smith", "Jonathan W. Schooler"],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0900234106"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "PNAS paper with experience-sampling fMRI is well-executed but mapping to REE is indirect. The load-bearing finding for REE is the co-activation of default network and executive / rostral PFC regions during mind-wandering, which bears on MECH-261's internal_replay / offline_consolidation modes. The meta-awareness dissociation (higher activity when mind-wandering is unaware) is a secondary finding that is more speculative in the REE translation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If mind-wandering had recruited default network regions without executive/rostral PFC co-activation, the 'internal cognition engages both DMN and executive control' framing would collapse and REE's assumption that internal modes can use the same substrates as external_task mode (with different gating) would lose support.",
+    "If meta-awareness had suppressed rather than recruited frontopolar activity, the framing of BA 10 as a substrate for reflective / meta-level cognition would weaken."
+  ],
+  "tags": ["sd_033e", "mech_261", "frontopolar", "mind_wandering", "default_mode", "meta_awareness", "internal_cognition"],
+  "mapping": {
+    "source_claim_statement": "Mind-wandering — spontaneous self-generated thought during an ongoing external task — co-activates default network regions (medial PFC, posterior cingulate) and executive network regions including rostral PFC. Activation is stronger when participants are unaware of their own mind-wandering than when they self-report it. This contradicts earlier framings in which default-mode and executive networks were taken to be anti-correlated, showing that internally-generated cognition engages both systems.",
+    "ree_translation": "Provides fMRI grounding for MECH-261's internal modes (internal_planning, internal_replay) as states in which executive substrates including the frontopolar-analog (SD-033e) remain engaged — they are not offline just because the agent is not externally task-directed. The meta-awareness dissociation additionally hints at a function for the frontopolar-analog in meta-level monitoring of internal cognition: the agent can be generating internal content without being aware of it, and awareness (when present) correlates with rostral PFC engagement. That is a specific capability V4 will eventually need — a reflective layer that knows which mode the agent is in.",
+    "mapping_caveat": "The paper does not isolate BA 10 from broader rostral PFC and does not dissociate frontopolar contributions from anterior cingulate or medial PFC contributions cleanly. The meta-awareness finding is suggestive but based on subjective report during a boring task, so the mapping to 'REE meta-cognitive reflection' is an extrapolation. The paper's main contribution to this lit-pull is the co-activation finding (DMN + executive during internal cognition) rather than a precise frontopolar function.",
+    "source_context": "Human fMRI with experience-sampling probes during a sustained attention to response task (SART); N=19; unpublished subjective reports of mind-wandering used as within-subject regressors."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality solid (PNAS, Christoff/Schooler labs, well-cited foundational paper for mind-wandering fMRI). Mapping fidelity moderate — the paper does not isolate frontopolar function cleanly; it is useful as corroboration that internal modes engage executive substrates, not as a direct test of SD-033e. Transfer risk higher — meta-awareness is a subjective construct, and SART-paradigm mind-wandering is a narrow slice of internal cognition."
+  }
+}

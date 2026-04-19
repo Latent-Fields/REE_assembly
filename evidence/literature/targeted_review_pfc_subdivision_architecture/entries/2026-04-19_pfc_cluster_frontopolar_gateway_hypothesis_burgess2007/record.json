@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_frontopolar_gateway_hypothesis_burgess2007",
+  "timestamp_utc": "2026-04-19T11:47:33Z",
+  "claim_ids_tested": ["SD-033e", "MECH-261"],
+  "source": {
+    "title": "The gateway hypothesis of rostral prefrontal cortex (area 10) function",
+    "authors": ["Paul W. Burgess", "Iroise Dumontheil", "Sam J. Gilbert"],
+    "year": 2007,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2007.05.004"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "TiCS review synthesising a decade of fMRI and lesion evidence into a coherent gateway framing. Directly load-bearing for MECH-261: the proposed frontopolar function (switch between stimulus-oriented and stimulus-independent attending) is exactly what MECH-261's operating_mode vector formalises at a substrate level. High mapping fidelity, widely cited, still actively built on in current literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If medial BA 10 had not shown preferential activity during stimulus-oriented attending vs lateral BA 10 during stimulus-independent attending, the anatomical refinement of the gateway would fail and the function would collapse into generic PFC activity.",
+    "If patients with BA 10 lesions showed no greater disruption of transitions between stimulus-oriented and stimulus-independent states than other frontal patients, the gateway framing would not be substrate-specific."
+  ],
+  "tags": ["sd_033e", "mech_261", "frontopolar", "ba10", "gateway_hypothesis", "stimulus_oriented", "stimulus_independent", "operating_mode"],
+  "mapping": {
+    "source_claim_statement": "Rostral PFC (BA 10) supports a cognitive gateway that mediates the switch between stimulus-oriented attending (attention to environmental stimuli) and stimulus-independent attending (attention to self-generated or internally-maintained representations). Medial rostral PFC supports stimulus-oriented attending; lateral rostral PFC supports switching to and maintaining stimulus-independent cognition. The gateway function applies whenever an agent needs to hold one attentional mode to an unusual degree or switch between them.",
+    "ree_translation": "This is the clearest biological analogue for MECH-261's operating_mode vector that exists in the literature. The gateway hypothesis partitions attending into stimulus-oriented (external_task mode) and stimulus-independent (internal_planning / internal_replay / offline_consolidation modes). Burgess's lateral rostral PFC is structurally the natural home for the switch-to-and-maintain-internal-mode function that MECH-261 gates writes around. This implies SD-033e is not merely about tree-search branching (Koechlin framing) but more fundamentally about switching between engagement with the external world and self-generated cognition. That is a broader and richer function than 'deliberative_branching' captures. Implications: (1) the MECH-261 mode vocabulary is biologically motivated at substrate level, not just operationally convenient; (2) SD-033e's V4 scope should include the gateway role explicitly; (3) the reserved V4 mode name may need revision (see proposed updates in synthesis.md Prong D).",
+    "mapping_caveat": "The gateway hypothesis is still a theoretical framework, not a measured mechanism. The medial/lateral BA 10 dissociation it predicts has fMRI support but is sensitive to task design, and alternative framings exist (Mansouri's relative-importance-monitoring and Koechlin's branching being the main competitors). For REE, the gateway framing is useful because it is the most REE-compatible of the available accounts — but it is not the only credible one.",
+    "source_context": "Theoretical review in TiCS synthesising human fMRI and patient-lesion evidence on rostral PFC function. Draws primarily on Burgess-lab studies of prospective memory, self-generated cognition, and stimulus-independent attending."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (TiCS, Burgess lab, widely cited). Mapping fidelity very high — the gateway is essentially the substrate-level claim that MECH-261 makes at the operating-mode level. Transfer risk modest: human-only evidence but the target population for REE substrate claims is human/primate cognition."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_frontopolar_multitasking_lesion_burgess2000",
+  "timestamp_utc": "2026-04-19T11:47:33Z",
+  "claim_ids_tested": ["SD-033e"],
+  "source": {
+    "title": "The cognitive and neuroanatomical correlates of multitasking",
+    "authors": ["Paul W. Burgess", "Emma Veitch", "Angus de Lacy Costello", "Tim Shallice"],
+    "year": 2000,
+    "venue": "Neuropsychologia",
+    "doi": "10.1016/S0028-3932(99)00134-7"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Large (N=60 patients + 60 matched controls) focal-lesion study on naturalistic multitasking. Dissociation across sub-regions is clean: rule-breaking and task-switch failures track medial and polar BA 8/9/10. Provides the original lesion-based grounding for BA 10 as a distinct functional substrate within PFC. The task is ecological (multitasking) rather than a single mechanism, so the substrate ascription is functional rather than mechanistic — but that is the right grain for SD-033e, which is itself a substrate-level claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If rule-breaking and task-switch failures had been distributed evenly across frontal lesion locations without concentration on medial polar BA 8/9/10, the ascription of a distinct frontopolar substrate would weaken.",
+    "If the three-construct model (retrospective memory, prospective memory, planning) had shown frontopolar involvement equally across all three rather than selectively on the prospective-memory / rule-maintenance side, the specificity of SD-033e to branching / nested control would collapse into generic executive function."
+  ],
+  "tags": ["sd_033e", "frontopolar", "ba10", "multitasking", "lesion", "prospective_memory", "rule_switching"],
+  "mapping": {
+    "source_claim_statement": "Focal lesions to medial and polar aspects of Brodmann's areas 8, 9 and especially 10 produce rule-breaking and task-switching failures during naturalistic multitasking. Prospective memory and planning load onto dissociable prefrontal substrates, with prospective memory and task-switching concentrated in frontopolar/medial polar regions.",
+    "ree_translation": "Provides the lesion-based empirical grounding for SD-033e as a substrate distinct from SD-033a (lateral-PFC-analog rule-holding). SD-033a lesion analogue would predict failure to hold the rule; Burgess 2000's data show something different — patients with BA 10 lesions can hold individual rules but fail to switch appropriately between them or maintain pending intentions through intervening tasks. This dissociation is exactly what SD-033e is meant to model: the supervisory layer that coordinates nested operations over rule-holding substrates, not a rule-holding substrate itself.",
+    "mapping_caveat": "2000-era lesion localisation is coarse relative to modern atlases; the 'BA 8/9/10 medial polar' cluster is a large region and does not isolate BA 10 cleanly. The paper is therefore substrate-suggestive rather than substrate-conclusive, and should be read alongside Burgess 2007 (gateway hypothesis refinement) and Mansouri 2015 (primate selective-lesion replication).",
+    "source_context": "Human patient lesion study with 60 cerebral-lesion patients and 60 age/IQ-matched controls; ecological multitasking procedure; structural equation modelling over retrospective memory, prospective memory, and planning constructs."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: large N, matched controls, SEM analysis, ecological task, well-cited methodology. Mapping fidelity good: the dissociation maps onto the SD-033a/SD-033e substrate split REE is proposing. Transfer risk modest: human patient data is the target population for REE substrate claims, but lesion localisation is coarse."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_frontopolar_competing_goals_synthesis_mansouri2017",
+  "timestamp_utc": "2026-04-19T11:47:33Z",
+  "claim_ids_tested": ["SD-033e", "MECH-261"],
+  "source": {
+    "title": "Managing competing goals - a key role for the frontopolar cortex",
+    "authors": ["Farshad A. Mansouri", "Etienne Koechlin", "Marcello G. P. Rosa", "Mark J. Buckley"],
+    "year": 2017,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn.2017.111"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Nature Reviews Neuroscience synthesis by four frontopolar specialists (Mansouri from the primate-lesion side, Koechlin from the information-theoretic-branching side, Rosa from the comparative anatomy side, Buckley from the lesion/behavioral side). Integrates a decade of work into a single framing: FPC monitors the relative importance of current vs alternative goals and supports parallel-goal monitoring with switching. This is the most integrative account available and directly supports proposing a renamed V4 operating mode in MECH-261.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If imaging evidence for FPC activity scaling with the relative importance / expected-value difference between current and alternative goals had been weak or absent, the synthesis would collapse to a less specific 'executive monitoring' claim.",
+    "If human vs non-human primate frontopolar function had failed to show the qualitative divergence the review proposes (uniquely human capacity for parallel-goal monitoring), the V4-specific framing in REE would need softening."
+  ],
+  "tags": ["sd_033e", "mech_261", "frontopolar", "ba10", "competing_goals", "parallel_monitoring", "review", "nature_reviews"],
+  "mapping": {
+    "source_claim_statement": "Frontopolar cortex (BA 10), a cytoarchitectonic region present only in primates and most expanded in humans, monitors the relative importance of current and alternative goals. Across primate evolution, FPC acquired an additional capacity in humans for parallel monitoring of multiple goals and flexible switching between them. This capacity underlies cognitive flexibility in complex multi-goal environments and distinguishes human-level executive function from that of other primates.",
+    "ree_translation": "This is the synthesis that should drive SD-033e's V4 specification. Mansouri et al integrate the branching (Koechlin), counterfactual-value (Boorman), gateway (Burgess), and disengagement-for-exploration (Mansouri 2015) findings into a single computational framing: relative-importance monitoring of competing goals, with a human-specific capacity for parallel-goal monitoring. For REE: (1) SD-033e's functional specification in V4 should be 'relative-importance monitoring and parallel-goal deliberation', not 'branching'; (2) the MECH-261 reserved V4 mode name should likely be changed from 'deliberative_branching' (Koechlin framing) to something like 'parallel_goal_deliberation' or 'counterfactual_deliberation' (captures Boorman + Mansouri 2017 framing); (3) a new mechanism claim (proposed MECH-265 in Prong D synthesis) should ground FPC's relative-importance monitoring as a specific computational function distinct from MECH-264's counterfactual-value tracking.",
+    "mapping_caveat": "This is a review synthesis, not a primary empirical study. It inherits the strengths and limitations of the literature it integrates — the central finding is well-supported by converging evidence but any given sub-claim (especially the 'uniquely human parallel monitoring' claim) has active competitors. The human-specificity framing is particularly contested: non-human primates show limited but non-zero parallel-goal capacity in some paradigms.",
+    "source_context": "Nature Reviews Neuroscience integrative review by four primary investigators from complementary methodological backgrounds (primate behavioural lesion, human computational modelling, comparative neuroanatomy, primate lesion/behavioural). Covers human fMRI, primate lesion behaviour, comparative anatomy, and computational modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high (Nature Reviews Neuroscience, multi-lab synthesis, widely cited). Mapping fidelity high — the relative-importance-monitoring framing maps cleanly onto V4's envisaged SD-033e function. Transfer risk low — the review explicitly addresses human-primate homology and cross-species extrapolation, which is exactly what REE needs for substrate claims."
+  }
+}

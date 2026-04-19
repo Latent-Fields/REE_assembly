@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_frontopolar_counterfactual_value_boorman2009",
+  "timestamp_utc": "2026-04-19T11:47:33Z",
+  "claim_ids_tested": ["SD-033e"],
+  "source": {
+    "title": "How green is the grass on the other side? Frontopolar cortex and the evidence in favor of alternative courses of action",
+    "authors": ["Erie D. Boorman", "Timothy E. J. Behrens", "Mark W. Woolrich", "Matthew F. S. Rushworth"],
+    "year": 2009,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2009.05.014"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "High-quality Neuron fMRI study with a Bayesian reinforcement-learning model directly extracting trial-by-trial counterfactual-option value and showing it tracked by lateral frontopolar activity. Double-dissociation between vmPFC (current decision value) and lateral frontopolar cortex (counterfactual option value) is clean and directly relevant to SD-033e. The 2011 PLOS Biology follow-up (Boorman et al) extends this with counterfactual learning signals. This is the single strongest mechanistic entry for frontopolar's role in V4-relevant deliberative function.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If lateral frontopolar activity had tracked chosen-option value rather than counterfactual-option value, the vmPFC/frontopolar dissociation would collapse and both regions would reduce to scalar value coding.",
+    "If individual variation in frontopolar activity had not predicted the propensity to switch to the better counterfactual option, the functional ascription (frontopolar computes evidence for switching) would weaken from causal to epiphenomenal."
+  ],
+  "tags": ["sd_033e", "frontopolar", "counterfactual", "option_value", "lateral_fpc", "fmri", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "Lateral frontopolar cortex (lFPC) encodes the relative reward-based evidence favoring the best unchosen (counterfactual) option, distinct from vmPFC which encodes the value of the chosen option. Individual variation in lFPC activity predicts the propensity to switch to profitable alternatives at future decisions. Complementary activity in dorsomedial frontal cortex and posteromedial cortex forms a distributed counterfactual-value network.",
+    "ree_translation": "SD-033e is currently framed as a substrate for branching / nested control (Koechlin 2007 framing). Boorman's evidence reframes it: frontopolar's more specific and better-measured function is to track the value of not-chosen alternatives. This is a specific computational role that REE should ground in a new mechanism claim (proposed MECH-264 in Prong D synthesis) rather than leaving at substrate-level only. The implication for V4: when the agent considers an alternative course of action while executing a current one, the frontopolar-analog substrate computes the relative value of the alternative, and this value drives the switch decision. That is a more specific and testable claim than 'branching'.",
+    "mapping_caveat": "The Boorman paradigm uses monetary-reward decision tasks rather than moral or ethical deliberation tasks. Whether the same frontopolar machinery computes counterfactual value over morally-laden alternatives (which is what REE ultimately needs) is an extrapolation. Neuroeconomic literature broadly supports the extrapolation (similar networks appear in moral-decision fMRI) but REE should flag it rather than assume it.",
+    "source_context": "Human fMRI with three-alternative decision task; Bayesian reinforcement-learning model extracting trial-by-trial value signals for both chosen and counterfactual options; N=18 participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high (Neuron, Rushworth lab, explicit model-based fMRI). Mapping fidelity high — counterfactual-value tracking is a clean computational function that grounds SD-033e better than Koechlin's branching framing. Transfer risk modest-to-high because the task domain is monetary reward rather than ethical deliberation, which is V4's eventual target."
+  }
+}

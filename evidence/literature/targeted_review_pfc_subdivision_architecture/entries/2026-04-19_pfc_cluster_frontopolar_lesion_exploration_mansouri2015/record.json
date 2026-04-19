@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-19_pfc_cluster_frontopolar_lesion_exploration_mansouri2015",
+  "timestamp_utc": "2026-04-19T11:47:33Z",
+  "claim_ids_tested": ["SD-033e"],
+  "source": {
+    "title": "Behavioral consequences of selective damage to frontal pole and posterior cingulate cortices",
+    "authors": ["Farshad A. Mansouri", "Mark J. Buckley", "Majid Mahboubi", "Keiji Tanaka"],
+    "year": 2015,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1422629112"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Selective bilateral lesion study in macaques with both FPC-lesion and PCC-lesion groups plus controls. Localisation is clean (selective aspiration lesions post-training) which is the key advance over human lesion studies where frontopolar damage rarely occurs in isolation. The paradoxical finding — FPC lesions IMPROVE task focus under distraction while IMPAIRING rapid learning of novel alternative rules — is the exact dissociation you want to see for a substrate specialised for disengagement / exploration. Translates cleanly to SD-033e specification.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If FPC-lesioned monkeys had shown reduced performance on the WCST rule-switching task itself, the ascription of FPC to disengagement-for-exploration rather than general rule-switching would collapse.",
+    "If FPC-lesioned monkeys had shown no deficit on rapid learning of novel alternative rules, the claim that frontopolar substrate specifically supports exploration of novel options would weaken to a null result."
+  ],
+  "tags": ["sd_033e", "frontopolar", "frontal_pole", "lesion", "primate", "exploration", "exploitation", "novel_rule"],
+  "mapping": {
+    "source_claim_statement": "Selective bilateral FPC lesions in macaques do not impair WCST performance or within-task rule-switching, but they (i) augment the ability to maintain focus on the current task despite distracting secondary tasks or surprising rewards, and (ii) impair rapid learning of novel alternative abstract rules. The authors interpret this as FPC being specialised for disengaging executive control from the current task and redistributing it to novel sources of reward — exploration rather than exploitation. A separate PCC-lesion group shows no such effect.",
+    "ree_translation": "Direct primate-lesion grounding for SD-033e as a substrate that enables disengagement from an ongoing task and exploration of alternatives. Critically, the paper shows FPC is NOT needed for the rule-switching that Burgess 2000 also involved BA 10 in at the coarse human-lesion level — FPC-specific lesions in primates leave WCST performance intact. What FPC IS needed for is detecting that an alternative might be worth pursuing and disengaging from the current task to pursue it. This maps cleanly onto the Boorman 2009 counterfactual-value story and onto Burgess 2007's gateway hypothesis. The three findings converge: frontopolar-analog substrate computes counterfactual value (Boorman), gates the external/internal switch (Burgess), and drives disengagement-for-exploration (Mansouri). V4 SD-033e should model all three, not just Koechlin branching.",
+    "mapping_caveat": "Macaque frontopolar cortex is homologous to human BA 10 but substantially smaller and less differentiated. Functional extrapolation across species is cleaner in macaques than in rodents but not trivial. Secondly, the task is WCST-adjacent rule-switching with artificial reward, not naturalistic multi-goal deliberation; how cleanly this extrapolates to V4's ethical deliberation target is an open question the paper does not address.",
+    "source_context": "Macaque post-training selective aspiration lesions to FPC or PCC, with age-matched controls; analogues of Wisconsin Card Sorting Test and related tasks; behavioural analysis focusing on rule-switching performance, distraction resistance, and rapid learning of novel abstract rules."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (PNAS, Buckley/Tanaka labs, selective-lesion primate methodology). Mapping fidelity high — disengagement-for-exploration is a specific and testable function that SD-033e can implement. Transfer risk modest: primate-to-human is cleaner than rodent-to-human, and macaque FPC is genuinely homologous to human BA 10."
+  }
+}
