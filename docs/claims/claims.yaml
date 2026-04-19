@@ -6741,6 +6741,7 @@
   depends_on:
     - MECH-089
     - MECH-112
+    - SD-033a         # adjacent to lateral-PFC-analog rule/goal substrate; MECH-116 is the E1-side goal-WM implementation. Relationship flagged ambiguous 2026-04-19 -- genuine governance decision needed on whether MECH-116 is a WM subcomponent of SD-033a or a distinct E1 recurrent-WM substrate. See notes.
   location: docs/architecture/approach_avoidance_symmetry.md#mech-116
   source:
     - evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
@@ -7728,6 +7729,7 @@
   subject: vmPFC.affective_normative_state_preparation
   polarity: asserts
   status: candidate
+  instantiates: SD-033c    # vmPFC-analog subdivision of the SD-033 PFC cluster (registered 2026-04-19); ARC-035 is the existing substrate function consolidated under that subdivision
   depends_on:
     - ARC-007
     - ARC-013
@@ -8170,6 +8172,7 @@
   subject: vmPFC.safety_memory_competition
   polarity: asserts
   status: candidate
+  instantiates: SD-033c    # vmPFC-analog subdivision of the SD-033 PFC cluster; MECH-133 operates inside the vmPFC-analog substrate
   depends_on:
     - ARC-035
     - ARC-007
@@ -8762,6 +8765,7 @@
     - ARC-018
     - ARC-007
     - MECH-092
+    - MECH-261        # mode-conditioned write gating from SD-032a operating_mode -- the substrate that routes waking consolidation writes into the map (symmetric with MECH-261.depends_on). EXQ-355a pending_retest_after_substrate once MECH-261 is implemented.
   notes: >
     Olafsdottir et al. (2017, Neuron) show that awake hippocampal replay is not
     homogeneous: during active task engagement, replay is task-focused and prospective
@@ -8823,6 +8827,7 @@
     - ARC-038
     - ARC-018
     - MECH-092
+    - MECH-261        # mode-conditioned write gating: the offline_consolidation mode vector is what licenses entorhinal-grid-loop engagement (symmetric with MECH-261.depends_on on ARC-039 as its offline consolidation target)
   notes: >
     Olafsdottir et al. (2017, Neuron) identify that entorhinal grid cells engage
     coherently with hippocampus only during offline/immobility consolidation, not
@@ -9414,6 +9419,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  instantiates: SD-033c    # vmPFC-analog subdivision: MECH-151 is one of the existing mechanisms consolidated under SD-033c (see SD-033c.depends_on)
   depends_on:
     - MECH-150
     - SD-004
@@ -9454,6 +9460,7 @@
     0 conflicting experiments. Note: evidence_quality_note was empty at promotion -- 2 experiments
     is a thin base; evidence_quality_note should be updated when additional experiments run.
   implementation_phase: v3
+  instantiates: SD-033c    # vmPFC-analog subdivision: MECH-152 is one of the existing mechanisms consolidated under SD-033c (see SD-033c.depends_on)
   depends_on:
     - MECH-150
     - ARC-016
@@ -12124,6 +12131,7 @@
     - SD-012
     - MECH-187
     - INV-034
+    - SD-033a         # dlPFC / lateral-PFC-analog is the goal-persistence substrate that DRN 5-HT modulates; SD-033a is the substrate MECH-188 operates on
   short: PFC-mediated working memory for goal representations, modulated by 5-HT projections, maintains z_goal after seeding when harm spikes or benefit exposure temporarily drops.
   description: >
     Once z_goal has been seeded (SD-012), a PFC-mediated maintenance mechanism keeps
@@ -15727,6 +15735,7 @@
   polarity: asserts
   status: candidate
   registered: "2026-04-15"
+  instantiates: SD-033c    # vmPFC-analog subdivision: MECH-235 is one of the existing mechanisms consolidated under SD-033c (see SD-033c.depends_on)
   depends_on:
     - MECH-090
     - MECH-091
