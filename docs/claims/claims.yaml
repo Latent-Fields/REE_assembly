@@ -17673,7 +17673,25 @@
     plus mode-stability parameter. Over-fitting the full metastability
     framework is likely over-commitment.
   evidence_quality_note: >
-    Registered pre-implementation. See SD-032 parent.
+    Registered pre-implementation. See SD-032 parent. IMPLEMENTED 2026-04-19
+    in ree_core/cingulate/pcc_analog.py (PCCAnalog, PCCConfig). Non-trainable
+    arithmetic over success EMA + drive_level + steps-since-last-offline.
+    Output pcc_stability injected into SalienceCoordinator before tick() each
+    cycle so MECH-259 effective_threshold is modulated on the current step.
+    Single integration point with MECH-092/INV-049 via agent.enter_offline_mode()
+    -> pcc.note_offline_entry(). Master switch use_pcc_analog=False (default,
+    backward compatible). Validation experiment: V3-EXQ-447 queued.
+  implementation_note: >
+    IMPLEMENTED 2026-04-19. Module ree_core/cingulate/pcc_analog.py.
+    Config: REEConfig.use_pcc_analog (default False) plus six sub-knobs
+    (pcc_success_alpha=0.02, pcc_success_weight=0.5, pcc_fatigue_weight=0.5,
+    pcc_offline_recency_window=500, pcc_offline_weight=0.3,
+    pcc_stability_baseline=0.5). Agent integration: REEAgent.__init__
+    instantiates self.pcc when flag set; select_action() ticks pcc and
+    injects pcc_stability into SalienceCoordinator before coordinator.tick();
+    enter_offline_mode() calls pcc.note_offline_entry(); reset() calls
+    pcc.reset() (per-episode; cross-episode counter preserved). Convenience
+    method REEAgent.note_task_outcome(value) feeds the PCC success EMA.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: SD-032e
   title: "pACC-autonomic coupling: module connecting affective-pain stream (z_harm_a) to valence/drive update pathway. Provides the affective-pain -> autonomic/visceral coupling that Vogt 2005 and Craig 2009 locate in perigenual/subgenual ACC."

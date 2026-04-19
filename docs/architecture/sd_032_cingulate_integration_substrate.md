@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-032 (parent) + SD-032a–e (subdivisions)
 **Subject:** `cingulate.integration_substrate`
-**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; SD-032a IMPLEMENTED 2026-04-19; SD-032c IMPLEMENTED 2026-04-19; parent cluster still pre-implementation.
+**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; SD-032a IMPLEMENTED 2026-04-19; SD-032c IMPLEMENTED 2026-04-19; SD-032d IMPLEMENTED 2026-04-19; parent cluster still pre-implementation (SD-032e remains).
 **Registered:** 2026-04-19
 **Depends on:** SD-011, SD-012, SD-020, SD-021, MECH-091, MECH-094, MECH-220
 **Paired with:** SD-033 (PFC subdivision architecture) — together form the V3 cognitive-control backbone
@@ -28,7 +28,7 @@ The lit-pull (`targeted_review_cingulate_integration_substrate`, 9 entries) refr
 | SD-032a | Salience-network coordinator | AIC-dACC coupled salience network (Menon & Uddin 2010) | Reads all subdivisions; outputs `operating_mode` vector + mode-switch trigger | Absent |
 | SD-032b | dACC / aMCC-analog (adaptive control) | dorsal ACC / anterior midcingulate (Shackman 2011; Baliki 2010) | Integrates z_harm_a PE + z_conflict + control demand; writes striatal-analog action-value target | Absent |
 | SD-032c | AIC-analog (interoceptive salience / urgency) | Anterior insula (Craig 2009) | Detects salient interoceptive events; gates on SD-012 baseline; fires mode-switch trigger; subsumes SD-021 descending modulation | IMPLEMENTED 2026-04-19 |
-| SD-032d | PCC-analog (attention partition / metastability) | Posterior cingulate (Leech & Sharp 2013) | Biases external-vs-internal attention; emits mode-stability scalar | Partial (INV-049, MECH-092 exist) |
+| SD-032d | PCC-analog (attention partition / metastability) | Posterior cingulate (Leech & Sharp 2013) | Biases external-vs-internal attention; emits mode-stability scalar | IMPLEMENTED 2026-04-19 |
 | SD-032e | pACC-autonomic coupling | Perigenual / subgenual ACC (Vogt 2005; Craig 2009) | Writes z_harm_a into SD-012 valence / drive_level over slow timescale | Absent |
 
 ### SD-032a — Salience-network coordinator
@@ -152,6 +152,8 @@ Conservative computational spec (Leech & Sharp 2013 is a proposal, not consensus
 Coordinates within-session offline phases (MECH-092 micro-quiescence replay) and cross-session offline phases (INV-049 sleep). Does **not** trigger mode switches directly — that is SD-032c's job.
 
 **Substrate signature:** ablating SD-032d makes the mode-switch threshold insensitive to fatigue / time-since-offline; agent over-commits to external_task without rest-driven relaxation of the threshold.
+
+**Implementation (2026-04-19).** `ree_core/cingulate/pcc_analog.py` (`PCCAnalog`, `PCCConfig`). Non-trainable arithmetic over a success-outcome EMA + drive_level + steps-since-last-offline-phase counter. Emits `pcc_stability` in [0, 1] and is injected into the SD-032a coordinator via `update_signal("pcc_stability", ...)` BEFORE `coordinator.tick()` each cycle, so MECH-259 `effective_threshold = switch_threshold * (1 + stability_scaling * pcc_stability)` is modulated on the current step. Cross-session `_steps_since_offline` counter is reset only by `note_offline_entry()` (called from `agent.enter_offline_mode()` — the single integration point for both MECH-092 within-session quiescence and INV-049 cross-session sleep). Per-episode `reset()` does NOT reset the counter (a new episode starting is not rest). Task outcomes are an explicit caller signal (`agent.note_task_outcome(value)`); without any calls, the success EMA stays at neutral 0.5 and contributes zero to stability. Master switch `REEConfig.use_pcc_analog` defaults False; sub-knobs `pcc_success_alpha=0.02`, `pcc_success_weight=0.5`, `pcc_fatigue_weight=0.5`, `pcc_offline_recency_window=500`, `pcc_offline_weight=0.3`, `pcc_stability_baseline=0.5`. Backward compatible. Phased training: not applicable (non-trainable). MECH-094: not applicable (waking arithmetic, no replay content authored). Validation experiment: V3-EXQ-447 queued.
 
 ### SD-032e — pACC-autonomic coupling
 
