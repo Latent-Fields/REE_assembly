@@ -1,155 +1,41 @@
 {
   "schema_version": "v1",
-  "runner_pid": 158329,
-  "runner_started_at": "2026-04-17T14:52:46.465516+00:00",
-  "last_updated": "2026-04-19T04:26:53.340622+00:00",
+  "runner_pid": 670,
+  "runner_started_at": "2026-04-19T05:48:07.571975+00:00",
+  "last_updated": "2026-04-19T07:38:40.653044+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-395",
-    "backlog_id": "EVB-0114",
-    "claim_id": "MECH-220",
-    "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated)",
-    "description": "",
-    "script": "experiments/v3_exq_395_mech220_harm_hub.py",
-    "started_at": "2026-04-19T04:25:28.267157+00:00",
-    "progress": {
-      "run_label": "Seed 7 / HUB_ABLATED",
-      "runs_done": 1,
-      "runs_total": 6,
-      "episodes_done": 200,
-      "episodes_total": 200,
-      "overall_pct": 33.3
-    },
-    "seconds_elapsed": 85,
-    "seconds_remaining": 181,
-    "recent_lines": [
-      "[train] seed=7 ep 50/100 phase=P0 cond=HUB_ABLATED",
-      "[train] seed=7 ep 100/100 phase=P0 cond=HUB_ABLATED",
-      "[train] seed=7 P1 start (100 eps) cond=HUB_ABLATED",
-      "[train] seed=7 ep 150/200 phase=P1 cond=HUB_ABLATED hub_weight=0.0",
-      "[train] seed=7 ep 200/200 phase=P1 cond=HUB_ABLATED hub_weight=0.0"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-395",
-      "backlog_id": "EVB-0114",
-      "claim_id": "MECH-220",
-      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated)",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-375",
-      "backlog_id": "EVB-0057",
-      "claim_id": "MECH-073",
-      "title": "MECH-073 valence geometry: discriminative support vs ablation pair",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-406",
-      "backlog_id": "EXP-0096",
+      "queue_id": "V3-EXQ-433",
+      "backlog_id": "EXP-0146",
       "claim_id": "",
-      "title": "INV-053 depression attractor replication: 5-seed LONG_HORIZON characterisation",
+      "title": "SD-029 event-conditioned single-pass comparator (successor to SD-003)",
       "description": "",
-      "estimated_minutes": 400.0,
-      "status": "pending",
+      "estimated_minutes": 96.0,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-396",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-016 precision threshold sweep: hazard_harm 5-level characterization (EXQ-038 staged fix)",
-      "description": "",
-      "estimated_minutes": 226.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-397",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-007 path memory ablation: residue field zeroing degrades hippo proposals (EXQ-046b staged fix)",
-      "description": "",
-      "estimated_minutes": 80.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-429",
+      "queue_id": "V3-EXQ-429b",
       "backlog_id": "EVB-0060",
-      "claim_id": "INV-044",
-      "title": "INV-044: Bayesian Prior-Before-Posterior Necessity (SWS-ordered vs REM-only vs waking-only)",
-      "description": "",
-      "estimated_minutes": 108.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-430",
-      "backlog_id": "EVB-0071",
       "claim_id": "",
-      "title": "INV-010: Offline Integration Necessity (SLEEP vs NO_SLEEP behavioral comparison)",
+      "title": "INV-044 Bayesian Prior-Before-Posterior: SWS-ordered vs REM-only vs waking-only (429a status lost)",
       "description": "",
-      "estimated_minutes": 72.0,
+      "estimated_minutes": 156.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-324b",
+      "queue_id": "V3-EXQ-325b",
       "backlog_id": "",
-      "claim_id": "SD-020",
-      "title": "SD-020 harm surprise PE: multi-episode eval fix (EXQ-324a fix)",
+      "claim_id": "",
+      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
       "description": "",
-      "estimated_minutes": 266.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418a",
-      "backlog_id": "",
-      "claim_id": "SD-017",
-      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EXQ-418 fix)",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-385a",
-      "backlog_id": "",
-      "claim_id": "INV-049",
-      "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EXQ-385 fix)",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-355a",
-      "backlog_id": "",
-      "claim_id": "ARC-038",
-      "title": "ARC-038 schema assimilation probe: optimizer isolation fix (EXQ-355 fix)",
-      "description": "",
-      "estimated_minutes": 80.0,
-      "status": "pending",
+      "estimated_minutes": 86.7,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2458,6 +2344,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 77171.4
+    },
+    {
+      "queue_id": "V3-EXQ-395",
+      "backlog_id": "EVB-0114",
+      "claim_id": "MECH-220",
+      "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[HUB_ENABLED] seed=7 EVAL: harm_rate=0.0309 (183/5918) z_harm_a_norm=0.7148 z_harm_s_norm=0.6718 | [HUB_ABLATED] seed=7 EVAL: harm_rate=0.0309 (183/5918) z_harm_a_norm=0.6227 z_harm_s_norm=0.6252 | verdict: FAIL (C1=False, C2=True, C3=True) harm_delta=0.0000 norm_delta=0.0921 hub=0.0309 abl=0.0309",
+      "started_at": "2026-04-19T04:25:28.267157+00:00",
+      "completed_at": "2026-04-19T04:27:00.265502+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 92.0
+    },
+    {
+      "queue_id": "V3-EXQ-406b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "INV-053 depression attractor replication: 5-seed LONG_HORIZON characterisation (406a status lost)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=17 goal_norm=0.000 behav_equiv=0.00000 accum_harm=1.19715 -> attractor=PASS | -> PASS decision=retain_ree direction=supports | Status: PASS",
+      "started_at": "2026-04-19T05:48:09.021532+00:00",
+      "completed_at": "2026-04-19T07:38:40.652145+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 6631.1
     }
   ]
 }
