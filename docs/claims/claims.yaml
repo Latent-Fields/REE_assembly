@@ -17287,10 +17287,11 @@
     Registered pre-implementation on the basis of 9-entry lit-pull
     (2026-04-19); mean confidence ~0.80 across entries. No V3
     experimental evidence yet; dACC-analog implementation (SD-032b) is
-    the first testable target. A design doc
-    (docs/architecture/sd_032_cingulate_integration_substrate.md) is
-    pending.
-  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+    the first testable target. Design doc:
+    docs/architecture/sd_032_cingulate_integration_substrate.md
+    (subdivisions, MECH-261 write-gating profile, minimum-viable V3
+    path, substrate-level falsification signatures).
+  location: docs/architecture/sd_032_cingulate_integration_substrate.md
 - id: SD-032a
   title: "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger."
   claim_type: design_decision
@@ -17914,10 +17915,11 @@
     Registered pre-implementation on the basis of 7-entry lit-pull
     (2026-04-19); mean confidence 0.80 across entries. No V3
     experimental evidence yet; SD-033a implementation is the first
-    testable target. A design doc
-    (docs/architecture/sd_033_pfc_subdivision_architecture.md) is
-    pending.
-  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+    testable target. Design doc:
+    docs/architecture/sd_033_pfc_subdivision_architecture.md
+    (subdivisions, MECH-261 gating profile, SD-032 interface contract,
+    minimum-viable V3 path, substrate-level falsification signatures).
+  location: docs/architecture/sd_033_pfc_subdivision_architecture.md
 - id: SD-033a
   title: "Lateral-PFC-analog (mid-lateral rule/goal substrate): module that holds stimulus-abstracted rule and goal representations across delays, persists through simulated distractors, and projects bias signals into E3 action selection. Primary write target for MECH-261 under external_task and internal_planning modes."
   claim_type: design_decision
