@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-04-11.1 -->
+<!-- EXPLORER_VERSION: 2026-04-19.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8207,7 +8207,7 @@ END CONFLICT RESOLUTION`;
         : c.evidence_only && c.completed_at
         ? `<div class="exp-timing" style="margin-top:6px">Latest run ${c.completed_at.replace('T', ' ').slice(0, 16)} UTC${completedByStr}</div>`
         : '';
-      let dirName = c.script_name || (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
+      let dirName = c.script_name || (c.output_file || '').replace(/\\/g, '/').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
       // Handle bare filenames (no path separator) — strip trailing timestamp + .json
       if (dirName && dirName.endsWith('.json')) dirName = dirName.replace(/_\d{8}T\d{6}Z?\.json$/, '');
       // Fallback for ERROR/UNKNOWN with no output_file — use queue_id
@@ -8386,10 +8386,10 @@ END CONFLICT RESOLUTION`;
       // Show all runs; annotate each with total on-disk run count for that experiment
       if (completed.length > 0 || Object.keys(evidenceByScript).length > 0) {
         const completedScriptNames = new Set(
-          completed.map(c => (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '')).filter(Boolean)
+          completed.map(c => (c.output_file || '').replace(/\\/g, '/').replace(/^.*experiments\//, '').replace(/\/.*$/, '')).filter(Boolean)
         );
         const completedAnnotated = completed.map(c => {
-          const scriptName = (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
+          const scriptName = (c.output_file || '').replace(/\\/g, '/').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
           const ev = evidenceByScript[scriptName] || evidenceByClaimId[c.claim_id] || null;
           return { ...c, script_name: scriptName, total_run_count: ev ? ev.run_count : null, episode_log_url: ev ? (ev.episode_log_url || null) : null };
         });

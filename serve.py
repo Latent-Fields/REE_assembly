@@ -980,7 +980,19 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 dir_name for dir_name, runs in get_dir_to_runs().items()
                 if runs & reviewed_set
             }
-            discussed = list(set(data.get("discussed_experiment_dirs", [])) | reviewed_dirs)
+            # Also emit queue_id aliases (e.g. "V3-EXQ-028") so explorer cards
+            # whose output_file is missing (falls back to queue_id for dir_name)
+            # still resolve as discussed.
+            queue_aliases = set()
+            for dir_name in reviewed_dirs:
+                m = re.match(r'v([123])_exq_(\w+?)(?:_|$)', dir_name)
+                if m:
+                    queue_aliases.add(f"V{m.group(1)}-EXQ-{m.group(2)}")
+            discussed = list(
+                set(data.get("discussed_experiment_dirs", []))
+                | reviewed_dirs
+                | queue_aliases
+            )
             body = json.dumps({
                 "discussed_experiment_dirs": discussed,
                 "reviewed_run_ids": data.get("reviewed_run_ids", []),
