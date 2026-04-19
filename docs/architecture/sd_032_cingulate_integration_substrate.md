@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-032 (parent) + SD-032a–e (subdivisions)
 **Subject:** `cingulate.integration_substrate`
-**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; SD-032a IMPLEMENTED 2026-04-19; SD-032c IMPLEMENTED 2026-04-19; SD-032d IMPLEMENTED 2026-04-19; parent cluster still pre-implementation (SD-032e remains).
+**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; SD-032a IMPLEMENTED 2026-04-19; SD-032c IMPLEMENTED 2026-04-19; SD-032d IMPLEMENTED 2026-04-19; SD-032e IMPLEMENTED 2026-04-19; parent cluster now fully covered at V3-plausible resolution — cluster-level promotion awaits V3-EXQ-445/446/447/448 validation evidence.
 **Registered:** 2026-04-19
 **Depends on:** SD-011, SD-012, SD-020, SD-021, MECH-091, MECH-094, MECH-220
 **Paired with:** SD-033 (PFC subdivision architecture) — together form the V3 cognitive-control backbone
@@ -160,6 +160,26 @@ Coordinates within-session offline phases (MECH-092 micro-quiescence replay) and
 Slow write-back channel from z_harm_a into SD-012 (drive_level, valence). In biology, perigenual / subgenual ACC drives autonomic and endocrine responses to pain; in ree-v3 this is what lets sustained affective pain shift the interoceptive baseline over longer timescales than a single action cycle.
 
 **Substrate signature:** sustained z_harm_a exposure produces drift in drive_level, which in turn modulates SD-032c's switch threshold. Behavioural signature: chronic-pain-like sensitization (Baliki 2012). Without SD-032e, z_harm_a has no path into long-timescale state.
+
+**Scoping decisions (see `evidence/literature/targeted_review_pacc_autonomic_coupling_write_target/synthesis.md`, 2026-04-19).** Three architectural questions were scoped from the literature before implementation:
+
+1. *Write target.* Biology (Mayberg 2005 sgACC-depression setpoint; Critchley 2003 ACC-autonomic coupling; Gianaros 2011 ACC-PAG-medulla fast route) places pACC/sgACC between slow interoceptive baselines, valence-signed mood state, and fast autonomic effectors. The literature does NOT license one single write target. V3 has no valence-signed setpoint and no fast-autonomic analogue, so SD-032e writes into **SD-012 drive_level as a first-pass proxy** — documented simplification. A future SD-032f would add a fast effector route; a future valence-setpoint substrate would split wanting-sign from arousal-magnitude.
+
+2. *Slow-EMA timescale.* Guo 2018 rodent ACC mGluR5 LTP saturates over days (thousands of REE steps). The default `pacc_drive_alpha=0.002` (`pacc_drive_ema=0.998`, half-life ~347 steps) sits at the fast end of biological plausibility — intentionally, so the validation experiment can observe drift within a tractable runtime. Long-horizon sensitisation studies should slow it (`alpha <= 0.0005`). The accumulator is a single EMA compressing **two biological steps** — ACC-internal plasticity (the Guo 2018 LTP) and ACC downstream influence on interoceptive baselines — into one arithmetic stage. This is an explicit simplification.
+
+3. *Offline decay.* Sleep-mediated normalisation of accumulated drift is a **distinct claim** with its own literature requirement, not automatically part of SD-032e. Default `pacc_offline_decay=0.0` (no decay). The hook exists via `note_offline_entry()` so a future, separately grounded claim can wire in without another implementation pass.
+
+**Implementation (2026-04-19).** `ree_core/cingulate/pacc_analog.py` (`PACCAnalog`, `PACCConfig`). Non-trainable arithmetic. `tick(z_harm_a_norm, write_gate, hypothesis_tag)` computes `target = tanh(z_harm_a_norm) * drive_scale` when `z_harm_a_norm > z_harm_a_min` (otherwise `target = 0` — Guo 2018 reversibility under quiescence), then updates a gated EMA `_drive_bias = (1 - alpha*gate) * _drive_bias + alpha*gate*target`, clipped to `[-drive_bias_cap, +drive_bias_cap]`. MECH-094 `hypothesis_tag=True` skips the tick entirely (replay/simulation content does not drive autonomic write-back). `effective_drive(base)` returns `clip_[0,1](base + _drive_bias)` — the single entry point for SD-032 consumers. Per-episode `reset()` clears diagnostics cache only; `_drive_bias` is cross-episode by architectural intent. `note_offline_entry()` applies `_drive_bias *= (1 - offline_decay)`; default `offline_decay=0.0` makes this a no-op.
+
+**Wiring in REEAgent (`ree_core/agent.py`).** (1) `select_action` ticks pACC once per E3 tick with the current `z_harm_a.norm()` and the coordinator's previous-tick `write_gate("autonomic")` (one-step lag — pACC → autonomic → sensitisation is slow; instantaneous coupling is not biologically required; when `use_salience_coordinator=False` the gate defaults to 1.0 so drift remains observable). An `_effective_drive_level = pacc.effective_drive(base_drive_level)` is then resolved once and passed to the dACC bundle and the salience coordinator. (2) `sense()` has AIC read `pacc.effective_drive(base)` too, so AIC drive coupling sees the sensitised regime with one-step lag. (3) `update_z_goal` stores the base `drive_level` on `goal_state._last_drive_level` (convention: the `_last_drive_level` cache is always the BASE value; SD-032e consumers apply pACC themselves to avoid double-counting) and passes `effective_drive` to `GoalState.update` so that wanting-gain scales with the sensitised regime. (4) `enter_offline_mode()` calls `pacc.note_offline_entry()` (default no-op at `offline_decay=0.0`).
+
+**Config.** `REEConfig.use_pacc_analog` defaults False; sub-knobs `pacc_drive_alpha=0.002`, `pacc_drive_scale=1.0`, `pacc_drive_bias_cap=0.5`, `pacc_z_harm_a_min=0.0`, `pacc_offline_decay=0.0`. All wired through `REEConfig.from_dims()`. Backward compatible: with `use_pacc_analog=False`, agent.pacc is None and every integration site is a no-op.
+
+**Phased training.** Not applicable (non-trainable arithmetic, single EMA).
+
+**MECH-094.** Not applicable in waking action-selection ticks (`hypothesis_tag=False`). Simulation / replay content that calls `pacc.tick(..., hypothesis_tag=True)` is skipped per the MECH-094 convention. `agent.select_action()` never sets `hypothesis_tag=True` — waking pACC writes are valid.
+
+**Validation experiment.** V3-EXQ-448 queued (4-arm ablation: pACC-OFF / pACC-ON-normal-z_harm_a / pACC-ON-sustained-z_harm_a / pACC-ON-hypothesis-tag-only; acceptance criteria: `drive_bias` monotone in sustained exposure magnitude, MECH-094 skip suppresses accumulation, bias bounded by `drive_bias_cap`, downstream `effective_drive_level` shifts AIC `harm_s_gain` and coordinator `effective_threshold` in the expected direction).
 
 ---
 

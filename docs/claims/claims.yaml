@@ -17734,6 +17734,32 @@
     but is not required for the minimum-viable substrate.
   evidence_quality_note: >
     Registered pre-implementation. See SD-032 parent.
+  implementation_note: >
+    IMPLEMENTED 2026-04-19 in ree-v3: ree_core/cingulate/pacc_analog.py
+    (PACCAnalog, PACCConfig). Slow-EMA accumulator of tanh-normalised
+    z_harm_a magnitude, gated by SalienceCoordinator.write_gate("autonomic")
+    (MECH-261 mode-conditioned), producing a bounded drive_bias
+    (|bias| <= pacc_drive_bias_cap) added to SD-012 drive_level via
+    pacc.effective_drive(base). Consumed by GoalState.update,
+    SalienceCoordinator.tick, AICAnalog, PCCAnalog, dACC bundle -- all
+    SD-032 consumers see the sensitised drive regime coherently. MECH-094
+    hypothesis_tag skip prevents simulation/replay from driving the
+    autonomic channel. Scoping synthesis (evidence/literature/
+    targeted_review_pacc_autonomic_coupling_write_target/synthesis.md)
+    documented three architectural decisions:
+      (1) write target: SD-012 drive_level as first-pass proxy (V3 has
+          no valence-signed setpoint or fast-autonomic analogue;
+          documented simplification);
+      (2) timescale: default pacc_drive_alpha=0.002 (pacc_drive_ema=0.998,
+          half-life ~347 steps) sits at the fast end of biological
+          plausibility per Guo 2018 ACC mGluR5 LTP (days-timescale);
+      (3) offline decay: default pacc_offline_decay=0.0 -- sleep
+          normalisation is a DISTINCT claim (not registered) with its
+          own literature requirement; hook exists in note_offline_entry()
+          for future claim wiring.
+    Config: REEConfig.use_pacc_analog (default False). Backward
+    compatible. Non-trainable arithmetic; phased training not applicable.
+    Validation: V3-EXQ-448 queued (4-arm ablation).
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: MECH-258
   title: "z_harm_a enters action selection as a precision-weighted prediction error (harm_surprise_PE, SD-020) against an internal pain forward model (E2_harm_a), not as a raw magnitude. Upgrades SD-020 from provisional to prerequisite for SD-032b (dACC-analog)."
