@@ -1,0 +1,94 @@
+{
+  "run_id": "v3_exq_406_inv053_depression_attractor_replication_1776584320_v3",
+  "experiment_type": "v3_exq_406_inv053_depression_attractor_replication",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "INV-053"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "decision": "retain_ree",
+  "timestamp": 1776584320,
+  "seeds": [
+    42,
+    7,
+    13,
+    99,
+    17
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 100,
+  "long_steps": 150,
+  "long_n_resources": 1,
+  "long_n_hazards": 3,
+  "hazard_harm": 0.02,
+  "greedy_frac": 0.4,
+  "goal_norm_attractor": 0.1,
+  "equiv_thresh": 0.02,
+  "attractor_seed_thresh": 4,
+  "n_attractor": 5,
+  "n_seeds": 5,
+  "mean_goal_norm": 0.015713148238137364,
+  "mean_harm_rate_habit": 0.1656820121702049,
+  "mean_harm_rate_planned": 0.1656820121702049,
+  "mean_accum_harm": 1.2087723966360087,
+  "mean_behav_equiv": 0.0,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "habit_resource_rate": 0.08,
+      "planned_resource_rate": 0.08,
+      "habit_harm_rate": 0.16430924917088896,
+      "planned_harm_rate": 0.16430924917088896,
+      "goal_norm": 0.0034974918235093355,
+      "accumulated_harm_mean": 1.2136242565572257,
+      "behavioral_equivalence": 0.0,
+      "attractor_pass": true
+    },
+    {
+      "seed": 7,
+      "habit_resource_rate": 0.07,
+      "planned_resource_rate": 0.07,
+      "habit_harm_rate": 0.14811876775133612,
+      "planned_harm_rate": 0.14811876775133612,
+      "goal_norm": 0.020292086526751518,
+      "accumulated_harm_mean": 1.2101243682682503,
+      "behavioral_equivalence": 0.0,
+      "attractor_pass": true
+    },
+    {
+      "seed": 13,
+      "habit_resource_rate": 0.12,
+      "planned_resource_rate": 0.12,
+      "habit_harm_rate": 0.17350103090059754,
+      "planned_harm_rate": 0.17350103090059754,
+      "goal_norm": 0.015572463162243366,
+      "accumulated_harm_mean": 1.2105070506572724,
+      "behavioral_equivalence": 0.0,
+      "attractor_pass": true
+    },
+    {
+      "seed": 99,
+      "habit_resource_rate": 0.08,
+      "planned_resource_rate": 0.08,
+      "habit_harm_rate": 0.18256008604133125,
+      "planned_harm_rate": 0.18256008604133125,
+      "goal_norm": 0.0392036996781826,
+      "accumulated_harm_mean": 1.2124588883101939,
+      "behavioral_equivalence": 0.0,
+      "attractor_pass": true
+    },
+    {
+      "seed": 17,
+      "habit_resource_rate": 0.07,
+      "planned_resource_rate": 0.07,
+      "habit_harm_rate": 0.15992092698687052,
+      "planned_harm_rate": 0.15992092698687052,
+      "goal_norm": 0.0,
+      "accumulated_harm_mean": 1.1971474193871015,
+      "behavioral_equivalence": 0.0,
+      "attractor_pass": true
+    }
+  ]
+}
