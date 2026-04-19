@@ -1,41 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 670,
-  "runner_started_at": "2026-04-19T05:48:07.571975+00:00",
-  "last_updated": "2026-04-19T07:38:40.653044+00:00",
+  "runner_pid": 18668,
+  "runner_started_at": "2026-04-19T21:23:07.335930+00:00",
+  "last_updated": "2026-04-19T21:23:12.586690+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-433",
-      "backlog_id": "EXP-0146",
-      "claim_id": "",
-      "title": "SD-029 event-conditioned single-pass comparator (successor to SD-003)",
-      "description": "",
-      "estimated_minutes": 96.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-429b",
-      "backlog_id": "EVB-0060",
-      "claim_id": "",
-      "title": "INV-044 Bayesian Prior-Before-Posterior: SWS-ordered vs REM-only vs waking-only (429a status lost)",
-      "description": "",
-      "estimated_minutes": 156.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-325b",
+      "queue_id": "V3-EXQ-445",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
+      "title": "SD-032b dACC-analog adaptive control validation -- 3-arm ablation (OFF / ON-independent / ON-shared-trunk)",
       "description": "",
-      "estimated_minutes": 86.7,
+      "estimated_minutes": 156.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-447",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032d PCC-analog metastability scalar -- substrate validation (deterministic arithmetic + agent integration)",
+      "description": "",
+      "estimated_minutes": 138.7,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2372,6 +2361,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 6631.1
+    },
+    {
+      "queue_id": "V3-EXQ-397b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-007 path memory ablation (EWIN-PC Ctrl+C requeue)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "calibration_gap_approach: -0.0001277515590422107 | total_harm_train: 4707.0",
+      "started_at": "2026-04-19T11:49:52.039957+00:00",
+      "completed_at": "2026-04-19T15:31:54.046469+00:00",
+      "output_file": "/home/ree/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_397_arc007_path_memory_ablation/v3_exq_397_arc007_path_memory_ablation_20260419T153153Z.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 13322.0
+    },
+    {
+      "queue_id": "V3-EXQ-446",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032a salience-network coordinator validation -- 2-arm ablation + synthetic injection + V4 extensibility",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: PASS",
+      "started_at": "2026-04-19T21:23:08.849731+00:00",
+      "completed_at": "2026-04-19T21:23:12.586519+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 3.7
     }
   ]
 }
