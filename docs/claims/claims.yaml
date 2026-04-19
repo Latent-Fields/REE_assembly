@@ -14177,7 +14177,8 @@
     routed differentially between conditions. Flagged for /diagnose-errors. Hold at
     candidate pending dispatch fix and re-run (EXQ-325b).
     EXQ-325a FAIL (2026-04-18, weakens): z_harm_s_ratio=1.0 identically in DESCENDING and CONTROL across 5 seeds, so attenuation not measurable despite running-variance fix and beta-gate bistable enabled. Descending pathway not engaging in committed state. Mechanism either requires substrate wiring not yet present, or the ratio metric is the wrong instrumentation for this claim.
-    EXQ-325a reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the bit-identical DESCENDING=CONTROL signature is recognised as the same failure mode as EXQ-395 MECH-220 harm-hub (descending output has no downstream consumer). The missing substrate is SD-032c (AIC-analog interoceptive salience / urgency-interrupt), the proper consumer of descending-modulation state. pending_retest_after_substrate once SD-032c implemented. Manifest evidence_direction updated to non_contributory.
+    EXQ-325a reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the bit-identical DESCENDING=CONTROL signature is recognised as the same failure mode as EXQ-395 MECH-220 harm-hub (descending output has no downstream consumer). The missing substrate is SD-032c (AIC-analog interoceptive salience / urgency-interrupt), the proper consumer of descending-modulation state. Manifest evidence_direction updated to non_contributory.
+    SD-032c IMPLEMENTED 2026-04-19 (ree_core/cingulate/aic_analog.py). The raw-beta-gate SD-021 path is superseded by the AIC-analog harm_s_gain function: harm_s_gain depends structurally on operating_mode AND drive_level, not just beta_gate, so DESCENDING and CONTROL conditions are no longer bit-identical. V3-EXQ-325b queued (supersedes V3-EXQ-325a) -- retest with drive-regime contrast (depleted vs well-resourced) expected to resolve the EXQ-325a FAIL. pending_retest_after_substrate flag cleared; hold at candidate until V3-EXQ-325b PASSes.
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while
@@ -14214,12 +14215,20 @@
     Wager et al. (2004, Science): prefrontal anticipatory activity predicts placebo analgesic
     magnitude; thalamus/insula/ACC down during pain -- anticipation-phase top-down gating.
   implementation_note: >
-    IMPLEMENTED 2026-04-10. REEAgent.sense() in ree_core/agent.py. After LatentStack.encode(),
-    if harm_descending_mod_enabled=True and beta_gate.is_elevated and z_harm is not None:
-    new_latent.z_harm *= descending_attenuation_factor. z_harm_a NOT modified.
-    Config: REEConfig.harm_descending_mod_enabled (False), descending_attenuation_factor (0.5).
-    Design doc: docs/architecture/sd_021_descending_pain_modulation.md.
-    Backward compatible. Validation: V3-EXQ-325 queued.
+    IMPLEMENTED 2026-04-10 (legacy raw-beta-gate path). REEAgent.sense() in
+    ree_core/agent.py. After LatentStack.encode(), if
+    harm_descending_mod_enabled=True and beta_gate.is_elevated and z_harm is not
+    None: new_latent.z_harm *= descending_attenuation_factor. z_harm_a NOT
+    modified. Config: REEConfig.harm_descending_mod_enabled (False),
+    descending_attenuation_factor (0.5). Design doc:
+    docs/architecture/sd_021_descending_pain_modulation.md.
+    SUPERSEDED 2026-04-19 by SD-032c (AIC-analog). The raw-beta-gate check is
+    retained behind harm_descending_mod_enabled for backward compatibility
+    (when use_aic_analog=False). When use_aic_analog=True, the attenuation
+    multiplier is aic.harm_s_gain, a function of operating_mode AND drive_level
+    (not just beta_gate). This resolves the EXQ-325a FAIL
+    (DESCENDING==CONTROL bit-identical) by making the descending branch a
+    genuinely different function of state. Retest: V3-EXQ-325b queued.
 
 - id: SD-022
   title: "Directional limb damage: body extension for genuine z_harm_s / z_harm_a causal independence"
@@ -17603,6 +17612,22 @@
     pathway.
   evidence_quality_note: >
     Registered pre-implementation. See SD-032 parent.
+  implementation_note: >
+    IMPLEMENTED 2026-04-19 in ree_core/cingulate/aic_analog.py (AICAnalog,
+    AICConfig). Non-trainable arithmetic over scalars with single EMA
+    interoceptive baseline. Outputs aic_salience (fed to SalienceCoordinator
+    via update_signal before coordinator.tick) and harm_s_gain (multiplier
+    on z_harm replacing legacy SD-021 raw-beta-gate check when
+    use_aic_analog=True). Config flag REEConfig.use_aic_analog (default
+    False); alterable-configuration knob aic_drive_protect_weight (+1/0/-1
+    regimes) implements the spec's testable drive-dependence configuration.
+    Both aic_salience and harm_s_gain depend structurally on drive_level --
+    only V3 substrate that makes the dependence structural. Subsumes SD-021:
+    EXQ-325a FAIL (DESCENDING == CONTROL bit-identical) resolves because the
+    descending branch is now a genuinely different function of state.
+    Validation experiment: V3-EXQ-325b queued (supersedes V3-EXQ-325a).
+    v3_pending remains true until V3-EXQ-325b PASSes. See ree-v3/CLAUDE.md
+    SD-032c entry for full data flow and config documentation.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: SD-032d
   title: "PCC-analog (attention partition / metastability): module coordinating transitions between external-task and internal (replay / planning / consolidation) modes; contributes a mode-stability parameter to the salience-network coordinator (SD-032a)."

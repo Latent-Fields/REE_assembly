@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-032 (parent) + SD-032a–e (subdivisions)
 **Subject:** `cingulate.integration_substrate`
-**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; SD-032a IMPLEMENTED 2026-04-19; parent cluster still pre-implementation.
+**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; SD-032a IMPLEMENTED 2026-04-19; SD-032c IMPLEMENTED 2026-04-19; parent cluster still pre-implementation.
 **Registered:** 2026-04-19
 **Depends on:** SD-011, SD-012, SD-020, SD-021, MECH-091, MECH-094, MECH-220
 **Paired with:** SD-033 (PFC subdivision architecture) — together form the V3 cognitive-control backbone
@@ -27,7 +27,7 @@ The lit-pull (`targeted_review_cingulate_integration_substrate`, 9 entries) refr
 |---|---|---|---|---|
 | SD-032a | Salience-network coordinator | AIC-dACC coupled salience network (Menon & Uddin 2010) | Reads all subdivisions; outputs `operating_mode` vector + mode-switch trigger | Absent |
 | SD-032b | dACC / aMCC-analog (adaptive control) | dorsal ACC / anterior midcingulate (Shackman 2011; Baliki 2010) | Integrates z_harm_a PE + z_conflict + control demand; writes striatal-analog action-value target | Absent |
-| SD-032c | AIC-analog (interoceptive salience / urgency) | Anterior insula (Craig 2009) | Detects salient interoceptive events; gates on SD-012 baseline; fires mode-switch trigger; subsumes SD-021 descending modulation | Absent |
+| SD-032c | AIC-analog (interoceptive salience / urgency) | Anterior insula (Craig 2009) | Detects salient interoceptive events; gates on SD-012 baseline; fires mode-switch trigger; subsumes SD-021 descending modulation | IMPLEMENTED 2026-04-19 |
 | SD-032d | PCC-analog (attention partition / metastability) | Posterior cingulate (Leech & Sharp 2013) | Biases external-vs-internal attention; emits mode-stability scalar | Partial (INV-049, MECH-092 exist) |
 | SD-032e | pACC-autonomic coupling | Perigenual / subgenual ACC (Vogt 2005; Craig 2009) | Writes z_harm_a into SD-012 valence / drive_level over slow timescale | Absent |
 
@@ -107,6 +107,43 @@ Decides when the current operating mode is no longer sustainable. Inputs: z_harm
 **Subsumes SD-021.** The descending pain-modulation pathway (ACC / AIC → PAG) is an AIC function in biology: it attenuates z_harm_s gain as a function of current operating mode (attenuated during committed external_task, unattenuated during internal_planning). SD-021's EXQ-325a FAIL should resolve when SD-032c wires the modulation correctly.
 
 **Substrate signature:** same z_harm_a produces different mode-switch behaviour in depleted vs well-resourced agents (interoceptive-baseline dependence). Failure: mode-switch rate is invariant to SD-012 state.
+
+**Implementation (2026-04-19):** `ree_core/cingulate/aic_analog.py`
+(`AICAnalog`, `AICConfig`). Non-trainable arithmetic over scalars.
+Single EMA buffer for interoceptive baseline. Inputs per `sense()` tick:
+`z_harm_a_norm` (scalar `||z_harm_a||_2` from SD-011), `drive_level`
+(SD-012 GoalState), `beta_gate_elevated` (MECH-090), `operating_mode`
+(SD-032a coordinator, previous tick; `None` treated as
+`p_external_task=1.0` waking baseline so SD-032c remains functional
+without coordinator), `extra_salient` dict (optional; unexpected
+z_goal drop, reward-surprise, irreversibility; `aic_extra_weight=0`
+default). Computation: EMA baseline <- alpha * z_harm_a_norm, urgency
+= max(0, (z_harm_a_norm - baseline)/(baseline + eps)), `aic_salience =
+urgency * (1 + drive_coupling * drive_level) + extra_weight * sum(extra)`,
+`harm_s_gain = clip_[0,1](1 - base_attenuation * p_external *
+float(beta_gate_elevated) * drive_protect)` where `drive_protect =
+max(0, 1 - drive_protect_weight * drive_level)`. Outputs: `aic_salience`
+fed to SalienceCoordinator via `update_signal("aic_salience", ...)` in
+`select_action()` BEFORE `coordinator.tick()`; `harm_s_gain` applied
+as multiplier on `z_harm` in `sense()` replacing the legacy SD-021
+raw-beta-gate check when `use_aic_analog=True`; `urgency_signal` bool
+(diagnostic). Config flag `REEConfig.use_aic_analog` (default False);
+sub-knobs `aic_baseline_alpha` (0.02, ~50-step window),
+`aic_drive_coupling` (1.0; MUST be non-zero for falsification signature),
+`aic_urgency_threshold` (1.0, diagnostic), `aic_base_attenuation` (0.5,
+matches legacy `descending_attenuation_factor`), `aic_drive_protect_weight`
+(1.0; alterable-configuration knob flagged by SD-032c spec -- +1 preserve
+depleted-agent signal, 0 drive-independent, -1 opposite-sign hypothesis),
+`aic_extra_weight` (0.0, reserved). One-step lag on operating_mode read
+is biologically plausible (AIC->dACC->SAL circuit delay). Falsification
+signature: BOTH `aic_salience` AND `harm_s_gain` depend structurally on
+`drive_level` -- only V3 substrate that makes the dependence structural.
+EXQ-325a FAIL (DESCENDING == CONTROL bit-identical under raw beta_gate
+check) resolves because the descending branch is now a genuinely
+different function of state. MECH-094: not applicable (waking stream).
+Subsumes SD-021: legacy raw-beta-gate code path retained behind
+`harm_descending_mod_enabled` when `use_aic_analog=False`. Validation
+experiment: V3-EXQ-325b queued (supersedes V3-EXQ-325a).
 
 ### SD-032d — PCC-analog (attention partition / metastability)
 
