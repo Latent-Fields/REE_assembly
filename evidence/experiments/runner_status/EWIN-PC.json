@@ -1,9 +1,9 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-04-17T15:19:26.090278+00:00",
-  "last_updated": "2026-04-18T21:07:40.406119+00:00",
-  "idle": true,
+  "runner_pid": 22984,
+  "runner_started_at": "2026-04-18T21:21:49.184446+00:00",
+  "last_updated": "2026-04-19T04:56:18.203713+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
@@ -13,7 +13,7 @@
       "title": "SD-014 replay gate: surprise-weighted vs wanting-weighted prioritization (Carey 2019 replication)",
       "description": "",
       "estimated_minutes": 156.0,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -24,18 +24,7 @@
       "title": "ARC-038 schema assimilation probe: optimizer isolation fix (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 104.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-321c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-090 bistable vs legacy gate hold rate: spike-aligned E3-tick test (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 52.0,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -68,6 +57,61 @@
       "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 104.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-ONBOARD-smoke-ree-cloud-2",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Onboarding smoke test -- ree-cloud-2 (Hetzner CX22)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-436",
+      "backlog_id": "EXP-0106",
+      "claim_id": "",
+      "title": "SD-017 sleep phase ablation redesign with context-conditioned harm threshold",
+      "description": "",
+      "estimated_minutes": 400.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-435",
+      "backlog_id": "EXP-0097",
+      "claim_id": "INV-054",
+      "title": "INV-054 phase-transition recovery (sustained-crossing criterion)",
+      "description": "",
+      "estimated_minutes": 240.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-434",
+      "backlog_id": "EVB-0096",
+      "claim_id": "INV-053",
+      "title": "INV-053 depression attractor 4th replication (5 seeds LONG_HORIZON)",
+      "description": "",
+      "estimated_minutes": 266.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-433",
+      "backlog_id": "EXP-0146",
+      "claim_id": "",
+      "title": "SD-029 event-conditioned single-pass comparator (successor to SD-003)",
+      "description": "",
+      "estimated_minutes": 96.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -717,7 +761,20 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 52.8
+    },
+    {
+      "queue_id": "V3-EXQ-321c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 bistable vs legacy gate hold rate: spike-aligned E3-tick test (EWIN-PC requeue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[seed=43] C1=PASS  C2=PASS  C3=PASS  => PASS | [seed=44] C1=PASS  C2=PASS  C3=PASS  => PASS | [V3-EXQ-321b] Experiment: PASS",
+      "started_at": "2026-04-18T21:21:50.966677+00:00",
+      "completed_at": "2026-04-19T04:56:18.203713+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 27267.6
     }
-  ],
-  "draining": false
+  ]
 }
