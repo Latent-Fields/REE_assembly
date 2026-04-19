@@ -1,132 +1,37 @@
 {
   "schema_version": "v1",
-  "runner_pid": 670,
-  "runner_started_at": "2026-04-10T16:08:54.598722+00:00",
-  "last_updated": "2026-04-14T04:53:10.327306+00:00",
+  "runner_pid": 158329,
+  "runner_started_at": "2026-04-17T14:52:46.465516+00:00",
+  "last_updated": "2026-04-19T04:26:53.340622+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-395",
+    "backlog_id": "EVB-0114",
+    "claim_id": "MECH-220",
+    "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated)",
+    "description": "",
+    "script": "experiments/v3_exq_395_mech220_harm_hub.py",
+    "started_at": "2026-04-19T04:25:28.267157+00:00",
+    "progress": {
+      "run_label": "Seed 7 / HUB_ABLATED",
+      "runs_done": 1,
+      "runs_total": 6,
+      "episodes_done": 200,
+      "episodes_total": 200,
+      "overall_pct": 33.3
+    },
+    "seconds_elapsed": 85,
+    "seconds_remaining": 181,
+    "recent_lines": [
+      "[train] seed=7 ep 50/100 phase=P0 cond=HUB_ABLATED",
+      "[train] seed=7 ep 100/100 phase=P0 cond=HUB_ABLATED",
+      "[train] seed=7 P1 start (100 eps) cond=HUB_ABLATED",
+      "[train] seed=7 ep 150/200 phase=P1 cond=HUB_ABLATED hub_weight=0.0",
+      "[train] seed=7 ep 200/200 phase=P1 cond=HUB_ABLATED hub_weight=0.0"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-327",
-      "backlog_id": "",
-      "claim_id": "MECH-163",
-      "title": "MECH-163 hippocampal goal-conditioned navigation: paper gate",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-322a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-015 ResourceEncoder z_goal seeding fix: use_resource_encoder wiring corrected",
-      "description": "",
-      "estimated_minutes": 106.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-328a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-112 z_goal structured latent fix: correct seeding signal + drive ablation threshold",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-365",
-      "backlog_id": "EVB-0056",
-      "claim_id": "MECH-104",
-      "title": "MECH-104 surprise gate: discriminative support vs ablation pair (5-seed replication)",
-      "description": "",
-      "estimated_minutes": 400.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-355",
-      "backlog_id": "EVB-0051",
-      "claim_id": "ARC-038",
-      "title": "ARC-038 schema assimilation: discriminative support vs ablation pair",
-      "description": "",
-      "estimated_minutes": 80.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-385",
-      "backlog_id": "EVB-0070",
-      "claim_id": "INV-049",
-      "title": "INV-049 offline consolidation necessity: sleep ablation probe",
-      "description": "",
-      "estimated_minutes": 184.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-332",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-216 genuinely predictive wanting: future-target supervision + resource visibility attenuation",
-      "description": "",
-      "estimated_minutes": 192.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-330a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-013 contrastive counterfactual retest: interventional_fraction=0.5 (EXQ-330 fix)",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-353",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-033/SD-003/SD-013 interventional vs observational training comparison",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-321a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-090 bistable gate retest: E2 world-forward training added (EXQ-321 fix)",
-      "description": "",
-      "estimated_minutes": 426.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-325a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-021 descending pain modulation retest: E2 world-forward training added (EXQ-325 fix)",
-      "description": "",
-      "estimated_minutes": 440.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-395",
       "backlog_id": "EVB-0114",
@@ -134,7 +39,7 @@
       "title": "MECH-220 harm hub: behavioral harm-avoidance probe (hub_enabled vs hub_ablated)",
       "description": "",
       "estimated_minutes": 240.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -156,6 +61,94 @@
       "title": "INV-053 depression attractor replication: 5-seed LONG_HORIZON characterisation",
       "description": "",
       "estimated_minutes": 400.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-396",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-016 precision threshold sweep: hazard_harm 5-level characterization (EXQ-038 staged fix)",
+      "description": "",
+      "estimated_minutes": 226.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-397",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-007 path memory ablation: residue field zeroing degrades hippo proposals (EXQ-046b staged fix)",
+      "description": "",
+      "estimated_minutes": 80.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-429",
+      "backlog_id": "EVB-0060",
+      "claim_id": "INV-044",
+      "title": "INV-044: Bayesian Prior-Before-Posterior Necessity (SWS-ordered vs REM-only vs waking-only)",
+      "description": "",
+      "estimated_minutes": 108.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-430",
+      "backlog_id": "EVB-0071",
+      "claim_id": "",
+      "title": "INV-010: Offline Integration Necessity (SLEEP vs NO_SLEEP behavioral comparison)",
+      "description": "",
+      "estimated_minutes": 72.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-324b",
+      "backlog_id": "",
+      "claim_id": "SD-020",
+      "title": "SD-020 harm surprise PE: multi-episode eval fix (EXQ-324a fix)",
+      "description": "",
+      "estimated_minutes": 266.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-418a",
+      "backlog_id": "",
+      "claim_id": "SD-017",
+      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EXQ-418 fix)",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-385a",
+      "backlog_id": "",
+      "claim_id": "INV-049",
+      "title": "INV-049 offline consolidation necessity: SHY decay rate fix (EXQ-385 fix)",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-355a",
+      "backlog_id": "",
+      "claim_id": "ARC-038",
+      "title": "ARC-038 schema assimilation probe: optimizer isolation fix (EXQ-355 fix)",
+      "description": "",
+      "estimated_minutes": 80.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2423,6 +2416,48 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 173.6
+    },
+    {
+      "queue_id": "V3-EXQ-332a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-216 predictive wanting adjudication: dense environment fix (EXQ-332 sparse-label fix)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL | C1 (CUE_ON future_target_corr > 0.10): False  [0.0080] | CUE_ON  landmark_prox_corr:  -0.0468",
+      "started_at": "2026-04-17T14:52:47.693321+00:00",
+      "completed_at": "2026-04-17T21:23:16.718071+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 23429.0
+    },
+    {
+      "queue_id": "V3-EXQ-321b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 bistable vs legacy gate hold rate: spike-aligned E3-tick test",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[seed=43] C1=PASS  C2=PASS  C3=PASS  => PASS | [seed=44] C1=PASS  C2=PASS  C3=PASS  => PASS | [V3-EXQ-321b] Experiment: PASS",
+      "started_at": "2026-04-17T21:23:17.952768+00:00",
+      "completed_at": "2026-04-18T06:59:14.412400+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 34556.5
+    },
+    {
+      "queue_id": "V3-EXQ-325a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021 descending pain modulation retest: E2 world-forward training added (EXQ-325 fix)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=44: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000 | seed=45: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000 | seed=46: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000",
+      "started_at": "2026-04-18T06:59:15.661688+00:00",
+      "completed_at": "2026-04-19T04:25:27.106866+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 77171.4
     }
   ]
 }

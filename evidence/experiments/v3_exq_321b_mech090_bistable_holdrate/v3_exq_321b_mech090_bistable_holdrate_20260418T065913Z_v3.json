@@ -1,0 +1,134 @@
+{
+  "run_id": "v3_exq_321b_mech090_bistable_holdrate_20260418T065913Z_v3",
+  "experiment_type": "v3_exq_321b_mech090_bistable_holdrate",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "supports",
+  "supersedes": "v3_exq_321a_mech090_bistable_gate",
+  "registered_thresholds": {
+    "C2_bistable_hold_rate_floor": 0.7,
+    "C3_min_committed_steps": 10,
+    "seeds_needed": 2
+  },
+  "outcome": "PASS",
+  "seeds_passing": 3,
+  "mean_hold_rate_bistable": 1.0,
+  "mean_hold_rate_legacy": 0.5333333333333333,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": true,
+      "converged": true,
+      "rv_post_train": 1.2042033365793988e-06,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 0.54,
+      "spike_releases_bistable": 0,
+      "spike_releases_legacy": 550,
+      "spike_windows": 550,
+      "committed_steps_bistable": 10000,
+      "committed_steps_legacy": 10000,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 550,
+      "c1_bistable_holds_spike": true,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 10000,
+          "total_beta_elevated_committed": 10000,
+          "n_premature_releases": 0,
+          "spike_windows": 550,
+          "spike_releases_in_window": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 0.54,
+          "total_committed_steps": 10000,
+          "total_beta_elevated_committed": 5400,
+          "n_premature_releases": 550,
+          "spike_windows": 550,
+          "spike_releases_in_window": 550
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": true,
+      "converged": true,
+      "rv_post_train": 2.812869093994836e-06,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 0.54,
+      "spike_releases_bistable": 0,
+      "spike_releases_legacy": 550,
+      "spike_windows": 550,
+      "committed_steps_bistable": 10000,
+      "committed_steps_legacy": 10000,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 550,
+      "c1_bistable_holds_spike": true,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 10000,
+          "total_beta_elevated_committed": 10000,
+          "n_premature_releases": 0,
+          "spike_windows": 550,
+          "spike_releases_in_window": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 0.54,
+          "total_committed_steps": 10000,
+          "total_beta_elevated_committed": 5400,
+          "n_premature_releases": 550,
+          "spike_windows": 550,
+          "spike_releases_in_window": 550
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": true,
+      "converged": true,
+      "rv_post_train": 2.2477690335030305e-06,
+      "hold_rate_bistable": 1.0,
+      "hold_rate_legacy": 0.52,
+      "spike_releases_bistable": 0,
+      "spike_releases_legacy": 600,
+      "spike_windows": 600,
+      "committed_steps_bistable": 10000,
+      "committed_steps_legacy": 10000,
+      "premature_releases_bistable": 0,
+      "premature_releases_legacy": 600,
+      "c1_bistable_holds_spike": true,
+      "c2_bistable_stable": true,
+      "c3_commits_exist": true,
+      "condition_results": {
+        "BISTABLE": {
+          "hold_rate_committed": 1.0,
+          "total_committed_steps": 10000,
+          "total_beta_elevated_committed": 10000,
+          "n_premature_releases": 0,
+          "spike_windows": 600,
+          "spike_releases_in_window": 0
+        },
+        "LEGACY": {
+          "hold_rate_committed": 0.52,
+          "total_committed_steps": 10000,
+          "total_beta_elevated_committed": 5200,
+          "n_premature_releases": 600,
+          "spike_windows": 600,
+          "spike_releases_in_window": 600
+        }
+      }
+    }
+  ],
+  "experiment_passes": true,
+  "summary_markdown": "# V3-EXQ-321b -- MECH-090: Bistable vs Legacy Gate Hold Rate\n\n**Status:** PASS\n**Seeds passing:** 3/3\n**Claim:** MECH-090 -- beta gate bistable latch holds commitment without flickering\n\n## Design\nSingle shared training (LEGACY mode, 400 eps) -> deepcopy into BISTABLE and\nLEGACY eval clones. Both clones start with identical trained weights and identical low\nrunning_variance. Gate mode is the ONLY difference.\n\n## Results\n\n| Seed | Bistable hold_rate | Legacy hold_rate | C1 | C2 | C3 | Pass |\n|------|-------------------|-----------------|----|----|-----|------|\n| 42 | 1.000 | 0.540 | Y | Y | Y | PASS |\n| 43 | 1.000 | 0.540 | Y | Y | Y | PASS |\n| 44 | 1.000 | 0.520 | Y | Y | Y | PASS |\n\nMean bistable hold_rate: 1.000\nMean legacy hold_rate:   0.533\n",
+  "fix_notes": "EXQ-321a trained separate agents per condition -- convergence required twice independently. Dry-run used n_train=2 (never converges). Fix: single shared training (400 eps) then deepcopy into BISTABLE/LEGACY clones. Both clones have identical rv_post_train < commit_threshold.",
+  "timestamp_utc": "20260418T065913Z"
+}

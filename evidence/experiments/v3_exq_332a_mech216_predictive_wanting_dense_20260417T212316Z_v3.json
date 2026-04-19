@@ -1,0 +1,66 @@
+{
+  "experiment_type": "v3_exq_332a_mech216_predictive_wanting_dense",
+  "run_id": "v3_exq_332a_mech216_predictive_wanting_dense_20260417T212316Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-216",
+    "SD-023"
+  ],
+  "experiment_purpose": "diagnostic",
+  "supersedes": "V3-EXQ-332",
+  "outcome": "FAIL",
+  "conditions": [
+    "PREDICTIVE_CUE_ON",
+    "PREDICTIVE_CUE_ABLATED"
+  ],
+  "aggregated": {
+    "PREDICTIVE_CUE_ON": {
+      "future_target_corr": 0.007987729147185091,
+      "resource_prox_corr": -0.10375896913103184,
+      "landmark_prox_corr": -0.04683161019086832,
+      "salience_in_cue_zone_mean": 0.300993629582328,
+      "salience_in_cue_zone_n": 26368,
+      "schema_salience_mean": 0.29188509558127435,
+      "future_target_mean": 0.0012777777777777779,
+      "positive_label_rate": 0.0012777777777777779,
+      "total_resource_contacts": 218,
+      "n_p1_steps": 216000
+    },
+    "PREDICTIVE_CUE_ABLATED": {
+      "future_target_corr": 0.011214531715779786,
+      "resource_prox_corr": -0.0516525386289846,
+      "landmark_prox_corr": 0.0,
+      "salience_in_cue_zone_mean": 0.0,
+      "salience_in_cue_zone_n": 0,
+      "schema_salience_mean": 0.27569663440484415,
+      "future_target_mean": 0.0010972222222222223,
+      "positive_label_rate": 0.0010972222222222223,
+      "total_resource_contacts": 203,
+      "n_p1_steps": 216000
+    }
+  },
+  "acceptance_checks": {
+    "C1_CUE_ON_future_target_corr_gt_0.10": false,
+    "C2_CUE_ON_future_target_corr_gt_ABLATED": false,
+    "C3_positive_label_rate_gt_0.10": false
+  },
+  "params": {
+    "grid_size": 8,
+    "n_hazards": 1,
+    "n_resources": 4,
+    "p0_episodes": 60,
+    "p1_episodes": 240,
+    "steps_per_episode": 300,
+    "num_seeds": 3,
+    "future_window": 30,
+    "resource_obs_scale": 0.3,
+    "landmark_near_radius": 2,
+    "resource_far_radius": 2
+  },
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-216": "non_contributory",
+    "SD-023": "non_contributory"
+  },
+  "implementation_gap_note": "EXQ-332 failed due to sparse positive labels (future_target_mean=0.0006, ~10 contacts across 162k P1 steps). Adjudication run increases resource density (4 resources, 8x8 grid) and future_window (30 steps). C3 quality gate confirms supervision density was adequate before interpreting C1/C2 as scientific results."
+}
