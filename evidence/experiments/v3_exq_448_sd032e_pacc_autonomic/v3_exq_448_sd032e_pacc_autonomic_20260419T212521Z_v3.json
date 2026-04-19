@@ -1,0 +1,96 @@
+{
+  "run_id": "v3_exq_448_sd032e_pacc_autonomic_20260419T212521Z_v3",
+  "experiment_type": "v3_exq_448_sd032e_pacc_autonomic",
+  "claim_ids": [
+    "SD-032e",
+    "MECH-094"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260419T212521Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-032e": "supports",
+    "MECH-094": "supports"
+  },
+  "pass_criteria_summary": {
+    "c1_baseline_neutral": {
+      "drive_bias_final": 0.0,
+      "pass": true,
+      "desc": "drive_bias remains at 0 under zero z_harm_a across 100 ticks"
+    },
+    "c2_sustained_drift_monotone": {
+      "biases_start_mid_end": [
+        0.04525741268224332,
+        0.5,
+        0.5
+      ],
+      "final_bias": 0.5,
+      "pass": true,
+      "desc": "drive_bias monotone non-decreasing under sustained z_harm_a; reaches ~cap"
+    },
+    "c3_gate_suppression": {
+      "drive_bias_final": 0.0,
+      "pass": true,
+      "desc": "gate=0 yields identity update; drive_bias stays at 0"
+    },
+    "c4_hypothesis_tag_skip": {
+      "drive_bias_final": 0.0,
+      "n_hypothesis_skipped_delta": 50,
+      "pass": true,
+      "desc": "hypothesis_tag=True skips update; drive_bias=0 and counter advanced by 50"
+    },
+    "c5_cap_hold": {
+      "max_bias_seen": 0.5,
+      "cap": 0.5,
+      "pass": true,
+      "desc": "drive_bias never exceeds drive_bias_cap even under 5000 high-load ticks"
+    },
+    "c6_quiescence_reversibility": {
+      "loaded_bias": 0.5,
+      "relaxed_bias": 3.5275395543276827e-10,
+      "pass": true,
+      "desc": "after sustained load, quiescence relaxes drive_bias toward 0 (<10% of loaded)"
+    },
+    "c7_offline_decay_hook": {
+      "with_decay_before": 0.5,
+      "with_decay_after": 0.25,
+      "no_decay_before": 0.5,
+      "no_decay_after": 0.5,
+      "pass": true,
+      "desc": "offline_decay=0.5 halves bias; offline_decay=0 is no-op"
+    },
+    "c8_effective_drive_clipping": {
+      "up_clip": 1.0,
+      "mid": 0.5,
+      "down_clip": 0.0,
+      "pass": true,
+      "desc": "effective_drive(base + bias) clipped to [0, 1]"
+    },
+    "c9_agent_integration": {
+      "pacc_present": true,
+      "drive_bias_after_pump": 0.5,
+      "base_drive_stored": 0.2,
+      "effective_drive_after_bias": 0.7,
+      "pass": true,
+      "desc": "agent.pacc wired; base drive stored unbiased; effective_drive applies bias"
+    },
+    "c10_backward_compat": {
+      "pacc_is_none": true,
+      "no_exception_on_hooks": true,
+      "pass": true,
+      "desc": "use_pacc_analog=False -> agent.pacc is None and offline hook no-op"
+    }
+  },
+  "config": {
+    "module": "ree_core/cingulate/pacc_analog.py",
+    "default_pacc_config": {
+      "drive_alpha": 0.002,
+      "drive_scale": 1.0,
+      "drive_bias_cap": 0.5,
+      "z_harm_a_min": 0.0,
+      "offline_decay": 0.0
+    }
+  }
+}
