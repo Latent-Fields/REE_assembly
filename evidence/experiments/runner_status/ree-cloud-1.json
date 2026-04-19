@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 18668,
   "runner_started_at": "2026-04-19T21:23:07.335930+00:00",
-  "last_updated": "2026-04-19T21:23:12.586690+00:00",
+  "last_updated": "2026-04-19T21:25:21.367052+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -24,7 +24,7 @@
       "title": "SD-032d PCC-analog metastability scalar -- substrate validation (deterministic arithmetic + agent integration)",
       "description": "",
       "estimated_minutes": 138.7,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2389,6 +2389,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 3.7
+    },
+    {
+      "queue_id": "V3-EXQ-448",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032e pACC-analog autonomic coupling -- substrate validation (deterministic arithmetic + MECH-094 gate + agent integration)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: PASS | c1_baseline_neutral: pass=True -- drive_bias remains at 0 under zero z_harm_a across 100 ticks | c2_sustained_drift_monotone: pass=True -- drive_bias monotone non-decreasing under sustained z_harm_a; reaches ~cap",
+      "started_at": "2026-04-19T21:25:20.020562+00:00",
+      "completed_at": "2026-04-19T21:25:21.366775+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1.3
     }
   ]
 }
