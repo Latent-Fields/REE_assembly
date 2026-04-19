@@ -6941,6 +6941,8 @@
   implementation_phase: v3
   claim_level: architectural
   depends_on: [SD-011, ARC-027, SD-010]
+  competes_with:
+    - ARC-058           # shared-forward-trunk hypothesis (registered 2026-04-19)
   functional_restatement: >
     The SD-003 counterfactual pipeline requires z_harm_cf = E2_harm_s(z_harm_s, a_cf):
     a forward model on the sensory-discriminative harm stream that predicts how harm
@@ -15678,6 +15680,67 @@
     side (harm residue field, explicit tagging) remains testable in the grid world
     because tagging does not depend on environmental richness.
 
+- id: ARC-058
+  title: "Shared forward-model trunk for aversive prediction: a single HarmForwardTrunk substrate encodes a modality-independent unsigned prediction error shared across aversive streams (z_harm_s, z_harm_a, potentially others); stream-specific HarmForwardHeads read out signed per-stream predictions. COMPETES WITH ARC-033, which commits to independent per-stream forward models."
+  claim_type: architectural_commitment
+  subject: harm_stream.shared_forward_trunk
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-19
+  competes_with:
+    - ARC-033           # independent-per-stream hypothesis (established default)
+  depends_on:
+    - SD-011            # dual nociceptive streams (z_harm_s, z_harm_a must exist)
+    - ARC-033           # shares substrate architecture with the competing claim
+  functional_restatement: >
+    Architectural claim competing with ARC-033. ARC-033 holds that
+    E2_harm_s and E2_harm_a are independent forward-model substrates
+    (dorsal posterior insula for sensory-discriminative PE, anterior
+    insula for affective PE). ARC-058 holds that a SHARED trunk encodes
+    an unsigned modality-independent aversive-PE substrate, while
+    stream-specific heads produce signed per-modality readouts.
+
+    Biological grounding: Horing & Buchel 2022 (J Neurosci)
+    "modality-general neural code for aversive stimulus representation
+    in the anterior insula". Anterior insula encodes an unsigned
+    aversive PE shared across pain, loud noise, and other aversive
+    modalities. Dorsal posterior insula carries modality-specific signed
+    PE. Trunk ~ unsigned substrate (AIC); head ~ signed readout
+    (dpIns / stream-specific cortex).
+
+    Implementation: ree_core/latent/stack.py HarmForwardTrunk +
+    HarmForwardHead. Constructor switch on E2HarmSForward and
+    E2HarmAForward: shared_trunk=None selects ARC-033 path (independent
+    ResidualHarmForward per stream); shared_trunk=<HarmForwardTrunk
+    instance> selects ARC-058 path (both streams share the trunk, own
+    only heads). Same nn.Module topology, different wiring.
+
+    Falsifiable: if ARC-058 path produces COMPARABLE per-stream
+    accuracy (forward_r2 for z_harm_s and z_harm_a) to ARC-033
+    independent modules while using fewer parameters AND produces a
+    usable unsigned aversive-PE signal for downstream consumers (dACC
+    bundle via MECH-258), ARC-058 wins the arbitration. If ARC-058
+    degrades per-stream accuracy or fails to produce a useful shared
+    substrate, ARC-033 wins and ARC-058 is retired.
+  notes: >
+    Registered as a COMPETING CLAIM per SD-032b implementation session
+    (2026-04-19). Evidence arbitrates: if the shared-trunk path outperforms
+    or matches per-stream independence, ARC-033 is demoted or narrowed; if
+    independence wins, ARC-058 is retired. MECH-257 (dual-function
+    single-substrate E2 for comparator vs evaluator) is a sibling
+    single-substrate hypothesis -- same architectural philosophy applied
+    to a different sub-problem.
+  evidence_quality_note: >
+    Registered pre-evidence. Literature support is single-paper (Horing &
+    Buchel 2022) but converges with other AIC-as-unsigned-aversive-PE
+    findings (Chen 2023, Hoskin 2023, Geuter 2017). Validation via
+    V3-EXQ-445 three-arm ablation (dACC-OFF vs dACC-ON-independent vs
+    dACC-ON-shared-trunk).
+  location: evidence/literature/targeted_review_pain_predictive_coding_substrate/synthesis.md
+
 - id: MECH-234
   title: "DMS (goal-directed) and DLS (habitual) corticostriatal circuits can produce simultaneous parallel motor outputs only when targeting anatomically distinct motor effector pools; within the same effector pool, habitual and goal-directed outputs compete via winner-takes-all basal ganglia selection, not independent parallel expression."
   claim_type: mechanism_hypothesis
@@ -16902,6 +16965,20 @@
     residual analysis is required before SD-029 can be provisionally promoted.
     First test: an event-conditioned reanalysis of EXQ-330a traces against
     approach-to-harm events.
+
+    EXQ-433 (2026-04-19) reclassified non_contributory after overall FAIL was
+    traced to event-distribution collapse, not hypothesis falsification. Event
+    counts showed bimodal policy outcomes: seed 91 had 303 agent-caused / 0
+    env-caused hazards (exploit mode); seeds 13 and 42 had ~91-114 env-caused
+    but only 1-2 agent-caused (avoid mode); only seed 7 balanced (177/23). The
+    C4 event-density controller cannot escape this by extending episodes because
+    the policy mode, not the episode length, is the bottleneck. C2 attenuation
+    and C3 approach-SNR are uninterpretable when one class has near-zero samples.
+    MECH-256 C1 forward_r2=0.983-0.9998 across 4/4 seeds remains clean supports.
+    SD-029 pending_retest_after_eval_balance_fix: follow-up EXQ-433a must
+    decouple evaluation from behavioural sample frequency (policy counter-
+    balancing, per-class reweighted evaluation, or a fixed-script eval protocol
+    that forces exposure to both event types regardless of learned policy).
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: SD-030
@@ -17408,6 +17485,34 @@
     (precision-weighted control-signal form).
   evidence_quality_note: >
     Registered pre-implementation. Minimum-viable target. See SD-032 parent.
+  implementation_note: >
+    IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/dacc.py
+    (DACCAdaptiveControl, DACCConfig, DACCtoE3Adapter). Integrated into
+    ree_core/agent.py (REEAgent.select_action -- builds Croxson integration
+    bundle; adapter converts to score_bias[K] passed to E3.select()).
+    Config: REEConfig.use_dacc (bool, default False). Sub-weights:
+    dacc_weight (overall gain), dacc_interaction_weight (payoff x effort
+    interaction), dacc_foraging_weight (Kolling 2015 switch-value),
+    dacc_suppression_weight (MECH-260 recency suppression),
+    dacc_suppression_memory (history window, default 8),
+    dacc_precision_scale (PE precision normaliser, default 500),
+    dacc_effort_cost (Shenhav 2013 EVC cost, default 0.1),
+    dacc_drive_coupling (SD-012 hook, default 0).
+    Bundle: {mode_ev[K], choice_difficulty, foraging_value,
+    harm_interaction[K], suppression[K], pe, drive_gain}.
+    Prerequisite MECH-258 satisfied via new E2_harm_a forward model
+    (ree_core/predictors/e2_harm_a.py, supports both independent
+    ARC-033-parallel path and ARC-058 shared-trunk path).
+    Stopgap DACCtoE3Adapter: converts bundle to E3 score_bias. Marked for
+    removal / replacement when SD-032a salience-network coordinator lands
+    (coordinator is the architectural consumer of the bundle per SD-032
+    design; adapter is a shim to route the bundle to E3 in its absence).
+    Phased training (P0/P1/P2) required for E2_harm_a: callers must
+    .detach() z_harm_a targets during P1. Validation experiment:
+    V3-EXQ-445 queued (3 conditions x 3 seeds: dACC-OFF vs dACC-ON-
+    independent vs dACC-ON-shared-trunk).
+    Backward compatible: use_dacc=False by default; existing experiments
+    unaffected. Non-noop flags: use_e2_harm_a, use_shared_harm_trunk.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: SD-032c
   title: "AIC-analog (interoceptive salience / urgency interrupt): module that integrates interoceptive baseline (drive/fatigue from SD-012) with affective-pain signal (z_harm_a), detects salient events, and triggers a network-switch signal to the salience-network coordinator (SD-032a)."
@@ -17600,6 +17705,26 @@
     models achieve comparable per-stream accuracy to independent
     models (following MECH-257 single-substrate-with-gated-readout
     pattern).
+  implementation_note: >
+    IMPLEMENTED 2026-04-19. E2_harm_a forward model added in
+    ree_core/predictors/e2_harm_a.py (E2HarmAConfig, E2HarmAForward).
+    Structurally mirrors E2HarmSForward (ARC-033). Two constructor paths:
+    (a) shared_trunk=None (default) -- independent ResidualHarmForward
+    (ARC-033-parallel). (b) shared_trunk=HarmForwardTrunk instance --
+    reuses trunk, owns only HarmForwardHead (ARC-058 shared-substrate
+    hypothesis). Precision weighting computed in DACCAdaptiveControl
+    (cingulate/dacc.py): pe = ||z_harm_a - E2_harm_a(z_harm_a_prev,
+    a_prev)||; pe_weighted = pe * (1 + min(precision/500, 3));
+    bundle["pe"] drives dACC adaptive-control magnitude.
+    Config: REEConfig.use_e2_harm_a (bool, default False),
+    e2_harm_a_lr (default 5e-4), use_shared_harm_trunk (bool, default
+    False; selects ARC-033 vs ARC-058 path).
+    Phased training: P0 AffectiveHarmEncoder warmup (SD-011 second source
+    + SD-020 surprise target); P1 E2_harm_a trains on FROZEN z_harm_a
+    (caller .detach()s targets); P2 eval harm_a_forward_r2.
+    Consumed by DACC bundle (MECH-258 precision-weighted PE channel).
+    Validation experiment: V3-EXQ-445 queued (compares ARC-033 vs ARC-058
+    paths, evaluates MECH-257 single-substrate hypothesis).
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: MECH-259
   title: "Salience-network switch threshold: when the precision-weighted salience of any input to the salience-network coordinator (SD-032a) exceeds a threshold, the coordinator fires a whole-system mode switch rather than producing an incremental policy update."
@@ -17691,6 +17816,25 @@
   evidence_quality_note: >
     Single-paper evidence. Lower confidence than the other MECH claims
     in this cluster. See SD-032 parent.
+  implementation_note: >
+    IMPLEMENTED 2026-04-19. DACCAdaptiveControl
+    (ree_core/cingulate/dacc.py) maintains a FIFO action-class history
+    (length dacc_suppression_memory, default 8) via
+    record_action(action_class). forward() computes suppression[i] =
+    count(action_class_i in history) / len(history). DACCtoE3Adapter
+    applies dacc_suppression_weight * suppression to the E3 score_bias
+    (positive bias = unfavourable under E3's lower-is-better convention,
+    discouraging repeated action classes).
+    Config: REEConfig.dacc_suppression_weight (float, default 0.0),
+    dacc_suppression_memory (int, default 8). Enabled per-experiment;
+    baseline (weight=0) produces no suppression.
+    Agent wiring: REEAgent.select_action() calls
+    self.dacc.record_action(argmax(action[0])) after action selection.
+    Fishtank-viz monostrategy test is the target behavioural signature:
+    ablation (weight=0) should show repeated-route behaviour; enabled
+    (weight>0) should diversify action-class selection.
+    Validation experiment: V3-EXQ-445 includes suppression=0 vs
+    suppression=0.5 comparison within the three-arm design.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: MECH-261
   title: "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates. Operating mode is implemented as a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, not a one-hot categorical."

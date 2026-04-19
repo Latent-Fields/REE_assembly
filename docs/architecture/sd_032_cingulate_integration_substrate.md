@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-032 (parent) + SD-032a–e (subdivisions)
 **Subject:** `cingulate.integration_substrate`
-**Status:** candidate, v3_pending (pre-implementation)
+**Status:** candidate, v3_pending — SD-032b IMPLEMENTED 2026-04-19; parent cluster still pre-implementation.
 **Registered:** 2026-04-19
 **Depends on:** SD-011, SD-012, SD-020, SD-021, MECH-091, MECH-094, MECH-220
 **Paired with:** SD-033 (PFC subdivision architecture) — together form the V3 cognitive-control backbone
@@ -44,6 +44,29 @@ Minimum-viable substrate that resolves EXQ-395. Reads z_harm_a_PE (precision-wei
 **MECH-260 (bias suppression)** is hosted here: an additional output channel producing a counter-bias against recently-executed trajectories. Candidate mechanistic explanation of the fishtank_viz monostrategy failure.
 
 **Substrate signature:** precision-weighted PE → action-value shift with the expected scaling (large adjustment under high precision, small under low). Chronic-pain-like plasticity signature: sustained z_harm_a exposure shifts the ACC→striatum weight (Baliki 2012 finding).
+
+**Implementation (2026-04-19):** `ree_core/cingulate/dacc.py`
+(`DACCAdaptiveControl`, `DACCConfig`, `DACCtoE3Adapter`) + MECH-258
+prerequisite `ree_core/predictors/e2_harm_a.py` (`E2HarmAForward`,
+`E2HarmAConfig`). Integrated into `ree_core/agent.py
+REEAgent.select_action`. Config flag `REEConfig.use_dacc` (default
+False); sub-weights `dacc_weight`, `dacc_interaction_weight`,
+`dacc_foraging_weight`, `dacc_suppression_weight`,
+`dacc_suppression_memory` (default 8), `dacc_precision_scale` (default
+500), `dacc_effort_cost` (default 0.1), `dacc_drive_coupling` (default
+0).
+Bundle output (Croxson 2009 × Shenhav 2013 × Kolling 2015 integration;
+NOT a scalar): `{mode_ev[K], choice_difficulty, foraging_value,
+harm_interaction[K], suppression[K], pe, drive_gain}`. The stopgap
+`DACCtoE3Adapter` converts the bundle to `score_bias[K]` passed to
+`E3.select()`; the adapter is explicitly marked for replacement when
+SD-032a salience-network coordinator lands (coordinator is the
+architectural consumer of the bundle per this doc's design).
+MECH-258 E2_harm_a supports both an ARC-033-parallel independent path
+and an ARC-058 shared-trunk path (constructor arg `shared_trunk`).
+Phased training required for E2_harm_a (P0 encoder warmup → P1 frozen-
+encoder forward-model training on `.detach()`ed targets → P2 eval).
+Validation experiment: V3-EXQ-445 (3-arm ablation).
 
 ### SD-032c — AIC-analog (interoceptive salience / urgency)
 
