@@ -570,6 +570,31 @@
         "SD-032a"
       ],
       "notes": "Causal test of the salience-network-as-coordinator overlay flagged in targeted_review_systems_consolidation_waking_propagation/synthesis.md. Rodent replay literature does not directly validate the coordinator role; this is a REE-specific prediction. Cannot run until V3 SD-032 cluster is at least minimally implemented. Metric (i) maps onto Tambini & Davachi 2019 forward-cognitive-bias finding; metric (ii) onto Rothschild et al 2017 cortical-hippocampal-cortical loop; metric (iii) onto Peyrache et al 2009 PFC-replay-drives-rule-update."
+    },
+    {
+      "proposal_id": "EXP-0149",
+      "added_utc": "2026-04-19",
+      "claim_id": "MECH-261",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "proposed",
+      "prerequisites": [
+        "SD-032a implemented (salience-network coordinator emitting operating_mode vector over {external_task, internal_planning, internal_replay, offline_consolidation})",
+        "SD-033a implemented (lateral-PFC-analog rule/goal substrate, primary MECH-261 write target under external_task / internal_planning)",
+        "SD-033b implemented (OFC-analog specific-outcome prediction substrate; E2 rollout address)",
+        "MECH-261 implemented as per-subdivision write-gate family (not just an aggregate coordinator overlay): each SD-033 subdivision exposes a write-gate keyed to the operating_mode vector",
+        "MECH-092 active (micro-quiescence SWR-analog replay generator) so that internal_replay mode is exercised distinctly from external_task"
+      ],
+      "objective": "Test whether MECH-261's per-subdivision write-landing profile is correctly mode-routed -- distinct from the coordinator-level test in EXP-0148. EXP-0148 asks whether the coordinator overlay produces the right aggregate forward-propagation bias; EXP-0149 asks whether writes actually land in the correct PFC subdivision (SD-033a vs SD-033b) under each mode. A coordinator could pass EXP-0148 by producing the right aggregate bias while writes are mis-routed internally between subdivisions; only a per-subdivision lesion design can dissociate that.",
+      "design": "Four-arm per-subdivision write-gate manipulation on a fixed task that includes scheduled internal_replay windows (MECH-092) and explicit internal_planning rollouts (E2) in addition to external_task action selection. Arm A (intact): all SD-033 write-gates obey their MECH-261 mode profile normally. Arm B (SD-033a write-gate forced open during internal_replay): the lateral-PFC-analog rule substrate becomes writeable from replay content during quiescence -- replay can overwrite the rule substrate. Predicted signature: rule drift / forgetting after replay events. Arm C (SD-033b write-gate forced closed during internal_planning): the OFC-analog outcome-prediction substrate cannot accept writes during E2 rollouts -- planning cannot deposit speculative outcome predictions. Predicted signature: degraded counterfactual rollout quality (E2 outcome predictions lose calibration against held-out rollout-realisation pairs). Arm D (null: no mode gating at all): all SD-033 substrates are write-open in every mode. Predicted signature: cross-mode contamination in BOTH the rule substrate (rule drift) AND the outcome substrate (replay content bleeding into external-task outcome predictions). Per arm, measure: (i) rule-representation drift across replay events -- cosine distance of SD-033a activity for the same rule cue pre vs post a replay window; (ii) counterfactual rollout quality -- E2 / SD-033b prediction accuracy against held-out (state, action) -> outcome pairs after planning episodes; (iii) cross-mode content leakage -- decoder probe testing whether internal_replay content (replayed trajectory embeddings) is detectable in SD-033b representations during external_task commitment. Success criterion (MECH-261 per-subdivision profile supported): per-arm signatures dissociate in the predicted direction with pairwise Cohen's d >= 0.8 between Arm A and each manipulated arm on at least 5 seeds, AND Arm A is statistically distinguishable from Arm D on both rule drift and rollout quality. FAIL-route-A (rule substrate not protected by mode gating): Arm B == Arm A on rule drift -- forced-open SD-033a write-gate produces no rule drift, suggesting the mode profile is not load-bearing for the rule substrate specifically. FAIL-route-B (planning substrate write-gate redundant): Arm C == Arm A on rollout quality -- closing SD-033b during planning does not degrade rollouts, suggesting writes were not landing there during planning anyway. FAIL-cluster (mode gating per se unnecessary): Arm D == Arm A on all three metrics -- even fully open gates produce no contamination, mode-conditioned write gating is over-specified.",
+      "claims_tested": [
+        "MECH-261",
+        "SD-033a",
+        "SD-033b"
+      ],
+      "notes": "Sibling experiment to EXP-0148, NOT a replacement. EXP-0148 tests the coordinator overlay (does SD-032a-clamping abolish aggregate forward-propagation bias?); EXP-0149 tests per-subdivision write-landing under each mode (do writes actually land in the correct SD-033 subdivision?). Both tests are needed to fully characterise MECH-261: EXP-0148 establishes that the coordinator is load-bearing at all; EXP-0149 establishes that the per-subdivision routing inside the MECH-261 family is functionally specific (not just one coarse on/off gate dressed up as a vector). A coordinator could pass EXP-0148 while failing EXP-0149 by producing the right aggregate bias with mis-routed internal writes; that pattern would force a refinement of MECH-261's specification. Cannot run until SD-032a + SD-033a + SD-033b + MECH-261 + MECH-092 are all implemented in V3 -- proposal-only at registration time. Do not queue in ree-v3/experiment_queue.json until those substrates exist."
     }
   ]
 }
