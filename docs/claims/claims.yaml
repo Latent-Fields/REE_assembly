@@ -17798,8 +17798,11 @@
     registration (same session) gives it a substrate address. Also:
     MECH-261's operating_mode_vector data structure should be
     implemented as a dictionary keyed on mode names so that a future
-    deliberative_branching mode (V4, when SD-033e is implemented)
-    can be added without disruptive schema changes.
+    parallel_goal_deliberation mode (V4, when SD-033e is implemented)
+    can be added without disruptive schema changes. (Name updated
+    2026-04-19 from deliberative_branching after the SD-033e Prong D
+    frontopolar lit-pull; zero schema cost since the data structure
+    is dict-keyed on mode names, not a fixed tuple.)
   evidence_quality_note: >
     Registered pre-implementation. 5 literature entries support the
     underlying biology of mode-conditioned write gating
@@ -17871,7 +17874,7 @@
          Registered here so the claim graph mirrors the biology rather
          than implying a premotor-less architecture.
       5. Frontopolar-analog (SD-033e): V4 scope. Hooks only in V3
-         (reserve a deliberative_branching mode name for the operating
+         (reserve a parallel_goal_deliberation mode name for the operating
          vector; do not implement the substrate yet).
 
     Steps 1 and 2 are the V3 implementation targets. Steps 3-4 are
@@ -18159,7 +18162,7 @@
     primate/human premotor biology.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033e
-  title: "Frontopolar-analog (branching / nested control substrate): V4-scope module supporting explicit counterfactual-branching, maintenance of pending cognitive operations while executing current ones, and return-from-suspension capability. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4."
+  title: "Frontopolar-analog (parallel-goal deliberation substrate): V4-scope module maintaining counterfactual-value estimates for alternatives to the current course of action, mediating transitions between external engagement and internally-generated deliberation, enabling disengagement from the current task to explore novel alternatives, and monitoring relative importance across multiple active goals. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4."
   claim_type: design_decision
   subject: pfc.frontopolar_analog_branching
   polarity: asserts
@@ -18172,41 +18175,82 @@
   depends_on:
     - SD-033           # parent cluster
     - SD-033a          # rostral extension of the lateral-PFC abstraction gradient
-    - MECH-261         # forward-compatible operating_mode should reserve a deliberative_branching mode
+    - MECH-261         # forward-compatible operating_mode should reserve a parallel_goal_deliberation mode
   functional_restatement: >
-    The most rostral (frontopolar / BA 10) end of the Badre & Nee 2018
-    caudal-rostral abstraction gradient in lateral PFC. Supports
-    explicit branching and nested control: holding a pending cognitive
-    operation in abeyance while executing a current one, then
-    returning to the suspended operation.
+    V4-scope module maintaining counterfactual-value estimates for
+    alternatives to the current course of action, mediating
+    transitions between external engagement and internally-generated
+    deliberation, enabling disengagement from the current task to
+    explore novel alternatives, and monitoring relative importance
+    across multiple active goals. The most rostral (frontopolar /
+    BA 10) end of the Badre & Nee 2018 caudal-rostral abstraction
+    gradient in lateral PFC.
 
-    This is the substrate REE's V4 long-horizon ethical reasoning will
-    eventually depend on -- explicit counterfactual weighing of parallel
-    policies is what Frankfurt-style reflective endorsement of first-
-    order motivations requires, and the Koechlin & Summerfield 2007
-    information-theoretic framing identifies frontopolar cortex as the
-    anatomical substrate for this function.
+    Four converging functions from the Prong D lit-pull
+    (2026-04-19), each supported by methodologically distinct
+    evidence, constitute the computational specification:
+
+      (1) COUNTERFACTUAL VALUE TRACKING (Boorman/Behrens/Woolrich/
+          Rushworth 2009): lateral FPC maintains a running estimate
+          of the value of unchosen alternatives in parallel with the
+          vmPFC-analog's chosen-option value signal (SD-033c).
+          Individual variation in this signal predicts propensity to
+          switch.
+
+      (2) EXTERNAL/INTERNAL ATTENTIONAL GATEWAY (Burgess/Dumontheil/
+          Gilbert 2007): BA 10 mediates the switch between
+          engagement with the current external world (medial BA 10)
+          and internally-generated cognition about alternatives
+          (lateral BA 10). Directly biologically grounds MECH-261's
+          operating_mode vector.
+
+      (3) DISENGAGEMENT-FOR-EXPLORATION (Mansouri/Buckley/Mahboubi/
+          Tanaka 2015): FPC enables releasing executive control
+          from the current task and redistributing it to novel
+          options. Without FPC, the animal over-focuses and cannot
+          learn novel alternative rules. Lesion data specify the
+          failure mode (ablation -> over-focus + inability to learn
+          novel alternatives).
+
+      (4) RELATIVE-IMPORTANCE MONITORING OVER COMPETING GOALS
+          (Mansouri/Koechlin/Rosa/Buckley 2017, NRN integrative
+          synthesis): FPC monitors relative importance of current
+          vs alternative goals and, in humans specifically, supports
+          parallel monitoring of multiple goals with flexible
+          switching. Subsumes the earlier Koechlin & Summerfield
+          2007 branching framing as one special case.
+
+    These four are plausibly four methodological views of one
+    underlying computation: maintenance of a parallel, competing-
+    goal representation with relative-value-weighted switching
+    logic. REE's V4 long-horizon ethical reasoning will depend on
+    this substrate -- explicit counterfactual weighing of parallel
+    policies is what Frankfurt-style reflective endorsement of
+    first-order motivations requires.
 
     V3 commitment: do NOT implement SD-033e. Reserve schema forward-
     compatibility only. Specifically, the operating_mode vocabulary
     (currently {external_task, internal_planning, internal_replay,
     offline_consolidation}) should reserve a future mode name
-    (candidate: deliberative_branching) so that V4 can be added without
+    (parallel_goal_deliberation) so that V4 can be added without
     disruptive schema changes. MECH-261's gate logic should be
     implemented as a dictionary keyed on mode names rather than a
     fixed 4-tuple.
 
-    V4 commitment: before implementation, a follow-up lit-pull on
-    frontopolar function is required. The Koechlin & Summerfield 2007
-    entry in targeted_review_pfc_subdivision_architecture is the
-    entry point, not the complete survey -- Burgess, Boorman,
-    Christoff, and the Mansouri 2015 frontopolar review should all be
-    pulled when V4 design begins.
+    V4 commitment: register MECH-264 (frontopolar counterfactual-
+    value tracking, grounding Boorman 2009) and MECH-265
+    (frontopolar relative-importance monitoring across competing
+    goals, grounding Mansouri 2017) in a follow-up governance
+    session before V4 implementation begins.
   notes: >
-    Biological grounding (entry-level only): Koechlin & Summerfield
-    2007 (Trends Cogn Sci) information-theoretic approach to PFC
-    executive function, identifying frontopolar cortex as the
-    branching substrate. Note the V4 follow-up lit-pull requirement.
+    Biological grounding: seven literature entries across Prong C
+    (Koechlin & Summerfield 2007) and Prong D (Burgess/Veitch/
+    Costello/Shallice 2000, Burgess/Dumontheil/Gilbert 2007,
+    Boorman/Behrens/Woolrich/Rushworth 2009, Christoff/Gordon/
+    Smallwood/Smith/Schooler 2009, Mansouri/Buckley/Mahboubi/Tanaka
+    2015, Mansouri/Koechlin/Rosa/Buckley 2017) in
+    targeted_review_pfc_subdivision_architecture. Mansouri 2017 NRN
+    is the load-bearing integrative account.
 
     Registering this subdivision pre-emptively rather than waiting
     until V4 design begins serves two purposes: (1) it signals the
@@ -18215,10 +18259,23 @@
     vocabulary) stay forward-compatible; (2) it prevents the same
     late-split failure mode that produced SD-010/SD-011 from
     recurring at the V3/V4 boundary.
+
+    Reserved V4 operating-mode name is parallel_goal_deliberation
+    (renamed 2026-04-19 from the earlier deliberative_branching
+    placeholder after the Prong D lit-pull showed Koechlin branching
+    is one special case of the broader Mansouri 2017 parallel-goal
+    monitoring function).
   evidence_quality_note: >
-    V4-scope registration. Evidence base is intentionally thin
-    (one entry-level paper) because detailed lit-pull is deferred
-    until V4 design starts. Do not implement pre-V4.
+    Registered pre-implementation. Seven literature entries from
+    Prong C (Koechlin & Summerfield 2007) and Prong D (Burgess 2000,
+    Burgess 2007, Boorman 2009, Christoff 2009, Mansouri 2015,
+    Mansouri 2017) support the V4 scoping. The Mansouri 2017 Nature
+    Reviews synthesis is the load-bearing integrative account.
+    Functional spec broadened 2026-04-19 from "branching / nested
+    control" to "parallel-goal deliberation" (see Prong D synthesis).
+    Mechanism claims MECH-264 (counterfactual value tracking) and
+    MECH-265 (relative-importance monitoring) to be registered in a
+    subsequent governance session. Do not implement pre-V4.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: MECH-262
   title: "Rule-selective persistence in lateral-PFC-analog: stimulus-abstracted rule representations in SD-033a persist across simulated time steps without external drive, remain selective through distractor events, and emerge through training rather than being innate."
