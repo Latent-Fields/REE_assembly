@@ -548,6 +548,28 @@
         "MECH-257"
       ],
       "notes": "Follow-up to EXP-0146. Queue only after SD-029 comparator baseline establishes a reproducible signal."
+    },
+    {
+      "proposal_id": "EXP-0148",
+      "added_utc": "2026-04-19",
+      "claim_id": "MECH-261",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "proposed",
+      "prerequisites": [
+        "SD-032a implemented (salience-network coordinator emitting operating_mode vector)",
+        "MECH-261 implemented (at least E3 policy-write gate, PFC-analog write gate, and cortical-sensory buffer write gate keyed to mode vector)",
+        "MECH-092 active (micro-quiescence SWR-analog generator)"
+      ],
+      "objective": "Falsify (or support) the MECH-261 claim that a shared operating-mode vector from SD-032a is load-bearing for forward-propagation of internal_replay content into subsequent external_task action selection. Core hypothesis: lesioning the coordinator abolishes the post-quiescence action-selection bias; local per-substrate gating alone does not reproduce it.",
+      "design": "Three-arm ablation on a fixed foraging task with scheduled micro-quiescence windows (MECH-092). (A) Intact: SD-032a emits the full operating_mode vector; gates read the vector normally. (B) Coordinator ablated: SD-032a output clamped to a constant external_task one-hot; per-substrate gates retain their local mode-dependent logic but receive a fixed input. (C) No-mode-gating null: gates replaced with permanently-open local heuristics (no dependence on operating_mode). Across arms measure: (i) post-quiescence trajectory-selection bias toward recently replayed trajectories (Tambini-Davachi-analog: cosine similarity between replay content and next-trajectory embedding); (ii) cross-mode write bleed during external_task commitment (writes to viability map originating from replay content); (iii) downstream policy change rate per unit replay event. PASS (MECH-261 supported): Arm A > Arm B ~= Arm C on metric (i); Arm A shows segregated write bleed while B and C do not. FAIL-coordinator (MECH-261 over-specified for coordinator role): Arm B reproduces Arm A on metric (i) -- gating is local. FAIL-gate (MECH-261 over-specified entirely): Arm C reproduces Arm A -- mode gating unnecessary. 5 seeds per arm; success threshold = pairwise Cohen's d >= 0.8 on metric (i) between distinguishing arms.",
+      "claims_tested": [
+        "MECH-261",
+        "SD-032a"
+      ],
+      "notes": "Causal test of the salience-network-as-coordinator overlay flagged in targeted_review_systems_consolidation_waking_propagation/synthesis.md. Rodent replay literature does not directly validate the coordinator role; this is a REE-specific prediction. Cannot run until V3 SD-032 cluster is at least minimally implemented. Metric (i) maps onto Tambini & Davachi 2019 forward-cognitive-bias finding; metric (ii) onto Rothschild et al 2017 cortical-hippocampal-cortical loop; metric (iii) onto Peyrache et al 2009 PFC-replay-drives-rule-update."
     }
   ]
 }

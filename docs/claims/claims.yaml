@@ -17683,7 +17683,7 @@
     in this cluster. See SD-032 parent.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: MECH-261
-  title: "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates."
+  title: "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates. Operating mode is implemented as a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, not a one-hot categorical."
   claim_type: mechanism_hypothesis
   subject: cingulate.mode_conditioned_write_gating
   polarity: asserts
@@ -17692,40 +17692,98 @@
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-04-19
+  last_updated_utc: 2026-04-19
   depends_on:
     - SD-032a          # coordinator (source of operating_mode)
     - MECH-094         # hypothesis tag (the specific tag this generalises)
     - INV-049          # sleep necessity (coordinates with consolidation mode)
     - MECH-092         # micro-quiescence replay
+    - ARC-038          # viability map (one write target)
+    - ARC-039          # entorhinal grid loop (offline consolidation target)
   functional_restatement: >
     MECH-094 (hypothesis tag) specified a single categorical write-gate
     controlling whether simulated / replayed content can write to
     memory. MECH-261 generalises: the operating mode (from SD-032a) is
-    a discrete variable in {external_task, internal_planning,
+    a SOFT probability vector over {external_task, internal_planning,
     internal_replay, offline_consolidation}, and each substrate has
-    gate logic keyed to this mode.
+    gate logic keyed to this vector.
 
-    Examples:
-      - E3 policy update: enabled in external_task, disabled in
-        internal_replay (replay must not overwrite policy directly).
-      - Episodic memory write: enabled in external_task and
-        offline_consolidation, gated by hypothesis-tag in
-        internal_planning (simulated-only writes get tagged not
-        committed).
+    Refinement from lit-pull (2026-04-19,
+    targeted_review_systems_consolidation_waking_propagation):
+
+    (1) SOFT-BOUNDARY MODES. Operating mode is a weighted mixture, not
+    a one-hot switch. Carr, Jadhav & Frank (2011) show awake SWR
+    subpopulations segregate by behavioural context rather than by a
+    discrete flag; Tambini & Davachi (2019) show prior-state
+    persistence into subsequent neutral periods produces mixed activity
+    patterns. Per-substrate gates read a weighted sum over the mode
+    vector; hard categorical gating would misrepresent the biology.
+
+    (2) WRITE TARGETS. The internal_replay mode must write-enable at
+    least three distinct downstream substrates, not only the viability
+    map. Based on biological evidence:
+      - HC-analog viability map (ARC-038): write-enabled in
+        external_task and internal_replay (Carr/Jadhav/Frank 2011
+        awake SWR consolidation subpopulation).
+      - Cortical-sensory buffer: write-enabled in internal_replay and
+        offline_consolidation (Rothschild/Eban/Frank 2017
+        cortical-hippocampal-cortical loop during SWRs).
+      - PFC-analog policy / rule-level substrate: write-enabled in
+        internal_replay and offline_consolidation (Peyrache et al 2009
+        SWR-coupled rule-learning replay in mPFC).
       - Autonomic coupling (SD-032e): active in external_task,
         attenuated in internal_planning / replay.
+
+    (3) MODE-DRIVEN GATE EXAMPLES (illustrative, not exhaustive):
+      - E3 policy update: high weight on external_task; near-zero in
+        internal_replay (replay must not overwrite policy directly,
+        it propagates via the PFC-analog substrate).
+      - Episodic memory commit: high weight on external_task and
+        offline_consolidation; hypothesis-tagged (MECH-094) in
+        internal_planning.
       - SD-021 descending pain modulation (folded into SD-032c):
-        attenuates z_harm_s gain during external_task commitment,
+        attenuates z_harm_s gain in high-external_task-weight states,
         unattenuated otherwise.
 
-    Falsifiable: if ree-v3 implementation produces coherent behaviour
-    with per-substrate local gating logic (no shared operating-mode
-    variable), MECH-261 is over-specification -- gating is local.
+    (4) CROSS-MODE FORWARD PROPAGATION. Content active in
+    internal_replay should produce a measurable bias on subsequent
+    external_task action selection (Tambini/Davachi 2019 forward-
+    cognitive-bias finding). This is both a design requirement and
+    the primary behavioural falsification target.
+
+    Falsifiable (primary): if a ree-v3 implementation using purely
+    local per-substrate gating (no shared operating-mode vector from
+    SD-032a) reproduces the post-quiescence action-selection bias
+    toward recently replayed trajectories, MECH-261 is over-
+    specification. See EXP-0148.
+
+    Falsifiable (secondary): if ablating the SD-032a coordinator
+    (forcing operating_mode to a fixed external_task vector) does NOT
+    abolish the forward-propagation bias, the coordinator overlay is
+    wrong -- forward propagation would be coordinated locally rather
+    than by the salience network.
   notes: >
     This is the mechanism that ties operating mode (SD-032a output) to
     the broader substrate graph. It makes explicit the intuition that
     MECH-094's hypothesis tag is a special case of a more general
     mode-variable write-gate family.
+
+    2026-04-19 update: claim text refined after
+    targeted_review_systems_consolidation_waking_propagation lit pull
+    (5 entries grounding the waking-consolidation-to-action-selection
+    bridge). Key biology-driven refinements: (a) soft-boundary mode
+    vector rather than one-hot categorical, (b) explicit cortical
+    write targets including PFC-analog policy-level substrate, (c)
+    forward-propagation bias as primary behavioural signature.
+    Salience-network-as-coordinator framing remains a REE-specific
+    overlay not directly validated in rodent replay literature; see
+    EXP-0148 as its causal test.
   evidence_quality_note: >
-    Registered pre-implementation. See SD-032 parent.
-  location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
+    Registered pre-implementation. 5 literature entries support the
+    underlying biology of mode-conditioned write gating
+    (targeted_review_systems_consolidation_waking_propagation,
+    aggregate literature_confidence 0.883). The salience-network
+    coordinator overlay (operating_mode driven by SD-032a output) is
+    REE-specific and has no direct rodent validation -- it requires
+    the EXP-0148 ablation test after V3 implementation.
+  location: evidence/literature/targeted_review_systems_consolidation_waking_propagation/synthesis.md
