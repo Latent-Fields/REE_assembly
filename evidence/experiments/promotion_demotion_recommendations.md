@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-19T13:23:05.621314Z`
+Generated: `2026-04-19T21:01:16.511205Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -55,13 +55,14 @@ Use this as the human-in-the-loop review queue.
 | `SD-023` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `applied` |
 | `SD-029` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `SD-032b` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `SD-032e` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 
 ## Decision Details
 
 ### ARC-026
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.705, conflict_ratio=0.571, exp_entries=8, lit_entries=5; directions supports=5, weakens=2, mixed=2, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: overall_conf=0.704, conflict_ratio=0.571, exp_entries=8, lit_entries=5; directions supports=5, weakens=2, mixed=2, unknown=0, conflict_ratio=0.571
 - Evidence quality note: EXQ-033 FAIL (2026-03-18): Tested C4 -- approach_slope=0.000265, contact_slope=0.000289, ratio=0.920. FAIL attributed to training instability at ep500-1000 (depth-calibration artifact). C1-C3 all PASSED. EXQ-033 superseded by EXQ-232. EXQ-232 PASS 4/4 criteria, 3/3 seeds (2026-04-05): Peak-checkpoint analysis (1500 eps, phased E3 harm supervision from ep100). approach_slope consistently exceeds co…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -174,7 +175,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-054
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.602, conflict_ratio=0.8, exp_entries=4, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.6, conflict_ratio=0.8, exp_entries=4, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -268,7 +269,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.785, conflict_ratio=1, exp_entries=24, lit_entries=7; directions supports=12, weakens=12, mixed=7, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.784, conflict_ratio=1, exp_entries=24, lit_entries=7; directions supports=12, weakens=12, mixed=7, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -286,7 +287,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-099
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.686, conflict_ratio=0.727, exp_entries=6, lit_entries=7; directions supports=7, weakens=4, mixed=2, unknown=0, conflict_ratio=0.727
+- Why this decision is needed: overall_conf=0.685, conflict_ratio=0.727, exp_entries=6, lit_entries=7; directions supports=7, weakens=4, mixed=2, unknown=0, conflict_ratio=0.727
 - Evidence quality note: EXQ-098 (2026-03-26): Two independent FAILs. Run 1 (seeds=42, 5 eps warmup): auc_delta=0.0000 (threshold >= 0.05). Run 2 (seeds=42+7, 400 eps warmup): auc_delta=-0.0384 -- lateral head UNDERPERFORMS baseline with more training. Adverse direction in run 2 suggests lateral head may actively interfere with the existing two-stream harm signal. Hold at candidate. EXQ-098b redesign needed before closing…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -305,7 +306,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-111
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.53, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.529, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
 - Evidence quality note: EXQ-141 FAIL/weakens (2026-03-29): novelty drive discriminative pair FAIL. First experimental entry.
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -324,7 +325,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.817, conflict_ratio=0.636, exp_entries=50, lit_entries=6; directions supports=15, weakens=7, mixed=7, unknown=0, conflict_ratio=0.636
+- Why this decision is needed: overall_conf=0.816, conflict_ratio=0.636, exp_entries=50, lit_entries=6; directions supports=15, weakens=7, mixed=7, unknown=0, conflict_ratio=0.636
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -343,7 +344,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-116
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.673, conflict_ratio=0.727, exp_entries=7, lit_entries=7; directions supports=7, weakens=4, mixed=0, unknown=0, conflict_ratio=0.727
+- Why this decision is needed: overall_conf=0.672, conflict_ratio=0.727, exp_entries=7, lit_entries=7; directions supports=7, weakens=4, mixed=0, unknown=0, conflict_ratio=0.727
 - Evidence quality note: EXQ-076d FAIL 1/4 (2026-03-27, 2 runs identical): halflife_ratio=1.0, resource_rate_gap=0, goal_norm_t1200_diff=0. Only C3 PASS (goal_norm > 0 in wanting condition). Root cause: halflife threshold (30% of peak goal_norm) never reached in either condition. At 2000 total steps with 1000-step post-removal window, goal persists robustly in both conditions -- insufficient time to observe meaningful dec…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -362,7 +363,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-118
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.696, conflict_ratio=0.667, exp_entries=4, lit_entries=3; directions supports=4, weakens=2, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.695, conflict_ratio=0.667, exp_entries=4, lit_entries=3; directions supports=4, weakens=2, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL. First experimental entry. EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed -- stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation. Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat ~20.6-20.8 across R1/R2…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -381,7 +382,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-120
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.658, conflict_ratio=0.444, exp_entries=4, lit_entries=7; directions supports=7, weakens=2, mixed=0, unknown=0, conflict_ratio=0.444
+- Why this decision is needed: overall_conf=0.657, conflict_ratio=0.444, exp_entries=4, lit_entries=7; directions supports=7, weakens=2, mixed=0, unknown=0, conflict_ratio=0.444
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -513,7 +514,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-188
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.581, conflict_ratio=0.5, exp_entries=3, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.58, conflict_ratio=0.5, exp_entries=3, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -714,7 +715,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-024
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: overall_conf=0.69, conflict_ratio=0, exp_entries=2, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.689, conflict_ratio=0, exp_entries=2, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Evidence quality note: EXQ-161 T104847Z SUPERSEDED (2026-03-29): dry_run=true -- no training occurred; all harm events=0; result invalid. Manifest marked superseded. EXQ-161 T200440Z SUPERSEDED (2026-03-29): implementation gap -- policy trained only with entropy bonus, z_world/z_self detached from policy forward pass; maximum-entropy random walk (action_entropy=ln(5)=1.6094). No harm events; trajectory representation qu…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -770,7 +771,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.731, conflict_ratio=0.933, exp_entries=24, lit_entries=6; directions supports=8, weakens=7, mixed=1, unknown=0, conflict_ratio=0.933
+- Why this decision is needed: overall_conf=0.729, conflict_ratio=0.933, exp_entries=24, lit_entries=6; directions supports=8, weakens=7, mixed=1, unknown=0, conflict_ratio=0.933
 - Evidence quality note: Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all 085x iterations despite contact-gated seeding). EXP-0091 will first test a handcrafted resource_indicator to confirm the diagnosis before implementing the full encoder. EXQ-085h through 085l (2026-03-30, 085l final, supersedes prior): ResourceEncoder tested across 5 iterations. 085l (proximity regression encoder): …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -789,7 +790,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-017
 - Current status: `provisional`
 - Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.909, conflict_ratio=0, exp_entries=5, lit_entries=4; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.908, conflict_ratio=0, exp_entries=5, lit_entries=4; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `promote_to_stable`
 - Options (pros/cons):
@@ -829,7 +830,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-023
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.767, conflict_ratio=0.333, exp_entries=4, lit_entries=4; directions supports=5, weakens=1, mixed=0, unknown=0, conflict_ratio=0.333
+- Why this decision is needed: overall_conf=0.766, conflict_ratio=0.333, exp_entries=4, lit_entries=4; directions supports=5, weakens=1, mixed=0, unknown=0, conflict_ratio=0.333
 - Evidence quality note: >
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
@@ -864,6 +865,21 @@ Use this as the human-in-the-loop review queue.
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
 - Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=12, weakens=0, mixed=2, unknown=0, conflict_ratio=0
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### SD-032e
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
