@@ -6,7 +6,7 @@ Replaces `python3 -m http.server` with a server that also manages the
 experiment runner processes (V2 and V3) via a small HTTP API.
 
 Usage:
-    cd ~/Documents/GitHub/REE_Working/REE_assembly
+    cd ~/REE_Working/REE_assembly
     caffeinate -i python3 serve.py    # http://localhost:8000/explorer
     python3 serve.py --port 9000
 
