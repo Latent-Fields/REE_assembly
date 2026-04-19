@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mcc_effort_value",
+  "entry_id": "2026-04-19_mcc_serotonin_effort_learning_scholl2017",
+  "timestamp_utc": "2026-04-19T10:40:26Z",
+  "claim_ids_tested": ["SD-032b", "MECH-260"],
+  "source": {
+    "title": "Beyond negative valence: 2-week administration of a serotonergic antidepressant enhances both reward and effort learning signals",
+    "authors": ["Jacqueline Scholl", "Nils Kolling", "Natalie Nelissen", "Michael Browning", "Matthew F. S. Rushworth", "Catherine J. Harmer"],
+    "year": 2017,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.2000756",
+    "pmid": "28207733"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Neuromodulatory evidence that 2 weeks of SSRI (citalopram) enhances reward AND effort learning signals in a network including vmPFC and ACC. Supports the view that dACC/MCC effort learning is not intrinsic but modulated by monoaminergic state -- a mechanism MECH-260 (bias suppression against monostrategy) critically depends on. Discount because the SSRI manipulation is coarse and the learning-signal enhancement is a network-level finding, not a sharp SD-032b prediction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate whose effort learning is fixed (e.g., hard-coded discount factors) will not reproduce Scholl 2017's finding that effort-learning signals are malleable by serotonergic tone. MECH-260 bias suppression requires a tunable learning rate; that tuning should be gated by a neuromodulatory analogue.",
+    "A substrate that treats reward learning and effort learning as independent channels will fail to reproduce the co-enhancement of both by a single serotonergic manipulation. The two learning signals must share modulatory gain."
+  ],
+  "tags": ["sd_032b", "mech_260", "dacc", "mcc", "serotonin", "effort_learning", "neuromodulation", "scholl", "rushworth"],
+  "mapping": {
+    "source_claim_statement": "Two weeks of oral citalopram (SSRI) enhances both reward and effort learning signals in a widespread prefrontal network, particularly vmPFC and ACC. Learning signals (trial-by-trial updates to reward and effort expectancies) are larger under SSRI, and behavioural reward learning is more robust. Serotonergic tone is therefore a gain-control parameter on the cost-benefit learning circuit, not just a mood-regulation signal. Importantly, the enhancement is valence-independent -- both appetitive (reward) and aversive (effort) learning signals are boosted together.",
+    "ree_translation": "Relevant to MECH-260 (dACC bias suppression against monostrategy). Monostrategy in ree-v3 manifests as learning rates that collapse -- the agent stops updating cost-benefit expectancies for alternative modes. Scholl 2017 suggests the biological unwedging mechanism is neuromodulatory: serotonergic tone scales effort-learning-signal magnitude. ree-v3 could implement this as a scalar gain parameter on SD-032b's learning rate, tuned by an analogue of monoaminergic state (possibly tied to SD-012 homeostatic drive variation). Architectural implication: SD-032b should not have a fixed effort-learning rate; it should have one that is modulated by a system-state parameter, and this modulation is what prevents monostrategy lock-in.",
+    "mapping_caveat": "SSRI is a coarse pharmacological manipulation affecting many regions and processes. The paper demonstrates correlation between citalopram and enhanced learning signals, not a mechanism for how serotonin does this. The ree-v3 translation -- 'implement a neuromodulatory gain control on SD-032b learning rate' -- is architecturally inspired rather than directly validated. Also, the 2-week administration is needed; acute SSRI shows different and inconsistent effects.",
+    "source_context": "Randomized controlled trial, N=66, 2-week citalopram vs placebo, fMRI during concurrent reward (money) and effort learning task. Oxford group, Scholl/Kolling/Rushworth + Harmer (psychopharmacology)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "PLoS Biology RCT with clean design. Reasonably well-powered for pharmacological fMRI. Mapping fidelity moderate because the translation from 'SSRI enhances learning signals' to 'SD-032b has a neuromodulatory gain control' is an architectural inference several steps removed from the data. Transfer risk elevated because neuromodulatory state in a biological brain is not trivially ported to an RL agent's learning rate."
+  }
+}

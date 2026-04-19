@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mcc_effort_value",
+  "entry_id": "2026-04-19_mcc_effort_cost_benefit_croxson2009",
+  "timestamp_utc": "2026-04-19T10:40:26Z",
+  "claim_ids_tested": ["SD-032b"],
+  "source": {
+    "title": "Effort-based cost-benefit valuation and the human brain",
+    "authors": ["Paula L. Croxson", "Mark E. Walton", "Jill X. O'Reilly", "Timothy E. J. Behrens", "Matthew F. S. Rushworth"],
+    "year": 2009,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4515-08.2009",
+    "pmid": "19357278"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Rushworth lab foundational effort-cost-benefit paper showing dACC activity reflects the interaction of expected reward and effort costs (not just reward alone or cost alone). Ventral striatum shows net-value signal; dACC shows the integration. Clean factorial 2x4 design. Good mapping onto SD-032b's need to combine reward-of-continuing, effort-of-switching, and effort-of-current-mode.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate that represents effort and reward as additive scalars in a single cost term will fail to reproduce Croxson's interaction effect (dACC activity is NOT just reward - effort, but reflects their interaction). Effort must be a gating factor on the relevance of reward, not a simple subtraction.",
+    "A substrate where the same region encodes both net value AND the cost-benefit integration will fail to reproduce Croxson's striatum/dACC dissociation. These should be separate nodes with distinct outputs; SD-032 and SD-012 should maintain this separation."
+  ],
+  "tags": ["sd_032b", "dacc", "effort_cost", "cost_benefit", "rushworth", "croxson", "ventral_striatum"],
+  "mapping": {
+    "source_claim_statement": "In humans making effort-based choices for secondary reinforcers, ventral striatum and midbrain activity reflect the NET value of the action (expected reward discounted by effort). dACC activity additionally reflects the INTERACTION of expected reward and effort cost -- the signal is maximal when both reward AND effort are high, not just when net value is high. Posterior orbitofrontal and insular activity reflect reward magnitude alone, without effort modulation. dACC is specifically the integration site; net-value is computed downstream (striatum).",
+    "ree_translation": "Maps SD-032b onto the integration role: the dACC-analog combines reward-of-continuing-mode with effort-of-switching-mode, emitting a cost-benefit interaction signal that drives downstream mode selection. The striatal net-value computation maps onto a separate substrate (closer to E3 trajectory scoring + SD-012 homeostatic drive). This cleans up ree-v3's architecture: SD-032b should NOT compute final mode choice; it should emit the integration signal that SD-032a (salience-network coordinator) uses along with other inputs. The separation between integration (SD-032b) and selection (SD-032a) is itself a biological prediction.",
+    "mapping_caveat": "The paper uses secondary reinforcers (abstract cues) with cued effort levels -- effort is conceptual, not physiological. Whether the same dACC integration runs for physiological effort (fatigue, pain, drive) or for cognitive/computational effort in ree-v3 is a transfer question. Also, Croxson 2009 pre-dates both the Kolling foraging-value and Shenhav EVC debates; its interpretation is compatible with both frameworks, which is a strength but also means it does not disambiguate them.",
+    "source_context": "Human fMRI with factorial 2 (effort level) x 4 (reward level) design. N=16. Secondary reinforcer (squeeze-bulb task for fluid reward). Standard Rushworth lab methodology."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Highly cited foundation paper from Rushworth lab. Clean factorial design. Maps cleanly onto the architectural separation ree-v3 needs (integration vs selection). Transfer risk moderate because effort in the paradigm is abstract/secondary; ree-v3's effort cost will be more directly physiological via SD-012."
+  }
+}

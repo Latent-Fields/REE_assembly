@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 47366,
   "runner_started_at": "2026-04-18T14:16:12.997822+00:00",
-  "last_updated": "2026-04-19T09:38:00.585690+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-325b",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
-    "description": "",
-    "script": "experiments/v3_exq_325a_sd021_descending_pain_modulation.py",
-    "started_at": "2026-04-18T21:29:21.780809+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 5,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 43719,
-    "seconds_remaining": 5200,
-    "recent_lines": [
-      "DESCENDING: training 300 eps...",
-      "DESCENDING: rv_after_train=0.0000 committed_flag=True",
-      "DESCENDING: eval 30 eps...",
-      "DESCENDING: z_harm_s_ratio=1.0000 z_harm_a_ratio=1.0000 committed_steps=6000",
-      "CONTROL: training 300 eps..."
-    ],
-    "ree_version": "v3"
-  },
+  "last_updated": "2026-04-19T10:49:50.506402+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-397a",
@@ -61,28 +35,6 @@
       "title": "MECH-090 bistable vs legacy gate hold rate: spike-aligned E3-tick test (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 52.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-325b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 86.7,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 104.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5542,6 +5494,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 34.2
+    },
+    {
+      "queue_id": "V3-EXQ-325b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "seed=44: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000 | seed=45: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000 | seed=46: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000",
+      "started_at": "2026-04-18T21:29:21.780809+00:00",
+      "completed_at": "2026-04-19T10:23:05.586777+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 46423.5
+    },
+    {
+      "queue_id": "V3-EXQ-418b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_SLEEP_SD016 seed=56 slot_div=0.1525 action_bias_div=0.0000 eval_harm_rate=0.0692 n_safe=488 n_dang=199 | verdict: C1_bias_threshold=False (0/3 seeds), C2_bias_improvement=False (0/3 seeds), C3_slot_div=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-19T10:23:07.632480+00:00",
+      "completed_at": "2026-04-19T10:24:34.869916+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 87.2
     }
   ]
 }

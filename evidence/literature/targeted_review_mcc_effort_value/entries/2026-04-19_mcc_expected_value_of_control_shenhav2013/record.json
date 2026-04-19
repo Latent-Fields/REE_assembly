@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mcc_effort_value",
+  "entry_id": "2026-04-19_mcc_expected_value_of_control_shenhav2013",
+  "timestamp_utc": "2026-04-19T10:40:26Z",
+  "claim_ids_tested": ["SD-032b"],
+  "source": {
+    "title": "The expected value of control: an integrative theory of anterior cingulate cortex function",
+    "authors": ["Amitai Shenhav", "Matthew M. Botvinick", "Jonathan D. Cohen"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.07.007",
+    "pmid": "23889930"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Integrative theoretical framework with three clean computational quantities (expected payoff from control, amount of control required, cost of cognitive effort). Provides a normative spec that ree-v3's SD-032b can be specified against. High mapping fidelity because all three EVC components have direct ree-v3 analogues. Discount applied because EVC is one of several competing theories and its empirical validation is largely re-interpretation of prior dACC results rather than novel experiments.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate that emits only a 'reward expected - cost expected' scalar, without separately tracking the amount-of-control-required term, will fail to reproduce the EVC prediction that dACC signal scales with the gap between automatic and controlled responses even when payoff is matched. MECH-260 (bias suppression against monostrategy) specifically needs this term.",
+    "A substrate that treats effort cost as fixed (e.g., a constant discount factor) will fail when effort cost should be context-dependent (e.g., fatigue, depletion, mode). Shenhav's framework requires effort cost be dynamically computed from state, not applied as a constant."
+  ],
+  "tags": ["sd_032b", "dacc", "mcc", "expected_value_of_control", "evc", "shenhav", "cognitive_effort"],
+  "mapping": {
+    "source_claim_statement": "Dorsal ACC computes the expected value of control (EVC): a scalar that integrates (a) the expected payoff from a controlled process, (b) the amount of cognitive control required to achieve that payoff, and (c) the cost of cognitive effort. dACC uses EVC to determine whether to allocate control, where (which process) to allocate it, and how much. This framework accounts for dACC's apparent involvement in diverse phenomena (error monitoring, conflict, value computation, reward prediction) by treating all of them as inputs to a single normative calculation.",
+    "ree_translation": "EVC gives SD-032b a three-term decomposition for its output: benefit-of-switching (from environment model, cf. Kolling), control-required-to-switch (how much policy reshaping is needed to exit the current commitment and adopt the new mode), cost-of-effort (ree-v3's SD-012 homeostatic drive provides the internal currency here). The MINIMUM VIABLE implementation of SD-032b should emit `EV_net(mode_M) = benefit(M) - control_required(M) - effort_cost(M)` for each candidate mode M, and the salience-network coordinator (SD-032a) selects argmax. This is computationally equivalent to a parallel mode-value calculation, with the mode-switch trigger (MECH-259) firing when a non-current mode's EV exceeds the current mode's EV by a threshold.",
+    "mapping_caveat": "EVC is a *normative* theory -- it specifies what dACC should compute, not how. The mechanistic implementation in ree-v3 requires choosing concrete representations for all three terms, and these choices are under-constrained by the EVC framework. Also, EVC competes with foraging-value (Kolling) and error-likelihood (Brown & Braver) accounts. We should treat EVC as a useful computational vocabulary for SD-032b rather than as the settled ground truth of dACC function.",
+    "source_context": "Theoretical review synthesising extensive prior dACC literature. No new empirical data; the contribution is the three-term decomposition and its claimed explanatory scope."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.25,
+    "notes": "Highly cited framework (Neuron, Shenhav/Botvinick/Cohen is a canonical author set for cognitive control). High mapping fidelity because EVC gives us the exact three terms ree-v3 needs to compute for SD-032b output. Transfer risk low because EVC is already a computational/normative theory, not a species-specific physiological finding."
+  }
+}

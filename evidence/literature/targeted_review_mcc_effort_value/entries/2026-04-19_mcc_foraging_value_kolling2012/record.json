@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mcc_effort_value",
+  "entry_id": "2026-04-19_mcc_foraging_value_kolling2012",
+  "timestamp_utc": "2026-04-19T10:40:26Z",
+  "claim_ids_tested": ["SD-032b"],
+  "source": {
+    "title": "Neural mechanisms of foraging",
+    "authors": ["Nils Kolling", "Timothy E. J. Behrens", "Rogier B. Mars", "Matthew F. S. Rushworth"],
+    "year": 2012,
+    "venue": "Science",
+    "doi": "10.1126/science.1216930",
+    "pmid": "22491854"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational dissociation showing ACC encodes average value of the foraging environment and the cost of searching, in invariant (search-centred) reference frame, while vmPFC encodes values of the currently available option. Provides the strongest positive formulation of dACC-as-foraging-value. Discount applied because subsequent work (Shenhav/Straccia 2016) shows much of the dACC signal is choice difficulty rather than foraging value specifically -- the original interpretation is contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substrate that treats dACC-analog as a simple within-choice value comparator (competing options side-by-side) fails to reproduce Kolling's result that ACC activity scales with search-environment average AND search cost. The substrate must maintain a running estimate of background-environment value and an explicit cost-of-alternatives term -- a raw 'score this trajectory' signal will not suffice.",
+    "A substrate with only one choice frame (option-comparative) and no 'stay vs search' frame will fail to show the invariant reference-frame signature Kolling reports. Both frames must exist as first-class inputs to the dACC-analog."
+  ],
+  "tags": ["sd_032b", "dacc", "mcc", "foraging_value", "rushworth", "kolling", "search_cost"],
+  "mapping": {
+    "source_claim_statement": "In a sequential foraging task, dorsal ACC activity encodes (a) the average value of the foraging environment and (b) the cost of searching for alternatives, in an invariant reference frame anchored to 'search/engage' rather than to specific option identities. vmPFC encodes values of well-defined current options. The two regions therefore support two distinct modes of choice: foraging (stay-or-search against environmental average) and economic (compare concretely available options).",
+    "ree_translation": "For SD-032b (dACC/aMCC-analog adaptive control), the foraging signal is the computational primitive that answers: 'is continuing the current commitment worth more than the expected value of breaking commitment and searching?' This directly maps to MECH-091 (salient-event phase-reset) and to the urgency-interrupt function: breaking commitment is not just 'urgency' as local z_harm_a spike -- it is a comparison against a running estimate of the background task/environment value. ree-v3's current urgency_weight stub has no analogue of environment-average tracking. Implementation hint: SD-032b must read from a running-average-of-environment-value register (currently absent), not just instantaneous option scores.",
+    "mapping_caveat": "Kolling 2012's dACC interpretation has been significantly contested. Shenhav/Straccia 2016 (same pull) re-analyses the data and argues dACC activity is better accounted for by choice difficulty than by foraging value. The dissociation between dACC 'foraging value' and 'choice difficulty' is subtle and may not translate at all into a closed-loop embodied agent. ree-v3 should adopt the search-vs-engage primitive and the invariant reference frame but should treat 'what exactly the dACC-analog outputs' as an open design question to be tested.",
+    "source_context": "Human fMRI, sequential foraging task (choose-or-search decisions with changing environment average). N=15 subjects, within-subject comparison of foraging vs economic choice blocks."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Highly cited Science paper, careful experimental design, clean dissociation between dACC and vmPFC. Source quality is high but contested interpretation and single-lab result bring confidence down. Mapping fidelity is good because the stay-vs-search computation is exactly what a commitment/interrupt substrate needs. Transfer risk moderate -- humans in cue-response task is the standard limitation."
+  }
+}

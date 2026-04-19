@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-19T09:30:52.020407Z`
+Generated: `2026-04-19T10:48:51.205185Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -106,6 +106,7 @@ Generated: `2026-04-19T09:30:52.020407Z`
 | `targeted_review_inv_052` | [`2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008`](targeted_review_inv_052/entries/2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008/record.json) | 4 | [`summary`](targeted_review_inv_052/entries/2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008/summary.md) |
 | `targeted_review_inv_053` | [`2026-04-18_inv_053_decision_theoretic_depression_huys2015`](targeted_review_inv_053/entries/2026-04-18_inv_053_decision_theoretic_depression_huys2015/record.json) | 5 | [`summary`](targeted_review_inv_053/entries/2026-04-18_inv_053_decision_theoretic_depression_huys2015/summary.md) |
 | `targeted_review_inv_054` | [`2026-04-06_inv_054_stard_response_latency_trivedi2006`](targeted_review_inv_054/entries/2026-04-06_inv_054_stard_response_latency_trivedi2006/record.json) | 3 | [`summary`](targeted_review_inv_054/entries/2026-04-06_inv_054_stard_response_latency_trivedi2006/summary.md) |
+| `targeted_review_mcc_effort_value` | [`2026-04-19_mcc_serotonin_effort_learning_scholl2017`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/record.json) | 5 | [`summary`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/summary.md) |
 | `targeted_review_mech_054` | [`2026-02-15_mech054_lhb_negative_reward_signal_nature2007`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/record.json) | 1 | [`summary`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/summary.md) |
 | `targeted_review_mech_057` | [`2026-04-04_mech_057_bg_sequence_parsing_jin2014`](targeted_review_mech_057/entries/2026-04-04_mech_057_bg_sequence_parsing_jin2014/record.json) | 8 | [`summary`](targeted_review_mech_057/entries/2026-04-04_mech_057_bg_sequence_parsing_jin2014/summary.md) |
 | `targeted_review_mech_058` | [`2026-02-15_mech058_lit-0017_completion`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/record.json) | 4 | [`summary`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/summary.md) |
