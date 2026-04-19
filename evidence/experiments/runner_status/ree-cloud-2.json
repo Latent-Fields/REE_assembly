@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 3055,
   "runner_started_at": "2026-04-18T20:08:38.546483+00:00",
-  "last_updated": "2026-04-18T23:12:15.278598+00:00",
+  "last_updated": "2026-04-19T01:35:18.418514+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -46,28 +46,6 @@
       "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
       "description": "",
       "estimated_minutes": 86.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-435",
-      "backlog_id": "EXP-0097",
-      "claim_id": "INV-054",
-      "title": "INV-054 phase-transition recovery (sustained-crossing criterion)",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-434",
-      "backlog_id": "EVB-0096",
-      "claim_id": "INV-053",
-      "title": "INV-053 depression attractor 4th replication (5 seeds LONG_HORIZON)",
-      "description": "",
-      "estimated_minutes": 266.7,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -1758,6 +1736,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-2",
       "actual_secs": 602.8
+    },
+    {
+      "queue_id": "V3-EXQ-435",
+      "backlog_id": "EXP-0097",
+      "claim_id": "INV-054",
+      "title": "INV-054 phase-transition recovery (sustained-crossing criterion)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | -> FAIL evidence_direction=does_not_support | Status: FAIL",
+      "started_at": "2026-04-18T23:12:18.488212+00:00",
+      "completed_at": "2026-04-18T23:49:50.337227+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2251.8
+    },
+    {
+      "queue_id": "V3-EXQ-434",
+      "backlog_id": "EVB-0096",
+      "claim_id": "INV-053",
+      "title": "INV-053 depression attractor 4th replication (5 seeds LONG_HORIZON)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=17 goal_norm=0.000 behav_equiv=0.00000 accum_harm=1.19715 -> attractor=PASS | -> PASS decision=retain_ree direction=supports | Status: PASS",
+      "started_at": "2026-04-18T23:49:52.231139+00:00",
+      "completed_at": "2026-04-19T01:35:18.418041+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 6326.2
     }
   ]
 }
