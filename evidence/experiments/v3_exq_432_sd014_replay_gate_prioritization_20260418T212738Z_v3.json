@@ -1,0 +1,140 @@
+{
+  "run_id": "v3_exq_432_sd014_replay_gate_prioritization_20260418T212738Z_v3",
+  "experiment_type": "v3_exq_432_sd014_replay_gate_prioritization",
+  "claim_ids": [
+    "SD-014"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "non_contributory",
+  "overall_pass": false,
+  "seeds_passed": 0,
+  "n_seeds": 3,
+  "majority_threshold": 2,
+  "criteria_per_seed": [
+    {
+      "P1": false,
+      "P2": false,
+      "P3": false,
+      "pass": false,
+      "a_surprise_at_start": 0.0,
+      "b_surprise_at_start": 0.0,
+      "a_wanting_at_start": 523.3697833251953,
+      "b_wanting_at_start": 514.8257342529297,
+      "n_surprise_writes_d2": 0
+    },
+    {
+      "P1": false,
+      "P2": false,
+      "P3": false,
+      "pass": false,
+      "a_surprise_at_start": 0.0,
+      "b_surprise_at_start": 0.0,
+      "a_wanting_at_start": 520.1809991455078,
+      "b_wanting_at_start": 508.4050671386719,
+      "n_surprise_writes_d2": 0
+    },
+    {
+      "P1": false,
+      "P2": false,
+      "P3": false,
+      "pass": false,
+      "a_surprise_at_start": 0.0,
+      "b_surprise_at_start": 0.0,
+      "a_wanting_at_start": 515.1589263916015,
+      "b_wanting_at_start": 501.79698181152344,
+      "n_surprise_writes_d2": 0
+    }
+  ],
+  "all_seed_results": [
+    {
+      "A_SURPRISE": {
+        "mean_wanting_at_start": 523.3697833251953,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.4969773036241532
+      },
+      "B_WANTING": {
+        "mean_wanting_at_start": 514.8257342529297,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.4412738467454909
+      },
+      "C_ABLATION": {
+        "mean_wanting_at_start": 525.4757257080078,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.4741439688503744
+      }
+    },
+    {
+      "A_SURPRISE": {
+        "mean_wanting_at_start": 520.1809991455078,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.5007738285660743
+      },
+      "B_WANTING": {
+        "mean_wanting_at_start": 508.4050671386719,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.4545595459342002
+      },
+      "C_ABLATION": {
+        "mean_wanting_at_start": 528.1481335449218,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.464524910748005
+      }
+    },
+    {
+      "A_SURPRISE": {
+        "mean_wanting_at_start": 515.1589263916015,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.5199404930174352
+      },
+      "B_WANTING": {
+        "mean_wanting_at_start": 501.79698181152344,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.5680747009515763
+      },
+      "C_ABLATION": {
+        "mean_wanting_at_start": 501.795927734375,
+        "mean_surprise_at_start": 0.0,
+        "n_replay_starts": 250,
+        "n_surprise_writes_d2": 0,
+        "mean_harm_test": 1.4319405069351197
+      }
+    }
+  ],
+  "hyperparams": {
+    "n_d1": 100,
+    "n_d2": 50,
+    "n_test": 20,
+    "n_replay_per_ep": 5,
+    "grid_size": 8,
+    "n_hazards_d1": 1,
+    "n_hazards_d2": 2,
+    "steps_per_ep": 120,
+    "world_dim": 32,
+    "surprise_margin": 0.001,
+    "wanting_margin": 0.001,
+    "min_surprise_writes": 5
+  },
+  "elapsed_seconds": 3635.7,
+  "timestamp_utc": "2026-04-18T21:27:38.258247Z",
+  "evidence_direction_note": "Reclassified diagnostic (governance 2026-04-19): n_surprise_writes_d2=0 across all seeds; surprise signal not propagating to replay gate. The replay-gate design (SD-014) cannot be tested until the surprise-write substrate is operational. Treated as diagnostic of surprise-write pipeline gap. Flagged for /diagnose-errors.",
+  "evidence_direction_per_claim": {
+    "SD-014": "non_contributory"
+  }
+}

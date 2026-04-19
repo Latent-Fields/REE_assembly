@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-18T15:38:12.831270Z",
+  "last_updated_utc": "2026-04-19T08:51:05Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -36,7 +36,7 @@
       "implementation_hint": "E2_harm_s is implemented (ARC-033) but training requires counterfactual perturbation signal to avoid bias in causal_sig. Add contrastive counterfactual action pair during E2_harm_s training: for each transition, sample a_cf != a_actual, compute predicted z_harm_s_cf, train E2_harm_s to produce divergent outputs for actual vs counterfactual actions. Validates SD-003 z_harm_s attribution pipeline.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-18-15z",
+      "last_seen_session": "governance-2026-04-19T06",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -124,7 +124,7 @@
       "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation). MECH-112 prerequisite resolved by co-implementation in this session (ResourceEncoder IS the MECH-112 substrate).",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-18-15z",
+      "last_seen_session": "governance-2026-04-19T06",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -224,7 +224,7 @@
       "implementation_hint": "z_harm_a and z_harm_s must encode non-overlapping information under the split SD-011 design. SD-019 adds an orthogonality/redundancy-reduction constraint (e.g. adversarial loss or correlation penalty) between z_harm_a and z_harm_s encoder outputs. Requires ARC-016 (dynamic precision) to contextualize what counts as non-redundant in different regime states. ARC-016 wiring resolved: e3.current_precision accessible as property.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-18-15z",
+      "last_seen_session": "governance-2026-04-19T06",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -299,7 +299,7 @@
       "implementation_hint": "Replace z_harm_a AffectiveHarmEncoder training target from EMA-accumulated harm to a precision-weighted prediction error signal: surprise = |harm_obs - E_predicted_harm| * precision. ARC-016 dynamic precision provides the precision weight. Requires SD-019 to enforce that z_harm_s and z_harm_a encode non-redundant aspects of the harm signal. Both SD-019 and ARC-016 now implemented.",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-18-15z",
+      "last_seen_session": "governance-2026-04-19T06",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -378,7 +378,7 @@
       "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward. MECH-090 bistable latch and ARC-016 wiring now both implemented. SD-020 also implemented (precision-weighted PE target for z_harm_s training).",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-18-15z",
+      "last_seen_session": "governance-2026-04-19T06",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -453,7 +453,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-09. CausalGridWorldV2 now has 4-directional limb_damage[4] state; accumulates when moving through hazards; heals at heal_rate=0.002/step; harm_obs_a re-sourced from body damage state (7 dims: damage[4]+max+mean+residual_pain) when limb_damage_enabled=True. EXQ-319 PASS confirmed dissociation: agent with accumulated damage shows high z_harm_a and low z_harm_s when removed from hazard. r2 reduction confirmed by EXQ-318 direction (0.702->0.365) though variance threshold unmet. Promote to provisional: mechanism works, threshold failure is calibration (heal_rate too fast for 150 warmup episodes).",
       "priority": 1,
       "added_session": "governance-2026-04-11",
-      "last_seen_session": "governance-2026-04-18-15z",
+      "last_seen_session": "governance-2026-04-19T06",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-09T00:00:00Z",
@@ -512,6 +512,53 @@
         }
       },
       "status": "implemented"
+    },
+    {
+      "sd_id": "SD-029",
+      "title": "Single-pass comparator on z_harm_s reafferent stream (SD-003 successor)",
+      "ready": true,
+      "design_doc": "docs/architecture/self_attribution_per_stream.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-256"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_433_sd029_eventcond_comparator_20260419T013523Z_v3",
+          "experiment_type": "v3_exq_433_sd029_eventcond_comparator",
+          "metric": "C3 approach-event SNR passes 2/4 seeds (vals 2.46, 3.99, 4.31, 0.0; seed 91 zero because n_self=303 but n_ext=0). C4 event-density balance passes 1/4 seeds -- seeds 13/42 have n_self<=2 vs n_ext~100 (agent-caused hazards rare); seed 91 has no externally-caused hazards. C1 (forward_r2=0.98-0.9998) and C2 (attenuation 0.40/0.49/0.44/0.0) pass.",
+          "target": "C3 SNR > threshold on approach-to-harm events in >= 3/4 seeds AND C4 balanced event density (both n_self and n_ext >= 20 per seed) AND residual magnitude partially attenuated for self-caused vs externally-caused harm (Shergill partial-attenuation pattern)"
+        }
+      ],
+      "implementation_hint": "Forward model (E2_harm_s, ARC-033) and interventional training (SD-013) already implemented -- C1 and C2 are passing. The blocker is curriculum: event-density imbalance between self-caused and externally-caused harm makes event-conditioned SNR noisy. Curriculum must reliably produce both event types per seed. Candidates: (a) scripted mix of hazard-approach vs hazard-enter episodes; (b) scheduled hazard-appearance events (externally-caused) interleaved with agent-driven hazard encounters; (c) longer P2 eval with hazard_density tuned so both event classes accumulate >= 20 events per seed.",
+      "priority": 1,
+      "added_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-19T06",
+      "implementation_status": "pending",
+      "validation_experiment": "V3-EXQ-433",
+      "metric_trajectory": {
+        "primary_metric": "approach_event_snr",
+        "primary_metric_description": "Event-conditioned SNR of residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual), measured on approach-to-harm events specifically (not mean over all steps). SD-029's key discriminator. Requires balanced self-caused vs externally-caused event density per seed.",
+        "direction": "higher_is_better",
+        "target": "approach_event_snr > threshold in >= 3/4 seeds AND n_self >= 20 AND n_ext >= 20 per seed",
+        "observations": [
+          {
+            "run_id": "v3_exq_433_sd029_eventcond_comparator_20260419T013523Z_v3",
+            "experiment_type": "v3_exq_433_sd029_eventcond_comparator",
+            "date_utc": "2026-04-19",
+            "substrate_state": "E2_harm_s forward model (ARC-033) + SD-013 interventional training active; 4 seeds; 200 P2 cap episodes",
+            "metric_value": "2.46/3.99/4.31/0.0",
+            "metric_notes": "C1 PASS (forward_r2 = 0.98-0.9998 across 4 seeds). C2 PASS 3/4 (attenuation ratio). C3 FAIL (approach SNR passes 2/4). C4 FAIL (event-density balance only 1/4). SD-029 does_not_support; MECH-256 supports via C1+C2. Blocker is event-density imbalance: seeds 13/42 have near-zero self-caused events (n_self=1,2); seed 91 has zero externally-caused events. Curriculum does not reliably produce both event types per seed, making approach-event SNR unstable."
+          }
+        ],
+        "current_blocker": "Curriculum generates unbalanced hazard-event densities per seed -- some seeds produce only externally-caused hazards, others only self-caused. Event-conditioned SNR requires >= 20 of each type per seed to be stable.",
+        "prediction": {
+          "expected_value": "approach_event_snr > threshold in >= 3/4 seeds once curriculum balances self-caused and externally-caused hazard events at >= 20 per seed",
+          "rationale": "C1 forward_r2 and C2 attenuation ratios are already passing -- the comparator mechanism works. The missing signal is statistical stability on event-conditioned windows. EXQ-431 lesson: sample-starved means are uninformative. Balancing the event stream should produce legible C3/C4 results on the first re-run.",
+          "prerequisite_state": "Curriculum change that guarantees n_self >= 20 and n_ext >= 20 per seed across the 4-seed set; alternatively a longer eval that accumulates events naturally"
+        }
+      },
+      "status": "pending"
     }
   ]
 }

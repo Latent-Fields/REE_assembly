@@ -8,11 +8,11 @@
   "claim_ids_tested": [
     "SD-017"
   ],
-  "experiment_purpose": "evidence",
+  "experiment_purpose": "diagnostic",
   "evidence_class": "ablation_pair",
   "outcome": "FAIL",
   "timestamp_utc": "20260418T230019Z",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "supersedes": "V3-EXQ-418",
   "experiment_version": "a",
   "fix_description": "Two bugs fixed vs EXQ-418: (1) shy_enabled=False to prevent slot collapse (0.85^15~=0.09 reversed diversity). (2) terrain_loss added (lambda=0.1) to train cue_terrain_proj -- EXQ-418 had random weights causing action_bias_divergence=0.0.",
@@ -168,5 +168,9 @@
     "shy_decay_rate": "disabled",
     "min_context_samples": 10,
     "dry_run": false
+  },
+  "evidence_direction_note": "Reclassified diagnostic (governance 2026-04-19): zero differential signal (action_bias_div=0.0 in both conditions, all seeds). Shared anomaly with EXQ-436: conditions produce identical metrics, suggesting context-conditioning substrate not wired through to policy. Treated as diagnostic probe of substrate wiring, not evidence against SD-017. | Reclassified diagnostic (governance 2026-04-19): zero differential signal (action_bias_div=0.0 in both conditions, all seeds). Shared anomaly with EXQ-436: conditions produce identical metrics, suggesting context-conditioning substrate not wired through to policy. Treated as diagnostic probe of substrate wiring, not evidence against SD-017.",
+  "evidence_direction_per_claim": {
+    "SD-017": "non_contributory"
   }
 }

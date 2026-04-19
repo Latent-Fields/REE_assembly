@@ -2097,7 +2097,7 @@
   claim_type: mechanism_hypothesis
   subject: agentic_extension.action_loop_completion_gate
   polarity: asserts
-  status: candidate
+  status: provisional
   lifecycle_stage: adjudicated
   adjudication_outcome: hybridize
   adjudicated_at_utc: 2026-02-25T14:59:46.253616Z
@@ -6936,7 +6936,7 @@
   claim_type: architectural_commitment
   subject: harm_stream.sensory_discriminative_forward_model
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   claim_level: architectural
   depends_on: [SD-011, ARC-027, SD-010]
@@ -8517,6 +8517,7 @@
     depends on SD-011 and SD-012 (still candidate/provisional) plus ARC-036, and
     no evidential experiments have run yet. V3-EXQ-432 (SD-014 validation) queued
     to produce first evidence.
+    EXQ-432 (2026-04-18, non_contributory -- governance 2026-04-19): Replay-gate surprise-vs-wanting prioritization test. n_surprise_writes_d2=0 across all seeds; surprise signal not propagating to replay gate. The replay-gate design cannot be tested until surprise-write substrate is operational. Reclassified as diagnostic of surprise-write pipeline gap. Flagged for /diagnose-errors.
   experimental_test: >
     Discriminative pair (EXP-0098). Two conditions: UNIFIED_VALUE (single composite reward
     signal, current architecture) vs DISSOCIATED_VALENCE (separate w and l tracking, SD-014
@@ -8807,6 +8808,7 @@
     EXQ-355 (2026-04-12, non_contributory): ARC-018 and MECH-092 not instantiated --
     ENABLED and ABLATED conditions identical to 15 decimal places. Reclassified on
     manifest. Same substrate gap confirmed: redesign requires consolidation-mode replay.
+    EXQ-355a FAIL (2026-04-18, weakens): Optimizer-isolation fix (e3_consolidation_opt scoped to harm_eval_head only) did not restore differential signal. Phase0 harm=Phase1 harm=ablated harm (all 0.0130) across 3 seeds; C2 0/3 and C3 0/3. Architectural abstraction of waking-consolidation necessity may need refinement -- current implementation does not produce measurable dependence on consolidation mode.
   evidence: []
 
 - id: ARC-039
@@ -10601,6 +10603,7 @@
     Cannot distinguish context-conditioned action when action distributions are identical
     across conditions. Flagged for /diagnose-errors to identify the shared-data scripting
     issue. Not evidence against SD-017; substrate may be wired correctly.
+    EXQ-418a + EXQ-436 (2026-04-18, non_contributory -- governance 2026-04-19): Two experiments produce zero differential signal across seeds (action_bias_div=0.0 in EXQ-418a all seeds/conditions; slot metrics identical across WAKING/SWS_ONLY/SWS_THEN_REM in EXQ-436). Shared anomaly suggests context-conditioning substrate not wired through to policy/slot structure. Reclassified as diagnostic of substrate wiring rather than test of SD-017. Flagged for further substrate investigation.
 
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
@@ -10639,6 +10642,8 @@
     isomorphic to the generative/recognition architecture of hierarchical Bayesian
     models (predictive coding, Friston 2005-2010), implemented via information
     direction switching rather than explicit probability distributions.
+  evidence_quality_note: >
+    EXQ-436 (2026-04-18, non_contributory -- governance 2026-04-19): Cross-frequency bidirectional flow hypothesis tested in context-conditional harm-threshold sleep-phase experiment (WAKING_ONLY, SWS_ONLY, SWS_THEN_REM x 5 seeds). No measurable difference between sleep and waking conditions on slot_cosine_sim. Reclassified as diagnostic of substrate wiring; not evidence against ARC-045.
 
 - id: MECH-166
   title: "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
@@ -10673,6 +10678,8 @@
     A direct test requires implementing the SWS-analog pass and comparing
     attribution map quality (context cosine_sim, terrain classification accuracy)
     with vs without it.
+  evidence_quality_note: >
+    EXQ-436 (2026-04-18, non_contributory -- governance 2026-04-19): Context-conditional harm-threshold test across 5 seeds x 3 sleep conditions (WAKING_ONLY, SWS_ONLY, SWS_THEN_REM). Slot_cosine_sim metrics identical across all conditions per seed, indicating sleep phases are not installing differential slot structure. Shared anomaly with EXQ-418a (SD-017). Reclassified as diagnostic of substrate wiring rather than test of MECH-166 hypothesis.
 
 - id: MECH-167
   title: "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding."
@@ -10718,7 +10725,7 @@
   invariant_type: universal
   subject: cognition.bayesian_prior_before_posterior_necessity
   polarity: asserts
-  status: candidate
+  status: provisional
   notes: >
     Registered 2026-04-05. Grounded in Sanders, Wilson & Gershman 2020 (eLife
     doi:10.7554/eLife.51140): context discrimination accuracy at inference time is
@@ -10752,6 +10759,7 @@
     training_episodes=2; n_sleep_cycles=0 in all conditions. No genuine offline/online
     contrast was produced. Reclassified from does_not_support to non_contributory on
     manifest. Full run still to be queued. Not evidence against INV-044.
+    EXQ-429 PASS (2026-04-18, supports): Full 3-arm ordering probe (ORDERED, REM_ONLY, WAKING_ONLY) with training_episodes=300 and n_sleep_cycles=3. ORDERED mean_sws_slot_diversity=0.290 vs REM_ONLY=0.0 and WAKING_ONLY=0.177; 3/3 seeds pass all 4 acceptance checks. Promoted to provisional on governance 2026-04-19.
 
 - id: INV-045
   title: "The biological NREM-then-REM sleep phase sequence is the correct computational order, derivable from the logical dependencies between the failure modes each phase addresses; this ordering is not a contingent biological fact but an engineering necessity, and it serves directly as the V4 rewiring specification: each phase specifies what structural change the REE substrate requires to address its failure mode."
@@ -11623,6 +11631,7 @@
     offline/online dissociation cannot be tested when both conditions use the same
     per-seed slot data. Flagged for /diagnose-errors. Not evidence against INV-049;
     failure is a scripting/data isolation issue, not a claim validity issue.
+    EXQ-385a x3 (2026-04-18, non_contributory -- governance 2026-04-19): Three independent runs with identical seeds [42,49,56] and SHY-decay=0.98 fix. All criteria fail 0/3 seeds (C1 slot_diversity, C2 pred_loss, C3 harm); WITHOUT_OFFLINE beats WITH_OFFLINE on diversity in every seed. Reclassified as diagnostic: the SHY mechanism fix was insufficient to recover differential offline-consolidation signal, suggesting architectural substrate gap rather than hypothesis falsification. Excluded from INV-049 confidence scoring pending substrate investigation.
 
 - id: MECH-178
   title: "Elevated tonic noradrenergic activity (from chronic stress, stimulant exposure, or noradrenaline reuptake inhibitor antidepressants) suppresses REM sleep by maintaining locus coeruleus REM-off firing above the silence threshold required for REM generation, thereby blocking MECH-123 precision recalibration and producing progressive behavioural rigidity equivalent to partial MECH-123 deprivation -- independent of any pharmacological REM suppression."
@@ -12287,6 +12296,7 @@
     rebuilding), or MECH-186 serotonergic floor (not yet implemented) is required for
     the full chronicity prediction to emerge. INV-054 held at candidate;
     conflict ratio now elevated (2 opposing, 3 supporting).
+    EXQ-435 FAIL (2026-04-18, weakens, supersedes EXQ-278): Depression attractor established 3/3 seeds but recovery_type='graded' (smooth linear ramp) in every seed, not sustained phase transition. Sustained-crossing criterion (10 consecutive eps >= 0.3 goal_norm) not met. Goal_norm fluctuates stochastically without clear threshold crossing. Either phase-transition dynamics are not present at this architectural level, or a different metric than goal_norm threshold captures the transition.
 
 - id: Q-034
   title: "Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?"
@@ -14043,7 +14053,7 @@
   claim_type: design_decision
   subject: harm_stream.affective_surprise_pe
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   claim_level: architectural
   depends_on: [SD-011, SD-019, ARC-016]
@@ -14074,6 +14084,7 @@
     (mean_surprise_corr_pe=0.12), but n_eval_steps=6-10 per seed too small for
     stable correlation. Direction is positive. Reclassified from does_not_support
     to inconclusive. Hold at candidate until n_eval_steps >= 100 on SD-022 substrate.
+    EXQ-324b PASS x2 (2026-04-18, supports): Two independent runs with EVAL_STEPS=400 and env.reset()-on-done fix (previous EXQ-324a exited too early for stable correlations). Same 3/5 seeds (43, 44, 45) pass in both runs with surprise_corr_pe in [0.44, 0.81]; C3 z_harm_a_norm > 0.01 in 5/5 seeds. Substrate: SD-022 (limb_damage_enabled=True, 8 hazards). Promoted to provisional on governance 2026-04-19.
   notes: >
     Addresses Q-036 directly. If SD-020 is confirmed experimentally, Q-036 answer is:
     "surprise (PE) is necessary in addition to temporal integration." The implementation
@@ -14153,6 +14164,7 @@
     now fires). Condition-dispatch bug: harm_descending_mod_enabled flag is not being
     routed differentially between conditions. Flagged for /diagnose-errors. Hold at
     candidate pending dispatch fix and re-run (EXQ-325b).
+    EXQ-325a FAIL (2026-04-18, weakens): z_harm_s_ratio=1.0 identically in DESCENDING and CONTROL across 5 seeds, so attenuation not measurable despite running-variance fix and beta-gate bistable enabled. Descending pathway not engaging in committed state. Mechanism either requires substrate wiring not yet present, or the ratio metric is the wrong instrumentation for this claim.
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while
@@ -14423,6 +14435,8 @@
     Menon & Uddin (2010, TICS): saliency, switching, attention and control (insula hub).
     Seeley et al. (2007, J Neurosci): salience network and insular-ACC hub.
     Wiech et al. (2010, Neuron): perceptual salience and modulatory role of insula in pain.
+  evidence_quality_note: >
+    EXQ-395 FAIL (2026-04-18, weakens): HUB_ENABLED (hub_weight=0.3) and HUB_ABLATED (hub_weight=0.0) produce identical harm_rates across 3 seeds (delta=0.0 every seed). z_harm_a_norm shows small directional effect (+0.09 to +0.14) but harm_rate behavioral metric is unchanged. Evidence the hub mechanism (as currently implemented) is inert on the causal path to behavior. Either the hub weight is too small, the routing is not reaching policy, or the coordination mechanism needs a different architectural instantiation.
 
 - id: ARC-052
   title: harm_precision_weighting

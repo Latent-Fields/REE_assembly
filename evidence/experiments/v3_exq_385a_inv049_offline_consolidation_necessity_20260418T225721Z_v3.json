@@ -8,11 +8,11 @@
   "claim_ids_tested": [
     "INV-049"
   ],
-  "experiment_purpose": "evidence",
+  "experiment_purpose": "diagnostic",
   "evidence_class": "ablation_pair",
   "outcome": "FAIL",
   "timestamp_utc": "20260418T225721Z",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "supersedes": "V3-EXQ-385",
   "experiment_version": "a",
   "fix_description": "SHY decay rate changed from 0.85 to 0.98. EXQ-385 used 0.85 with 15 cycles -> 0.85^15=0.09 -> slot collapse reversed the C1 diversity comparison. 0.98^15=0.74 allows gentle homeostasis without destroying slot differentiation.",
@@ -154,5 +154,9 @@
     "shy_enabled": true,
     "shy_decay_rate": 0.98,
     "dry_run": false
+  },
+  "evidence_direction_note": "Reclassified diagnostic (governance 2026-04-19): duplicate of 20260418T210738Z run (same seeds/params). See primary reclassification note. | Reclassified diagnostic (governance 2026-04-19): duplicate of 20260418T210738Z run. See primary reclassification note.",
+  "evidence_direction_per_claim": {
+    "INV-049": "non_contributory"
   }
 }

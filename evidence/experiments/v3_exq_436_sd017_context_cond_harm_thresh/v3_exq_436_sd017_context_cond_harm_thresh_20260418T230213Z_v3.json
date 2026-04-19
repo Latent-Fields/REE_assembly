@@ -6,15 +6,15 @@
     "ARC-045",
     "MECH-166"
   ],
-  "experiment_purpose": "evidence",
+  "experiment_purpose": "diagnostic",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260418T230213Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-017": "weakens",
-    "ARC-045": "weakens",
-    "MECH-166": "weakens"
+    "SD-017": "non_contributory",
+    "ARC-045": "non_contributory",
+    "MECH-166": "non_contributory"
   },
   "pass_criteria_summary": {
     "c1_slot_differentiation_vs_waking": {
@@ -1084,5 +1084,6 @@
     "slot_danger_ema_alpha": 0.05,
     "env_safe_num_hazards": 1,
     "env_dangerous_num_hazards": 8
-  }
+  },
+  "evidence_direction_note": "Reclassified diagnostic (governance 2026-04-19): sleep conditions (SWS_ONLY, SWS_THEN_REM) produce slot metrics identical to WAKING_ONLY across 5 seeds. Shared anomaly with EXQ-418a. Zero differential signal suggests context-conditioning substrate not wired. Treated as diagnostic of substrate wiring rather than test of the three claims' hypotheses."
 }
