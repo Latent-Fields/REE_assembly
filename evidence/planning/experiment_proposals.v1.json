@@ -2580,6 +2580,9 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_backfill_note": "Retrospective mark-executed 2026-04-20T06:16:17Z by cowork-2026-04-20-a. MECH-033 is active, v3_pending=false, with claim_evidence counts supports=25, weakens=3, mixed=1. The discriminative-pair requirement is already satisfied by V3-EXQ-171 (kernel chain PASS 4/4 x2 independent runs, 2026-03-30) and V3-EXQ-055 (action-object chaining vs self-only vs random PASS, 2026-03-20). The active_conflict why_now is stale.",
+      "executed_by": "V3-EXQ-171",
+      "executed_queue_id": "V3-EXQ-171",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-033 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -2597,7 +2600,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_033",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2619,6 +2622,9 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_backfill_note": "Retrospective mark-executed 2026-04-20T06:16:17Z by cowork-2026-04-20-a. MECH-104 was promoted to active 2026-03-23 (conf=0.964, conflict_ratio=0 at promotion). Current claim_evidence counts: supports=12, weakens=1, mixed=3. The literal suggested_experiment_type (v3_exq_126_mech104_surprise_gate_pair) was executed as V3-EXQ-126; supporting PASSes: V3-EXQ-197 (matched-seed discriminative pair, 3 seeds, PASS 6/6), V3-EXQ-204 (surprise gate pair PASS 4/4), V3-EXQ-365 (replication PASS). The active_conflict why_now is stale.",
+      "executed_by": "V3-EXQ-126",
+      "executed_queue_id": "V3-EXQ-126",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-104 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -2636,7 +2642,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_126_mech104_surprise_gate_pair",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6977,6 +6983,50 @@
       "source": "manual",
       "status": "queued",
       "target_repo": "ree-v3"
+    },
+    {
+      "proposal_id": "EXP-0155",
+      "added_utc": "2026-04-20",
+      "source": "manual",
+      "proposal_type": "diagnostic",
+      "target_repo": "ree-v3",
+      "claim_id": "SD-016",
+      "claims_tested": [
+        "SD-016"
+      ],
+      "priority": "high",
+      "status": "proposed",
+      "dispatch_mode": "new_run",
+      "predecessor": "V3-EXQ-449",
+      "objective": "Deep forward-path wiring probe for SD-016 cue_action_proj. V3-EXQ-449 confirmed (C1 PASS) that the 'implicit via E3 trajectory selection gradient' training path receives zero gradient because the CEM argmax in HippocampalModule is non-differentiable and agent.py:694 detaches action_bias before rollouts. Adding an auxiliary supervised MSE loss (C2 arm) DID produce non-zero gradient (~0.013) and non-zero weight drift (~0.21) on cue_action_proj.weight, but action_bias_divergence stayed at exactly 0.0 across both seeds. Weights train; the agent's action distribution does not change. Something downstream of cue_action_proj zeroes the signal before it reaches E3.select(). The simple-fix hypothesis for EXQ-418b (add a terrain_loss-analog supervised loss for cue_action_proj) is therefore insufficient on its own. This probe identifies the specific line in the forward path where the signal is killed, so the SD-016 fix can be written correctly before re-running EXQ-418b.",
+      "design": "Single-configuration instrumented run, not an ablation pair. The supervised-training arm from EXQ-449 is reused unchanged (to keep cue_action_proj weights moving), but every tensor in the forward path from ContextMemory query to E3.select score composition is hook-logged per step. Instrumentation budget: (a) extract_cue_context() return -- norm, nonzero fraction,     per-channel std, sample vector at 10 regular intervals; (b) cue_action_proj(cue_context) output -- norm, per-channel     value spread, correlation with supervised target; (c) cue_terrain_proj(cue_context) output -- norm (control: should     be non-zero under terrain_loss); (d) ContextMemory.memory slot statistics -- per-slot norm, slot     diversity (mean pairwise cosine distance), attention weight     entropy under world_query_proj queries; (e) the full chain from cue_action_proj output into E3.select() --     every intermediate tensor, every detach(), every scale     multiplier, every additive composition; log norm before and     after each transform and record the line of code where the     signal is touched; (f) at eval time (sd016_enabled=True, supervised_loss=False):     same forward-path log to separate train-time-only effects     from genuine action-distribution effects; (g) action_bias_divergence computed under three eval regimes --     (g1) supervised loss active during eval, (g2) supervised     loss off but weights post-training, (g3) agent.py:694 detach     bypassed (monkey-patched for this probe only) with weights     post-training. Compare (g2) vs (g3) to isolate whether the     detach is the distribution-level blocker. Single seed initially (42) for development; widen to 3 seeds only if the first run is inconclusive. Short protocol: P0 25 eps warmup + P1 50 eps supervised + 12 eps eval x three regimes. sws_enabled=False, rem_enabled=False, shy_enabled=False (SD-017 orthogonal). Script-level instrumentation only; no ree_core edits.",
+      "acceptance_checks": [
+        "C1 (diagnosis-localised): at least one tensor on the forward path from cue_action_proj output to E3.select score composition is identified as having norm below 1e-4 (or being hard-zeroed by a detach/multiply-by-zero path), with the offending line in agent.py logged.",
+        "C2 (detach-isolated): eval regime (g3) (detach bypassed, weights post-training) produces action_bias_divergence > 0.05 in seed 42. This would confirm the agent.py:694 detach as the primary blocker and make the fix a single-line change.",
+        "C3 (context-memory-pre-zero check): extract_cue_context output norm > 1e-3 in at least 80% of steps after P0 warmup. This rules out the 'ContextMemory is cold-zero at init' confound: if C3 FAILs, the ContextMemory query path is the primary blocker regardless of the detach.",
+        "C4 (supervised-target sanity): the supervised target E2.action_object(z_world, a_executed).detach() has norm > 1e-3 in at least 80% of steps. Rules out 'cue_action_proj trained to predict zero'.",
+        "primary_pass: C1 AND C3 AND C4. (C2 is a bonus confirmation; if C2 also passes, the fix plan is unambiguous.)"
+      ],
+      "required_pack_contract": {
+        "architecture_epoch": "ree_hybrid_guardrails_v1",
+        "run_id_suffix": "_v3",
+        "evidence_class": "diagnostic_probe",
+        "evidence_direction": "diagnostic",
+        "evidence_direction_note": "Diagnostic probe of SD-016 cue_action_proj forward path. Outcome MUST NOT be used to update SD-016 claim confidence. Result identifies the specific blocker in the forward path and determines the fix plan for EXQ-418b re-run."
+      },
+      "seed_policy": "single_seed_development_then_widen",
+      "min_shared_seeds": 1,
+      "exclude_broad_profile_sweeps": true,
+      "require_pre_registered_thresholds": true,
+      "suggested_experiment_type": "v3_exq_449a_sd016_cue_action_proj_forward_path_probe",
+      "why_now": "V3-EXQ-418 and V3-EXQ-418a/b have now FAILed three times with action_bias_divergence=0.0 across all seeds and conditions. V3-EXQ-449 (2026-04-20) confirmed the wiring gap for training signal but ruled out the simple supervision-path fix: weights trained, behaviour did not change. Re-running EXQ-418b with a supervised loss and hoping the behavioural signature emerges is now a known-negative strategy. Before any EXQ-418b successor is queued, the specific downstream blocker must be identified. EXP-0155 is the smallest experiment that can answer which line in the forward path is killing the signal. Also informs a correction to the CLAUDE.md SD-016 entry, which currently asserts 'implicit via E3 trajectory selection gradient (no new loss)' as the cue_action_proj training path -- EXQ-449 C1 PASS demonstrates that assertion is false.",
+      "decision_required_outcomes": [
+        "If C1+C3+C4 pass with C2 also passing: queue EXQ-418b successor with a one-line agent.py fix (remove or gate the detach on action_bias) and the supervised loss from EXQ-449.",
+        "If C1+C3+C4 pass with C2 failing: the detach is not the sole blocker. Further forward-path work needed; may require redesigning how cue_action_proj's output is consumed by E3 (e.g., via a learnable scale, or via a different injection point).",
+        "If C3 fails: ContextMemory query path is the primary blocker. world_query_proj needs its own training signal or the ContextMemory write path needs to be activated earlier.",
+        "If C4 fails: supervised target is degenerate. The E2.action_object head needs its own training first, or a different supervised target must be chosen."
+      ],
+      "notes": "Linked to the SD-016 CLAUDE.md correction. The claim at ree-v3/CLAUDE.md:760 -- 'Training for cue_action_proj: implicit via E3 trajectory selection gradient (no new loss)' -- is demonstrably false per EXQ-449 C1 PASS (zero gradient across ~1.7k steps, 2 seeds, both showing 0.0 mean grad norm and 0.0 weight_delta_norm). CLAUDE.md SD-016 entry updated in the same commit that registers this proposal; the entry now flags cue_action_proj as currently-ungrounded and links to EXP-0155 as the outstanding diagnostic that gates EXQ-418b."
     }
   ],
   "manual_proposals_source": "evidence/planning/manual_proposals.v1.json",

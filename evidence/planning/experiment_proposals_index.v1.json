@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-20T10:51:19.807603Z",
+  "generated_at_utc": "2026-04-20T15:04:59Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -2954,10 +2954,22 @@
       "proposal_type": "experimental",
       "status": "queued",
       "target_repo": "ree-v3"
+    },
+    {
+      "proposal_id": "EXP-0155",
+      "claim_id": "SD-016",
+      "proposal_type": "diagnostic",
+      "priority": "high",
+      "status": "proposed",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "suggested_experiment_type": "v3_exq_449a_sd016_cue_action_proj_forward_path_probe",
+      "objective": "Deep forward-path wiring probe for SD-016 cue_action_proj. EXQ-449 confirmed zero-gradient training-path gap (C1 PASS); supervised fix trained weights but did not change agent action distribution (C2 FAIL). Identify the specific downstream blocker before re-running EXQ-418b.",
+      "why_now": "EXQ-449 ruled out the simple supervision-path fix; CLAUDE.md SD-016 line 760 assertion is demonstrably false; gates EXQ-418b successor."
     }
   ],
   "n_executed": 99,
-  "n_proposed_exp": 65,
+  "n_proposed_exp": 66,
   "n_proposed_lit": 23,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
