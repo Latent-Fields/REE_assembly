@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 22984,
   "runner_started_at": "2026-04-18T21:21:49.184446+00:00",
-  "last_updated": "2026-04-19T04:57:07.066227+00:00",
+  "last_updated": "2026-04-20T03:35:19.793777+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -25,28 +25,6 @@
       "description": "",
       "estimated_minutes": 104.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-325b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 86.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -778,6 +756,34 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 38.6
+    },
+    {
+      "queue_id": "V3-EXQ-325b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-021 descending pain modulation retest: E2 world-forward training addon (EWIN-PC requeue)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "seed=44: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000 | seed=45: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000 | seed=46: FAIL s_ratio_D=1.0000 s_ratio_C=1.0000 a_ratio_D=1.0000 commits=6000",
+      "started_at": "2026-04-19T04:57:10.975236+00:00",
+      "completed_at": "2026-04-20T03:31:21.870533+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 81252.1
+    },
+    {
+      "queue_id": "V3-EXQ-418b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016+SD-017 context-conditioned action: SHY fix + terrain_loss (EWIN-PC requeue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_SLEEP_SD016 seed=56 slot_div=0.1525 action_bias_div=0.0000 eval_harm_rate=0.0692 n_safe=488 n_dang=199 | verdict: C1_bias_threshold=False (0/3 seeds), C2_bias_improvement=False (0/3 seeds), C3_slot_div=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-20T03:31:27.496378+00:00",
+      "completed_at": "2026-04-20T03:35:19.792777+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 232.3
     }
   ]
 }
