@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_259",
+  "entry_id": "2026-04-20_mech_259_reorienting_circuit_breaker_corbetta2008",
+  "timestamp_utc": "2026-04-20T10:46:37Z",
+  "claim_ids_tested": ["MECH-259"],
+  "source": {
+    "title": "The Reorienting System of the Human Brain: From Environment to Theory of Mind",
+    "authors": ["Maurizio Corbetta", "Gaurav Patel", "Gordon L Shulman"],
+    "year": 2008,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2008.04.017",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2441869/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "Corbetta et al. introduce the 'circuit breaker' metaphor explicitly: the ventral attention network (which includes anterior insula) interrupts ongoing dorsal-network selection when a salient, behaviourally relevant event is detected. This is the most explicit biological statement of a discrete interrupt mechanism analogous to MECH-259's mode-switch. However, the 2008 paper says the ventral network 'facilitates rather than initiates' reconfiguration and describes transient rather than sustained mode changes, softening the discrete-switch characterisation. Mapping fidelity is moderate because the paper's primary domain (exogenous attention capture) is narrower than MECH-259's full operating_mode switching across internal/external task modes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The ventral network is characterised as facilitating reconfiguration rather than being the sole or direct initiator, leaving open whether a purely graded implementation would be functionally equivalent.",
+    "The 'transient activation' characterisation of the ventral network is consistent with a discrete event-triggered signal but does not rule out a steeply graded one.",
+    "The interrupt model applies specifically to exogenous attention capture; extension to full operating_mode transitions (e.g. external_task -> internal_planning) is an extrapolation."
+  ],
+  "tags": ["mech_259", "ventral_attention", "anterior_insula", "circuit_breaker", "interrupt", "reorienting", "mode_switch"],
+  "mapping": {
+    "source_claim_statement": "The right-hemisphere ventral frontoparietal network (including anterior insula) acts as a 'circuit breaker' that interrupts ongoing dorsal-network selection when a salient, unexpected, or task-relevant stimulus is detected; the interruption resets the system to allow reorienting.",
+    "ree_translation": "MECH-259 proposes that when salience aggregate exceeds a threshold, SD-032a fires a discrete operating_mode switch rather than a smooth policy update. Corbetta et al.'s circuit-breaker model is the closest biological analogue: the ventral network (AI-anchored) produces an event-triggered interrupt, not a continuous modulation signal. The 'reset' characterisation maps onto the Schmitt-trigger hysteresis in the implementation -- once the switch fires, it commits to the new mode rather than immediately reverting.",
+    "mapping_caveat": "The Corbetta circuit-breaker is about attentional reorienting (exogenous capture of dorsal-network task focus); MECH-259 is about a broader operating_mode coordinator managing external_task / internal_planning / safe_exploration modes. The interrupt mechanism is analogous but the target system and state space differ. Transfer risk is moderate.",
+    "source_context": "Human fMRI; visual and auditory target detection tasks; attention reorienting paradigms; healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Corbetta lab, Neuron, extensively replicated). Mapping fidelity moderate -- the interrupt metaphor is directly relevant but the domain (attentional reorienting) is narrower than MECH-259's full mode-management scope. Transfer risk reflects the narrower domain."
+  }
+}

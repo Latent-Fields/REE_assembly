@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_259",
+  "entry_id": "2026-04-20_mech_259_salience_network_switching_menon2010",
+  "timestamp_utc": "2026-04-20T10:46:37Z",
+  "claim_ids_tested": ["MECH-259"],
+  "source": {
+    "title": "Saliency, switching, attention and control: a network model of insula function",
+    "authors": ["Vinod Menon", "Lucina Q Uddin"],
+    "year": 2010,
+    "venue": "Brain Structure and Function",
+    "doi": "10.1007/s00429-010-0262-0",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2899886/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical review establishing salience network (AI + dACC) as a switching hub between large-scale networks, with right AI as causal outflow node. Temporal precedence data (AI activity precedes CEN/DMN transitions) supports event-triggered discrete reconfiguration rather than continuous modulation. Mapping is strong for the network-switch characterisation of MECH-259; weaker for the specific threshold/hysteresis implementation. Source quality is high (>2000 citations).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not characterise the transition as explicitly discrete vs graded; threshold mechanics are not directly tested.",
+    "The switching model is described at a network level; a purely graded implementation of the same network could still be consistent with the Menon & Uddin findings."
+  ],
+  "tags": ["mech_259", "salience_network", "anterior_insula", "dacc", "network_switching", "mode_switch"],
+  "mapping": {
+    "source_claim_statement": "The right anterior insula plays a critical and causal role in switching between the central executive network and the default mode network; salience filters at multiple levels funnel salient events to the AI, which then orchestrates network reconfiguration.",
+    "ree_translation": "MECH-259 posits that the salience-network coordinator (SD-032a) fires a whole-system operating_mode switch when precision-weighted salience exceeds a threshold. Menon & Uddin ground the switch-not-modulate characterisation: the AI/dACC node transitions the system to a new attentional configuration, consistent with discrete operating_mode change rather than smooth policy update.",
+    "mapping_caveat": "Menon & Uddin describe network-level transitions (DMN vs CEN) not a general operating_mode vector. The jump from 'two-network toggle' to 'multi-mode coordinator with Schmitt-trigger hysteresis' is an architectural extrapolation not directly validated by this paper. Transfer risk is low for the 'switch' characterisation but higher for the specific threshold mechanism.",
+    "source_context": "Human fMRI + Granger causality; multiple cognitive tasks and stimulus modalities; healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (canonical review, extensively replicated). Mapping fidelity penalised because the paper does not test discrete-vs-graded directly; it is consistent with discrete switching but does not rule out graded modulation."
+  }
+}

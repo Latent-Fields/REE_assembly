@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_036",
+  "entry_id": "2026-04-20_q_036_controllability_suffering_dissociation_loffler2018",
+  "timestamp_utc": "2026-04-20T10:46:37Z",
+  "claim_ids_tested": ["Q-036"],
+  "source": {
+    "title": "Impact of controllability on pain and suffering",
+    "authors": ["M Loffler", "S Kamping", "M Brunner", "S Bustan", "D Kleinbohl", "F Anton", "H Flor"],
+    "year": 2018,
+    "venue": "Pain Reports",
+    "doi": "10.1097/PR9.0000000000000694",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6344140/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Behavioural dissociation study demonstrating that controllability selectively reduces pain-related suffering while leaving pain intensity and unpleasantness unaffected. This three-way dissociation (intensity / unpleasantness / suffering) is directly relevant to Q-036 because it empirically distinguishes suffering as a distinct construct with its own determinants -- controllability being one of them -- beyond intensity and unpleasantness. Moderate source quality (Pain Reports, not a top-tier journal) but clean dissociation design. Locus of control (chance attribution) was the individual-difference predictor; catastrophising and fear showed no effect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No neural data; the mechanism by which controllability selectively reduces suffering (not intensity) is not directly observed.",
+    "Physiological indicators (skin conductance, heart rate) showed no group differences, suggesting the effect is cognitive-emotional rather than autonomic -- this limits the mapping to a REE system with autonomic coupling (SD-032e).",
+    "The study used a brief experimental pain paradigm (not chronic or persistent), so temporal accumulation and recovery failure effects are not tested."
+  ],
+  "tags": ["q_036", "controllability", "suffering", "pain_intensity", "dissociation", "locus_of_control"],
+  "mapping": {
+    "source_claim_statement": "Controllability selectively reduces pain-related suffering as a distinct dimension, without affecting pain intensity or unpleasantness. Chance-attributional locus of control predicts suffering magnitude; catastrophising and fear do not.",
+    "ree_translation": "Q-036 asks what additional variables beyond temporal integration determine z_harm_a as a distinct load state. Loffler et al. show suffering is a separable dimension from intensity and unpleasantness, and that controllability is its primary modulator. In REE terms, z_harm_a as the affective harm stream should encode not just accumulated harm signal magnitude but also an estimate of controllability/escapability. This is a functionally distinct variable from what MECH-219 (temporal integrator alone) captures.",
+    "mapping_caveat": "REE does not yet have an explicit representation of 'controllability belief' as a latent variable feeding z_harm_a. The finding argues that such a representation is needed for z_harm_a to function as specified (as a genuinely distinct urgency state vs a scaled version of z_harm_s). This is a design gap, not evidence against the claim.",
+    "source_context": "Human behavioural study; cold pressor and pressure pain; controlled/uncontrollable conditions; individual differences in locus of control."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Pain Reports is a lower-tier venue; the three-way dissociation is clean but no neural data. Mapping fidelity high because the suffering vs intensity dissociation directly addresses the question of whether non-temporal variables are load-determining."
+  }
+}
