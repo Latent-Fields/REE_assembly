@@ -13806,6 +13806,114 @@
     dissociation from Rainville. Experimental: EXQ-323 x2 mixed (instrumentation,
     collinear EMA substrate) + EXQ-323a PASS 5/5 seeds on SD-022 body-damage substrate.
     decision_status: applied.
+    children: [SD-019a, SD-019b]
+
+- id: SD-019a
+  title: "harm_unpleasantness_channel: a distinct pre-integration affective valence signal encoding the immediate motivational relevance of noxious input, processed via the medial pain pathway before temporal accumulation into suffering."
+  claim_type: design_decision
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  subject: harm_stream.immediate_affective_valence
+  polarity: asserts
+  registered_utc: 2026-04-20
+  depends_on:
+    - SD-019          # parent nonredundancy constraint
+    - SD-011          # dual nociceptive streams
+  functional_restatement: >
+    The REE harm-affect system requires a named intermediate signal between raw sensory harm
+    (z_harm_s) and the suffering accumulator (z_harm_a): harm_unpleasantness. This is the
+    immediate "I want this to stop now" signal — the fast medial-pathway output before
+    temporal integration. Key properties:
+
+      - Tracks noxious input with a moderate time constant (faster than suffering,
+        slower than raw z_harm_s).
+      - Is NOT modulated by controllability or escapability (Loffler et al. 2018:
+        controllability leaves unpleasantness unchanged while selectively reducing
+        suffering).
+      - Serves as the input to MECH-219's hysteretic integrator.
+      - Has distinct downstream effects from both z_harm_s and z_harm_a: drives
+        AIC urgency (SD-032c) and E3 short-horizon avoidance scoring independently.
+
+    The nonredundancy constraint (SD-019) applies at the z_harm_a (suffering) level,
+    not at the unpleasantness level. z_harm_un may correlate with z_harm_s under
+    typical conditions; what distinguishes it is that it is a medial-pathway signal
+    with affective/motivational weighting, not purely sensory intensity.
+
+    Biological anchor: unpleasantness dimension of the McGill Pain Questionnaire
+    (Melzack 1975); ACC/anterior insula 'affective-motivational' component of pain
+    (Price 2000 dual-pathway; Rainville 1997 ACC/S1 double dissociation).
+  notes: >
+    Registered 2026-04-20 following the Loffler et al. 2018 finding that controllability
+    selectively reduces suffering without touching unpleasantness. The three-way dissociation
+    (intensity / unpleasantness / suffering) makes the intermediate signal architecturally
+    necessary. See affect_primitives.md for the full register and downstream effect table.
+
+    The current V3 implementation does not explicitly compute harm_unpleasantness as a
+    distinct named tensor -- it is implicitly subsumed into z_harm_a's input signal.
+    SD-019a formalises the requirement to make it explicit. Implementation priority is
+    medium: the distinction becomes load-bearing when the controllability gate (Q-036) is
+    implemented in MECH-219.
+  evidence_quality_note: >
+    Registered pre-implementation. Biological grounding via SD-019 targeted reviews
+    (Price 2000, Rainville 1997, Woolf & Salter 2000, Craig 2003, Berthier 1988).
+    Loffler et al. 2018 (targeted_review_q_036) specifically supports the controllability
+    non-dependence of unpleasantness. Lit pull specific to SD-019a (medial pathway fast
+    component, ACC/insula unpleasantness encoding) is flagged as needed.
+  location: docs/architecture/affect_primitives.md
+
+- id: SD-019b
+  title: "harm_suffering_accumulator: z_harm_a is specifically the output of a controllability-gated hysteretic integrator over harm_unpleasantness, constituting a persistent load state modulated by escapability and inescapability, not merely a temporally lagged copy of the sensory stream."
+  claim_type: design_decision
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  subject: harm_stream.suffering_accumulator
+  polarity: asserts
+  registered_utc: 2026-04-20
+  depends_on:
+    - SD-019a         # unpleasantness channel (the integrator's input)
+    - SD-019          # nonredundancy constraint (applies to z_harm_a output)
+    - MECH-219        # the hysteretic integration mechanism
+    - Q-036           # open question on controllability/escapability gating
+  functional_restatement: >
+    z_harm_a is harm_suffering: the output of MECH-219 operating on harm_unpleasantness
+    with controllability gating. This refines the current specification of z_harm_a from
+    "temporally integrated threat load" to the more precise claim:
+
+      z_harm_a(t) = MECH219_integrate(z_harm_un, escapability_estimate, t)
+
+    The key design requirements, each grounded by evidence:
+      1. Input is z_harm_un (harm_unpleasantness), not z_harm_s directly.
+      2. Accumulation rate is modulated by an escapability estimate:
+         higher when inescapable, lower when harm is controllable.
+         (Loffler 2018: controllability selectively reduces suffering;
+          Salomons 2004: ACC/insula modulated by controllability belief.)
+      3. Decay is asymmetric: slower recovery than onset (persistence property).
+      4. The output drives qualitatively different downstream effects than
+         z_harm_un: mode-switch trigger (MECH-259), pACC long-horizon coupling
+         (SD-032e), and ARC-016 urgency modulation -- not immediate avoidance.
+
+    Falsifiable: if an agent's z_harm_a is not modulated by a controllability/
+    escapability signal (all else equal), SD-019b is over-specified and the simpler
+    MECH-219 (pure temporal integration) is sufficient.
+  notes: >
+    Registered 2026-04-20 to formalise the three-way primitive split prompted by the
+    Q-036 literature pull and the Loffler et al. (2018) three-way dissociation.
+    See affect_primitives.md for the full register and computational pipeline diagram.
+
+    The controllability gate is currently unimplemented in V3. Q-036 needs experimental
+    evidence first. SD-019b marks the architectural commitment that the gate should exist;
+    the mechanism for implementing it will be specified as a child MECH once Q-036 resolves.
+  evidence_quality_note: >
+    Registered pre-implementation. Q-036 targeted_review (2026-04-20, 3 entries,
+    mean conf=0.72) directly supports the controllability-gating requirement.
+    Salomons et al. 2004 (JNeurosci) confirms neural substrate of controllability effect
+    on ACC/insula suffering circuit. De Ridder et al. 2021 grounds the medial pathway
+    as the suffering substrate with salience/context determination.
+  location: docs/architecture/affect_primitives.md
 
 - id: MECH-219
   title: affective_harm_hysteretic_integration
@@ -13815,28 +13923,39 @@
   subject: harm_stream.hysteretic_affective_load
   polarity: asserts
   description: >
-    `z_harm_a` is generated from a temporally extended harm-history signal by a hysteretic
-    integration rule: affective load rises under sustained or repeated harm exposure and
-    decays more slowly once exposure stops. The resulting signal is not reconstructible from
-    instantaneous sensory harm alone and therefore provides E3 with a genuine motivational
-    urgency channel rather than a second copy of proximity. The first operational form is a
-    leaky integrator over recent harm exposure with asymmetric onset and recovery parameters.
+    `z_harm_a` (harm_suffering) is generated from harm_unpleasantness (`z_harm_un`, SD-019a)
+    by a hysteretic integration rule: affective load rises under sustained or repeated
+    exposure and decays more slowly once exposure stops. The resulting signal is not
+    reconstructible from instantaneous sensory harm alone and provides E3 and the
+    salience-network coordinator with a genuine suffering channel rather than a second copy
+    of sensory proximity. The first operational form is a leaky integrator over
+    harm_unpleasantness with asymmetric onset and recovery parameters. A controllability
+    gate (SD-019b) modulates the accumulation rate: identical harm_unpleasantness produces
+    higher z_harm_a when harm is inescapable than when it is controllable (Loffler 2018;
+    Salomons 2004).
   notes: >
-    This is the first concrete mechanism proposal satisfying SD-019. A pure delay
-    (`z_harm_a(t) = z_harm_s(t-k)`) is insufficient because it preserves recoverability from
-    the sensory stream and is unlikely to produce meaningful motivational dissociation. The
-    proposed mechanism instead uses hysteretic integration: repeated or sustained harm drives
-    the load upward, while recovery is slower and path-dependent. This matches the intended
-    role of `z_harm_a` in ARC-016-style urgency and commitment modulation. The mechanism is
-    compatible with the harm-history input added on 2026-04-08, but makes the stronger claim
-    that asymmetric rise/decay dynamics are necessary. Testable predictions: (1) after harm
-    offset, `z_harm_s` falls rapidly while `z_harm_a` remains elevated; (2) repeated brief
-    harms summate in `z_harm_a` more than single isolated harms; (3) two trajectories with
-    matched current `z_harm_s` but different recent harm histories produce different
-    `z_harm_a` norms and different urgency effects in E3.
+    Updated 2026-04-20 to reflect the three-primitive split (affect_primitives.md).
+    MECH-219 is the mechanism implementing SD-019b: it takes z_harm_un as input (not
+    z_harm_s directly) and produces z_harm_a. The key revision from the original
+    specification: the integration is not over raw sensory harm but over the pre-processed
+    medial-pathway unpleasantness signal, and the accumulation rate is controllability-gated.
+
+    A pure delay (`z_harm_a(t) = z_harm_s(t-k)`) is insufficient: it preserves
+    recoverability from the sensory stream and ignores the controllability variable.
+    Hysteretic integration satisfies SD-019's nonredundancy constraint and SD-019b's
+    suffering-specific accumulation requirement.
+
+    Testable predictions (updated):
+    (1) After harm offset, `z_harm_un` falls rapidly while `z_harm_a` remains elevated.
+    (2) Repeated brief harms summate in `z_harm_a` more than single isolated harms of
+        equal total magnitude.
+    (3) Two trajectories matched on current `z_harm_un` but with different controllability
+        histories produce different `z_harm_a` norms and different mode-switch rates.
+    (4) `z_harm_a` drives mode-switch (MECH-259) while `z_harm_un` drives immediate
+        avoidance -- the two channels have separable behavioral signatures.
   registered: "2026-04-08"
-  depends_on: [SD-019, SD-011, ARC-016]
-  location: docs/architecture/sensory_stream_tags.md#mech-219
+  depends_on: [SD-019, SD-019a, SD-019b, SD-011, ARC-016]
+  location: docs/architecture/affect_primitives.md
 
 - id: Q-036
   title: "What additional variables, beyond temporal integration, are required for affective harm to become a genuinely distinct load state: persistence, recovery failure, uncontrollability, inescapability, or prediction error?"
