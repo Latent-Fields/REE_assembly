@@ -289,9 +289,11 @@
       "target_repo": "ree-v3",
       "priority": "medium",
       "objective": "Replace hardcoded commitment_threshold=0.40 with k*warmup_baseline_variance (k=2) per EXQ-018b findings. Requires: (1) measuring baseline_variance during warmup episodes, (2) setting commitment_threshold = 2 * baseline_variance after warmup completes. Converts ARC-016 from manually-calibrated to self-calibrating as operating regime changes.",
-      "status": "proposed",
+      "status": "queued",
       "added_utc": "2026-04-02",
-      "notes": "Small implementation: ~3 lines in agent.py. Wait until more V3 experiments have run to establish reliable baseline_variance estimates before implementing."
+      "notes": "Small implementation: ~3 lines in agent.py. Wait until more V3 experiments have run to establish reliable baseline_variance estimates before implementing.",
+      "executed_by": "V3-EXQ-454",
+      "executed_queue_id": "V3-EXQ-454"
     },
     {
       "proposal_id": "EXP-0095",
@@ -541,13 +543,15 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "proposed",
+      "status": "queued",
       "objective": "Test MECH-257 dual-function claim: does a single E2_harm_s substrate support both retrospective comparator (SD-029 attribution) and prospective rollout-scoring (evaluator) effectively, or does joint training degrade one mode relative to mode-split baselines?",
       "design": "Three-arm ablation. Arm A: E2_harm_s trained comparator-only (post-action residual loss). Arm B: trained evaluator-only (rollout value loss). Arm C: trained jointly with mode-label gating input. Measure per-arm: comparator SNR on approach-to-harm events; evaluator accuracy (predicted vs realised trajectory value) at horizon k=5,10. PASS (MECH-257 supported): Arm C >= 85% of Arm A's comparator SNR AND >= 85% of Arm B's evaluator accuracy. FAIL: Arm C significantly degrades one or both modes -> separate substrates required. 4 seeds.",
       "claims_tested": [
         "MECH-257"
       ],
-      "notes": "Follow-up to EXP-0146. Queue only after SD-029 comparator baseline establishes a reproducible signal."
+      "notes": "Follow-up to EXP-0146. Queue only after SD-029 comparator baseline establishes a reproducible signal.",
+      "executed_by": "V3-EXQ-452",
+      "executed_queue_id": "V3-EXQ-452"
     },
     {
       "proposal_id": "EXP-0148",
@@ -579,7 +583,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "proposed",
+      "status": "queued",
       "prerequisites": [
         "SD-032a implemented (salience-network coordinator emitting operating_mode vector over {external_task, internal_planning, internal_replay, offline_consolidation})",
         "SD-033a implemented (lateral-PFC-analog rule/goal substrate, primary MECH-261 write target under external_task / internal_planning)",
@@ -594,7 +598,9 @@
         "SD-033a",
         "SD-033b"
       ],
-      "notes": "Sibling experiment to EXP-0148, NOT a replacement. EXP-0148 tests the coordinator overlay (does SD-032a-clamping abolish aggregate forward-propagation bias?); EXP-0149 tests per-subdivision write-landing under each mode (do writes actually land in the correct SD-033 subdivision?). Both tests are needed to fully characterise MECH-261: EXP-0148 establishes that the coordinator is load-bearing at all; EXP-0149 establishes that the per-subdivision routing inside the MECH-261 family is functionally specific (not just one coarse on/off gate dressed up as a vector). A coordinator could pass EXP-0148 while failing EXP-0149 by producing the right aggregate bias with mis-routed internal writes; that pattern would force a refinement of MECH-261's specification. Cannot run until SD-032a + SD-033a + SD-033b + MECH-261 + MECH-092 are all implemented in V3 -- proposal-only at registration time. Do not queue in ree-v3/experiment_queue.json until those substrates exist."
+      "notes": "Sibling experiment to EXP-0148, NOT a replacement. EXP-0148 tests the coordinator overlay (does SD-032a-clamping abolish aggregate forward-propagation bias?); EXP-0149 tests per-subdivision write-landing under each mode (do writes actually land in the correct SD-033 subdivision?). Both tests are needed to fully characterise MECH-261: EXP-0148 establishes that the coordinator is load-bearing at all; EXP-0149 establishes that the per-subdivision routing inside the MECH-261 family is functionally specific (not just one coarse on/off gate dressed up as a vector). A coordinator could pass EXP-0148 while failing EXP-0149 by producing the right aggregate bias with mis-routed internal writes; that pattern would force a refinement of MECH-261's specification. Cannot run until SD-032a + SD-033a + SD-033b + MECH-261 + MECH-092 are all implemented in V3 -- proposal-only at registration time. Do not queue in ree-v3/experiment_queue.json until those substrates exist.",
+      "executed_by": "V3-EXQ-453",
+      "executed_queue_id": "V3-EXQ-453"
     }
   ]
 }
