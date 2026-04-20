@@ -1,0 +1,68 @@
+{
+  "run_id": "v3_exq_324b_sd020_harm_surprise_pe_dry",
+  "experiment_type": "v3_exq_324b_sd020_harm_surprise_pe",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-020"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260420T060226Z",
+  "supersedes": "V3-EXQ-324a",
+  "experiment_version": "b",
+  "fix_description": "Multi-episode eval fix. EXQ-324a used `if done: break` which exited eval after 6-10 steps (episode end when resources collected). Fix: `if done: env.reset()` continues for full EVAL_STEPS=400 across multiple episodes. This provides sufficient n for a reliable Pearson correlation between z_harm_a_norm and harm_pe.",
+  "substrate_notes": "SD-022 active: limb_damage_enabled=True, 7-dim harm_obs_a, 8 hazards",
+  "registered_thresholds": {
+    "C1": "surprise_corr_PE > surprise_corr_EMA",
+    "C2": "surprise_corr_PE >= 0.15",
+    "C3": "z_harm_a_norm_PE > 0.01",
+    "pass_min_seeds": 3
+  },
+  "seeds_passing": 0,
+  "total_seeds": 1,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "surprise_corr_pe": 0.015618072668467535,
+      "surprise_corr_ema": 0.034279714140032655,
+      "magnitude_corr_pe": 0.7459688674565363,
+      "magnitude_corr_ema": 0.5264625621220708,
+      "z_harm_a_norm_pe": 0.6877679933607578,
+      "z_harm_a_norm_ema": 0.6767528326809407,
+      "harm_pe_mean_pe": 0.010295724941995541,
+      "mean_damage_mean": 0.0171356579993153,
+      "n_eval_steps_pe": 400,
+      "n_eval_steps_ema": 400,
+      "c1_surprise_corr_higher": false,
+      "c2_abs_threshold": false,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "PE_TARGET": {
+          "surprise_corr": 0.015618072668467535,
+          "magnitude_corr": 0.7459688674565363,
+          "z_harm_a_mean_norm": 0.6877679933607578,
+          "harm_pe_mean": 0.010295724941995541,
+          "mean_damage_mean": 0.0171356579993153,
+          "n_eval_steps": 400
+        },
+        "EMA_TARGET": {
+          "surprise_corr": 0.034279714140032655,
+          "magnitude_corr": 0.5264625621220708,
+          "z_harm_a_mean_norm": 0.6767528326809407,
+          "harm_pe_mean": 0.010295724941995541,
+          "mean_damage_mean": 0.0171356579993153,
+          "n_eval_steps": 400
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "mean_surprise_corr_pe": 0.015618072668467535,
+    "mean_surprise_corr_ema": 0.034279714140032655,
+    "mean_magnitude_corr_pe": 0.7459688674565363,
+    "mean_z_harm_a_norm_pe": 0.6877679933607578,
+    "mean_n_eval_steps_pe": 400.0
+  }
+}

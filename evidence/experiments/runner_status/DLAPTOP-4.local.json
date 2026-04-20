@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 38928,
   "runner_started_at": "2026-04-20T14:39:30.194149+00:00",
-  "last_updated": "2026-04-20T14:39:53.772503+00:00",
+  "last_updated": "2026-04-20T16:57:30.249849+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-325d",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
+    "description": "",
+    "script": "experiments/v3_exq_325d_sd032c_aic_descending_modulation.py",
+    "started_at": "2026-04-20T16:00:57.066967+00:00",
+    "progress": {
+      "run_label": "Seed 42 / AIC_DRIVE_ABLATED",
+      "runs_done": 1,
+      "runs_total": 12,
+      "episodes_done": 150,
+      "episodes_total": 150,
+      "overall_pct": 16.7
+    },
+    "seconds_elapsed": 3393,
+    "seconds_remaining": 18375,
+    "recent_lines": [
+      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 75/150",
+      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 100/150",
+      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 125/150",
+      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 150/150",
+      "AIC_DRIVE_ABLATED: rv_after_train=0.0000 committed_flag=True"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-451",
@@ -13,28 +39,6 @@
       "title": "Q-034 hazard/resource threshold retest (supersedes V3-EXQ-288 criteria_null)",
       "description": "",
       "estimated_minutes": 240.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-452",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-257 dual-function E2_harm_s diagnostic -- comparator vs evaluator compatibility",
-      "description": "",
-      "estimated_minutes": 156.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-454",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-016 adaptive commitment_threshold via E2 PE variance (script-level wrapper)",
-      "description": "",
-      "estimated_minutes": 132.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -57,7 +61,7 @@
       "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
       "description": "",
       "estimated_minutes": 240.0,
-      "status": "claimed",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -5691,6 +5695,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 21.5
+    },
+    {
+      "queue_id": "V3-EXQ-452",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-257 dual-function E2_harm_s diagnostic -- comparator vs evaluator compatibility",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "c2_evaluator_valid: {'std_wins': 0, 'interventional_wins': 1, 'threshold': 0.15, 'pass': False, 'desc': 'pe_harm_surprise_corr > 0.15 in >=2/3 seeds for STD AND INTERVENTIONAL'} | c4_interventional_does_not_harm_evaluator: {'wins': 3, 'slack': 0.1, 'pass': True, 'desc': 'interventional pe_corr >= std pe_corr - 0.1 in >=2/3 seeds (diagnostic refinement)'} | baseline_contrast: {'off_baseline_cf_sep_mean': 0.7896877473788749, 'off_baseline_pe_corr_mean': 0.02452440484418711, 'desc': 'DUAL_OFF_BASELINE reference: untrained projection + identity predictor'}",
+      "started_at": "2026-04-20T14:40:00.865901+00:00",
+      "completed_at": "2026-04-20T14:40:13.353735+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12.5
+    },
+    {
+      "queue_id": "V3-EXQ-454",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-016 adaptive commitment_threshold via E2 PE variance (script-level wrapper)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[seed=13 STATIC_HIGH] commit_rate=1.000 survival=11.38 rv_mean=0.5000 low_rate=1.000 high_rate=0.000 goal_reach=0.200 verdict: PASS | [seed=13 ADAPTIVE] commit_rate=0.000 survival=0.00 rv_mean=0.5000 low_rate=0.000 high_rate=0.000 goal_reach=0.133 verdict: FAIL | Outcome: FAIL",
+      "started_at": "2026-04-20T14:40:16.745134+00:00",
+      "completed_at": "2026-04-20T16:00:53.195371+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4836.4
     }
   ]
 }

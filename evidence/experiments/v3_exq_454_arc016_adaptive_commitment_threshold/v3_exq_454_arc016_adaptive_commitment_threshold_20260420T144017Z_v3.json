@@ -1,0 +1,213 @@
+{
+  "run_id": "v3_exq_454_arc016_adaptive_commitment_threshold_20260420T144017Z_v3",
+  "experiment_type": "v3_exq_454_arc016_adaptive_commitment_threshold",
+  "claim_ids": [
+    "ARC-016"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260420T144017Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-016": "weakens"
+  },
+  "pass_criteria_summary": {
+    "c1_static_low_behavioural_signature": {
+      "wins": 0,
+      "pass": false,
+      "desc": "STATIC_LOW commit_rate > STATIC_HIGH commit_rate in >=2/3 seeds"
+    },
+    "c2_adaptive_regime_sensitivity": {
+      "wins": 0,
+      "pass": false,
+      "desc": "ADAPTIVE (low_pe_commit - high_pe_commit) >= 0.05 in >=2/3 seeds"
+    },
+    "c3_adaptive_not_degenerate": {
+      "wins": 0,
+      "pass": false,
+      "desc": "ADAPTIVE commit_rate in (0.1, 0.9) in >=2/3 seeds"
+    },
+    "c4_adaptive_goal_performance_diagnostic": {
+      "wins": 3,
+      "pass": true,
+      "desc": "ADAPTIVE goal_reach_rate >= STATIC_LOW - 0.1 (diagnostic only)"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "STATIC_LOW",
+      "commit_rate": 0.0,
+      "commit_survival": 0.0,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 0.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.16666666666666666,
+      "n_p2_e3_ticks": 454,
+      "n_elevation_runs": 0,
+      "adaptive_k": null,
+      "final_commitment_threshold": 0.3
+    },
+    {
+      "seed": 42,
+      "condition": "STATIC_HIGH",
+      "commit_rate": 1.0,
+      "commit_survival": 12.620689655172415,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 1.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.4,
+      "n_p2_e3_ticks": 366,
+      "n_elevation_runs": 29,
+      "adaptive_k": null,
+      "final_commitment_threshold": 0.8
+    },
+    {
+      "seed": 42,
+      "condition": "ADAPTIVE",
+      "commit_rate": 0.0,
+      "commit_survival": 0.0,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 0.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.16666666666666666,
+      "n_p2_e3_ticks": 454,
+      "n_elevation_runs": 0,
+      "adaptive_k": 0.21213203435596426,
+      "final_commitment_threshold": 0.3
+    },
+    {
+      "seed": 7,
+      "condition": "STATIC_LOW",
+      "commit_rate": 0.0,
+      "commit_survival": 0.0,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 0.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.13333333333333333,
+      "n_p2_e3_ticks": 450,
+      "n_elevation_runs": 0,
+      "adaptive_k": null,
+      "final_commitment_threshold": 0.3
+    },
+    {
+      "seed": 7,
+      "condition": "STATIC_HIGH",
+      "commit_rate": 1.0,
+      "commit_survival": 11.413793103448276,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 1.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.43333333333333335,
+      "n_p2_e3_ticks": 331,
+      "n_elevation_runs": 29,
+      "adaptive_k": null,
+      "final_commitment_threshold": 0.8
+    },
+    {
+      "seed": 7,
+      "condition": "ADAPTIVE",
+      "commit_rate": 0.0,
+      "commit_survival": 0.0,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 0.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.13333333333333333,
+      "n_p2_e3_ticks": 450,
+      "n_elevation_runs": 0,
+      "adaptive_k": 0.21213203435596423,
+      "final_commitment_threshold": 0.29999999999999993
+    },
+    {
+      "seed": 13,
+      "condition": "STATIC_LOW",
+      "commit_rate": 0.0,
+      "commit_survival": 0.0,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 0.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.13333333333333333,
+      "n_p2_e3_ticks": 416,
+      "n_elevation_runs": 0,
+      "adaptive_k": null,
+      "final_commitment_threshold": 0.3
+    },
+    {
+      "seed": 13,
+      "condition": "STATIC_HIGH",
+      "commit_rate": 1.0,
+      "commit_survival": 11.384615384615385,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 1.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.2,
+      "n_p2_e3_ticks": 296,
+      "n_elevation_runs": 26,
+      "adaptive_k": null,
+      "final_commitment_threshold": 0.8
+    },
+    {
+      "seed": 13,
+      "condition": "ADAPTIVE",
+      "commit_rate": 0.0,
+      "commit_survival": 0.0,
+      "pe_variance_mean": 0.5,
+      "commit_rate_by_pe_regime": {
+        "low_pe_var_commit": 0.0,
+        "high_pe_var_commit": 0.0,
+        "median_rv_split": 0.5
+      },
+      "goal_reach_rate": 0.13333333333333333,
+      "n_p2_e3_ticks": 416,
+      "n_elevation_runs": 0,
+      "adaptive_k": 0.21213203435596423,
+      "final_commitment_threshold": 0.29999999999999993
+    }
+  ],
+  "config": {
+    "conditions": [
+      "STATIC_LOW",
+      "STATIC_HIGH",
+      "ADAPTIVE"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 30,
+    "p1_eps": 50,
+    "p2_eps": 30,
+    "steps_per_ep": 150,
+    "static_low_thresh": 0.3,
+    "static_high_thresh": 0.8,
+    "adaptive_base_thresh": 0.3,
+    "adaptive_min": 0.05,
+    "adaptive_max": 2.0
+  }
+}
