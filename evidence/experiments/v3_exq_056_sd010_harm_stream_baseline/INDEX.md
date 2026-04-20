@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_056_sd010_harm_stream_baseline
 
-Generated: `2026-04-20T10:51:19.807603Z`
+Generated: `2026-04-20T19:49:57.459734Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

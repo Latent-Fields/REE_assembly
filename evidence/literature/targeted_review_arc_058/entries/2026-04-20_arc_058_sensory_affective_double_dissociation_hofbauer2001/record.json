@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_058",
+  "entry_id": "2026-04-20_arc_058_sensory_affective_double_dissociation_hofbauer2001",
+  "timestamp_utc": "2026-04-20T19:42:43Z",
+  "claim_ids_tested": ["ARC-058", "ARC-033", "SD-011"],
+  "source": {
+    "title": "Cortical representation of the sensory dimension of pain",
+    "authors": ["R K Hofbauer", "Pierre Rainville", "G H Duncan", "M C Bushnell"],
+    "year": 2001,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.2001.86.1.402"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "weakens",
+  "confidence": 0.70,
+  "confidence_rationale": "Canonical double-dissociation paper pairing the earlier Rainville 1997 affect-modulation finding. Together they establish the classical S1/ACC double dissociation of sensory vs affective pain dimensions. Small N (10) and PET rather than fMRI, but the causal manipulation (hypnotic suggestion targeting intensity vs unpleasantness) is very strong evidence because it intervenes on the dimension rather than merely decoding it. Weakens ARC-058 in its strong form (the sensory and affective dimensions can be independently manipulated at the cortical level) and supports ARC-033 via the double-dissociation logic; but is compatible with the weak ARC-058 (shared unsigned trunk + separable signed heads).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A shared forward-model trunk that commingles signed sensory and affective PE should NOT support independent hypnotic modulation of intensity vs unpleasantness at the cortical level. Hofbauer 2001 + Rainville 1997 show such independent modulation exists (double dissociation: S1 modulated by intensity suggestion; ACC modulated by unpleasantness suggestion).",
+    "A single-module architecture that computed only a shared unsigned magnitude could not produce a dissociable ACC unpleasantness signal that is independent of S1 intensity. The paired findings weaken strong ARC-058 and support at least dual signed-PE heads (consistent with weak ARC-058 or with ARC-033)."
+  ],
+  "tags": ["arc-058", "arc-033", "sd-011", "pain", "rainville", "hypnosis", "double_dissociation", "sensory_affective_dimensions"],
+  "mapping": {
+    "source_claim_statement": "Hypnotic suggestions targeting the INTENSITY of noxious thermal pain modulate activity in primary somatosensory cortex (S1). In the earlier companion study (Rainville et al 1997), hypnotic suggestions targeting the UNPLEASANTNESS of the same pain modulated activity in anterior cingulate cortex (ACC) without changing S1. This double dissociation establishes that the sensory and affective dimensions of pain are cortically separable and can be independently modulated by top-down context.",
+    "ree_translation": "The sensory-discriminative z_harm_s stream and the affective z_harm_a stream in SD-011 should be independently modulable at the downstream level. Hofbauer 2001 + Rainville 1997 provide the canonical causal evidence that this is how the brain is built: S1 tracks intensity; ACC tracks affect; hypnotic attention targets can pry them apart. For ARC-058, this weakens the strong reading (a trunk that dominates per-stream variance) and supports the weak reading (trunk carries shared unsigned magnitude; signed per-stream heads carry the dissociable intensity and affect signals). Equivalently, it strengthens ARC-033's partitioned-substrate intuition at the signed-readout level. The weak ARC-058 and ARC-033 are hard to distinguish from this evidence alone.",
+    "mapping_caveat": "PET data, small N (10), single lab. The hypnosis paradigm is a strong causal manipulation but has complex confounds (attention, expectancy, suggestibility variance). The paper does not image predictive coding PE; it images realised pain during a modulated condition. ACC in this literature includes both perigenual ACC and dorsal ACC / aMCC -- the affective/unpleasantness signal here is assigned to ACC broadly, which overlaps both SD-032b (dACC) and SD-032e (pACC) targets in the REE architecture. S1 is not a stream that REE currently models.",
+    "source_context": "Human PET, N=10, within-subject hypnosis paradigm. Four conditions: alert control, hypnosis control, hypnotic suggestion for increased pain intensity, hypnotic suggestion for decreased pain intensity. Paired with Rainville et al 1997 (Science) which did the equivalent unpleasantness manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is lower than the more recent decoder studies -- PET with N=10, older acquisition. But the causal manipulation is unusually strong: hypnotic suggestion that targets one pain dimension and leaves the other intact is a cleaner intervention than most fMRI decoding can offer. Mapping fidelity is good (0.70) for the sensory/affective dimension distinction, which is the main architectural question for ARC-058. Transfer risk is moderate -- the 2001 attribution of affect to 'ACC' is imprecise relative to the modern aMCC/dACC/pACC/PCC subdivision carried by SD-032."
+  }
+}

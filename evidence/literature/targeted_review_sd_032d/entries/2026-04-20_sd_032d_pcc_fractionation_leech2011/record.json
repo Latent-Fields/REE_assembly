@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032d",
+  "entry_id": "2026-04-20_sd_032d_pcc_fractionation_leech2011",
+  "timestamp_utc": "2026-04-20T19:42:15Z",
+  "claim_ids_tested": ["SD-032d"],
+  "source": {
+    "title": "Fractionating the default mode network: distinct contributions of the ventral and dorsal posterior cingulate cortex to cognitive control",
+    "authors": ["Robert Leech", "Salwa Kamourieh", "Christian F. Beckmann", "David J. Sharp"],
+    "year": 2011,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5626-10.2011",
+    "pmid": "21368033"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct fMRI dual-regression evidence that PCC fractionates into ventral (DMN-integrated, deactivates with task demand) and dorsal (increases anticorrelation with cognitive control network as task load rises) subregions. This is exactly the architectural distinction SD-032d presumes -- a PCC-analog whose business is not itself performing cognitive control, but modulating the balance between internal-directed and external-directed attention. Moderate-to-high confidence: the ventral/dorsal dissociation is robustly replicated, but the specific mapping to a scalar stability parameter in [0, 1] is a computational simplification the paper does not make.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A PCC-analog that only represents DMN-like internally-directed cognition (ventral function) and ignores the dorsal task-load-dependent coupling will fail to modulate MECH-259's switch threshold -- because the dorsal signal is precisely what tracks cognitive demand.",
+    "If ree-v3's PCC-analog produces a stability scalar that is invariant to task load, it contradicts the Leech 2011 finding that dorsal PCC's integration with control networks is load-dependent. That would indicate pcc_stability is driven by a spurious feature (e.g. only fatigue) rather than the full set of SD-032d inputs."
+  ],
+  "tags": ["sd_032d", "pcc", "dmn", "cognitive_control", "attention_partition", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Within PCC, ventral and dorsal subregions dissociate functionally during a working-memory task. Ventral PCC shows reduced DMN integration and reduced anticorrelation with the cognitive control network as task difficulty rises. Dorsal PCC shows the opposite: increased DMN integration together with stronger anticorrelation with the CCN as task demand rises. At rest, dorsal PCC is functionally connected to both DMN and attention networks. The authors interpret dorsal PCC as modulating the dynamic interaction between DMN and CCN -- i.e. regulating the efficient allocation of attention between internal and external cognition.",
+    "ree_translation": "SD-032d is the PCC-analog handling attention partition and network metastability. Leech 2011 supports the core mapping: a PCC-analog should not itself be a primary control site (that is SD-032b/dACC) but should modulate the interaction between internal-planning and external-task modes. In ree-v3 this is exactly the role of the pcc_stability scalar fed into the SD-032a salience coordinator: it biases MECH-259's switch threshold so that higher stability makes mode transitions harder, consistent with Leech's dorsal PCC signalling task engagement. Ventral vs dorsal dissociation in Leech 2011 also supports the conservative ree-v3 design choice -- PCC-analog emits a single stability scalar rather than a fully-subdivided dorsal/ventral pair, because the scalar is the minimum sufficient quantity to bias the coordinator's threshold (MECH-259 currently reads only one stability input).",
+    "mapping_caveat": "The paper shows functional dissociation but does not demonstrate causal modulation of a downstream coordinator (that mapping is an REE inference). ree-v3's conservative reduction -- ventral/dorsal roles compressed into one stability scalar -- is an explicit simplification relative to the biology. The task-load dependence predicted for dorsal PCC is not currently captured in the arithmetic of PCCAnalog, which folds task-success EMA and fatigue rather than cognitive-demand directly.",
+    "source_context": "fMRI in healthy young adults performing 0-back vs 2-back working-memory task; dual-regression functional connectivity analysis; between-condition comparison of DMN and cognitive control network integration with PCC subregions."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "J Neurosci, solid methodology, well-cited, replication of ventral/dorsal PCC dissociation in later work. Mapping fidelity moderate because PCC in paper modulates network interaction, not a coordinator's switch threshold per se; transfer risk low because the fMRI finding maps to a computational primitive (modulation of network balance), not to a highly task-specific behavioural outcome."
+  }
+}

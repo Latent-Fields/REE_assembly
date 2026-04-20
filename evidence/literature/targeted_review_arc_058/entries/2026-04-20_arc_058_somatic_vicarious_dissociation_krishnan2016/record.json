@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_058",
+  "entry_id": "2026-04-20_arc_058_somatic_vicarious_dissociation_krishnan2016",
+  "timestamp_utc": "2026-04-20T19:42:43Z",
+  "claim_ids_tested": ["ARC-058", "ARC-033"],
+  "source": {
+    "title": "Somatic and vicarious pain are represented by dissociable multivariate brain patterns",
+    "authors": ["Anjali Krishnan", "Choong-Wan Woo", "Luke J Chang", "Luka Ruzic", "Xiaosi Gu", "Marina Lopez-Sola", "Philip L Jackson", "Jesus Pujol", "Jin Fan", "Tor D Wager"],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.15166"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong multi-study design (primary study plus two replications, out-of-sample generalisation, cross-submodality validation). For ARC-058 the evidence is genuinely mixed: the somatic and vicarious pain patterns are dissociable at 100% out-of-sample, which weakens a strong shared-trunk interpretation; but the somatic pattern generalises across thermal, mechanical, and electrical pain, which supports a within-somatic-modality shared trunk (the most directly relevant case for ARC-058's z_harm_s). Confidence weighted by the indirect mapping -- somatic vs vicarious is a larger architectural gap than z_harm_s vs z_harm_a.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A strong shared-trunk model with no per-stream heads predicts somatic and vicarious pain signatures should be highly overlapping; Krishnan 2016 shows they are fully dissociable at chance cross-prediction, favouring per-stream heads (ARC-058 heads OR full ARC-033 independence).",
+    "A fully partitioned model with no shared substrate across somatic pain sub-modalities predicts the NPS should not generalise from thermal to mechanical or electrical pain; Krishnan 2016 shows it does, which supports a shared trunk at least WITHIN the somatic-pain cluster (the case ARC-058 actually targets for z_harm_s)."
+  ],
+  "tags": ["arc-058", "arc-033", "pain", "krishnan", "somatic_pain", "vicarious_pain", "cross_submodality"],
+  "mapping": {
+    "source_claim_statement": "Multivariate brain patterns for somatic and vicarious pain are fully dissociable (100% out-of-sample classification, each pattern at chance in predicting the other). The somatic pain pattern (originally developed on thermal pain) generalises to mechanical and electrical pain, supporting a shared somatic-pain representation across noxious sub-modalities. The somatic/vicarious dissociation was replicated in a second study.",
+    "ree_translation": "Two architectural questions for ARC-058 in one paper. (a) At the larger modality gap (somatic vs vicarious), full dissociation supports stream-specific heads and weakens a strong shared-trunk reading. (b) At the within-somatic-pain scale (thermal/mechanical/electrical), the NPS generalises -- this is exactly the case ARC-058 cares about: the z_harm_s stream should share substrate across nociceptive sub-modalities, and it does. For z_harm_s alone, ARC-058's trunk architecture is strongly supported. For the z_harm_s vs z_harm_a distinction, the somatic/vicarious evidence by analogy suggests heads dominate the decodable signal. Net direction: mixed, leaning supports the two-layer architecture.",
+    "mapping_caveat": "Somatic vs vicarious is an empathy-for-pain contrast, not the affective-vs-sensory within-pain contrast ARC-058 actually posits. Transfer from 'observing a stranger in pain' to 'C-fibre-driven affective pain stream' is substantial -- vicarious pain patterns load on mentalising regions (TPJ, STS) that are unrelated to z_harm_a as REE conceives it. The within-somatic-pain generalisation is the more directly relevant evidence, and it is clean.",
+    "source_context": "Human fMRI, three studies. Study 1: somatic thermal pain + vicarious pain (pictures). Study 2: generalisation of the somatic pattern to mechanical and electrical pain. Study 3: replication of the somatic/vicarious dissociation. Multivariate pattern analysis with out-of-sample cross-validation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Good source quality (eLife, three-study design, cross-submodality validation). Mapping fidelity is moderate -- the within-somatic generalisation is directly relevant to ARC-058's z_harm_s trunk claim; the somatic-vicarious dissociation is a weaker analogue of the z_harm_s vs z_harm_a question. Transfer risk is higher than for the Wager/Woo/Horing papers because 'vicarious' in Krishnan means observing someone else in pain, not an internal affective pain stream."
+  }
+}

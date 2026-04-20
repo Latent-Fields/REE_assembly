@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032a",
+  "entry_id": "2026-04-20_sd_032a_insular_salience_function_uddin2015",
+  "timestamp_utc": "2026-04-20T19:41:12Z",
+  "claim_ids_tested": ["SD-032a"],
+  "source": {
+    "title": "Salience processing and insular cortical function and dysfunction",
+    "authors": ["Lucina Q Uddin"],
+    "year": 2015,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3857",
+    "url": "https://doi.org/10.1038/nrn3857"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "High-prestige review focused on the insular cortex as the central integrative hub of the salience network. Articulates how SN subdivisions aggregate multimodal saliency signals (interoceptive, exteroceptive, cognitive) and how insular dysfunction produces SN-level pathology. Source quality high (NRN; Uddin is a leading SN theorist). Mapping fidelity moderate-high: Uddin's 'insula as integrative hub aggregating salience' is precisely SD-032a's architectural role. Confidence held at 0.80 rather than higher because the paper is review-level synthesis (not primary data) and because the specific aggregation rule ree-v3 implements is not specified by Uddin.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-032a's SalienceCoordinator aggregates signals from only one modality (e.g. only exteroceptive, ignoring drive_level) and still produces coherent mode switching, the Uddin 'multimodal integrative hub' framing is not respected.",
+    "If subdivision-specific salience contributions (interoceptive from AIC, cognitive-control from dACC, attention-balance from PCC) can be routed directly to downstream gates without an intermediate aggregate representation, the hub architecture is bypassed."
+  ],
+  "tags": ["sd_032a", "anterior_insula", "salience_network", "multimodal_integration", "uddin", "review"],
+  "mapping": {
+    "source_claim_statement": "The anterior insular cortex, as a central node of the salience network, plays a critical role in detecting behaviourally relevant stimuli across modalities and coordinating neural resources in response. Atypical engagement of insular subdivisions within the SN is a feature of many neuropsychiatric disorders, underscoring the insula's role as an integrative multimodal salience hub.",
+    "ree_translation": "The insular subdivision of the biological SN maps to the multimodal-aggregation role of SD-032a's SalienceCoordinator. Specifically, the coordinator's `update_signal` interface (for aic_salience, pcc_stability, pacc_autonomic) and its aggregation into operating_mode is the computational counterpart of the insular role Uddin describes: integrating interoceptive + exteroceptive + cognitive signals into a single saliency-weighted coordinator output.",
+    "mapping_caveat": "Uddin's review does not specify the form of integration (linear vs non-linear, additive vs multiplicative, softmax vs winner-take-all). ree-v3 chooses softmax-over-affinity-logits with per-mode weights; this is an implementation decision that Uddin licenses at the architectural level (multimodal integration happens) but does not constrain at the computational level. Also, Uddin emphasises dysfunction signatures from neuropsychiatric disorders -- these do not directly translate to substrate-level failure signatures in ree-v3.",
+    "source_context": "Theoretical review, Nature Reviews Neuroscience; synthesises fMRI, anatomical connectivity, and clinical evidence on insular function; human focus with primate anatomical context."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (NRN review from leading SN theorist). Mapping fidelity moderate-high because the 'integrative multimodal hub' framing is directly what SD-032a implements, but the specific aggregation rule is not constrained. Transfer risk 0.30 because human insular function is anatomically well-characterised and the architectural role transfers cleanly; clinical-dysfunction mapping is less direct."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_029",
+  "entry_id": "2026-04-20_sd_029_nssi_pain_attenuation_lalouni2025",
+  "timestamp_utc": "2026-04-20T19:43:11Z",
+  "claim_ids_tested": ["SD-029"],
+  "source": {
+    "title": "Attenuation of Self-Induced Pain in Women With Nonsuicidal Self-Injury and Healthy Controls",
+    "authors": ["Maria Lalouni", "et al."],
+    "year": 2025,
+    "venue": "European Journal of Pain",
+    "doi": "10.1002/ejp.70057"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Replication of Lalouni 2020 in a larger sample with a clinical-population comparator. The prevalence-level finding (95% of NSSI and 78% of controls show >=10% attenuation) confirms the comparator mechanism is a stable feature of the population, not an artefact of the original sample. Clinical extension is interesting but not strictly necessary for SD-029 -- this paper is mainly valuable as replication and as evidence that individual-level variation in attenuation is substantial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Not every participant showed attenuation -- 22% of healthy controls failed the >=10% threshold. This suggests the biological comparator mechanism has meaningful individual variation, and a V3 implementation should not treat perfect attenuation as the expected signature.",
+    "The NSSI group showed slightly larger attenuation than controls, which is the opposite direction to what a pure 'broken comparator' model of psychiatric pain disorders would predict. Individual differences in attenuation magnitude do not map cleanly onto psychiatric categories."
+  ],
+  "tags": ["sd_029", "nociceptive_attenuation", "clinical_replication", "individual_differences", "partial_attenuation"],
+  "mapping": {
+    "source_claim_statement": "Self-induced pressure pain thresholds are attenuated relative to externally induced thresholds in both NSSI women and healthy controls, with the NSSI group showing somewhat greater attenuation. Attenuation correlates with conditioned pain modulation (tau=0.17, p=0.025).",
+    "ree_translation": "Primary value is replication of Lalouni 2020 in a larger, more heterogeneous sample. The 95%/78% prevalence rates confirm SD-029 C2 should expect population-level attenuation but not universal attenuation. The correlation with conditioned pain modulation is suggestive that the forward-model comparator shares substrate with descending pain-modulatory systems (PAG/RVM) -- relevant to whether SD-029's E2_harm_s should be architecturally linked to a general descending-modulation module or kept as a pure comparator.",
+    "mapping_caveat": "The NSSI clinical sample is not directly relevant to SD-029 in V3 -- the V3 agent is not meant to model psychiatric individual differences. Read this paper for the replication evidence and the population-variance signal, not the clinical interpretation. The CPM correlation is hypothesis-generating, not mechanistic.",
+    "source_context": "Women with NSSI (clinical group) and healthy female controls, pressure-pain-threshold measurements using a self vs experimenter paradigm similar to Lalouni 2020. Conditioned pain modulation assessed separately."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Peer-reviewed replication in the flagship European pain journal. Mapping to SD-029 is solid for the core attenuation finding; clinical interpretation is tangential. Slightly lower source_quality than Lalouni 2020 because the analysis is more exploratory (multiple group contrasts, correlation with CPM)."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032d",
+  "entry_id": "2026-04-20_sd_032d_pcc_echoes_leech2012",
+  "timestamp_utc": "2026-04-20T19:42:15Z",
+  "claim_ids_tested": ["SD-032d"],
+  "source": {
+    "title": "Echoes of the brain within the posterior cingulate cortex",
+    "authors": ["Robert Leech", "Rodrigo Braga", "David J. Sharp"],
+    "year": 2012,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3689-11.2012",
+    "pmid": "22219283"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Multivariate fMRI evidence that PCC contains separable-but-overlapping subregions whose connectivity profiles each echo a different large-scale brain network (DMN, frontoparietal control, attention). Supports SD-032d's framing of PCC-analog as a posterior hub whose computational signature is integration-across-networks rather than performing any single within-network function. Confidence moderate-to-high: the finding is robust but the REE mapping onto a single stability scalar compresses the multi-network heterogeneity the paper is explicitly highlighting.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A PCC-analog implementation that reads only one input network (e.g. only offline-recency or only fatigue) contradicts Leech 2012's finding that PCC subregions echo multiple distinct networks. pcc_stability in PCCAnalog currently folds success EMA + drive_level + offline-recency into one scalar; if V3-EXQ-447 shows that ablating any one of these eliminates the stability signal, the architecture is too brittle and closer to a single-network read than to Leech's multi-network hub.",
+    "Conversely, if the paper's hub framing is correct, a PCC-analog that is purely a passive readout of other substrates (no integrative computation) would fail the Leech 2012 prediction -- PCC subregions show characteristic combined signatures, not simple averages of their inputs."
+  ],
+  "tags": ["sd_032d", "pcc", "hub", "integration", "attention_partition", "fmri"],
+  "mapping": {
+    "source_claim_statement": "The PCC contains separable yet overlapping subregions whose functional-connectivity patterns echo multiple distinct brain networks. A predominantly ventral region couples strongly to the rest of the DMN; two subregions within dorsal PCC couple to frontoparietal control networks. During an attentionally demanding task, these PCC subregions show distinct activity-modulation profiles, with dorsal PCC parts interacting with frontoparietal networks to regulate the balance between internally and externally directed cognition. The complex, dynamic pattern of PCC activity is consistent with its role as a cortical hub integrating information across functionally distinct brain networks.",
+    "ree_translation": "SD-032d treats the PCC-analog as a posterior hub whose output (pcc_stability) modulates the salience coordinator's switch threshold. Leech 2012 supports the architectural premise: PCC is not a single-function module but a heterogeneous hub whose signature is multi-network integration. In ree-v3, PCCAnalog sums success-outcome EMA (task-success signal, analogous to dorsal PCC reading the control network), drive_level (SD-012, analogous to DMN/interoceptive reading), and offline-recency (internal state) into one scalar. The multi-input structure of PCCAnalog mirrors the multi-network-echo finding even if the output is compressed. Leech 2012 also supports a later V3 refinement: if the single scalar proves insufficient, the PCC-analog could be split into dorsal-analog and ventral-analog streams feeding different coordinator parameters, consistent with the dorsal/ventral dissociation documented here and in Leech 2011.",
+    "mapping_caveat": "Leech 2012 explicitly emphasises the multi-network heterogeneity of PCC. ree-v3 compresses this to one scalar -- a design choice justified only by the current coordinator needing only one stability input (MECH-259). The paper does not license the scalar compression and arguably predicts it is too coarse. If future experiments show pcc_stability behaviour that requires a richer output (e.g. different thresholds for external-to-internal versus internal-to-offline transitions), the architecture will need to be split.",
+    "source_context": "fMRI in healthy adults; multivariate analysis (GLM + spatial ICA) of PCC subregion activity during rest and an attentionally demanding task; comparison against whole-brain networks identified independently."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.30,
+    "notes": "J Neurosci, sound multivariate fMRI analysis. Mapping fidelity is the weak spot: the paper's point is multi-network heterogeneity, whereas ree-v3's pcc_stability compresses that to one scalar. Supports the hub role but not the scalar compression. Transfer risk low -- the hub finding is a well-replicated feature of PCC connectivity."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032a",
+  "entry_id": "2026-04-20_sd_032a_sn_switching_dcm_goulden2014",
+  "timestamp_utc": "2026-04-20T19:41:12Z",
+  "claim_ids_tested": ["SD-032a"],
+  "source": {
+    "title": "The salience network is responsible for switching between the default mode network and the central executive network: replication from DCM",
+    "authors": ["Nia Goulden", "Aygul Khusnulina", "Nicholas J Davis", "Robert M Bracewell", "Arun L Bokde", "Jonathan P McNulty", "Paul G Mullins"],
+    "year": 2014,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2014.05.052",
+    "url": "https://doi.org/10.1016/j.neuroimage.2014.05.052"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Independent methodological replication of Sridharan 2008's central result. Uses dynamic causal modelling (DCM) on ICA-extracted network time courses in resting state, applied to two independent datasets. Confirms that the salience network drives switching between DMN and CEN. Moderate-high source quality (NeuroImage; rigorous Bayesian model comparison). Replication strengthens the architectural license for SD-032a's coordinator role. Confidence not higher because the study is resting-state only (no task manipulation) and the network labels inherit Sridharan's two-network frame -- same mapping limitations apply.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ree-v3 substrates reproduce coordinated downstream gate changes without requiring a salience-aggregate coordinator input, the DCM replication's architectural claim is violated.",
+    "If the operating_mode vector in SD-032a can be stably driven by a single subdivision's output (e.g. dACC alone) rather than a weighted aggregate, the 'salience drives switching' finding is not respected."
+  ],
+  "tags": ["sd_032a", "salience_network", "dcm", "network_switching", "replication", "resting_state"],
+  "mapping": {
+    "source_claim_statement": "Using DCM on ICA-derived time courses in two independent resting-state datasets, the salience network (AIC + dACC) is shown to drive bidirectional switching between the default mode network and the central executive network.",
+    "ree_translation": "Replication evidence that the biological coordinator role of the salience network is reproducible with a different causal-inference method than Granger. In ree-v3, the SalienceCoordinator's aggregating architecture (reading AIC / dACC / PCC / pACC analogues and emitting operating_mode) is the computational counterpart.",
+    "mapping_caveat": "Resting-state only. The study does not test whether salience-driven switching generalises across different task demands or operating regimes. Also, DCM's inference is Bayesian model comparison over candidate connectivity structures, not a direct test of the 'coordinator' computation; it shows which network drives switches, not what aggregation rule the driver implements. ree-v3's softmax-over-affinity-logits is therefore architectural convention, not something Goulden constrains.",
+    "source_context": "Healthy adult humans; 3T fMRI; resting state; two independent datasets; DCM on ICA-extracted canonical networks (DMN, CEN, SN)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Solid methodological replication raises aggregate confidence that Sridharan's architectural claim is robust, not artefactual. Mapping fidelity is similar to Sridharan's: the switching role transfers, the aggregation rule does not. Transfer risk slightly higher because resting-state-only results may not generalise to task-engaged regimes where ree-v3 operates most of the time."
+  }
+}

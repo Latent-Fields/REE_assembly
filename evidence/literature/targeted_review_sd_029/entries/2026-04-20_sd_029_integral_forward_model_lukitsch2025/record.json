@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_029",
+  "entry_id": "2026-04-20_sd_029_integral_forward_model_lukitsch2025",
+  "timestamp_utc": "2026-04-20T19:43:11Z",
+  "claim_ids_tested": ["SD-029"],
+  "source": {
+    "title": "An integral forward model of agency experience in thought and action",
+    "authors": ["Oliver Lukitsch"],
+    "year": 2025,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2025.1524904"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Recent theoretical review that explicitly defends a unified single-forward-model architecture for agency -- directly relevant to SD-029's single-pass choice. But mixed, not supports, because the paper's positive argument is that agency experience arises from temporally integrated prediction-error cancellation rather than from a discrete per-step residual -- this softens SD-029's implicit assumption that each step's residual is individually informative. Source quality moderate (philosophy-leaning Frontiers journal, not an empirical study).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If agency experience emerges from temporally extended prediction-error cancellation rather than per-step residual magnitudes, then SD-029's C2 and C3 criteria that evaluate residuals on single steps or short windows may be looking at the wrong temporal scale. Event-conditioned (C3) is better than step-averaged, but may still be too short -- Lukitsch's 'integral' framing suggests a longer episodic window.",
+    "The paper explicitly rejects compartmentalised dual-system comparator models (like SD-003's cf_gap) in favour of unified single-mechanism forward modelling -- this supports the SD-029 direction, but the support is theoretical rather than empirical."
+  ],
+  "tags": ["sd_029", "integral_forward_model", "single_pass_comparator", "agency_theory", "temporal_integration"],
+  "mapping": {
+    "source_claim_statement": "Agency experience is realised through an integral forward model in which predictions simultaneously function as motor commands and as predicted sensory outcomes. The sense of agency emerges from temporally extended prediction-error minimisation, not from an auxiliary comparator branch that computes a separate counterfactual. Agency is not bolted-on but is intrinsic to the action-perception loop.",
+    "ree_translation": "Lukitsch 2025 provides philosophical / theoretical support for abandoning SD-003's dual-branch (factual vs counterfactual) comparator in favour of SD-029's single-pass design. His 'pushmi-pullyu' framing of predictions as simultaneously motor commands and sensory predictions maps onto the SD-029 case where E2_harm_s(z_harm_s_{t-1}, a_actual) simultaneously plays two roles: it predicts the next reafference, and the residual against observation serves as the agency signal. No separate pathway required. However, Lukitsch also argues agency emerges from temporally integrated error cancellation -- this raises a caveat about SD-029's step-level residual reading.",
+    "mapping_caveat": "The paper is a philosophy-of-mind theoretical review in a frontiers journal, not primary empirical evidence. The 'integral' temporal-extension framing is a useful concept but unfalsifiable as stated -- it would caution against expecting clean per-step residual signatures, but it does not provide a quantitative prediction for what temporal window is correct. Read as theoretical reinforcement for SD-029's architectural choice and as a nudge toward episode-level or event-window rather than step-level C2 readouts.",
+    "source_context": "Philosophical / theoretical review paper in Frontiers in Psychology. Integrates active-inference theory, the comparator-model tradition (Frith), and Synofzik-Vosgerau-Newen two-step accounts. Not an empirical study."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Frontiers in Psychology is peer-reviewed but has a looser review standard than core empirical journals; this is theory rather than experiment. Mapping is moderate -- the integral-forward-model framing maps onto SD-029's single-pass architecture, but the temporal-integration argument adds a caveat that SD-029 does not currently address."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032d",
+  "entry_id": "2026-04-20_sd_032d_pcc_macaque_default_hayden2009",
+  "timestamp_utc": "2026-04-20T19:42:15Z",
+  "claim_ids_tested": ["SD-032d"],
+  "source": {
+    "title": "Electrophysiological correlates of default-mode processing in macaque posterior cingulate cortex",
+    "authors": ["Benjamin Y. Hayden", "David V. Smith", "Michael L. Platt"],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.0812035106",
+    "pmid": "19293382"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Single-unit recordings in macaque PCC (CGp) showing firing rates are suppressed during task engagement and elevated during inattention, with elevated firing predicting errors and slow responses. This is the primate electrophysiology counterpart to the human fMRI DMN deactivation finding. Directly supports SD-032d's role: PCC-analog arithmetic should reflect the internal-external attention balance. High confidence because the electrophysiology grounds the fMRI inference in single-neuron firing, and the predictive relationship between PCC firing and upcoming errors is strong behavioural evidence for a functional coupling to task engagement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If V3-EXQ-447 shows that pcc_stability decouples from successful task engagement -- i.e. stability stays high after errors or stays low through successful trials -- this contradicts Hayden 2009's finding that PCC firing tracks engagement and predicts errors. PCCAnalog's success EMA input is the direct ree-v3 analogue of this signal and a broken EMA would produce the mismatch.",
+    "If ablating PCCAnalog leaves coordinator behaviour unchanged under conditions where engagement should matter (e.g. sustained task performance where fatigue accumulates), the primate electrophysiology predicts PCC-analog is load-bearing -- its absence should produce degraded task behaviour. Invariance would falsify SD-032d's causal role claim."
+  ],
+  "tags": ["sd_032d", "pcc", "electrophysiology", "default_mode", "attention_partition", "macaque"],
+  "mapping": {
+    "source_claim_statement": "Single neurons in macaque posterior cingulate cortex (CGp) show firing rates that are reliably suppressed during task performance and return to a higher baseline between trials. Higher firing rates predict errors and slow behavioural responses on upcoming trials. Elevated firing is also observed during cued rest periods when monkeys are liberated from exteroceptive vigilance. These patterns are not seen in lateral intraparietal cortex (an attention-network area). The authors interpret CGp as mediating exteroceptive vigilance and being part of the primate default network.",
+    "ree_translation": "SD-032d posits a PCC-analog that emits a stability scalar gating the salience coordinator's switch threshold, where stability is itself a function of recent task success, fatigue, and time-since-offline. Hayden 2009 is direct single-unit support: PCC firing is high when attention is disengaged and low when engaged, and the firing-rate level predicts behavioural performance. The ree-v3 PCCAnalog success-outcome EMA input (updated via agent.note_task_outcome) is the direct analogue of CGp firing tracking engagement. The offline-recency counter tracks the rest/quiescence signal that CGp also reflects. If PCCAnalog works, it should exhibit the Hayden 2009 signature: stability scalar is inversely related to successful-engagement history and tracks rest periods.",
+    "mapping_caveat": "Hayden 2009 is macaque single-unit; ree-v3 PCCAnalog is non-trainable arithmetic over scalar EMAs. The REE mapping is that the arithmetic captures the aggregate statistical signature of PCC firing, not the circuit mechanism. Also, CGp firing elevation predicted errors as a state signal (engagement level shapes upcoming performance); PCCAnalog's causal direction is reversed -- task outcome (success/error) updates the EMA, which then shapes future stability. The two directions are complementary but not identical. Transfer risk from macaque-single-unit to rodent-scale ree-v3 environments is non-trivial.",
+    "source_context": "Single-unit recordings in 2 macaque monkeys performing simple visual attention tasks; firing rates analysed across task-engaged versus cued-rest periods and correlated with trial-by-trial behavioural performance."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "PNAS, single-unit electrophysiology from Platt lab -- strong methods, modest n (2 monkeys) typical of primate single-unit work. Mapping fidelity reasonably high: PCC firing tracking engagement maps cleanly onto pcc_stability arithmetic, though the causal direction differs slightly. Transfer risk moderate because the statistical regularity (PCC high during disengagement) is species-general in principle but single-unit-to-scalar-arithmetic is a big abstraction step."
+  }
+}

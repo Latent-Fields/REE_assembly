@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_256",
+  "entry_id": "2026-04-20_mech_256_cerebellum_forward_model_welniarz2021",
+  "timestamp_utc": "2026-04-20T19:40:35Z",
+  "claim_ids_tested": ["MECH-256"],
+  "source": {
+    "title": "The Forward Model: A Unifying Theory for the Role of the Cerebellum in Motor Control and Sense of Agency.",
+    "authors": ["Welniarz Q", "Worbe Y", "Gallea C"],
+    "year": 2021,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2021.644059",
+    "url": "https://doi.org/10.3389/fnsys.2021.644059"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "A thematic review that explicitly argues for the forward model as a unifying explanatory frame across motor control and sense of agency, with the cerebellum as the canonical substrate. It is the clearest recent statement of the stream-agnostic computational claim MECH-256 makes -- that the forward prediction is used both to control movement and to ground self-attribution -- and it situates the cerebellum as the anatomical locus that realises the comparator. Confidence is moderated because the paper is a conceptual synthesis rather than a primary empirical test; it integrates prior evidence rather than producing new quantitative constraints on the attenuation ratio.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The unifying framing assumes a single cerebellar forward model reused across motor and agency functions. If the forward models for motor-proprioceptive streams and nociceptive/visceral streams are anatomically distinct (cerebellum vs. insula/ACC), then the single substrate reading is too strong and a per-stream substrate account is required.",
+    "The paper does not specify a quantitative attenuation magnitude; mapping 'attenuated' to a specific ratio (e.g., Shergill 0.3-0.7) requires reading other primary literature.",
+    "Integration of cerebellar prediction with the hippocampal/striatal control plane is left underspecified; if REE's E2_harm_s sits functionally in a non-cerebellar locus, the 'cerebellum as universal comparator' framing does not transfer cleanly."
+  ],
+  "tags": ["mech-256", "cerebellum", "forward_model", "sense_of_agency", "review", "motor_control"],
+  "mapping": {
+    "source_claim_statement": "Across motor control and the sense of agency, a single computational principle -- the forward model -- explains how the brain predicts sensory consequences of its own actions and compares predictions to outcomes. The cerebellum sits at the anatomical interface between motor and sensory systems and is, in the authors' synthesis, the canonical substrate for this forward model.",
+    "ree_translation": "MECH-256 states that self-attribution is implemented by a forward-model comparator on any reafferent latent stream: predicted_z_x = E2_x(z_x_{t-1}, a_actual), residual = z_x_observed - predicted_z_x. Welniarz et al. provide the biological grounding for exactly this structure: the cerebellum realises the forward model, and its outputs support both motor control (attenuation of reafference) and agency judgment (comparison of predicted and realised sensory consequences). For REE, this means ARC-033 (E2_harm_s) and any future per-stream E2_x substrate are biologically plausible, and the single-pass residual is computationally sufficient without a counterfactual branch.",
+    "mapping_caveat": "The paper focuses on motor control and generalises to agency primarily through the sensorimotor channel. MECH-256 applies the same comparator logic to nociceptive reafference (z_harm_s), visceral streams, and potentially world-causal streams (z_world). The cerebellum may not be the substrate for all of these; insula, ACC, and PAG/RVM are implicated for nociceptive agency. Accept the computational claim; hold the anatomical claim loosely.",
+    "source_context": "Conceptual review in Frontiers in Systems Neuroscience (2021). Integrates two-decade literature on cerebellar contributions to motor learning, reward, conditional learning, and sense of agency under a single forward-model framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Source quality moderated because this is a narrative review, not a primary experiment or meta-analysis. Mapping fidelity is high because the paper explicitly makes the 'forward model as unifying mechanism' argument that MECH-256 instantiates. Transfer risk is the main hazard: the paper frames the cerebellum as THE substrate, whereas MECH-256 is substrate-agnostic and will eventually need stream-specific anatomy for nociceptive attribution."
+  }
+}

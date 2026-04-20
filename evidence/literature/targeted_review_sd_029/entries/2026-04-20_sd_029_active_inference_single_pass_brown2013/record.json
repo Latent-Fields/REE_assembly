@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_029",
+  "entry_id": "2026-04-20_sd_029_active_inference_single_pass_brown2013",
+  "timestamp_utc": "2026-04-20T19:43:11Z",
+  "claim_ids_tested": ["SD-029"],
+  "source": {
+    "title": "Active inference, sensory attenuation and illusions",
+    "authors": ["Harriet Brown", "Rick A. Adams", "Isabel Parees", "Mark Edwards", "Karl Friston"],
+    "year": 2013,
+    "venue": "Cognitive Processing",
+    "doi": "10.1007/s10339-013-0571-3"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Theoretical / computational paper, not empirical evidence. But it is the key formal argument in the literature for why a single-pass, precision-weighted comparator is sufficient for agency attribution -- no explicit counterfactual branch is required. This is the architectural-theory grounding for SD-029's decision to abandon the cf_gap design. Confidence capped because it is theory, not experiment; mapping is high because the formal structure maps almost directly onto SD-029.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Active inference requires precision modulation during action (attenuation of sensory precision lets descending motor predictions dominate). If SD-029 does not implement precision modulation on z_harm_s during approach-to-harm events, the biological comparator logic Brown 2013 formalises may not engage correctly -- this is a potential missing ingredient in the current SD-029 spec.",
+    "Brown et al. note that in schizophrenia, failure to attenuate sensory precision produces force-matching illusions and delusions of control -- agency attribution breakdown is precision-failure, not residual-computation failure. This suggests SD-029's C2 may need to be paired with a precision-weighting component rather than relying on raw residual magnitude."
+  ],
+  "tags": ["sd_029", "active_inference", "single_pass_comparator", "precision_weighting", "theory"],
+  "mapping": {
+    "source_claim_statement": "Sensory attenuation during self-generated action is a Bayesian-optimal consequence of active inference. The brain does not compute an explicit counterfactual; instead, precision-weighted prediction errors resolve the conflict between descending motor predictions and ascending sensory evidence within a single hierarchical pass. Agency experience emerges from successful prediction-error cancellation, not from a separate comparator branch.",
+    "ree_translation": "This is the theoretical-mechanism grounding for SD-029's architectural choice. SD-003 proposed a counterfactual (cf_gap) design: compute E2(., a_actual) and E2(., a_cf) and compare. SD-029 replaces this with a single forward pass on the actual action, treating the residual as the agency signal. Brown 2013 is the formal argument that this is not just pragmatic -- it is the biologically and Bayesian-optimal architecture. The counterfactual branch is unnecessary because precision modulation already does the disambiguation work.",
+    "mapping_caveat": "Brown 2013 argues for precision modulation as the mechanism that makes the single-pass comparator work. SD-029 does not yet specify how precision is modulated on z_harm_s during approach-to-harm events. If V3-EXQ-433a failed because the residual is computed but not precision-weighted, this paper identifies the likely missing ingredient. The paper is theory; its predictions are indirectly tested via force-matching-illusion data from Shergill 2003 and related studies but not by a direct quantitative fit in this paper itself.",
+    "source_context": "Computational / theoretical paper deriving sensory attenuation from active inference / free-energy-minimisation principles. Reviews force-matching-illusion data and schizophrenia delusions of control as test cases."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Peer-reviewed but theoretical; not a primary empirical study. Mapping fidelity is high -- the formal structure of 'single-pass precision-weighted prediction error serves as agency signal' maps cleanly onto SD-029. Transfer risk low because the argument is general-purpose (not tied to a specific species or task)."
+  }
+}

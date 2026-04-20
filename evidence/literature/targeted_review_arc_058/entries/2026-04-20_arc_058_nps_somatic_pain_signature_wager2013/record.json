@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_058",
+  "entry_id": "2026-04-20_arc_058_nps_somatic_pain_signature_wager2013",
+  "timestamp_utc": "2026-04-20T19:42:43Z",
+  "claim_ids_tested": ["ARC-058", "ARC-033"],
+  "source": {
+    "title": "An fMRI-based neurologic signature of physical pain",
+    "authors": ["Tor D Wager", "Lauren Y Atlas", "Martin A Lindquist", "Mathieu Roy", "Choong-Wan Woo", "Ethan Kross"],
+    "year": 2013,
+    "venue": "New England Journal of Medicine",
+    "doi": "10.1056/NEJMoa1204471"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "High source quality (NEJM, N=114, four studies, cross-validated, independent test samples). The paper establishes that somatic thermal pain produces a reproducible distributed pattern that generalises across samples and discriminates physical pain from warmth, anticipation, recall, and social pain at 85-95% accuracy. For ARC-058, this is a moderately weakening piece of evidence: if the forward-model trunk for aversion were shared across modalities, the NPS should not discriminate physical pain from social pain at 85% sensitivity. The mapping caveat is that NPS is a readout of realised pain, not of a forward model's prediction error -- so it constrains but does not fully arbitrate the trunk question. Confidence is weighted down from the source_quality ceiling because the paper does not directly image harm-PE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A fully shared forward-model trunk predicts that physical and social pain should produce near-identical distributed patterns in the higher-order aversive substrate; Wager 2013 shows these are 85% separable in cross-validation, favouring at least partial partitioning.",
+    "The NPS is dominated by thalamus, posterior/anterior insula, S2, ACC, and PAG -- the sensory-discriminative and ascending-modulatory stack. If ARC-058's shared trunk covers only the unsigned-AIC layer and the partitioned layer covers dpIns/S2/thalamus, this paper is compatible; if ARC-058 is read as 'all aversive streams share most of the PE substrate', it is falsified."
+  ],
+  "tags": ["arc-058", "arc-033", "pain", "nps", "wager", "somatic_pain", "signature"],
+  "mapping": {
+    "source_claim_statement": "A distributed fMRI pattern trained on thermal pain generalises to independent samples and discriminates physical pain from nonpainful warmth (93-95%), pain anticipation/recall (>89%), social pain (85% sensitivity, 73% specificity), and is attenuated by remifentanil.",
+    "ree_translation": "ARC-058 claims a modality-independent aversive-PE trunk with stream-specific heads. The NPS demonstrates that the brain's readout of physical pain is SUBSTANTIALLY SEPARABLE from the readout of another aversive stream (social pain). This weakens a strong version of ARC-058 in which the trunk dominates per-stream variance, and supports the ARC-033 view that the streams are mostly independent at the representational level. However, the dissociation is at the realised-pain readout, not at the forward-model PE, so this is constraining rather than conclusive.",
+    "mapping_caveat": "The NPS is a realised-pain decoder, not a prediction-error or forward-model decoder. ARC-058 is specifically about the forward-model trunk (HarmForwardTrunk in the spec), not about realised aversive experience. A paper can show separable realised representations while the upstream forward model is still shared. This is the same distinction Horing & Buchel 2022 makes between unsigned anterior-insula PE (shared) and signed dpIns PE (separable). Social vs physical pain is also a larger modality gap than z_harm_s vs z_harm_a; the within-pain sub-modality question is not addressed.",
+    "source_context": "Human thermal pain fMRI, N=114 across four training studies + two independent test studies, machine-learning multivariate pattern analysis, comparison to pain anticipation, pain recall, social pain, and opioid analgesia."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is very high (NEJM, large multi-study design, cross-validated, opioid control). Mapping fidelity is moderate because the paper indexes realised pain rather than the forward-model trunk ARC-058 posits -- it constrains the architecture but does not directly image the PE substrate. Transfer risk is low within the human thermal pain domain; moderate if extrapolated to the z_harm_a vs z_harm_s sub-modality question the REE claim actually cares about."
+  }
+}

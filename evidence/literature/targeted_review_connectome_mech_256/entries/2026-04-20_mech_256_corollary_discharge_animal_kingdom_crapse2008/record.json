@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_256",
+  "entry_id": "2026-04-20_mech_256_corollary_discharge_animal_kingdom_crapse2008",
+  "timestamp_utc": "2026-04-20T19:40:35Z",
+  "claim_ids_tested": ["MECH-256"],
+  "source": {
+    "title": "Corollary discharge across the animal kingdom.",
+    "authors": ["Crapse TB", "Sommer MA"],
+    "year": 2008,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2457",
+    "url": "https://doi.org/10.1038/nrn2457"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical Nature Reviews Neuroscience synthesis of corollary discharge (CD) circuits across species and modalities: electric fish ELL, cricket auditory, songbird HVC-to-auditory, primate oculomotor (MD thalamus to parietal), somatosensory. The review explicitly argues for a stream-agnostic computational principle: the brain routes efference copies to sensory structures so that the predicted sensory consequence of an action can be subtracted from or compared against the realised input. This is the exact structure MECH-256 asserts, and the paper documents that the structure is evolutionarily ancient and found across disparate anatomical substrates -- precisely the grounding MECH-256 needs for its substrate-agnostic claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review is primarily neurophysiological; it does not quantify attenuation ratios in ways that would directly constrain REE's C2 criterion (partial attenuation 0.3-0.7).",
+    "Most examples involve fast sensorimotor streams (oculomotor, electrosensory, auditory). The mapping to slower, integrative, nociceptive/evaluative streams like z_harm_s is an inferential step.",
+    "The paper predates the modern predictive-processing framework. It describes CD circuits in terms of classical efference copy rather than hierarchical prediction-error minimisation, so mapping to Bayesian latent-variable models requires some translation."
+  ],
+  "tags": ["mech-256", "corollary_discharge", "efference_copy", "forward_model", "cross_species", "review", "stream_agnostic"],
+  "mapping": {
+    "source_claim_statement": "Corollary discharge -- copies of motor commands routed to sensory structures -- is a ubiquitous strategy across the animal kingdom for distinguishing self-generated from externally-caused sensory input. The authors document CD circuits in electric fish (electrosensory ELL), crickets (auditory system gating during singing), songbirds (HVC-to-auditory-cortex projection for self-generated song), and primates (superior colliculus to MD thalamus to parietal cortex for oculomotor updating). A functional taxonomy is proposed classifying CD by the kind of sensory ambiguity it resolves: motor-sensory cancellation, perceptual stability, movement monitoring, and spatial updating.",
+    "ree_translation": "MECH-256 claims that self-attribution on any reafferent latent stream is implemented by a forward-model comparator. Crapse and Sommer provide the biological grounding for the substrate-agnostic aspect of this claim: the same computational principle (efference copy plus comparator) is instantiated across electrosensory, auditory, oculomotor, and somatosensory systems, in anatomically distinct circuits, in species separated by hundreds of millions of years of evolution. This is direct support for the claim that the mechanism is stream-general, which in turn supports the REE architectural commitment that a future E2_harm_s (ARC-033) can implement the same comparator logic on the nociceptive stream that cerebellar circuits implement on motor-proprioceptive streams. The per-stream SD instantiations (SD-029 for z_harm_s, SD-030 for z_self, SD-031 for z_world) are the REE-side realisation of the cross-stream universality Crapse and Sommer document.",
+    "mapping_caveat": "The review covers fast sensorimotor cancellation circuits most thoroughly. Nociceptive corollary discharge is not a primary focus, and the evidence for an efference-copy-driven comparator in pain systems is more sparse and indirect (descending modulation via PAG/RVM is discussed elsewhere in the literature but not centrally here). Accept the cross-stream universality claim; for the nociceptive stream specifically, supplementary evidence is needed.",
+    "source_context": "Nature Reviews Neuroscience (2008). Comprehensive cross-species review by Crapse and Sommer (Pittsburgh). Cited over 1000 times. Establishes CD as a conserved solution to the self-vs-other sensory disambiguation problem."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Source quality very high: NRN, comprehensive, canonical, heavily cited. Mapping fidelity high: the substrate-agnostic, stream-general argument is exactly what MECH-256 needs for its universality claim. Transfer risk moderate: the review covers fast sensorimotor circuits most directly, and the transfer to nociceptive/affective streams (the REE focus for z_harm_s) requires an inferential step. Confidence 0.82 reflects the strong but not perfect fit."
+  }
+}

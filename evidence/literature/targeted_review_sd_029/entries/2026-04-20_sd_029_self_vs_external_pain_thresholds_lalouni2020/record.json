@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_029",
+  "entry_id": "2026-04-20_sd_029_self_vs_external_pain_thresholds_lalouni2020",
+  "timestamp_utc": "2026-04-20T19:43:11Z",
+  "claim_ids_tested": ["SD-029"],
+  "source": {
+    "title": "Predicting pain: differential pain thresholds during self-induced, externally induced, and imagined self-induced pressure pain",
+    "authors": ["Maria Lalouni", "Jens Fust", "Vanda Vadenmark-Lundqvist", "H. Henrik Ehrsson", "Konstantina Kilteni", "Karin B. Jensen"],
+    "year": 2021,
+    "venue": "Pain",
+    "doi": "10.1097/j.pain.0000000000002151"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct transfer of the efference-copy / forward-model logic from tactile to nociceptive input. Partial, graded attenuation is exactly the pattern SD-029 C2 specifies. Mapping_fidelity is high because the stream being attenuated is nociceptive, not tactile. Source_quality is strong (Pain is the flagship journal, pre-registered design, adequate power for within-subject contrasts).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-029's comparator residual were expected to produce binary extinction for self-caused harm, Lalouni's graded attenuation (self threshold ~40% higher than other-induced, with intermediate imagery condition) would falsify that expectation. Partial attenuation is the biologically correct signature.",
+    "The imagery condition attenuated pain even though no actual motor command was executed, suggesting the forward-model reference can be driven by an internally generated action prediction. This is a caveat for SD-029's strict reliance on a_actual as the conditioning signal -- if z_goal / z_intention can substitute in some conditions, the clean a_actual conditioning may be softer than the SD-029 spec implies."
+  ],
+  "tags": ["sd_029", "nociceptive_attenuation", "forward_model", "self_vs_external_pain", "partial_attenuation"],
+  "mapping": {
+    "source_claim_statement": "Self-induced pressure pain thresholds are significantly higher than externally induced thresholds in healthy adults; imagined self-induction produces intermediate attenuation. Efference copies operate on nociceptive processing specifically, not only tactile.",
+    "ree_translation": "This is the direct nociceptive-transfer evidence the SD-011 design doc flagged as missing. Lalouni 2020 establishes that the forward-model / efference-copy architecture SD-029 instantiates does operate on the nociceptive stream in biology. The attenuation is graded (self ~40% higher than other, imagery in between), matching SD-029 C2's 'partial attenuation, not binary gate' framing. The magnitude of attenuation sets a target for how large the residual difference between agent-caused and env-caused harm events should be in V3-EXQ-433a re-analysis.",
+    "mapping_caveat": "Pressure pain on quadriceps in healthy adults via algometer is still not the V3 agent walking into a hazard tile in a gridworld -- the high-level structure transfers, but the timescale, sensorimotor coupling, and event density differ markedly. The imagery-condition attenuation also suggests the biological comparator is more flexible than SD-029's strict a_actual conditioning; this should be noted as an open boundary.",
+    "source_context": "40 healthy adults (18-35 years), pressure algometer applied to quadriceps femoris at 50 kPa/s. Three conditions (self, other, imagery), each tested three times, counterbalanced order. Mixed-effects model with by-subject random intercepts and slopes."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Strong mapping to the nociceptive stream SD-029 targets. Transfer risk lower than Kilteni because modality matches, but some residual risk: healthy-adult static-pressure psychophysics vs V3 dynamic hazard-approach trajectories."
+  }
+}

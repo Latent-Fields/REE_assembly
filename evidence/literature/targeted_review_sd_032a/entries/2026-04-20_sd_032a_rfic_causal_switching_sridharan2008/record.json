@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032a",
+  "entry_id": "2026-04-20_sd_032a_rfic_causal_switching_sridharan2008",
+  "timestamp_utc": "2026-04-20T19:41:12Z",
+  "claim_ids_tested": ["SD-032a"],
+  "source": {
+    "title": "A critical role for the right fronto-insular cortex in switching between central-executive and default-mode networks",
+    "authors": ["Devarajan Sridharan", "Daniel J Levitin", "Vinod Menon"],
+    "year": 2008,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0800005105",
+    "url": "https://doi.org/10.1073/pnas.0800005105"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Foundational fMRI + Granger causality study establishing rFIC (anterior insula) and dACC (salience network) as causal initiators of CEN-DMN switching. Replicated across three tasks (auditory segmentation, visual oddball, resting state). Directly licenses SD-032a's architectural framing of a salience-network coordinator that emits mode-switch triggers. Source quality high (PNAS, large influence on downstream literature); mapping fidelity high but not perfect because biology quantifies switching between two networks whereas SD-032a's operating_mode vector spans four modes (external_task, internal_planning, internal_replay, offline_consolidation).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the SD-032a coordinator produces coherent mode changes WITHOUT an AIC+dACC aggregate signal exceeding a threshold, the biological grounding is weakened -- the switch should be initiated by a salience-aggregate signal, not by individual subdivisions directly.",
+    "If CEN-analogue (task-oriented) and DMN-analogue (default/internal) substrates in ree-v3 can be driven to switch by any single upstream signal without coordinator gating, the Sridharan architecture is violated."
+  ],
+  "tags": ["sd_032a", "salience_network", "anterior_insula", "network_switching", "granger_causality", "mode_coordinator"],
+  "mapping": {
+    "source_claim_statement": "The right fronto-insular cortex, together with dorsal ACC, acts as a causal initiator (via Granger causality) of transitions between the central executive network and the default mode network, across both task and rest conditions.",
+    "ree_translation": "The AIC+dACC salience aggregate is the biological analogue of SD-032a's coordinator: it reads multimodal salience signals and emits the mode_switch_trigger that reconfigures downstream networks. In ree-v3 this maps to SalienceCoordinator aggregating dACC PE bundle + drive_level + offline-state into operating_mode and firing the MECH-259 trigger.",
+    "mapping_caveat": "Biology: 3 networks (SN, CEN, DMN) with pairwise switching. ree-v3: 4 discrete modes with soft-probability vector. The discrete-mode falsification signature (atomic broadcast at threshold crossing) is an ree-v3 design choice not directly tested in Sridharan; biological switching is graded in continuous BOLD signal. The Granger evidence licenses the ARCHITECTURAL role of AIC as causal initiator, not the specific four-mode discretisation.",
+    "source_context": "Healthy adult humans; 3T fMRI; three tasks (auditory event segmentation, visual oddball, resting state); Granger causality analysis + chronometric techniques; unilateral (right) fronto-insular emphasis."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (PNAS, highly cited, replicated widely including by Goulden 2014). Mapping fidelity moderately high -- Sridharan directly supports the coordinator architecture but the ree-v3 four-mode discretisation is an architectural extension. Transfer risk low-moderate: human fMRI to REE substrate is a plausible architectural mapping, though biological SN operates on BOLD timescales (seconds) while ree-v3 coordinator ticks per action. Confidence weighted toward mapping_fidelity since this is an architectural claim."
+  }
+}

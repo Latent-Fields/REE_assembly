@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032d",
+  "entry_id": "2026-04-20_sd_032d_mind_blank_attention_lapse_zaky2024",
+  "timestamp_utc": "2026-04-20T19:42:15Z",
+  "claim_ids_tested": ["SD-032d"],
+  "source": {
+    "title": "Conscious but not thinking -- Mind-blanks during visuomotor tracking: An fMRI study of endogenous attention lapses",
+    "authors": ["Mohamed H. Zaky", "Reza Shoorangiz", "Govinda R. Poudel", "Le Yang", "Carrie R. H. Innes", "Richard D. Jones"],
+    "year": 2024,
+    "venue": "Human Brain Mapping",
+    "doi": "10.1002/hbm.26781",
+    "pmid": "39023172"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Mixed evidence because the paper's finding refines rather than cleanly supports the straightforward picture of PCC as a mind-wandering biomarker. Short attentional lapses (mean 1.7 s) during a continuous task did NOT show the expected PCC/DMN activity increase; instead they showed increased dACC/SMA activity consistent with a recovery-of-responsiveness process, and decoupling of external attention networks. Important for SD-032d because it argues the PCC-stability / mind-wandering linkage is more specific than the coarse 'PCC rises when attention lapses' reading would suggest. Confidence moderate: small n (17 subjects with enough lapses), novel finding requiring replication.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a ree-v3 PCC-analog is simply a 'mind-wandering detector' that rises during any attentional lapse, the Zaky 2024 finding predicts this will mistakenly flag mind-blanks as mind-wandering. SD-032d's stability scalar is tied to task-success EMA and offline-recency, not to a raw lapse signal -- which may be the correct architectural choice, but needs the distinction made explicit.",
+    "If V3-EXQ-447 produces pcc_stability behaviour that does not distinguish sustained inattention from brief mind-blanks, the architecture under-specifies the functional distinction Zaky 2024 establishes. A future refinement might add a 'lapse type' classifier or a faster-timescale component to PCCAnalog."
+  ],
+  "tags": ["sd_032d", "pcc", "dmn", "mind_wandering", "attention_lapse", "fmri"],
+  "mapping": {
+    "source_claim_statement": "During a continuous 2-D visuomotor tracking task, behaviourally identified endogenous attentional lapses (mean duration 1.7 s, eyes open, not microsleeps) did not show the expected increase in posterior cingulate / DMN activity that has been associated with mind-wandering. Instead, an increase in BOLD activity was seen in overlapping dorsal anterior cingulate and SMA, interpreted as a recovery-of-responsiveness process. Functional connectivity showed decoupling of external attention networks and reduced FC between DMN and working-memory network. The authors conclude these brief lapses are mind-blanks (involuntary lapses of thought) rather than mind-wandering.",
+    "ree_translation": "SD-032d's PCC-analog stability scalar is a posterior coordinator modulator, not a raw lapse detector. Zaky 2024 is useful boundary evidence: not all attention failures look like DMN-activation mind-wandering. A PCC-analog that is simply elevated during any off-task state would conflate mind-blanks with mind-wandering. The ree-v3 design (pcc_stability driven by success EMA + fatigue + offline-recency) is closer to a long-timescale engagement index than to a moment-to-moment lapse signal, which is probably the right specification -- short lapses should not drive the stability scalar, because they are recovery events, not engagement failures. This is evidence that the slow-timescale design of PCCAnalog is defensible. It also predicts that ree-v3 will need a separate faster-timescale substrate if moment-to-moment mind-blank-like events turn out to matter for coordinator behaviour.",
+    "mapping_caveat": "Zaky 2024 is small-n (17 subjects with enough lapses). The finding that short lapses are mind-blanks rather than mind-wandering is novel and needs replication. The REE translation -- that pcc_stability should be a slow engagement index rather than a fast lapse detector -- is consistent with the paper but not directly licensed by it; the paper is about phenomenological classification of lapses, not about what a PCC-analog should compute. The dACC/SMA recovery finding intersects with SD-032b (dACC-analog adaptive control), raising a question about whether recovery-of-responsiveness belongs computationally in the dACC-analog rather than the PCC-analog -- an issue for the SD-032 cluster not just for SD-032d alone.",
+    "source_context": "fMRI in 17 non-sleep-deprived healthy adults performing a 2-D continuous visuomotor tracking task; attentional lapses identified by expert visual inspection of tracking and eye-video (85 lapses total); voxel-wise GLM + ROI-based HRF analysis + FC analysis across seven key networks."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Human Brain Mapping, reasonable methods but small-n for a novel distinction; needs replication. Mapping fidelity moderate because the paper refines rather than directly supports the PCC-stability architecture -- it rules out a specific simple model (PCC = lapse detector) but does not license the specific ree-v3 computation. Transfer risk moderate-to-high because the mind-blank/mind-wandering distinction may be human-specific and ree-v3 environments do not produce anything that cleanly maps onto either category yet."
+  }
+}

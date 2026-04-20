@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_058",
+  "entry_id": "2026-04-20_arc_058_siips1_cerebral_beyond_nociception_woo2017",
+  "timestamp_utc": "2026-04-20T19:42:43Z",
+  "claim_ids_tested": ["ARC-058", "ARC-033"],
+  "source": {
+    "title": "Quantifying cerebral contributions to pain beyond nociception",
+    "authors": ["Choong-Wan Woo", "Liane Schmidt", "Anjali Krishnan", "Marieke Jepma", "Mathieu Roy", "Martin A Lindquist", "Lauren Y Atlas", "Tor D Wager"],
+    "year": 2017,
+    "venue": "Nature Communications",
+    "doi": "10.1038/ncomms14211"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Strong source (Nat Comm, N=137 training + 46 independent test, cross-validated, mediation of psychological manipulations). The SIIPS1 is explicitly orthogonalised against nociceptive input -- it captures pain-relevant variance that the NPS misses, loading on NAcc, lateral PFC, parahippocampal cortex. This is direct evidence that affective/contextual pain and sensory-discriminative pain have separable cerebral contributions, which is the empirical structure that ARC-058 claims -- a shared upstream surprise computation plus stream-specific signed readouts. Supports the partitioned-head side of ARC-058 (which is where the z_harm_s vs z_harm_a split actually lives in the REE spec).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pain were fully captured by a single shared forward-model trunk with no per-stream heads, the SIIPS1 should be near-zero after controlling for nociceptive input. It is not: SIIPS1 explains trial-by-trial pain variance that NPS misses and mediates psychological manipulations of expectation and perceived control.",
+    "If pain were fully partitioned into two independent streams with no shared substrate, we would not expect the specific partial overlap that NPS + SIIPS1 show in anterior insula. The partial overlap is compatible with ARC-058's trunk-plus-heads structure, not with pure ARC-033 independence."
+  ],
+  "tags": ["arc-058", "arc-033", "pain", "siips1", "woo", "affective_pain", "prefrontal", "nucleus_accumbens"],
+  "mapping": {
+    "source_claim_statement": "A multivariate pattern signature (SIIPS1) trained to predict trial-by-trial pain variance NOT captured by a nociceptive signature (NPS) generalises across samples and mediates the pain-modulating effects of expectation and perceived-control manipulations. SIIPS1 loads on NAcc, lateral PFC, parahippocampal cortex, and other regions largely non-overlapping with NPS in posterior insula and S2.",
+    "ree_translation": "SIIPS1 is the closest empirical analogue to z_harm_a in REE: the affective/contextual component of pain that is separable from the sensory-discriminative nociceptive readout. The fact that a cross-validated pattern exists AT ALL for this component argues for a dedicated per-stream head in ARC-058 (or an independent forward model in ARC-033). The partial AIC overlap between NPS and SIIPS1 is the biological signature of ARC-058's shared trunk + stream-specific heads architecture. Under pure ARC-033, SIIPS1 should overlap MINIMALLY with NPS even in AIC; under ARC-058, a partial AIC overlap is expected and observed. The direction for ARC-058 is therefore supports.",
+    "mapping_caveat": "SIIPS1 is an affective/contextual pain signature but not EXCLUSIVELY a forward-model PE readout -- it captures expectation and perceived-control contributions, which is broader than z_harm_a's spec. The paper does not compute PE directly; it computes the residual after orthogonalising against NPS. Inferences about shared-trunk architecture are made by spatial comparison of signature maps, not by direct forward-model fitting.",
+    "source_context": "Human fMRI, four training studies (N=137), two independent test samples (N=46), thermal and pressure pain, machine-learning multivariate pattern analysis with explicit orthogonalisation against nociceptive input."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality. Mapping fidelity is good because SIIPS1 is the closest existing human-fMRI analogue of the partitioned affective-pain head ARC-058 posits. Transfer risk is moderate -- SIIPS1 captures expectation and perceived-control variance, which is broader than z_harm_a proper; the paper's decoder is trained against realised pain ratings, not against an explicit forward-model PE."
+  }
+}

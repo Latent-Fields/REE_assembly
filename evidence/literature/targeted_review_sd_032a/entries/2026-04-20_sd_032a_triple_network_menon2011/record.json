@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032a",
+  "entry_id": "2026-04-20_sd_032a_triple_network_menon2011",
+  "timestamp_utc": "2026-04-20T19:41:12Z",
+  "claim_ids_tested": ["SD-032a"],
+  "source": {
+    "title": "Large-scale brain networks and psychopathology: a unifying triple network model",
+    "authors": ["Vinod Menon"],
+    "year": 2011,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2011.08.003",
+    "url": "https://doi.org/10.1016/j.tics.2011.08.003"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Authoritative review formalising the triple-network model (SN, CEN, DMN) as the organising frame for large-scale brain-network dysfunction across schizophrenia, depression, anxiety, dementia, autism. Synthesises evidence that aberrant access, engagement, and disengagement of these networks is a transdiagnostic signature and that the salience network's coordinator role is load-bearing. Strong source quality (Menon is the foundational theorist; TiCS review). Mapping fidelity moderate-high: the triple-network frame is explicitly the architectural backbone SD-032a adopts. Confidence held below 0.85 because this is a conceptual synthesis (not primary data) and because the psychopathological framing is clinical, not directly about REE's four-mode discretisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-032a ablation in ree-v3 produces no coherent failure of mode switching -- i.e. the coordinator is not load-bearing -- the Menon triple-network frame is not instantiated.",
+    "If ree-v3 can operate coherently without a distinct salience-aggregate representation separate from the dACC PE bundle (i.e. collapsing SN into dACC alone works), the triple-network architectural principle is violated.",
+    "If failure modes in ree-v3 do not cluster around mode-switching pathology (stuck-in-mode, premature-switch, mode-confusion) but instead around within-mode computation errors, the Menon 2011 framing may not translate to the substrate."
+  ],
+  "tags": ["sd_032a", "salience_network", "triple_network", "psychopathology", "menon", "review"],
+  "mapping": {
+    "source_claim_statement": "Across schizophrenia, depression, anxiety, dementia, and autism, a common feature is aberrant access, engagement, or disengagement of three large-scale networks -- salience (SN), central executive (CEN), and default mode (DMN) -- with the SN playing a coordinator role in saliency mapping and attentional control. Psychopathology maps onto failures of this triple-network architecture.",
+    "ree_translation": "The triple-network model provides the architectural backbone for SD-032a: SN as coordinator, CEN as external-task engagement, DMN as internal / default-state engagement. ree-v3's operating_mode vector {external_task, internal_planning, internal_replay, offline_consolidation} extends this frame by splitting 'internal' into planning, replay, and consolidation modes. The core claim -- that the SN coordinates mode transitions and that its failure produces transdiagnostic dysfunction -- is the biological warrant for making SalienceCoordinator load-bearing in ree-v3.",
+    "mapping_caveat": "This is a theoretical / review synthesis, not a primary empirical study. The triple-network psychopathology frame is clinical, organised around human disorders; mapping it onto a computational substrate requires architectural translation rather than mechanistic transfer. The four-mode extension in ree-v3 is NOT licensed by Menon 2011 -- it requires additional grounding (specifically for internal_replay and offline_consolidation from the hippocampal/sleep literature already pulled elsewhere).",
+    "source_context": "Theoretical review synthesising fMRI, resting-state, and clinical imaging literature circa 2011; human clinical populations; psychopathological framing; no new empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Menon is the canonical theorist; TiCS review is authoritative). Mapping fidelity moderate-high because the triple-network architecture is the direct biological parent of SD-032a's design. Transfer risk 0.35 because clinical psychopathology does not translate cleanly onto substrate-level failure signatures -- ree-v3 mode failures are operationally defined, not psychiatrically defined."
+  }
+}

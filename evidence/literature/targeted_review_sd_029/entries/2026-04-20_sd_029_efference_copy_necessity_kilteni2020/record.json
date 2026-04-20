@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_029",
+  "entry_id": "2026-04-20_sd_029_efference_copy_necessity_kilteni2020",
+  "timestamp_utc": "2026-04-20T19:43:11Z",
+  "claim_ids_tested": ["SD-029"],
+  "source": {
+    "title": "Efference Copy Is Necessary for the Attenuation of Self-Generated Touch",
+    "authors": ["Konstantina Kilteni", "Patrick Engeler", "H. Henrik Ehrsson"],
+    "year": 2020,
+    "venue": "iScience",
+    "doi": "10.1016/j.isci.2020.100843"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong causal design (active vs passive movement dissociates efference copy from tactile contact prediction). Directly supports the single-pass forward-model architecture underlying SD-029: the reference against which reafference is compared is generated from a copy of the actual motor command, not a counterfactual branch. Mapping to nociception is indirect (tactile, not nociceptive), hence the held-back confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Attenuation was absent during passive movement even though the tactile contact and its timing were equally predictable -- prediction alone is insufficient, a copy of the motor command is required.",
+    "Attenuation magnitude in the active condition was modest (~10%, PSE shift ~0.21 N), not binary extinction -- consistent with SD-029's C2 specifying partial rather than full attenuation."
+  ],
+  "tags": ["sd_029", "efference_copy", "forward_model", "sensory_attenuation", "single_pass_comparator"],
+  "mapping": {
+    "source_claim_statement": "Sensory attenuation of self-generated touch requires an efference copy of the motor command; predictability of tactile input during passive movement is insufficient to produce attenuation.",
+    "ree_translation": "The SD-029 comparator residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual) relies on the action token a_actual flowing into E2_harm_s. Kilteni 2020 is the cleanest existing test that a copy of the actual motor command -- not merely a prediction of the sensory consequence -- is what drives biological attenuation. This supports SD-029's architectural choice to use E2_harm_s(., a_actual) as the reference, rather than a separate predictive channel.",
+    "mapping_caveat": "Modality gap: Kilteni tested self-generated tactile force on the finger. SD-029 operates on a nociceptive reafferent stream z_harm_s. The efference-copy logic is modality-agnostic in principle (PAG/RVM descending modulation has analogous structure) but direct nociceptive-stream evidence is Lalouni 2020 and Lalouni 2025, not Kilteni. Read Kilteni as evidence for the *mechanism* SD-029 instantiates, not for the nociceptive transfer.",
+    "source_context": "40 healthy adults, force-discrimination task on left index finger. Active condition: participant voluntarily pressed the sensor; test tap triggered on opposite finger. Passive condition: finger fell freely onto sensor; identical tactile contact, no motor command. No-movement control: externally-triggered tap."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Peer-reviewed Cell-press journal, pre-registered OSF protocol, Bayesian analysis with null-result quantification (BF=0.20 for passive-vs-control). Mapping_fidelity docked because tactile is not nociceptive. Transfer risk moderate -- efference-copy logic is mechanism-general but the specific PAG/RVM/S1-S2 routing for nociception is not what Kilteni measured."
+  }
+}

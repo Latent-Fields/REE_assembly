@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_256",
+  "entry_id": "2026-04-20_mech_256_visual_reafference_attenuation_benazet2016",
+  "timestamp_utc": "2026-04-20T19:40:35Z",
+  "claim_ids_tested": ["MECH-256"],
+  "source": {
+    "title": "Attenuation of visual reafferent signals in the parietal cortex during voluntary movement.",
+    "authors": ["Benazet M", "Thenault F", "Whittingstall K", "Bernier PM"],
+    "year": 2016,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.00231.2016",
+    "url": "https://doi.org/10.1152/jn.00231.2016"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Primary EEG study demonstrating that visual reafferent signals from the moving hand are attenuated in parietal cortex when predicted (real-time feedback) versus when mispredicted (delayed feedback). Extends the forward-model-comparator framework from somatosensory and auditory modalities to vision, strengthening the cross-modal universality case. Sample sizes are modest and the effect is at the level of the N1 ERP component rather than a behavioural agency measure, but the methodological design (same stimulus, same action, only prediction quality varies) isolates the forward-model contribution cleanly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sample is small by modern standards; the attenuation effect should be considered demonstrative rather than quantitative.",
+    "Attenuation is measured at the level of visual-evoked potential amplitude, not explicit agency attribution. The inferential step from 'N1 attenuation' to 'agency computed by residual' is standard but not mechanistically closed.",
+    "The 150 ms delay used to break prediction is long and could engage other processes (attention shift, surprise) beyond pure prediction-error signalling. A parametric delay manipulation would strengthen the mapping."
+  ],
+  "tags": ["mech-256", "visual_reafference", "forward_model", "parietal_cortex", "eeg", "n1_attenuation", "cross_modal"],
+  "mapping": {
+    "source_claim_statement": "During voluntary reaching, the N1 component of the visual evoked potential elicited by seeing the moving hand is smaller in amplitude when visual feedback is provided in real time than when it is provided with a 150 ms delay. The interpretation is that the forward model predicts the expected visual consequence of the reach, and when the prediction matches the input the cortical response is attenuated. When the prediction is violated by the delay, attenuation fails and the N1 response recovers.",
+    "ree_translation": "MECH-256 asserts that the residual on any reafferent latent stream -- z_x_observed minus E2_x(z_x_{t-1}, a_actual) -- is the agency signal. Benazet et al. provide direct electrophysiological evidence that the same residual mechanism operates on the visual reafferent stream during reaching, not just on somatosensory or auditory streams. This broadens the biological base supporting MECH-256's substrate-agnostic claim. For REE, it is further evidence that ARC-033 (E2_harm_s) implements a general principle rather than a specialised mechanism -- the visual parietal forward model, the cerebellar motor forward model, the songbird HVC-auditory projection, and the prospective E2_harm_s are all instances of the same comparator architecture.",
+    "mapping_caveat": "The paper measures cortical response amplitude, not attribution. That attenuation of evoked response corresponds to agency attribution is a theoretical commitment, not a directly measured link. For REE the mapping is: smaller N1 corresponds to smaller residual corresponds to self-attribution. This chain is standard in the predictive-processing literature but requires two inferential steps.",
+    "source_context": "Journal of Neurophysiology (2016). EEG study from Universite de Sherbrooke. Participants performed reaching movements while viewing real-time or 150-ms-delayed visual feedback of the hand. The comparison isolates the prediction-match variable with the motor command and stimulus held constant."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Source quality moderate: well-designed EEG study in a solid journal but with modest sample and a single delay value. Mapping fidelity moderate because the measure is evoked response amplitude, not direct agency attribution -- the link relies on predictive-processing theory. Transfer risk notable: extrapolating from fast visual reafference during hand reaching to slow nociceptive attribution in a grid-world agent is a multi-step transfer. Confidence 0.7 reflects a paper that adds breadth to the cross-modal universality case without being quantitatively decisive."
+  }
+}

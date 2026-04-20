@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_256",
+  "entry_id": "2026-04-20_mech_256_tactile_attenuation_replication_job2023",
+  "timestamp_utc": "2026-04-20T19:40:35Z",
+  "claim_ids_tested": ["MECH-256", "SD-029"],
+  "source": {
+    "title": "Action does not enhance but attenuates predicted touch.",
+    "authors": ["Job X", "Kilteni K"],
+    "year": 2023,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.90912",
+    "url": "https://doi.org/10.7554/eLife.90912"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Three pre-registered psychophysical experiments from the Kilteni lab (Karolinska) that adjudicate between competing attenuation and enhancement accounts of sensorimotor prediction. The paper robustly confirms that self-generated touch is attenuated relative to externally-generated touch, resolves a recent literature dispute about whether the effect is real, and does so under pre-registration with improved experimental controls compared to Blakemore 1998. This is the strongest recent evidence directly relevant to MECH-256's central prediction and to the C2 criterion of SD-029 (partial attenuation, not binary gating).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paradigm is somatosensory (tactile pressure), not nociceptive. The mapping from tactile attenuation to harm-stream attenuation still requires the assumption that the forward model is modality-general across the somatosensory-nociceptive boundary.",
+    "The experiments measure perceptual intensity judgments, not explicit agency attributions. Attenuation of felt intensity is necessary for MECH-256's residual mechanism but is not the same measurement as 'did I cause this'.",
+    "The attenuation effect, while robust, varies substantially between individuals. A population-mean attenuation ratio may not predict a specific agent's behaviour reliably; REE validation should expect variance and not treat a single pass/fail threshold as definitive."
+  ],
+  "tags": ["mech-256", "sd-029", "tactile_attenuation", "forward_model", "psychophysics", "pre_registered", "replication"],
+  "mapping": {
+    "source_claim_statement": "Across three pre-registered experiments, self-generated touch on the passive hand -- when actively produced by the other hand -- is perceived as less intense than physically identical touch produced by an external source. The effect survives manipulation of whether the active hand simultaneously contacts the passive hand, ruling out the alternative hypothesis that previous attenuation findings were artefacts of double tactile stimulation. Previous reports of perceptual enhancement by action are attributed to the reference condition used and do not replicate under the authors' improved design. The conclusion is that action attenuates, not enhances, predicted touch.",
+    "ree_translation": "MECH-256 predicts that a well-fit forward model produces smaller residuals for self-caused than externally-caused events on the reafferent latent stream. SD-029 operationalises this for z_harm_s as criterion C2: self-caused harm events should show partial attenuation relative to externally-caused harm events. Job and Kilteni 2023 supply the strongest modern, pre-registered, replicable behavioural evidence that this effect is real, is partial (the attenuated stimulus is still perceived, not cancelled), and is a stable feature of human sensorimotor processing. V3-EXQ-433a's C2 failure (attenuation_ratio 0.95-1.14) cannot be rescued by doubting the biological prediction; the biological prediction is well-validated. The failure must be diagnosed in the REE substrate: either E2_harm_s is not a well-fit forward model on the reafferent harm stream, or the 'externally-caused' condition in V3-EXQ-433a is not a clean comparator to the self-caused condition, or the z_harm_s stream is not actually reafferent in the relevant sense. Each of these is a concrete implementation target.",
+    "mapping_caveat": "The paper quantifies tactile-pressure attenuation, not nociceptive attenuation. The mapping to z_harm_s assumes the forward model is modality-general across somatosensation and nociception, which is biologically plausible but not directly shown. REE's C2 criterion should treat the Shergill 0.3-0.7 range and the Job-Kilteni effect magnitudes as a biological calibration zone rather than a hard target -- the partial attenuation is robust, the exact ratio is context-dependent.",
+    "source_context": "eLife (2023). Three pre-registered experiments from Karolinska (Kilteni lab, Stockholm; also Donders, Nijmegen). The paper settles a technical dispute in the sensory-attenuation literature (attenuation vs enhancement accounts) by using improved experimental controls. Published as open-access Reviewed Preprint, recommended for open citation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: pre-registered, three experiments, eLife, careful control conditions, directly addresses a live dispute. Mapping fidelity high: the paper tests the core MECH-256 prediction (self vs external attenuation) more directly than almost any other recent paper. Transfer risk moderate: tactile-to-nociceptive is still a domain transfer even though it is within somatosensation broadly. Confidence 0.82 reflects a very strong entry, capped slightly below the ceiling because the nociceptive-stream transfer is still inferential."
+  }
+}

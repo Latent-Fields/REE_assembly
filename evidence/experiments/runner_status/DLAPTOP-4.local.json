@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 38928,
   "runner_started_at": "2026-04-20T14:39:30.194149+00:00",
-  "last_updated": "2026-04-20T16:57:30.249849+00:00",
+  "last_updated": "2026-04-20T20:00:14.629210+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-325d",
@@ -13,21 +13,21 @@
     "script": "experiments/v3_exq_325d_sd032c_aic_descending_modulation.py",
     "started_at": "2026-04-20T16:00:57.066967+00:00",
     "progress": {
-      "run_label": "Seed 42 / AIC_DRIVE_ABLATED",
-      "runs_done": 1,
+      "run_label": "Seed 44 / AIC_ON",
+      "runs_done": 8,
       "runs_total": 12,
-      "episodes_done": 150,
+      "episodes_done": 25,
       "episodes_total": 150,
-      "overall_pct": 16.7
+      "overall_pct": 68.1
     },
-    "seconds_elapsed": 3393,
-    "seconds_remaining": 18375,
+    "seconds_elapsed": 14357,
+    "seconds_remaining": 6616,
     "recent_lines": [
-      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 75/150",
-      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 100/150",
-      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 125/150",
-      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 150/150",
-      "AIC_DRIVE_ABLATED: rv_after_train=0.0000 committed_flag=True"
+      "CONTROL: z_s_ratio=1.0000 z_a_ratio=1.0000 committed=6000 aic_sal_mean=0.0000",
+      "verdict: PASS",
+      "-> seed 43: FAIL C1=False C2=True C3=True C4=False C5=True",
+      "Seed 44 Condition AIC_ON",
+      "[train] seed=44 cond=AIC_ON ep 25/150"
     ],
     "ree_version": "v3"
   },

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032a",
+  "entry_id": "2026-04-20_sd_032a_aic_gatekeeper_executive_molnarszakacs2022",
+  "timestamp_utc": "2026-04-20T19:41:12Z",
+  "claim_ids_tested": ["SD-032a"],
+  "source": {
+    "title": "Anterior insula as a gatekeeper of executive control",
+    "authors": ["Istvan Molnar-Szakacs", "Lucina Q Uddin"],
+    "year": 2022,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2022.104736",
+    "url": "https://doi.org/10.1016/j.neubiorev.2022.104736"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Recent (2022) review that advances the Uddin-line argument by explicitly framing anterior insula as a gatekeeper of executive control. Emphasises primacy-of-action (AIC fires before downstream executive systems) and effective connectivity evidence for AIC's coordinating role. Directly extends Sridharan 2008's causal finding with more recent connectivity data. Source quality high (NBR; recent). Mapping fidelity moderate-high: 'gatekeeper to executive control' is a strong biological analogue of SD-032a's trigger-emitting role. Confidence held at 0.77 because this is a synthesis / proposal paper (authors explicitly call it a 'novel hypothesis') rather than a primary empirical study, and because 'gatekeeper' is a framing that is still under active debate in the field.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-032a in ree-v3 fires the mode_switch_trigger AFTER downstream PFC subdivisions have already reconfigured, the 'primacy of action' architectural principle is violated -- the coordinator should be upstream, not downstream.",
+    "If removing SD-032a does not cause executive-control-analogue failures (stuck in one mode, inability to engage internal planning on demand), the gatekeeper framing is not instantiated."
+  ],
+  "tags": ["sd_032a", "anterior_insula", "gatekeeper", "executive_control", "primacy_of_action", "review"],
+  "mapping": {
+    "source_claim_statement": "The anterior insular cortex acts as a gatekeeper to executive control by virtue of primacy of action and effective connectivity. Its position in the midcingulo-insular salience network and its extensive connectivity allow it to orchestrate activity in the central executive and default mode networks, triaging internal and external multisensory inputs to initiate higher-order control functions.",
+    "ree_translation": "Anterior insula's gatekeeper role maps to SD-032a's architectural position: the SalienceCoordinator is upstream of downstream write gates (MECH-261 write-gating family) and fires the mode_switch_trigger BEFORE subdivisions reconfigure. 'Primacy of action' corresponds to the coordinator ticking on every action selection AFTER the dACC bundle is built but BEFORE E3 selects the action -- the coordinator gets the first look at aggregated signals and decides whether to trigger a mode change.",
+    "mapping_caveat": "The paper explicitly frames its thesis as a 'novel hypothesis' -- the gatekeeper framing is not yet field-wide consensus, though it builds on two decades of SN-coordinator evidence. The 'primacy of action' claim in biology refers to onset latency in BOLD signal; in ree-v3 it maps to ordering within a single action-selection tick. These are analogous but not identical: biological primacy is a temporal observation across a noisy signal, whereas ree-v3 primacy is a hard-coded ordering. Also, Molnar-Szakacs and Uddin emphasise multimodal multisensory integration as the AIC's job -- ree-v3 does NOT yet have multimodal sensory input (visual + auditory + somatosensory), so this aspect of the biological mapping is aspirational.",
+    "source_context": "Theoretical review, Neuroscience and Biobehavioral Reviews; synthesises effective-connectivity evidence, microanatomy, and large-scale network function; human focus; proposes a novel hypothesis rather than reporting new empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Solid source quality (NBR; recent review from established SN theorists). Mapping fidelity moderate-high: the gatekeeper / primacy-of-action framing is a good analogue for SD-032a's architectural position, though the 'multimodal sensory integration' aspect is aspirational for ree-v3 which is still unisensory. Transfer risk slightly elevated because the paper is a proposal / hypothesis paper -- the field has not fully settled on 'gatekeeper' framing versus alternative 'parallel-network-coordination' framings."
+  }
+}
