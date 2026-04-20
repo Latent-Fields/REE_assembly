@@ -1,0 +1,117 @@
+{
+  "run_id": "v3_exq_446_sd032a_salience_coordinator_20260420T013457Z_v3",
+  "experiment_type": "v3_exq_446_sd032a_salience_coordinator",
+  "claim_ids": [
+    "SD-032a",
+    "MECH-259",
+    "MECH-261"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260420T013457Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-032a": "supports",
+    "MECH-259": "supports",
+    "MECH-261": "supports"
+  },
+  "pass_criteria_summary": {
+    "c1_operating_mode_populates": {
+      "min_mean_mode_entropy": 1.2683014942100075,
+      "threshold": 0.05,
+      "pass": true,
+      "desc": "mean operating_mode entropy > 0.05 nats per seed in COORD_ON"
+    },
+    "c2_mech259_trigger_fires_on_injection": {
+      "salience_aggregate": 10.0,
+      "effective_threshold": 1.0,
+      "soft_argmax_after_injection": "internal_planning",
+      "pass": true,
+      "desc": "synthetic pe=10.0 bundle produces mode_switch_trigger=True"
+    },
+    "c3_mech261_gate_range": {
+      "initial_gate_count": 8,
+      "initial_gates_in_range": true,
+      "post_gates_in_range": true,
+      "pass": true,
+      "desc": "all 8 default write-gate values in [0, 1]"
+    },
+    "c4_v4_extensibility": {
+      "sd_033e_gate_value": 0.4986829139389271,
+      "pass": true,
+      "desc": "register_target accepts new mode + target without schema change"
+    },
+    "c5_backward_compat": {
+      "max_entropy_delta": 0.0,
+      "threshold": 0.2,
+      "pass": true,
+      "desc": "COORD_OFF and COORD_ON action-class entropies within 0.2 nats"
+    }
+  },
+  "per_seed_results": [
+    {
+      "condition": "COORD_OFF",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "n_actions": 6,
+      "mean_mode_entropy": 0.0,
+      "trigger_count_natural": 0,
+      "coord_n_ticks": 0,
+      "coord_n_switches": 0
+    },
+    {
+      "condition": "COORD_ON",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "n_actions": 6,
+      "mean_mode_entropy": 1.2683014942100075,
+      "trigger_count_natural": 0,
+      "coord_n_ticks": 1,
+      "coord_n_switches": 0
+    },
+    {
+      "condition": "COORD_OFF",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "n_actions": 6,
+      "mean_mode_entropy": 0.0,
+      "trigger_count_natural": 0,
+      "coord_n_ticks": 0,
+      "coord_n_switches": 0
+    },
+    {
+      "condition": "COORD_ON",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "n_actions": 6,
+      "mean_mode_entropy": 1.2683014942100075,
+      "trigger_count_natural": 0,
+      "coord_n_ticks": 1,
+      "coord_n_switches": 0
+    }
+  ],
+  "unit_checks": {
+    "trigger_fired_on_injection": true,
+    "soft_argmax_after_injection": "internal_planning",
+    "salience_aggregate": 10.0,
+    "effective_threshold": 1.0,
+    "initial_gate_count": 8,
+    "initial_gates_in_range": true,
+    "post_gates_in_range": true,
+    "v4_register_target_ok": true,
+    "v4_sd_033e_gate_value": 0.4986829139389271
+  },
+  "config": {
+    "conditions": [
+      "COORD_OFF",
+      "COORD_ON"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 80
+  }
+}
