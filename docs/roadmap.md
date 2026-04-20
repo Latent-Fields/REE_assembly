@@ -14,6 +14,94 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-20)
+
+- **SD-032 cingulate integration cluster fully IMPLEMENTED 2026-04-19 (a/b/c/d/e).**
+  In order of landing: SD-032b dACC/aMCC-analog adaptive control (Croxson/Shenhav/Kolling
+  bundle -> DACCtoE3Adapter shim -> E3.select score_bias; ARC-033 vs ARC-058 shared-trunk
+  as constructor-switch alternative), then SD-032a salience-network coordinator (soft
+  operating_mode vector + MECH-259 Schmitt-trigger switch threshold + MECH-261 dict-keyed
+  write-gate registry, 8 default targets, V4 register_target() extensibility), then
+  SD-032c AIC-analog (drive- and mode-aware harm_s_gain subsumes SD-021 descending
+  modulation; EXQ-325a bit-identical DESCENDING==CONTROL signature resolved), then
+  SD-032d PCC-analog metastability scalar (modulates MECH-259 effective_threshold by
+  drive_level / success EMA / time-since-offline; single integration point for MECH-092
+  within-session quiescence and INV-049 cross-session sleep via enter_offline_mode), then
+  SD-032e pACC-analog slow-EMA autonomic coupling (drive_bias write-back from z_harm_a,
+  MECH-094 hypothesis_tag gated, alpha=0.002 default ~347-step half-life inside Guo 2018
+  ACC mGluR5 LTP envelope). All modules under ree_core/cingulate/, backward-compatible
+  master switches default False.
+- **MECH-094 promoted candidate -> provisional (governance-2026-04-19T21).** First
+  concrete write-gate wiring established by V3-EXQ-448 pACC hypothesis_tag skip PASS;
+  12 supports / 0 opposing, confidence 0.856. Feeds the MECH-261 mode-conditioned
+  generalisation.
+- **SD-033 PFC subdivision cluster registered 2026-04-19.** SD-033 parent + SD-033a-e
+  (lateral-PFC / premotor-analog / vmPFC-analog / OFC-analog / frontopolar parallel-goal
+  deliberation) + MECH-262/263 + MECH-264/265 (frontopolar counterfactual-value and
+  relative-importance monitoring). V3-pending; primary write target for MECH-261
+  operating-mode-conditioned writes. Prong D frontopolar lit-pull (6 entries, mean conf
+  0.81, Boorman 2009 / Mansouri 2017 load-bearing) broadened SD-033e from Koechlin
+  branching to parallel-goal deliberation; reserved V4 operating-mode renamed
+  deliberative_branching -> parallel_goal_deliberation (zero schema cost — mode names
+  are dict keys). Design docs: `docs/architecture/sd_032_cingulate_integration_substrate.md`,
+  `docs/architecture/sd_033_pfc_subdivision_architecture.md`.
+- **Regression suite PRs 1-3 landed (ree-v3).** Three-layer architecture:
+  (1) preflight (tests/preflight/, runner imports + queue integrity + machine boot; wired
+  into experiment_runner.py startup with `--skip-preflight` escape hatch);
+  (2) contracts (tests/contracts/ with C1 agent boot, C2 8-flag boot matrix, C3 seed
+  determinism, C4 BG gating MECH-090/091, C5 imagined/acted isolation MECH-094, C6/C7/C8
+  SD-032 dACC/AIC/PCC/pACC wiring; 24/24 pass in ~14s);
+  (3) deferred changed layer stubbed via scripts/run_regression_suite.py. Serve.py
+  `/api/regression/preflight` endpoint with 60s memoisation added (REE_assembly commit
+  2cb1c9559). Contracts test wiring only, never thresholds from EXQ evidence.
+- **EXQ-433 reclassified non_contributory; EXQ-433a scripted-eval successor queued**
+  (2026-04-19). Root cause of EXQ-433 FAIL: event-distribution collapse in 3/4 seeds
+  (seed 91: 303/0 agent/env, seeds 13/42: ~100/1-2). MECH-256 C1 forward_r2=0.983-0.9998
+  unaffected. EXQ-433a uses CausalGridWorldV2.reset_to() for deterministic placement +
+  30-trial scripted harness per event type; balanced 3/3/3/3 event counts in smoke;
+  supersedes EXQ-433.
+- **Governance cycle 2026-04-19T21 (post-SD-032 landing).** Promoted MECH-094 to
+  provisional; held SD-020 at provisional; applied 12 `hold_pending_v3_substrate` batch
+  (MECH-256/258/259/260/261/264/265, SD-029/032a/b/d/e); reclassified 3 FAIL manifests
+  as non_contributory substrate-gap (EXQ-395 MECH-220, EXQ-418a SD-017, EXQ-430 INV-010
+  — all addressable by SD-032 cluster); marked 7 experiments reviewed. Retest
+  eligibility post-cluster: V3-EXQ-325b (SD-032c falsification signature); V3-EXQ-430a
+  (MECH-261 offline-write-gating); V3-EXQ-418b pending diagnostic of SD-016
+  cue_action_proj wiring. 5 SD-032 entries added to substrate_queue.json as implemented;
+  EXP-0121 and EXP-0132 marked executed.
+- **MECH-261 mode-gating lit-pull (2026-04-20T06:30Z).** 5 entries
+  (Latchoumane 2017 SO-spindle-ripple triple coupling; Maingret 2016 hippocampo-cortical
+  coupling reorganises mPFC; Helfrich 2018 MFC atrophy disperses SO-spindle coupling;
+  Klinzing/Niethard/Born 2019 review; Boyce 2016 REM theta optogenetic). V4-staging
+  findings: per-mode gate weights load-bearing; carrier rhythm is biological realisation
+  of gate in SWS and REM; gate locus and write target may overlap in mPFC; within-REM
+  target selection remains open. 795 literature entries, 805 runs indexed at lit-pull
+  rebuild.
+- **704 runs indexed (630 dirs + 74 flat); 831 queue-level completions across
+  five machines** (252 PASS / 480 FAIL / 88 ERROR / 11 UNKNOWN). Queue: 2 items, both
+  claimed — V3-EXQ-445 (SD-032b 3-arm ablation OFF / ON-independent / ON-shared-trunk,
+  DLAPTOP-4.local) and V3-EXQ-447 (SD-032d deterministic validation, ree-cloud-2).
+- **Current bottleneck: SD-032 cluster behavioural validation + SD-003 successor
+  follow-through.** V3-EXQ-445 is the first behavioural gate on SD-032b (C2 dACC
+  score_bias produces >=0.1 nats entropy delta in either ON arm). V3-EXQ-433a supersedes
+  EXQ-433 as the MECH-256/SD-029 comparator test on scripted balanced events. 3 pending
+  review (EXQ-397 FAIL ARC-007/SD-004 path memory, EXQ-433a FAIL MECH-256/SD-029
+  scripted-eval comparator, V3-EXQ-325c ERROR).
+
+## Immediate Work Queue (This Cycle)
+
+- Land results for V3-EXQ-445 (SD-032b behavioural) and V3-EXQ-447 (SD-032d deterministic);
+  both are the first post-landing validation gates for the cingulate cluster.
+- Review EXQ-397 (ARC-007/SD-004 path memory) and EXQ-433a (MECH-256/SD-029 scripted
+  comparator) in the next governance pass; clear V3-EXQ-325c ERROR.
+- Queue SD-032 cluster retests now unblocked by substrate arrival: V3-EXQ-325b (SD-032c
+  falsification signature), V3-EXQ-430a (MECH-261 offline-write-gating), and V3-EXQ-418b
+  (gated on SD-016 cue_action_proj wiring diagnostic).
+- MECH-261 V4 staging decisions tracked against the 2026-04-20 mode-gating lit-pull
+  (carrier-rhythm gate implementation, within-REM target selection).
+
+---
+
 ## Status Snapshot (2026-04-18)
 
 - **SD-003 superseded.** After 28 accumulated FAILs across the two-pass counterfactual
