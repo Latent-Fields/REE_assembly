@@ -1,37 +1,55 @@
 {
   "schema_version": "v1",
-  "runner_pid": 95619,
-  "runner_started_at": "2026-04-19T14:28:42.144896+00:00",
-  "last_updated": "2026-04-20T10:39:31.843233+00:00",
+  "runner_pid": 38928,
+  "runner_started_at": "2026-04-20T14:39:30.194149+00:00",
+  "last_updated": "2026-04-20T14:39:53.772503+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-325d",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
-    "description": "",
-    "script": "experiments/v3_exq_325d_sd032c_aic_descending_modulation.py",
-    "started_at": "2026-04-20T05:50:14.401254+00:00",
-    "progress": {
-      "run_label": "Seed 42 / LEGACY",
-      "runs_done": 2,
-      "runs_total": 12,
-      "episodes_done": 0,
-      "episodes_total": 150,
-      "overall_pct": 16.7
-    },
-    "seconds_elapsed": 17344,
-    "seconds_remaining": 72803,
-    "recent_lines": [
-      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 150/150",
-      "AIC_DRIVE_ABLATED: rv_after_train=0.0000 committed_flag=True",
-      "AIC_DRIVE_ABLATED: z_s_ratio=1.0000 z_a_ratio=1.0000 committed=6000 aic_sal_mean=0.7835",
-      "verdict: PASS",
-      "Seed 42 Condition LEGACY"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-451",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-034 hazard/resource threshold retest (supersedes V3-EXQ-288 criteria_null)",
+      "description": "",
+      "estimated_minutes": 240.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-452",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-257 dual-function E2_harm_s diagnostic -- comparator vs evaluator compatibility",
+      "description": "",
+      "estimated_minutes": 156.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-454",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-016 adaptive commitment_threshold via E2 PE variance (script-level wrapper)",
+      "description": "",
+      "estimated_minutes": 132.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-433b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-029 E2_harm_s comparator -- extended interventional training (fraction=0.7, margin=0.2, 4 seeds)",
+      "description": "",
+      "estimated_minutes": 213.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-325d",
       "backlog_id": "",
@@ -39,7 +57,84 @@
       "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
       "description": "",
       "estimated_minutes": 240.0,
-      "status": "running",
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-450",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC-analog behavioural retest -- stronger gains + 2-arm focused eval (supersedes V3-EXQ-445)",
+      "description": "",
+      "estimated_minutes": 168.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-453",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-261 per-subdivision write-gate landing validation (diagnostic probe)",
+      "description": "",
+      "estimated_minutes": 3.2,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-455",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032a salience coordinator behavioral confirmation -- mode-switch trigger + write-gate diversity under natural PE",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-445a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC full pipeline -- E3 harm_eval + terrain trained, terrain fix: min-residue candidate",
+      "description": "",
+      "estimated_minutes": 224.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-397c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-007 path memory ablation -- harder env (16x16, 6 hazards, 3 sparse resources) + terrain training fix",
+      "description": "",
+      "estimated_minutes": 124.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-445b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC diversity: epsilon-greedy exploration during training (minimal intervention)",
+      "description": "",
+      "estimated_minutes": 216.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-445c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC larger environment (14x14, 5 hazards, 7 resources) + full pipeline training",
+      "description": "",
+      "estimated_minutes": 224.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -5582,6 +5677,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 6.0
+    },
+    {
+      "queue_id": "V3-EXQ-449",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016 cue_action_proj wiring diagnostic -- BASELINE vs SUPERVISED (diagnostic probe)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: arm=SUPERVISED seed=49 mean_grad_norm=1.484e-02 max_grad_norm=2.301e-02 nonzero_frac=1.000 weight_delta_norm=2.2547e-01 action_bias_div=0.0000 n_safe=161 n_dang=77 | verdict: C1_baseline_zero_signal=True (2/2), C2_supervised_wiring_works=False (0/2), C3_drift_ratio=False (0/2) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-20T14:39:32.285160+00:00",
+      "completed_at": "2026-04-20T14:39:53.772298+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 21.5
     }
   ]
 }
