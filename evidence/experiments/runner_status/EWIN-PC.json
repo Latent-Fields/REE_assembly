@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 22984,
   "runner_started_at": "2026-04-18T21:21:49.184446+00:00",
-  "last_updated": "2026-04-20T03:54:24.845310+00:00",
+  "last_updated": "2026-04-20T07:15:43.024081+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -35,28 +35,6 @@
       "title": "Onboarding smoke test -- ree-cloud-2 (Hetzner CX22)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-435",
-      "backlog_id": "EXP-0097",
-      "claim_id": "INV-054",
-      "title": "INV-054 phase-transition recovery (sustained-crossing criterion)",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-434",
-      "backlog_id": "EVB-0096",
-      "claim_id": "INV-053",
-      "title": "INV-053 depression attractor 4th replication (5 seeds LONG_HORIZON)",
-      "description": "",
-      "estimated_minutes": 266.7,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -787,6 +765,34 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 1136.8
+    },
+    {
+      "queue_id": "V3-EXQ-435",
+      "backlog_id": "EXP-0097",
+      "claim_id": "INV-054",
+      "title": "INV-054 phase-transition recovery (sustained-crossing criterion)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | -> FAIL evidence_direction=does_not_support | Status: FAIL",
+      "started_at": "2026-04-20T03:54:27.438084+00:00",
+      "completed_at": "2026-04-20T04:42:03.582836+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 2856.2
+    },
+    {
+      "queue_id": "V3-EXQ-434",
+      "backlog_id": "EVB-0096",
+      "claim_id": "INV-053",
+      "title": "INV-053 depression attractor 4th replication (5 seeds LONG_HORIZON)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed=17 goal_norm=0.000 behav_equiv=0.00000 accum_harm=1.19715 -> attractor=PASS | -> PASS decision=retain_ree direction=supports | Status: PASS",
+      "started_at": "2026-04-20T04:42:04.088589+00:00",
+      "completed_at": "2026-04-20T07:15:43.010061+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 9219.0
     }
   ]
 }
