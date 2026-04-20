@@ -63,32 +63,35 @@ outcomes, not variants of a single gate scaled differently.
      gate with per-mode weight vectors. Already present (SD-032a
      `DEFAULT_GATE_WEIGHTS`).
 
-   The V4 design guidance is therefore *not* "add internal clocks per mode" but
-   "enrich the admission predicate on the existing dict-keyed gate into a
-   multi-factor conjunction, with per-mode default debounce counters and
-   graded gate values." The Latchoumane out-of-phase falsification signature
-   survives the translation: firing writes under an elevated mode signal but
-   with a deliberately-decoupled content predicate should fail to consolidate,
-   same as the out-of-phase Latchoumane condition -- the mechanism isn't a
-   phase, but the admission structure is preserved. Flag for V4 SD-033 detailing
-   as a predicate-enrichment task, not an oscillator-simulation task.
+   The design guidance for the next MECH-261 refinement pass is therefore
+   *not* "add internal clocks per mode" but "enrich the admission predicate
+   on the existing dict-keyed gate into a multi-factor conjunction, with
+   per-mode default debounce counters and graded gate values." The
+   Latchoumane out-of-phase falsification signature survives the translation:
+   firing writes under an elevated mode signal but with a deliberately-
+   decoupled content predicate should fail to consolidate, same as the
+   out-of-phase Latchoumane condition -- the mechanism isn't a phase, but
+   the admission structure is preserved. This is a V3 predicate-enrichment
+   task on the already-implemented SD-032a registry, not a deferred
+   oscillator-simulation task.
 
 3. **Gate locus and write target may overlap anatomically.** Helfrich's MFC atrophy
    result hints that the substrate that *computes* the gate and the substrate that
-   *receives* the gated write overlap in medial frontal territory. A V4
-   implementation that cleanly separates "gate computer" from "gate consumer" into
-   physically distant nodes would diverge from this; single-substrate implementations
-   in which SD-033a both produces and consumes the gate are closer to the biology.
-   Record in sd_033_pfc_subdivision_architecture.md when MECH-261's staged
-   implementation is next revisited.
+   *receives* the gated write overlap in medial frontal territory. A V3 refinement
+   that cleanly separates "gate computer" from "gate consumer" into physically
+   distant nodes would diverge from this; single-substrate implementations in which
+   SD-033a both produces and consumes the gate are closer to the biology. Record
+   in sd_033_pfc_subdivision_architecture.md when MECH-261's staged implementation
+   is next revisited.
 
 4. **The REM within-mode target selection is an open biological question.** Boyce
    establish mode-separability for REM but not target-selectivity within REM. The
    current REE default (REM mode routes writes to residue replay + HC viability
    rather than a specific SD-033 subdivision) reflects that gap honestly. Do not
-   over-commit the REM weights until target-selective REM evidence exists. A future
-   Prong D lit-pull on REM theta-phase reverse-replay subpopulations (Poe 2017 and
-   successors) would be the natural next step.
+   over-commit the REM weights until target-selective REM evidence exists. A
+   follow-on lit-pull on REM theta-phase reverse-replay subpopulations (Poe 2017
+   and successors) is the natural next step before the REM-mode weights get
+   refined further.
 
 5. **The out-of-phase falsification signature ports to REE as a
    decoupled-predicate failure mode.** Latchoumane show that matched spindle
@@ -101,16 +104,18 @@ outcomes, not variants of a single gate scaled differently.
    V3 abstraction (single mode scalar per tick) cannot produce this signature
    because the admission predicate has only one factor. Reproducing the
    Latchoumane falsification pattern in REE is therefore itself a useful test
-   of whether the V4 enriched-predicate implementation has captured the
+   of whether the enriched-predicate refinement has captured the
    biologically-relevant structure.
 
 ## Citation graph (for the next MECH-261 evidence pass)
 
 SWS gating -- primary: Latchoumane 2017, Maingret 2016; anatomical locus: Helfrich
 2018. REM gating -- primary: Boyce 2016; theta-phase reverse-replay refinements:
-Poe 2017 (not pulled; V4 scope); forward-reverse replay: the already-indexed
-Peyrache 2009 entry in `targeted_review_systems_consolidation_waking_propagation`.
-Mode synthesis: Klinzing 2019. Newer work (Helfrich 2023 Nature Neuroscience on
-coupled SO/spindle/ripple coordination; Chen bioRxiv 2025 on delta/spindle cross-area
-synchronisation and ripple subtypes) refines the picture further and is the natural
-next pull when MECH-261's V4 staging begins.
+Poe 2017 (not pulled; flagged for the next MECH-261 refinement pull, especially
+before REM-mode target weights are tightened); forward-reverse replay: the
+already-indexed Peyrache 2009 entry in
+`targeted_review_systems_consolidation_waking_propagation`. Mode synthesis:
+Klinzing 2019. Newer work (Helfrich 2023 Nature Neuroscience on coupled
+SO/spindle/ripple coordination; Chen bioRxiv 2025 on delta/spindle cross-area
+synchronisation and ripple subtypes) refines the picture further and is the
+natural next pull when MECH-261's V3 predicate-enrichment pass is scoped.
