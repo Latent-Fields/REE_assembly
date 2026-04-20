@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech261_mode_gating",
+  "entry_id": "2026-04-20_mech_261_triple_coupling_gating_latchoumane2017",
+  "timestamp_utc": "2026-04-20T06:17:13Z",
+  "claim_ids_tested": ["MECH-261", "SD-032a"],
+  "source": {
+    "title": "Thalamic Spindles Promote Memory Formation during Sleep through Triple Phase-Locking of Cortical, Thalamic, and Hippocampal Rhythms",
+    "authors": ["Charles-Francois V Latchoumane", "Hong-Viet V Ngo", "Jan Born", "Hee-Sup Shin"],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.06.025",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28689981/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Closed-loop optogenetics in mice establishes a causal gating relation: only thalamic spindles phase-locked to the cortical slow-oscillation up-state increase triple (SO-spindle-ripple) coupling and boost hippocampus-dependent memory. In-phase vs out-of-phase stimulation is a direct test of the 'phase of the carrier rhythm selects the target' hypothesis that MECH-261 instantiates as dict-keyed write gates over operating modes. Mapping from 'select which cortical site sees a ripple-delivered replay' to MECH-261's 'select which SD-033 subdivision receives the write' is close but not identity -- the paper demonstrates temporal gating of propagation rather than target-selective routing per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Out-of-phase spindle stimulation increased spindle rate without increasing memory consolidation, showing that mere presence of a spindle does not gate the write -- the phase relation to the cortical slow oscillation is what matters. An implementation that raises spindle density without respecting the phase geometry will fail to consolidate.",
+    "Triple phase-locking selectively boosted hippocampus-dependent memory; non-hippocampal control tasks did not show the same enhancement. A write-gate that is operating-mode-selective but ignores the circuit-level selectivity of the carrier rhythms will over-generalise."
+  ],
+  "tags": ["mech_261", "sd_032a", "sws_gating", "spindle_ripple_coupling", "thalamocortical", "optogenetics"],
+  "mapping": {
+    "source_claim_statement": "Thalamic sleep spindles phase-locked in-phase with cortical slow-oscillation up-states produce triple coupling of slow oscillation, spindle, and hippocampal ripple, and this triple-coupled geometry is causally necessary for hippocampus-dependent memory consolidation.",
+    "ree_translation": "The biological substrate for MECH-261's operating-mode write-gate is not a single mode scalar but a multi-oscillation phase relationship. In SWS, the gate that decides 'should this hippocampal replay write into this cortical subdivision' is carried by the SO-spindle phase geometry -- the thalamus effectively time-windows the cortical site to be receptive to the ripple. In the REE dict-keyed write gate abstraction, this is the physical realisation of the 'sws_schema' mode gate multiplying content written to sd_033a (lateral-PFC-analog) vs not-written elsewhere.",
+    "mapping_caveat": "Latchoumane demonstrate gating of consolidation magnitude, not explicit routing to a specific cortical subdivision. Evidence that SWS-phase-coupling selects the lateral-PFC target specifically rather than cortex more broadly comes from Maingret 2016 and Helfrich 2018 (companion entries). Treat Latchoumane as the mechanistic base case for 'phase-coupled carrier rhythms gate write landing' and the companion papers as the subdivision-selectivity evidence.",
+    "source_context": "Mice; head-fixed and freely-behaving closed-loop optogenetic stimulation of thalamic reticular nucleus during natural NREM; hippocampus-dependent object-place recognition task."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Peer-reviewed Cell-press primary data with optogenetic causal manipulation (source_quality high). Mapping fidelity moderate: the paper demonstrates carrier-rhythm gating but stops short of showing per-subdivision routing. Transfer risk low: the SO-spindle-ripple geometry is highly conserved across rodents and humans, and MECH-261's compute-side abstraction is explicit about being a gate over carrier-rhythm products."
+  }
+}

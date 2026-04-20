@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech261_mode_gating",
+  "entry_id": "2026-04-20_mech_261_rem_theta_gate_boyce2016",
+  "timestamp_utc": "2026-04-20T06:17:13Z",
+  "claim_ids_tested": ["MECH-261", "SD-032a", "SD-017"],
+  "source": {
+    "title": "Causal evidence for the role of REM sleep theta rhythm in contextual memory consolidation",
+    "authors": ["Richard Boyce", "Stephen D Glasgow", "Sylvain Williams", "Antoine Adamantidis"],
+    "year": 2016,
+    "venue": "Science",
+    "doi": "10.1126/science.aad5252",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27174984/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Causal optogenetic silencing of medial septum GABAergic neurons in mice attenuates theta rhythm during REM specifically (not during waking locomotion or NREM). REM-specific theta attenuation impairs object-place recognition and contextual fear memory; identical silencing outside REM epochs has no effect. This is the cleanest available causal dissociation of a REM-mode gate from a SWS-mode or waking gate, and it directly supports MECH-261's requirement that the REM write-gate is a functionally separable channel operating on a distinct carrier rhythm from SWS.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Silencing MS-GABAergic neurons *outside* REM produced no memory impairment, demonstrating the mode specificity of the theta gate. A MECH-261 implementation in which the REM gate is structurally identical to the SWS gate (same carrier, same coupling geometry) cannot reproduce this temporal selectivity.",
+    "REM-specific theta attenuation erased memory formation rather than merely degrading it. This predicts that ablating MECH-261's REM-mode gate in REE should not simply reduce the REM pass's effect proportionally -- it should remove it, because the theta carrier is the enabling rhythm, not a modulator of an already-working channel."
+  ],
+  "tags": ["mech_261", "sd_032a", "sd_017", "rem_gating", "theta_rhythm", "medial_septum", "optogenetics"],
+  "mapping": {
+    "source_claim_statement": "Medial-septal GABAergic neurons generate the REM theta rhythm; optogenetically silencing these neurons selectively during REM attenuates theta and abolishes consolidation of hippocampus-dependent contextual memory, while identical silencing during non-REM states has no effect.",
+    "ree_translation": "MECH-261 treats each operating mode as a separable channel with its own gate vector. Boyce is the cleanest causal evidence that REM and non-REM gates are not just quantitatively different but functionally dissociable, with REM consolidation specifically requiring theta as the carrier rhythm. In REE this maps onto the SalienceCoordinator's REM-mode probability multiplying the write gate for downstream targets differently than the SWS-mode probability does, and it grounds the requirement that SD-017's REM pass must be gated on a theta-analog clock (not on the same SO-spindle-ripple geometry as the SWS pass).",
+    "mapping_caveat": "Boyce demonstrate that REM theta is required for contextual memory consolidation; they do not directly show that theta routes writes to a specific cortical subdivision (the subdivision-selective evidence is the Maingret/Helfrich pair for SWS -- the equivalent REM study does not exist in this cohort). Treat this as the mode-separability evidence: the REM gate is not identical to the SWS gate. The within-REM target selection is an open question that the REE implementation currently addresses by picking a default REM write target (HC viability / residue replay) that the literature supports weakly rather than strongly.",
+    "source_context": "Adult C57BL/6J mice; MS-GABAergic neurons targeted via ArchT in Vgat-Cre lines; closed-loop REM detection; object-place recognition and contextual fear conditioning as memory readouts."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high (Science, optogenetic causal, rigorous within-REM vs outside-REM control). Mapping fidelity 0.75 because Boyce isolate mode-separability of the theta gate but not target-selectivity of the REM write, and the target-selectivity question is the hardest part of MECH-261. Transfer risk 0.25: theta and MS-GABA homology between rodents and humans is well-established."
+  }
+}

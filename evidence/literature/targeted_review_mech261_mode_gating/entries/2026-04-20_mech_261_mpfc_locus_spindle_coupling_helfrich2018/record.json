@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech261_mode_gating",
+  "entry_id": "2026-04-20_mech_261_mpfc_locus_spindle_coupling_helfrich2018",
+  "timestamp_utc": "2026-04-20T06:17:13Z",
+  "claim_ids_tested": ["MECH-261", "SD-033a"],
+  "source": {
+    "title": "Old Brains Come Uncoupled in Sleep: Slow Wave-Spindle Synchrony, Brain Atrophy, and Forgetting",
+    "authors": ["Randolph F Helfrich", "Bryce A Mander", "William J Jagust", "Robert T Knight", "Matthew P Walker"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.11.020",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29249289/"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Healthy adult human cohort with structural MRI and high-density EEG during sleep. Selective atrophy within *medial frontal cortex* specifically -- not a generic frontal atrophy and not other cortical regions -- predicted temporal dispersion of slow wave-spindle coupling and overnight memory forgetting. This is the strongest available human evidence that the MECH-261 write gate has a specific cortical locus-of-selection, not a generic cortical substrate. Correlational rather than causal, hence the moderate confidence, but the anatomical specificity of the atrophy-to-dispersion link makes the mapping to SD-033a concrete.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Atrophy in non-medial-frontal regions (occipital, parietal, temporal controls) did not predict SO-spindle decoupling. The gate-selection property is spatially localised to MFC; a MECH-261 implementation that treats the gate as spatially diffuse contradicts this.",
+    "The direction of the effect was slow-oscillation-governs-spindle (not the reverse). A REE implementation that schedules spindle-events before respecting a slow-oscillation carrier phase will produce the same temporal dispersion pattern seen in older adults and fail to consolidate."
+  ],
+  "tags": ["mech_261", "sd_033a", "sws_gating", "mpfc_atrophy", "aging", "human_eeg"],
+  "mapping": {
+    "source_claim_statement": "The slow oscillation causally governs the precise temporal coordination of sleep spindles; this coupling quality predicts overnight memory retention; selective atrophy within medial frontal cortex in older adults disperses this coupling and impairs memory consolidation.",
+    "ree_translation": "MECH-261's per-mode write gate has a specific biological locus-of-selection, not a distributed one. In SWS the locus is medial frontal cortex, which is the rodent-primate-common homologue for REE's SD-033a lateral-PFC-analog write target. Atrophy of the locus, not of the cortical substrate generally, breaks the gate: the mode signal is no longer routed with precision onto the write target. In REE terms, this predicts that damaging SD-033a directly should dissolve the mode-selectivity of writes driven by SalienceCoordinator; ablating other SD-033 subdivisions should not.",
+    "mapping_caveat": "Correlational human aging study, not a causal manipulation. The atrophy-dispersion link is tight and the regional specificity is strong, but the claim 'MFC *is* the locus-of-selection' is a strong interpretation of a correlational finding. Helfrich are careful to say MFC atrophy predicts dispersion; they do not claim MFC is the sole substrate for the coupling. Treat this as supporting anatomical-specificity evidence layered onto the Maingret causal mPFC result.",
+    "source_context": "Healthy older and younger human adults; structural MRI for regional atrophy; high-density scalp EEG during overnight polysomnography; word-pair memory task with pre-sleep learning and next-morning recall."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Neuron, careful regional controls, large-ish cohort, cross-modal design). Mapping fidelity good on the anatomical-specificity axis. Transfer risk 0.30 because scalp-EEG spindle-SO coupling is a reduced measurement of the underlying thalamocortical circuit, and because the extrapolation from human MFC to SD-033a lateral-PFC-analog involves the same rodent-primate homology issue flagged in SD-033's design doc."
+  }
+}

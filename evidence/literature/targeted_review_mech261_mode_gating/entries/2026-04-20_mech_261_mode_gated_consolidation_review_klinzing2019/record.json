@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech261_mode_gating",
+  "entry_id": "2026-04-20_mech_261_mode_gated_consolidation_review_klinzing2019",
+  "timestamp_utc": "2026-04-20T06:17:13Z",
+  "claim_ids_tested": ["MECH-261", "SD-032a", "SD-017"],
+  "source": {
+    "title": "Mechanisms of systems memory consolidation during sleep",
+    "authors": ["Jens G Klinzing", "Niels Niethard", "Jan Born"],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-019-0467-3",
+    "url": "https://www.nature.com/articles/s41593-019-0467-3"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Comprehensive field review synthesising the state of mechanistic evidence on mode-specific consolidation. Three explicit claims bear directly on MECH-261: (i) SWS and REM route information through distinct oscillation families with distinct downstream effects on synaptic plasticity; (ii) the oscillation geometry (not just mode identity) regulates information flow across distant brain networks; (iii) memory transformation during consolidation is qualitative (gist-like abstraction), not mere copy. Not primary data, but synthesises the mode-gating literature MECH-261 is drawing from and provides the canonical citation framework.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A MECH-261 implementation that treats mode as an on/off scalar without distinguishing the carrier rhythms per mode will fail to capture the qualitative difference between SWS consolidation (abstraction and schema integration) and REM consolidation (prior-reset / precision recalibration).",
+    "A single mode gate per target that does not differentiate forward SWS-consolidation from REM-recalibration conflates two functionally dissociable outputs; ablating this distinction predicts that REE's sleep passes will either over-consolidate (SWS-only mode) or over-reset (REM-only mode) because the normal antagonism is collapsed."
+  ],
+  "tags": ["mech_261", "sd_032a", "sd_017", "sws_rem_distinction", "review", "oscillation_gated_consolidation"],
+  "mapping": {
+    "source_claim_statement": "Sleep-dependent systems consolidation is driven by mode-specific hippocampal replay gated by characteristic brain oscillations (slow oscillations + spindles + ripples in SWS; theta in REM) that regulate information flow across distant brain networks and local synaptic plasticity, producing qualitatively abstracted, gist-like memory representations.",
+    "ree_translation": "MECH-261's operating-mode write-gate registry is the compute-side realisation of the mode-specific routing this review characterises. The SWS gate routes hippocampus-to-mPFC schema integration; the REM gate does something functionally distinct (prior reset / theta-phase reverse replay per Boyce 2016, Poe 2017). In REE the SalienceCoordinator's mode probabilities select among these. The review is the authoritative synthesis on which papers are load-bearing evidence for which mode and why -- it is the citation scaffold for future MECH-261 evidence pulls.",
+    "mapping_caveat": "Reviews weight less than primary data in governance but are indispensable for understanding the mapping. Klinzing, Niethard and Born are a primary source of the 'active systems consolidation' framing that REE's SD-017 sleep pass architecture draws from; MECH-261 is the gate-level primitive that active-systems-consolidation requires. Treat this entry as the scaffold for the rest of the pull and not as independent evidence.",
+    "source_context": "Narrative review covering rodent and human literature on NREM/REM mechanisms, hippocampal replay, thalamocortical coupling, SHY, and qualitative transformation of memory during consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.15,
+    "notes": "High source quality (Nature Neuroscience review, authoritative authors, widely cited). Mapping fidelity high because the review explicitly characterises the per-mode gating architecture MECH-261 instantiates. Transfer risk low because the review synthesises both rodent and human data and flags the homology caveats. Confidence capped at 0.80 because it is a review rather than primary data -- the primary-data claims it synthesises are in the companion entries."
+  }
+}

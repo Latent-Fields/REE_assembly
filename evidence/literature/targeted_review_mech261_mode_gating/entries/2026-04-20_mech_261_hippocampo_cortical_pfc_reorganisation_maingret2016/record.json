@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech261_mode_gating",
+  "entry_id": "2026-04-20_mech_261_hippocampo_cortical_pfc_reorganisation_maingret2016",
+  "timestamp_utc": "2026-04-20T06:17:13Z",
+  "claim_ids_tested": ["MECH-261", "SD-033a"],
+  "source": {
+    "title": "Hippocampo-cortical coupling mediates memory consolidation during sleep",
+    "authors": ["Nicolas Maingret", "Gabrielle Girardeau", "Ralitsa Todorova", "Marie Goutierre", "Michael Zugaro"],
+    "year": 2016,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4304",
+    "url": "https://www.nature.com/articles/nn.4304"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Closed-loop causal manipulation of the coordination between hippocampal sharp-wave ripples, cortical delta waves, and cortical spindles in rats. Reinforcing the endogenous phase relationship reorganises medial prefrontal cortical networks specifically and rescues performance on a spatial memory task that otherwise does not consolidate. Directly supports the MECH-261 claim that mode-specific carrier-rhythm phase coupling selects mPFC as the write target. Mapping to REE's SD-033a lateral-PFC-analog is strong because the rodent mPFC Maingret record from is the closest functional homologue of SD-033a in the rodent literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Control rats receiving the same number of stimulation events but without respecting the endogenous SWR-delta-spindle coupling geometry performed at chance. A MECH-261 implementation that induces write events without the phase relation will fail to consolidate.",
+    "The effect was observed on mPFC activity specifically -- other cortical regions were not reorganised by the manipulation. A write-gate that fires non-selectively across cortical subdivisions contradicts this selectivity.",
+    "The task was designed to trigger encoding but not consolidation under sham conditions; the hippocampo-cortical coupling was the switch that converted encoding-without-consolidation into consolidation-with-recall. If MECH-261 is ablated in REE, encoding-phase residues should persist at episode start but fail to transfer into the lateral-PFC write target even after nominal SWS passes."
+  ],
+  "tags": ["mech_261", "sd_033a", "sws_gating", "hippocampus_pfc_dialog", "spindle_ripple_coupling", "closed_loop"],
+  "mapping": {
+    "source_claim_statement": "Fine-grained temporal coordination between hippocampal sharp-wave ripples, cortical delta waves, and cortical spindles during NREM sleep is causally required for consolidation of weakly-encoded spatial memories, and reinforcing this coordination selectively reorganises medial prefrontal cortical networks.",
+    "ree_translation": "MECH-261's dict-keyed write-gate is, in SWS, implemented by hippocampal ripples that land on the cortical delta+spindle phase window selectively over sites that the hippocampus-to-cortex projection reaches. In rodents this is mPFC. In REE, SD-033a is the lateral-PFC-analog write target; the Maingret causal demonstration is the tightest behavioural-level evidence that the write gate is both phase-selected and cortical-site-specific.",
+    "mapping_caveat": "Rodent mPFC spans prelimbic and infralimbic areas; the mapping to the primate lateral-PFC functional role that SD-033 cluster draws from (Rushworth, Boorman, Koechlin) is approximate. Maingret's primary evidence is for the rodent hippocampo-mPFC dialog; its direct translation to SD-033a is subject to the broader rodent-primate PFC-subdivision homology assumption documented in REE_assembly/docs/architecture/sd_033_pfc_subdivision_architecture.md.",
+    "source_context": "Adult male Long-Evans rats; custom spatial memory task designed to trigger encoding but not consolidation; closed-loop stimulation triggered on hippocampal ripples and phased to cortical delta-wave detection during post-training NREM; multi-site LFP + unit recordings in mPFC."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high (Nature Neuroscience, causal closed-loop manipulation, proper control). Mapping fidelity high because Maingret explicitly demonstrate cortical-site-specific reorganisation (mPFC), which is the gated-target property MECH-261 predicts. Transfer risk moderate: rodent mPFC to SD-033a lateral-PFC-analog mapping carries the known homology cost that the SD-033 design doc already flags."
+  }
+}
