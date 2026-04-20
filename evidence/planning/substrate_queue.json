@@ -629,6 +629,26 @@
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
       "last_seen_session": "governance-2026-04-19T21"
+    },
+    {
+      "sd_id": "SD-033a",
+      "title": "pfc.lateral_pfc_analog",
+      "ready": true,
+      "status": "implemented",
+      "design_doc": "docs/architecture/sd_033a_lateral_pfc_analog.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-261",
+        "MECH-262"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Implemented 2026-04-20 in ree-v3 (ree_core/pfc/lateral_pfc_analog.py). First subdivision of SD-033 and primary consumer of MECH-261 write-gate registry. Gate-modulated EMA over (z_delta + w * z_world) with frozen-random zeroed-last-Linear bias head. Three design alternatives (A1 per-candidate vs uniform; A2 frozen-random vs trained; A3 EMA vs recurrent / synaptic-hold) documented in design doc and queued as lit-pulls in task_inbox.md.",
+      "priority": 2,
+      "added_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
+      "last_seen_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
+      "implemented_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
+      "implemented_utc": "2026-04-20T00:00:00Z",
+      "validation_experiment": "V3-EXQ-456"
     }
   ]
 }

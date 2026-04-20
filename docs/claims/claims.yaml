@@ -18298,6 +18298,23 @@
     (multiplicative gain vs additive shift into E3 trajectory scores).
   evidence_quality_note: >
     Registered pre-implementation. See SD-033 parent.
+  implementation_note: >
+    IMPLEMENTED 2026-04-20 as additive bias-into-E3 substrate. Module:
+    ree_core/pfc/lateral_pfc_analog.py (LateralPFCAnalog). Config:
+    REEConfig.use_lateral_pfc_analog (default False; backward compatible).
+    Gate-modulated EMA persistence of rule_state (signature ii) driven by
+    SalienceCoordinator.write_gate("sd_033a") (MECH-261 primary consumer
+    relationship). Stimulus-abstracted format via [1, rule_dim=16] latent
+    with delta/world projections (signature i). Top-down bias into E3 via
+    per-candidate score_bias head (signature iii) -- frozen-random with
+    last Linear zeroed so initial bias=0 (backward compatible under
+    activation). Training-dependent emergence (signature iv) deferred:
+    head is untrained in landing; phased-training protocol not wired.
+    Three design alternatives documented in
+    docs/architecture/sd_033a_lateral_pfc_analog.md; lit-pulls queued
+    in evidence/planning/task_inbox.md. Validation experiment
+    V3-EXQ-456 queued (diagnostic). MECH-094 handled via MECH-261
+    gate (no separate hypothesis_tag check).
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033b
   title: "OFC-analog (specific-outcome prediction and task-structure cognitive map): module that represents the state space of the current task and the specific outcomes expected from actions in each state. E2's natural substrate address for harm-predictive rollouts; distinct from scalar value integration (SD-033c)."

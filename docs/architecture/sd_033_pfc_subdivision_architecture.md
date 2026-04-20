@@ -27,7 +27,7 @@ The lit-pull (`targeted_review_pfc_subdivision_architecture`, 7 entries, mean co
 
 | ID | Subdivision | Biological analogue | ree-v3 function | V3 implementation status |
 |---|---|---|---|---|
-| SD-033a | Lateral-PFC-analog (mid-lateral rule/goal) | Mid-lateral PFC (Badre & Nee 2018 level) | Holds stimulus-abstracted rules/goals; projects top-down bias into E3 | **Build (minimum viable)** |
+| SD-033a | Lateral-PFC-analog (mid-lateral rule/goal) | Mid-lateral PFC (Badre & Nee 2018 level) | Holds stimulus-abstracted rules/goals; projects top-down bias into E3 | **IMPLEMENTED 2026-04-20** (see `sd_033a_lateral_pfc_analog.md`) |
 | SD-033b | OFC-analog (specific-outcome / task-structure) | OFC (Rudebeck & Murray 2014; Stalnaker 2015) | Specific-outcome prediction + cognitive map of task structure; E2's substrate address | Build (second priority) |
 | SD-033c | vmPFC-analog (subjective value integration) | vmPFC (existing ARC-035 hub) | Scalar value integration across goals / needs / options | Register-only (graph consolidation) |
 | SD-033d | Premotor/SMA-analog (sequence execution) | Pre-SMA + SMA + dorsal premotor (Tanji & Hoshi 2008) | Sequence proposal + execution (already inside E3) | Register-only (graph consolidation) |
