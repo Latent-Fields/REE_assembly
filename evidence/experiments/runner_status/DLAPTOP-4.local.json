@@ -2,18 +2,44 @@
   "schema_version": "v1",
   "runner_pid": 95619,
   "runner_started_at": "2026-04-19T14:28:42.144896+00:00",
-  "last_updated": "2026-04-20T04:27:14.493756+00:00",
-  "idle": true,
-  "current": null,
+  "last_updated": "2026-04-20T10:39:31.843233+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-325d",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
+    "description": "",
+    "script": "experiments/v3_exq_325d_sd032c_aic_descending_modulation.py",
+    "started_at": "2026-04-20T05:50:14.401254+00:00",
+    "progress": {
+      "run_label": "Seed 42 / LEGACY",
+      "runs_done": 2,
+      "runs_total": 12,
+      "episodes_done": 0,
+      "episodes_total": 150,
+      "overall_pct": 16.7
+    },
+    "seconds_elapsed": 17344,
+    "seconds_remaining": 72803,
+    "recent_lines": [
+      "[train] seed=42 cond=AIC_DRIVE_ABLATED ep 150/150",
+      "AIC_DRIVE_ABLATED: rv_after_train=0.0000 committed_flag=True",
+      "AIC_DRIVE_ABLATED: z_s_ratio=1.0000 z_a_ratio=1.0000 committed=6000 aic_sal_mean=0.7835",
+      "verdict: PASS",
+      "Seed 42 Condition LEGACY"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-447",
+      "queue_id": "V3-EXQ-325d",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-032d PCC-analog metastability scalar -- substrate validation (deterministic arithmetic + agent integration)",
+      "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
       "description": "",
-      "estimated_minutes": 138.7,
-      "status": "pending",
+      "estimated_minutes": 240.0,
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
