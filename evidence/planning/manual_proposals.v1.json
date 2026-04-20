@@ -601,6 +601,223 @@
       "notes": "Sibling experiment to EXP-0148, NOT a replacement. EXP-0148 tests the coordinator overlay (does SD-032a-clamping abolish aggregate forward-propagation bias?); EXP-0149 tests per-subdivision write-landing under each mode (do writes actually land in the correct SD-033 subdivision?). Both tests are needed to fully characterise MECH-261: EXP-0148 establishes that the coordinator is load-bearing at all; EXP-0149 establishes that the per-subdivision routing inside the MECH-261 family is functionally specific (not just one coarse on/off gate dressed up as a vector). A coordinator could pass EXP-0148 while failing EXP-0149 by producing the right aggregate bias with mis-routed internal writes; that pattern would force a refinement of MECH-261's specification. Cannot run until SD-032a + SD-033a + SD-033b + MECH-261 + MECH-092 are all implemented in V3 -- proposal-only at registration time. Do not queue in ree-v3/experiment_queue.json until those substrates exist.",
       "executed_by": "V3-EXQ-453",
       "executed_queue_id": "V3-EXQ-453"
+    },
+    {
+      "proposal_id": "EXP-0156",
+      "added_utc": "2026-04-20",
+      "claim_id": "SD-034",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "SD-034 closure operator implemented (ree_core governance module emitting done token on rule_state completion)",
+        "SD-033a lateral-PFC-analog (rule_state source, already implemented)",
+        "MECH-090 bistable BetaGate (already implemented)",
+        "MECH-260 action-class suppression (already implemented; SD-034 must be able to call into it)",
+        "ResidueField rule-tagged entries (may require extension of ResidueField API to accept rule-domain tags)"
+      ],
+      "objective": "Probe whether a committed rule_state whose completion condition is satisfied is actually released: beta drops, action-class No-Go is installed, residue tagged to that rule is discharged. This is the ocd4 verified-but-not-released row -- OCD's canonical loop-persistence failure.",
+      "design": "Two-arm. Arm A (closure-operator OFF): rule completes, no explicit closure signal. Measure (i) beta-latch persistence beyond completion (MECH-090 stays elevated), (ii) recency-bias on the just-completed action class (MECH-260 suppression absent), (iii) residue-field entries tagged with the completed rule persist unattenuated. Arm B (closure-operator ON): SD-034 emits the done token on the same completion event; same three measurements. Predicted: Arm A shows >5-tick latch persistence post-completion on >=70% of trials and zero targeted No-Go on the rule's action class; Arm B releases within 1-2 ticks and installs a brief No-Go. FAIL-route: if MECH-090 hippocampal-completion coupling (ARC-028) already releases beta on completion in Arm A, SD-034 is redundant at the gate-release level and its value lies only in the residue-discharge + targeted No-Go steps.",
+      "claims_tested": [
+        "SD-034",
+        "MECH-260",
+        "MECH-261"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-460 -- ocd4 row 'verified-but-not-released', targets No-Go / closure gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0157",
+      "added_utc": "2026-04-20",
+      "claim_id": "MECH-090",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "MECH-090 bistable BetaGate (implemented)",
+        "SD-033a lateral-PFC-analog (implemented)",
+        "MECH-261 mode-conditioned write-gate registry (implemented)",
+        "SD-034 closure operator (proposed; only terminal signal used)",
+        "CausalGridWorldV2 delay-to-reward variant (may require env extension: a schedule where resource becomes benefit-eligible only after N steps elapse from resource contact)"
+      ],
+      "objective": "Probe whether rule_state / goal field persists across a delay window where external reward is deferred and intervening distractors are present. Tests Hold robustness -- the OCD over-binding axis predicts excessive persistence, the depression under-binding axis predicts premature collapse.",
+      "design": "Three-arm delay-to-reward task. Arm A (baseline Hold): standard MECH-090 bistable latch + SD-033a rule_state update gated by MECH-261. Arm B (weakened Hold): BetaGate bistability disabled (legacy per-tick re-eval) and SD-033a update_eta doubled. Arm C (strengthened Hold): SD-033a update gate clamped to external_task writes only; BetaGate beta_gate_release_threshold raised. Measure: (i) rule_state norm trajectory across the delay; (ii) fraction of trials where committed action survives distractor intervention; (iii) completion success rate. Predicted: Arm A recovers 50-70% success; Arm B < 30% (under-binding); Arm C > 80% on simple delay but fails on within-window re-evaluation (over-binding). Depends on SD-034 only for the terminal closure signal at successful completion.",
+      "claims_tested": [
+        "MECH-090",
+        "SD-033a",
+        "SD-034"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-461 -- ocd4 row 'delayed-reward persistence', targets Hold gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0158",
+      "added_utc": "2026-04-20",
+      "claim_id": "SD-033a",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "SD-033a lateral-PFC-analog (implemented; MECH-262 rule-selective persistence is the primary signature under test)",
+        "MECH-267 mode-conditioned hippocampal proposals (proposed; required for Arm C manipulation)",
+        "SD-032a SalienceCoordinator emitting operating_mode with internal_planning support (implemented)",
+        "Cue-indexed rule installation path (SD-016 cue_action_proj; currently diagnostic, EXP-0155 blocking)"
+      ],
+      "objective": "Probe whether a rule installed during internal_planning mode survives the transition to external_task via the SD-033a rule_state substrate, and whether it does so without relying on hippocampal re-proposal. If MECH-267 mode-conditioned hippocampal proposals ARE the carrier, the rule/hippocampus role allocation is wrong.",
+      "design": "Three-arm cross-mode rule-binding task. Arm A (SD-033a intact + normal hippocampus): rule cued during internal_planning; agent transitions to external_task; measure compliance on the just-installed rule. Arm B (SD-033a rule_state frozen immediately after internal_planning exit): MECH-267 must be the sole carrier. Arm C (hippocampus constrained to propose world-state-only trajectories ignoring operating_mode): SD-033a must be the sole carrier. Measure: compliance rate per arm; SD-033a rule_state norm trajectory across mode boundary; hippocampal proposal-content overlap with the cued rule. Predicted: Arm A >= 70% compliance; Arm B <= Arm A (test of SD-033a sufficiency); Arm C <= Arm A (test of MECH-267 necessity). If Arm B == Arm A >> Arm C, the rule is carried by hippocampal proposals not the rule substrate -- SD-033a's role would need reframing.",
+      "claims_tested": [
+        "SD-033a",
+        "MECH-262",
+        "MECH-267"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-462 -- ocd4 row 'rule binding', targets Go + Hold gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0159",
+      "added_utc": "2026-04-20",
+      "claim_id": "MECH-268",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "MECH-268 dACC conflict saturation (proposed; saturation function implemented atop MECH-258)",
+        "SD-032b dACC-analog (implemented)",
+        "MECH-258 precision-weighted pe (implemented)",
+        "Outcome-history buffer attached to SD-032b (may require minor extension)"
+      ],
+      "objective": "Probe whether dACC prediction-error signal caps and habituates under repeated identical outcomes. Without saturation, a stuck governance loop generates unbounded pe, which is the rumination signature identified in the 2026-04-20 GAP MEMO.",
+      "design": "Two-arm. Arm A (MECH-268 OFF): default dACC pe signal with no saturation cap. Arm B (MECH-268 ON): saturation function f_sat(pe_raw, outcome_history) active -- pe capped when outcome class recurs N >= saturation_window times. Task: sustained identical-outcome sequence (e.g. repeated no-harm transitions after a committed rule predicted harm). Measure: pe_weighted trajectory over 500+ steps; time to first drop below pe baseline (habituation); mode-switch trigger rate (MECH-259) under matched salience. Predicted: Arm A pe grows monotonically or plateaus only at MECH-258 arithmetic ceiling; Arm B caps within 50-100 steps of identical repetition. FAIL-route: if MECH-258's existing precision-weighting already produces de-facto capping behaviour via the variance-division normalisation, MECH-268 is redundant and its falsification value is limited to explicit-cap-vs-emergent-cap discrimination.",
+      "claims_tested": [
+        "MECH-268",
+        "SD-032b",
+        "MECH-258"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-463 -- ocd4 row 'conflict saturation', targets No-Go strengthening / pe capping gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0160",
+      "added_utc": "2026-04-20",
+      "claim_id": "MECH-266",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "MECH-266 asymmetric mode hysteresis (proposed; SD-032a extension with per-mode exit_threshold)",
+        "SD-032a SalienceCoordinator (implemented)",
+        "MECH-259 salience-network switch threshold (implemented; the symmetric mechanism MECH-266 extends)",
+        "Competing-goals task variant in CausalGridWorldV2 (may require env extension: dual simultaneously active resource-class cues)"
+      ],
+      "objective": "Probe whether SD-032a asymmetric mode hysteresis (Schmitt trigger: enter_threshold != exit_threshold) is necessary for reproducing task-switching cost asymmetries, or whether the existing MECH-259 symmetric threshold + lateral inhibition in Go selection suffices.",
+      "design": "Three-arm competing-goals task where two incompatible goals are simultaneously cued. Arm A (symmetric thresholds, current SD-032a): enter and exit thresholds equal. Arm B (MECH-266 asymmetric per-mode): exit_threshold < enter_threshold for each mode (classic Schmitt). Arm C (MECH-266 asymmetric exaggerated): exit_threshold clamped near 0 (over-binding / OCD axis simulation). Measure: switch-cost asymmetry (time to leave mode X for Y vs time to leave Y for X); fraction of unresolved goal-oscillation episodes; behavioural monostrategy index. Predicted: Arm A produces symmetric switch costs; Arm B reproduces biological switch-cost asymmetries; Arm C collapses to stuck-in-mode behaviour. FAIL-route: Arm A == Arm B across all metrics -- the asymmetry is not behaviourally load-bearing in the current task suite.",
+      "claims_tested": [
+        "MECH-266",
+        "SD-032a",
+        "MECH-259"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-464 -- ocd4 row 'competing goals', targets Go selection / lateral inhibition + asymmetric hysteresis gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0161",
+      "added_utc": "2026-04-20",
+      "claim_id": "MECH-094",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "MECH-094 hypothesis tag / categorical write gate (active)",
+        "MECH-261 mode-conditioned write-gate registry (implemented)",
+        "MECH-267 mode-conditioned hippocampal proposals (proposed; required for Arm C manipulation)",
+        "SD-032a SalienceCoordinator emitting operating_mode (implemented)",
+        "Forced-replay intrusion injection hook on HippocampalModule (may require minor extension)"
+      ],
+      "objective": "Probe whether hypothesis-tagged simulation content (MECH-094) is filtered out of action-selection Go pathway under OCD-like intrusion pressure. Specifically: does mode-conditioned hippocampal proposal (MECH-267) prevent replay content from bypassing MECH-094 into policy writes?",
+      "design": "Three-arm intrusion task. Arm A (MECH-094 intact + MECH-267 mode-conditioned proposals): baseline. Arm B (MECH-094 disabled -- hypothesis_tag ignored): simulation content can write to policy / residue directly. Arm C (MECH-267 disabled -- hippocampal proposals ignore mode vector): hippocampus proposes trajectories without conditioning on internal_replay vs external_task. Under each, inject high-salience intrusive simulation (forced replay of harm-relevant trajectory) during external_task commitment. Measure: (i) fraction of intrusive content that reaches policy gradient update; (ii) z_harm_a trajectory in response to intrusion; (iii) behavioural derailment rate. Predicted: Arm A filters 100%; Arm B 0% filtering (full derailment); Arm C intermediate -- mode-conditioning alone matters. If Arm C == Arm A, mode conditioning is sufficient and MECH-094 hypothesis_tag is redundant; if Arm B == Arm C, mode conditioning does nothing on top of MECH-094.",
+      "claims_tested": [
+        "MECH-094",
+        "MECH-261",
+        "MECH-267"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-465 -- ocd4 row 'intrusive simulation filtering', targets Go filtering on hypothesis-tagged content gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0162",
+      "added_utc": "2026-04-20",
+      "claim_id": "SD-034",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "SD-034 closure operator with tolerance-band completion-condition support (proposed)",
+        "MECH-094 hypothesis-tag domain scoping (active, may need extension for per-rule domain tags)",
+        "ResidueField.discharge_domain() API (proposed extension)",
+        "Task variant with tolerance-band completion (env extension)"
+      ],
+      "objective": "Probe whether a sufficient-but-not-optimal action produces correct residue discharge and No-Go refractory via SD-034 closure. The ocd4 satisficing row: OCD fails to accept sufficient action, demanding exact-match completion -- unreachable.",
+      "design": "Two-arm task where completion condition allows a tolerance band. Arm A (SD-034 closure-operator OFF): completion detected only on exact match; residue persists until exact match achieved. Arm B (SD-034 closure-operator ON with satisficing tolerance): closure fires on completion within tolerance band; residue discharged for the completed domain. Measure: (i) fraction of episodes reaching closure; (ii) time-to-closure distribution; (iii) post-closure residue norm within rule domain; (iv) post-closure action-class No-Go strength. Predicted: Arm A shows bimodal completion (all-or-nothing) with long tails when exact match elusive; Arm B shows smooth satisficing with successful domain-scoped residue clearance. FAIL-route: if residue discharge can be implemented purely via MECH-094 hypothesis-tag domain scoping without a separate closure operator, SD-034 is reduced to the terminal-signal role only.",
+      "claims_tested": [
+        "SD-034",
+        "MECH-094"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-466 -- ocd4 row 'satisficing / No-Go thresholding', targets No-Go + residue discharge gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0163",
+      "added_utc": "2026-04-20",
+      "claim_id": "MECH-266",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "MECH-266 asymmetric mode hysteresis (proposed) with parametric exit_threshold",
+        "SD-032a SalienceCoordinator (implemented)",
+        "Long-run stability metrics across modes (MECH-124 z_goal salience long-run tooling can be repurposed)"
+      ],
+      "objective": "Probe whether varying exit_threshold within a single mode reproduces the clinical under-binding / over-binding phenotype continuum on behavioural markers. Companion test to EXP-0160; EXP-0160 tests the existence of asymmetry, EXP-0163 tests dose-response along the axis.",
+      "design": "Five-arm parametric sweep. Arms A1..A5 vary MECH-266 exit_threshold / enter_threshold ratio from 0.1 (over-binding / OCD axis) through 0.5 (moderate hysteresis) to 1.0 (symmetric, baseline) to 1.5 (under-binding / depression axis) to 2.0 (severe under-binding, mode switches almost every tick). Task: standard CausalGridWorldV2 with scheduled distractors. Measure: (i) mean time-in-mode per operating mode; (ii) behavioural monostrategy index (repeat-action fraction); (iii) goal-completion rate; (iv) residue accumulation rate. Predicted: U-shaped curve -- both extremes (A1 OCD-like, A5 depression-like) underperform baseline A3; behavioural signatures mirror clinical phenotypes. FAIL-route: if performance is monotone in ratio, the under-binding / over-binding axis framing is wrong and the ratio is just a hyperparameter.",
+      "claims_tested": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-467 -- ocd4 row 'mode stickiness / Hold decay', targets Hold decay under asymmetric hysteresis gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+    },
+    {
+      "proposal_id": "EXP-0164",
+      "added_utc": "2026-04-20",
+      "claim_id": "SD-034",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "queued",
+      "prerequisites": [
+        "SD-034 closure operator (proposed)",
+        "MECH-268 dACC conflict saturation (proposed)",
+        "MECH-090 bistable BetaGate (implemented)",
+        "MECH-091 urgency interrupt (implemented)",
+        "Counter-evidence injection hook in CausalGridWorldV2 (env extension)"
+      ],
+      "objective": "Probe the interaction between SD-034 closure on successful completion and MECH-268 pe saturation on sustained counter-evidence. The ocd4 commitment-vs-contradiction row: how does the system adjudicate between 'completion achieved, release' and 'counter-evidence mounting, release via different route'?",
+      "design": "Four-arm task. Arm A (both SD-034 + MECH-268 ON): full stack. Arm B (SD-034 ON, MECH-268 OFF): closure without pe saturation -- counter-evidence grows unboundedly until closure or urgency interrupt fires. Arm C (SD-034 OFF, MECH-268 ON): pe saturates; release relies on habituation + MECH-091 urgency. Arm D (both OFF): baseline, loops persist until MECH-091 harm spike fires. Task injects counter-evidence (goal-inconsistent outcomes) at varying rates during committed execution. Measure: (i) release-type distribution (closure / pe-habituation / urgency / timeout); (ii) time to release; (iii) post-release residue / No-Go patterning. Predicted: Arm A has clean closure-dominated release; Arm B has delayed release via urgency; Arm C has gradual pe-habituation release; Arm D has only urgency-driven release. Demonstrates the two claims are mechanistically separable but jointly load-bearing.",
+      "claims_tested": [
+        "SD-034",
+        "MECH-268",
+        "MECH-090"
+      ],
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-468 -- ocd4 row 'commitment vs contradiction', targets Adaptive gate thresholds + pe saturation gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
     }
   ]
 }

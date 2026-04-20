@@ -2771,6 +2771,24 @@
     "title": "Frontopolar relative-importance monitoring across competing goals: SD-033e maintains a representation of relative importance across a set of active goals (parallel, not pairwise), enabling parallel-goal monitoring and flexible switching. Lesion analogue should reproduce the Mansouri 2015 over-focus + novel-rule-impairment phenotype.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-266": {
+    "status": "candidate",
+    "subject": "salience.asymmetric_mode_hysteresis",
+    "title": "Asymmetric mode hysteresis in SalienceCoordinator: entering an operating mode uses a different threshold on the aggregate salience vector than exiting it, and the asymmetry is mode-specific. Schmitt-trigger extension of the existing SD-032a enter-threshold logic (currently enter-only / symmetric).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-267": {
+    "status": "candidate",
+    "subject": "hippocampal.mode_conditioned_proposals",
+    "title": "Mode-conditioned hippocampal trajectory proposals: HippocampalModule.propose_trajectories must condition on operating_mode (SD-032a) in addition to world_state. External_task mode proposes task-relevant trajectories; internal_planning mode proposes counterfactual / branching trajectories; internal_replay mode replays past-successful trajectories; offline_consolidation mode proposes stability-check trajectories. Without mode conditioning, replay content contaminates external-task selection.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-268": {
+    "status": "candidate",
+    "subject": "dacc.conflict_saturation",
+    "title": "dACC conflict saturation: the dACC-analog (SD-032b) prediction-error / conflict signal caps and habituates under repeated identical outcomes; it does not grow unboundedly as conflict persists. Without saturation, a stuck governance loop can generate unbounded pe signal that never triggers a mode change, which is the control-theory signature of persistent rumination.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3273,6 +3291,12 @@
     "status": "candidate",
     "subject": "pfc.frontopolar_analog_branching",
     "title": "Frontopolar-analog (parallel-goal deliberation substrate): V4-scope module maintaining counterfactual-value estimates for alternatives to the current course of action, mediating transitions between external engagement and internally-generated deliberation, enabling disengagement from the current task to explore novel alternatives, and monitoring relative importance across multiple active goals. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4.",
+    "type": "design_decision"
+  },
+  "SD-034": {
+    "status": "candidate",
+    "subject": "governance.closure_operator",
+    "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied.",
     "type": "design_decision"
   }
 }

@@ -18734,6 +18734,107 @@
     their entries for Boorman/Mansouri/Burgess literature attribution.
     Do not implement pre-V4.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: SD-034
+  title: "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied."
+  claim_type: design_decision
+  subject: governance.closure_operator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-20
+  depends_on:
+    - SD-033           # operating-mode register / governance cluster
+    - SD-033a          # rule/goal substrate whose rule_state the closure token acts on
+    - MECH-090         # bistable BetaGate commitment latch (the Hold the token releases)
+    - MECH-260         # dACC action-class suppression (the No-Go the token triggers)
+    - MECH-094         # hypothesis tag / categorical write gate (closure discharges its domain of residue)
+    - SD-032a          # SalienceCoordinator (operating-mode producer; closure emits a mode-context signal)
+    - SD-032b          # dACC-analog (conflict / prediction-error context that closure caps)
+  functional_restatement: >
+    Design decision. REE-V3 already has the Go / Hold / No-Go substrate
+    from the existing basal-ganglia-like gate (MECH-090 BetaGate, MECH-091
+    urgency-interrupt, MECH-260 action-class suppression) and the
+    operating-mode register (SD-032a SalienceCoordinator). What is missing
+    is the OPERATOR that turns evaluation OFF on successful completion.
+    Without it, a committed rule_state that has been satisfied keeps
+    being evaluated, keeps consuming mode budget, keeps generating
+    residue, and the agent cannot disengage.
+
+    SD-034 registers a closure operator that, on satisfaction of a
+    committed rule_state's completion condition (detected in the
+    SD-033a rule substrate), emits a single coordinated signal that:
+
+      (a) releases the MECH-090 BetaGate commitment latch for the
+          current rule (Hold -> inactive);
+      (b) installs a brief No-Go bias on the just-completed action-
+          class / rule via MECH-260's action_history (prevents
+          immediate re-entry / refractory period);
+      (c) discharges the residue field entries tagged with that
+          rule_state's domain (within-domain, not global), so the
+          post-completion mode vector is not dragged back by stale
+          goal-field signal;
+      (d) emits a closure event to SD-032a so the operating-mode
+          vector can relax toward its default mixture;
+      (e) caps / resets the MECH-268 dACC pe signal for this
+          rule-episode so subsequent conflict accumulation starts
+          from a clean baseline.
+
+    This is the REE analogue of task-set disengagement in the
+    biological literature (Collins & Frank 2014) and of OFC / ACC
+    sequence-completion cells signalling the end of a behavioural
+    sequence (Rich & Shapiro 2009; Schuck 2016).
+
+    Mode-conditioning. The closure operator must only fire from rule_states
+    whose origin is gated into the current operating mode. A rule installed
+    during internal_replay must not produce a closure signal that releases
+    Hold on an external_task commitment.
+
+    Falsifiable (primary): if V3-EXQ-460 (verified-but-not-released) and
+    V3-EXQ-466 (satisficing / residue discharge) can be resolved by any
+    combination of MECH-090 / MECH-260 / MECH-094 tuning WITHOUT adding
+    a closure operator, SD-034 is over-specification -- closure is
+    emergent from the existing substrate.
+
+    Falsifiable (secondary): if adding a closure operator resolves
+    verified-but-not-released but introduces premature disengagement
+    on multi-step tasks (flushing Hold before the terminal step),
+    either the completion-condition detector (SD-033a side) or the
+    mode-conditioning logic is wrong -- not the operator itself.
+  notes: >
+    Registered 2026-04-20 as part of the SD-033 governance plan
+    (evidence/planning/sd033_governance_plan.md) translating the 2026-04-20
+    GAP MEMO ("REE-V3 is not missing cognition. It is missing
+    governance.") and the OCD thought set (2026-04-20_ocd1..ocd4) into
+    falsifiable claims. The four-constraints analysis in ocd1 (evaluation
+    must terminate; termination must be binding; termination must be
+    domain-scoped; the dACC signal must saturate) is the source
+    specification for this operator.
+
+    Distinct from MECH-090. MECH-090 is the Hold latch ITSELF. SD-034
+    is the OPERATOR that RELEASES the latch at the right moment. The
+    existing MECH-091 urgency release handles wrong-moment release
+    (harm interrupt); SD-034 handles right-moment release (completion).
+
+    Distinct from MECH-260. MECH-260 is a standing recency-bias
+    suppressor over action classes. SD-034 triggers a TARGETED No-Go
+    pulse on the just-completed rule specifically, on completion,
+    within a refractory window. MECH-260's history mechanism is the
+    substrate; SD-034's closure pulse is one of several callers.
+
+    V3 scoping: this is the primary missing piece identified in the
+    GAP MEMO. Prioritised ahead of MECH-266/267/268 for implementation.
+  evidence_quality_note: >
+    Registered 2026-04-20 as candidate with v3_pending:true. Biology
+    lit-pull queued in evidence/planning/task_inbox.md targeting OFC /
+    ACC sequence-completion cells (Rich & Shapiro 2009; Schuck 2016),
+    post-completion refractory periods, and task-set disengagement
+    (Collins & Frank 2014). V3-EXQ-460 (verified-but-not-released) and
+    V3-EXQ-466 (satisficing / residue discharge) are the primary
+    falsifiers queued in ree-v3/experiment_queue.json. See
+    evidence/planning/sd033_governance_plan.md (anchor doc).
+  location: evidence/planning/sd033_governance_plan.md
 - id: MECH-262
   title: "Rule-selective persistence in lateral-PFC-analog: stimulus-abstracted rule representations in SD-033a persist across simulated time steps without external drive, remain selective through distractor events, and emerge through training rather than being innate."
   claim_type: mechanism_hypothesis
@@ -18999,4 +19100,216 @@
     alternative rules). Gateway-function support from Burgess/
     Dumontheil/Gilbert 2007 TiCS.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: MECH-266
+  title: "Asymmetric mode hysteresis in SalienceCoordinator: entering an operating mode uses a different threshold on the aggregate salience vector than exiting it, and the asymmetry is mode-specific. Schmitt-trigger extension of the existing SD-032a enter-threshold logic (currently enter-only / symmetric)."
+  claim_type: mechanism_hypothesis
+  subject: salience.asymmetric_mode_hysteresis
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-20
+  depends_on:
+    - SD-032a          # SalienceCoordinator (the mode register whose hysteresis this augments)
+    - MECH-259         # salience-network switch threshold (symmetric-threshold mechanism this extends)
+    - SD-033           # governance cluster
+  functional_restatement: >
+    Mechanism hypothesis. SD-032a currently implements an enter-only
+    threshold on the aggregate salience vector: once the signal crosses
+    threshold_into_mode_X, operating_mode updates to X, and symmetrically
+    requires re-crossing to change again. Biological BG direct/indirect
+    pathway asymmetries and tonic-DA hysteresis (Cools 2008; Collins &
+    Frank 2014) imply the biological gate is a Schmitt trigger with
+    distinct enter and exit thresholds per mode, and the asymmetry
+    magnitude is mode-dependent (e.g. leaving offline_consolidation on
+    arousal spike is fast; leaving external_task on a single distraction
+    is slow).
+
+    MECH-266 asserts that SD-032a's mode register should be extended
+    with per-mode (enter_threshold, exit_threshold) pairs, and that
+    exit_threshold < enter_threshold for stable modes (classic Schmitt),
+    with the asymmetry magnitude calibrated per mode. Under-binding
+    (depression-axis) corresponds to enter_threshold > exit_threshold
+    collapsing (too easy to leave any mode); over-binding (OCD /
+    rigidity axis) corresponds to exit_threshold approaching zero
+    (unable to leave the current mode even under pressure).
+
+    Distinct from MECH-259. MECH-259 specifies that a threshold exists.
+    MECH-266 specifies that the threshold is DIRECTIONAL and mode-
+    specific, and that this asymmetry is the governance parameter that
+    the OCD <-> depression axis varies along.
+
+    Falsifiable (primary): V3-EXQ-464 (competing goals with symmetric
+    vs asymmetric mode thresholds) should show that lateral inhibition
+    of Go selection is insufficient to reproduce task-switching cost
+    asymmetries without asymmetric-threshold modes.
+
+    Falsifiable (secondary): V3-EXQ-467 (mode stickiness / Hold decay)
+    should demonstrate that varying exit_threshold within a mode
+    reproduces the clinical under-binding / over-binding phenotype
+    continuum on behavioural markers.
+  notes: >
+    Registered 2026-04-20 as part of the SD-033 governance plan (see
+    evidence/planning/sd033_governance_plan.md). Source: 2026-04-20_ocd2.md
+    six-step mode-binding sketch, step 2 (asymmetric hysteresis).
+
+    Extension, not replacement, of the SD-032a enter-only threshold
+    logic. Implementation-wise: SalienceCoordinator keeps its existing
+    threshold vector and gains a second exit-threshold dict; when
+    current_mode == X, the salience signal must drop below exit_X, not
+    below enter_X, to leave.
+  evidence_quality_note: >
+    Registered candidate with v3_pending:true. Biology lit-pull queued
+    in evidence/planning/task_inbox.md targeting BG direct/indirect
+    pathway asymmetries, tonic-DA hysteresis (Cools 2008; Collins &
+    Frank 2014), and Schmitt-trigger biology in decision thresholds.
+    V3-EXQ-464 (competing goals) and V3-EXQ-467 (mode stickiness) are
+    the primary falsifiers queued in ree-v3/experiment_queue.json.
+  location: evidence/planning/sd033_governance_plan.md
+- id: MECH-267
+  title: "Mode-conditioned hippocampal trajectory proposals: HippocampalModule.propose_trajectories must condition on operating_mode (SD-032a) in addition to world_state. External_task mode proposes task-relevant trajectories; internal_planning mode proposes counterfactual / branching trajectories; internal_replay mode replays past-successful trajectories; offline_consolidation mode proposes stability-check trajectories. Without mode conditioning, replay content contaminates external-task selection."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.mode_conditioned_proposals
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-20
+  depends_on:
+    - SD-004           # HippocampalModule (the substrate whose proposal function is modified)
+    - SD-032a          # SalienceCoordinator (source of operating_mode signal)
+    - MECH-261         # mode-conditioned write-gate registry (this mechanism is the read-side analogue)
+    - MECH-092         # micro-quiescence replay (one mode whose proposals this specialises)
+  functional_restatement: >
+    Mechanism hypothesis. State-dependent replay content is one of the
+    better-established results in hippocampal physiology (Pfeiffer &
+    Foster 2013; Olafsdottir et al 2018 for goal-directed replay bias;
+    task-set-conditioned replay in awake SWR subpopulations). REE's
+    HippocampalModule.propose_trajectories currently conditions on
+    world_state only; this is the novel missing piece identified in
+    the 2026-04-20 GAP MEMO.
+
+    MECH-267 asserts: proposal_trajectories(world_state, operating_mode)
+    is the correct signature, not proposal_trajectories(world_state).
+    The operating_mode vector (soft mixture over external_task /
+    internal_planning / internal_replay / offline_consolidation) biases:
+      - candidate set (external_task: task-relevant; internal_planning:
+        counterfactual / hypothesis-tagged; internal_replay:
+        previously-committed successful; offline_consolidation:
+        stability-check);
+      - horizon depth (shallower in external_task, longer in
+        internal_planning);
+      - tagging: internal_replay and internal_planning proposals carry
+        MECH-094 hypothesis tags so downstream write gates behave
+        correctly.
+
+    Distinct from MECH-261. MECH-261 gates WRITES across substrates
+    conditioned on mode. MECH-267 gates PROPOSAL CONTENT within the
+    hippocampal substrate conditioned on mode. They are read-side /
+    write-side duals.
+
+    Falsifiable (primary): V3-EXQ-465 (intrusive simulation filtering)
+    should show that hippocampal proposals generated under
+    internal_replay mode DO bias subsequent external_task action
+    selection (Tambini/Davachi 2019) but CANNOT bypass MECH-094 write
+    gates into policy / episodic memory. If simulated content can
+    write-commit without mode change, MECH-267's mode-conditioning is
+    insufficient and hypothesis-tag enforcement at the proposal site
+    is needed too.
+
+    Falsifiable (secondary): V3-EXQ-462 (rule binding) should show that
+    a rule installed in internal_planning mode survives the transition
+    to external_task via the SD-033a substrate, not via hippocampal
+    re-proposal; if hippocampal proposals are the carrier rather than
+    the rule substrate, the SD-033a / hippocampus role allocation is
+    wrong.
+  notes: >
+    Registered 2026-04-20 as part of the SD-033 governance plan
+    (evidence/planning/sd033_governance_plan.md). Source: 2026-04-20_ocd2.md
+    step 4 (mode-conditioning of hippocampal proposals). This is the
+    most biologically novel of the four claims registered under the
+    plan; the others extend existing REE mechanisms, this one genuinely
+    adds a function.
+  evidence_quality_note: >
+    Registered candidate with v3_pending:true. Biology lit-pull queued
+    in evidence/planning/task_inbox.md targeting state-dependent replay
+    content (Pfeiffer & Foster 2013; Olafsdottir 2018), goal-directed
+    replay bias, and task-set-conditioned replay. V3-EXQ-465 (intrusive
+    simulation filtering) and V3-EXQ-462 (rule binding) are the primary
+    falsifiers queued in ree-v3/experiment_queue.json.
+  location: evidence/planning/sd033_governance_plan.md
+- id: MECH-268
+  title: "dACC conflict saturation: the dACC-analog (SD-032b) prediction-error / conflict signal caps and habituates under repeated identical outcomes; it does not grow unboundedly as conflict persists. Without saturation, a stuck governance loop can generate unbounded pe signal that never triggers a mode change, which is the control-theory signature of persistent rumination."
+  claim_type: mechanism_hypothesis
+  subject: dacc.conflict_saturation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-20
+  depends_on:
+    - SD-032b          # dACC-analog (the module whose pe signal saturates)
+    - MECH-258         # dACC prediction-error mechanism being saturated
+    - MECH-260         # action-class suppression (interacts via shared action_history)
+    - SD-034           # closure operator (closure resets saturation per-rule-episode)
+  functional_restatement: >
+    Mechanism hypothesis. The dACC prediction-error / conflict signal
+    in SD-032b is currently unsaturated. Biological dACC error signals
+    habituate under repeated identical outcomes (Bryden et al 2019);
+    the EVC framework (Shenhav et al 2016) predicts saturation dynamics
+    under sustained demand; repeated-identical-outcome adaptation is a
+    general feature of cortical error coding.
+
+    MECH-268 asserts: pe_saturated = f_sat(pe_raw, outcome_history)
+    where f_sat caps pe growth and introduces habituation when the
+    outcome stream is repetitive. Operationally: SD-032b maintains a
+    short outcome-identity buffer; when the same outcome class recurs
+    N times in a row, the effective pe is down-weighted. A closure
+    event (SD-034) resets the buffer for the associated rule-episode.
+
+    Why this matters for governance. Without saturation, a stuck
+    governance loop can continue to generate pe signal indefinitely,
+    which mechanistically resembles rumination and blocks mode
+    transitions that depend on pe returning near baseline (e.g. leaving
+    internal_planning mode). With saturation, the pe signal dies out on
+    its own when no new information arrives, allowing the mode register
+    to relax even without an explicit closure event.
+
+    Distinct from MECH-258. MECH-258 is the pe signal itself. MECH-268
+    is a post-processing function over that signal that implements the
+    cap + habituation dynamics.
+
+    Falsifiable (primary): V3-EXQ-463 (conflict saturation under
+    repeated identical outcomes) should show pe signal plateaus in a
+    bounded range as the identical-outcome sequence lengthens. If pe
+    grows unboundedly, MECH-268 is not implemented or the saturation
+    function is mis-specified.
+
+    Falsifiable (secondary): V3-EXQ-468 (commitment vs contradiction)
+    should show that under sustained counter-evidence, pe eventually
+    caps and the adaptive gate thresholds do not fire. If pe keeps
+    growing, the governance loop never resolves.
+  notes: >
+    Registered 2026-04-20 as part of the SD-033 governance plan
+    (evidence/planning/sd033_governance_plan.md). Source: 2026-04-20_ocd1.md
+    fourth constraint on closure (the dACC conflict signal must
+    saturate, or the OCD rumination loop is mechanistically
+    unbounded).
+
+    Pairs with SD-034. SD-034 resets saturation on successful
+    completion (explicit closure). MECH-268 prevents pe from growing
+    unboundedly in the absence of explicit closure (implicit closure
+    via habituation). Together they bound the pe signal in both the
+    normal and the failure case.
+  evidence_quality_note: >
+    Registered candidate with v3_pending:true. Biology lit-pull queued
+    in evidence/planning/task_inbox.md targeting habituation of dACC
+    error signals (Bryden 2019), EVC saturation dynamics (Shenhav
+    2016), and repeated-identical-outcome adaptation. V3-EXQ-463
+    (conflict saturation) and V3-EXQ-468 (commitment vs contradiction)
+    are the primary falsifiers queued in ree-v3/experiment_queue.json.
+  location: evidence/planning/sd033_governance_plan.md
 
