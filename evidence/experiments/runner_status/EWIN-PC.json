@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 22984,
   "runner_started_at": "2026-04-18T21:21:49.184446+00:00",
-  "last_updated": "2026-04-20T03:35:19.793777+00:00",
+  "last_updated": "2026-04-20T03:54:24.845310+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -35,17 +35,6 @@
       "title": "Onboarding smoke test -- ree-cloud-2 (Hetzner CX22)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-436",
-      "backlog_id": "EXP-0106",
-      "claim_id": "",
-      "title": "SD-017 sleep phase ablation redesign with context-conditioned harm threshold",
-      "description": "",
-      "estimated_minutes": 400.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -784,6 +773,20 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 232.3
+    },
+    {
+      "queue_id": "V3-EXQ-436",
+      "backlog_id": "EXP-0106",
+      "claim_id": "",
+      "title": "SD-017 sleep phase ablation redesign with context-conditioned harm threshold",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "c2_behavioral_harm_reduction: {'wins': 0, 'pass': False, 'desc': 'harm_dang(SWS_THEN_REM) < harm_dang(WAKING_ONLY) in >=3/5 seeds'} | c3_safe_specificity: {'count_ok': 15, 'pass': True, 'desc': 'harm_rate_safe < 0.05 in >=60% of runs'} | Output written to: C:\\Users\\Eoin\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_436_sd017_context_cond_harm_thresh\\v3_exq_436_sd017_context_cond_harm_thresh_20260420T033530Z_v3.json",
+      "started_at": "2026-04-20T03:35:28.079440+00:00",
+      "completed_at": "2026-04-20T03:54:24.835033+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 1136.8
     }
   ]
 }
