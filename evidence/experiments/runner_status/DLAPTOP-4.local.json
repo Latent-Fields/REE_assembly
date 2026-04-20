@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 38928,
   "runner_started_at": "2026-04-20T14:39:30.194149+00:00",
-  "last_updated": "2026-04-20T20:00:14.629210+00:00",
+  "last_updated": "2026-04-20T22:30:44.076403+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-325d",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
-    "description": "",
-    "script": "experiments/v3_exq_325d_sd032c_aic_descending_modulation.py",
-    "started_at": "2026-04-20T16:00:57.066967+00:00",
-    "progress": {
-      "run_label": "Seed 44 / AIC_ON",
-      "runs_done": 8,
-      "runs_total": 12,
-      "episodes_done": 25,
-      "episodes_total": 150,
-      "overall_pct": 68.1
-    },
-    "seconds_elapsed": 14357,
-    "seconds_remaining": 6616,
-    "recent_lines": [
-      "CONTROL: z_s_ratio=1.0000 z_a_ratio=1.0000 committed=6000 aic_sal_mean=0.0000",
-      "verdict: PASS",
-      "-> seed 43: FAIL C1=False C2=True C3=True C4=False C5=True",
-      "Seed 44 Condition AIC_ON",
-      "[train] seed=44 cond=AIC_ON ep 25/150"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-451",
@@ -50,28 +24,6 @@
       "title": "SD-029 E2_harm_s comparator -- extended interventional training (fraction=0.7, margin=0.2, 4 seeds)",
       "description": "",
       "estimated_minutes": 213.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-325d",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-450",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032b dACC-analog behavioural retest -- stronger gains + 2-arm focused eval (supersedes V3-EXQ-445)",
-      "description": "",
-      "estimated_minutes": 168.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5723,6 +5675,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 4836.4
+    },
+    {
+      "queue_id": "V3-EXQ-325d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032c AIC-analog descending modulation -- reduced-compute retest of EXQ-325c (DLAPTOP-4 pinned)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "seed=42: FAIL s_aic=1.0000 s_abl=1.0000 s_ctl=1.0000 sal=0.784 | seed=43: FAIL s_aic=1.0000 s_abl=1.0000 s_ctl=1.0000 sal=0.853 | seed=44: FAIL s_aic=1.0000 s_abl=1.0000 s_ctl=1.0000 sal=0.787",
+      "started_at": "2026-04-20T16:00:57.066967+00:00",
+      "completed_at": "2026-04-20T22:13:35.648445+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 22358.5
+    },
+    {
+      "queue_id": "V3-EXQ-450",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC-analog behavioural retest -- stronger gains + 2-arm focused eval (supersedes V3-EXQ-445)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-04-20T22:13:39.519908+00:00",
+      "completed_at": "2026-04-20T22:30:44.074178+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1024.5
     }
   ]
 }
