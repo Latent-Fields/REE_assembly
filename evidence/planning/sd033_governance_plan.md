@@ -116,6 +116,7 @@ This plan targets the OCD side of the axis by name, but the same substrate landi
 - [x] MECH-266/267/268 registered in claims.yaml
 - [x] claims.json rebuilt (2026-04-20: 518 claims, 68 invariants OK)
 - [x] 9 EXP proposals registered in manual_proposals.v1.json (EXP-0156..0164; V3-EXQ-460..468 reserved)
+- [x] SD-034 closure operator implemented 2026-04-20 (ree_core/governance/closure_operator.py); EXP-0156/0162 scripts authored (V3-EXQ-460, V3-EXQ-466) and queued; all landing sub-tests PASS; contracts regression suite green (24/24)
 - [ ] REE_assembly + ree-v3 pushed
 - [ ] WORKSPACE_STATE Recent Work entry added
 - [ ] TASK_CLAIMS closed as done
