@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-04-19.1 -->
+<!-- EXPLORER_VERSION: 2026-04-20.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8325,6 +8325,7 @@ END CONFLICT RESOLUTION`;
                   <button id="v3StopBtn" class="ghost" style="flex:1;font-size:12px;padding:6px 0">&#9632; Stop</button>
                 </div>
                 <div id="v3CtrlMsg" style="font-size:11px;color:var(--muted);min-height:16px;margin-top:4px"></div>
+                <div id="v3PreflightBadge" style="font-size:11px;margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);color:var(--muted)" title="ree-v3/tests/preflight contract layer">Preflight: checking&hellip;</div>
               </div>
 
               <!-- V2 Runner -->
@@ -8474,6 +8475,37 @@ END CONFLICT RESOLUTION`;
         const rs = await fetch('/api/runner/status?t=' + Date.now());
         if (rs.ok) runnerInfo = await rs.json();
       } catch (_) {}
+
+      // Fetch ree-v3 preflight status (memoised server-side, 60s TTL)
+      try {
+        const pf = await fetch('/api/regression/preflight');
+        const badge = document.getElementById('v3PreflightBadge');
+        if (badge && pf.ok) {
+          const j = await pf.json();
+          let ageLabel = '';
+          if (j.cached_at) {
+            const ageSec = Math.max(0, Math.round((Date.now() / 1000) - j.cached_at));
+            ageLabel = ageSec < 60 ? ` (${ageSec}s ago)` : ` (${Math.round(ageSec / 60)}m ago)`;
+          }
+          if (j.ok) {
+            const dur = j.duration_s ? ` in ${j.duration_s.toFixed(1)}s` : '';
+            badge.innerHTML = `Preflight: <span style="color:#2e7d32;font-weight:600">&check; ${j.passed || 0} passed</span>${dur}${ageLabel}`;
+            badge.title = 'ree-v3/tests/preflight -- all green';
+          } else if (j.error) {
+            badge.innerHTML = `Preflight: <span style="color:var(--error);font-weight:600">! error</span>${ageLabel}`;
+            badge.title = String(j.error).slice(0, 400);
+          } else {
+            const tail = (j.tail || '').split('\n').slice(-6).join('\n');
+            badge.innerHTML = `Preflight: <span style="color:var(--error);font-weight:600">&times; ${j.failed || 0} failed</span> / ${j.passed || 0} passed${ageLabel}`;
+            badge.title = tail || 'ree-v3/tests/preflight -- failures present';
+          }
+        } else if (badge) {
+          badge.innerHTML = `Preflight: <span style="color:var(--muted)">unavailable</span>`;
+        }
+      } catch (_) {
+        const badge = document.getElementById('v3PreflightBadge');
+        if (badge) badge.innerHTML = `Preflight: <span style="color:var(--muted)">unavailable</span>`;
+      }
 
       // Helper: wire start/stop for a substrate version
       function wireRunnerButtons(ver) {
