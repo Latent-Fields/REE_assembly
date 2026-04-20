@@ -34,12 +34,44 @@ outcomes, not variants of a single gate scaled differently.
    other. SD-032a's `DEFAULT_GATE_WEIGHTS` captures this already; the lit supports
    keeping them separate rather than homogenising in a future refactor.
 
-2. **Carrier rhythm is the biological realisation of the gate in SWS and REM.**
-   The current V3 implementation models the mode as a soft probability scalar per
-   tick. This is the minimal viable abstraction. A V4 implementation that wants to
-   capture the Latchoumane / Boyce causal structure will need per-mode internal
-   clocking (SO-spindle-ripple timing for SWS; theta timing for REM), not just a
-   scalar. Flag for V4 SD-033 detailing.
+2. **Carrier rhythms are the biological realisation of the gate; their *function*
+   ports to REE, their *form* does not.** REE is a discrete-tick synchronous
+   agent -- no continuous time, no phase, no frequency-tuned receivers, no
+   refractory kinetics. Literal per-mode carrier-rhythm clocking (simulating a
+   ~1 Hz slow oscillation with ~10-15 Hz spindles nested on its up-state, or a
+   ~6-10 Hz theta for REM) would be architectural cosplay: implementation cost
+   paid to reproduce a mechanism whose only reason to exist biologically is that
+   neurons communicate via spikes with synaptic integration times.
+
+   What the carrier rhythms *do* -- and what the Latchoumane / Maingret / Boyce
+   results are actually evidence for -- are four functions, each of which has a
+   direct compute-side analog that is simpler than the biology:
+
+   - **Coincidence gating** ("open this channel only when these events co-occur")
+     -> boolean conjunction across per-tick predicates. Already present in REE
+     via MECH-090 (beta_gate elevated AND hippocampal completion signal) and
+     MECH-094 (hypothesis_tag write-gate).
+   - **Admission windowing** ("not every event lands; only those arriving inside
+     a window") -> tick-counter debounce or per-tick Bernoulli admission
+     probability. A counter with a gate, not a rhythm.
+   - **Graded gate quality** ("consolidation magnitude scales with alignment
+     quality") -> write-gate value as a product of sub-predicate strengths
+     (mode probability x coordinator stability x content-is-replay-flavoured
+     x write-target-not-in-refractory). SD-032a's softmax + registry already
+     has the shape; what's missing is multiplying more factors in.
+   - **Mode separability via different carriers per mode** -> dict-keyed write
+     gate with per-mode weight vectors. Already present (SD-032a
+     `DEFAULT_GATE_WEIGHTS`).
+
+   The V4 design guidance is therefore *not* "add internal clocks per mode" but
+   "enrich the admission predicate on the existing dict-keyed gate into a
+   multi-factor conjunction, with per-mode default debounce counters and
+   graded gate values." The Latchoumane out-of-phase falsification signature
+   survives the translation: firing writes under an elevated mode signal but
+   with a deliberately-decoupled content predicate should fail to consolidate,
+   same as the out-of-phase Latchoumane condition -- the mechanism isn't a
+   phase, but the admission structure is preserved. Flag for V4 SD-033 detailing
+   as a predicate-enrichment task, not an oscillator-simulation task.
 
 3. **Gate locus and write target may overlap anatomically.** Helfrich's MFC atrophy
    result hints that the substrate that *computes* the gate and the substrate that
@@ -58,12 +90,19 @@ outcomes, not variants of a single gate scaled differently.
    Prong D lit-pull on REM theta-phase reverse-replay subpopulations (Poe 2017 and
    successors) would be the natural next step.
 
-5. **Out-of-phase stimulation is an existence-proof falsification target.** An
-   experimental arm that induces SWS-mode writes outside the phase window (via
-   coordinator tick that ignores the carrier rhythm) should fail to consolidate even
-   with the mode signal active. MECH-261's current V3 abstraction cannot detect this
-   because it has no carrier rhythm, but the failure mode is the signature that the
-   V3 abstraction is a reduced model rather than the final one.
+5. **The out-of-phase falsification signature ports to REE as a
+   decoupled-predicate failure mode.** Latchoumane show that matched spindle
+   count with wrong phase fails to consolidate. In REE there is no phase, but
+   the compute-side analog is sharp: with the enriched admission predicate
+   (point 2), firing writes under an elevated mode signal but with one of the
+   sub-predicates deliberately decoupled (e.g. content-is-replay-flavoured set
+   False while mode=SWS and coordinator stable) should fail to move the target
+   representation, even though the mode signal is nominally "on." The current
+   V3 abstraction (single mode scalar per tick) cannot produce this signature
+   because the admission predicate has only one factor. Reproducing the
+   Latchoumane falsification pattern in REE is therefore itself a useful test
+   of whether the V4 enriched-predicate implementation has captured the
+   biologically-relevant structure.
 
 ## Citation graph (for the next MECH-261 evidence pass)
 
