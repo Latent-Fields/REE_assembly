@@ -1,44 +1,17 @@
 {
   "schema_version": "diagnose_staging/v1",
-  "session_date": "2026-04-15",
-  "generated_utc": "2026-04-15T14:23:56.864199+00:00",
-  "notes": [
-    "Gap reconciliation: V3-EXQ-353 (PASS, DLAPTOP-4.local, 2026-04-15) merged from per-machine file into monolithic runner_status.json. Total entries now 495.",
-    "All 51 ERROR IDs were cross-referenced against runner_status.json (all suffixes a-z), current queue (empty), and evidence directories.",
-    "2 ONBOARD smoke tests (V3-ONBOARD-smoke-EWIN-PC, V3-ONBOARD-smoke-ree-cloud-1) are machine setup tests, not scientific experiments -- excluded from error analysis.",
-    "V3-EXQ-008 appeared as the only ERROR with no standard letter-suffix successor (a, b, c...). Investigation found it was immediately followed by V3-EXQ-008r2 (FAIL, MRO init fix) and V3-EXQ-008r3 (FAIL, larger scale), both completed same day (2026-03-17), using the older 'rN' run-variant naming convention. The scientific question (SD-003 larger world) was pursued to a scientific conclusion and is fully superseded by the SD-003 redesign (z_harm_s counterfactual pipeline, EXQ-205 PASS).",
-    "All other 49 ERROR IDs have addressed chains: successors exist in runner_status.json ending in PASS, FAIL, or UNKNOWN (scientific conclusion reached, even if negative).",
-    "No new fix scripts are needed. EXQ ID range 419-428 reserved but unused."
-  ],
+  "session_date": "2026-04-20",
+  "generated_utc": "2026-04-20T14:19:14Z",
   "diagnoses": [],
-  "error_chain_summary": {
-    "total_error_ids_provided": 51,
-    "onboard_smoke_tests_excluded": 2,
-    "errors_with_standard_letter_successors": 48,
-    "errors_with_rN_variant_successors_only": 1,
-    "truly_unaddressed_requiring_fix": 0,
-    "detail": {
-      "V3-EXQ-008": {
-        "status": "addressed_via_rN_naming",
-        "successors": [
-          "V3-EXQ-008r2 (FAIL, 2026-03-17)",
-          "V3-EXQ-008r3 (FAIL, 2026-03-17)"
-        ],
-        "scientific_conclusion": "FAILs. Observation-autocorrelation hypothesis rejected. SD-003 fully redesigned to z_harm_s counterfactual pipeline; EXQ-205 PASS confirms new design works.",
-        "action": "No fix needed. Scientific question superseded by design change."
-      },
-      "V3-ONBOARD-smoke-EWIN-PC": {
-        "status": "machine_setup_test_not_scientific",
-        "action": "No fix needed. EWIN-PC onboard smoke is pending a re-run by EWIN-PC operator (V3-ONBOARD-smoke-EWIN-PC-b not yet queued or run -- this is a machine affinity task, not a session-diagnose task)."
-      },
-      "V3-ONBOARD-smoke-ree-cloud-1": {
-        "status": "machine_setup_test_not_scientific",
-        "action": "No fix needed. ree-cloud-1 is operational (multiple PASS/FAIL results from that machine in runner_status.json)."
-      }
-    }
-  },
-  "reserved_exq_ids": {
-    "range": "419-428",
-    "used": []
-  }
+  "summary": "No unaddressed ERROR entries found. All recent error chains (2026-04-17 onward) have been addressed: V3-EXQ-375/396/406/429 each have a completed successor; V3-EXQ-324b/355a/385a/418a each have a completed successor; V3-EXQ-397 chain resolves to V3-EXQ-397c (pending in queue, supersedes 397/397a/397b); V3-EXQ-430 chain resolves to V3-EXQ-430b (FAIL - scientific, not code); V3-EXQ-325c resolves to V3-EXQ-325d (claimed by DLAPTOP-4.local, in queue since 2026-04-20T05:50:12Z). Older errors (pre-2026-04-17) are either resolved by completed successors or architecturally obsolete (V3-EXQ-008 SD-003 superseded 2026-04-18).",
+  "runner_status_checked_utc": "2026-04-20T14:19:14Z",
+  "queue_state": "14 items in queue; V3-EXQ-325d claimed by DLAPTOP-4.local; V3-EXQ-447 claimed by ree-cloud-2; 12 items pending",
+  "pending_reviews_noted": [
+    "v3_exq_397_arc007_path_memory_ablation_20260419T153153Z_v3 (FAIL)",
+    "v3_exq_433a_sd029_eventcond_comparator_scripted_20260419T161931Z_v3 (FAIL)",
+    "v3_exq_445_sd032b_dacc_analog_20260419T205642Z_v3 (FAIL)",
+    "v3_exq_446_sd032a_salience_coordinator_20260420T013457Z_v3 (PASS)",
+    "V3-EXQ-445 (UNKNOWN - runner-only)",
+    "V3-EXQ-325c (ERROR - runner-only, fix queued as V3-EXQ-325d)"
+  ]
 }

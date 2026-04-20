@@ -1,75 +1,59 @@
 # Diagnose-Errors Staging Report
 
-**Session**: ree-diagnose-queue-2026-04-15-b / diagnose-errors wave 1
-**Generated**: 2026-04-15
-**Mode**: STAGING (headless, autonomous, cowork subagent)
+**Session**: ree-diagnose-queue-2026-04-20T14 / afternoon automated run
+**Generated**: 2026-04-20T14:19:14Z
+**Mode**: STAGING (headless, scheduled task)
 
 ---
 
-## Summary (2026-04-15 update)
+## Summary (2026-04-20 afternoon)
 
 **0 unaddressed errors requiring new fix scripts.**
 
-All 51 ERROR entries in runner_status.json were analyzed. No new EXQ IDs from the reserved
-range (419-428) were used.
+All recent ERROR entries (2026-04-17 onward) in runner_status.json were cross-referenced
+against the current queue, completed IDs, and TASK_CLAIMS.json. All chains are addressed.
 
 ### Gap reconciliation
 
-One entry was present in a per-machine file but missing from the monolithic runner_status.json:
+Monolithic runner_status.json is in sync with per-machine files. Gap: 0.
 
-| Queue ID | Machine | Result | Completed |
-|---|---|---|---|
-| V3-EXQ-353 | DLAPTOP-4.local | PASS | 2026-04-15T13:24:50Z |
+### Error chain analysis (2026-04-17+)
 
-V3-EXQ-353 (ARC-033/SD-003/SD-013 interventional vs observational training comparison)
-was merged into runner_status.json. Total entries: 495.
+| Queue ID | Error date | Chain status |
+|---|---|---|
+| V3-EXQ-375 | 2026-04-17 | 375a completed (chain resolved) |
+| V3-EXQ-406 | 2026-04-17 | 406a completed (chain resolved) |
+| V3-EXQ-396 | 2026-04-17 | 396a completed (chain resolved) |
+| V3-EXQ-397 | 2026-04-17 | 397a ERROR -> 397b FAIL -> 397c **pending in queue** |
+| V3-EXQ-429 | 2026-04-17 | 429a completed (chain resolved) |
+| V3-EXQ-430 | 2026-04-17 | 430a ERROR -> 430b FAIL (scientific) |
+| V3-EXQ-324b | 2026-04-17 | 324c completed (chain resolved) |
+| V3-EXQ-418a | 2026-04-17 | 418b completed (chain resolved) |
+| V3-EXQ-385a | 2026-04-17 | 385b completed (chain resolved) |
+| V3-EXQ-355a | 2026-04-17 | 355b completed (chain resolved) |
+| V3-EXQ-430a | 2026-04-18 | 430b FAIL (scientific, not code) |
+| V3-EXQ-397a | 2026-04-18 | 397b FAIL -> 397c pending in queue |
+| V3-EXQ-325c | 2026-04-19 | 325d **claimed by DLAPTOP-4.local** (in progress) |
 
-### Error chain analysis
+### Older errors (pre-2026-04-17)
 
-| Category | Count |
-|---|---|
-| ONBOARD smoke tests (excluded -- not scientific) | 2 |
-| ERRORs with standard letter-suffix successors (chain resolved) | 48 |
-| ERRORs addressed via older rN naming convention | 1 |
-| **Truly unaddressed, requiring new fix script** | **0** |
-
-**ONBOARD smoke tests:**
-- V3-ONBOARD-smoke-EWIN-PC: Machine setup test. ree-cloud-1 is operational. EWIN-PC rerun is a machine operator task.
-- V3-ONBOARD-smoke-ree-cloud-1: ree-cloud-1 is fully operational -- many successful runs since.
-
-**The one apparent gap -- V3-EXQ-008:**
-
-V3-EXQ-008 (SD-003 Larger World + 3x3 Observation, 2026-03-17) shows ERROR with no
-standard alphabetic successor. However, it was immediately addressed via the older rN naming:
-
-- V3-EXQ-008r2 (FAIL, same day): Fixed MRO init order bug. calibration_gap=0.020.
-- V3-EXQ-008r3 (FAIL, same day): Scaled to 16x16, 800 episodes. calibration_gap=-0.007.
-
-Scientific conclusion reached: observation-autocorrelation hypothesis rejected. SD-003 was
-subsequently redesigned to use z_harm_s counterfactual pipeline (ARC-033). EXQ-205 PASS
-confirms new design works (2026-04-02). No further action required.
-
-**Standard letter-suffix chains (48 IDs) -- all resolved:**
-
-| Last result | Example chains |
-|---|---|
-| PASS | EXQ-074f, EXQ-057b, EXQ-248b, EXQ-249b, EXQ-251b, EXQ-254c, EXQ-257b |
-| FAIL | EXQ-075d, EXQ-076d/e/f, EXQ-084d, EXQ-260b, EXQ-261b, EXQ-262b, and many more |
-| UNKNOWN | EXQ-250b, EXQ-263a/b (queue-done perspective) |
+All resolved in prior sessions. V3-EXQ-008 architecturally obsolete (SD-003 superseded
+2026-04-18, confirmed in session diagnose-325c-2026-04-20T05).
 
 ---
 
-## Note on EXQ-263a/263b UNKNOWN Result Types
+## Pending experiment reviews (for user reference)
 
-Both show `result=UNKNOWN` in runner_status.json with outcome strings in summary fields.
-If governance scoring needs formal PASS/FAIL status for MECH-216, these manifests may
-need manual result-type correction. Not urgent -- does not block other work.
+These were noted in pending_review.md at time of this session; they require human review:
 
----
-
-## EXQ ID Reservation
-
-Reserved range 419-428 for this session. None consumed -- all errors were addressed.
+| Run / Queue ID | Result | Claims |
+|---|---|---|
+| v3_exq_397_arc007_...20260419T153153Z_v3 | FAIL | ARC-007, SD-004 |
+| v3_exq_433a_sd029_...20260419T161931Z_v3 | FAIL | MECH-256, SD-029 |
+| v3_exq_445_sd032b_...20260419T205642Z_v3 | FAIL | ARC-033, ARC-058, MECH-258, MECH-260, SD-032b |
+| v3_exq_446_sd032a_...20260420T013457Z_v3 | PASS | MECH-259, MECH-261, SD-032a |
+| V3-EXQ-445 | UNKNOWN | runner-only |
+| V3-EXQ-325c | ERROR | runner-only; fix queued as V3-EXQ-325d |
 
 ---
 
