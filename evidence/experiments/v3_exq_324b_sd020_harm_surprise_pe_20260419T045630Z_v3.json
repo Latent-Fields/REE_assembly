@@ -1,0 +1,208 @@
+{
+  "run_id": "v3_exq_324b_sd020_harm_surprise_pe_20260419T045630Z_v3",
+  "experiment_type": "v3_exq_324b_sd020_harm_surprise_pe",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-020"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "supports",
+  "outcome": "PASS",
+  "timestamp_utc": "20260419T045706Z",
+  "supersedes": "V3-EXQ-324a",
+  "experiment_version": "b",
+  "fix_description": "Multi-episode eval fix. EXQ-324a used `if done: break` which exited eval after 6-10 steps (episode end when resources collected). Fix: `if done: env.reset()` continues for full EVAL_STEPS=400 across multiple episodes. This provides sufficient n for a reliable Pearson correlation between z_harm_a_norm and harm_pe.",
+  "substrate_notes": "SD-022 active: limb_damage_enabled=True, 7-dim harm_obs_a, 8 hazards",
+  "registered_thresholds": {
+    "C1": "surprise_corr_PE > surprise_corr_EMA",
+    "C2": "surprise_corr_PE >= 0.15",
+    "C3": "z_harm_a_norm_PE > 0.01",
+    "pass_min_seeds": 3
+  },
+  "seeds_passing": 3,
+  "total_seeds": 5,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "surprise_corr_pe": -0.8341242041788391,
+      "surprise_corr_ema": 0.13412970814982947,
+      "magnitude_corr_pe": 0.19285223788437106,
+      "magnitude_corr_ema": -0.9821412187230847,
+      "z_harm_a_norm_pe": 0.6058228182792663,
+      "z_harm_a_norm_ema": 0.6446897239983082,
+      "harm_pe_mean_pe": 0.01037660645435162,
+      "mean_damage_mean": 0.0178174849197967,
+      "n_eval_steps_pe": 400,
+      "n_eval_steps_ema": 400,
+      "c1_surprise_corr_higher": false,
+      "c2_abs_threshold": false,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "PE_TARGET": {
+          "surprise_corr": -0.8341242041788391,
+          "magnitude_corr": 0.19285223788437106,
+          "z_harm_a_mean_norm": 0.6058228182792663,
+          "harm_pe_mean": 0.01037660645435162,
+          "mean_damage_mean": 0.0178174849197967,
+          "n_eval_steps": 400
+        },
+        "EMA_TARGET": {
+          "surprise_corr": 0.13412970814982947,
+          "magnitude_corr": -0.9821412187230847,
+          "z_harm_a_mean_norm": 0.6446897239983082,
+          "harm_pe_mean": 0.01037660645435162,
+          "mean_damage_mean": 0.0178174849197967,
+          "n_eval_steps": 400
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": true,
+      "surprise_corr_pe": 0.8097926235655355,
+      "surprise_corr_ema": -0.00390742499471002,
+      "magnitude_corr_pe": 0.08802508492258784,
+      "magnitude_corr_ema": 0.9860405846541,
+      "z_harm_a_norm_pe": 0.4871318873763084,
+      "z_harm_a_norm_ema": 0.5017774642258882,
+      "harm_pe_mean_pe": 0.010296221968697915,
+      "mean_damage_mean": 0.01678950780944433,
+      "n_eval_steps_pe": 400,
+      "n_eval_steps_ema": 400,
+      "c1_surprise_corr_higher": true,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "PE_TARGET": {
+          "surprise_corr": 0.8097926235655355,
+          "magnitude_corr": 0.08802508492258784,
+          "z_harm_a_mean_norm": 0.4871318873763084,
+          "harm_pe_mean": 0.010296221968697915,
+          "mean_damage_mean": 0.01678950780944433,
+          "n_eval_steps": 400
+        },
+        "EMA_TARGET": {
+          "surprise_corr": -0.00390742499471002,
+          "magnitude_corr": 0.9860405846541,
+          "z_harm_a_mean_norm": 0.5017774642258882,
+          "harm_pe_mean": 0.010296221968697915,
+          "mean_damage_mean": 0.01678950780944433,
+          "n_eval_steps": 400
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": true,
+      "surprise_corr_pe": 0.6956966469736843,
+      "surprise_corr_ema": -0.022175376663914243,
+      "magnitude_corr_pe": 0.536630772554932,
+      "magnitude_corr_ema": 0.9940533981979677,
+      "z_harm_a_norm_pe": 0.4581224947422743,
+      "z_harm_a_norm_ema": 0.4710842789709568,
+      "harm_pe_mean_pe": 0.010370809879643138,
+      "mean_damage_mean": 0.017302175745135172,
+      "n_eval_steps_pe": 400,
+      "n_eval_steps_ema": 400,
+      "c1_surprise_corr_higher": true,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "PE_TARGET": {
+          "surprise_corr": 0.6956966469736843,
+          "magnitude_corr": 0.536630772554932,
+          "z_harm_a_mean_norm": 0.4581224947422743,
+          "harm_pe_mean": 0.010370809879643138,
+          "mean_damage_mean": 0.017302175745135172,
+          "n_eval_steps": 400
+        },
+        "EMA_TARGET": {
+          "surprise_corr": -0.022175376663914243,
+          "magnitude_corr": 0.9940533981979677,
+          "z_harm_a_mean_norm": 0.4710842789709568,
+          "harm_pe_mean": 0.010370809879643138,
+          "mean_damage_mean": 0.017302175745135172,
+          "n_eval_steps": 400
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "seed_pass": true,
+      "surprise_corr_pe": 0.4409013883170704,
+      "surprise_corr_ema": 0.1949228112039256,
+      "magnitude_corr_pe": -0.8764521671641569,
+      "magnitude_corr_ema": 0.553988235557995,
+      "z_harm_a_norm_pe": 0.3550042904913425,
+      "z_harm_a_norm_ema": 0.40052722953259945,
+      "harm_pe_mean_pe": 0.010143277207636215,
+      "mean_damage_mean": 0.01716254303290043,
+      "n_eval_steps_pe": 400,
+      "n_eval_steps_ema": 400,
+      "c1_surprise_corr_higher": true,
+      "c2_abs_threshold": true,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "PE_TARGET": {
+          "surprise_corr": 0.4409013883170704,
+          "magnitude_corr": -0.8764521671641569,
+          "z_harm_a_mean_norm": 0.3550042904913425,
+          "harm_pe_mean": 0.010143277207636215,
+          "mean_damage_mean": 0.01716254303290043,
+          "n_eval_steps": 400
+        },
+        "EMA_TARGET": {
+          "surprise_corr": 0.1949228112039256,
+          "magnitude_corr": 0.553988235557995,
+          "z_harm_a_mean_norm": 0.40052722953259945,
+          "harm_pe_mean": 0.010143277207636215,
+          "mean_damage_mean": 0.01716254303290043,
+          "n_eval_steps": 400
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "seed_pass": false,
+      "surprise_corr_pe": 0.06429314787264372,
+      "surprise_corr_ema": 0.2608151432778018,
+      "magnitude_corr_pe": 0.7934986813838364,
+      "magnitude_corr_ema": -0.285378132150644,
+      "z_harm_a_norm_pe": 0.2981146958470344,
+      "z_harm_a_norm_ema": 0.3707453864067793,
+      "harm_pe_mean_pe": 0.010579186282566662,
+      "mean_damage_mean": 0.01674018101708498,
+      "n_eval_steps_pe": 400,
+      "n_eval_steps_ema": 400,
+      "c1_surprise_corr_higher": false,
+      "c2_abs_threshold": false,
+      "c3_no_collapse": true,
+      "condition_results": {
+        "PE_TARGET": {
+          "surprise_corr": 0.06429314787264372,
+          "magnitude_corr": 0.7934986813838364,
+          "z_harm_a_mean_norm": 0.2981146958470344,
+          "harm_pe_mean": 0.010579186282566662,
+          "mean_damage_mean": 0.01674018101708498,
+          "n_eval_steps": 400
+        },
+        "EMA_TARGET": {
+          "surprise_corr": 0.2608151432778018,
+          "magnitude_corr": -0.285378132150644,
+          "z_harm_a_mean_norm": 0.3707453864067793,
+          "harm_pe_mean": 0.010579186282566662,
+          "mean_damage_mean": 0.01674018101708498,
+          "n_eval_steps": 400
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "mean_surprise_corr_pe": 0.23531192051001892,
+    "mean_surprise_corr_ema": 0.11275697219458651,
+    "mean_magnitude_corr_pe": 0.14691092191631408,
+    "mean_z_harm_a_norm_pe": 0.4408392373472452,
+    "mean_n_eval_steps_pe": 400.0
+  }
+}

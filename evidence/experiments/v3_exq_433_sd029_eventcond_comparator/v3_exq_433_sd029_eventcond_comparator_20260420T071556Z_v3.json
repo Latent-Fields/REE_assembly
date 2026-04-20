@@ -1,0 +1,205 @@
+{
+  "run_id": "v3_exq_433_sd029_eventcond_comparator_20260420T071556Z_v3",
+  "experiment_type": "v3_exq_433_sd029_eventcond_comparator",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-029",
+    "MECH-256"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction_per_claim": {
+    "SD-029": "does_not_support",
+    "MECH-256": "supports"
+  },
+  "evidence_direction": "does_not_support",
+  "outcome": "FAIL",
+  "criteria": {
+    "c1_forward_r2_pass": true,
+    "c1_vals": [
+      0.9861028096700275,
+      0.998995657246837,
+      0.9976480101323388,
+      0.9997833371282748
+    ],
+    "c1_seeds_pass": 4,
+    "c2_attenuation_ratio_pass": false,
+    "c2_vals": [
+      0.4205724974213472,
+      0.0,
+      0.7560813140339249,
+      0.0
+    ],
+    "c2_seeds_pass": 1,
+    "c3_approach_snr_pass": false,
+    "c3_vals": [
+      1.8286739382586172,
+      5.611050466118463,
+      4.179382109545635,
+      0.0
+    ],
+    "c3_seeds_pass": 2,
+    "c4_event_density_pass": false,
+    "c4_details": [
+      {
+        "seed": 7,
+        "n_self": 180,
+        "n_ext": 22,
+        "ok": true
+      },
+      {
+        "seed": 13,
+        "n_self": 0,
+        "n_ext": 57,
+        "ok": false
+      },
+      {
+        "seed": 42,
+        "n_self": 3,
+        "n_ext": 60,
+        "ok": false
+      },
+      {
+        "seed": 91,
+        "n_self": 303,
+        "n_ext": 0,
+        "ok": false
+      }
+    ],
+    "c4_seeds_pass": 1,
+    "overall_pass": false
+  },
+  "results_per_condition": [
+    {
+      "seed": 42,
+      "condition": "TRAINED",
+      "forward_r2": 0.9976480101323388,
+      "residual_means": {
+        "env_caused_hazard": 0.12237298032268881,
+        "agent_caused_hazard": 0.09252392376462619,
+        "hazard_approach": 0.11903100001694303,
+        "none": 0.02490569096498151
+      },
+      "residual_stds": {
+        "env_caused_hazard": 0.05502767445922156,
+        "agent_caused_hazard": 0.03576752021338527,
+        "hazard_approach": 0.05540968084634241,
+        "none": 0.028480525804299713
+      },
+      "event_counts": {
+        "env_caused_hazard": 60,
+        "agent_caused_hazard": 3,
+        "hazard_approach": 516,
+        "none": 28634
+      },
+      "attenuation_ratio": 0.7560813140339249,
+      "approach_snr": 4.179382109545635,
+      "n_eval_episodes": 200
+    },
+    {
+      "seed": 7,
+      "condition": "TRAINED",
+      "forward_r2": 0.9861028096700275,
+      "residual_means": {
+        "env_caused_hazard": 0.13012600520795042,
+        "agent_caused_hazard": 0.054727418989770946,
+        "hazard_approach": 0.10032003789263613,
+        "none": 0.09691030188874386
+      },
+      "residual_stds": {
+        "env_caused_hazard": 0.04130969404765228,
+        "agent_caused_hazard": 0.015111425350409059,
+        "hazard_approach": 0.0635207555873558,
+        "none": 0.05485944530284465
+      },
+      "event_counts": {
+        "env_caused_hazard": 22,
+        "agent_caused_hazard": 180,
+        "hazard_approach": 646,
+        "none": 229
+      },
+      "attenuation_ratio": 0.4205724974213472,
+      "approach_snr": 1.8286739382586172,
+      "n_eval_episodes": 175
+    },
+    {
+      "seed": 13,
+      "condition": "TRAINED",
+      "forward_r2": 0.998995657246837,
+      "residual_means": {
+        "env_caused_hazard": 0.14230112783741533,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.11943992259648611,
+        "none": 0.012863832926646694
+      },
+      "residual_stds": {
+        "env_caused_hazard": 0.05055772164554373,
+        "agent_caused_hazard": 0.0,
+        "hazard_approach": 0.03465003534720889,
+        "none": 0.02128655290443514
+      },
+      "event_counts": {
+        "env_caused_hazard": 57,
+        "agent_caused_hazard": 0,
+        "hazard_approach": 265,
+        "none": 34582
+      },
+      "attenuation_ratio": 0.0,
+      "approach_snr": 5.611050466118463,
+      "n_eval_episodes": 200
+    },
+    {
+      "seed": 91,
+      "condition": "TRAINED",
+      "forward_r2": 0.9997833371282748,
+      "residual_means": {
+        "env_caused_hazard": 0.0,
+        "agent_caused_hazard": 0.013018622634803304,
+        "hazard_approach": 0.01295599484971414,
+        "none": 0.0
+      },
+      "residual_stds": {
+        "env_caused_hazard": 0.0,
+        "agent_caused_hazard": 0.0029618227985703286,
+        "hazard_approach": 0.003045430637164572,
+        "none": 0.0
+      },
+      "event_counts": {
+        "env_caused_hazard": 0,
+        "agent_caused_hazard": 303,
+        "hazard_approach": 600,
+        "none": 0
+      },
+      "attenuation_ratio": 0.0,
+      "approach_snr": 0.0,
+      "n_eval_episodes": 200
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13,
+      91
+    ],
+    "conditions": [
+      "TRAINED"
+    ],
+    "p0_episodes": 80,
+    "p1_episodes": 100,
+    "p2_base_episodes": 100,
+    "p2_extend_episodes": 25,
+    "p2_cap_episodes": 200,
+    "steps_per_ep": 200,
+    "grid_size": 8,
+    "num_hazards": 4,
+    "hazard_harm": 0.3,
+    "interventional_fraction": 0.5,
+    "c1_forward_r2_thresh": 0.9,
+    "c2_ratio_low": 0.3,
+    "c2_ratio_high": 0.7,
+    "c3_approach_snr_thresh": 3.0,
+    "c4_min_events_per_type": 20,
+    "min_seeds_pass": 3
+  },
+  "timestamp_utc": "20260420T071556Z"
+}
