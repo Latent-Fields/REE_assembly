@@ -117,6 +117,8 @@ This plan targets the OCD side of the axis by name, but the same substrate landi
 - [x] claims.json rebuilt (2026-04-20: 518 claims, 68 invariants OK)
 - [x] 9 EXP proposals registered in manual_proposals.v1.json (EXP-0156..0164; V3-EXQ-460..468 reserved)
 - [x] SD-034 closure operator implemented 2026-04-20 (ree_core/governance/closure_operator.py); EXP-0156/0162 scripts authored (V3-EXQ-460, V3-EXQ-466) and queued; all landing sub-tests PASS; contracts regression suite green (24/24)
+- [x] MECH-267 mode-conditioned hippocampal proposals implemented 2026-04-20 (ree_core/hippocampal/module.py operating_mode parameter + ree_core/utils/config.py HippocampalConfig.mode_conditioning_enabled + per-mode CEM-noise multipliers); EXP-0158/0161 scripts authored (V3-EXQ-462, V3-EXQ-465) as substrate-landing diagnostics; all 10/10 sub-tests PASS on smoke; behavioural successors deferred pending EXP-0155 (cue_action_proj diagnostic) and forced-replay injection hook respectively
+- [x] MECH-268 dACC conflict saturation implemented 2026-04-20 (ree_core/cingulate/dacc.py f_sat = 1.0 / (1.0 + strength * max(0, n_rec - grace)) over FIFO outcome history; ClosureOperator wired to call dacc.reset_outcome_history(); REEConfig.from_dims wired with 4 saturation knobs + closure_reset_outcome_history); EXP-0159 (V3-EXQ-463, 7 sub-tests) and EXP-0164 (V3-EXQ-468, 6 sub-tests, 4-arm A/B/C/D interaction) authored as substrate-landing diagnostics; all 13/13 sub-tests PASS on smoke; behavioural arms (500+ step sustained outcome / counter-evidence injection) deferred -- need env extensions not on roadmap
 - [ ] REE_assembly + ree-v3 pushed
 - [ ] WORKSPACE_STATE Recent Work entry added
 - [ ] TASK_CLAIMS closed as done
@@ -131,10 +133,20 @@ order when picking this back up:
    EXP-0156, EXP-0157, EXP-0162, EXP-0164).
 2. MECH-266 asymmetric hysteresis extension to SalienceCoordinator
    (unblocks EXP-0160, EXP-0163).
-3. MECH-267 mode-conditioned proposals on HippocampalModule
-   (unblocks EXP-0158, EXP-0161).
-4. MECH-268 dACC pe saturation in DACCAdaptiveControl
-   (unblocks EXP-0159, EXP-0164).
+3. ~~MECH-267 mode-conditioned proposals on HippocampalModule~~
+   IMPLEMENTED 2026-04-20. EXP-0158 (V3-EXQ-462) and EXP-0161
+   (V3-EXQ-465) authored as substrate-landing diagnostics and smoke-
+   tested PASS. Full behavioural successors still blocked on
+   EXP-0155 (cue_action_proj forward-path diagnostic) and a
+   forced-replay injection hook respectively.
+4. ~~MECH-268 dACC pe saturation in DACCAdaptiveControl~~
+   IMPLEMENTED 2026-04-20. EXP-0159 (V3-EXQ-463) and EXP-0164
+   (V3-EXQ-468) authored as substrate-landing diagnostics and smoke-
+   tested PASS (13/13 sub-tests). Closure operator threads
+   reset_outcome_history flag; ClosureEvent.outcome_history_reset
+   stamps the reset. Behavioural arms (500+ step sustained outcome /
+   counter-evidence injection) deferred -- env extensions not yet
+   on roadmap.
 
 Each proposal's `prerequisites` field is the punch list.
 

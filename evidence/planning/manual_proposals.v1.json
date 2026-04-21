@@ -687,7 +687,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "queued",
+      "status": "script_authored",
       "prerequisites": [
         "MECH-268 dACC conflict saturation (proposed; saturation function implemented atop MECH-258)",
         "SD-032b dACC-analog (implemented)",
@@ -701,7 +701,10 @@
         "SD-032b",
         "MECH-258"
       ],
-      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-463 -- ocd4 row 'conflict saturation', targets No-Go strengthening / pe capping gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-463 -- ocd4 row 'conflict saturation', targets No-Go strengthening / pe capping gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist.",
+      "script_path": "ree-v3/experiments/v3_exq_463_mech268_dacc_conflict_saturation.py",
+      "reserved_queue_id": "V3-EXQ-463",
+      "queued_utc": "2026-04-21"
     },
     {
       "proposal_id": "EXP-0160",
@@ -808,7 +811,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "queued",
+      "status": "script_authored",
       "prerequisites": [
         "SD-034 closure operator (proposed)",
         "MECH-268 dACC conflict saturation (proposed)",
@@ -823,7 +826,10 @@
         "MECH-268",
         "MECH-090"
       ],
-      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-468 -- ocd4 row 'commitment vs contradiction', targets Adaptive gate thresholds + pe saturation gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-468 -- ocd4 row 'commitment vs contradiction', targets Adaptive gate thresholds + pe saturation gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist.",
+      "script_path": "ree-v3/experiments/v3_exq_468_sd034_mech268_commitment_vs_contradiction.py",
+      "reserved_queue_id": "V3-EXQ-468",
+      "queued_utc": "2026-04-21"
     }
   ]
 }

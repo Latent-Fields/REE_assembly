@@ -1,0 +1,60 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_465_mech267_intrusive_simulation_filtering_v3_20260420T235804Z",
+  "experiment_type": "v3_exq_465_mech267_intrusive_simulation_filtering",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-20T23:58:04.507036Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-267",
+    "MECH-094",
+    "MECH-261"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-267": "supports",
+    "MECH-094": "supports",
+    "MECH-261": "supports"
+  },
+  "metrics": {
+    "UC1_signature_accepts_operating_mode_replay": {
+      "accepts_via_propose": true,
+      "accepts_via_forward": true,
+      "error": null,
+      "pass": true
+    },
+    "UC2_disabled_by_default_backward_compat": {
+      "last_mode_recorded": true,
+      "last_noise_scale_is_none": true,
+      "pass": true
+    },
+    "UC3_replay_vs_task_noise_scale": {
+      "scale_internal_replay": 0.5,
+      "scale_external_task": 1.0,
+      "ratio_replay_over_task": 0.5,
+      "pass": true
+    },
+    "UC4_mech094_residue_gate_under_intrusion": {
+      "tagged_weight_delta": 0.0,
+      "untagged_weight_delta": 0.10000000149011612,
+      "pass": true
+    },
+    "UC5_arm_structural_contrast": {
+      "arm_a_noise_scale": 0.5,
+      "arm_a_residue_delta": 0.0,
+      "arm_a_pass": true,
+      "arm_b_noise_scale": 0.5,
+      "arm_b_residue_delta": 0.10000000149011612,
+      "arm_b_contaminated_as_expected": true,
+      "arm_b_pass": true,
+      "arm_c_noise_scale_replay": null,
+      "arm_c_noise_scale_task": null,
+      "arm_c_residue_delta": 0.0,
+      "arm_c_pass": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.04414963722229004,
+  "notes": "MECH-267 x MECH-094 landing diagnostic for EXP-0161 (intrusive simulation filtering). Tests substrate wiring of operating_mode through HippocampalModule.propose_trajectories under internal_replay semantics, and confirms the MECH-094 hypothesis_tag write-gate still asymmetrically protects ResidueField.accumulate. Behavioural intrusion-filtering contrasts (the full ARM-A/B/C design from EXP-0161) are deferred to a behavioural successor pending implementation of a forced-replay injection hook into the E3 / hippocampal tick. UC5 establishes the structural ARM-A vs ARM-B vs ARM-C contrast at the substrate level: ARM A is the only configuration where both the proposal distribution is mode-appropriate AND the residue is write-protected."
+}
