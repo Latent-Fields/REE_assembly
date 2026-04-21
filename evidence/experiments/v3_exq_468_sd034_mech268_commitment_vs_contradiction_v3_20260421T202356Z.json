@@ -1,0 +1,87 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_468_sd034_mech268_commitment_vs_contradiction_v3_20260421T202356Z",
+  "experiment_type": "v3_exq_468_sd034_mech268_commitment_vs_contradiction",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-21T20:23:56.947591Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-034",
+    "MECH-268",
+    "MECH-090"
+  ],
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-268",
+    "MECH-090"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-034": "supports",
+    "MECH-268": "supports",
+    "MECH-090": "supports"
+  },
+  "metrics": {
+    "UC1_arm_d_both_off": {
+      "sat_factor": 1.0,
+      "n_recurrences": 0,
+      "closure_fired": false,
+      "closure_reason": "skipped:disabled",
+      "pass": true
+    },
+    "UC2_arm_a_both_on": {
+      "sat_pre": 0.3333333333333333,
+      "sat_post": 1.0,
+      "n_post": 0,
+      "fired": true,
+      "beta_released": true,
+      "outcome_history_reset": true,
+      "pe_ema_reset": true,
+      "nogo_pushed": 3,
+      "post_pe_ema": null,
+      "pass": true
+    },
+    "UC3_arm_b_sd034_only": {
+      "sat_pre": 1.0,
+      "bundle_pe": 1.2,
+      "bundle_pe_unsaturated": 1.2,
+      "bundle_saturation_factor": 1.0,
+      "fired": true,
+      "beta_released": true,
+      "nogo_pushed": 3,
+      "pass": true
+    },
+    "UC4_arm_c_mech268_only": {
+      "sat_after_history": 0.3333333333333333,
+      "n_recurrences": 6,
+      "closure_fired": false,
+      "closure_reason": "skipped:disabled",
+      "beta_still_elevated": true,
+      "pass": true
+    },
+    "UC5_mode_conditioning_blocks_closure_only": {
+      "sat_before": 0.4,
+      "sat_after": 0.3333333333333333,
+      "n_after": 6,
+      "fired": false,
+      "reason": "skipped:mode_disallowed(offline_consolidation)",
+      "beta_still_elevated": true,
+      "pass": true
+    },
+    "UC6_closure_after_saturation_interaction": {
+      "sat_pre": 0.3333333333333333,
+      "pe_during_closure": 0.39999999999999997,
+      "sat_during_closure": 0.3333333333333333,
+      "fired": true,
+      "outcome_history_reset": true,
+      "sat_post": 1.0,
+      "bundle_post_saturation_factor": 1.0,
+      "bundle_post_pe": 1.2,
+      "bundle_post_pe_unsaturated": 1.2,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.0007970333099365234,
+  "notes": "SD-034 x MECH-268 four-arm landing diagnostic (ocd4 commitment-vs-contradiction row). Validates that the closure-on-completion (SD-034) and pe-saturation-on-sustained-counter-evidence (MECH-268) release pathways are mechanistically separable but jointly load-bearing: Arm A (both ON) shows clean closure + pe rebaselining; Arm B (SD-034 only) confirms closure fires without needing saturation; Arm C (MECH-268 only) confirms habituation fires without needing closure; Arm D (both OFF) is baseline. UC5 confirms the falsifiability predicate -- mode-conditioning gates closure but does NOT gate saturation. UC6 confirms the closure cycle uses the still-attenuated pe (closure carries the historical signal) but the buffer reset means the next cycle starts unsaturated -- forward-looking, not retroactive. Behavioural arm (env counter-evidence injection + release-type distribution / time-to-release / post-release residue patterning across all four arms) deferred -- depends on env extension that is not yet on roadmap. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source: docs/thoughts/2026-04-20_ocd4.md row 'commitment vs contradiction'."
+}
