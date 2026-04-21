@@ -1,0 +1,139 @@
+{
+  "run_id": "v3_exq_473_sd035_cea_mode_prior_20260421T195533Z_v3",
+  "experiment_type": "v3_exq_473_sd035_cea_mode_prior",
+  "claim_ids": [
+    "SD-035",
+    "MECH-046",
+    "MECH-074c"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260421T195533Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-035": "supports",
+    "MECH-046": "supports",
+    "MECH-074c": "supports"
+  },
+  "pass_criteria_summary": {
+    "c1_backward_compat_entropy_delta": {
+      "deltas": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "threshold": 0.2,
+      "seeds_passing": 3,
+      "pass": true,
+      "desc": "|entropy(CEA_ON_QUIET) - entropy(CEA_OFF_QUIET)| <= 0.2 nats in >= 2/3 seeds"
+    },
+    "c2_fire_and_signal_injection": {
+      "cea_fire_on_threat": true,
+      "cea_mode_prior_signal": 0.39999985694885254,
+      "cea_fast_prime_signal": 0.2999998927116394,
+      "signals_reached_coordinator": true,
+      "pass": true,
+      "desc": "CeA fires on |z_harm_a|=0.9 and signals reach coordinator"
+    },
+    "c3_mode_prior_bound": {
+      "max_observed": 0.8,
+      "cap": 0.8,
+      "pass": true,
+      "desc": "|mode_prior| <= mode_prior_log_odds_max over input sweep"
+    },
+    "c4_mech094_simulation_gate": {
+      "pass": true,
+      "desc": "simulation_mode=True returns zeroed output on saturating input"
+    },
+    "c5_decay_dynamics": {
+      "initial_fp_decay": 0.8,
+      "final_fp_decay_no_cortical": 0.19999999999999993,
+      "decay_past_half_after_8_steps": true,
+      "initial_fp_hold": 0.8,
+      "final_fp_hold_with_cortical": 0.8,
+      "hold_above_half_after_4_steps": true,
+      "pass": true,
+      "desc": "tau decay (no conf) and hold (conf=1.0) both respected"
+    }
+  },
+  "per_seed_results": [
+    {
+      "condition": "CEA_OFF_QUIET",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "cea_fire_count_natural": 0,
+      "cea_n_ticks": 0
+    },
+    {
+      "condition": "CEA_ON_QUIET",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "cea_fire_count_natural": 0,
+      "cea_n_ticks": 4
+    },
+    {
+      "condition": "CEA_OFF_QUIET",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "cea_fire_count_natural": 0,
+      "cea_n_ticks": 0
+    },
+    {
+      "condition": "CEA_ON_QUIET",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "cea_fire_count_natural": 0,
+      "cea_n_ticks": 4
+    },
+    {
+      "condition": "CEA_OFF_QUIET",
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "cea_fire_count_natural": 0,
+      "cea_n_ticks": 0
+    },
+    {
+      "condition": "CEA_ON_QUIET",
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "cea_fire_count_natural": 0,
+      "cea_n_ticks": 4
+    }
+  ],
+  "unit_checks": {
+    "c2_cea_fire_on_threat": true,
+    "c2_mode_prior_signal_value": 0.39999985694885254,
+    "c2_fast_prime_signal_value": 0.2999998927116394,
+    "c2_signals_reached_coordinator": true,
+    "c3_mode_prior_max_observed": 0.8,
+    "c3_mode_prior_cap": 0.8,
+    "c3_bound_respected": true,
+    "c4_simulation_gate_zero_out": true,
+    "c5a_initial_fast_prime": 0.8,
+    "c5a_final_fast_prime_decay": 0.19999999999999993,
+    "c5a_decay_ok": true,
+    "c5b_initial_fast_prime_hold": 0.8,
+    "c5b_final_fast_prime_hold": 0.8,
+    "c5b_hold_ok": true
+  },
+  "config": {
+    "conditions": [
+      "CEA_OFF_QUIET",
+      "CEA_ON_QUIET"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "episodes": 4,
+    "steps_per_ep": 60
+  }
+}

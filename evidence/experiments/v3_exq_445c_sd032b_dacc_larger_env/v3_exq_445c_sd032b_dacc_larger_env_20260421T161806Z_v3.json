@@ -1,0 +1,115 @@
+{
+  "run_id": "v3_exq_445c_sd032b_dacc_larger_env_20260421T161806Z_v3",
+  "experiment_type": "v3_exq_445c_sd032b_dacc_larger_env",
+  "claim_ids": [
+    "SD-032b",
+    "MECH-258",
+    "MECH-260"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260421T161806Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-032b": "mixed",
+    "MECH-258": "supports",
+    "MECH-260": "supports"
+  },
+  "pass_criteria_summary": {
+    "c1_mech258": {
+      "wins": 3,
+      "pass": true
+    },
+    "c2_sd032b": {
+      "wins": 0,
+      "pass": false
+    },
+    "c3_mech260": {
+      "wins": 3,
+      "pass": true
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 0.0,
+      "action_counts": {
+        "1": 2473
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.8610702804108565,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 17.409094764595324,
+      "action_counts": {
+        "1": 2473
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 0.0,
+      "action_counts": {
+        "3": 1593
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9002287958255086,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 17.375152727978378,
+      "action_counts": {
+        "3": 1593
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 0.0,
+      "action_counts": {
+        "3": 1599
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9637380674918453,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 17.37450482056542,
+      "action_counts": {
+        "3": 1599
+      }
+    }
+  ],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON_INDEPENDENT"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 150,
+    "p1_eps": 100,
+    "p2_eps": 30,
+    "steps_per_ep": 150,
+    "env_size": 14,
+    "num_hazards": 5,
+    "num_resources": 7,
+    "epsilon_train": 0.1,
+    "epsilon_eval": 0.0
+  }
+}
