@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 22984,
   "runner_started_at": "2026-04-18T21:21:49.184446+00:00",
-  "last_updated": "2026-04-21T06:59:21.748798+00:00",
+  "last_updated": "2026-04-21T16:17:58.332553+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -46,28 +46,6 @@
       "title": "SD-032a salience coordinator behavioral confirmation -- mode-switch trigger + write-gate diversity under natural PE",
       "description": "",
       "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-397c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-007 path memory ablation -- harder env (16x16, 6 hazards, 3 sparse resources) + terrain training fix",
-      "description": "",
-      "estimated_minutes": 124.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-445b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032b dACC diversity: epsilon-greedy exploration during training (minimal intervention)",
-      "description": "",
-      "estimated_minutes": 216.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -924,6 +902,34 @@
       "output_file": "",
       "completed_by": "EWIN-PC",
       "actual_secs": 26989.2
+    },
+    {
+      "queue_id": "V3-EXQ-397c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-007 path memory ablation -- harder env (16x16, 6 hazards, 3 sparse resources) + terrain training fix",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "calibration_gap_approach: -0.00022539475814875587 | total_harm_train: 7853.0",
+      "started_at": "2026-04-21T06:59:36.986828+00:00",
+      "completed_at": "2026-04-21T11:55:53.406227+00:00",
+      "output_file": "C:\\Users\\Eoin\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_397c_arc007_harder_env\\v3_exq_397c_arc007_harder_env_20260421T115552Z.json",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 17776.6
+    },
+    {
+      "queue_id": "V3-EXQ-445b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC diversity: epsilon-greedy exploration during training (minimal intervention)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL",
+      "started_at": "2026-04-21T11:55:54.951797+00:00",
+      "completed_at": "2026-04-21T16:17:58.332553+00:00",
+      "output_file": "",
+      "completed_by": "EWIN-PC",
+      "actual_secs": 15723.6
     }
   ]
 }
