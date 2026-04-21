@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_229_mech128_e1_goal_conditioning_pair
 
-Generated: `2026-04-21T06:02:32.749466Z`
+Generated: `2026-04-21T08:50:50.393149Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

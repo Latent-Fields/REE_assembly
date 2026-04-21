@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-21T06:02:32.749466Z`
+Generated: `2026-04-21T08:50:50.393149Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -68,6 +68,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-013` | directional | 7 | 1 | 0.25 | `v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3` | 14 |
 | `SD-015` | directional, source_disagreement, mixed_evidence | 8 | 7 | 0.933 | `v3_exq_085m_arc030_benefit_eval_e3_20260330T211858Z_v3` | 30 |
 | `SD-017` | directional, mixed_evidence | 6 | 1 | 0.286 | `2026-04-20_mech_261_rem_theta_gate_boyce2016` | 12 |
+| `SD-018` | directional, source_disagreement, mixed_evidence | 1 | 1 | 1 | `2026-04-21_sd_018_nac_dopamine_approach_costa2025` | 3 |
 | `SD-021` | directional, source_disagreement | 8 | 1 | 0.222 | `v3_exq_325a_sd021_descending_pain_modulation_20260418T212923Z_v3` | 13 |
 | `SD-023` | directional | 5 | 1 | 0.333 | `v3_exq_332a_mech216_predictive_wanting_dense_20260417T212316Z_v3` | 8 |
 | `SD-029` | directional, source_disagreement, mixed_evidence | 5 | 1 | 0.333 | `2026-04-20_sd_029_self_vs_external_pain_thresholds_lalouni2020` | 8 |
@@ -273,7 +274,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-041
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.527
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.526
 - Recent entries:
   - `2026-03-31T07:22:01Z` `experimental` `v3_exq_181_e1_prior_context_discrimination` direction=`mixed` confidence=0.5
   - `2026-03-31T13:10:40Z` `experimental` `v3_exq_181b_sd016_context_separation_fix` direction=`weakens` confidence=0.75
@@ -782,7 +783,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-135
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.814
+- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.813
 - Recent entries:
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_mech_135` direction=`supports` confidence=0.68
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_mech_135` direction=`supports` confidence=0.74
@@ -802,7 +803,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-150
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.531
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.53
 - Recent entries:
   - `2026-03-31T07:22:01Z` `experimental` `v3_exq_181_e1_prior_context_discrimination` direction=`mixed` confidence=0.5
   - `2026-03-31T13:10:40Z` `experimental` `v3_exq_181b_sd016_context_separation_fix` direction=`weakens` confidence=0.75
@@ -821,7 +822,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-153
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=3, conflict_ratio=0.6, overall_confidence=0.657
+- Evidence breakdown: supports=7, weakens=3, conflict_ratio=0.6, overall_confidence=0.656
 - Recent entries:
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_153` direction=`supports` confidence=0.74
   - `2026-04-05T12:00:00Z` `literature` `targeted_review_connectome_mech_153` direction=`supports` confidence=0.71
@@ -841,7 +842,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-155
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, overall_confidence=0.667
+- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, overall_confidence=0.666
 - Recent entries:
   - `2026-04-15T08:38:56Z` `literature` `targeted_review_connectome_mech_155` direction=`supports` confidence=0.74
   - `2026-04-15T08:38:56Z` `literature` `targeted_review_connectome_mech_155` direction=`supports` confidence=0.78
@@ -996,7 +997,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-002
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.641
+- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.64
 - Recent entries:
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_002` direction=`supports` confidence=0.72
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_002` direction=`supports` confidence=0.78
@@ -1141,7 +1142,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-010
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, overall_confidence=0.847
+- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, overall_confidence=0.846
 - Recent entries:
   - `2026-03-24T17:25:12Z` `experimental` `v3_exq_093_harm_bridge_e3_fix` direction=`mixed` confidence=0.5
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_sd_010` direction=`supports` confidence=0.7
@@ -1254,6 +1255,23 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `REM phase is not selectively manipulated -- the study addresses SWS/NREM-associated SWRs, which corresponds to only the SWS-analog half of SD-017.` (1)
   - `The disruption targets ripple-associated activity but also affects non-ripple hippocampal afferent input -- selectivity is lower than closed-loop SWR detection approaches.` (1)
   - `Both tasks are spatial navigation paradigms; the study does not test whether the impairment extends to non-spatial, context-attribution-based learning.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### SD-018
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.603
+- Recent entries:
+  - `2026-04-06T17:19:52Z` `experimental` `v3_exq_257_sd018_resource_prox_validation` direction=`weakens` confidence=0.75
+  - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`supports` confidence=0.78
+  - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`mixed` confidence=0.65
+- Recurring failure signatures:
+  - `The dopamine ramp has been subsequently debated: Costa et al. 2025 finds ramp and ACh signals are dissociated, while other groups debate whether the ramp reflects VTA firing or local circuit mechanisms. If the ramp is a local circuit phenomenon (not pure DA neuron ramping), it might be recoverable from context signals rather than requiring a dedicated head.` (1)
+  - `In the rodent maze paradigm, the ramp emerges through extended training. An untrained agent may not exhibit proximity encoding even with an explicit head if the training signal is too sparse.` (1)
+  - `If dopamine ramps are primarily driven by local cholinergic interneuron modulation rather than VTA axonal firing, the ramp signal could in principle be derived from contextual computations in NAc rather than requiring a separate upstream proximity encoder. This would weaken the SD-018 argument that z_world cannot develop proximity sensitivity without an explicit auxiliary head.` (1)
+  - `DA and ACh were 'largely independent' in this study -- which could indicate the ramp is not robustly coupled to behavioral state in all conditions, reducing its reliability as a sustained proximity signal.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
