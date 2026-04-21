@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_268",
+  "entry_id": "2026-04-21_mech_268_acc_options_holroyd2012",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-268"],
+  "source": {
+    "title": "Motivation of extended behaviors by anterior cingulate cortex.",
+    "authors": ["Holroyd CB", "Yeung N"],
+    "year": 2012,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2011.12.008",
+    "url": "https://doi.org/10.1016/j.tics.2011.12.008"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Proposes that ACC supports the selection and maintenance of 'options' (extended, context-specific sequences of behaviour directed toward goals) learned through hierarchical reinforcement learning. Relevant to MECH-268 in that it frames ACC as maintaining a motivational context for extended behaviour -- and if that context is maintained as long as the option is 'active', it must also be withdrawn when the option completes or fails. This is structurally related to both MECH-268's saturation (implicit context withdrawal) and SD-034's closure operator (explicit context withdrawal). Confidence 0.62 because the options-framework is one of several competing ACC theories, and its mapping to MECH-268's specific bounded-pe claim is at the architectural-principle level rather than direct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The options framework emphasises the motivational context that ACC maintains; it does not directly predict bounded or habituating pe signals. If biological ACC maintains option context with an unbounded drive signal that is withdrawn only on option completion, MECH-268's saturation commitment is not what HRL/options predict.",
+    "Holroyd & Yeung contrast ACC energizing / motivating role with control / monitoring roles. MECH-268 focuses on the pe / conflict side of ACC function; the options framework is only partially aligned with this focus."
+  ],
+  "tags": ["mech_268", "acc", "options", "hierarchical_reinforcement_learning", "motivation", "goal_directed"],
+  "mapping": {
+    "source_claim_statement": "The anterior cingulate cortex supports the selection and maintenance of 'options' -- extended, context-specific sequences of behaviour directed toward particular goals -- learned through a process of hierarchical reinforcement learning. ACC activity reflects both the learning of these options and the motivational context that energizes them, reconciling the control / monitoring and motivational / energizing views of ACC function.",
+    "ree_translation": "MECH-268 asserts that the dACC-analog pe signal should saturate under repeated identical outcomes. Holroyd & Yeung's options framework provides a complementary view: if ACC is maintaining the motivational context for an extended behavioural option, and the option is producing no progress (repeated identical outcomes with no value), the motivational context for that option should decline. Saturation of the pe signal is one way that decline could be implemented, although the options framework is silent on the specific mechanism. The framework supports MECH-268's broader governance function -- preventing stuck loops -- without committing to the specific bounded-pe implementation.",
+    "mapping_caveat": "HRL/options is a different theoretical framework from EVC; the two are often contrasted. MECH-268 is compatible with either, and this entry is honest about the options framework as a complementary rather than primary motivation. Mapping to the specific saturation mechanism is indirect.",
+    "source_context": "Trends in Cognitive Sciences 2012 review, Holroyd lab (University of Victoria). Proposes options-framework for ACC, contrasting with pure control / monitoring theories."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.50,
+    "notes": "High source quality (TiCS). Mapping fidelity is weaker because options/HRL is an architectural-principle framework that does not directly predict saturation dynamics. Transfer risk is moderate because the options view of ACC is one of several competing theories and its relationship to bounded-pe is indirect."
+  }
+}

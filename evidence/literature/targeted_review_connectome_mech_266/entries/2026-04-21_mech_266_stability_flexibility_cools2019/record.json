@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_266",
+  "entry_id": "2026-04-21_mech_266_stability_flexibility_cools2019",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-266"],
+  "source": {
+    "title": "Chemistry of the Adaptive Mind: Lessons from Dopamine.",
+    "authors": ["Cools R"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.035",
+    "url": "https://doi.org/10.1016/j.neuron.2019.09.035"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Neuron review that frames striatal dopamine as the modulator of the stability-flexibility tradeoff, with output gating functions varying with task demands. The review explicitly discusses how the basal tone of different dopaminergic projection systems reflects perceived environmental statistics computed in frontal cortex, and how dopaminergic drug effects depend on the baseline state of target brain regions -- an inverted-U with distinct directions at high vs low baseline. This is directly relevant to MECH-266, which posits asymmetric enter vs exit thresholds per operating mode. Cools' account supports the mechanism-level claim that mode transitions are not symmetric: entering a stable mode (bias to stability) uses a different dynamic than leaving it (bias to flexibility), and the asymmetry is modulated by tonic-DA state (which varies by mode context). Confidence is 0.74 because the review is architectural rather than giving a direct Schmitt-trigger demonstration in a mode-switching paradigm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If empirical work shows that dopaminergic effects on mode transitions are symmetric -- i.e. same threshold for enter and exit, modulated only by overall gain -- the Schmitt-trigger framing in MECH-266 is over-specified.",
+    "The review discusses dopamine as a global modulator; if mode-specific asymmetry is in fact a property of local circuits (e.g. cortical recurrence) rather than tonic DA, the implementation in SD-032a with per-mode (enter, exit) thresholds may be attributing to dopamine what belongs to local dynamics."
+  ],
+  "tags": ["mech_266", "dopamine", "stability_flexibility", "basal_ganglia", "output_gating", "hysteresis"],
+  "mapping": {
+    "source_claim_statement": "Striatal dopamine dynamically regulates cognitive stability-flexibility tradeoffs via output gating. The basal tone of distinct dopaminergic projection systems reflects the perceived statistics of the environment computed in frontal cortex. Dopaminergic drug effects depend on the baseline state of target brain regions, producing an inverted-U relation and opposite directions at high vs low baseline.",
+    "ree_translation": "MECH-266 asserts that SD-032a's mode register should be extended with per-mode (enter_threshold, exit_threshold) pairs, classic Schmitt trigger. Cools' account supports a weaker architectural statement: mode transitions in biology are asymmetric, and the asymmetry is modulated by tonic-DA state that itself varies with environmental statistics. In REE terms, operating_mode transitions should have distinct enter/exit dynamics, and the asymmetry magnitude should vary with a global-tone signal that encodes current environmental statistics. The MECH-266 clinical axis (under-binding / over-binding, depression / OCD) is biologically grounded in Cools' tonic-DA framework: low baseline enables easier exit (flexibility), high baseline reduces exit probability (stability / rigidity).",
+    "mapping_caveat": "Cools' account is at the neuromodulator level; MECH-266 specifies a salience-threshold mechanism inside SalienceCoordinator without a dedicated tonic-DA channel. The transfer is from 'dopamine modulates a stability-flexibility tradeoff' to 'enter/exit thresholds differ per mode'. The abstraction loses the global-tone structure of dopamine and treats each mode as having its own local hysteresis parameter. This is defensible for REE's implementation but is not a faithful re-implementation of the biology.",
+    "source_context": "Neuron review, Cools lab (Donders Institute). Focus is on human pharmacological neuroimaging with methylphenidate and related agents. Not a primary-data paper -- a synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Very high source quality (Neuron, leading author in the field). Mapping fidelity is moderate because Cools' account is about a global neuromodulatory tone, while MECH-266 is about local mode thresholds. Transfer risk is moderate: the stability-flexibility tradeoff is well-established, but its specific instantiation as Schmitt-trigger enter/exit pairs per mode is an architectural choice not directly tested here."
+  }
+}

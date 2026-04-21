@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_268",
+  "entry_id": "2026-04-21_mech_268_evc_theory_shenhav2013",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-268"],
+  "source": {
+    "title": "The expected value of control: an integrative theory of anterior cingulate cortex function.",
+    "authors": ["Shenhav A", "Botvinick MM", "Cohen JD"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.07.007",
+    "url": "https://doi.org/10.1016/j.neuron.2013.07.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Foundational statement of the Expected Value of Control (EVC) framework for dACC function. dACC computes EVC by integrating expected payoff of a controlled process, the amount of control needed, and the cost of cognitive effort, and uses this to decide whether, where, and how much control to allocate. For MECH-268 (dACC conflict saturation), the EVC theory provides a normative foundation for the saturation claim: if dACC is allocating control based on expected value, and expected value of continued effort drops to zero after repeated identical outcomes (nothing new is learned), then the allocated control should also drop, which is the behavioural signature of saturation. Confidence 0.68 because the theory is normative/architectural and does not itself prove saturation dynamics -- it establishes the framework within which saturation is expected.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "EVC theory is a normative model of optimal control allocation; it does not require that biological dACC implements a bounded / saturating signal. A sufficiently powerful dACC could in principle track EVC without capping.",
+    "MECH-268 specifies bounded pe and outcome-identity-dependent habituation. EVC theory does not make those specific commitments; it is compatible with an unbounded but well-calibrated control signal. The saturation claim is one parameterisation within the EVC framework, not a derived consequence."
+  ],
+  "tags": ["mech_268", "dacc", "evc", "control_allocation", "prediction_error", "cognitive_effort"],
+  "mapping": {
+    "source_claim_statement": "Dorsal anterior cingulate cortex integrates three factors -- expected payoff of a controlled process, amount of control required, and cost of cognitive effort -- into an Expected Value of Control (EVC) signal that specifies the optimal allocation of control. dACC uses this signal to determine whether, where, and how much control to allocate. The framework unifies dACC's diverse functional associations (reward, monitoring, control, action selection).",
+    "ree_translation": "MECH-268 posits that SD-032b's dACC-analog pe signal should saturate under repeated identical outcomes. The Shenhav et al. EVC framework provides the normative foundation: if expected payoff of further control drops (nothing new to learn from repeated identical outcomes), EVC drops, and therefore the control-allocation signal driven by EVC drops. This gives MECH-268's saturation dynamic a principled motivation -- it is not an arbitrary engineering choice but what a value-optimising dACC should do. The specific implementation (outcome-identity buffer, N-identical-outcomes-in-a-row trigger) is one way to approximate EVC-based adjustment; other implementations are possible.",
+    "mapping_caveat": "EVC theory is a normative framework; it does not directly demonstrate that dACC pe signals saturate. Multiple implementations (bounded, unbounded-but-rational, unbounded-with-external-gating) are compatible with EVC. MECH-268's bounded / habituating commitment is one specific parameterisation. The framework supports the direction of MECH-268's claim but does not compel it.",
+    "source_context": "Neuron 2013 review, Shenhav/Botvinick/Cohen labs (Princeton). Normative model integrating a broad range of dACC findings into a single theoretical framework. Widely cited."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Very high source quality (Neuron, canonical EVC paper). Mapping fidelity is moderate because EVC is a normative framework and MECH-268's specific saturation mechanism is one implementation choice among many. Transfer risk is moderate: EVC is a human / primate dACC theory, while REE's dACC-analog is SD-032b, a smaller module without the full EVC architecture."
+  }
+}

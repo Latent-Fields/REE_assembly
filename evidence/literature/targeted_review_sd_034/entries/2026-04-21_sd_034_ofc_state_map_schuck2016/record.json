@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_034",
+  "entry_id": "2026-04-21_sd_034_ofc_state_map_schuck2016",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["SD-034"],
+  "source": {
+    "title": "Human Orbitofrontal Cortex Represents a Cognitive Map of State Space.",
+    "authors": ["Schuck NW", "Cai MB", "Wilson RC", "Niv Y"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.019",
+    "url": "https://doi.org/10.1016/j.neuron.2016.08.019"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Schuck et al. demonstrate that medial OFC encodes a complete cognitive map of task state space, including currently unobservable states that determine the correct response. This is the substrate a closure operator must read: to detect completion of a committed rule_state, the brain needs an explicit representation of task-phase that goes beyond immediate sensory state. Source quality is high (Neuron, rigorous multivariate fMRI with explicit state-decoding). Mapping to SD-034 is solid: OFC state-map is the candidate representation a closure-detector queries. Confidence held below 0.85 because the paper identifies the representation but does not demonstrate a downstream readout that specifically fires on state transitions marking completion -- that is the additional step SD-034 posits.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC state representations are continuous and graded rather than discrete/event-like, a closure operator reading them would need a separate thresholding mechanism; SD-034's 'closure token' framing may over-discretise the underlying signal.",
+    "Schuck et al. decode state from whole-OFC voxel patterns; if closure detection is actually implemented by a specific sub-population with sparse state-transition tuning, the population-code framing misses the relevant neurons.",
+    "The task in Schuck 2016 is deterministic and well-learned. If OFC state maps only emerge under over-training and do not support novel rule completion, SD-034 needs a separate fast-learning mechanism for early-training closure detection."
+  ],
+  "tags": ["sd_034", "closure_operator", "ofc", "state_space", "cognitive_map", "schuck_niv", "task_state_representation"],
+  "mapping": {
+    "source_claim_statement": "Medial orbitofrontal cortex represents a cognitive map of the current task's state space, including features of states that are not directly observable but are necessary for correct behaviour. The representation is multidimensional and scales with the number of task-relevant state features.",
+    "ree_translation": "SD-034 posits a closure operator that detects when a committed rule_state has been satisfied and releases commitment (with a refractory No-Go on the just-completed rule). To do this, the system needs access to a representation of task state that is more structured than raw sensory input -- specifically, one that captures where the agent is in the task graph, including latent features. Schuck et al.'s OFC state-map is exactly such a representation in biology: it encodes not just what the agent sees but where it is in the task's state structure. This is evidence that the brain maintains the substrate a closure operator must read. The closure detector itself (the readout that fires on a specific state transition marking satisfaction of the current rule) is not directly identified in this paper, but the prerequisite representation is.",
+    "mapping_caveat": "Schuck 2016 identifies the state-space representation in OFC but does not demonstrate the specific readout mechanism SD-034 posits (closure token generation on rule satisfaction). Evidence is substrate-level, not mechanism-level. Transfer risk is moderate: OFC in biology corresponds functionally to parts of SD-033's PFC-subdivision cluster, and SD-034 operates at that level of abstraction.",
+    "source_context": "Human fMRI, n=17, sequential decision task with partially observable state structure. MVPA / cross-classification decoding of state identity from OFC BOLD patterns. High statistical rigour; task is well-designed for probing state-map representations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Neuron, strong methods). Mapping fidelity moderate because the paper demonstrates the substrate a closure operator needs but not the closure operator itself. Transfer risk moderate: biological OFC state-map is read by many downstream structures, and SD-034's posited closure-detector is one specific readout among many candidates."
+  }
+}

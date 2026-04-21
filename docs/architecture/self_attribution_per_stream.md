@@ -161,6 +161,21 @@ no new run is required; the analysis is a manifest post-processor. If the
 sample density is insufficient, a short re-run with event-density controls
 (guaranteed minimum agent-caused-hazard events per seed) is queued.
 
+## Curriculum Substrate (2026-04-21)
+
+The balanced-hazard-event curriculum required for C3/C4 is now implemented as
+an opt-in env augmentation in `CausalGridWorldV2`:
+`scheduled_external_hazard_enabled=True` with `_interval`, `_prob`,
+`_adjacent_only` sub-knobs. Disabled by default so all legacy experiments run
+unchanged. See `ree-v3/CLAUDE.md` section "SD-029: Balanced Hazard-Event
+Curriculum (2026-04-21)" for the full data flow. The first validation experiment
+is V3-EXQ-470.
+
+**Status: SD-029 substrate IMPLEMENTED 2026-04-21** -- the forward model
+(ARC-033) and interventional training (SD-013) were already in place; the
+curriculum gap was the last substrate blocker. Remaining work is experimental
+(validate C3/C4 under the new curriculum).
+
 ---
 
 ## Open Questions

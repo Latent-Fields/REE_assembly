@@ -2,29 +2,44 @@
   "schema_version": "v1",
   "runner_pid": 38928,
   "runner_started_at": "2026-04-20T14:39:30.194149+00:00",
-  "last_updated": "2026-04-21T05:14:22.647877+00:00",
+  "last_updated": "2026-04-21T06:04:00.164219+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-126",
+    "backlog_id": "EVB-0062",
+    "claim_id": "",
+    "title": "MECH-104 volatility interrupt -- surprise-gate matched-seed discriminative pair",
+    "description": "",
+    "script": "experiments/v3_exq_126_mech104_surprise_gate_pair.py",
+    "started_at": "2026-04-21T05:16:47.205255+00:00",
+    "progress": {
+      "run_label": "Seed 42 / MATCHED_PAIR",
+      "runs_done": 0,
+      "runs_total": 2,
+      "episodes_done": 100,
+      "episodes_total": 400,
+      "overall_pct": 12.5
+    },
+    "seconds_elapsed": 2833,
+    "seconds_remaining": 13732,
+    "recent_lines": [
+      "Seed 42 Condition MATCHED_PAIR",
+      "============================================================",
+      "[V3-EXQ-126] Seed 42",
+      "============================================================",
+      "[train seed=42] ep 100/400  running_var=0.000001"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-451",
-      "backlog_id": "",
+      "queue_id": "V3-EXQ-126",
+      "backlog_id": "EVB-0062",
       "claim_id": "",
-      "title": "Q-034 hazard/resource threshold retest (supersedes V3-EXQ-288 criteria_null)",
+      "title": "MECH-104 volatility interrupt -- surprise-gate matched-seed discriminative pair",
       "description": "",
-      "estimated_minutes": 240.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-433b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-029 E2_harm_s comparator -- extended interventional training (fraction=0.7, margin=0.2, 4 seeds)",
-      "description": "",
-      "estimated_minutes": 213.3,
-      "status": "pending",
+      "estimated_minutes": 106.7,
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -35,6 +50,94 @@
       "title": "SD-032b dACC full pipeline -- E3 harm_eval + terrain trained, terrain fix: min-residue candidate",
       "description": "",
       "estimated_minutes": 224.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-456",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-033a lateral-PFC-analog landing validation (diagnostic -- substrate wiring of MECH-261 primary consumer)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-460",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-034 closure-operator landing -- verified-but-not-released (EXP-0156 / ocd4)",
+      "description": "",
+      "estimated_minutes": 104.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-466",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-034 closure-operator landing -- satisficing / residue discharge (EXP-0162 / ocd4)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-463",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-268 dACC conflict-saturation landing -- conflict saturation (EXP-0159 / ocd4)",
+      "description": "",
+      "estimated_minutes": 121.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-468",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-034 x MECH-268 four-arm landing -- commitment vs contradiction (EXP-0164 / ocd4)",
+      "description": "",
+      "estimated_minutes": 104.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-464",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-266 asymmetric per-mode hysteresis landing -- competing goals (EXP-0160 / ocd4)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-467",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-266 asymmetric per-mode hysteresis landing -- mode stickiness / hold decay (EXP-0163 / ocd4)",
+      "description": "",
+      "estimated_minutes": 86.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-449a",
+      "backlog_id": "EVB-0135",
+      "claim_id": "",
+      "title": "SD-016 cue_action_proj forward-path probe -- instrument extract_cue_context -> E3.select chain (supersedes V3-EXQ-449)",
+      "description": "",
+      "estimated_minutes": 20.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5718,6 +5821,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2380.8
+    },
+    {
+      "queue_id": "V3-EXQ-133",
+      "backlog_id": "EVB-0027",
+      "claim_id": "",
+      "title": "MECH-091 salient-event phase-reset discriminative pair",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C1 FAIL: PHASE_RESET_ON gap below 0.04 in seeds [42, 123] -- phase-reset does not produce discriminative harm eval signal | C2 FAIL: per-seed deltas [0.0198, 0.0094] < 0.02 -- phase-reset does not add >=2pp harm eval advantage over ablation | C3 FAIL: gap_ablated=-0.0006 < 0.0 -- ablated condition fails entirely; confound check required",
+      "started_at": "2026-04-21T05:15:30.195775+00:00",
+      "completed_at": "2026-04-21T05:16:43.528615+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_133_mech091_phase_reset_pair/v3_exq_133_mech091_phase_reset_pair_20260421T051642Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 73.3
     }
   ]
 }

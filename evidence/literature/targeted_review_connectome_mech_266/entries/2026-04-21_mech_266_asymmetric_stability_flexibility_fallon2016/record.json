@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_266",
+  "entry_id": "2026-04-21_mech_266_asymmetric_stability_flexibility_fallon2016",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-266"],
+  "source": {
+    "title": "The Neurocognitive Cost of Enhancing Cognition with Methylphenidate: Improved Distractor Resistance but Impaired Updating.",
+    "authors": ["Fallon SJ", "van der Schaaf ME", "Ter Huurne N", "Cools R"],
+    "year": 2016,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn_a_01065",
+    "url": "https://doi.org/10.1162/jocn_a_01065"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Pharmacological fMRI in humans showing that methylphenidate produces opposite effects on cognitive stability (enhanced distractor resistance) and cognitive flexibility (impaired updating of working-memory contents). The direction of the effect depends on task demand, with striatal and prefrontal signal changes consistent with catecholaminergic modulation of a stability-flexibility tradeoff. This is a direct behavioural/neural demonstration that enter/exit transitions in a stability-flexibility regime are governed by different dynamics -- not a single threshold -- and that pharmacological modulation can bias the system toward one direction at the cost of the other. Maps onto MECH-266's claim that mode transitions have asymmetric enter and exit thresholds, and that the asymmetry magnitude is a clinical axis variable. Confidence is 0.72 because the paradigm is a WM updating/resistance task, not a mode-switching paradigm per se, and the translation from 'updating resistance' to 'operating-mode enter/exit asymmetry' introduces some abstraction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's 'stability' and 'flexibility' are defined at the working-memory-content level, not the operating-mode level. If the asymmetry MECH-266 posits is specific to WM content updates rather than operating-mode transitions, the transfer is looser than the surface mapping suggests.",
+    "Methylphenidate acts on catecholamine reuptake broadly, not on a specific mode gate. The fMRI findings show task-general striatal effects and opposite task-specific PFC effects -- this architecture does not straightforwardly predict mode-specific (enter, exit) threshold parameters."
+  ],
+  "tags": ["mech_266", "methylphenidate", "stability_flexibility", "working_memory", "pharmacological_fmri", "asymmetric_threshold"],
+  "mapping": {
+    "source_claim_statement": "Methylphenidate, a catecholamine reuptake inhibitor, improves distractor resistance (cognitive stability) but impairs flexible updating of working-memory contents (cognitive flexibility). These opposite effects are accompanied by task-general striatal signal changes and task-specific opposite effects in PFC. The drug acts as a 'double-edged sword', improving one cognitive function at the expense of another.",
+    "ree_translation": "MECH-266 claims that enter_threshold and exit_threshold on an operating mode differ, and that the asymmetry varies per mode. Fallon et al. provide direct evidence that a single pharmacological manipulation produces opposite effects on the stability and flexibility axes -- i.e. that these axes are biologically separable. This supports a design in which (enter, exit) asymmetry parameters are independently tunable rather than being determined by a single scalar. Specifically for the MECH-266 clinical phenotype axis: individuals with high-stability low-flexibility (OCD-like) and high-flexibility low-stability (distractibility) phenotypes occupy different regions of the parameter space. The paper's double-edged-sword finding supports that these regions are not collapsible into a single-threshold model.",
+    "mapping_caveat": "The task is a WM-updating / distractor-resistance paradigm, not an operating-mode transition paradigm. The translation from 'WM content asymmetry' to 'operating-mode threshold asymmetry' requires the assumption that mode transitions use a similar machinery to WM updating. This is plausible in frontostriatal gating theories (O'Reilly & Frank 2006) but is not directly tested here.",
+    "source_context": "Healthy adult humans, pharmacological fMRI, methylphenidate vs placebo. WM updating vs distractor-resistance task. Sample size moderate (typical pharmacological-fMRI N)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Cools lab, pharmacological fMRI). Mapping fidelity is moderate -- WM-content asymmetry is not literally mode-transition asymmetry, but the supporting frontostriatal gating logic is shared. Transfer risk is moderate to high because REE does not have an analogue of the catecholaminergic reuptake manipulation being used to probe the asymmetry."
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "run_id": "v3_exq_325d_sd032c_aic_descending_modulation_20260420T160057Z_v3",
+  "experiment_type": "v3_exq_325d_sd032c_aic_descending_modulation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-032c",
+    "SD-021"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "SD-032c": "does_not_support",
+    "SD-021": "does_not_support"
+  },
+  "supersedes": "v3_exq_325c_sd032c_aic_descending_modulation",
+  "registered_thresholds": {
+    "C1_attenuation_present": "aic_on < control",
+    "C2_stream_selectivity": 0.3,
+    "C3_committed_steps": 10,
+    "C4_drive_dependence_abs_delta": 0.02,
+    "C5_aic_salience_gt": 0.0,
+    "seeds_needed": 2
+  },
+  "outcome": "FAIL",
+  "timestamp_utc": "20260420T221334Z",
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "z_harm_s_ratio_aic_on": 1.0,
+      "z_harm_s_ratio_aic_drive_ablated": 1.0,
+      "z_harm_s_ratio_legacy": 1.0,
+      "z_harm_s_ratio_control": 1.0,
+      "z_harm_a_ratio_aic_on": 1.0,
+      "z_harm_a_ratio_control": 1.0,
+      "n_committed_aic_on": 6000,
+      "n_committed_legacy": 6000,
+      "aic_salience_mean_aic_on": 0.78351832705101,
+      "c1_attenuation_present": false,
+      "c2_stream_selective": true,
+      "c3_commits_exist": true,
+      "c4_drive_dependence_structural": false,
+      "c5_aic_salience_nontrivial": true,
+      "condition_results": {
+        "AIC_ON": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.5887497985213995,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.34799901919066906,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.78351832705101,
+          "aic_salience_max": 18.305689251067648
+        },
+        "AIC_DRIVE_ABLATED": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.5887497985213995,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.34799901919066906,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.78351832705101,
+          "aic_salience_max": 18.305689251067648
+        },
+        "LEGACY": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.5887497985213995,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.34799901919066906,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.0,
+          "aic_salience_max": 0.0
+        },
+        "CONTROL": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.5887497985213995,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.34799901919066906,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.0,
+          "aic_salience_max": 0.0
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "seed_pass": false,
+      "z_harm_s_ratio_aic_on": 1.0,
+      "z_harm_s_ratio_aic_drive_ablated": 1.0,
+      "z_harm_s_ratio_legacy": 1.0,
+      "z_harm_s_ratio_control": 1.0,
+      "z_harm_a_ratio_aic_on": 1.0,
+      "z_harm_a_ratio_control": 1.0,
+      "n_committed_aic_on": 6000,
+      "n_committed_legacy": 6000,
+      "aic_salience_mean_aic_on": 0.8530153093359064,
+      "c1_attenuation_present": false,
+      "c2_stream_selective": true,
+      "c3_commits_exist": true,
+      "c4_drive_dependence_structural": false,
+      "c5_aic_salience_nontrivial": true,
+      "condition_results": {
+        "AIC_ON": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.6140250523289045,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.5215977166891098,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.8530153093359064,
+          "aic_salience_max": 23.465202881172598
+        },
+        "AIC_DRIVE_ABLATED": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.6140250523289045,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.5215977166891098,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.8530153093359064,
+          "aic_salience_max": 23.465202881172598
+        },
+        "LEGACY": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.6140250523289045,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.5215977166891098,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.0,
+          "aic_salience_max": 0.0
+        },
+        "CONTROL": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.6140250523289045,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.5215977166891098,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.0,
+          "aic_salience_max": 0.0
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "seed_pass": false,
+      "z_harm_s_ratio_aic_on": 1.0,
+      "z_harm_s_ratio_aic_drive_ablated": 1.0,
+      "z_harm_s_ratio_legacy": 1.0,
+      "z_harm_s_ratio_control": 1.0,
+      "z_harm_a_ratio_aic_on": 1.0,
+      "z_harm_a_ratio_control": 1.0,
+      "n_committed_aic_on": 6000,
+      "n_committed_legacy": 6000,
+      "aic_salience_mean_aic_on": 0.7868119446335359,
+      "c1_attenuation_present": false,
+      "c2_stream_selective": true,
+      "c3_commits_exist": true,
+      "c4_drive_dependence_structural": false,
+      "c5_aic_salience_nontrivial": true,
+      "condition_results": {
+        "AIC_ON": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.8114038693408171,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.354756298755606,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.7868119446335359,
+          "aic_salience_max": 18.633953609296643
+        },
+        "AIC_DRIVE_ABLATED": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.8114038693408171,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.354756298755606,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.7868119446335359,
+          "aic_salience_max": 18.633953609296643
+        },
+        "LEGACY": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.8114038693408171,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.354756298755606,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.0,
+          "aic_salience_max": 0.0
+        },
+        "CONTROL": {
+          "z_harm_s_ratio": 1.0,
+          "z_harm_a_ratio": 1.0,
+          "n_committed_steps": 6000,
+          "z_harm_s_mean_committed": 0.8114038693408171,
+          "z_harm_s_mean_uncommitted": 0.0,
+          "z_harm_a_mean_committed": 0.354756298755606,
+          "z_harm_a_mean_uncommitted": 0.0,
+          "aic_salience_mean": 0.0,
+          "aic_salience_max": 0.0
+        }
+      }
+    }
+  ],
+  "seeds_passing": 0,
+  "experiment_passes": false,
+  "fix_notes": "EXQ-325c was SIGTERM-killed at 33 min on ree-cloud-1 (external termination, not a code crash); compute budget was 8.6x under estimated_minutes. This iteration reduces compute (3 seeds x 4 conditions x 150 train + 30 eval) and pins machine_affinity=DLAPTOP-4.local to avoid shared-vCPU preemption. Mechanism under test and pass criteria are unchanged; PASS threshold is >=2/3 seeds (was >=3/5) to match reduced seed count."
+}

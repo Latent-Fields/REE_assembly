@@ -534,8 +534,10 @@
       "priority": 1,
       "added_session": "governance-2026-04-19T06",
       "last_seen_session": "governance-2026-04-19T06",
-      "implementation_status": "pending",
-      "validation_experiment": "V3-EXQ-433",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-21T05:54:39Z",
+      "implemented_session": "cowork-2026-04-21-batch",
+      "validation_experiment": "V3-EXQ-470",
       "metric_trajectory": {
         "primary_metric": "approach_event_snr",
         "primary_metric_description": "Event-conditioned SNR of residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual), measured on approach-to-harm events specifically (not mean over all steps). SD-029's key discriminator. Requires balanced self-caused vs externally-caused event density per seed.",
@@ -558,7 +560,7 @@
           "prerequisite_state": "Curriculum change that guarantees n_self >= 20 and n_ext >= 20 per seed across the 4-seed set; alternatively a longer eval that accumulates events naturally"
         }
       },
-      "status": "pending"
+      "status": "implemented"
     },
     {
       "sd_id": "SD-032a",

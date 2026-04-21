@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-21_sd_033a_a2_rule_learning_buckley2009",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["SD-033a"],
+  "source": {
+    "title": "Dissociable components of rule-guided behavior depend on distinct medial and prefrontal regions.",
+    "authors": ["Buckley MJ", "Mansouri FA", "Hoda H", "Mahboubi M", "Browning PGF", "Kwok SC", "Phillips A", "Tanaka K"],
+    "year": 2009,
+    "venue": "Science",
+    "doi": "10.1126/science.1172377",
+    "url": "https://doi.org/10.1126/science.1172377"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Dissociates three components of rule-guided behaviour using circumscribed macaque lesions on a WCST analog: principal-sulcus (mid-lateral PFC) lesions impair maintenance of abstract rules in working memory; OFC lesions impair rapid reward-based updating of rule value; ACC sulcus lesions impair active reference to recent choice-outcome values. The PS / mid-lateral finding is directly relevant to SD-033a as the foundational substrate claim (abstract rule maintenance is a lateral-PFC function). For A2 specifically (how is the rule-bias projection shaped by learning and on what training signal?), the paper supports a decomposition in which rule maintenance (PS), rule value (OFC), and choice-outcome tracking (ACC) are dissociable. This licenses a design in which the lateral-PFC-analog is trained on a signal distinct from the OFC-value-update signal -- consistent with SD-033a's claim that its bias-projection head could be phased-trained on a dedicated rule-emergence signal, not tied to the broader value-update loop. Confidence is 0.66 because the paper does not directly test a phased-training protocol; it establishes dissociation at the lesion level, which is strong but indirect evidence for the A2 question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not test whether the training signal driving rule-selective PS neurons is phased (rule-emergence phase distinct from value-update phase) or simultaneous (reward gradients flow through both PS and OFC in parallel). If the biological training signal is simultaneous, the SD-033a A2 phased-protocol alternative is biologically preferred even though SD-033a's landing leaves the head untrained.",
+    "PS lesion effects on rule maintenance could in principle reflect loss of the rule-held state rather than loss of a separate rule-bias projection head. If biological PFC does not implement a separable 'projection head' at all, and rule-maintenance and rule-bias are the same representation, SD-033a's architectural separation (rule substrate + score_bias head) is over-factored."
+  ],
+  "tags": ["sd_033a", "lateral_pfc", "rule_maintenance", "lesion", "wcst", "principal_sulcus", "a2_alternative"],
+  "mapping": {
+    "source_claim_statement": "In macaques performing a Wisconsin Card Sorting Test analog, principal-sulcus lesions selectively impair maintenance of abstract rules in working memory, while OFC lesions impair rapid reward-based updating of rule value and ACC-sulcus lesions impair active reference to the value of recent choice-outcomes during rule-based decision-making. The three lesion effects are dissociable.",
+    "ree_translation": "SD-033a's A2 question is: on what training signal is the lateral-PFC-analog's rule-bias projection head shaped? The landing choice is a frozen-random head with the last Linear zeroed (initial bias = 0, untrained). The A2 alternative is a trained head via a phased protocol (e.g. rule-emergence phase then value-update phase). Buckley et al.'s lesion dissociation supports a decomposition in which rule maintenance (PS), rule-value updating (OFC), and choice-outcome tracking (ACC) are separable processes. This favours the view that a lateral-PFC-analog can be trained on a rule-specific signal, distinct from the broader reward/value update signal. That is, it licenses the phased-protocol alternative as biologically grounded. Whether the head should actually be trained, or whether frozen-random is sufficient for the SD-033a landing to satisfy signature (iv) training-dependent rule emergence, remains a design question that downstream V3 experiments must resolve.",
+    "mapping_caveat": "Lesion dissociation is strong evidence that three processes exist as separable circuits. It does not establish what training signal each circuit uses. The inference from 'PS maintains rules' to 'a rule-bias projection head in SD-033a should be trained on a dedicated signal' requires an additional assumption that maintenance and bias-projection are one thing in biology (plausible but unproven). Transfer risk is moderate: macaque WCST is a constrained card-sorting task, while SD-033a is intended to bias E3 trajectory selection more broadly.",
+    "source_context": "Circumscribed-lesion macaque study (Buckley and Mansouri labs). WCST analog task. Five lesion groups: OFC, PS, superior dlPFC, vlPFC, ACC sulcus."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (Science, circumscribed-lesion macaque study). Mapping fidelity is moderate -- the paper dissociates rule maintenance from rule-value updating at the regional level, which indirectly licenses the A2 phased-protocol alternative, but does not test phasing directly. Transfer risk is moderate: WCST-specific rule abstraction vs REE's broader E3 trajectory bias."
+  }
+}

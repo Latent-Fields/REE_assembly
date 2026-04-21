@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_034",
+  "entry_id": "2026-04-21_sd_034_task_bracketing_barnes2011",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["SD-034"],
+  "source": {
+    "title": "Advance cueing produces enhanced action-boundary patterns of spike activity in the sensorimotor striatum.",
+    "authors": ["Barnes TD", "Mao JB", "Hu D", "Kubota Y", "Dreyer AA", "Stamoulis C", "Brown EN", "Graybiel AM"],
+    "year": 2011,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.00871.2010",
+    "url": "https://doi.org/10.1152/jn.00871.2010"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Barnes/Graybiel find that sensorimotor striatal neurons develop characteristic spike patterns at the START and END of learned action sequences -- the 'task-bracketing' signature -- with the end-bracket sharpened by advance cueing. The end-bracket is the biological signal closest to SD-034's closure token: a specific neural event that marks sequence completion. Confidence at 0.68 because while the bracketing phenomenon is well-established in rodent striatum, the mechanistic link to commitment release and rule_state deactivation is inferential -- the paper describes the neural signature without demonstrating that downstream structures use it as a closure-release signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The task-bracketing signature is a property of sensorimotor striatum acquired through over-training. If SD-034's closure operator must function during initial rule acquisition (before bracketing has crystallised), this evidence is off-target.",
+    "Bracketing in Graybiel's paradigm marks procedural sequence boundaries. SD-034 concerns closure of symbolic rule_states held in lateral PFC. The mapping from sensorimotor habit-boundary to cognitive-rule-completion is analogical, not direct.",
+    "If the end-bracket is a population-level readout signal for external observers (i.e. an emergent pattern) rather than a causally used signal consumed by downstream structures, it is a correlate of completion rather than the closure token SD-034 posits."
+  ],
+  "tags": ["sd_034", "closure_operator", "task_bracketing", "striatum", "graybiel", "action_sequence_completion", "habit"],
+  "mapping": {
+    "source_claim_statement": "Sensorimotor striatal neurons show characteristic spike activity patterns at the start and end of learned action sequences (task-bracketing). With advance cueing that increases predictability of sequence onset, the end-bracket pattern is enhanced -- the end-boundary representation sharpens.",
+    "ree_translation": "SD-034 posits a closure operator that, on detecting rule_state satisfaction, emits a release signal that drops commitment and imposes a refractory No-Go on re-entering the just-completed rule. The biological task-bracketing phenomenon is the closest empirical analog: the end-bracket is a neural event specifically fired at sequence completion, distinct from mid-sequence activity. The enhancement of this bracket under advance cueing (when agents have a clearer model of sequence boundaries) is consistent with SD-034's framing that closure detection is tightly bound to a predictive model of what counts as completion. This is supportive evidence at the level of 'biology does generate specific neural events at sequence boundaries', though the cognitive rule case that SD-033a/SD-034 targets is more abstract than the procedural sequences Graybiel studies.",
+    "mapping_caveat": "Barnes/Graybiel study procedural action sequences in sensorimotor striatum. SD-034 concerns cognitive rule_states in lateral PFC. The claim that the brain generates specific completion signals is transferable; the specific substrate and level of abstraction is not. Transfer risk is moderate: procedural and cognitive commitment likely share circuit motifs, but the closure operator SD-034 envisions sits at a higher level of the hierarchy than the sensorimotor bracketing this paper captures.",
+    "source_context": "Rat chronic tetrode recordings during T-maze habit-learning with advance tone cues. Well-established Graybiel lab paradigm; task-bracketing signature replicated across several papers in the Graybiel programme. Single-unit and population-level analyses."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (J Neurophysiol, Graybiel lab, replicated bracketing signature). Mapping fidelity moderate because the level of abstraction differs: procedural habit-boundaries vs cognitive rule-completion. Transfer risk elevated: sensorimotor striatum is not the same substrate SD-034's closure operator would live on; the similar-motif argument is analogical."
+  }
+}

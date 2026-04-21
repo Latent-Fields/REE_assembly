@@ -1,0 +1,146 @@
+{
+  "run_id": "v3_exq_455_sd032a_salience_behavioral_20260420T223056Z_v3",
+  "experiment_type": "v3_exq_455_sd032a_salience_behavioral",
+  "claim_ids": [
+    "SD-032a",
+    "MECH-259",
+    "MECH-261"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260420T223056Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-032a": "supports",
+    "MECH-259": "supports",
+    "MECH-261": "supports"
+  },
+  "supersedes": "v3_exq_446_sd032a_salience_coordinator",
+  "pass_criteria_summary": {
+    "c1_mech259_trigger_natural": {
+      "on_wins": 2,
+      "threshold": 2,
+      "pass": true,
+      "desc": "trigger_count_natural > 0 in >=2/3 seeds for COORD_ON"
+    },
+    "c2_sd032a_mode_entropy": {
+      "on_wins": 3,
+      "threshold": 2,
+      "pass": true,
+      "desc": "mean_operating_mode_entropy > 0.3 nats in >=2/3 seeds for COORD_ON"
+    },
+    "c3_mech261_gate_modulation": {
+      "on_wins": 3,
+      "threshold": 2,
+      "pass": true,
+      "desc": "write_gate_e3_policy std > 0.01 in >=2/3 seeds for COORD_ON"
+    },
+    "c4_backward_compat": {
+      "off_no_modulation_count": 3,
+      "pass": true,
+      "desc": "COORD_OFF gate std < 0.001 (no coordinator = no gate modulation)"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "COORD_OFF",
+      "mean_operating_mode_entropy": 0.0,
+      "trigger_count_natural": 0,
+      "write_gate_e3_policy_std": 0.0,
+      "write_gate_e3_policy_mean": 0.0,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 1523.5908361715085,
+      "n_p2_steps": 1,
+      "action_counts": {
+        "1": 5542
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "COORD_ON",
+      "mean_operating_mode_entropy": 1.2752689051799877,
+      "trigger_count_natural": 350,
+      "write_gate_e3_policy_std": 0.019727504144556474,
+      "write_gate_e3_policy_mean": 0.6162660282857092,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 1523.5908361715085,
+      "n_p2_steps": 5542,
+      "action_counts": {
+        "1": 5542
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "COORD_OFF",
+      "mean_operating_mode_entropy": 0.0,
+      "trigger_count_natural": 0,
+      "write_gate_e3_policy_std": 0.0,
+      "write_gate_e3_policy_mean": 0.0,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 420.7426106065918,
+      "n_p2_steps": 1,
+      "action_counts": {
+        "3": 5426
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "COORD_ON",
+      "mean_operating_mode_entropy": 1.273931483135828,
+      "trigger_count_natural": 0,
+      "write_gate_e3_policy_std": 0.010387154314343902,
+      "write_gate_e3_policy_mean": 0.6199074910119265,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 420.7426106065918,
+      "n_p2_steps": 5426,
+      "action_counts": {
+        "3": 5426
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "COORD_OFF",
+      "mean_operating_mode_entropy": 0.0,
+      "trigger_count_natural": 0,
+      "write_gate_e3_policy_std": 0.0,
+      "write_gate_e3_policy_mean": 0.0,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 37.98565405598793,
+      "n_p2_steps": 1,
+      "action_counts": {
+        "3": 5656
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "COORD_ON",
+      "mean_operating_mode_entropy": 1.2761255637244708,
+      "trigger_count_natural": 272,
+      "write_gate_e3_policy_std": 0.018571697772008296,
+      "write_gate_e3_policy_mean": 0.6159530584462799,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 37.98565405598793,
+      "n_p2_steps": 5656,
+      "action_counts": {
+        "3": 5656
+      }
+    }
+  ],
+  "config": {
+    "conditions": [
+      "COORD_OFF",
+      "COORD_ON"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 50,
+    "p1_eps": 100,
+    "p2_eps": 50,
+    "steps_per_ep": 120
+  }
+}

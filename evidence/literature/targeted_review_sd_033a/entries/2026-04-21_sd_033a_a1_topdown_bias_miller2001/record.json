@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-21_sd_033a_a1_topdown_bias_miller2001",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["SD-033a"],
+  "source": {
+    "title": "An integrative theory of prefrontal cortex function.",
+    "authors": ["Miller EK", "Cohen JD"],
+    "year": 2001,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.24.1.167",
+    "url": "https://doi.org/10.1146/annurev.neuro.24.1.167"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical theoretical statement of PFC as a source of top-down bias signals onto other brain structures, reviewing a wide base of neurophysiological, neuroimaging, and computational evidence. Source-quality is high (Annual Review, heavily cited as the field's anchor paper for the rule-bias framing). Mapping to SD-033a's A1 alternative is direct: Miller and Cohen's bias framing argues that PFC outputs shape the mapping between inputs, internal states, and outputs in recipient structures -- that is, bias is selectively applied as a function of the rule held in PFC, not a uniform state-dependent gain on all downstream candidates. Confidence is held below 0.85 because the paper predates most of the single-neuron evidence for trajectory- or candidate-specific modulation, and its framing is compatible with multiple projection implementations, including both per-candidate and uniform-gain reads.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's bias framing is silent on whether the bias projection is candidate-specific (different weights for different downstream trajectories) or a uniform gain modulated by rule identity. If downstream empirical work shows PFC bias enters recipient circuits as a global gain rather than a selective re-weighting per candidate, the A1 'landing' choice in SD-033a is over-specified and the uniform scalar alternative becomes preferred.",
+    "Miller and Cohen emphasise that bias is 'guided' rather than strictly commanded -- the recipient structures integrate bias with other inputs. If this integration is linear and uniform across candidates in the recipient circuit, the per-candidate score_bias head in SD-033a adds a distinction that biological PFC does not enforce."
+  ],
+  "tags": ["sd_033a", "lateral_pfc", "top_down_bias", "rule_representation", "miller_cohen", "a1_alternative"],
+  "mapping": {
+    "source_claim_statement": "The prefrontal cortex maintains patterns of activity that represent current goals and the means to achieve them, and these patterns provide bias signals to other brain structures that guide the flow of activity along neural pathways establishing the proper input-state-output mapping for the current task.",
+    "ree_translation": "SD-033a posits a lateral-PFC-analog that holds a stimulus-abstracted rule_state and projects bias into E3 action selection. The 'landing' choice is a per-candidate score_bias head (frozen-random, last Linear zeroed) -- that is, a trajectory-specific top-down bias. The A1 alternative is a uniform scalar gain modulated by rule identity. Miller and Cohen's framing supports the PFC-as-bias-source architecture at the level of abstraction SD-033a operates on, but does not discriminate between the per-candidate and uniform-gain implementations. The paper is therefore supportive of SD-033a's architectural commitment at the module level, while the specific A1 landing vs alternative remains underdetermined by this source.",
+    "mapping_caveat": "The paper is a theoretical review, not an empirical discrimination between per-candidate and uniform-gain projections. It establishes that bias exists and is rule-dependent, but the granularity of that bias is left open. Transfer risk to REE is moderate because REE's E3 trajectory-selection machinery is architecturally different from the biological basal ganglia / motor circuits Miller and Cohen have in mind as the bias recipients.",
+    "source_context": "Annual Review of Neuroscience 2001 synthesis, drawing on macaque single-unit recordings, human fMRI and neuropsychology, and computational models. Species/context is mixed; the review is intended as architecture-level rather than task-specific."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality (canonical Annual Review). Mapping fidelity is moderate because the paper argues for bias as an architectural function but does not discriminate per-candidate vs uniform-gain implementations. Transfer risk is moderate: bias onto 'recipient structures' in biology corresponds to bias into E3 trajectory selection in REE, but the substrates differ enough that exact granularity must be set by downstream evidence."
+  }
+}

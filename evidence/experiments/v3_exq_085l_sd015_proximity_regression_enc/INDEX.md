@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_085l_sd015_proximity_regression_enc
 
-Generated: `2026-04-20T19:49:57.459734Z`
+Generated: `2026-04-21T06:02:32.749466Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

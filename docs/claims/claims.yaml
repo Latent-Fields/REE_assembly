@@ -17125,6 +17125,21 @@
     decouple evaluation from behavioural sample frequency (policy counter-
     balancing, per-class reweighted evaluation, or a fixed-script eval protocol
     that forces exposure to both event types regardless of learned policy).
+  implementation_note: >
+    SD-029 substrate IMPLEMENTED 2026-04-21 via a curriculum-level env
+    augmentation. CausalGridWorldV2 now exposes
+    scheduled_external_hazard_enabled (bool, default False) + _interval /
+    _prob / _adjacent_only sub-knobs. When enabled, the env periodically
+    relocates or spawns a hazard adjacent to the agent, producing
+    externally-caused hazard events that the self-vs-externally-caused
+    taxonomy counts distinctly from self-caused ones. Info dict now also
+    emits external_hazard_injected (bool) and external_hazard_event_count
+    (int) every step. Forward model (ARC-033) and interventional training
+    (SD-013) were already in place; this curriculum closes the last
+    substrate gap for C3/C4 measurement. Backward compatible: disabled by
+    default, existing experiments unaffected. Validation: V3-EXQ-470
+    (env-level sanity probe, diagnostic). See ree-v3/CLAUDE.md "SD-029:
+    Balanced Hazard-Event Curriculum (2026-04-21)".
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: SD-030

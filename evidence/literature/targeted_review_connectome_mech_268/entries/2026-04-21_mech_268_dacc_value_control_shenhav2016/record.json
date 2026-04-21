@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_268",
+  "entry_id": "2026-04-21_mech_268_dacc_value_control_shenhav2016",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-268"],
+  "source": {
+    "title": "Dorsal anterior cingulate cortex and the value of control.",
+    "authors": ["Shenhav A", "Cohen JD", "Botvinick MM"],
+    "year": 2016,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4384",
+    "url": "https://doi.org/10.1038/nn.4384"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Follow-up review of EVC theory integrating updated evidence on dACC function and contrasting with foraging-theory accounts. The review discusses how dACC signals adjust over time as experimental variables change, including ACC's involvement in decisions about when to alter one's behaviour. This is adjacent to MECH-268's claim that dACC pe should saturate under repeated identical outcomes (i.e. dACC should signal 'no more value to be had here, time to change') -- both frameworks imply that dACC must adjust its signal downward when further effort offers diminishing returns. Confidence 0.68 because the review makes no direct claim about saturation dynamics; it discusses adjustment over time but without specifying the habituation / saturation signature MECH-268 requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review focuses on adaptive allocation rather than on signal saturation per se. If dACC adjusts control allocation without the underlying pe signal saturating (e.g. via external modulation), MECH-268's internal-saturation commitment is not what the biology implements.",
+    "The review's contrast with foraging accounts (Kolling et al.) is instructive: foraging theories of dACC emphasise value-of-switching dynamics, while EVC emphasises value-of-control. MECH-268 is agnostic between these, but if foraging-style dynamics are the right mechanism for 'time to change mode', MECH-268's specific pe-habituation mechanism is under-specified."
+  ],
+  "tags": ["mech_268", "dacc", "evc", "control_adjustment", "foraging"],
+  "mapping": {
+    "source_claim_statement": "The dACC specifies the optimal allocation of control by determining the expected value of control (EVC). This value signal integrates payoff, control investment, and effort cost. dACC adjusts its signal dynamically with experimental variables and is involved in decisions about when to alter behaviour. EVC theory provides a more comprehensive account of dACC function than foraging-decision accounts while encompassing their phenomena.",
+    "ree_translation": "MECH-268 posits that pe_saturated = f_sat(pe_raw, outcome_history). Shenhav et al. 2016 update the EVC framework and reinforce the central claim that dACC adjusts its signal as experimental variables change. In REE terms, 'outcome_history becomes repetitive' is one kind of experimental-variable change that should produce an adjustment -- specifically, a downward adjustment of the control-allocation signal, because the expected value of further control is low. This supports the direction of MECH-268's saturation claim. The review also highlights dACC's role in 'when to alter behaviour' decisions, which overlaps with MECH-268's governance function: saturated pe should correspond to the mode-register relaxing away from the stuck mode.",
+    "mapping_caveat": "Shenhav et al. 2016 does not directly test or prescribe saturation dynamics. The review discusses adjustment as a generic function of dACC; MECH-268's specific commitment to bounded pe with outcome-identity-dependent habituation is one of several implementations compatible with EVC-based adjustment. Transfer risk is moderate because REE's SD-032b is a simpler module than biological dACC.",
+    "source_context": "Nature Neuroscience review, Princeton Shenhav lab, 2016. Follow-up to the 2013 Neuron paper, discussing contrast with foraging accounts (Kolling et al.)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Very high source quality (Nature Neuroscience, EVC follow-up). Mapping fidelity is moderate because the review emphasises control adjustment without specifying saturation dynamics. Transfer risk is moderate as REE's dACC-analog is simpler than biological dACC."
+  }
+}

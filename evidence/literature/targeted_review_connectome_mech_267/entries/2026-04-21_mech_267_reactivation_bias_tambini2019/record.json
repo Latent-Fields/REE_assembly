@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_267",
+  "entry_id": "2026-04-21_mech_267_reactivation_bias_tambini2019",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-267"],
+  "source": {
+    "title": "Awake Reactivation of Prior Experiences Consolidates Memories and Biases Cognition.",
+    "authors": ["Tambini A", "Davachi L"],
+    "year": 2019,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.07.008",
+    "url": "https://doi.org/10.1016/j.tics.2019.07.008"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Review of human fMRI evidence for spontaneous hippocampal-cortical reactivation during awake post-encoding periods, with explicit attention to how persistent reactivation biases ongoing perception and cognition. Relevant to MECH-267's primary falsifier (V3-EXQ-465, intrusive simulation filtering): does hippocampal content generated during one mode bias selection during a subsequent mode? Tambini & Davachi's evidence supports 'yes, reactivation biases subsequent behaviour', which is both a support for MECH-267's mode-conditioning (biological plausibility) and a warning that hypothesis-tag filtering (MECH-094) is necessary to prevent contamination across modes. Confidence 0.70 because the review is human fMRI focused and the mode structure in REE is much more explicit than in the reviewed literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If reactivation-based biasing of subsequent cognition is a generic low-level mechanism rather than a mode-gated one, MECH-267's specific mode-conditioning claim is redundant with the broader reactivation-biases-ongoing-cognition result.",
+    "Tambini & Davachi report biasing of subsequent behaviour but do not establish that this biasing is gated by operating mode or by hypothesis tags. The review is compatible with both a gated and an ungated architecture; MECH-267 requires the gated one."
+  ],
+  "tags": ["mech_267", "hippocampus", "reactivation", "awake_rest", "fmri", "human", "memory_bias"],
+  "mapping": {
+    "source_claim_statement": "Spontaneous reactivation of hippocampal representations during awake post-encoding periods, together with hippocampal-cortical interactions, promotes memory stabilisation and transformation. Reactivation is modulated by factors that influence consolidation, and persistent reactivation biases ongoing perception and cognition. Human fMRI provides evidence for reactivation of nonspatial episodic event representations.",
+    "ree_translation": "MECH-267 asserts that HippocampalModule.propose_trajectories should condition on operating_mode. A corollary is that proposals made in one mode must not improperly write into other modes -- this is what MECH-094 hypothesis-tag gating is for. Tambini & Davachi provide direct human-imaging evidence that reactivation in one context biases cognition in subsequent contexts. This is a double-edged finding for MECH-267: it supports the biological reality of mode-to-mode influence (so mode-conditioning is a real architectural concern), and it warns that without explicit mode filtering, proposal content leaks across modes in ways that may be problematic (internal_replay biasing external_task is exactly the intrusive simulation concern in V3-EXQ-465).",
+    "mapping_caveat": "The review is human fMRI based and uses 'awake rest' vs 'task encoding' as the main dissociated states; it does not use REE's four-mode taxonomy. The bias-subsequent-cognition finding is established, but whether this bias is gated by operating mode, hypothesis tags, or something else cannot be resolved from this source alone.",
+    "source_context": "Trends in Cognitive Sciences review, Tambini and Davachi labs. Human fMRI focused (Davachi lab classic emphasis on awake-rest reactivation). Published 2019."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (TiCS review, expert authors). Mapping fidelity is moderate -- the review supports reactivation-biases-cognition, which is MECH-267 adjacent, but does not directly test the mode-conditioning architecture. Transfer risk is moderate because the human fMRI context is relatively far from REE's gridworld trajectory proposals."
+  }
+}

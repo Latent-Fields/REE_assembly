@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_266",
+  "entry_id": "2026-04-21_mech_266_bg_gating_oreilly2006",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-266"],
+  "source": {
+    "title": "Making working memory work: a computational model of learning in the prefrontal cortex and basal ganglia.",
+    "authors": ["O'Reilly RC", "Frank MJ"],
+    "year": 2006,
+    "venue": "Neural Computation",
+    "doi": "10.1162/089976606775093909",
+    "url": "https://doi.org/10.1162/089976606775093909"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Foundational computational model (PBWM) of basal-ganglia-based dynamic gating of prefrontal working memory, with D1 (Go) and D2 (NoGo) pathways implementing opposing learning signals. This is the canonical model for an asymmetric gate: the D1/D2 balance shifts the enter threshold (easier to switch) vs the maintenance threshold (harder to dislodge). Directly relevant to MECH-266's Schmitt-trigger framing. Evidence direction is mixed because O'Reilly/Frank model implements asymmetry as opposing pathways rather than per-mode (enter, exit) pairs -- the architecture supports the general claim that gating thresholds are asymmetric, but does not specifically endorse the MECH-266 implementation where each mode has its own explicit (enter, exit) parameters. Confidence 0.60 reflects the architectural fit with caveat that the model does not distinguish between different operating modes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The PBWM D1/D2 opposition is a single-gate mechanism; it does not natively support per-mode asymmetry parameters. If the biological implementation of mode-specific asymmetry is via a shared D1/D2 gate whose tonic DA setting varies with context, MECH-266's per-mode parameter structure is not the right architectural parameterization.",
+    "The model was designed for 1-2-AX-style WM tasks, not for high-level operating-mode transitions. The transfer from 'WM item update gating' to 'operating mode transition' is a scale jump that the model does not directly address."
+  ],
+  "tags": ["mech_266", "basal_ganglia", "pbwm", "d1_d2", "dynamic_gating", "working_memory"],
+  "mapping": {
+    "source_claim_statement": "The prefrontal cortex and basal ganglia together implement a dynamic gating mechanism for controlling working-memory updating. D1-pathway neurons (Go) learn to gate updates in; D2-pathway neurons (NoGo) learn to suppress inappropriate updates. The actor-critic architecture solves temporal and structural credit-assignment jointly, enabling the PFC to learn when to update its representations.",
+    "ree_translation": "MECH-266 posits asymmetric (enter, exit) thresholds per operating mode as an extension of SD-032a's mode register. The PBWM framework supports the general principle that the gate between stable-hold and flexible-update has asymmetric controllers (Go vs NoGo pathways). This is not the same as per-mode (enter, exit) pairs -- it is a single bidirectional gate controlled by two opposing signals. But the broader phenomenon -- that 'enter' and 'exit' dynamics are governed by different machinery -- is exactly what MECH-266 requires biologically. The translation cost is the per-mode specificity: PBWM has a single gate, whereas MECH-266 expects the asymmetry parameters to differ per mode.",
+    "mapping_caveat": "PBWM is a computational model at the item-level WM gate. MECH-266 applies at the operating-mode level. The scale difference matters: item-level gating has specific D1/D2 circuits; mode-level gating in REE is implemented inside a single SalienceCoordinator without explicit D1/D2 analogues. The mechanism analogy is at the level of architectural principle ('asymmetric gate'), not specific implementation.",
+    "source_context": "Computational model paper, O'Reilly and Frank, Neural Computation 2006. Foundational paper in the PBWM / frontostriatal-gating literature. Not empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "High source quality (foundational computational model). Mapping fidelity is moderate because PBWM's D1/D2 opposition is a different architecture than MECH-266's per-mode (enter, exit) pairs. Transfer risk is substantial: item-level WM gate to mode-level operating-state gate is a scale jump."
+  }
+}

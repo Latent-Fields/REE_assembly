@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_267",
+  "entry_id": "2026-04-21_mech_267_replay_review_olafsdottir2018",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-267"],
+  "source": {
+    "title": "The Role of Hippocampal Replay in Memory and Planning.",
+    "authors": ["Olafsdottir HF", "Bush D", "Barry C"],
+    "year": 2018,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2017.10.073",
+    "url": "https://doi.org/10.1016/j.cub.2017.10.073"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Comprehensive review of hippocampal replay across memory consolidation, recall, working memory, navigational planning, and reinforcement learning. The review explicitly proposes that the function of replay changes dynamically according to task demands placed on the organism and its current level of arousal -- i.e. replay content and function are state-dependent. This is the closest thing in the literature to an explicit statement of MECH-267's mode-conditioning claim, though at the level of hippocampal function rather than at the level of a specific mode register like SD-032a. Confidence 0.78 because this is a review rather than primary data, but it is comprehensive and includes explicit acknowledgement of state-dependent function.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review notes 'apparent inconsistencies in existing data' about replay function; if replay content is not reliably state-dependent in primary data, the MECH-267 mode-conditioning claim is overly strong.",
+    "The review focuses on spatial / navigational replay in rodents; extending to the internal_planning and internal_replay modes in REE's taxonomy requires an additional leap to hypothesis-tagged, non-spatial trajectories."
+  ],
+  "tags": ["mech_267", "hippocampus", "replay", "memory", "planning", "state_dependent", "review"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay spontaneously recapitulates past trajectories during rest and task engagement. It has been proposed to support multiple distinct functions -- systems memory consolidation, recall and spatial working memory, navigational planning, and reinforcement learning. Existing data show apparent inconsistencies about which function replay supports; the authors propose that replay's function changes dynamically according to task demands and arousal state.",
+    "ree_translation": "MECH-267 asserts that HippocampalModule.propose_trajectories must condition on operating_mode in addition to world_state. Olafsdottir et al.'s proposal -- that replay function changes with task demands and arousal -- is structurally the same claim at a higher level of abstraction. In REE terms, external_task, internal_planning, internal_replay, and offline_consolidation are four canonical 'task demand / arousal state' configurations that select different replay / proposal modes. The review is supportive of the architectural principle (mode-conditioning) but does not specify REE's particular four-way decomposition. The review's apparent-inconsistencies observation is actually supportive: the inconsistencies resolve if replay function is context-dependent, which is MECH-267's central commitment.",
+    "mapping_caveat": "A review paper synthesising primary data from rodent hippocampal physiology. The 'function changes with task demands' proposal is an interpretive framework not a direct empirical demonstration. REE's four-mode taxonomy is a specific commitment that the review does not validate. Transfer risk is moderate because rodent replay is spatial-trajectory-focused while REE's hippocampal module generates more abstract trajectory proposals.",
+    "source_context": "Current Biology review, Olafsdottir lab (UCL). Rodent-focused review citing ~80 primary papers. Written as a synthesis that attempts to resolve conflicting interpretations of replay function."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (Current Biology, expert review). Mapping fidelity is good at the architectural principle level (mode-conditioning of replay function). Transfer risk is moderate because the review covers rodent spatial replay and REE's application is to abstract trajectory proposals across multiple operating modes."
+  }
+}

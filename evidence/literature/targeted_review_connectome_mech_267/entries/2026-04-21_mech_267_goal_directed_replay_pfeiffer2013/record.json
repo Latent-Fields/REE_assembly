@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_267",
+  "entry_id": "2026-04-21_mech_267_goal_directed_replay_pfeiffer2013",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["MECH-267"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals.",
+    "authors": ["Pfeiffer BE", "Foster DJ"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "url": "https://doi.org/10.1038/nature12112"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Rat hippocampal single-unit recordings showing that before goal-directed navigation in an open arena, the hippocampus generates brief place-cell sequences encoding spatial trajectories from the animal's current location toward a known goal. The sequences predict immediate future behaviour even for novel start-goal combinations. This is direct evidence that hippocampal trajectory proposals are conditioned on current goal / task state, not just on spatial position. That is exactly what MECH-267 claims: proposal_trajectories should be a function of operating mode and world state, not world state alone. Confidence 0.82 because this is a canonical result in rodent single-unit data, directly testing the claim that hippocampal proposals are state-and-goal-conditioned.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study shows goal-biased proposals during one kind of task (open-arena navigation). It does not dissociate whether the bias reflects the operating mode (external_task vs internal_planning vs replay) or just the current goal representation. MECH-267 specifically claims mode-conditioning; Pfeiffer & Foster show goal-conditioning, which is one instance of state-conditioning that in REE collapses to external_task mode.",
+    "Open-arena rat navigation is a specific behavioural context; generalising to the four REE operating modes (external_task, internal_planning, internal_replay, offline_consolidation) requires additional evidence from other contexts."
+  ],
+  "tags": ["mech_267", "hippocampus", "place_cells", "replay", "goal_directed", "trajectory_proposal", "state_dependent"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, the rat hippocampus generates brief place-cell sequences that depict trajectories from the current location toward a known goal location. These sequences predict immediate future behaviour, including for novel start-goal combinations. This supports the interpretation that hippocampal sequence events (replay) also implement a goal-directed, trajectory-finding mechanism at specific times when memory retrieval is required.",
+    "ree_translation": "MECH-267 claims that HippocampalModule.propose_trajectories should condition on operating_mode in addition to world_state. Pfeiffer & Foster demonstrate that hippocampal trajectory proposals are conditioned on current goal (a task-relevant variable), not only world state. This directly supports the architectural signature required by MECH-267: trajectory proposal content is task-dependent. In the REE mode taxonomy, Pfeiffer & Foster's paradigm is an external_task-mode-like context (active goal-directed navigation), and they show proposals biased toward goal-consistent trajectories. Extrapolating to the other modes (internal_planning -> counterfactual proposals; internal_replay -> past-successful proposals; offline_consolidation -> stability-check proposals) is a valid next step supported by other work in the field.",
+    "mapping_caveat": "This paper specifically shows goal-conditioning, not operating-mode conditioning. In REE's taxonomy, 'external_task with a goal' and 'internal_planning with a goal' may both be present; Pfeiffer & Foster do not dissociate these. The paper is strong on the phenomenon but does not uniquely support the mode-taxonomy structure MECH-267 uses.",
+    "source_context": "Rat (Long-Evans) single-unit recordings in an open arena with learned goal locations. Multiple goal positions, awake behaviour. Widely cited in the replay / prospective-coding literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality (Nature, canonical result). Mapping fidelity is good because the phenomenon -- goal-conditioned hippocampal trajectory proposals -- is exactly what MECH-267 requires at the first-mode-conditioning level. Transfer risk is moderate: rodent spatial navigation to REE's more abstract trajectory proposals in a gridworld carries some abstraction cost."
+  }
+}

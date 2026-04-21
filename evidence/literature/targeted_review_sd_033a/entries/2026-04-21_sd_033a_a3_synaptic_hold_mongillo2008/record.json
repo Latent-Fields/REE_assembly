@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-21_sd_033a_a3_synaptic_hold_mongillo2008",
+  "timestamp_utc": "2026-04-21T00:09:03Z",
+  "claim_ids_tested": ["SD-033a"],
+  "source": {
+    "title": "Synaptic theory of working memory.",
+    "authors": ["Mongillo G", "Barak O", "Tsodyks M"],
+    "year": 2008,
+    "venue": "Science",
+    "doi": "10.1126/science.1150769",
+    "url": "https://doi.org/10.1126/science.1150769"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Directly relevant to SD-033a A3 (persistence mechanism: gate-modulated EMA vs recurrent-activity vs synaptic-hold). The paper proposes a formally explicit alternative to persistent spiking activity: calcium-mediated presynaptic facilitation in recurrent cortical networks implements working-memory hold without continuous reverberation. The mechanism predicts reduced metabolic cost and allows items to remain 'held' in a silent state, refreshed by sparse population activity. This weakens the case that persistence must be implemented as continuous recurrent spiking (the A3 alternative 'recurrent-activity-based, spiking persistence'). It does not decisively favour the SD-033a landing (gate-modulated EMA), because an EMA is not literally synaptic-hold; but an EMA is a coarse functional abstraction of the same kind of decaying-but-refreshable hold that Mongillo et al. formalise. Confidence is held at 0.62 because the paper is a computational model rather than an empirical demonstration that biological lateral PFC uses this mechanism, and the field has since produced competing empirical evidence supporting both spiking-persistence and silent-synaptic views.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If subsequent empirical work in primate lateral PFC shows that rule-selective persistence is strictly spiking-based and collapses immediately when spiking is silenced (even briefly), the Mongillo model's silent-synaptic regime is not the biological mechanism -- and by transfer, the EMA-style silent hold in SD-033a is disanalogous.",
+    "The Mongillo model requires recurrent connectivity with calcium-mediated facilitation, which has specific biophysical constraints (facilitation time constant, release probability). A gate-modulated EMA has different dynamics (exponential decay vs calcium-driven facilitation); the mapping is coarse. If the SD-033a EMA is tuned to a decay time that no biological facilitation regime supports, the analogy breaks.",
+    "The paper does not distinguish rule-selective persistence from item-specific working memory. Rule representations may recruit different persistence mechanisms than single-item memoranda."
+  ],
+  "tags": ["sd_033a", "lateral_pfc", "persistence", "working_memory", "synaptic_facilitation", "a3_alternative"],
+  "mapping": {
+    "source_claim_statement": "Working memory can be sustained without continuous persistent spiking activity: calcium-mediated presynaptic facilitation in recurrent cortical connections acts as a residual-calcium buffer loaded, refreshed, and read out by sparse spiking. Because of long calcium kinetics the refresh rate can be low, producing a metabolically efficient and robust mechanism whose duration and stability are regulated by spontaneous activity in the network.",
+    "ree_translation": "SD-033a's landing choice is a gate-modulated EMA persistence of rule_state, driven by SalienceCoordinator.write_gate('sd_033a'). The EMA is a simple functional abstraction: a held state decays toward zero in the absence of write, and is refreshed when the gate opens. Alternatives documented in SD-033a's design doc are (GRU-style) recurrent activity or explicit synaptic-hold / short-term plasticity. Mongillo et al. formalise a third option -- silent synaptic facilitation -- that occupies a middle ground between the EMA landing and the synaptic-hold alternative. At a functional level the EMA resembles the 'decay and refresh' character of silent synaptic facilitation more than it resembles continuous recurrent spiking. This provides partial support for the landing choice over the recurrent-spiking alternative, and partial support for the synaptic-hold alternative as a biologically realistic refinement.",
+    "mapping_caveat": "Mongillo et al. is a computational model, not an empirical measurement. The biological literature since 2008 has produced evidence on both sides (spiking persistence in delay tasks; silent-synaptic hold under heavy load). SD-033a's EMA is a coarse abstraction over all of these -- it shares the 'decay and refresh' character but does not implement calcium facilitation. The question 'is EMA a good analogue of biological persistence in lateral PFC?' is not answerable from this paper alone. The paper adjudicates between continuous-spiking and silent-hold regimes; it does not adjudicate EMA vs GRU vs explicit short-term plasticity.",
+    "source_context": "Theoretical paper modelling recurrent cortical networks with short-term synaptic plasticity (calcium-mediated facilitation). Motivated by persistence data in primate PFC but not itself an empirical PFC study."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Science, Tsodyks group). Mapping fidelity is moderate because EMA is a coarser abstraction than calcium-mediated facilitation; they share functional character (decay + refresh, low metabolic cost) but not biophysical detail. Transfer risk is substantial: the model is network-level, not PFC-specific, and later empirical work has partially contested the silent-synaptic view."
+  }
+}
