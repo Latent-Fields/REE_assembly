@@ -9784,7 +9784,7 @@
       }
     },
     "MECH-111": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.365, lit_conf=0.769",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.364, lit_conf=0.769",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -9797,7 +9797,7 @@
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.365,
+      "experimental_confidence": 0.364,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -9809,7 +9809,7 @@
       "latest_run_id": "v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3",
       "latest_timestamp_utc": "2026-04-02T02:18:31Z",
       "literature_confidence": 0.769,
-      "overall_confidence": 0.527,
+      "overall_confidence": 0.526,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10252,7 +10252,7 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.931, lit_conf=0.776",
+      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.93, lit_conf=0.776",
       "direction_counts": {
         "mixed": 2,
         "supports": 6,
@@ -10265,7 +10265,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.931,
+      "experimental_confidence": 0.93,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -10277,7 +10277,7 @@
       "latest_run_id": "v3_exq_234_mech117_wanting_liking_replication_20260405T143337Z_v3",
       "latest_timestamp_utc": "2026-04-05T14:33:37Z",
       "literature_confidence": 0.776,
-      "overall_confidence": 0.869,
+      "overall_confidence": 0.868,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -14093,7 +14093,7 @@
       }
     },
     "MECH-191": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.895",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.894",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -14118,8 +14118,8 @@
       },
       "latest_run_id": "2026-04-06_mech_191_vocal_emotion_mammals_briefer2012",
       "latest_timestamp_utc": "2026-04-06T08:00:00Z",
-      "literature_confidence": 0.895,
-      "overall_confidence": 0.895,
+      "literature_confidence": 0.894,
+      "overall_confidence": 0.894,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -16244,17 +16244,18 @@
       }
     },
     "MECH-269": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.783",
+      "confidence_rationale": "exp=0 entry(s), lit=7 entry(s), exp_conf=0, lit_conf=0.852",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 7,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 3,
+      "entries_total": 7,
       "evidence_class_counts": {
-        "lit:electrophysiology_multisensory": 1,
-        "lit:theoretical_review": 2
+        "lit:electrophysiology_multisensory": 3,
+        "lit:electrophysiology_single_unit": 1,
+        "lit:theoretical_review": 3
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -16265,44 +16266,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-21_mech_269_replay_phenomenology_foster2017",
-      "latest_timestamp_utc": "2026-04-21T20:05:50Z",
-      "literature_confidence": 0.783,
-      "overall_confidence": 0.783,
+      "latest_run_id": "2026-04-21_mech_269_swr_spike_recruitment_english2014",
+      "latest_timestamp_utc": "2026-04-21T20:21:12Z",
+      "literature_confidence": 0.852,
+      "overall_confidence": 0.852,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-269",
-          "confidence": 0.68,
-          "confidence_rationale": "Direct empirical demonstration that hippocampal-prefrontal reactivation fidelity is context-dependent (higher in awake vs sleep SWRs) and is enhanced during initial learning. This matches MECH-269's prediction that anchor eligibility -- 'is this starting state trustworthy enough to roll forward from' -- should vary by context, with stronger anchored behavior during high-information moments (early learning, awake active behavior). Does not directly test per-stream verisimilitude but shows the state-dependent fidelity modulation the claim requires.",
-          "evidence_class": "lit:electrophysiology_multisensory",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_269",
-          "failure_signatures": [
-            "If awake and sleep SWRs had equal reactivation fidelity, MECH-269's prediction that anchored-replay fidelity should vary with context-local model trust would lose empirical support."
-          ],
-          "run_id": "2026-04-21_mech_269_awake_vs_sleep_swr_tang2017",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-21T20:05:50Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-269",
-          "confidence": 0.7,
-          "confidence_rationale": "The review explicitly proposes that replay function changes dynamically with task demands and arousal level. This is the closest published claim to MECH-269's context-dependent anchor/probe mixture, short of a paper testing verisimilitude-gated selection directly. Mapping is still not mechanism-for-mechanism, but it is tighter than Foster 2017 because this review actively argues for task-dependent functional switching rather than just cataloguing variety.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_269",
-          "failure_signatures": [
-            "If replay function were task-invariant (same role in consolidation, recall, and planning regardless of context), MECH-269's context-modulated anchor/probe ratio would lose its biological motivation."
-          ],
-          "run_id": "2026-04-21_mech_269_replay_memory_planning_olafsdottir2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-21T20:05:50Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-269",
@@ -16318,12 +16287,76 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-21T20:05:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-269",
+          "confidence": 0.68,
+          "confidence_rationale": "Review paper in which Dragoi and Tonegawa recast their preplay findings as evidence for a selection-from-repertoire architecture: novel experiences do not instruct the hippocampus de novo but select from existing preconfigured cell-assembly sequences. That architectural frame is the closest theoretical statement in the literature to MECH-269's two-channel proposal. The paper frames anterograde amnesia, inability to imagine new experiences, and hallucinations as symptoms of disturbed selection -- which resonates with MECH-094 tag-loss / probe-contamination framing. As a review rather than primary evidence, source quality is constrained, but the architectural mapping is high.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_269",
+          "failure_signatures": [
+            "If the hippocampus constructed cell assembly sequences de novo for each novel experience (rather than selecting from a preconfigured repertoire), MECH-269's probe channel -- which presumes a repertoire to draw from -- would lose its architectural footing. Anchor and probe would collapse into a single 'construct from current input' mechanism."
+          ],
+          "run_id": "2026-04-21_mech_269_preconfigured_selection_dragoi2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:21:12Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-269",
+          "confidence": 0.72,
+          "confidence_rationale": "Preplay -- hippocampal cell assemblies firing in temporal sequences matching a future novel experience, before the experience happens -- is the key empirical phenomenon that separates MECH-269's probe channel from its anchored channel. If replay-like sequences were only reactivations of past experience, MECH-269's probe prediction (that the proposer can seed rollouts from non-currently-aligned states for curiosity-driven exploration) would have no biological footing. Dragoi and Tonegawa show that preconfigured temporal sequences exist in the resting hippocampus before novel experience and get selected for representing that experience. This is structurally the probe channel: non-anchored trajectories that exist in repertoire and get recruited when the anchor-gate is inverted.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_269",
+          "failure_signatures": [
+            "If hippocampal sequences were exclusively reactivations of past experience (no preplay phenomenon), MECH-269's probe channel -- rollouts seeded from non-currently-aligned states for curiosity-driven exploration -- would lose its biological anchor. Replay and probe would collapse into a single 'rehearse recent' mechanism."
+          ],
+          "run_id": "2026-04-21_mech_269_preplay_novel_experience_dragoi2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:21:12Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-269",
+          "confidence": 0.88,
+          "confidence_rationale": "The strongest single piece of evidence yet pulled for MECH-269. Pfeiffer and Foster show that before goal-directed navigation in an open arena, hippocampal sequence events are strongly biased to progress FROM THE SUBJECT'S CURRENT LOCATION to a known goal location. That is exactly the anchor-selection architecture MECH-269 hypothesises: the start state of the rollout is gated, not arbitrary, and the gating is to the currently-aligned location. MECH-269 generalises this from spatial-only to per-stream verisimilitude (z_world, z_self, z_goal), but the structural pattern is the same: anchor = high-V_s current state, trajectory = proposal toward goal. High mapping fidelity; the paper also shows this happens for novel start-goal combinations, meaning the anchor-selection is compositional, which is what MECH-269 needs.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_269",
+          "failure_signatures": [
+            "If replay trajectories started from arbitrary locations uncorrelated with the animal's current position, MECH-269's anchor-selection hypothesis (rollouts start from the most verisimilar state) would be directly falsified for the spatial case."
+          ],
+          "run_id": "2026-04-21_mech_269_replay_start_current_location_pfeiffer2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:21:12Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-269",
+          "confidence": 0.65,
+          "confidence_rationale": "Intracellular recording during SWRs in freely-moving mice shows that pyramidal-cell spiking during ripples is actively gated by shunting inhibition -- many cells are depolarised above their resting spike threshold but do not fire, because concurrent inhibitory currents hold them subthreshold. This is mechanistically relevant to MECH-269's anchor-selection step: the question of *which* hippocampal cells participate in a given SWR sequence is not just 'which cells happened to be most excited,' it is also 'which cells were not concurrently inhibited.' That is the substrate-level shape of a content-gated selection mechanism. Indirect evidence for MECH-269 -- it establishes that a gating mechanism exists at the right timescale, without testing whether the gating implements per-stream verisimilitude.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_269",
+          "failure_signatures": [
+            "If pyramidal-cell spiking during SWRs were purely excitation-driven (no shunting inhibition controlling which cells fire), the architectural substrate for a selective anchor-gating mechanism during SWRs would be weakened. MECH-269 would need to identify a different gating substrate."
+          ],
+          "run_id": "2026-04-21_mech_269_swr_spike_recruitment_english2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:21:12Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 7,
       "source_counts": {
         "experimental": 0,
-        "literature": 3
+        "literature": 7
       }
     },
     "MECH-270": {
@@ -20501,7 +20534,7 @@
       }
     },
     "SD-013": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.798, lit_conf=0.872",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.798, lit_conf=0.871",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -20525,8 +20558,8 @@
       },
       "latest_run_id": "v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3",
       "latest_timestamp_utc": "2026-04-17T15:25:31Z",
-      "literature_confidence": 0.872,
-      "overall_confidence": 0.835,
+      "literature_confidence": 0.871,
+      "overall_confidence": 0.834,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -59284,6 +59317,70 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-269",
+      "confidence": 0.68,
+      "confidence_rationale": "Review paper in which Dragoi and Tonegawa recast their preplay findings as evidence for a selection-from-repertoire architecture: novel experiences do not instruct the hippocampus de novo but select from existing preconfigured cell-assembly sequences. That architectural frame is the closest theoretical statement in the literature to MECH-269's two-channel proposal. The paper frames anterograde amnesia, inability to imagine new experiences, and hallucinations as symptoms of disturbed selection -- which resonates with MECH-094 tag-loss / probe-contamination framing. As a review rather than primary evidence, source quality is constrained, but the architectural mapping is high.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_269",
+      "failure_signatures": [
+        "If the hippocampus constructed cell assembly sequences de novo for each novel experience (rather than selecting from a preconfigured repertoire), MECH-269's probe channel -- which presumes a repertoire to draw from -- would lose its architectural footing. Anchor and probe would collapse into a single 'construct from current input' mechanism."
+      ],
+      "run_id": "2026-04-21_mech_269_preconfigured_selection_dragoi2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:21:12Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-269",
+      "confidence": 0.72,
+      "confidence_rationale": "Preplay -- hippocampal cell assemblies firing in temporal sequences matching a future novel experience, before the experience happens -- is the key empirical phenomenon that separates MECH-269's probe channel from its anchored channel. If replay-like sequences were only reactivations of past experience, MECH-269's probe prediction (that the proposer can seed rollouts from non-currently-aligned states for curiosity-driven exploration) would have no biological footing. Dragoi and Tonegawa show that preconfigured temporal sequences exist in the resting hippocampus before novel experience and get selected for representing that experience. This is structurally the probe channel: non-anchored trajectories that exist in repertoire and get recruited when the anchor-gate is inverted.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_269",
+      "failure_signatures": [
+        "If hippocampal sequences were exclusively reactivations of past experience (no preplay phenomenon), MECH-269's probe channel -- rollouts seeded from non-currently-aligned states for curiosity-driven exploration -- would lose its biological anchor. Replay and probe would collapse into a single 'rehearse recent' mechanism."
+      ],
+      "run_id": "2026-04-21_mech_269_preplay_novel_experience_dragoi2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:21:12Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-269",
+      "confidence": 0.88,
+      "confidence_rationale": "The strongest single piece of evidence yet pulled for MECH-269. Pfeiffer and Foster show that before goal-directed navigation in an open arena, hippocampal sequence events are strongly biased to progress FROM THE SUBJECT'S CURRENT LOCATION to a known goal location. That is exactly the anchor-selection architecture MECH-269 hypothesises: the start state of the rollout is gated, not arbitrary, and the gating is to the currently-aligned location. MECH-269 generalises this from spatial-only to per-stream verisimilitude (z_world, z_self, z_goal), but the structural pattern is the same: anchor = high-V_s current state, trajectory = proposal toward goal. High mapping fidelity; the paper also shows this happens for novel start-goal combinations, meaning the anchor-selection is compositional, which is what MECH-269 needs.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_269",
+      "failure_signatures": [
+        "If replay trajectories started from arbitrary locations uncorrelated with the animal's current position, MECH-269's anchor-selection hypothesis (rollouts start from the most verisimilar state) would be directly falsified for the spatial case."
+      ],
+      "run_id": "2026-04-21_mech_269_replay_start_current_location_pfeiffer2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:21:12Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-269",
+      "confidence": 0.65,
+      "confidence_rationale": "Intracellular recording during SWRs in freely-moving mice shows that pyramidal-cell spiking during ripples is actively gated by shunting inhibition -- many cells are depolarised above their resting spike threshold but do not fire, because concurrent inhibitory currents hold them subthreshold. This is mechanistically relevant to MECH-269's anchor-selection step: the question of *which* hippocampal cells participate in a given SWR sequence is not just 'which cells happened to be most excited,' it is also 'which cells were not concurrently inhibited.' That is the substrate-level shape of a content-gated selection mechanism. Indirect evidence for MECH-269 -- it establishes that a gating mechanism exists at the right timescale, without testing whether the gating implements per-stream verisimilitude.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_269",
+      "failure_signatures": [
+        "If pyramidal-cell spiking during SWRs were purely excitation-driven (no shunting inhibition controlling which cells fire), the architectural substrate for a selective anchor-gating mechanism during SWRs would be weakened. MECH-269 would need to identify a different gating substrate."
+      ],
+      "run_id": "2026-04-21_mech_269_swr_spike_recruitment_english2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:21:12Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -59315,7 +59412,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-21T20:13:40.953533Z",
+  "generated_at_utc": "2026-04-21T20:26:37.340097Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

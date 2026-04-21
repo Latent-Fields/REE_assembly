@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_269",
+  "entry_id": "2026-04-21_mech_269_swr_spike_recruitment_english2014",
+  "timestamp_utc": "2026-04-21T20:21:12Z",
+  "claim_ids_tested": ["MECH-269"],
+  "source": {
+    "title": "Excitation and inhibition compete to control spiking during hippocampal ripples: intracellular study in behaving mice",
+    "authors": ["Daniel F. English", "Adrien Peyrache", "Eran Stark", "Lisa Roux", "Daniela Vallentin", "Michael A. Long", "György Buzsáki"],
+    "year": 2014,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2600-14.2014"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Intracellular recording during SWRs in freely-moving mice shows that pyramidal-cell spiking during ripples is actively gated by shunting inhibition -- many cells are depolarised above their resting spike threshold but do not fire, because concurrent inhibitory currents hold them subthreshold. This is mechanistically relevant to MECH-269's anchor-selection step: the question of *which* hippocampal cells participate in a given SWR sequence is not just 'which cells happened to be most excited,' it is also 'which cells were not concurrently inhibited.' That is the substrate-level shape of a content-gated selection mechanism. Indirect evidence for MECH-269 -- it establishes that a gating mechanism exists at the right timescale, without testing whether the gating implements per-stream verisimilitude.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pyramidal-cell spiking during SWRs were purely excitation-driven (no shunting inhibition controlling which cells fire), the architectural substrate for a selective anchor-gating mechanism during SWRs would be weakened. MECH-269 would need to identify a different gating substrate."
+  ],
+  "tags": ["mech_269", "swr_mechanism", "excitation_inhibition_balance", "spike_recruitment", "intracellular_recording"],
+  "mapping": {
+    "source_claim_statement": "Intracellular sharp-electrode recordings of CA1 pyramidal cells during SWRs in freely-moving mice show consistent large depolarisations coinciding with ripple events, often exceeding pre-ripple spike threshold. Yet current-pulse-induced spikes are strongly suppressed during ripples, indicating that concurrent shunting inhibition actively gates spiking. Ripples are followed by afterhyperpolarisation and spike suppression. Action potentials are orthodromic, arguing against ectopic spike generation.",
+    "ree_translation": "MECH-269 predicts content-gated anchor selection at SWR timescale: not all cells that could fire actually do, and the selection is keyed to per-stream verisimilitude. English et al. establish the mechanistic substrate -- a fast, coincident shunting-inhibition mechanism that gates which pyramidal cells spike during each ripple. That is the kind of fast gating mechanism MECH-269 requires. The evidence is substrate-level, not functional: it shows the gating mechanism exists, not that it implements V_s-based selection specifically.",
+    "mapping_caveat": "The paper addresses spike recruitment mechanism, not content selectivity. MECH-269 needs the additional claim that the inhibitory gate is content-selective (suppresses low-V_s cells, releases high-V_s cells). That is not tested here. This paper establishes that a gating mechanism operates at SWR timescale; the functional interpretation of that gating as V_s-based is REE-side extrapolation.",
+    "source_context": "Sharp-electrode intracellular recording of CA1 pyramidal cells in freely-moving drug-free mice; analysis of membrane potential, spike output, and current-injection-induced spikes during identified SWR events."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "J Neurosci, Buzsaki lab, methodologically demanding intracellular work in behaving animals. Mapping fidelity is moderate -- the paper establishes a substrate-level gating mechanism, not the content-selectivity MECH-269 specifically needs. Transfer risk moderate: rodent recordings, but the E/I-balance mechanism is likely generic. The paper strengthens MECH-269 indirectly by showing that the architectural ingredient (fast content-selective gating at SWR timescale) has a plausible substrate."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_269",
+  "entry_id": "2026-04-21_mech_269_preconfigured_selection_dragoi2013",
+  "timestamp_utc": "2026-04-21T20:21:12Z",
+  "claim_ids_tested": ["MECH-269"],
+  "source": {
+    "title": "Selection of preconfigured cell assemblies for representation of novel spatial experiences",
+    "authors": ["George Dragoi", "Susumu Tonegawa"],
+    "year": 2013,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2012.0522"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Review paper in which Dragoi and Tonegawa recast their preplay findings as evidence for a selection-from-repertoire architecture: novel experiences do not instruct the hippocampus de novo but select from existing preconfigured cell-assembly sequences. That architectural frame is the closest theoretical statement in the literature to MECH-269's two-channel proposal. The paper frames anterograde amnesia, inability to imagine new experiences, and hallucinations as symptoms of disturbed selection -- which resonates with MECH-094 tag-loss / probe-contamination framing. As a review rather than primary evidence, source quality is constrained, but the architectural mapping is high.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the hippocampus constructed cell assembly sequences de novo for each novel experience (rather than selecting from a preconfigured repertoire), MECH-269's probe channel -- which presumes a repertoire to draw from -- would lose its architectural footing. Anchor and probe would collapse into a single 'construct from current input' mechanism."
+  ],
+  "tags": ["mech_269", "preconfigured_assemblies", "selection_not_construction", "probe_channel", "theoretical_framing"],
+  "mapping": {
+    "source_claim_statement": "Novel experiences are represented in the hippocampus not by constructing cell assembly sequences de novo but by selecting from a repertoire of preconfigured temporal sequences. The hippocampus is viewed as a network of preconfigured sequences available for recruitment, with external experience selecting rather than instructing. Dysfunctions of this selection mechanism are posited to underlie anterograde amnesia, impaired imagining of new experiences, and hallucinations.",
+    "ree_translation": "MECH-269's two-channel architecture maps directly onto Dragoi and Tonegawa's selection-from-repertoire frame. The anchored channel selects from the repertoire under the current-V_s gate (Pfeiffer-Foster trajectories). The probe channel selects from the repertoire under an inverted gate for curiosity-driven seeding (preplay). MECH-094 hypothesis-tag loss corresponds structurally to the dysfunctions Dragoi and Tonegawa attribute to disturbed selection: inability to imagine new experiences (probe channel failure) and hallucinations (probe content mistagged as anchored).",
+    "mapping_caveat": "This is a review paper; its primary evidential weight is Dragoi and Tonegawa 2011 (already pulled). The theoretical framing is valuable because it's the closest existing literature to MECH-269's architectural commitments, but the paper does not add new data. Confidence should be moderate accordingly -- it's architectural alignment, not independent empirical confirmation.",
+    "source_context": "Review in Phil Trans R Soc B as part of a themed issue on cellular assemblies; integrates the authors' earlier preplay work with a broader theoretical argument about selection vs instruction in hippocampal representation."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Review paper, so source quality is discounted relative to primary empirical work. Mapping fidelity is high -- this is the nearest theoretical framing in the literature to MECH-269's two-channel architecture, and the clinical-dysfunction framing (impaired imagination, hallucinations) lines up with MECH-094 tag-loss / probe-contamination predictions. Transfer risk moderate: rodent spatial framework, no per-stream generalisation."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_269",
+  "entry_id": "2026-04-21_mech_269_preplay_novel_experience_dragoi2011",
+  "timestamp_utc": "2026-04-21T20:21:12Z",
+  "claim_ids_tested": ["MECH-269"],
+  "source": {
+    "title": "Preplay of future place cell sequences by hippocampal cellular assemblies",
+    "authors": ["George Dragoi", "Susumu Tonegawa"],
+    "year": 2011,
+    "venue": "Nature",
+    "doi": "10.1038/nature09633"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Preplay -- hippocampal cell assemblies firing in temporal sequences matching a future novel experience, before the experience happens -- is the key empirical phenomenon that separates MECH-269's probe channel from its anchored channel. If replay-like sequences were only reactivations of past experience, MECH-269's probe prediction (that the proposer can seed rollouts from non-currently-aligned states for curiosity-driven exploration) would have no biological footing. Dragoi and Tonegawa show that preconfigured temporal sequences exist in the resting hippocampus before novel experience and get selected for representing that experience. This is structurally the probe channel: non-anchored trajectories that exist in repertoire and get recruited when the anchor-gate is inverted.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hippocampal sequences were exclusively reactivations of past experience (no preplay phenomenon), MECH-269's probe channel -- rollouts seeded from non-currently-aligned states for curiosity-driven exploration -- would lose its biological anchor. Replay and probe would collapse into a single 'rehearse recent' mechanism."
+  ],
+  "tags": ["mech_269", "preplay", "probe_channel", "hippocampal_sequences", "preconfigured_assemblies"],
+  "mapping": {
+    "source_claim_statement": "Temporal sequences of place-cell firing that correspond to a novel spatial experience occur in the hippocampus during the resting or sleeping period PRECEDING that experience. This preplay is distinguishable from and co-occurs with replay of familiar experiences. The finding implies that internal neuronal dynamics during rest organise hippocampal cellular assemblies into temporal sequences that contribute to the encoding of future experiences.",
+    "ree_translation": "MECH-269 predicts two channels: an anchored channel that starts rollouts from currently-aligned high-V_s states (Pfeiffer & Foster 2013 evidence), and a probe channel that inverts the gate and seeds rollouts from non-aligned states for curiosity-driven exploration. Dragoi and Tonegawa's preplay finding is the biological anchor for the probe channel: the hippocampus can produce sequence events that do not correspond to past experience but match future experience, implying a repertoire of preconfigured sequences available for probe-style recruitment. The probe channel is not 'off' during rest -- it is actively generating candidate trajectories for future alignment.",
+    "mapping_caveat": "Preplay corresponds to MECH-269's probe channel at a structural level -- non-anchored sequences exist and get used -- but Dragoi and Tonegawa do not test whether preplay is specifically recruited for novel or curiosity-driven exploration as MECH-269 predicts. Their finding is that preplay exists; MECH-269 predicts a specific functional role for preplay-like activity (curiosity-driven probe in the absence of anchor-gate gating). Mapping is structural, not functional.",
+    "source_context": "C57BL/6 mice; recordings during rest/sleep preceding a novel linear-track experience; Bayesian decoding of place-cell temporal sequences."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Nature paper, landmark result; replicated and elaborated in subsequent Dragoi lab work. Mapping fidelity is moderate -- preplay is structurally the probe-channel phenomenon MECH-269 requires, but the functional role MECH-269 assigns (curiosity-driven exploration) is an extrapolation. Transfer risk moderate: rodent spatial preplay does not directly test REE's per-stream architecture."
+  }
+}

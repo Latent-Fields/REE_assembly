@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_269",
+  "entry_id": "2026-04-21_mech_269_replay_start_current_location_pfeiffer2013",
+  "timestamp_utc": "2026-04-21T20:21:12Z",
+  "claim_ids_tested": ["MECH-269"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Brad E. Pfeiffer", "David J. Foster"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "The strongest single piece of evidence yet pulled for MECH-269. Pfeiffer and Foster show that before goal-directed navigation in an open arena, hippocampal sequence events are strongly biased to progress FROM THE SUBJECT'S CURRENT LOCATION to a known goal location. That is exactly the anchor-selection architecture MECH-269 hypothesises: the start state of the rollout is gated, not arbitrary, and the gating is to the currently-aligned location. MECH-269 generalises this from spatial-only to per-stream verisimilitude (z_world, z_self, z_goal), but the structural pattern is the same: anchor = high-V_s current state, trajectory = proposal toward goal. High mapping fidelity; the paper also shows this happens for novel start-goal combinations, meaning the anchor-selection is compositional, which is what MECH-269 needs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If replay trajectories started from arbitrary locations uncorrelated with the animal's current position, MECH-269's anchor-selection hypothesis (rollouts start from the most verisimilar state) would be directly falsified for the spatial case."
+  ],
+  "tags": ["mech_269", "hippocampal_replay", "start_state_selection", "goal_directed_planning", "anchor_selection"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal sequence events generated before goal-directed navigation in an open arena are strongly biased to depict trajectories that start at the rat's current location and progress to a known goal. This biasing holds for novel start-goal combinations. The events predict immediate future navigational behaviour, suggesting hippocampal sequences support trajectory-finding at moments when memory retrieval is required.",
+    "ree_translation": "MECH-269 predicts that the hippocampal proposer selects anchor states (rollout start states) based on per-stream verisimilitude -- the anchor should be the currently highest-V_s state, not an arbitrary member of the map. Pfeiffer and Foster provide the direct spatial case: replay trajectories start at the current location, which in a spatial-only task is the highest-V_s state for the world-position stream. This is the strongest single piece of evidence for MECH-269's anchor-selection architecture.",
+    "mapping_caveat": "Pfeiffer and Foster test the spatial case only -- they demonstrate current-location bias for the positional stream, not a per-stream verisimilitude gate across multiple independent latent streams. MECH-269's architectural claim that anchor-selection operates on the per-stream V_s(t) across z_world / z_self / z_harm_s / z_goal is an extrapolation. The paper establishes that anchor-selection is real; it does not establish that the gating is per-stream.",
+    "source_context": "Male Long-Evans rats performing goal-directed navigation in an open arena with known goal locations; simultaneous CA1 ensemble recordings; analysis of sharp-wave ripple sequences before navigational episodes."
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Nature paper, Foster lab. Rigorous open-arena design (not linearly-constrained) shows current-location bias is a general property, not an artefact of track geometry. Mapping fidelity is high because the architectural pattern -- anchor = currently-aligned state, trajectory = proposal toward goal -- is structurally identical to MECH-269. Transfer risk moderate: spatial-only paradigm does not test the per-stream generalisation, but the single-stream case is exactly right."
+  }
+}
