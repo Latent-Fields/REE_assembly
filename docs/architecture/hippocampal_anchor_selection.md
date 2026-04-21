@@ -235,6 +235,97 @@ These are noted here but not drafted as separate docs this turn.
 
 ---
 
+## State-gating: sleep vs waking informational needs
+
+The routing architecture of MECH-271 is silent on brain state. A conversation revision
+(2026-04-21) adds the commitment that the routing itself is state-gated, because sleep and
+waking serve distinct informational needs and therefore exploit the anchor/probe split
+differently.
+
+**Waking regime.** The anchor channel dominates. The hippocampus is being asked to support
+decisions — give me rollouts from where I actually am to where I might go, and do it with
+high fidelity to the current world state. Probe events happen (DMN-style micro-quiescence,
+MECH-092) but they are minority events under a strong hypothesis tag (MECH-094) that prevents
+their content from writing to commitment-relevant consumers. The anchored / probe balance
+tips toward anchored.
+
+**Sleep regime.** The probe channel has the floor. The computational work changes: it is no
+longer "make this decision" but "revise the schema that decisions run against." That is
+full-Bayesian restructuring — testing which action-outcome attributions held up across
+episodes, creating new buckets for experiences that did not fit existing schemas, revising
+causal graphs where the data has accumulated evidence for or against prior attributions.
+Probe content is recruited heavily because novel combinations need to be tested; the
+hypothesis tag remains on to preserve the distinction between tested-and-accepted
+(consolidation-routed) and tested-but-not-committed (remains in repertoire).
+
+Tang et al. 2017 offer the empirical hint: awake and sleep SWRs differ in their cortical
+reactivation quality. Our architectural reading is that the difference is not incidental —
+it reflects the functional regime switch between decision-support (awake, anchor-dominant)
+and schema-revision (sleep, probe-dominant Bayesian work).
+
+**Registered as MECH-272.** State-gated routing. Waking = anchor-dominant fan-out bias;
+sleep = probe-dominant fan-out with Bayesian restructuring of the schema repertoire.
+Falsifiable (primary): V3 experiments that compare replay-to-consumer routing during wake
+vs simulated-sleep phases should show the dominance shift. Falsifiable (secondary): under
+state-gating loss (e.g., REM-like protocols run in waking state), routing should lose the
+regime-appropriate bias.
+
+---
+
+## Sleep-dependent self-model aggregation
+
+The self-model has a waking half and a sleep half. The waking half is SD-003: E2's
+counterfactual causal signature `E2(z_t, a_actual) − E2(z_t, a_cf)`, attributing the
+discrepancy between predicted and actual outcome to the agent's own action. This is
+probabilistic and single-episode. It gives us "in this episode, this action looks
+self-initiated with probability p."
+
+The sleep half is the aggregation that turns many single-episode attributions into a stable
+self-model. Single-episode attribution misses:
+
+1. **Delayed consequences** where an action-outcome link spans more episodes than a single
+   waking rollout can encompass.
+2. **Failed counterfactuals** where the counterfactual action would have produced the same
+   outcome — the action felt voluntary but was not actually causally efficacious.
+3. **Systematic attribution biases** that a single episode cannot distinguish from noise but
+   aggregate evidence across episodes can detect and correct.
+
+Full-Bayesian aggregation of SD-003 outputs during sleep, routed by the anchored channel to
+E1 consolidation (world model revision) and to SD-033a (viability-map revision of which
+actions the agent can credit to itself), is how REE builds a stable sense of self. Without
+it, SD-003 gives the agent only an episode-local causal signature — not a durable self.
+
+**Registered as MECH-273.** Sleep-dependent aggregation of single-episode SD-003 self-
+attributions into a stable self-model. Falsifiable (primary): ablating the sleep-phase
+aggregation step should leave single-episode self-attribution intact but degrade stability
+of self-attribution across episodes — concretely, the agent should be less able to correct
+previously-held spurious self-attributions when post-hoc evidence accumulates against them.
+Falsifiable (secondary): the pattern should generalise — any attribution whose stable form
+requires multi-episode Bayesian revision should show the same sleep-dependence.
+
+INV-049 (the mathematical necessity of offline phases for model-building agents) sits
+directly under this claim. This is the specific content offline phases are doing for the
+self-model case.
+
+---
+
+## Other-attribution sleep dependence (V4-reserved)
+
+The same architectural pattern extends to other-attribution when V4 adds it. V4's fast
+empathy system (ARC-010, MECH-217 if wired) produces single-episode attributions of
+other-agent action-outcome links: "agent j did action a, which looks causally responsible
+for outcome o." By the same argument as MECH-273, these single-episode attributions need
+sleep-phase Bayesian aggregation before they stabilise into a model of agent j's
+dispositions and causal powers. Without it, V4's other-model is episode-local — which is
+not what a stable theory of other minds requires.
+
+**Registered as MECH-274, flagged V4.** The extension is architecturally parallel to
+MECH-273 but operates on other-agent attributions rather than self-attributions. Not for
+V3 implementation; flagged here to reserve the mechanism and prevent V4 from rediscovering
+it independently.
+
+---
+
 ## Status log
 
 - **2026-04-21** — Design doc written. Claim ID **MECH-269** reserved but not yet in
@@ -247,3 +338,13 @@ These are noted here but not drafted as separate docs this turn.
   distinction recast as a routing hypothesis into known hippocampal fan-out targets, mapped
   onto existing/active REE modules (E1 consolidation, SD-033a lateral PFC, BLA analog, NAc,
   Papez). MECH-270 and MECH-271 noted as implied separate claims.
+- **2026-04-21** (later) — MECH-269/270/271 registered in `claims.yaml`. Targeted lit-pulls
+  landed (Jadhav 2016, Girardeau 2017, Anastassiou 2011, Pfeiffer & Foster 2013, Dragoi &
+  Tonegawa 2011/2013, English et al 2014, Tang et al 2017, Ólafsdóttir 2018, Buzsáki 2015,
+  Foster 2017). MECH-269 literature_confidence 0.852; MECH-271 0.795; MECH-270 0.750.
+- **2026-04-21** (later still) — State-gating / sleep-waking / self-model aggregation /
+  V4 other-attribution sections added. MECH-272, MECH-273, MECH-274 registered. Discussion
+  origin: user observation that sleep and waking serve distinct informational needs (sleep =
+  Bayesian schema revision, waking = decision-support using existing schemas) and that the
+  self-model has a waking half (SD-003) and a sleep half (aggregation of single-episode
+  attributions).

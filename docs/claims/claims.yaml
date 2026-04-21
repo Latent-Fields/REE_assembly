@@ -19916,3 +19916,172 @@
     differentiation.
   location: docs/architecture/hippocampal_anchor_selection.md
 
+- id: MECH-272
+  title: "MECH-271 routing is state-gated. In waking, the anchor channel dominates the hippocampal fan-out: replay preferentially reaches consolidation and viability-map consumers to support decision-making. In sleep, the probe channel dominates: replay preferentially seeds Bayesian schema restructuring -- testing which action-outcome attributions held up across episodes, creating new buckets for non-fitting experiences, revising causal graphs. The informational needs of sleep (schema revision) and waking (decision support) are distinct, and the routing bias reflects that."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.state_gated_routing
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-271  # the routing claim this qualifies
+    - MECH-269  # anchor/probe distinction
+    - MECH-094  # hypothesis tag
+    - MECH-092  # micro-DMN replay
+  functional_restatement: >
+    Waking regime: the proposer is supporting decisions, so the
+    routing bias is toward anchored rollouts reaching consolidation
+    and viability-map consumers (SD-033a, E1). Probe events happen
+    (micro-quiescence, MECH-092) but under a strong hypothesis tag
+    that prevents downstream writes to commitment-relevant
+    consumers.
+
+    Sleep regime: the computational task changes from "make a
+    decision" to "revise the schema decisions run against". This is
+    full-Bayesian work -- testing which action-outcome attributions
+    held up across episodes, creating new buckets for experiences
+    that did not fit existing schemas, revising causal graphs. Probe
+    content is recruited heavily because novel combinations need to
+    be tested; the hypothesis tag remains on to preserve the
+    distinction between tested-and-accepted (consolidation-routed)
+    and tested-but-not-committed (remains in repertoire).
+
+    Falsifiable (primary): V3 experiments comparing replay-to-consumer
+    routing during wake vs simulated-sleep phases should show the
+    dominance shift -- anchored-channel share of routing should drop
+    in sleep, probe-channel share should rise. Falsifiable (secondary):
+    under state-gating loss (running a REM-like protocol in waking
+    state), routing should lose the regime-appropriate bias.
+
+    Empirical hint: Tang et al 2017 show awake and sleep SWRs differ
+    in cortical reactivation quality. MECH-272 interprets this as
+    reflecting the functional regime switch, not an incidental
+    difference.
+  notes: >
+    Design origin: user-led discussion 2026-04-21 noting that sleep
+    and waking serve distinct informational needs (sleep = schema
+    revision / Bayesian restructuring, waking = decision-support
+    using existing schemas). The routing architecture of MECH-271 as
+    originally drafted was silent on state; this claim adds the
+    state-dependence.
+  evidence_quality_note: >
+    Candidate, no direct experiment yet. Natural validation pathway
+    is a paired wake vs sleep-analog phase in the V3 hippocampal
+    proposer, with routing-to-consumer logging on both sides and
+    the dominance-shift as the target signature.
+  location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-273
+  title: "The self-model has a waking half and a sleep half. The waking half is SD-003 (single-episode counterfactual self-attribution via E2). The sleep half is full-Bayesian aggregation of single-episode SD-003 outputs across many episodes, routed by the anchored channel to E1 and SD-033a, correcting for delayed consequences, failed counterfactuals, and systematic attribution biases. Without the sleep half, REE has an episode-local causal signature but not a durable self-model."
+  claim_type: mechanism_hypothesis
+  subject: self_model.sleep_dependent_aggregation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - SD-003   # the waking-half attribution this aggregates
+    - MECH-272 # state-gated routing framework
+    - MECH-271 # routing architecture
+    - INV-049  # offline phases are mathematically necessary for model-building agents
+    - ARC-007  # hippocampal path memory (substrate for aggregation)
+    - SD-033a  # viability-map revision consumer
+  functional_restatement: >
+    SD-003 gives the agent a causal signature per episode: in this
+    episode, this action looks self-initiated with probability p.
+    Single-episode attribution misses:
+
+    (1) Delayed consequences where the action-outcome link spans
+        more episodes than a single waking rollout encompasses.
+    (2) Failed counterfactuals where the counterfactual action would
+        have produced the same outcome -- the action felt voluntary
+        but was not causally efficacious.
+    (3) Systematic attribution biases that a single episode cannot
+        distinguish from noise but aggregate evidence across episodes
+        can detect and correct.
+
+    MECH-273: during sleep, single-episode SD-003 outputs are
+    aggregated into a stable self-model via full-Bayesian revision.
+    Anchored-channel routing (MECH-271, MECH-272) delivers the
+    aggregated output to E1 consolidation (world-model revision) and
+    SD-033a (viability-map revision of which actions the agent can
+    credit to itself). This is how REE goes from episode-local causal
+    signature to durable sense of self.
+
+    Falsifiable (primary): ablating the sleep-phase aggregation step
+    should leave single-episode SD-003 intact but degrade stability
+    of self-attribution across episodes. The agent should be less
+    able to correct previously-held spurious self-attributions when
+    post-hoc evidence accumulates against them.
+
+    Falsifiable (secondary): the pattern should generalise. Any
+    attribution whose stable form requires multi-episode Bayesian
+    revision should show the same sleep-dependence.
+  notes: >
+    Design origin: user-led discussion 2026-04-21 noting that V3 has
+    probabilistic self-attribution (SD-003) but that a stable sense of
+    self requires aggregating across many episodes and catching causal
+    loops the single-episode attribution misses. INV-049 ("sleep is a
+    mathematical necessity for model-building agents") sits directly
+    under this claim -- MECH-273 specifies the content offline phases
+    are doing for the self-model case.
+  evidence_quality_note: >
+    Candidate, no direct experiment yet. Natural validation pathway
+    is a V3 experiment that runs SD-003 across many episodes with and
+    without a sleep-phase aggregation step, and tests whether the
+    agent can correct a seeded spurious self-attribution when
+    counter-evidence accumulates.
+  location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-274
+  title: "V4-reserved. The sleep-dependent aggregation pattern of MECH-273 extends to other-attribution. Fast empathy (ARC-010) produces single-episode attributions of other-agent action-outcome links; a stable model of other minds requires full-Bayesian aggregation of those attributions during sleep, architecturally parallel to MECH-273 but operating on other-agent rather than self attributions."
+  claim_type: mechanism_hypothesis
+  subject: other_model.sleep_dependent_aggregation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-273  # self-model parallel
+    - ARC-010   # social.mirror_modelling (V4)
+    - MECH-272  # state-gated routing
+    - INV-049   # offline-phase necessity
+  functional_restatement: >
+    ARC-010 and the fast-empathy system will produce single-episode
+    attributions of other-agent action-outcome links in V4: "agent j
+    did action a, which looks causally responsible for outcome o."
+    By the same argument as MECH-273, these single-episode
+    attributions need sleep-phase Bayesian aggregation before they
+    stabilise into a model of agent j's dispositions and causal
+    powers. Without the aggregation step, V4's other-model is
+    episode-local, which is not a stable theory of other minds.
+
+    V4 scope. Not for V3 implementation. Registered now to reserve
+    the mechanism and prevent V4 from rediscovering it independently.
+    The architectural parallel to MECH-273 means V4 should be able to
+    implement it as a structural extension rather than a new design.
+
+    Falsifiable (when V4 lands): ablating the sleep-phase
+    aggregation step for other-agent attributions should leave the
+    fast empathy system (single-episode ARC-010 output) intact but
+    degrade the stability of other-agent attributions across
+    episodes, the same failure mode MECH-273 predicts for self.
+  notes: >
+    V4-reserved. Design origin: user-led discussion 2026-04-21
+    extending the MECH-273 self-model argument to the other-attribution
+    case. Architectural parallel is exact; only the attribution target
+    differs (self vs other).
+  evidence_quality_note: >
+    V4 scope. No V3 experiments will validate this claim directly --
+    it requires V4's social/empathy system to be implemented first.
+    Biology lit-pull for V4 should target sleep-dependent social
+    learning in rodents and humans.
+  location: docs/architecture/hippocampal_anchor_selection.md
+
