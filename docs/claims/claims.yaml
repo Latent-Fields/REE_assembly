@@ -19690,3 +19690,229 @@
     are the primary falsifiers queued in ree-v3/experiment_queue.json.
   location: evidence/planning/sd033_governance_plan.md
 
+- id: MECH-269
+  title: "Hippocampal proposer anchor selection: trajectory proposals issued between committed actions anchor on the subset of current latent streams whose regional verisimilitude (per-stream prediction/realization alignment) exceeds threshold; misaligned streams hold their last-verified snapshot (anchor carryover) rather than contaminate the rollout. A minority probe channel deliberately inverts the gate for low-verisimilitude / high-PE regions, carrying a strengthened MECH-094 hypothesis tag, and does not update the ARC-018 viability map until realized-experience validation."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal_proposer.regional_verisimilitude_anchor_selection
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - ARC-007   # hippocampal path memory (anchors operate over this space)
+    - ARC-018   # hippocampal rollouts / viability mapping (the map anchored proposals update)
+    - MECH-089  # theta-gamma nesting (per-cycle summary the anchor reads)
+    - MECH-092  # quiescent SWR-equivalent replay (anchored replay runs here)
+    - MECH-094  # hypothesis tag (strengthened on probes)
+    - SD-005    # z_self/z_world split (precondition for per-stream V)
+    - SD-010    # harm stream separation
+    - SD-011    # dual nociceptive streams
+  functional_restatement: >
+    Mechanism hypothesis. ARC-018 describes hippocampal rollouts starting
+    from "current latent state" but does not specify anchor-state
+    selection. The current latent is distributed across streams
+    (z_world, z_self, z_harm_s, z_harm_a, z_goal, ...) whose alignment
+    with perception varies moment-to-moment.
+
+    MECH-269 asserts: for each stream s, a running alignment score
+    V_s(t) = align(z_hat_s(t|t-dt), z_s(t)) is maintained (cosine
+    similarity or negative prediction error over a short EMA window).
+    A stream is anchor-eligible when V_s(t) >= theta_anchor(s); the
+    proposer constructs its rollout starting-state by composing only
+    the anchor-eligible slice, with misaligned streams held at their
+    last-verified snapshot.
+
+    Probe channel. A pure anchor-eligibility gate would suppress
+    proposals in precisely the regions the agent needs to understand.
+    MECH-269 specifies a minority probe channel that inverts the gate,
+    seeding rollouts from low-V / high-PE regions. Probe rollouts carry
+    a strengthened hypothesis tag (MECH-094) and do NOT update the
+    ARC-018 viability map -- they update curiosity / epistemic-coverage
+    structures. Anchor/probe mixture is modulated by the control-plane
+    heartbeat (existing dACC / SalienceCoordinator gating).
+
+    Why regional not global. A single "model trust" scalar cannot gate
+    anchor selection after SD-010/SD-011: z_world and z_harm_s can
+    dissociate in alignment quality, and partial anchoring (some
+    streams current, some carried-forward) is the normal case. Same
+    logic as per-claim evidence_direction in multi-claim experiments.
+
+    Distinct from MECH-098. MECH-098 feeds V_world specifically via
+    reafference cancellation; MECH-269 is the per-stream anchor-gate
+    that operates over all streams including non-world ones.
+
+    Falsifiable (primary): a V3 experiment instrumenting per-stream V_s
+    and anchor labels should show (a) smaller prediction-vs-outcome gap
+    for anchored-eligible-only rollouts vs indiscriminate anchoring,
+    (b) probe-tagged rollouts preferentially target high-PE regions
+    and do not populate the viability map until realized validation,
+    (c) streamwise partial-anchor plans fail gracefully vs
+    catastrophically as a no-anchor-selection baseline.
+
+    Falsifiable (secondary): manipulating salience / harm load should
+    shift the observed anchor/probe mixture without retraining.
+  notes: >
+    Design doc: docs/architecture/hippocampal_anchor_selection.md.
+    Registered 2026-04-21 from user-initiated exploratory discussion
+    about how the proposer selects its starting state for inter-commit
+    proposals. Biological routing hypothesis (separate claim MECH-271)
+    predicts anchored replay preferentially reaches E1 consolidation
+    (subiculum -> EC -> neocortex) and SD-033a lateral PFC; probe
+    replay preferentially reaches BLA (affective tagging) and NAc
+    (curiosity) -- see MECH-271.
+
+    No experiment queued yet: substrate hooks for per-stream V_s
+    logging in HippocampalModule.propose_trajectories do not exist.
+    BLA landing (SD-035 / V3-EXQ-474) is the natural MECH-271 routing
+    validation target, which in turn constrains MECH-269 once the
+    anchor/probe labels are emitted.
+  evidence_quality_note: >
+    Registered candidate with v3_pending:true. No experiment evidence
+    yet. Biology lit-pull NOT yet queued (should target: verisimilitude
+    / prediction-error gating of hippocampal replay start states;
+    ripple initiation loci and their alignment with cortical expectancy;
+    low-confidence vs high-confidence replay distinctions in Foster /
+    Buzsaki / Olafsdottir literature).
+  location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-270
+  title: "Ephaptic field coherence in CA1/CA3 pyramidal layers is the candidate physical substrate for the per-stream verisimilitude readout that MECH-269 anchor selection operates over. Streams whose predictions align with realized values produce coherent pyramidal ensembles whose extracellular fields constructively reinforce; misaligned streams produce incoherent fields. 'Anchor-eligible' reduces to 'field-coherent at read time.'"
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.ephaptic_verisimilitude_readout
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-269  # the function this is the substrate for
+    - MECH-089  # theta-gamma nesting; ephaptic coordination rides these rhythms
+    - ARC-007   # hippocampal path memory (where the ephaptic readout lives)
+  functional_restatement: >
+    Substrate hypothesis. Ephaptic coupling -- non-synaptic influence of
+    neuronal firing by the extracellular field the population itself
+    generates -- is strongest in tightly-packed pyramidal layers. In
+    CA1 and CA3 during sharp-wave ripples, ephaptic effects provide
+    synchronisation tighter than synaptic transmission alone can
+    produce (Anastassiou & Koch 2011; Jefferys; Buzsaki).
+
+    MECH-270 proposes that the per-stream verisimilitude signal V_s
+    required by MECH-269 has a biological readout via stream-local
+    field coherence. Because different latent streams are (by the
+    z_self/z_world/z_harm_s/... decomposition) carried by partially
+    dissociable ensembles, their fields can be coherent or incoherent
+    independently. The proposer reads field coherence fast (sub-cycle)
+    without needing an explicit alignment computation.
+
+    Why keep this separate from MECH-269. Conflating function (anchor
+    selection) with physical substrate (ephaptic readout) is the exact
+    failure mode that bit SD-003 and SD-010/011 (see
+    feedback_biology_before_formal_definitions). MECH-269 can be true
+    with a different readout; MECH-270 can be true or false
+    independently and is testable by different experiments.
+
+    Falsifiable: biological tests would look at ripple-initiation
+    locus alignment with cortical expectancy (expected ripple locus
+    for a given mode/stream). In-silico tests would not directly test
+    ephaptic coupling but would verify that a field-coherence-style
+    readout (local ensemble phase coherence as a proxy for V_s)
+    produces the anchor-selection behavior MECH-269 predicts.
+  notes: >
+    Not a substrate the V3 implementation needs to simulate
+    biologically. In silico, V_s can be computed directly from
+    per-stream prediction/realization alignment -- MECH-270 is the
+    biological-grounding claim, not an implementation requirement.
+    Registered primarily to keep the function/substrate distinction
+    auditable and to give the ephaptic-coupling literature a home.
+  evidence_quality_note: >
+    Candidate, no direct experimental support yet in this project.
+    External biology literature on ephaptic coupling in hippocampus
+    is the relevant evidence base (Anastassiou & Koch 2011 is the
+    entry point; Buzsaki on SWRs; Jefferys on field effects).
+  location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-271
+  title: "MECH-094's hypothesis tag is realized as differential downstream routing of hippocampal replay, not as a source-side boolean. Anchored replay (trusted starting state, MECH-269) preferentially reaches subiculum -> entorhinal deep layers -> neocortex (E1 consolidation) and lateral PFC (SD-033a viability map); probe replay (low-verisimilitude seed, strengthened tag) preferentially reaches BLA (affective tagging without consolidation) and NAc (curiosity / novelty scaffolding). Tag loss presents as probe content reaching consolidation destinations it should not reach -- an auditable confabulatory-planning signature distinct from psychosis or hallucination."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.hypothesis_tag_routing
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-094  # the tag this claim reframes
+    - MECH-269  # anchor/probe distinction (source of the routing difference)
+    - ARC-007   # hippocampal path memory
+    - ARC-018   # viability map (anchored destination)
+    - SD-033a   # lateral PFC analog (anchored destination)
+    - SD-035    # amygdala analog (BLA is probe destination)
+  functional_restatement: >
+    Reframing hypothesis. MECH-094 originally framed the hypothesis
+    tag as a categorical write gate on phi(z) -- a source-side signal
+    attached to simulated content that suppresses downstream writes
+    during simulation and DMN. MECH-271 refines this: the tag is
+    realized as a *routing difference* on the downstream fan-out of
+    ephaptically-coordinated hippocampal replay.
+
+    Routing prediction. Anchored replay (MECH-269, high regional
+    verisimilitude) reaches the consolidation fan-out -- subiculum,
+    entorhinal cortex deep layers, neocortex (E1 world-model update)
+    -- and the lateral PFC analog (SD-033a viability / planning map).
+    Probe replay reaches the BLA (affective tagging) and NAc
+    (curiosity / novelty) fan-out, WITHOUT reaching consolidation
+    destinations.
+
+    Why this matters. An undifferentiated "tag" attached to all
+    simulated content is hard to audit: we cannot directly measure
+    whether the tag is present. A *routing difference* is
+    instrumentable: probe content reaching EC / neocortex / lateral
+    PFC consumers is observable as a specific failure signature.
+
+    Tag loss = confabulation. When probe content reaches
+    consolidation consumers (tag-erosion failure), the viability map
+    accumulates fictional affordances. This is the candidate
+    mechanistic signature of confabulatory planning, distinct from
+    psychosis (different mechanism) and hallucination (different
+    mechanism) -- see memory/feedback_psychosis_confabulation_distinction.
+
+    Falsifiable (primary): a V3 experiment emitting anchored vs probe
+    labels on replay events and logging which downstream consumers
+    receive the replay content should show near-zero overlap of probe
+    content reaching E1-consolidation or SD-033a-viability consumers
+    under healthy operation; forcing tag erosion should re-create
+    that overlap and produce the fictional-affordance pattern.
+
+    Falsifiable (secondary): the BLA analog landing under SD-035 is
+    the natural probe-destination consumer. V3-EXQ-474 (BLA encoding
+    + remap) + a follow-up probe-routing experiment should show BLA
+    engagement correlates with probe replay, not with anchored
+    replay.
+  notes: >
+    Design origin: user-led discussion 2026-04-21 that connected
+    ephaptic coupling's known hippocampal fan-out targets to the REE
+    module map. Anchored fan-out = E1 consolidation + SD-033a;
+    probe fan-out = BLA + NAc. The mapping is one-to-one with
+    structures REE is actively building, so this claim doubles as a
+    validation target for the broader architecture.
+
+    Does not deprecate MECH-094. MECH-094 stands as the functional
+    tag; MECH-271 specifies how the tag is physically realized.
+    Together they give tag presence/absence an auditable signature
+    (routing destination) rather than an assertion about internal
+    state.
+  evidence_quality_note: >
+    Candidate, no direct experiment yet. Natural validation pathway
+    via SD-035 amygdala analog (V3-EXQ-474) once anchor/probe labels
+    are emitted in HippocampalModule. Biology lit-pull should target
+    hippocampal projection specificity during SWR replay -- BLA
+    engagement during replay (Girardeau et al 2017 is the likely
+    entry point) and prefrontal engagement during replay (Jadhav
+    et al 2016) as the empirical anchors for the routing
+    differentiation.
+  location: docs/architecture/hippocampal_anchor_selection.md
+
