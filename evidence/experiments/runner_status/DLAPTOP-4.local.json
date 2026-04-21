@@ -2,22 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 16991,
   "runner_started_at": "2026-04-21T17:06:12.255561+00:00",
-  "last_updated": "2026-04-21T20:24:08.375761+00:00",
+  "last_updated": "2026-04-21T20:24:22.909917+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-449a",
-      "backlog_id": "EVB-0135",
-      "claim_id": "",
-      "title": "SD-016 cue_action_proj forward-path probe -- instrument extract_cue_context -> E3.select chain (supersedes V3-EXQ-449)",
-      "description": "",
-      "estimated_minutes": 20.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -5864,6 +5852,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_465_mech267_intrusive_simulation_filtering_v3_20260421T202408Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 0.8
+    },
+    {
+      "queue_id": "V3-EXQ-449a",
+      "backlog_id": "EVB-0135",
+      "claim_id": "",
+      "title": "SD-016 cue_action_proj forward-path probe -- instrument extract_cue_context -> E3.select chain (supersedes V3-EXQ-449)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: regime=g3 action_bias_div=0.0000 ab_norm_mean=3.225e-01 ab_channel_std=2.336e-08 ao_coverage=1.000 attn_entropy=2.773 slot_div=0.172 | [summary] C1_diagnosis_localised=True (offenders=1), C2_detach_isolated=False (g3_div=0.0000), C3_context_memory_pre_zero=True (g2_coverage=1.000), C4_supervised_target_sanity=True (P1_coverage=1.000) => primary_pass=True -- PASS | Outcome: PASS",
+      "started_at": "2026-04-21T20:24:10.214305+00:00",
+      "completed_at": "2026-04-21T20:24:22.909708+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12.7
     }
   ]
 }
