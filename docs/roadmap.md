@@ -14,6 +14,146 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-21)
+
+- **SD-033a lateral-PFC-analog / MECH-261 primary consumer LANDED 2026-04-20.**
+  `ree_core/pfc/lateral_pfc_analog.py` (LateralPFCAnalog, LateralPFCConfig).
+  Instantiates MECH-262 rule-selective persistence: gate-modulated EMA
+  rule_state ([1, rule_dim]) with eff_eta = update_eta * write_gate("sd_033a"),
+  source = delta_proj(z_delta) + world_pool_weight * world_proj(z_world).
+  Frozen-random bias head with last nn.Linear zeroed at init -> initial
+  bias exactly zero (bit-identical with head untrained; training-dependent
+  emergence deferred). Per-mode gate weights from the MECH-261 spec table:
+  external_task=1.0, internal_planning=1.0, internal_replay=0.05,
+  offline_consolidation=0.3. V3-EXQ-456 landing diagnostic PASS (five
+  sub-tests: instantiation, gate-modulated update rate, bias reaches E3
+  with zero-init contract, backward compat, reset clears rule_state).
+  Design doc: `docs/architecture/sd_033a_lateral_pfc_analog.md`.
+- **SD-034 governance closure operator + MECH-268 dACC conflict-saturation +
+  MECH-267 mode-conditioned hippocampal proposals LANDED 2026-04-20..2026-04-21.**
+  SD-034 closure operator (`ree_core/governance/closure_operator.py`)
+  coordinates a five-part "done" token at rule-completion events:
+  (a) MECH-090 beta release, (b) MECH-260 No-Go FIFO injection on the
+  just-completed action class, (c) ResidueField.discharge_domain(z_world,
+  factor, radius) rule-domain multiplicative RBF decay with 1e-6 sign-aware
+  floor (invariant: residue cannot be erased), (d) SalienceCoordinator
+  closure_event signal re-biasing affinity toward internal_planning,
+  (e) dACC PE reset / optional pe_cap install (MECH-268). Completion
+  detector: rule_state delta < threshold for N consecutive ticks AND
+  beta elevated AND current_mode in allowed_closure_modes AND
+  write_gate("sd_033a") >= min. Mode conditioning is the falsifiability
+  predicate vs pure MECH-090 + MECH-260 + MECH-094 tuning. MECH-267
+  (`ree_core/hippocampal/module.py`) threads operating_mode through
+  HippocampalModule.propose_trajectories with per-mode CEM-noise multipliers.
+  MECH-268 (`ree_core/cingulate/dacc.py`) adds an outcome-history FIFO +
+  f_sat attenuation on the dACC bundle; closure_event resets the buffer.
+  Landing smokes all PASS: V3-EXQ-460 SD-034 closure wiring (6 sub-tests),
+  V3-EXQ-466 ResidueField.discharge_domain (5 sub-tests: near attenuation,
+  far spared, invariant preserved, end-to-end, distant-z spares), V3-EXQ-462
+  MECH-267 rule binding, V3-EXQ-465 MECH-267 intrusive-simulation filtering,
+  V3-EXQ-463 + V3-EXQ-468 MECH-268 saturation-and-reset. Behavioural
+  variants with full E3 task loop + tolerance-band completion env deferred
+  (depend on phased rule_state training + env variant not yet on the
+  roadmap). Anchor: `evidence/planning/sd033_governance_plan.md`;
+  source: `docs/thoughts/2026-04-20_ocd4.md` + GAP MEMO "REE-V3 is not
+  missing cognition, it is missing governance."
+- **SD-032 cluster behavioural follow-through: FAIL across four first-pass
+  behavioural gates.** V3-EXQ-445 FAIL (SD-032b 3-arm ablation hit the
+  monostrategy + terrain-inversion fishtank_viz signature under all three
+  configs; dACC score_bias entropy delta under the C2 gate); V3-EXQ-325d
+  FAIL (SD-032c AIC descending modulation, does_not_support); V3-EXQ-454
+  FAIL (ARC-016 adaptive commitment threshold, weakens). V3-EXQ-455 PASS
+  (SD-032a salience-network coordinator behavioural: supports SD-032a /
+  MECH-259 / MECH-261 on the synthetic high-PE injection path). V3-EXQ-452
+  FAIL (MECH-257 dual-function E2 diagnostic), V3-EXQ-453 FAIL (MECH-261
+  write-gate landing diagnostic -- SD-032e-relevant). Net reading:
+  the salience-coordinator substrate and its write-gate registry are
+  structurally sound in isolation, but the end-to-end dACC / AIC / ARC-016
+  behavioural loop does not yet clear even the first behavioural gates on
+  CausalGridWorldV2. EXQ-445 has three successors queued (a/b/c) targeting
+  monostrategy + terrain inversion via MECH-260 suppression, ARC-058
+  shared-trunk, and foraging-value wiring respectively. EXQ-325b re-scoped
+  as EXQ-325d produced does_not_support; AIC->descending pathway remains
+  open under drive-regime contrast.
+- **SD-016 forward-path diagnostic: V3-EXQ-449 FAIL confirmed
+  cue_action_proj receives exactly 0.0 gradient under the original
+  "implicit via E3 trajectory selection" claim** (C1 PASS, 2 seeds, ~1.7k
+  steps; CEM argmax non-differentiable + detach at agent.py:694). C2 arm
+  added supervised MSE loss against E2.action_object(z_world, a_executed)
+  .detach() -- weights trained (grad ~0.013, delta ~0.21) but
+  action_bias_divergence stayed at 0.0, indicating a downstream blocker
+  between cue_action_proj and E3.select. V3-EXQ-449a queued to instrument
+  the full forward path and identify the specific blocker before any
+  EXQ-418b successor is written. cue_action_proj is now treated as
+  CURRENTLY UNGROUNDED: sd016_enabled=True experiments should expect
+  action_bias_divergence ~= 0.0 on the action path; cue_terrain_proj
+  remains valid (trained via terrain_loss).
+- **Recent landing MECH-267 + MECH-268 substrate smokes all PASS.**
+  V3-EXQ-462 (MECH-267 rule binding) supports [MECH-267, SD-033a,
+  MECH-262]. V3-EXQ-465 (MECH-267 intrusive-simulation filtering)
+  supports [MECH-267, MECH-094, MECH-261]. V3-EXQ-463 + V3-EXQ-468
+  (MECH-268 conflict-saturation) supports outcome-history FIFO + f_sat
+  attenuation + closure-event buffer reset. V3-EXQ-456 (SD-033a landing)
+  supports [SD-033a, MECH-261, MECH-262].
+- **~715 V3 runs indexed** (indexer rebuild 2026-04-20T19:49Z wrote
+  `claim_evidence.v1.json` with 630 V3 run-dirs + 77 flat V3 manifests =
+  707 post-epoch; ~9 further V3 manifests written since rebuild covering
+  SD-033a / SD-034 / MECH-267 / MECH-268 landings and the SD-032 cluster
+  behavioural follow-through). Fresh claim_evidence.v1.json rebuild
+  pending after this cycle's wave of results. Queue at snapshot time:
+  14 active items, 4 claimed -- V3-EXQ-447 (SD-032d ree-cloud-2),
+  V3-EXQ-451 (Q-034 retest EWIN-PC), V3-EXQ-445a (SD-032b full-pipeline
+  fix EWIN-PC), V3-EXQ-397c (ARC-007 harder-env DLAPTOP-4). Pending
+  queue: V3-EXQ-445b/c (SD-032b variants), V3-EXQ-456 (SD-033a landing,
+  now PASS), V3-EXQ-449a (SD-016 forward-path probe), V3-EXQ-133 /
+  V3-EXQ-126 (MECH-091 / MECH-104 discriminative pairs), V3-EXQ-460 /
+  463 / 466 / 468 (SD-034 + MECH-268 landing smokes, all PASS).
+  runner_status.json last_updated stale at 2026-04-20T14:39:30Z
+  (495 completions: 105 PASS / 227 FAIL / 62 ERROR / 101 UNKNOWN);
+  the live machine-side completion log is ahead of that snapshot.
+- **Pending review count: 6** (as of pending_review.md generation at
+  2026-04-20T05:50:27Z; stale -- regeneration pending after this cycle).
+  Items: FAIL EXQ-397 (ARC-007/SD-004 path memory), FAIL EXQ-433a
+  (MECH-256/SD-029 scripted-eval comparator), FAIL EXQ-445 (SD-032b
+  behavioural); PASS EXQ-446 (SD-032a coordinator landing); ERROR
+  V3-EXQ-445 + V3-EXQ-325c to clear.
+- **Governance cycle 2026-04-19T21 (post-SD-032 landing) carry-forward.**
+  Promoted MECH-094 to provisional; applied 12 `hold_pending_v3_substrate`
+  decisions for the SD-032 cluster and dependents; reclassified EXQ-395 /
+  EXQ-418a / EXQ-430 as non_contributory substrate-gap symptoms. No new
+  governance cycle run today -- the SD-032 behavioural FAILs and the
+  SD-033a/SD-034/MECH-267/MECH-268 landings are the input set for the
+  next cycle.
+- **Current bottleneck: SD-032 cluster behavioural escape from
+  monostrategy + terrain-inversion, SD-033 governance cluster behavioural
+  validation, SD-016 forward-path blocker identification, SD-003
+  successor track.** Regression suite PRs 1-5 landed (preflight +
+  contracts + deferred changed; `/api/regression/preflight` serve.py
+  endpoint; explorer preflight badge; pre-commit contracts hook).
+
+## Immediate Work Queue (This Cycle)
+
+- Land results for the four claimed experiments: V3-EXQ-447 (SD-032d
+  deterministic validation, ree-cloud-2), V3-EXQ-451 (Q-034 retest,
+  EWIN-PC), V3-EXQ-445a (SD-032b full-pipeline fix, EWIN-PC),
+  V3-EXQ-397c (ARC-007 path memory harder-env, DLAPTOP-4).
+- Review pending_review.md after its next regeneration -- expected to
+  cover EXQ-397 / EXQ-433a / EXQ-445 FAILs plus EXQ-446 PASS and the
+  two ERROR clears (V3-EXQ-445, V3-EXQ-325c).
+- Queue and land V3-EXQ-449a (SD-016 forward-path instrumentation
+  probe) as the prerequisite for any EXQ-418b successor.
+- Land V3-EXQ-445b/c (SD-032b monostrategy + terrain-inversion
+  variants) once V3-EXQ-445a returns.
+- Behavioural variants for SD-034 / MECH-267 / MECH-268 still need a
+  tolerance-band completion env + phased rule_state training plan
+  before any behavioural EXQ can be written; the landing-diagnostic
+  smokes (V3-EXQ-460/462/463/465/466/468) have all PASSed.
+- Next governance cycle: ingest the SD-032 behavioural FAILs, the
+  SD-033 cluster landings, and the MECH-094 provisional persistence;
+  rebuild `claim_evidence.v1.json`; regenerate `pending_review.md`.
+
+---
+
 ## Status Snapshot (2026-04-20)
 
 - **SD-032 cingulate integration cluster fully IMPLEMENTED 2026-04-19 (a/b/c/d/e).**
