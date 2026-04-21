@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 38928,
   "runner_started_at": "2026-04-20T14:39:30.194149+00:00",
-  "last_updated": "2026-04-21T00:28:00.003098+00:00",
+  "last_updated": "2026-04-21T04:34:36.235685+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -35,28 +35,6 @@
       "title": "SD-032b dACC full pipeline -- E3 harm_eval + terrain trained, terrain fix: min-residue candidate",
       "description": "",
       "estimated_minutes": 224.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-397c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-007 path memory ablation -- harder env (16x16, 6 hazards, 3 sparse resources) + terrain training fix",
-      "description": "",
-      "estimated_minutes": 124.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-445b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032b dACC diversity: epsilon-greedy exploration during training (minimal intervention)",
-      "description": "",
-      "estimated_minutes": 216.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5709,6 +5687,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 7024.7
+    },
+    {
+      "queue_id": "V3-EXQ-397c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-007 path memory ablation -- harder env (16x16, 6 hazards, 3 sparse resources) + terrain training fix",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "calibration_gap_approach: -0.00012559341948731317 | total_harm_train: 7853.0",
+      "started_at": "2026-04-21T00:28:05.786603+00:00",
+      "completed_at": "2026-04-21T02:50:37.379630+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_397c_arc007_harder_env/v3_exq_397c_arc007_harder_env_20260421T025036Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 8551.5
+    },
+    {
+      "queue_id": "V3-EXQ-445b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC diversity: epsilon-greedy exploration during training (minimal intervention)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL",
+      "started_at": "2026-04-21T02:50:41.020714+00:00",
+      "completed_at": "2026-04-21T04:34:36.228953+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 6235.2
     }
   ]
 }
