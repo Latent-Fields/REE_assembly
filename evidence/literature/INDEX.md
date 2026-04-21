@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-21T19:54:57.090230Z`
+Generated: `2026-04-21T20:13:40.953533Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -88,6 +88,9 @@ Generated: `2026-04-21T19:54:57.090230Z`
 | `targeted_review_connectome_mech_266` | [`2026-04-21_mech_266_stability_flexibility_cools2019`](targeted_review_connectome_mech_266/entries/2026-04-21_mech_266_stability_flexibility_cools2019/record.json) | 3 | [`summary`](targeted_review_connectome_mech_266/entries/2026-04-21_mech_266_stability_flexibility_cools2019/summary.md) |
 | `targeted_review_connectome_mech_267` | [`2026-04-21_mech_267_replay_review_olafsdottir2018`](targeted_review_connectome_mech_267/entries/2026-04-21_mech_267_replay_review_olafsdottir2018/record.json) | 3 | [`summary`](targeted_review_connectome_mech_267/entries/2026-04-21_mech_267_replay_review_olafsdottir2018/summary.md) |
 | `targeted_review_connectome_mech_268` | [`2026-04-21_mech_268_evc_theory_shenhav2013`](targeted_review_connectome_mech_268/entries/2026-04-21_mech_268_evc_theory_shenhav2013/record.json) | 3 | [`summary`](targeted_review_connectome_mech_268/entries/2026-04-21_mech_268_evc_theory_shenhav2013/summary.md) |
+| `targeted_review_connectome_mech_269` | [`2026-04-21_mech_269_replay_phenomenology_foster2017`](targeted_review_connectome_mech_269/entries/2026-04-21_mech_269_replay_phenomenology_foster2017/record.json) | 3 | [`summary`](targeted_review_connectome_mech_269/entries/2026-04-21_mech_269_replay_phenomenology_foster2017/summary.md) |
+| `targeted_review_connectome_mech_270` | [`2026-04-21_mech_270_swr_biomarker_buzsaki2015`](targeted_review_connectome_mech_270/entries/2026-04-21_mech_270_swr_biomarker_buzsaki2015/record.json) | 2 | [`summary`](targeted_review_connectome_mech_270/entries/2026-04-21_mech_270_swr_biomarker_buzsaki2015/summary.md) |
+| `targeted_review_connectome_mech_271` | [`2026-04-21_mech_271_hc_pfc_swr_coordination_jadhav2016`](targeted_review_connectome_mech_271/entries/2026-04-21_mech_271_hc_pfc_swr_coordination_jadhav2016/record.json) | 2 | [`summary`](targeted_review_connectome_mech_271/entries/2026-04-21_mech_271_hc_pfc_swr_coordination_jadhav2016/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_connectome_sd_004` | [`2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/record.json) | 4 | [`summary`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/summary.md) |
 | `targeted_review_connectome_sd_005` | [`2026-03-22_sd005_tpj_agency_attribution_farrer2002`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/record.json) | 4 | [`summary`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/summary.md) |

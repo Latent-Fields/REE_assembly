@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_269",
+  "entry_id": "2026-04-21_mech_269_awake_vs_sleep_swr_tang2017",
+  "timestamp_utc": "2026-04-21T20:05:50Z",
+  "claim_ids_tested": ["MECH-269"],
+  "source": {
+    "title": "Hippocampal-Prefrontal Reactivation during Learning Is Stronger in Awake Compared with Sleep States",
+    "authors": ["Wenbo Tang", "Justin D. Shin", "Loren M. Frank", "Shantanu P. Jadhav"],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2291-17.2017"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Direct empirical demonstration that hippocampal-prefrontal reactivation fidelity is context-dependent (higher in awake vs sleep SWRs) and is enhanced during initial learning. This matches MECH-269's prediction that anchor eligibility -- 'is this starting state trustworthy enough to roll forward from' -- should vary by context, with stronger anchored behavior during high-information moments (early learning, awake active behavior). Does not directly test per-stream verisimilitude but shows the state-dependent fidelity modulation the claim requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If awake and sleep SWRs had equal reactivation fidelity, MECH-269's prediction that anchored-replay fidelity should vary with context-local model trust would lose empirical support."
+  ],
+  "tags": ["mech_269", "hippocampal_prefrontal", "swr", "awake_sleep", "reactivation_fidelity"],
+  "mapping": {
+    "source_claim_statement": "Awake and sleep SWR reactivation differ profoundly: awake SWRs show higher-fidelity representation of behavioural experience, stronger CA1-PFC synchronisation, and are enhanced during early learning; sleep SWRs show lower-fidelity but integration-oriented reactivation.",
+    "ree_translation": "MECH-269 reads this as direct support for anchored vs probe replay as a context-differentiated phenomenon. Awake-with-high-CA1-PFC-synchrony ~= anchored mode (trusted starting state, writes to PFC viability map); sleep-with-lower-fidelity ~= more probe-like (exploration-seeded consolidation). The finding that awake SWR fidelity is highest during early learning matches anchoring on well-aligned streams when those streams are newly stabilised.",
+    "mapping_caveat": "The awake-sleep axis is not identical to the anchor-probe axis. MECH-269's anchor/probe split is within-context, not across-context. Tang et al. report a different distinction (reactivation quality across major brain states) that is consistent with MECH-269 but not a direct test of it. A cleaner test would manipulate per-stream verisimilitude within a single state.",
+    "source_context": "Male rats learning a spatial alternation task; simultaneous CA1 and PFC electrophysiology; awake behavior and subsequent sleep states."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "J Neurosci with rigorous simultaneous CA1-PFC recordings. Mapping is indirect: the awake/sleep distinction is consistent with anchor/probe differentiation but is not the specific claim."
+  }
+}

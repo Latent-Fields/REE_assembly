@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_271",
+  "entry_id": "2026-04-21_mech_271_hc_bla_emotional_replay_girardeau2017",
+  "timestamp_utc": "2026-04-21T20:05:50Z",
+  "claim_ids_tested": ["MECH-271"],
+  "source": {
+    "title": "Reactivations of emotional memory in the hippocampus-amygdala system during sleep",
+    "authors": ["Gabrielle Girardeau", "Ingrid Inema", "György Buzsáki"],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4637"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct electrophysiological demonstration of coordinated HC-BLA reactivation during SWRs after aversive learning. The content-selectivity result is the strongest piece: reactivation is stronger for the aversive direction than the safe direction, indicating that HC-amygdala replay is not an undifferentiated broadcast but is selectively recruited for emotionally-tagged content. This is the key MECH-271 prediction -- that the BLA is a differentially-routed downstream consumer of HC replay, engaged by the affectively-loaded subset rather than by everything replayed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If HC-BLA coordinated reactivation were equally strong for aversive and safe content, MECH-271's prediction that BLA is a probe/affective-tagging destination (selective rather than indiscriminate) would be weakened."
+  ],
+  "tags": ["mech_271", "hippocampus_amygdala", "bla_replay", "emotional_memory", "swr_reactivation"],
+  "mapping": {
+    "source_claim_statement": "During non-REM sleep following aversive learning, hippocampal and basolateral amygdala (BLA) neuronal ensembles show coordinated reactivation peaking at hippocampal SWR events. A subgroup of BLA cells is positively modulated during SWRs. Reactivation strength is greater for the correlation patterns representing the aversive-air-puff direction than for the safe direction.",
+    "ree_translation": "MECH-271 predicts that anchored vs probe hippocampal replay routes differentially to downstream consumers, with BLA (affective tagging without consolidation) receiving the probe / emotionally-salient subset rather than the full anchored output. Girardeau et al. provide the key routing evidence: HC replay reaches BLA specifically, and does so selectively for emotionally-tagged content. The content-selectivity is structurally isomorphic to the probe-routing prediction -- BLA is engaged by a filtered subset, not by all replay.",
+    "mapping_caveat": "The Girardeau paradigm contrasts aversive vs safe content, which maps onto REE's z_harm_s stream rather than onto the full anchor/probe distinction. A probe rollout in MECH-271's sense is not identical to an emotionally-salient memory -- probes are epistemically-driven (low V_s, high PE). Mapping 'emotional content' to 'probe content' requires the interpretive step that affective load and epistemic uncertainty both route through BLA. The paper establishes selective routing; MECH-271's more specific anchor/probe split is an extrapolation.",
+    "source_context": "Male Long-Evans rats; linear track with location-specific aversive air puff; simultaneous CA1 and BLA ensemble recordings during learning and subsequent non-REM sleep."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Nat Neurosci; Girardeau and Buzsáki senior authors; rigorous dual-site electrophysiology. Mapping fidelity is the strongest of the three MECH-271 candidates because this is the direct routing-to-BLA evidence with content selectivity. Transfer risk: aversive-fear paradigm maps onto REE's z_harm_s rather than onto the anchor/probe split cleanly."
+  }
+}

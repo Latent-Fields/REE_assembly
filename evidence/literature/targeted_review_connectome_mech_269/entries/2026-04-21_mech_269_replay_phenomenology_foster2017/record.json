@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_269",
+  "entry_id": "2026-04-21_mech_269_replay_phenomenology_foster2017",
+  "timestamp_utc": "2026-04-21T20:05:50Z",
+  "claim_ids_tested": ["MECH-269"],
+  "source": {
+    "title": "Replay Comes of Age",
+    "authors": ["David J. Foster"],
+    "year": 2017,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev-neuro-072116-031538"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "High-quality review establishes that hippocampal replay is phenomenologically diverse (forward/reverse, awake/sleep, pre-play, off-task, on-task). That diversity is a necessary condition for MECH-269's anchor/probe distinction to be biologically plausible -- if replay were monolithic, per-stream selective anchoring could not be expressed. The paper does not directly test verisimilitude-gated anchor selection, so mapping is structural rather than mechanism-for-mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If replay were phenomenologically homogeneous (single type, single context), per-stream anchor/probe differentiation predicted by MECH-269 would have no biological substrate to express it."
+  ],
+  "tags": ["mech_269", "hippocampal_replay", "anchor_selection", "review"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay is a heterogeneous phenomenon with multiple distinct forms; its function shifts across contexts and two decades of research have revised initial monolithic interpretations.",
+    "ree_translation": "MECH-269 interprets the replay-mode diversity reviewed here as permissive evidence for per-stream, per-context anchor selection: the hippocampus plausibly supports the heterogeneity an anchor/probe decomposition requires, even though the specific selection mechanism is not tested in this literature.",
+    "mapping_caveat": "Phenomenological diversity is not mechanistic evidence for verisimilitude-gating. The paper would be consistent with MECH-269 being wrong and the mode-differences being driven by other variables (e.g. raw arousal, task phase) rather than regional prediction-alignment.",
+    "source_context": "Rodent place-cell electrophysiology across 20 years; primarily CA1 recordings during behavior and sleep."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.40,
+    "notes": "Annual Review venue is maximal prestige for a review; mapping is indirect (permissive, not mechanism-for-mechanism); transfer risk is moderate (rodent -> REE's latent-stream decomposition requires an interpretive step)."
+  }
+}

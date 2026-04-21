@@ -1954,7 +1954,7 @@
       }
     },
     "ARC-032": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.422, lit_conf=0.867",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.421, lit_conf=0.867",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -1968,7 +1968,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.422,
+      "experimental_confidence": 0.421,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -4806,7 +4806,7 @@
       }
     },
     "MECH-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.436, lit_conf=0.879",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.435, lit_conf=0.879",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -4820,7 +4820,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.436,
+      "experimental_confidence": 0.435,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -10127,7 +10127,7 @@
       }
     },
     "MECH-116": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.422, lit_conf=0.878",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.421, lit_conf=0.878",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -10141,7 +10141,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.422,
+      "experimental_confidence": 0.421,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -10153,7 +10153,7 @@
       "latest_run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
       "latest_timestamp_utc": "2026-04-19T11:26:11Z",
       "literature_confidence": 0.878,
-      "overall_confidence": 0.65,
+      "overall_confidence": 0.649,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -16241,6 +16241,222 @@
       "source_counts": {
         "experimental": 0,
         "literature": 3
+      }
+    },
+    "MECH-269": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.783",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:electrophysiology_multisensory": 1,
+        "lit:theoretical_review": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-21_mech_269_replay_phenomenology_foster2017",
+      "latest_timestamp_utc": "2026-04-21T20:05:50Z",
+      "literature_confidence": 0.783,
+      "overall_confidence": 0.783,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-269",
+          "confidence": 0.68,
+          "confidence_rationale": "Direct empirical demonstration that hippocampal-prefrontal reactivation fidelity is context-dependent (higher in awake vs sleep SWRs) and is enhanced during initial learning. This matches MECH-269's prediction that anchor eligibility -- 'is this starting state trustworthy enough to roll forward from' -- should vary by context, with stronger anchored behavior during high-information moments (early learning, awake active behavior). Does not directly test per-stream verisimilitude but shows the state-dependent fidelity modulation the claim requires.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_269",
+          "failure_signatures": [
+            "If awake and sleep SWRs had equal reactivation fidelity, MECH-269's prediction that anchored-replay fidelity should vary with context-local model trust would lose empirical support."
+          ],
+          "run_id": "2026-04-21_mech_269_awake_vs_sleep_swr_tang2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:05:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-269",
+          "confidence": 0.7,
+          "confidence_rationale": "The review explicitly proposes that replay function changes dynamically with task demands and arousal level. This is the closest published claim to MECH-269's context-dependent anchor/probe mixture, short of a paper testing verisimilitude-gated selection directly. Mapping is still not mechanism-for-mechanism, but it is tighter than Foster 2017 because this review actively argues for task-dependent functional switching rather than just cataloguing variety.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_269",
+          "failure_signatures": [
+            "If replay function were task-invariant (same role in consolidation, recall, and planning regardless of context), MECH-269's context-modulated anchor/probe ratio would lose its biological motivation."
+          ],
+          "run_id": "2026-04-21_mech_269_replay_memory_planning_olafsdottir2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:05:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-269",
+          "confidence": 0.62,
+          "confidence_rationale": "High-quality review establishes that hippocampal replay is phenomenologically diverse (forward/reverse, awake/sleep, pre-play, off-task, on-task). That diversity is a necessary condition for MECH-269's anchor/probe distinction to be biologically plausible -- if replay were monolithic, per-stream selective anchoring could not be expressed. The paper does not directly test verisimilitude-gated anchor selection, so mapping is structural rather than mechanism-for-mechanism.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_269",
+          "failure_signatures": [
+            "If replay were phenomenologically homogeneous (single type, single context), per-stream anchor/probe differentiation predicted by MECH-269 would have no biological substrate to express it."
+          ],
+          "run_id": "2026-04-21_mech_269_replay_phenomenology_foster2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:05:50Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "MECH-270": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.75",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:electrophysiology_single_unit": 1,
+        "lit:theoretical_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-21_mech_270_swr_biomarker_buzsaki2015",
+      "latest_timestamp_utc": "2026-04-21T20:05:50Z",
+      "literature_confidence": 0.75,
+      "overall_confidence": 0.75,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-270",
+          "confidence": 0.72,
+          "confidence_rationale": "Foundational empirical demonstration that endogenous extracellular fields causally modulate neuronal firing via non-synaptic coupling under physiological conditions. This is the substrate MECH-270 depends on; without this result the ephaptic-readout hypothesis would be purely theoretical. Confidence is discounted from what the paper itself establishes because Anastassiou et al. recorded in cortical slices, not hippocampus, and the fields they characterise are subthreshold (<0.5 mV) rather than the much larger fields present during hippocampal SWRs. The translation from cortex to CA1/CA3 is plausible but not made explicit in this paper.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_270",
+          "failure_signatures": [
+            "If extracellular fields did not influence spiking at physiological amplitudes, MECH-270's proposal that field coherence encodes per-stream verisimilitude would have no physical basis."
+          ],
+          "run_id": "2026-04-21_mech_270_ephaptic_coupling_anastassiou2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:05:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-270",
+          "confidence": 0.68,
+          "confidence_rationale": "Buzs\u00e1ki's review establishes that SWRs are 'the most synchronous population pattern in the mammalian brain' and that the spike content is temporally and spatially coordinated by a consortium of interneurons. This is exactly the condition under which ephaptic field effects should matter most -- large synchronised populations in the tightly-packed CA1/CA3 pyramidal layers. The paper does not directly attribute SWR coordination to ephaptic coupling, so this is supporting context rather than a direct test.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_270",
+          "failure_signatures": [
+            "If SWRs were not the most synchronous pattern in mammalian brain, or if their coordination were fully accounted for by synaptic mechanisms alone, MECH-270's proposal that field coherence is necessary for verisimilitude readout would lose its architectural motivation."
+          ],
+          "run_id": "2026-04-21_mech_270_swr_biomarker_buzsaki2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:05:50Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
+    "MECH-271": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.795",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:electrophysiology_multisensory": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-21_mech_271_hc_pfc_swr_coordination_jadhav2016",
+      "latest_timestamp_utc": "2026-04-21T20:05:50Z",
+      "literature_confidence": 0.795,
+      "overall_confidence": 0.795,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-271",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct electrophysiological demonstration of coordinated HC-BLA reactivation during SWRs after aversive learning. The content-selectivity result is the strongest piece: reactivation is stronger for the aversive direction than the safe direction, indicating that HC-amygdala replay is not an undifferentiated broadcast but is selectively recruited for emotionally-tagged content. This is the key MECH-271 prediction -- that the BLA is a differentially-routed downstream consumer of HC replay, engaged by the affectively-loaded subset rather than by everything replayed.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_271",
+          "failure_signatures": [
+            "If HC-BLA coordinated reactivation were equally strong for aversive and safe content, MECH-271's prediction that BLA is a probe/affective-tagging destination (selective rather than indiscriminate) would be weakened."
+          ],
+          "run_id": "2026-04-21_mech_271_hc_bla_emotional_replay_girardeau2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:05:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-271",
+          "confidence": 0.8,
+          "confidence_rationale": "Strongest single piece of evidence for MECH-271's routing hypothesis. Jadhav et al. show that during awake SWRs, the PFC does not just receive a uniform drive -- it shows coordinated excitation of content-related cells and inhibition of content-unrelated cells within the same ripple event. This is structurally identical to MECH-271's prediction that the hypothesis tag is realised as differential routing: the downstream target reads selectively, suppressing off-content populations. The content-specific, within-ripple excitation/inhibition dissociation is the key MECH-271 architectural signature.",
+          "evidence_class": "lit:electrophysiology_multisensory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_271",
+          "failure_signatures": [
+            "If PFC SWR responses were uniform excitation regardless of content, or if the excitation/inhibition split were not content-specific, MECH-271's prediction that routing is structured (anchored content reaches selected consumers, not broadcast) would lose its strongest empirical anchor."
+          ],
+          "run_id": "2026-04-21_mech_271_hc_pfc_swr_coordination_jadhav2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T20:05:50Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
       }
     },
     "MECH-900": {
@@ -58956,6 +59172,118 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-269",
+      "confidence": 0.68,
+      "confidence_rationale": "Direct empirical demonstration that hippocampal-prefrontal reactivation fidelity is context-dependent (higher in awake vs sleep SWRs) and is enhanced during initial learning. This matches MECH-269's prediction that anchor eligibility -- 'is this starting state trustworthy enough to roll forward from' -- should vary by context, with stronger anchored behavior during high-information moments (early learning, awake active behavior). Does not directly test per-stream verisimilitude but shows the state-dependent fidelity modulation the claim requires.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_269",
+      "failure_signatures": [
+        "If awake and sleep SWRs had equal reactivation fidelity, MECH-269's prediction that anchored-replay fidelity should vary with context-local model trust would lose empirical support."
+      ],
+      "run_id": "2026-04-21_mech_269_awake_vs_sleep_swr_tang2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:05:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-269",
+      "confidence": 0.7,
+      "confidence_rationale": "The review explicitly proposes that replay function changes dynamically with task demands and arousal level. This is the closest published claim to MECH-269's context-dependent anchor/probe mixture, short of a paper testing verisimilitude-gated selection directly. Mapping is still not mechanism-for-mechanism, but it is tighter than Foster 2017 because this review actively argues for task-dependent functional switching rather than just cataloguing variety.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_269",
+      "failure_signatures": [
+        "If replay function were task-invariant (same role in consolidation, recall, and planning regardless of context), MECH-269's context-modulated anchor/probe ratio would lose its biological motivation."
+      ],
+      "run_id": "2026-04-21_mech_269_replay_memory_planning_olafsdottir2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:05:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-269",
+      "confidence": 0.62,
+      "confidence_rationale": "High-quality review establishes that hippocampal replay is phenomenologically diverse (forward/reverse, awake/sleep, pre-play, off-task, on-task). That diversity is a necessary condition for MECH-269's anchor/probe distinction to be biologically plausible -- if replay were monolithic, per-stream selective anchoring could not be expressed. The paper does not directly test verisimilitude-gated anchor selection, so mapping is structural rather than mechanism-for-mechanism.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_269",
+      "failure_signatures": [
+        "If replay were phenomenologically homogeneous (single type, single context), per-stream anchor/probe differentiation predicted by MECH-269 would have no biological substrate to express it."
+      ],
+      "run_id": "2026-04-21_mech_269_replay_phenomenology_foster2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:05:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-270",
+      "confidence": 0.72,
+      "confidence_rationale": "Foundational empirical demonstration that endogenous extracellular fields causally modulate neuronal firing via non-synaptic coupling under physiological conditions. This is the substrate MECH-270 depends on; without this result the ephaptic-readout hypothesis would be purely theoretical. Confidence is discounted from what the paper itself establishes because Anastassiou et al. recorded in cortical slices, not hippocampus, and the fields they characterise are subthreshold (<0.5 mV) rather than the much larger fields present during hippocampal SWRs. The translation from cortex to CA1/CA3 is plausible but not made explicit in this paper.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_270",
+      "failure_signatures": [
+        "If extracellular fields did not influence spiking at physiological amplitudes, MECH-270's proposal that field coherence encodes per-stream verisimilitude would have no physical basis."
+      ],
+      "run_id": "2026-04-21_mech_270_ephaptic_coupling_anastassiou2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:05:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-270",
+      "confidence": 0.68,
+      "confidence_rationale": "Buzs\u00e1ki's review establishes that SWRs are 'the most synchronous population pattern in the mammalian brain' and that the spike content is temporally and spatially coordinated by a consortium of interneurons. This is exactly the condition under which ephaptic field effects should matter most -- large synchronised populations in the tightly-packed CA1/CA3 pyramidal layers. The paper does not directly attribute SWR coordination to ephaptic coupling, so this is supporting context rather than a direct test.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_270",
+      "failure_signatures": [
+        "If SWRs were not the most synchronous pattern in mammalian brain, or if their coordination were fully accounted for by synaptic mechanisms alone, MECH-270's proposal that field coherence is necessary for verisimilitude readout would lose its architectural motivation."
+      ],
+      "run_id": "2026-04-21_mech_270_swr_biomarker_buzsaki2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:05:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-271",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct electrophysiological demonstration of coordinated HC-BLA reactivation during SWRs after aversive learning. The content-selectivity result is the strongest piece: reactivation is stronger for the aversive direction than the safe direction, indicating that HC-amygdala replay is not an undifferentiated broadcast but is selectively recruited for emotionally-tagged content. This is the key MECH-271 prediction -- that the BLA is a differentially-routed downstream consumer of HC replay, engaged by the affectively-loaded subset rather than by everything replayed.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_271",
+      "failure_signatures": [
+        "If HC-BLA coordinated reactivation were equally strong for aversive and safe content, MECH-271's prediction that BLA is a probe/affective-tagging destination (selective rather than indiscriminate) would be weakened."
+      ],
+      "run_id": "2026-04-21_mech_271_hc_bla_emotional_replay_girardeau2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:05:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-271",
+      "confidence": 0.8,
+      "confidence_rationale": "Strongest single piece of evidence for MECH-271's routing hypothesis. Jadhav et al. show that during awake SWRs, the PFC does not just receive a uniform drive -- it shows coordinated excitation of content-related cells and inhibition of content-unrelated cells within the same ripple event. This is structurally identical to MECH-271's prediction that the hypothesis tag is realised as differential routing: the downstream target reads selectively, suppressing off-content populations. The content-specific, within-ripple excitation/inhibition dissociation is the key MECH-271 architectural signature.",
+      "evidence_class": "lit:electrophysiology_multisensory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_271",
+      "failure_signatures": [
+        "If PFC SWR responses were uniform excitation regardless of content, or if the excitation/inhibition split were not content-specific, MECH-271's prediction that routing is structured (anchored content reaches selected consumers, not broadcast) would lose its strongest empirical anchor."
+      ],
+      "run_id": "2026-04-21_mech_271_hc_pfc_swr_coordination_jadhav2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T20:05:50Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -58987,7 +59315,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-21T19:54:57.090230Z",
+  "generated_at_utc": "2026-04-21T20:13:40.953533Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_270",
+  "entry_id": "2026-04-21_mech_270_swr_biomarker_buzsaki2015",
+  "timestamp_utc": "2026-04-21T20:05:50Z",
+  "claim_ids_tested": ["MECH-270"],
+  "source": {
+    "title": "Hippocampal sharp wave-ripple: A cognitive biomarker for episodic memory and planning",
+    "authors": ["György Buzsáki"],
+    "year": 2015,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22488"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Buzsáki's review establishes that SWRs are 'the most synchronous population pattern in the mammalian brain' and that the spike content is temporally and spatially coordinated by a consortium of interneurons. This is exactly the condition under which ephaptic field effects should matter most -- large synchronised populations in the tightly-packed CA1/CA3 pyramidal layers. The paper does not directly attribute SWR coordination to ephaptic coupling, so this is supporting context rather than a direct test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SWRs were not the most synchronous pattern in mammalian brain, or if their coordination were fully accounted for by synaptic mechanisms alone, MECH-270's proposal that field coherence is necessary for verisimilitude readout would lose its architectural motivation."
+  ],
+  "tags": ["mech_270", "sharp_wave_ripple", "hippocampal_synchrony", "swr_biology", "review"],
+  "mapping": {
+    "source_claim_statement": "SWRs are the most synchronous population pattern in the mammalian brain. They arise from the CA3 recurrent excitatory system and produce a fast ripple oscillation in CA1. Their spike content is temporally and spatially coordinated by a consortium of interneurons, and they replay fragments of waking sequences in compressed format. Selective disruption of SWRs interferes with memory.",
+    "ree_translation": "MECH-270 reads this as the context-establishing claim that hippocampal SWRs are precisely the brain events where ephaptic field effects should dominate. Large-amplitude synchronised firing in a tightly-packed pyramidal layer is the physical regime where Anastassiou-style sub-threshold ephaptic effects become a substantial fraction of the coordination budget. Buzsáki's attribution of coordination to 'a consortium of interneurons' does not rule out ephaptic contribution -- the two mechanisms can be superposed.",
+    "mapping_caveat": "Buzsáki does not explicitly discuss ephaptic coupling as a coordination mechanism for SWRs. The review frames SWR synchrony as synaptically and interneuron-mediated. MECH-270's proposal that field coherence carries the verisimilitude signal is therefore an extrapolation beyond what the review asserts, using the review's characterisation of SWR synchrony as the enabling context.",
+    "source_context": "Comprehensive review of hippocampal SWR literature primarily from rodent electrophysiology; includes discussion of clinical pathologies (epilepsy, schizophrenia, Alzheimer's) where SWRs are altered."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Definitive SWR review by the senior authority in the field. Mapping fidelity discounted because the review does not address ephaptic coupling directly -- it provides context for why MECH-270 is plausible but not direct evidence for it. Transfer risk low since SWRs are cross-species conserved."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_271",
+  "entry_id": "2026-04-21_mech_271_hc_pfc_swr_coordination_jadhav2016",
+  "timestamp_utc": "2026-04-21T20:05:50Z",
+  "claim_ids_tested": ["MECH-271"],
+  "source": {
+    "title": "Coordinated Excitation and Inhibition of Prefrontal Ensembles during Awake Hippocampal Sharp-Wave Ripple Events",
+    "authors": ["Shantanu P. Jadhav", "Gideon Rothschild", "Demetris K. Roumis", "Loren M. Frank"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.02.010"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Strongest single piece of evidence for MECH-271's routing hypothesis. Jadhav et al. show that during awake SWRs, the PFC does not just receive a uniform drive -- it shows coordinated excitation of content-related cells and inhibition of content-unrelated cells within the same ripple event. This is structurally identical to MECH-271's prediction that the hypothesis tag is realised as differential routing: the downstream target reads selectively, suppressing off-content populations. The content-specific, within-ripple excitation/inhibition dissociation is the key MECH-271 architectural signature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If PFC SWR responses were uniform excitation regardless of content, or if the excitation/inhibition split were not content-specific, MECH-271's prediction that routing is structured (anchored content reaches selected consumers, not broadcast) would lose its strongest empirical anchor."
+  ],
+  "tags": ["mech_271", "hippocampus_prefrontal", "awake_swr", "content_specific_routing", "structured_reactivation"],
+  "mapping": {
+    "source_claim_statement": "During awake hippocampal SWRs, many prefrontal cortex cells are modulated, but the modulation is not uniform. Within a single SWR event, excitation activates PFC cells whose representations are related to the concurrently reactivated hippocampal content, while inhibition suppresses PFC cells with unrelated representations. Awake SWRs therefore mark times of strong, content-structured HC-PFC coordination.",
+    "ree_translation": "MECH-271 predicts anchored replay routes preferentially to SD-033a lateral-PFC-analog consumers and the viability map. Jadhav et al. provide the direct evidence: PFC reads HC SWR content in a structured, content-gated way -- excitation for content-relevant PFC ensembles, inhibition for content-irrelevant ones. This is the routing-based realisation MECH-271 hypothesises, observed within the HC-PFC axis that MECH-271 identifies as the anchored-replay destination.",
+    "mapping_caveat": "Jadhav et al. do not explicitly test anchored vs probe replay (the distinction does not exist in their framework). The content-selectivity they report is between 'content reactivated by HC' and 'content not reactivated' within PFC -- a different axis than anchor/probe. Mapping their excitation/inhibition dissociation onto MECH-271's anchored-reaches-PFC / probe-does-not prediction requires the interpretive step that 'structured PFC engagement with HC content' = 'anchored-routed replay'.",
+    "source_context": "Rats learning spatial tasks; simultaneous CA1 and PFC recordings during awake behavior; analysis of SWR-locked spiking in both regions."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Neuron paper with rigorous simultaneous HC-PFC electrophysiology. Mapping fidelity is high because the content-gated excitation/inhibition within PFC during SWRs is exactly the architectural signature MECH-271 predicts: routing, not flagging. Transfer risk low for the routing architecture itself; the paradigm (spatial learning) is narrower than REE's scope but the routing pattern is likely generic."
+  }
+}
