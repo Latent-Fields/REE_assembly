@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-21T06:02:32.749466Z`
+Generated: `2026-04-21T08:50:50.393149Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -27,6 +27,7 @@ Generated: `2026-04-21T06:02:32.749466Z`
 | `targeted_review_connectome_arc_018` | [`2026-03-29_arc_018_prioritized_replay_mattar2018`](targeted_review_connectome_arc_018/entries/2026-03-29_arc_018_prioritized_replay_mattar2018/record.json) | 5 | [`summary`](targeted_review_connectome_arc_018/entries/2026-03-29_arc_018_prioritized_replay_mattar2018/summary.md) |
 | `targeted_review_connectome_arc_021` | [`2026-03-29_arc_021_bg_loops_learning_hazy2007`](targeted_review_connectome_arc_021/entries/2026-03-29_arc_021_bg_loops_learning_hazy2007/record.json) | 3 | [`summary`](targeted_review_connectome_arc_021/entries/2026-03-29_arc_021_bg_loops_learning_hazy2007/summary.md) |
 | `targeted_review_connectome_arc_023` | [`2026-04-08_arc023_trn_sensory_selection_halassa2015`](targeted_review_connectome_arc_023/entries/2026-04-08_arc023_trn_sensory_selection_halassa2015/record.json) | 5 | [`summary`](targeted_review_connectome_arc_023/entries/2026-04-08_arc023_trn_sensory_selection_halassa2015/summary.md) |
+| `targeted_review_connectome_arc_028` | [`2026-04-21_arc_028_hippo_vta_loop_lisman2005`](targeted_review_connectome_arc_028/entries/2026-04-21_arc_028_hippo_vta_loop_lisman2005/record.json) | 3 | [`summary`](targeted_review_connectome_arc_028/entries/2026-04-21_arc_028_hippo_vta_loop_lisman2005/summary.md) |
 | `targeted_review_connectome_arc_030` | [`2026-04-10_arc_030_go_nogo_reinforcement_kravitz2012`](targeted_review_connectome_arc_030/entries/2026-04-10_arc_030_go_nogo_reinforcement_kravitz2012/record.json) | 4 | [`summary`](targeted_review_connectome_arc_030/entries/2026-04-10_arc_030_go_nogo_reinforcement_kravitz2012/summary.md) |
 | `targeted_review_connectome_arc_036` | [`2026-03-29_arc_036_wanting_liking_dissociation_berridge1998`](targeted_review_connectome_arc_036/entries/2026-03-29_arc_036_wanting_liking_dissociation_berridge1998/record.json) | 4 | [`summary`](targeted_review_connectome_arc_036/entries/2026-03-29_arc_036_wanting_liking_dissociation_berridge1998/summary.md) |
 | `targeted_review_connectome_mech_022` | [`2026-04-02_mech_092_awake_remote_replay_karlsson2009`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/record.json) | 4 | [`summary`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/summary.md) |
@@ -183,6 +184,7 @@ Generated: `2026-04-21T06:02:32.749466Z`
 | `targeted_review_sd_014` | [`2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011`](targeted_review_sd_014/entries/2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011/record.json) | 4 | [`summary`](targeted_review_sd_014/entries/2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011/summary.md) |
 | `targeted_review_sd_015` | [`2026-04-14_sd_015_parallel_streams_lec_knierim2020`](targeted_review_sd_015/entries/2026-04-14_sd_015_parallel_streams_lec_knierim2020/record.json) | 6 | [`summary`](targeted_review_sd_015/entries/2026-04-14_sd_015_parallel_streams_lec_knierim2020/summary.md) |
 | `targeted_review_sd_017` | [`2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/record.json) | 4 | [`summary`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/summary.md) |
+| `targeted_review_sd_018` | [`2026-04-21_sd_018_nac_dopamine_approach_costa2025`](targeted_review_sd_018/entries/2026-04-21_sd_018_nac_dopamine_approach_costa2025/record.json) | 2 | [`summary`](targeted_review_sd_018/entries/2026-04-21_sd_018_nac_dopamine_approach_costa2025/summary.md) |
 | `targeted_review_sd_019` | [`2026-04-17_sd_019_pain_asymbolia_berthier1988`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/record.json) | 5 | [`summary`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/summary.md) |
 | `targeted_review_sd_021` | [`2026-04-17_sd_021_sensory_affective_dissociation_hofbauer2001`](targeted_review_sd_021/entries/2026-04-17_sd_021_sensory_affective_dissociation_hofbauer2001/record.json) | 4 | [`summary`](targeted_review_sd_021/entries/2026-04-17_sd_021_sensory_affective_dissociation_hofbauer2001/summary.md) |
 | `targeted_review_sd_022` | [`2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/record.json) | 2 | [`summary`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/summary.md) |

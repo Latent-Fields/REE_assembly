@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_028",
+  "entry_id": "2026-04-21_arc_028_hippo_vta_loop_lisman2005",
+  "timestamp_utc": "2026-04-21T08:46:35Z",
+  "claim_ids_tested": ["ARC-028"],
+  "source": {
+    "title": "The hippocampal-VTA loop: controlling the entry of information into long-term memory.",
+    "authors": ["Lisman, John E.", "Grace, Anthony A."],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.05.002"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Circuit anatomy (subiculum -> NAc -> VP -> VTA -> dopamine) is exactly what ARC-028 instantiates. High source quality and mapping fidelity for the anatomical pathway. Confidence capped at 0.70 because the signal in this paper is novelty detection, not trajectory completion -- the biological function being mapped differs from REE's use case.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The hippocampal signal conveyed through this pathway is novelty-based (mismatch detection), not trajectory-completion. If ARC-028's completion signal is fundamentally different in character from a novelty signal, the same pathway may not transmit it reliably.",
+    "The upward arm of the loop (VTA dopamine back to hippocampus for LTP) is the paper's primary focus; the downward arm (hippocampus -> VTA activation) is described but less empirically grounded."
+  ],
+  "tags": ["arc_028", "hippocampal_vta_loop", "subiculum", "nucleus_accumbens", "ventral_pallidum", "dopamine", "completion_signal"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus detects newly arrived information not already in long-term memory (novelty signal), which travels subiculum -> NAc -> VP -> VTA, contributing to dopaminergic firing; VTA dopamine then feeds back to hippocampus to enhance LTP and learning.",
+    "ree_translation": "ARC-028 requires HippocampalModule to emit a trajectory completion signal that travels via the analogous subiculum -> NAc -> VP -> VTA pathway, causing dopamine release, which suppresses BG beta oscillations (BetaGate release) to allow the next action selection cycle.",
+    "mapping_caveat": "The biological signal is novelty (mismatch detection in CA1 between expectation and reality), not goal/trajectory completion. ARC-028 repurposes the same anatomical loop for a different computational event. Whether completion signals are transmitted via the same route, or require a distinct pathway (e.g., direct subicular projections to striatum for reward-related sequences), is not resolved here.",
+    "source_context": "Theoretical review grounded in rodent hippocampal physiology; human relevance inferred from memory studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high (Neuron, 2500+ citations, canonical reference for this circuit). Mapping fidelity penalised for novelty-vs-completion signal difference. Transfer risk low because ARC-028 is an architectural commitment, not a specific empirical prediction about rodent behavior."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_018",
+  "entry_id": "2026-04-21_sd_018_dopamine_proximity_ramp_howe2013",
+  "timestamp_utc": "2026-04-21T08:46:35Z",
+  "claim_ids_tested": ["SD-018"],
+  "source": {
+    "title": "Prolonged dopamine signalling in striatum signals proximity and value of distant rewards.",
+    "authors": ["Howe, Mark W.", "Tierney, Patrick L.", "Sandberg, Stefan G.", "Phillips, Paul E.M.", "Graybiel, Ann M."],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12475"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Howe et al. 2013 provides the strongest available biological evidence for a dedicated reward-proximity encoding circuit in the striatum that cannot be derived from sensory prediction alone. Dopamine ramps emerge as animals approach distant rewards, scaling with distance and value -- yet the sensory environment is invariant during approach (nothing changes until contact). This is the direct biological analog of SD-018's claim that z_world trained on sensory prediction loss cannot encode resource proximity. High source quality (Nature); the mapping is reasonably tight given that REE's CausalGridWorldV2 has similarly invariant sensory scenes until resource contact.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dopamine ramp has been subsequently debated: Costa et al. 2025 finds ramp and ACh signals are dissociated, while other groups debate whether the ramp reflects VTA firing or local circuit mechanisms. If the ramp is a local circuit phenomenon (not pure DA neuron ramping), it might be recoverable from context signals rather than requiring a dedicated head.",
+    "In the rodent maze paradigm, the ramp emerges through extended training. An untrained agent may not exhibit proximity encoding even with an explicit head if the training signal is too sparse."
+  ],
+  "tags": ["sd_018", "dopamine_ramp", "striatum", "reward_proximity", "approach_motivation", "dedicated_signal", "resource_proximity_head"],
+  "mapping": {
+    "source_claim_statement": "Striatal dopamine signals gradually ramp up as rats navigate mazes toward distant rewards, scaling with both distance and reward size. This extended dopamine signalling provides sustained motivational drive, distinct from phasic prediction-error signals.",
+    "ree_translation": "In REE, z_world is trained on E1 sensory prediction loss. When a resource sits at a distant cell, the sensory scene is invariant until contact (like the rat's maze environment before reward encounter). Without a dedicated resource_proximity_head (Sigmoid regression on z_world predicting max(resource_field_view)), z_world cannot develop a ramp-like proximity representation. SD-018 adds this head as the architectural analog of the dedicated mesolimbic proximity circuit.",
+    "mapping_caveat": "The biological ramp involves dopamine release from VTA fibers into NAc -- a fully separate projection system from sensory cortex. In REE, the 'separation' is only at the loss function level: z_world is shared, and the proximity head merely adds gradient pressure. Whether this is architecturally equivalent to having a truly separate circuit is a valid concern. A fully faithful implementation might require a separate z_benefit latent (analogous to z_harm_s being split off in SD-011).",
+    "source_context": "Rat maze navigation, FSCV dopamine measurement in dorsolateral striatum and NAc; well-replicated finding though mechanistic debate ongoing."
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.30,
+    "notes": "Nature paper, highly cited, well-replicated behavioral phenomenon. Mapping fidelity good but not perfect: the biological separation (dedicated dopaminergic circuit) is stronger than the REE implementation (auxiliary head on shared z_world). Transfer risk moderate: rodent maze navigation to REE gridworld is reasonable but the gridworld has no analog to dopamine projections from VTA."
+  }
+}

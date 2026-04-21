@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_028",
+  "entry_id": "2026-04-21_arc_028_beta_oscillations_bg_brittain2014",
+  "timestamp_utc": "2026-04-21T08:46:35Z",
+  "claim_ids_tested": ["ARC-028"],
+  "source": {
+    "title": "The highs and lows of beta activity in cortico-basal ganglia loops.",
+    "authors": ["Brittain, John-Stuart", "Sharott, Andrew", "Brown, Peter"],
+    "year": 2014,
+    "venue": "The European Journal of Neuroscience",
+    "doi": "10.1111/ejn.12574"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Directly addresses the BetaGate mechanism that ARC-028 wires to. Beta synchrony in cortico-BG loops acts as a computational capacity gate: high beta = locked-in/committed state, suppressed beta = open to new action selection. Dopamine suppresses beta (hence Parkinson's beta excess from dopamine depletion). ARC-028's claim that a dopamine-triggering completion signal can release BetaGate is directly supported by this mechanism. Confidence moderate because the paper primarily discusses pathological states (Parkinson's); normal-range beta modulation by hippocampal completion signals is inferred, not measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Most beta-oscillation evidence in this paper is from Parkinson's disease pathology (dopamine depletion). Normal beta modulation during goal-directed navigation is less characterized.",
+    "Beta suppression by dopamine may be a threshold effect (large dopamine change) rather than a graded signal proportional to completion quality, which could limit ARC-028's graded hysteresis mechanism (MECH-105, MECH-106)."
+  ],
+  "tags": ["arc_028", "beta_oscillations", "basal_ganglia", "dopamine", "computational_gating", "action_selection", "betagate"],
+  "mapping": {
+    "source_claim_statement": "Increased beta band synchrony in cortico-BG circuits acts as an 'immutability promoting' gate that reinforces incumbent processes and limits computational capacity for novel action selection. Dopamine depletion pathologically enhances beta; normal phasic dopamine release suppresses beta to allow motor initiation.",
+    "ree_translation": "BetaGate in REE implements exactly this: elevated beta = committed trajectory locked in; beta suppression triggered by dopamine (which is in turn triggered by hippocampal completion signal via NAc -> VP -> VTA) = gate release for next trajectory selection cycle. ARC-028 wires the source of this dopamine to HippocampalModule's completion signal.",
+    "mapping_caveat": "The paper addresses motor initiation gating (suppression of competing motor programs), not trajectory selection gating per se. Whether the same beta mechanism gates discrete planning cycles (hippocampal sequence termination -> next CEM proposal) as opposed to motor output suppression is an extrapolation. The two may be implemented by different BG loops (MECH-069: incommensurable error signals across three loops).",
+    "source_context": "EJN review synthesizing human and animal electrophysiology, primarily Parkinson's disease literature; normal beta modulation inferred from pharmacological and DBS data."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Good quality review. Mapping fidelity reasonable -- beta-as-gate is directly the BetaGate mechanism. Transfer risk slightly elevated because the paper's evidence base is pathological (PD) and the normal-function inference is indirect."
+  }
+}

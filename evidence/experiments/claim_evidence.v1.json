@@ -585,7 +585,7 @@
       }
     },
     "ARC-017": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.479, lit_conf=0.819",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.478, lit_conf=0.819",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -598,7 +598,7 @@
         "lit:connectome_analysis": 1,
         "lit:review_vestibular_anatomy": 1
       },
-      "experimental_confidence": 0.479,
+      "experimental_confidence": 0.478,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -610,7 +610,7 @@
       "latest_run_id": "v3_exq_135_arc017_reality_coherence_pair_20260329T032442Z_v3",
       "latest_timestamp_utc": "2026-03-29T03:24:42Z",
       "literature_confidence": 0.819,
-      "overall_confidence": 0.649,
+      "overall_confidence": 0.648,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -679,7 +679,7 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=6 entry(s), lit=25 entry(s), exp_conf=0.741, lit_conf=0.866",
+      "confidence_rationale": "exp=6 entry(s), lit=25 entry(s), exp_conf=0.74, lit_conf=0.866",
       "direction_counts": {
         "mixed": 1,
         "supports": 26,
@@ -701,7 +701,7 @@
         "lit:rodent_electrophysiology": 2,
         "lit:theoretical_review": 5
       },
-      "experimental_confidence": 0.741,
+      "experimental_confidence": 0.74,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -1517,7 +1517,7 @@
       }
     },
     "ARC-027": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.907, lit_conf=0.858",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.906, lit_conf=0.858",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -1530,7 +1530,7 @@
         "lit:connectome_fear_circuit": 2,
         "lit:review_nociception_anatomy": 1
       },
-      "experimental_confidence": 0.907,
+      "experimental_confidence": 0.906,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -1623,6 +1623,92 @@
       "runs_total": 7,
       "source_counts": {
         "experimental": 4,
+        "literature": 3
+      }
+    },
+    "ARC-028": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.808",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 2,
+        "lit:electrophysiology_lfp": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-21_arc_028_hippo_vta_loop_lisman2005",
+      "latest_timestamp_utc": "2026-04-21T08:46:35Z",
+      "literature_confidence": 0.808,
+      "overall_confidence": 0.808,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-028",
+          "confidence": 0.73,
+          "confidence_rationale": "Directly addresses the BetaGate mechanism that ARC-028 wires to. Beta synchrony in cortico-BG loops acts as a computational capacity gate: high beta = locked-in/committed state, suppressed beta = open to new action selection. Dopamine suppresses beta (hence Parkinson's beta excess from dopamine depletion). ARC-028's claim that a dopamine-triggering completion signal can release BetaGate is directly supported by this mechanism. Confidence moderate because the paper primarily discusses pathological states (Parkinson's); normal-range beta modulation by hippocampal completion signals is inferred, not measured.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_028",
+          "failure_signatures": [
+            "Most beta-oscillation evidence in this paper is from Parkinson's disease pathology (dopamine depletion). Normal beta modulation during goal-directed navigation is less characterized.",
+            "Beta suppression by dopamine may be a threshold effect (large dopamine change) rather than a graded signal proportional to completion quality, which could limit ARC-028's graded hysteresis mechanism (MECH-105, MECH-106)."
+          ],
+          "run_id": "2026-04-21_arc_028_beta_oscillations_bg_brittain2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T08:46:35Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-028",
+          "confidence": 0.72,
+          "confidence_rationale": "Sesack & Grace provide a more detailed microcircuit account than the original Lisman & Grace 2005 paper, explicitly noting that phasic dopamine release (triggered by reward conditions) potentiates ventral subicular drive to the NAc. This is directly relevant to ARC-028's claim that trajectory completion (a reward-adjacent event) should trigger dopamine release via this pathway, sustaining/releasing the BetaGate. The mapping caveat is that 'reward' here means actual reward receipt, not trajectory completion per se.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_028",
+          "failure_signatures": [
+            "The review frames phasic dopamine as gating between approach strategies (rewarded behavior sustained; unrewarded -> switch to new strategy), not as a discrete completion gate for sequences. If the biological function is strategic gating rather than trajectory completion signaling, ARC-028 may need a different mechanistic basis.",
+            "The ventral subicular input to NAc is described as 'contextual and spatial information', not a completion signal per se. Completion may require CA1 output (encoding expectation vs. reality mismatch) rather than subicular spatial context."
+          ],
+          "run_id": "2026-04-21_arc_028_cortical_bg_reward_sesack2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T08:46:35Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-028",
+          "confidence": 0.7,
+          "confidence_rationale": "Circuit anatomy (subiculum -> NAc -> VP -> VTA -> dopamine) is exactly what ARC-028 instantiates. High source quality and mapping fidelity for the anatomical pathway. Confidence capped at 0.70 because the signal in this paper is novelty detection, not trajectory completion -- the biological function being mapped differs from REE's use case.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_028",
+          "failure_signatures": [
+            "The hippocampal signal conveyed through this pathway is novelty-based (mismatch detection), not trajectory-completion. If ARC-028's completion signal is fundamentally different in character from a novelty signal, the same pathway may not transmit it reliably.",
+            "The upward arm of the loop (VTA dopamine back to hippocampus for LTP) is the paper's primary focus; the downward arm (hippocampus -> VTA activation) is described but less empirically grounded."
+          ],
+          "run_id": "2026-04-21_arc_028_hippo_vta_loop_lisman2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T08:46:35Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
         "literature": 3
       }
     },
@@ -2001,7 +2087,7 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=14 entry(s), lit=20 entry(s), exp_conf=0.813, lit_conf=0.801",
+      "confidence_rationale": "exp=14 entry(s), lit=20 entry(s), exp_conf=0.812, lit_conf=0.801",
       "direction_counts": {
         "mixed": 7,
         "supports": 21,
@@ -2020,7 +2106,7 @@
         "lit:theoretical_framework_review": 1,
         "lit:theoretical_review": 5
       },
-      "experimental_confidence": 0.813,
+      "experimental_confidence": 0.812,
       "fail_runs": 8,
       "genuine_exp_count": 14,
       "genuine_exp_direction_counts": {
@@ -2588,7 +2674,7 @@
       }
     },
     "ARC-041": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.317, lit_conf=0.737",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.316, lit_conf=0.737",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -2601,7 +2687,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.317,
+      "experimental_confidence": 0.316,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2613,7 +2699,7 @@
       "latest_run_id": "2026-04-02_arc_041_vmpfc_cognitive_map_value_2025",
       "latest_timestamp_utc": "2026-04-02T13:05:00Z",
       "literature_confidence": 0.737,
-      "overall_confidence": 0.527,
+      "overall_confidence": 0.526,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -3547,7 +3633,7 @@
       }
     },
     "INV-044": {
-      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.821, lit_conf=0.894",
+      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.82, lit_conf=0.894",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -3563,7 +3649,7 @@
         "lit:review_systems_neuroscience": 1,
         "lit:rodent_behavioral_pharmacology": 1
       },
-      "experimental_confidence": 0.821,
+      "experimental_confidence": 0.82,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -3575,7 +3661,7 @@
       "latest_run_id": "v3_exq_429_inv044_bayesian_prior_before_posterior_20260419T075804Z_v3",
       "latest_timestamp_utc": "2026-04-19T07:58:04Z",
       "literature_confidence": 0.894,
-      "overall_confidence": 0.865,
+      "overall_confidence": 0.864,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -4237,7 +4323,7 @@
       }
     },
     "INV-052": {
-      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.849, lit_conf=0.866",
+      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.848, lit_conf=0.866",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4250,7 +4336,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.849,
+      "experimental_confidence": 0.848,
       "fail_runs": 0,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -4356,7 +4442,7 @@
       }
     },
     "INV-053": {
-      "confidence_rationale": "exp=6 entry(s), lit=5 entry(s), exp_conf=0.971, lit_conf=0.813",
+      "confidence_rationale": "exp=6 entry(s), lit=5 entry(s), exp_conf=0.97, lit_conf=0.813",
       "direction_counts": {
         "mixed": 3,
         "supports": 8,
@@ -4371,7 +4457,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.971,
+      "experimental_confidence": 0.97,
       "fail_runs": 0,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -6145,7 +6231,7 @@
       }
     },
     "MECH-058": {
-      "confidence_rationale": "exp=2 entry(s), lit=9 entry(s), exp_conf=0.286, lit_conf=0.859",
+      "confidence_rationale": "exp=2 entry(s), lit=9 entry(s), exp_conf=0.286, lit_conf=0.858",
       "direction_counts": {
         "mixed": 3,
         "supports": 7,
@@ -6172,8 +6258,8 @@
       },
       "latest_run_id": "20260317T232028Z_v3_exq_019_timescale_v3_v3",
       "latest_timestamp_utc": "2026-03-17T23:20:28Z",
-      "literature_confidence": 0.859,
-      "overall_confidence": 0.63,
+      "literature_confidence": 0.858,
+      "overall_confidence": 0.629,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6788,7 +6874,7 @@
       }
     },
     "MECH-069": {
-      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.889, lit_conf=0.793",
+      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.888, lit_conf=0.793",
       "direction_counts": {
         "mixed": 6,
         "supports": 4,
@@ -6801,7 +6887,7 @@
         "lit:connectome_analysis": 1,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.889,
+      "experimental_confidence": 0.888,
       "fail_runs": 6,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -6813,7 +6899,7 @@
       "latest_run_id": "v3_exq_047b_sd005_sd010_joint_20260321T191558Z_v3",
       "latest_timestamp_utc": "2026-03-21T19:15:58Z",
       "literature_confidence": 0.793,
-      "overall_confidence": 0.851,
+      "overall_confidence": 0.85,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -6899,7 +6985,7 @@
       }
     },
     "MECH-070": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.453, lit_conf=0.748",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.452, lit_conf=0.748",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -6912,7 +6998,7 @@
         "lit:connectome_predictive_coding": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.453,
+      "experimental_confidence": 0.452,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -7016,7 +7102,7 @@
       }
     },
     "MECH-071": {
-      "confidence_rationale": "exp=40 entry(s), lit=4 entry(s), exp_conf=0.793, lit_conf=0.883",
+      "confidence_rationale": "exp=40 entry(s), lit=4 entry(s), exp_conf=0.793, lit_conf=0.882",
       "direction_counts": {
         "mixed": 10,
         "supports": 23,
@@ -7040,7 +7126,7 @@
       },
       "latest_run_id": "20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.597275Z",
-      "literature_confidence": 0.883,
+      "literature_confidence": 0.882,
       "overall_confidence": 0.838,
       "pass_runs": 10,
       "recent_entries": [
@@ -7846,7 +7932,7 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=19 entry(s), lit=9 entry(s), exp_conf=0.81, lit_conf=0.703",
+      "confidence_rationale": "exp=19 entry(s), lit=9 entry(s), exp_conf=0.809, lit_conf=0.703",
       "direction_counts": {
         "mixed": 11,
         "supports": 11,
@@ -7861,7 +7947,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.81,
+      "experimental_confidence": 0.809,
       "fail_runs": 11,
       "genuine_exp_count": 19,
       "genuine_exp_direction_counts": {
@@ -8582,7 +8668,7 @@
       }
     },
     "MECH-096": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.811",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.81",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -8605,8 +8691,8 @@
       },
       "latest_run_id": "2026-03-17_three_streams_haak2018",
       "latest_timestamp_utc": "2026-03-17T21:00:00Z",
-      "literature_confidence": 0.811,
-      "overall_confidence": 0.811,
+      "literature_confidence": 0.81,
+      "overall_confidence": 0.81,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8645,7 +8731,7 @@
       }
     },
     "MECH-097": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.701",
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.7",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -8667,8 +8753,8 @@
       },
       "latest_run_id": "2026-03-17_mech097_parietal_cortex_sight_action_rizzolatti1997",
       "latest_timestamp_utc": "2026-03-17T12:00:00Z",
-      "literature_confidence": 0.701,
-      "overall_confidence": 0.701,
+      "literature_confidence": 0.7,
+      "overall_confidence": 0.7,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8693,7 +8779,7 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=20 entry(s), lit=7 entry(s), exp_conf=0.649, lit_conf=0.922",
+      "confidence_rationale": "exp=20 entry(s), lit=7 entry(s), exp_conf=0.648, lit_conf=0.922",
       "direction_counts": {
         "mixed": 7,
         "supports": 11,
@@ -8710,7 +8796,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.649,
+      "experimental_confidence": 0.648,
       "fail_runs": 16,
       "genuine_exp_count": 20,
       "genuine_exp_direction_counts": {
@@ -9840,7 +9926,7 @@
       }
     },
     "MECH-113": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.588, lit_conf=0.839",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.587, lit_conf=0.839",
       "direction_counts": {
         "mixed": 4,
         "supports": 3,
@@ -9852,7 +9938,7 @@
         "exp:simulation": 4,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.588,
+      "experimental_confidence": 0.587,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -11055,7 +11141,7 @@
       }
     },
     "MECH-135": {
-      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.797, lit_conf=0.83",
+      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.796, lit_conf=0.83",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -11069,7 +11155,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.797,
+      "experimental_confidence": 0.796,
       "fail_runs": 2,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -11081,7 +11167,7 @@
       "latest_run_id": "v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3",
       "latest_timestamp_utc": "2026-03-29T21:54:16Z",
       "literature_confidence": 0.83,
-      "overall_confidence": 0.814,
+      "overall_confidence": 0.813,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -11173,7 +11259,7 @@
       }
     },
     "MECH-150": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.317, lit_conf=0.745",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.316, lit_conf=0.745",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -11186,7 +11272,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.317,
+      "experimental_confidence": 0.316,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -11198,7 +11284,7 @@
       "latest_run_id": "2026-04-02_mech_150_coordinated_reinstatement_staresina2019",
       "latest_timestamp_utc": "2026-04-02T13:20:00Z",
       "literature_confidence": 0.745,
-      "overall_confidence": 0.531,
+      "overall_confidence": 0.53,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -11342,7 +11428,7 @@
       }
     },
     "MECH-153": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.458, lit_conf=0.856",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.457, lit_conf=0.856",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -11358,7 +11444,7 @@
         "lit:ml_theoretical_empirical": 1,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.458,
+      "experimental_confidence": 0.457,
       "fail_runs": 3,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -11370,7 +11456,7 @@
       "latest_run_id": "v3_exq_211_mech153_arc042_supervised_labeling_1775168828_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.848761Z",
       "literature_confidence": 0.856,
-      "overall_confidence": 0.657,
+      "overall_confidence": 0.656,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -11535,7 +11621,7 @@
       }
     },
     "MECH-155": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.347, lit_conf=0.88",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.346, lit_conf=0.88",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -11550,7 +11636,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.347,
+      "experimental_confidence": 0.346,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -11562,7 +11648,7 @@
       "latest_run_id": "v3_exq_207_mech155_general_indexing_probe_1775181944_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.843547Z",
       "literature_confidence": 0.88,
-      "overall_confidence": 0.667,
+      "overall_confidence": 0.666,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -13670,7 +13756,7 @@
       }
     },
     "MECH-187": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.743, lit_conf=0.836",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.742, lit_conf=0.836",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -13683,7 +13769,7 @@
         "lit:behavioral_animal": 1,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.743,
+      "experimental_confidence": 0.742,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -13695,7 +13781,7 @@
       "latest_run_id": "2026-04-06_mech_187_wanting_liking_berridge1998",
       "latest_timestamp_utc": "2026-04-06T16:00:00Z",
       "literature_confidence": 0.836,
-      "overall_confidence": 0.813,
+      "overall_confidence": 0.812,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -14322,7 +14408,7 @@
       }
     },
     "MECH-205": {
-      "confidence_rationale": "exp=2 entry(s), lit=8 entry(s), exp_conf=0.799, lit_conf=0.868",
+      "confidence_rationale": "exp=2 entry(s), lit=8 entry(s), exp_conf=0.798, lit_conf=0.868",
       "direction_counts": {
         "mixed": 0,
         "supports": 10,
@@ -14337,7 +14423,7 @@
         "lit:electrophysiology_single_unit": 2,
         "lit:fmri_connectivity": 3
       },
-      "experimental_confidence": 0.799,
+      "experimental_confidence": 0.798,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -14558,7 +14644,7 @@
       }
     },
     "MECH-220": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.32, lit_conf=0.874",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.319, lit_conf=0.874",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -14571,7 +14657,7 @@
         "lit:fmri_connectivity": 3,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.32,
+      "experimental_confidence": 0.319,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -15127,7 +15213,7 @@
       }
     },
     "MECH-256": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.802, lit_conf=0.885",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.801, lit_conf=0.885",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -15141,7 +15227,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.802,
+      "experimental_confidence": 0.801,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -15153,7 +15239,7 @@
       "latest_run_id": "2026-04-20_mech_256_visual_reafference_attenuation_benazet2016",
       "latest_timestamp_utc": "2026-04-20T19:40:35Z",
       "literature_confidence": 0.885,
-      "overall_confidence": 0.852,
+      "overall_confidence": 0.851,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -16293,7 +16379,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.457, lit_conf=0.825",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.456, lit_conf=0.825",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -16307,7 +16393,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.457,
+      "experimental_confidence": 0.456,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -16319,7 +16405,7 @@
       "latest_run_id": "v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.788339Z",
       "literature_confidence": 0.825,
-      "overall_confidence": 0.641,
+      "overall_confidence": 0.64,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -16403,7 +16489,7 @@
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.325, lit_conf=0.815",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.324, lit_conf=0.815",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -16417,7 +16503,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.325,
+      "experimental_confidence": 0.324,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -18185,7 +18271,7 @@
       }
     },
     "Q-022": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.538, lit_conf=0.759",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.537, lit_conf=0.759",
       "direction_counts": {
         "mixed": 3,
         "supports": 2,
@@ -18198,7 +18284,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.538,
+      "experimental_confidence": 0.537,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -18774,7 +18860,7 @@
       }
     },
     "SD-003": {
-      "confidence_rationale": "exp=84 entry(s), lit=7 entry(s), exp_conf=0.657, lit_conf=0.846",
+      "confidence_rationale": "exp=84 entry(s), lit=7 entry(s), exp_conf=0.656, lit_conf=0.846",
       "direction_counts": {
         "mixed": 22,
         "supports": 27,
@@ -18789,7 +18875,7 @@
         "lit:empirical_neuroscience": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.657,
+      "experimental_confidence": 0.656,
       "fail_runs": 66,
       "genuine_exp_count": 84,
       "genuine_exp_direction_counts": {
@@ -18801,7 +18887,7 @@
       "latest_run_id": "v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.786978Z",
       "literature_confidence": 0.846,
-      "overall_confidence": 0.752,
+      "overall_confidence": 0.751,
       "pass_runs": 18,
       "recent_entries": [
         {
@@ -18995,7 +19081,7 @@
       }
     },
     "SD-003-prereq": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.693, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.692, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -19006,7 +19092,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.693,
+      "experimental_confidence": 0.692,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -19018,7 +19104,7 @@
       "latest_run_id": "20260315T044440_causal_grid_world_baseline_v2",
       "latest_timestamp_utc": "2026-03-15T04:44:40.670153+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.693,
+      "overall_confidence": 0.692,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -19272,7 +19358,7 @@
       }
     },
     "SD-006": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.853, lit_conf=0.786",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.852, lit_conf=0.786",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -19284,7 +19370,7 @@
         "exp:simulation": 4,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.853,
+      "experimental_confidence": 0.852,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -19685,7 +19771,7 @@
       }
     },
     "SD-010": {
-      "confidence_rationale": "exp=19 entry(s), lit=3 entry(s), exp_conf=0.861, lit_conf=0.832",
+      "confidence_rationale": "exp=19 entry(s), lit=3 entry(s), exp_conf=0.86, lit_conf=0.832",
       "direction_counts": {
         "mixed": 14,
         "supports": 7,
@@ -19698,7 +19784,7 @@
         "lit:connectome_mechanistic_review": 2,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.861,
+      "experimental_confidence": 0.86,
       "fail_runs": 15,
       "genuine_exp_count": 19,
       "genuine_exp_direction_counts": {
@@ -19710,7 +19796,7 @@
       "latest_run_id": "20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.597275Z",
       "literature_confidence": 0.832,
-      "overall_confidence": 0.847,
+      "overall_confidence": 0.846,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -20509,18 +20595,19 @@
       }
     },
     "SD-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.293, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.292, lit_conf=0.758",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 0,
+        "mixed": 1,
+        "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 1,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 1,
+        "lit:electrophysiology_lfp": 2
       },
-      "experimental_confidence": 0.293,
+      "experimental_confidence": 0.292,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -20529,10 +20616,10 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_257_sd018_resource_prox_validation_20260406T171952Z_v3",
-      "latest_timestamp_utc": "2026-04-06T17:19:52Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.293,
+      "latest_run_id": "2026-04-21_sd_018_nac_dopamine_approach_costa2025",
+      "latest_timestamp_utc": "2026-04-21T08:46:35Z",
+      "literature_confidence": 0.758,
+      "overall_confidence": 0.603,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -20549,12 +20636,46 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-06T17:19:52Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-018",
+          "confidence": 0.78,
+          "confidence_rationale": "Howe et al. 2013 provides the strongest available biological evidence for a dedicated reward-proximity encoding circuit in the striatum that cannot be derived from sensory prediction alone. Dopamine ramps emerge as animals approach distant rewards, scaling with distance and value -- yet the sensory environment is invariant during approach (nothing changes until contact). This is the direct biological analog of SD-018's claim that z_world trained on sensory prediction loss cannot encode resource proximity. High source quality (Nature); the mapping is reasonably tight given that REE's CausalGridWorldV2 has similarly invariant sensory scenes until resource contact.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_018",
+          "failure_signatures": [
+            "The dopamine ramp has been subsequently debated: Costa et al. 2025 finds ramp and ACh signals are dissociated, while other groups debate whether the ramp reflects VTA firing or local circuit mechanisms. If the ramp is a local circuit phenomenon (not pure DA neuron ramping), it might be recoverable from context signals rather than requiring a dedicated head.",
+            "In the rodent maze paradigm, the ramp emerges through extended training. An untrained agent may not exhibit proximity encoding even with an explicit head if the training signal is too sparse."
+          ],
+          "run_id": "2026-04-21_sd_018_dopamine_proximity_ramp_howe2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T08:46:35Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-018",
+          "confidence": 0.65,
+          "confidence_rationale": "Costa et al. 2025 provides mechanistic evidence that NAc dopamine ramps during motivated approach are not coincidental with ACh changes, suggesting the ramp is a distinct approach-drive signal rather than a secondary byproduct of neuromodulatory co-release. This supports SD-018's claim that resource proximity encoding is architecturally separate from sensory/world prediction. However, the paper also notes ongoing controversy about whether DA ramps reflect VTA neuron firing or local circuit mechanisms, which if resolved in favor of local circuits would weaken the claim that a dedicated projection system is required. Rated mixed rather than supports to reflect this mechanistic uncertainty.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_sd_018",
+          "failure_signatures": [
+            "If dopamine ramps are primarily driven by local cholinergic interneuron modulation rather than VTA axonal firing, the ramp signal could in principle be derived from contextual computations in NAc rather than requiring a separate upstream proximity encoder. This would weaken the SD-018 argument that z_world cannot develop proximity sensitivity without an explicit auxiliary head.",
+            "DA and ACh were 'largely independent' in this study -- which could indicate the ramp is not robustly coupled to behavioral state in all conditions, reducing its reliability as a sustained proximity signal."
+          ],
+          "run_id": "2026-04-21_sd_018_nac_dopamine_approach_costa2025",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-21T08:46:35Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 3,
       "source_counts": {
         "experimental": 1,
-        "literature": 0
+        "literature": 2
       }
     },
     "SD-019": {
@@ -21142,7 +21263,7 @@
       }
     },
     "SD-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.322, lit_conf=0.862",
+      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.321, lit_conf=0.862",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -21155,7 +21276,7 @@
         "lit:behavioral_human": 4,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.322,
+      "experimental_confidence": 0.321,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -22033,7 +22154,7 @@
       }
     },
     "onboarding": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.749, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.748, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -22044,7 +22165,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.749,
+      "experimental_confidence": 0.748,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -22056,7 +22177,7 @@
       "latest_run_id": "v3_onboard_smoke_ree_cloud_1_20260409T081904Z_v3",
       "latest_timestamp_utc": "2026-04-09T08:19:04Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.749,
+      "overall_confidence": 0.748,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -57649,6 +57770,91 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-028",
+      "confidence": 0.73,
+      "confidence_rationale": "Directly addresses the BetaGate mechanism that ARC-028 wires to. Beta synchrony in cortico-BG loops acts as a computational capacity gate: high beta = locked-in/committed state, suppressed beta = open to new action selection. Dopamine suppresses beta (hence Parkinson's beta excess from dopamine depletion). ARC-028's claim that a dopamine-triggering completion signal can release BetaGate is directly supported by this mechanism. Confidence moderate because the paper primarily discusses pathological states (Parkinson's); normal-range beta modulation by hippocampal completion signals is inferred, not measured.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_028",
+      "failure_signatures": [
+        "Most beta-oscillation evidence in this paper is from Parkinson's disease pathology (dopamine depletion). Normal beta modulation during goal-directed navigation is less characterized.",
+        "Beta suppression by dopamine may be a threshold effect (large dopamine change) rather than a graded signal proportional to completion quality, which could limit ARC-028's graded hysteresis mechanism (MECH-105, MECH-106)."
+      ],
+      "run_id": "2026-04-21_arc_028_beta_oscillations_bg_brittain2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T08:46:35Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-028",
+      "confidence": 0.72,
+      "confidence_rationale": "Sesack & Grace provide a more detailed microcircuit account than the original Lisman & Grace 2005 paper, explicitly noting that phasic dopamine release (triggered by reward conditions) potentiates ventral subicular drive to the NAc. This is directly relevant to ARC-028's claim that trajectory completion (a reward-adjacent event) should trigger dopamine release via this pathway, sustaining/releasing the BetaGate. The mapping caveat is that 'reward' here means actual reward receipt, not trajectory completion per se.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_028",
+      "failure_signatures": [
+        "The review frames phasic dopamine as gating between approach strategies (rewarded behavior sustained; unrewarded -> switch to new strategy), not as a discrete completion gate for sequences. If the biological function is strategic gating rather than trajectory completion signaling, ARC-028 may need a different mechanistic basis.",
+        "The ventral subicular input to NAc is described as 'contextual and spatial information', not a completion signal per se. Completion may require CA1 output (encoding expectation vs. reality mismatch) rather than subicular spatial context."
+      ],
+      "run_id": "2026-04-21_arc_028_cortical_bg_reward_sesack2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T08:46:35Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-028",
+      "confidence": 0.7,
+      "confidence_rationale": "Circuit anatomy (subiculum -> NAc -> VP -> VTA -> dopamine) is exactly what ARC-028 instantiates. High source quality and mapping fidelity for the anatomical pathway. Confidence capped at 0.70 because the signal in this paper is novelty detection, not trajectory completion -- the biological function being mapped differs from REE's use case.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_028",
+      "failure_signatures": [
+        "The hippocampal signal conveyed through this pathway is novelty-based (mismatch detection), not trajectory-completion. If ARC-028's completion signal is fundamentally different in character from a novelty signal, the same pathway may not transmit it reliably.",
+        "The upward arm of the loop (VTA dopamine back to hippocampus for LTP) is the paper's primary focus; the downward arm (hippocampus -> VTA activation) is described but less empirically grounded."
+      ],
+      "run_id": "2026-04-21_arc_028_hippo_vta_loop_lisman2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T08:46:35Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-018",
+      "confidence": 0.78,
+      "confidence_rationale": "Howe et al. 2013 provides the strongest available biological evidence for a dedicated reward-proximity encoding circuit in the striatum that cannot be derived from sensory prediction alone. Dopamine ramps emerge as animals approach distant rewards, scaling with distance and value -- yet the sensory environment is invariant during approach (nothing changes until contact). This is the direct biological analog of SD-018's claim that z_world trained on sensory prediction loss cannot encode resource proximity. High source quality (Nature); the mapping is reasonably tight given that REE's CausalGridWorldV2 has similarly invariant sensory scenes until resource contact.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_018",
+      "failure_signatures": [
+        "The dopamine ramp has been subsequently debated: Costa et al. 2025 finds ramp and ACh signals are dissociated, while other groups debate whether the ramp reflects VTA firing or local circuit mechanisms. If the ramp is a local circuit phenomenon (not pure DA neuron ramping), it might be recoverable from context signals rather than requiring a dedicated head.",
+        "In the rodent maze paradigm, the ramp emerges through extended training. An untrained agent may not exhibit proximity encoding even with an explicit head if the training signal is too sparse."
+      ],
+      "run_id": "2026-04-21_sd_018_dopamine_proximity_ramp_howe2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T08:46:35Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-018",
+      "confidence": 0.65,
+      "confidence_rationale": "Costa et al. 2025 provides mechanistic evidence that NAc dopamine ramps during motivated approach are not coincidental with ACh changes, suggesting the ramp is a distinct approach-drive signal rather than a secondary byproduct of neuromodulatory co-release. This supports SD-018's claim that resource proximity encoding is architecturally separate from sensory/world prediction. However, the paper also notes ongoing controversy about whether DA ramps reflect VTA neuron firing or local circuit mechanisms, which if resolved in favor of local circuits would weaken the claim that a dedicated projection system is required. Rated mixed rather than supports to reflect this mechanistic uncertainty.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_sd_018",
+      "failure_signatures": [
+        "If dopamine ramps are primarily driven by local cholinergic interneuron modulation rather than VTA axonal firing, the ramp signal could in principle be derived from contextual computations in NAc rather than requiring a separate upstream proximity encoder. This would weaken the SD-018 argument that z_world cannot develop proximity sensitivity without an explicit auxiliary head.",
+        "DA and ACh were 'largely independent' in this study -- which could indicate the ramp is not robustly coupled to behavioral state in all conditions, reducing its reliability as a sustained proximity signal."
+      ],
+      "run_id": "2026-04-21_sd_018_nac_dopamine_approach_costa2025",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-21T08:46:35Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -57680,7 +57886,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-21T06:02:32.749466Z",
+  "generated_at_utc": "2026-04-21T08:50:50.393149Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

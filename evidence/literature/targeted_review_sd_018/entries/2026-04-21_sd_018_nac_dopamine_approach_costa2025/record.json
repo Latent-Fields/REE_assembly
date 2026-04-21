@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_018",
+  "entry_id": "2026-04-21_sd_018_nac_dopamine_approach_costa2025",
+  "timestamp_utc": "2026-04-21T08:46:35Z",
+  "claim_ids_tested": ["SD-018"],
+  "source": {
+    "title": "Dopamine and acetylcholine correlations in the nucleus accumbens depend on behavioral task states.",
+    "authors": ["Costa, Kaue Machado", "Zhang, Zhewei", "Deutsch, Douglas", "Zhuo, Yizhou", "Li, Guochuan", "Li, Yulong", "Schoenbaum, Geoffrey"],
+    "year": 2025,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2025.01.064"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Costa et al. 2025 provides mechanistic evidence that NAc dopamine ramps during motivated approach are not coincidental with ACh changes, suggesting the ramp is a distinct approach-drive signal rather than a secondary byproduct of neuromodulatory co-release. This supports SD-018's claim that resource proximity encoding is architecturally separate from sensory/world prediction. However, the paper also notes ongoing controversy about whether DA ramps reflect VTA neuron firing or local circuit mechanisms, which if resolved in favor of local circuits would weaken the claim that a dedicated projection system is required. Rated mixed rather than supports to reflect this mechanistic uncertainty.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If dopamine ramps are primarily driven by local cholinergic interneuron modulation rather than VTA axonal firing, the ramp signal could in principle be derived from contextual computations in NAc rather than requiring a separate upstream proximity encoder. This would weaken the SD-018 argument that z_world cannot develop proximity sensitivity without an explicit auxiliary head.",
+    "DA and ACh were 'largely independent' in this study -- which could indicate the ramp is not robustly coupled to behavioral state in all conditions, reducing its reliability as a sustained proximity signal."
+  ],
+  "tags": ["sd_018", "nucleus_accumbens", "dopamine", "acetylcholine", "approach_motivation", "motivated_behavior", "ramp_signal"],
+  "mapping": {
+    "source_claim_statement": "Accumbal dopamine and acetylcholine signals are largely independent during motivated approach tasks; dopamine ramps are not coincidental with acetylcholine changes, suggesting they are driven by different circuit mechanisms depending on task phase.",
+    "ree_translation": "The independence of NAc dopamine (approach-proximity signal) from ACh (attention/expectation modulator) supports SD-018's architectural design: the resource_proximity_head targets a distinct motivational dimension of z_world that is not automatically captured by the general world-prediction loss. Just as NAc dopamine and ACh encode separate aspects of approach behavior, z_world needs a separately supervised head to develop proximity representations alongside its sensory prediction content.",
+    "mapping_caveat": "The paper studies approach motivation in a behavioral task, not the mechanism by which z_world encodes grid positions. The leap from 'NAc dopamine and ACh are circuit-mechanistically dissociated' to 'z_world needs an auxiliary supervision signal' requires an additional architectural assumption. This paper provides supporting context rather than direct evidence.",
+    "source_context": "Adult male rats, fiber photometry recording of DA and ACh sensors (GRAB-DA, GRAB-ACh) simultaneously in NAc core; instrumental task with motivated approach phases."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.32,
+    "notes": "Recent well-executed paper from NIDA/Schoenbaum group. Mapping fidelity lower because the dissociation finding is indirect support -- it says proximity signals are separate from other NAc signals, but does not directly show that sensory prediction circuits fail to encode proximity. Transfer to REE requires an additional step."
+  }
+}

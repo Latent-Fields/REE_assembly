@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_028",
+  "entry_id": "2026-04-21_arc_028_cortical_bg_reward_sesack2010",
+  "timestamp_utc": "2026-04-21T08:46:35Z",
+  "claim_ids_tested": ["ARC-028"],
+  "source": {
+    "title": "Cortico-Basal Ganglia reward network: microcircuitry.",
+    "authors": ["Sesack, Susan R.", "Grace, Anthony A."],
+    "year": 2010,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/npp.2009.93"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Sesack & Grace provide a more detailed microcircuit account than the original Lisman & Grace 2005 paper, explicitly noting that phasic dopamine release (triggered by reward conditions) potentiates ventral subicular drive to the NAc. This is directly relevant to ARC-028's claim that trajectory completion (a reward-adjacent event) should trigger dopamine release via this pathway, sustaining/releasing the BetaGate. The mapping caveat is that 'reward' here means actual reward receipt, not trajectory completion per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review frames phasic dopamine as gating between approach strategies (rewarded behavior sustained; unrewarded -> switch to new strategy), not as a discrete completion gate for sequences. If the biological function is strategic gating rather than trajectory completion signaling, ARC-028 may need a different mechanistic basis.",
+    "The ventral subicular input to NAc is described as 'contextual and spatial information', not a completion signal per se. Completion may require CA1 output (encoding expectation vs. reality mismatch) rather than subicular spatial context."
+  ],
+  "tags": ["arc_028", "ventral_subiculum", "nucleus_accumbens", "vta", "dopamine", "reward_microcircuit", "goal_directed_behavior"],
+  "mapping": {
+    "source_claim_statement": "The ventral subiculum of the hippocampus provides contextual and spatial information to NAc. Phasic dopamine release (when reward conditions are met) selectively potentiates ventral subicular drive to the accumbens, maintaining ongoing goal-directed behavior.",
+    "ree_translation": "When HippocampalModule signals trajectory completion (an event analogous to 'reward conditions met'), this drives the subicular -> NAc pathway, which activates the VP -> VTA loop, producing dopamine release. The dopamine then suppresses BG beta synchrony (BetaGate) to allow the candidacy gate to update for the next trajectory.",
+    "mapping_caveat": "The paper describes reward receipt as the trigger for phasic dopamine, not trajectory completion mid-sequence. ARC-028 requires that sequence completion (even if reward is not yet received) generates a completion signal strong enough to activate this circuit. Whether hippocampal 'place cell sequence end' or 'replay completion' signals are routed through this pathway is not directly tested here.",
+    "source_context": "Detailed anatomical and electrophysiological review; rodent and primate data synthesized; written by the same senior author (Grace) as Lisman & Grace 2005."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "Authoritative review on the exact circuit ARC-028 instantiates. Fidelity moderate: 'reward' vs 'trajectory completion' is a real gap. Transfer risk same as Lisman 2005 -- architectural commitment, not empirical prediction."
+  }
+}
