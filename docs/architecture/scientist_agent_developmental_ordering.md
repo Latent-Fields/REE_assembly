@@ -103,3 +103,7 @@ Registering the cluster now reserves the IDs, fixes the architectural relationsh
 - V3 experiments that use z_world directly are implicitly assuming stage-2 complete. This is fine for V3 purposes but should be tagged in experiment notes where relevant.
 - MECH-277 is a prerequisite for SD-003. In practice V3 hand-wires action knowledge into the agent, so MECH-277 is not actively tested — but SD-003 experiments should note the assumption.
 - MECH-278's V4 developmental sub-experiment (experimental action reconstructing z_world) is the clean test for the whole ordering. Reserve that as a flagship V4 experiment.
+
+## Harness spec
+
+See `v4_developmental_harness_spec.md` for the V4 testing harness design sketch — body spec (locomotion + carry + push + use), starter object set (key, lantern + extended block/lure/switch), five validation protocols including the confounder-isolation test that cleanly discriminates MECH-276 from naive correlation, and complexity ladder L0–L4 (L4 bridging to stage-3 via enemy / cooperating agents).
