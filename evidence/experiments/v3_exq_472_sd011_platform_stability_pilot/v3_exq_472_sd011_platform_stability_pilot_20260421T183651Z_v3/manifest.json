@@ -1,0 +1,141 @@
+{
+  "experiment_type": "v3_exq_472_sd011_platform_stability_pilot",
+  "run_id": "v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3",
+  "claim_ids": [
+    "SD-011"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "diagnostic",
+  "outcome": "DIAGNOSTIC",
+  "status": "DIAGNOSTIC",
+  "timestamp_utc": "20260421T183651Z",
+  "seeds": [
+    42,
+    7
+  ],
+  "layouts": [
+    3,
+    5
+  ],
+  "design": {
+    "conditions": 2,
+    "seeds": 2,
+    "n_runs": 4,
+    "episodes_per_run": 300,
+    "steps_per_episode": 200,
+    "phases": {
+      "P0": 120,
+      "P1": 80,
+      "P2": 40,
+      "P3_recover": 30,
+      "P3_eval": 30
+    },
+    "dual_only": true,
+    "drive_weight": 2.0,
+    "harm_history_len": 10,
+    "z_harm_a_aux_loss_weight": 0.1,
+    "perturbation": "hazard_layout_swap_at_ep_p0_plus_p1_plus_p2"
+  },
+  "summary": {
+    "n_runs": 4,
+    "recovery_ratio_median": 0.9993792992034032,
+    "recovery_ratio_min": 0.7918646726808608,
+    "recovery_ratio_max": 1.09868505327395,
+    "dissociation_score_pre_median": 1.8580981014056115,
+    "dissociation_score_post_median": 1.8140873349547226,
+    "recovery_ratios": [
+      1.09868505327395,
+      1.070229581779045,
+      0.7918646726808608,
+      0.9285290166277614
+    ]
+  },
+  "per_run": [
+    {
+      "seed": 42,
+      "layout": "L3",
+      "num_hazards": 3,
+      "swap_layout": "L5",
+      "swap_num_hazards": 5,
+      "dissociation_score_pre": 1.7661199139732318,
+      "dissociation_score_post": 1.940409551771864,
+      "recovery_ratio": 1.09868505327395,
+      "harm_fwd_r2_pre": 0.7883532640695495,
+      "harm_fwd_r2_post": 0.7754149942784321,
+      "stream_corr_pre": 0.386403452797531,
+      "stream_corr_post": 0.14613168898972684,
+      "z_harm_s_hazard_corr_pre": 0.633312725073101,
+      "z_harm_s_hazard_corr_post": 0.5809644604522695,
+      "autocorr_gap_pre": 0.519210641697662,
+      "autocorr_gap_post": 0.5055767803093213,
+      "p1_buffer_size": 1417,
+      "n_steps_measured_pre": 769,
+      "n_steps_measured_post": 430
+    },
+    {
+      "seed": 7,
+      "layout": "L3",
+      "num_hazards": 3,
+      "swap_layout": "L5",
+      "swap_num_hazards": 5,
+      "dissociation_score_pre": 1.8985199773904826,
+      "dissociation_score_post": 2.0318522414017783,
+      "recovery_ratio": 1.070229581779045,
+      "harm_fwd_r2_pre": 0.738199257017392,
+      "harm_fwd_r2_post": 0.7670820373311336,
+      "stream_corr_pre": 0.11283286134771034,
+      "stream_corr_post": 0.09477203020814687,
+      "z_harm_s_hazard_corr_pre": 0.41344580863986347,
+      "z_harm_s_hazard_corr_post": 0.5583316199897131,
+      "autocorr_gap_pre": 0.5979070300983295,
+      "autocorr_gap_post": 0.5682926516202119,
+      "p1_buffer_size": 1320,
+      "n_steps_measured_pre": 755,
+      "n_steps_measured_post": 407
+    },
+    {
+      "seed": 42,
+      "layout": "L5",
+      "num_hazards": 5,
+      "swap_layout": "L3",
+      "swap_num_hazards": 3,
+      "dissociation_score_pre": 1.9843467232289562,
+      "dissociation_score_post": 1.571334068475036,
+      "recovery_ratio": 0.7918646726808608,
+      "harm_fwd_r2_pre": 0.7260149644399113,
+      "harm_fwd_r2_post": 0.7477792512163006,
+      "stream_corr_pre": 0.06704277964190648,
+      "stream_corr_post": 0.3127720401294591,
+      "z_harm_s_hazard_corr_pre": 0.5178317092503605,
+      "z_harm_s_hazard_corr_post": 0.5596920538410423,
+      "autocorr_gap_pre": 0.5335577936205023,
+      "autocorr_gap_post": 0.32441405476345286,
+      "p1_buffer_size": 931,
+      "n_steps_measured_pre": 472,
+      "n_steps_measured_post": 599
+    },
+    {
+      "seed": 7,
+      "layout": "L5",
+      "num_hazards": 5,
+      "swap_layout": "L3",
+      "swap_num_hazards": 3,
+      "dissociation_score_pre": 1.8176762254207404,
+      "dissociation_score_post": 1.6877651181375812,
+      "recovery_ratio": 0.9285290166277614,
+      "harm_fwd_r2_pre": 0.7612079356437268,
+      "harm_fwd_r2_post": 0.7803326910194988,
+      "stream_corr_pre": 0.06974200928153797,
+      "stream_corr_post": 0.4108643290607277,
+      "z_harm_s_hazard_corr_pre": 0.438438947112338,
+      "z_harm_s_hazard_corr_post": 0.5260200141402743,
+      "autocorr_gap_pre": 0.4489792875899403,
+      "autocorr_gap_post": 0.5726094330580347,
+      "p1_buffer_size": 968,
+      "n_steps_measured_pre": 558,
+      "n_steps_measured_post": 628
+    }
+  ],
+  "note": "Diagnostic pilot -- anchors C7 perturbation-recovery threshold and C5 dual_advantage multiplier for the EXP-0090 main evidence script. Not itself an evidence run. Not PASS/FAIL scored."
+}
