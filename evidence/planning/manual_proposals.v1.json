@@ -840,6 +840,85 @@
       "script_path": "ree-v3/experiments/v3_exq_468_sd034_mech268_commitment_vs_contradiction.py",
       "reserved_queue_id": "V3-EXQ-468",
       "queued_utc": "2026-04-21"
+    },
+    {
+      "proposal_id": "EXP-0165",
+      "added_utc": "2026-04-21",
+      "claim_id": "MECH-264",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "proposed",
+      "prerequisites": [
+        "SD-033e FrontopolarAnalog substrate (V4; stub landed 2026-04-21, implementation deferred pending Prong D literature synthesis)",
+        "MECH-163 hippocampal multi-step trajectory planning (V3 full-completion gate); without multi-step plans the counterfactual collapses to MECH-257 dACC function",
+        "Prong D literature pull (task_inbox.md line 21) to commit on pairwise-vs-K>=2 counterfactual-value geometry (Boorman 2009)",
+        "CausalGridWorldV2 three-alternative decision task (env extension): at decision points, agent is offered three trajectories with known expected values; E3 commits to one"
+      ],
+      "objective": "Probe whether SD-033e FrontopolarAnalog's MECH-264 counterfactual-value head tracks the value of the best-unchosen alternative over committed trajectories, as distinct from the SD-033c dlPFC working-memory substrate. Boorman 2009 Neuron finding: lateral FPC tracks chosen-vs-unchosen option value across trials, not working-memory contents. Targets falsification signature (i) in SD-033e spec: 'counterfactual-value tracking over K>=2 alternatives'.",
+      "design": "Three-arm task on a three-alternative decision variant of CausalGridWorldV2. At each decision point, three trajectories with known value are offered; agent commits; outcome observed; agent must decide on the next episode whether to switch to the best unchosen alternative from the prior trial. Arm A (SD-033e OFF / baseline): counterfactual-value head zero -- no unchosen-alternative tracking; switching behaviour predicted by dACC bundle alone. Arm B (SD-033e ON / counterfactual-value head active): predicted switch propensity positively correlated with prior-trial best-unchosen value. Arm C (SD-033e ON, head permuted at trial boundary -- active-control): scrambles the counterfactual signal; if behaviour matches Arm B the head is not the causal substrate. Measure: (i) switch-rate as function of prior-trial best-unchosen value; (ii) head activation correlation with realised unchosen reward; (iii) Arm B vs Arm C dissociation. Predicted: Arm B shows monotone switch-rate curve; Arm A flat; Arm C flat (permuted signal has no information). FAIL-route: if Arm B == Arm A, MECH-264 is not behaviourally load-bearing at this scale. If Arm B == Arm C, the head correlation is spurious (Boorman-style correlational artefact).",
+      "claims_tested": [
+        "MECH-264",
+        "SD-033e"
+      ],
+      "notes": "SD-033e preparation-plan proposal. Staged before SD-033e design-doc authorship. Prong D literature synthesis (task_inbox.md line 21) is the prerequisite for committing Arm B's counterfactual-value head architecture (pairwise vs K>=2, training signal). Full execution gated on: (a) SD-033e implementation lifting the stub guard; (b) MECH-163 V3 full-completion gate; (c) CausalGridWorldV2 three-alternative env extension. Biological grounding: Boorman, Behrens, Woolrich & Rushworth 2009 (Neuron) lateral FPC counterfactual-option value tracking.",
+      "script_path": null,
+      "reserved_queue_id": null,
+      "queued_utc": null
+    },
+    {
+      "proposal_id": "EXP-0166",
+      "added_utc": "2026-04-21",
+      "claim_id": "MECH-265",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "proposed",
+      "prerequisites": [
+        "SD-033e FrontopolarAnalog substrate (V4; stub landed 2026-04-21, implementation deferred)",
+        "CausalGridWorldV2 dual-simultaneously-active-goal extension (env extension): two goals with independently resetting drive levels and distinct resource cues",
+        "SalienceCoordinator parallel_goal_deliberation mode registration (add to DEFAULT_MODE_NAMES behind salience_enable_v4_modes flag; register_target accepts the key without schema change)",
+        "Prong D literature pull (task_inbox.md line 21) to commit on K>=2 relative-importance geometry (Mansouri 2015/2017)"
+      ],
+      "objective": "Probe whether FPC ablation (zeroing the SD-033e module) reproduces the Mansouri 2015 (PNAS) bilateral-FPC-lesion phenotype: over-focus on one goal plus impaired adaptation to a novel rule. This is the falsification signature (iv) in SD-033e spec: 'disengagement for exploration'. Distinguishes SD-033e contribution from SD-033a (rule) and dACC (value integration).",
+      "design": "Four-arm ablation on a dual-active-goal task. Agent has two simultaneously-active goals (resource A and resource B) with independently-draining drive levels; resource distribution forces choice between them. At trial N, a novel rule is introduced (e.g., goal A becomes inaccessible unless a precondition is met). Arm A (all modules ON, baseline): expected rapid adaptation, roughly balanced goal pursuit via parallel_goal_deliberation mode. Arm B (SD-033e OFF -- FPC lesion analogue): predicted over-focus on the dominant goal (Mansouri 2015 monostrategy), impaired novel-rule adaptation. Arm C (SD-033a OFF, SD-033e ON -- control for rule vs importance confound): predicted impaired rule-following but preserved goal balance. Arm D (dACC OFF, SD-033e ON -- control for value integration confound): predicted impaired trajectory evaluation but preserved goal balancing. Measure: (i) per-goal pursuit fraction and entropy across episodes; (ii) trials-to-criterion on the novel rule; (iii) monostrategy index (fishtank-style viz); (iv) importance-vector entropy over trials. Predicted: Arm B uniquely displays both over-focus AND novel-rule impairment; Arms C and D dissociate the two deficits. FAIL-route: if Arm B matches Arm C OR Arm D, the Mansouri 2015 phenotype is not selective to SD-033e and MECH-265 reduces to a pre-existing substrate.",
+      "claims_tested": [
+        "MECH-265",
+        "SD-033e",
+        "SD-033a",
+        "SD-032b"
+      ],
+      "notes": "SD-033e preparation-plan proposal. Staged before SD-033e design-doc authorship. Full execution gated on: (a) SD-033e implementation; (b) CausalGridWorldV2 dual-active-goal extension (not yet on any roadmap item); (c) parallel_goal_deliberation mode activation in SalienceCoordinator (pending salience_coordinator.py edit deferred from 2026-04-21 session). Biological grounding: Mansouri, Buckley, Mahboubi & Tanaka 2015 (PNAS) bilateral FPC lesion over-focus + novel-rule-impairment phenotype; Mansouri et al. 2017 (Nat Rev Neurosci) parallel-goal monitoring synthesis.",
+      "script_path": null,
+      "reserved_queue_id": null,
+      "queued_utc": null
+    },
+    {
+      "proposal_id": "EXP-0167",
+      "added_utc": "2026-04-21",
+      "claim_id": "SD-033e",
+      "proposal_type": "experimental",
+      "priority": "medium",
+      "dispatch_mode": "new_run",
+      "target_repo": "ree-v3",
+      "status": "proposed",
+      "prerequisites": [
+        "SD-033e FrontopolarAnalog substrate (V4; stub landed 2026-04-21, implementation deferred)",
+        "SD-033c dlPFC-analog working-memory substrate (pending registration)",
+        "A task variant requiring BOTH working-memory maintenance of current goal AND counterfactual-value tracking of the alternative (delayed-match-to-sample with a superior-alternative distractor)"
+      ],
+      "objective": "Dissociate SD-033c (dlPFC working-memory) from SD-033e (frontopolar counterfactual / relative-importance) behaviourally. Burgess 2007 (TiCS) gateway hypothesis predicts medial BA 10 external engagement vs lateral BA 10 internal cognition; the two substrates should be selectively ablatable on different task demands.",
+      "design": "Four-arm ablation on a task requiring both working-memory maintenance (hold a cued target across a delay) and counterfactual evaluation (during the delay, an unrelated-but-higher-value distractor is briefly visible; the correct response remains the original target at recall). Arm A (both ON): baseline; predicted high accuracy and appropriate counterfactual scoring without derailment. Arm B (SD-033c OFF, SD-033e ON): predicted impaired working-memory maintenance (drift to zero-cue); counterfactual scoring preserved. Arm C (SD-033c ON, SD-033e OFF): predicted preserved working memory; impaired detection of the counterfactual alternative (no switch-propensity signal). Arm D (both OFF): predicted joint failure. Measure: (i) delay-period target-latent drift (proxy for WM); (ii) counterfactual-value head activation correlation with distractor value (Arm A/B only); (iii) end-of-delay response accuracy; (iv) post-distractor switch rate. Predicted double dissociation: WM deficit selectively in B; counterfactual deficit selectively in C. FAIL-route: if Arms B and C produce indistinguishable behaviour, the WM / counterfactual separation is not architecturally real at this scale.",
+      "claims_tested": [
+        "SD-033e",
+        "SD-033c"
+      ],
+      "notes": "SD-033e preparation-plan proposal. Staged before SD-033e design doc. Depends on SD-033c registration (not yet authored). Task design (delay + distractor + counterfactual recall) is a novel env variant and not on any existing roadmap; proposal serves as a placeholder to anchor the dissociation experiment when both substrates exist. Biological grounding: Burgess, Dumontheil & Gilbert 2007 (TiCS) BA 10 gateway hypothesis; Badre & Nee 2018 rostral pole abstraction gradient.",
+      "script_path": null,
+      "reserved_queue_id": null,
+      "queued_utc": null
     }
   ]
 }
