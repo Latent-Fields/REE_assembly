@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-21T08:50:50.393149Z`
+Generated: `2026-04-21T18:20:55.471249Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -178,7 +178,7 @@ Generated: `2026-04-21T08:50:50.393149Z`
 | `targeted_review_sd_007` | [`2026-03-28_sd_007_vestibular_reafference_roy2001`](targeted_review_sd_007/entries/2026-03-28_sd_007_vestibular_reafference_roy2001/record.json) | 4 | [`summary`](targeted_review_sd_007/entries/2026-03-28_sd_007_vestibular_reafference_roy2001/summary.md) |
 | `targeted_review_sd_008` | [`2026-03-29_sd_008_temporal_smoothing_hierarchical_network_hashemi2023`](targeted_review_sd_008/entries/2026-03-29_sd_008_temporal_smoothing_hierarchical_network_hashemi2023/record.json) | 2 | [`summary`](targeted_review_sd_008/entries/2026-03-29_sd_008_temporal_smoothing_hierarchical_network_hashemi2023/summary.md) |
 | `targeted_review_sd_009` | [`2026-03-29_sd_009_curl_contrastive_unsupervised_rl_laskin2020`](targeted_review_sd_009/entries/2026-03-29_sd_009_curl_contrastive_unsupervised_rl_laskin2020/record.json) | 2 | [`summary`](targeted_review_sd_009/entries/2026-03-29_sd_009_curl_contrastive_unsupervised_rl_laskin2020/summary.md) |
-| `targeted_review_sd_011` | [`2026-04-17_sd_011_sensory_affective_dissociation_price1987`](targeted_review_sd_011/entries/2026-04-17_sd_011_sensory_affective_dissociation_price1987/record.json) | 4 | [`summary`](targeted_review_sd_011/entries/2026-04-17_sd_011_sensory_affective_dissociation_price1987/summary.md) |
+| `targeted_review_sd_011` | [`2026-04-21_sd_011_interoception_homeostatic_emotions_strigo2016`](targeted_review_sd_011/entries/2026-04-21_sd_011_interoception_homeostatic_emotions_strigo2016/record.json) | 8 | [`summary`](targeted_review_sd_011/entries/2026-04-21_sd_011_interoception_homeostatic_emotions_strigo2016/summary.md) |
 | `targeted_review_sd_012` | [`2026-04-13_sd_012_zona_incerta_dopamine_vigor_ye2023`](targeted_review_sd_012/entries/2026-04-13_sd_012_zona_incerta_dopamine_vigor_ye2023/record.json) | 8 | [`summary`](targeted_review_sd_012/entries/2026-04-13_sd_012_zona_incerta_dopamine_vigor_ye2023/summary.md) |
 | `targeted_review_sd_013` | [`2026-04-13_sd_013_causal_representation_learning_scholkopf2021`](targeted_review_sd_013/entries/2026-04-13_sd_013_causal_representation_learning_scholkopf2021/record.json) | 4 | [`summary`](targeted_review_sd_013/entries/2026-04-13_sd_013_causal_representation_learning_scholkopf2021/summary.md) |
 | `targeted_review_sd_014` | [`2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011`](targeted_review_sd_014/entries/2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011/record.json) | 4 | [`summary`](targeted_review_sd_014/entries/2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011/summary.md) |

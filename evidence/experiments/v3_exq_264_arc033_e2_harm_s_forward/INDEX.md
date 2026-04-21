@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_264_arc033_e2_harm_s_forward
 
-Generated: `2026-04-21T08:50:50.393149Z`
+Generated: `2026-04-21T18:20:55.471249Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

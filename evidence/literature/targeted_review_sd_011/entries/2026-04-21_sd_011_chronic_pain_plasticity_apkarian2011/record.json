@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-21_sd_011_chronic_pain_plasticity_apkarian2011",
+  "timestamp_utc": "2026-04-21T18:03:35Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Pain and the brain: specificity and plasticity of the brain in clinical chronic pain.",
+    "authors": ["Apkarian AV", "Hashmi JA", "Baliki MN"],
+    "year": 2011,
+    "venue": "Pain",
+    "doi": "10.1016/j.pain.2010.11.010",
+    "pmid": "21146929",
+    "pmc": "PMC3045648",
+    "volume": "152",
+    "issue": "3 Suppl",
+    "pages": "S49-S64"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "High-quality review from the primary investigators in the chronic-pain neuroimaging field, published in the canonical journal. Directly addresses the context-stability question: does the dual-stream dissociation survive sustained noxious context (chronic pain)? The answer is nuanced — the anatomical substrates remain (A-delta/S1 vs C-fiber/ACC-insula) but their functional engagement and connectivity reorganise, with the affective/medial stream shifting toward medial prefrontal and limbic circuits (NAc, amygdala) that are not prominent in acute pain. This is the key finding for SD-011 context-stability: the z_harm_s vs z_harm_a dissociation is not a fixed dual-pipeline but a pair of streams that drift differentially under sustained exposure. Mapping fidelity is good; transfer risk is moderate because REE's acute-learning context differs from clinical chronicity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Under sustained noxious context, the C-fiber/medial (z_harm_a-analogous) stream shifts recruitment from pure intralaminar-thalamic/ACC/insula toward mPFC, NAc and amygdala — the architectural separation survives but the downstream consumers change",
+    "Chronic pain patients show decreased S1 (z_harm_s-analogous) engagement relative to healthy controls on equivalent nociceptive input — sensory-discriminative precision can degrade under sustained context",
+    "The transition from acute to chronic pain is framed as learning-mediated (mesolimbic reorganization), which predicts that dual-stream weights in REE should drift with experience rather than remain fixed",
+    "If a single-stream model could account for chronic pain phenomenology, SD-011 would be weakened — the review explicitly argues that acute and chronic pain engage separable networks"
+  ],
+  "tags": ["sd_011", "context_stability", "chronic_pain", "plasticity", "dual_stream_drift", "mesolimbic", "sustained_context"],
+  "mapping": {
+    "source_claim_statement": "Acute and chronic pain engage partially distinct brain networks. Acute pain primarily activates the classic 'pain matrix' (S1, S2, insula, ACC, thalamus). Chronic pain additionally and preferentially engages mesolimbic/emotional regulatory circuits (mPFC, NAc, amygdala) and shows reduced S1/sensory engagement. The transition is best understood as a learning process mediated by reinforcement and emotional circuitry rather than as simple persistence of acute nociception.",
+    "ree_translation": "SD-011 posits that z_harm_s (sensory-discriminative, A-delta/S1) and z_harm_a (affective-motivational, C-fiber/ACC-insula) are structurally distinct streams. Apkarian et al. show that this structural separation is preserved across acute-to-chronic transitions but that the functional weighting drifts: z_harm_a's downstream consumers expand beyond ACC/insula into mPFC/NAc/amygdala as context sustains, while z_harm_s engagement attenuates. Translation: the dual-stream architecture is stable (cannot be collapsed into a single stream even in chronic states), but the downstream integration is not — ARC-016 harm-variance gating that consumes z_harm_a should be expected to couple to additional targets under sustained context.",
+    "mapping_caveat": "The review concerns clinical chronic pain (CBP, CRPS, fibromyalgia) with pain durations of months to years. REE's context-change timescale in V3 experiments is episode-level (seconds to minutes within a training run). Direct transfer is therefore bounded — what the review shows is that the dual-stream architecture is robust to the most extreme sustained-context perturbation known in human neuroscience, which is a strong existence proof. It does NOT directly show that dual-stream weights are stable on short timescales. The review also cannot rule out that chronic pain reflects a separate clinical failure mode rather than the normal operation of the system under sustained context.",
+    "source_context": "Human clinical neuroimaging (fMRI, VBM, DTI) in patients with chronic back pain, complex regional pain syndrome, osteoarthritis, and related conditions. Comparisons are primarily cross-sectional against healthy controls, with some longitudinal tracking of subacute-to-chronic transitions."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high — Pain journal, senior authorship, well-cited. Mapping fidelity moderate because the review frames findings around chronicity-as-pathology rather than context-stability-of-architecture; the latter is a REE-specific reading. Transfer risk elevated because the timescales (months vs minutes) and the agent-vs-patient framing differ substantially."
+  }
+}

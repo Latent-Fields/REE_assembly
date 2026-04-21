@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-21_sd_011_context_instrumental_extinction_bouton2014",
+  "timestamp_utc": "2026-04-21T18:03:35Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "A fundamental role for context in instrumental learning and extinction.",
+    "authors": ["Bouton ME", "Todd TP"],
+    "year": 2014,
+    "venue": "Behavioural Processes",
+    "doi": "10.1016/j.beproc.2014.02.012",
+    "pmid": "24576702",
+    "pmc": "PMC4012323",
+    "volume": "104",
+    "pages": "13-9"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Canonical Bouton review of context-dependence in instrumental conditioning — the closest available surrogate for the requested Bouton 2004 citation. Directly relevant to the SD-011 context-stability question but by analogy rather than by direct measurement of nociceptive streams. Key claim: learned inhibitory relations (including affective/avoidance associations) are strongly context-specific, exhibiting ABA, ABC, and AAB renewal. Mapping to SD-011: the affective/motivational stream's learned couplings (what z_harm_a means for action in a given context) are predicted by the Bouton framework to be context-bound and subject to renewal. The sensory-discriminative stream's encoding (z_harm_s as a forward-predictable mapping from action to proximity) should be less context-bound because it is grounded in physical regularities. Mapping fidelity is limited because the review speaks to instrumental learning in general, not nociception specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the affective/motivational stream's downstream coupling were fully context-independent, Bouton's renewal effects would not occur — they do, reliably, across ABA/ABC/AAB paradigms",
+    "Extinction of an operant behaviour is more context-specific than its acquisition — this predicts that the process of UNLEARNING a z_harm_a-driven avoidance is more context-bound than learning it",
+    "Inhibitory context-response associations are learned directly, meaning the harm-stream's action-gating is encoded as context-response bindings rather than context-free valuations — SD-011 should not treat z_harm_a as a context-free motivational scalar",
+    "If REE treats harm-stream-driven action-gating as context-free, it predicts no renewal after 'extinction' of harmful-context avoidance — the Bouton literature predicts renewal would occur"
+  ],
+  "tags": ["sd_011", "context_stability", "extinction_renewal", "instrumental_learning", "context_dependence", "conditioned_inhibition"],
+  "mapping": {
+    "source_claim_statement": "Extinction of either simple or discriminated operant behaviour is relatively specific to the context in which it is learned: ABA, ABC, and AAB renewal effects all occur. The organism learns an inhibitory context-response association rather than erasing the original learning. Context also modulates instrumental behaviour before extinction: a context switch after either simple or discriminated operant training causes a decrement in response strength, consistent with direct context-response associations and under some conditions a hierarchical context/(response-reinforcer) representation.",
+    "ree_translation": "SD-011 posits two functional roles for the harm stream: sensory-discriminative (z_harm_s, A-delta/S1, feeds E2_harm_s forward model) and affective-motivational (z_harm_a, C-fiber/ACC-insula, feeds E3 as urgency/drive signal). Bouton's framework predicts that the motivational/avoidance-learning role of z_harm_a is tightly context-bound — what z_harm_a means for action is learned as context-response inhibitory associations and can be renewed by context shift. The sensory-discriminative role of z_harm_s, because it is grounded in physical stimulus-proximity regularities, should be much less context-bound. This is compatible with SD-011's dual-stream architecture but adds an implementation constraint: the E3 consumer of z_harm_a should implement context-response learning (harm-avoidance gates are context-conditional), while the E2_harm_s forward model should be more context-invariant (proximity-from-action is a physical regularity).",
+    "mapping_caveat": "The review concerns operant conditioning paradigms in rats (lever-press, head-entry), not nociception. The mapping to SD-011 is by structural analogy: z_harm_a's role as a driver of learned avoidance is functionally analogous to the learned inhibitory relations Bouton studies, but the mapping is not direct measurement. The paper does not discuss dual nociceptive streams. Transfer risk is non-trivial because REE's context shifts (environment perturbations in gridworlds) are not semantically equivalent to Bouton's explicit context manipulations (distinct operant chambers with different cue configurations).",
+    "source_context": "Comparative/behavioural review, primarily rat operant conditioning with lever-press and head-entry responses across distinct physical contexts (chamber A vs B vs C). The paradigms are ABA renewal (acquire in A, extinguish in B, test in A), ABC (acquire A, extinguish B, test C), and AAB (acquire A, extinguish A, test B)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.50,
+    "notes": "Source quality high — Bouton is the canonical voice on context-dependence, the review is well-cited, and the phenomena (renewal) are robust. Mapping fidelity low-to-moderate because the paper speaks to operant learning rather than to nociception directly; the bridge requires assuming z_harm_a's avoidance-gating role behaves like a learned inhibitory relation. Transfer risk moderate — the claim that affective/motivational learning is context-specific is well-established across species and paradigms, so the general principle transfers, but the specific mapping to dual-stream nociception is inferential."
+  }
+}

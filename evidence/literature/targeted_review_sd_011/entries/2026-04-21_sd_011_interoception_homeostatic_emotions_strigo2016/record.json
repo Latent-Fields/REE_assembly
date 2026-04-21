@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-21_sd_011_interoception_homeostatic_emotions_strigo2016",
+  "timestamp_utc": "2026-04-21T18:03:35Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Interoception, homeostatic emotions and sympathovagal balance.",
+    "authors": ["Strigo IA", "Craig ADB"],
+    "year": 2016,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0010",
+    "pmid": "28080968",
+    "pmc": "PMC5062099",
+    "volume": "371",
+    "issue": "1708"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Craig (with Strigo) updating the interoceptive-cortex framework 13 years after Craig 2003 (already in the folder). Directly relevant to the SD-011 context-stability question: is the insular interoceptive map stable across affective-state shifts? Their answer is that the hierarchical sensorimotor architecture — interoceptive feelings in insula conjoined with homeostatic motivations in cingulate — is architecturally stable but organised asymmetrically to accommodate bivalent (positive/negative, approach/avoidance, parasympathetic/sympathetic) feeling states. The architecture itself does not reorganize; it encodes state differences through asymmetric activation rather than through topological change. This is strong support for SD-011's structural dual-stream claim. Confidence held at 0.75 rather than higher because the paper is theoretical synthesis rather than a dedicated empirical test of the context-stability question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If interoceptive cortical architecture reorganized across affective states (rather than using asymmetric activation of a stable architecture), SD-011's structural dual-stream claim would be weakened",
+    "The z_harm_a-analogue (insular interoceptive map) is shown to be architecturally stable across positive, negative, and sympathovagal-balance shifts — it expresses state differences through asymmetric activation patterns, not by reorganizing the map",
+    "Bivalent feelings (approach/avoidance, positive/negative) are encoded as asymmetric parasympathetic/sympathetic components of a single stable architecture, supporting the REE pattern of encoding context-dependent harm-stream meaning through weighting rather than through architectural change",
+    "If REE implemented context-dependent z_harm_a through architectural reorganization rather than through asymmetric activation of a stable dual-stream substrate, it would diverge from the mammalian reference implementation"
+  ],
+  "tags": ["sd_011", "context_stability", "interoception", "insular_cortex", "homeostatic_emotions", "bivalent_feelings", "sympathovagal"],
+  "mapping": {
+    "source_claim_statement": "The neuroanatomical substrates of interoception support a hierarchical sensorimotor architecture: feelings from the body are substantialized in the insular cortex and are conjoined with homeostatic motivations that guide adaptive behaviours in the cingulate cortex. This architecture is stable across affective states. Bivalent feelings (positive/negative, approach/avoidance) and sympathovagal balance are organized and regulated through asymmetric positive/negative, approach/avoidance, parasympathetic/sympathetic components of this stable architecture rather than through architectural reorganization.",
+    "ree_translation": "SD-011's z_harm_a stream (C-fiber/medial-thalamic afferents integrated into the insula-ACC homeostatic-emotion axis) is architecturally stable across affective-state contexts. What changes across contexts is the asymmetric pattern of activation within the stable architecture, not the architecture itself. For REE this directly supports the claim that SD-011's dual-stream design should be implemented as a fixed architectural separation with context-dependent activation weighting, rather than as a dynamically reorganizing set of streams. Combined with Apkarian 2011 and Baliki 2014 (which show downstream integration can drift), the joint reading is: the streams themselves are fixed, their downstream couplings can drift, and the difference is diagnostic — architectural instability would be pathological, not normal context-sensitivity.",
+    "mapping_caveat": "The review is theoretical synthesis grounded in primate anatomical tracing, human functional imaging, and vagal/cardiorespiratory studies — it does not directly test the context-stability question with a dedicated empirical design. The architectural stability claim is defended on convergent-evidence grounds rather than by a single experiment. Transfer to REE is close because the insular-cingulate architecture Craig describes is precisely what SD-011 draws its biological grounding from; the main risk is that REE's conceptual-sensorium latent-variable framing may require architectural features that the Craig/Strigo picture does not fully specify.",
+    "source_context": "Review paper in a themed issue on interoception, drawing on primate anatomical tracing (Craig's lab spinothalamic/VMb projection mapping), human fMRI with paced breathing and emotional imagery, and vagal/cardiorespiratory physiology studies. Part of a broader research programme by Craig arguing for the insula as the substantiating substrate of subjective feelings."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Source quality high — Philosophical Transactions B is a top venue for synthesis work, and Craig is the leading figure on insular interoception. Mapping fidelity high because SD-011 explicitly draws on Craig's earlier work for its biological grounding, so the architectural-stability finding maps directly. Transfer risk low because the architecture in question (insula + cingulate hierarchy) is what SD-011 is instantiating rather than an analogy. The confidence is pulled back from 0.85 by the review/synthesis nature of the evidence rather than direct empirical test."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_011",
+  "entry_id": "2026-04-21_sd_011_dmn_chronic_pain_reorganization_baliki2014",
+  "timestamp_utc": "2026-04-21T18:03:35Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Functional reorganization of the default mode network across chronic pain conditions.",
+    "authors": ["Baliki MN", "Mansour AR", "Baria AT", "Apkarian AV"],
+    "year": 2014,
+    "venue": "PLoS One",
+    "doi": "10.1371/journal.pone.0106133",
+    "pmid": "25180885",
+    "pmc": "PMC4152156",
+    "volume": "9",
+    "issue": "9",
+    "pages": "e106133"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Empirical resting-state fMRI across three chronic pain populations (CBP, CRPS, OA) against healthy controls. Directly tests whether the affective/medial-stream's downstream integration (notably into DMN components, insula, mPFC) is stable under sustained noxious context. Finding: DMN reorganizes in all three chronic pain conditions, with increased mPFC-insula coupling proportional to pain intensity and decreased mPFC-to-posterior-DMN coupling. Mapping to SD-011 is indirect — the paper tests DMN topology, not explicitly the z_harm_s/z_harm_a dissociation — but the z_harm_a-analogue (insula) is shown to acquire novel couplings under sustained context, directly speaking to the context-stability question. Methods are standard resting-state functional connectivity (ICA + seed-based) with healthy controls; sample sizes modest but the cross-condition replication strengthens the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Under sustained noxious context the affective/medial stream (insula-analogue) acquires novel couplings (mPFC, DMN components) that are absent in acute pain — stream boundaries are not topologically fixed",
+    "The sensory-discriminative stream's engagement is not shown to change dramatically in DMN coupling, which is consistent with z_harm_s being more context-stable than z_harm_a",
+    "If SD-011 required that z_harm_a's downstream consumers be fixed, this paper would weaken it — the evidence is that z_harm_a integration is plastic under context",
+    "Pain intensity scales proportionally with mPFC-insula connectivity change, suggesting context-strength modulates stream coupling rather than simply switching it on/off"
+  ],
+  "tags": ["sd_011", "context_stability", "dmn", "mpfc_insula", "resting_state_connectivity", "chronic_pain", "cross_condition"],
+  "mapping": {
+    "source_claim_statement": "Across three chronic pain conditions (CBP, CRPS, OA) the default mode network reorganizes: mPFC shows decreased connectivity with posterior DMN constituents and increased connectivity with insular cortex, in proportion to pain intensity. Multiple DMN regions (especially mPFC) show elevated high-frequency oscillations and decreased phase-locking with parietal attention regions. Reorganization correlates with pain duration in CBP and OA.",
+    "ree_translation": "The insular stream (z_harm_a analogue, consuming C-fiber/medial-thalamic afferents) acquires a novel downstream partner (mPFC/DMN) under sustained noxious context that it does not have in acute pain. This supports the SD-011 architecture in the sense that the z_harm_a stream remains identifiable across conditions (the insula is still engaged; it does not disappear or merge), but shows that its downstream integration is plastic and context-dependent. z_harm_a in REE should not be wired to a single fixed consumer; architecture should allow its integration targets to change with sustained context (e.g., through drive-level / ARC-016 precision gating recruiting additional modules).",
+    "mapping_caveat": "The paper studies resting-state connectivity in chronic pain patients at rest, not during active nociceptive stimulation. It therefore tests whether the pain context (having chronic pain) reorganizes default network topology, not whether acute dual-stream responses differ across contexts. The strongest inference this paper licenses is: sustained pain context reorganizes z_harm_a's downstream integration targets — it does NOT directly show that acute z_harm_s vs z_harm_a dissociation is or is not preserved under context shift. Also, all three conditions are clinical: the reorganization may reflect selection effects (who develops chronic pain) as much as causal effects of sustained input.",
+    "source_context": "Resting-state fMRI in humans with chronic back pain (N=16), complex regional pain syndrome (N=10), knee osteoarthritis (N=14), against healthy controls (N=21). ICA decomposition into canonical resting networks, with subsequent seed-based connectivity analyses focused on mPFC and DMN."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Source quality moderate — PLoS One is a solid venue, the Apkarian lab is the field leader, but sample sizes are modest and the cross-sectional design cannot establish causal direction. Mapping fidelity moderate because the study operationalises 'stream integration' as resting-state connectivity rather than task-evoked stream response; this is a reasonable but indirect mapping. Transfer risk moderate-high because chronic clinical pain is a much stronger and qualitatively different context perturbation than anything REE V3 will instantiate."
+  }
+}
