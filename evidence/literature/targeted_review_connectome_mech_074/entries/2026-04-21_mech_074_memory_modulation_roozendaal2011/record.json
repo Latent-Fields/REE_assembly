@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-21_mech_074_memory_modulation_roozendaal2011",
+  "timestamp_utc": "2026-04-21T18:47:30Z",
+  "claim_ids_tested": ["MECH-074"],
+  "source": {
+    "title": "Memory Modulation",
+    "authors": ["Roozendaal, Benno", "McGaugh, James L."],
+    "year": 2011,
+    "venue": "Behavioral Neuroscience 125(6):797-824",
+    "doi": "10.1037/a0026187",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3236701/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Major review by the two most-cited authors in the BLA memory-modulation field; synthesizes dozens of rodent pharmacology studies with concrete dose ranges, explicit post-training time windows, and a well-characterized inverted-U arousal function. Weaker on exact NE threshold values at the synapse (not a feasibility limit of the science but not reported as single numeric values), hence not higher than 0.82.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If BLAAnalog applies encoding gain outside a bounded post-event window (no decay after ~30 simulation minutes ~= 1.8e4 steps at 100ms/step), memory enhancement will behave non-physiologically and MECH-074 is mis-implemented.",
+    "If the gain curve is monotonic rather than inverted-U in arousal, high-arousal events will super-consolidate indefinitely; this contradicts Roozendaal & McGaugh's repeatedly-replicated finding that high doses of corticosterone or NE agonists impair rather than enhance consolidation.",
+    "If encoding gain multiplier is allowed to exceed ~2.5-3x baseline, behavior will diverge from the dose-response envelope reported across clenbuterol / NE / corticosterone infusions.",
+    "If arousal gating triggers below ||z_harm_a|| corresponding to resting tonic NE (paper's implicit floor: no memory modulation without emotionally arousing training), the module will over-consolidate neutral episodes and lose the selectivity that is the whole point of MECH-074."
+  ],
+  "tags": [
+    "mech-074",
+    "amygdala",
+    "bla",
+    "encoding_gain",
+    "noradrenergic",
+    "corticosterone",
+    "inverted_u",
+    "memory_consolidation",
+    "dose_response",
+    "post_training_window"
+  ],
+  "mapping": {
+    "source_claim_statement": "Emotionally arousing events trigger adrenal release of epinephrine and glucocorticoids, which converge on noradrenergic activation within the basolateral amygdala (BLA). The BLA then modulates consolidation in downstream targets (hippocampus, caudate, cortex) during a bounded post-training window. Post-training intra-BLA infusions of NE or clenbuterol enhance 24h retention; propranolol impairs it. Effects on memory tested within a few hours of training are absent, which is taken as evidence that the modulation acts on consolidation rather than acquisition or retrieval. Glucocorticoid effects follow an inverted-U dose-response; dopaminergic D1 effects on working memory are explicitly inverted-U-shaped.",
+    "ree_translation": "BLAAnalog.tick(z_harm_a, ...) returns an encoding_gain scalar that multiplies HippocampalModule write strength during the consolidation window for the current episode. Config defaults extracted here: (a) arousal gating threshold on ||z_harm_a|| so that neutral episodes return gain=1.0; (b) inverted-U gain curve peaking ~2.5x at mid-arousal, decaying back toward 1.0 (and below) at saturating arousal; (c) post-event modulation window of ~1.8e4 steps (30 min at 100ms/step) within which writes are amplified, effectively absent thereafter. These are seed values for a config file, not ground truth -- they set the envelope in which ablations and sweeps are meaningful.",
+    "mapping_caveat": "Rodent behavioral pharmacology operates at timescales of hours-to-days for 'consolidation'; our substrate runs agents for episodes of minutes of simulated time. The 30-min post-event window is a scaled analogue of the post-training period during which intra-BLA infusions still change 24h retention -- not a literal translation. The inverted-U peak magnitude (~2.5x) is an interpolation across clenbuterol/NE/corticosterone studies, not a directly quoted number from one experiment. Drug-concentration thresholds do not map cleanly onto ||z_harm_a||; the threshold is set by analogy to the experimental contrast between neutral and emotionally arousing training.",
+    "source_context": "Review of ~30 years of rodent posttraining pharmacology from McGaugh's lab and collaborators. Experimental paradigms: inhibitory avoidance, object recognition, water maze, fear conditioning. Drug delivery: systemic (mg/kg) and intra-BLA microinfusion (ng-microgram in 0.2-0.5 uL). Retention typically tested 24h posttraining; acquisition/short-retention controls rule out state-dependent effects."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.75,
+    "notes": "Source quality high (canonical authors, peer-reviewed review, consistent with McGaugh 2004 and the broader literature). Mapping fidelity moderate: rodent drug-infusion quantities do not convert directly to a latent-space arousal scalar, and 'consolidation window' scaling is heuristic. Transfer risk moderate: an inverted-U, bounded-window multiplicative gain is a conservative, well-motivated implementation choice, but specific numerical defaults (2.5x peak, 30-min window, 0.4 normalized threshold) should be treated as starting points to be tuned by V3 ablation experiments, not as claims."
+  }
+}

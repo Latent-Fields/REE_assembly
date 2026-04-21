@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-21_mech_074_place_cell_remap_moita2004",
+  "timestamp_utc": "2026-04-21T18:47:50Z",
+  "claim_ids_tested": ["MECH-074"],
+  "source": {
+    "title": "Putting fear in its place: remapping of hippocampal place cells during fear conditioning",
+    "authors": ["Marta A. P. Moita", "Svetlana Rosis", "Yu Zhou", "Joseph E. LeDoux", "Hugh T. Blair"],
+    "year": 2004,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5492-03.2004",
+    "url": "https://www.jneurosci.org/content/24/31/7015"
+  },
+  "evidence_class": "connectome_mechanistic_primary",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Primary-data paper from the LeDoux lab with direct CA1 place-cell recordings before and after fear conditioning. Strong source quality. Mapping fidelity high for MECH-074's core claim that the amygdala drives hippocampal map reorganisation when threat-prediction-errors occur: contextual fear conditioning (where the context itself is the predictor) remapped significantly more place fields than auditory fear conditioning (where a tone, not the context, predicts shock). The differential contextual-vs-auditory effect is exactly what MECH-074 predicts — the remap happens where the threat-associated feature lives. Transfer risk moderate: single-unit rodent recordings, 16 CS-US trials, specific to CA1.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Within-session stability pre- and post-conditioning was unchanged (rPRE = 0.57, rPOST = 0.56) — remapping is triggered by the conditioning episode, not by passage of time or arena re-exposure.",
+    "Place cells in the CONTROL box (never paired with shock) did not significantly remap (rC = 0.59) even in animals whose training-box cells remapped heavily (rT = 0.39) — remapping is context-specific, gated by threat-association.",
+    "Auditory-cued fear conditioning produced much weaker remapping than contextual conditioning (normalised Z: -0.34 vs -1.36, p=0.02) — the remap scales with whether the SPATIAL representation is the predictor of threat, not with raw shock intensity."
+  ],
+  "tags": ["mech-074", "amygdala", "remapping", "place_cell", "prediction_error", "hippocampus", "CA1"],
+  "mapping": {
+    "source_claim_statement": "After fear conditioning in which rats received 16 CS-US eyelid-shock pairings in a specific training box, CA1 place cells recorded in that box showed significantly reduced spatial correlation with their pre-conditioning maps (training-box correlation rT = 0.39 +/- 0.05) compared to control-box cells from the same animals (rC = 0.59 +/- 0.04, p=0.003). Contextual fear conditioning produced significantly more remapping than auditory fear conditioning (Z-score -1.36 vs -0.34, p=0.02). Within-session stability was preserved in both pre- and post-conditioning sessions, ruling out recording drift. Remapping was partial rather than wholesale — some fields remapped, some did not, within the same recording session.",
+    "ree_translation": "BLAAnalog.tick emits a remap_signal to HPCAnalog when a threat-prediction-error occurs, and the resulting hippocampal map update has a specific geometry: only fields that are CANDIDATE PREDICTORS of the threat are remapped. Moita 2004 supplies three quantitative anchors for the implementation: (i) the magnitude of the remap — training-box map correlation dropped from ~0.6 to ~0.4, i.e. roughly 30-35% of spatial information was overwritten, which translates in REE terms to a remap_signal amplitude that perturbs roughly one-third of the affected latent codes rather than wholesale replacement; (ii) the specificity — cells in an arena that was NOT paired with the shock did not remap, meaning the remap_signal must carry contextual gating, not a broadcast amygdala-wide output; (iii) the mode-selectivity — contextual fear conditioning remapped strongly whereas auditory fear conditioning did not, meaning the remap targets whichever representation the agent's causal model identified as the PREDICTOR of the threat. That last point is the deepest constraint: the BLA is not just firing 'threat happened' — it is firing 'remap the feature that predicted the threat'. In REE substrate terms: the remap_signal must be routed by a predictor-identification step, not broadcast.",
+    "mapping_caveat": "Moita 2004 measures the remap AFTER the full 16-trial conditioning session, so the single-trial prediction-error threshold is not isolated. A 16-trial block is well above threshold; graded-vs-one-shot analysis would require trial-by-trial map tracking (e.g. Wang 2015, Dupret 2013). The paper also does not measure BLA activity directly — the amygdala role is inferred from the lesion/inactivation literature cited therein (Maren 2001 etc.). Treat Moita 2004 as fixing the post-hoc remap geometry and specificity, not the per-trial PE dynamics.",
+    "source_context": "Primary data paper, J Neurosci 2004. Rats implanted with tetrode arrays in dorsal CA1, recorded in two boxes (training box and control box) across pre-conditioning, conditioning (16 tone-shock eyelid stimulations), and post-conditioning sessions. Contextual and auditory fear-conditioning groups compared. Place-field spatial correlation used as the remap index; Z-scored against shuffled baseline."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Source quality high — direct CA1 tetrode recording from the lab that founded amygdala fear-learning research; clean statistical design with within-animal control box. Mapping fidelity high-moderate: the correlation-drop magnitude (~0.6 -> ~0.4) gives a quantitative default for remap amplitude, and the contextual-vs-auditory dissociation gives a clean specificity constraint that maps directly onto predictor-identification routing. Mapping fidelity is docked because the paper does not isolate the per-trial PE dependence — only the post-16-trial aggregate. Transfer risk moderate: CA1 place cells are a specific rodent-centric substrate; REE's HPC analogue operates on latent codes rather than spatial fields, so the remap geometry must be re-expressed in latent-space terms."
+  }
+}

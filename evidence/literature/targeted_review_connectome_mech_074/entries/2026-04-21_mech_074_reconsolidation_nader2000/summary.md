@@ -1,0 +1,23 @@
+# Nader, Schafe & LeDoux 2000 -- Fear memories require protein synthesis in the amygdala for reconsolidation after retrieval
+
+## What the paper establishes
+
+The starting premise in 2000 was that memory consolidation happens once: after training, a memory passes through a protein-synthesis-dependent window of hours, after which the trace is fixed. Nader and colleagues asked whether that window could be reopened. They fear-conditioned rats with tone-shock pairings, waited either 1 day or 14 days, re-exposed the animals to the tone (no shock), and infused anisomycin -- a protein synthesis inhibitor -- into the lateral and basal amygdala (LBA) either immediately after re-exposure or 6 hours later. The immediate-infusion animals later failed to freeze to the tone. The 6-hour-delay animals froze normally. Animals that received anisomycin but were never re-exposed to the tone froze normally. Short-term post-reactivation memory (tested at 4 hours) was intact even in the immediate-infusion animals; the deficit appeared only at the 24-hour long-term test. The old memory, once retrieved, had re-entered a labile state that again required protein synthesis to persist.
+
+## Why this matters for BLAAnalog
+
+MECH-074 specifies the amygdala analogue as a write head for hippocampal map geometry -- a module that gates when the associative weights holding threat-relevant memories become plastic. Nader 2000 is the canonical demonstration that this gate exists at all, that it is not always open, and that the trigger is a retrieval event rather than a timer. The implication is architectural: BLAAnalog should not broadcast a continuous write signal. It should produce a bounded-duration remap_signal only when the agent re-encounters a cue that would retrieve a stored harm-association. The 14-day result is important -- even a two-week-old memory becomes labile again on retrieval. This means the write-gate has no permanent "consolidation is done" state; any sufficiently old trace can be reopened.
+
+## What it does not pin down
+
+Nader 2000 uses a single CS re-exposure protocol and does not vary the prediction-error magnitude. A later literature (Pedreira 2004, Sevenster 2013) showed that simple CS re-exposure is not enough -- there has to be a mismatch, a violated expectation, between what the animal predicted and what it encountered. If the re-exposure confirms the learned association (CS followed by no-shock when no-shock was expected), no destabilisation occurs. This is the quantitative gap the Nader paper leaves open, and it is the right gap for our purposes: MECH-074 needs the PE threshold as a free parameter anyway, because the REE substrate has access to ||z_harm_a - E2_harm_a(pred)|| directly as a computable quantity. Nader's contribution is the temporal envelope, not the threshold.
+
+## The 6-hour boundary
+
+The cleanest number in the paper is the 6-hour boundary between effective and ineffective anisomycin timing. This is the labile-window duration. For BLAAnalog, the corresponding parameter is the number of REE steps during which the remap_signal holds the hippocampal plasticity gate open after a retrieval event. If we assume the rat's behavioural timescale maps roughly onto the agent's episode length, 4-6 hours becomes a multi-episode window -- the agent should be able to carry an open write-gate across episode boundaries, not just within a single trial. This is a non-trivial architectural commitment: it means the amygdala write-state is persistent memory, not a per-step output.
+
+## Quantitative defaults for BLAAnalog remap
+
+- **PE threshold (in ||z_harm_a - pred|| units):** NOT pinned down by this paper. Nader uses a single supra-threshold protocol (CS re-exposure after CS-US training). Treat as a calibration parameter; suggested starting value: one standard deviation above the running mean of the harm-PE distribution, tuned by the stability/plasticity tradeoff observed in simulation.
+- **Time constant of remap decision (window duration):** ~4-6 hours wall-clock. Map to REE-step units using whatever step-rate the V3 substrate uses for the consolidation horizon -- the key property is that it spans multiple episodes, not a single step.
+- **One-shot vs graded:** One-shot per retrieval event. A single CS presentation at 1 day OR at 14 days opens the window; there is no evidence in this paper for graded accumulation across multiple retrieval events. The correct default is a step-function write-gate: below threshold, no plasticity; above threshold, plasticity gate opens for the full window duration regardless of PE magnitude above threshold.

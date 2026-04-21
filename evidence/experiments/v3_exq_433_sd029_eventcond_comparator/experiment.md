@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_433_sd029_eventcond_comparator_20260420T071556Z_v3` at `2026-04-20T07:15:56Z` signatures: none
 - `v3_exq_433_sd029_eventcond_comparator_20260419T013523Z_v3` at `2026-04-19T01:35:23Z` signatures: none
 
 Recurring signatures:

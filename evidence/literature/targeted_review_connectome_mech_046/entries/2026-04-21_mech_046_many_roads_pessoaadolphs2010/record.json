@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_046",
+  "entry_id": "2026-04-21_mech_046_many_roads_pessoaadolphs2010",
+  "timestamp_utc": "2026-04-21T18:47:17Z",
+  "claim_ids_tested": ["MECH-046", "MECH-074"],
+  "source": {
+    "title": "Emotion processing and the amygdala: from a 'low road' to 'many roads' of evaluating biological significance",
+    "authors": [
+      "Pessoa, Luiz",
+      "Adolphs, Ralph"
+    ],
+    "year": 2010,
+    "venue": "Nature Reviews Neuroscience 11(11):773-783",
+    "doi": "10.1038/nrn2920",
+    "url": "https://www.nature.com/articles/nrn2920"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Authoritative Nature Reviews Neuroscience critical review by two senior researchers summarising anatomical, single-unit, and lesion evidence across species. Not experimental — a synthesis. Note the review is skeptical of the classical strong low-road claim, and we deliberately treat that skepticism as useful boundary-setting: it tells us what CeA-fast-prime can and cannot do. The Méndez-Bértolo 2016 intracranial data (published after this review) has since partially restored the low road at shorter latencies, so Pessoa & Adolphs is best read together with that follow-up. Entry is rated 'supports' because the many-roads framing directly maps onto REE's multi-gate architecture (CeA fast + AIC/dACC slower cortical), not onto a single privileged route.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's CeA is architected as the only route to mode_prior (no cortical override possible within ~400 ms), the architecture overclaims relative to the evidence Pessoa & Adolphs review.",
+    "If CeA fast-prime is treated as sufficient rather than merely biasing, agents will show inflexible fear responses that cortical re-evaluation cannot revise — inconsistent with the 'many roads' model.",
+    "If anatomical constraints are ignored (the pulvinar-amygdala connection in primates is sparse and not obviously fast), the fast route latency budget in the REE substrate will be unrealistically short."
+  ],
+  "tags": ["mech-046", "mech-074", "amygdala", "cea", "low_road", "many_roads", "pulvinar", "review", "critique", "cortical_route"],
+  "mapping": {
+    "source_claim_statement": "Pessoa and Adolphs argue that the classical 'low road' — a fast superior-colliculus / pulvinar subcortical route driving amygdala responses to unseen threat — is weakly supported in primates on anatomical and physiological grounds. They propose 'many roads': the amygdala receives biologically-significant information through multiple cortical and subcortical pathways, and its primary role is to coordinate cortical networks in evaluating stimulus significance, not to be a privileged fast detector.",
+    "ree_translation": "This review is the constraint on how much weight CeAAnalog should carry in REE. CeAAnalog produces mode_prior (fast salience signal to SalienceCoordinator, MECH-046) AND fast_prime (low-latency action bias, MECH-074c), but it does NOT unilaterally commit the agent. The many-roads framing maps directly onto REE's multi-gate SalienceCoordinator: CeA contributes an early low-specificity bias, while AIC/dACC (cortical analogues) contribute later high-specificity evidence, and the coordinator integrates both. We need the fast route to exist (MECH-074c) but not to dominate. Operationally: (a) fast_prime is a bias, not a decision — downstream cortical signals must be able to override it within ~300-400 ms biological (~5-10 sim steps); (b) CeAAnalog should not be wired to directly drive motor output, only to bias SalienceCoordinator; (c) prolonged CeA activation without cortical confirmation should decay, not persist.",
+    "mapping_caveat": "Pessoa & Adolphs were writing before Mendez-Bertolo 2016's intracranial data, and their skepticism was partly a response to over-interpretation of fMRI. The review is therefore most useful as a boundary-setter — it tells us what CeAAnalog should NOT do (dominate, make unilateral decisions, be the only route) rather than providing new latency numbers itself. The mapping also treats the 'many roads' framing metaphorically; REE does not need to implement every anatomical pathway, only the minimal set required to reproduce the functional dissociation (fast low-specificity vs slow high-specificity).",
+    "source_context": "Nature Reviews Neuroscience critical review, November 2010. Pessoa (U. Maryland) and Adolphs (Caltech) review primate and human anatomical and physiological data on amygdala inputs, including single-unit latency data in monkeys, pulvinar projections, and fMRI/lesion evidence. Paper sparked subsequent correspondence (de Gelder et al 2011) defending aspects of the low road. Published pre-Mendez-Bertolo 2016."
+  },
+  "confidence_components": {
+    "methodology_quality": 0.85,
+    "synthesis_breadth": 0.90,
+    "species_relevance_to_human": 0.85,
+    "direct_latency_measurement": 0.35,
+    "mechanistic_specificity": 0.70,
+    "replication_status": 0.80
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-21_mech_074_retrieval_bias_labar2006",
+  "timestamp_utc": "2026-04-21T18:47:34Z",
+  "claim_ids_tested": ["MECH-074"],
+  "source": {
+    "title": "Cognitive neuroscience of emotional memory",
+    "authors": ["LaBar, Kevin S.", "Cabeza, Roberto"],
+    "year": 2006,
+    "venue": "Nature Reviews Neuroscience, 7(1), 54-64",
+    "doi": "10.1038/nrn1825",
+    "url": "https://www.nature.com/articles/nrn1825"
+  },
+  "evidence_class": "review_synthesis",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Authoritative Nature Reviews Neuroscience synthesis integrating behavioural, neuropsychological (amygdala-lesion), and fMRI evidence. Explicitly addresses retrieval phase (not just encoding/consolidation). Central/peripheral dissociation provides direct selectivity evidence: amygdala enhancement specifically boosts gist/central-arousing content while peripheral detail is unchanged or suppressed, which is content-selective rather than uniform. Limitations: secondary review, quantitative retrieval-phase magnitudes are reported sparsely across many primary studies rather than as a single effect-size table; some retrieval effects are inferred from subsequent-memory paradigms rather than pure retrieval manipulations. Confidence held at 0.72 rather than higher because the paper synthesises rather than originates, and because the strongest selectivity evidence is neuropsychological (amygdala-damage case studies) rather than neurally-imaged retrieval.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If BLAAnalog retrieval_bias is implemented as a scalar multiplicative gain, proposals are boosted uniformly and the system loses the central/peripheral dissociation that is the hallmark of amygdala-mediated retrieval in humans.",
+    "If retrieval_bias is applied only during encoding/write and not during proposal reweighting at retrieval, the delay-dependent persistence advantage (stronger at 1 week than at 20 min) will not emerge.",
+    "If retrieval_bias decays within a single retrieval cycle (transient scalar) rather than persisting across the memory trace, the consolidation-like drift whereby amygdala-MTL connectivity becomes more important over time is not reproducible."
+  ],
+  "tags": ["mech-074", "amygdala", "retrieval_bias", "arousal", "selectivity", "central_peripheral", "consolidation", "review"],
+  "mapping": {
+    "source_claim_statement": "The amygdala and its interactions with medial temporal and prefrontal regions mediate emotional modulation of memory at all stages -- encoding, consolidation, and long-term retrieval -- and produce a selective enhancement of central/gist/arousing content alongside unchanged or reduced memory for peripheral detail. Amygdala-damage patients lose the central-detail advantage specifically rather than losing memory globally, and the emotional retention advantage grows over delays (e.g. stronger at 24h-1wk than immediately).",
+    "ree_translation": "BLAAnalog.tick produces a retrieval_bias that reweights HippocampalModule's proposal set toward threat-relevant (high arousal-tag) content. The LaBar-Cabeza synthesis implies this must be a CONTENT-SELECTIVE VECTOR rather than a scalar multiplicative gain: specifically, the bias should raise proposal weights for high-arousal/goal-relevant traces while leaving or depressing weights on neutral/peripheral traces. Practical default: retrieval_bias is a per-proposal weight vector w_i = 1 + alpha * arousal_tag_i where alpha in ~[0.3, 1.0] (gist items reliably boosted ~30-100% above neutral baseline in behavioural and fMRI studies), with a compensatory mild suppression of low-arousal-tagged items (sum-constrained so attention is zero-sum, mirroring arousal-biased competition). The bias should also carry a slow-accumulation component: its relative contribution strengthens with memory age (amygdala-MTL connectivity contribution grows from short to long delays), so BLAAnalog's influence on HippocampalModule retrieval weights should be modulated by trace age, not only by current arousal.",
+    "mapping_caveat": "The paper is a review, so specific magnitudes vary across the primary studies cited. The 'gist-vs-peripheral' dissociation is well established neuropsychologically but in REE we do not have an explicit central/peripheral partition -- we have an arousal_tag per trace. Implementing the selectivity constraint therefore requires BLAAnalog to assign arousal tags at write time AND have a retrieval-time reweighting rule that respects them. Without the write-time tagging, the retrieval-time vector cannot be content-selective and degenerates to a scalar.",
+    "source_context": "The review synthesises (i) behavioural central/peripheral trade-off studies (Adolphs, Cahill et al.), (ii) amygdala-lesion case studies that preserve memory globally but abolish the central-arousing-detail advantage, (iii) fMRI subsequent-memory studies including the authors' own Dolcos 2004 work, and (iv) delay-dependent persistence data showing the emotional advantage grows rather than shrinks with consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "directness_of_evidence": 0.65,
+    "quantitative_specificity": 0.55,
+    "convergence_with_other_sources": 0.85,
+    "retrieval_phase_coverage": 0.75
+  }
+}

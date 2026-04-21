@@ -1447,8 +1447,8 @@
   },
   "MECH-046": {
     "status": "provisional",
-    "subject": "control_plane.amygdala_mode_priors",
-    "title": "Amygdala analogue updates control-plane mode priors from fast salience classification.",
+    "subject": "amygdala.cea_mode_prior_write",
+    "title": "CeA analogue writes a mode prior into the SalienceCoordinator from fast salience classification of z_harm_a.",
     "type": "mechanism_hypothesis"
   },
   "MECH-047": {
@@ -1622,7 +1622,31 @@
   "MECH-074": {
     "status": "candidate",
     "subject": "amygdala.hippocampal_map_readwrite_head",
-    "title": "Amygdala functions as read/write head for valenced hippocampal map.",
+    "title": "Amygdala functions as read/write head for valenced hippocampal map \u2014 parent claim split into MECH-074a-d (2026-04-21).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-074a": {
+    "status": "candidate",
+    "subject": "amygdala.bla_encoding_gain_on_hippocampal_writes",
+    "title": "BLA analogue applies an arousal-dependent multiplicative gain to HippocampalModule write strength.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-074b": {
+    "status": "candidate",
+    "subject": "amygdala.bla_retrieval_bias_content_selective",
+    "title": "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace retrieval weight vector (NOT a scalar gain) on hippocampal readout.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-074c": {
+    "status": "candidate",
+    "subject": "amygdala.cea_fast_subcortical_priming",
+    "title": "CeA analogue emits a fast subcortical priming signal (fast_prime) on low-frequency z_harm_a with an overridable decay window, distinct from MECH-046's cortical mode-prior write.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-074d": {
+    "status": "candidate",
+    "subject": "amygdala.bla_pe_remap_with_attribution",
+    "title": "BLA analogue emits a remap_signal on harm-PE spike when predictor-attribution flags specific latent codes \u2014 partial (~one-third) remap, NOT wholesale replacement.",
     "type": "mechanism_hypothesis"
   },
   "MECH-075": {
@@ -3297,6 +3321,12 @@
     "status": "candidate",
     "subject": "governance.closure_operator",
     "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied.",
+    "type": "design_decision"
+  },
+  "SD-035": {
+    "status": "candidate",
+    "subject": "amygdala.analog_substrate",
+    "title": "Amygdala analogue as BLA + CeA salience stage between z_harm_a and the cingulate/hippocampus \u2014 two peer non-trainable arithmetic modules owning the MECH-046 and MECH-074a-d behaviours.",
     "type": "design_decision"
   }
 }

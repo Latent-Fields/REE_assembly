@@ -1,0 +1,159 @@
+{
+  "run_id": "v3_exq_474_sd035_bla_encoding_remap_20260421T195258Z_v3",
+  "experiment_type": "v3_exq_474_sd035_bla_encoding_remap",
+  "claim_ids": [
+    "SD-035",
+    "MECH-074a",
+    "MECH-074d"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260421T195258Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-035": "supports",
+    "MECH-074a": "supports",
+    "MECH-074d": "supports"
+  },
+  "pass_criteria_summary": {
+    "c1_backward_compat_entropy_delta": {
+      "deltas": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "threshold": 0.2,
+      "seeds_passing": 3,
+      "pass": true,
+      "desc": "|entropy(BLA_ON_QUIET) - entropy(BLA_OFF_QUIET)| <= 0.2 nats in >= 2/3 seeds"
+    },
+    "c2_inverted_u_gain_curve": {
+      "gain_by_arousal": {
+        "0.0": 1.0,
+        "0.2": 2.5,
+        "0.4": 2.5,
+        "0.5": 2.5,
+        "0.6": 2.5,
+        "0.7": 2.5,
+        "0.9": 2.5,
+        "1.2": 2.5,
+        "1.5": 2.5
+      },
+      "rest_is_one": true,
+      "above_rest_count": 8,
+      "gain_below_cap": true,
+      "pass": true,
+      "desc": "rest gain=1.0; at least 2 arousal points exceed rest; all <= encoding_gain_max"
+    },
+    "c3_remap_attribution_gate": {
+      "with_attribution_codes": 1,
+      "without_attribution_codes": 0,
+      "pass": true,
+      "desc": "remap fires with attribution candidates, does not fire without (Moita 2004)"
+    },
+    "c4_window_decay": {
+      "window_start": 20,
+      "monotone": true,
+      "final_window": 0,
+      "final_gain": 1.0,
+      "returns_to_baseline": true,
+      "pass": true,
+      "desc": "window_steps_remaining monotone non-increasing; returns to 0 and gain to ~1"
+    },
+    "c5_tick_simulation_mode_default": {
+      "has_sim_mode_param": true,
+      "default_false_if_present": true,
+      "pass": true,
+      "desc": "BLA.tick has no silent simulation_mode (default False or absent)"
+    }
+  },
+  "per_seed_results": [
+    {
+      "condition": "BLA_OFF_QUIET",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "bla_gain_mean": null,
+      "bla_n_ticks": 0
+    },
+    {
+      "condition": "BLA_ON_QUIET",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "bla_gain_mean": null,
+      "bla_n_ticks": 0
+    },
+    {
+      "condition": "BLA_OFF_QUIET",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "bla_gain_mean": null,
+      "bla_n_ticks": 0
+    },
+    {
+      "condition": "BLA_ON_QUIET",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "bla_gain_mean": null,
+      "bla_n_ticks": 0
+    },
+    {
+      "condition": "BLA_OFF_QUIET",
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "bla_gain_mean": null,
+      "bla_n_ticks": 0
+    },
+    {
+      "condition": "BLA_ON_QUIET",
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "n_actions": 4,
+      "bla_gain_mean": null,
+      "bla_n_ticks": 0
+    }
+  ],
+  "unit_checks": {
+    "c2_gain_curve": {
+      "0.0": 1.0,
+      "0.2": 2.5,
+      "0.4": 2.5,
+      "0.5": 2.5,
+      "0.6": 2.5,
+      "0.7": 2.5,
+      "0.9": 2.5,
+      "1.2": 2.5,
+      "1.5": 2.5
+    },
+    "c2_rest_is_one": true,
+    "c2_curve_above_rest_count": 8,
+    "c2_gain_below_cap": true,
+    "c3_remap_with_attribution_n_codes": 1,
+    "c3_remap_without_attribution_n_codes": 0,
+    "c4_window_start": 20,
+    "c4_window_monotone_non_increasing": true,
+    "c4_final_window_remaining": 0,
+    "c4_final_gain": 1.0,
+    "c4_returns_to_baseline": true,
+    "c5_tick_has_simulation_mode_param": true,
+    "c5_tick_simulation_mode_default_false": true
+  },
+  "config": {
+    "conditions": [
+      "BLA_OFF_QUIET",
+      "BLA_ON_QUIET"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "episodes": 4,
+    "steps_per_ep": 60
+  }
+}

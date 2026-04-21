@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_046",
+  "entry_id": "2026-04-21_mech_046_fast_pathway_mendezbertolo2016",
+  "timestamp_utc": "2026-04-21T18:47:17Z",
+  "claim_ids_tested": ["MECH-046", "MECH-074"],
+  "source": {
+    "title": "A fast pathway for fear in human amygdala",
+    "authors": [
+      "Mendez-Bertolo, Constantino",
+      "Moratti, Stephan",
+      "Toledano, Rafael",
+      "Lopez-Sosa, Fernando",
+      "Martinez-Alvarez, Rafael",
+      "Mah, Yee H.",
+      "Vuilleumier, Patrik",
+      "Gil-Nagel, Antonio",
+      "Strange, Bryan A."
+    ],
+    "year": 2016,
+    "venue": "Nature Neuroscience 19(8):1041-1049",
+    "doi": "10.1038/nn.4324",
+    "url": "https://www.nature.com/articles/nn.4324"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Direct human intracranial recordings (11 epilepsy patients with depth electrodes in amygdala and visual cortex) providing millisecond-resolution latency data. Exceptionally rare methodology, addressing the long-standing critique that earlier support for a low road was only fMRI (which lacks ms resolution). Response selectivity to low spatial frequency fearful faces (predicted by magnocellular pathway) strengthens mechanistic interpretation. Main caveat: small N and epilepsy population. Does not rule out additional cortical routes, but does establish that a fast pre-cortical route exists.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If CeAAnalog.tick() waits for cortical (AIC/dACC) inputs before emitting mode_prior, the fast-prime signal arrives too late to bias action selection during the first ~100 ms window where the data show amygdala is already committed.",
+    "If fast_prime is gated only by high spatial frequency / detailed perceptual features, the magnocellular/low-spatial-frequency selectivity observed here will not be reproduced — CeA in REE should be driven by a coarse feature stream, not the fully decoded z_world.",
+    "If CeA responds uniformly to arousal (scenes), the social/threat-selectivity in the data is violated — CeA feature gate must be selective, not generic saliency."
+  ],
+  "tags": ["mech-046", "mech-074", "amygdala", "cea", "fast_route", "low_road", "intracranial", "electrophysiology", "latency", "magnocellular", "low_spatial_frequency", "fear"],
+  "mapping": {
+    "source_claim_statement": "Human amygdala shows a selective electrophysiological response to fearful faces beginning ~74 ms post-stimulus, preceding fear-related discrimination in visual cortex (which emerges only at ~400 ms and only for high-spatial-frequency content). The fast response is limited to low spatial frequency components, consistent with a magnocellular subcortical route, and is absent for arousing non-social scenes.",
+    "ree_translation": "CeAAnalog module produces mode_prior (fast salience signal to SalienceCoordinator, MECH-046) AND fast_prime (low-latency action bias, MECH-074c). The 74 ms vs 400 ms split calibrates CeA.tick() as a first-response salience stage that must fire before AIC/dACC complete their computation. Concretely: CeA should run on a coarse (low-spatial-frequency analogue) feature of z_harm_a and emit fast_prime within 1-2 sim steps of stimulus arrival, well before cortical analogues finish integrating. fast_prime should bias action selection via a pre-softmax log-odds adjustment on the SalienceCoordinator input, not post-softmax scaling, to mirror a true early commitment rather than a late reweighting. Activation threshold: CeA should fire when a coarse magnitude of the harm-affective latent (||z_harm_a_coarse|| or the L1-norm of the low-frequency band of z_harm_a) exceeds a setpoint tuned so that the CeA false-positive rate matches the ~25-30%% false alarms typical of a low-threshold first-pass filter. Fast-prime does NOT gate SalienceCoordinator entirely; it biases it, consistent with downstream cortical integration overriding CeA in non-threat contexts.",
+    "mapping_caveat": "The 74 ms is from fearful-face stimuli — a socially tuned evolutionary category. REE's CeA analogue will not have face-specific magnocellular inputs; we map the principle (coarse/fast/affectively-valent feature → early CeA response) rather than the face-specificity. Also: human epilepsy patients may not generalize to healthy cortex, and cortical latency numbers here are for fear-specific discrimination, not for cortex activation per se (which starts earlier but is not fear-selective until ~400 ms).",
+    "source_context": "11 pharmaco-resistant epilepsy patients undergoing intracranial monitoring at Hospital Ruber Internacional (Madrid). Depth electrodes in basolateral amygdala and occipital/temporal cortex. Stimuli: fearful vs neutral vs happy faces, plus arousing scenes control. Analyses: event-related potentials + time-frequency on local field potentials. Published Nat Neurosci 2016, PMID 27294508."
+  },
+  "confidence_components": {
+    "methodology_quality": 0.92,
+    "sample_size_adequacy": 0.62,
+    "species_relevance_to_human": 1.0,
+    "direct_latency_measurement": 0.95,
+    "mechanistic_specificity": 0.88,
+    "replication_status": 0.80
+  }
+}

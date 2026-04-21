@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-21_mech_074_reconsolidation_nader2000",
+  "timestamp_utc": "2026-04-21T18:47:50Z",
+  "claim_ids_tested": ["MECH-074"],
+  "source": {
+    "title": "Fear memories require protein synthesis in the amygdala for reconsolidation after retrieval",
+    "authors": ["Karim Nader", "Glenn E. Schafe", "Joseph E. LeDoux"],
+    "year": 2000,
+    "venue": "Nature",
+    "doi": "10.1038/35021052",
+    "url": "https://www.nature.com/articles/35021052"
+  },
+  "evidence_class": "connectome_mechanistic_primary",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Canonical primary-data paper establishing the reconsolidation phenomenon in the lateral/basal amygdala. Strong source quality (Nature, >10k citations, replicated in dozens of labs). Mapping fidelity is high for the temporal structure of MECH-074's write-gate: the labile window is sharply bounded (<6 h), and the trigger (CS re-exposure) is a prediction-error event. Mapping fidelity is lower for the PE-magnitude threshold — the 2000 paper uses a single CS-re-exposure protocol and does not vary PE parametrically; later work (Pedreira 2004, Sevenster 2013) is needed to quantify the PE dependence. Transfer risk moderate: the mechanism is rodent LBA-specific, but the temporal envelope of reconsolidation has replicated in humans (Schiller 2010).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anisomycin in LBA before reactivation does not impair memory retrieval (reconsolidation requires reactivation, not just the inhibitor).",
+    "Anisomycin delayed 6 h after reactivation produces no amnesia — the labile window has a hard upper bound around 4-6 h.",
+    "Memories not re-exposed to the CS consolidate but are not re-labilised — the write-gate is retrieval/PE-gated, not always-on."
+  ],
+  "tags": ["mech-074", "amygdala", "reconsolidation", "prediction_error", "BLA", "write_gate"],
+  "mapping": {
+    "source_claim_statement": "Consolidated Pavlovian fear memories, when reactivated by CS re-exposure, return to a protein-synthesis-dependent labile state in the lateral and basal amygdala. Intra-LBA anisomycin immediately post-reactivation abolishes the memory on later tests; the same infusion 6 h later has no effect; the same infusion without reactivation has no effect. The labile window exists whether reactivation is performed 1 day or 14 days after conditioning.",
+    "ree_translation": "BLAAnalog.tick should implement a retrieval-gated write channel. When the agent re-encounters a cue previously associated with harm (i.e. ||z_harm_a - E2_harm_a(pred)|| produces a reactivation signature consistent with the stored trace), the amygdala write-gate opens for a bounded window during which the hippocampal/cortical weights holding that association become plastic again. Nader 2000 fixes three quantitative defaults: (i) the trigger is a prediction-error-bearing retrieval event, not the passage of time; (ii) the labile window closes at ~4-6 h of wall-clock time (in REE-step units: whatever the step-rate equivalent is of the E1 consolidation horizon); (iii) the write update is one-shot per retrieval event — one CS presentation is sufficient to open the window. It does not, on its own, pin down the PE magnitude threshold; it establishes that a single supra-threshold retrieval event suffices.",
+    "mapping_caveat": "Nader 2000 does not parametrically vary PE magnitude or CS duration; the all-or-none framing of the Nature paper is an artefact of a single protocol. Pedreira 2004 (J Neurosci) and Sevenster 2013 (Science) later showed that reconsolidation requires a mismatch (prediction-error) component — simple CS re-exposure without novelty does NOT destabilise the memory. For REE purposes, treat Nader as fixing the temporal envelope and the retrieval-gating principle; treat the PE threshold as a separate free parameter to be calibrated.",
+    "source_context": "Primary data paper, Nature 2000. Rats auditory fear-conditioned, CS-US pairing, then CS re-exposure at 1 or 14 days post-training with intra-LBA anisomycin (125 micrograms) infused at 0 h or 6 h post-reactivation. Freezing measured at PR-STM (4 h) and PR-LTM (24 h). Memory intact at STM, abolished at LTM when anisomycin given immediately post-reactivation; spared in all control conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high — the paper that founded the reconsolidation field, replicated in dozens of labs and species. Mapping fidelity moderate-high: the temporal envelope (hours-scale labile window) and the retrieval-gating principle map cleanly onto BLAAnalog.tick's write-gate architecture. Mapping fidelity is docked because the PE-magnitude threshold is NOT quantified by this paper — it only shows that ONE CS re-exposure at ANY tested time point suffices. Transfer risk low-moderate: LBA-to-BLAAnalog is a natural analogy, and the temporal envelope replicates in humans."
+  }
+}

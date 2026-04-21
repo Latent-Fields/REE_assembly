@@ -1909,11 +1909,13 @@
   source:
     - docs/thoughts/2026-02-10_object_file_persistence.md
 - id: MECH-046
-  title: "Amygdala analogue updates control-plane mode priors from fast salience classification."
+  title: "CeA analogue writes a mode prior into the SalienceCoordinator from fast salience classification of z_harm_a."
   claim_type: mechanism_hypothesis
-  subject: control_plane.amygdala_mode_priors
+  subject: amygdala.cea_mode_prior_write
   polarity: asserts
   status: provisional
+  implementation_phase: v3
+  v3_pending: true
   lifecycle_stage: adjudicated
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
@@ -1923,17 +1925,27 @@
     No experimental evidence in current genuine corpus. All prior entries (9 runs,
     synthetic scaffolding) originated from ree-v2/ree-experiments-lab (archived 2026-02-26)
     and have been removed from the index. The demotion recommendation in
-    promotion_demotion_recommendations.md (conflict_ratio=0.889, conf=0.55) is stale —
+    promotion_demotion_recommendations.md (conflict_ratio=0.889, conf=0.55) is stale --
     it was computed from those invalid entries, which no longer exist.
-    Retain provisional (adjudication retain_ree is valid as architectural decision) pending
-    genuine ree-v1-minimal experiments. Do not act on demotion recommendation until
-    genuine experimental evidence is available for this claim.
+    2026-04-21 narrowing: MECH-046 now specifically asserts that the CeA analogue
+    (CeAAnalog in SD-035) emits a pre-softmax additive log-odds bias on the harm
+    channel of the SalienceCoordinator (SD-032a) within 1-2 sim steps of
+    ||LowFreq(z_harm_a)|| crossing threshold. Distinct from AIC urgency (SD-032c),
+    which modulates switch threshold. Distinct from MECH-074c fast subcortical
+    priming (motor/candidate bias). Literature grounding: Mendez-Bertolo 2016
+    (intracranial latency ~74ms CeA vs ~400ms cortex), Pessoa & Adolphs 2010
+    (many-roads bounding). Evidence pulled 2026-04-21 to targeted_review_connectome_mech_046.
+    V3-EXQ-A (CeA mode-prior ablation) is the primary falsifier.
   depends_on:
     - ARC-005
     - MECH-039
-  location: docs/architecture/control_plane.md#mech-046
+    - SD-011           # affective harm stream z_harm_a (input)
+    - SD-032a          # SalienceCoordinator (target of mode prior)
+    - SD-035           # amygdala analogue substrate (parent)
+  location: docs/architecture/sd_035_amygdala_analog.md#mech-046
   source:
     - docs/thoughts/2026-02-11_amygdala.md
+    - evidence/literature/targeted_review_connectome_mech_046/
 - id: MECH-047
   title: "Pre-commitment mode manager commits with hysteresis and switching costs."
   claim_type: mechanism_hypothesis
@@ -3813,25 +3825,251 @@
   source:
     - docs/architecture/valenced_hippocampal_map.md
 - id: MECH-074
-  title: "Amygdala functions as read/write head for valenced hippocampal map."
+  title: "Amygdala functions as read/write head for valenced hippocampal map — parent claim split into MECH-074a-d (2026-04-21)."
   claim_type: mechanism_hypothesis
   subject: amygdala.hippocampal_map_readwrite_head
   polarity: asserts
   status: candidate
+  implementation_phase: v3
+  v3_pending: true
   depends_on:
     - MECH-046
     - MECH-073
     - ARC-007
     - ARC-013
-  location: docs/architecture/valenced_hippocampal_map.md#mech-074
+    - SD-011           # affective harm stream z_harm_a
+    - SD-035           # amygdala analogue substrate (parent)
+  child_claims:
+    - MECH-074a        # BLA encoding-gain on hippocampal writes
+    - MECH-074b        # BLA retrieval bias (content-selective per-trace weights)
+    - MECH-074c        # CeA fast subcortical priming (distinct from MECH-046 mode prior)
+    - MECH-074d        # BLA remapping signal on PE spike with attribution gating
+  location: docs/architecture/sd_035_amygdala_analog.md#mech-074
   source:
     - docs/architecture/valenced_hippocampal_map.md
+    - docs/architecture/sd_035_amygdala_analog.md
+    - evidence/literature/targeted_review_connectome_mech_074/
+    - evidence/literature/targeted_review_amygdala_analog/synthesis.md
   notes: >
-    Extends MECH-046 (amygdala as mode prior updater) with four read/write roles on the
-    hippocampal map: (a) encoding modulation via BLA projections; (b) retrieval biasing
-    toward threat-relevant regions under arousal; (c) rapid pre-cortical priming via fast
-    subcortical route; (d) triggered remapping on prediction error spike. The fast
-    subcortical priming role is not present in MECH-046.
+    Split 2026-04-21 into four individually testable sub-claims (MECH-074a-d) to support
+    the ree-v3 BLAAnalog + CeAAnalog implementation under SD-035. The parent claim is
+    retained as an umbrella for cross-cutting evidence and to preserve prior citations;
+    each sub-behaviour is governed by its corresponding child claim.
+
+    The four roles map to: (a) BLA encoding modulation of hippocampal LTP under arousal
+    (MECH-074a, BLAAnalog.encoding_gain); (b) arousal-driven retrieval bias on valenced
+    hippocampal regions (MECH-074b, BLAAnalog.retrieval_bias — must be content-selective
+    per-trace weight vector, NOT scalar, per LaBar & Cabeza 2006); (c) rapid pre-cortical
+    priming via fast subcortical route (MECH-074c, CeAAnalog.fast_prime — distinct from
+    MECH-046's cortical mode-prior write); (d) triggered remapping on prediction-error
+    spike with predictor-attribution gating (MECH-074d, BLAAnalog.remap_signal).
+  evidence_quality_note: >
+    Parent claim's aggregate evidence (9 literature entries across
+    targeted_review_connectome_mech_074/ including McGaugh 2004, Roozendaal 2011,
+    Dolcos 2004, LaBar & Cabeza 2006, Nader 2000, Moita 2004) is preserved but
+    routed at governance time to the most specific child. Post-split, governance
+    should primarily evaluate the children (MECH-074a-d); parent remains a
+    cross-cutting umbrella. v3_pending until BLAAnalog + CeAAnalog substrate lands
+    and EXQ-A/B (CeA mode-prior ablation; BLA encoding + remap) complete.
+- id: MECH-074a
+  title: "BLA analogue applies an arousal-dependent multiplicative gain to HippocampalModule write strength."
+  claim_type: mechanism_hypothesis
+  subject: amygdala.bla_encoding_gain_on_hippocampal_writes
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-074         # parent
+    - SD-011           # z_harm_a (arousal source)
+    - SD-035           # amygdala substrate
+    - ARC-007          # hippocampal map substrate
+    - MECH-073         # valenced hippocampal map
+  functional_restatement: >
+    BLAAnalog.tick() consumes z_harm_a (magnitude and rate) and emits an
+    encoding_gain scalar that multiplies HippocampalModule write strength at
+    encoding time. Gain is an inverted-U over arousal magnitude with a post-event
+    exponential decay window, seeded from Roozendaal & McGaugh 2011 defaults:
+
+      - encoding_gain_max: 2.5x at ||z_harm_a|| ~ 0.7
+      - encoding_gain_floor: 1.0 below ||z_harm_a|| = 0.4 threshold
+      - post-event window: ~18000 sim steps (~30 min biological)
+      - window half-life: ~3600 sim steps (~6 min biological)
+
+    This is the REE analogue of BLA modulation of hippocampal LTP under
+    emotional arousal.
+
+    Falsifiable: if EXQ-B (BLA encoding + remap) shows threat-context recall
+    does not improve under BLA-modulated gain relative to gain=1, OR if neutral
+    recall is harmed by gain>1, the encoding-gain arithmetic is mis-specified.
+  location: docs/architecture/sd_035_amygdala_analog.md#mech-074a
+  source:
+    - evidence/literature/targeted_review_connectome_mech_074/entries/2026-04-21_mech_074_memory_modulation_roozendaal2011/
+    - evidence/literature/targeted_review_connectome_mech_074/entries/2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004/
+    - evidence/literature/targeted_review_amygdala_analog/synthesis.md
+  evidence_quality_note: >
+    Registered 2026-04-21 as split child of MECH-074. Load-bearing literature:
+    Roozendaal & McGaugh 2011 (confidence 0.82), McGaugh 2004 (confidence 0.82).
+    Inverted-U and 30-min window are well-replicated; transfer risk primarily in
+    mapping arousal-tagged noradrenergic signal to z_harm_a magnitude. v3_pending
+    until EXQ-B queued and substrate implemented.
+- id: MECH-074b
+  title: "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace retrieval weight vector (NOT a scalar gain) on hippocampal readout."
+  claim_type: mechanism_hypothesis
+  subject: amygdala.bla_retrieval_bias_content_selective
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-074         # parent
+    - MECH-074a        # retrieval bias consumes the encoding-time arousal tag
+    - SD-011           # z_harm_a
+    - SD-035           # amygdala substrate
+    - ARC-007          # hippocampal map
+  functional_restatement: >
+    BLAAnalog must write a per-trace arousal_tag into HippocampalModule at
+    encoding time (triggered from BLAAnalog.tick's encoding path), and at
+    retrieval time must apply a per-trace weight
+      w_i = 1 + alpha * arousal_tag_i   (alpha in [0.3, 1.0])
+    to the hippocampal proposal/recall scores. This is explicitly NOT a scalar
+    "retrieval gain on all traces" — that named failure signature cannot
+    reproduce the central/peripheral dissociation which is the hallmark of
+    amygdala-lesion studies (LaBar & Cabeza 2006).
+
+    Targeted magnitude: central/gist items ~1.3x - 2.0x relative to neutral
+    baseline. Non-transient: BLA contribution grows with trace age (20 min ->
+    1 week) rather than decaying like the encoding-gain window.
+
+    Falsifiable: a follow-up EXQ must show that central/gist threat-associated
+    items are retrieved preferentially over peripheral/neutral items under BLA
+    retrieval-bias ON, and that this dissociation collapses under BLA OFF. A
+    uniform retrieval boost across all traces falsifies the content-selective
+    form.
+  location: docs/architecture/sd_035_amygdala_analog.md#mech-074b
+  source:
+    - evidence/literature/targeted_review_connectome_mech_074/entries/2026-04-21_mech_074_retrieval_bias_labar2006/
+    - evidence/literature/targeted_review_connectome_mech_074/entries/2026-04-02_mech_074_amygdala_mtl_fmri_dolcos2004/
+    - evidence/literature/targeted_review_amygdala_analog/synthesis.md
+  evidence_quality_note: >
+    Registered 2026-04-21 as split child of MECH-074. Load-bearing literature:
+    LaBar & Cabeza 2006 (confidence 0.72), Dolcos et al 2004. The vector-not-
+    scalar constraint is a hard design decision — scalar-gain is a named
+    failure signature. Requires HippocampalModule to carry a per-trace
+    arousal_tag field (implementation risk flagged in synthesis.md). v3_pending
+    until substrate lands and EXQ-B+ follow-up is queued.
+- id: MECH-074c
+  title: "CeA analogue emits a fast subcortical priming signal (fast_prime) on low-frequency z_harm_a with an overridable decay window, distinct from MECH-046's cortical mode-prior write."
+  claim_type: mechanism_hypothesis
+  subject: amygdala.cea_fast_subcortical_priming
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-074         # parent
+    - MECH-046         # cortical mode-prior is a peer channel, not this one
+    - SD-011           # z_harm_a
+    - SD-032a          # SalienceCoordinator (target)
+    - SD-032c          # AIC urgency (peer cortical channel for override comparison)
+    - SD-035           # amygdala substrate
+  functional_restatement: >
+    CeAAnalog.tick() emits an additive pre-softmax log-odds bias (fast_prime)
+    on the harm channel within 1-2 sim steps of ||LowFreq(z_harm_a)||_1
+    crossing theta_cea_fast. Cortical AIC/dACC analogues take ~5-10 sim steps
+    (~400 ms) to produce comparable discrimination; fast:slow ratio ~5:1
+    (Mendez-Bertolo 2016).
+
+    Distinctness from MECH-046. MECH-046 is the CeA's SLOWER mode-prior write
+    into SalienceCoordinator — a cortical-style vector over operating modes.
+    MECH-074c is the FASTER action-prior / candidate-prior channel — a single
+    scalar pulse that biases candidate generation directly. They share the
+    CeAAnalog substrate but have distinct outputs and latencies.
+
+    Override discipline. fast_prime magnitude ceiling <= max cortical AIC/dACC
+    log-odds adjustment (never dominant). If cortical confirmation is absent
+    within the 5-10 sim-step override window, fast_prime decays toward
+    baseline with tau_decay in [3, 5] sim steps (~150-250 ms biological).
+
+    Selectivity. CeA must fire on harm-affective valence, not generic arousal.
+    Named failure: if CeA fires on arousing non-threat stimuli (e.g., arousing
+    scenes in Mendez-Bertolo's calibration), fast_prime is a generic salience
+    detector, not a CeA analogue.
+
+    Falsifiable: a follow-up EXQ must show fast_prime emits within 1-2 steps,
+    decays under cortical non-confirmation within the override window, and
+    does NOT fire on arousing-but-neutral stimuli.
+  location: docs/architecture/sd_035_amygdala_analog.md#mech-074c
+  source:
+    - evidence/literature/targeted_review_connectome_mech_046/entries/2026-04-21_mech_046_fast_pathway_mendezbertolo2016/
+    - evidence/literature/targeted_review_connectome_mech_046/entries/2026-04-21_mech_046_many_roads_pessoaadolphs2010/
+    - evidence/literature/targeted_review_amygdala_analog/synthesis.md
+  evidence_quality_note: >
+    Registered 2026-04-21 as split child of MECH-074. Load-bearing literature:
+    Mendez-Bertolo et al 2016 (confidence 0.88, direct LFP evidence of 74 ms
+    amygdala vs ~400 ms cortical latency), bounded by Pessoa & Adolphs 2010
+    (confidence 0.72, many-roads framing constrains dominance). v3_pending
+    until substrate lands. Urgency interrupt at ree-v3/ree_core/agent.py:869-886
+    is a SEPARATE path and stays inline this pass; migration into fast_prime
+    is a deliberate second pass once MECH-074c is validated.
+- id: MECH-074d
+  title: "BLA analogue emits a remap_signal on harm-PE spike when predictor-attribution flags specific latent codes — partial (~one-third) remap, NOT wholesale replacement."
+  claim_type: mechanism_hypothesis
+  subject: amygdala.bla_pe_remap_with_attribution
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-074         # parent
+    - SD-011           # z_harm_a
+    - ARC-033          # E2_harm_s forward model (prediction source)
+    - ARC-007          # hippocampal map substrate
+    - MECH-073         # valenced hippocampal map
+    - SD-035           # amygdala substrate
+  functional_restatement: >
+    BLAAnalog emits a remap_signal consumed by HippocampalModule when
+    ||z_harm_a - E2_harm_a_pred|| exceeds ~1 standard deviation of the
+    running harm-PE distribution AND a predictor-attribution head flags at
+    least one candidate latent code. Both conditions required. Remap shape
+    is a step-function at the per-code level (binary per code), NOT graded;
+    population gradedness emerges because the gate fires on only ~30-40% of
+    predictor-candidate codes. Remap amplitude perturbs roughly one-third of
+    selected latent codes (Moita 2004: training-box correlation 0.57 -> 0.39,
+    ~30-35% overwrite). Not wholesale replacement.
+
+    Attribution gating — critical. The contextual-vs-auditory dissociation in
+    Moita 2004 (Z = -1.36 vs -0.34, p = 0.02) rules out a broadcast
+    architecture. BLAAnalog MUST consult a predictor-identification step before
+    emitting remap_signal. For the initial non-trainable pass this is
+    approximated by selecting codes whose contribution to the harm-PE exceeds
+    a threshold; a learnable attribution head is deferred.
+
+    Timescale. Remap decision fires within minutes of PE biologically
+    (O(10^3) sim steps at 100 ms/step). A 4-6 hour plasticity gate window
+    (~1.4e5-2.2e5 sim steps) spans multiple REE episodes and is relevant
+    only when learnable components are added.
+
+    Falsifiable: EXQ-B must show remap_signal fires on synthetic PE spikes
+    above threshold AND preferentially perturbs attributed codes (partial
+    remap, not wholesale); if remap fires on sub-threshold PE or perturbs
+    untagged codes uniformly, the attribution gate is broken.
+  location: docs/architecture/sd_035_amygdala_analog.md#mech-074d
+  source:
+    - evidence/literature/targeted_review_connectome_mech_074/entries/2026-04-21_mech_074_reconsolidation_nader2000/
+    - evidence/literature/targeted_review_connectome_mech_074/entries/2026-04-21_mech_074_place_cell_remap_moita2004/
+    - evidence/literature/targeted_review_amygdala_analog/synthesis.md
+  evidence_quality_note: >
+    Registered 2026-04-21 as split child of MECH-074. Load-bearing literature:
+    Nader, Schafe & LeDoux 2000 (confidence 0.80, reconsolidation necessity),
+    Moita et al 2004 (confidence 0.78, contextual-vs-auditory dissociation
+    mandating attribution gating). v3_pending until substrate lands and EXQ-B
+    completes. Attribution head is currently non-trainable threshold-based;
+    learnable head is a deliberate second pass.
 - id: MECH-075
   title: "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics."
   claim_type: mechanism_hypothesis
@@ -18850,6 +19088,130 @@
     falsifiers queued in ree-v3/experiment_queue.json. See
     evidence/planning/sd033_governance_plan.md (anchor doc).
   location: evidence/planning/sd033_governance_plan.md
+- id: SD-035
+  title: "Amygdala analogue as BLA + CeA salience stage between z_harm_a and the cingulate/hippocampus — two peer non-trainable arithmetic modules owning the MECH-046 and MECH-074a-d behaviours."
+  claim_type: design_decision
+  subject: amygdala.analog_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-21
+  depends_on:
+    - SD-011           # affective harm stream z_harm_a (input)
+    - SD-032a          # SalienceCoordinator (target of mode prior and fast_prime)
+    - ARC-005          # latent stack / L-space substrate
+    - ARC-007          # hippocampal map substrate
+    - MECH-039         # salience gating substrate
+    - MECH-046         # CeA mode prior (child claim)
+    - MECH-074         # BLA/CeA read/write head (parent of 074a-d)
+  child_claims:
+    - MECH-046
+    - MECH-074
+    - MECH-074a
+    - MECH-074b
+    - MECH-074c
+    - MECH-074d
+  functional_restatement: >
+    SD-035 registers a two-module amygdala analogue in ree-v3 --
+    BLAAnalog (basolateral) and CeAAnalog (central) as peer modules,
+    mirroring the biological division -- as the missing upstream stage
+    between AffectiveHarmEncoder's z_harm_a and the downstream
+    cingulate cluster (SD-032a-e). The cingulate is downstream; the
+    amygdala is upstream and was not previously implemented.
+
+    Module split and responsibilities:
+
+    - BLAAnalog (ree-v3/ree_core/amygdala/bla.py, new). Non-trainable
+      arithmetic. Exposes tick(z_harm_a, z_harm_a_pred,
+      hippocampal_context) -> BLAOutput with fields:
+        * encoding_gain (scalar) -- MECH-074a
+        * retrieval_bias (per-trace weight vector) -- MECH-074b
+        * remap_signal (per-code binary with attribution) -- MECH-074d
+
+    - CeAAnalog (ree-v3/ree_core/amygdala/cea.py, new). Non-trainable
+      arithmetic. Exposes tick(z_harm_a, cue_features=None,
+      escapability_hint=None) -> CeAOutput with fields:
+        * mode_prior (vector over operating modes; pre-softmax additive
+          log-odds into SalienceCoordinator) -- MECH-046
+        * fast_prime (scalar action/candidate prior; distinct fast
+          subcortical pulse) -- MECH-074c
+      escapability_hint is a Q-036 placeholder so MECH-219 can wire in
+      later without refactor.
+
+    What SD-035 does NOT do:
+      - Does not produce z_harm_a (AffectiveHarmEncoder in
+        ree_core/latent/stack.py stays; amygdala consumes).
+      - Does not replace AIC urgency (SD-032c). CeA mode_prior is a
+        peer input to SalienceCoordinator, not a substitute.
+      - Does not modify the urgency interrupt at
+        ree-v3/ree_core/agent.py:869-886 this pass. Migration into
+        CeAAnalog.fast_prime is a deliberate second pass once MECH-074c
+        is validated.
+      - Does not add trainable components. Learnable fear-conditioning
+        head is deferred (second pass). The MECH-074d attribution head
+        is threshold-based initially.
+
+    Config surface. BLAConfig and CeAConfig live in
+    ree-v3/ree_core/utils/config.py, gated by a master switch
+    use_amygdala_analog=False (both modules default to no-op). Defaults
+    seeded from evidence/literature/targeted_review_amygdala_analog/synthesis.md.
+
+    Data flow. In agent.sense(), after z_harm_a is produced by
+    AffectiveHarmEncoder, BLAAnalog.tick and CeAAnalog.tick run; their
+    outputs are attached to LatentState and consumed by:
+      - SalienceCoordinator.tick (CeA mode_prior, fast_prime --
+        pre-softmax additive bias on harm channel)
+      - HippocampalModule write path (BLA encoding_gain multiplier;
+        BLA remap_signal on update hook)
+      - E3.select (BLA retrieval_bias reweights candidate proposals)
+
+    Falsifiable (primary): EXQ-A (CeA mode-prior ablation) and EXQ-B
+    (BLA encoding + remap) are the primary falsifiers. EXQ-A requires
+    CeA ON to beat OFF on mode-switch latency AND zeroed-prior control
+    to match OFF. EXQ-B requires gain condition to improve threat-
+    context recall without harming neutral recall AND remap_signal to
+    fire in the expected window.
+
+    Falsifiable (secondary): backward-compat smoke test -- with
+    use_amygdala_analog=False, an existing EXQ (e.g. baseline
+    CausalGridWorld run) must produce bit-identical metrics.
+  notes: >
+    Registered 2026-04-21 as part of the amygdala analogue implementation
+    plan (.claude/plans/amygdala-there-is-no-concurrent-corbato.md).
+    Mirrors the SD-032 cingulate cluster pattern: a parent SD (SD-035)
+    with child MECH claims (MECH-046, MECH-074a-d) and peer modules for
+    biologically-distinct subdivisions.
+
+    Biology-before-formal-definitions rule. This SD was registered only
+    after the lit-pull at evidence/literature/targeted_review_amygdala_analog/
+    (synthesis.md) extracted quantitative defaults from Roozendaal 2011,
+    Mendez-Bertolo 2016, Pessoa & Adolphs 2010, LaBar & Cabeza 2006,
+    Nader 2000, and Moita 2004. Defaults feed BLAConfig and CeAConfig.
+
+    Q-036 escapability placeholder. CeAAnalog carries an
+    escapability_hint parameter as a no-op placeholder so MECH-219 can
+    wire in later without refactor. Not a blocker for MECH-046/074a-d.
+
+    SD-032b dACC FAIL context. v3_exq_445 shows affective PE path
+    currently underperforming. EXQ-A/B acceptance criteria must be
+    calibrated against this -- don't expect mode-prior ablation to
+    produce clean signals if upstream PE is broken.
+  evidence_quality_note: >
+    Registered 2026-04-21 as candidate with v3_pending:true. Eight
+    literature entries seed the config defaults (see
+    evidence/literature/targeted_review_amygdala_analog/synthesis.md).
+    Substrate not yet implemented; EXQ-A and EXQ-B not yet queued.
+    Promote off v3_pending only after (a) BLAAnalog + CeAAnalog land,
+    (b) backward-compat smoke test passes bit-identical with flag OFF,
+    (c) EXQ-A and EXQ-B pass their acceptance criteria.
+  location: docs/architecture/sd_035_amygdala_analog.md
+  source:
+    - docs/architecture/sd_035_amygdala_analog.md
+    - evidence/literature/targeted_review_amygdala_analog/synthesis.md
+    - evidence/literature/targeted_review_connectome_mech_046/
+    - evidence/literature/targeted_review_connectome_mech_074/
 - id: MECH-262
   title: "Rule-selective persistence in lateral-PFC-analog: stimulus-abstracted rule representations in SD-033a persist across simulated time steps without external drive, remain selective through distractor events, and emerge through training rather than being innate."
   claim_type: mechanism_hypothesis
