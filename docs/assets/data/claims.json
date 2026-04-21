@@ -347,6 +347,12 @@
     "title": "Shared forward-model trunk for aversive prediction: a single HarmForwardTrunk substrate encodes a modality-independent unsigned prediction error shared across aversive streams (z_harm_s, z_harm_a, potentially others); stream-specific HarmForwardHeads read out signed per-stream predictions. COMPETES WITH ARC-033, which commits to independent per-stream forward models.",
     "type": "architectural_commitment"
   },
+  "ARC-059": {
+    "status": "candidate",
+    "subject": "developmental.three_stage_ordering",
+    "title": "REE developmental training proceeds in three ordered stages: (1) self-as-object \u2014 action-space discovery via motor experimentation, producing the substrate SD-003 requires; (2) objects-as-patterns \u2014 object-schema formation via experimental action on the world; (3) others-as-special-objects \u2014 modelling other agents as objects with their own policies. The ordering is load-bearing: without a self-model the agent cannot distinguish self-produced from world-produced sensory change; without object-schemas the agent cannot recognise other-agents as a distinguished subclass of objects. Refines the generic ARC-019 curriculum-gates claim.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -2847,6 +2853,30 @@
     "status": "candidate",
     "subject": "other_model.sleep_dependent_aggregation",
     "title": "V4-reserved. The sleep-dependent aggregation pattern of MECH-273 extends to other-attribution. Fast empathy (ARC-010) produces single-episode attributions of other-agent action-outcome links; a stable model of other minds requires full-Bayesian aggregation of those attributions during sleep, architecturally parallel to MECH-273 but operating on other-agent rather than self attributions.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-275": {
+    "status": "candidate",
+    "subject": "sleep.general_bayesian_aggregation",
+    "title": "Sleep-phase full-Bayesian aggregation is a general mechanism across attribution domains: given a waking-phase feedstock of counterfactual-backed attributions (produced by MECH-276), sleep phases aggregate across many episodes, correcting for delayed consequences, failed counterfactuals, and systematic attribution biases that single-episode attribution cannot catch. MECH-273 (self-model aggregation) and MECH-274 (other-model aggregation, V4) are specialisations. Object-schema revision is a further specialisation. INV-049 (offline phases mathematically necessary for model-building agents) is operationalised here: what sleep is mathematically necessary FOR is this cross-episode Bayesian aggregation of counterfactual-backed attribution.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-276": {
+    "status": "candidate",
+    "subject": "agent.scientist_intervention",
+    "title": "The scientist-agent principle: the waking-phase mechanism that feeds MECH-275 is deliberate intervention. The agent generates hypotheses (proposer-side, via MECH-269 probe channel), selects actions that will produce informative contrast under those hypotheses, executes the actions, observes the outcomes, and computes counterfactual-backed attribution. Correlational observation is insufficient -- the agent must behave like a scientist, performing experiments whose outcomes produce structured attribution signals. Applies across all three developmental stages; specialised by MECH-277 (action-space discovery), MECH-278 (object-schema formation), and a V4 social-intervention mechanism (parallel to MECH-278 for other-agents).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-277": {
+    "status": "candidate",
+    "subject": "developmental.action_space_discovery",
+    "title": "Stage-1 specialisation of MECH-276: the agent discovers its own action space via motor experimentation (motor babbling) before SD-003 counterfactual self-attribution is well-formed. The agent performs motor acts and observes which sensory changes covary with them; the output is the substrate SD-003 requires -- a set of actions the agent has reason to believe are self-initiated and for which it has counterfactual expectations. Without MECH-277, the counterfactual action space (a_cf) is not well-defined and SD-003 degenerates.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-278": {
+    "status": "candidate",
+    "subject": "developmental.object_schema_formation",
+    "title": "Stage-2 specialisation of MECH-276: once the agent can distinguish self-produced from world-produced sensory change (stage 1 complete via MECH-277), it forms object-schemas via experimental action on the world. An object is the stable bundle of features that behave causally together under interventional perturbation -- push here, these features move together; occlude this, that cluster disappears. Object-schema formation is the stage-2 specialisation of the scientist-agent principle, with world-features as the target of intervention. V3's z_world (SD-005) is currently engineered pre-split; this is an architectural shortcut past stage 2.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

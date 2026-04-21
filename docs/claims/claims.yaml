@@ -19986,6 +19986,7 @@
   registered_utc: 2026-04-21
   depends_on:
     - SD-003   # the waking-half attribution this aggregates
+    - MECH-275 # general aggregation mechanism this specialises
     - MECH-272 # state-gated routing framework
     - MECH-271 # routing architecture
     - INV-049  # offline phases are mathematically necessary for model-building agents
@@ -20050,6 +20051,7 @@
   registered_utc: 2026-04-21
   depends_on:
     - MECH-273  # self-model parallel
+    - MECH-275  # general aggregation mechanism this specialises
     - ARC-010   # social.mirror_modelling (V4)
     - MECH-272  # state-gated routing
     - INV-049   # offline-phase necessity
@@ -20084,4 +20086,315 @@
     Biology lit-pull for V4 should target sleep-dependent social
     learning in rodents and humans.
   location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: ARC-059
+  title: "REE developmental training proceeds in three ordered stages: (1) self-as-object — action-space discovery via motor experimentation, producing the substrate SD-003 requires; (2) objects-as-patterns — object-schema formation via experimental action on the world; (3) others-as-special-objects — modelling other agents as objects with their own policies. The ordering is load-bearing: without a self-model the agent cannot distinguish self-produced from world-produced sensory change; without object-schemas the agent cannot recognise other-agents as a distinguished subclass of objects. Refines the generic ARC-019 curriculum-gates claim."
+  claim_type: architectural_commitment
+  subject: developmental.three_stage_ordering
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-21
+  depends_on:
+    - ARC-019   # generic staged curriculum this refines
+    - MECH-276  # scientist-agent principle, mechanism across all stages
+    - MECH-277  # stage-1 specialisation (action-space discovery)
+    - MECH-278  # stage-2 specialisation (object-schema formation)
+    - ARC-010   # stage-3 substrate (V4)
+    - MECH-274  # stage-3 sleep-aggregation (V4)
+    - SD-003    # stage-1 closure (counterfactual self-attribution)
+    - SD-005    # z_self / z_world split (currently engineered; developmental construction flagged)
+  functional_restatement: >
+    The agent must discover its own action space before it can form
+    object-schemas, and it must have object-schemas before it can
+    recognise other-agents as special objects. Stage 1 is self-as-
+    object-of-study: motor babbling and action-space discovery
+    (MECH-277) produce the substrate of "actions the agent has reason
+    to believe are self-initiated", which SD-003 counterfactual
+    attribution presupposes. Stage 2 is object-formation via
+    experimental action (MECH-278): once self-produced change can be
+    distinguished from world-produced change, the agent perturbs the
+    world and observes which features behave causally together. Stage
+    3 (V4) is social modelling: other-agents as a subclass of objects
+    whose internal dynamics resist simple interventional attribution.
+
+    Falsifiable (primary): skip-ordering experiments. An agent given
+    stage-2 training before stage 1 is meaningfully complete should
+    fail to form stable object-schemas, because self-produced and
+    world-produced change cannot be distinguished.
+
+    Falsifiable (secondary): the engineered z_world shortcut (SD-005)
+    lets V3 skip stage 2. Ablating the engineered z_world and
+    requiring experimental-action reconstruction should produce a
+    decomposition that either matches the engineered version (the
+    shortcut was benign) or diverges (the shortcut was smuggling
+    assumptions the agent would not make).
+  notes: >
+    Design origin: user-led discussion 2026-04-21 following MECH-272/
+    273/274 registration. The conversation noted that MECH-273's
+    aggregation pattern generalises, but not arbitrarily -- the
+    generalisation requires counterfactual-backed attribution
+    (MECH-276) and developmental prerequisites (this claim). ARC-019
+    was too generic to carry the specific ordering; ARC-059 refines
+    it without disturbing the provisional status of ARC-019.
+
+    V3 architectural shortcut: z_world is provided pre-split in V3
+    (engineered SD-005). V3 validity is not in question -- V3 claims
+    the mature architecture, not the developmental construction. But
+    the shortcut is flagged: V4 should test whether experimental
+    action reconstructs a matching z_world, or whether the engineered
+    version smuggles assumptions.
+  evidence_quality_note: >
+    Candidate, registered to fix the ordering and V3 architectural
+    shortcut. No V3 experiment validates ARC-059 end-to-end. Stage-1
+    and stage-2 experiments exist in principle; stage-3 is V4.
+  location: docs/architecture/scientist_agent_developmental_ordering.md
+
+- id: MECH-275
+  title: "Sleep-phase full-Bayesian aggregation is a general mechanism across attribution domains: given a waking-phase feedstock of counterfactual-backed attributions (produced by MECH-276), sleep phases aggregate across many episodes, correcting for delayed consequences, failed counterfactuals, and systematic attribution biases that single-episode attribution cannot catch. MECH-273 (self-model aggregation) and MECH-274 (other-model aggregation, V4) are specialisations. Object-schema revision is a further specialisation. INV-049 (offline phases mathematically necessary for model-building agents) is operationalised here: what sleep is mathematically necessary FOR is this cross-episode Bayesian aggregation of counterfactual-backed attribution."
+  claim_type: mechanism_hypothesis
+  subject: sleep.general_bayesian_aggregation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-276  # counterfactual-backed attribution feedstock (critical precondition)
+    - MECH-272  # state-gated routing (sleep regime)
+    - MECH-271  # routing architecture
+    - MECH-273  # self-model specialisation
+    - INV-049   # offline-phase necessity (operationalised here)
+    - ARC-007   # hippocampal path memory (substrate)
+  functional_restatement: >
+    MECH-275 generalises MECH-273's self-model aggregation. The input
+    is not arbitrary correlation; it is structured attribution
+    produced by MECH-276 (waking-phase counterfactual-backed
+    intervention). The output is schema revision: updated priors,
+    new buckets for experiences that did not fit existing schemas,
+    revised causal graphs.
+
+    The input-requirement is critical. Aggregating arbitrary
+    correlations would not produce schema revision -- it would
+    produce noise-fit. MECH-275 is only coherent if the waking-phase
+    feedstock is structured by deliberate intervention.
+
+    Specialisations:
+    - Self-attribution (MECH-273): aggregate SD-003 outputs across
+      episodes, correcting spurious self-attributions.
+    - Other-attribution (MECH-274, V4): aggregate ARC-010 outputs
+      across episodes, stabilising theory of other minds.
+    - Object-schema revision (stage 2, MECH-278): aggregate
+      experimental-action outcomes across episodes, revising the
+      object decomposition.
+
+    Falsifiable (primary): ablating the sleep-phase aggregation step
+    should leave waking-phase attribution intact but degrade
+    cross-episode stability for whichever specialisation is being
+    tested. Falsifiable (secondary): feeding MECH-275 with
+    correlational (non-counterfactual-backed) inputs should produce
+    noise-fit rather than schema revision, distinguishing it from
+    naive cross-episode averaging.
+  notes: >
+    Design origin: user-led discussion 2026-04-21. The naive
+    generalisation of MECH-273 (sleep aggregates many attributions,
+    not just self) is correct in spirit but needs the input
+    requirement -- aggregation is only coherent over counterfactual-
+    backed attribution. User correction pushed this claim into
+    existence: "probably needs to be linked to consequential reasoning
+    which requires experiments or self generated consequences".
+
+    INV-049 (sleep mathematically necessary) sits directly under
+    MECH-275. Before MECH-275, INV-049 was a necessity claim without
+    a content specification. MECH-275 specifies the content: the
+    aggregation that is necessary is of counterfactual-backed
+    attribution, not arbitrary evidence.
+  evidence_quality_note: >
+    Candidate, no direct experiment yet. Natural validation is the
+    generalisation of the MECH-273 experiment template, parameterised
+    over which attribution domain is being aggregated. Distinguishing
+    MECH-275 from naive averaging requires the counterfactual-vs-
+    correlational control.
+  location: docs/architecture/scientist_agent_developmental_ordering.md
+
+- id: MECH-276
+  title: "The scientist-agent principle: the waking-phase mechanism that feeds MECH-275 is deliberate intervention. The agent generates hypotheses (proposer-side, via MECH-269 probe channel), selects actions that will produce informative contrast under those hypotheses, executes the actions, observes the outcomes, and computes counterfactual-backed attribution. Correlational observation is insufficient -- the agent must behave like a scientist, performing experiments whose outcomes produce structured attribution signals. Applies across all three developmental stages; specialised by MECH-277 (action-space discovery), MECH-278 (object-schema formation), and a V4 social-intervention mechanism (parallel to MECH-278 for other-agents)."
+  claim_type: mechanism_hypothesis
+  subject: agent.scientist_intervention
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-269  # probe channel as proposer-side hypothesis generator
+    - MECH-275  # sleep aggregation is the consumer of this mechanism's output
+    - SD-003    # stage-1 closure (self-attribution)
+    - MECH-277  # stage-1 specialisation
+    - MECH-278  # stage-2 specialisation
+  functional_restatement: >
+    Three-stage loop: (1) hypothesis generation -- MECH-269 probe
+    channel seeds candidate trajectories from low-verisimilitude /
+    high-PE regions. These are the "what if" proposals the agent does
+    not yet have a settled model for. (2) Consequential action --
+    the agent actually performs the action in the world (not just a
+    rollout), with the probe-hypothesis tag indicating the attribution
+    is provisional until outcome. (3) Counterfactual attribution --
+    upon outcome, the agent computes the contrast between what
+    happened and the counterfactual, producing a structured
+    attribution signal (SD-003 at stage 1, object-schema update at
+    stage 2, other-agent model update at stage 3).
+
+    The closure of this loop is what separates MECH-276 from pure
+    exploration. Pure exploration visits new states; MECH-276 visits
+    new states in a hypothesis-structured way, producing attribution
+    signals fit for MECH-275 aggregation.
+
+    Falsifiable (primary): ablating the hypothesis-generation step
+    (MECH-269 probe channel suppressed, agent only visits states it
+    has anchor for) should starve MECH-275 of its feedstock --
+    cross-episode schema revision should stall. Falsifiable
+    (secondary): replacing counterfactual-backed attribution with
+    pure correlation at the waking-phase output should produce
+    noise-fit in subsequent sleep-phase aggregation.
+  notes: >
+    Design origin: user-led discussion 2026-04-21. The scientist-
+    agent framing came from the observation that MECH-273's sleep
+    aggregation needs a waking-phase signal that is not mere
+    correlation -- the agent has to deliberately generate contrast.
+    User articulation: "The agent does need to operate like a
+    scientist indeed."
+
+    Relationship to MECH-269 probe channel: MECH-269 is the
+    proposer-side mechanism (what hypotheses does the hippocampus
+    generate). MECH-276 is the whole-agent closure (the agent acts
+    on those hypotheses consequentially and registers the outcome).
+    MECH-269 without MECH-276 closure is a hypothesis generator that
+    no one listens to.
+  evidence_quality_note: >
+    Candidate, no direct experiment yet. Natural validation: an
+    experiment that seeds a confounder (sensory change that
+    correlates with action but is not causally produced by it) and
+    tests whether the agent's SD-003 attribution corrects. A
+    working MECH-276 closure should isolate the confounder via
+    intervention contrast; a broken closure should aggregate the
+    correlation as if causal.
+  location: docs/architecture/scientist_agent_developmental_ordering.md
+
+- id: MECH-277
+  title: "Stage-1 specialisation of MECH-276: the agent discovers its own action space via motor experimentation (motor babbling) before SD-003 counterfactual self-attribution is well-formed. The agent performs motor acts and observes which sensory changes covary with them; the output is the substrate SD-003 requires -- a set of actions the agent has reason to believe are self-initiated and for which it has counterfactual expectations. Without MECH-277, the counterfactual action space (a_cf) is not well-defined and SD-003 degenerates."
+  claim_type: mechanism_hypothesis
+  subject: developmental.action_space_discovery
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-276  # scientist-agent principle (general form)
+    - ARC-059   # developmental ordering
+    - SD-003    # the attribution mechanism MECH-277 feeds
+    - SD-005    # z_self (the latent this stage populates)
+  functional_restatement: >
+    The agent does not arrive with a model of its own action space.
+    It discovers the space by acting and observing which sensory
+    changes track its motor output. This is motor babbling in the
+    developmental psychology sense, but interpreted as the stage-1
+    specialisation of MECH-276 -- the hypothesis being tested is
+    "what can I cause", the consequential action is the motor act,
+    and the attribution is "this sensory change covaries with my
+    action output".
+
+    The output of MECH-277 is the prerequisite for SD-003: a
+    well-formed counterfactual action space. SD-003's computation
+    E2(z, a_actual) vs E2(z, a_cf) presupposes that the set of a_cf
+    candidates is meaningful; MECH-277 is what makes that set
+    meaningful.
+
+    Falsifiable (primary): an agent whose motor-experimentation
+    phase is curtailed should show degenerate SD-003 attribution --
+    the counterfactual comparison is against an arbitrary a_cf
+    distribution rather than an informed one, and self-attribution
+    stability should suffer.
+
+    V3 note: V3 hand-wires action knowledge into the agent (action
+    dimensions are pre-specified in config). MECH-277 is not
+    actively tested in V3; the assumption is encoded in the
+    substrate. SD-003 experiments should note this as an
+    architectural shortcut.
+  notes: >
+    Design origin: user-led discussion 2026-04-21. User noted that
+    "sense of self would need to develop presumably before objects
+    can be identified from the incoming data". MECH-277 formalises
+    the sense-of-self developmental stage as the action-space
+    discovery stage; the "self" the stage produces is the
+    self-attribution substrate, not a phenomenology claim.
+  evidence_quality_note: >
+    Candidate, V3 hand-wires the action space so MECH-277 is not
+    actively tested. V4 or a V3 developmental sub-experiment could
+    test whether the substrate holds up under discovery rather than
+    specification.
+  location: docs/architecture/scientist_agent_developmental_ordering.md
+
+- id: MECH-278
+  title: "Stage-2 specialisation of MECH-276: once the agent can distinguish self-produced from world-produced sensory change (stage 1 complete via MECH-277), it forms object-schemas via experimental action on the world. An object is the stable bundle of features that behave causally together under interventional perturbation -- push here, these features move together; occlude this, that cluster disappears. Object-schema formation is the stage-2 specialisation of the scientist-agent principle, with world-features as the target of intervention. V3's z_world (SD-005) is currently engineered pre-split; this is an architectural shortcut past stage 2."
+  claim_type: mechanism_hypothesis
+  subject: developmental.object_schema_formation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-21
+  depends_on:
+    - MECH-276  # scientist-agent principle (general form)
+    - MECH-277  # stage-1 prerequisite (self-model must exist first)
+    - ARC-059   # developmental ordering
+    - SD-005    # z_world (the latent this stage populates; engineered in V3)
+    - SD-004    # action objects as map backbone (supports object-schema granularity)
+  functional_restatement: >
+    Once the agent can attribute sensory change to self vs world
+    (stage 1 complete), it can perform experimental actions on the
+    world and observe which features behave causally together under
+    perturbation. The object is the stable bundle: the features
+    that move together when pushed, disappear together when occluded,
+    resist together when encountered. Object-schema formation is
+    the stage-2 specialisation of MECH-276.
+
+    V3 architectural shortcut: z_world is provided as a pre-
+    specified split from z_self (SD-005, engineered). This skips
+    the developmental construction of object-schemas. For V3's
+    purposes (validating the mature architecture), this is
+    acceptable. But the shortcut should be flagged -- the
+    engineered z_world encodes assumptions the agent would not
+    necessarily make on its own.
+
+    Falsifiable (primary, V4 or developmental V3 sub-experiment):
+    ablate the engineered z_world and require the agent to
+    reconstruct an object-schema decomposition via experimental
+    action. If the reconstructed decomposition matches the
+    engineered version, the shortcut was benign. If it diverges,
+    the shortcut smuggled assumptions.
+
+    Falsifiable (secondary): an agent trained stage-2 without
+    stage-1 complete should fail to form stable object-schemas
+    because self-produced and world-produced sensory change cannot
+    be distinguished -- the interventional signature becomes noisy.
+  notes: >
+    Design origin: user-led discussion 2026-04-21. User flagged the
+    missing pieces about all stages needing wiring for objects and
+    the importance of the developmental ordering. The architectural
+    shortcut in V3 is a deliberate engineering choice, not an
+    oversight; MECH-278 registers it so V4 can test whether the
+    shortcut held.
+  evidence_quality_note: >
+    Candidate, V3 engineered z_world means MECH-278 is not actively
+    tested in V3. The clean test is a V4 experiment that ablates
+    z_world and requires experimental-action reconstruction.
+  location: docs/architecture/scientist_agent_developmental_ordering.md
 
