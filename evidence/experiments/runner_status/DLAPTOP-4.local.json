@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 16991,
   "runner_started_at": "2026-04-21T17:06:12.255561+00:00",
-  "last_updated": "2026-04-21T19:55:22.897424+00:00",
+  "last_updated": "2026-04-21T20:23:36.899051+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-126",
-    "backlog_id": "EVB-0062",
-    "claim_id": "",
-    "title": "MECH-104 volatility interrupt -- surprise-gate matched-seed discriminative pair",
-    "description": "",
-    "script": "experiments/v3_exq_126_mech104_surprise_gate_pair.py",
-    "started_at": "2026-04-21T17:06:14.625157+00:00",
-    "progress": {
-      "run_label": "Seed 123 / MATCHED_PAIR",
-      "runs_done": 1,
-      "runs_total": 2,
-      "episodes_done": 300,
-      "episodes_total": 400,
-      "overall_pct": 87.5
-    },
-    "seconds_elapsed": 10148,
-    "seconds_remaining": 1535,
-    "recent_lines": [
-      "[V3-EXQ-126] Seed 123",
-      "============================================================",
-      "[train seed=123] ep 100/400  running_var=0.000001",
-      "[train seed=123] ep 200/400  running_var=0.000002",
-      "[train seed=123] ep 300/400  running_var=0.000001"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-126",
-      "backlog_id": "EVB-0062",
-      "claim_id": "",
-      "title": "MECH-104 volatility interrupt -- surprise-gate matched-seed discriminative pair",
-      "description": "",
-      "estimated_minutes": 106.7,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-470",
       "backlog_id": "",
@@ -5857,6 +5820,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_133_mech091_phase_reset_pair/v3_exq_133_mech091_phase_reset_pair_20260421T051642Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 73.3
+    },
+    {
+      "queue_id": "V3-EXQ-126",
+      "backlog_id": "EVB-0062",
+      "claim_id": "",
+      "title": "MECH-104 volatility interrupt -- surprise-gate matched-seed discriminative pair",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "committed_harm_steps=206  uncommitted_harm_steps=0  fatal=0 | verdict: PASS | V3-EXQ-126 verdict: PASS  (6/6)",
+      "started_at": "2026-04-21T17:06:14.625157+00:00",
+      "completed_at": "2026-04-21T20:23:36.891982+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_126_mech104_surprise_gate_pair/v3_exq_126_mech104_surprise_gate_pair_20260421T202336Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 11842.2
     }
   ]
 }
