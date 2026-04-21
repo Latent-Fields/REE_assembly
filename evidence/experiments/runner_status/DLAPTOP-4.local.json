@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 38928,
   "runner_started_at": "2026-04-20T14:39:30.194149+00:00",
-  "last_updated": "2026-04-20T22:30:44.076403+00:00",
+  "last_updated": "2026-04-21T00:28:00.003098+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -24,28 +24,6 @@
       "title": "SD-029 E2_harm_s comparator -- extended interventional training (fraction=0.7, margin=0.2, 4 seeds)",
       "description": "",
       "estimated_minutes": 213.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-453",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-261 per-subdivision write-gate landing validation (diagnostic probe)",
-      "description": "",
-      "estimated_minutes": 3.2,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-455",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032a salience coordinator behavioral confirmation -- mode-switch trigger + write-gate diversity under natural PE",
-      "description": "",
-      "estimated_minutes": 160.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -5703,6 +5681,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 1024.5
+    },
+    {
+      "queue_id": "V3-EXQ-453",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-261 per-subdivision write-gate landing validation (diagnostic probe)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "UC3 (per_subdivision_gate_specificity): PASS | UC4 (v4_extensibility): PASS | UC5 (pACC_write_landing): PASS",
+      "started_at": "2026-04-20T22:30:49.256587+00:00",
+      "completed_at": "2026-04-20T22:30:52.235427+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3.0
+    },
+    {
+      "queue_id": "V3-EXQ-455",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032a salience coordinator behavioral confirmation -- mode-switch trigger + write-gate diversity under natural PE",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: PASS",
+      "started_at": "2026-04-20T22:30:55.298733+00:00",
+      "completed_at": "2026-04-21T00:27:59.997737+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 7024.7
     }
   ]
 }
