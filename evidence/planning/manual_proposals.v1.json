@@ -714,7 +714,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "queued",
+      "status": "script_authored",
       "prerequisites": [
         "MECH-266 asymmetric mode hysteresis (proposed; SD-032a extension with per-mode exit_threshold)",
         "SD-032a SalienceCoordinator (implemented)",
@@ -728,7 +728,10 @@
         "SD-032a",
         "MECH-259"
       ],
-      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-464 -- ocd4 row 'competing goals', targets Go selection / lateral inhibition + asymmetric hysteresis gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-464 -- ocd4 row 'competing goals', targets Go selection / lateral inhibition + asymmetric hysteresis gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Script authored 2026-04-21 as substrate-landing diagnostic (5 sub-tests) against the MECH-266 asymmetric per-mode enter/exit threshold wiring on SD-032a SalienceCoordinator; full behavioural competing-goals task (switch-cost asymmetry on env-driven dual-cue tasks) deferred to EXQ-464b when the CausalGridWorldV2 dual simultaneously active resource-cue extension lands.",
+      "script_path": "ree-v3/experiments/v3_exq_464_mech266_competing_goals.py",
+      "reserved_queue_id": "V3-EXQ-464",
+      "queued_utc": "2026-04-21"
     },
     {
       "proposal_id": "EXP-0161",
@@ -789,7 +792,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "queued",
+      "status": "script_authored",
       "prerequisites": [
         "MECH-266 asymmetric mode hysteresis (proposed) with parametric exit_threshold",
         "SD-032a SalienceCoordinator (implemented)",
@@ -801,7 +804,10 @@
         "MECH-266",
         "SD-032a"
       ],
-      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-467 -- ocd4 row 'mode stickiness / Hold decay', targets Hold decay under asymmetric hysteresis gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-467 -- ocd4 row 'mode stickiness / Hold decay', targets Hold decay under asymmetric hysteresis gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Script authored 2026-04-21 as substrate-landing diagnostic (5-arm parametric sweep, 5 sub-tests) using the coordinator API directly with a fixed synthetic three-regime competing-goals signal sequence with intra-regime doubt tick; measures n_switches, longest_run_in_mode, mode_shares, and distance from the ideal switch count as substrate proxies for the full behavioural metrics. Full behavioural dose-response (goal-completion curve, residue-accumulation curve, monostrategy index) deferred to EXQ-467b when the CausalGridWorldV2 scheduled-distractor extension lands.",
+      "script_path": "ree-v3/experiments/v3_exq_467_mech266_mode_stickiness.py",
+      "reserved_queue_id": "V3-EXQ-467",
+      "queued_utc": "2026-04-21"
     },
     {
       "proposal_id": "EXP-0164",
