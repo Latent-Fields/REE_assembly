@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "terrain_loss_initial": 0.3426146380316337,
+    "terrain_loss_final": 3.2128665172981825e-06,
+    "world_forward_r2": 0.9795193672180176,
+    "hippo_quality_gap_intact": -1.6400187370315609,
+    "hippo_quality_gap_ablated": 0.0,
+    "hippo_quality_gap_restored": -1.6400242960603717,
+    "ablation_degradation": -1.6400187370315609,
+    "calibration_gap_approach": -0.00022539475814875587,
+    "mean_hippo_residue_intact": 2.034676432278421,
+    "mean_random_residue_intact": 0.3946576952468604,
+    "mean_hippo_residue_ablated": 0.0,
+    "mean_random_residue_ablated": 0.0,
+    "e3_tick_total": 10773.0,
+    "total_harm_train": 7853.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-397c -- ARC-007 Path Memory Ablation: Harder Env + Terrain Fix\n\n**Status:** FAIL\n**Claims:** ARC-007, SD-004\n**Supersedes:** V3-EXQ-397 (inverted quality_gap from terrain-training on E3-selected trajectories)\n**alpha_world:** 0.9  (SD-008)\n**Environment:** 16x16, 6 hazards, 3 resources (sparse)\n**Warmup:** 800 eps  |  Eval: 50 intact/ablated + 30 restored\n**Seed:** 0\n\n## Root Cause Fix (EXQ-397 inversion)\n\nEXQ-397 trained terrain_prior on E3-selected trajectories. E3 selects toward\nhazard-proximate resources (high reward, high residue), teaching hippocampus to\nnavigate TOWARD harm, inverting the quality_gap sign.\n\nFix: terrain_prior trained on minimum-residue candidate at each E3 tick.\nThis teaches hippocampus to propose paths that avoid accumulated harm residue.\n\n## Navigation Quality: Intact vs Ablated vs Restored\n\n| Phase | hippo_quality_gap | calibration_gap_approach |\n|-------|------------------|--------------------------|\n| Intact (trained) | -1.640019 | -0.0002 |\n| Ablated (residue=0) | 0.000000 | -0.0003 |\n| Restored | -1.640024 | -0.0003 |\n\n- **ablation_degradation**: -1.640019\n- world_forward_r2: 0.9795\n- terrain_loss: 0.3426 -> 0.0000\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: hippo_quality_gap_intact > 0 | FAIL | -1.640019 |\n| C2: ablated <= intact x 0.5 (ablation degrades >=50%) | FAIL | 0.000000 vs -0.820009 |\n| C3: restored >= ablated (no further degradation) | FAIL | -1.640024 vs 0.000000 |\n| C4: calibration_gap_approach > 0.03 | FAIL | -0.0002 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 1/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: hippo_quality_gap_intact=-1.640019 <= 0\n- C2 FAIL: hippo_quality_gap_ablated=0.000000 > -0.820009 (50% of intact)\n- C3 FAIL: quality_restored=-1.640024 < ablated=0.000000\n- C4 FAIL: calibration_gap_approach=-0.0002 <= 0.03\n",
+  "claim_ids": [
+    "ARC-007",
+    "SD-004"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_397c_arc007_harder_env",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260421T115552Z",
+  "claim": "ARC-007",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_397c_arc007_harder_env_20260421T115552Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
