@@ -10,11 +10,11 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260421T161806Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-032b": "mixed",
-    "MECH-258": "supports",
-    "MECH-260": "supports"
+    "MECH-258": "non_contributory",
+    "MECH-260": "non_contributory",
+    "SD-032b": "non_contributory"
   },
   "pass_criteria_summary": {
     "c1_mech258": {
@@ -111,5 +111,6 @@
     "num_resources": 7,
     "epsilon_train": 0.1,
     "epsilon_eval": 0.0
-  }
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: rerun, same V_s gating."
 }

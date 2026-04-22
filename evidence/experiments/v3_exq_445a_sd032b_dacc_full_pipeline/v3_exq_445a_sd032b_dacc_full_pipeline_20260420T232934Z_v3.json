@@ -10,11 +10,11 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260420T232934Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-032b": "mixed",
-    "MECH-258": "supports",
-    "MECH-260": "supports"
+    "MECH-258": "non_contributory",
+    "MECH-260": "non_contributory",
+    "SD-032b": "non_contributory"
   },
   "supersedes": "v3_exq_445_sd032b_dacc_analog",
   "pass_criteria_summary": {
@@ -118,5 +118,6 @@
     "p1_eps": 100,
     "p2_eps": 30,
     "steps_per_ep": 120
-  }
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: same V_s monostrategy gating as EXQ-445."
 }

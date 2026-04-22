@@ -12,13 +12,13 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260419T205642Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-032b": "mixed",
-    "MECH-258": "supports",
-    "MECH-260": "supports",
-    "ARC-033": "supports",
-    "ARC-058": "supports"
+    "ARC-033": "non_contributory",
+    "ARC-058": "non_contributory",
+    "MECH-258": "non_contributory",
+    "MECH-260": "non_contributory",
+    "SD-032b": "non_contributory"
   },
   "pass_criteria_summary": {
     "c1_forward_r2_substrate_ok": {
@@ -172,5 +172,6 @@
     "p1_eps": 100,
     "p2_eps": 30,
     "steps_per_ep": 120
-  }
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: dACC analog substrate landed (UC1..UC5 PASS) but behavioural FAIL is monostrategy-blocked at the V_s landing layer. SD-032b cluster cannot be discriminated until MECH-269 (per-region V_s) lands and unlocks alternative operating modes."
 }

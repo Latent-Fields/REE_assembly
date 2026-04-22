@@ -8,7 +8,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260420T144017Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
     "ARC-016": "weakens"
   },
@@ -209,5 +209,6 @@
     "adaptive_base_thresh": 0.3,
     "adaptive_min": 0.05,
     "adaptive_max": 2.0
-  }
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: ADAPTIVE collapses to STATIC_LOW behaviour (commit_rate=0); pe_variance_mean stuck at default 0.5 (PE -> commitment threshold update circuit not wired). Same calibration/wiring substrate gap as EXQ-396a x3 / EXQ-396b. Pending PE -> threshold wiring."
 }

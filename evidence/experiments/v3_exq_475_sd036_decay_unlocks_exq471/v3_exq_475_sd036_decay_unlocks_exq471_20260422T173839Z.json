@@ -52,5 +52,10 @@
   "experiment_type": "v3_exq_475_sd036_decay_unlocks_exq471",
   "run_timestamp": "20260422T173839Z",
   "run_id": "v3_exq_475_sd036_decay_unlocks_exq471_20260422T173839Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_per_claim": {
+    "SD-036": "non_contributory",
+    "MECH-279": "supports"
+  },
+  "evidence_direction_note": "Per-claim split 2026-04-22: SD-036 decay regulator was enabled but did not produce the EXQ-471 unlock the hypothesis predicted (eval rewards still negative; no monostrategy break). MECH-279 PAG freeze-gate confirmed firing (1000 active steps per seed). MECH-279 supports as substrate landing; SD-036 non_contributory pending V_s landing upstream."
 }

@@ -23,7 +23,7 @@
   "claim_ids": [
     "MECH-091"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "experiment_type": "v3_exq_133_mech091_phase_reset_pair",
   "fatal_error_count": 0,
   "run_timestamp": "20260421T051642Z",
@@ -51,5 +51,6 @@
   "evidence_class": "discriminative_pair",
   "claim_ids_tested": [
     "MECH-091"
-  ]
+  ],
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: gap_on=0.014 (threshold 0.04), per-seed delta [0.0198, 0.0094] (threshold 0.02). MECH-091 explicitly held pending SD-006 phase 2 async multi-rate loops. Without async substrate, phase-reset proxy cannot manifest. Same substrate-gap reasoning as EXQ-133 04-09 reclassification."
 }

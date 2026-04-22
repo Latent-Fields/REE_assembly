@@ -10,11 +10,11 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260420T155214Z",
   "outcome": "FAIL",
-  "evidence_direction": "diagnostic",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-257": "weakens",
-    "SD-013": "mixed",
-    "ARC-033": "mixed"
+    "MECH-257": "non_contributory",
+    "SD-013": "non_contributory",
+    "ARC-033": "non_contributory"
   },
   "pass_criteria_summary": {
     "c1_comparator_valid": {
@@ -182,5 +182,6 @@
       "c2_corr": 0.15,
       "c4_slack": 0.1
     }
-  }
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: rerun confirms DUAL_OFF_BASELINE > DUAL_STD on cf_separation. Same diagnostic finding as 14:40 run."
 }

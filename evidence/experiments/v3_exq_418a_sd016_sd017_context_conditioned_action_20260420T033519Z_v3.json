@@ -12,7 +12,7 @@
   "evidence_class": "ablation_pair",
   "outcome": "FAIL",
   "timestamp_utc": "20260420T033519Z",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "supersedes": "V3-EXQ-418",
   "experiment_version": "a",
   "fix_description": "Two bugs fixed vs EXQ-418: (1) shy_enabled=False to prevent slot collapse (0.85^15~=0.09 reversed diversity). (2) terrain_loss added (lambda=0.1) to train cue_terrain_proj -- EXQ-418 had random weights causing action_bias_divergence=0.0.",
@@ -168,5 +168,9 @@
     "shy_decay_rate": "disabled",
     "min_context_samples": 10,
     "dry_run": false
-  }
+  },
+  "evidence_direction_per_claim": {
+    "SD-017": "non_contributory"
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: action_bias_div=0.0 in BOTH WITH_SLEEP_SD016 and WITHOUT_SLEEP_SD016 across 3 seeds (bit-identical). Same SD-016 cue_action_proj consumer collapse as EXQ-449 (per-channel std ~2.7e-8 in frozen-weights regime). Mechanism cannot be tested until SD-016 consumer wiring is fixed."
 }

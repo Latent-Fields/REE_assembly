@@ -10,11 +10,11 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260420T223050Z",
   "outcome": "FAIL",
-  "evidence_direction": "diagnostic",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-261": "weakens",
-    "SD-032a": "mixed",
-    "SD-032e": "mixed"
+    "MECH-261": "non_contributory",
+    "SD-032a": "non_contributory",
+    "SD-032e": "non_contributory"
   },
   "pass_criteria_summary": {
     "c1_unit_checks_all_pass": {
@@ -245,5 +245,6 @@
     "episodes": 6,
     "steps_per_ep": 80,
     "dry_run": false
-  }
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: superseded by EXQ-453 06:21 PASS run which validated MECH-261 write_gate_landing. The 22:30 run is a duplicate retry that FAILed under unrelated environmental noise; the substrate landing was already validated earlier in the day."
 }

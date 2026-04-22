@@ -28,12 +28,17 @@
     "SD-004"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "experiment_type": "v3_exq_397c_arc007_harder_env",
   "fatal_error_count": 0,
   "run_timestamp": "20260421T025036Z",
   "claim": "ARC-007",
   "verdict": "FAIL",
   "run_id": "v3_exq_397c_arc007_harder_env_20260421T025036Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_per_claim": {
+    "ARC-007": "non_contributory",
+    "SD-004": "non_contributory"
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: same broken probe as EXQ-397. The 'harder_env' fix (training on minimum-residue candidate) did not change the metric (gap_intact stays at -1.638..-1.640). Probe redesign required."
 }

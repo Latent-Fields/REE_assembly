@@ -7,10 +7,10 @@
     "SD-021"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-032c": "does_not_support",
-    "SD-021": "does_not_support"
+    "SD-021": "non_contributory",
+    "SD-032c": "non_contributory"
   },
   "supersedes": "v3_exq_325c_sd032c_aic_descending_modulation",
   "registered_thresholds": {
@@ -219,5 +219,6 @@
   ],
   "seeds_passing": 0,
   "experiment_passes": false,
-  "fix_notes": "EXQ-325c was SIGTERM-killed at 33 min on ree-cloud-1 (external termination, not a code crash); compute budget was 8.6x under estimated_minutes. This iteration reduces compute (3 seeds x 4 conditions x 150 train + 30 eval) and pins machine_affinity=DLAPTOP-4.local to avoid shared-vCPU preemption. Mechanism under test and pass criteria are unchanged; PASS threshold is >=2/3 seeds (was >=3/5) to match reduced seed count."
+  "fix_notes": "EXQ-325c was SIGTERM-killed at 33 min on ree-cloud-1 (external termination, not a code crash); compute budget was 8.6x under estimated_minutes. This iteration reduces compute (3 seeds x 4 conditions x 150 train + 30 eval) and pins machine_affinity=DLAPTOP-4.local to avoid shared-vCPU preemption. Mechanism under test and pass criteria are unchanged; PASS threshold is >=2/3 seeds (was >=3/5) to match reduced seed count.",
+  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: all 4 conditions (AIC_ON / AIC_DRIVE_ABLATED / LEGACY / CONTROL) bit-identical z_harm_s and z_harm_a per seed; aic_salience_mean identical for AIC_ON and AIC_DRIVE_ABLATED (drive ablation has zero effect on salience). Two issues: (a) monostrategy lock-in blocks behavioural test, (b) drive-level wiring bug in AIC analog (separate diagnostic spawned). Pending V_s landing + AIC drive wiring fix."
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-19T22:46:20.586917Z",
+  "last_updated_utc": "2026-04-22T23:11:16Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -651,6 +651,58 @@
       "implemented_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
       "implemented_utc": "2026-04-20T00:00:00Z",
       "validation_experiment": "V3-EXQ-456"
+    },
+    {
+      "sd_id": "SD-036",
+      "title": "GABAergic regulatory layer: cross-stream exponential decay (z_harm_s, z_harm_a, z_beta) modulated by tonic gaba_tone",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_036_gabaergic_decay_regulator.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-279"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_475_sd036_decay_unlocks_exq471_20260422T173839Z_v3",
+          "experiment_type": "v3_exq_475_sd036_decay_unlocks_exq471",
+          "metric": "eval_mean_reward negative across 3/3 seeds; warmup improvement bimodal (seed 1 worsened); EXQ-471 monostrategy lock-in not unlocked",
+          "target": "mode flip from avoid back to goal-seeking by ~t=50, replacing 200-step lock"
+        }
+      ],
+      "implementation_hint": "Implement as a regulator layer (not per-stream update logic) with global gaba_tone scalar; default tau_harm_s=0.05; cross-stream decay over z_harm_s, z_harm_a, z_beta. EXQ-475 confirms decay alone insufficient -- requires V_s landing (MECH-269) upstream before behavioural unlock manifests.",
+      "priority": 1,
+      "added_session": "2026-04-22-governance",
+      "last_seen_session": "2026-04-22-governance"
+    },
+    {
+      "sd_id": "MECH-269",
+      "title": "Per-region verisimilitude V_s landing -- anchor selection cluster (proximal cause of monostrategy lock-in across V3-EXQ-433/445/451/452/454 cluster)",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-029",
+        "SD-032b",
+        "SD-032c",
+        "MECH-256",
+        "MECH-257",
+        "Q-034",
+        "ARC-016",
+        "INV-054",
+        "SD-036"
+      ],
+      "failure_record": [
+        {
+          "run_id": "cluster: V3-EXQ-445/445a/445b/445c/451/452/433/433a/433b/325b/325d/454/475",
+          "experiment_type": "mixed (governance 2026-04-22)",
+          "metric": "action_class_entropy=0 across all grid points; goal_reach_rate=0; behavioural divergence cannot manifest under monostrategy lock-in",
+          "target": "agent generates >=2 distinct operating modes within an episode under varied drive/hazard contexts"
+        }
+      ],
+      "implementation_hint": "V_s = per-region verisimilitude (anchor probe). Without it, the policy cannot generate the operating-mode diversity required to test SD-029 attribution, SD-032b dACC behavioural adjustment, SD-036 decay-driven recovery, or Q-034 threshold-sweep validity. This is the single highest-priority substrate in the queue.",
+      "priority": 1,
+      "added_session": "2026-04-22-governance",
+      "last_seen_session": "2026-04-22-governance"
     }
   ]
 }

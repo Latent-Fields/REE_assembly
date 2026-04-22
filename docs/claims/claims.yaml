@@ -402,6 +402,10 @@
     the geometrically encoded result via BTSP-mediated write operations (Bittner 2017, Science).
     MECH-073 and ARC-007 are co-true under Resolution A. Literature: Dupret 2010, Gauthier 2018,
     Bittner 2017, Teyler & Rudy 2007.
+    EXQ-397 / EXQ-397c x2 reclassified non_contributory (2026-04-22): the hippo_quality_gap
+    internal probe metric is sign-inverted (intact more negative than ablated, near bit-identical
+    across the "harder env" fix) -- the probe is broken, not the mechanism. ARC-007 stands on the
+    EXQ-114 behavioural PASS (99.2% harm reduction). Spawned diagnostic to redesign the probe.
   depends_on:
     - ARC-004
     - ARC-003
@@ -1360,6 +1364,11 @@
     engages in eval; train/eval variance gap prevents differentiation. Not evidence
     against precision-to-commitment mechanism. Pending recalibration with
     eval-derived threshold.
+    EXQ-454 governance 2026-04-22 reclassified non_contributory: adaptive commitment
+    threshold test cannot resolve while V_s monostrategy locks the policy --
+    threshold-adaptation behaviour is dominated by the lock-in rather than by the
+    precision-to-commitment circuit under test. ARC-016 core circuit remains
+    validated by EXQ-018b/EXQ-060; pending behavioural retest after MECH-269.
   depends_on:
     - ARC-005
     - MECH-059
@@ -3876,9 +3885,9 @@
   claim_type: mechanism_hypothesis
   subject: amygdala.bla_encoding_gain_on_hippocampal_writes
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS (supports); hippocampal consumer wiring still deferred
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
   depends_on:
     - MECH-074         # parent
@@ -3965,9 +3974,9 @@
   claim_type: mechanism_hypothesis
   subject: amygdala.cea_fast_subcortical_priming
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 substrate-readiness PASS (supports)
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
   depends_on:
     - MECH-074         # parent
@@ -4020,9 +4029,9 @@
   claim_type: mechanism_hypothesis
   subject: amygdala.bla_pe_remap_with_attribution
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS (supports); hippocampal remap consumer deferred
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
   depends_on:
     - MECH-074         # parent
@@ -4818,6 +4827,10 @@
     after simulated salient events as a proxy for phase reset. Without SD-006 phase 2 async
     execution there is no oscillatory clock phase to reset -- the mechanism under test is
     absent, not failing. Manifest evidence_direction corrected to non_contributory.
+    EXQ-133 2026-04-21 rerun also reclassified non_contributory (governance 2026-04-22):
+    same SD-006 substrate gap; gap_on=0.014 < 0.04 threshold and per-seed delta
+    [0.0198, 0.0094] < 0.02 threshold. Manipulation fired (n_resets=5656) but no
+    oscillatory clock to phase-reset. Hold pending SD-006 phase 2.
   claim_level: mechanistic
   functional_restatement: >
     Salient events (completion, unexpected harm, commitment boundary) resynchronize E3's
@@ -5942,6 +5955,12 @@
     navigates action-object space O rather than raw z_world. Enables planning
     horizons far beyond raw state space. SD-004 and SD-005 must be co-designed:
     action objects require z_world to exist.
+  evidence_quality_note: |
+    Behavioural validation rests on EXQ-114 PASS 4/4 (2026-03-28), 99.2% harm reduction
+    when MAP_NAV is active vs MAP_ABLATED. EXQ-397 / EXQ-397c x2 internal-probe FAILs
+    (2026-04-19/21) reclassified non_contributory 2026-04-22 -- the hippo_quality_gap
+    metric is sign-inverted regardless of training-on-minimum-residue fix; probe broken,
+    not the substrate. SD-004 stands as implemented.
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
@@ -10790,6 +10809,14 @@
     passes to E2.action_object() and E3.score_trajectory() respectively. Supervised
     terrain_loss (lambda=0.1) trains cue_terrain_proj against hazard_field_view proxy.
     Backward compatible: sd016_enabled=False default. Validation: V3-EXQ-418a queued.
+  evidence_quality_note: |
+    EXQ-449 FAIL (2026-04-20) and EXQ-449a PASS x2 (2026-04-21) together diagnose a
+    cue_action_proj consumer-side wiring failure: the projection produces per-channel
+    std ~2.7e-8 in frozen-weights g2 regime (collapsed signal). The forward path probe
+    PASSes but the consumer site does not differentiate. EXQ-418a (SD-017) and EXQ-436
+    (SD-017/ARC-045/MECH-166) FAIL with bit-identical conditions traceable to the same
+    consumer collapse. Spawned diagnostic to fix the consumer wiring; SD-017/ARC-045/MECH-166
+    re-tests gated on this fix landing.
   functional_restatement: >
     E1's ContextMemory stores 16 associative slots and can in principle retrieve hazard-relevant
     associations when z_world encodes a cue-dense context. But no downstream pathway existed
@@ -10866,6 +10893,7 @@
     issue. Not evidence against SD-017; substrate may be wired correctly.
     EXQ-418a + EXQ-436 (2026-04-18, non_contributory -- governance 2026-04-19): Two experiments produce zero differential signal across seeds (action_bias_div=0.0 in EXQ-418a all seeds/conditions; slot metrics identical across WAKING/SWS_ONLY/SWS_THEN_REM in EXQ-436). Shared anomaly suggests context-conditioning substrate not wired through to policy/slot structure. Reclassified as diagnostic of substrate wiring rather than test of SD-017. Flagged for further substrate investigation.
     EXQ-418a rerun 2026-04-19T10:24 (non_contributory -- governance 2026-04-19): Second occurrence of same zero-differential-signal pattern (action_bias_div=0.0 in both WITH_SLEEP_SD016 and WITHOUT_SLEEP_SD016 conditions, all seeds). Confirms wiring gap persists; same diagnostic classification applied.
+    EXQ-418a + EXQ-436 04-20 reruns (non_contributory -- governance 2026-04-22): Same bit-identical zero-signal pattern repeats in third + fourth attempts. Root cause now diagnosed as SD-016 cue_action_proj consumer collapse (per-channel std ~2.7e-8 in frozen-weights regime). SD-017/ARC-045/MECH-166 cannot be discriminated until SD-016 consumer wiring fix lands; spawned diagnostic owns the fix.
 
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
@@ -12549,6 +12577,12 @@
     Promoted to stable (governance 2026-04-09-c): attractor is robustly reproducible.
     Note: confidence=0.0 in yaml is a scoring artifact (provisional confidence field unset);
     empirical evidence is unambiguous across 15 independent seeds.
+    EXQ-434 PASS (2026-04-20): fourth independent replication confirms attractor reproducibility
+    on the salience-coordinator substrate. Cross-substrate equivalence supports INV-053 as a
+    structural invariant. Caveat: replications all run under monostrategy lock-in; whether the
+    attractor would express identically under V_s-driven mode diversity (MECH-269) is an open
+    question. Path-collapse suggests the metric is partially confounded with monostrategy and
+    should be re-measured once V_s lands.
 
 - id: INV-054
   title: "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity."
@@ -12593,6 +12627,7 @@
     conflict ratio now elevated (2 opposing, 3 supporting).
     EXQ-435 FAIL (2026-04-18, weakens, supersedes EXQ-278): Depression attractor established 3/3 seeds but recovery_type='graded' (smooth linear ramp) in every seed, not sustained phase transition. Sustained-crossing criterion (10 consecutive eps >= 0.3 goal_norm) not met. Goal_norm fluctuates stochastically without clear threshold crossing. Either phase-transition dynamics are not present at this architectural level, or a different metric than goal_norm threshold captures the transition.
     EXQ-435 reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the graded recovery pattern is recognised as a substrate expressivity issue, not evidence against INV-054. ree-v3 currently has no bistable / discrete-mode primitive; all drive and commitment dynamics use smooth updates, so graded recovery is the only output the substrate can produce. The phase-transition INV-054 predicts requires discrete operating_mode state. Missing substrate: SD-032a (salience-network coordinator outputting discrete operating_mode variable) + MECH-259 (salience-network switch threshold, discrete vs graded). pending_retest_after_substrate once SD-032a + MECH-259 implemented. Manifest evidence_direction updated to non_contributory.
+    EXQ-435 04-20 manifest also updated to non_contributory (governance 2026-04-22): same substrate-gap reasoning as 04-19 reclassification. SD-032a + MECH-259 v3_pending lift confirmed this session (V3-EXQ-446/455 substrate PASSes). Discrete operating_mode primitive now exists; INV-054 phase-transition retest can proceed once SD-032b dACC implementation lands and unlocks alternative behavioural modes (currently V_s-monostrategy-blocked).
 
 - id: Q-034
   title: "Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?"
@@ -12616,6 +12651,13 @@
     on available positive affordances, (3) interventions targeting benefit availability
     (not just stress reduction) should be therapeutic.
   suggested_experiment_type: environmental_parameter_sweep
+  evidence_quality_note: >
+    EXQ-451 reclassified non_contributory (governance 2026-04-22): hazard/resource threshold
+    sweep produced goal_reach_rate=0.0 with action_class_entropy=0.0 in 15/15 grid points
+    (3 res densities x 5 hazard densities x 2 seeds). Monostrategy lock-in prevents threshold
+    identification across the entire sweep -- the sweep cannot answer Q-034 because every
+    grid point sits in the same V_s-blocked operating mode. Q-034 cannot be answered until
+    V_s landing (MECH-269) unlocks alternative operating modes; pending_retest_after_substrate.
   literature_confidence: 0.804
   literature_evidence: |
     6 entries in evidence/literature/targeted_review_q_034/.
@@ -14468,8 +14510,7 @@
   claim_type: design_decision
   subject: harm_stream.affective_surprise_pe
   polarity: asserts
-  status: provisional
-  implementation_phase: v3
+  status: stable
   claim_level: architectural
   depends_on: [SD-011, SD-019, ARC-016]
   functional_restatement: >
@@ -14500,6 +14541,7 @@
     stable correlation. Direction is positive. Reclassified from does_not_support
     to inconclusive. Hold at candidate until n_eval_steps >= 100 on SD-022 substrate.
     EXQ-324b PASS x2 (2026-04-18, supports): Two independent runs with EVAL_STEPS=400 and env.reset()-on-done fix (previous EXQ-324a exited too early for stable correlations). Same 3/5 seeds (43, 44, 45) pass in both runs with surprise_corr_pe in [0.44, 0.81]; C3 z_harm_a_norm > 0.01 in 5/5 seeds. Substrate: SD-022 (limb_damage_enabled=True, 8 hazards). Promoted to provisional on governance 2026-04-19.
+    Promoted to stable on governance 2026-04-22: EXQ-324b cross-run reproducibility plus EXQ-321b MECH-090 bistable PASS confirm SD-020 is functioning as a load-bearing primitive of the affective harm stream. v3_pending lifted; no outstanding substrate gap.
   notes: >
     Addresses Q-036 directly. If SD-020 is confirmed experimentally, Q-036 answer is:
     "surprise (PE) is necessary in addition to temporal integration." The implementation
@@ -14582,6 +14624,7 @@
     EXQ-325a FAIL (2026-04-18, weakens): z_harm_s_ratio=1.0 identically in DESCENDING and CONTROL across 5 seeds, so attenuation not measurable despite running-variance fix and beta-gate bistable enabled. Descending pathway not engaging in committed state. Mechanism either requires substrate wiring not yet present, or the ratio metric is the wrong instrumentation for this claim.
     EXQ-325a reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the bit-identical DESCENDING=CONTROL signature is recognised as the same failure mode as EXQ-395 MECH-220 harm-hub (descending output has no downstream consumer). The missing substrate is SD-032c (AIC-analog interoceptive salience / urgency-interrupt), the proper consumer of descending-modulation state. Manifest evidence_direction updated to non_contributory.
     SD-032c IMPLEMENTED 2026-04-19 (ree_core/cingulate/aic_analog.py). The raw-beta-gate SD-021 path is superseded by the AIC-analog harm_s_gain function: harm_s_gain depends structurally on operating_mode AND drive_level, not just beta_gate, so DESCENDING and CONTROL conditions are no longer bit-identical. V3-EXQ-325b queued (supersedes V3-EXQ-325a) -- retest with drive-regime contrast (depleted vs well-resourced) expected to resolve the EXQ-325a FAIL. pending_retest_after_substrate flag cleared; hold at candidate until V3-EXQ-325b PASSes.
+    EXQ-325b FAIL (governance 2026-04-22) reclassified non_contributory: descending-modulation contrast still cannot resolve because the agent is V_s-monostrategy-locked across drive regimes (no behavioural divergence between depleted and well-resourced conditions). pending_retest_after_substrate (MECH-269 V_s landing). EXQ-325d (SD-032c AIC descending modulation, 2026-04-20) similarly non_contributory under same monostrategy-blocked substrate.
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while
@@ -17397,6 +17440,15 @@
     decouple evaluation from behavioural sample frequency (policy counter-
     balancing, per-class reweighted evaluation, or a fixed-script eval protocol
     that forces exposure to both event types regardless of learned policy).
+    EXQ-433/433a/433b/470 governance 2026-04-22: scripted-comparator
+    (V3-EXQ-433a 2026-04-19), interventional-extension (V3-EXQ-433b
+    2026-04-20), and balanced-curriculum substrate probe (V3-EXQ-470 PASS x2
+    2026-04-21) all reclassified non_contributory for SD-029 promotion
+    purposes. The substrate (env-level scheduled_external_hazard) is now in
+    place and EXQ-470 confirms event-balance fires; behavioural attribution
+    test remains blocked by V_s monostrategy (cannot generate balanced agent-
+    vs-env event distributions when policy is monomodal). Hold at candidate
+    pending MECH-269 V_s landing.
   implementation_note: >
     SD-029 substrate IMPLEMENTED 2026-04-21 via a curriculum-level env
     augmentation. CausalGridWorldV2 now exposes
@@ -17621,6 +17673,11 @@
     Empirical V3 evidence accrues through the per-stream SD instantiations
     (SD-029 first). MECH-256 itself is the stream-agnostic statement; evidence
     for the mechanism is the sum of evidence on its instantiations.
+    EXQ-433/433a/433b governance 2026-04-22: all SD-029 attribution attempts
+    reclassified non_contributory under V_s monostrategy substrate gap (see
+    SD-029 evidence_quality_note). MECH-256 status unchanged -- per-stream
+    instantiations cannot accrue evidence until the policy can produce
+    balanced agent-vs-environment event distributions.
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: MECH-257
@@ -17707,6 +17764,12 @@
     high; V3 empirical test would require an experiment that trains E2_x for
     both modes on the same weights and measures whether mode-specific
     performance degrades relative to mode-split baselines. Not yet queued.
+    EXQ-452 reclassified non_contributory (governance 2026-04-22, two FAIL runs
+    20260420T144002Z + 20260420T155214Z): dual-function gated-readout test
+    cannot resolve under the V_s-monostrategy substrate gap -- both reads
+    operate over the same locked policy, so mode-specific performance
+    differences cannot manifest. pending_retest_after_substrate (MECH-269 V_s
+    landing).
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: SD-032
@@ -17818,7 +17881,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 substrate-readiness PASS + V3-EXQ-455 behavioural PASS + V3-EXQ-453 06:21 write-gate landing PASS
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
@@ -17952,6 +18015,12 @@
     (precision-weighted control-signal form).
   evidence_quality_note: >
     Registered pre-implementation. Minimum-viable target. See SD-032 parent.
+    Governance 2026-04-22: V3-EXQ-445 + 445a/b/c (dACC analog substrate, full
+    pipeline, epsilon diversity, larger env) all reclassified non_contributory
+    -- the dACC bundle is computing correctly but the consumer pathway is
+    V_s-monostrategy-blocked, so behavioural-adjustment magnitude cannot be
+    measured. SD-032b validation deferred until MECH-269 V_s landing unlocks
+    alternative operating modes; pending_retest_after_substrate.
   implementation_note: >
     IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/dacc.py
     (DACCAdaptiveControl, DACCConfig, DACCtoE3Adapter). Integrated into
@@ -18036,8 +18105,12 @@
     pathway.
   evidence_quality_note: >
     Registered pre-implementation. See SD-032 parent.
-  implementation_note: >
-    IMPLEMENTED 2026-04-19 in ree_core/cingulate/aic_analog.py (AICAnalog,
+    Governance 2026-04-22: V3-EXQ-325d (SD-032c AIC descending modulation,
+    2026-04-20) reclassified non_contributory under same V_s-monostrategy
+    substrate gap that blocks SD-032b validation. AIC harm_s_gain machinery
+    is wired and structurally drive-dependent, but behavioural divergence
+    cannot manifest until MECH-269 V_s landing unlocks alternative operating
+    modes. pending_retest_after_substrate.
     AICConfig). Non-trainable arithmetic over scalars with single EMA
     interoceptive baseline. Outputs aic_salience (fed to SalienceCoordinator
     via update_signal before coordinator.tick) and harm_s_gain (multiplier
@@ -18124,7 +18197,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-453 06:21 write-gate landing PASS validates SD-032e write-gate registration in salience coordinator
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
@@ -18260,7 +18333,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 substrate PASSes confirm switch-threshold mechanism is firing
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -18383,7 +18456,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 + V3-EXQ-453 06:21 write-gate landing PASS validates mode-conditioned write gating
   claim_level: mechanistic
   registered_utc: 2026-04-19
   last_updated_utc: 2026-04-19
@@ -19127,9 +19200,9 @@
   claim_type: design_decision
   subject: amygdala.analog_substrate
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 + V3-EXQ-474 substrate-readiness PASS (supports); MECH-074b retrieval_bias still pending follow-up EXQ
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 + V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22; MECH-074b retrieval_bias still pending follow-up EXQ
   claim_level: architectural
   registered_utc: 2026-04-21
   depends_on:
@@ -20538,6 +20611,16 @@
     coincidence of architectural prediction and existing clinical
     practice, but is not itself a substrate test. Promotion requires
     the falsifiable substrate experiments above.
+    EXQ-475 (governance 2026-04-22, evidence_direction_per_claim split):
+    SD-036 enabled with default decay parameters did NOT unlock the
+    EXQ-471 monostrategy lock-in -- per-seed eval rewards remained
+    negative across 3/3 seeds and the warmup improvement was bimodal
+    (seeds 0/2 improved, seed 1 worsened). MECH-279 PAG freeze gate
+    fired correctly (1000 active steps per seed) -- substrate-landing
+    confirmed. SD-036 stays non_contributory pending MECH-269 V_s
+    landing upstream; the decay regulator alone cannot break a lock-in
+    whose proximal driver is the V_s monostrategy, but it remains a
+    necessary substrate piece once V_s lands.
   pharmacological_predictions:
     - PHARM-004  # lorazepam in catatonia, subtype-II specificity prediction
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
@@ -20549,7 +20632,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-475 confirms PAG freeze gate firing (1000 active steps per seed in 3/3 seeds)
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
