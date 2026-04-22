@@ -873,3 +873,178 @@ hyperarousal states.
 | MECH-094 | hypothesis_tag_routing | Co-failure that converts the cluster into chronic-PTSD architecture |
 | MECH-281 | orexin.drive_arousal_coupling | Sibling axis (motor-coupling); co-lesioned in narcolepsy/cataplexy but dissociable in this insomnia phenotype |
 | SD-037 | broadcast.override_regulator | Substrate: the override signal whose pinning produces the cluster |
+
+---
+
+## Narcolepsy and Cataplexy: Bilateral Orexin-Loss Failure (MECH-281, MECH-286)
+
+> A note on scope: REE does not partition disorders into "psychiatric" and
+> "neurological" in the way clinical specialty boundaries do. The split is
+> institutional, not architectural — narcolepsy and cataplexy involve the same
+> regulatory substrate (SD-037 override layer) as the insomnia, depressive, and
+> PTSD-chronicity failure modes already documented here. We document them in
+> this file because they share the substrate and because the architectural
+> account *unifies* what specialty boundaries fragment.
+
+### The exemplar
+
+A patient (typically adolescent or young adult) presents with two symptom clusters
+that conventional nosology treats as a single syndrome (narcolepsy with cataplexy)
+but which REE's architecture treats as two dissociable failures of the same
+upstream substrate:
+
+- **Sleep-state instability**: irresistible sleep attacks during the day even in
+  alerting contexts (driving, conversation, eating); fragmented nocturnal sleep
+  with frequent awakenings; sleep-onset REM (collapse of the normal NREM-first
+  architecture); hypnagogic and hypnopompic hallucinations (REM-content intrusion
+  into wake transitions); sleep paralysis (REM motor atonia outlasting the sleep
+  state).
+- **Cataplexy**: sudden bilateral loss of muscle tone triggered by emotional input
+  (laughter, surprise, anger), preserved consciousness throughout, lasting seconds
+  to minutes. The emotional state is computed normally — the patient laughs, then
+  loses motor recruitment.
+
+Standard treatment recognises both clusters but treats them with separate agents
+(modafinil/sodium oxybate for sleep stability; venlafaxine/clomipramine for
+cataplexy via REM-suppression). The architectural account should explain why one
+substrate lesion produces two clinically separable phenotypes treated with
+different drugs.
+
+### Mechanism
+
+Narcolepsy with cataplexy is, architecturally, the bilateral failure of the
+SD-037 orexin-analog override at its two principal downstream targets:
+
+1. **MECH-286 axis (wake-stability gate)** fails → loss of `theta_sleep_permit`
+   gating. Sleep-mode entry can occur without staleness demand, without
+   permissive threat context — the agent transitions to offline mode at
+   inappropriate times. Sleep architecture also degrades because the same
+   override signal stabilises the wake state against premature REM intrusion;
+   when override is absent, REM can intrude on wake (hypnagogic hallucinations,
+   sleep paralysis).
+
+2. **MECH-281 axis (drive-arousal coupling)** fails → drive_level and
+   emotional/affective input still compute (the patient feels the surprise,
+   feels the joke is funny) but they fail to recruit the motor-pipeline gain
+   needed to maintain postural tone. The architectural signature is
+   *recruitment failure under preserved upstream computation* — exactly what
+   distinguishes cataplexy from a primary motor disorder.
+
+The two axes are **dissociable in principle but co-lesioned in practice** when
+the substrate (SD-037) itself is damaged, because both downstream gates are
+fed by the same override signal. This is the architectural prediction of the
+clinical co-occurrence pattern: the substrate lesion explains why *both*
+phenotypes appear, and the dissociable downstream targets explain why each
+phenotype responds to a different pharmacological intervention.
+
+### Dissociation predictions
+
+The architecture is falsifiable through the dissociation pattern:
+
+1. **Selective MECH-286 lesion (sleep-state instability without cataplexy)**:
+   should be observable in early/prodromal narcolepsy patients before cataplexy
+   onset, in narcolepsy type 2 (without cataplexy), and in some idiopathic
+   hypersomnia presentations. The architectural prediction: a partial or
+   selective failure of the sleep-state gating axis without the motor-coupling
+   axis.
+
+2. **Selective MECH-281 lesion (cataplexy without narcolepsy)**: rarer but
+   reported as "isolated cataplexy" in case-series. Architectural prediction:
+   selective failure of the drive-arousal coupling axis without the sleep-
+   state axis. Should respond to MECH-281-targeted intervention without sleep-
+   architecture restoration.
+
+3. **Substrate-level lesion (full narcolepsy with cataplexy)**: orexin neuron
+   loss as in narcolepsy type 1 / Hcrt-deficient cases. Both axes co-lesioned.
+   This is the most common clinical presentation precisely because substrate
+   damage is more common than selective downstream-target damage.
+
+4. **V3 substrate prediction**: in a V3 agent with SD-037 implemented, lesioning
+   the override_signal at source should produce both sleep-state instability
+   and drive-arousal decoupling. Lesioning at the MECH-286 readout while
+   preserving the MECH-281 readout should produce sleep-state instability only.
+   Lesioning at the MECH-281 readout while preserving MECH-286 should produce
+   cataplexy-analog motor decoupling only. This three-arm dissociation is the
+   architectural test.
+
+### Distinction from related failure modes
+
+- **vs MECH-202 catatonia (commit-gate paralysis)**: catatonia is a *commit*
+  failure (cannot initiate or terminate motor sequences); cataplexy is a
+  *recruitment* failure (cannot maintain motor tone despite intact emotional
+  computation). Catatonia patients do not show emotional-trigger pattern;
+  cataplexy patients do. Different substrate, different intervention.
+
+- **vs SD-036 / MECH-279 catatonic harm-stream lock**: that is a stream-level
+  pinning failure under intact regulatory machinery; this is a regulatory
+  machinery failure under intact streams. The harm-stream-lock patient is
+  *immobile and silent*; the cataplexy patient is *hypotonic but alert and
+  communicating*.
+
+- **vs hyperarousal-insomnia (preceding section)**: the *opposite* failure
+  mode of MECH-286 — saturated rather than absent. Both phenotypes share a
+  substrate (SD-037 override) and they sit at opposite ends of its operating
+  range, predicting that interventions which restore mid-range function (rather
+  than purely up-regulating or down-regulating) should help both. This is
+  consistent with the modafinil-and-sodium-oxybate combination in narcolepsy
+  (selectively targeting different parts of the operating curve).
+
+- **vs primary REM-sleep behaviour disorder (RBD)**: RBD is REM motor atonia
+  failure during sleep (acting out dreams); cataplexy is REM motor atonia
+  *intrusion* into wake. Architecturally both involve atonia-gate dysregulation
+  but at different state transitions. RBD is plausibly a separable claim cluster
+  not yet registered in REE.
+
+### What this places in REE
+
+This failure mode adds the *positive lesion* clinical evidence anchor for
+SD-037: narcolepsy with cataplexy is the natural lesion experiment that the
+architecture predicts should produce bilateral phenotype, and the clinical
+literature confirms this pattern. The dissociation predictions above sharpen
+the SD-037 claim from "there exists an override regulator" to "the override
+regulator has at least two dissociable downstream readouts (MECH-281, MECH-286)
+which can fail jointly under substrate damage and selectively under downstream-
+target damage".
+
+The point about psychiatric/neurological boundaries: a regulator-layer failure
+that produces depression-like phenomena (hyperarousal-insomnia, schema-repair
+starvation) when saturated and produces narcolepsy/cataplexy when absent is,
+mechanistically, a *single* dysregulation surface viewed from two clinical
+specialties. The REE architecture commits to that unification — the same
+SD-037 → {MECH-281, MECH-286} substrate failure space generates both clinical
+clusters depending on whether the failure is over- or under-recruitment, and
+whether the downstream targets fail jointly or selectively.
+
+### Predictions
+
+1. **Pharmacological dissociation tests**: agents acting selectively on the
+   MECH-286 axis (sleep-state stability) should rescue sleep architecture
+   without rescuing cataplexy, and vice versa. The current clinical landscape
+   already shows this dissociation (modafinil/sodium oxybate vs anti-cataplectic
+   antidepressants); the architecture predicts the dissociation rather than
+   merely accommodating it.
+
+2. **Prodromal MECH-286 signal in prodromal narcolepsy**: sleep-state
+   instability should be detectable architecturally before cataplexy onset,
+   consistent with clinical observation that hypersomnia often precedes
+   cataplexy by months to years.
+
+3. **Co-lesioning prediction in iatrogenic / immune-mediated cases**:
+   autoimmune-mediated orexin neuron loss (the established etiology in
+   narcolepsy type 1) should produce roughly synchronous emergence of both
+   axes' phenotypes, distinguishable from selective downstream-target damage
+   which should produce one phenotype and not the other.
+
+4. **V3 substrate experiment**: a three-arm lesion in a V3 agent with SD-037
+   implemented (substrate-source lesion vs MECH-286-only lesion vs
+   MECH-281-only lesion) should produce the three predicted phenotype
+   patterns above. This is the architectural validation experiment for the
+   downstream-readout dissociability claim.
+
+### Claims Covered
+
+| ID | Label | Role |
+|----|-------|------|
+| SD-037 | broadcast.override_regulator | Substrate: the override layer whose source-level damage produces full narcolepsy-with-cataplexy |
+| MECH-286 | sleep.override_gated_state_transition | Wake-stability axis: selective failure produces sleep-state instability without cataplexy |
+| MECH-281 | orexin.drive_arousal_coupling | Motor-coupling axis: selective failure produces cataplexy without sleep-state instability |
