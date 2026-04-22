@@ -14,6 +14,159 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-22)
+
+- **SD-035 amygdala analogue LANDED 2026-04-21.** BLA + CeA peer modules
+  (`ree_core/amygdala/bla.py`, `ree_core/amygdala/cea.py`) non-trainable
+  arithmetic. BLA instantiates MECH-074a inverted-U encoding_gain (Roozendaal
+  2011), MECH-074b content-selective retrieval_bias (LaBar & Cabeza 2006
+  per-trace weight vector, not scalar), and MECH-074d attribution-gated
+  PE-spike remap (Moita 2004). CeA instantiates MECH-046 pre-softmax
+  mode-prior (LeDoux 1996 "low road" / Pessoa & Adolphs 2010, distinct from
+  SD-032c AIC which biases mode-SWITCH threshold rather than mode
+  SELECTION) and MECH-074c fast_prime (Mendez-Bertolo 2016 ~75 ms subcortical
+  pulse with cortical confirmation window). CeA mode_prior + fast_prime are
+  injected into SalienceCoordinator via update_signal each select_action
+  tick. BLA retrieval_bias / remap_signal hippocampal consumer wiring is
+  deferred until V3-EXQ-474 confirms behavioural signature. Validation:
+  V3-EXQ-473 CeA mode-prior PASS (5 acceptance criteria), V3-EXQ-474 BLA
+  encoding+remap PASS (5 acceptance criteria), both substrate-readiness
+  diagnostics per EXQ-445 lesson. 33/33 preflight+contract tests PASS with
+  use_amygdala_analog=False (backward compat preserved). Governance:
+  MECH-046 / MECH-074 / MECH-074a/c/d / SD-035 show hold_pending_v3_substrate
+  pending completion. Design doc: `docs/architecture/sd_035_amygdala_analog.md`;
+  literature synthesis: `evidence/literature/targeted_review_amygdala_analog/
+  synthesis.md`.
+- **MECH-266 asymmetric per-mode hysteresis LANDED 2026-04-21.** Schmitt-trigger
+  per-mode enter_thresholds / exit_thresholds dicts layered atop the MECH-259
+  symmetric switch_threshold in
+  `ree_core/cingulate/salience_coordinator.py`. Empty-dict default preserves
+  legacy behaviour; over-binding/OCD axis reproducible at exit_threshold near 0
+  (stuck-in-mode), under-binding/depression axis reproducible with lower
+  enter_threshold. Setters: `set_enter_threshold`, `set_exit_threshold`,
+  `set_hysteresis_ratio` (uniform exit-rail convenience). Validation:
+  V3-EXQ-464 competing-goals 5-arm + V3-EXQ-467 mode-stickiness 5-arm
+  parametric sweep both smoke-PASS all sub-tests. Full behavioural
+  competing-goals runs deferred pending CausalGridWorldV2 dual simultaneously
+  active resource-cue extension.
+- **SD-029 curriculum-level balanced hazard-event support LANDED 2026-04-21.**
+  `scheduled_external_hazard_enabled` + `scheduled_external_hazard_interval` +
+  `scheduled_external_hazard_prob` + `scheduled_external_hazard_adjacent_only`
+  flags in CausalGridWorldV2 schedule hazard injection (relocate or spawn) at
+  cells adjacent to the agent (or any empty cell when adjacent_only=False).
+  Preserves the self- vs externally-caused taxonomy: the agent did not
+  initiate the encounter. `info["external_hazard_injected"]` /
+  `info["external_hazard_event_count"]` tags always present. Unblocks C3/C4
+  event-conditioned SNR measurement for the MECH-256/SD-029 comparator track
+  which had been failing on per-seed event-count imbalance. Validation:
+  V3-EXQ-470 SCHEDULED vs BASELINE ablation queued.
+- **SD-033e frontopolar-analog V4-reserved stub LANDED 2026-04-21.**
+  `ree_core/pfc/frontopolar_analog.py` (FrontopolarAnalog +
+  FrontopolarConfig) mirrors the SD-033a contract: no-op behind
+  `use_frontopolar_analog=False`; raises NotImplementedError when enabled
+  (until design doc lands). Last nn.Linear of both heads (MECH-264
+  counterfactual-value, MECH-265 relative-importance) zero-initialised.
+  `tests/contracts/test_sd_033e_stub.py` 7-contract test added (importable,
+  default backward-compat, enabled-raises-NotImplementedError, zero-init,
+  reset safety, get_state stub marker). Three V4-reserved experiment
+  proposals appended to manual_proposals.v1.json (EXP-0165 / 0166 / 0167).
+  Path-clear for the design-doc + dual-active-goal env extension that
+  unlocks behavioural testing.
+- **Hippocampal anchor-vs-probe cluster REGISTERED 2026-04-21.** MECH-269
+  (regional-verisimilitude anchor selection in hippocampal proposer -- per-
+  stream V_s gates anchor eligibility; probe channel inverts the gate for
+  curiosity-driven seeding; anchored rollouts update ARC-018 viability map,
+  probes do not until realized-experience validation); MECH-270 (ephaptic
+  field coherence as candidate biological substrate for V_s readout);
+  MECH-271 (MECH-094 hypothesis_tag as routing signature: anchored replay
+  routes to E1 consolidation / SD-033a PFC, probe replay routes to BLA /
+  NAc -- tag is a routing flag, not a source-side marker). MECH-269 lit-pull
+  confidence jumped 0.783 -> 0.852 on 2026-04-21 after Pfeiffer & Foster 2013
+  (direct evidence: hippocampal sequences start at current location, progress
+  to goal, compositional) was added. Design doc:
+  `docs/architecture/hippocampal_anchor_selection.md`. MECH-270 future
+  directions: standalone-paper candidate.
+- **Sleep/waking state-gated routing REGISTERED 2026-04-21.** MECH-272
+  (state-gated anchor/probe routing: waking=anchor-dominant decision-support;
+  sleep=probe-dominant Bayesian schema restructuring); MECH-273 (sleep-
+  dependent aggregation of SD-003 single-episode self-attribution into stable
+  self-model); MECH-274 (V4-reserved: other-attribution sleep-dependent
+  aggregation via ARC-010 empathy / mirror-modelling;
+  implementation_phase: v4). Design doc `hippocampal_anchor_selection.md`
+  extended with sleep/waking section and V4 other-attribution reservation.
+- **Scientist-agent developmental-ordering cluster REGISTERED 2026-04-21.**
+  ARC-059 (three-stage developmental ordering self -> objects -> others
+  refining ARC-019), MECH-275 (sleep-phase general Bayesian aggregation
+  mechanism -- MECH-273/274 become specialisations of MECH-275), MECH-276
+  (scientist-agent principle: waking-phase counterfactual-backed attribution
+  via deliberate intervention), MECH-277 (action-space discovery via motor
+  experimentation, stage-1 specialisation), MECH-278 (object-schema formation
+  via experimental action, stage-2 specialisation). Design doc:
+  `docs/architecture/scientist_agent_developmental_ordering.md`.
+  MECH-273/274 depends_on updated with MECH-275.
+- **Experiment counts: 525 total completions** (runner_status.json last_updated
+  2026-04-22T01:11Z): 108 PASS / 234 FAIL / 62 ERROR / 121 UNKNOWN, up from
+  495 / 105 PASS / 227 FAIL at the 2026-04-20 snapshot. New PASSes since the
+  2026-04-21 snapshot: V3-EXQ-473 SD-035 CeA mode-prior, V3-EXQ-474 SD-035
+  BLA encoding+remap, V3-EXQ-455 SD-032a coordinator behavioural, plus
+  V3-EXQ-456 SD-033a landing (PASS), V3-EXQ-460/466 SD-034 landings,
+  V3-EXQ-462/465 MECH-267, V3-EXQ-463/468 MECH-268, V3-EXQ-464/467 MECH-266.
+  New FAILs since the 2026-04-21 snapshot include V3-EXQ-397c (ARC-007 harder
+  env, 2 attempts), V3-EXQ-445b/c (SD-032b variants), V3-EXQ-133 (MECH-091),
+  V3-EXQ-126 (MECH-104), V3-EXQ-325d (SD-032c AIC), V3-EXQ-452/453/454
+  (MECH-257 / MECH-261 landing / ARC-016 adaptive), V3-EXQ-433a (MECH-256/
+  SD-029 comparator scripted-eval). Fresh indexer rebuild pending.
+- **Pending review count: 46** (as of pending_review.md generation
+  2026-04-21T19:54:57Z): 8 PASS / 19 FAIL / 19 ERROR-UNKNOWN-smoke. Governance
+  cycle pending to absorb the SD-032 cluster behavioural FAILs, the SD-035
+  amygdala landings, the MECH-266 hysteresis extension, and the
+  MECH-269/270/271 + MECH-272/273/274 + MECH-275/276/277/278 + ARC-059
+  registrations.
+- **Queue drained to 3 items -- all claimed.** V3-EXQ-447 (SD-032d
+  deterministic validation, ree-cloud-2, claimed 2026-04-19), V3-EXQ-451
+  (Q-034 hazard/resource threshold retest, EWIN-PC, claimed 2026-04-20),
+  V3-EXQ-445a (SD-032b dACC full-pipeline fix, EWIN-PC, claimed 2026-04-20).
+  All other queued entries from the 2026-04-21 snapshot have since landed
+  as PASS/FAIL entries in runner_status.json.
+- **Current bottleneck.** SD-032 cluster behavioural follow-through remains
+  the primary first-paper-gate blocker: V3-EXQ-445a is the decisive test
+  after the 445b / 445c monostrategy + terrain-inversion variants FAILed.
+  SD-003 successor track (V3-EXQ-433a MECH-256/SD-029 FAIL, V3-EXQ-452
+  MECH-257 dual-function diagnostic FAIL) is alive. ARC-007 path-memory
+  track remains open (V3-EXQ-397c claimed on DLAPTOP-4.local). SD-035
+  first-pass hippocampal consumer wiring for BLA retrieval_bias / remap
+  deferred until V3-EXQ-474 behavioural signature confirmed; that work and
+  the MECH-266 full behavioural competing-goals arm both depend on the
+  CausalGridWorldV2 dual simultaneously active resource-cue extension.
+
+## Immediate Work Queue (This Cycle)
+
+- Land the 3 claimed experiments: V3-EXQ-447 (SD-032d deterministic
+  validation, ree-cloud-2), V3-EXQ-451 (Q-034 hazard/resource threshold
+  retest, EWIN-PC), V3-EXQ-445a (SD-032b dACC full-pipeline fix, EWIN-PC).
+- Run the next governance cycle once V3-EXQ-445a lands: rebuild
+  `claim_evidence.v1.json`, regenerate `pending_review.md`, ingest the
+  SD-032 cluster behavioural FAIL pattern, the SD-035 landing PASSes, and
+  the fresh SD-033 cluster registrations (MECH-266 / SD-029 /
+  MECH-269-278 / ARC-059).
+- Assess whether V3-EXQ-445a's outcome vindicates the SD-032b monostrategy
+  fix or confirms that the dACC/AIC/ARC-016 behavioural loop needs
+  substrate-level redesign; decide whether to queue EXQ-445d or to pivot
+  to an SD-035 + MECH-266 behavioural-pair experiment.
+- Queue V3-EXQ-470 (SD-029 SCHEDULED vs BASELINE curriculum diagnostic) to
+  unblock C3/C4 event-conditioned SNR measurement on the MECH-256
+  comparator track.
+- First-pass hippocampal consumer wiring for SD-035 BLA retrieval_bias and
+  remap_signal once V3-EXQ-474 behavioural signature confirmed (deferred
+  from 2026-04-21 landing pass).
+- Move MECH-266 OCD/depression-axis competing-goals behavioural variants
+  (EXQ-464b / EXQ-467b) off hold once the CausalGridWorldV2 dual
+  simultaneously active resource-cue env extension lands.
+- SD-033e design doc + dual-active-goal env extension to unlock the three
+  V4-reserved proposals (EXP-0165 / 0166 / 0167).
+
+---
+
 ## Status Snapshot (2026-04-21)
 
 - **SD-033a lateral-PFC-analog / MECH-261 primary consumer LANDED 2026-04-20.**
