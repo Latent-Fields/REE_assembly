@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_latent_cause_extinction_gershman2010",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-269", "MECH-272"],
+  "source": {
+    "title": "Context, learning, and extinction",
+    "authors": ["Samuel J Gershman", "David M Blei", "Yael Niv"],
+    "year": 2010,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0017808",
+    "url": "https://doi.org/10.1037/a0017808"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The single strongest computational frame in the pull for schema invalidation. The latent-cause-inference model formalises invalidation as inference of a *new* latent cause underlying current observations rather than as erasure of an old one -- exactly the architectural form V_s requires. Bayesian formulation gives clean handles for graded vs threshold dynamics and for the per-anchor accumulator role. Highest mapping fidelity in the pull because the construct *is* the architectural construct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Restricted capacity to infer new latent causes -- as in young animals or hippocampal-lesioned animals -- produces context-independence of extinction. Architecturally this maps to MECH-284 accumulator being unable to cross the threshold that would license inferring a new latent cause / new anchor."
+  ],
+  "tags": ["mech_284", "mech_269", "mech_272", "latent_cause", "extinction", "gershman", "bayesian_inference", "invalidation_architecture"],
+  "mapping": {
+    "source_claim_statement": "Bayesian inference within an unbounded-latent-cause model accounts for context-dependent extinction phenomena, including renewal and latent inhibition. Contextual modulation arises because the observer infers different latent causes operating in different contexts; new contexts trigger inference of new causes rather than erasure of old learning. Hippocampal lesions or pre-developmental absence of the relevant inference produce context-independence.",
+    "ree_translation": "This is the canonical computational frame for V_s invalidation. The latent-cause posterior over the current observation IS V_s for the currently anchored cause: high posterior = high V_s (anchor still fits); low posterior together with high posterior on a new cause = anchor invalidation event. MECH-284 accumulator is the Bayesian update integrating new observations into the posterior. MECH-269 anchor reset fires when the posterior crosses a threshold favouring a new cause. MECH-272 (state-gated routing) maps to whether the system commits to the current latent cause (anchor-dominant) or considers alternative causes (probe-dominant); the Gershman framework predicts the system should be in probe-dominant mode whenever the posterior is uncertain.",
+    "mapping_caveat": "The framework is normative-computational; it does not specify which neural circuits implement which step. The OFC = state-label and DA = generalized-PE substrates from Wilson2014 / Gardner2018 are candidate implementations of the abstract Bayesian update. The hippocampal involvement in the original paper is consistent with our hippocampal-anchor framing.",
+    "source_context": "Computational paper extending Redish et al 2007 with normative Bayesian inference; simulation results compared to behavioural data on renewal and latent inhibition in rodents and humans."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.92,
+    "transfer_risk": 0.20,
+    "notes": "Psych Review. The construct IS the V_s architecture. Mapping fidelity is the highest in the pull. Transfer low because the framework is computational and species-general."
+  }
+}

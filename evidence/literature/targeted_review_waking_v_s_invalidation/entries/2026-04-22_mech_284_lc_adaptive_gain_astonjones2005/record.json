@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_lc_adaptive_gain_astonjones2005",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-272"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": ["Gary Aston-Jones", "Jonathan D Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "url": "https://doi.org/10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "The phasic-vs-tonic LC framework gives a principled architecture for the broadcast trigger / accumulator transition. Phasic bursts on single events; sustained tonic shifts on accumulated utility decline. ACC/OFC inputs to LC put the trigger under cortical control. This is the most architecturally complete LC paper for the V_s purpose -- it specifies both the trigger event (phasic) and the integrated state (tonic) that together implement the trigger-plus-accumulator structure MECH-284 needs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Disrupted phasic-tonic balance produces dissociable cognitive failures: hyper-tonic LC (anxiety, hypervigilance) is over-invalidation, where the system is constantly searching for alternative routines; hypo-tonic LC (depression, dementia) is under-invalidation, where stale routines persist. The framework predicts that V_s accumulator integrity depends on the relative weighting of phasic vs tonic LC components and that this weighting is itself under cortical control via ACC/OFC."
+  ],
+  "tags": ["mech_284", "mech_272", "locus_coeruleus", "phasic_tonic", "adaptive_gain", "astonjones_cohen", "exploration_exploitation"],
+  "mapping": {
+    "source_claim_statement": "LC neurons exhibit two modes -- phasic and tonic -- that map to exploitation (phasic LC, focused on current task) and exploration (tonic LC, search for alternative behaviours). The mode is controlled by frontal inputs (ACC, OFC) that monitor task-related utility. Phasic activity facilitates ensuing behaviours and optimises task performance; tonic activity drives disengagement and behavioural flexibility.",
+    "ree_translation": "The phasic-tonic LC framework is the cleanest existing biological substrate for the trigger-plus-accumulator structure MECH-284 needs. Phasic burst = single broadcast invalidation event tagged to the currently committed behaviour. Tonic LC level = integrated state reflecting accumulated utility decline of the currently operative anchor / behavioural mode. When tonic LC crosses threshold, the system disengages from the operative anchor (MECH-269 reset) and explores alternatives (probe-dominant routing, refining MECH-272). ACC and OFC inputs to LC are the credit-assignment circuits that decide which schema's failures should drive the tonic shift.",
+    "mapping_caveat": "The framework was developed in the context of exploration-exploitation in single-task settings, not for hippocampal-anchor or regional-schema invalidation. The translation 'tonic LC = V_s accumulator output' is structural; the LC tonic shift is generic ('the current task is not yielding utility') rather than schema-specific ('the current anchor is not fitting the regional dynamics'). Schema-specificity would require either targeted LC projections (some evidence for) or local credit assignment at the receivers (consistent with ACC/OFC inputs).",
+    "source_context": "Theoretical review with macaque LC electrophysiology and computational modelling; senior author Aston-Jones is a leading LC investigator."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Annu Rev Neurosci, foundational review. Mapping high because the phasic-tonic structure maps directly to trigger-plus-accumulator. Transfer low because LC function is conserved."
+  }
+}

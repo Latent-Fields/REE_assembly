@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_pattern_separation_yassa2011",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-269"],
+  "source": {
+    "title": "Pattern separation in the hippocampus",
+    "authors": ["Michael A Yassa", "Craig E L Stark"],
+    "year": 2011,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2011.06.006",
+    "url": "https://doi.org/10.1016/j.tins.2011.06.006"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Canonical pattern-separation review covering DG/CA3 evidence from electrophysiology, lesions, IEG imaging, and human fMRI. For V_s invalidation, DG remap rate is a candidate substrate for the *upstream signal* that the current anchor is being interfered with -- a 'this region has accumulated representational interference' index that could feed MECH-284. Mapping is structural rather than direct; the paper does not measure online schema downweight.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If DG remap rate is a substrate for interference detection, then DG dysfunction (aging, early AD) should produce schema-rigidity by failing to register interference -- consistent with the Reagh 2018 alEC-DG/CA3 imbalance finding."
+  ],
+  "tags": ["mech_284", "mech_269", "dentate_gyrus", "pattern_separation", "yassa", "interference_detection"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal subfields DG and CA3 produce orthogonal (separated) neural representations for similar inputs, supported by electrophysiological remapping data, lesion studies, immediate-early gene imaging, transgenic models, and human fMRI showing CA3/DG transfer functions sensitive to small input changes. Aging and adult neurogenesis modulate this capacity.",
+    "ree_translation": "DG remap rate is a candidate biological substrate for the local accumulator's input: high DG remap = high representational interference = the currently anchored schema is being competed with by alternative representations. MECH-284 accumulator could integrate this signal as one of its inputs. MECH-269 anchor reset criterion could fire when sustained DG remap rate exceeds a per-anchor threshold.",
+    "mapping_caveat": "Pattern separation is about producing distinct representations of similar inputs; it is not directly a schema-validity signal. The translation 'high remap rate = anchor under interference' is a reasonable structural inference but is not measured. The Reagh 2018 paper in this pull ties DG/CA3 imbalance to behavioural mnemonic discrimination deficits, which is one step closer to the V_s mapping but still indirect.",
+    "source_context": "Multi-method review covering rodent, primate, and human data on DG/CA3 pattern separation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.25,
+    "notes": "Trends in Neurosciences canonical review. Mapping fidelity moderate because pattern separation is not directly a V_s signal. Transfer low because hippocampal anatomy is conserved."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_ofc_what_it_does_not_do_stalnaker2015",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284"],
+  "source": {
+    "title": "What the orbitofrontal cortex does not do",
+    "authors": ["Thomas A Stalnaker", "Nisha K Cooch", "Geoffrey Schoenbaum"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3982",
+    "url": "https://doi.org/10.1038/nn.3982"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Critical review by senior OFC investigators warning that the field has over-attributed function to OFC. For us this is the boundary-condition paper -- it sharpens what the OFC-as-V_s-substrate claim must prove and rules out lazy attributions. Mixed direction because the paper *narrows* what we can claim from Wilson2014 (positive support) while preserving the inferred-state-tracking role specifically (defended by the authors).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Field tendency to claim OFC for any task that involves outcome representation, expectancy, or flexible behavior. The V_s -> OFC mapping must specifically defend why this is not just another over-attribution."
+  ],
+  "tags": ["mech_284", "ofc", "stalnaker", "boundary_condition", "review_critique"],
+  "mapping": {
+    "source_claim_statement": "Many roles attributed to OFC in the recent literature are based on limited data, ignore competing accounts, or fail to replicate. The authors argue that OFC is most defensibly characterised as supporting model-based valuation that uses inferred state information -- and that many other claims (general inhibition, reversal learning per se, conflict monitoring) attribute to OFC functions that other regions support equally well or better.",
+    "ree_translation": "The V_s = OFC representational drift mapping survives this critique because it is precisely the function the authors *do* defend: inferred-state-supporting model-based valuation. But the paper rules out attributing to OFC the broader 'invalidate any stale schema' function. V_s in the Wilson framing is a state label that gates value learning, not a generic schema-validity scalar. The MECH-284 accumulator should therefore be specified as integrating violations relevant to the inferred-state representation specifically, not as integrating arbitrary mismatches.",
+    "mapping_caveat": "The paper is a critique not a positive empirical result. Confidence should reflect that it constrains rather than supports. The constraint is real and useful but the paper itself does not generate new evidence for V_s.",
+    "source_context": "Conceptual review by leading OFC investigators surveying ~1500 OFC papers."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Senior author critique. Mapping moderate because the paper's value is in narrowing the OFC = V_s claim, not extending it. Transfer low."
+  }
+}

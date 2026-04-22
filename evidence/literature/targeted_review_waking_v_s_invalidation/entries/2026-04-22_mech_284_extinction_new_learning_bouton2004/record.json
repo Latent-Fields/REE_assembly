@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_extinction_new_learning_bouton2004",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-272"],
+  "source": {
+    "title": "Context and behavioral processes in extinction",
+    "authors": ["Mark E Bouton"],
+    "year": 2004,
+    "venue": "Learning & Memory",
+    "doi": "10.1101/lm.78804",
+    "url": "https://doi.org/10.1101/lm.78804"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Canonical behavioural review establishing extinction as new learning, not erasure -- the empirical foundation Gershman2010 formalises in Bayesian terms. Strong support for the claim that V_s invalidation should not erase the original schema but generate a competing one whose retrieval is context-gated. Confidence moderate because the mapping is at the behavioural-phenomenology level rather than at the neural-substrate level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Renewal phenomena (return of extinguished response when context shifts) are direct behavioural evidence that V_s invalidation does not erase the original anchor -- it produces a context-gated alternative anchor. This means MECH-269 reset is not erasure; the previous anchor remains retrievable when context cues re-favour it. Failure to produce renewal would falsify the dual-trace prediction."
+  ],
+  "tags": ["mech_284", "mech_272", "extinction", "context", "renewal", "bouton", "behavioural_anchor"],
+  "mapping": {
+    "source_claim_statement": "Extinction does not destroy original learning; it generates new learning that is especially context-dependent. Behavioural phenomena -- renewal, spontaneous recovery, reinstatement, rapid reacquisition -- all point to extinction producing an additional inhibitory association rather than erasing the original. Generalisation decrement and expectation violation are the most empirically supported mechanisms.",
+    "ree_translation": "MECH-269 anchor reset should not erase the original anchor. It should mark the original as no longer the operative anchor in the current context while preserving its retrievability when contextual cues re-favour it. MECH-272 (state-gated routing) is reinforced by this: the operative anchor is context-gated; multiple anchors coexist as candidates and the routing decision is which one to make operative. V_s invalidation drops the operative-anchor weight on the previously anchored trace but does not delete the trace itself. This has clinical implications -- extinction-based therapies for PTSD and phobia rely on this dual-trace property.",
+    "mapping_caveat": "The framework is behavioural / cognitive; it does not specify the neural substrate. The Gershman 2010 / 2017 papers are the formal version of the same insight; this paper is the empirical anchor. For V_s, the translation requires that the original-anchor trace be preserved at the regional-schema scale, which is consistent with hippocampal evidence but not directly tested.",
+    "source_context": "Behavioural review covering Pavlovian extinction phenomena across rodent and human studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "Highly cited Learn Mem review, definitive on the behavioural side. Mapping moderate because it is at the phenomenology level. Transfer low."
+  }
+}

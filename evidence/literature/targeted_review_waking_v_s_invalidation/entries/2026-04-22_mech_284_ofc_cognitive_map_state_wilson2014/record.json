@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_ofc_cognitive_map_state_wilson2014",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-269"],
+  "source": {
+    "title": "Orbitofrontal cortex as a cognitive map of task space",
+    "authors": ["Robert C Wilson", "Yuji K Takahashi", "Geoffrey Schoenbaum", "Yael Niv"],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.005",
+    "url": "https://doi.org/10.1016/j.neuron.2013.11.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The single most architecturally consequential paper in this pull for the *local accumulator* role. The OFC-as-cognitive-map-of-task-space framing is essentially the V_s construct re-stated for OFC: OFC labels the current latent state, that label gates downstream reward learning, and changes to that label *are* changes to the schema. This makes OFC representational drift the strongest candidate substrate for MECH-284 the accumulator. The paper is theoretical-with-empirical-anchor (reversal learning, devaluation, OFC-VTA effects) but does not directly measure online-waking V_s downweight; the mapping is structural, not measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OFC lesion produces inability to update inferred state when sensory observations are constant but underlying outcome contingencies have changed -- this is the canonical reversal-learning deficit. Architecturally this is the failure of the local accumulator: the broadcast trigger may still fire but the local schema label does not update, so V_s never effectively changes."
+  ],
+  "tags": ["mech_284", "mech_269", "ofc", "cognitive_map", "state_inference", "wilson", "local_accumulator"],
+  "mapping": {
+    "source_claim_statement": "OFC provides an abstraction of currently available information in the form of a labeling of the current task state, used by reinforcement learning circuits elsewhere in the brain; especially critical when task states include unobservable information. Reversal learning, delayed alternation, extinction, and devaluation are all explained by OFC tracking the latent state.",
+    "ree_translation": "OFC = the local schema label for the currently-anchored regional dynamics. V_s tracks how well the anchor's predictions match observed outcomes; OFC tracks the analogous latent state. The architectural mapping is OFC representational change *during waking* as the substrate for MECH-284's accumulator output: when OFC's labelling changes, V_s for the previously labelled schema effectively drops because downstream RL circuits stop using that label. MECH-269's anchor reset criterion fires when OFC labelling crosses a discrete boundary.",
+    "mapping_caveat": "Wilson et al frame OFC as labelling for use by external RL, not as tracking schema validity per se. Whether the relabelling event in OFC is graded (proportional V_s downweight) or threshold-crossing (discrete re-anchoring) is not specified by the theory. The Stalnaker-Cooch-Schoenbaum 2015 critique cautions against over-attributing function to OFC. The mapping to V_s holds at the level of computational role but the implementation details (graded vs threshold; per-anchor vs broadcast; integration timescale) require V3 experiments.",
+    "source_context": "Theoretical review with simulation, anchored in macaque and rodent OFC lesion / electrophysiology data on reversal learning, extinction, and devaluation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Neuron review by leading lab (Niv-Schoenbaum). Mapping fidelity high because the cognitive-map-of-task-space construct is essentially V_s under another name. Transfer low because OFC function is well conserved."
+  }
+}

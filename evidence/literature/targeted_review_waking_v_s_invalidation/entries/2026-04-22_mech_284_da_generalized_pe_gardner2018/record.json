@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_da_generalized_pe_gardner2018",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-269"],
+  "source": {
+    "title": "Rethinking dopamine as generalized prediction error",
+    "authors": ["Matthew P H Gardner", "Geoffrey Schoenbaum", "Samuel J Gershman"],
+    "year": 2018,
+    "venue": "Proceedings of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rspb.2018.1645",
+    "url": "https://doi.org/10.1098/rspb.2018.1645"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Architecturally important paper that bridges Schultz1997 (reward-PE) and Wilson2014 (state-label). Argues DA encodes both sensory and reward PEs and supports a hybrid model-based/model-free RL. For V_s the implication is that the broadcast trigger event need not be reward-PE-shaped; the same DA signal can carry sensory mismatches that are exactly the V_s-relevant violations. This is the strongest computational defence in the pull for treating DA dip as the broadcast trigger of MECH-284 rather than just LHb.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If DA encodes generalized PE then DA dysfunction (depression, schizophrenia) should produce mixed deficits in both reward learning and schema updating -- which it does. Selective preservation of one with disruption of the other is unlikely under this framework, which is a constraint on what failure modes the architecture should explain."
+  ],
+  "tags": ["mech_284", "mech_269", "dopamine", "generalized_pe", "sensory_pe", "gardner", "gershman", "broadcast_trigger"],
+  "mapping": {
+    "source_claim_statement": "Midbrain dopamine signals encode prediction errors not only about reward but about sensory features unrelated to reward, evidenced by sensory preconditioning and identity unblocking phenomena. Dopamine therefore supports a form of RL between pure model-based and pure model-free.",
+    "ree_translation": "DA dip is a generalized PE substrate suitable for the V_s broadcast trigger: it can fire on schema-fit violations (sensory PE) as well as value violations (reward PE). MECH-284 accumulator integrates DA-dip events that are tagged to the currently anchored schema. MECH-269 reset criterion fires when the integral crosses threshold. The combined Wilson2014 (OFC labels state) + Gardner2018 (DA carries generalized PE) story gives the cleanest two-substrate architecture: OFC = local accumulator, DA = broadcast trigger, integration produces V_s downweight, MECH-269 fires reset.",
+    "mapping_caveat": "The 'generalized PE' framing is still single-event and scalar. The paper does not address how single PEs aggregate into a sustained schema downweight; that is the MECH-284 architectural step the literature does not yet make explicit. Sensory preconditioning and identity unblocking are the empirical anchors and they work in single trials, so the paper does not directly inform the integration timescale.",
+    "source_context": "Theoretical review with simulation. Empirical anchors are sensory preconditioning (Sharpe et al 2017) and identity unblocking (Howard & Kahnt 2018) studies showing DA responses to non-reward sensory mismatches."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Proc B review by Gardner-Schoenbaum-Gershman. Mapping fidelity high because generalized-PE construct is what V_s needs from a broadcast trigger. Transfer low."
+  }
+}

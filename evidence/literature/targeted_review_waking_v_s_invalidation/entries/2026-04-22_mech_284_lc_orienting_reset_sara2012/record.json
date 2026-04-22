@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_lc_orienting_reset_sara2012",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-269"],
+  "source": {
+    "title": "Orienting and reorienting: the locus coeruleus mediates cognition through arousal",
+    "authors": ["Susan J Sara", "Sebastien Bouret"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.09.011",
+    "url": "https://doi.org/10.1016/j.neuron.2012.09.011"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Strong review framing LC phasic burst as a cortical-network reset / reorientation signal -- exactly the broadcast invalidation trigger architecture V_s needs. Adds a second candidate trigger substrate alongside DA/LHb, with the distinctive feature that LC is more clearly sensitive to surprise per se rather than to reward valence. Highly relevant for the schema-fit (vs reward-fit) framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LC dysfunction in dementia, sleep disorders, and depression produces a recognisable phenotype: cognitive rigidity, failure to orient to novel stimuli, perseveration. This maps to V_s-invalidation failure where the broadcast trigger never fires sufficiently to drive accumulator integration. ASD restricted-interest patterns and OCD compulsions are candidate clinical analogues."
+  ],
+  "tags": ["mech_284", "mech_269", "locus_coeruleus", "norepinephrine", "orienting", "network_reset", "sara_bouret", "broadcast_trigger"],
+  "mapping": {
+    "source_claim_statement": "LC noradrenergic activation in response to unexpected salient stimuli (and to conditioned cues for behaviourally relevant events) drives a global reorientation of cortical networks, facilitating sensory processing, enhancing cognitive flexibility and executive function in frontal cortex, and promoting offline memory consolidation. The function is fundamentally one of preparing the organism for an adaptive behavioural reset.",
+    "ree_translation": "LC phasic burst is a candidate broadcast invalidation trigger for V_s, distinct from and complementary to DA dip / LHb. Where DA/LHb fire on reward-PE-like signals, LC fires on surprise / novelty / behavioural-relevance signals -- closer in shape to the schema-fit-PE V_s actually needs. MECH-284 accumulator integrates LC bursts tagged to the currently anchored schema; MECH-269 reset fires when integration crosses threshold. Architecturally, LC may be the cleaner trigger substrate for the schema-fit-PE component while DA/LHb cover the reward-PE component.",
+    "mapping_caveat": "The Sara-Bouret framing is about cognitive flexibility and cortical reset broadly, not about hippocampal-anchor-specific invalidation. Whether LC bursts target the specific regional schemas being invalidated, or whether they broadcast generically and the local accumulators do the credit assignment, is not addressed by the review. The architectural commitment between 'targeted broadcast' and 'untargeted broadcast + local credit assignment' is V3-experiment-relevant.",
+    "source_context": "Multi-method review covering rodent and primate LC electrophysiology, NE pharmacology, and cognitive behavioural data; co-author Sara is a leading LC investigator."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "Neuron review by senior LC investigators. Mapping high because the LC reset framing is the cleanest match to broadcast invalidation. Transfer low because LC anatomy and function are conserved."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_lhb_negative_rpe_matsumoto2007",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284"],
+  "source": {
+    "title": "Lateral habenula as a source of negative reward signals in dopamine neurons",
+    "authors": ["Masayuki Matsumoto", "Okihide Hikosaka"],
+    "year": 2007,
+    "venue": "Nature",
+    "doi": "10.1038/nature05860",
+    "url": "https://doi.org/10.1038/nature05860"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct primate single-unit demonstration that LHb neurons fire to no-reward cues and that LHb stimulation drives DA inhibition with the latency relationship necessary for LHb to be upstream of the dopamine dip. As a candidate broadcast invalidation trigger, this is the strongest substrate-existence paper in the pull: LHb broadcasts a 'this is worse than predicted' signal via the rostromedial tegmental nucleus to VTA/SNc. Mapping fidelity to V_s remains moderate because the signal is reward-PE-shaped, not model-fit-shaped.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LHb hyperactivity in learned helplessness (later literature) suggests *over*-invalidation of agency-anchors as a failure mode -- the broadcast trigger fires too easily, every anchor is downweighted, and the agent stops attempting any structured behaviour. Architecturally relevant: this is the symmetric failure to MECH-284's accumulator-never-trips phenotype."
+  ],
+  "tags": ["mech_284", "lateral_habenula", "negative_rpe", "matsumoto", "invalidation_trigger", "broadcast_signal"],
+  "mapping": {
+    "source_claim_statement": "LHb neurons in macaque are excited by no-reward-predicting cues and inhibited by reward-predicting cues; weak LHb electrical stimulation produces strong inhibition of midbrain DA neurons; LHb excitation precedes DA inhibition on unrewarded trials.",
+    "ree_translation": "LHb is a candidate substrate for a broadcast invalidation trigger upstream of the DA dip in MECH-284. The signal it carries -- 'predicted reward absent' -- is the right computational shape for the V_s downweight trigger but the wrong content (reward-PE rather than schema-fit-PE). The architectural reading would be: LHb generates the broadcast event; downstream DA dip distributes it; MECH-284 accumulator integrates dips per schema; MECH-269 reset criterion fires when the integral exceeds a per-schema threshold.",
+    "mapping_caveat": "The signal in Matsumoto2007 is specifically reward-omission. Whether LHb also fires on schema-fit violations independent of reward is not established by this paper; that extension comes from Bromberg-Martin & Hikosaka 2011 (information-PE) and is the architectural bridge to V_s. The clinical mapping (LHb-hyperactive = depression / learned helplessness) is suggestive but not in this paper.",
+    "source_context": "Macaque single-unit LHb and SNc recordings during a visually guided saccade task with positionally biased reward outcomes; LHb micro-stimulation experiment establishing causal direction."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Nature primate single-unit + causal stimulation. Mapping moderate because reward-PE -> schema-fit-PE extension still required. Transfer low because LHb circuitry is conserved primate-to-human and the clinical correlate is robustly replicated."
+  }
+}

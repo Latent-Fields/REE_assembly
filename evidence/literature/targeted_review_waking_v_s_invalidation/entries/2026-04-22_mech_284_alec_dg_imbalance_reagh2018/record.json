@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_alec_dg_imbalance_reagh2018",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284"],
+  "source": {
+    "title": "Functional Imbalance of Anterolateral Entorhinal Cortex and Hippocampal Dentate/CA3 Underlies Age-Related Object Pattern Separation Deficits",
+    "authors": ["Zachariah M Reagh", "Jessica A Noche", "Nicholas J Tustison", "Derek Delisle", "Elizabeth A Murray", "Michael A Yassa"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.01.039",
+    "url": "https://doi.org/10.1016/j.neuron.2018.01.039"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Direct human fMRI evidence linking DG/CA3 functional state to behavioural mnemonic discrimination performance. Closest paper in the pull to operationalising 'interference' as a behavioural readout. Confidence moderate because the link to V_s invalidation is via the inference 'mnemonic discrimination = local schema separation = inputs to V_s accumulator' -- defensible but layered.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "alEC hypoactivity + DG/CA3 hyperactivity in aging produces mnemonic discrimination deficits -- a candidate biological signature of failed schema-interference detection. If V_s reads from this substrate, aging populations should show V_s-invalidation failure even when their DA/LHb broadcast triggers are intact, consistent with age-related cognitive rigidity not driven by reward-circuit dysfunction."
+  ],
+  "tags": ["mech_284", "alec", "dentate_gyrus", "ca3", "mnemonic_discrimination", "aging", "reagh"],
+  "mapping": {
+    "source_claim_statement": "High-resolution fMRI in cognitively normal older adults shows alEC hypoactivity together with DG/CA3 hyperactivity, and this functional imbalance correlates with object mnemonic discrimination deficits.",
+    "ree_translation": "Mnemonic discrimination is the behavioural proxy for the same operation V_s tracks at a regional-schema level: the ability to register that the current input is meaningfully different from the previously anchored representation. Reagh's alEC-DG/CA3 imbalance is a candidate substrate for V_s-input failure: the local interference signal is broken before it ever reaches the accumulator. The paper supports the broader claim that an entorhinal-hippocampal circuit specifically generates the kind of signal MECH-284 needs.",
+    "mapping_caveat": "The behavioural test is object discrimination not schema invalidation. Whether the same circuit operates at the regional-schema scale that V_s requires is an extrapolation. The mapping is at the level of 'this circuit detects subtle differences and is the right anatomical neighbourhood for V_s input', not at the level of measured V_s.",
+    "source_context": "Human ultra-high-resolution fMRI in younger and older asymptomatic adults during an object mnemonic discrimination task; n moderate."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.30,
+    "notes": "Neuron human fMRI study, well executed but small sample. Mapping moderate because behavioural proxy is one step removed from V_s. Transfer low because the species and circuit are right."
+  }
+}

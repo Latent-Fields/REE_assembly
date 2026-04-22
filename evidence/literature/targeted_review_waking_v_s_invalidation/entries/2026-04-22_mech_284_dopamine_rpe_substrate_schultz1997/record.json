@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_dopamine_rpe_substrate_schultz1997",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-269"],
+  "source": {
+    "title": "A neural substrate of prediction and reward",
+    "authors": ["Wolfram Schultz", "Peter Dayan", "P. Read Montague"],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.275.5306.1593",
+    "url": "https://doi.org/10.1126/science.275.5306.1593"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Foundational TD-RPE paper. Strong on the formal claim that midbrain DA fluctuations carry signed prediction errors and that phasic dips on omission are the canonical 'expected event did not occur' signal. Weak as a *direct* substrate for V_s invalidation because the paper frames PE as scalar reward error, not schema-staleness over a recurring-anchor window. Mapping requires non-trivial extension (sensory PEs as in MECH-284 are formalised only by 2018 Gardner/Schoenbaum/Gershman). Useful as the upstream formal commitment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Single-event signed RPE alone does not produce sustained behavioural change when the agent's policy is committed; this is exactly the V3-EXQ-475 phenotype (single events register, accumulator never crosses threshold)."
+  ],
+  "tags": ["mech_284", "mech_269", "dopamine", "rpe", "schultz", "tdlearning", "invalidation_trigger"],
+  "mapping": {
+    "source_claim_statement": "Phasic activity of midbrain dopamine neurons signals temporal-difference reward prediction errors; positive deflections on better-than-expected outcomes, depressions (dips) on worse-than-expected.",
+    "ree_translation": "DA dip on omission/violation is a candidate broadcast trigger event for V_s invalidation: the schema predicted reward at this anchor and reward did not arrive, so V_s for that schema should be downweighted. MECH-284 accumulator integrates dip events; MECH-269 anchor reset criteria fire when the integral crosses threshold.",
+    "mapping_caveat": "The 1997 framing is reward-PE only and treats the signal as scalar; it does not address (a) which schema the dip should be credited to, (b) whether the signal is broadcast or local, or (c) whether single dips suffice. Gardner-Schoenbaum-Gershman 2018 generalises this to sensory PE which is closer to MECH-284. Treat Schultz1997 as the substrate-existence claim for the trigger event, not as a substrate for the accumulator.",
+    "source_context": "Primate (macaque) midbrain VTA/SNc single-unit recordings during classical conditioning."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is canonical (Science, ~10000 cites). Mapping fidelity is moderate because the original RPE construct is reward-scalar, not the schema-staleness construct MECH-284 needs. Transfer risk moderate because reward-RPE biology is well preserved across mammals."
+  }
+}

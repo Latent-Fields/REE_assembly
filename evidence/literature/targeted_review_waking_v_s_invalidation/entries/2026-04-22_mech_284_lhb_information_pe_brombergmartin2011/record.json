@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_lhb_information_pe_brombergmartin2011",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-272"],
+  "source": {
+    "title": "Lateral habenula neurons signal errors in the prediction of reward information",
+    "authors": ["Ethan S Bromberg-Martin", "Okihide Hikosaka"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2902",
+    "url": "https://doi.org/10.1038/nn.2902"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The most architecturally on-target LHb paper for V_s invalidation. Demonstrates that a subpopulation of LHb neurons signal information-prediction-errors, not just reward-prediction-errors -- responding when reward information itself is unexpectedly cued, delivered, or denied. This is the abstraction step from value-PE toward model-fit-PE that the V_s construct requires. The paper does not bridge all the way to schema-validity but it makes the construct admissible.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If LHb encodes information-PE distinctly from reward-PE then a substrate failure isolated to the information-PE subpopulation could produce schema-rigidity without affecting reward learning -- a candidate biological signature of OCD-style perseveration distinct from depression's blunted reward-PE."
+  ],
+  "tags": ["mech_284", "mech_272", "lateral_habenula", "information_prediction_error", "brombergmartin", "invalidation_trigger"],
+  "mapping": {
+    "source_claim_statement": "A subpopulation of lateral habenula neurons in macaque transmits signals resembling information prediction errors, responding when reward information was unexpectedly cued, delivered, or denied; these signals evaluated information sources reliably even when the monkey's choices did not.",
+    "ree_translation": "LHb information-PE neurons are the closest existing substrate for the V_s schema-fit invalidation trigger. The construct -- 'the world failed to provide the information I expected this region to provide' -- is exactly the construct V_s tracks at the regional-schema level. MECH-284 accumulator integrates these signals per schema; MECH-269 anchor reset fires when the integral crosses threshold. MECH-272 (state-gated routing) might be refined by this paper: information-PE could be the gate that switches the system from anchor-dominant to probe-dominant when anchored predictions stop being informative.",
+    "mapping_caveat": "The Bromberg-Martin task uses cues that predict information about reward outcomes, not cues that predict regional dynamics. The translation 'information-PE = schema-fit-PE' is an extrapolation -- defensible computationally but unverified for hippocampal-anchor-specific information. A V3 experiment would be needed to test whether LHb information-PE neurons fire to anchor-mismatch in a non-reward context.",
+    "source_context": "Macaque LHb single-unit recordings during a free-choice task between informative and uninformative cues predicting reward."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Nat Neurosci primate single-unit. Mapping fidelity higher than Matsumoto2007 because the information-PE construct is closer to V_s. Transfer risk low because LHb circuitry conserved."
+  }
+}

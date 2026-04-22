@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_waking_v_s_invalidation",
+  "entry_id": "2026-04-22_mech_284_memory_modification_gershman2017",
+  "timestamp_utc": "2026-04-22T18:11:43Z",
+  "claim_ids_tested": ["MECH-284", "MECH-269", "MECH-285"],
+  "source": {
+    "title": "The computational nature of memory modification",
+    "authors": ["Samuel J Gershman", "Marie-H Monfils", "Kenneth A Norman", "Yael Niv"],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.23763",
+    "url": "https://doi.org/10.7554/eLife.23763"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct extension of Gershman2010 to memory modification, including reconsolidation. Provides the bridge between waking-state invalidation (the V_s drop) and the question of which memory trace gets modified versus which gets newly formed. Architecturally connects MECH-284 to MECH-285 (sleep-priority replay) via the latent-cause segmentation operation that decides whether new sensory observations are appended to an existing memory or assigned to a new one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Memory modification failures predicted by the framework: when the structure-learning step infers a new latent cause when it should not (over-segmentation), old memories never get modified and the agent accumulates parallel uncombined traces -- a candidate substrate for dissociative phenomena. When it fails to infer new causes when it should (under-segmentation), traumatic memories get re-modified in ways that incorporate new triggers -- a candidate for PTSD generalisation."
+  ],
+  "tags": ["mech_284", "mech_269", "mech_285", "memory_modification", "reconsolidation", "gershman", "structure_learning"],
+  "mapping": {
+    "source_claim_statement": "Memory trace modification occurs through classical associative learning, but which trace is eligible for modification depends on a structure-learning mechanism that segments the stream of experience into statistically distinct latent causes. New memories are formed when structure learning infers a new cause; old memories are modified when old and new observations are inferred to share a cause.",
+    "ree_translation": "This paper extends Gershman2010 to the memory-trace level and gives us the architectural connection between MECH-284 (waking V_s invalidation) and MECH-285 (sleep-priority replay). The structure-learning mechanism is the operation that decides whether MECH-269 anchor reset is needed -- and whether the previous anchor's memory traces should be marked for replay-driven consolidation under MECH-285. The waking V_s drop is the moment structure learning infers a new latent cause; the sleep-priority replay is the offline consolidation that updates the regional schema database accordingly. The paper makes the coupling between waking invalidation and sleep priority architecturally natural rather than an additional posit.",
+    "mapping_caveat": "The paper is about Pavlovian memory modification not regional-schema invalidation per se. The translation 'memory-trace structure learning = anchor structure learning' is structural; the regional-schema scale and the per-trace scale are not identical. But the same Bayesian machinery applies at both scales.",
+    "source_context": "Computational paper with simulations reproducing experimental findings from Pavlovian conditioning, extinction, and reconsolidation literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "eLife computational paper. Mapping fidelity high because it provides the waking-sleep architectural bridge. Transfer low."
+  }
+}
