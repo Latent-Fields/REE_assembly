@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_vmhdm_collateral_pathways_wang2015",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["MECH-279", "SD-032a"],
+  "source": {
+    "title": "Collateral pathways from the ventromedial hypothalamus mediate defensive behaviors.",
+    "authors": ["Li Wang", "I-Ju Chen", "Dayu Lin"],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2014.12.025",
+    "url": "https://doi.org/10.1016/j.neuron.2014.12.025"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Definitive circuit-tracing paper showing VMHdm SF1+ neurons send collateral projections that produce DIFFERENT defensive behaviours via DIFFERENT downstream targets: VMHdm -> dlPAG drives immobility/freezing; VMHdm -> AHN drives avoidance. This is the canonical demonstration that a single upstream broadcast splits at downstream nodes into distinct behavioural commits, exactly the architecture SD-032a SalienceCoordinator should arbitrate. Confidence high because the dissection is causal (optogenetic terminal stimulation) and uses fluorescent retrograde tracers to identify true collateral projections.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Single VMHdm cell sends collaterals to multiple downstream targets, each driving a distinct defensive sub-behaviour -- broadcast architecture from single source.",
+    "Different terminal stimulation produces different behaviour from the SAME upstream population -- arbitration happens downstream, not at the source."
+  ],
+  "tags": ["mech-279", "vmhdm", "pag", "ahn", "collateral", "broadcast"],
+  "mapping": {
+    "source_claim_statement": "VMHdm SF1+ neurons (predator-responsive) send collateral projections to anterior hypothalamic nucleus (AHN), dorsolateral PAG (dlPAG), and other targets. Optogenetic activation of VMHdm -> dlPAG terminals drives immobility; VMHdm -> AHN terminals drive avoidance. Distinct defensive sub-behaviours are produced by terminal stimulation of the SAME upstream cells.",
+    "ree_translation": "This is the canonical broadcast-with-downstream-arbitration architecture: one source (VMHdm), three+ outputs (dlPAG, AHN, others), each driving a different behaviour. For V3, this is direct evidence that z_harm-driven defensive behaviours emerge from downstream arbitration, not from segregated upstream channels. SD-032a SalienceCoordinator's role is to be the arbiter at the downstream nodes, weighting which target's behaviour wins. MECH-279's PAG GABAergic gate is one such downstream arbiter (the freeze-vs-no-freeze gate at dlPAG).",
+    "mapping_caveat": "VMHdm is innate-threat-specific (predator); whether other harm sources (pain, malaise, social threat) also broadcast through this same architecture or use parallel architectures is a separate question. The override question (what suppresses VMHdm or its downstream gates under hunger) is not addressed here.",
+    "source_context": "Optogenetic terminal stimulation, retrograde tracing with cholera toxin B and AAV, behavioural quantification in mice exposed to social threat and innate predator cues."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.2,
+    "notes": "Neuron paper, definitive circuit dissection by the Lin lab. Mapping fidelity high for broadcast-with-downstream-arbitration architecture."
+  }
+}

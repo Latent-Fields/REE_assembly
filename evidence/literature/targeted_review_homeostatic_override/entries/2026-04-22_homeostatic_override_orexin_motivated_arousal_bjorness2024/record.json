@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_orexin_motivated_arousal_bjorness2024",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012", "SD-032a"],
+  "source": {
+    "title": "Orexin-mediated motivated arousal and reward seeking.",
+    "authors": ["Theresa E Bjorness", "Robert W Greene"],
+    "year": 2024,
+    "venue": "Peptides",
+    "doi": "10.1016/j.peptides.2024.171280",
+    "url": "https://doi.org/10.1016/j.peptides.2024.171280"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Recent review consolidating the orexin-as-broadcast-gain-modulator account: small (~50,000 cells in mouse) population of LHA neurons with very wide projections (VTA, LC, raphe, BLA, PFC, PAG, basal forebrain), sensing internal state (sleep debt, glucose, CO2, stress) and modulating motivated reward seeking. The architectural pattern matches the spec's broadcast hypothesis closely. Confidence 0.7 because this is a review rather than a primary source, and the strongest claims about gain modulation rely on indirect evidence (orexin neuron loss produces behavioural deficits but the modulation per se is hard to measure).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Orexin is not necessary for either reward or arousal alone -- it appears specifically necessary for the COMBINATION (motivated arousal). REE's drive_level signal is similarly a coupling signal, not a primary signal.",
+    "Plasticity of orexin signalling in response to natural rewards and drugs supports state-dependent rather than fixed broadcast weights."
+  ],
+  "tags": ["sd-012", "orexin", "hypocretin", "broadcast", "motivated_arousal"],
+  "mapping": {
+    "source_claim_statement": "Orexin neurons in the LHA constitute a small but broadly projecting neuropeptide system that gain-modulates reward-seeking and arousal in coordination, particularly under demanding internal-state conditions. Receptor antagonists are clinically useful for both insomnia and addiction. The system is not strictly necessary for reward or arousal alone but is necessary for their integration under motivated conditions.",
+    "ree_translation": "Orexin is the leading biological candidate for the SD-036+ broadcast override regulator that the spec hypothesises. The architectural pattern -- small cell population, wide projection, gain modulation rather than primary drive, integrates internal state -- matches almost exactly what the override layer should look like in V3. REE should consider an orexin-analog as a candidate parallel regulator alongside the GABAergic decay (SD-036) and serotonergic regulation (MECH-186/187/188) layers.",
+    "mapping_caveat": "The review covers reward seeking and arousal but addresses defensive behaviour only indirectly. Whether orexin is the same broadcast that overrides z_harm in foraging-under-threat is suggested by the projection to BLA and PAG but not directly tested in this review. Primary studies are needed to make the override claim sharp.",
+    "source_context": "Review of preclinical and clinical literature on orexin/hypocretin function in motivated arousal and reward seeking, with emphasis on addiction therapy implications."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Recent review in a respectable peptides journal. Mapping fidelity moderate -- review supports the broadcast architecture in general but is light on the specific override-of-defense question."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_insula_homeostatic_emotions_strigo2016",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-032a"],
+  "source": {
+    "title": "Interoception, homeostatic emotions and sympathovagal balance.",
+    "authors": ["Irina A Strigo", "A D Bud Craig"],
+    "year": 2016,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0010",
+    "url": "https://doi.org/10.1098/rstb.2016.0010"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Authoritative review by Craig (the dominant figure on insular interoception) framing homeostatic emotions (hunger, thirst, pain, dyspnoea, fatigue) as primary motivational forces routed through posterior-to-anterior insula re-representation, with sympathovagal balance providing a unifying common-currency. The review's relevance to V3 is at the meta-architectural level: it argues the brain has an integrated homeostatic emotion system whose substrate is the insular cortex and whose outputs drive behaviour. The 'common currency' framing maps onto SD-032a's arbitration job. Confidence moderate-high because the source is authoritative but the translation to V3 is at the level of organising principle rather than specific circuit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hunger, pain, dyspnoea integrated into a common interoceptive substrate -- supports V3 z_harm as a multi-source integration channel rather than per-modality silos.",
+    "Sympathovagal balance as common-currency -- there exists a low-dimensional axis on which all homeostatic emotions can be compared for arbitration."
+  ],
+  "tags": ["sd-032a", "insula", "interoception", "homeostatic_emotion", "common_currency"],
+  "mapping": {
+    "source_claim_statement": "Homeostatic emotions (hunger, thirst, pain, dyspnoea, temperature, fatigue) constitute a unified class of primary motivational signals, routed through posterior-to-anterior insular re-representation, with sympathovagal balance providing a common autonomic substrate. Each emotion has dedicated lamina-I afferent routing but is integrated into a common motivational currency.",
+    "ree_translation": "For V3, this supports two specific design choices: (1) z_harm and drive_level should be modeled as members of a common homeostatic-emotion class with shared upstream substrate (posterior insula analog) rather than fully orthogonal channels; (2) SD-032a SalienceCoordinator's arbitration should operate on a sympathovagal-like common currency that allows comparison across drives even when their dedicated channels are distinct. This argues against the current V3 architecture's full orthogonality of z_harm and drive_level streams.",
+    "mapping_caveat": "The common-currency framing is a theoretical organising principle; the specific neural implementation of cross-drive arbitration is not fully specified by Craig. The Strigo/Craig framework prioritises insular hierarchy as the organising substrate, which V3 does not explicitly model.",
+    "source_context": "Theoretical review on interoception and homeostatic emotion, building on Craig's prior work on lamina-I afferent organisation and insular re-representation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Authoritative review by Craig. Mapping fidelity moderate -- the framework is more architectural-organising-principle than specific circuit prediction."
+  }
+}

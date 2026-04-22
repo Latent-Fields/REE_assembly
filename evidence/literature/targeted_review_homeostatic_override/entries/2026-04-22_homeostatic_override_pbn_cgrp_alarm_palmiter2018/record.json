@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_pbn_cgrp_alarm_palmiter2018",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["MECH-279", "SD-032a"],
+  "source": {
+    "title": "The Parabrachial Nucleus: CGRP Neurons Function as a General Alarm.",
+    "authors": ["Richard D Palmiter"],
+    "year": 2018,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2018.03.007",
+    "url": "https://doi.org/10.1016/j.tins.2018.03.007"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Authoritative review by the Palmiter lab on PBN CGRP neurons as a general alarm system relaying interoceptive distress (visceral malaise, taste, temperature, pain, itch) to forebrain. The bidirectional architecture -- PBN CGRP suppresses appetite and routes negative valence to amygdala -- is the substrate inverse of the override question: PBN CGRP is what hunger-driven override has to overcome. For REE, this characterises the mechanism that drives the harm-stream lock in V3-EXQ-471 (PBN-analog driving sustained z_harm_a). Confidence high because the review is by the lab that defined the circuit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PBN CGRP activation produces ANOREXIA (suppressed feeding) -- the threat -> reduced food intake direction is mediated by this pathway, which is what override has to break.",
+    "PBN CGRP routes alarm to extended amygdala, hypothalamus, and thalamus simultaneously -- another broadcast pattern, this time on the threat side."
+  ],
+  "tags": ["mech-279", "parabrachial", "cgrp", "alarm", "anorexia", "interoception"],
+  "mapping": {
+    "source_claim_statement": "PBN neurons expressing CGRP function as a general alarm system, integrating interoceptive distress signals (visceral malaise, pain, itch, temperature, taste-aversion) and relaying them to extended amygdala, hypothalamus, and thalamus. CGRP neuron activation suppresses appetite and produces conditioned aversion. Loss of CGRP neuron function impairs threat-driven hypophagia.",
+    "ree_translation": "PBN CGRP corresponds in V3 architecture to the brainstem-derived component of z_harm_a, particularly the harm-driven hypophagia channel that the override layer must oppose. For MECH-279 (PAG GABAergic freeze gate), this paper identifies an upstream input: PBN CGRP -> central amygdala -> PAG, which would drive the freeze commit threshold. The fact that PBN CGRP itself is bidirectionally connected to multiple targets (broadcast on the threat side, parallel to the broadcast on the drive side) suggests the V3 architecture should treat both threat and drive as broadcast streams competing for arbitration weight at multiple downstream targets.",
+    "mapping_caveat": "The review is by the lab that defined the circuit (Palmiter), so emphasis on CGRP-neuron centrality may be over-stated relative to other PBN cell types (Tac1+/CGRP- per Arthurs 2023). The specific question of whether PBN CGRP activity is suppressed by hunger-driven override or merely outweighed by it is not addressed.",
+    "source_context": "Review of mouse genetic, optogenetic, and chemogenetic studies of PBN CGRP neuron function from the Palmiter lab and others, 2010-2018."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Trends in Neurosciences review by the lab that defined the circuit. Mapping fidelity is high for characterising the threat-side substrate; lower for the override question because the review is mostly about how CGRP neurons drive defensive responses, not how they are overridden."
+  }
+}

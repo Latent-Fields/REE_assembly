@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_pbn_cgrp_active_defense_pyeon2025",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["MECH-279", "SD-032a"],
+  "source": {
+    "title": "Parabrachial CGRP neurons modulate active defensive behavior under a naturalistic threat.",
+    "authors": ["Yejin Pyeon", "Jihye Cho", "Suhyun Chung", "Jin-Hee Choi", "Yong Sang Jo"],
+    "year": 2025,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.101523",
+    "url": "https://doi.org/10.7554/eLife.101523"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Recent eLife paper using a naturalistic predator-like robot threat to characterise PBN CGRP neuron firing during active defense. The key finding -- CGRP neurons encode threat intensity through firing duration and amplitude, and bidirectional manipulation amplifies/blunts flight responses -- maps directly onto MECH-279's threshold gating: PBN CGRP looks like an upstream threat-amplitude sensor whose output crosses the PAG GABAergic gate. Confidence high because the design uses naturalistic threat (not foot-shock or LiCl) and dissociates passive freeze from active flight.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PBN CGRP firing scales with threat intensity (continuous), but downstream behaviour switches at threshold (discrete) -- consistent with PBN -> CeA -> PAG threshold conversion.",
+    "Bidirectional manipulation: chemogenetic activation amplifies flight; inhibition blunts it -- gain-modulator architecture rather than command signal."
+  ],
+  "tags": ["mech-279", "parabrachial", "cgrp", "active_defense", "threat_intensity"],
+  "mapping": {
+    "source_claim_statement": "Parabrachial CGRP neurons fire in response to a predator-like robot threat, with firing duration and amplitude scaling with threat intensity. Chemogenetic activation amplifies flight; inhibition blunts active defensive responses while leaving passive freezing relatively intact.",
+    "ree_translation": "For MECH-279 (PAG GABAergic freeze gate), this paper identifies PBN CGRP as an upstream threat-amplitude sensor that scales output continuously with threat strength but interfaces with a downstream threshold gate that converts to discrete behavioural mode. For V3, this supports a two-stage architecture: (1) z_harm_a accumulates continuously from PBN-analog inputs, (2) PAG-analog gate converts to discrete commit (freeze/flight). The continuous-to-discrete conversion is exactly what V3-EXQ-471 needs to break the harm-stream lock.",
+    "mapping_caveat": "The paper studies acute threat presentation, not sustained threat (which is the V3-EXQ-471 condition). Whether PBN CGRP activity shows decay under sustained threat or whether it sustains with the threat is not characterised here. The mechanism that breaks the lock under sustained threat is exactly what the override layer must implement.",
+    "source_context": "Optogenetic and chemogenetic manipulation, in vivo electrophysiology in mice exposed to a robotic predator threat in an enriched arena."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Recent eLife paper with naturalistic threat design. Mapping fidelity high for the threshold-gate hypothesis; lower for sustained-threat override question."
+  }
+}

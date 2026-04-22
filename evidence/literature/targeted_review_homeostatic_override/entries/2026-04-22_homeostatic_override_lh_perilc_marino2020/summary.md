@@ -1,0 +1,11 @@
+# Marino et al. 2020 -- LH GABA -> peri-locus coeruleus pathway gates feeding
+
+According to PubMed ([DOI](https://doi.org/10.1073/pnas.1909340117)), Marino, Wise, Bonci and colleagues at NIDA reopened a question that had been considered settled: does LH GABA stimulation induce eating via VTA dopamine, or via some other pathway? Their answer is that VTA GABA neuron lesion does NOT block LH-induced feeding, that LH GABA fibres pass through VTA to a more caudal site near the locus coeruleus (peri-LC), and that lesion of the peri-LC targets fully blocks the feeding effect. Yet body weight is unchanged by peri-LC lesion -- so the circuit drives episodic foraging behaviour without participating in long-horizon energy homeostasis.
+
+For REE, the dissociation is the architecturally important finding. SD-012 currently treats drive_level as a single scalar that gates z_goal seeding when benefit_exposure is positive. Marino et al suggest the substrate has at least two channels. One (peri-LC analog) drives acute foraging action selection -- this is the channel that should re-engage after a threat-induced hypophagia event. Another (likely AgRP -> PVH -> oxytocin per Atasoy/Sternson 2012) handles long-horizon energy balance. Conflating them in V3 would mean every drive_level update either over-drives episodic foraging or fails to register slow energy depletion.
+
+For the V3-EXQ-471 catatonia case, this dissociation matters: the agent's energy depleted to zero with no override, and the proposed fix is an override channel. If REE only implements the slow energy channel, fast restart of foraging after threat lock is impossible. If REE only implements the acute foraging channel, the agent will not register accumulating depletion until it is too late. Both channels are needed.
+
+Caveat: stimulation-induced eating in sated mice is a strong but artificial perturbation. Whether the peri-LC pathway is the same one engaged by endogenous post-threat re-engagement (the de Araujo Salgado 2023 phenotype) is not tested here.
+
+Confidence 0.65: the paper does not directly address override, but its dissociation of acute vs long-horizon drive channels is structurally important for the V3 implementation.

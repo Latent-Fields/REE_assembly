@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_hunger_competition_burnett2016",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012", "SD-032a", "SD-036"],
+  "source": {
+    "title": "Hunger-Driven Motivational State Competition.",
+    "authors": ["C Joseph Burnett", "Chia Li", "Emily Webber", "Eva Tsaousidou", "Stephen Y Xue", "Jens C Bruning", "Michael J Krashes"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.032",
+    "url": "https://doi.org/10.1016/j.neuron.2016.08.032"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Direct optogenetic and behavioral evidence that arcuate AgRP neuron activity reorganises the entire hierarchy of competing drives (thirst, anxiety, innate fear, social) in favour of food approach, contingent on food accessibility. This is the cleanest published demonstration that a single hunger-encoding neural population suppresses multiple non-feeding behavioural systems simultaneously, which is exactly the override-broadcast architecture the SD-036/SD-012 cluster requires. Confidence is held below 0.9 because (i) the demonstration is in mice only and (ii) AgRP itself does not project to all suppressed targets, so the broadcast is at minimum two-stage (AgRP -> downstream targets including LH, PVH, BNST, PBN).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hunger only suppresses competing drives when food is accessible -- a state-and-affordance gated override, not a context-free dampening of z_harm.",
+    "AgRP activity tracks conspecific investigation as well as food, suggesting the same neurons participate in salience reweighting beyond pure caloric prediction."
+  ],
+  "tags": ["sd-012", "sd-032a", "sd-036", "agrp", "hunger", "override", "competing_drives"],
+  "mapping": {
+    "source_claim_statement": "Hungry animals rapidly reorganise the priority of competing motivational systems (thirst, anxiety-related behaviour, innate fear, social investigation) in favour of food seeking, and this reorganisation depends on AgRP neuron activity in the arcuate nucleus.",
+    "ree_translation": "AgRP-analog activity provides the broadcast override authority that SD-036's GABAergic decay layer cannot supply -- it actively suppresses competing arbitration weights (z_harm, social, thirst-like signals) rather than merely letting them decay. The experimental result that food accessibility gates the override is exactly what SD-012's benefit_exposure-based seeding requires: drive amplification only converts to action when an affordance is available.",
+    "mapping_caveat": "Burnett et al show that AgRP activity SUPPRESSES competing drives. The complementary REE prediction -- that drive AMPLIFIES z_harm at the perceptual level while shifting the action threshold -- is not directly tested here; the paper is more consistent with a competitive-suppression account than a multi-stream-amplification account. This is question (iv) in the spec and remains underdetermined by this paper alone.",
+    "source_context": "Optogenetic activation/inhibition of AgRP neurons in mice across thirst, open-field, predator-odor (TMT), and social interaction assays."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Top-tier journal, multiple converging assays, large effect sizes. Mapping fidelity is high for the override question but moderate for the broadcast-vs-competition question -- the paper is silent on whether AgRP outputs are point-to-point vs single broadcast."
+  }
+}

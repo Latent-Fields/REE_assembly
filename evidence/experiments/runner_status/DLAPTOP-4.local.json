@@ -2,10 +2,48 @@
   "schema_version": "v1",
   "runner_pid": 16991,
   "runner_started_at": "2026-04-21T17:06:12.255561+00:00",
-  "last_updated": "2026-04-21T21:11:00.343176+00:00",
+  "last_updated": "2026-04-22T16:57:02.934341+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-475",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-036 GABAergic decay + MECH-279 PAG freeze-gate -- EXQ-471 unlocking diagnostic",
+    "description": "",
+    "script": "experiments/v3_exq_475_sd036_decay_unlocks_exq471.py",
+    "started_at": "2026-04-22T16:49:21.956957+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 3,
+      "episodes_done": 20,
+      "episodes_total": 60,
+      "overall_pct": 11.1
+    },
+    "seconds_elapsed": 461,
+    "seconds_remaining": 2538,
+    "recent_lines": [
+      "Output: REE_assembly/evidence/experiments/v3_exq_475_sd036_decay_unlocks_exq471/",
+      "[EXQ-475] Seed 0  warmup=60  eval=5  steps/ep=200  dry_run=False",
+      "[EXQ-475] Seed 0 -- Phase 0: warmup (dual-stream + SD-018 aux + SD-036 decay)",
+      "[warmup] ep 10/60  rv=0.0004  ep_reward=0.4526",
+      "[warmup] ep 20/60  rv=0.0041  ep_reward=-0.4200"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-475",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-036 GABAergic decay + MECH-279 PAG freeze-gate -- EXQ-471 unlocking diagnostic",
+      "description": "",
+      "estimated_minutes": 26.0,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",

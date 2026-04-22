@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_lh_perilc_marino2020",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "Control of food approach and eating by a GABAergic projection from lateral hypothalamus to dorsal pons.",
+    "authors": ["Rosa Anna M Marino", "Ross A McDevitt", "Stephanie C Gantz", "Hui Shen", "Marco Pignatelli", "Wendy Xin", "Roy A Wise", "Antonello Bonci"],
+    "year": 2020,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.1909340117",
+    "url": "https://doi.org/10.1073/pnas.1909340117"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Identifies a previously unrecognised LH GABA -> peri-locus coeruleus pathway that is necessary for stimulation-induced eating and dissociable from VTA-mediated reward. Importantly, lesion of the peri-LC GABA targets blocked stimulation-induced eating but did not alter body weight, suggesting this circuit drives episodic foraging behaviour rather than overall energy homeostasis. For REE this dissociates two functions (acute foraging drive vs long-horizon energy regulation) that could otherwise be conflated in SD-012's drive_level. Confidence moderate -- the paper is mechanistically clean but speaks only to one slice of the override question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Body weight is unchanged by peri-LC GABA lesion despite blocked feeding behaviour, dissociating acute foraging drive from long-horizon energy balance.",
+    "Multiple LH downstream targets contribute distinct components of feeding behaviour -- broadcast architecture is multi-target rather than single-target."
+  ],
+  "tags": ["sd-012", "lateral_hypothalamus", "peri_locus_coeruleus", "gaba", "foraging"],
+  "mapping": {
+    "source_claim_statement": "Optogenetic activation of LH GABA fibres passing through VTA to peri-locus coeruleus (peri-LC) regions induces vigorous eating in sated mice. Lesion of VTA GABA neurons does NOT block this effect, but lesion of peri-LC GABA targets does. The peri-LC pathway operates independently of VTA dopamine and does not affect baseline body weight.",
+    "ree_translation": "REE's drive_level (SD-012) should not be implemented as a single output that conflates acute foraging drive with long-horizon energy regulation. The biological substrate dissociates these: peri-LC analog drives episodic action selection in foraging contexts; energy homeostasis is regulated by other channels (likely AgRP -> PVH -> oxytocin per Atasoy/Sternson 2012). For SD-012, this suggests a two-channel drive output: an acute-foraging signal that re-engages exploration after threat, and a slow-trend energy signal that scales benefit_exposure interpretation.",
+    "mapping_caveat": "The paper studies stimulation-induced eating in sated mice; whether the peri-LC pathway is engaged by endogenous hunger or by post-threat re-engagement is not directly tested. The clinical phenomenology of severe hypoglycaemia suggests both acute and slow channels matter -- this paper supports the dissociation but does not characterise the slow channel.",
+    "source_context": "Optogenetic stimulation, lesion studies, and circuit tracing in mice; LH GABA fibres traced through VTA to peri-LC."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.3,
+    "notes": "PNAS, well-controlled circuit dissection. Mapping fidelity moderate because the paper addresses anatomical substrate of acute foraging rather than the override question per se."
+  }
+}

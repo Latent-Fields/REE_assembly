@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_lh_gaba_vta_barbano2016",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012", "SD-032a"],
+  "source": {
+    "title": "Feeding and Reward Are Differentially Induced by Activating GABAergic Lateral Hypothalamic Projections to VTA.",
+    "authors": ["M Flavia Barbano", "Hui-Ling Wang", "Marisela Morales", "Roy A Wise"],
+    "year": 2016,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3799-15.2016",
+    "url": "https://doi.org/10.1523/JNEUROSCI.3799-15.2016"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Direct optogenetic evidence that the SAME LH GABA -> VTA pathway can produce two distinct effects (feeding at low frequency, reward at high frequency) depending on stimulation parameters. Supports the architectural reading that LH carries one substrate signal whose downstream interpretation depends on temporal pattern -- i.e. broadcast modality where the SAME projection is gain-modulated rather than separate point-to-point lines. Confidence moderate because this is a single-circuit demonstration in sated mice; the broader override question is not directly tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Frequency-dependence of LH-VTA effect implies the same broadcast carries multiple computational signals; downstream targets must demultiplex by temporal pattern.",
+    "Effects studied in food-sated animals -- the override role of LH-VTA under genuine hunger is not directly assessed."
+  ],
+  "tags": ["sd-012", "lateral_hypothalamus", "vta", "gaba", "frequency_coding"],
+  "mapping": {
+    "source_claim_statement": "Selective optogenetic stimulation of LH GABAergic projections to the VTA induces feeding most strongly at 5 Hz, whereas the same pathway induces strongest reward (real-time place preference) at 40 Hz, with intermediate effects at intermediate frequencies. The two effects emerge from a single anatomically defined projection.",
+    "ree_translation": "If REE were to implement an LH-analog drive output, this paper suggests one projection can carry two distinct computational signals demultiplexed by firing rate downstream. For SD-012/SD-036, this constrains the implementation: drive_level may be a single scalar that downstream layers (z_goal seeding, z_beta arousal) interpret differently based on temporal characteristics, supporting a broadcast-modulator architecture with downstream demultiplexing.",
+    "mapping_caveat": "The paper does not address how this projection behaves under threat or genuine homeostatic challenge -- only food-sated optogenetic stimulation. Whether the same frequency-dependent mapping holds under endogenous hunger or under threat-driven AgRP suppression is unknown.",
+    "source_context": "Optogenetic activation of vGAT-Cre-tagged LH projections to VTA in sated mice; place-preference and feeding assays."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "J Neurosci, well-controlled. Mapping fidelity moderate -- the paper supports broadcast architecture indirectly via demonstrating frequency-multiplexing on one pathway, but does not test the override question directly."
+  }
+}

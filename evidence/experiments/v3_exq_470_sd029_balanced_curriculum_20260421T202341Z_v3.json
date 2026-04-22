@@ -1,0 +1,111 @@
+{
+  "experiment_type": "v3_exq_470_sd029_balanced_curriculum",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-029"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-21T20:23:41.647442Z",
+  "seeds": [
+    42,
+    7,
+    13,
+    91
+  ],
+  "conditions": [
+    "BASELINE",
+    "SCHEDULED"
+  ],
+  "episodes_per_seed": 3,
+  "steps_per_episode": 200,
+  "curriculum_interval": 25,
+  "curriculum_prob": 1.0,
+  "curriculum_adjacent_only": true,
+  "results": {
+    "BASELINE": [
+      {
+        "seed": 42,
+        "scheduled": false,
+        "n_steps_total": 28,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.172619104385376,
+        "info_keys_ok": true
+      },
+      {
+        "seed": 7,
+        "scheduled": false,
+        "n_steps_total": 15,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.06277779340744,
+        "info_keys_ok": true
+      },
+      {
+        "seed": 13,
+        "scheduled": false,
+        "n_steps_total": 34,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 1,
+        "total_harm_last_ep": 1.2877777814865112,
+        "info_keys_ok": true
+      },
+      {
+        "seed": 91,
+        "scheduled": false,
+        "n_steps_total": 23,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.1792929291725158,
+        "info_keys_ok": true
+      }
+    ],
+    "SCHEDULED": [
+      {
+        "seed": 42,
+        "scheduled": true,
+        "n_steps_total": 28,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.172619104385376,
+        "info_keys_ok": true
+      },
+      {
+        "seed": 7,
+        "scheduled": true,
+        "n_steps_total": 15,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.06277779340744,
+        "info_keys_ok": true
+      },
+      {
+        "seed": 13,
+        "scheduled": true,
+        "n_steps_total": 34,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 1,
+        "total_harm_last_ep": 1.2877777814865112,
+        "info_keys_ok": true
+      },
+      {
+        "seed": 91,
+        "scheduled": true,
+        "n_steps_total": 23,
+        "external_hazard_events_last_ep": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.1792929291725158,
+        "info_keys_ok": true
+      }
+    ]
+  },
+  "criteria": {
+    "C_back_baseline_zero": true,
+    "C_fire_scheduled_ge20": false,
+    "C_plausible_harm_gt0": true,
+    "C_info_keys_present": true
+  },
+  "passed": false,
+  "evidence_direction": "weakens",
+  "run_id": "v3_exq_470_sd029_balanced_curriculum_20260421T202341Z_v3"
+}

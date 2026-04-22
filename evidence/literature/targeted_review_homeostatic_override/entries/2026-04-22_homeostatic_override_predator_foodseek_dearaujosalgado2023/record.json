@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_predator_foodseek_dearaujosalgado2023",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012", "SD-032a", "SD-036", "MECH-279"],
+  "source": {
+    "title": "Toggling between food-seeking and self-preservation behaviors via hypothalamic response networks.",
+    "authors": ["Isabel de Araujo Salgado", "Chia Li", "C Joseph Burnett", "Shakira Rodriguez Gonzalez", "Jordan J Becker", "Allison Horvath", "Thomas Earnest", "Alexxai V Kravitz", "Michael J Krashes"],
+    "year": 2023,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2023.06.006",
+    "url": "https://doi.org/10.1016/j.neuron.2023.06.006"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This is the most direct biological analogue of the V3-EXQ-471 catatonia scenario yet published. Mice toggle dynamically between food seeking and self-preservation as predation threat varies, and increasing caloric need (the override signal) re-engages food seeking under threat through identified AgRP -> BNST and AgRP -> LH circuits. Crucially, predator-responsive PMd-CCK neurons SUPPRESS AgRP activity, not via z_harm-side modulation -- so the threat -> feeding suppression is an active circuit, not just a competing scalar. Confidence high because the architecture maps cleanly onto SD-012/SD-036 and identifies specific output pathways the V3 model can implement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Predator threat suppresses AgRP (hunger) activity rather than just competing with it -- suggesting threat-driven hypophagia is an active inhibition, not arbitration loss.",
+    "Override of threat by hunger requires increased caloric need; the override signal scales with deprivation, supporting graded rather than threshold drive amplification.",
+    "AgRP -> BNST and AgRP -> LH are distinct output channels for threat-overriding food seeking; suggests at least two-target broadcast rather than single output."
+  ],
+  "tags": ["sd-012", "sd-036", "agrp", "pmd", "predator", "foraging_under_threat", "override"],
+  "mapping": {
+    "source_claim_statement": "Predator exposure activates dorsal premammillary (PMd) cholecystokinin (CCK) neurons that suppress arcuate AgRP neuron activity, producing threat-evoked hypophagia. Caloric need increases AgRP activity sufficiently to overcome PMd-CCK suppression, restoring food seeking under threat via AgRP projections to BNST and LH.",
+    "ree_translation": "This is the substrate analogue of V3-EXQ-471: a hazard event (PMd-CCK activation, REE z_harm spike) actively inhibits the drive system (AgRP, REE drive_level seeding), producing locked avoid-mode hypophagia. Recovery requires drive_level to scale enough to override z_harm-driven suppression. The two output channels (AgRP -> BNST, AgRP -> LH) suggest the override broadcasts to at least two targets: one (BNST) likely re-weighting affective arbitration (z_harm vs z_goal), another (LH) directly driving consummatory action selection. This maps the SD-036 GABAergic decay layer (which would relax the PMd-CCK influence) to the slow-recovery half, and identifies a fast active-override half that REE currently lacks.",
+    "mapping_caveat": "The paper studies oscillatory predator-feeding toggling over minutes-hours in mice. V3-EXQ-471 catatonic lock occurs over an entire episode. Whether the same circuits that mediate fast oscillation also mediate slow lock-recovery is not directly tested. Also, the paper does not show that AgRP override AMPLIFIES z_harm in parallel with restoring feeding, so the question of whether dread also intensifies under starvation (the user's clinical observation) remains untested by this work.",
+    "source_context": "Mice in a foraging task with controlled predator exposure; calcium imaging, optogenetic and chemogenetic manipulation of PMd-CCK and AgRP neurons; circuit tracing identified AgRP->BNST and AgRP->LH as effectors."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.9,
+    "transfer_risk": 0.25,
+    "notes": "The behavioural assay (foraging under predation) is the closest published analogue of REE's fishtank scenario. Source quality high (Neuron, multi-method). Transfer risk moderate -- mice in lab predator paradigm vs simulated agent in V3 fishtank. Mapping fidelity is the highest of any paper in this pull because the paper explicitly addresses the same architectural question (toggle between defense and feeding under conflict)."
+  }
+}

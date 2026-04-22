@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_pws_hypothalamic_brown2022",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012", "SD-032a"],
+  "source": {
+    "title": "Hypothalamic volume is associated with body mass index in patients with Prader-Labhart-Willi syndrome.",
+    "authors": ["Suzanne S Y Brown", "Anna Manning", "Anthony P Goldstone", "Katherine E Manning"],
+    "year": 2022,
+    "venue": "Brain Communications",
+    "doi": "10.1093/braincomms/fcac229",
+    "url": "https://doi.org/10.1093/braincomms/fcac229"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Structural neuroimaging in Prader-Willi syndrome (the canonical clinical model of pathological insatiable hunger) shows hypothalamic volume changes correlating with BMI. PWS is the human existence proof for what happens when the hunger-override system runs without a regulatory shutoff: the patient eats relentlessly despite obesity and metabolic harm. For V3, this is a clinical phenotype where the override authority's regulatory layer is missing, producing a sustained drive_level that cannot be arbitrated down. Confidence moderate-high because the clinical phenotype is well-characterised but the imaging-genotype-behaviour mechanistic chain is correlational.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Insatiable hunger despite obesity -- when override authority lacks regulatory shutoff, drive_level remains saturated regardless of metabolic state.",
+    "Hypothalamic structural alteration correlates with BMI -- the substrate of the override regulator is altered in a graded way, supporting graded rather than all-or-nothing regulator function."
+  ],
+  "tags": ["sd-012", "prader_willi", "hypothalamic", "hyperphagia", "clinical_pathology"],
+  "mapping": {
+    "source_claim_statement": "MRI volumetric analysis in adults with Prader-Willi syndrome shows hypothalamic volume reductions correlating with BMI. PWS is genetic (paternal 15q11-q13 imprinting loss) and produces lifelong hyperphagia with severe obesity. Hypothalamic structural alteration is consistent with the clinical hypothesis of impaired satiety / impaired drive-regulation.",
+    "ree_translation": "PWS is the human pathology equivalent of an SD-036/SD-012 regulator-failure mode. The clinical phenotype tells V3 what failure looks like: drive_level saturated (insatiable hunger), no shutdown signal arrives despite metabolic surplus (obesity). For V3 architecture, this argues that the regulator layer is REQUIRED for safety -- absence of regulator does not produce zero drive (which would be safe) but produces saturated drive (which is pathological). This has implications for the SD-036 fix to V3-EXQ-471: the regulator must be bidirectional (shutdown-after-need-met as well as override-when-need-overrides-fear), not just one-directional.",
+    "mapping_caveat": "PWS is a complex multi-system genetic syndrome, not a clean knockout of a single regulator. The hypothalamic volume changes could be cause, consequence, or correlate of the hyperphagia. The mechanistic link between volume change and behavioural phenotype is correlational.",
+    "source_context": "MRI volumetric analysis in adults with genetically-confirmed PWS, comparing to controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Brain Communications, well-characterised clinical sample. Mapping fidelity moderate -- the override-failure interpretation is supported by clinical phenotype but the mechanism is correlational."
+  }
+}

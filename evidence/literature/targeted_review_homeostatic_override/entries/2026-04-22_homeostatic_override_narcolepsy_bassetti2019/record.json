@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_narcolepsy_bassetti2019",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012", "SD-032a"],
+  "source": {
+    "title": "Narcolepsy - clinical spectrum, aetiopathophysiology, diagnosis and treatment.",
+    "authors": ["Claudio L A Bassetti", "Antoine Adamantidis", "Denis Burdakov", "Fang Han", "Steffen Gay", "Ulf Kallweit", "Ramin Khatami", "Frits Koning", "Brigitte R Kornum", "Gert Jan Lammers", "Roland S Liblau", "Pierre H Luppi", "Geert Mayer", "Thomas Pollmacher", "Takeshi Sakurai", "Federica Sallusto", "Thomas E Scammell", "Mehdi Tafti", "Yves Dauvilliers"],
+    "year": 2019,
+    "venue": "Nature Reviews Neurology",
+    "doi": "10.1038/s41582-019-0226-9",
+    "url": "https://doi.org/10.1038/s41582-019-0226-9"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Authoritative consensus review on narcolepsy as the human knockout of orexin signalling. The clinical phenotype -- excessive daytime sleepiness PLUS cataplexy (loss of postural tone triggered by emotion) PLUS broader disturbances in motor, psychiatric, emotional, cognitive, metabolic, and autonomic functions -- is exactly what the loss of a single broadcast gain-modulator predicts. Multiple-system failure from a single neuropeptide loss is the negative-evidence equivalent of demonstrating broadcast architecture. Confidence high because the clinical presentation is well-replicated across cohorts and the orexin-deficiency mechanism is biochemically confirmed (CSF orexin levels diagnostic).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cataplexy (loss of motor tone triggered by strong emotion) is a specific failure of motor-emotion coupling -- exactly the kind of integration failure the broadcast loss predicts.",
+    "Narcolepsy patients show altered metabolic regulation despite normal endocrine function, suggesting orexin's metabolic-arousal coupling is functionally important even outside sleep."
+  ],
+  "tags": ["sd-012", "orexin", "narcolepsy", "clinical_knockout", "broadcast"],
+  "mapping": {
+    "source_claim_statement": "Narcolepsy type 1 reflects selective loss of LHA orexin neurons. The phenotype is multi-system: excessive daytime sleepiness, cataplexy, sleep-wake fragmentation, hallucinations, sleep paralysis, but ALSO disturbances of motor, psychiatric, emotional, cognitive, metabolic, and autonomic function. The breadth of involvement reflects loss of a small but broadly-projecting gain-modulator.",
+    "ree_translation": "Narcolepsy is the human existence proof for what the spec hypothesises -- a single broadcast neuromodulator whose loss produces multi-system failure rather than a focal deficit. For REE, this is strong negative evidence supporting broadcast over multi-target competition: if orexin were merely one of many redundant point-to-point signals, its loss would produce focal symptoms rather than system-wide dysregulation. Cataplexy specifically -- loss of postural tone triggered by emotion -- is a clean prediction of broadcast-coupling failure: emotional input no longer recruits the motor-arousal coupling, so the motor system collapses while emotion proceeds.",
+    "mapping_caveat": "Narcolepsy is the loss of orexin specifically, not the loss of a generic broadcast override. Other broadcast neuromodulators (5-HT, NE, DA, ACh) intact. The clinical phenotype depends on what those other systems can compensate for and what they cannot. Translating this to REE means: SD-036's GABAergic decay and the proposed orexin-analog override are likely partially redundant in normal function but mechanistically distinct, and the SD-036-only fix to V3-EXQ-471 may be insufficient under stronger threat lock.",
+    "source_context": "Consensus review of narcolepsy clinical features, mechanism, diagnosis, and treatment by 19 international expert authors."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.2,
+    "notes": "Nature Reviews Neurology consensus paper, very high source quality. Mapping fidelity moderate-high -- the broadcast-loss prediction is supported in the human knockout but the override-specifically interpretation is a translation from the multi-system clinical picture."
+  }
+}

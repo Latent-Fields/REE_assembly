@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_orexin_motivational_activation_james2017",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["SD-012", "SD-032a"],
+  "source": {
+    "title": "A Decade of Orexin/Hypocretin and Addiction: Where Are We Now?",
+    "authors": ["Morgan H James", "Stephen V Mahler", "David E Moorman", "Gary Aston-Jones"],
+    "year": 2017,
+    "venue": "Current Topics in Behavioral Neurosciences",
+    "doi": "10.1007/7854_2016_57",
+    "url": "https://doi.org/10.1007/7854_2016_57"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Review synthesises 10 years of orexin/addiction work into the unifying claim that orexin coordinates 'motivational activation' specifically when behaviour requires high effort or operates against external demand (cues, stress). This is exactly the override condition. Independent of Bjorness/Greene 2024 and arrives at the same architectural picture from a different evidence base (addiction). Confidence 0.7 because it is a review rather than a primary, and because the inference from addiction-relevant behaviours to general drive override requires some translation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Orexin's role only emerges under high-effort or external-demand conditions, supporting threshold-like rather than continuous gain modulation under normal states.",
+    "Behavioural-economic analyses cited in review show orexin modulates demand elasticity rather than primary reinforcement -- arbitration weight, not primary drive."
+  ],
+  "tags": ["sd-012", "orexin", "motivational_activation", "addiction"],
+  "mapping": {
+    "source_claim_statement": "Across a decade of self-administration, reinstatement, and behavioural economic studies, orexin signalling is recruited specifically under conditions of high required effort, cue-induced craving, stress-induced reinstatement, or other situations of motivational demand. It modulates behavioural-economic demand elasticity rather than primary reinforcement.",
+    "ree_translation": "The 'motivational activation' framing maps onto SD-012/SD-036's override authority. REE's drive_level should not modulate behaviour under low-demand conditions but should engage when (a) action requires effort against an obstacle (e.g. z_harm avoidance), (b) external cues create craving, or (c) stress-related signals demand state-dependent escalation. The behavioural-economic framing (demand elasticity) translates to REE as: override scales the cost the agent will tolerate to satisfy the drive, rather than scaling the drive's primary value.",
+    "mapping_caveat": "The evidence base is primarily addictive drug self-administration in rodents. Whether the same orexin recruitment pattern characterises override of innate fear or override of conditioned avoidance under metabolic challenge is supported by indirect evidence but not directly established here.",
+    "source_context": "Review of orexin/addiction literature, including self-administration, reinstatement, and behavioural economic methods in rodent models."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Authoritative review by major investigators in the field. Transfer from addiction-specific behaviours to general drive override is moderate risk."
+  }
+}

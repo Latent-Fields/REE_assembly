@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_homeostatic_override",
+  "entry_id": "2026-04-22_homeostatic_override_vmhdm_population_coding_cheung2025",
+  "timestamp_utc": "2026-04-22T16:25:52Z",
+  "claim_ids_tested": ["MECH-279", "SD-032a"],
+  "source": {
+    "title": "Population coding of predator imminence in the hypothalamus.",
+    "authors": ["Kathy Y M Cheung", "Ann Kennedy", "Aditya Nair", "David J Anderson"],
+    "year": 2025,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2025.02.003",
+    "url": "https://doi.org/10.1016/j.neuron.2025.02.003"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Recent Anderson-lab paper showing VMHdm population dynamics encode predator imminence as a continuous variable, with anti-correlated subpopulations encoding threat-presence vs threat-absence. The ramp/decay dynamics of these populations directly characterise what an upstream-of-PAG harm signal looks like in vivo, and the existence of an anti-correlated 'safety' subpopulation is direct evidence that the harm vs no-harm decision is computed in VMHdm population dynamics rather than purely downstream. Confidence high because the imaging is large-scale GCaMP across many cells and the analysis cleanly separates encoding subpopulations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anti-correlated 'threat-on' and 'threat-off' subpopulations in VMHdm -- the hypothalamus itself implements a winner-take-all arbitration before broadcasting downstream.",
+    "Continuous population coding of imminence -- threat is not binary at the source; thresholding happens downstream (consistent with MECH-279)."
+  ],
+  "tags": ["mech-279", "vmhdm", "population_coding", "imminence", "anti_correlation"],
+  "mapping": {
+    "source_claim_statement": "Calcium imaging of VMHdm during predator exposure reveals population dynamics encoding predator imminence as a continuous variable. Two anti-correlated subpopulations encode threat-presence vs threat-absence, with their relative activation tracking imminence. The encoding is at the population level, not at single-cell level.",
+    "ree_translation": "For V3, this paper supports two specific architectural choices: (1) z_harm should be a continuous-valued signal (population code) at the upstream level, with threshold conversion happening at downstream arbiters (consistent with MECH-279 PAG gate); (2) z_safety should be modeled as the anti-correlated complement of z_harm, with their relative activation determining defensive engagement. Currently V3 has only z_harm; the explicit anti-correlated 'safety' channel is a missing degree of freedom.",
+    "mapping_caveat": "The anti-correlated subpopulations are within VMHdm; whether the same anti-correlation structure exists in the broader harm-coding network (PBN, CeA, BNST) is not addressed. The paper studies acute predator presentation; sustained-threat dynamics relevant to V3-EXQ-471 lock-in are not characterised.",
+    "source_context": "Two-photon calcium imaging in VMHdm of mice during exposure to live and inanimate predator stimuli, with population-level analyses (PCA, decoding)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.2,
+    "notes": "Recent Neuron paper from Anderson lab. Mapping fidelity high for population coding architecture; the anti-correlated safety subpopulation is a novel finding with direct V3 implications."
+  }
+}
