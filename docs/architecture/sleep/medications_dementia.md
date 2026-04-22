@@ -224,9 +224,41 @@ When prescribing sleep-affecting medications in patients aged 60+ or with MCI ri
 
 ---
 
+## Pharmacological Predictions Registry
+
+The drug-by-drug predictions in this document are mirrored as structured entries in
+`evidence/planning/pharmacological_predictions.v1.json` (PHARM-007 through PHARM-014 for
+the dementia/medications cluster; see PHARM-001 to PHARM-006 in
+[`../psychiatric_failure_modes.md`](../psychiatric_failure_modes.md) for the orexin-axis
+cluster). Each PHARM entry tags the claim IDs it depends on, the predicted polarity, the
+dissociation pattern, and the falsification condition.
+
+| PHARM ID | Intervention | Claim depends on | Polarity |
+|----------|-------------|------------------|----------|
+| PHARM-007 | anticholinergic burden | INV-046, INV-047, INV-048, MECH-173, MECH-175 | **negative** |
+| PHARM-008 | mirabegron substitution | INV-048, MECH-175 | positive |
+| PHARM-009 | BZD/Z-drug at hypnotic dose | INV-048, MECH-174 | **negative** (cf. PHARM-004 positive in catatonia) |
+| PHARM-010 | DORA for MCI/dementia | INV-048, MECH-176, MECH-177 | positive (sibling of PHARM-001) |
+| PHARM-011 | trazodone 25-100mg | INV-048, MECH-176, MECH-177 | positive |
+| PHARM-012 | low-REM-burden antidepressants vs paroxetine/TCA/MAOI | INV-048, MECH-173, MECH-177 | mixed (class-dissociation) |
+| PHARM-013 | ramelteon / melatonin-ER | INV-048, MECH-176, MECH-177 | positive |
+| PHARM-014 | composite pipeline-rebuild dissociation | INV-047, INV-048, MECH-177 | architectural |
+
+PHARM-001 and PHARM-010 are flagged as siblings (same DORA drug class, two phenotypes --
+PTSD/hyperarousal vs MCI/dementia). A head-to-head subgroup analysis showing different
+DORA response in the two phenotypes would be a strong falsification of the shared-axis
+prediction.
+
+Governance review of PHARM predictions against clinical literature is a separate cycle
+from substrate-evidence governance and has not yet been instituted.
+
+---
+
 ## See Also
 
 - `offline_phases.md` -- sleep phase architecture, INV-045, SD-017
 - `docs/claims/claims.yaml` -- full claim text for INV-048, MECH-173-177, Q-031/032, IMPL-026
+- `evidence/planning/pharmacological_predictions.v1.json` -- structured PHARM registry
+- `../psychiatric_failure_modes.md` -- PHARM-001 to PHARM-006 (orexin-axis cluster)
 - `precision_recalibration.md` -- MECH-123 detail
 - `reality_consolidation.md` -- MECH-121 detail

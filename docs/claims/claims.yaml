@@ -11125,6 +11125,9 @@
     This is not an analogy to dementia -- it is what the computational account
     predicts would happen to any agent with progressively degrading offline
     consolidation cycles.
+  pharmacological_predictions:
+    - PHARM-007  # anticholinergic dual-pathway dementia risk
+    - PHARM-010  # DORA pipeline preservation in MCI risk
 
 - id: INV-047
   title: "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile."
@@ -11169,6 +11172,8 @@
     predicting that schema formation fails before schema retrieval -- consistent
     with the amnesic profile of early Alzheimer's (new learning fails before
     remote memory access).
+  pharmacological_predictions:
+    - PHARM-014  # pipeline-rebuild dissociation prediction (staged decline reverses in pipeline-mediated treatment)
 
 - id: MECH-168
   title: "Progressive sleep deprivation or neurodegeneration causes staged failure of the offline consolidation pipeline in reverse dependency order: precision recalibration (MECH-123/Phase 4) degrades first, producing early MCI features; slot-filling (MECH-121/Phase 2-3) next, producing the classic early Alzheimer's episodic profile (intact remote, absent new); slot-formation (MECH-120/Phase 1-2) last, producing middle-stage contextual identity loss and schema destabilisation; global context collapse last."
@@ -11398,6 +11403,15 @@
     older adults are associated with increased dementia incidence (Billioti
     de Gage et al. 2014 BMJ; Coupland et al. 2019 JAMA Internal Medicine),
     consistent with pharmacological pipeline disruption over years.
+  pharmacological_predictions:
+    - PHARM-007  # anticholinergic dual-pathway risk
+    - PHARM-008  # mirabegron / non-anticholinergic substitution
+    - PHARM-009  # BZDs and Z-drugs as architecture-disrupting (NEGATIVE)
+    - PHARM-010  # DORA architecture-preserving alternative (POSITIVE)
+    - PHARM-011  # low-dose trazodone as midline option (POSITIVE)
+    - PHARM-012  # mirtazapine / sertraline / escitalopram (low REM-burden antidepressants)
+    - PHARM-013  # ramelteon / melatonin-ER (Phase 0 circadian restoration)
+    - PHARM-014  # pipeline-rebuild dissociation prediction (composite intervention test)
 
 - id: MECH-173
   title: "Medications that suppress REM sleep (anticholinergics, MAOIs, most antidepressants at therapeutic doses, benzodiazepines) selectively impair MECH-123 precision recalibration -- the most downstream pipeline phase -- and thereby accelerate the earliest dementia prodrome: overconfident contextual attributions before overt memory loss."
@@ -11439,6 +11453,9 @@
     MCI conversion, detectable as precision failure on laboratory tasks
     before clinical diagnosis. This is testable via retrospective
     pharmacoepidemiology with neuropsychological battery data.
+  pharmacological_predictions:
+    - PHARM-007  # anticholinergic dual-pathway risk (REM-suppression arm)
+    - PHARM-012  # antidepressant class dissociation (low-REM-burden vs paroxetine/TCA/MAOI)
 
 - id: MECH-174
   title: "GABAergic sleep aids (benzodiazepines and Z-drugs: zolpidem, zopiclone, zaleplon) suppress SWS depth and continuity at therapeutic doses, impairing MECH-120 synaptic homeostasis and MECH-121 schema replay, producing context representations that remain globally undifferentiated -- the same failure mode as SD-017 without any SWS-analog."
@@ -11480,6 +11497,8 @@
     on polysomnography and slower context-discrimination learning on tasks
     requiring schema formation, with episodic retrieval relatively more
     preserved than new context learning -- the signature of Phase 1/2 failure.
+  pharmacological_predictions:
+    - PHARM-009  # BZD/Z-drug architecture-disrupting (NEGATIVE for dementia risk; contrast PHARM-004 which is POSITIVE in catatonia subtype II -- same drug class, different phenotype)
 
 - id: MECH-175
   title: "Anticholinergic medications confer dementia risk via two independent and potentially additive pathways: (1) REM suppression (ACh is required for REM generation via nucleus basalis and brainstem PGO generators -- muscarinic blockade directly suppresses REM, impairing MECH-123); and (2) cholinergic deficit mimicry (AD is characterised by basal forebrain cholinergic loss; anticholinergic burden creates a pharmacological analog of this deficit during waking hours, independently degrading attention and encoding)."
@@ -11534,6 +11553,9 @@
     (Archives of Neurology) -- consistent dose-response anticholinergic
     burden-dementia association replicated across multiple cohorts and
     healthcare systems.
+  pharmacological_predictions:
+    - PHARM-007  # anticholinergic dual-pathway dementia risk (REM-suppression + diurnal cholinergic deficit mimicry)
+    - PHARM-008  # mirabegron substitution for anticholinergic urinary indication (POSITIVE; non-CNS antimuscarinic alternative)
 
 - id: MECH-176
   title: "Orexin receptor antagonists (suvorexant, lemborexant) are predicted to be architecture-preserving sleep aids: they suppress wake-promoting orexin drive without directly compressing sleep phase machinery, allowing the brain's own homeostatic sleep architecture to unfold, and should therefore preserve or improve SWS/REM ratio relative to GABAergic alternatives at equi-efficacious doses."
@@ -11574,6 +11596,10 @@
     at MCI risk, orexin antagonists should be preferred over GABAergic
     alternatives specifically on dementia risk grounds, independent of
     other safety considerations (falls, dependence, tolerance).
+  pharmacological_predictions:
+    - PHARM-010  # DORA for MCI/dementia (architecture-preserving; sibling of PHARM-001)
+    - PHARM-011  # low-dose trazodone 25-100mg (5-HT2A antagonism, SWS-enhancing, non-GABAergic non-anticholinergic)
+    - PHARM-013  # ramelteon / melatonin-ER (Phase 0 circadian restoration)
 
 - id: MECH-177
   title: "Any pharmacological intervention that durably restores the NREM-to-REM sequence and preserves phase durations in MCI or early Alzheimer's disease is predicted to be disease-modifying via pipeline protection -- upstream of irreversible neurodegeneration, breaking the MECH-171 vicious cycle before schema scaffold collapse, with predicted effect size larger in early MCI than established AD."
@@ -11630,6 +11656,12 @@
     monitoring vs standard care in MCI would directly test MECH-177.
     Primary endpoint: rate of episodic memory decline (MECH-170 prediction:
     episodic decline slows before semantic/contextual effects are detectable).
+  pharmacological_predictions:
+    - PHARM-010  # DORA for MCI/dementia
+    - PHARM-011  # low-dose trazodone
+    - PHARM-012  # antidepressant class dissociation (low-REM-burden vs paroxetine/TCA/MAOI)
+    - PHARM-013  # ramelteon / melatonin-ER (Phase 0)
+    - PHARM-014  # composite pipeline-rebuild dissociation test (cross-class predictor)
 
 - id: Q-031
   title: "Does the anticholinergic burden-dementia risk relationship track cumulative REM suppression duration (total ACh-blocked sleep years), total anticholinergic dose as a proxy for diurnal cholinergic deficit, or both as independent additive predictors -- and can mediation analysis in prospective cohorts distinguish the nocturnal (MECH-173) from the diurnal (MECH-175 pathway 2) contribution?"

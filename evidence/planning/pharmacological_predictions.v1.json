@@ -18,8 +18,8 @@
     "notes": "free text, including clinical caveats and scope limits",
     "polarity": "positive (intervention helps) | negative (intervention does NOT help / is contraindicated by architecture)"
   },
-  "last_updated_utc": "2026-04-22T17:46:14Z",
-  "next_id": 7,
+  "last_updated_utc": "2026-04-22T17:53:38Z",
+  "next_id": 15,
   "predictions": [
     {
       "id": "PHARM-001",
@@ -27,7 +27,8 @@
       "intervention": "suvorexant / lemborexant / daridorexant (dual orexin-receptor antagonists, DORA class)",
       "intervention_class": "orexin_receptor_antagonist",
       "claim_ids": ["SD-037", "MECH-286", "MECH-285", "MECH-284"],
-      "predicted_effect": "Damps SD-037 override_signal at the receptor level, permitting MECH-286 sleep-mode entry under conditions where chronic hyperarousal has saturated the override. Sleep entry then permits MECH-285 priority readout to fire, which clears accumulated MECH-284 staleness across cycles. Architecturally this is a SUBSTRATE intervention rather than a symptomatic one: the predicted improvement should appear in novel-stimulus schema-repair measures, not just in subjective sedation or sleep latency.",
+      "sibling_predictions": ["PHARM-010"],
+      "predicted_effect": "Damps SD-037 override_signal at the receptor level, permitting MECH-286 sleep-mode entry under conditions where chronic hyperarousal has saturated the override. Sleep entry then permits MECH-285 priority readout to fire, which clears accumulated MECH-284 staleness across cycles. Architecturally this is a SUBSTRATE intervention rather than a symptomatic one: the predicted improvement should appear in novel-stimulus schema-repair measures, not just in subjective sedation or sleep latency. SIBLING: same intervention class is registered as PHARM-010 for MCI/dementia pipeline preservation -- the architectural unification is that DORA acts via override damping, which both rescues schema repair (PTSD axis) and preserves sleep-pipeline phase fidelity (dementia axis).",
       "intervention_axis": "substrate",
       "phenotype_target": "hyperarousal_insomnia_schema_repair_starvation",
       "dissociates_from": ["PHARM-006"],
@@ -141,6 +142,169 @@
       "polarity": "negative",
       "status": "registered",
       "notes": "This is a negative prediction — the architecture predicts SSRIs are NOT the right substrate intervention for the schema-repair-starvation phenotype, despite their FDA-approved status for PTSD broadly. The clinical signal that SSRI-monotherapy is often insufficient in PTSD is consistent with this. The cleanest test would be an axis-stratified trial; the existing literature is consistent with the negative prediction but does not directly test it."
+    },
+    {
+      "id": "PHARM-007",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "anticholinergic medications (high-burden, e.g. oxybutynin, diphenhydramine, amitriptyline, paroxetine, chlorpromazine, clozapine)",
+      "intervention_class": "anticholinergic",
+      "claim_ids": ["INV-046", "INV-047", "INV-048", "MECH-173", "MECH-175"],
+      "predicted_effect": "Dual-pathway dementia risk: (Pathway 1, nocturnal) muscarinic blockade suppresses PGO wave generation and nucleus basalis cholinergic output during sleep, abolishing or fragmenting REM and degrading MECH-123 precision recalibration cumulatively across years. (Pathway 2, diurnal) iatrogenic cholinergic deficit during waking hours mimics the basal-forebrain cholinergic neuron loss that characterises Alzheimer's disease, independently impairing attention, encoding, and cortical desynchronisation required for active learning. The architecturally distinctive prediction: anticholinergic burden scores (ACB scale, ARS) should predict dementia conversion BETTER than total medication count, because they capture both pathway contributions which simple medication count cannot.",
+      "intervention_axis": "regulator_layer_acetylcholine_dual_pathway",
+      "phenotype_target": "dementia_pipeline_failure",
+      "dissociates_from": ["PHARM-008"],
+      "falsification_condition": "Anticholinergic burden score does NOT predict dementia conversion better than total medication count in matched prospective cohorts; OR PSG-linked mediation analysis shows no REM-suppression-years contribution to the conversion risk; OR switching from anticholinergic to non-anticholinergic alternatives (e.g. oxybutynin to mirabegron) does not reduce conversion rate over a 5-10 year window. Architecture predicts both pathways are independently risk-conferring; failure of either mediation arm to show signal would weaken the dual-pathway claim.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "Gray et al. 2015 JAMA Internal Medicine (cumulative anticholinergic use and incident dementia)", "status": "consistent"},
+        {"type": "trial", "anchor": "Coupland et al. 2019 JAMA Internal Medicine (anticholinergic class-specific dementia association)", "status": "consistent"},
+        {"type": "naturalistic", "anchor": "ACB scale and Anticholinergic Risk Scale clinical use", "status": "consistent_at_aggregate_level"},
+        {"type": "needed", "anchor": "PSG-linked prospective cohort with mediation analysis distinguishing nocturnal REM-suppression-years from diurnal cumulative dose", "status": "absent"},
+        {"type": "needed", "anchor": "switching trial (anticholinergic to non-anticholinergic alternative) with cognitive endpoints", "status": "absent"}
+      ],
+      "polarity": "negative",
+      "status": "registered",
+      "notes": "This is the headline NEGATIVE prediction of the dementia/medications cluster: anticholinergics actively confer risk and the architecture explains why via dual pathways. Q-031 in claims.yaml is the open question version of the mediation analysis falsification test. Clinical implication: every year of anticholinergic exposure in older adults is a measurable architectural cost."
+    },
+    {
+      "id": "PHARM-008",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "mirabegron (beta-3 adrenergic agonist) and other CNS-neutral substitutes for anticholinergic indications (loratadine/cetirizine for allergy, sertraline/escitalopram/mirtazapine for depression)",
+      "intervention_class": "anticholinergic_substitute",
+      "claim_ids": ["INV-048", "MECH-175"],
+      "predicted_effect": "Substituting a non-anticholinergic agent for the same indication should remove BOTH pathway-1 (nocturnal REM suppression) and pathway-2 (diurnal cholinergic deficit) contributions to dementia risk. The architectural prediction is that the substitution removes the risk in proportion to the cumulative anticholinergic burden displaced, not merely in proportion to current daily dose -- a long-standing high-ACB user who switches early in the dementia risk window should retain residual risk from the prior exposure.",
+      "intervention_axis": "substitution_lower_burden",
+      "phenotype_target": "dementia_pipeline_failure_preventive",
+      "dissociates_from": ["PHARM-007"],
+      "falsification_condition": "Switching from anticholinergic to non-anticholinergic alternative does NOT reduce dementia conversion rate over 5-10 years in matched cohorts; OR the protective effect is absent in patients with prior cumulative high ACB exposure (suggesting structural damage beyond pipeline disruption is dominant).",
+      "literature_anchors": [
+        {"type": "naturalistic", "anchor": "mirabegron vs anticholinergic OAB cohort comparisons (limited cognitive endpoints)", "status": "consistent_at_aggregate_level"},
+        {"type": "needed", "anchor": "prospective switching trial with cognitive endpoints", "status": "absent"},
+        {"type": "needed", "anchor": "dose-response analysis of residual risk after cessation", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "Direct substitution counterpart to PHARM-007. Clinical decision-framework guidance in medications_dementia.md section 7 names specific switches: oxybutynin->mirabegron, amitriptyline-for-sleep->trazodone/melatonin-ER, diphenhydramine-OTC->melatonin."
+    },
+    {
+      "id": "PHARM-009",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "benzodiazepines and Z-drugs (zolpidem, zopiclone, zaleplon, temazepam, lorazepam) used chronically as sleep aids in older adults / MCI risk",
+      "intervention_class": "gabaergic_positive_modulator",
+      "claim_ids": ["INV-048", "MECH-174"],
+      "predicted_effect": "GABA-A positive allosteric modulators produce sleep via global CNS suppression, which bypasses homeostatic sleep pressure. SWS depth (slow-oscillation amplitude) is reduced, impairing MECH-120 attractor normalisation; SWS continuity is fragmented, impairing MECH-121 SWR-replay sequence integrity. The pipeline-phase consequence is selective Phase 1/2 degradation. Architectural clinical signature: new context learning impaired while remote episodic retrieval is relatively preserved (patient cannot learn new doctor's office is distinct from old one but remembers well-consolidated past events). Z-drug nuance: Stage-2 spindle enhancement (alpha-1 GABA-A subunit affinity) partially preserves MECH-122, but homeostatic SWS depth is still suppressed because sleep is pharmacologically rather than homeostatically driven.",
+      "intervention_axis": "regulator_layer_GABA_architecture_disrupting",
+      "phenotype_target": "dementia_pipeline_failure",
+      "dissociates_from": ["PHARM-010"],
+      "falsification_condition": "Long-term Z-drug or benzodiazepine use in older adults does NOT increase MCI conversion rate compared to orexin antagonist (PHARM-010) or no-pharmacological-sleep-aid controls in matched populations; OR head-to-head PSG comparison shows Z-drugs do not suppress SWS depth below placebo. Architecture predicts both PSG signature (SWS suppression) and clinical signature (selective new-context learning failure) should appear together; absence of either weakens the claim.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "head-to-head PSG comparisons (zolpidem vs orexin antagonists, established SWS suppression difference)", "status": "consistent"},
+        {"type": "naturalistic", "anchor": "long-term BZD use and dementia risk meta-analyses (Billioti de Gage et al. 2014 BMJ)", "status": "consistent_with_mixed_confounding"},
+        {"type": "needed", "anchor": "Z-drug vs DORA prospective MCI conversion trial", "status": "absent"}
+      ],
+      "polarity": "negative",
+      "status": "registered",
+      "notes": "Important caveat: PHARM-009 (BZDs as chronic sleep aid in older adults, NEGATIVE) is mechanistically the same intervention as PHARM-004 (lorazepam in catatonia subtype II, POSITIVE). The dissociation is by phenotype: GABAergic potentiation rescues SD-036 cross-stream decay loss in catatonia (where the substrate failure is GABA-decay loss), but disrupts MECH-120/121 sleep architecture in older adults (where the architectural goal is preserving homeostatic sleep). Same drug, opposite signs, different claim clusters -- a clean illustration of why phenotype tagging matters in this registry."
+    },
+    {
+      "id": "PHARM-010",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "suvorexant / lemborexant / daridorexant (DORA class) for sleep aid in older adults / MCI risk",
+      "intervention_class": "orexin_receptor_antagonist",
+      "claim_ids": ["INV-048", "MECH-176", "MECH-177"],
+      "sibling_predictions": ["PHARM-001"],
+      "predicted_effect": "DORA class produces sleep by removing the wake-promoting orexin signal -- a permissive mechanism rather than imposed CNS suppression. Homeostatic sleep pressure is then free to express without pharmacological competition with the sleep machinery itself. NREM homeostasis runs on endogenous gradients (preserving MECH-120/121); REM emerges from endogenous cholinergic-monoaminergic cycling unimpeded by muscarinic blockade (preserving MECH-123). All four pipeline phases are preserved, in contrast to the GABAergic (PHARM-009) and anticholinergic (PHARM-007) classes. Predicted: in matched older-adult populations needing pharmacological sleep aid, DORA should produce lower MCI conversion than Z-drugs or sedating antihistamines over 5-10 years. SIBLING: PHARM-001 is the same intervention class registered for chronic-PTSD insomnia -- the architectural unification is that orexin antagonism is a substrate intervention via override damping, which serves both schema-repair restoration (PTSD axis) and pipeline-phase preservation (dementia axis).",
+      "intervention_axis": "substrate_architecture_preserving",
+      "phenotype_target": "dementia_pipeline_failure_preventive",
+      "dissociates_from": ["PHARM-009"],
+      "falsification_condition": "Head-to-head DORA vs Z-drug long-term cohort in older adults shows no MCI conversion differential; OR PSG signature shows DORA does suppress SWS or REM below placebo (contradicting MECH-176 prediction); OR active MCI trials show no cognitive benefit beyond sedation arm.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "head-to-head PSG: DORA preserves or increases REM% and does not suppress SWS% below placebo (multiple comparisons)", "status": "consistent"},
+        {"type": "trial", "anchor": "active MCI trials of suvorexant / lemborexant", "status": "ongoing"},
+        {"type": "naturalistic", "anchor": "post-marketing safety data on DORA cognitive endpoints", "status": "consistent_at_aggregate_level"},
+        {"type": "needed", "anchor": "long-term head-to-head MCI conversion trial (DORA vs Z-drug)", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "Sibling of PHARM-001. The architectural unification (same drug class serves PTSD schema-repair AND dementia pipeline preservation) is itself a strong prediction: it would be falsified if PTSD and dementia respond differently to DORA in head-to-head subgroup analyses. If the architectural commitment is right, DORA should be observable as substrate-preserving in BOTH phenotypes via the same mechanism (override damping permitting endogenous sleep architecture)."
+    },
+    {
+      "id": "PHARM-011",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "trazodone (low dose, 25-100mg) as sleep aid in older adults / MCI risk",
+      "intervention_class": "5ht2a_antagonist_low_dose",
+      "claim_ids": ["INV-048", "MECH-176", "MECH-177"],
+      "predicted_effect": "5-HT2A antagonism enhances SWS depth (Phase 1/2) without significant anticholinergic burden at low dose. Phase 4 REM is also relatively preserved at the 25-100mg range. Architectural prediction: trazodone in this dose window is architecture-neutral-to-positive for the consolidation pipeline -- a midline option between the architecture-preserving DORA class (PHARM-010) and the architecture-disrupting GABAergic class (PHARM-009).",
+      "intervention_axis": "regulator_layer_5ht2a_inverted",
+      "phenotype_target": "dementia_pipeline_failure_preventive",
+      "dissociates_from": ["PHARM-009"],
+      "falsification_condition": "Trazodone in this dose range shows SWS suppression on PSG; OR AD sleep RCTs (Cochrane 2020 signal) do not replicate with cognitive endpoints; OR long-term low-dose trazodone use in MCI risk does not differ from Z-drug use in conversion rates. Dose-dependence is critical: at higher doses (>150mg) anticholinergic activity emerges and the prediction reverses.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "Cochrane 2020 review of trazodone in AD-related sleep disturbance", "status": "consistent_at_aggregate_level"},
+        {"type": "trial", "anchor": "Camargos et al. 2014 (low-dose trazodone in primary insomnia, PSG endpoints)", "status": "consistent_for_SWS_enhancement"},
+        {"type": "needed", "anchor": "long-term low-dose trazodone MCI cohort with cognitive endpoints", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "Dose dependence is the key architectural caveat: 25-100mg is the architecture-preserving window; >150mg shifts toward anticholinergic risk profile (becoming closer to PHARM-007). The clinical decision-framework guidance in medications_dementia.md section 7 names trazodone as the substitute for amitriptyline-for-sleep specifically because of this low-dose architecture-neutrality."
+    },
+    {
+      "id": "PHARM-012",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "mirtazapine (and architecturally-preferred sertraline/escitalopram) for depression in older adults at MCI risk, vs paroxetine / venlafaxine / TCAs",
+      "intervention_class": "antidepressant_low_rem_burden",
+      "claim_ids": ["INV-048", "MECH-173", "MECH-177"],
+      "predicted_effect": "Antidepressants vary significantly in REM suppression potency. Architecture predicts the lower-REM-burden agents (sertraline, escitalopram, mirtazapine) confer less cumulative MECH-123 precision-recalibration damage than the high-REM-burden agents (paroxetine, venlafaxine, TCAs, MAOIs). Mirtazapine has the additional benefit of SWS enhancement (5-HT2A antagonism), making it potentially architecture-positive rather than merely architecture-neutral. Predicted clinical signature: in older adults requiring chronic antidepressant treatment, paroxetine and TCAs should show higher MCI conversion than sertraline/escitalopram/mirtazapine in matched cohorts.",
+      "intervention_axis": "regulator_layer_5HT_antidepressant_class_dissociation",
+      "phenotype_target": "dementia_pipeline_failure_via_chronic_antidepressant",
+      "dissociates_from": ["PHARM-006"],
+      "falsification_condition": "Long-term paroxetine or TCA users do NOT show higher MCI conversion than matched sertraline / escitalopram / mirtazapine users; OR PSG comparison shows no REM-suppression difference between classes at clinically relevant doses. Architecture predicts class-specific dissociation; uniform effect across antidepressants would weaken MECH-173.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "PSG comparisons of antidepressant REM suppression (Wilson & Argyropoulos 2005 review)", "status": "consistent"},
+        {"type": "naturalistic", "anchor": "anticholinergic-risk-scale studies separately scoring TCAs and paroxetine as high-burden", "status": "consistent"},
+        {"type": "needed", "anchor": "antidepressant-class-stratified long-term MCI conversion analysis with cognitive endpoints", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "Note relationship to PHARM-006: PHARM-006 is the negative prediction that SSRIs do not durably help PTSD-hyperarousal schema-repair-starvation phenotype (because they target an orthogonal regulatory axis). PHARM-012 is the positive prediction that within-SSRI class, the lower-REM-burden agents are architecturally preferable for older adults requiring chronic antidepressant treatment regardless of indication. The two predictions are about different phenotypes and are not in conflict -- both can be right simultaneously."
+    },
+    {
+      "id": "PHARM-013",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "ramelteon and prolonged-release melatonin (melatonin-ER) for circadian restoration in older adults / MCI risk",
+      "intervention_class": "melatonergic_circadian_restoration",
+      "claim_ids": ["INV-048", "MECH-176", "MECH-177"],
+      "predicted_effect": "Melatonin-MT1/MT2 agonism restores circadian gating at Phase 0 (sleep onset / circadian alignment). With the upstream gate restored, downstream pipeline phases (1-4) operate on more reliable input timing. Architecture predicts greatest benefit in older adults whose primary sleep complaint is delayed onset / fragmented timing rather than maintenance, and predicts less benefit when downstream phase machinery is already structurally damaged (later-stage MCI / early AD). Critical-window prediction: efficacy should be greatest in early MCI when downstream phases are still functional.",
+      "intervention_axis": "circadian_gating_restoration",
+      "phenotype_target": "dementia_pipeline_failure_preventive",
+      "dissociates_from": [],
+      "falsification_condition": "EU over-65 melatonin-ER post-marketing data shows no MCI conversion differential vs matched no-treatment controls; OR ramelteon shows no benefit in MCI trials; OR critical-window prediction fails (efficacy uniform across MCI severity rather than greatest in early stage).",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "ramelteon in older adults insomnia trials (Wang-Weigand et al.)", "status": "consistent_for_sleep_onset"},
+        {"type": "naturalistic", "anchor": "EU over-65 melatonin-ER prescribing data", "status": "consistent_for_safety_long_term"},
+        {"type": "needed", "anchor": "ramelteon / melatonin-ER MCI conversion cohort with critical-window stratification", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "Phase 0 is the upstream gate; the prediction is that restoring it gives downstream phases a chance to operate but cannot rebuild what is already lost. This makes melatonin-ER a complementary intervention to DORA (PHARM-010) rather than a substitute -- they target different parts of the pipeline. Combined intervention is plausibly synergistic but not yet tested."
+    },
+    {
+      "id": "PHARM-014",
+      "registered_utc": "2026-04-22T17:53:38Z",
+      "intervention": "sleep-architecture-restoring agents collectively (DORA, melatonin-ER, low-dose trazodone) in MCI -- pipeline rebuild dissociation prediction",
+      "intervention_class": "composite_pipeline_rebuild",
+      "claim_ids": ["INV-047", "INV-048", "MECH-177"],
+      "predicted_effect": "When sleep architecture is restored in early MCI, cognitive recovery should follow the pipeline-rebuild ordering predicted by INV-047 (the staged decline reverses): (1) FIRST, improved confidence/precision calibration (Phase 4 / MECH-123 recovery -- subtle, requires sensitive testing); (2) THEN, improved new episodic consolidation (Phase 2 / MECH-121 recovery); (3) LATER, improved contextual semantic memory (Phase 1 / MECH-120 recovery, only with sustained intervention before schema scaffold collapses). This dissociation distinguishes pipeline-mediated benefit from three competing accounts: diffuse cognitive enhancers (predict UNIFORM improvement across domains); amyloid-targeting drugs (predict improvement PROPORTIONAL TO AMYLOID LOAD reduction, not following any cognitive ordering); and sedative-reduction effects (predict UNIFORM improvement from less daytime sedation, no domain ordering).",
+      "intervention_axis": "dissociation_test_pipeline_rebuild_order",
+      "phenotype_target": "dementia_pipeline_failure",
+      "dissociates_from": [],
+      "falsification_condition": "MCI sleep-restoration trials show UNIFORM cognitive improvement across precision / episodic / semantic domains; OR improvement is PROPORTIONAL TO AMYLOID LOAD reduction rather than following the staged order; OR the staged dissociation appears in a sedative-reduction control arm (which would attribute it to general arousal restoration rather than pipeline rebuild). Architecture predicts the specific staged ordering matching INV-047 reverse; failure to find this ordering weakens the pipeline-mediated mechanism claim.",
+      "literature_anchors": [
+        {"type": "needed", "anchor": "MCI sleep-restoration trial designed with separate domain-specific cognitive endpoints sensitive to the predicted ordering", "status": "absent"},
+        {"type": "needed", "anchor": "head-to-head sleep-restoration vs amyloid-clearance trial with domain-stratified outcomes", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "This is the headline DISSOCIATION prediction of the dementia/medications cluster. It distinguishes pipeline-mediated benefit from three plausible competitor explanations and ties the architectural commitment (INV-047 staged decline matches reverse phase-dependency ordering) to a specific testable cognitive-trajectory signature. The trial design implied by this prediction is not yet conducted; the prediction stands as a falsification target for the entire cluster (INV-047 + MECH-173-177)."
     }
   ]
 }

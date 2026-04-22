@@ -1074,3 +1074,18 @@ separate cycle from substrate-evidence governance and has not yet been institute
 | PHARM-004 | lorazepam, benzodiazepines | regulator-layer GABA (SD-036) | catatonia subtype II (harm-stream lock) | positive |
 | PHARM-005 | prazosin (alpha-1 antagonist) | indirect override damping | PTSD nightmares + hyperarousal-insomnia | positive |
 | PHARM-006 | SSRIs (sertraline, paroxetine) | regulator-layer 5-HT (orthogonal) | hyperarousal-insomnia / schema-repair starvation | **negative** |
+| PHARM-007 | anticholinergics (oxybutynin, diphenhydramine, TCAs, paroxetine) | dual pathway (REM-suppression + diurnal cholinergic mimicry) | dementia conversion in MCI/older adults | **negative** |
+| PHARM-008 | mirabegron (beta-3 agonist; non-CNS antimuscarinic alternative) | indication substitution (urinary urgency without ACh load) | dementia conversion in older adults on bladder anticholinergics | positive |
+| PHARM-009 | benzodiazepines / Z-drugs (zolpidem, zopiclone) | regulator-layer GABA (architecture-disrupting at hypnotic dose) | dementia conversion via Phase 1/2 SWS suppression | **negative** (cf. PHARM-004 positive in catatonia -- same drug class, different phenotype) |
+| PHARM-010 | DORA class for MCI/dementia | substrate (architecture-preserving sleep) | MCI/early-AD episodic decline rate | positive (sibling of PHARM-001) |
+| PHARM-011 | trazodone 25-100mg (5-HT2A antagonism, sub-antidepressant dose) | downstream Phase 1/2 SWS enhancement | MCI/early-AD episodic decline rate | positive |
+| PHARM-012 | mirtazapine, sertraline, escitalopram (low-REM-burden antidepressants) vs paroxetine/TCA/MAOI | antidepressant-class dissociation | dementia risk in long-term antidepressant users | positive (low-REM-burden) / negative (REM-suppressing) |
+| PHARM-013 | ramelteon, melatonin-ER | upstream Phase 0 circadian restoration | MCI/early-AD episodic decline rate | positive |
+| PHARM-014 | composite pipeline-rebuild dissociation (cross-class predictor) | falsifiable architecture test | reverse phase-dependency ordering of cognitive recovery | architectural |
+
+The dementia/medications cluster (PHARM-007 to PHARM-014) is not a "psychiatric" failure
+mode in the standard nosological sense — but the same scope note applied to narcolepsy
+and cataplexy applies here: REE does not partition disorders into psychiatric and
+neurological. Dementia is a sleep-pipeline failure mode under INV-046/047/048 with a
+substantial pharmacological prediction surface; full mechanistic discussion lives in
+[`sleep/medications_dementia.md`](sleep/medications_dementia.md).
