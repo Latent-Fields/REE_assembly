@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_326_wanting_gradient_nav_fix
 
-Generated: `2026-04-22T18:44:19.796350Z`
+Generated: `2026-04-22T18:52:27.442800Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

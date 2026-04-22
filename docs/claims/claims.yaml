@@ -1915,7 +1915,7 @@
   polarity: asserts
   status: provisional
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 substrate-readiness PASS (supports)
   lifecycle_stage: adjudicated
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
@@ -3878,7 +3878,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS (supports); hippocampal consumer wiring still deferred
   registered_utc: 2026-04-21
   depends_on:
     - MECH-074         # parent
@@ -3967,7 +3967,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 substrate-readiness PASS (supports)
   registered_utc: 2026-04-21
   depends_on:
     - MECH-074         # parent
@@ -4022,7 +4022,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS (supports); hippocampal remap consumer deferred
   registered_utc: 2026-04-21
   depends_on:
     - MECH-074         # parent
@@ -19129,7 +19129,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 + V3-EXQ-474 substrate-readiness PASS (supports); MECH-074b retrieval_bias still pending follow-up EXQ
   claim_level: architectural
   registered_utc: 2026-04-21
   depends_on:
