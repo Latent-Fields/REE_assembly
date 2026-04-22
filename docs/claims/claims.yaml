@@ -21151,7 +21151,7 @@
   location: docs/architecture/sd_037_broadcast_override_regulator.md
 
 - id: MECH-287
-  title: "Broadcast online invalidation trigger: a fast, broadcast 'anchor may be wrong' event whose biological substrate candidate is the LC phasic burst (with parallel signals from generalised dopaminergic prediction error and lateral habenula negative-RPE). Distinct from MECH-284 the accumulator: MECH-287 is the discrete trigger event that drives accumulation. Triggered by latent-stream prediction failure (norm(z_pred(t-1) - z_obs(t)) > theta_trigger) OR strongly negative value-PE (value_PE(t) < -theta_value) OR exogenous surprise. Carries no schema-region credit on its own; downstream MECH-284 attributes the broadcast event to the active anchor set. Failure modes dissociate from MECH-284: trigger-loss produces single-event blindness (no anchor ever feels invalidated, but staleness map remains queryable); accumulator-loss produces V3-EXQ-475's phenotype directly (releases happen but never integrate). Failure modes also dissociate from MECH-285 sleep priority: trigger-loss prevents staleness from accruing, while sleep-priority loss prevents accrued staleness from being repaired."
+  title: "Dual-component online invalidation trigger: an UPSTREAM anchor-side comparator (CA1/CA3 mismatch flowing through subicular routing per Vinogradova 2001 + O'Mara 2009) coupled to a DOWNSTREAM broadcast event (LC phasic burst per Aston-Jones-Cohen 2005, with parallel signals from generalised dopaminergic prediction error per Schultz 1997 and lateral habenula negative-RPE per Matsumoto-Hikosaka 2007), wired together by the HC-VTA loop (Lisman & Grace 2005). The two components are coupled stages of one trigger event, not alternatives. Distinct from MECH-284 the accumulator: MECH-287 is the discrete trigger event (anchor-side mismatch + broadcast release) that drives accumulation. Triggered by latent-stream prediction failure (norm(z_pred(t-1) - z_obs(t)) > theta_trigger) OR strongly negative value-PE (value_PE(t) < -theta_value) OR exogenous surprise. Carries no schema-region credit on its own; downstream MECH-284 attributes the broadcast event to the active anchor set. Failure modes dissociate from MECH-284: trigger-loss produces single-event blindness (no anchor ever feels invalidated, but staleness map remains queryable); accumulator-loss produces V3-EXQ-475's phenotype directly (releases happen but never integrate). Failure modes also dissociate from MECH-285 sleep priority: trigger-loss prevents staleness from accruing, while sleep-priority loss prevents accrued staleness from being repaired. Within MECH-287 itself, anchor-side comparator failure dissociates from broadcast failure: comparator-loss = no upstream signal to broadcast (silent trigger, biologically a CA1/CA3 lesion); broadcast-loss = comparator fires but no global gain modulation downstream (silent invalidation, biologically an LC lesion)."
   claim_type: mechanism_hypothesis
   subject: regulators.broadcast_invalidation_trigger
   polarity: asserts
@@ -21188,7 +21188,31 @@
                    OR (value_PE(t) < -theta_value)
                    OR (external_surprise_signal(t) > theta_surprise)
 
-    Biological substrate candidates (parallel, partially redundant):
+    Biological substrate (DUAL-COMPONENT coupled-stage architecture per
+    targeted_review_v_s_foundation/SYNTHESIS verdict 5; not a single
+    broadcast event but two coupled stages of one trigger event):
+
+    UPSTREAM anchor-side comparator component:
+      CA1/CA3 mismatch comparator (Vinogradova 2001): hippocampus
+        computes match/mismatch between two functionally distinct input
+        streams; the resulting signal gates both intra-hippocampal
+        output AND subcortical arousal modulation. This is the
+        anchor-side detection event that the broadcast amplifies.
+      Subicular routing pathway (O'Mara 2009): subiculum is the
+        anatomical hub through which hippocampal mismatch reaches
+        NAc-VP-VTA. The trigger does not bypass this pathway -- it
+        flows through it.
+      HC-VTA loop wiring (Lisman & Grace 2005): hippocampal mismatch
+        propagates via subiculum-NAc-VP to VTA, which then back-projects
+        dopamine to enhance hippocampal LTP. This loop architecture is
+        what couples the upstream comparator to the downstream broadcast.
+      Event-boundary-driven reinstatement (Sols/DuBrow/Davachi 2017):
+        event boundaries behave like local mismatch signals at the
+        schema/event-segment scale and drive consolidation priority --
+        consistent with the comparator firing on schema-region
+        boundaries, not arbitrary single-step latent deltas.
+
+    DOWNSTREAM broadcast component (parallel, partially redundant):
       LC phasic burst (best-fit per Aston-Jones-Cohen 2005 / Sara-Bouret
         2012; surprise-shaped, broadcast, drives gain modulation that
         is the natural multiplier on attribution_weight)
@@ -21197,6 +21221,15 @@
         the latent-PE arm)
       LHb negative-RPE (Matsumoto-Hikosaka 2007; specifically for the
         value_PE < -theta_value arm)
+
+    Component coupling: the upstream comparator is the SOURCE of the
+    trigger event; the downstream broadcast is the AMPLIFICATION /
+    propagation of that event globally. They are coupled stages of
+    the same trigger, not alternative trigger sources. Failure modes
+    dissociate (see title): comparator-loss = silent trigger (CA1/CA3
+    lesion analog); broadcast-loss = silent invalidation (LC lesion
+    analog); both intact = full trigger event capable of driving
+    MECH-284 accumulation and MECH-269 anchor reset.
 
     Why a separate claim from MECH-284. The lit-pull (SYNTHESIS at
     evidence/literature/targeted_review_waking_v_s_invalidation/) shows
@@ -21240,6 +21273,21 @@
     trigger event distinct from MECH-284 accumulator (failure modes
     dissociate empirically; conflating them blocks the
     trigger-vs-accumulator factorial that V3-EXQ-476 needs to run).
+
+    Dual-component refinement (2026-04-22 Phase 2): the
+    targeted_review_v_s_foundation/ literature pull (12 papers across
+    place-cell remapping, attractor dynamics, splitter cells, schema
+    cells / event boundaries, multi-trace / pattern separation,
+    comparator / HC-VTA loop, subicular routing) added verdict 5: the
+    broadcast trigger is NOT a standalone event but the downstream stage
+    of a two-stage architecture. The upstream stage is an anchor-side
+    CA1/CA3 mismatch comparator (Vinogradova 2001) routed through
+    subiculum (O'Mara 2009) into the HC-VTA loop (Lisman & Grace 2005),
+    which generates the broadcast event. Treating these as alternatives
+    rather than coupled stages would miss the loop architecture biology
+    actually uses and would block the comparator-vs-broadcast
+    dissociation auditable inside MECH-287 (CA1/CA3 lesion vs LC lesion
+    analogs).
 
     Design doc: docs/architecture/v_s_invalidation_runtime.md (covers
     MECH-287 + refined MECH-284 operational definition + refined

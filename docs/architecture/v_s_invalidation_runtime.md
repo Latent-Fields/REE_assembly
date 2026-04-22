@@ -15,9 +15,17 @@ eval steps in freeze. SD-036 decay and MECH-279 freeze exit are firing correctly
 endogenous driver of re-commit is the hippocampal proposer pulling avoid-flavoured
 trajectories from the original anchor. There is no waking-phase signal that downweights
 the anchor as evidence accumulates that it no longer fits.
-**Lit-pull:** `evidence/literature/targeted_review_waking_v_s_invalidation/` (12 papers +
-SYNTHESIS.md, 2026-04-22). Cross-references: `targeted_review_connectome_mech_269/`
-(replay content), `targeted_review_homeostatic_override/` (LC/orexin coupling).
+**Lit-pulls:**
+- `evidence/literature/targeted_review_waking_v_s_invalidation/` (12 papers +
+  SYNTHESIS.md, 2026-04-22) — origin pull, drove MECH-287 registration.
+- `evidence/literature/targeted_review_v_s_foundation/` (12 papers + SYNTHESIS.md,
+  2026-04-22) — foundation pull commissioned for Phase 2 substrate work; covers
+  schema-region granularity (verdict 1), multi-map coexistence and dual-trace
+  modes (verdict 2), per-stream V_s as projection-readout of mixed-selectivity
+  integrated code (verdict 3), splitter-cell anchor types (verdict 4), and the
+  upstream anchor-side comparator stage of the MECH-287 trigger (verdict 5).
+- Cross-references: `targeted_review_connectome_mech_269/` (replay content),
+  `targeted_review_homeostatic_override/` (LC/orexin coupling).
 **Depends on:** SD-005, ARC-007, ARC-018, MECH-089, MECH-094, MECH-269, MECH-272,
 MECH-285, SD-010, SD-011
 
@@ -58,9 +66,78 @@ MECH-284 and MECH-269 make is that:
 
 ---
 
+## Foundation lit-pull integration (2026-04-22 Phase 2)
+
+The `targeted_review_v_s_foundation/` SYNTHESIS (12 papers; place-cell remapping,
+attractor dynamics, splitter/trajectory cells, schema cells / event boundaries,
+multi-trace / pattern separation, comparator / HC-VTA loop, subicular routing)
+constrains four substrate decisions in addition to the MECH-287 dual-component
+refinement (verdict 5, integrated into Section 1 below).
+
+**Verdict 1 — schema-region granularity (NOT place-cell-field).** The substrate
+defaults the V_s region unit to schema / event-segment / action-object scale, with
+multi-scale support where the task demands finer resolution. Eichenbaum 2017
+establishes that hippocampal coding is multi-dimensional mixed-selectivity at the
+cell level with the relevant organisation scale emerging from task structure;
+Tse 2007 schemas operate at integrated event/context level; Sols/DuBrow/Davachi
+2017 shows event boundaries (not place transitions) drive reinstatement and
+consolidation priority. Substrate implication: `attribution_weight(r,
+source_streams)` operates over schema regions, not place fields. The accumulator
+`staleness[r]` is keyed on schema-region IDs. Place-cell-field-scale resolution
+should be available as an option but is not the default unit. Region granularity
+itself is also a tunable lever in scaling experiments — see project memory
+`project_intelligence_scaling_levers.md`.
+
+**Verdict 2 — dual-trace anchor preservation supports both hard-switching AND
+soft re-weighting.** Wills 2005 (attractor morphing, bistable winner-take-all
+ensemble switching) gives the hard-switch mechanism; Colgin 2008 (rate remapping)
+and Frank 2000 / Wood 2000 (trajectory-cell rate modulation) give the
+soft-re-weighting mechanism. Substrate implication: MECH-269 dual-trace must
+support BOTH a hard anchor switch (Wills attractor flip) and a soft mixture
+re-weighting (Colgin-style graded mixture). MECH-272 routing then treats the
+choice between these regimes as a function of V_s magnitude and input ambiguity
+rather than committing architecturally to one mode. Section 3 below
+(`mark_inactive(a)` + `seek_new_anchor`) describes the hard-switch path; the
+soft-re-weighting path is added as a separate routing-level operation that
+adjusts mixture weights over the active anchor set without marking any anchor
+inactive.
+
+**Verdict 3 — per-stream V_s is a projection-readout of an integrated
+mixed-selectivity code, NOT a biological per-stream computation.** Eichenbaum
+2017: hippocampal CA1 carries multiplexed independent representations of
+multiple dimensions with mixed selectivity at the single-cell level — biology
+computes a single integrated mixed code; per-stream readout is downstream
+extraction. Vinogradova 2001 grounds the principle that biology computes mismatch
+between functionally distinct streams (the principle is biological; the specific
+five-stream count z_world / z_self / z_harm_s / z_harm_a / z_goal is an
+engineering choice). Yonelinas 2019 contextual-binding theory shows the
+integrated code degrades into something more per-stream-like under capacity
+constraints, giving the substrate plan a recoverable-fallback grounding.
+Substrate implication: register per-stream V_s as a *projection-readout* in the
+substrate documentation and naming (`v_s_per_stream_readout`, not
+`v_s_per_stream_compute`). This validates the Phase 1 deviation from the
+original plan that wired V_s uniformly via an identity proxy at
+`HippocampalModule` scope rather than per-stream forward predictors —
+architecturally that is the more biology-faithful choice, since the integrated
+code lives at the hippocampal scope and per-stream readouts are extracted from
+it. Per-stream forward predictors should NOT be added in Phase 2.
+
+**Verdict 4 — splitter-cell support for both pure-place and stream-conditioned
+anchors.** Wood 2000 (~one-third pure-place, ~one-third context-dependent
+firing on shared stem in continuous-alternation) and Frank 2000 (W-maze
+trajectory-cell encoding) establish that anchor encoding conditional on a
+stream-mixture / trajectory / context signal is biologically standard, not
+exotic. Substrate implication: MECH-269 anchor type catalogue includes BOTH
+pure-place anchors (V_s reset on the location signal alone) and stream-mixture-
+conditioned anchors (V_s reset conditional on a trajectory / context / intent
+signal). The exact ratio is task-dependent and is NOT hard-coded; both types
+must be supported and the mix emerges from training.
+
+---
+
 ## Mechanism
 
-### 1. MECH-287 (NEW): Broadcast invalidation trigger
+### 1. MECH-287 (NEW): Dual-component invalidation trigger
 
 A per-step broadcast signal that fires whenever a schema-fit violation is registered
 above threshold. Computationally:
@@ -82,13 +159,42 @@ The trigger event is the *thing the accumulator integrates*. It is not itself an
 update -- it is a labelled event broadcast widely so that all downstream accumulators
 that care about this region can consume it.
 
-**Biological substrate (per SYNTHESIS):** locus coeruleus phasic burst (Aston-Jones &
-Cohen 2005; Sara & Bouret 2012) is the best candidate, with parallel midbrain dopamine
-generalised PE (Gardner, Schoenbaum & Gershman 2018) carrying the value-tagged component
-and lateral habenula (Matsumoto & Hikosaka 2007; Bromberg-Martin & Hikosaka 2011) carrying
-the negative-RPE / information-PE component. The three are partially redundant; the
-architecture commits only to "a broadcast event signal exists" without specifying which
-substrate is canonical.
+**Biological substrate — DUAL-COMPONENT coupled-stage architecture** (per
+`targeted_review_v_s_foundation/` SYNTHESIS verdict 5; supersedes the broadcast-only
+framing in the original 2026-04-22 design):
+
+The trigger is not a single broadcast event but the downstream stage of a two-stage
+loop. Treating broadcast and comparator as alternative trigger sources misses the
+loop architecture biology actually uses.
+
+*Upstream anchor-side comparator stage:*
+- CA1/CA3 mismatch comparator (Vinogradova 2001) — hippocampus computes
+  match/mismatch between two functionally distinct input streams; output gates
+  both intra-hippocampal output and subcortical arousal modulation.
+- Subicular routing (O'Mara 2009) — anatomical hub through which hippocampal
+  mismatch reaches NAc-VP-VTA. The trigger flows through this pathway; it does
+  not bypass it.
+- HC-VTA loop wiring (Lisman & Grace 2005) — hippocampal mismatch propagates
+  via subiculum-NAc-VP to VTA, which back-projects dopamine to enhance
+  hippocampal LTP. This loop is what couples the upstream comparator to the
+  downstream broadcast.
+- Event-boundary reinstatement support (Sols/DuBrow/Davachi 2017) — event
+  boundaries behave like local mismatch signals at the schema/event-segment
+  scale, consistent with the comparator firing on schema-region boundaries
+  rather than arbitrary single-step latent deltas.
+
+*Downstream broadcast stage* (parallel, partially redundant):
+- Locus coeruleus phasic burst (Aston-Jones & Cohen 2005; Sara & Bouret 2012)
+- DA generalised PE (Schultz 1997; Gardner, Schoenbaum & Gershman 2018) —
+  value-PE arm
+- Lateral habenula negative-RPE (Matsumoto & Hikosaka 2007; Bromberg-Martin
+  & Hikosaka 2011) — value_PE < -theta_value arm
+
+*Dissociation inside MECH-287:* comparator-loss = silent trigger (CA1/CA3 lesion
+analog: no upstream signal to broadcast); broadcast-loss = silent invalidation
+(LC lesion analog: comparator fires but no global gain modulation downstream);
+both intact = full trigger event. This dissociation is testable separately from
+the trigger-vs-accumulator (MECH-287 vs MECH-284) factorial.
 
 ### 2. MECH-284 REFINED: Local schema-staleness accumulator
 
@@ -287,3 +393,21 @@ Substrate hooks required:
   dual-trace anchor-reset criteria (Bouton 2004); MECH-272 promoted to load-bearing
   status for the fix because routing has to maintain anchor mixtures.
 - Registration in `claims.yaml` follows in same session.
+- **2026-04-22 (Phase 2 update)** — `targeted_review_v_s_foundation/` SYNTHESIS
+  integrated. Five verdicts incorporated: (1) schema/event-segment as default
+  V_s region granularity (NOT place-cell-field), with multi-scale support; (2)
+  MECH-269 dual-trace must support both hard-switching (Wills 2005) and soft
+  re-weighting (Colgin 2008) modes; (3) per-stream V_s reframed as
+  projection-readout of integrated mixed-selectivity code (Eichenbaum 2017),
+  validating the Phase 1 identity-proxy decision and ruling out per-stream
+  forward predictors as a Phase 2 task; (4) anchor type catalogue supports both
+  pure-place and stream-mixture-conditioned anchors (Wood 2000, Frank 2000) with
+  ratio emergent from task; (5) MECH-287 trigger refined to dual-component
+  coupled-stage architecture — upstream anchor-side CA1/CA3 mismatch comparator
+  (Vinogradova 2001) routed via subiculum (O'Mara 2009) into the HC-VTA loop
+  (Lisman & Grace 2005) coupled to the downstream broadcast (LC / DA / LHb).
+  MECH-287 entry in `claims.yaml` updated with dual-component title, extended
+  functional_restatement, and notes cross-reference to both lit-pulls. Region
+  granularity also flagged as a tunable scaling lever per project memory
+  `project_intelligence_scaling_levers.md` (Daniel's 2026-04-22 aside on
+  granularity / latent dim / network depth / sensory granularity coupling).
