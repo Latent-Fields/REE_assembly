@@ -19725,7 +19725,7 @@
   location: evidence/planning/sd033_governance_plan.md
 
 - id: MECH-269
-  title: "Hippocampal proposer anchor selection: trajectory proposals issued between committed actions anchor on the subset of current latent streams whose regional verisimilitude (per-stream prediction/realization alignment) exceeds threshold; misaligned streams hold their last-verified snapshot (anchor carryover) rather than contaminate the rollout. A minority probe channel deliberately inverts the gate for low-verisimilitude / high-PE regions, carrying a strengthened MECH-094 hypothesis tag, and does not update the ARC-018 viability map until realized-experience validation."
+  title: "Hippocampal proposer anchor selection AND anchor-reset: (a) trajectory proposals issued between committed actions anchor on the subset of current latent streams whose regional verisimilitude (per-stream prediction/realization alignment) exceeds threshold; misaligned streams hold their last-verified snapshot (anchor carryover) rather than contaminate the rollout. (b) Active anchors are continuously re-evaluated against an effective verisimilitude V_s_anchor(a, t) = V_s(r, t) - staleness[r] (MECH-284 read-out); if V_s_anchor falls below theta_reset(r) for k consecutive steps the anchor is marked inactive (NOT erased -- dual-trace preservation per Bouton 2004) and a new anchor is sought from the current latent slice. A minority probe channel deliberately inverts the gate for low-verisimilitude / high-PE regions, carrying a strengthened MECH-094 hypothesis tag, and does not update the ARC-018 viability map until realized-experience validation."
   claim_type: mechanism_hypothesis
   subject: hippocampal_proposer.regional_verisimilitude_anchor_selection
   polarity: asserts
@@ -19740,6 +19740,8 @@
     - MECH-089  # theta-gamma nesting (per-cycle summary the anchor reads)
     - MECH-092  # quiescent SWR-equivalent replay (anchored replay runs here)
     - MECH-094  # hypothesis tag (strengthened on probes)
+    - MECH-272  # state-gated routing (load-bearing for dual-trace coexistence: routing decides which anchor is operative)
+    - MECH-284  # staleness accumulator (online read-out drives anchor-reset hysteresis)
     - SD-005    # z_self/z_world split (precondition for per-stream V)
     - SD-010    # harm stream separation
     - SD-011    # dual nociceptive streams
@@ -19787,8 +19789,41 @@
 
     Falsifiable (secondary): manipulating salience / harm load should
     shift the observed anchor/probe mixture without retraining.
+
+    Anchor-reset criteria (refined 2026-04-22). For each active anchor
+    a on region r:
+      V_s_anchor(a, t) = V_s(r, t) - staleness[r]   # MECH-284 read-out
+      if V_s_anchor(a, t) < theta_reset(r) for k consecutive steps:
+        mark_inactive(a)                # NOT erase -- dual-trace
+        seek_new_anchor(latent_slice(t))
+
+    The k-consecutive-step hysteresis (default k=5) prevents single-event
+    chatter from destabilising the anchor while still allowing
+    sufficiently strong sustained invalidation to break a stale anchor
+    within bounded time. Dual-trace preservation (Bouton 2004 -- extinction
+    is new learning, not erasure of old) is essential: the avoid-anchor
+    that produced V3-EXQ-475's catatonic lock must remain retrievable as
+    inactive trace, with MECH-272 state-gated routing deciding which
+    anchor is operative for the current context. This permits return-of-
+    avoidance under sufficient context-cue match without re-learning.
+
+    Falsifiable (anchor-reset, primary): an EXQ-471-conditions re-run
+    with MECH-287 trigger + MECH-284 online accumulator + MECH-269
+    anchor-reset all enabled should show anchor invalidation events
+    (mark_inactive logged) within bounded number of PAG releases (target:
+    after 2-3 releases, anchor invalidates and proposer remaps -- not
+    1000/1000 freeze).
+
+    Falsifiable (anchor-reset, secondary, dual-trace): post-extinction
+    re-presentation of the original avoid-context cues should produce
+    re-activation of the old anchor (return-of-avoidance) rather than
+    a from-scratch re-learning trajectory; conversely, in a different
+    context the new anchor remains operative.
   notes: >
-    Design doc: docs/architecture/hippocampal_anchor_selection.md.
+    Design doc (refined): docs/architecture/v_s_invalidation_runtime.md
+    (covers MECH-269 anchor-reset criteria + MECH-287 trigger + MECH-284
+    accumulator). Original anchor-selection design context remains at
+    docs/architecture/hippocampal_anchor_selection.md.
     Registered 2026-04-21 from user-initiated exploratory discussion
     about how the proposer selects its starting state for inter-commit
     proposals. Biological routing hypothesis (separate claim MECH-271)
@@ -19803,13 +19838,16 @@
     validation target, which in turn constrains MECH-269 once the
     anchor/probe labels are emitted.
   evidence_quality_note: >
-    Registered candidate with v3_pending:true. No experiment evidence
-    yet. Biology lit-pull NOT yet queued (should target: verisimilitude
-    / prediction-error gating of hippocampal replay start states;
-    ripple initiation loci and their alignment with cortical expectancy;
-    low-confidence vs high-confidence replay distinctions in Foster /
-    Buzsaki / Olafsdottir literature).
-  location: docs/architecture/hippocampal_anchor_selection.md
+    Registered candidate with v3_pending:true. lit_confidence 0.858
+    after 2026-04-22 lit-pull (targeted_review_waking_v_s_invalidation/
+    + targeted_review_connectome_mech_269/). Anchor-reset arm grounded
+    in dual-trace extinction literature (Bouton 2004) plus latent-cause
+    inference (Gershman 2010, 2017). No in-silico experiment evidence
+    yet. Promotion requires substrate implementation (extends
+    HippocampalModule.propose_trajectories with anchor-reset hysteresis)
+    plus the EXQ-471 unlock test plus the dual-trace return-of-
+    avoidance test.
+  location: docs/architecture/v_s_invalidation_runtime.md
 
 - id: MECH-270
   title: "Ephaptic field coherence in CA1/CA3 pyramidal layers is the candidate physical substrate for the per-stream verisimilitude readout that MECH-269 anchor selection operates over. Streams whose predictions align with realized values produce coherent pyramidal ensembles whose extracellular fields constructively reinforce; misaligned streams produce incoherent fields. 'Anchor-eligible' reduces to 'field-coherent at read time.'"
@@ -20830,7 +20868,7 @@
   location: docs/architecture/hippocampal_anchor_selection.md
 
 - id: MECH-284
-  title: "V_s residual schema-staleness accumulator: when an anchored rollout is committed and executed, the discrepancy between predicted V_s trajectory and realised V_s trajectory accumulates as a per-region staleness signal on the schema regions the rollout traversed. Persistent low V_s on a schema region tags it as needing revision. Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across episodes, and is read by sleep consolidation rather than online learning. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (some autism/OCD-spectrum failure modes)."
+  title: "V_s residual schema-staleness accumulator: a region-indexed scalar that integrates broadcast invalidation events (MECH-287) with attribution_weight credit assignment over the active anchor set, leaks slowly, and is read by both online anchor-reset (MECH-269 hysteresis check, waking) and sleep-consolidation priority (MECH-285, offline). Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across events, and exposes a dual read-out (online + offline). Refined 2026-04-22 from sleep-only formulation to dual-readout formulation after V3-EXQ-475 demonstrated that an agent trapped in a stale anchor needs an online consumer of the staleness signal -- MECH-285 sleep-only readout cannot rescue the agent during waking. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (V3-EXQ-475 phenotype: 5-6 PAG releases per seed but never integrate to anchor invalidation -> 1000/1000 freeze-active steps)."
   claim_type: mechanism_hypothesis
   subject: hippocampal.v_s_residual_schema_staleness_accumulator
   polarity: asserts
@@ -20840,26 +20878,62 @@
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
-    - MECH-269  # V_s computation (input to the residual)
+    - MECH-287  # upstream: trigger event that drives integration
+    - MECH-269  # downstream consumer (anchor-reset hysteresis read-out, online)
+    - MECH-285  # downstream consumer (sleep-consolidation priority read-out, offline)
+    - MECH-094  # interaction (probe-tagged content must NOT increment staleness as if veridical)
     - ARC-007   # hippocampal path memory (regions being indexed)
     - ARC-018   # viability map (regions also indexed here)
   functional_restatement: >
     Standard prediction error operates on latent values themselves and
     updates the relevant heads via gradient (E1 sensorium loss, E2
     transition loss, E3 harm/goal loss). MECH-284 operates on the
-    schema regions in the hippocampal map, accumulating across episodes,
-    and is read by sleep consolidation rather than by online learning.
+    schema regions in the hippocampal map, accumulating across events,
+    and is read by both online anchor-reset (MECH-269) and sleep
+    consolidation (MECH-285).
 
-    Concretely: a region-indexed accumulator (one float per schema
-    region) integrates (predicted_V_s - realised_V_s) across executed
-    rollouts, with a slow leak so very old residuals decay. Read-only
-    during waking; consumed during sleep by MECH-285.
+    Operational definition (refined 2026-04-22). For each schema region
+    r in active_anchor_set(t):
+      if MECH-287 trigger(t):
+        staleness[r] += attribution_weight(r, source_streams) * magnitude
+      staleness[r] *= leak_factor   # slow per-tick decay, e.g. 0.995
 
-    Falsifiable (primary): an agent in a changing environment should
-    show staleness-accumulator increases on the schema regions
-    corresponding to the changed parts of the environment. An agent
-    in a stable environment should show baseline-near-zero accumulator
-    values across the map.
+    attribution_weight credits the broadcast trigger to anchor regions
+    that produced the failed prediction; the biology candidate is the
+    cortical projection topology onto LC (Aston-Jones-Cohen 2005), which
+    means structurally-connected anchors get more credit -- in the
+    in-silico version, attribution_weight is parametrised by the cosine
+    similarity between the trigger's source-stream pattern and the
+    anchor region's cached source-stream signature.
+
+    Dual read-out:
+      online (MECH-269 anchor-reset): each tick, V_s_anchor(a, t) =
+        V_s(r, t) - staleness[r] is computed; if below theta_reset for
+        k consecutive steps the anchor is marked inactive (NOT erased
+        -- dual-trace preservation per Bouton 2004) and a new anchor
+        is sought.
+      offline (MECH-285 sleep priority): accumulated staleness biases
+        replay start-state distribution during sleep so high-staleness
+        regions get replayed first, more often, with higher schema-
+        update authority.
+
+    Why dual read-out is load-bearing. Pre-2026-04-22, MECH-284 was
+    framed as sleep-only (consumed by MECH-285 only). V3-EXQ-475
+    falsified this implicitly: an agent locked in catatonic freeze
+    cannot wait for sleep to clear the stale anchor -- the freeze
+    itself prevents sleep entry under MECH-286. The staleness signal
+    must be readable online by MECH-269 anchor-reset to break the
+    cycle during waking, with sleep MECH-285 providing the deeper
+    schema-repair pass for residual staleness that survives the
+    online reset.
+
+    Falsifiable (primary, EXQ-475 phenotype): with MECH-287 trigger
+    and MECH-269 online reset both enabled, an EXQ-471-conditions
+    re-run should produce attenuated freeze re-commit count after
+    the first 2-3 PAG releases (anchor invalidates, proposer remaps,
+    re-commit rate drops). With MECH-287 enabled but MECH-284 online
+    read-out disabled, the EXQ-475 phenotype should reproduce
+    (releases register but never integrate).
 
     Falsifiable (secondary, dissociation from prediction error): a
     schema region with high prediction error in a single episode but
@@ -20868,21 +20942,48 @@
     systematic under-prediction should accumulate high staleness.
     Standard prediction error and MECH-284 staleness should
     dissociate empirically.
+
+    Falsifiable (tertiary, attribution_weight specificity): broadcast
+    triggers occurring during an inactive_anchor state should produce
+    near-zero staleness increment across the map (no active anchor to
+    credit); broadcast triggers occurring during a single-anchor state
+    should produce a peaked increment on that anchor's region; broadcast
+    triggers occurring during a multi-anchor state should produce an
+    increment distributed across anchors weighted by their
+    attribution_weight to the source stream.
   notes: >
-    Discussion origin: same as MECH-283. The residual-accumulator arm
-    of the V_s bidirectional trio. Conceptually closest neighbour in
-    the existing literature is the meta-cognitive uncertainty-monitoring
-    literature (Fleming, Lau) but with a schema-regional substrate
-    rather than a global confidence scalar.
-    Design doc: docs/architecture/hippocampal_anchor_selection.md
-    section "V_s as bidirectional signal".
+    Discussion origin: registration 2026-04-22 in V_s bidirectional
+    cluster. Operational refinement 2026-04-22 (same day, post-EXQ-475)
+    from SYNTHESIS of targeted_review_waking_v_s_invalidation/. Key
+    refinement: dual read-out (online + offline) rather than sleep-only.
+
+    Design doc (refined): docs/architecture/v_s_invalidation_runtime.md
+    (covers MECH-284 operational definition + MECH-287 trigger spec
+    + MECH-269 anchor-reset criteria with dual-trace preservation).
+    Original registration design context remains at
+    docs/architecture/hippocampal_anchor_selection.md section "V_s as
+    bidirectional signal".
+
+    Substrate hooks (planned): ree_core/hippocampal/staleness_accumulator.py
+    (new) implementing the per-region integrator with attribution_weight
+    credit assignment and dual read-out hooks for MECH-269 and MECH-285.
+
+    Conceptually closest neighbour in the existing literature is the
+    meta-cognitive uncertainty-monitoring literature (Fleming, Lau) but
+    with a schema-regional substrate rather than a global confidence
+    scalar; biological grounding shifts toward OFC representational
+    drift (Wilson 2014, Stalnaker 2015, Gardner 2018) per the lit-pull
+    SYNTHESIS.
   evidence_quality_note: >
-    No substrate evidence. Promotion requires substrate implementation,
-    the falsifiable changing-environment test, and the dissociation-
-    from-prediction-error test.
+    No substrate evidence. Lit-pull lit_confidence 0.855 (literature
+    supports OFC representational drift as accumulator substrate, with
+    LC-tonic amplification of OFC drift sensitivity under elevated
+    surprise). Promotion requires substrate implementation, the EXQ-475
+    unlock test, the dissociation-from-prediction-error test, and the
+    attribution_weight specificity test.
   pharmacological_predictions:
-    - PHARM-001  # DORA-class clears the staleness MECH-284 accumulates by enabling MECH-285 readout
-  location: docs/architecture/hippocampal_anchor_selection.md
+    - PHARM-001  # DORA-class clears residual staleness MECH-284 accumulates by enabling MECH-285 readout
+  location: docs/architecture/v_s_invalidation_runtime.md
 
 - id: MECH-285
   title: "Sleep-consolidation priority from V_s residuals: during sleep-phase Bayesian aggregation (MECH-275) and sleep-dependent self-model aggregation (MECH-273), the order and weight of replay events is biased by the schema-staleness map produced by MECH-284. Replay is not uniform across schema and is not solely salience-driven (dopaminergic tagging); it is also prioritised by accumulated verisimilitude residuals. Schema regions with the most accumulated 'this is wrong' evidence get replayed first, more often, and with higher schema-update authority during sleep. PTSD-rumination has a clean architectural account here: MECH-285 priority loss co-occurring with MECH-094 hypothesis-tag dysfunction, locking the staleness tag from ever clearing."
@@ -21048,3 +21149,127 @@
     - PHARM-005  # prazosin (indirect override damping) permits MECH-286 sleep-state entry
     - PHARM-006  # SSRIs (orthogonal 5-HT axis) do NOT durably help this failure mode
   location: docs/architecture/sd_037_broadcast_override_regulator.md
+
+- id: MECH-287
+  title: "Broadcast online invalidation trigger: a fast, broadcast 'anchor may be wrong' event whose biological substrate candidate is the LC phasic burst (with parallel signals from generalised dopaminergic prediction error and lateral habenula negative-RPE). Distinct from MECH-284 the accumulator: MECH-287 is the discrete trigger event that drives accumulation. Triggered by latent-stream prediction failure (norm(z_pred(t-1) - z_obs(t)) > theta_trigger) OR strongly negative value-PE (value_PE(t) < -theta_value) OR exogenous surprise. Carries no schema-region credit on its own; downstream MECH-284 attributes the broadcast event to the active anchor set. Failure modes dissociate from MECH-284: trigger-loss produces single-event blindness (no anchor ever feels invalidated, but staleness map remains queryable); accumulator-loss produces V3-EXQ-475's phenotype directly (releases happen but never integrate). Failure modes also dissociate from MECH-285 sleep priority: trigger-loss prevents staleness from accruing, while sleep-priority loss prevents accrued staleness from being repaired."
+  claim_type: mechanism_hypothesis
+  subject: regulators.broadcast_invalidation_trigger
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - MECH-284  # downstream consumer (the accumulator this trigger drives)
+    - MECH-269  # downstream consumer (the anchor-reset that staleness ultimately drives)
+    - MECH-094  # interaction (probe-tagged content should NOT route through this trigger as if veridical)
+    - MECH-272  # state-gated routing (trigger fires waking; sleep-phase has the offline arm)
+    - SD-005    # z_self/z_world split (per-stream prediction errors live here)
+    - ARC-018   # viability map (z_pred for value_PE comes from here)
+  functional_restatement: >
+    Mechanism hypothesis. V3-EXQ-475 (re-run of EXQ-471 with SD-036
+    GABAergic decay + MECH-279 PAG freeze gate enabled) showed 5-6
+    PAG releases per seed across eval but ~12x re-commits per release
+    and 1000/1000 freeze active steps. SD-036 decay and MECH-279 exit
+    fire correctly; the reason re-commits dominate is that nothing
+    invalidates the upstream avoid-anchor during waking. The hippocampal
+    proposer keeps drawing trajectories from the original anchor.
+
+    MECH-287 commits to: a fast, broadcast 'anchor may be wrong' event
+    fires when latent-stream prediction falls below tolerance OR when
+    realised value drops sharply below predicted value. The event itself
+    is region-agnostic (broadcast, not credit-assigned). It is consumed
+    by MECH-284 the accumulator, which performs region-level credit
+    assignment via attribution_weight over the active anchor set.
+
+    Concretely:
+      trigger(t) = (norm(z_pred(t-1) - z_obs(t)) > theta_trigger)
+                   OR (value_PE(t) < -theta_value)
+                   OR (external_surprise_signal(t) > theta_surprise)
+
+    Biological substrate candidates (parallel, partially redundant):
+      LC phasic burst (best-fit per Aston-Jones-Cohen 2005 / Sara-Bouret
+        2012; surprise-shaped, broadcast, drives gain modulation that
+        is the natural multiplier on attribution_weight)
+      DA generalised PE (Schultz 1997 / Gardner-Schoenbaum-Gershman
+        2018; covers the value-PE arm; partially redundant with LC for
+        the latent-PE arm)
+      LHb negative-RPE (Matsumoto-Hikosaka 2007; specifically for the
+        value_PE < -theta_value arm)
+
+    Why a separate claim from MECH-284. The lit-pull (SYNTHESIS at
+    evidence/literature/targeted_review_waking_v_s_invalidation/) shows
+    these failure modes dissociate: LC dysfunction produces
+    perseveration / inability to shift (single events register but
+    nothing broadcasts the shift); OFC dysfunction produces inability
+    to update inferred state (broadcast registers but no region-level
+    accumulation). EXQ-475's phenotype is accumulator-loss specifically,
+    not trigger-loss -- single events register (the 5-6 releases prove
+    this) but never integrate to a durable anchor invalidation. Keeping
+    trigger and accumulator separate is required to make this empirical
+    dissociation auditable.
+
+    Falsifiable (primary, EXQ-475 unlock): re-running EXQ-471 conditions
+    with SD-036 + MECH-279 + MECH-287 + MECH-284-online-readout +
+    MECH-269-anchor-reset all enabled should produce mode-flip from
+    avoid back to a goal-seeking mode within bounded re-commit count
+    after ~5 PAG releases, NOT 1000/1000 freeze.
+
+    Falsifiable (secondary, trigger-vs-accumulator dissociation):
+    four-arm factorial of {MECH-287, MECH-284-online-readout} crossed
+    with {present, lesioned} should produce the predicted dissociation
+    (trigger-loss -> single-event blindness; accumulator-loss ->
+    V3-EXQ-475 phenotype; both -> rigid perseveration; both intact ->
+    EXQ-471 catatonic-lock unlocked).
+
+    Falsifiable (tertiary, single-event capability vs accumulation):
+    a single sufficiently large trigger event (theta_trigger crossed
+    by a wide margin) should be capable of producing immediate
+    anchor-reset via MECH-269 even before MECH-284 accumulation
+    crosses its threshold. This matches biological orienting responses
+    to single salient violations and is dissociable from the
+    accumulator's slower integrative role.
+  notes: >
+    Discussion origin: 2026-04-22 SYNTHESIS of
+    targeted_review_waking_v_s_invalidation/ literature pull (Wave 2
+    after V3-EXQ-475 results landed). The pull was commissioned
+    specifically because EXQ-475's pattern (releases happen, re-commits
+    dominate) was diagnosed as "online anchor invalidation signal
+    missing". The synthesis verdict was: register a new MECH for the
+    trigger event distinct from MECH-284 accumulator (failure modes
+    dissociate empirically; conflating them blocks the
+    trigger-vs-accumulator factorial that V3-EXQ-476 needs to run).
+
+    Design doc: docs/architecture/v_s_invalidation_runtime.md (covers
+    MECH-287 + refined MECH-284 operational definition + refined
+    MECH-269 anchor-reset criteria with dual-trace preservation per
+    Bouton 2004).
+
+    Substrate hooks (planned): ree_core/regulators/invalidation_trigger.py
+    (new) implementing the trigger formula above; emits a per-tick
+    event consumed by ree_core/hippocampal/staleness_accumulator.py
+    (new) which implements MECH-284's region-indexed integration with
+    attribution_weight credit assignment over the active anchor set.
+
+    Coupling to MECH-285 sleep priority is underdetermined by the
+    lit-pull (only Gershman 2017 speaks to it directly). The architectural
+    default in the design doc is "waking trigger increments staleness;
+    sleep priority reads accumulated staleness" -- partially-coupled,
+    not independent. Q4 of the lit-pull spec (coupling to MECH-285)
+    remains open for future evidence.
+
+    The MECH-094 interaction is load-bearing: probe-tagged content
+    (MECH-094 strengthened) must NOT increment MECH-284 staleness as
+    if it were veridical anchor-following. The trigger fires on
+    realised observation only, never on simulated/probe content.
+  evidence_quality_note: >
+    Registered candidate with v3_pending:true. Literature support is
+    moderate (lit_confidence inherited from MECH-284 0.855 since
+    the same SYNTHESIS spans both); no in-silico evidence yet.
+    Promotion requires substrate implementation (invalidation_trigger.py
+    + staleness_accumulator.py) plus the V3-EXQ-476 unlock test plus
+    the four-arm trigger-vs-accumulator dissociation factorial.
+  pharmacological_predictions:
+    - PHARM-005  # prazosin (alpha-1 antagonist) directly damps the LC-analog substrate -> blunted trigger -> increased perseveration
+  location: docs/architecture/v_s_invalidation_runtime.md
