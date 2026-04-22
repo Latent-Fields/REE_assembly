@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_comparator_vinogradova2001",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-287", "MECH-272"],
+  "source": {
+    "title": "Hippocampus as comparator: role of the two input and two output systems of the hippocampus in selection and registration of information",
+    "authors": ["Olga S Vinogradova"],
+    "year": 2001,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.1073"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Foundational comparator framework. CA3 computes match/mismatch between two functionally distinct input streams (brainstem-reticular vs cortical) and gates both intra-hippocampal flow and subcortical arousal. Direct support for an anchor-side comparator-derived component to MECH-287 distinct from the LC/DA broadcast trigger. Supports per-stream V_s as biologically motivated rather than ad-hoc.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-287 registers only the LC/DA broadcast trigger and omits a CA1/CA3 comparator component, it loses the local mismatch-driven gating documented here.",
+    "Two-stream architecture in original work is broad-strokes; modern literature recognises more substreams (MEC vs LEC, CA3 vs DG). The substrate plan's five-stream V_s is more granular than the comparator literature directly supports."
+  ],
+  "tags": ["mech_287", "mech_272", "comparator", "ca3", "match_mismatch", "anchor_side_trigger"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal CA3 receives two functionally distinct input streams (brainstem-reticular via MS-DB; cortical via EC through DG) and computes a match/mismatch comparison between them. The mismatch signal gates intra-hippocampal output (CA3 -> CA1) and subcortical arousal modulation (CA3 -> raphe -> reticular formation).",
+    "ree_translation": "Anchor-side mismatch computation (per-anchor V_s in substrate plan) has direct biological precedent in the CA3 comparator function. MECH-287 broadcast trigger should consider registering an additional anchor-side comparator-derived component anatomically distinct from the LC/DA broadcast trigger documented in the waking-V_s lit-pull. Per-stream V_s extends the two-stream comparator principle to a higher-granularity per-stream mismatch computation.",
+    "mapping_caveat": "Decades-old synthesis primarily from rabbit unit recordings; specific anatomical claims need updating. Five-stream V_s is more granular than the two-stream original literature directly supports.",
+    "source_context": "In vivo unit recording synthesis in unanesthetised rabbits, with electrical stimulation and disconnection paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Foundational paper; mapping fidelity moderate-to-high for the comparator architecture. Transfer risk moderate due to age of original work and rabbit-only data."
+  }
+}

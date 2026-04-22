@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_remapping_review_colgin2008",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-269", "MECH-272"],
+  "source": {
+    "title": "Understanding memory through hippocampal remapping",
+    "authors": ["Laura Lee Colgin", "Edvard I Moser", "May-Britt Moser"],
+    "year": 2008,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2008.06.008"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality canonical review by the Mosers; directly addresses the question of how distinct hippocampal representations for the same place are formed and maintained. Mapping fidelity is moderate because the review describes population-level decorrelation rather than the exact dual-trace anchor switching MECH-269 posits, but the substrate (rate vs global remapping; CA3 vs DG/CA1 differences) is the bedrock on which dual-trace coexistence rests.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rate remapping uses overlapping ensembles with different firing-rate weights (NOT fully separable maps). Implementing dual-trace as hard active/inactive flags would mismatch this: a soft re-weighting (probability mixture across anchor set) is closer to biology for rate-remap-dominated cases.",
+    "Global remapping recruits different cell populations -- here hard separability is justified -- but the determinants of which mode (rate vs global) is engaged depend on environmental change magnitude, not directly on a per-stream verisimilitude signal."
+  ],
+  "tags": ["mech_269", "mech_272", "remapping", "rate_remapping", "global_remapping", "dual_trace", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "Place-cell remapping is a generic decorrelation mechanism by which the hippocampus separates similar experiences. Two distinct remapping modes operate: rate remapping (same ensemble, different firing rates) and global remapping (different ensemble entirely). The mode engaged depends on the magnitude and modality of input change, with CA3 supporting more discrete (attractor-like) transitions than CA1.",
+    "ree_translation": "Rate remapping is the biological substrate for soft anchor mixtures (MECH-272 routing as continuous weighting across an anchor set co-localised in physical space); global remapping supports discrete anchor switches (the hard active/inactive case). MECH-269 dual-trace anchor preservation maps cleanly only onto global remapping. For substrate decisions where multiple maps co-exist for the same place but differ in input gating, rate remapping is the closer biological analogue.",
+    "mapping_caveat": "The review describes population coding and decorrelation, not anchor-set logic. Translating remapping into 'anchor active vs inactive' is an architectural reading; biology may mix the two regimes within a single brain at different timescales. Soft routing is more general and likely correct; hard flags risk over-discretising what biology does continuously.",
+    "source_context": "Rodent in vivo electrophysiology synthesis (CA1/CA3); experimental paradigms involve incremental changes to environment shape, colour, or context."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Review prestige is very high (Mosers in Trends Neurosci) and the conceptual frame transfers cleanly. Mapping_fidelity is held back because the architectural translation from remapping mode to dual-trace anchor logic requires interpretation; biology offers both rate (continuous mixture) and global (discrete switching) regimes and the substrate must accommodate both."
+  }
+}

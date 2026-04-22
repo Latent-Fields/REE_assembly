@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_schemas_tse2007",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-269", "MECH-094"],
+  "source": {
+    "title": "Does assimilation into schemas involve systems or cellular consolidation? It is not just time. (Companion to Tse et al 2007 Science 316:76-82)",
+    "authors": ["Dorothy Tse", "Richard F Langston", "Ingrid Bethus", "Emma R Wood", "Menno P Witter", "Richard G M Morris"],
+    "year": 2007,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2007.09.007"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Argues for multi-scale hippocampal organisation -- coarse schema and fine episode levels. Strong behavioural and lesion-timing evidence that schemas at the environment-plus-task level dramatically accelerate consolidation, suggesting biology uses a coarser-than-place-cell-field unit for high-impact organisation. Mapping to substrate granularity choice is interpretive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Schema-level granularity (coarse, environment-plus-task) is what biology uses for consolidation gating. A substrate that defaults to place-cell-field grain will miss the schema-level V_s computation.",
+    "Single-scale anchor sets cannot represent the hierarchical schema-contains-episode structure that the Morris paradigm relies on."
+  ],
+  "tags": ["mech_269", "mech_094", "schemas", "granularity", "consolidation", "morris_event_arena"],
+  "mapping": {
+    "source_claim_statement": "Rats with a pre-trained spatial schema (an event arena with stable food-location associations) encode new paired associates in a single trial; these schema-fitted memories survive hippocampal lesions much sooner than non-schema-based memories.",
+    "ree_translation": "Hippocampal organisation is multi-scale: a coarse schema layer (environment-plus-task, gates consolidation) and a fine episode/association layer (slots specific items into schema). MECH-269 anchors are most naturally at the schema scale; the substrate should organise anchors hierarchically rather than as a flat list. V_s should be computed at both scales: schema-V_s (does the framework still apply?) and episode-V_s (does this association still hold?).",
+    "mapping_caveat": "The Morris paradigm is stylised; schema is operationalised as broad framework of stable associations, not formally defined. Whether competing schemas for the same arena can coexist (the dual-trace question at the schema level) is not tested.",
+    "source_context": "Behavioural and lesion experiments in rats trained on the event arena paired-associate task; companion theoretical defence of schema interpretation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "High source quality but the multi-scale architectural recommendation is interpretive. Stylised paradigm constrains transfer; the schema scale is the right level for V_s gating but the specific implementation in the substrate plan needs the hierarchy to be designed explicitly."
+  }
+}

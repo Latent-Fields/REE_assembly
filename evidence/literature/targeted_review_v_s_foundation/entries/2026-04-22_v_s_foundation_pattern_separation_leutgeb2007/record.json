@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_pattern_separation_leutgeb2007",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-269", "MECH-272"],
+  "source": {
+    "title": "Pattern separation in the dentate gyrus and CA3 of the hippocampus",
+    "authors": ["Jill K Leutgeb", "Stefan Leutgeb", "May-Britt Moser", "Edvard I Moser"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1135801"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational Science paper; canonical primary evidence that distinct CA3 ensembles for the same physical location coexist. Strong direct support for MECH-269 dual-trace at the population level. Mapping caveat: the trigger biology routes via DG-computed input distance, not via internal anchor V_s; the substrate plan should acknowledge the trigger pathway differs from the architectural design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Biological routing of which CA3 ensemble fires depends on upstream input difference computed by DG, NOT on anchor-internal staleness/V_s. If MECH-272 routing decisions are driven solely by V_s, the substrate misses the input-distance-driven mechanism documented here.",
+    "Two separable mechanisms (DG rate re-coding for fine-grained discrimination; CA3 ensemble switching for coarse change). A substrate that uses only one of these (e.g. only anchor switching) will fail at the regime the other handles."
+  ],
+  "tags": ["mech_269", "mech_272", "pattern_separation", "ca3", "dentate_gyrus", "rate_remapping", "global_remapping"],
+  "mapping": {
+    "source_claim_statement": "Two complementary mechanisms perform pattern separation in hippocampus: DG decorrelates by graded re-coding of the same active population (rate remapping), while CA3 recruits nonoverlapping ensembles when environmental change crosses some threshold (global remapping).",
+    "ree_translation": "Direct empirical anchor for MECH-269 dual-trace preservation: distinct CA3 ensembles for the same place coexist as a population fact. MECH-272 routing has a biological precedent in the input-distance-driven gating from DG/EC. But the substrate plan currently routes via internal V_s on the anchor; biology routes via upstream input distance computed before the anchor is selected. These can be reconciled if V_s is treated as a learned proxy for input-distance, but the difference should be flagged.",
+    "mapping_caveat": "The morphing paradigm is environmental geometry only -- non-spatial schema chunks may not show identical dual-regime behaviour. The recordings dissociate DG from CA3 but CA1 readout is inferred. Rodent only.",
+    "source_context": "Single-unit recordings in DG granule cells and CA3 pyramidal cells of rats exploring parametrically morphed arenas (square -> octagonal -> circular)."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality; mapping fidelity strong for the substrate claim (multiple CA3 ensembles coexist for same place) but moderate for the routing claim (biology routes via input-distance, plan routes via V_s)."
+  }
+}

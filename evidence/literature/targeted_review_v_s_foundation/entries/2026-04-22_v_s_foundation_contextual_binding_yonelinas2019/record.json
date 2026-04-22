@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_contextual_binding_yonelinas2019",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-269", "MECH-272", "MECH-284"],
+  "source": {
+    "title": "A contextual binding theory of episodic memory: systems consolidation reconsidered",
+    "authors": ["Andrew P Yonelinas", "Charan Ranganath", "Arne D Ekstrom", "Brian J Wiltgen"],
+    "year": 2019,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-019-0150-4"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Theoretical framework that reinterprets multi-trace persistence as ongoing hippocampal contextual binding. Provides clean theoretical home for MECH-272 routing as context-dependent retrieval and reframes MECH-284 V_s residual as contextual interference rather than consolidation-readiness. Mapping depends on accepting a contested theory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If standard systems consolidation is correct, the V_s-as-contextual-mismatch reading needs adjustment -- V_s residual would then be a consolidation-readiness signal rather than an interference measure.",
+    "Theoretical framework only -- no new empirical evidence; specific predictions about hippocampal lesion impairment of old memories remain mixed in the literature."
+  ],
+  "tags": ["mech_269", "mech_272", "mech_284", "contextual_binding", "multi_trace", "systems_consolidation", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "Episodic memory remains hippocampus-dependent across the lifespan because hippocampus binds item to context. Forgetting is contextual interference, not failed transfer. Sleep reduces interference rather than transferring traces to neocortex.",
+    "ree_translation": "Dual-trace anchors at MECH-269 are theoretically grounded as persistent hippocampal contextual bindings. MECH-272 routing maps to context-dependent retrieval. MECH-284 V_s residual is a measure of contextual interference per anchor, accumulated during waking; MECH-285 sleep-priority then sharpens context-tagging rather than moving traces.",
+    "mapping_caveat": "Theoretical review (no new empirical data); contextual-binding theory is contested vs standard systems consolidation. Specific scale (place vs schema vs event-segment) of binding is unspecified.",
+    "source_context": "Theoretical synthesis of behavioural, lesion, neuroimaging, and sleep literature on episodic memory consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Very high source quality. Mapping fidelity moderate because architectural translation is theoretically clean but rests on a contested theoretical framework."
+  }
+}

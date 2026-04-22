@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-22T18:52:27.442800Z`
+Generated: `2026-04-22T19:34:02.777080Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -207,6 +207,7 @@ Generated: `2026-04-22T18:52:27.442800Z`
 | `targeted_review_v3_hippocampal_rollout` | [`2026-04-02_arc_018_vte_lookahead_johnson2007`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/record.json) | 17 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-15_mech059_lit-0019_completion`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/record.json) | 5 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/summary.md) |
 | `targeted_review_v3_prefrontal_control` | [`2026-02-15_mech060_lit-0021_completion`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/record.json) | 5 | [`summary`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/summary.md) |
+| `targeted_review_v_s_foundation` | [`2026-04-22_v_s_foundation_trajectory_encoding_frank2000`](targeted_review_v_s_foundation/entries/2026-04-22_v_s_foundation_trajectory_encoding_frank2000/record.json) | 12 | [`summary`](targeted_review_v_s_foundation/entries/2026-04-22_v_s_foundation_trajectory_encoding_frank2000/summary.md) |
 | `targeted_review_waking_v_s_invalidation` | [`2026-04-22_mech_284_pattern_separation_yassa2011`](targeted_review_waking_v_s_invalidation/entries/2026-04-22_mech_284_pattern_separation_yassa2011/record.json) | 13 | [`summary`](targeted_review_waking_v_s_invalidation/entries/2026-04-22_mech_284_pattern_separation_yassa2011/summary.md) |
 | `targeted_review_zebrafish_sleep_behavioral_diversity` | [`2026-04-04_mech121_mech092_forward_reverse_replay_shin2019`](targeted_review_zebrafish_sleep_behavioral_diversity/entries/2026-04-04_mech121_mech092_forward_reverse_replay_shin2019/record.json) | 7 | [`summary`](targeted_review_zebrafish_sleep_behavioral_diversity/entries/2026-04-04_mech121_mech092_forward_reverse_replay_shin2019/summary.md) |
 | `visual_cortex_compact_models` | [`2026-02-26_cowley_2023_compact_v4`](visual_cortex_compact_models/entries/2026-02-26_cowley_2023_compact_v4/record.json) | 1 | [`summary`](visual_cortex_compact_models/entries/2026-02-26_cowley_2023_compact_v4/summary.md) |

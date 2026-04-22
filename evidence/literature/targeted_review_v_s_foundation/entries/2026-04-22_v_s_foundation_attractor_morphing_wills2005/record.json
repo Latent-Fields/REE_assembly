@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_attractor_morphing_wills2005",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-269", "MECH-272"],
+  "source": {
+    "title": "Attractor dynamics in the hippocampal representation of the local environment",
+    "authors": ["Tom J Wills", "Colin Lever", "Francesca Cacucci", "Neil Burgess", "John O'Keefe"],
+    "year": 2005,
+    "venue": "Science",
+    "doi": "10.1126/science.1108905"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Cleanest published demonstration of bistability between coexisting hippocampal representations of the same physical place. Direct empirical anchor for hard dual-trace switching in MECH-269. Caveat: bistability required familiarisation, and the trigger appears to be input-distance not anchor V_s.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bistability emerged only after pre-exposure created the two attractors. Anchors not yet consolidated will behave as graded representations, not discrete bistable basins -- the substrate must handle both regimes.",
+    "Switching was driven by current input crossing the basin boundary, not by anchor-internal staleness. If MECH-272 routing relies on V_s to trigger switching, switching will lag the input change."
+  ],
+  "tags": ["mech_269", "mech_272", "attractor", "bistability", "ca1", "morphing", "context"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal CA1 ensembles switch abruptly and simultaneously between two attractor states (square-mode vs circle-mode) as environmental shape is morphed incrementally, after pre-exposure has established each shape as a familiar context.",
+    "ree_translation": "Direct biological evidence for two coexisting attractor representations of the same physical place, with near-step switching between them under input morphing -- the central architectural claim of MECH-269 dual-trace anchor preservation. MECH-272 routing maps onto the basin-boundary crossing.",
+    "mapping_caveat": "Bistability required prior familiarisation. The substrate cannot assume dual-trace anchors arise immediately from a single experience. The switching is input-distance driven, not V_s driven.",
+    "source_context": "CA1 single-unit recordings in rats over 7-day morphing protocol (square <-> circle, intermediate octagonal shapes)."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality; high mapping fidelity for the qualitative substrate claim. Rodent-only and geometric-morphing-only constrain transfer."
+  }
+}

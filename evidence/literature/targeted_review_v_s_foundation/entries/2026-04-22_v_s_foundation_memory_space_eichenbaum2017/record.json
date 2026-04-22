@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_memory_space_eichenbaum2017",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-269", "MECH-272"],
+  "source": {
+    "title": "On the Integration of Space, Time, and Memory",
+    "authors": ["Howard Eichenbaum"],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.06.036"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong theoretical synthesis arguing hippocampal coding is multi-dimensional mixed-selectivity at the cell level. Per-stream V_s in the substrate maps cleanly as a projection-readout of the integrated mixed code. Granularity-emerges-from-task framing complicates the substrate's fixed-granularity commitment but does not weaken the per-stream V_s architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Per-stream V_s as a biology-faithful per-stream computation is incorrect -- biology computes mixed-selectivity integrated code; per-stream V_s in the substrate is a projection-readout of that integrated code (computational convenience that surfaces existing information).",
+    "A substrate that fixes granularity at one scale (e.g. place-cell-field only) loses the dimension-emerges-from-task flexibility biology has. Multi-scale or task-adaptive granularity is closer to biology."
+  ],
+  "tags": ["mech_269", "mech_272", "mixed_selectivity", "per_stream_vs", "granularity", "memory_space", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal CA1 carries multiplexed independent representations of multiple dimensions (space, time, sequence position, abstract relations) with mixed selectivity at the single-cell level. The relevant organisation scale depends on task structure rather than being fixed.",
+    "ree_translation": "Per-stream V_s in the substrate is a projection-readout of an underlying integrated mixed-selectivity representation -- a computational convenience surfacing existing information, not a biology-deviating per-stream computation. MECH-269 anchor keys are multi-dimensional; the per-stream vector is the disambiguator over a mixed-code substrate.",
+    "mapping_caveat": "Theoretical review, no new data. Granularity-emerges-from-task position implies a fully principled substrate would not fix granularity architecturally -- the substrate plan's commitment to environmentally-grounded chunks is a pragmatic simplification.",
+    "source_context": "Theoretical synthesis of place-cell, time-cell, grid-cell, and event-cell literatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality. Mapping fidelity strong for the per-stream-V_s-as-projection reading; the granularity-emerges-from-task implication is harder to operationalise but does not undermine the architectural choice."
+  }
+}

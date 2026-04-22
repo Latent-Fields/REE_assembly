@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_subiculum_omara2009",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-272", "MECH-287", "MECH-269"],
+  "source": {
+    "title": "Roles for the subiculum in spatial information processing, memory, motivation and the temporal control of behaviour",
+    "authors": ["Shane M O'Mara", "Maria V Sanchez-Vives", "Jorge R Brotons-Mas", "Eilis O'Hare"],
+    "year": 2009,
+    "venue": "Prog Neuropsychopharmacol Biol Psychiatry",
+    "doi": "10.1016/j.pnpbp.2009.03.040"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Subiculum-as-routing-hub synthesis. Supports MECH-272 routing layer being anatomically distinct from anchor representation, and provides the anatomical pathway by which an anchor-side MECH-287 broadcast component would reach VTA (per Lisman & Grace coupling). Mapping is supportive but interpretive; review is dated and predates much modern characterisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-272 routing is implemented inside anchor representations rather than at a dedicated routing layer, it loses the biological pattern of CA1 anchor coding being functionally distinct from subicular fan-out routing.",
+    "Subicular characterisation has substantially advanced since 2009 (axis cells, boundary vector cells); substrate should not commit to the 2009 description of subicular code as canonical."
+  ],
+  "tags": ["mech_272", "mech_287", "mech_269", "subiculum", "routing", "hc_vta_pathway", "fan_out"],
+  "mapping": {
+    "source_claim_statement": "The subiculum is the principal output structure of the hippocampal formation, integrating CA1 output with parahippocampal/cortical inputs and routing the result via functionally distinct projections to NAc, mammillary bodies, septum, hypothalamus, PFC, and retrosplenial cortex. Subicular cells carry multi-dimensional codes (boundary, axis, context) distinct from CA1 place coding.",
+    "ree_translation": "MECH-272 routing belongs at a dedicated layer downstream of the anchor, not inside the anchor itself -- mirroring subicular fan-out. The MECH-287 anchor-side broadcast component (per Lisman & Grace + Vinogradova) routes through a subiculum-analog stage to reach the VTA-equivalent broadcast generator. Anchor representations downstream of CA1 are mixed-selectivity over multiple dimensions, consistent with per-stream V_s as projection-readout.",
+    "mapping_caveat": "Subicular characterisation has been substantially refined since 2009. Direct functional evidence for subiculum as obligate route for hippocampal-to-VTA novelty signaling is anatomical rather than functional. Substrate routing layer translation is interpretive.",
+    "source_context": "Theoretical synthesis review of subicular spatial coding, memory function, motivational coupling, and temporal-context signals."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Specialty journal review by leading subiculum researcher. Mapping fidelity moderate; the routing-hub architecture supports MECH-272 and the MECH-287 anchor-side pathway but is interpretive. Transfer risk moderate due to age and subsequent refinement."
+  }
+}

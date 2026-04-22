@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_splitter_cells_wood2000",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-269", "MECH-272"],
+  "source": {
+    "title": "Hippocampal neurons encode information about different types of memory episodes occurring in the same location",
+    "authors": ["Emma R Wood", "Paul A Dudchenko", "Robert J Robitsek", "Howard Eichenbaum"],
+    "year": 2000,
+    "venue": "Neuron",
+    "doi": "10.1016/s0896-6273(00)00071-4"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational splitter-cell paper. Two-thirds of CA1 cells fire differentially at the same place depending on trial-type context, after controlling for position/heading/speed. Strong direct support for (place, context) anchor encoding rather than pure place-keyed anchors.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pure place-keyed anchors will collapse two distinct (place, context) attractors into one and lose the disambiguation biology preserves.",
+    "One-third of cells fired similarly on both trial types (pure place coding) -- the substrate must accommodate a mixture of pure-place and (place, context) anchors, not assume all anchors carry context."
+  ],
+  "tags": ["mech_269", "mech_272", "splitter_cells", "ca1", "context", "trajectory_coding"],
+  "mapping": {
+    "source_claim_statement": "On a continuous spatial alternation T-maze, two-thirds of CA1 complex-spike neurons fire differentially as rats traverse the central stem on left-turn vs right-turn trials, after controlling for position, heading, and running speed.",
+    "ree_translation": "Anchors must be (place, stream-mixture) pairs rather than place alone. The per-stream V_s vector in the substrate plan is a candidate disambiguator playing the role that 'trial type' plays here. MECH-272 routing then selects the (place, stream-mixture) attractor that matches current input.",
+    "mapping_caveat": "The biology disambiguator may be prospective trajectory, retrospective trajectory, or abstract trial type -- subsequent work parses these differently. The substrate's stream-mixture vector is one possible mapping but not uniquely supported. Stereotyped alternation may inflate the splitter signal vs naturalistic contexts.",
+    "source_context": "Single-unit CA1 recordings in rats running continuous spatial alternation on modified T-maze."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "High-quality foundational paper. Mapping fidelity strong for the qualitative (place, context) claim; the specific stream-mixture mapping in REE is one of several biologically plausible disambiguators."
+  }
+}

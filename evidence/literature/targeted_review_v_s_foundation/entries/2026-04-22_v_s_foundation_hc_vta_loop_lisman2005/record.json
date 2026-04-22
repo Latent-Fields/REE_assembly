@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v_s_foundation",
+  "entry_id": "2026-04-22_v_s_foundation_hc_vta_loop_lisman2005",
+  "timestamp_utc": "2026-04-22T19:16:33Z",
+  "claim_ids_tested": ["MECH-287", "MECH-269"],
+  "source": {
+    "title": "The hippocampal-VTA loop: controlling the entry of information into long-term memory",
+    "authors": ["John E Lisman", "Anthony A Grace"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.05.002"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational synthesis of the hippocampal mismatch -> VTA dopamine -> hippocampal LTP loop. Provides direct architectural support for MECH-287 dual-component broadcast trigger (anchor-side comparator coupled to LC/DA broadcast), and for the MECH-269 + MECH-285 dual-trace consolidation pathway via dopamine-driven encoding enhancement of newly-active anchors.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Treating MECH-287 broadcast trigger and an anchor-side comparator as alternatives rather than coupled stages misses the loop architecture biology actually uses.",
+    "Subsequent work has complicated the precise pathway (LC-derived DA in CA1, ventral vs dorsal HC dissociation); the substrate should not commit to subiculum-NAc-VP-VTA as the unique substrate."
+  ],
+  "tags": ["mech_287", "mech_269", "hippocampal_vta_loop", "novelty", "dopamine", "broadcast_trigger"],
+  "mapping": {
+    "source_claim_statement": "Hippocampus detects novel information via a comparator function and conveys it via subiculum-NAc-VP to VTA. VTA dopamine then feeds back to hippocampus to enhance LTP and the encoding of new information into long-term memory.",
+    "ree_translation": "MECH-287 broadcast trigger has two coupled components: an anchor-side CA1/CA3 comparator-derived signal and the LC/global-DA broadcast documented in the waking-V_s lit-pull. These are coupled stages of the same trigger event, not alternatives. MECH-269 + MECH-285 dual-trace consolidation maps onto the dopamine-back-to-hippocampus loop: V_s drop -> broadcast -> enhanced encoding of newly-active anchor.",
+    "mapping_caveat": "Subsequent work has refined and complicated the framework (LC-derived DA in CA1, ventral vs dorsal HC dissociation). Per-stream V_s extension is interpretive rather than directly tested.",
+    "source_context": "Theoretical synthesis bridging hippocampal comparator function to VTA dopamine novelty signaling and back-projection to HC."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality. Mapping fidelity strong for the dual-component MECH-287 architecture. Transfer risk moderate due to subsequent complications of the precise pathway."
+  }
+}
