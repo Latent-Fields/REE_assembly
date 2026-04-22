@@ -127,6 +127,40 @@ integrate at action selection.
 2017 (orexin recruitment under high effort/demand); Bassetti 2019 (narcolepsy as
 coupling-loss clinical model).
 
+### MECH-286: Override-gated sleep-state transition (wake-stability axis)
+
+**Statement:** SD-037 `override_signal` also gates entry to and exit from offline (sleep)
+mode. High override (sustained drive + threat under metabolic demand) suppresses sleep-mode
+onset; low override + accumulated MECH-284 V_s-residual staleness + permissive threat
+context permits onset and recruits MECH-285. This is the recruitment authority for the
+offline arm of the V_s bidirectional cluster — without MECH-286, MECH-285 produces a
+priority list with no transition mechanism to consume it. This is the V3 architectural
+account of orexin's canonical role as wake-stability gate (Saper/Scammell flip-flop), which
+MECH-281 understates by framing cataplexy purely as a motor-coupling failure.
+
+**Substrate prediction:** sleep-mode entry requires three joint conditions: `override_signal
+< theta_sleep_permit AND MECH-284_staleness > theta_sleep_recruit AND threat_context
+permissive`. Lesion test: pinning override_signal high under conditions that would normally
+permit sleep should produce sleep-onset failure (hyperarousal-insomnia phenotype). Saturation
+test: setting override_signal near zero should produce uncontrolled sleep intrusion
+(narcolepsy phenotype, distinct from MECH-281 cataplexy but produced by the same lesion —
+predicting clinical co-occurrence).
+
+**Tertiary prediction (schema-repair starvation):** chronic hyperarousal sustained over
+many cycles should produce stable accumulation of MECH-284 staleness with no clearance,
+observable as deteriorating schema fit on novel inputs even with intact waking computation.
+This is the architectural mechanism behind sleep-deprivation cognitive decline and a
+contributor to PTSD chronicity (paired with MECH-285 priority loss + MECH-094 hypothesis-tag
+dysfunction as the rumination architecture). See psychiatric_failure_modes.md
+"Hyperarousal Insomnia and Schema-Repair Starvation".
+
+**Evidence anchors:** Saper/Scammell flip-flop literature (orexin as wake-stability gate
+against VLPO sleep-active circuits); orexin neuron silence during sleep, firing during wake;
+Bassetti 2019 (sleep-state instability as core narcolepsy deficit, cataplexy as separable
+downstream symptom); chronic insomnia in PTSD and severe melancholic depression; sleep
+deprivation as established psychosis precipitant; orexin-receptor antagonist clinical signal
+in chronic insomnia (suvorexant, lemborexant).
+
 ### MECH-282: LPB interoceptive routing into harm-arbitration
 
 **Statement:** A lateral-parabrachial-nucleus analog (LPB) routes interoceptive

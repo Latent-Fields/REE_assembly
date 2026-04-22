@@ -723,3 +723,153 @@ and disturbance produces stuck-in-freeze.
 **Updated claims:**
 - MECH-202: noted as a *distinct* catatonia subtype (commit-gate paralysis) from the
   harm-stream lock subtype documented here. Both are real; treatment differs.
+
+---
+
+## Hyperarousal Insomnia and Schema-Repair Starvation (MECH-286, MECH-285, MECH-094)
+
+### The exemplar
+
+A trauma-exposed patient (combat veteran, assault survivor, ICU survivor with
+post-intensive-care syndrome) presents with chronic insomnia: cannot initiate sleep
+despite exhaustion, frequent nocturnal awakening with full alertness, intrusive
+ruminative imagery on attempted sleep onset, no recoverable dream-narrative content
+in the morning. Daytime computation appears intact in the consulting room — language,
+working memory, planning all measure within normal limits. But the patient describes
+deteriorating performance on novel tasks at work, increasing rigidity in familiar
+routines, and a sense that "nothing new sticks." Standard hypnotics (z-drugs,
+short-acting benzodiazepines) produce sedation but not restoration: the patient
+sleeps and still wakes feeling unrested. Standard SSRI augmentation does not
+durably help.
+
+This is not depression-with-insomnia (the depressive-maintenance loop INV-054).
+It is not the harm-stream catatonic subtype (SD-036 / MECH-279) — the patient is
+*hyper*-active not hypo-active. It is not MECH-202 frame-tag failure — reality
+testing is intact. The architectural account REE owes is: the agent's offline
+schema-repair pipeline is being starved of the offline phase it requires to run.
+
+### Mechanism
+
+The cluster involves three interacting failures, each separately documented:
+
+1. **Saturated MECH-286 override (sleep-onset gate stays high)**: under chronic
+   threat re-experiencing, SD-037 `override_signal` does not relax. The
+   wake-stability arm of orexin keeps the agent above `theta_sleep_permit`. Sleep
+   onset is suppressed.
+
+2. **MECH-284 staleness accumulator continues to fill**: waking experience continues
+   to deposit V_s residuals (the schema's running record of "this prediction did
+   not match"). Under chronic novel-and-unprocessed input, this accumulator grows
+   monotonically. There is no clearance pathway in waking — clearance requires
+   the offline replay readout (MECH-285).
+
+3. **MECH-285 priority readout never fires (or fires degraded)**: because MECH-286
+   never permits sleep onset, the priority readout that would consume the staleness
+   tags never runs. Schema regions with the most accumulated "this is wrong"
+   evidence are never replayed, never re-aggregated by the sleep-half of MECH-273,
+   and the schema does not update.
+
+The compounding result is **schema-repair starvation**: novel input continues to
+deposit residuals that never clear, the schema becomes progressively more
+mis-fitted to the world the agent is currently in, and waking computation becomes
+progressively more rigid (defaulting to old-schema responses because the new-schema
+update never lands). This is a slow-motion failure: a single missed night does not
+produce it; weeks-to-months of pinned override do.
+
+### The PTSD-chronicity architectural account
+
+Acute PTSD has a recoverable trajectory in many patients. Chronic PTSD does not.
+REE's account of the difference is a co-failure pattern across this cluster:
+
+- **MECH-285 priority loss alone** → degraded but not absent schema repair;
+  emotionally salient events still get dopaminergically tagged for replay;
+  recoverable.
+- **MECH-094 hypothesis-tag loss alone** → simulated content can no longer be
+  distinguished from real content; replay events can intrude as flashbacks; but
+  the schema can still update if MECH-285 is intact, eventually integrating the
+  trauma narrative; recoverable.
+- **MECH-286 saturation alone** → acute insomnia, daytime exhaustion, but on a
+  reasonable timescale (days) the override relaxes and sleep is restored;
+  recoverable.
+- **All three jointly (MECH-286 saturated + MECH-285 priority lost + MECH-094
+  tag dysfunctional)** → the staleness tag accumulates from the traumatic
+  episode but never gets cleared, because (i) the priority signal that should
+  pull it into replay is broken, (ii) the override signal that should permit
+  the offline phase is pinned, and (iii) the replay that does manage to occur
+  cannot update the schema because simulated and real are conflated.
+
+The chronic phenotype is the joint failure. This is consistent with the clinical
+observation that PTSD chronicity correlates with persistent sleep architecture
+disruption and that interventions which restore sleep architecture (prazosin for
+nightmares, sleep-targeted CBT) move some patients out of chronicity even when
+the explicit trauma-processing arm has stalled.
+
+### Distinction from depressive-maintenance loop (INV-054)
+
+INV-054 is a goal-pipeline failure (terrain-maintenance MECH-186, gain MECH-187,
+goal-persistence MECH-188 collectively underactive). Its phenotype is anhedonic
+withdrawal, low arousal, motivational poverty. The hyperarousal-insomnia cluster
+is the *opposite* arousal sign: SD-037 override is *over*-active, drive-coupled
+arousal is *over*-recruited via MECH-281, and the failure is in the offline
+recovery pipeline rather than the waking goal pipeline.
+
+Both can co-occur (depression with hyperarousal-insomnia is common) but they are
+architecturally distinct and should respond to distinct interventions:
+- INV-054 → serotonergic gain restoration, behavioural activation
+- This cluster → sleep architecture restoration; in V3, predicted to require
+  damping of the override signal under conditions where threat context has
+  attenuated but the override has not relaxed (orexin-receptor antagonist
+  literature; suvorexant/lemborexant clinical signal in chronic insomnia)
+
+### Distinction from acute insomnia
+
+A single bad night, jet lag, exam stress: the override is transiently elevated
+but relaxes within days; MECH-284 staleness has not yet accumulated to clinically
+significant levels. The architectural cluster only produces the schema-repair-
+starvation phenotype under *sustained* override saturation, on the order of
+weeks-to-months.
+
+This timeline matches the clinical timeline: acute insomnia is common and
+self-limiting; the cognitive deterioration profile only emerges in chronic
+hyperarousal states.
+
+### Predictions
+
+1. **Override-relaxation interventions (orexin-receptor antagonist analogs)
+   should restore schema-repair function** even without targeting the trauma
+   narrative directly. Specifically: in a V3 agent with pinned override and
+   accumulated MECH-284 staleness, pharmacological-analog damping of the
+   override signal should permit sleep-mode entry, MECH-285 priority firing,
+   and observable clearance of the staleness map across cycles.
+
+2. **MECH-286 saturation should be diagnostically distinguishable from
+   MECH-281 cataplexy** despite sharing an upstream substrate (orexin-analog).
+   Both predicted to co-occur clinically (narcolepsy with cataplexy) but
+   pharmacological dissociation possible: agonising the motor-coupling axis
+   without affecting the sleep-state axis, or vice versa, should produce
+   selective rescue of one phenotype.
+
+3. **Chronic schema-repair starvation should produce a characteristic cognitive
+   profile**: preserved working-memory and crystallised performance, degraded
+   novel-stimulus learning, degraded schema flexibility on tasks requiring
+   updating of prior beliefs. This is dissociable from the depressive cognitive
+   profile (which shows generalised slowing) and from substance-induced
+   cognitive impairment (which shows acute attention deficits). The signature
+   is *learning failure under preserved performance*.
+
+4. **Time-course prediction**: in a V3 agent with chronically pinned override,
+   the deterioration in schema fit on novel inputs should follow a predictable
+   accumulation curve (roughly linear in number of cycles with high MECH-284
+   deposition and no MECH-285 firing), distinguishable from the step-function
+   degradation produced by acute substrate damage.
+
+### Claims Covered
+
+| ID | Label | Role |
+|----|-------|------|
+| MECH-286 | sleep.override_gated_state_transition | Sleep-onset recruitment authority, the failing component when over-saturated |
+| MECH-285 | hippocampal.sleep_consolidation_priority_from_v_s_residuals | The offline-phase readout that is never recruited |
+| MECH-284 | hippocampal.v_s_residual_schema_staleness_accumulator | The waking-phase accumulator that fills without clearance |
+| MECH-094 | hypothesis_tag_routing | Co-failure that converts the cluster into chronic-PTSD architecture |
+| MECH-281 | orexin.drive_arousal_coupling | Sibling axis (motor-coupling); co-lesioned in narcolepsy/cataplexy but dissociable in this insomnia phenotype |
+| SD-037 | broadcast.override_regulator | Substrate: the override signal whose pinning produces the cluster |

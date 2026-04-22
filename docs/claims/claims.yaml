@@ -20638,7 +20638,7 @@
   location: docs/architecture/sd_037_broadcast_override_regulator.md
 
 - id: MECH-281
-  title: "Orexin-analog gain modulation of drive-coupled arousal: an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the V3 architectural account of narcolepsy/cataplexy as a coupling-loss failure mode rather than as a sleep-regulation deficit."
+  title: "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy)."
   claim_type: mechanism_hypothesis
   subject: orexin.drive_arousal_coupling
   polarity: asserts
@@ -20653,6 +20653,7 @@
     - MECH-090  # bistable beta gate (downstream coupling target)
     - SD-033a   # lateral PFC analogue (downstream coupling target)
     - SD-035    # amygdala analogue (downstream coupling target)
+    - MECH-286  # sibling: wake-stability axis of the same orexin-analog signal
   functional_restatement: >
     The override_signal does not act in isolation -- it gates the gain
     on drive->action-pipeline projections. Concretely: drive_level's
@@ -20898,3 +20899,95 @@
     substrate implementation and the falsifiable dissociation-from-
     salience test above.
   location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-286
+  title: "Override-gated sleep-state transition: SD-037 override_signal also gates entry to and exit from offline (sleep) mode. High override (sustained drive + threat under metabolic demand) suppresses sleep-mode onset; low override + accumulated MECH-284 V_s-residual staleness + permissive threat context permits onset and recruits the MECH-285 sleep-replay priority readout. Architecturally this is the recruitment authority for the offline arm of the V_s bidirectional cluster: MECH-284 accumulates the demand for offline schema repair, MECH-285 sets the priority order, and MECH-286 provides the on-switch. Without MECH-286, MECH-285 produces a priority list with no transition mechanism to consume it. This is the V3 architectural account of orexin's canonical role as wake-stability gate (Saper/Scammell flip-flop), which MECH-281 (drive-arousal coupling) understates by framing cataplexy purely as a motor-coupling failure."
+  claim_type: mechanism_hypothesis
+  subject: sleep.override_gated_state_transition
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - SD-037    # parent: provides override_signal which gates the transition
+    - MECH-284  # accumulates the staleness demand that motivates offline entry
+    - MECH-285  # the offline priority readout this recruitment authority enables
+    - MECH-281  # sibling: motor-coupling axis of orexin loss; this is the wake-stability axis
+    - MECH-272  # state-gated routing distinguishes wake vs sleep regime; this is the gate
+    - MECH-094  # hypothesis tag (co-failure with MECH-286 deepens PTSD-chronicity architecture)
+  functional_restatement: >
+    Existing accounts of sleep onset in REE are silent on the recruitment
+    authority. MECH-272 distinguishes wake-routing from sleep-routing,
+    MECH-273/275 specify what sleep does, MECH-285 specifies replay
+    priority, but no claim specifies what triggers the transition.
+    MECH-286 commits to: the same SD-037 override_signal that gates
+    drive->z_goal seeding under threat also gates the wake-to-sleep
+    transition. They are the same regulator at different decision
+    points -- one says "act on drive despite threat", the other says
+    "go offline despite remaining demand".
+
+    Concretely, sleep-mode entry requires:
+      override_signal(t) < theta_sleep_permit
+        AND MECH-284_staleness_accumulator(t) > theta_sleep_recruit
+        AND threat_context permissive (z_harm_a tonic component low)
+    All three jointly. This makes sleep onset a positive recruitment
+    rather than a passive default.
+
+    Falsifiable (primary, hyperarousal lesion): pinning override_signal
+    high under conditions that would normally permit sleep should produce
+    sleep-onset failure -- the agent remains in wake-mode even with high
+    accumulated MECH-284 staleness. This is the hyperarousal-insomnia
+    architectural phenotype.
+
+    Falsifiable (secondary, narcolepsy lesion): setting override_signal
+    constant near zero should produce uncontrolled sleep intrusion --
+    sleep-mode entry triggered without staleness demand or with
+    inappropriate threat context. This is the orexin-loss narcolepsy
+    phenotype, distinct from MECH-281's cataplexy phenotype but produced
+    by the same lesion (predicting their clinical co-occurrence).
+
+    Falsifiable (tertiary, schema-repair starvation): chronic
+    hyperarousal sustained over many cycles should produce stable
+    accumulation of MECH-284 staleness with no clearance, observable
+    as deteriorating schema fit on novel inputs even with intact
+    waking computation. This is the architectural mechanism behind
+    sleep-deprivation cognitive decline and a contributor to PTSD
+    chronicity (paired with MECH-285 + MECH-094 as the rumination
+    architecture).
+  notes: >
+    Discussion origin: 2026-04-22 follow-up to SD-037 cluster registration.
+    User flagged that the orexin cluster as registered understates the
+    canonical wake-stability role of orexin biologically -- narcolepsy
+    is fundamentally a sleep-state-stability disorder, not just a
+    motor-coupling disorder. MECH-286 closes the gap and unifies the
+    SD-037 override layer with the V_s bidirectional cluster's offline
+    arm (MECH-284/285).
+
+    Evidence anchors (biology): Saper/Scammell flip-flop literature
+    (orexin as wake-stability gate against VLPO sleep-active circuits);
+    orexin neuron silence during sleep, firing during wake; Bassetti
+    2019 narcolepsy review (sleep-state instability as core deficit,
+    cataplexy as separable downstream symptom).
+
+    Evidence anchors (clinical): chronic insomnia in PTSD, severe
+    melancholic depression with early-morning waking + ruminative
+    hyperarousal, sleep deprivation as established psychosis precipitant
+    -- all consistent with a saturated-override schema-repair-starvation
+    architecture.
+
+    Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
+    (sleep-state-transition extension to be added).
+    Psychiatric failure mode: docs/architecture/psychiatric_failure_modes.md
+    section "Hyperarousal Insomnia and Schema-Repair Starvation".
+  evidence_quality_note: >
+    No substrate evidence. Strong biological grounding (canonical orexin
+    wake-stability role) and strong clinical grounding (insomnia as a
+    transdiagnostic feature of hyperarousal disorders). Promotion
+    requires substrate implementation alongside MECH-281 and the
+    falsifiable lesion tests above. The hyperarousal-insomnia phenotype
+    is the diagnostic dissociation from MECH-281's cataplexy phenotype:
+    same upstream lesion (orexin loss), different downstream targets
+    (sleep-state gate vs motor-coupling gate).
+  location: docs/architecture/sd_037_broadcast_override_regulator.md

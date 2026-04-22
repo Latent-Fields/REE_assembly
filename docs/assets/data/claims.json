@@ -2894,7 +2894,7 @@
   "MECH-281": {
     "status": "candidate",
     "subject": "orexin.drive_arousal_coupling",
-    "title": "Orexin-analog gain modulation of drive-coupled arousal: an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the V3 architectural account of narcolepsy/cataplexy as a coupling-loss failure mode rather than as a sleep-regulation deficit.",
+    "title": "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy).",
     "type": "mechanism_hypothesis"
   },
   "MECH-282": {
@@ -2919,6 +2919,12 @@
     "status": "candidate",
     "subject": "hippocampal.sleep_consolidation_priority_from_v_s_residuals",
     "title": "Sleep-consolidation priority from V_s residuals: during sleep-phase Bayesian aggregation (MECH-275) and sleep-dependent self-model aggregation (MECH-273), the order and weight of replay events is biased by the schema-staleness map produced by MECH-284. Replay is not uniform across schema and is not solely salience-driven (dopaminergic tagging); it is also prioritised by accumulated verisimilitude residuals. Schema regions with the most accumulated 'this is wrong' evidence get replayed first, more often, and with higher schema-update authority during sleep. PTSD-rumination has a clean architectural account here: MECH-285 priority loss co-occurring with MECH-094 hypothesis-tag dysfunction, locking the staleness tag from ever clearing.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-286": {
+    "status": "candidate",
+    "subject": "sleep.override_gated_state_transition",
+    "title": "Override-gated sleep-state transition: SD-037 override_signal also gates entry to and exit from offline (sleep) mode. High override (sustained drive + threat under metabolic demand) suppresses sleep-mode onset; low override + accumulated MECH-284 V_s-residual staleness + permissive threat context permits onset and recruits the MECH-285 sleep-replay priority readout. Architecturally this is the recruitment authority for the offline arm of the V_s bidirectional cluster: MECH-284 accumulates the demand for offline schema repair, MECH-285 sets the priority order, and MECH-286 provides the on-switch. Without MECH-286, MECH-285 produces a priority list with no transition mechanism to consume it. This is the V3 architectural account of orexin's canonical role as wake-stability gate (Saper/Scammell flip-flop), which MECH-281 (drive-arousal coupling) understates by framing cataplexy purely as a motor-coupling failure.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {
