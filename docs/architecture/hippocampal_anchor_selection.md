@@ -326,6 +326,137 @@ it independently.
 
 ---
 
+## Anchor reset criteria (V3-EXQ-471 motivated extension, 2026-04-22)
+
+The original MECH-269 specification gave per-stream verisimilitude a role in *initial*
+anchor selection: which slice of the current latent is eligible to seed a rollout at the
+moment the proposer fires. It did not commit to a *reset* criterion — under what
+conditions an anchor that was valid at one heartbeat becomes invalid and must be
+discarded, even if no new commit has occurred to obviously reset state.
+
+V3-EXQ-471 forced this question. The trace (full discussion in
+[psychiatric_failure_modes.md](psychiatric_failure_modes.md) "Catatonia, Subtype II")
+shows the proposer locked onto an anchor formed at t=0 (the moment of a single hazard
+contact) and continuing to issue rollouts from that anchor for 200 steps, despite 190
+steps of subsequent quiet during which the world had clearly moved on. Mode stayed
+`avoid`, action stayed locked, position stayed at `[2,1]`, energy went to zero — and the
+proposer never reconsidered the anchor.
+
+This is a real failure mode that the per-stream verisimilitude gate does not catch on
+its own. `V_world` was probably perfectly fine at t=190 (predictions matched
+realizations — both predicted and realized "still nothing happening"). The problem was
+not that the anchor's streams had become unreliable; it was that the anchor was
+*temporally stale* — it had been formed under conditions (`z_harm_a` = 0.82, hazard
+adjacent) that no longer held by t=50, but nothing in the proposer noticed.
+
+### What the reset criterion must commit to
+
+Anchor reset is required when **the regulatory state of the streams the anchor was
+composed from has materially changed**, even when those streams' verisimilitude remains
+intact. Concretely:
+
+1. **Decay-driven reset.** If a stream that was high-magnitude at anchor formation has
+   decayed (per SD-036 GABAergic decay regulator) below a freshness threshold by anchor
+   read time, the anchor for that stream is no longer trustworthy as a representation
+   of the *current* mode-relevant state. The anchor was "I am in a high-harm context,
+   plan accordingly"; the current state is "I am in a low-harm context"; the rollouts
+   issued under the stale anchor are stale.
+
+2. **Mode-context reset.** Anchors are formed under a particular operating mode
+   (SD-032a `current_mode`). When the SalienceCoordinator's `mode_switch_trigger`
+   fires, anchors composed under the previous mode should be evicted from the
+   eligibility pool — not merely augmented with new ones. EXQ-471's pathology is
+   precisely that no mode switch ever fired, so this criterion is necessary but not
+   sufficient (the agent also needs the prior criterion).
+
+3. **Time-since-formation cap.** A purely temporal cap (anchors older than N
+   heartbeat cycles must be re-validated against current realization) is a defensive
+   backstop against staleness that the regulatory-state criterion misses. Initial
+   value: re-validate after ~10 theta cycles (~MECH-089 timescale) of being held
+   without commit-driven update.
+
+### Interaction with SD-036 GABAergic decay
+
+The anchor reset criterion is the **read-side mirror of SD-036's write-side decay**.
+SD-036 decays the streams; the reset criterion ensures the proposer notices that the
+decay has happened. Without the reset criterion, SD-036 alone is insufficient: the
+streams could decay back to baseline while the proposer continued to issue rollouts
+from an anchor formed when they were high.
+
+Architecturally this means:
+
+```
+SD-036 (regulator layer):  decays z_harm, z_beta toward baseline
+        |
+        v
+MECH-269 reset criterion:  detects stream decay relative to anchor formation state
+        |
+        v
+Anchor pool eviction:      stale anchors removed; proposer re-anchors on current state
+        |
+        v
+Mode arbitration:           with current-state anchor, mode flip becomes possible
+```
+
+The chain is what unlocks the EXQ-471 pathology. SD-036 alone unlocks the streams but
+not the proposer; reset criterion alone has nothing to react to without decay; mode
+arbitration alone has nothing to switch on without a current-state anchor to evaluate.
+All three are required and they are mechanistically coupled.
+
+### What this implies for the design
+
+The original design treated `V_s(t) ≥ θ_anchor(s)` as the only gate on anchor
+eligibility. The reset criterion adds a second gate:
+
+```
+anchor_eligible(s, t) =
+    (V_s(t) >= theta_anchor(s))                           # original verisimilitude gate
+    AND
+    (regulatory_state_drift(s, t, t_formation) < theta_drift)   # NEW reset gate
+    AND
+    (mode_at_formation == current_mode)                   # NEW mode-context gate
+    AND
+    (t - t_formation < max_anchor_age)                    # NEW temporal backstop
+```
+
+`regulatory_state_drift(s, t, t_formation)` is a per-stream measure of how much the
+stream's value has changed between anchor formation and current read, normalized by
+its plausible decay over that interval (so that "expected decay" is not flagged as
+drift, only "more decay than the regulator would have produced" or "decay despite
+formation conditions persisting"). The exact form is an open design question; first
+pass is `|z_s(t) - z_s(t_formation)| / expected_drift(t - t_formation, tau_s)`.
+
+### Predicted observable
+
+A V3 experiment validating the anchor reset criterion would re-run V3-EXQ-471 with
+SD-036 enabled and the reset criterion enabled. Predicted trace at seed 0 ep 0:
+
+- t=0: hazard contact, `z_harm_norm` jumps to ~0.82, anchor formed at this state
+- t=10–30: harm input ceases, `z_harm_norm` decays under SD-036
+- t=~30: `z_harm_norm` has decayed below freshness threshold relative to anchor
+  formation; reset criterion fires; anchor evicted
+- t=~30+: proposer re-anchors on current low-harm state; rollouts now consider
+  goal-seeking trajectories
+- t=~40–50: mode flip from `avoid` to a goal-seeking mode; agent resumes navigation
+- t=~50+: episode proceeds normally
+
+Without the reset criterion, SD-036 alone is predicted to leave the agent in a
+strange intermediate state — unlocked streams but stale anchors — possibly producing
+*intermittent* or *delayed* recovery rather than the clean ~t=50 flip.
+
+### Open design question
+
+What happens during sleep-mode replay (MECH-272)? Sleep-mode probe-dominant routing
+deliberately uses anchors that may be temporally stale or counterfactual. The reset
+criterion as specified would suppress sleep-mode probe replay, which is wrong. The
+likely resolution: the reset criterion applies to **anchored** proposals only;
+**probe** proposals are explicitly exempt because their job is to seed from
+non-current states. This preserves sleep-mode Bayesian restructuring (MECH-272)
+while preventing waking-mode anchor staleness. This may need its own MECH ID if the
+anchor/probe distinction in reset behaviour proves architecturally substantive.
+
+---
+
 ## Status log
 
 - **2026-04-21** — Design doc written. Claim ID **MECH-269** reserved but not yet in
@@ -348,3 +479,10 @@ it independently.
   Bayesian schema revision, waking = decision-support using existing schemas) and that the
   self-model has a waking half (SD-003) and a sleep half (aggregation of single-episode
   attributions).
+- **2026-04-22** — Anchor reset criteria section added, motivated by V3-EXQ-471 catatonic
+  lock trace (200-step `avoid`-mode lock with anchor stuck at t=0 harm event despite 190
+  steps of subsequent quiet). Reset criterion specified as the read-side mirror of SD-036's
+  write-side decay; introduces three additional anchor-eligibility gates (regulatory drift,
+  mode-context, temporal cap). Identified as architecturally coupled with SD-036 (registered
+  same session) — neither alone resolves the EXQ-471 pathology. Sleep-mode probe exemption
+  flagged as open design question, possible candidate for new MECH if substantive.

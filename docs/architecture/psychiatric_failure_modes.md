@@ -310,7 +310,9 @@ describe the developmental etiology (insufficient calibration during childhood).
 | INV-061 | frame_confusion_unified_developmental_etiology | All frame-tag failures share common substrate |
 | MECH-200 | frame_confusion_real_as_synthetic | Derealization, mania, dissociation |
 | MECH-201 | frame_confusion_synthetic_as_real | Delusions, PTSD flashbacks, anxiety |
-| MECH-202 | commitment_gate_developmental_failure | Impulsivity, OCD, catatonia |
+| MECH-202 | commitment_gate_developmental_failure | Impulsivity, OCD, catatonia (commit-gate paralysis subtype) |
+| SD-036 | gabaergic.cross_stream_decay_regulator | Catatonia (harm-stream lock-in subtype) -- see EXQ-471 exemplar below |
+| MECH-279 | pag.gabaergic_freeze_gate | Freeze response duration; failure -> sustained immobility |
 
 **Updated claims:**
 - INV-034: added clinical inverse note (goal maintenance failure = depression, EXQ-237a)
@@ -578,3 +580,146 @@ output.
 | INV-064 | e1_e2_e3_maturational_sequence_necessity | Developmental: E3 cannot train on degraded E1/E2 inputs |
 | MECH-214 | goal_referent_e1_representability | Mode A: goal content requires E1 schema differentiation |
 | MECH-215 | self_model_prerequisite_for_agentive_prediction | Mode B: goal pursuit requires E1 self-schema + E2 capacity model |
+
+---
+
+## Catatonia, Subtype II: Harm-Stream Lock-In (SD-036, MECH-279)
+
+> **Registered 2026-04-22 from V3-EXQ-471 exemplar.** Distinct from MECH-202 Direction B
+> ("commit-gate paralysis"). The two subtypes share the surface phenomenology — sustained
+> motor immobility despite preserved consciousness — but differ in proximal mechanism.
+
+### The exemplar
+
+V3-EXQ-471 (full-stack agent fishtank showcase, seed 0, episode 0) produced a clean
+catatonia trace. The agent began the episode with apparently competent goal-directed
+behaviour (ate food, navigated to resources). After encountering a hazard (`harm_signal =
+-0.084` at t=0), behaviour collapsed:
+
+- **Mode locked to `avoid` for all 200 steps.** No flip back to a goal-seeking mode.
+- **Action locked to motor `2` for all 200 steps** — single repeated motor command.
+- **Position stuck at `[2,1]` for 194 consecutive steps** (`world_change_norm = 0`).
+- **Energy fell from 0.99 to 0.00 by t=110**, then remained at 0 for 90 more steps with
+  no mode flip and no homeostatic rescue.
+- **`harm_signal` returned to 0 at t~10**, but `z_harm_norm` stayed pinned at ~0.7 for
+  the remaining 190 steps. The harm latent was self-sustaining absent input.
+- **`z_beta_val` flat at ~0.0019** for all 200 steps. The bistable beta gate (MECH-090) was
+  not oscillating.
+- **`n_cands = 32` every step.** Candidacy gating was not pruning.
+
+Not the MECH-202B failure: the commit gate was not "frozen at maximum threshold" — the
+agent *was* committing, repeatedly, to the same evade action. The lock was upstream of
+the commit gate, in the harm-stream representation feeding it.
+
+### Mechanism
+
+Three architectural absences compound:
+
+1. **No harm-stream decay regulator.** SD-010/SD-011 integrate harm input but contain no
+   mechanism by which the absence of harm over time drives `z_harm` back toward baseline.
+   A single harm event therefore produces a permanently elevated harm latent, which biases
+   mode arbitration toward `avoid` indefinitely.
+
+2. **No homeostatic priority override.** SD-012 (drive-modulated goal seeding) requires
+   `benefit_exposure > 0` to seed `z_goal`. In `avoid` mode the agent does not approach
+   resources, so `benefit_exposure` stays at zero. Drive saturates as energy depletes, but
+   has no authority to override mode lock and force approach.
+
+3. **No anchor reset criterion.** The hippocampal proposer (MECH-269) has no signal that
+   says "the situation has changed; re-anchor on a new world state." The proposer keeps
+   producing trajectories anchored on the t=0 harm event, even as 190 quiet steps
+   accumulate. Each proposal is a variation on "evade the threat from the original frame."
+
+The single-action repetition is the policy reading a frozen state vector and emitting the
+deterministic best response to it. From the agent's internal point of view, t=200 still
+*is* t=0.
+
+### Distinction from MECH-202 Direction B
+
+| Feature | MECH-202B (commit-gate paralysis) | SD-036/MECH-279 (harm-stream lock) |
+|---|---|---|
+| Commitment behaviour | Gate never fires; endless re-evaluation | Gate fires repeatedly; same action |
+| z_harm trajectory | Variable; not the locus of failure | Pinned high without input |
+| Action diversity | Variable (no commit reached) | Single action repeated |
+| Mode behaviour | Variable | Locked in `avoid` |
+| Treatment target | Lower commit threshold; pretend-play calibration | Restore decay; restore homeostatic override; anchor reset |
+| Clinical analogue | Severe indecision; rumination-loop catatonia | Stupor/freeze catatonia; PTSD-adjacent immobility |
+
+These are *different routes to the same surface*. Treating one as the other will fail.
+The MECH-202B treatment (lowering commit threshold) would, on an SD-036/MECH-279 agent,
+*accelerate* the lock — more rapid commitment to the same evade action.
+
+### Clinical mapping
+
+The clinical picture this matches is the **stuporous / akinetic catatonia** seen in:
+
+- Severe melancholic depression with psychomotor freeze
+- Post-traumatic immobility (the "frozen" pole of PTSD)
+- Some neuroleptic malignant / catatonic spectrum presentations
+- Anti-NMDA-receptor encephalitis catatonia (where GABAergic regulation is disrupted)
+- Lethal catatonia of the Stauder type (sustained autonomic activation + immobility)
+
+The shared signature is **sustained autonomic activation (z_harm-equivalent elevated)
+without behavioural exit** — distinct from the *resistive* catatonia of MECH-202B
+(rumination, indecision, gate paralysis).
+
+The clinical observation that **benzodiazepines (GABAergic agonists) are first-line for
+this catatonia subtype** is the empirical hook for SD-036: the missing decay regulator is
+GABAergic. Restoring GABAergic tone allows `z_harm` decay to proceed, which unlocks mode
+arbitration. By the same logic, ECT — which produces broad GABAergic and homeostatic
+recalibration effects — is second-line and works on the same architectural target from a
+different angle.
+
+### What SD-036 and MECH-279 commit to
+
+**SD-036 (gabaergic.cross_stream_decay_regulator):** A regulatory layer that applies
+exponential decay to specified latent streams in the absence of input, with the decay rate
+itself modulated by a tonic GABAergic level. Stream coverage at minimum: `z_harm` (both
+sensory and affective per SD-010/SD-011), `z_beta` (precision-weighting), and possibly the
+drive accumulator. Architectural commitment: decay is a property of a *regulatory layer
+that touches multiple streams*, not a property of each stream's update rule. This predicts
+that GABAergic disturbance produces **simultaneous failures across streams** — matching the
+clinical observation that benzodiazepine withdrawal, GABA-A receptor antibodies, and other
+GABAergic insults produce clusters (catatonia + autonomic dysregulation + perceptual
+changes + sleep disruption) rather than isolated single-stream failures.
+
+**MECH-279 (pag.gabaergic_freeze_gate):** PAG-analog gating of the freeze response
+specifically. When `z_harm` × duration crosses threshold, the system commits to freeze
+(motor immobility + sustained autonomic activation). Exit from freeze requires GABAergic
+decay to complete via SD-036. Failure of this exit pathway produces sustained freeze even
+after the precipitating harm has passed. The fact that the freeze response itself is
+GABA-mediated (calming -> immobilization is one mechanism, not two) is the clinical hook —
+the same neurotransmitter system that initiates freeze is responsible for terminating it,
+and disturbance produces stuck-in-freeze.
+
+### Predictions
+
+1. **Adding SD-036 to the V3 substrate should resolve the EXQ-471 lock pattern** without
+   any other change. Specifically, with a `z_harm` decay rate tuned so the latent returns
+   to baseline within 30–50 quiet steps, the seed-0 ep-0 trace should show mode flip from
+   `avoid` back to a goal-seeking mode by ~t=50.
+
+2. **Adding SD-036 alone should not rescue seeds 1 and 2** (the more severely degraded
+   seeds), because their failure has additional contributors. This is a substrate-readiness
+   test, not a single-cause test.
+
+3. **A homeostatic-override mechanism (separate, see homeostatic_override_litpull
+   session prompt) is required to fully prevent the SD-036-rescued agent from
+   re-locking** under sustained threat with depleting energy. SD-036 provides decay; the
+   override provides authority for hunger to outweigh threat when survival demands it.
+
+4. **MECH-269 anchor-reset criteria** (see hippocampal_anchor_selection.md) must specify
+   conditions under which the proposer re-anchors despite a sustained mode. Without this,
+   even a decayed `z_harm` may leave the proposer producing stale trajectories from the
+   original harm anchor.
+
+### Claims Covered
+
+| ID | Label | Role |
+|----|-------|------|
+| SD-036 | gabaergic.cross_stream_decay_regulator | Substrate: cross-stream decay layer with GABAergic gain |
+| MECH-279 | pag.gabaergic_freeze_gate | Freeze response gating with same GABAergic substrate |
+
+**Updated claims:**
+- MECH-202: noted as a *distinct* catatonia subtype (commit-gate paralysis) from the
+  harm-stream lock subtype documented here. Both are real; treatment differs.
