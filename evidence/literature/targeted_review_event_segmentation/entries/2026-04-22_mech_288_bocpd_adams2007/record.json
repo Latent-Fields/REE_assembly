@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_bocpd_adams2007",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Bayesian Online Changepoint Detection",
+    "authors": ["Ryan Prescott Adams", "David J. C. MacKay"],
+    "year": 2007,
+    "venue": "arXiv",
+    "doi": "10.48550/arXiv.0710.3742",
+    "url": "https://arxiv.org/abs/0710.3742"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Algorithm reference: BOCPD provides the canonical Bayesian online change-point algorithm with run-length distribution as a principled boundary signal. Substrate-algorithm candidate (a) in Q4. Decisive advantage over threshold-on-PE: BOCPD provides a calibrated probability of boundary, not a thresholded indicator -- which gives MECH-287 a graded broadcast strength rather than binary fire.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "BOCPD assumes parametric model of the segment's data-generating process. If REE's latent streams have heavy-tailed or multimodal distributions not captured by the parametric assumption, BOCPD will report spurious boundaries (false positives) at distribution-edge events.",
+    "BOCPD's run-length posterior grows as O(t) per step unless pruned. A substrate that does not implement run-length pruning will scale poorly with episode length."
+  ],
+  "tags": ["mech-288", "bocpd", "change_point", "algorithm", "bayesian", "computational"],
+  "mapping": {
+    "source_claim_statement": "Online inference of the most recent changepoint in a time series can be performed exactly using a message-passing algorithm that maintains a posterior distribution over the run-length (time since last changepoint), conditional on a parametric model of segment data and a hazard function for changepoint occurrence.",
+    "ree_translation": "MECH-288 substrate algorithm candidate (a) BOCPD: maintain a run-length posterior over each watched stream; emit a boundary when posterior probability of run-length=0 exceeds a threshold (or use the posterior mass directly as a graded boundary signal for MECH-287). Provides a principled probabilistic alternative to threshold-on-PE (candidate c) with the same online runtime cost (O(t) per step, prunable).",
+    "mapping_caveat": "BOCPD is a generic time-series algorithm with no biological grounding. It is included as the engineering candidate that best mirrors what biology computes when one frames event boundaries as latent change-points (Q4 candidate (a) and (d) hybrid). Biological circuits are not BOCPD; BOCPD is what an engineer would write to capture the same computational role.",
+    "source_context": "Cambridge / Princeton machine-learning preprint; standard reference for online Bayesian change-point detection."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "Highly cited engineering reference. Mapping fidelity high for the algorithm-design lesson. Transfer risk moderate because BOCPD has no biological grounding -- it is the substrate-engineering candidate, not the biology."
+  }
+}

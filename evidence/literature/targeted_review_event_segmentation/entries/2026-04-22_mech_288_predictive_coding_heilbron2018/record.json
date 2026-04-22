@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_predictive_coding_heilbron2018",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Great Expectations: Is there Evidence for Predictive Coding in Auditory Cortex?",
+    "authors": ["Micha Heilbron", "Maria Chait"],
+    "year": 2018,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2017.07.061",
+    "url": "https://doi.org/10.1016/j.neuroscience.2017.07.061"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Critical evaluation of predictive-coding evidence. Strong support for hierarchical PE expectations and PE-spike at unexpected stimulus omission (relevant to MECH-288 trigger criterion (a)) but lacking evidence for separate error/prediction neurons. Useful as a sanity check that pure PE-threshold substrate is biologically tractable but does NOT capture all known dynamics.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Heilbron flags lack of evidence for separate error vs prediction neurons. A substrate that hard-architects this distinction (separate PE accumulator vs prediction module) goes beyond the empirical evidence."
+  ],
+  "tags": ["mech-288", "predictive_coding", "auditory_cortex", "review", "algorithm_guidance"],
+  "mapping": {
+    "source_claim_statement": "Predictive coding in auditory cortex has compelling support for (1) expectations shaping responses and (2) hierarchical organisation of those expectations, plus (3) anticipatory predictions revealed by unexpected omission. Evidence is weak/contradictory for (4) separate error and prediction neurons and (5) specific oscillatory signatures.",
+    "ree_translation": "MECH-288 trigger criterion (a) PE-spike has solid biological grounding for hierarchical PE responses. The substrate can use PE-threshold safely. But the substrate should NOT architect a separate 'error neuron' / 'prediction neuron' division because biology has not validated this. A single PE signal computed from forward-model output is biologically sufficient.",
+    "mapping_caveat": "Auditory-cortex review; not directly about event-segmentation. The transferable lesson is methodological -- which PE-related architectural commitments are biology-tested vs over-specified.",
+    "source_context": "Critical review of predictive-coding theory in auditory cortex; animal + human + modelling studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Useful for algorithm guidance (Q4) and as a calibration on what PE-account commitments are empirically justified. Lower mapping fidelity because the paper is about auditory cortex not event segmentation per se."
+  }
+}

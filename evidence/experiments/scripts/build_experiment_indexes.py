@@ -2275,6 +2275,8 @@ def _collect_conflicts(
             continue
         if not is_applicable(entry):
             continue
+        if entry.get("scoring_excluded"):
+            continue
         entries_by_claim[str(entry.get("claim_id"))].append(entry)
 
     conflicts: list[dict[str, Any]] = []

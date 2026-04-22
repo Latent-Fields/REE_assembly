@@ -16938,17 +16938,17 @@
       }
     },
     "MECH-287": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.864",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.883",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 4,
+      "entries_total": 5,
       "evidence_class_counts": {
         "lit:connectome_mechanistic_review": 2,
-        "lit:fmri_connectivity": 1,
+        "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.0,
@@ -16960,10 +16960,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-22_v_s_foundation_subiculum_omara2009",
-      "latest_timestamp_utc": "2026-04-22T19:16:33Z",
-      "literature_confidence": 0.864,
-      "overall_confidence": 0.864,
+      "latest_run_id": "2026-04-22_mech_288_lc_event_reset_clewett2025",
+      "latest_timestamp_utc": "2026-04-22T20:01:11Z",
+      "literature_confidence": 0.883,
+      "overall_confidence": 0.883,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -17033,12 +17033,146 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-22T19:16:33Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-287",
+          "confidence": 0.92,
+          "confidence_rationale": "DIRECT evidence for MECH-287 / MECH-288 coupling. Combined fMRI + neuromelanin + pupillometry: event boundaries trigger pupil-linked LC activation, LC activation predicts hippocampal pattern separation in DG, hyperarousal disrupts segmentation. This is the single most important paper for MECH-287 question 3 (coupling). Strongly supports treating MECH-287 broadcast as DOWNSTREAM of MECH-288 boundary detection -- the (c) coupling option.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_event_segmentation",
+          "failure_signatures": [
+            "Boundaries triggered pupil-linked arousal AND LC activation. A substrate where MECH-288 boundary detection did not produce a MECH-287 broadcast trigger would dissociate two signals biology unifies.",
+            "Hyperaroused background LC activity DISRUPTED transient boundary-locked LC responses. The substrate must protect MECH-287 broadcast from being saturated by tonic noise -- a phasic/tonic distinction is required."
+          ],
+          "run_id": "2026-04-22_mech_288_lc_event_reset_clewett2025",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-22T20:01:11Z"
         }
       ],
-      "runs_total": 4,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 4
+        "literature": 5
+      }
+    },
+    "MECH-288": {
+      "confidence_rationale": "exp=0 entry(s), lit=11 entry(s), exp_conf=0, lit_conf=0.897",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 10,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 11,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1,
+        "lit:computational_model": 1,
+        "lit:fmri_connectivity": 7,
+        "lit:theoretical_review": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-22_mech_288_temporal_memory_dubrow2014",
+      "latest_timestamp_utc": "2026-04-22T20:01:11Z",
+      "literature_confidence": 0.897,
+      "overall_confidence": 0.897,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-288",
+          "confidence": 0.82,
+          "confidence_rationale": "Direct fMRI evidence that hippocampal patterns at event boundaries integrate distant events into coherent narratives. Establishes that boundary-driven hippocampal activity is not just a separator but an integrator of information across boundaries. Important for substrate design: boundaries are when cross-segment integration happens, not just when within-segment binding ends.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_event_segmentation",
+          "failure_signatures": [
+            "Hippocampal activity at event boundaries was MORE similar between distant events forming a coherent narrative than between unrelated events. A substrate where boundaries only triggered RESET (not integration with prior narrative context) would lose this functionality."
+          ],
+          "run_id": "2026-04-22_mech_288_narrative_integration_cohnsheehy2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-22T20:01:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-288",
+          "confidence": 0.72,
+          "confidence_rationale": "Behavioural evidence that perceptual boundaries (the easiest substrate analogue: latent change-point in z_world) shape episodic memory in a specific trade-off pattern: boundary items get strengthened item-context binding but reduced order memory. The signature is dissociable enough to provide a falsifiability target for MECH-288 substrate behaviour.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_event_segmentation",
+          "failure_signatures": [
+            "Boundary items showed strengthened item-context binding AND reduced temporal order memory. A substrate where boundaries did not produce this trade-off in downstream memory consumers would fail to reproduce the behavioural signature."
+          ],
+          "run_id": "2026-04-22_mech_288_perceptual_boundaries_heusser2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-22T20:01:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-288",
+          "confidence": 0.65,
+          "confidence_rationale": "Critical evaluation of predictive-coding evidence. Strong support for hierarchical PE expectations and PE-spike at unexpected stimulus omission (relevant to MECH-288 trigger criterion (a)) but lacking evidence for separate error/prediction neurons. Useful as a sanity check that pure PE-threshold substrate is biologically tractable but does NOT capture all known dynamics.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_event_segmentation",
+          "failure_signatures": [
+            "Heilbron flags lack of evidence for separate error vs prediction neurons. A substrate that hard-architects this distinction (separate PE accumulator vs prediction module) goes beyond the empirical evidence."
+          ],
+          "run_id": "2026-04-22_mech_288_predictive_coding_heilbron2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-22T20:01:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-288",
+          "confidence": 0.75,
+          "confidence_rationale": "Within-event vs across-event encoding uses different hippocampal-PFC mechanisms: within-event = HC-vmPFC functional connectivity, across-event = univariate HC + lvlPFC activation. Validates that boundaries are computationally distinguished events for downstream consumers.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_event_segmentation",
+          "failure_signatures": [
+            "If the substrate's segment_id transitions did not produce a distinct downstream signature (no flag indicating 'this transition crossed a boundary'), consumers could not differentiate within-event from across-event encoding -- collapsing biology's two functional regimes."
+          ],
+          "run_id": "2026-04-22_mech_288_temporal_binding_dubrow2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-22T20:01:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-288",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct fMRI evidence that hippocampal pattern stability across items predicts subsequent temporal-order memory; category shifts (event boundaries) interrupt this stability. Validates the within-segment / across-segment distinction MECH-288 architecturally enforces.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_event_segmentation",
+          "failure_signatures": [
+            "Hippocampal pattern similarity across intervening items predicted serial memory. A substrate where event-segment transitions did NOT update hippocampal anchor state would lose the within/across-segment distinction biology uses for temporal binding."
+          ],
+          "run_id": "2026-04-22_mech_288_temporal_memory_dubrow2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-22T20:01:11Z"
+        }
+      ],
+      "runs_total": 11,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 11
       }
     },
     "MECH-900": {
@@ -61805,6 +61939,203 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-287",
+      "confidence": 0.92,
+      "confidence_rationale": "DIRECT evidence for MECH-287 / MECH-288 coupling. Combined fMRI + neuromelanin + pupillometry: event boundaries trigger pupil-linked LC activation, LC activation predicts hippocampal pattern separation in DG, hyperarousal disrupts segmentation. This is the single most important paper for MECH-287 question 3 (coupling). Strongly supports treating MECH-287 broadcast as DOWNSTREAM of MECH-288 boundary detection -- the (c) coupling option.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Boundaries triggered pupil-linked arousal AND LC activation. A substrate where MECH-288 boundary detection did not produce a MECH-287 broadcast trigger would dissociate two signals biology unifies.",
+        "Hyperaroused background LC activity DISRUPTED transient boundary-locked LC responses. The substrate must protect MECH-287 broadcast from being saturated by tonic noise -- a phasic/tonic distinction is required."
+      ],
+      "run_id": "2026-04-22_mech_288_lc_event_reset_clewett2025",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.8,
+      "confidence_rationale": "Algorithm reference: BOCPD provides the canonical Bayesian online change-point algorithm with run-length distribution as a principled boundary signal. Substrate-algorithm candidate (a) in Q4. Decisive advantage over threshold-on-PE: BOCPD provides a calibrated probability of boundary, not a thresholded indicator -- which gives MECH-287 a graded broadcast strength rather than binary fire.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "BOCPD assumes parametric model of the segment's data-generating process. If REE's latent streams have heavy-tailed or multimodal distributions not captured by the parametric assumption, BOCPD will report spurious boundaries (false positives) at distribution-edge events.",
+        "BOCPD's run-length posterior grows as O(t) per step unless pruned. A substrate that does not implement run-length pruning will scale poorly with episode length."
+      ],
+      "run_id": "2026-04-22_mech_288_bocpd_adams2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.88,
+      "confidence_rationale": "Canonical statement of Event Segmentation Theory (EST). Foundational source for the prediction-error account of boundary detection that MECH-288 trigger criterion (a) directly inherits. Mapping fidelity is high because the substrate proposal mirrors the EST claim almost verbatim; transfer risk is moderate because EST was developed for human everyday-activity perception, not generic latent-stream substrates.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "If the substrate emits boundaries from latent change-points but no transient PE spike accompanies them, EST predicts those boundaries should not be subjectively perceived as events -- the substrate would generate segment IDs that no downstream consumer treats as event-like.",
+        "EST proposes that knowledge structures (event schemas) shape boundary placement; a substrate with no schema input would systematically under-segment in familiar contexts and over-segment in unfamiliar ones."
+      ],
+      "run_id": "2026-04-22_mech_288_event_segmentation_theory_zacks2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.9,
+      "confidence_rationale": "Foundational direct evidence for hierarchical event segmentation with nested timescales: short events in early sensory cortex, long events in mPFC/posterior cingulate. HMM method is itself a substrate-algorithm candidate. High mapping fidelity for trigger criterion (b) latent change-point and for question 2 hierarchy. Boundary detection at high-order regions co-fires with hippocampal activity -- direct relevance to MECH-287 coupling.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Short-timescale regions (early visual) reported many short events; long-timescale regions (mPFC, PMC) reported few long events. A flat single-segment-id substrate would either over-segment if tuned to fast regions or under-segment if tuned to slow ones.",
+        "High-order event boundaries triggered hippocampal activity. A substrate where the event_segmenter does NOT couple to the hippocampal anchor system would miss this biological coupling and break MECH-287 trigger semantics."
+      ],
+      "run_id": "2026-04-22_mech_288_hierarchical_timescales_baldassano2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.74,
+      "confidence_rationale": "Hippocampus itself shows anteroposterior gradient of temporal scales: anterior HC has slower signal change (coarse-grained), posterior HC has faster signal change (fine-grained). Confirms multi-scale segmentation is not just cortical (Baldassano) but extends into the hippocampus where MECH-269 anchors live. Validates Q5: place-cell-field-scale (posterior HC fast scale) and event-segment scale (anterior HC slow scale) coexist as parametric variants of one anatomically-graded substrate, NOT as separate substrates.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Anterior HC slower autocorrelation, posterior HC faster. A substrate where MECH-269 anchor-set is single-scale would lose the natural anatomical multi-scale support."
+      ],
+      "run_id": "2026-04-22_mech_288_hippocampal_timescales_brunec2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.92,
+      "confidence_rationale": "DIRECT evidence for MECH-287 / MECH-288 coupling. Combined fMRI + neuromelanin + pupillometry: event boundaries trigger pupil-linked LC activation, LC activation predicts hippocampal pattern separation in DG, hyperarousal disrupts segmentation. This is the single most important paper for MECH-287 question 3 (coupling). Strongly supports treating MECH-287 broadcast as DOWNSTREAM of MECH-288 boundary detection -- the (c) coupling option.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Boundaries triggered pupil-linked arousal AND LC activation. A substrate where MECH-288 boundary detection did not produce a MECH-287 broadcast trigger would dissociate two signals biology unifies.",
+        "Hyperaroused background LC activity DISRUPTED transient boundary-locked LC responses. The substrate must protect MECH-287 broadcast from being saturated by tonic noise -- a phasic/tonic distinction is required."
+      ],
+      "run_id": "2026-04-22_mech_288_lc_event_reset_clewett2025",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct fMRI evidence that boundary perception coincides with transient cortical activity changes tied to situational shifts (character goals, locations). Supports MECH-288's premise that boundaries are real neural events. Mapping fidelity is good but the paper does not isolate PE-spike vs latent change-point as the trigger -- it shows boundary signals exist, not which trigger criterion biology uses.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Boundary-locked transient activity was driven by changes in characters' goals, locations, objects, and times. A substrate that detected only one type of latent change (e.g. only z_world transitions) would miss boundaries that biology does perceive."
+      ],
+      "run_id": "2026-04-22_mech_288_narrative_event_boundaries_speer2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.82,
+      "confidence_rationale": "Direct fMRI evidence that hippocampal patterns at event boundaries integrate distant events into coherent narratives. Establishes that boundary-driven hippocampal activity is not just a separator but an integrator of information across boundaries. Important for substrate design: boundaries are when cross-segment integration happens, not just when within-segment binding ends.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Hippocampal activity at event boundaries was MORE similar between distant events forming a coherent narrative than between unrelated events. A substrate where boundaries only triggered RESET (not integration with prior narrative context) would lose this functionality."
+      ],
+      "run_id": "2026-04-22_mech_288_narrative_integration_cohnsheehy2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.72,
+      "confidence_rationale": "Behavioural evidence that perceptual boundaries (the easiest substrate analogue: latent change-point in z_world) shape episodic memory in a specific trade-off pattern: boundary items get strengthened item-context binding but reduced order memory. The signature is dissociable enough to provide a falsifiability target for MECH-288 substrate behaviour.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Boundary items showed strengthened item-context binding AND reduced temporal order memory. A substrate where boundaries did not produce this trade-off in downstream memory consumers would fail to reproduce the behavioural signature."
+      ],
+      "run_id": "2026-04-22_mech_288_perceptual_boundaries_heusser2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.65,
+      "confidence_rationale": "Critical evaluation of predictive-coding evidence. Strong support for hierarchical PE expectations and PE-spike at unexpected stimulus omission (relevant to MECH-288 trigger criterion (a)) but lacking evidence for separate error/prediction neurons. Useful as a sanity check that pure PE-threshold substrate is biologically tractable but does NOT capture all known dynamics.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Heilbron flags lack of evidence for separate error vs prediction neurons. A substrate that hard-architects this distinction (separate PE accumulator vs prediction module) goes beyond the empirical evidence."
+      ],
+      "run_id": "2026-04-22_mech_288_predictive_coding_heilbron2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.75,
+      "confidence_rationale": "Within-event vs across-event encoding uses different hippocampal-PFC mechanisms: within-event = HC-vmPFC functional connectivity, across-event = univariate HC + lvlPFC activation. Validates that boundaries are computationally distinguished events for downstream consumers.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "If the substrate's segment_id transitions did not produce a distinct downstream signature (no flag indicating 'this transition crossed a boundary'), consumers could not differentiate within-event from across-event encoding -- collapsing biology's two functional regimes."
+      ],
+      "run_id": "2026-04-22_mech_288_temporal_binding_dubrow2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-288",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct fMRI evidence that hippocampal pattern stability across items predicts subsequent temporal-order memory; category shifts (event boundaries) interrupt this stability. Validates the within-segment / across-segment distinction MECH-288 architecturally enforces.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_event_segmentation",
+      "failure_signatures": [
+        "Hippocampal pattern similarity across intervening items predicted serial memory. A substrate where event-segment transitions did NOT update hippocampal anchor state would lose the within/across-segment distinction biology uses for temporal binding."
+      ],
+      "run_id": "2026-04-22_mech_288_temporal_memory_dubrow2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-22T20:01:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -61836,7 +62167,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-04-22T19:34:02.777080Z",
+  "generated_at_utc": "2026-04-22T20:19:00.106126Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

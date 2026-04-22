@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_narrative_integration_cohnsheehy2021",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "The hippocampus constructs narrative memories across distant events",
+    "authors": ["Brendan I. Cohn-Sheehy", "Angelique I. Delarazan", "Zachariah M. Reagh", "Jordan E. Crivelli-Decker", "Kamin Kim", "Alexander J. Barnett", "Jeffrey M. Zacks", "Charan Ranganath"],
+    "year": 2021,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2021.09.013",
+    "url": "https://doi.org/10.1016/j.cub.2021.09.013"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct fMRI evidence that hippocampal patterns at event boundaries integrate distant events into coherent narratives. Establishes that boundary-driven hippocampal activity is not just a separator but an integrator of information across boundaries. Important for substrate design: boundaries are when cross-segment integration happens, not just when within-segment binding ends.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal activity at event boundaries was MORE similar between distant events forming a coherent narrative than between unrelated events. A substrate where boundaries only triggered RESET (not integration with prior narrative context) would lose this functionality."
+  ],
+  "tags": ["mech-288", "event_boundary", "hippocampus", "narrative_integration", "reagh"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal activity patterns at event boundaries are more similar between distant events forming a coherent narrative compared with unrelated events. Hippocampal pattern reinstatement at boundaries supports detailed recall of narrative-coherent events one day later.",
+    "ree_translation": "Event boundaries are not just separators -- they are integration points where the hippocampal anchor system links the new segment to prior coherent context. The MECH-288 substrate should expose boundary events to MECH-269 anchor-set so the new segment can either start fresh OR be linked to existing anchor memory based on narrative coherence.",
+    "mapping_caveat": "Cohn-Sheehy/Reagh stand in for the spec's 'Reagh & Ranganath 2018' citation -- Reagh is co-author and the paper is on event-boundary hippocampal mechanisms. The narrative-coherence framing is more specific than the original Reagh 2018 work but more directly evidences the integrative role of boundary HC activity.",
+    "source_context": "fMRI of healthy human adults; encoding fictional stories with related vs unrelated events; one-day-delayed recall."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Current Biology paper, strong methodology. Substitutes for spec's Reagh & Ranganath 2018; Reagh is co-author and the paper is more directly on the boundary-integration question."
+  }
+}

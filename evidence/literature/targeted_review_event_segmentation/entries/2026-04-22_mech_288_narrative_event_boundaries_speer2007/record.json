@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_narrative_event_boundaries_speer2007",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Human brain activity time-locked to narrative event boundaries",
+    "authors": ["Nicole K. Speer", "Jeffrey M. Zacks", "Jeremy R. Reynolds"],
+    "year": 2007,
+    "venue": "Psychological Science",
+    "doi": "10.1111/j.1467-9280.2007.01920.x",
+    "url": "https://doi.org/10.1111/j.1467-9280.2007.01920.x"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct fMRI evidence that boundary perception coincides with transient cortical activity changes tied to situational shifts (character goals, locations). Supports MECH-288's premise that boundaries are real neural events. Mapping fidelity is good but the paper does not isolate PE-spike vs latent change-point as the trigger -- it shows boundary signals exist, not which trigger criterion biology uses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Boundary-locked transient activity was driven by changes in characters' goals, locations, objects, and times. A substrate that detected only one type of latent change (e.g. only z_world transitions) would miss boundaries that biology does perceive."
+  ],
+  "tags": ["mech-288", "event_boundary", "fmri", "narrative", "situational_change"],
+  "mapping": {
+    "source_claim_statement": "During reading of everyday narratives, points later identified as event boundaries elicit transient activity in cortical regions (lateral PFC, posterior parietal, etc.) and this activity is mediated by changes in narrated situational features (goals, locations, objects, time, characters).",
+    "ree_translation": "Boundaries are tracked by transient activity at the moment of detection -- this validates the architectural choice of having an event_segmenter emit a discrete segment_id transition at boundaries (rather than a sliding window). The multi-feature mediation (goals, locations, time) supports MECH-288 reading boundary signals from multiple latent streams.",
+    "mapping_caveat": "fMRI activity is BOLD-scale and lags by seconds; the 'transient' boundary signal is at this scale, not at single-step substrate resolution. The mapping to substrate boundary detection is conceptual not temporal.",
+    "source_context": "fMRI during narrative reading; healthy human adults; everyday activities."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Single fMRI study, modest N. Strong because it is one of the first direct neural localisations of event-boundary detection. Transfer risk moderate because BOLD-scale evidence does not constrain substrate-level timing."
+  }
+}

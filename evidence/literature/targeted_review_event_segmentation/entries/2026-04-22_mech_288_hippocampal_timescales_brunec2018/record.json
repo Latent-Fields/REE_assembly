@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_hippocampal_timescales_brunec2018",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Multiple Scales of Representation along the Hippocampal Anteroposterior Axis in Humans",
+    "authors": ["Iva K. Brunec", "Buddhika Bellana", "Jason D. Ozubko", "Vincent Man", "Jessica Robin", "Zhong-Xu Liu", "Cheryl Grady", "R. Shayna Rosenbaum", "Gordon Winocur", "Morgan D. Barense", "Morris Moscovitch"],
+    "year": 2018,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2018.05.016",
+    "url": "https://doi.org/10.1016/j.cub.2018.05.016"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Hippocampus itself shows anteroposterior gradient of temporal scales: anterior HC has slower signal change (coarse-grained), posterior HC has faster signal change (fine-grained). Confirms multi-scale segmentation is not just cortical (Baldassano) but extends into the hippocampus where MECH-269 anchors live. Validates Q5: place-cell-field-scale (posterior HC fast scale) and event-segment scale (anterior HC slow scale) coexist as parametric variants of one anatomically-graded substrate, NOT as separate substrates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anterior HC slower autocorrelation, posterior HC faster. A substrate where MECH-269 anchor-set is single-scale would lose the natural anatomical multi-scale support."
+  ],
+  "tags": ["mech-288", "hippocampus", "anteroposterior_gradient", "multi_scale", "place_cell_field", "schema_scale"],
+  "mapping": {
+    "source_claim_statement": "Anterior hippocampus shows slower BOLD signal change and higher autocorrelation than posterior hippocampus during navigation and rest, mirroring the rodent dorsal/ventral gradient of place-field size. The gradient supports an anterior-to-posterior gradient of coarse-to-fine spatiotemporal representations.",
+    "ree_translation": "Q5 verdict directly addressed: place-cell-field scale (posterior HC, fine) and event-segment / schema scale (anterior HC, coarse) are parametric variants of ONE anatomically-graded substrate, NOT separate substrates. The MECH-288 event_segmenter should use the same boundary-detection algorithm with different time-constant parameters per scale, rather than implementing separate detectors for place-cell-field-scale and event-segment-scale boundaries.",
+    "mapping_caveat": "The gradient is observed in human BOLD; the substrate-level analogue (different time constants in different anchor-set keys) is an architectural inference. The paper does not directly test multi-scale event-segmentation but the timescale gradient is a strong indirect support.",
+    "source_context": "fMRI of healthy human adults during navigation and rest; voxel-time-course autocorrelation analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Current Biology, well-controlled. Mapping high for the architectural Q5 verdict (parametric refinement vs separate substrate)."
+  }
+}

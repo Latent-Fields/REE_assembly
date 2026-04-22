@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_hierarchical_timescales_baldassano2017",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Discovering Event Structure in Continuous Narrative Perception and Memory",
+    "authors": ["Christopher Baldassano", "Janice Chen", "Asieh Zadbood", "Jonathan W. Pillow", "Uri Hasson", "Kenneth A. Norman"],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.06.041",
+    "url": "https://doi.org/10.1016/j.neuron.2017.06.041"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.90,
+  "confidence_rationale": "Foundational direct evidence for hierarchical event segmentation with nested timescales: short events in early sensory cortex, long events in mPFC/posterior cingulate. HMM method is itself a substrate-algorithm candidate. High mapping fidelity for trigger criterion (b) latent change-point and for question 2 hierarchy. Boundary detection at high-order regions co-fires with hippocampal activity -- direct relevance to MECH-287 coupling.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Short-timescale regions (early visual) reported many short events; long-timescale regions (mPFC, PMC) reported few long events. A flat single-segment-id substrate would either over-segment if tuned to fast regions or under-segment if tuned to slow ones.",
+    "High-order event boundaries triggered hippocampal activity. A substrate where the event_segmenter does NOT couple to the hippocampal anchor system would miss this biological coupling and break MECH-287 trigger semantics."
+  ],
+  "tags": ["mech-288", "event_boundary", "fmri", "hierarchical", "hmm", "latent_change_point", "hippocampus_coupling"],
+  "mapping": {
+    "source_claim_statement": "Cortical activity during continuous narrative perception is naturally structured into a nested hierarchy of events: short events in early sensory regions, long events in high-order areas. High-order event boundaries are coupled to increases in hippocampal activity that predict later free-recall reinstatement.",
+    "ree_translation": "Two architectural recommendations follow. (a) The event_segmenter should support multiple timescales -- a single segment_id stream is biologically inadequate; a hierarchical segment_id (segment.outer.inner) is the closer match. (b) Event boundaries at the integrative scale should drive hippocampal anchor system activity -- this directly supports MECH-287 broadcast trigger as DOWNSTREAM of MECH-288 boundary detection at integrative timescales (the (c) coupling option in the spec).",
+    "mapping_caveat": "Baldassano's hierarchy emerges from cortical region anatomy in fMRI; the substrate's hierarchy must emerge from architectural choices (which streams are watched, with what time constants). The substrate cannot inherit specific timescales from this paper without empirical tuning.",
+    "source_context": "fMRI of healthy human adults watching/listening to narratives (BBC Sherlock + audio narrative); HMM-based event segmentation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.30,
+    "notes": "Neuron paper, widely cited, methodologically rigorous. Mapping high because hierarchical timescale finding maps cleanly onto MECH-288 design question 2; HMM method is one of substrate-algorithm candidates."
+  }
+}

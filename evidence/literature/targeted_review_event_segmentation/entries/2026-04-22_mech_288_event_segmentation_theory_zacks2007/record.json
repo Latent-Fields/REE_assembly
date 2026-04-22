@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_event_segmentation_theory_zacks2007",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Event perception: a mind-brain perspective",
+    "authors": ["Jeffrey M. Zacks", "Nicole K. Speer", "Khena M. Swallow", "Todd S. Braver", "Jeremy R. Reynolds"],
+    "year": 2007,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.133.2.273",
+    "url": "https://doi.org/10.1037/0033-2909.133.2.273"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Canonical statement of Event Segmentation Theory (EST). Foundational source for the prediction-error account of boundary detection that MECH-288 trigger criterion (a) directly inherits. Mapping fidelity is high because the substrate proposal mirrors the EST claim almost verbatim; transfer risk is moderate because EST was developed for human everyday-activity perception, not generic latent-stream substrates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the substrate emits boundaries from latent change-points but no transient PE spike accompanies them, EST predicts those boundaries should not be subjectively perceived as events -- the substrate would generate segment IDs that no downstream consumer treats as event-like.",
+    "EST proposes that knowledge structures (event schemas) shape boundary placement; a substrate with no schema input would systematically under-segment in familiar contexts and over-segment in unfamiliar ones."
+  ],
+  "tags": ["mech-288", "event_segmentation", "prediction_error", "boundary_detection", "EST"],
+  "mapping": {
+    "source_claim_statement": "The perception of event boundaries arises from transient increases in prediction error in an ongoing perceptual prediction system; event models are maintained between boundaries and updated at them.",
+    "ree_translation": "MECH-288 trigger criterion (a) -- prediction-error spike in a forward model -- is the direct substrate analogue of EST's PE-spike account. The event_segmenter should emit segment IDs at PE-spike events, with the segment lifetime corresponding to EST's 'event model' lifetime.",
+    "mapping_caveat": "EST was developed for human perception of everyday goal-directed activity. Whether substrate-level latent prediction errors in a much simpler agent constitute the same kind of signal as the EST PE is an empirical question. The substrate should not assume EST's specific cortical implementation (lateral PFC + ACC + neuromodulators) maps onto its own architecture.",
+    "source_context": "Behavioural psychology and cognitive neuroscience review; human everyday-activity perception."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "High-impact review (>3000 citations) in a flagship journal. Mapping high because MECH-288 trigger (a) literally inherits the EST formulation. Transfer risk because EST is human-cognitive; substrate operates at a different scale."
+  }
+}

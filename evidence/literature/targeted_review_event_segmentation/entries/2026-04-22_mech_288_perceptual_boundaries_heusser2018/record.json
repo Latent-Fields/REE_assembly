@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_perceptual_boundaries_heusser2018",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Perceptual boundaries cause mnemonic trade-offs between local boundary processing and across-trial associative binding",
+    "authors": ["Andrew C. Heusser", "Youssef Ezzyat", "Ilana Shiff", "Lila Davachi"],
+    "year": 2018,
+    "venue": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "doi": "10.1037/xlm0000503",
+    "url": "https://doi.org/10.1037/xlm0000503"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Behavioural evidence that perceptual boundaries (the easiest substrate analogue: latent change-point in z_world) shape episodic memory in a specific trade-off pattern: boundary items get strengthened item-context binding but reduced order memory. The signature is dissociable enough to provide a falsifiability target for MECH-288 substrate behaviour.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Boundary items showed strengthened item-context binding AND reduced temporal order memory. A substrate where boundaries did not produce this trade-off in downstream memory consumers would fail to reproduce the behavioural signature."
+  ],
+  "tags": ["mech-288", "event_segmentation", "boundary_effect", "behavior"],
+  "mapping": {
+    "source_claim_statement": "Perceptual context shifts (event boundaries) introduced between trains of stimuli strengthen item-context binding at the boundary and reduce temporal order memory across the boundary. Event organisation imprints structure on free recall.",
+    "ree_translation": "MECH-288 boundary detection has a specific behavioural signature: items at boundaries should get strengthened anchor-binding (downstream MECH-269 anchor-set consequence) AND items across boundaries should have weakened temporal-order representation. This is a falsifiable prediction for the event_segmenter combined with anchor-set consumers.",
+    "mapping_caveat": "Heusser used perceptual category shifts (face vs object) as boundary inducers. In REE the boundaries arise from latent change-points; whether substrate latent shifts produce the same downstream trade-off is exactly what V3 experimentation needs to test.",
+    "source_context": "Three behavioural experiments in healthy human adults; episodic memory with perceptual category shifts."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Three-experiment behavioural paper, JEP:LMC. Mapping moderate because the trade-off signature gives an experimental anchor but the substrate's boundary-inducing mechanism is different."
+  }
+}

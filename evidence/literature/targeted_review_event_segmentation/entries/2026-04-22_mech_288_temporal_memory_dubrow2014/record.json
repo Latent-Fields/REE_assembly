@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_temporal_memory_dubrow2014",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Temporal memory is shaped by encoding stability and intervening item reactivation",
+    "authors": ["Sarah DuBrow", "Lila Davachi"],
+    "year": 2014,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2535-14.2014",
+    "url": "https://doi.org/10.1523/JNEUROSCI.2535-14.2014"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct fMRI evidence that hippocampal pattern stability across items predicts subsequent temporal-order memory; category shifts (event boundaries) interrupt this stability. Validates the within-segment / across-segment distinction MECH-288 architecturally enforces.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal pattern similarity across intervening items predicted serial memory. A substrate where event-segment transitions did NOT update hippocampal anchor state would lose the within/across-segment distinction biology uses for temporal binding."
+  ],
+  "tags": ["mech-288", "event_segmentation", "temporal_memory", "hippocampus", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal pattern similarity across intervening items predicts subsequent successful order memory; category shifts (event boundaries) reduce pattern similarity and disrupt order memory.",
+    "ree_translation": "Within-segment items share a hippocampal context representation; segment boundaries flush this context. The substrate event_segmenter, by emitting a new segment_id at boundaries, gives downstream consumers (anchor sets, temporal-order representations) the signal needed to implement this within/across distinction.",
+    "mapping_caveat": "DuBrow used categorical shifts (face/object) as event-boundary proxies. Whether substrate-detected boundaries from latent change-points produce the same kind of pattern-similarity drop is an empirical question; the architecture supports the right shape of effect.",
+    "source_context": "fMRI of healthy human adults; sequence learning of celebrity face / common object stimuli; recency-discrimination test."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "JNeurosci paper, well-controlled. Mapping is solid for the architectural claim that segment boundaries should produce hippocampal context discontinuity."
+  }
+}

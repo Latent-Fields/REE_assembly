@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_temporal_binding_dubrow2016",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288"],
+  "source": {
+    "title": "Temporal binding within and across events",
+    "authors": ["Sarah DuBrow", "Lila Davachi"],
+    "year": 2016,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2016.07.011",
+    "url": "https://doi.org/10.1016/j.nlm.2016.07.011"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Within-event vs across-event encoding uses different hippocampal-PFC mechanisms: within-event = HC-vmPFC functional connectivity, across-event = univariate HC + lvlPFC activation. Validates that boundaries are computationally distinguished events for downstream consumers.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the substrate's segment_id transitions did not produce a distinct downstream signature (no flag indicating 'this transition crossed a boundary'), consumers could not differentiate within-event from across-event encoding -- collapsing biology's two functional regimes."
+  ],
+  "tags": ["mech-288", "event_segmentation", "temporal_binding", "hippocampus", "vmpfc"],
+  "mapping": {
+    "source_claim_statement": "Successful serial encoding within events relies on increased HC-vmPFC functional connectivity; successful encoding across event boundaries relies on univariate activation in middle hippocampus and left ventrolateral PFC. The two regimes are functionally dissociable.",
+    "ree_translation": "MECH-288 segment_id transitions must be observable as discrete events to downstream consumers, not merely as continuous changes in context. The substrate API should expose a boundary_emitted flag at the moment of segment_id transition so consumers can switch processing modes.",
+    "mapping_caveat": "The within/across distinction here is in human fMRI of episodic encoding; substrate consumers in REE (anchor sets, V_s readouts) operate at finer temporal scales and on simpler latent streams. The functional-distinction principle transfers; the specific neural implementation does not.",
+    "source_context": "fMRI of healthy human adults; consecutive face and object stimuli encoding."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Solid replication-class fMRI evidence. Mapping moderate because the architectural lesson (expose boundary as discrete signal) is what matters; the specific neural circuitry does not transfer."
+  }
+}

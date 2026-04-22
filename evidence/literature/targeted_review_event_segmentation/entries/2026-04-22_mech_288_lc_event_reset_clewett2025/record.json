@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_event_segmentation",
+  "entry_id": "2026-04-22_mech_288_lc_event_reset_clewett2025",
+  "timestamp_utc": "2026-04-22T20:01:11Z",
+  "claim_ids_tested": ["MECH-288", "MECH-287"],
+  "source": {
+    "title": "Locus coeruleus activation 'resets' hippocampal event representations and separates adjacent memories",
+    "authors": ["David Clewett", "Ringo Huang", "Lila Davachi"],
+    "year": 2025,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2025.05.013",
+    "url": "https://doi.org/10.1016/j.neuron.2025.05.013"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.92,
+  "confidence_rationale": "DIRECT evidence for MECH-287 / MECH-288 coupling. Combined fMRI + neuromelanin + pupillometry: event boundaries trigger pupil-linked LC activation, LC activation predicts hippocampal pattern separation in DG, hyperarousal disrupts segmentation. This is the single most important paper for MECH-287 question 3 (coupling). Strongly supports treating MECH-287 broadcast as DOWNSTREAM of MECH-288 boundary detection -- the (c) coupling option.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Boundaries triggered pupil-linked arousal AND LC activation. A substrate where MECH-288 boundary detection did not produce a MECH-287 broadcast trigger would dissociate two signals biology unifies.",
+    "Hyperaroused background LC activity DISRUPTED transient boundary-locked LC responses. The substrate must protect MECH-287 broadcast from being saturated by tonic noise -- a phasic/tonic distinction is required."
+  ],
+  "tags": ["mech-288", "mech-287", "event_boundary", "locus_coeruleus", "hippocampus", "pattern_separation", "fmri", "pupil", "coupling"],
+  "mapping": {
+    "source_claim_statement": "Encountering an event boundary triggers pupil-linked arousal and locus coeruleus activation, which in turn predicts later memory separation between adjacent events and correlates with temporal pattern separation in left hippocampal dentate gyrus. Hyperaroused tonic LC activity disrupts the transient boundary-locked LC response and impairs event segmentation.",
+    "ree_translation": "MECH-287 broadcast trigger and MECH-288 boundary detection are coupled stages of the same event in biology. Architectural recommendation: implement MECH-288 as the upstream comparator (boundary detection) and MECH-287 as the downstream broadcast that fires at the moment MECH-288 emits a new segment_id. MECH-287 does NOT need its own independent comparator code -- it reads MECH-288 boundaries. Add a tonic-vs-phasic guardrail (per Aston-Jones-Cohen 2005 already in v_s_invalidation pull) so saturated background does not collapse phasic boundaries.",
+    "mapping_caveat": "fMRI + pupil + neuromelanin all measure surrogates of LC activity at BOLD timescale, not direct single-unit recording. The coupling is robust at this scale but the substrate-level ms-scale coupling cannot be inferred directly. The (c) coupling option is the most parsimonious reading; (a) independent-correlated and (b) shared-stage remain logically possible.",
+    "source_context": "Healthy human adults; fMRI + neuromelanin imaging + pupillometry; event-boundary memory paradigm with adjacent vs separated event manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.92,
+    "transfer_risk": 0.25,
+    "notes": "Neuron 2025, three-modality convergent design. THE direct evidence for MECH-287/288 coupling. Highest-confidence paper in this pull because it addresses the architectural question directly with multi-modal data."
+  }
+}
