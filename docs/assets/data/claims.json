@@ -2936,7 +2936,7 @@
   "MECH-288": {
     "status": "candidate",
     "subject": "hippocampal.event_segmenter",
-    "title": "Event-segment detection: a substrate-side detector that emits monotonic segment IDs on detected event boundaries (latent-stream change-point, abrupt prediction-error spike, or task-supplied marker), feeding region-keyed substrates (anchor sets per MECH-269, V_s readouts per Phase 1, staleness accumulators per MECH-284) at the schema/event-segment scale per Eichenbaum 2017 / Sols-DuBrow-Davachi 2017 / Baldassano 2017. The segment_id field is the region key consumed by the V_s invalidation runtime cluster; without it, MECH-269 anchor sets and per-region V_s aggregation have no substrate-native source for the region partition.",
+    "title": "Event-segment detection: a substrate-side two-level hierarchical detector that emits monotonic outer.inner segment IDs on detected event boundaries, feeding region-keyed substrates (anchor sets per MECH-269, V_s readouts per Phase 1, staleness accumulators per MECH-284) and the MECH-287 broadcast trigger at the schema/event-segment scale per Eichenbaum 2017 / Sols-DuBrow-Davachi 2017 / Baldassano 2017. Default substrate: PE-threshold detector on the fast scale (z_world+z_self) and BOCPD-Gaussian latent change-point on the slow scale (z_goal); MECH-287 broadcast fires downstream of MECH-288 boundaries (Clewett 2025) rather than via an independent comparator. The segment_id field is the region key consumed by the V_s invalidation runtime cluster; without it, MECH-269 anchor sets and per-region V_s aggregation have no substrate-native source for the region partition.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

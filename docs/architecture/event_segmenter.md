@@ -13,9 +13,9 @@ event-boundary detector at the substrate level. This claim fills the gap.
 **Lit-pulls:**
 - `evidence/literature/targeted_review_v_s_foundation/` (verdict 1: schema/event-segment as default
   V_s region granularity per Eichenbaum 2017 + Sols-DuBrow-Davachi 2017)
-- `evidence/literature/targeted_review_event_segmentation/` (commissioned in parallel, IN PROGRESS;
-  spec at `docs/session_prompts/event_segmentation_litpull.md`; will answer the four remaining
-  architectural questions and populate the verdict integration section below)
+- `evidence/literature/targeted_review_event_segmentation/` (COMPLETE 2026-04-22; 11 papers +
+  SYNTHESIS.md; aggregate lit_confidence 0.85; decisive paper Clewett 2025 Neuron for verdict 3;
+  most generative paper Baldassano 2017 covering verdicts 2/4/5)
 **Depends on:** MECH-269, MECH-284, MECH-287
 
 ---
@@ -48,83 +48,149 @@ For each tick t:
 
 Consumers read `current_segment_id()` to key region-aware substrates.
 
-### 2. Boundary criterion
+### 2. Boundary criterion (per scale; verdicts 1 + 4 integrated)
 
-**Default first pass** (subject to lit-pull verdict 4):
+Two algorithms run in parallel, one per scale:
 
+**Fast scale** -- threshold on normalised prediction error:
 ```
-boundary_criterion(z_obs, z_pred, task_markers):
-    return norm(z_pred - z_obs) > theta_boundary
+pe_z = (norm(z_pred(t-1) - z_obs(t)) - mu_window) / sigma_window
+boundary_fast(t) = pe_z > pe_threshold      # default 0.65
 ```
+PE normalised over a sliding window of length 200. Streams: `z_world`, `z_self`. tau=2.
+min_segment_length=2.
 
-This is the threshold-on-prediction-error variant matching Zacks 2007's prediction-error account
-of event segmentation. It is the cheapest substrate option and aligns with the existing
-prediction-error machinery in `ree_core` (E1 deep predictor, ReafferencePredictor, HarmForwardModel).
+**Slow scale** -- BOCPD-Gaussian (Adams & MacKay 2007) on the latent stream:
+```
+run_length_posterior = bocpd_step(latent, hazard=1/40)
+boundary_slow(t) = posterior(run_length=0) > posterior_threshold   # default 0.5
+```
+Per-segment Gaussian likelihood. Run-length posterior pruned to top-k=20 (O(1) per step in
+practice). Streams: `z_goal`. min_segment_length=15.
 
-**Optional alternatives behind config flags** (verdict-dependent — to be confirmed by lit-pull):
+Both algorithms emit a `posterior` field in [0, 1] consumed downstream by MECH-287 as graded
+broadcast strength (no binary thresholding).
 
-- `latent_change_point`: Bayesian online change-point detection (Adams & MacKay 2007 BOCPD-style)
-  on the latent stream. Richer; more substrate cost; matches Baldassano 2017 latent-state
-  segmentation framing.
-- `task_marker`: External sensory cue or action-completion event. Useful for ground-truth-aligned
-  segments in supervised regimes.
-- `hybrid`: OR over the three signals.
+**Optional injection (config-only):**
+- `task_marker`: external cue. Exposed via `force_boundary(scale, reason)` API hook. NOT wired
+  to default trigger logic; available for supervised / scripted regimes.
 
-### 3. Hierarchical / multi-scale support
+### 3. Hierarchical / multi-scale support (verdicts 2 + 5 integrated)
 
-Per foundation verdict 1 + Baldassano 2017 nested timescales (fast-segmenter regions report short
-events; slow-segmenter regions report long events), `segment_id` may be hierarchical:
-`"segment.outer.inner"`.
+**Two scales by default (defer 3+ to Phase 3).** Same detection algorithm at both levels,
+parametrically distinguished by `(tau, min_segment_length, algorithm_choice)` -- no separate
+detector classes. The API accepts a list of `Scale(...)` configs so a third level is a
+config-only addition.
 
-**Default first pass:** flat `segment_id` (single integer counter). Hierarchical added as Phase 2
-refinement IF event-segmentation lit-pull verdict 2 supports it as architecturally necessary
-rather than optional.
+Segment IDs are nested `outer.inner` strings:
+- `outer` increments only when the slow detector fires.
+- `inner` resets on outer-fire and on its own fast-fires.
+- Cross-scale interaction: when slow fires, fast also fires (slow forces inner reset).
+  Parsimonious default; revisit if EXQ evidence contradicts.
 
-### 4. Coupling to MECH-287 broadcast trigger
+**Place-cell-field as parametric refinement (verdict 5 CONFIRMED).** Place-cell-field-scale and
+event-segment-scale boundaries are parametric variants of one substrate, NOT separate substrates
+(Eichenbaum 2017 mixed-selectivity; Brunec 2018 anteroposterior HC gradient; Baldassano 2017
+single-HMM recovers all scales with timescale parameter swap). MECH-269 anchor-set keys are
+scale-tagged (`anchor[scale=fast][segment_id="3.7"]`) so the same anchor mechanism handles both
+granularities without code duplication.
 
-This is the load-bearing open question for the lit-pull (verdict 3). Three possibilities:
+### 4. Coupling to MECH-287 broadcast trigger (verdict 3 DECISIVE)
 
-(a) **Independent.** MECH-288 boundaries and MECH-287 broadcast trigger are independent signals
-    that happen to correlate (Clewett 2020 LC-at-boundaries is a correlation report, not a wiring
-    claim). Architectural implication: MECH-287 keeps its own ComparatorStage; MECH-288 just
-    provides region IDs.
+**MECH-287 broadcast is downstream of MECH-288 boundary detection (option (c)).**
 
-(b) **Coupled stages of one comparator.** Boundary detection IS the upstream anchor-side stage
-    of MECH-287's dual-component architecture. Architectural implication: MECH-287's ComparatorStage
-    code can read MECH-288 boundaries directly; MECH-287's comparator collapses into MECH-288's
-    detector.
+Decisive evidence: **Clewett 2025 Neuron (conf 0.92)** -- multi-modal fMRI + neuromelanin +
+pupillometry demonstration that event boundaries trigger pupil-linked LC activation, which in
+turn predicts hippocampal pattern separation in DG. This directly evidences MECH-287/288
+coupling at the BOLD timescale. Cohn-Sheehy 2021 (conf 0.82) confirms the boundary moment is
+when downstream broadcast/integration occurs.
 
-(c) **Trigger downstream of boundary.** MECH-287 fires when MECH-288 emits a boundary.
-    Architectural implication: MECH-287 has no independent threshold; its trigger criterion is
-    "MECH-288 emitted a boundary this tick".
+**Implementation:**
+- MECH-288 emits `BoundaryEvent(segment_id_old, segment_id_new, scale, posterior, sources, t)`.
+- MECH-287 subscribes to MECH-288 BoundaryEvents and triggers broadcast at the moment of fire.
+  No second comparator code; the original "ComparatorStage" sub-component collapses to a
+  subscriber.
+- Broadcast strength = scaled function of MECH-288 posterior (graded, not binary). Calibrated
+  against Aston-Jones-Cohen 2005 phasic/tonic distinction (already captured in
+  `targeted_review_waking_v_s_invalidation/`).
 
-**Default first pass: (a) independent.** Refactor path to (b) or (c) reserved pending lit-pull
-verdict 3.
+**Phasic/tonic guardrail (Clewett 2025 failure signature 2):** if MECH-287's tonic-noise level
+exceeds threshold, the substrate suppresses the next phasic broadcast. Hyperaroused tonic LC
+disrupts phasic boundary-locked LC; the substrate must keep these distinct.
+
+**Architectural reconciliation with MECH-287's "upstream comparator stage" (per V_s foundation
+pull verdict 5):** the Vinogradova 2001 CA1/CA3 mismatch + O'Mara 2009 subicular routing +
+Lisman & Grace 2005 HC-VTA loop substrate registered for MECH-287 is best read as the
+BIOLOGICAL substrate that MECH-288 instantiates computationally. The two entries point at the
+same biological circuit from different angles. MECH-287's biological-substrate text remains
+accurate; the IMPLEMENTATION-side ComparatorStage sub-component should not duplicate the
+detector. Whether to refactor MECH-287's claim text to make this explicit is a downstream
+governance decision (tracked in the MECH-287 status log; not contradictory with current
+entries).
 
 ---
 
-## Verdict integration (PLACEHOLDER -- to be filled when targeted_review_event_segmentation/ lands)
+## Verdict integration (COMPLETE -- targeted_review_event_segmentation/ landed 2026-04-22)
 
-**Verdict 1 (trigger criteria for boundary detection):** _PENDING_ — will name the canonical
-default among prediction-error spike, latent change-point, and task marker, with optional
-alternatives behind config flags.
+| Verdict | Outcome | Strongest evidence | Confidence |
+|---------|---------|--------------------|------------|
+| Q1 trigger | PE-spike primary + BOCPD secondary; task-markers via API hook only | Zacks 2007, Heilbron 2018, Baldassano 2017 | 0.85 |
+| Q2 hierarchy | Two-level nested with `outer.inner` segment IDs; defer 3+ to Phase 3 | Baldassano 2017, Brunec 2018 | 0.88 |
+| Q3 coupling | MECH-287 broadcast is downstream of MECH-288 (option c); add phasic/tonic guardrail | **Clewett 2025 (decisive)** | 0.92 |
+| Q4 algorithm | PE-threshold on fast scale, BOCPD-Gaussian on slow scale; defer HSMM/full-HMM | Adams 2007, Baldassano 2017, Heilbron 2018 | 0.80 |
+| Q5 parametric refinement | CONFIRMED -- place-cell-field is parametric refinement of same substrate | Eichenbaum 2017, Brunec 2018, Baldassano 2017 | 0.90 |
 
-**Verdict 2 (hierarchical vs flat segmentation):** _PENDING_ — will recommend whether the
-substrate's first pass is flat segment_id or hierarchical, with rationale from Baldassano 2017
-nested timescales.
+**Aggregate MECH-288 lit_confidence:** 0.85 (supports → recommend upgrade candidate to
+active-pending-V3-experiment once substrate code lands).
 
-**Verdict 3 (coupling to MECH-287 broadcast trigger):** _PENDING_ — will discriminate options
-(a)/(b)/(c) above; bears directly on whether MECH-287's Phase 2 (iv) implementation needs its
-own ComparatorStage or can read MECH-288 boundaries.
+---
 
-**Verdict 4 (substrate algorithm guidance):** _PENDING_ — will recommend default algorithm
-(BOCPD vs HSMM vs threshold-on-PE vs latent change-point) with notes on biological mapping.
+## Pseudocode API (canonical -- to ship in `event_segmenter.py`)
 
-**Verdict 5 (place-cell-field option):** _PENDING_ — will confirm whether place-cell-field
-resolution is a parametric refinement of the same substrate or a fundamentally different one.
+```python
+class BoundaryEvent:
+    segment_id_old: str   # "outer.inner"
+    segment_id_new: str
+    scale: str            # "fast" | "slow"
+    posterior: float      # graded boundary strength in [0, 1]
+    sources: list[str]    # which streams fired
+    t: int                # tick when boundary detected
 
-This section will be revised in-place when SYNTHESIS.md lands. The MECH-288 entry in claims.yaml
-will be revised to match.
+class Scale:
+    name: str
+    streams: list[str]
+    algorithm: str        # "pe_threshold" | "bocpd_gaussian"
+    tau: int
+    min_segment_length: int
+    # algorithm-specific
+    pe_threshold: float | None
+    hazard: float | None
+    posterior_threshold: float | None
+
+class EventSegmenter:
+    def __init__(self, scales: list[Scale], emit_to: list[str],
+                 scale_id_format: str = "{outer}.{inner}"): ...
+    def step(self, latent_dict: dict, pe_dict: dict, t: int) -> list[BoundaryEvent]: ...
+    def force_boundary(self, scale: str, reason: str) -> BoundaryEvent: ...
+    def current_segment_id(self) -> str: ...   # returns "outer.inner"
+```
+
+## Canonical default config (to ship)
+
+```python
+EventSegmenter(
+  scales=[
+    Scale(name="fast", streams=["z_world", "z_self"],
+          algorithm="pe_threshold", tau=2, min_segment_length=2,
+          pe_threshold=0.65),
+    Scale(name="slow", streams=["z_goal"],
+          algorithm="bocpd_gaussian", hazard=1/40,
+          posterior_threshold=0.5, min_segment_length=15),
+  ],
+  emit_to=["mech_287_broadcast", "mech_269_anchor_set"],
+  scale_id_format="{outer}.{inner}",
+)
+```
 
 ---
 
@@ -171,8 +237,8 @@ Candidate experiment names (not yet queued):
 
 ## Open design questions
 
-1. **Verdict integration.** All five verdicts above are pending. The substrate first-pass
-   defaults are educated guesses; verdicts may revise them.
+1. **Verdict integration.** ~~PENDING~~ COMPLETE 2026-04-22 (see Verdict integration table
+   above). Substrate first-pass defaults pinned to canonical config.
 
 2. **Event-segmenter run order in agent.tick().** Should the segmenter run before sense() (so
    the segment_id is fresh when V_s readouts compute) or after (so it has the latest latent
@@ -199,11 +265,29 @@ Candidate experiment names (not yet queued):
 
 ## Status log
 
-- **2026-04-22** — Design doc skeleton written. MECH-288 registered candidate v3_pending in
-  claims.yaml. Lit-pull `targeted_review_event_segmentation/` commissioned in parallel (spec
-  at `docs/session_prompts/event_segmentation_litpull.md`). Phase 2 (ii)+(iii) substrate
-  blocks on verdict integration. Phase 2 (iv) MECH-287 trigger does NOT block on this and
-  may proceed in parallel (subject to verdict 3 — if option (b) or (c) holds, the
-  ComparatorStage code in invalidation_trigger.py will be refactored to read MECH-288
-  boundaries instead of computing its own threshold).
-- Verdict integration follows when lit-pull lands.
+- **2026-04-22 (am)** — Design doc skeleton written. MECH-288 registered candidate v3_pending
+  in claims.yaml. Lit-pull `targeted_review_event_segmentation/` commissioned in parallel
+  (spec at `docs/session_prompts/event_segmentation_litpull.md`). Phase 2 (ii)+(iii)
+  substrate blocks on verdict integration. Phase 2 (iv) MECH-287 trigger initially planned
+  as parallelisable (pending verdict 3).
+
+- **2026-04-22 (pm)** — Lit-pull complete: 11 papers + SYNTHESIS.md, aggregate lit_conf 0.85.
+  All five verdicts integrated in-place above. Key results:
+  - Verdict 3 = option (c) DECISIVE (Clewett 2025 Neuron). MECH-287 trigger reads MECH-288
+    BoundaryEvents; no independent comparator. **Sequencing implication: MECH-288 substrate
+    code must land BEFORE MECH-287 Phase 2 (iv) trigger code, not in parallel.** Phase 2
+    sequencing revised: (288) → (iv MECH-287) → (ii MECH-269 anchors + iii per-region V_s),
+    OR (288) → (ii + iii) → (iv) -- both routes land 288 first; (iv) before (ii+iii) is
+    the cleaner test order because it isolates whether the trigger fires correctly before
+    we wire the consumers.
+  - Verdict 4 pinned canonical config (PE-threshold fast on z_world+z_self; BOCPD-Gaussian
+    slow on z_goal). Ready for implementation as-is.
+  - Verdict 2 pinned two-level nested `outer.inner` segment IDs. Defer 3+ levels to Phase 3
+    (config-only addition).
+  - Verdict 5 confirmed place-cell-field as parametric refinement (no separate substrate).
+  - Architectural reconciliation flagged with MECH-287's "upstream comparator stage" framing
+    (per V_s foundation pull verdict 5): MECH-287's biological-substrate text remains
+    accurate; the IMPLEMENTATION-side ComparatorStage sub-component collapses to a
+    BoundaryEvent subscriber in the MECH-288 era. Whether to refactor MECH-287 claim text
+    to make this explicit is a downstream governance decision (not contradictory with
+    current entries; tracked in MECH-287 status log).
