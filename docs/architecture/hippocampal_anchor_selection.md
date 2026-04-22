@@ -457,6 +457,116 @@ anchor/probe distinction in reset behaviour proves architecturally substantive.
 
 ---
 
+## V_s as bidirectional signal: runtime gate + sleep priority (MECH-283 / 284 / 285)
+
+The V_s signal introduced for MECH-269 has so far been used in one direction only: as
+a runtime gate on anchor proposal eligibility. But the same per-stream verisimilitude
+scalar carries information that the architecture is currently leaving on the floor.
+This section registers three further uses, each as its own MECH:
+
+### MECH-283: V_s recognition-for-recall gate
+
+**Statement:** V_s computed at retrieval time (not proposal time) gates whether a
+stored episode is even a candidate for re-entry into the proposal stream. Recognition
+("does this fit my current situation?") is logically prior to anchor-eligibility
+("is this a good place to start a rollout from?").
+
+**Distinction from MECH-269:** MECH-269's V_s is computed against the proposed
+*anchor state*; MECH-283's V_s is computed against the *retrieved episode content*.
+A retrieval candidate with low V_s on its episode content fails recognition before
+its anchor is even tested. This explains why hippocampal recall is content-coherent
+even when the anchor would technically be eligible — the recognition gate fires first.
+
+**Failure mode:** Loss of MECH-283 produces *intrusive recall* — episodes get retrieved
+that don't fit current context (PTSD flashback phenomenology, schizophrenic loose
+association). Note that this is a different failure surface from MECH-094 hypothesis-tag
+loss (which produces simulation→reality confusion), though both can co-occur.
+
+**Substrate prediction:** A retrieval-time V_s computation against episode content,
+upstream of the anchor-eligibility gate of MECH-269. Architecturally this is a small
+addition to the hippocampal proposer's retrieval pipeline.
+
+### MECH-284: V_s residual schema-staleness accumulator
+
+**Statement:** When an anchored rollout is committed and executed, the discrepancy
+between the rollout's *predicted* downstream V_s trajectory and the *realised* V_s
+trajectory accumulates as a per-region staleness signal on the schema regions the
+rollout traversed. Persistent low V_s on a schema region — i.e. the schema repeatedly
+under-predicts current state — tags that region as needing revision.
+
+**Distinction from generic prediction error:** Standard prediction error (E1
+sensorium loss, E2 transition loss, E3 harm/goal loss) operates on the latent values
+themselves and updates the relevant heads via gradient. MECH-284 operates on the
+*schema regions in the hippocampal map*, accumulating across episodes, and is read by
+sleep consolidation rather than by online learning. It is a slow, region-indexed
+"this part of my map is wrong" signal that can persist across many waking episodes
+without prompting immediate parameter updates.
+
+**Failure mode:** Saturated staleness map produces global "everything is uncertain"
+phenomenology — anxiety-disorder-analog over-attention to schema revision needs.
+Absent staleness map produces the opposite — confident misperception, schema rigidity
+under environmental change (some autism-spectrum / OCD-spectrum phenomenologies map
+here).
+
+**Substrate prediction:** A region-indexed accumulator (one float per schema region)
+that integrates `(predicted_V_s - realised_V_s)` across executed rollouts, with a
+slow leak so very old residuals decay. Read-only during waking; consumed during
+sleep by MECH-285.
+
+### MECH-285: Sleep-consolidation priority from V_s residuals
+
+**Statement:** During sleep-phase Bayesian aggregation (MECH-275) and sleep-dependent
+self-model aggregation (MECH-273), the order and weight of replay events is biased by
+the schema-staleness map produced by MECH-284. Replay is not uniform across the
+schema and is not solely salience-driven (dopaminergic tagging); it is *also*
+prioritised by accumulated verisimilitude residuals. The schema regions that have
+accumulated the most "this is wrong" evidence get replayed first, more often, and
+with higher schema-update authority during sleep.
+
+**Distinction from existing replay-prioritisation accounts:** The dopaminergic
+salience-tagging account predicts that emotionally significant events get prioritised.
+MECH-285 predicts an additional, dissociable priority signal: epistemically important
+regions (where the model is wrong) get prioritised even if they are emotionally flat.
+The two priority signals are partially redundant in normal life (because emotionally
+significant events are often also epistemically important) but dissociable under
+specific conditions: a calm, low-arousal but high-novelty environment should produce
+sleep-replay biased toward novelty even without salience tagging.
+
+**Failure mode:** Loss of MECH-285 produces *PTSD-like rumination* — the staleness
+tag accumulates from a traumatic episode but never gets cleared by sleep replay,
+because the priority signal that should pull that region into replay is broken.
+Hypothesis-tagged simulation (MECH-094) prevents the replay that does occur from
+updating the schema, locking the rumination loop. This is the **architecturally
+clean PTSD failure mode** — a co-occurrence of MECH-285 priority loss and
+MECH-094 hypothesis-tag dysfunction.
+
+**Substrate prediction:** A read of the MECH-284 accumulator at sleep onset that
+biases the SWR-equivalent replay scheduler. Concretely: sleep replay's
+start-state distribution (from MECH-269 / Pfeiffer & Foster 2013 substrate) is
+weighted by accumulated staleness. Updates the existing depends_on of MECH-272
+(state-gated routing), MECH-273 (sleep self-model aggregation), MECH-275
+(sleep-phase Bayesian aggregation general mechanism) to reference MECH-285.
+
+### Bidirectional summary
+
+V_s carries information in two directions through the architecture:
+
+| Direction | Mechanism | Phase | Use |
+|-----------|-----------|-------|-----|
+| Forward (gate) | MECH-269 | Waking | Anchor-eligibility for proposal stream |
+| Forward (gate) | MECH-283 | Waking | Recognition-for-recall (retrieval candidacy) |
+| Reverse (residual) | MECH-284 | Waking | Per-region schema-staleness accumulator |
+| Reverse (priority) | MECH-285 | Sleep | Replay scheduling and schema-update authority |
+
+The architectural unification: **V_s is the schema's self-monitoring signal.** During
+waking it gates what the schema is allowed to propose and recall; during waking it
+also accumulates evidence about its own under-fit; during sleep it directs the repair.
+This is the symmetry the user identified — verisimilitude is more than grounding the
+now; it is the schema's principal mechanism for knowing what it does not yet know
+well.
+
+---
+
 ## Status log
 
 - **2026-04-21** — Design doc written. Claim ID **MECH-269** reserved but not yet in
@@ -486,3 +596,13 @@ anchor/probe distinction in reset behaviour proves architecturally substantive.
   mode-context, temporal cap). Identified as architecturally coupled with SD-036 (registered
   same session) — neither alone resolves the EXQ-471 pathology. Sleep-mode probe exemption
   flagged as open design question, possible candidate for new MECH if substantive.
+- **2026-04-22** (later) — V_s bidirectional section added (MECH-283 / 284 / 285).
+  Discussion origin: user observation that the verisimilitude function is doing more
+  than grounding the now — it also carries information about recognition-for-recall,
+  about where hippocampal plan predictions don't match well, and about which
+  schema-level representations need fine-tuning during sleep. Architectural payoff is
+  the unification: V_s is the schema's self-monitoring signal across both phases, with
+  forward use during waking (gating proposals and retrieval) and reverse use accumulated
+  during waking and consumed during sleep (schema-staleness map → replay priority →
+  schema repair). PTSD failure mode now has a clean architectural account as
+  MECH-285 priority loss co-occurring with MECH-094 hypothesis-tag dysfunction.

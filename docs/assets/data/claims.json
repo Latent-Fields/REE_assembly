@@ -2885,6 +2885,42 @@
     "title": "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-280": {
+    "status": "candidate",
+    "subject": "lh_pag.override_projection",
+    "title": "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-281": {
+    "status": "candidate",
+    "subject": "orexin.drive_arousal_coupling",
+    "title": "Orexin-analog gain modulation of drive-coupled arousal: an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the V3 architectural account of narcolepsy/cataplexy as a coupling-loss failure mode rather than as a sleep-regulation deficit.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-282": {
+    "status": "candidate",
+    "subject": "lpb.interoceptive_harm_routing",
+    "title": "LPB interoceptive routing into harm-arbitration: a lateral-parabrachial-nucleus analog (LPB) routes interoceptive distress signals (visceral malaise, taste-aversion analogs, hypoxia, hypoglycemia) into the harm-arbitration network via PBN-CGRP -> CeA -> PAG. This is the upstream broadcast arm of the threat-side architecture, parallel to VMHdm's predator-side broadcast. Both feed downstream arbiters where SD-037's override_signal reweights them. Architectural commitment: interoceptive harm has a separable input channel from external-threat z_harm, dissociable in pathology and in normal modulation.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-283": {
+    "status": "candidate",
+    "subject": "hippocampal.v_s_recognition_recall_gate",
+    "title": "Verisimilitude recognition-for-recall gate: V_s computed at retrieval time (not proposal time) gates whether a stored episode is even a candidate for re-entry into the proposal stream. Recognition (does this fit my current situation?) is logically prior to anchor-eligibility (is this a good place to start a rollout from?). MECH-269's V_s is computed against the proposed anchor state; MECH-283's V_s is computed against the retrieved episode content. Loss of MECH-283 produces intrusive recall -- episodes that don't fit current context get pulled into the proposal stream (PTSD flashback / schizophrenic loose-association phenomenology).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-284": {
+    "status": "candidate",
+    "subject": "hippocampal.v_s_residual_schema_staleness_accumulator",
+    "title": "V_s residual schema-staleness accumulator: when an anchored rollout is committed and executed, the discrepancy between predicted V_s trajectory and realised V_s trajectory accumulates as a per-region staleness signal on the schema regions the rollout traversed. Persistent low V_s on a schema region tags it as needing revision. Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across episodes, and is read by sleep consolidation rather than online learning. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (some autism/OCD-spectrum failure modes).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-285": {
+    "status": "candidate",
+    "subject": "hippocampal.sleep_consolidation_priority_from_v_s_residuals",
+    "title": "Sleep-consolidation priority from V_s residuals: during sleep-phase Bayesian aggregation (MECH-275) and sleep-dependent self-model aggregation (MECH-273), the order and weight of replay events is biased by the schema-staleness map produced by MECH-284. Replay is not uniform across schema and is not solely salience-driven (dopaminergic tagging); it is also prioritised by accumulated verisimilitude residuals. Schema regions with the most accumulated 'this is wrong' evidence get replayed first, more often, and with higher schema-update authority during sleep. PTSD-rumination has a clean architectural account here: MECH-285 priority loss co-occurring with MECH-094 hypothesis-tag dysfunction, locking the staleness tag from ever clearing.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3405,6 +3441,12 @@
     "status": "candidate",
     "subject": "gabaergic.cross_stream_decay_regulator",
     "title": "GABAergic regulatory layer applies cross-stream exponential decay (z_harm_s, z_harm_a, z_beta) modulated by tonic gaba_tone; missing-decay regulator is the proximal substrate cause of harm-stream lock-in (catatonia subtype II) observed in V3-EXQ-471.",
+    "type": "design_decision"
+  },
+  "SD-037": {
+    "status": "candidate",
+    "subject": "broadcast.override_regulator",
+    "title": "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists.",
     "type": "design_decision"
   }
 }

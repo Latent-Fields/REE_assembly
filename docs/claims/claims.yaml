@@ -19931,6 +19931,7 @@
     - MECH-269  # anchor/probe distinction
     - MECH-094  # hypothesis tag
     - MECH-092  # micro-DMN replay
+    - MECH-285  # V_s residual priority biases sleep-regime replay scheduling
   functional_restatement: >
     Waking regime: the proposer is supporting decisions, so the
     routing bias is toward anchored rollouts reaching consolidation
@@ -19992,6 +19993,7 @@
     - INV-049  # offline phases are mathematically necessary for model-building agents
     - ARC-007  # hippocampal path memory (substrate for aggregation)
     - SD-033a  # viability-map revision consumer
+    - MECH-285 # V_s residual priority biases which self-attribution episodes get aggregated first
   functional_restatement: >
     SD-003 gives the agent a causal signature per episode: in this
     episode, this action looks self-initiated with probability p.
@@ -20169,6 +20171,7 @@
     - MECH-273  # self-model specialisation
     - INV-049   # offline-phase necessity (operationalised here)
     - ARC-007   # hippocampal path memory (substrate)
+    - MECH-285  # V_s residual priority biases replay scheduling (epistemic-priority arm of aggregation)
   functional_restatement: >
     MECH-275 generalises MECH-273's self-model aggregation. The input
     is not arbitrary correlation; it is structured attribution
@@ -20519,3 +20522,379 @@
     yet. Promotion requires the falsifiable substrate experiments in
     sd_036_gabaergic_decay_regulator.md.
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
+
+- id: SD-037
+  title: "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists."
+  claim_type: design_decision
+  subject: broadcast.override_regulator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-22
+  depends_on:
+    - SD-036    # paired regulator: stream-side decay (this is arbitration-side reweighting)
+    - SD-012    # drive-modulated goal seeding (this gates the bridge)
+    - SD-032a   # SalienceCoordinator (consumes override_signal as weight modulator)
+    - MECH-279  # PAG freeze-gate (consumes override_signal via MECH-280 projection)
+  child_claims:
+    - MECH-280  # LH-PAG override projection
+    - MECH-281  # orexin gain modulation of drive-coupled arousal
+    - MECH-282  # LPB interoceptive routing into harm-arbitration
+  functional_restatement: >
+    SD-036's GABAergic decay addresses one half of the V3-EXQ-471 catatonic
+    lock: in the absence of input, harm streams now relax toward baseline.
+    But the lit-pull on homeostatic override is convergent that decay alone
+    is not how biology breaks harm-stream lock-in under sustained threat.
+    Biology uses a dedicated override authority -- a small, broadly-projecting
+    gain modulator (canonically orexin/hypocretin) that integrates internal
+    homeostatic state and threat context and reweights downstream arbitration
+    without silencing upstream signals.
+
+    SD-037 commits to a third regulatory layer alongside 5-HT (MECH-186/187/188,
+    goal-pipeline gain) and GABA (SD-036, cross-stream decay). The regulator
+    computes a scalar (or low-dimensional vector) override_signal from
+    drive_level (SD-012), sustained-threat context (rolling window of z_harm
+    above threshold), and a recruitment threshold. Above recruitment threshold:
+    (1) the weight of z_harm in commit-gate threshold computations is scaled
+    down (z_harm itself is not modified); (2) drive_level is allowed to seed
+    z_goal directly. Below threshold: drive cannot seed goal-mode behaviour
+    even with non-zero benefit_exposure. This is the architectural answer to
+    why hunger does not just compete with threat but acquires authority over it.
+
+    Falsifiable (primary, factorial validation): 4-arm experiment {SD-036 OFF,
+    SD-037 OFF}, {SD-036 ON, SD-037 OFF}, {SD-036 OFF, SD-037 ON}, {SD-036 ON,
+    SD-037 ON} on V3-EXQ-471 conditions. Predicted: arms 2 and 3 partial
+    recovery; arm 4 full recovery; arm 1 reproduces lock. A failure of arm 4
+    falsifies the broadcast-override architecture entirely.
+
+    Falsifiable (secondary): saturated override (override_signal pinned high)
+    should produce compulsive drive pursuit despite negative outcomes
+    (PWS-analog hyperphagia). Lost override (override_signal absent) should
+    produce decoupling -- z_harm and drive_level both compute normally but
+    fail to integrate into coordinated behaviour (narcolepsy/cataplexy-analog).
+    These two failure phenotypes are diagnostic for SD-037-specific dysfunction.
+  notes: >
+    Design origin: lit-pull synthesis 2026-04-22, targeted_review_homeostatic_override.
+    13 papers across LH/AgRP, LH-VTA, peri-LC, orexin, PBN-CGRP, VMHdm, insula,
+    PWS, and narcolepsy. Convergent verdict: broadcast at upstream sources +
+    arbitration at downstream nodes; override REWEIGHTS z_harm rather than
+    REPLACING it; the bridge between drive_level and z_goal seeding is the
+    missing link in V3. SYNTHESIS.md "Bottom line": SD-036 alone is unlikely
+    to fix V3-EXQ-471 architecturally; the orexin-analog cluster is on the
+    V3 roadmap regardless of EXQ-475's empirical outcome.
+    Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
+  evidence_quality_note: >
+    No V3 substrate evidence yet; not implemented. Strong literature basis
+    (lit-pull synthesis at literature_confidence ~0.78 across 13 papers).
+    Promotion requires the falsifiable factorial validation above plus
+    independent demonstration of the two failure-mode phenotypes.
+  location: docs/architecture/sd_037_broadcast_override_regulator.md
+
+- id: MECH-280
+  title: "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys."
+  claim_type: mechanism_hypothesis
+  subject: lh_pag.override_projection
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - SD-037    # parent: provides override_signal
+    - MECH-279  # the freeze gate this raises the threshold of
+    - SD-036    # GABAergic decay layer (paired regulator)
+    - SD-012    # drive_level (input to override_signal)
+  functional_restatement: >
+    MECH-279 implements the freeze commit threshold (z_harm_a x duration >
+    theta_freeze) with a fixed theta_freeze. MECH-280 makes theta_freeze a
+    function of override_signal: under high metabolic demand and sustained
+    threat, the threshold rises so the agent does not commit to freeze --
+    instead, active foraging is permitted despite sustained z_harm_a.
+
+    Falsifiable (primary): in a paradigm with sustained threat (z_harm_a
+    elevated for many steps) and rising drive_level, an agent with MECH-280
+    enabled should transition from freeze to foraging at a predictable
+    drive_level threshold; an agent with MECH-280 disabled should remain
+    frozen indefinitely (the EXQ-471 lock).
+
+    Falsifiable (secondary): the threshold of the freeze->foraging
+    transition should depend on both drive_level and the duration of
+    sustained threat -- short threats with rising drive should not
+    override; long sustained threats with rising drive should override.
+  notes: >
+    Evidence anchors: Marino 2020 (LH GABA -> peri-LC for foraging
+    engagement); de Araujo Salgado 2023 (sustained hunger overrides
+    predator avoidance via LH-PAG-relevant circuitry); Wang/Lin 2015
+    (PAG as downstream arbiter of broadcast threat signals).
+    Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
+    section "MECH-280: LH-PAG override projection".
+  evidence_quality_note: >
+    Substrate not implemented. Strong biological evidence (LH-PAG
+    foraging-under-threat literature). Promotion requires substrate
+    implementation and the falsifiable test above.
+  location: docs/architecture/sd_037_broadcast_override_regulator.md
+
+- id: MECH-281
+  title: "Orexin-analog gain modulation of drive-coupled arousal: an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the V3 architectural account of narcolepsy/cataplexy as a coupling-loss failure mode rather than as a sleep-regulation deficit."
+  claim_type: mechanism_hypothesis
+  subject: orexin.drive_arousal_coupling
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - SD-037    # parent: provides override_signal
+    - SD-012    # drive_level being coupled
+    - MECH-090  # bistable beta gate (downstream coupling target)
+    - SD-033a   # lateral PFC analogue (downstream coupling target)
+    - SD-035    # amygdala analogue (downstream coupling target)
+  functional_restatement: >
+    The override_signal does not act in isolation -- it gates the gain
+    on drive->action-pipeline projections. Concretely: drive_level's
+    weight in z_goal seeding, drive_level's modulation of beta-gate
+    sensitivity, and drive_level's modulation of PFC deliberation
+    priors (SD-033a) all scale with override_signal.
+
+    Falsifiable (primary, lesion test): setting override_signal to
+    constant zero should produce decoupling -- drive_level accumulates,
+    threat is computed, but action selection fails to integrate them.
+    The agent should appear inert despite both signals being present.
+    This is the cataplexy-analog phenotype.
+
+    Falsifiable (secondary, saturation test): override_signal pinned
+    at maximum should produce uncoupled-drive pursuit -- drive_level
+    seeds z_goal aggressively even under maximum z_harm. This is the
+    PWS-hyperphagia analog.
+  notes: >
+    Evidence anchors: Bjorness/Greene 2024 (orexin as coupling signal
+    for motivated arousal); James/Aston-Jones 2017 (orexin recruitment
+    under high effort/demand); Bassetti 2019 (narcolepsy as coupling-loss
+    clinical model with cataplexy as the diagnostic).
+    Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
+    section "MECH-281: Orexin gain modulation of drive-coupled arousal".
+  evidence_quality_note: >
+    Substrate not implemented. Strong clinical evidence basis (narcolepsy
+    + PWS as natural lesion-and-saturation experiments). Promotion
+    requires substrate implementation and the falsifiable lesion +
+    saturation tests above.
+  location: docs/architecture/sd_037_broadcast_override_regulator.md
+
+- id: MECH-282
+  title: "LPB interoceptive routing into harm-arbitration: a lateral-parabrachial-nucleus analog (LPB) routes interoceptive distress signals (visceral malaise, taste-aversion analogs, hypoxia, hypoglycemia) into the harm-arbitration network via PBN-CGRP -> CeA -> PAG. This is the upstream broadcast arm of the threat-side architecture, parallel to VMHdm's predator-side broadcast. Both feed downstream arbiters where SD-037's override_signal reweights them. Architectural commitment: interoceptive harm has a separable input channel from external-threat z_harm, dissociable in pathology and in normal modulation."
+  claim_type: mechanism_hypothesis
+  subject: lpb.interoceptive_harm_routing
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - SD-037    # parent: override_signal reweights both interoceptive and external harm
+    - SD-035    # amygdala analogue (CeA on the routing path)
+    - MECH-279  # PAG freeze gate (downstream arbiter)
+    - SD-011    # z_harm_a affective harm stream (consumer of LPB routing)
+    - SD-012    # drive_level (interoceptive input source)
+  functional_restatement: >
+    Current V3 z_harm computation is dominated by external-threat input.
+    MECH-282 commits to a separable input channel that carries
+    interoceptive/metabolic-distress signal: hunger-as-pain, hypoxia-as-
+    pain, malaise. Under SD-037 override conditions, the interoceptive
+    harm channel is NOT suppressed (hunger remains felt as suffering),
+    but its weight in arbitration becomes the input that drives the
+    override_signal recruitment threshold from below.
+
+    Falsifiable (primary, dissociation): selectively elevating the
+    interoceptive harm channel (e.g. simulating hypoxia) should drive
+    behaviour distinctly from elevating external-threat z_harm. The
+    interoceptive channel should produce drive-recruitment of override;
+    the external channel should produce freeze/avoidance commitment.
+
+    Falsifiable (secondary, lesion): removing the LPB routing (channel
+    set to zero) should produce an agent that does not feel its own
+    metabolic state -- drive accumulates without being phenomenologically
+    present in the z_harm computation, override never recruits, agent
+    starves silently.
+  notes: >
+    Evidence anchors: Palmiter 2018 (PBN CGRP general alarm review);
+    Pyeon 2025 (PBN CGRP active defense modulation); Strigo/Craig 2016
+    (insular common-currency framing for interoceptive emotions).
+    Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
+    section "MECH-282: LPB interoceptive routing into harm-arbitration".
+  evidence_quality_note: >
+    Substrate not implemented. Strong biological evidence (PBN-CGRP
+    literature on interoceptive distress). Promotion requires substrate
+    implementation and the dissociation + lesion tests above.
+  location: docs/architecture/sd_037_broadcast_override_regulator.md
+
+- id: MECH-283
+  title: "Verisimilitude recognition-for-recall gate: V_s computed at retrieval time (not proposal time) gates whether a stored episode is even a candidate for re-entry into the proposal stream. Recognition (does this fit my current situation?) is logically prior to anchor-eligibility (is this a good place to start a rollout from?). MECH-269's V_s is computed against the proposed anchor state; MECH-283's V_s is computed against the retrieved episode content. Loss of MECH-283 produces intrusive recall -- episodes that don't fit current context get pulled into the proposal stream (PTSD flashback / schizophrenic loose-association phenomenology)."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.v_s_recognition_recall_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - MECH-269  # parent: anchor-eligibility V_s gate; MECH-283 sits upstream of it
+    - ARC-007   # hippocampal path memory (substrate for retrieval)
+  functional_restatement: >
+    MECH-269's V_s gate operates on candidate anchor states. But there
+    is a logically prior question: should this episode be retrieved at
+    all, given current context? MECH-283 commits to a retrieval-time
+    V_s computation against episode content (not anchor state). A
+    retrieval candidate with low V_s on its episode content fails
+    recognition before its anchor is tested.
+
+    This explains why hippocampal recall is content-coherent even when
+    anchor-eligibility would technically pass -- the recognition gate
+    fires first.
+
+    Falsifiable (primary): in a paradigm with two stored episodes (one
+    matching current context, one not) sharing equally good anchor
+    states, MECH-283-enabled retrieval should preferentially pull the
+    context-matching episode. MECH-283-disabled retrieval should pull
+    them at chance.
+
+    Falsifiable (secondary, intrusive-recall test): under MECH-283
+    dysfunction (gate threshold lowered), the agent should retrieve
+    context-incongruent episodes and feed them to the proposal stream
+    -- intrusive flashback phenomenology.
+  notes: >
+    Discussion origin: user observation 2026-04-22 that V_s is doing
+    more than grounding the now -- it also gates recognition for
+    recall, accumulates evidence of schema staleness during waking,
+    and prioritises sleep consolidation. MECH-283 is the
+    recognition-for-recall arm of this trio (with MECH-284 the
+    accumulator and MECH-285 the sleep-priority readout).
+    Design doc: docs/architecture/hippocampal_anchor_selection.md
+    section "V_s as bidirectional signal".
+  evidence_quality_note: >
+    No substrate evidence. Substrate change is small (a retrieval-time
+    V_s computation upstream of the anchor gate). Promotion requires
+    substrate implementation and the falsifiable retrieval test above.
+  location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-284
+  title: "V_s residual schema-staleness accumulator: when an anchored rollout is committed and executed, the discrepancy between predicted V_s trajectory and realised V_s trajectory accumulates as a per-region staleness signal on the schema regions the rollout traversed. Persistent low V_s on a schema region tags it as needing revision. Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across episodes, and is read by sleep consolidation rather than online learning. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (some autism/OCD-spectrum failure modes)."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.v_s_residual_schema_staleness_accumulator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - MECH-269  # V_s computation (input to the residual)
+    - ARC-007   # hippocampal path memory (regions being indexed)
+    - ARC-018   # viability map (regions also indexed here)
+  functional_restatement: >
+    Standard prediction error operates on latent values themselves and
+    updates the relevant heads via gradient (E1 sensorium loss, E2
+    transition loss, E3 harm/goal loss). MECH-284 operates on the
+    schema regions in the hippocampal map, accumulating across episodes,
+    and is read by sleep consolidation rather than by online learning.
+
+    Concretely: a region-indexed accumulator (one float per schema
+    region) integrates (predicted_V_s - realised_V_s) across executed
+    rollouts, with a slow leak so very old residuals decay. Read-only
+    during waking; consumed during sleep by MECH-285.
+
+    Falsifiable (primary): an agent in a changing environment should
+    show staleness-accumulator increases on the schema regions
+    corresponding to the changed parts of the environment. An agent
+    in a stable environment should show baseline-near-zero accumulator
+    values across the map.
+
+    Falsifiable (secondary, dissociation from prediction error): a
+    schema region with high prediction error in a single episode but
+    correct on average should produce low MECH-284 staleness;
+    a region with low individual-episode prediction error but
+    systematic under-prediction should accumulate high staleness.
+    Standard prediction error and MECH-284 staleness should
+    dissociate empirically.
+  notes: >
+    Discussion origin: same as MECH-283. The residual-accumulator arm
+    of the V_s bidirectional trio. Conceptually closest neighbour in
+    the existing literature is the meta-cognitive uncertainty-monitoring
+    literature (Fleming, Lau) but with a schema-regional substrate
+    rather than a global confidence scalar.
+    Design doc: docs/architecture/hippocampal_anchor_selection.md
+    section "V_s as bidirectional signal".
+  evidence_quality_note: >
+    No substrate evidence. Promotion requires substrate implementation,
+    the falsifiable changing-environment test, and the dissociation-
+    from-prediction-error test.
+  location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-285
+  title: "Sleep-consolidation priority from V_s residuals: during sleep-phase Bayesian aggregation (MECH-275) and sleep-dependent self-model aggregation (MECH-273), the order and weight of replay events is biased by the schema-staleness map produced by MECH-284. Replay is not uniform across schema and is not solely salience-driven (dopaminergic tagging); it is also prioritised by accumulated verisimilitude residuals. Schema regions with the most accumulated 'this is wrong' evidence get replayed first, more often, and with higher schema-update authority during sleep. PTSD-rumination has a clean architectural account here: MECH-285 priority loss co-occurring with MECH-094 hypothesis-tag dysfunction, locking the staleness tag from ever clearing."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.sleep_consolidation_priority_from_v_s_residuals
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-22
+  depends_on:
+    - MECH-284  # parent: produces the staleness map this consumes
+    - MECH-275  # general sleep-phase Bayesian aggregation (this biases its replay priority)
+    - MECH-273  # sleep self-model aggregation (also biased by this priority)
+    - MECH-272  # state-gated routing (sleep regime where this fires)
+    - MECH-094  # hypothesis tag (co-failure with MECH-285 produces PTSD architecture)
+    - MECH-269  # V_s computation (substrate)
+    - ARC-007   # hippocampal path memory
+  functional_restatement: >
+    Existing accounts of replay prioritisation are dopaminergic
+    salience-tagging: emotionally significant events get prioritised.
+    MECH-285 commits to an additional, dissociable priority signal:
+    epistemically important regions (where the model is wrong) get
+    prioritised even if they are emotionally flat. The two priority
+    signals are partially redundant in normal life (emotionally
+    significant events are often also epistemically important) but
+    dissociable under specific conditions: a calm, low-arousal but
+    high-novelty environment should produce sleep-replay biased toward
+    novelty even without salience tagging.
+
+    Concretely: sleep replay's start-state distribution (from the
+    MECH-269 / Pfeiffer & Foster 2013 substrate) is weighted by
+    accumulated MECH-284 staleness.
+
+    Falsifiable (primary, dissociation from salience): in a low-arousal
+    high-novelty paradigm, sleep replay content should be biased toward
+    the novel-but-flat regions when MECH-285 is enabled, biased toward
+    salience-tagged regions when MECH-285 is disabled (salience-only
+    fallback).
+
+    Falsifiable (secondary, PTSD-rumination architecture): jointly
+    disabling MECH-285 (priority loss) and MECH-094 (hypothesis-tag
+    loss) should produce a stable rumination loop -- the staleness
+    tag accumulates from a traumatic episode but never gets cleared,
+    because the priority signal that should pull it into replay is
+    broken AND because the simulated-vs-real distinction is broken
+    so the replay that does occur cannot update the schema. Either
+    failure alone should produce a milder, recoverable phenotype.
+  notes: >
+    Discussion origin: same as MECH-283/284. The sleep-priority readout
+    arm of the V_s bidirectional trio. The PTSD failure-mode prediction
+    is the architectural payoff: PTSD has been a coarse cluster in the
+    REE psychiatric_failure_modes literature; MECH-285 + MECH-094
+    co-failure gives a precise architectural decomposition.
+    Design doc: docs/architecture/hippocampal_anchor_selection.md
+    section "V_s as bidirectional signal".
+  evidence_quality_note: >
+    No substrate evidence. The PTSD-rumination architectural prediction
+    is testable via clinical phenomenology comparison if a V3 agent
+    can be put through the joint-lesion paradigm. Promotion requires
+    substrate implementation and the falsifiable dissociation-from-
+    salience test above.
+  location: docs/architecture/hippocampal_anchor_selection.md
