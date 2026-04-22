@@ -1048,3 +1048,29 @@ whether the downstream targets fail jointly or selectively.
 | SD-037 | broadcast.override_regulator | Substrate: the override layer whose source-level damage produces full narcolepsy-with-cataplexy |
 | MECH-286 | sleep.override_gated_state_transition | Wake-stability axis: selective failure produces sleep-state instability without cataplexy |
 | MECH-281 | orexin.drive_arousal_coupling | Motor-coupling axis: selective failure produces cataplexy without sleep-state instability |
+
+---
+
+## Pharmacological Predictions Registry
+
+The pharmacological / clinical-intervention predictions surfaced in the failure-mode
+sections above are registered structurally in
+`evidence/planning/pharmacological_predictions.v1.json`. Each PHARM-NNN entry is tagged
+with the claim IDs it depends on, the phenotype it targets, the dissociation pattern the
+architecture predicts, the falsification condition that would weaken the cited claims,
+and the literature anchors (existing trials, naturalistic data, or studies the
+architecture indicates are needed).
+
+Relevant claims in `claims.yaml` carry a `pharmacological_predictions` field listing the
+PHARM-IDs that depend on them. This is the first cycle of pharmacological-prediction
+registry; governance review of these predictions against clinical literature is a
+separate cycle from substrate-evidence governance and has not yet been instituted.
+
+| PHARM ID | Intervention | Axis | Phenotype | Polarity |
+|----------|-------------|------|-----------|----------|
+| PHARM-001 | DORA class (suvorexant, lemborexant, daridorexant) | substrate (override damping) | hyperarousal-insomnia / schema-repair starvation | positive |
+| PHARM-002 | modafinil, sodium oxybate | downstream sleep-state (MECH-286) | narcolepsy with cataplexy (sleep-attack endpoint) | positive |
+| PHARM-003 | venlafaxine, clomipramine, anti-cataplectic SNRI/TCA | downstream motor-coupling (MECH-281) | narcolepsy with cataplexy (cataplexy endpoint) | positive |
+| PHARM-004 | lorazepam, benzodiazepines | regulator-layer GABA (SD-036) | catatonia subtype II (harm-stream lock) | positive |
+| PHARM-005 | prazosin (alpha-1 antagonist) | indirect override damping | PTSD nightmares + hyperarousal-insomnia | positive |
+| PHARM-006 | SSRIs (sertraline, paroxetine) | regulator-layer 5-HT (orthogonal) | hyperarousal-insomnia / schema-repair starvation | **negative** |

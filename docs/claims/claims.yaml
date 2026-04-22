@@ -4590,6 +4590,8 @@
     simulation from reality are intact. Updated 2026-04-16 based on Papez circuit
     lit-pull discussion: categorical gate language removed, functional framing adopted,
     biological implementation candidates MECH-248/249 registered.
+  pharmacological_predictions:
+    - PHARM-006  # SSRIs do not address the simulation/real-distinction failure underlying chronic-PTSD rumination architecture
 # Registered 2026-03-15 — control plane heartbeat architecture cluster
 # Source: conversation developing heartbeat model from MECH-057a FAIL analysis
 - id: ARC-023
@@ -20466,6 +20468,8 @@
     coincidence of architectural prediction and existing clinical
     practice, but is not itself a substrate test. Promotion requires
     the falsifiable substrate experiments above.
+  pharmacological_predictions:
+    - PHARM-004  # lorazepam in catatonia, subtype-II specificity prediction
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: MECH-279
@@ -20521,6 +20525,8 @@
     (defensive behaviour / PAG circuitry) but no V3 substrate test
     yet. Promotion requires the falsifiable substrate experiments in
     sd_036_gabaergic_decay_regulator.md.
+  pharmacological_predictions:
+    - PHARM-004  # lorazepam in catatonia subtype II, freeze-gate exit
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: SD-037
@@ -20590,6 +20596,12 @@
     (lit-pull synthesis at literature_confidence ~0.78 across 13 papers).
     Promotion requires the falsifiable factorial validation above plus
     independent demonstration of the two failure-mode phenotypes.
+  pharmacological_predictions:
+    - PHARM-001  # DORA-class (suvorexant/lemborexant) substrate intervention for hyperarousal-insomnia
+    - PHARM-002  # modafinil / sodium oxybate (MECH-286 axis, narcolepsy sleep-state)
+    - PHARM-003  # venlafaxine / clomipramine (MECH-281 axis, cataplexy)
+    - PHARM-005  # prazosin (indirect override damping in PTSD nightmares)
+    - PHARM-006  # SSRIs (negative prediction for hyperarousal-insomnia subgroup)
   location: docs/architecture/sd_037_broadcast_override_regulator.md
 
 - id: MECH-280
@@ -20683,6 +20695,8 @@
     + PWS as natural lesion-and-saturation experiments). Promotion
     requires substrate implementation and the falsifiable lesion +
     saturation tests above.
+  pharmacological_predictions:
+    - PHARM-003  # venlafaxine / clomipramine (anti-cataplectic, motor-coupling axis)
   location: docs/architecture/sd_037_broadcast_override_regulator.md
 
 - id: MECH-282
@@ -20834,6 +20848,8 @@
     No substrate evidence. Promotion requires substrate implementation,
     the falsifiable changing-environment test, and the dissociation-
     from-prediction-error test.
+  pharmacological_predictions:
+    - PHARM-001  # DORA-class clears the staleness MECH-284 accumulates by enabling MECH-285 readout
   location: docs/architecture/hippocampal_anchor_selection.md
 
 - id: MECH-285
@@ -20898,6 +20914,10 @@
     can be put through the joint-lesion paradigm. Promotion requires
     substrate implementation and the falsifiable dissociation-from-
     salience test above.
+  pharmacological_predictions:
+    - PHARM-001  # DORA-class enables this readout to fire on accumulated staleness
+    - PHARM-005  # prazosin (indirect override damping) -> sustained REM -> MECH-285 firing
+    - PHARM-006  # SSRIs targeting orthogonal axis (5-HT) do NOT recruit this readout
   location: docs/architecture/hippocampal_anchor_selection.md
 
 - id: MECH-286
@@ -20990,4 +21010,9 @@
     is the diagnostic dissociation from MECH-281's cataplexy phenotype:
     same upstream lesion (orexin loss), different downstream targets
     (sleep-state gate vs motor-coupling gate).
+  pharmacological_predictions:
+    - PHARM-001  # DORA-class direct substrate intervention for saturated MECH-286
+    - PHARM-002  # modafinil / sodium oxybate target this axis under absent MECH-286 (narcolepsy)
+    - PHARM-005  # prazosin (indirect override damping) permits MECH-286 sleep-state entry
+    - PHARM-006  # SSRIs (orthogonal 5-HT axis) do NOT durably help this failure mode
   location: docs/architecture/sd_037_broadcast_override_regulator.md

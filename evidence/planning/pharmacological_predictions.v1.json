@@ -1,0 +1,146 @@
+{
+  "schema_version": "v1",
+  "description": "Registry of pharmacological / clinical-intervention predictions implied by REE architecture claims. Each prediction is a falsifiable statement about an existing or hypothetical intervention, tagged with the claims it depends on, the phenotype it targets, and the falsification condition that would weaken those claims. The registry is maintained alongside claims.yaml; relevant claims carry a `pharmacological_predictions` field listing the PHARM-IDs that depend on them. Governance review of these predictions is a separate cycle from substrate-evidence governance: pharma predictions are evaluated against clinical literature (RCTs, naturalistic data, case-series), not V3 substrate experiments. This file is the source of truth for the prediction set; site tooling and the indexer may surface them but do not modify them.",
+  "schema": {
+    "id": "PHARM-NNN, monotonically increasing integer",
+    "registered_utc": "ISO-8601 UTC of first registration",
+    "intervention": "human-readable name of the drug / class / intervention",
+    "intervention_class": "structured tag (e.g. orexin_receptor_antagonist, gabaergic_positive_modulator, ssri, sodium_oxybate, behavioural_cbt)",
+    "claim_ids": "list of claim IDs (SD-, MECH-, ARC-, INV-) that the prediction depends on",
+    "predicted_effect": "what the architecture says the intervention should do, in mechanistic terms tied to the cited claims",
+    "intervention_axis": "substrate | downstream_target_motor | downstream_target_sleep_state | regulator_layer_5HT | regulator_layer_GABA | regulator_layer_orexin | indirect | symptomatic | behavioural",
+    "phenotype_target": "the failure-mode cluster the prediction targets (free text matching a section in psychiatric_failure_modes.md or analogous architecture doc)",
+    "dissociates_from": "list of other PHARM-IDs that the architecture predicts produce a *different* effect on the same phenotype, supporting the dissociation logic",
+    "falsification_condition": "what observation in clinical data would falsify the prediction and thereby weaken the cited claims",
+    "literature_anchors": "list of {type, anchor, status} entries; type in {trial, naturalistic, case_series, mechanism, needed}; status in {consistent, inconsistent, mixed, absent, consistent_with_sedation_arm, ...}",
+    "status": "registered | provisional_supported | provisional_weakened | retired | superseded_by",
+    "supersedes": "optional PHARM-ID this entry supersedes (when an earlier prediction has been refined)",
+    "notes": "free text, including clinical caveats and scope limits",
+    "polarity": "positive (intervention helps) | negative (intervention does NOT help / is contraindicated by architecture)"
+  },
+  "last_updated_utc": "2026-04-22T17:46:14Z",
+  "next_id": 7,
+  "predictions": [
+    {
+      "id": "PHARM-001",
+      "registered_utc": "2026-04-22T17:46:14Z",
+      "intervention": "suvorexant / lemborexant / daridorexant (dual orexin-receptor antagonists, DORA class)",
+      "intervention_class": "orexin_receptor_antagonist",
+      "claim_ids": ["SD-037", "MECH-286", "MECH-285", "MECH-284"],
+      "predicted_effect": "Damps SD-037 override_signal at the receptor level, permitting MECH-286 sleep-mode entry under conditions where chronic hyperarousal has saturated the override. Sleep entry then permits MECH-285 priority readout to fire, which clears accumulated MECH-284 staleness across cycles. Architecturally this is a SUBSTRATE intervention rather than a symptomatic one: the predicted improvement should appear in novel-stimulus schema-repair measures, not just in subjective sedation or sleep latency.",
+      "intervention_axis": "substrate",
+      "phenotype_target": "hyperarousal_insomnia_schema_repair_starvation",
+      "dissociates_from": ["PHARM-006"],
+      "falsification_condition": "In chronic-PTSD insomnia patients, suvorexant/lemborexant produces sleep latency improvement and total sleep time improvement comparable to other hypnotics, but does NOT produce measurable improvement on novel-stimulus learning tasks or schema-flexibility measures relative to a placebo-with-equivalent-sedation control. Architecture predicts a learning improvement beyond the sedation arm; absence of this would weaken the claim that DORA acts as a substrate intervention.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "Herring et al. 2016 (suvorexant in chronic insomnia, total sleep time and sleep latency endpoints)", "status": "consistent_with_sedation_arm"},
+        {"type": "trial", "anchor": "lemborexant SUNRISE-1 / SUNRISE-2 trials", "status": "consistent_with_sedation_arm"},
+        {"type": "needed", "anchor": "PTSD-subgroup analyses with cognitive / schema-flexibility endpoints", "status": "absent"},
+        {"type": "needed", "anchor": "head-to-head DORA vs z-drug trial in chronic PTSD with learning measures", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "The architecturally distinctive prediction is the substrate-vs-symptomatic dissociation, not the sedation effect (which is shared with z-drugs and benzodiazepines). The schema-repair-starvation account requires that DORA's benefit go beyond sedation in the chronic-hyperarousal subgroup specifically. This is the prediction that should be tested against literature, not the established sedation effect."
+    },
+    {
+      "id": "PHARM-002",
+      "registered_utc": "2026-04-22T17:46:14Z",
+      "intervention": "modafinil and sodium oxybate (and related wake-promoting / sleep-architecture-stabilising agents in narcolepsy)",
+      "intervention_class": "wake_state_stabiliser",
+      "claim_ids": ["SD-037", "MECH-286"],
+      "predicted_effect": "Stabilises the wake-state side of the SD-037 / MECH-286 sleep-state gate by acting downstream of the lost orexin-analog signal. Sodium oxybate additionally consolidates nocturnal sleep architecture (REM/NREM ordering). Predicted to improve sleep-attack frequency and sleep-architecture metrics WITHOUT proportionate improvement in cataplexy frequency, because the motor-coupling axis (MECH-281) is not a downstream target of these agents.",
+      "intervention_axis": "downstream_target_sleep_state",
+      "phenotype_target": "narcolepsy_with_cataplexy",
+      "dissociates_from": ["PHARM-003"],
+      "falsification_condition": "In a patient population with narcolepsy with cataplexy, modafinil monotherapy produces proportionate improvement in BOTH sleep-attack frequency AND cataplexy frequency. Architecture predicts dissociation: modafinil should help sleep-attack endpoint with negligible effect on cataplexy endpoint. (Sodium oxybate is more complex because it affects both endpoints clinically — that is consistent with its broader pharmacology and does not falsify the dissociation claim, but it does mean modafinil is the cleaner architectural test.)",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "modafinil in narcolepsy randomised trials (US Modafinil Multicenter Study Group 1998, 2000)", "status": "consistent"},
+        {"type": "naturalistic", "anchor": "clinical practice: modafinil prescribed primarily for excessive daytime sleepiness, anti-cataplectic agents added separately for cataplexy", "status": "consistent"},
+        {"type": "trial", "anchor": "sodium oxybate trials with separate sleep-attack and cataplexy endpoints (Xyrem International Study Group 2005)", "status": "mixed_by_design_acts_on_both_axes"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "Modafinil is the cleaner test of the MECH-286 axis because it acts primarily on wake-promotion. Sodium oxybate is a positive control for both axes and does not test the dissociation by itself. The architectural commitment is the modafinil-not-affecting-cataplexy prediction, which is consistent with established clinical practice patterns."
+    },
+    {
+      "id": "PHARM-003",
+      "registered_utc": "2026-04-22T17:46:14Z",
+      "intervention": "venlafaxine, clomipramine, fluoxetine and other SNRI/TCA/SSRI agents used for cataplexy via REM suppression",
+      "intervention_class": "anti_cataplectic_rem_suppressant",
+      "claim_ids": ["SD-037", "MECH-281"],
+      "predicted_effect": "Acts on the motor-coupling axis (MECH-281) downstream of the lost orexin-analog signal by suppressing the REM-atonia intrusion mechanism that produces cataplexy. Predicted to reduce cataplexy frequency WITHOUT proportionate reduction in daytime sleep-attack frequency, because the wake-state stability axis (MECH-286) is not the principal downstream target.",
+      "intervention_axis": "downstream_target_motor",
+      "phenotype_target": "narcolepsy_with_cataplexy",
+      "dissociates_from": ["PHARM-002"],
+      "falsification_condition": "In a patient population with narcolepsy with cataplexy, venlafaxine or clomipramine monotherapy produces proportionate improvement in BOTH cataplexy frequency AND daytime sleep-attack frequency. Architecture predicts dissociation: anti-cataplectic agents should reduce cataplexy with negligible effect on sleep attacks.",
+      "literature_anchors": [
+        {"type": "naturalistic", "anchor": "clinical practice: SNRI/TCA prescribed for cataplexy, do not address daytime sleepiness", "status": "consistent"},
+        {"type": "case_series", "anchor": "venlafaxine in cataplexy treatment reviews (Møller & Østergaard 2009)", "status": "consistent"},
+        {"type": "needed", "anchor": "head-to-head trial with separate cataplexy and sleep-attack endpoints", "status": "absent_but_clinical_consensus_holds"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "Forms the anti-pole of the PHARM-002 dissociation. Joint observation that MECH-286-targeted agents (PHARM-002) and MECH-281-targeted agents (PHARM-003) are clinically separated and produce dissociable benefit is the principal architectural prediction supporting the SD-037 -> {MECH-281, MECH-286} dual-readout claim. This prediction is essentially confirmed by existing clinical practice, but the architecture takes credit for predicting rather than accommodating it."
+    },
+    {
+      "id": "PHARM-004",
+      "registered_utc": "2026-04-22T17:46:14Z",
+      "intervention": "lorazepam (and other benzodiazepines) in catatonia",
+      "intervention_class": "gabaergic_positive_modulator",
+      "claim_ids": ["SD-036", "MECH-279"],
+      "predicted_effect": "Acts as a positive allosteric modulator of GABA-A receptors, augmenting the gain of the SD-036 cross-stream decay regulator. Predicted to unlock harm-stream lock-in (catatonia subtype II) by restoring decay of pinned z_harm_a streams, releasing the MECH-279 PAG freeze gate. The architecturally distinctive prediction is that the lorazepam response should be specific to catatonia subtype II (harm-stream lock) and should NOT necessarily resolve catatonia subtype I (MECH-202 commit-gate paralysis), giving a within-catatonia response dissociation.",
+      "intervention_axis": "regulator_layer_GABA",
+      "phenotype_target": "catatonia_subtype_II_harm_stream_lock",
+      "dissociates_from": [],
+      "falsification_condition": "Lorazepam challenge produces uniform response across catatonia presentations regardless of subtype attribution, OR a phenomenologically clear harm-stream-lock catatonia case is non-responsive to adequately dosed lorazepam (>4mg IV trial) without alternative explanation. Architecture predicts subtype-II catatonia is benzo-responsive specifically because the substrate failure is GABAergic decay loss; a subtype-I (commit-gate) presentation should be less responsive.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "Bush-Francis Catatonia Rating Scale + lorazepam challenge protocols", "status": "consistent"},
+        {"type": "naturalistic", "anchor": "catatonia clinical literature (~70-80% lorazepam response rate)", "status": "consistent_at_aggregate_level"},
+        {"type": "needed", "anchor": "subtype-stratified lorazepam response analysis using a harm-stream-lock vs commit-gate phenomenological split", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "The interesting test is the subtype dissociation, not the aggregate response rate (which is well established). The harm-stream-lock vs commit-gate split is currently a REE architectural distinction without a clinical phenomenological scale; building one is a research direction implied by SD-036 + MECH-279."
+    },
+    {
+      "id": "PHARM-005",
+      "registered_utc": "2026-04-22T17:46:14Z",
+      "intervention": "prazosin (alpha-1 adrenergic antagonist) for PTSD nightmares",
+      "intervention_class": "indirect_override_damper",
+      "claim_ids": ["SD-037", "MECH-286", "MECH-285"],
+      "predicted_effect": "Reduces noradrenergic tone, indirectly damping the SD-037 override_signal sufficiently for MECH-286 sleep-state gate to permit sustained REM. Sustained REM permits MECH-285 priority readout to fire on accumulated MECH-284 staleness. Architecturally this is an INDIRECT substrate intervention — the alpha-1 antagonism is upstream of the orexin-analog override but its net effect is override damping. Predicted benefit: nightmare reduction AND, on architectural grounds, schema-repair improvement on novel-stimulus learning measures (the same secondary prediction as PHARM-001).",
+      "intervention_axis": "indirect",
+      "phenotype_target": "hyperarousal_insomnia_schema_repair_starvation",
+      "dissociates_from": ["PHARM-006"],
+      "falsification_condition": "Prazosin produces nightmare reduction (established) but does NOT produce improvement on novel-stimulus learning measures in chronic-PTSD insomnia, AND DORA class (PHARM-001) does not either. Joint failure of PHARM-001 and PHARM-005 on the schema-repair endpoint would weaken the SD-037 -> MECH-286 -> MECH-285 -> schema-repair pathway claim.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "Raskind et al. 2003, 2007 (prazosin in PTSD nightmares)", "status": "consistent_for_nightmare_endpoint"},
+        {"type": "trial", "anchor": "PACT trial (Raskind et al. 2018, prazosin failed primary endpoint in chronic PTSD)", "status": "mixed_consider_dose_and_subgroup"},
+        {"type": "needed", "anchor": "subgroup analyses by hyperarousal severity with cognitive endpoints", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "PACT trial primary-endpoint failure is a complication. The architecture predicts subgroup specificity (chronic hyperarousal subgroup, not all PTSD), and PACT was not subgroup-stratified in this way. PHARM-005 is the indirect-mechanism analog of PHARM-001's direct mechanism; both should converge on the same secondary endpoint if the architecture is right."
+    },
+    {
+      "id": "PHARM-006",
+      "registered_utc": "2026-04-22T17:46:14Z",
+      "intervention": "SSRIs (sertraline, paroxetine FDA-approved for PTSD) in chronic PTSD with hyperarousal-insomnia schema-repair-starvation phenotype",
+      "intervention_class": "ssri",
+      "claim_ids": ["SD-037", "MECH-286", "MECH-285", "MECH-094", "INV-054"],
+      "predicted_effect": "NEGATIVE prediction: SSRIs target the serotonergic regulatory layer (MECH-186 / MECH-187 / MECH-188 goal-pipeline gain axis, the architectural substrate for INV-054 depressive-maintenance loop). The hyperarousal-insomnia / schema-repair-starvation cluster sits on a different regulatory axis (SD-037 override layer driving MECH-286 / MECH-285 failure). Architecture predicts SSRIs do NOT durably improve the schema-repair-starvation phenotype in chronic-PTSD patients whose dominant failure is on the SD-037 axis rather than the depressive-loop axis. Symptomatic comorbid depressive features may improve; the schema-repair-starvation core does not.",
+      "intervention_axis": "regulator_layer_5HT",
+      "phenotype_target": "hyperarousal_insomnia_schema_repair_starvation",
+      "dissociates_from": ["PHARM-001", "PHARM-005"],
+      "falsification_condition": "SSRI monotherapy produces durable improvement in novel-stimulus learning / schema-flexibility measures in chronic-PTSD patients with the hyperarousal-insomnia phenotype, comparable to predicted DORA-class effect (PHARM-001). Architecture predicts asymmetric axis-targeted response: SSRIs help INV-054 depressive-loop component, DORA helps SD-037 override-saturation component, and they should be complementary rather than substitutable for the schema-repair endpoint.",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "sertraline / paroxetine PTSD RCT meta-analyses (modest effect sizes, primarily on depressive features)", "status": "consistent_with_negative_prediction"},
+        {"type": "naturalistic", "anchor": "clinical observation that SSRI-only PTSD treatment is often insufficient for hyperarousal/sleep symptoms", "status": "consistent"},
+        {"type": "needed", "anchor": "axis-stratified RCT comparing SSRI alone vs SSRI + DORA vs SSRI + prazosin in chronic PTSD with hyperarousal", "status": "absent"}
+      ],
+      "polarity": "negative",
+      "status": "registered",
+      "notes": "This is a negative prediction — the architecture predicts SSRIs are NOT the right substrate intervention for the schema-repair-starvation phenotype, despite their FDA-approved status for PTSD broadly. The clinical signal that SSRI-monotherapy is often insufficient in PTSD is consistent with this. The cleanest test would be an axis-stratified trial; the existing literature is consistent with the negative prediction but does not directly test it."
+    }
+  ]
+}
