@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-23_mech_074c_cea_phasic_fear_walker2008",
+  "timestamp_utc": "2026-04-23T11:24:48Z",
+  "claim_ids_tested": ["MECH-074c"],
+  "source": {
+    "title": "Role of the extended amygdala in short-duration versus sustained fear: a tribute to Dr. Lennart Heimer.",
+    "authors": ["David L Walker", "Michael Davis"],
+    "year": 2008,
+    "venue": "Brain Structure and Function",
+    "doi": "10.1007/s00429-008-0183-3"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Walker and Davis explicitly dissect CeA(M) as the rapid PHASIC fear output channel, contrasted with BNST sustained fear. This directly grounds MECH-074c's fast_prime in the CeA(M)->hypothalamus/brainstem axis. The phasic/sustained dissociation validates MECH-074c's claim that fast_prime is distinct from MECH-046's slower cortical mode-prior write.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Phasic/sustained dissociation based on stimulus duration manipulation, not direct timing measurements at millisecond scale relevant to 1-2 sim steps.",
+    "CRF-mediated BLA-to-BNST pathway for sustained fear creates a dual-output architecture that may require separate treatment in REE (not currently modelled)."
+  ],
+  "tags": ["mech_074c", "cea", "phasic_fear", "sustained_fear", "bnst", "fast_prime", "crf"],
+  "mapping": {
+    "source_claim_statement": "CeA(M) activates hypothalamus and brainstem targets to produce rapid, short-duration (phasic) fear responses. BNST(L) produces slower, sustained fear/anxiety. BLA activates CeA(M) for immediate responses and CeA(L)/BNST for sustained responses. CeA(L) releases CRF into BNST(L) to drive sustained response.",
+    "ree_translation": "CeA(M) phasic output is the biological grounding for MECH-074c's fast_prime: a rapid, decaying signal that biases the harm action channel within 1-2 sim steps. The BNST sustained pathway maps conceptually to MECH-046's slower cortical mode-prior write, validating the architectural distinction MECH-074c draws.",
+    "mapping_caveat": "Phasic vs. sustained here refers to seconds-to-minutes, not 100-200 ms. The 1-2 sim-step specification of fast_prime is grounded in Mendez-Bertolo 2016 (amygdala LFP during visual threat at 74 ms), which is the latency-specific evidence.",
+    "source_context": "Rodent fear-potentiated startle paradigm, CeA vs. BNST lesion studies, conditioned stimulus duration manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Davis lab, highly cited review; temporal resolution of phasic/sustained framing is at seconds scale, not milliseconds."
+  }
+}

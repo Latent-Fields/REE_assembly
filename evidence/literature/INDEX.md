@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-23T08:47:43.984786Z`
+Generated: `2026-04-23T11:28:38.153706Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -45,7 +45,7 @@ Generated: `2026-04-23T08:47:43.984786Z`
 | `targeted_review_connectome_mech_070` | [`2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017`](targeted_review_connectome_mech_070/entries/2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017/record.json) | 3 | [`summary`](targeted_review_connectome_mech_070/entries/2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017/summary.md) |
 | `targeted_review_connectome_mech_071` | [`2026-03-29_mech_071_threat_imminence_gradient_mobbs2007`](targeted_review_connectome_mech_071/entries/2026-03-29_mech_071_threat_imminence_gradient_mobbs2007/record.json) | 4 | [`summary`](targeted_review_connectome_mech_071/entries/2026-03-29_mech_071_threat_imminence_gradient_mobbs2007/summary.md) |
 | `targeted_review_connectome_mech_072` | [`2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009`](targeted_review_connectome_mech_072/entries/2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009/record.json) | 6 | [`summary`](targeted_review_connectome_mech_072/entries/2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009/summary.md) |
-| `targeted_review_connectome_mech_074` | [`2026-04-21_mech_074_reconsolidation_nader2000`](targeted_review_connectome_mech_074/entries/2026-04-21_mech_074_reconsolidation_nader2000/record.json) | 6 | [`summary`](targeted_review_connectome_mech_074/entries/2026-04-21_mech_074_reconsolidation_nader2000/summary.md) |
+| `targeted_review_connectome_mech_074` | [`2026-04-23_mech_074d_engram_valence_switch_redondo2014`](targeted_review_connectome_mech_074/entries/2026-04-23_mech_074d_engram_valence_switch_redondo2014/record.json) | 12 | [`summary`](targeted_review_connectome_mech_074/entries/2026-04-23_mech_074d_engram_valence_switch_redondo2014/summary.md) |
 | `targeted_review_connectome_mech_075` | [`2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018`](targeted_review_connectome_mech_075/entries/2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018/record.json) | 4 | [`summary`](targeted_review_connectome_mech_075/entries/2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018/summary.md) |
 | `targeted_review_connectome_mech_089` | [`2026-04-08_mech089_theta_gamma_learning_tort2009`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/record.json) | 5 | [`summary`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/summary.md) |
 | `targeted_review_connectome_mech_090` | [`2026-04-15_mech090_layer3_model_based_free_dolan2013`](targeted_review_connectome_mech_090/entries/2026-04-15_mech090_layer3_model_based_free_dolan2013/record.json) | 9 | [`summary`](targeted_review_connectome_mech_090/entries/2026-04-15_mech090_layer3_model_based_free_dolan2013/summary.md) |

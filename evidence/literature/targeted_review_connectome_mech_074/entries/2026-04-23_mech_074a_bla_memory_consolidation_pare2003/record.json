@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-23_mech_074a_bla_memory_consolidation_pare2003",
+  "timestamp_utc": "2026-04-23T11:24:48Z",
+  "claim_ids_tested": ["MECH-074a"],
+  "source": {
+    "title": "Role of the basolateral amygdala in memory consolidation.",
+    "authors": ["Denis Pare"],
+    "year": 2003,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/s0301-0082(03)00104-7"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Highly cited mechanistic review synthesising decades of pharmacological evidence for BLA NE/ACh-mediated arousal-dependent hippocampal memory modulation. The arousal-triggered 2h NA/ACh elevation and beta-adrenergic-dependent LTP facilitation map directly to MECH-074a's encoding_gain mechanism. Source quality high; mapping fidelity good but gain quantification is inferred from pharmacology rather than measured directly as a scalar.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Inverted-U shape is not directly tested; evidence is monotonic facilitation across moderate arousal range, not bidirectional attenuation at high arousal.",
+    "BLA effects on hippocampal plasticity are mediated indirectly via rhinal/entorhinal projections, not necessarily by direct BLA-CA1 synaptic contacts, complicating the gain-on-write-strength framing."
+  ],
+  "tags": ["mech_074a", "bla", "hippocampus", "norepinephrine", "memory_consolidation", "arousal"],
+  "mapping": {
+    "source_claim_statement": "BLA NA and ACh concentrations are transiently elevated (~2h) after emotionally arousing learning; BLA lesions block stress hormone memory enhancement; post-learning BLA beta-adrenergic or muscarinic antagonists reduce retention. Theta-frequency rhythmic BLA activity during arousal may promote plasticity in co-active temporal lobe structures.",
+    "ree_translation": "BLA arousal-dependent NE/ACh release is the biological substrate of MECH-074a's encoding_gain scalar: elevated arousal (z_harm_a magnitude) produces a time-limited boost in hippocampal write strength, implemented in REE as a multiplicative gain with an exponential post-event decay window.",
+    "mapping_caveat": "The inverted-U gain profile (attenuation at very high arousal) is not directly demonstrated in this paper; Pare's evidence supports monotonic facilitation across the moderate arousal range tested. The 2h biological window maps loosely to REE's ~18000 sim-step post-event window.",
+    "source_context": "Rodent and human pharmacological studies, inhibitory avoidance and fear conditioning paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Well-replicated NE/ACh mechanism is highly conserved across rodent-human; gain quantification inferred not measured directly."
+  }
+}

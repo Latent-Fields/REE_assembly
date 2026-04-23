@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-23_mech_074a_bla_beta_adrenergic_gate_roozendaal1999",
+  "timestamp_utc": "2026-04-23T11:24:48Z",
+  "claim_ids_tested": ["MECH-074a"],
+  "source": {
+    "title": "Basolateral amygdala noradrenergic influence enables enhancement of memory consolidation induced by hippocampal glucocorticoid receptor activation.",
+    "authors": ["B Roozendaal", "B T Nguyen", "A E Power", "J L McGaugh"],
+    "year": 1999,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.96.20.11642"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct PNAS evidence demonstrating BLA NE beta-adrenergic activity is permissive and enabling for hippocampal GR-mediated memory consolidation. Ipsilateral specificity rules out peripheral explanation. This is canonical mechanistic support for MECH-074a's premise that BLA acts as an arousal gate on hippocampal write strength.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Demonstrates gate/permissive role (NE absent blocks effect) but does not test the gain arithmetic directly; does not show graded scaling of encoding strength with graded NE levels.",
+    "GR agonist model of arousal may not fully generalise to naturalistic z_harm_a input."
+  ],
+  "tags": ["mech_074a", "bla", "norepinephrine", "beta_adrenergic", "hippocampus", "memory_gate"],
+  "mapping": {
+    "source_claim_statement": "Ipsilateral BLA beta-adrenergic antagonist (atenolol) blocks intrahippocampal GR agonist memory enhancement; contralateral blockade does not. BLA NE beta-adrenergic activity is necessary and enabling for hippocampal memory consolidation.",
+    "ree_translation": "BLA NE beta-adrenergic activity gates hippocampal memory encoding. In MECH-074a, encoding_gain = 1.0 when z_harm_a below threshold (NE absent) and scales above 1.0 when z_harm_a is elevated, implementing the gate as a gain multiplier on HippocampalModule write strength.",
+    "mapping_caveat": "Shows gate (binary: present/absent) rather than graded multiplicative gain. The gain curve shape (inverted-U, max 2.5x) requires additional sources. Ipsilateral anatomical specificity supports the BLA-to-hippocampus projection as the REE pathway.",
+    "source_context": "Male Sprague-Dawley rats, inhibitory avoidance paradigm, bilateral or unilateral intra-BLA microinfusions."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "PNAS, well-replicated; beta-adrenergic gating is conserved across species. Gain-shape inference is the main limitation."
+  }
+}

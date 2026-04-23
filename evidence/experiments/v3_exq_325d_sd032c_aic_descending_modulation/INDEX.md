@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_325d_sd032c_aic_descending_modulation
 
-Generated: `2026-04-23T08:47:43.984786Z`
+Generated: `2026-04-23T11:28:38.153706Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

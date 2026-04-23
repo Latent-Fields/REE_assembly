@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-23_mech_074a_bla_gamma_synchrony_bass2015",
+  "timestamp_utc": "2026-04-23T11:24:48Z",
+  "claim_ids_tested": ["MECH-074a"],
+  "source": {
+    "title": "Memory-enhancing amygdala stimulation elicits gamma synchrony in the hippocampus.",
+    "authors": ["David I Bass", "Joseph R Manns"],
+    "year": 2015,
+    "venue": "Behavioral Neuroscience",
+    "doi": "10.1037/bne0000052"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Provides a circuit mechanism for HOW BLA influences hippocampal write strength: CA3-CA1 low gamma synchrony (30-55 Hz) coordinates membrane depolarization with incoming spikes to enable spike-timing dependent LTP. Directly reveals a mechanism for the encoding_gain effect at the electrophysiological level. Confidence moderated by use of electrical stimulation rather than naturalistic arousal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Electrical BLA stimulation may not faithfully replicate the NE-release pathway of natural arousal; gamma synchrony timing may differ under naturalistic z_harm_a conditions.",
+    "Does not quantify a gain factor; demonstrates memory facilitation for specific recently-encountered objects, not a generalized write-strength multiplier."
+  ],
+  "tags": ["mech_074a", "bla", "hippocampus", "gamma_synchrony", "ltp", "memory_encoding"],
+  "mapping": {
+    "source_claim_statement": "Brief post-encounter BLA electrical stimulation enhances 1-day object memory; stimulation elicits CA3-CA1 low gamma (30-55 Hz) synchrony; hippocampal spiking during stimulation reflects recent activity patterns; mechanism is coordinated spike-timing dependent plasticity at recently active synapses.",
+    "ree_translation": "BLA-driven gamma synchrony is the neural implementation of MECH-074a's encoding_gain: the BLA amplifies hippocampal write strength by coordinating precise spike timing (STDP) at recently active synapses. In REE, encoding_gain > 1 represents enhanced synaptic tagging at the write site.",
+    "mapping_caveat": "Electrical stimulation model precludes testing graded arousal inputs; gamma synchrony is a temporal coordination mechanism, distinct from a purely scalar gain multiplier as implemented in REE.",
+    "source_context": "Male Long-Evans rats, novel object exploration, bilateral BLA electrodes, in vivo hippocampal LFP recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Solid journal; gamma synchrony mechanism is plausible and fits theta-gamma coupling framework, but stimulation != arousal."
+  }
+}

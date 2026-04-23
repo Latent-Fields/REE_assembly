@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-23_mech_074c_cea_microcircuit_ciocchi2010",
+  "timestamp_utc": "2026-04-23T11:24:48Z",
+  "claim_ids_tested": ["MECH-074c"],
+  "source": {
+    "title": "Encoding of conditioned fear in central amygdala inhibitory circuits.",
+    "authors": ["Stephane Ciocchi", "Cyril Herry", "Francois Grenier", "Steffen B E Wolff", "Johannes J Letzkus", "Ioannis Vlachos", "Ingrid Ehrlich", "Rolf Sprengel", "Karl Deisseroth", "Michael B Stadler", "Christian Muller", "Andreas Luthi"],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09559"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Landmark Nature study definitively dissecting CeA internal microcircuit: CeL (lateral) required for fear acquisition, CeM (medial) drives output. Cell-type-specific plasticity in CeL-to-CeM pathway gates fear expression. Supports MECH-074c's fast_prime as a CeM output signal distinct from MECH-046's slower mode-prior write (CeL-mediated cortical channel). Note: same paper already has an entry in targeted_review_sd_035 tagged to SD-035; this entry specifically addresses the MECH-074c fast-priming latency claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CeL-to-CeM pathway plasticity shows phasic/tonic changes but latency of CeM output relative to US onset is not directly quantified in terms comparable to 1-2 sim steps (100-200 ms).",
+    "Inhibitory microcircuit model complicates the fast_prime-as-simple-output framing; CeM output is disinhibited, not directly driven."
+  ],
+  "tags": ["mech_074c", "cea", "central_amygdala", "cel", "cem", "inhibitory_circuits", "fast_prime"],
+  "mapping": {
+    "source_claim_statement": "CeL neuronal activity is required for fear acquisition; CeM drives conditioned fear output responses. Functional circuit analysis shows cell-type-specific phasic/tonic plasticity in the CeL-to-CeM inhibitory pathway gates fear expression and regulates generalization.",
+    "ree_translation": "CeM is the anatomical substrate for MECH-074c's fast_prime output: the CeM emits a rapid conditioned response via disinhibition through the CeL-to-CeM inhibitory gate. This is distinct from MECH-046, which operates via a slower cortical mode-prior write pathway.",
+    "mapping_caveat": "This paper characterizes the CeL/CeM architecture and plasticity; it does not directly test the temporal signature of fast_prime (1-2 sim steps = ~100-200 ms). The Mendez-Bertolo 2016 paper (already in targeted_review_connectome_mech_046) provides the direct latency evidence.",
+    "source_context": "Mouse fear conditioning, in vivo electrophysiology + optogenetics, CeA single-unit recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Nature landmark; mouse data generalisable to general mammalian CeA architecture. Latency quantification needed separately."
+  }
+}

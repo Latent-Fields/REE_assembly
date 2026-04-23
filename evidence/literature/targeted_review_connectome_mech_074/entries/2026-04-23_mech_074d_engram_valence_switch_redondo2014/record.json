@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-23_mech_074d_engram_valence_switch_redondo2014",
+  "timestamp_utc": "2026-04-23T11:24:48Z",
+  "claim_ids_tested": ["MECH-074d"],
+  "source": {
+    "title": "Bidirectional switch of the valence associated with a hippocampal contextual memory engram.",
+    "authors": ["Roger L Redondo", "Joshua Kim", "Autumn L Arons", "Steve Ramirez", "Xu Liu", "Susumu Tonegawa"],
+    "year": 2014,
+    "venue": "Nature",
+    "doi": "10.1038/nature13725"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Nature optogenetics study showing hippocampal (DG) contextual engram can switch valence, while BLA engram cannot switch. BLA-DG functional connectivity changes accompany the valence switch. This is mixed evidence for MECH-074d: it supports that BLA provides stable valence attribution (consistent with harm-PE-gating the remap), but uses explicit optogenetic whole-engram manipulation rather than the PE-triggered partial remap that MECH-074d proposes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "BLA engram valence cannot be switched in this paradigm, suggesting BLA valence tagging may be more rigid than MECH-074d's partial-remap-with-attribution model allows.",
+    "Whole-engram manipulation not equivalent to the ~30-35% partial remap triggered by harm-PE spike in MECH-074d; valence switch is binary not graded."
+  ],
+  "tags": ["mech_074d", "bla", "hippocampus", "engram", "valence_switch", "remapping", "dg"],
+  "mapping": {
+    "source_claim_statement": "DG contextual engram cells can switch valence (fear<->reward) by reactivating under opposite conditioning. BLA engram cells cannot switch valence. Valence switch in DG is accompanied by changed DG-BLA functional connectivity.",
+    "ree_translation": "BLA-labelled codes have stable valence attribution, consistent with MECH-074d's claim that BLA-attribution gates the remap (only codes flagged by predictor-attribution are remapped). DG-mediated partial remap in MECH-074d corresponds to the DG plasticity shown here. BLA-DG connectivity change accompanies remap, consistent with the attribution-gating architecture.",
+    "mapping_caveat": "This paper uses whole-engram optogenetic reactivation during opposite valence conditioning -- an explicit experimental paradigm -- rather than the spontaneous harm-PE-triggered partial remap of MECH-074d. The rigidity of BLA engram valence could constrain MECH-074d's remap amplitude more than the 30-35% overwrite estimate.",
+    "source_context": "C57BL/6 mice, ChR2 engram tagging in DG or BLA, optogenetic place avoidance/preference tests."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Nature, MIT Tonegawa lab, landmark engram paper. Mapping requires bridging from explicit optogenetic paradigm to naturalistic PE-triggered partial remap."
+  }
+}
