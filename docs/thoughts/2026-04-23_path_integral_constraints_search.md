@@ -227,5 +227,191 @@ Footnotes
 
 ⸻
 
-Training Data Confidence: High
-Epistemic Confidence: Moderate (strong structural mapping; empirical validation pending)
+Here’s a clean addendum section you can append directly to the existing thought intake, keeping the tone consistent with REE_assembly conventions and avoiding unnecessary rephrasing of the original content.
+
+⸻
+
+📄 Addendum: Constraints, Risks, and Implementation Pathway
+
+⸻
+
+Purpose
+
+To prevent overgeneralisation of the trajectory–least-action mapping and to define concrete steps required to validate or falsify the coherence-based selection hypothesis within REE.
+
+⸻
+
+A. Risk: Overgeneralisation of Optimisation Frameworks
+
+Statement
+
+Many systems can be reformulated as optimisation over trajectories; therefore, equivalence to least-action formalism is not sufficient to establish uniqueness or explanatory power.
+
+Constraint
+
+* The mapping is only meaningful if REE introduces additional structure not reducible to generic optimisation
+
+Requirement
+
+* Identify features in REE that are:
+    * not present in standard variational formulations
+    * necessary for observed behaviour
+
+⸻
+
+B. Critical Variable: Coherence Function C(\tau)
+
+Statement
+
+The coherence term is the primary non-trivial extension beyond standard predictive processing and variational formulations.
+
+Requirement
+
+Coherence must be:
+
+1. Operationalised
+    * measurable in simulation
+    * defined independently of outcome
+2. Non-reducible
+    * not collapsible into simple weighting of prediction error
+3. Dynamically relevant
+    * capable of altering trajectory selection independent of error magnitude
+
+⸻
+
+Candidate Formalisation Directions
+
+* Cross-correlation between:
+    * E1 predictions
+    * E2 transitions
+    * sensory streams
+* Phase alignment across oscillatory bands (if implemented)
+* Temporal consistency constraints:
+    C(\tau) = \prod_t \text{consistency}(E1_t, E2_t, S_t)
+
+⸻
+
+C. Distinction: Selection vs Emergence
+
+Statement
+
+REE introduces an explicit commitment mechanism (E3), unlike physics formulations where trajectories emerge implicitly.
+
+Implication
+
+* REE includes:
+    * local decision boundaries
+    * commitment thresholds (\kappa_{commit})
+
+Requirement
+
+* Model E3 as:
+    * thresholded selection over candidate trajectories
+    * potentially interpretable as symmetry-breaking event
+
+⸻
+
+D. Testable Predictions
+
+1. Coherence–Selection Dependency
+
+Trajectories with higher coherence C(\tau) will be selected even when prediction error differences are small.
+
+⸻
+
+2. Coherence Failure Mode
+
+Loss of temporal alignment will destabilise trajectories even if prediction error remains low.
+
+⸻
+
+3. Mode Sensitivity
+
+Control plane parameters will alter effective selection landscape:
+
+* ↑ gain / noradrenergic analogue → sharper selection boundaries
+* ↓ commitment threshold → increased trajectory switching
+
+⸻
+
+4. Non-equivalence to Standard Predictive Processing
+
+Systems minimising prediction error alone will fail to reproduce behaviour where coherence dominates selection.
+
+⸻
+
+E. Implementation Pathway (REE-vx)
+
+Phase 1: Baseline
+
+* Implement trajectory rollout:
+    * hippocampal sampling (N candidate futures)
+    * E2 forward prediction
+* Selection based on:
+    P(\tau) \propto \exp(-\beta E(\tau))
+
+⸻
+
+Phase 2: Introduce Coherence
+
+* Define provisional C(\tau)
+* Modify selection:
+
+P(\tau) \propto \exp(-\beta E(\tau)) \cdot C(\tau)
+
+⸻
+
+Phase 3: Perturbation Testing
+
+* Introduce controlled misalignment:
+    * temporal offsets
+    * noise in E1/E2 coupling
+* Measure:
+    * trajectory stability
+    * selection shifts
+
+⸻
+
+Phase 4: Differentiation Testing
+
+* Compare against:
+    * pure error-minimisation model
+* Identify:
+    * behaviours only reproducible with coherence term
+
+⸻
+
+F. Failure Conditions
+
+This framework should be considered unsupported if:
+
+1. Coherence reduces to a reparameterisation of prediction error
+2. No behavioural difference is observed when C(\tau) is removed
+3. Trajectory selection is fully explained by error minimisation alone
+
+⸻
+
+G. Open Questions (Extended)
+
+* Q: What is the minimal sufficient definition of coherence?
+* Q: Does coherence require oscillatory implementation, or can it be abstracted?
+* Q: Is E3 commitment necessary, or does coherence alone suffice?
+* Q: Can coherence be learned, or must it be architecturally imposed?
+* Q: Does a temperature parameter (analogue to \hbar) control trajectory diversity?
+
+⸻
+
+H. Positioning Statement
+
+The REE trajectory framework is not claimed to be equivalent to physical least-action systems, but to share a structural form. Its validity depends on demonstrating that coherence-based selection provides explanatory and predictive power beyond standard optimisation-based models.
+
+⸻
+
+Footnotes
+
+1. Variational formulations (e.g. in statistical mechanics and Bayesian inference) often admit multiple equivalent parameterisations; demonstrating non-equivalence requires behavioural divergence, not formal similarity.
+2. The introduction of an explicit commitment mechanism (E3) may correspond mathematically to thresholding, bifurcation, or symmetry-breaking processes in dynamical systems.
+3. Coherence as a multiplicative term parallels interference-like selection but must be grounded in measurable system dynamics to avoid metaphorical drift.
+
+⸻
+
