@@ -1,0 +1,39 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_signature_accepts_operating_mode": {
+      "accepts_via_propose": true,
+      "accepts_via_forward": true,
+      "error": null,
+      "pass": true
+    },
+    "UC2_disabled_by_default_backward_compat": {
+      "last_mode_recorded": true,
+      "last_noise_scale_is_none": true,
+      "pass": true
+    },
+    "UC3_mode_contrast_planning_vs_task": {
+      "scale_planning": 1.3,
+      "scale_external_task": 1.0,
+      "ratio": 1.3,
+      "pass": true
+    },
+    "UC4_soft_mixture_convex_combination": {
+      "expected_scale": 1.15,
+      "actual_scale": 1.15,
+      "abs_error": 0.0,
+      "pass": true
+    },
+    "UC5_arm_a_vs_arm_c_structural_contrast": {
+      "arm_a_scale_planning": 1.3,
+      "arm_a_scale_task": 1.0,
+      "arm_a_ratio": 1.3,
+      "arm_c_scale_planning": null,
+      "arm_c_scale_task": null,
+      "rule_state_norm_after_planning": 2.0535175800323486,
+      "rule_state_norm_after_task": 2.313110828399658,
+      "rule_state_persistence_ratio": 1.1264139401052609,
+      "pass": true
+    }
+  }
+}

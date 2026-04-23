@@ -1,0 +1,62 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_466_sd034_satisficing_residue_discharge_v3_20260421T180907Z_v3",
+  "experiment_type": "v3_exq_466_sd034_satisficing_residue_discharge",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-21T18:09:07.879943Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-034",
+    "MECH-094"
+  ],
+  "result": "PASS",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {
+    "SD-034": "diagnostic",
+    "MECH-094": "diagnostic"
+  },
+  "metrics": {
+    "UC1_nearby_attenuation": {
+      "w_before": 1.0,
+      "w_after": 0.5,
+      "n_attenuated": 1,
+      "ratio": 0.49999999999949996,
+      "pass": true
+    },
+    "UC2_far_centers_spared": {
+      "wa_before": 1.0,
+      "wa_after": 0.5,
+      "wb_before": 1.0,
+      "wb_after": 1.0,
+      "b_preserved": true,
+      "a_attenuated": true,
+      "pass": true
+    },
+    "UC3_invariant_preserved": {
+      "w_initial": 1.0,
+      "w_final": 9.999999974752427e-07,
+      "w_final_nonzero": true,
+      "w_final_small": true,
+      "pass": true
+    },
+    "UC4_closure_fire_triggers_discharge": {
+      "fired": true,
+      "w_before": 1.0,
+      "w_after": 0.5,
+      "ratio": 0.49999999999949996,
+      "residue_centers_discharged": 1,
+      "pass": true
+    },
+    "UC5_closure_fire_distant_spares_residue": {
+      "fired": true,
+      "w_before": 1.0,
+      "w_after": 1.0,
+      "delta": 0.0,
+      "residue_centers_discharged": 0,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.16255831718444824,
+  "notes": "SD-034 satisficing landing diagnostic (ocd4 satisficing row). Tests ResidueField.discharge_domain() API: rule-domain multiplicative attenuation (UC1) that respects domain scoping (UC2) and preserves the 'residue cannot be erased' invariant via multiplicative-decay floor (UC3). End-to-end integration through ClosureOperator._fire confirmed (UC4/UC5). Behavioral variant (tolerance-band completion task -- bimodal vs smooth satisficing) is deferred to a future experiment that requires a new env variant. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source: docs/thoughts/2026-04-20_ocd4.md row 'satisficing / No-Go thresholding'.",
+  "outcome": "PASS"
+}

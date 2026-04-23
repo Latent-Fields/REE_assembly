@@ -1,17 +1,21 @@
 {
   "schema_version": "diagnose_staging/v1",
-  "session_date": "2026-04-20",
-  "generated_utc": "2026-04-20T14:19:14Z",
+  "session_date": "2026-04-23",
+  "generated_utc": "2026-04-23T14:19:02Z",
   "diagnoses": [],
-  "summary": "No unaddressed ERROR entries found. All recent error chains (2026-04-17 onward) have been addressed: V3-EXQ-375/396/406/429 each have a completed successor; V3-EXQ-324b/355a/385a/418a each have a completed successor; V3-EXQ-397 chain resolves to V3-EXQ-397c (pending in queue, supersedes 397/397a/397b); V3-EXQ-430 chain resolves to V3-EXQ-430b (FAIL - scientific, not code); V3-EXQ-325c resolves to V3-EXQ-325d (claimed by DLAPTOP-4.local, in queue since 2026-04-20T05:50:12Z). Older errors (pre-2026-04-17) are either resolved by completed successors or architecturally obsolete (V3-EXQ-008 SD-003 superseded 2026-04-18).",
-  "runner_status_checked_utc": "2026-04-20T14:19:14Z",
-  "queue_state": "14 items in queue; V3-EXQ-325d claimed by DLAPTOP-4.local; V3-EXQ-447 claimed by ree-cloud-2; 12 items pending",
+  "summary": "0 unaddressed errors requiring new fix scripts. Total ERROR entries in runner_status.json: 62. Only V3-EXQ-008 (March 2026) remains flagged as nominally unaddressed by suffix scan, but it is architecturally obsolete (SD-003 superseded 2026-04-18; confirmed in diagnose-325c-2026-04-20T05 session). Onboarding smokes V3-ONBOARD-smoke-EWIN-PC and V3-ONBOARD-smoke-ree-cloud-1 are infrastructure tests, not scientific experiments. No ERROR entries since 2026-04-20. Queue is empty (0 items). All recent error chains resolved.",
+  "runner_status_checked_utc": "2026-04-23T14:19:02Z",
+  "queue_state": "0 items in queue; queue empty",
   "pending_reviews_noted": [
-    "v3_exq_397_arc007_path_memory_ablation_20260419T153153Z_v3 (FAIL)",
-    "v3_exq_433a_sd029_eventcond_comparator_scripted_20260419T161931Z_v3 (FAIL)",
-    "v3_exq_445_sd032b_dacc_analog_20260419T205642Z_v3 (FAIL)",
-    "v3_exq_446_sd032a_salience_coordinator_20260420T013457Z_v3 (PASS)",
-    "V3-EXQ-445 (UNKNOWN - runner-only)",
-    "V3-EXQ-325c (ERROR - runner-only, fix queued as V3-EXQ-325d)"
+    "V3-EXQ-456 UNKNOWN (index stale)",
+    "V3-EXQ-460 UNKNOWN (index stale)",
+    "V3-EXQ-466 UNKNOWN (index stale)",
+    "V3-EXQ-463 UNKNOWN (index stale)",
+    "V3-EXQ-468 UNKNOWN (index stale)",
+    "V3-EXQ-464 UNKNOWN (index stale)",
+    "V3-EXQ-467 UNKNOWN (index stale)",
+    "V3-EXQ-462 UNKNOWN (index stale)",
+    "V3-EXQ-465 UNKNOWN (index stale)",
+    "V3-EXQ-471 UNKNOWN (index stale)"
   ]
 }

@@ -1,0 +1,59 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_462_mech267_rule_binding_v3_20260420T235721Z_v3",
+  "experiment_type": "v3_exq_462_mech267_rule_binding",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-20T23:57:21.411980Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-267",
+    "SD-033a",
+    "MECH-262"
+  ],
+  "result": "PASS",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {
+    "MECH-267": "diagnostic",
+    "SD-033a": "diagnostic",
+    "MECH-262": "diagnostic"
+  },
+  "metrics": {
+    "UC1_signature_accepts_operating_mode": {
+      "accepts_via_propose": true,
+      "accepts_via_forward": true,
+      "error": null,
+      "pass": true
+    },
+    "UC2_disabled_by_default_backward_compat": {
+      "last_mode_recorded": true,
+      "last_noise_scale_is_none": true,
+      "pass": true
+    },
+    "UC3_mode_contrast_planning_vs_task": {
+      "scale_planning": 1.3,
+      "scale_external_task": 1.0,
+      "ratio": 1.3,
+      "pass": true
+    },
+    "UC4_soft_mixture_convex_combination": {
+      "expected_scale": 1.15,
+      "actual_scale": 1.15,
+      "abs_error": 0.0,
+      "pass": true
+    },
+    "UC5_arm_a_vs_arm_c_structural_contrast": {
+      "arm_a_scale_planning": 1.3,
+      "arm_a_scale_task": 1.0,
+      "arm_a_ratio": 1.3,
+      "arm_c_scale_planning": null,
+      "arm_c_scale_task": null,
+      "rule_state_norm_after_planning": 2.0535175800323486,
+      "rule_state_norm_after_task": 2.313110828399658,
+      "rule_state_persistence_ratio": 1.1264139401052609,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.08462715148925781,
+  "notes": "MECH-267 landing diagnostic for EXP-0158 (rule binding). Tests substrate wiring of operating_mode through HippocampalModule.propose_trajectories and the per-mode CEM noise-scale mechanism. Behavioural cross-mode rule-binding compliance contrasts (the full ARM-A/B/C design from EXP-0158) are deferred to a behavioural successor pending unblock of the SD-016 cue_action_proj installation path (EXP-0155 is the open diagnostic). UC5 establishes the structural ARM-A vs ARM-C contrast at the substrate level.",
+  "outcome": "PASS"
+}

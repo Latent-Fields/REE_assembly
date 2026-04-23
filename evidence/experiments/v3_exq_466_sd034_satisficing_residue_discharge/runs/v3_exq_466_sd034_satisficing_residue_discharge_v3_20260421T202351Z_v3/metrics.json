@@ -1,0 +1,44 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_nearby_attenuation": {
+      "w_before": 1.0,
+      "w_after": 0.5,
+      "n_attenuated": 1,
+      "ratio": 0.49999999999949996,
+      "pass": true
+    },
+    "UC2_far_centers_spared": {
+      "wa_before": 1.0,
+      "wa_after": 0.5,
+      "wb_before": 1.0,
+      "wb_after": 1.0,
+      "b_preserved": true,
+      "a_attenuated": true,
+      "pass": true
+    },
+    "UC3_invariant_preserved": {
+      "w_initial": 1.0,
+      "w_final": 9.999999974752427e-07,
+      "w_final_nonzero": true,
+      "w_final_small": true,
+      "pass": true
+    },
+    "UC4_closure_fire_triggers_discharge": {
+      "fired": true,
+      "w_before": 1.0,
+      "w_after": 0.5,
+      "ratio": 0.49999999999949996,
+      "residue_centers_discharged": 1,
+      "pass": true
+    },
+    "UC5_closure_fire_distant_spares_residue": {
+      "fired": true,
+      "w_before": 1.0,
+      "w_after": 1.0,
+      "delta": 0.0,
+      "residue_centers_discharged": 0,
+      "pass": true
+    }
+  }
+}

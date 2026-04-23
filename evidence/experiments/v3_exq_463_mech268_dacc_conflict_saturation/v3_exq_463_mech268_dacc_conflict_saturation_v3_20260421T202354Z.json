@@ -1,0 +1,91 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_463_mech268_dacc_conflict_saturation_v3_20260421T202354Z_v3",
+  "experiment_type": "v3_exq_463_mech268_dacc_conflict_saturation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-21T20:23:54.222132Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-268",
+    "SD-032b",
+    "MECH-258",
+    "SD-034"
+  ],
+  "claim_ids_tested": [
+    "MECH-268",
+    "SD-032b",
+    "MECH-258",
+    "SD-034"
+  ],
+  "result": "PASS",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {
+    "MECH-268": "diagnostic",
+    "SD-032b": "diagnostic",
+    "MECH-258": "diagnostic",
+    "SD-034": "diagnostic"
+  },
+  "metrics": {
+    "UC1_backward_compat": {
+      "saturation_enabled": false,
+      "n_recurrences_in_window": 0,
+      "sat_factor": 1.0,
+      "pass": true
+    },
+    "UC2_grace_honoured": {
+      "saturation_enabled": true,
+      "grace": 3,
+      "n_recurrences_in_window": 3,
+      "sat_factor": 1.0,
+      "pass": true
+    },
+    "UC3_activates_past_grace": {
+      "n_recurrences_in_window": 6,
+      "sat_factor": 0.3333333333333333,
+      "pass": true
+    },
+    "UC4_monotone_in_recurrences": {
+      "factors": [
+        1.0,
+        0.6666666666666666,
+        0.5,
+        0.4,
+        0.3333333333333333,
+        0.2857142857142857,
+        0.25,
+        0.2222222222222222
+      ],
+      "monotone_nonincreasing": true,
+      "strict_decrease_after_grace": true,
+      "pass": true
+    },
+    "UC5_mixed_outcomes_spare_saturation": {
+      "sat_alt": 0.4,
+      "n_alt": 4,
+      "sat_pure": 0.2222222222222222,
+      "n_pure": 8,
+      "pass": true
+    },
+    "UC6_closure_resets_buffer": {
+      "fired": true,
+      "outcome_history_reset_flag": true,
+      "n_pre": 5,
+      "n_post": 0,
+      "sat_pre": 0.4,
+      "sat_post": 1.0,
+      "pass": true
+    },
+    "UC7_forward_bundle_exposes_saturation": {
+      "has_diagnostic_keys": true,
+      "pe_unsaturated": 1.2,
+      "pe": 0.48,
+      "saturation_factor": 0.4,
+      "outcome_recurrence": 4,
+      "pe_eq_pe_un_times_sat": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.0006520748138427734,
+  "notes": "MECH-268 landing diagnostic (ocd4 conflict-saturation row). Tests pe_saturated = f_sat(pe_raw, outcome_history) layered atop MECH-258 precision-weighted PE and SD-034 absolute pe cap. UC1-UC2 confirm backward compat and grace; UC3-UC4 confirm monotone activation past grace; UC5 confirms mixed outcomes do NOT saturate (recurrence-class-specific, not buffer-length); UC6 confirms closure operator reset path (SD-034 -> reset_outcome_history hook); UC7 confirms the dACC.forward() bundle exposes the saturation diagnostics needed by SD-032a salience coordinator. SD-032b/MECH-258 tagged because the saturation pipeline composes with their outputs; MECH-258 is non_contributory at this landing because the pre-existing precision-weighting path is not directly asserted (only that saturation does not perturb it). Behavioural arm (500+ step sustained-outcome task with mode-switch trigger rate measurement) deferred -- depends on phased rule_state training + an env variant not yet on any roadmap item. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source: docs/thoughts/2026-04-20_ocd4.md row 'conflict saturation'.",
+  "outcome": "PASS"
+}

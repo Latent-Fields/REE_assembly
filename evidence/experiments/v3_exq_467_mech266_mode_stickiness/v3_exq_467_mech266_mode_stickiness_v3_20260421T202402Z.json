@@ -1,0 +1,209 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_467_mech266_mode_stickiness_v3_20260421T202402Z_v3",
+  "experiment_type": "v3_exq_467_mech266_mode_stickiness",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-21T20:24:02.600951Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "result": "PASS",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {
+    "MECH-266": "diagnostic",
+    "SD-032a": "diagnostic"
+  },
+  "metrics": {
+    "arm_results": [
+      {
+        "arm": "A1_over_binding_severe",
+        "ratio": 0.1,
+        "applied_thresholds": {
+          "enter_thresholds": {
+            "external_task": 1.0,
+            "internal_planning": 1.0,
+            "internal_replay": 1.0,
+            "offline_consolidation": 1.0
+          },
+          "exit_thresholds": {
+            "external_task": 0.1,
+            "internal_planning": 0.1,
+            "internal_replay": 0.1,
+            "offline_consolidation": 0.1
+          }
+        },
+        "n_switches": 0,
+        "longest_run_in_mode": 15,
+        "max_mode_share": 1.0,
+        "mode_shares": {
+          "external_task": 1.0,
+          "internal_planning": 0.0,
+          "internal_replay": 0.0,
+          "offline_consolidation": 0.0
+        },
+        "final_mode": "external_task",
+        "ideal_switch_distance": 2
+      },
+      {
+        "arm": "A2_over_binding_moderate",
+        "ratio": 0.5,
+        "applied_thresholds": {
+          "enter_thresholds": {
+            "external_task": 1.0,
+            "internal_planning": 1.0,
+            "internal_replay": 1.0,
+            "offline_consolidation": 1.0
+          },
+          "exit_thresholds": {
+            "external_task": 0.5,
+            "internal_planning": 0.5,
+            "internal_replay": 0.5,
+            "offline_consolidation": 0.5
+          }
+        },
+        "n_switches": 2,
+        "longest_run_in_mode": 5,
+        "max_mode_share": 0.667,
+        "mode_shares": {
+          "external_task": 0.667,
+          "internal_planning": 0.333,
+          "internal_replay": 0.0,
+          "offline_consolidation": 0.0
+        },
+        "final_mode": "external_task",
+        "ideal_switch_distance": 0
+      },
+      {
+        "arm": "A3_symmetric_baseline",
+        "ratio": 1.0,
+        "applied_thresholds": {
+          "enter_thresholds": {
+            "external_task": 1.0,
+            "internal_planning": 1.0,
+            "internal_replay": 1.0,
+            "offline_consolidation": 1.0
+          },
+          "exit_thresholds": {
+            "external_task": 1.0,
+            "internal_planning": 1.0,
+            "internal_replay": 1.0,
+            "offline_consolidation": 1.0
+          }
+        },
+        "n_switches": 2,
+        "longest_run_in_mode": 5,
+        "max_mode_share": 0.667,
+        "mode_shares": {
+          "external_task": 0.667,
+          "internal_planning": 0.333,
+          "internal_replay": 0.0,
+          "offline_consolidation": 0.0
+        },
+        "final_mode": "external_task",
+        "ideal_switch_distance": 0
+      },
+      {
+        "arm": "A4_under_binding_mild",
+        "ratio": 1.5,
+        "applied_thresholds": {
+          "enter_thresholds": {
+            "external_task": 0.6666666666666666,
+            "internal_planning": 0.6666666666666666,
+            "internal_replay": 0.6666666666666666,
+            "offline_consolidation": 0.6666666666666666
+          },
+          "exit_thresholds": {
+            "external_task": 1.0,
+            "internal_planning": 1.0,
+            "internal_replay": 1.0,
+            "offline_consolidation": 1.0
+          }
+        },
+        "n_switches": 4,
+        "longest_run_in_mode": 5,
+        "max_mode_share": 0.733,
+        "mode_shares": {
+          "external_task": 0.733,
+          "internal_planning": 0.267,
+          "internal_replay": 0.0,
+          "offline_consolidation": 0.0
+        },
+        "final_mode": "external_task",
+        "ideal_switch_distance": 2
+      },
+      {
+        "arm": "A5_under_binding_severe",
+        "ratio": 2.0,
+        "applied_thresholds": {
+          "enter_thresholds": {
+            "external_task": 0.5,
+            "internal_planning": 0.5,
+            "internal_replay": 0.5,
+            "offline_consolidation": 0.5
+          },
+          "exit_thresholds": {
+            "external_task": 1.0,
+            "internal_planning": 1.0,
+            "internal_replay": 1.0,
+            "offline_consolidation": 1.0
+          }
+        },
+        "n_switches": 4,
+        "longest_run_in_mode": 5,
+        "max_mode_share": 0.733,
+        "mode_shares": {
+          "external_task": 0.733,
+          "internal_planning": 0.267,
+          "internal_replay": 0.0,
+          "offline_consolidation": 0.0
+        },
+        "final_mode": "external_task",
+        "ideal_switch_distance": 2
+      }
+    ],
+    "UC1_monotonic_switches": {
+      "switches_per_arm": [
+        0,
+        2,
+        2,
+        4,
+        4
+      ],
+      "monotone_nondecreasing": true,
+      "pass": true
+    },
+    "UC2_monotonic_longest_run": {
+      "longest_run_per_arm": [
+        15,
+        5,
+        5,
+        5,
+        5
+      ],
+      "monotone_nonincreasing": true,
+      "pass": true
+    },
+    "UC3_a1_stuck": {
+      "a1_n_switches": 0,
+      "a1_max_mode_share": 1.0,
+      "pass": true
+    },
+    "UC4_a3_matches_legacy": {
+      "a3_switches": 2,
+      "legacy_switches": 2,
+      "pass": true
+    },
+    "UC5_ushape_around_ideal": {
+      "a1_distance": 2,
+      "a3_distance": 0,
+      "a5_distance": 2,
+      "ideal_switches": 2,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.0006551742553710938,
+  "notes": "MECH-266 parametric dose-response landing diagnostic for EXP-0163 (mode stickiness / hold decay). Sweeps the MECH-266 exit/enter ratio from 0.1 (over-binding / OCD) through 1.0 (symmetric baseline) to 2.0 (under-binding / aggressive switching) on a fixed synthetic three-regime competing-goals signal sequence. Measures n_switches, longest_run_in_mode, mode_shares, and distance from the ideal switch count as substrate proxies for the full behavioural metrics (goal-completion rate, residue accumulation) that require the CausalGridWorldV2 dual-cue env extension. The behavioural U-shape test is deferred to EXQ-467b when the env lands. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md.",
+  "outcome": "PASS"
+}

@@ -2,10 +2,48 @@
   "schema_version": "v1",
   "runner_pid": 16991,
   "runner_started_at": "2026-04-21T17:06:12.255561+00:00",
-  "last_updated": "2026-04-23T11:29:08.475457+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [],
+  "last_updated": "2026-04-23T17:50:06.423124+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-397d",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "ARC-007 path-memory ablation: matched-endpoint metric redesign (supersedes V3-EXQ-397c)",
+    "description": "",
+    "script": "experiments/v3_exq_397d_arc007_matched_endpoint.py",
+    "started_at": "2026-04-23T17:40:12.959424+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 3,
+      "episodes_done": 0,
+      "episodes_total": 930,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 593,
+    "seconds_remaining": 22320,
+    "recent_lines": [
+      "[V3-EXQ-397d] ARC-007 Path Memory Ablation -- Matched-Endpoint Metric",
+      "env=16x16  hazards=6  resources=3 (sparse)",
+      "warmup=800  eval=50  restore=30",
+      "alpha_world=0.9  harm_scale=0.02",
+      "metric: matched-endpoint residue (pair each hippo to nearest-endpoint random)"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-397d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-007 path-memory ablation: matched-endpoint metric redesign (supersedes V3-EXQ-397c)",
+      "description": "",
+      "estimated_minutes": 372.0,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",

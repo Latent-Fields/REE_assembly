@@ -1,0 +1,63 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_backward_compat": {
+      "saturation_enabled": false,
+      "n_recurrences_in_window": 0,
+      "sat_factor": 1.0,
+      "pass": true
+    },
+    "UC2_grace_honoured": {
+      "saturation_enabled": true,
+      "grace": 3,
+      "n_recurrences_in_window": 3,
+      "sat_factor": 1.0,
+      "pass": true
+    },
+    "UC3_activates_past_grace": {
+      "n_recurrences_in_window": 6,
+      "sat_factor": 0.3333333333333333,
+      "pass": true
+    },
+    "UC4_monotone_in_recurrences": {
+      "factors": [
+        1.0,
+        0.6666666666666666,
+        0.5,
+        0.4,
+        0.3333333333333333,
+        0.2857142857142857,
+        0.25,
+        0.2222222222222222
+      ],
+      "monotone_nonincreasing": true,
+      "strict_decrease_after_grace": true,
+      "pass": true
+    },
+    "UC5_mixed_outcomes_spare_saturation": {
+      "sat_alt": 0.4,
+      "n_alt": 4,
+      "sat_pure": 0.2222222222222222,
+      "n_pure": 8,
+      "pass": true
+    },
+    "UC6_closure_resets_buffer": {
+      "fired": true,
+      "outcome_history_reset_flag": true,
+      "n_pre": 5,
+      "n_post": 0,
+      "sat_pre": 0.4,
+      "sat_post": 1.0,
+      "pass": true
+    },
+    "UC7_forward_bundle_exposes_saturation": {
+      "has_diagnostic_keys": true,
+      "pe_unsaturated": 1.2,
+      "pe": 0.48,
+      "saturation_factor": 0.4,
+      "outcome_recurrence": 4,
+      "pe_eq_pe_un_times_sat": true,
+      "pass": true
+    }
+  }
+}
