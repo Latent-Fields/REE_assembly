@@ -14,6 +14,35 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-23 PM — lit-pull + docs sync)
+
+- **Literature pull completed: MECH-074a/c/d (PM session 2026-04-23T11:24Z–11:34Z).**
+  Six new entries added to `evidence/literature/targeted_review_connectome_mech_074/`:
+  - **MECH-074a** (3 entries): Paré 2003 (connectome_mechanistic_review, conf=0.80);
+    Roozendaal et al. 1999 PNAS (behavioral_animal, conf=0.82 — direct beta-adrenergic
+    gate evidence); Bass & Manns 2015 (electrophysiology_lfp, conf=0.72 — BLA
+    stimulation → CA3-CA1 gamma synchrony → STDP circuit mechanism).
+  - **MECH-074c** (2 entries): Ciocchi et al. 2010 Nature (electrophysiology_single_unit,
+    conf=0.78 — CeL required for fear acquisition, CeM drives output, GABAergic
+    disinhibition); Walker & Davis 2008 (connectome_mechanistic_review, conf=0.75 —
+    CeA(M) rapid phasic output vs BNST sustained fear, directly grounds the
+    fast_prime vs MECH-046 distinction).
+  - **MECH-074d** (1 entry): Redondo et al. 2014 Nature (behavioral_animal, conf=0.62,
+    mixed — DG engram can switch valence, BLA engram cannot; supports BLA attribution
+    stability but does not directly test PE-triggered partial remap amplitude).
+  `claim_evidence.v1.json` updated: MECH-074a lit_conf=0.840, MECH-074c lit_conf=0.782,
+  MECH-074d lit_conf=0.560. Index rebuilt: 923 literature entries across 443 experiment
+  types.
+- **Experiment count:** 844 runs (indexer rebuilt 2026-04-23 PM; prior session spec
+  showed stale count of 525 — now corrected in spec and README).
+- **Pending review:** 0 indexed pending; 10 runner-only UNKNOWN (V3-EXQ-456, 460,
+  462–468, 471, 447 — all from V_s invalidation runtime / SD-032 cluster landings;
+  will clear after next indexer rebuild with those results indexed).
+- **No new SDs or governance decisions this session** (docs-only sync pass following
+  the PM lit-pull).
+
+---
+
 ## Status Snapshot (2026-04-23)
 
 - **V_s invalidation runtime substrate wave LANDED 2026-04-22.** Six substrates
