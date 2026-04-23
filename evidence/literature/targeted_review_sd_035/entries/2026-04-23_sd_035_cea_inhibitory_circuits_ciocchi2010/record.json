@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_035",
+  "entry_id": "2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010",
+  "timestamp_utc": "2026-04-23T08:43:11Z",
+  "claim_ids_tested": ["SD-035"],
+  "source": {
+    "title": "Encoding of conditioned fear in central amygdala inhibitory circuits",
+    "authors": ["Ciocchi, Stephane", "Herry, Cyril", "Grenier, Francois", "Wolff, Steffen B. E.", "Letzkus, Johannes J.", "Vlachos, Ioannis", "Ehrlich, Ingrid", "Sprengel, Rolf", "Deisseroth, Karl", "Stadler, Michael B.", "Muller, Christian", "Luthi, Andreas"],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09559"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This Nature paper provides the single-unit and optogenetic-level characterisation of CeA inhibitory microcircuits as a fear acquisition gate and fear expression driver — directly relevant to CeAAnalog's architecture in SD-035. The dissociation between CEl (lateral subdivision: acquisition-gated, phasic) and CEm (medial subdivision: output neurons driving conditioned responses) maps to CeAAnalog's internal structure: fast-prime onset (CEl-like phasic acquisition gate) and mode_prior output (CEm-like sustained output). The GABAergic inhibitory gating mechanism within CeA supports the claim that CeA functions as a mode-prior emitter with internal gating rather than a simple relay.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If CeA activity during fear acquisition required direct input from BLA on every trial (not just during initial conditioning), the semi-autonomous CeA mode-prior function in SD-035 would be underspecified.",
+    "The CEl-CEm dissociation implies CeAAnalog needs internal inhibitory gating logic; if this gating is absent in the non-trainable initial pass, MECH-046 validation may fail because mode_prior dynamics are too simple."
+  ],
+  "tags": ["sd_035", "cea", "inhibitory_circuits", "mode_prior", "mech_046", "mech_074c"],
+  "mapping": {
+    "source_claim_statement": "CEl neurons are required for fear acquisition (phasic, acquisition-gated); CEm neurons drive conditioned fear responses (output relay). Cell-type-specific plasticity of phasic/tonic activity in the CEl-to-CEm pathway gates fear expression and regulates fear generalization.",
+    "ree_translation": "SD-035's CeAAnalog emits mode_prior pre-softmax to SalienceCoordinator (CEm-like sustained output) and fast_prime as a phasic conditioned-cue signal (CEl-like acquisition-gated). The phasic/tonic dissociation documented by Ciocchi directly supports CeAAnalog's theta_cea_fast threshold architecture: fast_prime fires for conditioned harm cues (CEl-like) while mode_prior provides the sustained motivational bias (CEm-like). The GABAergic inhibitory basis supports CeAAnalog's mode_prior_log_odds operating as an additive pre-softmax log-odds bias (not a direct activating signal).",
+    "mapping_caveat": "Study uses fear conditioning in mice; SD-035 covers harm avoidance more broadly. CeA subdivision anatomy (CEl/CEm) is not explicitly modelled in SD-035's initial non-trainable pass — the CEl-CEm interneuron circuit maps only loosely onto fast_prime vs mode_prior as separate output channels.",
+    "source_context": "In vivo electrophysiology, optogenetics in C57BL/6 mice; auditory fear conditioning; Nature paper"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Highest venue (Nature), optogenetic circuit dissection, clear subdivision resolution. Mapping fidelity limited because SD-035's initial non-trainable pass does not implement CEl/CEm distinction explicitly."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-22T23:12:34.611784Z`
+Generated: `2026-04-23T08:47:43.984786Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -189,6 +189,7 @@ Generated: `2026-04-22T23:12:34.611784Z`
 | `targeted_review_sd_013` | [`2026-04-13_sd_013_causal_representation_learning_scholkopf2021`](targeted_review_sd_013/entries/2026-04-13_sd_013_causal_representation_learning_scholkopf2021/record.json) | 4 | [`summary`](targeted_review_sd_013/entries/2026-04-13_sd_013_causal_representation_learning_scholkopf2021/summary.md) |
 | `targeted_review_sd_014` | [`2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011`](targeted_review_sd_014/entries/2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011/record.json) | 4 | [`summary`](targeted_review_sd_014/entries/2026-04-17_sd_014_wanting_liking_neural_dissociation_smith2011/summary.md) |
 | `targeted_review_sd_015` | [`2026-04-14_sd_015_parallel_streams_lec_knierim2020`](targeted_review_sd_015/entries/2026-04-14_sd_015_parallel_streams_lec_knierim2020/record.json) | 6 | [`summary`](targeted_review_sd_015/entries/2026-04-14_sd_015_parallel_streams_lec_knierim2020/summary.md) |
+| `targeted_review_sd_016` | [`2026-04-23_sd_016_somatic_marker_critique_dunn2005`](targeted_review_sd_016/entries/2026-04-23_sd_016_somatic_marker_critique_dunn2005/record.json) | 3 | [`summary`](targeted_review_sd_016/entries/2026-04-23_sd_016_somatic_marker_critique_dunn2005/summary.md) |
 | `targeted_review_sd_017` | [`2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/record.json) | 4 | [`summary`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/summary.md) |
 | `targeted_review_sd_018` | [`2026-04-21_sd_018_nac_dopamine_approach_costa2025`](targeted_review_sd_018/entries/2026-04-21_sd_018_nac_dopamine_approach_costa2025/record.json) | 2 | [`summary`](targeted_review_sd_018/entries/2026-04-21_sd_018_nac_dopamine_approach_costa2025/summary.md) |
 | `targeted_review_sd_019` | [`2026-04-17_sd_019_pain_asymbolia_berthier1988`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/record.json) | 5 | [`summary`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/summary.md) |
@@ -200,6 +201,7 @@ Generated: `2026-04-22T23:12:34.611784Z`
 | `targeted_review_sd_032d` | [`2026-04-20_sd_032d_pcc_macaque_default_hayden2009`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/record.json) | 4 | [`summary`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/summary.md) |
 | `targeted_review_sd_033a` | [`2026-04-21_sd_033a_a3_synaptic_hold_mongillo2008`](targeted_review_sd_033a/entries/2026-04-21_sd_033a_a3_synaptic_hold_mongillo2008/record.json) | 3 | [`summary`](targeted_review_sd_033a/entries/2026-04-21_sd_033a_a3_synaptic_hold_mongillo2008/summary.md) |
 | `targeted_review_sd_034` | [`2026-04-21_sd_034_task_bracketing_barnes2011`](targeted_review_sd_034/entries/2026-04-21_sd_034_task_bracketing_barnes2011/record.json) | 2 | [`summary`](targeted_review_sd_034/entries/2026-04-21_sd_034_task_bracketing_barnes2011/summary.md) |
+| `targeted_review_sd_035` | [`2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/record.json) | 3 | [`summary`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-04-05_mech123_rem_precision_recalibration_walker2009`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/record.json) | 5 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |
 | `targeted_review_social_signal_legibility` | [`2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/record.json) | 10 | [`summary`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/summary.md) |

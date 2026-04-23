@@ -24,7 +24,9 @@
     "SD-004"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
+  "supersedes": "v3_exq_397_arc007_path_memory_ablation",
+  "evidence_direction_note": "SUPERSEDED 2026-04-23. Same metric confound as EXQ-397 (resource-hazard-colocated env makes trajectory-mean residue a proxy for goal-seeking, not harm-seeking). The 397c terrain-training fix (train on min-residue candidate rather than E3-selected) IS wired into the loss (verified 2026-04-23), but the training target is drawn from a CEM pool seeded by terrain_prior itself, so terrain_loss 0.34 -> 3e-6 reflects self-referential distribution collapse, not residue-informed learning. Behavioural evidence for ARC-007 via EXQ-114. Metric-redesign successor: V3-EXQ-397d (matched-endpoint residue comparison).",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {

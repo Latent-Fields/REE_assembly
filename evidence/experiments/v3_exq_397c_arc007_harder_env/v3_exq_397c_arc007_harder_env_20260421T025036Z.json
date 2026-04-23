@@ -28,7 +28,8 @@
     "SD-004"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
+  "supersedes": "v3_exq_397_arc007_path_memory_ablation",
   "experiment_type": "v3_exq_397c_arc007_harder_env",
   "fatal_error_count": 0,
   "run_timestamp": "20260421T025036Z",
@@ -37,8 +38,8 @@
   "run_id": "v3_exq_397c_arc007_harder_env_20260421T025036Z_v3",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "evidence_direction_per_claim": {
-    "ARC-007": "non_contributory",
-    "SD-004": "non_contributory"
+    "ARC-007": "superseded",
+    "SD-004": "superseded"
   },
-  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: same broken probe as EXQ-397. The 'harder_env' fix (training on minimum-residue candidate) did not change the metric (gap_intact stays at -1.638..-1.640). Probe redesign required."
+  "evidence_direction_note": "SUPERSEDED 2026-04-23 by V3-EXQ-397d (matched-endpoint metric redesign). Root cause analysis (2026-04-23): the terrain-training fix IS correctly wired into the loss (F.mse_loss(ao_mean_pred, best_ao.detach()).backward() on hippocampal.terrain_prior + action_object_decoder; input distribution matches between training and inference, both using theta_buffer.summary()). terrain_loss 0.34 -> 3e-6 is self-referential distribution collapse: training target is the min-residue candidate from a CEM pool seeded by terrain_prior itself. The metric (mean_random - mean_hippo trajectory residue) is confounded in resource-hazard-colocated envs: residue RBFs accumulate at cells visited during harm (goal-adjacent by env design), so hippo trajectories correctly projecting toward goals TRAVERSE residue-dense regions while random E2 rollouts wander near the current (residue-sparse) z_world. Negative hippo_quality_gap reflects goal-seeking, not harm-seeking. ARC-007 behavioural evidence remains via EXQ-114 (99.2% harm reduction MAP_NAV vs MAP_ABLATED)."
 }

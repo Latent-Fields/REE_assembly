@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_016",
+  "entry_id": "2026-04-23_sd_016_bla_ofc_cue_expectation_lichtenberg2017",
+  "timestamp_utc": "2026-04-23T08:43:11Z",
+  "claim_ids_tested": ["SD-016"],
+  "source": {
+    "title": "Basolateral Amygdala to Orbitofrontal Cortex Projections Enable Cue-Triggered Reward Expectations",
+    "authors": ["Lichtenberg, Nina T.", "Pennington, Zachary T.", "Holley, Sandra M.", "Greenfield, Venuz Y.", "Cepeda, Carlos", "Levine, Michael S.", "Wassum, Kate M."],
+    "year": 2017,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0486-17.2017"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Provides direct circuit-level evidence for the BLA-to-OFC projection as the substrate for cue-triggered outcome expectations — the architectural basis for SD-016's z_world-only query path. Chemogenetic inactivation of BLA terminals in OFC (but not OFC terminals in BLA) blocked the motivating influence of cue-triggered reward representations on behaviour. Critically, this disruption was specific to CUE-triggered expectations, not to non-cue-triggered instrumental action-reward associations. This selectivity mirrors SD-016's design: the cue-indexed E1 query path is distinct from non-cue-driven outcome learning. Confidence moderate because the paper studies reward (not harm) and rat, not human.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC-to-BLA projections (reverse direction) were equally necessary, the unidirectional BLA-to-OFC feed that SD-016's z_world query path implements would lack biological support.",
+    "If the cue-selectivity of the BLA-OFC effect could be explained by OFC lesion confounds rather than the directional projection, the circuit specificity would be undermined."
+  ],
+  "tags": ["sd_016", "bla_ofc_projection", "cue_triggered_expectation", "orbitofrontal", "mech_151"],
+  "mapping": {
+    "source_claim_statement": "BLA-to-OFC projections (not OFC-to-BLA) are required for cue-triggered reward expectations to motivate action selection; not required when actions are guided by action-reward contingencies or by direct reward delivery.",
+    "ree_translation": "SD-016's z_world-only ContextMemory query path implements this BLA-to-frontal channel: BLA analog (SD-035 amygdala substrate) provides the valenced cue-context via z_harm_a; E1 retrieves the associated cue-affordance representation (z_world-indexed); OFC analog output feeds into E2 action affordance bias (MECH-151). The cue-specificity finding directly validates the architectural decision to use a z_world-only query rather than a blended [z_self, z_world] query.",
+    "mapping_caveat": "Paper uses appetitive reward in rats; SD-016 is implemented for harm-avoidance (aversive). The BLA-OFC circuit topology should be preserved for harm but the parameter regime and valence may differ. The REE z_world query maps to OFC receiving BLA-context, not directly measuring the BLA->OFC monosynaptic projection.",
+    "source_context": "Male Long-Evans rats; Pavlovian-to-instrumental transfer + devaluation paradigms; DREADD chemogenetic inactivation of directional projections"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Strong method (chemogenetic directional inactivation in J Neurosci). Moderate mapping fidelity because appetitive reward =/= harm avoidance; but circuit architecture claim is valence-agnostic and well-validated across appetitive and aversive domains in other studies."
+  }
+}

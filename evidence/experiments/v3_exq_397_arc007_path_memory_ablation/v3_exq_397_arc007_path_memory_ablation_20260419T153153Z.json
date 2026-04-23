@@ -27,7 +27,7 @@
     "ARC-007",
     "SD-004"
   ],
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_397_arc007_path_memory_ablation",
   "fatal_error_count": 0,
   "run_timestamp": "20260419T153153Z",
@@ -36,8 +36,8 @@
   "run_id": "v3_exq_397_arc007_path_memory_ablation_20260419T153153Z_v3",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "evidence_direction_per_claim": {
-    "ARC-007": "non_contributory",
-    "SD-004": "non_contributory"
+    "ARC-007": "superseded",
+    "SD-004": "superseded"
   },
-  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: hippo_quality_gap probe is sign-inverted (intact more negative than ablated). ARC-007 stands on EXQ-114 behavioural PASS (99.2% harm reduction). EXQ-397 internal-metric probe needs redesign before it can produce interpretable signal."
+  "evidence_direction_note": "SUPERSEDED 2026-04-23 by V3-EXQ-397d (matched-endpoint metric redesign). The hippo_quality_gap probe is metric-confounded in resource-hazard-colocated envs: residue RBFs accumulate at cells the agent visits during harm (goal-adjacent by env design), so a correctly goal-directed hippocampus produces trajectories that TRAVERSE residue-dense regions. Random E2 rollouts stay near current z_world (residue-sparse). The negative hippo_quality_gap reflects goal-seeking, not harm-seeking. ARC-007 behavioural evidence remains via EXQ-114 (99.2% harm reduction MAP_NAV vs MAP_ABLATED). Previous classification non_contributory upgraded to superseded per scoring_excluded rule."
 }

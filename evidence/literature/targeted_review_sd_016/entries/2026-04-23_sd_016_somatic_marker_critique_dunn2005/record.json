@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_016",
+  "entry_id": "2026-04-23_sd_016_somatic_marker_critique_dunn2005",
+  "timestamp_utc": "2026-04-23T08:43:11Z",
+  "claim_ids_tested": ["SD-016"],
+  "source": {
+    "title": "The somatic marker hypothesis: a critical evaluation",
+    "authors": ["Dunn, Barnaby D.", "Dalgleish, Tim", "Lawrence, Andrew D."],
+    "year": 2005,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2005.07.001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "A rigorous critical evaluation of the somatic marker hypothesis (SMH) — the biological framework SD-016 explicitly invokes in its functional_restatement. The review identifies genuine weaknesses in the IGT paradigm as evidence for the SMH (cognitive penetrability, ambiguous psychophysiology, alternative explanations) and notes a shortage of causal evidence linking peripheral feedback to decision-making. This is mixed evidence: it does not undermine the core finding that vmPFC damage impairs anticipatory signalling before harm contact (that finding is well-replicated) but it does challenge the SMH's completeness as an explanation. Relevant as a governance caution that SD-016's biological analogy has known limitations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review notes that IGT performance can be explained by explicit learning rules without invoking somatic signals, which would challenge the somatic marker as the functional basis for the vmPFC anticipatory effect SD-016 models.",
+    "The shortage of causal evidence linking peripheral feedback to vmPFC modulation of decision-making (as opposed to correlational evidence) is a standing weakness in the SMH framework."
+  ],
+  "tags": ["sd_016", "somatic_marker", "vmfc", "critical_review", "iowa_gambling_task"],
+  "mapping": {
+    "source_claim_statement": "The somatic marker hypothesis requires additional empirical support; alternative explanations for IGT performance exist; causal linkage between somatic feedback and vmPFC decision modulation is not established.",
+    "ree_translation": "SD-016 uses the IGT analogy to motivate the cue-indexed z_world query path. This review is relevant as a caution: the REE implementation does not require a peripheral somatic loop (it is a purely internal latent-space operation) so the SMH's somatic-feedback weaknesses do not directly threaten SD-016's mechanism. However, if the vmPFC anticipatory effects are primarily driven by explicit memory retrieval rather than somatic marking, SD-016's ContextMemory retrieval mechanism (z_world-indexed associative recall) may be the better model anyway.",
+    "mapping_caveat": "This is a theoretical critique, not an experimental refutation. The vmPFC anticipatory/outcome dissociation (Bechara 1999) survives the critique. The caveat is specifically about the somatic-feedback causal chain, not about the vmPFC's role in anticipatory processing.",
+    "source_context": "Narrative theoretical review; covers lesion, fMRI, and pharmacology data up to 2005"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.15,
+    "notes": "High-quality venue (Neurosci Biobehav Rev), thorough review. Mapping fidelity is moderate because the critique is about peripheral somatic loops, which SD-016 does not implement."
+  }
+}

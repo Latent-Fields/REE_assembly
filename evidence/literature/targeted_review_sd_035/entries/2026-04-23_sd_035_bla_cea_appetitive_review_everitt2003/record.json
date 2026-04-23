@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_035",
+  "entry_id": "2026-04-23_sd_035_bla_cea_appetitive_review_everitt2003",
+  "timestamp_utc": "2026-04-23T08:43:11Z",
+  "claim_ids_tested": ["SD-035"],
+  "source": {
+    "title": "Appetitive behavior: impact of amygdala-dependent mechanisms of emotional learning",
+    "authors": ["Everitt, Barry J.", "Cardinal, Rudolf N.", "Parkinson, John A.", "Robbins, Trevor W."],
+    "year": 2003,
+    "venue": "Annals of the New York Academy of Sciences",
+    "doi": "10.1196/annals.1280.022"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Provides the canonical conceptual and empirical framework for the two-module BLA/CeA architecture that SD-035 directly implements. The review synthesises double-dissociation evidence across multiple paradigms: BLA lesions impair CS-UCS specific outcome-value associations (what SD-035's BLAAnalog does: encoding_gain and retrieval_bias weighted by outcome-valence) while CeA lesions impair general motivational/mode-prior influences on behaviour (what SD-035's CeAAnalog does: mode_prior to SalienceCoordinator). The evolutionary framing (phylogenetically recent BLA for outcome-value retrieval; phylogenetically older CeA for incentive-motivational invigoration) maps well to the peer-module architecture SD-035 registers.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If BLA and CeA lesions produced identical patterns of deficit across paradigms, the two-module dissociation underpinning SD-035's peer-module design would be unsupported.",
+    "The review acknowledges that under many conditions both systems operate together; if cooperative operation requires direct BLA-to-CeA communication that SD-035 does not implement, the isolated peer architecture may miss an important coupling constraint."
+  ],
+  "tags": ["sd_035", "bla", "cea", "double_dissociation", "appetitive", "mode_prior"],
+  "mapping": {
+    "source_claim_statement": "BLA is required for CS-UCS specific value associations (outcome representation, current affective value access); CeA mediates stimulus-response representations and conditioned motivational influences on behaviour. These systems superimpose: BLA (phylogenetically recent) encodes outcome value; CeA (phylogenetically older) enables incentive-motivational invigoration.",
+    "ree_translation": "SD-035's BLAAnalog handles encoding_gain (MECH-074a), retrieval_bias (MECH-074b), and remap_signal (MECH-074d) — the CS-UCS value modulation role. SD-035's CeAAnalog emits mode_prior to SalienceCoordinator (MECH-046) and fast_prime (MECH-074c) — the incentive-motivational/mode-prior role. The peer-module architecture mirrors the biological two-module dissociation the review establishes.",
+    "mapping_caveat": "Review is based primarily on appetitive (reward) paradigms and rodents; SD-035 is implemented for harm-avoidance. The BLA-UCS value function may differ qualitatively for aversive UCS. However, the CeA mode-prior function is likely preserved across valences (both Parkinson 2000 appetitive and Walker & Davis 1997 aversive CEA experiments converge on the same CeA motivational role).",
+    "source_context": "Review synthesising excitotoxic lesion studies in rats; Pavlovian conditioning, instrumental action, conditioned reinforcement, and PIT paradigms"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Prestigious authors (Everitt, Robbins group; Cambridge); Ann NY Acad Sci canonical review series. Transfer risk moderate for valence; low for species (rodent amygdala circuit topology well-conserved)."
+  }
+}

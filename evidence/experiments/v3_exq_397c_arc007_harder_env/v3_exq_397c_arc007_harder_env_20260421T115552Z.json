@@ -28,7 +28,8 @@
     "SD-004"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
+  "supersedes": "v3_exq_397_arc007_path_memory_ablation",
   "experiment_type": "v3_exq_397c_arc007_harder_env",
   "fatal_error_count": 0,
   "run_timestamp": "20260421T115552Z",
@@ -37,8 +38,8 @@
   "run_id": "v3_exq_397c_arc007_harder_env_20260421T115552Z_v3",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "evidence_direction_per_claim": {
-    "ARC-007": "non_contributory",
-    "SD-004": "non_contributory"
+    "ARC-007": "superseded",
+    "SD-004": "superseded"
   },
-  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: rerun of broken EXQ-397c probe."
+  "evidence_direction_note": "SUPERSEDED 2026-04-23 by V3-EXQ-397d (matched-endpoint metric redesign). Bit-identical rerun of 20260421T025036Z (deterministic under seed=0). 397c's terrain-training fix IS wired (verified 2026-04-23) but its target is drawn from a CEM pool seeded by terrain_prior itself, so terrain_loss 0.34 -> 3e-6 is self-referential distribution collapse. Metric confound: hippo trajectories by design project into goal-adjacent residue-dense regions in resource-hazard-colocated envs; negative hippo_quality_gap reflects goal-seeking, not harm-seeking. ARC-007 behavioural evidence via EXQ-114."
 }

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_453_mech261_write_gate_landing
 
-Generated: `2026-04-22T23:12:34.611784Z`
+Generated: `2026-04-23T08:47:43.984786Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_016",
+  "entry_id": "2026-04-23_sd_016_anticipatory_vmf_bechara1999",
+  "timestamp_utc": "2026-04-23T08:43:11Z",
+  "claim_ids_tested": ["SD-016"],
+  "source": {
+    "title": "Different Contributions of the Human Amygdala and Ventromedial Prefrontal Cortex to Decision-Making",
+    "authors": ["Bechara, Antoine", "Damasio, Hanna", "Damasio, Antonio R.", "Lee, Gregory P."],
+    "year": 1999,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.19-13-05473.1999"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This paper provides direct dissociative evidence for the vmPFC-specific role SD-016 implements. VMF lesion patients could not generate anticipatory SCRs while pondering risky choices (before outcome) but could generate SCRs when receiving actual reward or punishment (after outcome). This exactly matches SD-016's design premise: vmPFC provides a cue-indexed pre-harm anticipatory signal, not just a post-hoc outcome signal. High mapping fidelity given the anticipatory/outcome dissociation is SD-016's core architectural distinction. Confidence moderate rather than high because (1) vmPFC is a broad region and SD-016 maps to a specific z_world-query mechanism, and (2) the somatic marker framework underlying the claim has been critiqued.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If vmPFC patients also showed impaired post-outcome SCRs, the vmPFC-specific anticipatory function SD-016 requires would not be supported.",
+    "If the IGT anticipatory SCR effect is fully explained by explicit knowledge of deck probabilities, the vmPFC's role may be in cognitive representation rather than the somatic-affective modulation SD-016 proposes."
+  ],
+  "tags": ["sd_016", "vmfc", "somatic_marker", "anticipatory_signal", "iowa_gambling_task"],
+  "mapping": {
+    "source_claim_statement": "VMF cortex lesion patients cannot generate anticipatory SCRs while pondering risky choices but can still generate SCRs to actual reward/punishment outcomes; amygdala patients fail to generate SCRs in both conditions.",
+    "ree_translation": "SD-016's z_world-only ContextMemory query path implements the VMF anticipatory function: it retrieves harm-associated context BEFORE harm contact and modulates E2 action affordances (MECH-151) and E3 terrain precision (MECH-152). The pre/post-harm dissociation maps directly to SD-016's architectural separation of cue-indexed anticipatory bias from outcome-driven harm learning.",
+    "mapping_caveat": "The paper measures skin conductance as a proxy for somatic state; SD-016 implements the architectural substrate rather than a peripheral physiological signal. The vmPFC subregion boundaries in the lesion patients may not correspond exactly to the z_world-query path location in REE's architecture.",
+    "source_context": "Human lesion patients (bilateral VMF or bilateral amygdala damage); Iowa Gambling Task; 1999 cohort"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "Human data with clear lesion localisation. The anticipatory/outcome dissociation is well-replicated across the Damasio group's output. Transfer risk is low because SD-016 explicitly cites the Iowa Gambling Task analogy in its functional_restatement."
+  }
+}

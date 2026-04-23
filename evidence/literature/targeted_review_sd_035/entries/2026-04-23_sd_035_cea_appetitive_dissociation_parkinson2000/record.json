@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_035",
+  "entry_id": "2026-04-23_sd_035_cea_appetitive_dissociation_parkinson2000",
+  "timestamp_utc": "2026-04-23T08:43:11Z",
+  "claim_ids_tested": ["SD-035"],
+  "source": {
+    "title": "Dissociable roles of the central and basolateral amygdala in appetitive emotional learning",
+    "authors": ["Parkinson, J. A.", "Robbins, T. W.", "Everitt, B. J."],
+    "year": 2000,
+    "venue": "The European Journal of Neuroscience",
+    "doi": "10.1046/j.1460-9568.2000.00960.x"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Provides a direct behavioural dissociation demonstrating that CeA (not BLA) controls appetitive Pavlovian approach conditioning in rats. CeA lesions impaired autoshaping (conditioned approach); BLA lesions did not. This is the key evidence that CeA has a domain-general motivational/mode-prior role that is NOT reducible to harm-driven fear responses — it operates across valences. Combined with Walker & Davis 1997 (CeA for fear-potentiated startle) this creates a cross-valence double dissociation that directly supports SD-035's CeAAnalog as a valence-agnostic salience-to-mode-prior stage. Dorsal and ventral subiculum lesions had no effect, confirming hippocampal independence of this specific conditioning form.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If CeA lesions specifically impaired only aversive (not appetitive) conditioning, CeAAnalog's mode_prior would need to be restricted to harm-channel inputs rather than the general salience-gated design SD-035 registers.",
+    "If BLA lesions also impaired autoshaping (appetitive Pavlovian approach) under any parametric variant, the clean CeA-BLA dissociation underlying SD-035's peer-module design would be weakened."
+  ],
+  "tags": ["sd_035", "cea", "bla", "appetitive_pavlovian", "mode_prior", "mech_046"],
+  "mapping": {
+    "source_claim_statement": "CeA lesions impair appetitive Pavlovian autoshaping (conditioned approach to food-predictive CS); BLA lesions do not. Dorsal and ventral subiculum lesions have no effect. Contrasts with aversive conditioning (where BLA also required).",
+    "ree_translation": "SD-035's CeAAnalog outputs mode_prior as a general salience-responsive mode bias. The Parkinson 2000 result confirms that CeA plays a motivational/mode-prior role even in the ABSENCE of harm (appetitive learning), supporting the design decision that CeAAnalog is NOT a harm-only module. CeA mode_prior should activate for salient motivationally-significant cues generally, with the harm-threat weighting provided by z_harm_a input gating.",
+    "mapping_caveat": "Excitotoxic lesion study removes the CeA entirely; SD-035's CeAAnalog is an additive module (not a lesioned-vs-intact comparison). The autoshaping paradigm is a simple Pavlovian approach task without instrumental action selection — REE's SalienceCoordinator integration involves more complex mode selection.",
+    "source_context": "Excitotoxic lesion (ibotenic acid and quinolinic acid) in male rats; food-reinforced autoshaping; Eur J Neurosci 2000"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "Solid Eur J Neurosci paper from the Robbins/Everitt group; paradigm is simple and results are clean. Transfer risk moderate for species; low for architectural interpretation."
+  }
+}
