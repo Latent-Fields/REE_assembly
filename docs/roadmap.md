@@ -14,6 +14,116 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-23)
+
+- **V_s invalidation runtime substrate wave LANDED 2026-04-22.** Six substrates
+  landed in a coordinated 2026-04-22 session implementing the architecture doc
+  `REE_assembly/docs/architecture/v_s_invalidation_runtime.md`:
+  - **SD-036 GABAergic cross-stream decay regulator**
+    (`ree_core/regulators/gabaergic_decay.py`) -- broadly-projecting tonic decay
+    applied out-of-place across registered latent streams (z_harm tau=0.05,
+    z_harm_a tau=0.02, z_beta tau=0.03 by default; drive accumulator intentionally
+    excluded). Global `gaba_tone` multiplier in [0, 2] models benzo-analog (>1)
+    and withdrawal / chronic-stress analog (<1). Wired in `agent.sense()` right
+    after `LatentStack.encode()` so all downstream consumers see the decayed
+    latent on the same tick.
+  - **MECH-279 PAG freeze-gate** (`ree_core/pag/freeze_gate.py`) -- committed-
+    freeze substrate keyed on `duration_above_threshold * z_harm_a > theta_freeze`
+    (default 2.0). Exit threshold scales with SD-036 `gaba_tone`, so the same
+    GABAergic system gates BOTH freeze entry AND freeze exit (architectural
+    prediction: GABA agonists treat freeze catatonia). Action-class no-op
+    injection during freeze; simulation_mode gated.
+  - **MECH-269 base / Phase 1 per-stream V_s**
+    (`ree_core/hippocampal/module.py::update_per_stream_vs`) -- foundation
+    observable: identity-prediction proxy EMA over registered streams
+    (`z_world / z_self / z_harm_s / z_harm_a / z_goal / z_beta`); seeds at 1.0
+    on first tick, drops on latent change. Forward-predictor routing (SD-007
+    reafference for z_world, SD-011 harm forward for z_harm_s) reserved for
+    Phase 2 consumer wiring.
+  - **MECH-288 event segmenter Phase 2**
+    (`ree_core/hippocampal/event_segmenter.py`) -- two-scale boundary detector:
+    fast `pe_threshold` on `(z_world, z_self)` (window=200, threshold=0.65) +
+    slow BOCPD-Gaussian on `(z_goal,)` (hazard=1/40, posterior_threshold=0.5,
+    top-k=20). Emits BoundaryEvents with nested outer.inner segment IDs; slow
+    fire forces outer+=1, inner=0 and suppresses same-tick fast; `force_boundary`
+    API for scripted injection. BOCPD uses underflow-robust Adams & MacKay 2007
+    recursion with Welford online variance.
+  - **MECH-287 invalidation trigger Phase 2 iv**
+    (`ree_core/regulators/invalidation_trigger.py`) -- BoundaryEvent subscriber
+    re-emitting graded BroadcastEvents (`strength = posterior * gain`; NO
+    binary thresholding of strength). Phasic/tonic guardrail (Aston-Jones &
+    Cohen 2005; Clewett 2025 failure signature 2) via rolling mean over
+    `tonic_window=50` past-tick posteriors; suppresses phasic broadcast when
+    tonic estimate exceeds `tonic_threshold=0.5`. Verdict-3 architectural
+    commitment (V_s foundation lit-pull synthesis): the trigger IS the
+    subscriber, not an independent CA1/CA3 mismatch comparator stage -- the
+    biological two-stage loop is collapsed to a subscription on the MECH-288
+    boundary queue. Dissociation contract C5 verifies: lesioning the segmenter
+    silences the trigger regardless of its internal tonic state.
+  - **MECH-269 Phase 2 ii AnchorSet** (`ree_core/hippocampal/anchor_set.py`) --
+    scale-tagged anchor store keyed on `(scale, segment_id, stream_mixture)`.
+    Dual-trace preservation per Bouton 2004: remap on the same
+    `(scale, stream_mixture)` marks the outgoing anchor INACTIVE and retains
+    it in `all_anchors()`; never erased. k=5 consecutive-below-threshold
+    hysteresis on `V_s_anchor = avg(V_s over mixture) - staleness`
+    (staleness monotonic in tick - last_accessed). FIFO soft-cap at 128
+    active anchors per scale. BoundaryEvent consumer via
+    `tick_anchor_set(latent_state, events)`; Phase 2 stream_mixture stand-in is
+    `tuple(sorted(per_stream_vs.keys()))` at anchor-creation tick (learned
+    attribution-head version reserved for Phase 3 MECH-284).
+  - **MECH-269 Phase 2 iii T4 per-region V_s** (extended module.py) -- promotes
+    flat `per_stream_vs[stream] -> float` to
+    `per_region_vs[(scale, segment_id)][stream] -> float` keyed on active
+    AnchorSet regions. Two reset paths: (1) passive hysteresis via
+    `tick_anchor_set` marking anchors inactive; (2) explicit via
+    `apply_invalidation_broadcasts_to_regions(broadcasts)` dropping region V_s
+    and mark_inactive'ing the matching anchor on MECH-287 BroadcastEvents
+    (keyed on `source_scale`, `source_segment_id_old`). Peek-not-drain on the
+    broadcast queue preserves events for Phase 3 MECH-284 staleness accumulator
+    consumer. Idempotent on repeated broadcasts.
+  All six landed via 85/85 contracts + 7/7 preflight PASS with flags OFF
+  (bit-identical to legacy), plus dedicated contract tests for each phase:
+  MECH-269 Phase 1 (5 tests), MECH-288 (7 tests), MECH-287 (5 tests incl.
+  verdict-3 dissociation C5), MECH-269 Phase 2 ii (9 tests incl. 2 integration
+  smokes for agent-level flag behaviour), MECH-269 Phase 2 iii T4 (6 tests
+  incl. 1 integration smoke). Activation smokes confirmed expected signatures:
+  CeA synthetic threat -> graded mode_prior/fast_prime; BLA synthetic arousal
+  -> inverted-U cap; BLA synthetic PE-spike -> Moita 2004 remap; default agent
+  + Phase 1 flag ON seeds `per_stream_vs` at 1.0 and drops on perturbation;
+  forced fast boundary installs anchor under segment_id "0.1" and populates
+  per-region V_s under the new region key. Design doc:
+  `docs/architecture/v_s_invalidation_runtime.md`; anchor-selection doc:
+  `docs/architecture/hippocampal_anchor_selection.md`. End-to-end combined-
+  cluster validation (V3-EXQ-476: matched re-run of EXQ-475 with the full
+  circuit on) is planned; not yet queued as of 2026-04-23.
+- **Experiments:** 525 total completions unchanged since 2026-04-22 snapshot
+  (runner_status.json last_updated 2026-04-22T01:11Z) -- the V_s invalidation
+  runtime wave landed via contract tests + activation smokes only. PASS/FAIL
+  breakdown: 108 PASS / 234 FAIL / 62 ERROR / 121 UNKNOWN. Next indexer
+  rebuild will refresh after V3-EXQ-476 and the pending SD-032 / SD-003
+  successor results land.
+- **Pending review:** 10 items as of 2026-04-22T23:12:38Z (down from 46 at the
+  2026-04-21T19:54Z snapshot). All 10 are runner-UNKNOWN because the index is
+  stale ahead of the next indexer rebuild (`python evidence/experiments/
+  scripts/build_experiment_indexes.py` from `REE_assembly/` root clears them).
+  Queue IDs: V3-EXQ-456 / 460 / 462 / 463 / 464 / 465 / 466 / 467 / 468 / 471.
+- **Current first-paper-gate bottleneck:** SD-032 cluster behavioural follow-
+  through remains the primary gate. V3-EXQ-445a (SD-032b dACC full-pipeline
+  fix for the EXQ-445 monostrategy collapse + terrain-prior inversion,
+  claimed EWIN-PC) is the decisive test still in flight; V3-EXQ-445b / 445c
+  have both FAILed and V3-EXQ-325d FAILed on the SD-032c descending-
+  modulation falsification signature. V3-EXQ-447 (SD-032d deterministic
+  validation, claimed ree-cloud-2) and V3-EXQ-451 (Q-034 hazard/resource
+  threshold retest, claimed EWIN-PC) are the remaining two claimed
+  experiments. SD-003 successor track (V3-EXQ-433a MECH-256/SD-029 FAIL,
+  V3-EXQ-452 MECH-257 dual-function E2 diagnostic FAIL) and ARC-007 path-
+  memory track (V3-EXQ-397c) remain alive. Secondary bottleneck: V_s
+  invalidation runtime end-to-end validation deferred -- V3-EXQ-476
+  (combined-cluster re-run of EXQ-475 with the full circuit on) is planned
+  but not yet queued.
+
+---
+
 ## Status Snapshot (2026-04-22)
 
 - **SD-035 amygdala analogue LANDED 2026-04-21.** BLA + CeA peer modules
@@ -144,11 +254,23 @@ nav_order: 6
 - Land the 3 claimed experiments: V3-EXQ-447 (SD-032d deterministic
   validation, ree-cloud-2), V3-EXQ-451 (Q-034 hazard/resource threshold
   retest, EWIN-PC), V3-EXQ-445a (SD-032b dACC full-pipeline fix, EWIN-PC).
-- Run the next governance cycle once V3-EXQ-445a lands: rebuild
-  `claim_evidence.v1.json`, regenerate `pending_review.md`, ingest the
-  SD-032 cluster behavioural FAIL pattern, the SD-035 landing PASSes, and
-  the fresh SD-033 cluster registrations (MECH-266 / SD-029 /
-  MECH-269-278 / ARC-059).
+- Queue V3-EXQ-476 (combined V_s invalidation runtime end-to-end validation:
+  matched re-run of EXQ-475 with `use_gabaergic_decay=True`,
+  `use_pag_freeze_gate=True`, `use_per_stream_vs=True`,
+  `use_event_segmenter=True`, `use_invalidation_trigger=True`,
+  `use_anchor_sets=True`, `use_per_region_vs=True`). This is the one
+  missing piece for the 2026-04-22 substrate wave -- contracts have
+  landed but the circuit has not been exercised behaviourally. Test
+  MECH-288's falsifiable secondary prediction that z_goal / z_world
+  broadcast events preferentially reset their home-region V_s entries
+  rather than peer regions.
+- Run the next governance cycle once V3-EXQ-445a and V3-EXQ-476 land:
+  rebuild `claim_evidence.v1.json`, regenerate `pending_review.md`,
+  ingest the SD-032 cluster behavioural FAIL pattern, the SD-035
+  landing PASSes, the fresh SD-033 cluster registrations (MECH-266 /
+  SD-029 / MECH-269-278 / ARC-059), and the V_s invalidation runtime
+  landings (SD-036 / MECH-279 / MECH-269 Phase 1/2 ii/2 iii T4 /
+  MECH-288 / MECH-287).
 - Assess whether V3-EXQ-445a's outcome vindicates the SD-032b monostrategy
   fix or confirms that the dACC/AIC/ARC-016 behavioural loop needs
   substrate-level redesign; decide whether to queue EXQ-445d or to pivot
@@ -159,6 +281,13 @@ nav_order: 6
 - First-pass hippocampal consumer wiring for SD-035 BLA retrieval_bias and
   remap_signal once V3-EXQ-474 behavioural signature confirmed (deferred
   from 2026-04-21 landing pass).
+- First-pass Phase 3 wiring for the V_s invalidation runtime: MECH-284
+  staleness accumulator consumer on per-region V_s (ticks monotonic in
+  (tick - last_accessed) until broadcast or hysteresis reset); MECH-272
+  state-gated anchor/probe routing (waking=anchor-dominant,
+  sleep=probe-dominant). Both remain v3_pending after the 2026-04-22
+  substrate landings -- Phase 2 produces the observables; Phase 3 wires
+  them into replay / BG / E3 consumers.
 - Move MECH-266 OCD/depression-axis competing-goals behavioural variants
   (EXQ-464b / EXQ-467b) off hold once the CausalGridWorldV2 dual
   simultaneously active resource-cue env extension lands.
