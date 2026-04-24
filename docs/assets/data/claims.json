@@ -2939,6 +2939,24 @@
     "title": "Event-segment detection: a substrate-side two-level hierarchical detector that emits monotonic outer.inner segment IDs on detected event boundaries, feeding region-keyed substrates (anchor sets per MECH-269, V_s readouts per Phase 1, staleness accumulators per MECH-284) and the MECH-287 broadcast trigger at the schema/event-segment scale per Eichenbaum 2017 / Sols-DuBrow-Davachi 2017 / Baldassano 2017. Default substrate: PE-threshold detector on the fast scale (z_world+z_self) and BOCPD-Gaussian latent change-point on the slow scale (z_goal); MECH-287 broadcast fires downstream of MECH-288 boundaries (Clewett 2025) rather than via an independent comparator. The segment_id field is the region key consumed by the V_s invalidation runtime cluster; without it, MECH-269 anchor sets and per-region V_s aggregation have no substrate-native source for the region partition.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-289": {
+    "status": "candidate",
+    "subject": "hippocampal.cem_anti_recency_bias",
+    "title": "The hippocampal SWR trajectory generator has anti-recency weighting: infrequently experienced trajectories are proposed more often than recently committed ones, and novel-path sequences (never behaviorally executed) are actively generated from available path segments.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-290": {
+    "status": "candidate",
+    "subject": "hippocampal.backward_trajectory_credit_sweep",
+    "title": "At trajectory completion, HippocampalModule performs a backward temporal credit sweep that propagates the terminal outcome (goal contact or failure) retroactively through preceding states, consistent with the reverse replay observed at reward endpoints in awake rats (Foster & Wilson 2006).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-291": {
+    "status": "candidate",
+    "subject": "control_plane.online_offline_cem_mode_differentiation",
+    "title": "Waking-online and quiescent-offline CEM modes require distinct parameter profiles: waking mode uses short rollout horizon, context-anchored start states, and low exploration weighting; quiescent mode uses longer rollout horizon, free start states drawn from the full map, and high exploration weighting (anti-recency bias per MECH-289).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3465,6 +3483,12 @@
     "status": "candidate",
     "subject": "broadcast.override_regulator",
     "title": "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists.",
+    "type": "design_decision"
+  },
+  "SD-038": {
+    "status": "candidate",
+    "subject": "hippocampal.cem_anti_recency_exploration",
+    "title": "HippocampalModule CEM trajectory sampling must include an anti-recency exploration bonus that down-weights recently committed trajectory segments, ensuring the proposal distribution covers all available paths rather than converging on recency-weighted routes.",
     "type": "design_decision"
   }
 }
