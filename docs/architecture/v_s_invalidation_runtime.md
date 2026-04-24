@@ -8,6 +8,11 @@ nav_exclude: true
 accumulator, REFINED operational definition), MECH-269 (anchor selection + dual-trace
 reset criteria, REFINED)
 **Status:** candidate, v3_pending
+**Phase status (substrate):** Phase 1 (per-stream V_s) IMPLEMENTED; Phase 2 (event
+segmenter MECH-288, anchor sets, per-region V_s, invalidation trigger MECH-287)
+IMPLEMENTED; Phase 3 online arm (MECH-284 staleness accumulator + MECH-269 hysteresis
+consumer) IMPLEMENTED 2026-04-24; Phase 3 offline arm (MECH-285 sleep-priority
+readout) DEFERRED.
 **Registered:** 2026-04-22
 **Origin exemplar:** V3-EXQ-475 (re-run of V3-EXQ-471 with SD-036 GABA decay enabled)
 showed 5-6 PAG freeze releases per seed but ~12 re-commits per release, with all 1000/1000
@@ -411,3 +416,37 @@ Substrate hooks required:
   granularity also flagged as a tunable scaling lever per project memory
   `project_intelligence_scaling_levers.md` (Daniel's 2026-04-22 aside on
   granularity / latent dim / network depth / sensory granularity coupling).
+- **2026-04-24 (Phase 3 online arm IMPLEMENTED)** — MECH-284 staleness accumulator
+  landed in ree-v3 as `ree_core/hippocampal/staleness_accumulator.py`, wired into
+  `HippocampalModule.tick_anchor_set` between `consume_boundary_events` (Phase 2(ii))
+  and `tick_hysteresis`. Integration drains the broadcast event queue (MECH-287
+  events) with `attribution_weight` credit over the active anchor set; `tick_leak`
+  applies EMA decay `leak_factor=0.995` per call. Region key is `(scale,
+  segment_id)` — matches `per_region_vs` partition; `stream_mixture` dropped
+  because the accumulator indexes on the event-segment partition the Phase 2
+  per-region aggregation already uses. Two new `HippocampalConfig` flags, both
+  default False: `use_staleness_accumulator` (instantiates the accumulator for
+  diagnostic read-out without changing hysteresis behaviour) and
+  `use_mech284_hysteresis` (additionally swaps MECH-269 `AnchorSet.tick_hysteresis`
+  from the Phase 2 internal proxy `(tick − last_accessed) * staleness_rate` to
+  the MECH-284 accumulator lookup). Both threaded through `REEConfig.from_dims`.
+  Attribution modes: `"equal"` (baseline, default) and `"stream_overlap"` (cosine
+  similarity between broadcast `source_sources` and anchor's stream mixture).
+  Dual-trace `mark_inactive` (NOT erase) preserved from Phase 2 — Phase 3 only
+  changes how the hysteresis threshold is evaluated, not the extinction
+  semantics. MECH-094 respected via call-site scoping: the accumulator is only
+  touched during waking via `HippocampalModule.tick_anchor_set`, which is the
+  realised-observation path; simulated/probe content goes through different
+  write-gates and does not enter the broadcast queue. Backward-compat gate:
+  91/91 preflight + contract regression PASS with flags OFF (bit-identical
+  behaviour vs Phase 2). Activation smoke (`/tmp/smoke_mech284.py`) covers three
+  ARMs: ARM0 backward-compat (accumulator None when flag OFF); ARM1
+  integrate+leak (two-region equal-credit integration gives 0.4975 each after
+  one broadcast and one leak tick, matching 0.5 × 0.995 exactly); ARM2
+  hysteresis swap (with staleness forced high, MECH-269 `tick_hysteresis` fires
+  `mark_inactive` at k=3 under the MECH-284 lookup). V3-EXQ-478 queued as the
+  Phase 3 diagnostic validation (2 seeds × 2 arms OFF vs ON; metrics:
+  freeze_recommit_count, anchor_reset_count, mean_staleness_peak, action_class_
+  entropy). Phase 3 offline arm (MECH-285 sleep-priority readout) explicitly
+  deferred — the infrastructure (per-region accumulator, `snapshot()`,
+  `get_stats()`) is in place but the sleep-phase consumer is not yet wired.

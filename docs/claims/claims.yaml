@@ -19953,6 +19953,20 @@
     HippocampalModule.propose_trajectories with anchor-reset hysteresis)
     plus the EXQ-471 unlock test plus the dual-trace return-of-
     avoidance test.
+  implementation_note: >
+    Anchor-reset arm online-arm wiring now consumes MECH-284 staleness
+    as of 2026-04-24 (ree-v3 Phase 3). AnchorSet.tick_hysteresis
+    accepts an optional staleness_lookup callable; when HippocampalConfig
+    .use_mech284_hysteresis=True, HippocampalModule.tick_anchor_set
+    injects StalenessAccumulator.lookup_by_anchor_key so V_s_anchor(a, t)
+    = V_s(r, t) - staleness[r] is evaluated against the MECH-284
+    accumulator rather than the Phase 2 internal
+    (tick - last_accessed) * staleness_rate proxy. Default remains
+    False (Phase 2 proxy preserved for backward compat). Dual-trace
+    mark_inactive (NOT erase) semantics already live from Phase 2 and
+    are unchanged. Promotion still requires EXQ-471 unlock test and
+    return-of-avoidance test -- V3-EXQ-478 queued as the Phase 3
+    diagnostic validation for the MECH-284+MECH-269 coupling.
   location: docs/architecture/v_s_invalidation_runtime.md
 
 - id: MECH-270
@@ -21144,12 +21158,33 @@
     drift (Wilson 2014, Stalnaker 2015, Gardner 2018) per the lit-pull
     SYNTHESIS.
   evidence_quality_note: >
-    No substrate evidence. Lit-pull lit_confidence 0.855 (literature
-    supports OFC representational drift as accumulator substrate, with
-    LC-tonic amplification of OFC drift sensitivity under elevated
-    surprise). Promotion requires substrate implementation, the EXQ-475
-    unlock test, the dissociation-from-prediction-error test, and the
-    attribution_weight specificity test.
+    Lit-pull lit_confidence 0.855 (literature supports OFC representational
+    drift as accumulator substrate, with LC-tonic amplification of OFC
+    drift sensitivity under elevated surprise). Substrate implemented
+    2026-04-24 as ree-v3 ree_core/hippocampal/staleness_accumulator.py
+    (Phase 3 of V_s invalidation runtime); HippocampalConfig flags
+    use_staleness_accumulator (default False) and use_mech284_hysteresis
+    (default False; switches MECH-269 AnchorSet.tick_hysteresis from the
+    Phase 2 internal (tick-last_accessed)*staleness_rate proxy to the
+    Phase 3 accumulator lookup). Region key (scale, segment_id) -- matches
+    per_region_vs partition; stream_mixture dropped. Attribution modes
+    "equal" and "stream_overlap". Integration site is
+    HippocampalModule.tick_anchor_set between consume_boundary_events
+    (MECH-269 Phase 2 ii) and tick_hysteresis. 91/91 preflight + contract
+    regression PASS with flags OFF (bit-identical). Activation smoke
+    PASS (two ARMs): ARM1 verified two-region equal-credit integration +
+    leak; ARM2 verified hysteresis swap fires at k=3 under staleness
+    lookup. Promotion still requires the EXQ-475 unlock test (V3-EXQ-478
+    queued), the dissociation-from-prediction-error test, and the
+    attribution_weight specificity test -- v3_pending retained.
+  implementation_note: >
+    MECH-284 Phase 3 implemented 2026-04-24 in ree-v3. Module
+    ree_core/hippocampal/staleness_accumulator.py. Config flags
+    HippocampalConfig.use_staleness_accumulator and
+    HippocampalConfig.use_mech284_hysteresis (both default False;
+    threaded through REEConfig.from_dims). Validation experiment
+    V3-EXQ-478 queued. Phase 3 online-arm only; MECH-285 offline
+    sleep-priority read-out remains deferred.
   pharmacological_predictions:
     - PHARM-001  # DORA-class clears residual staleness MECH-284 accumulates by enabling MECH-285 readout
   location: docs/architecture/v_s_invalidation_runtime.md
@@ -21487,6 +21522,23 @@
     Promotion requires substrate implementation (invalidation_trigger.py
     + staleness_accumulator.py) plus the V3-EXQ-476 unlock test plus
     the four-arm trigger-vs-accumulator dissociation factorial.
+  implementation_note: >
+    Upstream broadcast trigger (invalidation_trigger.py) was implemented
+    in Phase 2 (2026-04-23). Downstream accumulator consumer
+    (staleness_accumulator.py, MECH-284) implemented Phase 3 2026-04-24;
+    this completes the trigger -> accumulator -> anchor-reset chain the
+    MECH-287 falsifiables require. MECH-287 broadcast events are now
+    drained by HippocampalModule.tick_anchor_set into
+    StalenessAccumulator.integrate(...) with attribution_weight credit
+    over the active anchor set, then consumed by MECH-269 AnchorSet
+    .tick_hysteresis via the MECH-284 lookup when
+    use_mech284_hysteresis=True. The four-arm factorial between
+    {MECH-287 present/lesioned} x {MECH-284-online-readout present/
+    lesioned} is now substrate-executable via independent config flags
+    (use_invalidation_trigger, use_staleness_accumulator,
+    use_mech284_hysteresis). V3-EXQ-478 queued as the initial Phase 3
+    diagnostic; the full four-arm dissociation test (V3-EXQ-476) remains
+    outstanding for governance promotion.
   pharmacological_predictions:
     - PHARM-005  # prazosin (alpha-1 antagonist) directly damps the LC-analog substrate -> blunted trigger -> increased perseveration
   location: docs/architecture/v_s_invalidation_runtime.md
