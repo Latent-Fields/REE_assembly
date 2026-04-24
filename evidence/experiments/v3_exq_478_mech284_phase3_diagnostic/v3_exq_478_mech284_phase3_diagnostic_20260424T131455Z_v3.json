@@ -1,0 +1,114 @@
+{
+  "run_id": "v3_exq_478_mech284_phase3_diagnostic_20260424T131455Z_v3",
+  "experiment_type": "v3_exq_478_mech284_phase3_diagnostic",
+  "claim_ids": [
+    "MECH-284",
+    "MECH-269"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260424T131455Z",
+  "outcome": "FAIL",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "MECH-284": "inconclusive",
+    "MECH-269": "inconclusive"
+  },
+  "evidence_direction_note": "Phase 3 substrate-readiness diagnostic for MECH-284 + MECH-269 online-arm coupling. PASS confirms the accumulator populates, anchor resets fire, and freeze-recommit behaviour drops relative to a fully-OFF baseline. FAIL flags Phase 3 as wired-but-behaviourally-inert -- revisit attribution weighting / leak_factor / reset_threshold before relying on the online arm. Not governance evidence; full four-arm dissociation is V3-EXQ-476.",
+  "pass_criteria_summary": {
+    "gate_rule": "anchor_reset_count(ON) >= 2 AND freeze_recommit_count(ON) < freeze_recommit_count(OFF) in >= 2/2 seeds",
+    "per_seed_gate": [
+      {
+        "seed": 42,
+        "off_freeze_recommit": 1,
+        "on_freeze_recommit": 1,
+        "on_anchor_reset_count": 63,
+        "on_mean_staleness_peak": 0.9411233036796581,
+        "anchor_reset_ok": true,
+        "freeze_drop_ok": false,
+        "passed": false
+      },
+      {
+        "seed": 7,
+        "off_freeze_recommit": 1,
+        "on_freeze_recommit": 1,
+        "on_anchor_reset_count": 31,
+        "on_mean_staleness_peak": 0.8291666666666666,
+        "anchor_reset_ok": true,
+        "freeze_drop_ok": false,
+        "passed": false
+      }
+    ],
+    "seeds_passing": 0,
+    "seeds_required": 2,
+    "pass": false
+  },
+  "per_seed_results": [
+    {
+      "condition": "OFF",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 0,
+      "mean_staleness_peak": 0.0
+    },
+    {
+      "condition": "ON",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 63,
+      "mean_staleness_peak": 0.9411233036796581
+    },
+    {
+      "condition": "OFF",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 0,
+      "mean_staleness_peak": 0.0
+    },
+    {
+      "condition": "ON",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 31,
+      "mean_staleness_peak": 0.8291666666666666
+    }
+  ],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "freeze_run_len": 3,
+    "anchor_reset_min": 2
+  }
+}
