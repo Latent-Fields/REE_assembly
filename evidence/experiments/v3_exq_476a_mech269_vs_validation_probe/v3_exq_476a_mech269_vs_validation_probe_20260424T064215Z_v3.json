@@ -1,0 +1,110 @@
+{
+  "run_id": "v3_exq_476a_mech269_vs_validation_probe_20260424T064215Z_v3",
+  "experiment_type": "v3_exq_476a_mech269_vs_validation_probe",
+  "claim_ids": [
+    "MECH-269",
+    "MECH-287",
+    "MECH-288"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260424T064215Z",
+  "outcome": "FAIL",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "MECH-269": "inconclusive",
+    "MECH-287": "inconclusive",
+    "MECH-288": "inconclusive"
+  },
+  "evidence_direction_note": "Cascade gate probe: narrowly tests whether Phase-1 + Phase-2 V_s runtime flags alone diversify action-class entropy relative to a fully-OFF baseline. A FAIL does not weaken MECH-269/287/288 substrate claims -- it indicates the MECH-284 Phase-3 consumer is required to convert the V_s observables into behaviour.",
+  "supersedes": "v3_exq_476_mech269_vs_validation_probe",
+  "pass_criteria_summary": {
+    "gate_rule": "action_class_entropy(ON) - action_class_entropy(OFF) >= 0.1 in >= 2/2 seeds",
+    "per_seed_delta": [
+      {
+        "seed": 42,
+        "off_entropy": 0.0,
+        "on_entropy": 0.0,
+        "delta": 0.0,
+        "cleared": false
+      },
+      {
+        "seed": 7,
+        "off_entropy": 0.0,
+        "on_entropy": 0.0,
+        "delta": 0.0,
+        "cleared": false
+      }
+    ],
+    "seeds_passing": 0,
+    "seeds_required": 2,
+    "pass": false
+  },
+  "per_seed_results": [
+    {
+      "condition": "OFF",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 6
+      },
+      "n_actions": 6,
+      "n_ticks": 6,
+      "boundary_event_count": 0,
+      "broadcast_event_count": 0,
+      "anchor_active_peak": 0
+    },
+    {
+      "condition": "ON",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 6
+      },
+      "n_actions": 6,
+      "n_ticks": 6,
+      "boundary_event_count": 0,
+      "broadcast_event_count": 0,
+      "anchor_active_peak": 0
+    },
+    {
+      "condition": "OFF",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 6
+      },
+      "n_actions": 6,
+      "n_ticks": 6,
+      "boundary_event_count": 0,
+      "broadcast_event_count": 0,
+      "anchor_active_peak": 0
+    },
+    {
+      "condition": "ON",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 6
+      },
+      "n_actions": 6,
+      "n_ticks": 6,
+      "boundary_event_count": 0,
+      "broadcast_event_count": 0,
+      "anchor_active_peak": 0
+    }
+  ],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "entropy_delta_threshold": 0.1
+  }
+}
