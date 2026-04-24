@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_446_sd032a_salience_coordinator
 
-Generated: `2026-04-24T04:18:15.099884Z`
+Generated: `2026-04-24T06:57:48.181557Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

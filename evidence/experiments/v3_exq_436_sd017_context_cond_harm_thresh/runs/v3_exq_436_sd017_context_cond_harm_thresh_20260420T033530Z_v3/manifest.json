@@ -25,11 +25,12 @@
     "MECH-166"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Re-tagged 2026-04-24T07:36Z: ran on pre-fix substrate (SD-016 cue_action_proj consumer fix not committed until 2026-04-23T18:41Z in ree-v3 5ced58b). Sibling flat JSON already marked non_contributory 2026-04-22. WAKING_ONLY/SWS_ONLY/SWS_THEN_REM conditions produce bit-identical per-seed metrics (slot_cosine_sim, slot_separation, harm_rate_safe/dangerous, harm_discrimination all match to last decimal across all 5 seeds); slot_separation=0 in 4/5 seeds. Same SD-016 consumer collapse as 418a. Sleep (SD-017) / context-thresholding (ARC-045) / harm-ceiling (MECH-166) hypotheses cannot be tested because context-conditioning substrate produces no per-input variance. Post-fix retest queued as V3-EXQ-436a.",
   "evidence_direction_per_claim": {
-    "SD-017": "weakens",
-    "ARC-045": "weakens",
-    "MECH-166": "weakens"
+    "SD-017": "non_contributory",
+    "ARC-045": "non_contributory",
+    "MECH-166": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {

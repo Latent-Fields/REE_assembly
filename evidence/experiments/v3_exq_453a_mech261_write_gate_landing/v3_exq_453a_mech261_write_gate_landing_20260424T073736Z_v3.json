@@ -1,0 +1,249 @@
+{
+  "run_id": "v3_exq_453a_mech261_write_gate_landing_20260424T073736Z_v3",
+  "experiment_type": "v3_exq_453a_mech261_write_gate_landing",
+  "claim_ids": [
+    "MECH-261",
+    "SD-032a",
+    "SD-032e"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260424T073736Z",
+  "outcome": "FAIL",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {
+    "MECH-261": "weakens",
+    "SD-032a": "mixed",
+    "SD-032e": "mixed"
+  },
+  "pass_criteria_summary": {
+    "c1_unit_checks_all_pass": {
+      "unit_checks": {
+        "UC1": {
+          "pass": true,
+          "desc": "all 8 required MECH-261 default targets present in registry"
+        },
+        "UC2": {
+          "pass": true,
+          "desc": "all 40 (5 modes x 8 targets) gate values in [0, 1]"
+        },
+        "UC3": {
+          "pass": true,
+          "desc": "mean per-target std across default modes >= 0.1 (mode-specific gates)"
+        },
+        "UC4": {
+          "pass": true,
+          "desc": "register_target + evaluable gate in [0, 1] across 5 synthetic modes"
+        },
+        "UC5": {
+          "pass": true,
+          "desc": "autonomic write_gate actually lands -- drive_bias delta >= 0.02"
+        }
+      },
+      "all_pass": true,
+      "pass": true,
+      "desc": "UC1 AND UC2 AND UC3 AND UC4 AND UC5 all PASS"
+    },
+    "c2_integration": {
+      "per_condition_pass": {
+        "COORD_OFF": {
+          "seeds_ok": 2,
+          "cond_pass": true
+        },
+        "COORD_ON": {
+          "seeds_ok": 0,
+          "cond_pass": false
+        }
+      },
+      "conditions_passed": 1,
+      "required_conditions": 2,
+      "pass": false,
+      "desc": "c6/c7 pass in >=1/2 seeds in each of 2/2 conditions"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "COORD_OFF",
+      "n_steps_total": 480,
+      "argmax_modes_seen": [],
+      "agent_salience_is_none": true,
+      "error": null,
+      "c6_coord_on_tick_live_pass": true,
+      "c7_coord_off_no_op_pass": true,
+      "verdict": "PASS"
+    },
+    {
+      "seed": 42,
+      "condition": "COORD_ON",
+      "n_steps_total": 480,
+      "argmax_modes_seen": [
+        "external_task"
+      ],
+      "agent_salience_is_none": false,
+      "error": null,
+      "c6_coord_on_tick_live_pass": false,
+      "c7_coord_off_no_op_pass": true,
+      "verdict": "FAIL"
+    },
+    {
+      "seed": 7,
+      "condition": "COORD_OFF",
+      "n_steps_total": 406,
+      "argmax_modes_seen": [],
+      "agent_salience_is_none": true,
+      "error": null,
+      "c6_coord_on_tick_live_pass": true,
+      "c7_coord_off_no_op_pass": true,
+      "verdict": "PASS"
+    },
+    {
+      "seed": 7,
+      "condition": "COORD_ON",
+      "n_steps_total": 406,
+      "argmax_modes_seen": [
+        "external_task"
+      ],
+      "agent_salience_is_none": false,
+      "error": null,
+      "c6_coord_on_tick_live_pass": false,
+      "c7_coord_off_no_op_pass": true,
+      "verdict": "FAIL"
+    }
+  ],
+  "unit_checks": {
+    "UC1": {
+      "name": "default_targets_exist",
+      "required_targets": [
+        "sd_033a",
+        "sd_033b",
+        "sd_033c",
+        "sd_033d",
+        "hc_viability",
+        "sensory_buffer",
+        "autonomic",
+        "e3_policy"
+      ],
+      "default_keys": [
+        "sd_033a",
+        "sd_033b",
+        "sd_033c",
+        "sd_033d",
+        "hc_viability",
+        "sensory_buffer",
+        "autonomic",
+        "e3_policy"
+      ],
+      "missing": [],
+      "pass": true,
+      "desc": "all 8 required MECH-261 default targets present in registry"
+    },
+    "UC2": {
+      "name": "gate_values_in_bounds",
+      "modes_for_matrix": [
+        "external_task",
+        "internal_planning",
+        "internal_replay",
+        "offline_consolidation",
+        "parallel_goal_deliberation"
+      ],
+      "targets": [
+        "sd_033a",
+        "sd_033b",
+        "sd_033c",
+        "sd_033d",
+        "hc_viability",
+        "sensory_buffer",
+        "autonomic",
+        "e3_policy"
+      ],
+      "n_values": 40,
+      "n_out_of_bounds": 0,
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "pass": true,
+      "desc": "all 40 (5 modes x 8 targets) gate values in [0, 1]"
+    },
+    "UC3": {
+      "name": "per_subdivision_gate_specificity",
+      "modes": [
+        "external_task",
+        "internal_planning",
+        "internal_replay",
+        "offline_consolidation"
+      ],
+      "targets": [
+        "sd_033a",
+        "sd_033b",
+        "sd_033c",
+        "sd_033d",
+        "hc_viability",
+        "sensory_buffer",
+        "autonomic",
+        "e3_policy"
+      ],
+      "per_target_std": {
+        "sd_033a": 0.421863,
+        "sd_033b": 0.348882,
+        "sd_033c": 0.258602,
+        "sd_033d": 0.421863,
+        "hc_viability": 0.308221,
+        "sensory_buffer": 0.35,
+        "autonomic": 0.303109,
+        "e3_policy": 0.348882
+      },
+      "mean_std_across_targets": 0.345178,
+      "threshold": 0.1,
+      "pass": true,
+      "desc": "mean per-target std across default modes >= 0.1 (mode-specific gates)"
+    },
+    "UC4": {
+      "name": "v4_extensibility",
+      "new_target": "parallel_goal_deliberation",
+      "custom_weights": {
+        "external_task": 0.2,
+        "internal_planning": 0.6,
+        "internal_replay": 0.1,
+        "offline_consolidation": 0.3,
+        "parallel_goal_deliberation": 1.0
+      },
+      "gate_values_per_mode": {
+        "external_task": 0.2,
+        "internal_planning": 0.6,
+        "internal_replay": 0.1,
+        "offline_consolidation": 0.3,
+        "parallel_goal_deliberation": 1.0
+      },
+      "register_error": null,
+      "pass": true,
+      "desc": "register_target + evaluable gate in [0, 1] across 5 synthetic modes"
+    },
+    "UC5": {
+      "name": "pACC_write_landing",
+      "n_ticks": 50,
+      "z_harm_a_norm": 0.5,
+      "drive_alpha": 0.01,
+      "drive_scale": 1.0,
+      "drive_bias_high_gate_1.0": 0.182533,
+      "drive_bias_low_gate_0.1": 0.022549,
+      "abs_delta": 0.159985,
+      "threshold": 0.02,
+      "pass": true,
+      "desc": "autonomic write_gate actually lands -- drive_bias delta >= 0.02"
+    },
+    "all_unit_checks_pass": true
+  },
+  "config": {
+    "conditions": [
+      "COORD_OFF",
+      "COORD_ON"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 80,
+    "dry_run": false
+  }
+}

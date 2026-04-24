@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-24T04:18:15.099884Z`
+Generated: `2026-04-24T06:57:48.181557Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -87,7 +87,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-026
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.699, conflict_ratio=0.571, exp_entries=8, lit_entries=5; directions supports=5, weakens=2, mixed=2, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: overall_conf=0.698, conflict_ratio=0.571, exp_entries=8, lit_entries=5; directions supports=5, weakens=2, mixed=2, unknown=0, conflict_ratio=0.571
 - Evidence quality note: EXQ-033 FAIL (2026-03-18): Tested C4 -- approach_slope=0.000265, contact_slope=0.000289, ratio=0.920. FAIL attributed to training instability at ep500-1000 (depth-calibration artifact). C1-C3 all PASSED. EXQ-033 superseded by EXQ-232. EXQ-232 PASS 4/4 criteria, 3/3 seeds (2026-04-05): Peak-checkpoint analysis (1500 eps, phased E3 harm supervision from ep100). approach_slope consistently exceeds co…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -106,7 +106,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.721, conflict_ratio=0.75, exp_entries=19, lit_entries=9; directions supports=10, weakens=6, mixed=1, unknown=0, conflict_ratio=0.75
+- Why this decision is needed: overall_conf=0.72, conflict_ratio=0.75, exp_entries=19, lit_entries=9; directions supports=10, weakens=6, mixed=1, unknown=0, conflict_ratio=0.75
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -125,7 +125,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-032
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.66, conflict_ratio=0.8, exp_entries=8, lit_entries=7; directions supports=6, weakens=4, mixed=1, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.659, conflict_ratio=0.8, exp_entries=8, lit_entries=7; directions supports=6, weakens=4, mixed=1, unknown=0, conflict_ratio=0.8
 - Evidence quality note: EXQ-076d FAIL 1/4 (tested jointly with MECH-116, 2026-03-27): same null result as MECH-116 at 2000 steps. ARC-032's specific prediction (theta-bypass degrades goal maintenance) has not been tested -- EXQ-076 only tests joint goal conditioning; no theta-bypass ablation condition was included. ARC-032 remains untested as a standalone architectural claim. Design a separate ablation experiment isolati…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -163,7 +163,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.51, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.509, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -272,7 +272,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-073
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.773, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: overall_conf=0.772, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -610,7 +610,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-186
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.598, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.597, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1079,7 +1079,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-012
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.744, conflict_ratio=0.538, exp_entries=32, lit_entries=16; directions supports=19, weakens=7, mixed=4, unknown=0, conflict_ratio=0.538
+- Why this decision is needed: overall_conf=0.743, conflict_ratio=0.538, exp_entries=32, lit_entries=16; directions supports=19, weakens=7, mixed=4, unknown=0, conflict_ratio=0.538
 - Evidence quality note: EXQ-085f FAIL 3/4 (2026-03-27): drive_weight=2.0, resource_respawn_on_consume=True, curriculum=100 eps. C1 PASS: z_goal_norm=0.228 > 0.1 -- SD-012 drive modulation successfully seeds z_goal (this IS the SD-012 core claim: drive-scaled benefit enables seeding). C2 FAIL: benefit_ratio=0.28x -- goal-guided performance worse than random. C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstr…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1304,8 +1304,3 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
-
-## Substrate changes with dependent invariants
-
-No substrate status changes this run. No dependent invariants flagged.
-
