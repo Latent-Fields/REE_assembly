@@ -1,0 +1,190 @@
+{
+  "experiment_type": "v3_exq_477_sd016_context_memory_slot_store_diagnostic",
+  "run_id": "v3_exq_477_sd016_context_memory_slot_store_diagnostic_20260424T080649Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-016"
+  ],
+  "claim_ids_tested": [
+    "SD-016"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_class": "diagnostic_probe",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260424T080649Z",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_note": "Diagnostic probe of the SD-016 ContextMemory slot-store / attention-uniformity bug referenced in CLAUDE.md (SD-016 section) and in the 2026-04-24T07:36 TASK_CLAIMS retag note. Outcome MUST NOT be used to update SD-016 claim confidence. Result provides targeted localisation of which ContextMemory forward-path component produces uniform softmax. PRIMARY: (b) key_proj.bias dominates key content -- keys look identical across slots. FLAGS: attention is uniform (entropy=2.773 > 2.67; reference=2.773); cue_context is batch-constant (per-channel std=7.517e-08 < 1e-03); key_proj.bias dominates (bias_over_content_ratio=4.24 > 1.0); keys_pair_sim_with_bias=0.991 vs keys_pair_sim_content_only=0.816.",
+  "acceptance_checks": {
+    "C1_all_checkpoints_present": true,
+    "C2_min_write_calls": false,
+    "C3_eval_batch_nonempty": true,
+    "C4_no_nan_inf": true,
+    "script_outcome": "FAIL"
+  },
+  "diagnosis_summary": "PRIMARY: (b) key_proj.bias dominates key content -- keys look identical across slots. FLAGS: attention is uniform (entropy=2.773 > 2.67; reference=2.773); cue_context is batch-constant (per-channel std=7.517e-08 < 1e-03); key_proj.bias dominates (bias_over_content_ratio=4.24 > 1.0); keys_pair_sim_with_bias=0.991 vs keys_pair_sim_content_only=0.816.",
+  "checkpoints": {
+    "pre_training": {
+      "checkpoint_label": "pre_training",
+      "slot_stats": {
+        "num_slots": 16,
+        "slot_norm_mean": 0.1108660101890564,
+        "slot_norm_min": 0.1009625792503357,
+        "slot_norm_max": 0.12104129791259766,
+        "slot_norm_std": 0.00711915735155344,
+        "slot_diversity": 0.9990340013056993,
+        "mean_pair_cosine_sim": 0.0009659986943006515
+      },
+      "key_bias": {
+        "bias_norm": 0.6116705536842346,
+        "content_norm_mean": 0.06190766394138336,
+        "out_norm_mean": 0.6174101829528809,
+        "bias_over_content_ratio": 9.880368838717427,
+        "keys_pair_sim_with_bias": 0.9899851481119791,
+        "keys_pair_sim_content_only": 0.002083787570397059
+      },
+      "attention": {
+        "attn_entropy_mean": 2.7725882530212402,
+        "attn_entropy_uniform_reference": 2.7725887298583984,
+        "attn_max_weight_mean": 0.06259144842624664,
+        "scores_range_mean": 0.0034312314819544554,
+        "q_per_channel_std": 0.004261682741343975,
+        "q_norm_mean": 1.2429338693618774,
+        "q_pair_cosine_sim": 0.9983216562578755,
+        "cue_context_per_channel_std": 2.8628450721157606e-08,
+        "cue_context_norm_mean": 0.4959837794303894
+      },
+      "write_gate": {
+        "write_gate_mean_activation": 0.5001171231269836,
+        "write_gate_saturated_frac": 0.0,
+        "write_signal_norm_mean": 5.663869857788086,
+        "mem_norm_mean_at_probe": 0.1108660101890564,
+        "write_signal_vs_slot_scale": 51.087523111273356
+      }
+    },
+    "post_p0": {
+      "checkpoint_label": "post_p0",
+      "slot_stats": {
+        "num_slots": 16,
+        "slot_norm_mean": 0.30044615268707275,
+        "slot_norm_min": 0.2841438055038452,
+        "slot_norm_max": 0.3227345645427704,
+        "slot_norm_std": 0.011228471994400024,
+        "slot_diversity": 0.13536351521809897,
+        "mean_pair_cosine_sim": 0.864636484781901
+      },
+      "key_bias": {
+        "bias_norm": 0.6116704940795898,
+        "content_norm_mean": 0.17961689829826355,
+        "out_norm_mean": 0.6690890192985535,
+        "bias_over_content_ratio": 3.405417306916624,
+        "keys_pair_sim_with_bias": 0.9912328720092773,
+        "keys_pair_sim_content_only": 0.8800961812337239
+      },
+      "attention": {
+        "attn_entropy_mean": 2.772587299346924,
+        "attn_entropy_uniform_reference": 2.7725887298583984,
+        "attn_max_weight_mean": 0.06271880120038986,
+        "scores_range_mean": 0.0065596019849181175,
+        "q_per_channel_std": 0.004739600233733654,
+        "q_norm_mean": 1.3075770139694214,
+        "q_pair_cosine_sim": 0.9981125862367691,
+        "cue_context_per_channel_std": 9.448278603940707e-08,
+        "cue_context_norm_mean": 2.9357750415802
+      },
+      "write_gate": {
+        "write_gate_mean_activation": 0.5001652240753174,
+        "write_gate_saturated_frac": 0.0,
+        "write_signal_norm_mean": 5.664558410644531,
+        "mem_norm_mean_at_probe": 0.30044615268707275,
+        "write_signal_vs_slot_scale": 18.853822423695355
+      }
+    },
+    "post_p1": {
+      "checkpoint_label": "post_p1",
+      "slot_stats": {
+        "num_slots": 16,
+        "slot_norm_mean": 0.24574466049671173,
+        "slot_norm_min": 0.22919771075248718,
+        "slot_norm_max": 0.2675549387931824,
+        "slot_norm_std": 0.010873486287891865,
+        "slot_diversity": 0.2025735219319661,
+        "mean_pair_cosine_sim": 0.7974264780680339
+      },
+      "key_bias": {
+        "bias_norm": 0.6116701364517212,
+        "content_norm_mean": 0.1441139280796051,
+        "out_norm_mean": 0.6525952816009521,
+        "bias_over_content_ratio": 4.244351289306674,
+        "keys_pair_sim_with_bias": 0.9909290313720703,
+        "keys_pair_sim_content_only": 0.8155515670776368
+      },
+      "attention": {
+        "attn_entropy_mean": 2.772587776184082,
+        "attn_entropy_uniform_reference": 2.7725887298583984,
+        "attn_max_weight_mean": 0.06267588585615158,
+        "scores_range_mean": 0.006109151989221573,
+        "q_per_channel_std": 0.003916662652045488,
+        "q_norm_mean": 1.457930326461792,
+        "q_pair_cosine_sim": 0.999100592828566,
+        "cue_context_per_channel_std": 7.5170561331106e-08,
+        "cue_context_norm_mean": 2.5005269050598145
+      },
+      "write_gate": {
+        "write_gate_mean_activation": 0.5004919171333313,
+        "write_gate_saturated_frac": 0.0,
+        "write_signal_norm_mean": 5.6703782081604,
+        "mem_norm_mean_at_probe": 0.24574466049671173,
+        "write_signal_vs_slot_scale": 23.074268212782897
+      }
+    }
+  },
+  "write_log_summary": {
+    "n_writes": 0,
+    "slot_histogram": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "slot_concentration_max": 0.0,
+    "unique_slots_chosen": 0,
+    "write_signal_norm_mean": 0.0,
+    "write_gate_mean_mean": 0.0,
+    "query_norm_mean": 0.0,
+    "scores_range_mean": 0.0
+  },
+  "thresholds": {
+    "attention_uniform_thresh": 2.67,
+    "key_bias_dominance_warn": 1.0,
+    "write_gate_saturation_warn": 0.9,
+    "cue_context_std_min": 0.001,
+    "slot_concentration_warn": 0.5
+  },
+  "params": {
+    "seed": 42,
+    "p0_episodes": 25,
+    "p1_episodes": 50,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "eval_batch_size": 32,
+    "sd016_enabled": true,
+    "sws_enabled": false,
+    "rem_enabled": false,
+    "shy_enabled": false,
+    "dry_run": false
+  }
+}
