@@ -345,6 +345,85 @@ Substrate hooks required:
 
 ---
 
+## MECH-285 offline arm — design (informed by 2026-04-24 lit-pull)
+
+The sleep-priority readout that consumes the MECH-284 staleness map. Implementation
+deferred from the Phase 3 substrate commit; design commitments below are informed
+by `evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md`
+(10 papers, five architectural verdicts).
+
+**1. Seed coverage: BROAD-UNBOUNDED, experience-structured.** The start-state
+distribution for sleep-phase replay should be drawn from the union of the current
+active anchor set AND recently-inactive anchors (including dual-trace-inactive
+anchors created by MECH-269 extinction events), weighted by staleness. Not a
+narrow active-only pool. Evidence: Karlsson & Frank 2009 (awake replay routinely
+covers remote environments not part of the current active set); Gillespie/Liu
+2021 (replay enriched for past-rewarded AND not-recently-visited locations);
+Olafsdottir 2015 (preplay extends beyond visited space toward goal-biased
+unvisited regions). No published time-window cutoff — the lit-pull found no
+evidence that the sampler needs a bounded replay window, so the substrate should
+be stateless on "how far back to look."
+
+**2. Priority shape: STALENESS-PROPORTIONAL, not threshold-gated.** Replay-event
+count per region scales continuously with the region's integrated staleness.
+Evidence: Michon 2019 (graded replay counts scaling with reward magnitude);
+Mattar & Daw 2018 (EVB is a continuous function). This is the SYNTHESIS Q4
+resolution above. Concretely: priority weights passed to the sleep-phase sampler
+are `staleness[r]` directly (or a monotonic transform), not `staleness[r] >
+theta_sleep_priority ? 1 : 0`.
+
+**3. Timing: FIRST-BOUT, stateless on replay-delay semantics.** High-staleness
+regions should appear in first-bout sleep replay (i.e. the sampler consumes
+staleness priority immediately once the offline-mode gate permits it), not after
+a latency period. Downstream integration may still be delayed on the consumer
+side (Schlichting & Preston 2015 shows integration favours already-established
+memories, suggesting MECH-275 aggregation may have its own timing) — but that is
+a consumer-side property of MECH-273/MECH-275 schema-update, not of MECH-285's
+sampling. MECH-285 does not need to track "how long since this region was last
+replayed" as an internal state.
+
+**4. Salience interaction: DISSOCIABLE ARMS converging at the sampler.** Staleness
+priority (MECH-285) and dopaminergic salience priority (McNamara/Dupret 2014)
+are independent signals combined at the SWR-selection stage, not a single
+weighted score. Evidence: Joo & Frank 2018 multi-mode framing of SWR
+subpopulations; dissociable clinical phenotypes (PTSD salience-only vs
+schizophrenia staleness-only vs depressive rumination). Implementation: the
+sampler receives two priority vectors and combines them (default: additive with
+unit gains; tunable gains for lesion experiments). Do NOT pre-compose into a
+single weighted priority score.
+
+**5. Consumer scope: consolidation-SWRs only, not waking decision-support.**
+MECH-285 writes its priority tag in a way the sleep-phase consumer (MECH-275
+Bayesian aggregation, MECH-273 self-model aggregation) reads, but it does NOT
+bleed into waking retrieval-SWRs or awake decision-support channels. Those
+channels are priority-weighted by task demand (Mattar & Daw's "need" term) and
+by DA salience, on different SWR subpopulations. The staleness map is gated to
+the sleep consumer — anchor key + `consume_during_sleep_only=True` semantics.
+
+**Substrate hook (deferred implementation):**
+- `ree_core/hippocampal/sleep_replay_sampler.py` — new module (name TBD). Reads
+  `StalenessAccumulator.snapshot()` at sleep-mode entry (gated by MECH-286
+  override-permitted transition); builds broad-unbounded seed pool across
+  active + recently-inactive anchors; draws replay start-states with probability
+  proportional to `staleness[r]` plus (additively) the DA-salience tag from the
+  McNamara/Dupret arm; emits SWR-equivalent events consumed by MECH-273 /
+  MECH-275 aggregators.
+- Configuration flag `HippocampalConfig.use_mech285_sleep_priority` (default
+  False) so the offline arm can be activated independently of the online arms.
+
+**Falsification prediction restated with this design:** with MECH-285 enabled and
+the DA-salience arm disabled, first-bout sleep replay of a low-arousal-high-
+novelty session should show start-state density concentrated on the
+novelty-region's anchor keys with density proportional to their accumulated
+staleness — not a step change at some threshold, not time-delayed beyond the
+first bout, and not bleeding into subsequent waking decisions. Joint lesion of
+MECH-285 + MECH-094 should produce the rumination architecture (staleness
+accumulates from the traumatic segment but priority signal is broken and
+hypothesis-tag loss prevents whatever replay does occur from clearing the
+staleness tag).
+
+---
+
 ## Open design questions
 
 1. **Trigger substrate canonical choice.** LC vs DA vs LHb. The current architecture
@@ -364,11 +443,16 @@ Substrate hooks required:
    levels) but requires per-region threshold initialisation. Default first pass: single
    global threshold.
 
-4. **MECH-285 coupling magnitude (the SYNTHESIS Q4).** Whether the runtime accumulator
-   feeds sleep replay priority *quantitatively* (priority proportional to integrated
-   waking staleness) or *qualitatively* (priority depends only on whether staleness
-   exceeded the runtime reset threshold). The empirical literature does not discriminate;
-   defer to a V3 experiment.
+4. **MECH-285 coupling magnitude (the SYNTHESIS Q4) — RESOLVED 2026-04-24 by
+   `targeted_review_mech285_sleep_replay_seed/` lit-pull (10 papers + SYNTHESIS.md).**
+   Quantitative/proportional coupling, not threshold-gated. Michon et al 2019
+   (Curr Biol) show replay count scales with reward magnitude as a graded signal,
+   not a stepwise one above a criterion; Mattar & Daw 2018 (Nat Neurosci) provide
+   the EVB normative backbone in which priority is a continuous expected-value-of-
+   backup function. The staleness map therefore feeds replay priority as a scalar
+   weighting (priority proportional to integrated waking staleness), not as a
+   threshold gate. See "MECH-285 offline arm" design subsection below for the
+   implementation commitments informed by the same lit-pull.
 
 5. **Interaction with MECH-094 hypothesis tag.** Anchor-reset events should probably
    be tagged with MECH-094's hypothesis tag so that the new anchor's first proposals
@@ -450,3 +534,21 @@ Substrate hooks required:
   entropy). Phase 3 offline arm (MECH-285 sleep-priority readout) explicitly
   deferred — the infrastructure (per-region accumulator, `snapshot()`,
   `get_stats()`) is in place but the sleep-phase consumer is not yet wired.
+- **2026-04-24 (MECH-285 offline-arm design fold-in)** —
+  `targeted_review_mech285_sleep_replay_seed/` lit-pull (10 papers + SYNTHESIS.md)
+  commissioned to adjudicate the offline-arm design before implementation.
+  MECH-285 `literature_confidence` 0 -> 0.866 across 11 entries. Five verdicts
+  resolved: seed-coverage BROAD-UNBOUNDED (experience-structured), priority
+  shape STALENESS-PROPORTIONAL (not threshold-gated — resolves Q4 above),
+  timing FIRST-BOUT (integration delay is consumer-side not sampler-side),
+  salience interaction DISSOCIABLE ARMS converging additively at the sampler,
+  dual-trace at replay SUPPORTED. Q4 marked resolved in the Open Design
+  Questions section. New "MECH-285 offline arm — design" subsection added
+  specifying the 5 implementation commitments and the deferred substrate hook
+  (`ree_core/hippocampal/sleep_replay_sampler.py`, flag
+  `HippocampalConfig.use_mech285_sleep_priority`). Implementation still
+  deferred — this commit is a design fold-in, not a substrate landing. V3
+  experiment proposal for the Q4 coupling test (
+  `v3_exq_NNN_waking_load_to_sleep_priority.py`) added to
+  `experiment_proposals.v1.json` with gate requiring the offline-arm substrate
+  to be wired first.

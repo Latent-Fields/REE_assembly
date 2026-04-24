@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-24T17:11:16.666250Z",
+  "generated_at_utc": "2026-04-24T17:25:27.945395Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -3124,6 +3124,16 @@
       "proposal_id": "EXP-0167",
       "proposal_type": "experimental",
       "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "MECH-285",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
+      "priority": "medium",
+      "proposal_id": "EXP-0168",
+      "proposal_type": "experimental",
+      "status": "gated",
       "target_repo": "ree-v3"
     }
   ],

@@ -21246,11 +21246,33 @@
     Design doc: docs/architecture/hippocampal_anchor_selection.md
     section "V_s as bidirectional signal".
   evidence_quality_note: >
-    No substrate evidence. The PTSD-rumination architectural prediction
+    No substrate evidence yet; offline-arm substrate deferred (online arm
+    MECH-284 Phase 3 landed 2026-04-24). Design specification folded in
+    from 2026-04-24 lit-pull (see literature_evidence below and
+    docs/architecture/v_s_invalidation_runtime.md "MECH-285 offline arm
+    — design" subsection). The PTSD-rumination architectural prediction
     is testable via clinical phenomenology comparison if a V3 agent
     can be put through the joint-lesion paradigm. Promotion requires
     substrate implementation and the falsifiable dissociation-from-
     salience test above.
+  literature_evidence: |
+    Targeted review `evidence/literature/targeted_review_mech285_sleep_replay_seed/`
+    (10 papers + SYNTHESIS.md, 2026-04-24) -- commissioned to adjudicate the
+    offline-arm design before substrate implementation. Literature confidence
+    0 -> 0.866 across 11 entries. Five architectural verdicts resolved:
+    (1) seed coverage BROAD-UNBOUNDED (Karlsson & Frank 2009 remote replay;
+    Gillespie/Liu 2021 past-rewarded-unvisited enrichment; Olafsdottir 2015
+    goal-biased preplay); (2) priority shape STALENESS-PROPORTIONAL, not
+    threshold-gated (Michon et al 2019 graded reward-magnitude scaling;
+    Mattar & Daw 2018 EVB continuous function); (3) timing FIRST-BOUT
+    (integration delay is consumer-side, not sampler-side; Schlichting &
+    Preston 2015 integration constraint applies to MECH-275 aggregation
+    not MECH-285 sampling); (4) salience interaction DISSOCIABLE ARMS
+    converging additively at the sampler (McNamara/Dupret 2014 causal
+    salience-arm demonstration; Joo & Frank 2018 multi-mode SWR framing);
+    (5) dual-trace at replay SUPPORTED (Gillespie 2021; Diba & Buzsáki
+    2007 forward/reverse modes). Implementation commitments in
+    v_s_invalidation_runtime.md design subsection.
   pharmacological_predictions:
     - PHARM-001  # DORA-class enables this readout to fire on accumulated staleness
     - PHARM-005  # prazosin (indirect override damping) -> sustained REM -> MECH-285 firing
