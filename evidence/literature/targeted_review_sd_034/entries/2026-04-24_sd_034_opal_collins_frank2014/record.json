@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_034",
+  "entry_id": "2026-04-24_sd_034_opal_collins_frank2014",
+  "timestamp_utc": "2026-04-24T17:30:12Z",
+  "claim_ids_tested": ["SD-034"],
+  "source": {
+    "title": "Opponent actor learning (OpAL): modeling interactive effects of striatal dopamine on reinforcement learning and choice incentive.",
+    "authors": ["Collins AGE", "Frank MJ"],
+    "year": 2014,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0037015",
+    "url": "https://doi.org/10.1037/a0037015"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "OpAL formalises the D1-Go / D2-NoGo opponent actor architecture in striatum. For SD-034 the relevant piece is not the learning rule but the architectural commitment: the model maintains separate positive-valued and negative-valued action representations that are combined at choice time, and dopamine state determines how sharply a just-selected action is subsequently re-selectable. This is the substrate on which a No-Go bias against a just-completed action-class (which SD-034 requires as one output of the closure operator) would be implemented. The paper also formalises how task-set disengagement interacts with incentive motivation, which is directly relevant to SD-034's closure-then-release dynamic. Confidence is only 0.55 (mixed) because OpAL does not itself posit a closure operator -- it describes the substrate a closure operator would act on. Evidence is supports for the architectural prerequisite but silent on SD-034's specific claim about the closure token itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OpAL is a model, not a neural measurement. Supporting a closure-operator architecture at the algorithmic level does not guarantee the biology implements closure the same way.",
+    "The D1/D2 opponency in OpAL is about reinforcement learning, not about committed-rule-state release. SD-034 requires a top-down release signal distinct from value learning; OpAL does not model this pathway.",
+    "If the closure-induced No-Go is implemented at the cortical level (e.g. via mPFC -> striatum bias) rather than within-striatum via D2, OpAL's architecture is the wrong substrate for the SD-034 mechanism."
+  ],
+  "tags": ["sd_034", "closure_operator", "opal", "opponent_actor", "d1_d2", "collins_frank", "task_set_disengagement", "striatum"],
+  "mapping": {
+    "source_claim_statement": "Striatum contains two populations (D1-expressing direct-pathway / Go and D2-expressing indirect-pathway / NoGo) that learn asymmetrically from positive and negative outcomes. Dopamine state (tonic and phasic) modulates the balance, producing interactive effects on learning and on choice incentive / exploration-exploitation. The model predicts and accounts for dopaminergic effects on probabilistic RL, effort-based choice, and motor skill learning.",
+    "ree_translation": "SD-034 proposes that the closure operator, on detecting satisfaction of a committed rule_state, emits (a) a release of the bistable commitment latch (MECH-090) and (b) a temporary No-Go bias on the just-completed rule / action-class (MECH-260). The OpAL architecture is the candidate biological substrate for (b): the D2 indirect-pathway population is the mechanism through which action-class suppression is implemented. OpAL also demonstrates that the same architecture supports task-set disengagement -- the very function SD-034 names as the closure-operator's job. The paper is therefore supporting evidence for the architectural prerequisite of SD-034's No-Go output channel, though it does not describe the closure-detection step or the release-latch step.",
+    "mapping_caveat": "OpAL is a computational model fit to behavioural and pharmacological data; it is not direct neural evidence for SD-034. It supports SD-034 at the architectural-prerequisite level (D1/D2 opponency can implement action-class No-Go) but is silent on the closure-detection mechanism that SD-034 centres. Transfer risk moderate: REE's MECH-260 already implements action-class suppression via DACCAdaptiveControl._action_history, which parallels OpAL's architecture but does not use the D1/D2 formal split. If the biological mechanism is tightly coupled to D2 dynamics (e.g. striatal LTD timescales), the REE implementation diverges.",
+    "source_context": "Psychological Review 2014, Collins & Frank. Computational modelling paper synthesising prior OpAL model with extensive fits to published datasets (probabilistic RL, effort-based choice, motor skill). Highly cited (>1000 citations); one of the canonical models of striatal RL. Assumes but does not directly record the D1/D2 circuitry."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (Psych Rev, canonical model). Mapping fidelity moderate-to-low because OpAL describes substrate architecture not the closure operator; the closure operator's detection step is outside the model's scope. Transfer risk elevated: REE's No-Go implementation (MECH-260) is at a different level of abstraction than OpAL's D1/D2 opponency."
+  }
+}

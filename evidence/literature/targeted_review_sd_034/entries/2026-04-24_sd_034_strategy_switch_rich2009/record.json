@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_034",
+  "entry_id": "2026-04-24_sd_034_strategy_switch_rich2009",
+  "timestamp_utc": "2026-04-24T17:30:12Z",
+  "claim_ids_tested": ["SD-034"],
+  "source": {
+    "title": "Rat prefrontal cortical neurons selectively code strategy switches.",
+    "authors": ["Rich EL", "Shapiro M"],
+    "year": 2009,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.6068-08.2009",
+    "url": "https://doi.org/10.1523/JNEUROSCI.6068-08.2009"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Rich & Shapiro record from rat prelimbic (PL) and infralimbic (IL) medial PFC during a plus-maze task requiring switches between hippocampus-dependent and caudate-dependent strategies. They find that distinct PL/IL neuronal populations selectively code strategy switches -- firing changes occur specifically when the rat changes memory strategy while performing identical motor behaviour, and do not occur when the rat learns new contingencies within the same strategy. PL dynamics anticipate learning, IL dynamics lag -- the pair behaves like an initiator (PL) / establisher (IL) circuit. This is the best-matched biological substrate for SD-034's closure operator: a circuit that explicitly signals 'the current rule-level cognitive mode is ending; a new one is starting' separately from the ongoing action. Confidence 0.70 because while the switch-coding signal exists, the paper does not demonstrate (a) that the switch signal is causally required for the switch, (b) that it fires specifically at rule-satisfaction as opposed to generic change, or (c) that it interacts with a No-Go / refractory mechanism in the way SD-034 posits.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rich & Shapiro identify neurons that code strategy switches in correlation; the paper does not lesion or silence PL/IL cells to demonstrate that the switch signal is causally required. If the signal is downstream of an upstream closure-detector, PL/IL is a readout not a generator.",
+    "Switches in this paradigm are externally cued by contingency change. SD-034's closure operator must detect endogenous satisfaction of a committed rule_state without external signal; a different substrate or readout may be needed for that case.",
+    "IL lag behind PL suggests sequential roles; if closure in REE needs a single-shot token rather than a staged initiator-then-establisher sequence, the SD-034 implementation may not map cleanly to this two-region architecture."
+  ],
+  "tags": ["sd_034", "closure_operator", "medial_pfc", "prelimbic", "infralimbic", "strategy_switch", "rich_shapiro", "rule_switching"],
+  "mapping": {
+    "source_claim_statement": "Rat medial PFC neurons (prelimbic and infralimbic) selectively code transitions between memory strategies. Activity changes at strategy switches, not at within-strategy contingency changes. PL leads, IL follows -- consistent with PL initiating and IL establishing new strategies.",
+    "ree_translation": "SD-034 posits a closure operator that detects committed rule_state satisfaction, releases the commitment latch (MECH-090 BetaGate), and imposes a No-Go on re-entering the just-completed rule. The biological requirement for such a mechanism is a circuit that explicitly signals rule/mode transitions independent of the executed actions. Rich & Shapiro's medial PFC switch-coding population is the closest empirical analog: it fires on mode transitions, is silent during within-mode learning, and consists of cells that are candidates to generate or gate the release signal SD-034 posits. The PL/IL split (PL initiates, IL establishes) is also a plausible mapping onto the closure-emit / No-Go-install split in SD-034's two-step operation.",
+    "mapping_caveat": "Rich & Shapiro describe strategy switches in a plus-maze paradigm where switches are cued by external contingency changes. SD-034's closure operator must fire on internal rule-satisfaction detection. The paper provides substrate-level evidence that mPFC generates mode-transition signals but does not establish that the same cells fire on endogenous rule completion. Transfer risk moderate: rat medial PFC in this paradigm corresponds to a slice of the SD-033a lateral-PFC analogue, and the specific strategy-switch substrate is a narrow subpopulation. SD-034 does not specify a specific brain region, so the mapping is at the computational level.",
+    "source_context": "Rat chronic single-unit recording in prelimbic and infralimbic cortex (n=8 rats). Well-designed behavioural paradigm that cleanly dissociates strategy-switch events from within-strategy learning. J Neurosci, 2009. Findings replicated in several follow-ups by the Shapiro lab and Bissonette/Roesch groups."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (J Neurosci, well-designed paradigm, replicated phenomenon). Mapping fidelity moderate because the switch signal is externally cued not endogenously generated. Transfer risk moderate: the substrate is a narrow population in a specific rodent region; SD-034 is computational and circuit-region-agnostic."
+  }
+}

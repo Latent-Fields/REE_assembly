@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_268",
+  "entry_id": "2026-04-24_mech_268_acc_attention_bryden2011",
+  "timestamp_utc": "2026-04-24T17:30:12Z",
+  "claim_ids_tested": ["MECH-268"],
+  "source": {
+    "title": "Attention for learning signals in anterior cingulate cortex.",
+    "authors": ["Bryden DW", "Johnson EE", "Tobia SC", "Kashtelyan V", "Roesch MR"],
+    "year": 2011,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4715-11.2011",
+    "url": "https://doi.org/10.1523/JNEUROSCI.4715-11.2011"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Bryden et al. record from rat ACC during a task with reward-value changes (upshifts / downshifts) that trigger attention-for-learning. They show ACC encodes reward prediction errors AND an attention-for-learning signal (elevated activity on trials subsequent to unexpected outcomes). This is the closest paper to the 2026-04-20 GAP MEMO's citation of 'Bryden 2019' for dACC conflict / error habituation. The supports aspect: ACC encodes prediction error and the error signal is elevated specifically when the animal should be learning, i.e. the signal has dynamic context-dependence. The weakens / mixed aspect: the paper does NOT directly demonstrate habituation or saturation of the pe signal under repeated identical outcomes -- it demonstrates dynamic modulation based on outcome unexpectedness, which is related but not the same. MECH-268 specifically posits that pe caps under repeated identical outcomes; this paper shows pe is elevated at change points but does not track pe across repeated identical outcomes to test saturation. Confidence 0.58 (mixed) because the paper supports the architectural premise (ACC pe has dynamic gain modulation, is not unbounded) but does not directly confirm the repeated-identical-outcome habituation that MECH-268 requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bryden et al. study upshifts and downshifts in reward; they do not hold value constant and repeatedly present the same outcome to test habituation. If ACC pe does NOT habituate under repeated identical outcomes (contrary to MECH-268's assertion), this paper would not have detected it.",
+    "The attention-for-learning elevation is on trials following unexpected outcomes, not during sustained identical outcomes. If saturation dynamics require a longer / sustained repetition than the paradigm tests, the biology is still unverified at the MECH-268-relevant timescale.",
+    "ACC pe encoding is consistent with an unsaturated pe signal that is gain-modulated by attention. If the REE architecture is better served by a gain-modulation account (SD-032b multiplied by an attention variable) rather than a saturation account, MECH-268 is framed wrong."
+  ],
+  "tags": ["mech_268", "dacc_saturation", "acc", "prediction_error", "attention_for_learning", "bryden", "roesch", "rodent_electrophysiology"],
+  "mapping": {
+    "source_claim_statement": "Rat anterior cingulate cortex single units encode both reward prediction errors (responding to unexpected upshifts and downshifts in reward value) and an attention-for-learning signal (elevated activity on trials subsequent to unexpected outcomes, consistent with the Pearce-Hall account). ACC activity during cue sampling also encodes reward size. The ACC signal is context-dependent and gain-modulated, not a simple unsaturated error.",
+    "ree_translation": "MECH-268 asserts that the dACC-analog (SD-032b) pe signal saturates under repeated identical outcomes via a FIFO outcome-history mechanism, such that sustained conflict does not generate unbounded pe. Bryden et al. establish that biological ACC pe is context-dependent and gain-modulated rather than a raw unbounded error signal. This is supportive of the architectural premise that SD-032b needs dynamic modulation of its pe output. However, the specific saturation-under-repeated-identical-outcomes dynamic that MECH-268 posits is NOT directly demonstrated here: the paradigm probes unexpected change events, not sustained identical-outcome streams. The paper therefore supports the general shape of the claim (ACC pe is not unbounded / unsaturated) while leaving the specific MECH-268 saturation mechanism empirically undertested.",
+    "mapping_caveat": "The plan document (sd033_governance_plan.md) cites 'Bryden 2019' for dACC habituation. The closest Bryden-first-author ACC paper is Bryden et al 2011 (this entry). We proceed on the assumption the plan's year is a typo or refers to a different Bryden paper that may not exist in this form. The 2011 paper is real, relevant, and addresses adjacent dynamics. Transfer risk elevated: rodent ACC to human/REE dACC-analog is a standard mapping but not fully resolved; the paradigm tests change-point attention rather than repeated-outcome habituation.",
+    "source_context": "J Neurosci 2011. Rat chronic electrophysiology in ACC during choice task with variable reward magnitude and delay. 150 single units. Roesch lab programme (ACC / DA / learning). Replicated phenomena (ACC error encoding, attention-for-learning signal) across several follow-ups. Important: the original plan citation 'Bryden 2019' does not return this exact paper; we substituted the most-relevant available Bryden/Roesch ACC paper and flag this as a mapping caveat."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Moderate-high source quality (J Neurosci, Roesch lab, clean recording). Mapping fidelity low-to-moderate because the paradigm does not directly test repeated-identical-outcome saturation; it tests change-point attention. Transfer risk elevated because we are substituting for a plan-cited paper that did not resolve cleanly to a PubMed hit."
+  }
+}

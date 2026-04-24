@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_266",
+  "entry_id": "2026-04-24_mech_266_inverted_u_cools_desposito2011",
+  "timestamp_utc": "2026-04-24T17:30:12Z",
+  "claim_ids_tested": ["MECH-266"],
+  "source": {
+    "title": "Inverted-U-shaped dopamine actions on human working memory and cognitive control.",
+    "authors": ["Cools R", "D'Esposito M"],
+    "year": 2011,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2011.03.028",
+    "url": "https://doi.org/10.1016/j.biopsych.2011.03.028"
+  },
+  "evidence_class": "review_pharmacology",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Cools & D'Esposito formalise the stability-flexibility tradeoff using an inverted-U dopamine model: PFC DA supports stability (maintaining current task set against distraction) while striatal DA supports flexibility (switching task set). Manipulating DA has paradoxical consequences depending on baseline and on which region is implicated. This is the canonical biological argument for why mode-switching should be asymmetric and state-dependent, which is what MECH-266 asserts: enter vs exit thresholds on the aggregate salience / DA signal differ by mode. Confidence 0.68 because the inverted-U and stability-flexibility dissociation is well-established and highly cited, but the paper is a review not a direct test of asymmetric-threshold dynamics per se. It provides the biological rationale for Schmitt-trigger hysteresis (different mechanisms gate stability vs flexibility, so the thresholds for each direction are not identical) rather than direct evidence that the thresholds themselves are asymmetric.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cools & D'Esposito frame the stability-flexibility tradeoff as a continuous inverted-U in a single DA dimension. If biological mode switching is discrete and threshold-gated rather than continuous-and-noisy, the inverted-U is at the wrong level of description.",
+    "The paper attributes stability and flexibility to different regions (PFC vs striatum). If asymmetric hysteresis in REE's SalienceCoordinator is better modelled as region-specific rather than a single Schmitt trigger on an aggregate signal, the MECH-266 implementation may need to be split across region-analogues.",
+    "The review does not directly measure enter vs exit thresholds; it infers asymmetry from pharmacological dissociations. If the asymmetry is better explained by different timescales rather than different thresholds, MECH-266's Schmitt-trigger framing is off."
+  ],
+  "tags": ["mech_266", "asymmetric_hysteresis", "inverted_u", "dopamine", "stability_flexibility", "cools_desposito", "prefrontal", "striatum"],
+  "mapping": {
+    "source_claim_statement": "Dopaminergic effects on cognitive control follow an inverted-U: too low or too high impairs performance, and the optimum differs across individuals and across tasks. The stability-flexibility tradeoff is dissociable: PFC DA primarily supports stability (maintaining representations against distraction), striatal DA primarily supports flexibility (switching representations). Manipulating DA (e.g. L-DOPA, methylphenidate) has paradoxical consequences because it moves different people and different regions in different directions relative to their optima.",
+    "ree_translation": "MECH-266 asserts that SalienceCoordinator's operating-mode transitions use different thresholds for entering vs exiting a given mode (Schmitt-trigger hysteresis), and that the asymmetry magnitude is mode-dependent. The biological rationale for this comes from the stability-flexibility literature: entering 'focused task' mode (stability) and exiting it (flexibility) recruit distinguishable neural substrates (PFC vs striatal DA). Because these substrates have different dynamics, optima, and saturation points, the aggregate-signal thresholds for entry and exit are not identical. Cools & D'Esposito's inverted-U and PFC/striatum dissociation is the foundational biological evidence that mode-switching is asymmetric and mode-specific. This supports the MECH-266 architectural claim without directly measuring the thresholds themselves.",
+    "mapping_caveat": "Cools & D'Esposito is a review of pharmacological effects on cognitive control. It provides the biological rationale for asymmetric hysteresis but does not measure enter vs exit thresholds directly. REE's SalienceCoordinator aggregates a vector of salience signals; the inverted-U framing applies when that aggregate is mapped onto a single dimension, which is a simplification. The mode-dependent magnitude of asymmetry that MECH-266 specifies is not directly estimated by this paper -- it remains a modelling posit consistent with biology but not derived from it. Transfer risk moderate: the substrate story is well-supported; the specific Schmitt-trigger implementation in code is not the only compatible mapping.",
+    "source_context": "Biological Psychiatry 2011, invited review. Integrates pharmacological (L-DOPA, methylphenidate), genetic (COMT, DAT1), and patient-group (Parkinson's) evidence for dopaminergic inverted-U and stability-flexibility dissociation. Highly cited; canonical framing of the tradeoff. Cools lab's work on striatal-DA flexibility is cross-validated by multiple labs (Frank, Schultz, others)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (Biol Psychiatry review, canonical framing). Mapping fidelity moderate because the inverted-U is a gradient phenomenon mapped onto MECH-266's Schmitt-trigger discrete-threshold framing. Transfer risk moderate: the stability-flexibility dissociation is robust biology, but the specific asymmetric-threshold implementation is a modelling choice beyond what the review directly supports."
+  }
+}
