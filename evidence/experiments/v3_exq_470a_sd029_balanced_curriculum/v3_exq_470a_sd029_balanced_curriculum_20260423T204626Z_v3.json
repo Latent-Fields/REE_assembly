@@ -1,0 +1,161 @@
+{
+  "experiment_type": "v3_exq_470a_sd029_balanced_curriculum",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-029"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "supersedes": "v3_exq_470_sd029_balanced_curriculum",
+  "timestamp_utc": "2026-04-23T20:46:26.826227Z",
+  "seeds": [
+    42,
+    7,
+    13,
+    91
+  ],
+  "conditions": [
+    "BASELINE",
+    "SCHEDULED"
+  ],
+  "episodes_per_seed": 3,
+  "steps_per_episode": 200,
+  "hazard_harm": 0.05,
+  "curriculum_interval": 25,
+  "curriculum_prob": 1.0,
+  "curriculum_adjacent_only": true,
+  "results": {
+    "BASELINE": [
+      {
+        "seed": 42,
+        "scheduled": false,
+        "n_steps_total": 28,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.0014286041259768,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 7,
+        "scheduled": false,
+        "n_steps_total": 18,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.0066666722297668,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 13,
+        "scheduled": false,
+        "n_steps_total": 34,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 1,
+        "total_harm_last_ep": 1.2877777814865112,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 91,
+        "scheduled": false,
+        "n_steps_total": 25,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.2292929291725159,
+        "info_keys_ok": true,
+        "injection_log": []
+      }
+    ],
+    "SCHEDULED": [
+      {
+        "seed": 42,
+        "scheduled": true,
+        "n_steps_total": 28,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.0014286041259768,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 7,
+        "scheduled": true,
+        "n_steps_total": 18,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.0066666722297668,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 13,
+        "scheduled": true,
+        "n_steps_total": 34,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 1,
+        "total_harm_last_ep": 1.2877777814865112,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 91,
+        "scheduled": true,
+        "n_steps_total": 25,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.2292929291725159,
+        "info_keys_ok": true,
+        "injection_log": []
+      }
+    ]
+  },
+  "criteria": {
+    "C_back_baseline_zero": true,
+    "C_fire_scheduled_ge3_per_seed": false,
+    "C_differ_baseline_vs_scheduled": false,
+    "C_info_keys_present": true
+  },
+  "passed": false,
+  "evidence_direction": "weakens",
+  "run_id": "v3_exq_470a_sd029_balanced_curriculum_20260423T204626Z_v3"
+}

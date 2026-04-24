@@ -1,59 +1,71 @@
 # Diagnose-Errors Staging Report
 
-**Session**: ree-diagnose-queue-2026-04-20T14 / afternoon automated run
-**Generated**: 2026-04-20T14:19:14Z
+**Session**: ree-diagnose-queue-2026-04-23T14 / afternoon automated run
+**Generated**: 2026-04-23T14:19:02Z
 **Mode**: STAGING (headless, scheduled task)
 
 ---
 
-## Summary (2026-04-20 afternoon)
+## Summary (2026-04-23 afternoon)
 
 **0 unaddressed errors requiring new fix scripts.**
 
-All recent ERROR entries (2026-04-17 onward) in runner_status.json were cross-referenced
-against the current queue, completed IDs, and TASK_CLAIMS.json. All chains are addressed.
+All ERROR entries in runner_status.json (62 total) were cross-referenced against
+the current queue, completed IDs, and TASK_CLAIMS.json. No new errors since the
+last diagnose run on 2026-04-20. Queue is currently empty (0 items).
 
 ### Gap reconciliation
 
 Monolithic runner_status.json is in sync with per-machine files. Gap: 0.
 
-### Error chain analysis (2026-04-17+)
+### Error chain analysis
 
-| Queue ID | Error date | Chain status |
+| Queue ID | Status | Notes |
 |---|---|---|
-| V3-EXQ-375 | 2026-04-17 | 375a completed (chain resolved) |
-| V3-EXQ-406 | 2026-04-17 | 406a completed (chain resolved) |
-| V3-EXQ-396 | 2026-04-17 | 396a completed (chain resolved) |
-| V3-EXQ-397 | 2026-04-17 | 397a ERROR -> 397b FAIL -> 397c **pending in queue** |
-| V3-EXQ-429 | 2026-04-17 | 429a completed (chain resolved) |
-| V3-EXQ-430 | 2026-04-17 | 430a ERROR -> 430b FAIL (scientific) |
-| V3-EXQ-324b | 2026-04-17 | 324c completed (chain resolved) |
-| V3-EXQ-418a | 2026-04-17 | 418b completed (chain resolved) |
-| V3-EXQ-385a | 2026-04-17 | 385b completed (chain resolved) |
-| V3-EXQ-355a | 2026-04-17 | 355b completed (chain resolved) |
-| V3-EXQ-430a | 2026-04-18 | 430b FAIL (scientific, not code) |
-| V3-EXQ-397a | 2026-04-18 | 397b FAIL -> 397c pending in queue |
-| V3-EXQ-325c | 2026-04-19 | 325d **claimed by DLAPTOP-4.local** (in progress) |
+| V3-EXQ-008 | Architecturally obsolete | SD-003 superseded 2026-04-18; r2/r3 successors ran at time of error |
+| V3-ONBOARD-smoke-EWIN-PC | Infrastructure test | Not a scientific experiment; no fix needed |
+| V3-ONBOARD-smoke-ree-cloud-1 | Infrastructure test | Not a scientific experiment; no fix needed |
+| All other ERRORs | Addressed | Each has completed successor in runner_status |
 
-### Older errors (pre-2026-04-17)
+### New errors since 2026-04-20
 
-All resolved in prior sessions. V3-EXQ-008 architecturally obsolete (SD-003 superseded
-2026-04-18, confirmed in session diagnose-325c-2026-04-20T05).
+None.
 
 ---
 
 ## Pending experiment reviews (for user reference)
 
-These were noted in pending_review.md at time of this session; they require human review:
+10 items in pending_review.md (all UNKNOWN due to stale index):
 
-| Run / Queue ID | Result | Claims |
+| Queue ID | Result | Notes |
 |---|---|---|
-| v3_exq_397_arc007_...20260419T153153Z_v3 | FAIL | ARC-007, SD-004 |
-| v3_exq_433a_sd029_...20260419T161931Z_v3 | FAIL | MECH-256, SD-029 |
-| v3_exq_445_sd032b_...20260419T205642Z_v3 | FAIL | ARC-033, ARC-058, MECH-258, MECH-260, SD-032b |
-| v3_exq_446_sd032a_...20260420T013457Z_v3 | PASS | MECH-259, MECH-261, SD-032a |
-| V3-EXQ-445 | UNKNOWN | runner-only |
-| V3-EXQ-325c | ERROR | runner-only; fix queued as V3-EXQ-325d |
+| V3-EXQ-456 | UNKNOWN | Index stale — run build_experiment_indexes.py |
+| V3-EXQ-460 | UNKNOWN | Index stale |
+| V3-EXQ-462 | UNKNOWN | Index stale |
+| V3-EXQ-463 | UNKNOWN | Index stale |
+| V3-EXQ-464 | UNKNOWN | Index stale |
+| V3-EXQ-465 | UNKNOWN | Index stale |
+| V3-EXQ-466 | UNKNOWN | Index stale |
+| V3-EXQ-467 | UNKNOWN | Index stale |
+| V3-EXQ-468 | UNKNOWN | Index stale |
+| V3-EXQ-471 | UNKNOWN | Index stale |
+
+These require human review once index is rebuilt.
+
+---
+
+## Active stale claims noted (all > 6h)
+
+| Session | Age | Task |
+|---|---|---|
+| exq397c-diagnosis + queue exq397d | 14.3h | Fix EXQ-397/397c manifests + queue EXQ-397d |
+| sd033-ocd-manifest-hygiene | 15.3h | Fix 24 SD-033 OCD battery manifest hygiene issues |
+| diagnose-errors: V3-EXQ-433c + V3-EXQ-470a | 15.9h | Scripts written (draft); not queued yet |
+| fix-sd016-cue-action-proj | 16.0h | EXQ-449b script written; not queued |
+| governance-cycle-2026-04-22 | 16.5h | Full governance cycle not completed |
+
+Scripts exist for V3-EXQ-433c, V3-EXQ-470a, V3-EXQ-449b but they are NOT in
+experiment_queue.json. User confirmation needed before queuing.
 
 ---
 

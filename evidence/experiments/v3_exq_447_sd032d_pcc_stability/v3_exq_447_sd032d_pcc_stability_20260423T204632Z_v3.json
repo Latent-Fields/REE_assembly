@@ -1,0 +1,107 @@
+{
+  "run_id": "v3_exq_447_sd032d_pcc_stability_20260423T204632Z_v3",
+  "experiment_type": "v3_exq_447_sd032d_pcc_stability",
+  "claim_ids": [
+    "SD-032d",
+    "MECH-259"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260423T204632Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-032d": "supports",
+    "MECH-259": "supports"
+  },
+  "pass_criteria_summary": {
+    "c1_baseline_neutral": {
+      "pcc_stability": 0.4994,
+      "delta_from_baseline": 0.0005999999999999894,
+      "pass": true,
+      "desc": "stability within 0.01 of baseline=0.5 with all neutral inputs"
+    },
+    "c2_fatigue_monotone": {
+      "drives": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "stabilities": [
+        0.4994,
+        0.2494,
+        0.0
+      ],
+      "pass": true,
+      "desc": "stability strictly decreasing across drive_level 0.0/0.5/1.0"
+    },
+    "c3_offline_recency_monotone": {
+      "steps_since_offline": [
+        0,
+        250,
+        500,
+        1000
+      ],
+      "stabilities": [
+        0.4994,
+        0.34940000000000004,
+        0.2,
+        0.2
+      ],
+      "pass": true,
+      "desc": "stability monotone non-increasing in steps_since_offline; saturates at window"
+    },
+    "c4_offline_reset_hook": {
+      "pre_stability": 0.2,
+      "pre_steps": 1001,
+      "post_stability": 0.4994,
+      "post_steps": 1.0,
+      "pass": true,
+      "desc": "after note_offline_entry, counter resets and stability returns to baseline"
+    },
+    "c5_success_ema_convergence": {
+      "success_ema": 0.9912060266971393,
+      "n_outcomes_fed": 200,
+      "pass": true,
+      "desc": "success_ema > 0.95 after 200 outcomes at alpha=0.02"
+    },
+    "c6_threshold_modulation": {
+      "pcc_stability_levels": [
+        0.1,
+        0.5,
+        0.9
+      ],
+      "effective_thresholds": [
+        1.1,
+        1.5,
+        1.9
+      ],
+      "pass": true,
+      "desc": "coordinator effective_threshold strictly increasing in pcc_stability"
+    },
+    "c7_agent_integration": {
+      "pcc_tick_populated": true,
+      "coordinator_pcc_stability": 0.4994,
+      "pass": true,
+      "desc": "agent._pcc_last_tick populated AND coord pcc_stability in (0, 1]"
+    },
+    "c8_backward_compat": {
+      "pcc_is_none": true,
+      "no_exception_on_hooks": true,
+      "pass": true,
+      "desc": "use_pcc_analog=False -> agent.pcc is None and convenience hooks no-op"
+    }
+  },
+  "config": {
+    "module": "ree_core/cingulate/pcc_analog.py",
+    "default_pcc_config": {
+      "success_alpha": 0.02,
+      "success_init": 0.5,
+      "offline_recency_window": 500,
+      "success_weight": 0.5,
+      "fatigue_weight": 0.5,
+      "offline_weight": 0.3,
+      "stability_baseline": 0.5
+    }
+  }
+}

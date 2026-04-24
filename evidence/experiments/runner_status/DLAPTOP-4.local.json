@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 16991,
   "runner_started_at": "2026-04-21T17:06:12.255561+00:00",
-  "last_updated": "2026-04-23T23:23:39.200344+00:00",
+  "last_updated": "2026-04-24T00:32:57.260559+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-433c",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-029 event-conditioned MECH-256 comparator -- curriculum ON + scripted agent-caused elicitation (supersedes V3-EXQ-433b)",
+    "description": "",
+    "script": "experiments/v3_exq_433c_sd029_eventcond_comparator.py",
+    "started_at": "2026-04-23T23:23:49.609279+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 4,
+      "episodes_done": 0,
+      "episodes_total": 400,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 2231,
+    "seconds_remaining": 12800,
+    "recent_lines": [
+      "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
+      "Seed 42",
+      "P0 (200 eps) encoder warmup [curriculum ON]...",
+      "P1 (200 eps) interventional [curriculum ON]...",
+      "Balanced eval [curriculum ON + scripted agent-caused]..."
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-476",
@@ -18,35 +44,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-445d",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032b dACC full pipeline -- V_s-enabled re-run with OFF-entropy precondition",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-455a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032a salience coordinator behavioural -- V_s-enabled re-run",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-433c",
       "backlog_id": "",
       "claim_id": "",
       "title": "SD-029 event-conditioned MECH-256 comparator -- curriculum ON + scripted agent-caused elicitation (supersedes V3-EXQ-433b)",
       "description": "",
       "estimated_minutes": 213.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -6042,6 +6046,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 9421.5
+    },
+    {
+      "queue_id": "V3-EXQ-445d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC full pipeline -- V_s-enabled re-run with OFF-entropy precondition",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-04-23T23:23:43.701945+00:00",
+      "completed_at": "2026-04-23T23:23:43.807172+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 0.1
+    },
+    {
+      "queue_id": "V3-EXQ-455a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032a salience coordinator behavioural -- V_s-enabled re-run",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-04-23T23:23:46.715280+00:00",
+      "completed_at": "2026-04-23T23:23:46.762159+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 0.0
     }
   ]
 }

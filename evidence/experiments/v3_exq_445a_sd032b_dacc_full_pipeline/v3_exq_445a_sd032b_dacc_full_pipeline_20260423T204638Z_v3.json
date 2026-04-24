@@ -1,0 +1,122 @@
+{
+  "run_id": "v3_exq_445a_sd032b_dacc_full_pipeline_20260423T204638Z_v3",
+  "experiment_type": "v3_exq_445a_sd032b_dacc_full_pipeline",
+  "claim_ids": [
+    "SD-032b",
+    "MECH-258",
+    "MECH-260"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260423T204638Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-032b": "mixed",
+    "MECH-258": "supports",
+    "MECH-260": "supports"
+  },
+  "supersedes": "v3_exq_445_sd032b_dacc_analog",
+  "pass_criteria_summary": {
+    "c1_mech258_forward_r2": {
+      "on_wins": 3,
+      "pass": true,
+      "desc": "ON harm_a_forward_r2>=0.3 in >=2/3 seeds"
+    },
+    "c2_sd032b_behavioral_effect": {
+      "wins": 0,
+      "pass": false,
+      "desc": "|entropy_ON - entropy_OFF|>=0.1 in >=2/3 seeds"
+    },
+    "c3_mech260_no_collapse": {
+      "wins": 3,
+      "pass": true,
+      "desc": "entropy_ON >= entropy_OFF in >=2/3 seeds"
+    },
+    "score_bias_diagnostic": {
+      "mean_bias_per_seed": [
+        17.428831170478386,
+        17.30111132621765,
+        17.292222142749363
+      ],
+      "desc": "dACC score_bias magnitude (should be <100 with fixed precision_scale)"
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 0.0,
+      "action_counts": {
+        "1": 3487
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.8985670947421804,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 17.428831170478386,
+      "action_counts": {
+        "1": 3487
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 0.0,
+      "action_counts": {
+        "3": 3600
+      }
+    },
+    {
+      "seed": 7,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9719535998027005,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 17.30111132621765,
+      "action_counts": {
+        "3": 3600
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 0.0,
+      "action_counts": {
+        "3": 3600
+      }
+    },
+    {
+      "seed": 13,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.8470379472008307,
+      "action_class_entropy": 0.0,
+      "mean_score_bias_abs": 17.292222142749363,
+      "action_counts": {
+        "3": 3600
+      }
+    }
+  ],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON_INDEPENDENT"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 150,
+    "p1_eps": 100,
+    "p2_eps": 30,
+    "steps_per_ep": 120
+  }
+}

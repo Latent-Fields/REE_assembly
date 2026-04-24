@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_028",
+  "entry_id": "2026-04-24_arc_028_awake_replay_review_carr2011",
+  "timestamp_utc": "2026-04-24T00:27:19Z",
+  "claim_ids_tested": ["ARC-028", "MECH-092"],
+  "source": {
+    "title": "Hippocampal replay in the awake state: a potential substrate for memory consolidation and retrieval.",
+    "authors": ["Carr, Margaret F.", "Jadhav, Shantanu P.", "Frank, Loren M."],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2732"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Authoritative review synthesising evidence that awake replay during brief immobility has dual roles: consolidation (compressed sequence replay supports downstream Hebbian plasticity) and retrieval (reactivates prior trajectories for forward planning). The immobility-triggered nature directly maps onto MECH-092's quiescent E3 heartbeat window. Confidence 0.70 reflects review status (no new primary data) and the moderate inference required to map consolidation/retrieval distinction onto REE's architectural separation between offline MECH-092 cycles and waking ARC-028 gate release.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "As a review, the paper synthesises findings from multiple tasks and laboratories. The proposed dual-role interpretation (consolidation + retrieval) is the authors' theoretical framing, not a direct experimental test.",
+    "The remote-environment representation finding (replay of trajectories from environments not currently occupied) is described but not mechanistically explained -- it is unclear whether this requires a distinct circuit or is a natural consequence of the generative nature of replay."
+  ],
+  "tags": ["arc_028", "mech_092", "awake_replay", "consolidation", "retrieval", "immobility", "sharp_wave_ripples", "remote_environments", "dual_role"],
+  "mapping": {
+    "source_claim_statement": "Awake hippocampal replay occurs during brief pauses in behavior; can represent trajectories through current or spatially remote environments; serves dual roles in consolidation (offline Hebbian strengthening at compressed timescale) and retrieval (reactivating stored trajectories for planning); sensory context modulates replay content.",
+    "ree_translation": "ARC-028 and MECH-092 map onto the two roles Carr et al. describe. Waking replay at trajectory completion (ARC-028) corresponds to the consolidation/evaluation role: the completion event (reward receipt or goal arrival) triggers a brief replay burst that updates the hippocampal map and (via dopamine) releases BetaGate for the next action selection cycle. MECH-092 (quiescent E3 heartbeat replay) corresponds to the retrieval role: during behavioral pauses, the hippocampus actively retrieves and evaluates possible future trajectories from remote environments. The key architectural implication: both modes use the same SWR-replay substrate but are triggered by different conditions (endpoint PE vs. quiescent heartbeat).",
+    "mapping_caveat": "In biology, consolidation and retrieval may be mediated by the same SWR mechanism operating on the same sequence representations. In REE, ARC-028 and MECH-092 are architecturally distinct (one is a gate release signal, the other is an offline replay cycle). Whether these should eventually be unified into a single substrate (one SWR-equivalent module operating in different modes) is an open question for V4.",
+    "source_context": "Review spanning rodent electrophysiology studies (linear tracks, mazes, multiple environments). Awake replay reviewed distinct from sleep replay."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "Source quality high (Nature Neuroscience review). Mapping fidelity moderate -- the dual-role framing is directly useful but is theoretical interpretation of primary data. Transfer risk moderate: the awake/quiescent distinction maps well to REE's design, but the remote-environment finding requires REE to have multi-environment maps (not yet implemented in V3)."
+  }
+}

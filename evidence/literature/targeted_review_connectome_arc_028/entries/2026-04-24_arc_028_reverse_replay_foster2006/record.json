@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_028",
+  "entry_id": "2026-04-24_arc_028_reverse_replay_foster2006",
+  "timestamp_utc": "2026-04-24T00:27:19Z",
+  "claim_ids_tested": ["ARC-028"],
+  "source": {
+    "title": "Reverse replay of behavioural sequences in hippocampal place cells during the awake state.",
+    "authors": ["Foster, David J.", "Wilson, Matthew A."],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature04587"
+  },
+  "evidence_class": "connectome_primary_research",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Nature paper with a well-replicated, striking finding: hippocampal place cells replay the just-completed spatial sequence in reverse at the reward location, in the awake state. This directly evidences the reward-endpoint as a trigger for hippocampal trajectory evaluation, which is the biological basis for the endpoint-PE->dopamine->BetaGate release chain in ARC-028. Confidence capped at 0.72 because the paper does not directly measure concurrent dopamine release during the reverse replay -- the dopamine coupling is inferred from reward timing and prior work, not directly shown here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper measures place cell firing sequences, not dopamine release. The link between reverse replay and dopamine-mediated BetaGate release (ARC-028's core claim) requires a second inferential step via reward-concurrent dopamine signalling.",
+    "Reverse replay occurs during brief awake pauses at reward locations specifically. If REE's CausalGridWorldV2 trajectories do not produce distinct reward-endpoint pauses, the biological trigger condition may not be reliably reproduced."
+  ],
+  "tags": ["arc_028", "reverse_replay", "awake_replay", "reward_endpoint", "place_cells", "trajectory_evaluation", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "Immediately after spatial experience, during awake rest at the reward location, hippocampal place cells replay the sequence of positions traversed in temporally reversed order -- a signature consistent with RL-style backward trajectory evaluation.",
+    "ree_translation": "ARC-028 requires the HippocampalModule to emit a trajectory completion signal at goal arrival. Foster & Wilson show that the biological analog (place cell trajectory replay) fires at the reward endpoint during waking, concurrent with dopamine signals at reward receipt. This is the waking-state mechanism for ARC-028's completion-signal -> dopamine -> BetaGate release chain: arrival at goal triggers reverse replay, which co-occurs with peak dopamine, which suppresses BG beta oscillations.",
+    "mapping_caveat": "The paper's reverse replay is a sequence-evaluation mechanism; ARC-028's completion signal is an architectural trigger for BetaGate release. These are compatible but not identical: the biological system may use the same circuit for both evaluation and gate release, while REE currently separates these (HippocampalModule emits a gate signal; trajectory evaluation is implicit in the next CEM cycle). The 'reverse' structure of the replay is not directly modeled in REE's HippocampalModule.",
+    "source_context": "Rodent spatial navigation task (linear track); awake replay, not sleep replay. FSCV-style place cell recording in rat hippocampus."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.22,
+    "notes": "Source quality high (Nature, well-replicated). Mapping fidelity penalised because the paper establishes replay-at-reward, not directly the dopamine-beta-gate chain. Transfer risk low: spatial navigation findings have good generalizability to REE's gridworld task."
+  }
+}

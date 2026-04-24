@@ -1,0 +1,585 @@
+{
+  "run_id": "v3_exq_451_q034_hazard_resource_threshold_retest_1776977181_v3",
+  "experiment_type": "v3_exq_451_q034_hazard_resource_threshold_retest",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "Q-034"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "V3-EXQ-288",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "Q-034": "weakens"
+  },
+  "timestamp_utc": "20260423T204621Z",
+  "hazard_densities": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "resource_densities": [
+    0.04,
+    0.08,
+    0.12
+  ],
+  "seeds": [
+    42,
+    7
+  ],
+  "grid_size": 8,
+  "warmup_episodes": 30,
+  "eval_episodes": 30,
+  "steps_per_ep": 200,
+  "use_resource_proximity_head": true,
+  "drive_weight": 2.0,
+  "resource_proximity_weight": 0.5,
+  "c1_min_monotone_cols": 2,
+  "c2_goal_reach_threshold": 0.5,
+  "grid_rows": [
+    {
+      "hazard_density": 0.05,
+      "resource_density": 0.04,
+      "num_hazards": 3,
+      "num_resources": 3,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.035558,
+      "benefit_exposure_mean": 0.00301,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.03063,
+          "benefit_exposure_mean": 0.001872,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.040487,
+          "benefit_exposure_mean": 0.004147,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.1,
+      "resource_density": 0.04,
+      "num_hazards": 6,
+      "num_resources": 3,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.072146,
+      "benefit_exposure_mean": 0.004263,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.068209,
+          "benefit_exposure_mean": 0.006229,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.076082,
+          "benefit_exposure_mean": 0.002298,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.15,
+      "resource_density": 0.04,
+      "num_hazards": 10,
+      "num_resources": 3,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.094267,
+      "benefit_exposure_mean": 0.003962,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.094816,
+          "benefit_exposure_mean": 0.00387,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.093718,
+          "benefit_exposure_mean": 0.004054,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.2,
+      "resource_density": 0.04,
+      "num_hazards": 13,
+      "num_resources": 3,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.130526,
+      "benefit_exposure_mean": 0.000918,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.130853,
+          "benefit_exposure_mean": 0.0,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.130199,
+          "benefit_exposure_mean": 0.001837,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.25,
+      "resource_density": 0.04,
+      "num_hazards": 16,
+      "num_resources": 3,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.143958,
+      "benefit_exposure_mean": 0.004972,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.152087,
+          "benefit_exposure_mean": 0.001938,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.135828,
+          "benefit_exposure_mean": 0.008005,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.05,
+      "resource_density": 0.08,
+      "num_hazards": 3,
+      "num_resources": 5,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.036171,
+      "benefit_exposure_mean": 0.00891,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.035959,
+          "benefit_exposure_mean": 0.005894,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.036383,
+          "benefit_exposure_mean": 0.011926,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.1,
+      "resource_density": 0.08,
+      "num_hazards": 6,
+      "num_resources": 5,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.063413,
+      "benefit_exposure_mean": 0.011516,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.05938,
+          "benefit_exposure_mean": 0.01104,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.067446,
+          "benefit_exposure_mean": 0.011992,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.15,
+      "resource_density": 0.08,
+      "num_hazards": 10,
+      "num_resources": 5,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.094389,
+      "benefit_exposure_mean": 0.012455,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.09284,
+          "benefit_exposure_mean": 0.01166,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.095937,
+          "benefit_exposure_mean": 0.013249,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.2,
+      "resource_density": 0.08,
+      "num_hazards": 13,
+      "num_resources": 5,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.129682,
+      "benefit_exposure_mean": 0.009961,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.139443,
+          "benefit_exposure_mean": 0.010379,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.119922,
+          "benefit_exposure_mean": 0.009543,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.25,
+      "resource_density": 0.08,
+      "num_hazards": 16,
+      "num_resources": 5,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.135969,
+      "benefit_exposure_mean": 0.013276,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.142609,
+          "benefit_exposure_mean": 0.012018,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.12933,
+          "benefit_exposure_mean": 0.014535,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.05,
+      "resource_density": 0.12,
+      "num_hazards": 3,
+      "num_resources": 8,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.021463,
+      "benefit_exposure_mean": 0.012385,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.015198,
+          "benefit_exposure_mean": 0.011929,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.027728,
+          "benefit_exposure_mean": 0.012841,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.1,
+      "resource_density": 0.12,
+      "num_hazards": 6,
+      "num_resources": 8,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.054581,
+      "benefit_exposure_mean": 0.019383,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.047447,
+          "benefit_exposure_mean": 0.016647,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.061715,
+          "benefit_exposure_mean": 0.022119,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.15,
+      "resource_density": 0.12,
+      "num_hazards": 10,
+      "num_resources": 8,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.091765,
+      "benefit_exposure_mean": 0.014404,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.089911,
+          "benefit_exposure_mean": 0.011828,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.093619,
+          "benefit_exposure_mean": 0.01698,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.2,
+      "resource_density": 0.12,
+      "num_hazards": 13,
+      "num_resources": 8,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.107617,
+      "benefit_exposure_mean": 0.026242,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.117791,
+          "benefit_exposure_mean": 0.016511,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.097442,
+          "benefit_exposure_mean": 0.035972,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    },
+    {
+      "hazard_density": 0.25,
+      "resource_density": 0.12,
+      "num_hazards": 16,
+      "num_resources": 8,
+      "goal_reach_rate": 0.0,
+      "harm_exposure_mean": 0.142246,
+      "benefit_exposure_mean": 0.017057,
+      "action_entropy_bits": 0.0,
+      "time_to_first_resource": -1.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.148769,
+          "benefit_exposure_mean": 0.019326,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        },
+        {
+          "seed": 7,
+          "goal_reach_rate": 0.0,
+          "harm_exposure_mean": 0.135723,
+          "benefit_exposure_mean": 0.014788,
+          "action_entropy_bits": 0.0,
+          "time_to_first_resource": -1.0
+        }
+      ]
+    }
+  ],
+  "c1_monotonicity": {
+    "pass": false,
+    "n_monotone_columns": 0,
+    "required": 2,
+    "columns": [
+      {
+        "resource_density": 0.04,
+        "goal_reach_by_hazard": [
+          [
+            0.05,
+            0.0
+          ],
+          [
+            0.1,
+            0.0
+          ],
+          [
+            0.15,
+            0.0
+          ],
+          [
+            0.2,
+            0.0
+          ],
+          [
+            0.25,
+            0.0
+          ]
+        ],
+        "strictly_decreasing": false
+      },
+      {
+        "resource_density": 0.08,
+        "goal_reach_by_hazard": [
+          [
+            0.05,
+            0.0
+          ],
+          [
+            0.1,
+            0.0
+          ],
+          [
+            0.15,
+            0.0
+          ],
+          [
+            0.2,
+            0.0
+          ],
+          [
+            0.25,
+            0.0
+          ]
+        ],
+        "strictly_decreasing": false
+      },
+      {
+        "resource_density": 0.12,
+        "goal_reach_by_hazard": [
+          [
+            0.05,
+            0.0
+          ],
+          [
+            0.1,
+            0.0
+          ],
+          [
+            0.15,
+            0.0
+          ],
+          [
+            0.2,
+            0.0
+          ],
+          [
+            0.25,
+            0.0
+          ]
+        ],
+        "strictly_decreasing": false
+      }
+    ]
+  },
+  "c2_threshold_identifiable": {
+    "pass": false,
+    "any_above": false,
+    "any_below": true,
+    "threshold": 0.5
+  },
+  "c3_coverage": {
+    "pass": true,
+    "n_grid_rows": 15,
+    "expected": 15,
+    "all_non_null": true
+  },
+  "c4_avoidance_signature": {
+    "pass": false,
+    "detail": {
+      "harm_exposure_scarce_res04": 0.143958,
+      "harm_exposure_rich_res12": 0.142246
+    }
+  },
+  "overall_pass": false,
+  "n_grid_points": 15,
+  "n_total_runs": 30
+}

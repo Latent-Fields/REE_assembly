@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_028",
+  "entry_id": "2026-04-24_arc_028_generative_replay_gupta2010",
+  "timestamp_utc": "2026-04-24T00:27:19Z",
+  "claim_ids_tested": ["ARC-028", "MECH-092"],
+  "source": {
+    "title": "Hippocampal replay is not a simple function of experience.",
+    "authors": ["Gupta, Anoopum S.", "van der Meer, Matthijs A. A.", "Touretzky, David S.", "Redish, A. David"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.01.034"
+  },
+  "evidence_class": "connectome_primary_research",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "High-quality Neuron paper with a directly relevant finding: SWR replay generates novel routes never behaviorally experienced and reflects all physically available trajectories, not just recent or frequent experience. This is the strongest available direct evidence that hippocampal replay is a generative stochastic process over the space of possible trajectories -- the biological precedent for REE's CEM sampling design. The high confidence reflects both source quality and very tight mapping to MECH-092 (quiescent replay as generative planning, not experience playback).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The experiment uses a two-route maze. Whether the 'all available trajectories' finding generalises to more complex environments with many paths (like CausalGridWorldV2) requires extrapolation.",
+    "The paper does not identify the neural mechanism producing novel-path sequences -- if it requires explicit prior exposure to path components (sub-paths), the 'generative' interpretation may be more constrained than it appears."
+  ],
+  "tags": ["arc_028", "mech_092", "generative_replay", "novel_routes", "sharp_wave_ripples", "offline_replay", "stochastic", "candidate_trajectories", "cem_analog"],
+  "mapping": {
+    "source_claim_statement": "During SWRs, hippocampal replay represents all physically available trajectories regardless of recent experience; infrequently experienced paths replay as often as frequent ones; novel sequences combining path segments in new arrangements are generated -- replay is a generative process over the environment's trajectory space.",
+    "ree_translation": "MECH-092 posits that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation. Gupta et al. 2010 reveals that this is not simply a replay of stored experiences: the hippocampus generates candidate trajectories stochastically from all available paths, biased toward less-sampled routes. This is the direct biological precedent for REE's CEM sampling: the HippocampalModule generates candidate trajectories from a distribution over possible paths, not from a recency-weighted buffer. For ARC-028, the finding also implies that the completion signal must gate the START of a new replay/planning cycle (not just acknowledge a completed one) -- without a gating mechanism, the generative replay engine would be permanently active.",
+    "mapping_caveat": "REE's CEM samples from a distribution trained on past trajectories -- this is more recency-weighted than Gupta et al.'s finding suggests. The biological system has an active anti-recency bias (infrequent paths replayed MORE). Whether REE needs an explicit exploration bonus in its CEM distribution, or whether the generative stochasticity of CEM inherently produces this, is an open architectural question.",
+    "source_context": "Rodent maze task with two routes (A and B). SWR-associated replay recorded during rest periods. Forward and backward replay both observed."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "Source quality high (Neuron). Mapping fidelity high -- the generative/stochastic interpretation directly parallels CEM design. Transfer risk low despite simple maze, because the key result (novel routes generated) is a qualitative claim that generalises beyond the specific task."
+  }
+}

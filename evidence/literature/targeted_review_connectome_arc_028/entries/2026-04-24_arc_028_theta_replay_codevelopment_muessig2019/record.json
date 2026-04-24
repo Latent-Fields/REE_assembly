@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_028",
+  "entry_id": "2026-04-24_arc_028_theta_replay_codevelopment_muessig2019",
+  "timestamp_utc": "2026-04-24T00:27:19Z",
+  "claim_ids_tested": ["ARC-028", "MECH-092"],
+  "source": {
+    "title": "Coordinated Emergence of Hippocampal Replay and Theta Sequences during Post-natal Development.",
+    "authors": ["Muessig, Laurenz", "Lasek, Michal", "Varsavsky, Isabella", "Cacucci, Francesca", "Wills, Thomas Joseph"],
+    "year": 2019,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2019.01.005"
+  },
+  "evidence_class": "connectome_primary_research",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "Developmental co-emergence of theta sequences (online waking replay) and SWR trajectory replay (offline consolidation) suggests they are two operational modes of the same underlying sequence generation mechanism. This supports REE's architectural assumption that the same HippocampalModule handles both waking CEM trajectory generation (theta sequence analog) and offline MECH-092 quiescent replay -- they do not require separate modules. Confidence 0.63 because the evidence is developmental (requires inferring adult mechanism from developmental coupling) and the inference chain to REE architecture is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Developmental co-emergence does not prove shared mechanism in adult animals -- two independently developing circuits could share developmental triggers without sharing computational substrate.",
+    "Before weaning, SWRs represent only stationary locations. If the sequence generation capability is acquired through experience (not pre-wired), this has implications for REE's training regime: early in training, the hippocampal module may only represent current states, not extended trajectories."
+  ],
+  "tags": ["arc_028", "mech_092", "theta_sequences", "replay", "development", "co_emergence", "online_offline", "unified_mechanism"],
+  "mapping": {
+    "source_claim_statement": "Before weaning (~P21), hippocampal SWRs represent only stationary locations, not extended trajectories. After weaning, theta sequences (compressed forward replays of upcoming paths during each theta cycle) and SWR-associated trajectory replay emerge together in a coordinated fashion, paralleling the maturation of hippocampal-dependent memory.",
+    "ree_translation": "The coordinated emergence of online (theta sequence) and offline (SWR) trajectory generation is strong developmental evidence that they share a substrate. In REE terms, this validates the design choice to use the same HippocampalModule for both waking CEM sampling (analogous to theta sequence generation: proposing candidate trajectories step-by-step during online operation) and offline MECH-092 quiescent replay cycles. The two do not need separate modules -- one generative sequence engine runs in waking-exploration mode (theta-cycle gated, short horizon, reality-anchored) and quiescent-consolidation mode (SWR-burst gated, longer horizon, reality-unconstrained). ARC-028's completion signal is what switches the system from waking mode to the gate-release state that allows the next waking planning cycle to begin.",
+    "mapping_caveat": "REE does not currently model the theta-cycle timescale or SWR burst timescale -- these are biological mechanisms that are abstracted away in the CEM + quiescent heartbeat design. The paper's developmental timeline finding (trajectory generation is acquired, not innate) is a potential design implication: REE's hippocampal trajectory generation capability will emerge during training, and early-training failures in multi-step planning are biologically expected.",
+    "source_context": "Developmental rodent study (rats P18-P32). Place cell recording during exploration and subsequent rest. Measures: SWR-associated sequence length, theta sequence quality. UCL lab (Wills, Cacucci)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.32,
+    "notes": "Source quality good (Current Biology). Mapping fidelity moderate -- the architectural inference (shared module) is supported but is an extrapolation from developmental coupling. Transfer risk elevated due to developmental data -> adult mechanism inference gap."
+  }
+}
