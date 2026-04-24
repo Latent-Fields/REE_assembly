@@ -23,7 +23,8 @@
     "SD-017"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Re-tagged 2026-04-24T06:45Z: ran on pre-fix substrate (SD-016 cue_action_proj consumer fix not committed until 2026-04-23T18:41Z in ree-v3 5ced58b). Sibling flat JSON already marked non_contributory; run-pack manifest out of sync. Same zero-differential pattern as 2026-04-18 and 2026-04-24 runs -- WITH_SLEEP and WITHOUT_SLEEP conditions produce identical per-seed metrics, indicating SD-017 ablation has no observable effect in this experiment design. Not disconfirming evidence against SD-017.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
