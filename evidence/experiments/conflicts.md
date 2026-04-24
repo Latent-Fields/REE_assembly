@@ -1,13 +1,13 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-24T00:34:34.252398Z`
+Generated: `2026-04-24T04:18:15.099884Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
 
 | claim_id | conflict_types | supports | weakens | conflict_ratio | latest | entries_considered |
 |---|---|---|---|---|---|---|
-| `ARC-007` | directional, source_disagreement, mixed_evidence | 24 | 7 | 0.452 | `2026-04-18_arc_007_mech_094_papez_update_tractography_kamali2023` | 33 |
+| `ARC-007` | directional, source_disagreement, mixed_evidence | 24 | 8 | 0.5 | `v3_exq_397d_arc007_matched_endpoint_20260423T202213Z_v3` | 34 |
 | `ARC-016` | directional, source_disagreement, mixed_evidence | 14 | 12 | 0.923 | `v3_exq_454_arc016_adaptive_commitment_threshold_20260420T144017Z_v3` | 29 |
 | `ARC-018` | directional, mixed_evidence | 21 | 3 | 0.25 | `2026-04-18_e2_dual_dragoi2011_preplay` | 25 |
 | `ARC-024` | directional, mixed_evidence | 14 | 9 | 0.783 | `v3_exq_071d_rollout_batched_attribution_20260401T232311Z_v3` | 33 |
@@ -54,14 +54,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-188` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_253_mech188_zgoal_injection_1775556946_v3` | 4 |
 | `MECH-216` | directional | 5 | 1 | 0.333 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 6 |
 | `MECH-220` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_395_mech220_harm_hub_20260418T202544Z_v3` | 5 |
-| `MECH-256` | directional | 7 | 1 | 0.25 | `2026-04-20_mech_256_visual_reafference_attenuation_benazet2016` | 8 |
+| `MECH-256` | directional | 7 | 2 | 0.444 | `v3_exq_433c_sd029_eventcond_comparator_20260423T232350Z_v3` | 9 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 7 |
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
 | `Q-007` | directional, source_disagreement | 2 | 1 | 0.667 | `v3_exq_200_q007_zbeta_volatility_pathway_20260402T221947Z_v3` | 3 |
 | `Q-020` | directional, mixed_evidence | 1 | 4 | 0.4 | `2026-04-02_q020_reward_map_reorganization_dupret2010` | 6 |
-| `Q-034` | directional | 8 | 2 | 0.4 | `v3_exq_451_q034_hazard_resource_threshold_retest_1776700328_v3` | 10 |
-| `SD-004` | directional, source_disagreement | 12 | 5 | 0.588 | `2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005` | 17 |
+| `Q-034` | directional, source_disagreement | 8 | 3 | 0.545 | `v3_exq_451_q034_hazard_resource_threshold_retest_1776977181_v3` | 11 |
+| `SD-004` | directional, source_disagreement | 12 | 6 | 0.667 | `v3_exq_397d_arc007_matched_endpoint_20260423T202213Z_v3` | 18 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 11 | 13 | 0.917 | `v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3` | 29 |
 | `SD-007` | directional, mixed_evidence | 16 | 8 | 0.667 | `v3_exq_118_c1fail_20260328T212454Z_v3` | 25 |
 | `SD-010` | directional, mixed_evidence | 7 | 1 | 0.25 | `20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3` | 22 |
@@ -69,23 +69,23 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-012` | directional, source_disagreement, mixed_evidence | 18 | 4 | 0.364 | `2026-04-22_homeostatic_override_pws_hypothalamic_brown2022` | 23 |
 | `SD-013` | directional | 7 | 1 | 0.25 | `v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3` | 8 |
 | `SD-015` | directional, source_disagreement | 8 | 5 | 0.769 | `2026-04-14_sd_015_parallel_streams_lec_knierim2020` | 13 |
-| `SD-017` | directional, source_disagreement, mixed_evidence | 5 | 3 | 0.75 | `2026-04-20_mech_261_rem_theta_gate_boyce2016` | 9 |
+| `SD-017` | directional, source_disagreement, mixed_evidence | 5 | 4 | 0.889 | `v3_exq_418a_sd016_sd017_context_conditioned_action_20260424T021932Z_v3` | 10 |
 | `SD-018` | directional, source_disagreement, mixed_evidence | 1 | 1 | 1 | `2026-04-21_sd_018_nac_dopamine_approach_costa2025` | 3 |
 | `SD-021` | directional, source_disagreement | 8 | 3 | 0.545 | `v3_exq_325d_sd032c_aic_descending_modulation_20260420T160057Z_v3` | 11 |
 | `SD-023` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 5 |
-| `SD-029` | directional, source_disagreement, mixed_evidence | 5 | 3 | 0.75 | `2026-04-20_sd_029_self_vs_external_pain_thresholds_lalouni2020` | 9 |
+| `SD-029` | directional, source_disagreement, mixed_evidence | 5 | 4 | 0.889 | `v3_exq_433c_sd029_eventcond_comparator_20260423T232350Z_v3` | 10 |
 
 ## Conflict Details
 
 ### ARC-007
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=24, weakens=7, conflict_ratio=0.452, overall_confidence=0.761
+- Evidence breakdown: supports=24, weakens=8, conflict_ratio=0.5, overall_confidence=0.779
 - Recent entries:
-  - `2026-04-18T22:04:59Z` `literature` `targeted_review_papez_circuit_write_gating` direction=`supports` confidence=0.8
   - `2026-04-18T22:04:59Z` `literature` `targeted_review_papez_circuit_write_gating` direction=`supports` confidence=0.7
   - `2026-04-19T15:31:53Z` `experimental` `v3_exq_397_arc007_path_memory_ablation` direction=`superseded` confidence=0.55
   - `2026-04-21T02:50:36Z` `experimental` `v3_exq_397c_arc007_harder_env` direction=`superseded` confidence=0.55
   - `2026-04-21T11:55:52Z` `experimental` `v3_exq_397c_arc007_harder_env` direction=`superseded` confidence=0.55
+  - `2026-04-23T20:22:13Z` `experimental` `v3_exq_397d_arc007_matched_endpoint` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `v2_verdict_fail:path_memory_ablation` (1)
   - `The paper does not provide evidence that harm or causal attribution specifically is used as an organising axis for hippocampal maps — the non-spatial examples are relational/semantic, not harm-weighted.` (1)
@@ -139,7 +139,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-024
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=14, weakens=9, conflict_ratio=0.783, overall_confidence=0.767
+- Evidence breakdown: supports=14, weakens=9, conflict_ratio=0.783, overall_confidence=0.765
 - Recent entries:
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.78
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.7
@@ -179,7 +179,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-029
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, overall_confidence=0.678
+- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, overall_confidence=0.677
 - Recent entries:
   - `2026-04-04T10:01:44Z` `experimental` `v3_exq_227_arc029_discrepancy_diagnostic` direction=`non_contributory` confidence=0
   - `2026-04-05T00:00:00Z` `literature` `targeted_review_arc_029` direction=`supports` confidence=0.67
@@ -466,7 +466,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-075
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=4, weakens=3, conflict_ratio=0.857, overall_confidence=0.692
+- Evidence breakdown: supports=4, weakens=3, conflict_ratio=0.857, overall_confidence=0.691
 - Recent entries:
   - `2026-04-15T14:00:00Z` `literature` `targeted_review_connectome_mech_075` direction=`mixed` confidence=0.8
   - `2026-04-15T14:00:00Z` `literature` `targeted_review_connectome_mech_075` direction=`supports` confidence=0.78
@@ -486,7 +486,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-089
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=10, weakens=4, conflict_ratio=0.571, overall_confidence=0.776
+- Evidence breakdown: supports=10, weakens=4, conflict_ratio=0.571, overall_confidence=0.775
 - Recent entries:
   - `2026-03-28T20:01:34Z` `experimental` `v3_exq_122_mech089_theta_integration_pair` direction=`weakens` confidence=0.75
   - `2026-03-28T22:10:59Z` `experimental` `v3_exq_122_mech089_theta_integration_pair` direction=`weakens` confidence=0.75
@@ -586,7 +586,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-098
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=11, weakens=9, conflict_ratio=0.9, overall_confidence=0.782
+- Evidence breakdown: supports=11, weakens=9, conflict_ratio=0.9, overall_confidence=0.781
 - Recent entries:
   - `2026-04-16T16:45:00Z` `literature` `targeted_review_mech_098` direction=`supports` confidence=0.82
   - `2026-04-16T16:50:00Z` `literature` `targeted_review_mech_098` direction=`supports` confidence=0.78
@@ -606,7 +606,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-099
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.68
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.679
 - Recent entries:
   - `2026-03-27T15:56:05Z` `experimental` `v3_exq_098b_mech099_agency_attribution` direction=`mixed` confidence=0.5
   - `2026-04-05T22:10:00Z` `literature` `targeted_review_mech_099` direction=`supports` confidence=0.82
@@ -646,7 +646,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-104
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=13, weakens=2, conflict_ratio=0.267, overall_confidence=0.887
+- Evidence breakdown: supports=13, weakens=2, conflict_ratio=0.267, overall_confidence=0.886
 - Recent entries:
   - `2026-04-13T07:43:19Z` `experimental` `v3_exq_365_mech104_surprise_gate_pair` direction=`mixed` confidence=0.5
   - `2026-04-14T20:38:26Z` `experimental` `v3_exq_365_mech104_surprise_gate_pair` direction=`supports` confidence=0.75
@@ -679,7 +679,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-112
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=14, weakens=4, conflict_ratio=0.444, overall_confidence=0.85
+- Evidence breakdown: supports=14, weakens=4, conflict_ratio=0.444, overall_confidence=0.849
 - Recent entries:
   - `2026-04-14T13:50:38Z` `experimental` `v3_exq_322a_sd015_resource_encoder_seeding` direction=`weakens` confidence=0.75
   - `2026-04-14T13:50:44Z` `experimental` `v3_exq_328a_mech112_zgoal_structured_latent` direction=`supports` confidence=0.75
@@ -779,7 +779,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-135
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.81
+- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.809
 - Recent entries:
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_mech_135` direction=`supports` confidence=0.68
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_mech_135` direction=`supports` confidence=0.74
@@ -992,13 +992,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-256
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, overall_confidence=0.837
+- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, overall_confidence=0.834
 - Recent entries:
-  - `2026-04-20T15:52:56Z` `experimental` `v3_exq_433b_sd029_extended_interventional` direction=`weakens` confidence=0.75
   - `2026-04-20T19:40:35Z` `literature` `targeted_review_connectome_mech_256` direction=`supports` confidence=0.74
   - `2026-04-20T19:40:35Z` `literature` `targeted_review_connectome_mech_256` direction=`supports` confidence=0.82
   - `2026-04-20T19:40:35Z` `literature` `targeted_review_connectome_mech_256` direction=`supports` confidence=0.82
   - `2026-04-20T19:40:35Z` `literature` `targeted_review_connectome_mech_256` direction=`supports` confidence=0.7
+  - `2026-04-23T23:23:50Z` `experimental` `v3_exq_433c_sd029_eventcond_comparator` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `The unifying framing assumes a single cerebellar forward model reused across motor and agency functions. If the forward models for motor-proprioceptive streams and nociceptive/visceral streams are anatomically distinct (cerebellum vs. insula/ACC), then the single substrate reading is too strong and a per-stream substrate account is required.` (1)
   - `The paper does not specify a quantitative attenuation magnitude; mapping 'attenuated' to a specific ratio (e.g., Shergill 0.3-0.7) requires reading other primary literature.` (1)
@@ -1094,14 +1094,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### Q-034
-- Conflict types: directional
-- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.747
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=8, weakens=3, conflict_ratio=0.545, overall_confidence=0.752
 - Recent entries:
-  - `2026-04-09T15:30:00Z` `literature` `targeted_review_q_034` direction=`supports` confidence=0.66
   - `2026-04-09T15:30:00Z` `literature` `targeted_review_q_034` direction=`supports` confidence=0.67
   - `2026-04-09T15:30:00Z` `literature` `targeted_review_q_034` direction=`supports` confidence=0.52
   - `2026-04-10T01:14:07Z` `experimental` `v3_exq_288_q034_hazard_resource_threshold_sweep` direction=`weakens` confidence=0.75
   - `2026-04-20T15:52:08Z` `experimental` `v3_exq_451_q034_hazard_resource_threshold_retest` direction=`weakens` confidence=0.75
+  - `2026-04-23T20:46:21Z` `experimental` `v3_exq_451_q034_hazard_resource_threshold_retest` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `No empirical test of the resource-availability modulation claim.` (1)
   - `Evolutionary framework does not map cleanly to computational attractor dynamics.` (1)
@@ -1115,13 +1115,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-004
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=12, weakens=5, conflict_ratio=0.588, overall_confidence=0.76
+- Evidence breakdown: supports=12, weakens=6, conflict_ratio=0.667, overall_confidence=0.785
 - Recent entries:
-  - `2026-04-14T18:30:00Z` `literature` `targeted_review_hippocampal_valence_asymmetry` direction=`supports` confidence=0.78
   - `2026-04-14T18:30:00Z` `literature` `targeted_review_hippocampal_valence_asymmetry` direction=`supports` confidence=0.75
   - `2026-04-19T15:31:53Z` `experimental` `v3_exq_397_arc007_path_memory_ablation` direction=`superseded` confidence=0.55
   - `2026-04-21T02:50:36Z` `experimental` `v3_exq_397c_arc007_harder_env` direction=`superseded` confidence=0.55
   - `2026-04-21T11:55:52Z` `experimental` `v3_exq_397c_arc007_harder_env` direction=`superseded` confidence=0.55
+  - `2026-04-23T20:22:13Z` `experimental` `v3_exq_397d_arc007_matched_endpoint` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `Paper remains largely descriptive of biological findings; the abstraction to action-object space is inferred from the logic of generalisation, not demonstrated experimentally in a non-spatial task with action-object structure` (1)
   - `The authors note that direct neural evidence for non-spatial cognitive maps is still emerging; the strongest evidence remains spatial` (1)
@@ -1252,7 +1252,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-015
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=8, weakens=5, conflict_ratio=0.769, overall_confidence=0.753
+- Evidence breakdown: supports=8, weakens=5, conflict_ratio=0.769, overall_confidence=0.752
 - Recent entries:
   - `2026-04-14T14:00:00Z` `literature` `targeted_review_sd_015` direction=`supports` confidence=0.76
   - `2026-04-14T14:00:00Z` `literature` `targeted_review_sd_015` direction=`supports` confidence=0.72
@@ -1272,13 +1272,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-017
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=3, conflict_ratio=0.75, overall_confidence=0.659
+- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.689
 - Recent entries:
-  - `2026-04-19T10:24:34Z` `experimental` `v3_exq_418a_sd016_sd017_context_conditioned_action` direction=`weakens` confidence=0.75
   - `2026-04-20T03:35:19Z` `experimental` `v3_exq_418a_sd016_sd017_context_conditioned_action` direction=`weakens` confidence=0.75
   - `2026-04-20T03:35:30Z` `experimental` `v3_exq_436_sd017_context_cond_harm_thresh` direction=`weakens` confidence=0.75
   - `2026-04-20T06:17:13Z` `literature` `targeted_review_mech261_mode_gating` direction=`supports` confidence=0.8
   - `2026-04-20T06:17:13Z` `literature` `targeted_review_mech261_mode_gating` direction=`supports` confidence=0.8
+  - `2026-04-24T02:19:32Z` `experimental` `v3_exq_418a_sd016_sd017_context_conditioned_action` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `The task is spatial navigation (plus-maze goal location); it is not a context-attribution or causal assignment task, so the specific attribution-map convergence that SD-017 requires is not directly tested.` (1)
   - `One-session learning paradigm tests formation of a single spatial memory, not the multi-episode context differentiation central to SD-017's failure mode prediction.` (1)
@@ -1329,7 +1329,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-023
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.734
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.733
 - Recent entries:
   - `2026-04-17T12:36:30Z` `literature` `targeted_review_sd_023` direction=`supports` confidence=0.8
   - `2026-04-18T12:40:11.183787Z` `experimental` `v3_exq_263b_sd023_mech216_landmark_wanting` direction=`supports` confidence=0.55
@@ -1349,13 +1349,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-029
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=3, conflict_ratio=0.75, overall_confidence=0.64
+- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.668
 - Recent entries:
-  - `2026-04-20T19:43:11Z` `literature` `targeted_review_sd_029` direction=`mixed` confidence=0.55
-  - `2026-04-20T19:43:11Z` `literature` `targeted_review_sd_029` direction=`supports` confidence=0.72
   - `2026-04-20T19:43:11Z` `literature` `targeted_review_sd_029` direction=`supports` confidence=0.8
   - `2026-04-21T18:08:38.101005Z` `experimental` `v3_exq_470_sd029_balanced_curriculum` direction=`weakens` confidence=0.55
   - `2026-04-21T20:23:41.647442Z` `experimental` `v3_exq_470_sd029_balanced_curriculum` direction=`weakens` confidence=0.55
+  - `2026-04-23T20:46:26.826227Z` `experimental` `v3_exq_470a_sd029_balanced_curriculum` direction=`weakens` confidence=0.55
+  - `2026-04-23T23:23:50Z` `experimental` `v3_exq_433c_sd029_eventcond_comparator` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `The paradigm is somatosensory (tactile pressure), not nociceptive. The mapping from tactile attenuation to harm-stream attenuation still requires the assumption that the forward model is modality-general across the somatosensory-nociceptive boundary.` (1)
   - `The experiments measure perceptual intensity judgments, not explicit agency attributions. Attenuation of felt intensity is necessary for MECH-256's residual mechanism but is not the same measurement as 'did I cause this'.` (1)

@@ -1,8 +1,19 @@
 # Pending Experiment Review
 
-Generated: `2026-04-23T17:49:07Z`  
+Generated: `2026-04-24T04:18:15Z`  
 Last review: `2026-04-22T23:11:16Z`  
-Pending: **25** item(s) -- 24 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **44** item(s) -- 27 PASS, 6 FAIL, 11 runner-only (ERROR/UNKNOWN/smoke)
+
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_397d_arc007_matched_endpoint_20260423T202213Z_v3` | 2026-04-23T20:22 | ARC-007, SD-004 | — |
+| `v3_exq_451_q034_hazard_resource_threshold_retest_1776977181_v3` | 2026-04-23T20:46 | Q-034 | — |
+| `v3_exq_445a_sd032b_dacc_full_pipeline_20260423T204638Z_v3` | 2026-04-23T20:46 | MECH-258, MECH-260, SD-032b | — |
+| `v3_exq_433c_sd029_eventcond_comparator_20260423T232350Z_v3` | 2026-04-23T23:23 | MECH-256, SD-029 | — |
+| `v3_exq_418a_sd016_sd017_context_conditioned_action_20260424T021932Z_v3` | 2026-04-24T02:19 | SD-017 | — |
+| `v3_exq_137_mech097_pps_commit_locus_pair_20260424T022149Z_v3` | 2026-04-24T02:21 | MECH-097 | — |
 
 ## PASS (verify & close)
 
@@ -32,6 +43,9 @@ Pending: **25** item(s) -- 24 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
 | `v3_exq_467_mech266_mode_stickiness_v3_20260421T202402Z_v3` | 2026-04-21T20:24 | MECH-266, SD-032a |
 | `v3_exq_462_mech267_rule_binding_v3_20260421T202405Z_v3` | 2026-04-21T20:24 | MECH-262, MECH-267, SD-033a |
 | `v3_exq_465_mech267_intrusive_simulation_filtering_v3_20260421T202408Z_v3` | 2026-04-21T20:24 | MECH-094, MECH-261, MECH-267 |
+| `v3_exq_470a_sd029_balanced_curriculum_20260423T204626Z_v3` | 2026-04-23T20:46 | SD-029 |
+| `v3_exq_447_sd032d_pcc_stability_20260423T204632Z_v3` | 2026-04-23T20:46 | MECH-259, SD-032d |
+| `v3_exq_449b_sd016_cue_action_proj_consumer_fix_20260424T021756Z_v3` | 2026-04-24T02:17 | SD-016 |
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -40,6 +54,16 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
 | `V3-EXQ-471` | UNKNOWN | `?` | UNKNOWN (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-470a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-447a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-445e` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-445d` | ERROR | `?` | ERROR |
+| `V3-EXQ-455a` | ERROR | `?` | ERROR |
+| `V3-EXQ-433c` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-449b` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-449c` | ERROR | `?` | ERROR |
+| `V3-EXQ-418c` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-476` | ERROR | `?` | ERROR |
 
 ---
 

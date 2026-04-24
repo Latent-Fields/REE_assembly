@@ -2,22 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 16991,
   "runner_started_at": "2026-04-21T17:06:12.255561+00:00",
-  "last_updated": "2026-04-24T02:19:32.491889+00:00",
-  "idle": false,
+  "last_updated": "2026-04-24T04:23:58.906140+00:00",
+  "idle": true,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-476",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-269 V_s validation entropy probe -- cascade gate",
-      "description": "",
-      "estimated_minutes": 69.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -6060,6 +6048,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 87.4
+    },
+    {
+      "queue_id": "V3-EXQ-476",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-269 V_s validation entropy probe -- cascade gate",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-04-24T02:20:40.187195+00:00",
+      "completed_at": "2026-04-24T02:20:40.312434+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 0.1
+    },
+    {
+      "queue_id": "V3-EXQ-137",
+      "backlog_id": "EVB-0137",
+      "claim_id": "MECH-097",
+      "title": "MECH-097 PPS Commit Locus: PPS_LOCUS_ON vs ABLATED (2 seeds)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | Status: FAIL | n_harm_eval_min: 535.0",
+      "started_at": "2026-04-24T02:20:43.095218+00:00",
+      "completed_at": "2026-04-24T02:21:50.527555+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_137_mech097_pps_commit_locus_pair/v3_exq_137_mech097_pps_commit_locus_pair_20260424T022149Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 67.4
     }
   ]
 }
