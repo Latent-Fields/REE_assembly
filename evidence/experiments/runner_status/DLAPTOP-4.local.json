@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 16991,
   "runner_started_at": "2026-04-21T17:06:12.255561+00:00",
-  "last_updated": "2026-04-24T02:17:57.572464+00:00",
+  "last_updated": "2026-04-24T02:19:32.491889+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -13,28 +13,6 @@
       "title": "MECH-269 V_s validation entropy probe -- cascade gate",
       "description": "",
       "estimated_minutes": 69.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-449c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-074b BLA retrieval bias on action selection -- V_s-gated",
-      "description": "",
-      "estimated_minutes": 104.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-016+SD-017 context-conditioned action with cue_action_proj consumer fix (supersedes V3-EXQ-418a)",
-      "description": "",
-      "estimated_minutes": 160.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -6054,6 +6032,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 14.6
+    },
+    {
+      "queue_id": "V3-EXQ-449c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-074b BLA retrieval bias on action selection -- V_s-gated",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-04-24T02:18:02.083071+00:00",
+      "completed_at": "2026-04-24T02:18:02.134659+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 0.1
+    },
+    {
+      "queue_id": "V3-EXQ-418c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016+SD-017 context-conditioned action with cue_action_proj consumer fix (supersedes V3-EXQ-418a)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "verdict: cond=WITHOUT_SLEEP_SD016 seed=56 slot_div=0.1885 action_bias_div=0.0003 eval_harm_rate=0.0692 n_safe=488 n_dang=199 | verdict: C1_bias_threshold=False (0/3 seeds), C2_bias_improvement=False (0/3 seeds), C3_slot_div=False (0/3 seeds) => FAIL | Outcome: FAIL",
+      "started_at": "2026-04-24T02:18:05.072747+00:00",
+      "completed_at": "2026-04-24T02:19:32.491675+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 87.4
     }
   ]
 }
