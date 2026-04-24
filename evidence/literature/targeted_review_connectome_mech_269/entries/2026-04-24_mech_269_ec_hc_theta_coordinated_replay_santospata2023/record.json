@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_269",
+  "entry_id": "2026-04-24_mech_269_ec_hc_theta_coordinated_replay_santospata2023",
+  "timestamp_utc": "2026-04-24T17:29:53Z",
+  "claim_ids_tested": ["MECH-269"],
+  "source": {
+    "title": "Theta-band phase locking during encoding leads to coordinated entorhinal-hippocampal replay",
+    "authors": ["Diogo Santos-Pata", "Caswell Barry", "H. Freyja Olafsdottir"],
+    "year": 2023,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2023.09.011",
+    "url": "https://doi.org/10.1016/j.cub.2023.09.011"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct evidence that theta-band phase-locking during encoding predicts which dMEC cells subsequently participate in coordinated HC replay, with experience-dependent growth of the synchrony and task acquisition. MECH-269 relies on MECH-089 (theta-gamma nesting feeds the per-cycle summary the proposer anchors on); Santos-Pata et al. show that theta-locked cortical ensembles preferentially join hippocampal replay trajectories, which is the expected behaviour if anchor selection reads theta-cycle-averaged summaries. The experience-dependent increase in synchrony with learning is additional support: the selection process is not static but tracks the agent's acquisition of the task, consistent with V_s being a running alignment signal that improves with experience.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If theta-band phase-locking during encoding did not predict subsequent replay participation, MECH-269's reliance on theta-cycle-averaged summaries (via MECH-089) as the substrate for anchor selection would lose biological grounding. If the dMEC-CA1 synchrony had been static rather than experience-dependent, the running-alignment structure MECH-269 assumes for V_s would be weakened -- V_s should be learning-sensitive, and biological coordination should be learning-sensitive too, and Santos-Pata et al. show it is."
+  ],
+  "tags": ["mech_269", "mech_089", "theta_gamma_nesting", "entorhinal_cortex", "replay_coordination", "phase_locking"],
+  "mapping": {
+    "source_claim_statement": "A subset of deep-medial-entorhinal-cortex cells that are preferentially locked to hippocampal theta-band LFP oscillations during movement are preferentially coordinated with hippocampal replay during offline periods. dMEC synchrony with CA1 replay peaks approximately 10ms after replay initiation in CA1, suggesting extra-hippocampal information propagation during offline periods. Theta-modulated dMEC cells show a striking experience-dependent increase in synchronisation with hippocampal replay trajectories, mirroring task acquisition.",
+    "ree_translation": "MECH-269 anchor selection consumes per-stream theta-cycle-averaged summaries (inherited from MECH-089) rather than raw instantaneous latent values. Santos-Pata et al. provide evidence that theta-phase-locked ensembles in dMEC are the ones whose activity participates in coordinated CA1 replay; that is, the biological substrate for replay content is theta-structured. This matches MECH-269's design commitment to theta-cycle-summary inputs. The experience-dependence of the synchrony is the additional support: V_s in MECH-269 is a running alignment score that should strengthen with task acquisition, and the Santos-Pata finding that dMEC-CA1 synchrony strengthens with experience is the biological analogue of that.",
+    "mapping_caveat": "Santos-Pata et al. study dMEC and CA1 during spatial task acquisition; they do not isolate per-stream alignment. The content being synchronised is cell assemblies for spatial trajectories, not REE's z_world / z_harm_s / z_goal streams. The mapping from theta-phase-locked encoding ensembles to stream-local V_s readout is a REE-side commitment. The paper supports the architectural role of theta-phase-locking in selecting which ensembles participate in replay; it does not support the specific stream-local decomposition MECH-269 asserts.",
+    "source_context": "Rats learning a novel spatial task; simultaneous CA1 and deep-medial-entorhinal-cortex recordings; analysis of dMEC spike phase-locking to CA1 theta LFP during movement and of dMEC-CA1 synchrony during subsequent offline replay epochs; experience-dependent analysis across training."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Curr Biol paper, Olafsdottir senior author (the 2018 review already in the MECH-269 evidence set), rigorous simultaneous dMEC-CA1 electrophysiology with experience-dependent analysis. Mapping fidelity is 0.70 because the paper directly supports the theta-phase-locking-to-replay-participation architecture MECH-269 depends on (via MECH-089), and because the experience-dependence matches the running-alignment character of V_s. Transfer risk moderate: the architectural lesson (theta-phase-locking selects replay participants) transfers; the REE-specific stream-local V_s claim remains an extrapolation."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_271",
+  "entry_id": "2026-04-24_mech_271_segregated_pyramidal_cortical_readout_harvey2023",
+  "timestamp_utc": "2026-04-24T17:29:53Z",
+  "claim_ids_tested": ["MECH-271"],
+  "source": {
+    "title": "Hippocampo-cortical circuits for selective memory encoding, routing, and replay",
+    "authors": ["Ryan E. Harvey", "Heath L. Robinson", "Can Liu", "Azahara Oliva", "Antonio Fernandez-Ruiz"],
+    "year": 2023,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2023.04.015",
+    "url": "https://doi.org/10.1016/j.neuron.2023.04.015"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "The strongest single piece of evidence that MECH-271's routing architecture is not merely regional (dorsal/ventral) but cellular: anatomically distinct subpopulations of CA1 pyramidal cells participate in distinct cell assemblies, encode different kinds of content (trajectory-and-choice vs reward-configuration), are selectively read out by different cortical targets, and coordinate distinct hippocampo-cortical assemblies during replay. MECH-271 asserts that the hypothesis tag is realised as differential routing rather than a source-side flag; Harvey et al. establish that the hippocampal source-side is organised into segregated cellular subpopulations whose outputs reach selected cortical consumers. The cellular-level organisation is a stronger architectural match to MECH-271 than the regional-level one -- REE's stream-local view of the latent (z_world, z_harm_s, etc.) maps onto cellular-subpopulation organisation more naturally than onto coarse regional organisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If CA1 pyramidal cells turned out to form a homogeneous population whose outputs reached cortical consumers uniformly, MECH-271's routing architecture would lose its cellular-level substrate and would have to rely solely on coarser regional dissociations. If segregated subpopulations existed but were randomly matched to cortical targets (no selective readout), the differential-routing claim would again collapse into undifferentiated broadcast."
+  ],
+  "tags": ["mech_271", "hippocampus_cortex", "ca1_subpopulations", "differential_routing", "cell_assemblies", "selective_readout"],
+  "mapping": {
+    "source_claim_statement": "The anatomical identity of CA1 pyramidal cells is a major organising principle of assembly dynamics, memory replay, and cortical projection patterns in rats. Segregated pyramidal-cell subpopulations encode trajectory-and-choice-specific information or track changes in reward configuration, respectively, and their activity is selectively read out by different cortical targets. Distinct hippocampo-cortical assemblies coordinate the reactivation of complementary memory representations.",
+    "ree_translation": "MECH-271 claims the hypothesis tag is realised as differential downstream routing to selected consumer populations, not as a shared-channel flag. Harvey et al. establish the cellular-level organisation this claim requires: the CA1 source-side is not a single undifferentiated population but a collection of segregated subpopulations, each with its own content specialisation and each with a selected cortical readout. The architecture of selective hippocampo-cortical routing that MECH-271 asserts is independently established by Harvey et al. as the organising principle of the biology. REE's stream-local view (z_world, z_harm_s, z_goal, z_self) maps onto this cellular-subpopulation organisation more naturally than it maps onto the dorsal/ventral coarse-anatomy view: REE streams are content-typed, and Harvey et al. show that hippocampal subpopulations are content-typed with selective readouts.",
+    "mapping_caveat": "The content types Harvey et al. identify (trajectory-and-choice, reward-configuration) are not identical to REE's stream types (z_world, z_harm_s, z_goal, z_self). The mapping from biological content-typed subpopulations to REE streams is a design commitment, not a finding. Harvey et al. also do not test the anchored/probe distinction -- they test content-type subpopulations during ordinary task-based encoding and replay, not the specific REE anchored/probe split. The architectural fact being imported is the routing-with-cellular-selectivity structure; the REE-specific labelling is the remaining extrapolation.",
+    "source_context": "Rats performing spatial-and-reward tasks; simultaneous recordings from CA1 and multiple cortical targets; computational analysis of cell-assembly structure, replay content, and hippocampo-cortical coordination; anatomical identification of CA1 pyramidal-cell subpopulations by electrophysiological signatures and projection targets."
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "Neuron paper, Fernandez-Ruiz senior author, rigorous multi-region simultaneous electrophysiology with anatomical identification of subpopulations. Mapping fidelity is the highest of the MECH-271 entries because the paper directly demonstrates that hippocampo-cortical routing is organised at the cellular-subpopulation level with content-typed selective readouts -- which is the architectural shape MECH-271 asserts. Transfer risk low: the routing-by-cellular-selectivity architecture is a generic finding about hippocampal organisation likely conserved in higher mammals; the REE-specific labelling of anchored/probe and stream-local contents onto this architecture remains the main extrapolation."
+  }
+}

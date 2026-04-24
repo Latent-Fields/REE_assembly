@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_271",
+  "entry_id": "2026-04-24_mech_271_dorsal_ventral_swr_distinct_nac_sosa2019",
+  "timestamp_utc": "2026-04-24T17:29:53Z",
+  "claim_ids_tested": ["MECH-271"],
+  "source": {
+    "title": "Dorsal and Ventral Hippocampal Sharp-Wave Ripples Activate Distinct Nucleus Accumbens Networks",
+    "authors": ["Marielena Sosa", "Hannah R. Joo", "Loren M. Frank"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.11.022",
+    "url": "https://doi.org/10.1016/j.neuron.2019.11.022"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "The single strongest piece of direct routing-dissociation evidence for MECH-271. Sosa et al. show that dorsal and ventral hippocampal SWRs -- occurring asynchronously in the same animal -- activate distinct and largely non-overlapping nucleus-accumbens networks, and that only the dorsal-HC-SWR-activated subset of NAc neurons carries task- and reward-related tuning. MECH-271 predicts that the hypothesis tag is realised as differential downstream routing rather than as a source-side flag; this paper provides the most direct mammalian-electrophysiology demonstration that different HC source populations route to different NAc consumer populations, with content-selectivity on the NAc side. The dorsal/ventral split the paper exploits is not identical to MECH-271's anchored/probe split, but the architectural shape -- source-specific routing to segregated downstream ensembles -- is directly what MECH-271 proposes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If dorsal and ventral HC SWRs activated largely overlapping NAc populations, or if task- and reward-related NAc neurons responded indiscriminately to both sources, MECH-271's prediction that HC->NAc replay is routed in a source-specific way would be weakened. If the dorsal/ventral dissociation had been merely a latency effect (same population, different onset) rather than a distinct-population effect, the routing-not-flagging architectural lesson would not apply."
+  ],
+  "tags": ["mech_271", "hippocampus_nac", "sharp_wave_ripple", "differential_routing", "reward_memory", "anchored_vs_probe"],
+  "mapping": {
+    "source_claim_statement": "Dorsal-hippocampus and ventral-hippocampus awake SWRs occur asynchronously and activate distinct, largely non-overlapping nucleus-accumbens neuronal populations. Only the NAc neurons activated by dorsal-HC SWRs carry task- and reward-related information; the ventral-HC-SWR-activated NAc population does not. The two HC-NAc channels are therefore temporally and anatomically separable and functionally specialised.",
+    "ree_translation": "MECH-271 asserts that the hypothesis tag (MECH-094, pre-commit vs post-commit, anchored vs probe) is instantiated as differential downstream routing rather than a shared-channel flag. Anchored rollouts preferentially engage consolidation-relevant consumers (subiculum-EC-neocortex, SD-033a lateral-PFC analog, viability-map writers); probe rollouts preferentially engage BLA and NAc curiosity/novelty consumers. Sosa et al. provide the most direct mammalian evidence that HC->NAc replay is routed in a source-specific way, with consumer populations that are genuinely distinct rather than time-shifted versions of the same ensemble. The dorsal-HC-to-reward-specific-NAc channel maps onto REE's anchored-to-consolidation route; the ventral-HC-to-non-reward-NAc channel provides a neurophysiological existence proof for the second-route architecture MECH-271 depends on.",
+    "mapping_caveat": "The dorsal/ventral axis is not identical to the anchored/probe axis; MECH-271 does not claim that anchored replay comes specifically from dorsal CA1 and probe replay from ventral CA1. What Sosa et al. establish is the more general architectural fact that HC source populations route to distinct NAc consumer populations with distinct functional tuning. The inference 'therefore anchored and probe rollouts can route to distinct consumers' requires the additional step that some source-side distinction in hippocampal activity (anchored vs probe in REE's sense, perhaps instantiated as MECH-270 field coherence pattern) maps onto the already-demonstrated routing infrastructure. The paper supports the routing-architecture existence claim; it does not support the specific functional labelling.",
+    "source_context": "Male Long-Evans rats performing an appetitive spatial task (run to reward sites on a linear-track variant); simultaneous recordings from dorsal CA1, ventral CA1, and nucleus accumbens; analysis of SWR-locked firing at all three sites across task, rest, and sleep epochs."
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Neuron paper, Loren Frank senior author (authority on HC replay and routing), rigorous triple-site simultaneous electrophysiology. Mapping fidelity is the highest of the MECH-271 entries because the paper directly demonstrates source-specific differential routing to distinct NAc consumer populations with content-selective tuning -- the architectural shape MECH-271 asserts. Transfer risk is low: the routing-not-flagging architecture is a generic claim about hippocampal connectivity that Sosa et al. demonstrate to exist; the REE-specific mapping of anchored/probe onto source populations is the remaining extrapolation."
+  }
+}
