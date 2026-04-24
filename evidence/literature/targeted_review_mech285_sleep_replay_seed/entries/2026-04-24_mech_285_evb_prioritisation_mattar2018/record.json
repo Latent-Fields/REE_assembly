@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_evb_prioritisation_mattar2018",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay",
+    "authors": ["Marcelo G. Mattar", "Nathaniel D. Daw"],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z",
+    "url": "https://doi.org/10.1038/s41593-018-0232-z"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Normative theory (expected value of backup: gain x need) that predicts which memories should be prioritised at each moment. The theory directly predicts that staleness-proportional priority falls out of a well-specified utility function -- gain scales with the discrepancy between stored value and true value (staleness), need scales with likelihood of future access. This is the closest extant normative backbone for MECH-285. Confidence is moderated by 'theory not biology' -- the paper reproduces replay phenomenology but does not itself measure staleness or V_s residuals.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A single normative objective (EVB = gain x need) unifies multiple previously-disparate replay phenomena (forward/reverse, rewarded-location bias, planning preplay) under one priority scheme.",
+    "EVB predicts that both proportional and situation-contingent priorities fall out of the same objective -- the shape of the priority signal is not assumed but derived from the utility function."
+  ],
+  "tags": ["mech_285", "normative_model", "evb", "priority_shape", "proportional_priority"],
+  "mapping": {
+    "source_claim_statement": "Replay content at any moment can be predicted by a normative rule: simulate the memory whose access most reduces expected future regret, given the current state. This decomposes into gain (how much a backup improves future choice quality) times need (how likely the memory is to be useful soon).",
+    "ree_translation": "MECH-285 posits that sleep-replay priority is biased by accumulated V_s staleness. Mattar & Daw give the theoretical grounding: staleness is structurally equivalent to the 'gain' term -- regions where the stored model is most wrong are regions where an update most improves future choice. Under a well-specified EVB, staleness-proportional priority is not an arbitrary architectural choice but the normatively correct one. This also predicts that the proportional-vs-threshold question resolves in favour of proportional: EVB is continuous in both gain and need, so a threshold-gated scheme would be biologically suboptimal.",
+    "mapping_caveat": "This is a theory paper, not a direct measurement. The EVB framework matches replay phenomenology well but is not itself evidence for any specific biological implementation. MECH-285's dissociation claim (staleness separable from salience) is not addressed directly -- in the EVB framework, salience (reward-related need) and staleness (gain) both feed the same priority signal compositionally, which is compatible with either dissociable or composed implementations.",
+    "source_context": "Computational model; simulations of canonical spatial navigation tasks; normative derivation validated against multiple published hippocampal replay datasets."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Theory-first paper with strong empirical coverage. Mapping fidelity high because the normative prediction (staleness-proportional priority) almost directly underwrites MECH-285. Main risk is over-relying on a model to settle an empirical question."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_past_rewarded_unvisited_gillespie2021",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Hippocampal replay reflects specific past experiences rather than a plan for subsequent choice",
+    "authors": ["Anna K. Gillespie", "Daniela A. Astudillo Maya", "Eric L. Denovellis", "Daniel F. Liu", "David B. Kastner", "Michael E. Coulter", "Demetris K. Roumis", "Uri T. Eden", "Loren M. Frank"],
+    "year": 2021,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.07.029",
+    "url": "https://doi.org/10.1016/j.neuron.2021.07.029"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct, well-designed test of what awake replay content is enriched for. The key finding -- replay enriched for previously rewarded locations AND for places not recently visited -- is close to a direct match for the MECH-285 architecture: seed distribution reflects past-reward AND staleness (time-since-visited), with both effects present. This is the strongest single piece of evidence that the seed pool is broad and that a staleness-like signal contributes to priority.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay content is decoupled from subsequent choice -- the seed distribution is not a planning sampler for imminent action.",
+    "Replay is enriched for places not recently visited; a strict narrow-active-only seed pool would predict the opposite (recency-biased seeding) and is falsified by this pattern.",
+    "Replay is enriched for previously-rewarded locations independent of current-trial goal, consistent with multi-signal priority (staleness + past salience) rather than a single current-goal-driven signal."
+  ],
+  "tags": ["mech_285", "mech_284", "mech_269", "awake_replay", "staleness_priority", "seed_coverage_broad"],
+  "mapping": {
+    "source_claim_statement": "In a dynamic spatial memory task designed to provoke replay before memory-based choice, replay content was decoupled from subsequent choice and instead enriched for previously rewarded locations and for places not recently visited -- consistent with a storage/memory role rather than direct guidance of imminent behaviour.",
+    "ree_translation": "MECH-285 posits that the sleep-replay seed distribution is weighted by accumulated epistemic staleness (MECH-284 residuals) and is dissociable from salience-only mechanisms. Gillespie et al. provide the cleanest extant behavioural-neural match: (1) seed pool spans past-rewarded *and* recently-unvisited places, consistent with broad coverage; (2) the recency-inverted bias (places *not* recently visited get enriched replay) is the behavioural signature one would predict from a staleness-like priority; (3) the decoupling from imminent choice fits the MECH-285 posit that sleep replay is running a schema-revision task, not a decision sampler. The paper bears on awake replay, but the same content logic is likely to apply to sleep SWRs given their content overlap.",
+    "mapping_caveat": "Awake replay, not sleep replay -- the translation assumes content logic carries over. 'Not recently visited' is a proxy for staleness-weighted priority but is confounded with other time-dependent variables (decay of recency-biased retrieval, novelty-vs-recency interactions). The paper does not manipulate reward history and visit-recency independently with enough resolution to guarantee they are orthogonal priority signals.",
+    "source_context": "Rat CA1; dynamic spatial memory task with changing goal locations; awake replay events extracted during task-relevant pauses."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Top-tier methods (state-space replay decoding, well-powered, Frank lab). Mapping fidelity is high because the paper's central finding almost directly tests the MECH-285 architecture, with the caveats that it is awake replay and that staleness is operationalised as visit-recency rather than as V_s residuals."
+  }
+}

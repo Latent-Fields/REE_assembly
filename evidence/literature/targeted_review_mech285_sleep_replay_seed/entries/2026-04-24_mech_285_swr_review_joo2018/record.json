@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_swr_review_joo2018",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "The hippocampal sharp wave-ripple in memory retrieval for immediate use and consolidation",
+    "authors": ["Hannah R. Joo", "Loren M. Frank"],
+    "year": 2018,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-018-0077-1",
+    "url": "https://doi.org/10.1038/s41583-018-0077-1"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality Nature Reviews Neuroscience synthesis of SWR content and function. Covers distinct SWR types, dual retrieval/consolidation role of single events, and the multi-mode structure of the seed distribution. Directly relevant to MECH-285's salience-interaction and multi-modal-priority architecture questions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Individual SWRs can simultaneously serve retrieval (for immediate behavioural use) and consolidation (for offline schema update), suggesting a single event may participate in multiple priority channels rather than being slotted into one.",
+    "Distinct SWR types differentiable by representational content, behavioural state, and physiological features -- a single-weight-per-anchor priority scheme is insufficient."
+  ],
+  "tags": ["mech_285", "swr_content", "multi_mode_priority", "review"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal SWRs serve both retrieval (for immediate behavioural use, including planning and decision-making) and consolidation (memory storage and schema update); single SWRs may participate in both functions. Different SWR types correspond to different cognitive functions, distinguishable by content, state, and physiology.",
+    "ree_translation": "MECH-285 asks whether the sleep consumer's start-state distribution has a single priority weighting. Joo & Frank argue that SWR content is multi-modal: retrieval-SWRs and consolidation-SWRs exist with different content characteristics, and may overlap within single events. For MECH-285 this suggests the staleness-priority signal likely operates specifically on consolidation-SWRs (the sleep-phase Bayesian aggregation arm -- MECH-275 consumer), while retrieval-SWRs (awake decision support) are priority-weighted by different signals (e.g. current task demand -- Mattar & Daw's need term). The architectural recommendation: MECH-285 should be a consumer-specific priority on a subset of SWR content, not a global replay-scheduling bias.",
+    "mapping_caveat": "This is a review synthesising primary data, not primary data itself. It argues for multi-mode SWR function on the basis of published content studies; the strength of any specific MECH-285-relevant conclusion depends on the underlying studies. The review does not explicitly discuss epistemic-staleness priority or V_s residuals -- the mapping is inferential.",
+    "source_context": "Review; synthesises rodent electrophysiology, closed-loop perturbation, and human SWR data up to mid-2018."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "High-quality review from leading authors on SWR content and function. Mapping fidelity moderate because MECH-285's specific staleness-priority architecture is not addressed, but the multi-mode framework the review establishes directly informs the MECH-285 implementation design."
+  }
+}

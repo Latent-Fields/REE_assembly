@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_remote_awake_replay_karlsson2009",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Awake replay of remote experiences in the hippocampus",
+    "authors": ["Mattias P. Karlsson", "Loren M. Frank"],
+    "year": 2009,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2344",
+    "url": "https://doi.org/10.1038/nn.2344"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "A canonical demonstration that replay seeds are not confined to the current environment. Remote-environment replay occurs at rates matching local replay during waking behaviour, directly supporting a broad seed distribution. The evidence is strong for broad coverage in the waking regime; transfer to sleep is plausible but assumed rather than shown in this paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Remote (non-current-environment) replay occurs as frequently as local replay during brief waking pauses, falsifying any account that confines seed states to current sensory context.",
+    "Remote replay is more robust during pauses after recent motion than during extended quiescence, suggesting the broad-seed mechanism is most active at transition points, not during deep quiescence."
+  ],
+  "tags": ["mech_285", "mech_269", "awake_replay", "remote_replay", "seed_coverage_broad"],
+  "mapping": {
+    "source_claim_statement": "During brief pauses in waking behaviour, hippocampal replay events frequently depict sequences from previously experienced environments that the animal is not currently in; remote replay is as common as local replay and is more robust when the animal has recently been in motion.",
+    "ree_translation": "MECH-285's sampler must choose start states from a pool. Karlsson & Frank show that pool includes representations from environments the animal is not in -- the seed distribution spans stored trajectories, not just currently-active ensembles. This is a foundational constraint for MECH-285's broad reading: whatever weighting function is applied, it operates over a pool that includes inactive/remote anchors. The architectural commitment to persist a region->seed map across anchor_set.mark_inactive is biologically supported: inactive anchors retain replay eligibility.",
+    "mapping_caveat": "This is awake replay during brief pauses, not consolidated sleep replay. The paper's finding that remote replay is more robust after recent motion than during extended quiescence is a slightly awkward fit for MECH-285's sleep-regime architecture, where the sampler is supposed to operate during sustained offline states. The translation requires assuming that the broader finding (inactive anchors remain in the seed pool) generalises to sleep, which is biologically plausible but not tested here.",
+    "source_context": "Rat CA1; multi-environment training; replay during brief waking pauses (not deep quiescence or sleep)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Strong methods and well-cited foundational result. Mapping fidelity is high for the broad-vs-narrow seed-coverage question. Transfer risk is moderate because the paper's own finding about motion-vs-quiescence creates some tension with a clean sleep-regime reading."
+  }
+}

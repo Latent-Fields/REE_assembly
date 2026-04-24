@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_dopamine_tagging_mcnamara2014",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Dopaminergic neurons promote hippocampal reactivation and spatial memory persistence",
+    "authors": ["Colin G. McNamara", "Alvaro Tejero-Cantero", "Stephanie Trouche", "Natalia Campo-Urriza", "David Dupret"],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3843",
+    "url": "https://doi.org/10.1038/nn.3843"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Causal optogenetic evidence that dopaminergic activation during encoding enhances subsequent SWR reactivation -- a salience-lineage priority signal directly written into replay scheduling. For MECH-285 this establishes that salience-driven priority is real and implemented at the SWR-selection stage. It does NOT test whether an epistemic-staleness priority exists alongside it, but it does show the architectural slot for a second priority signal is plausible: the same SWR-selection stage can be modulated by an upstream tag.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optogenetic burst stimulation of VTA-to-hippocampal dopaminergic fibers during novel-environment exploration enhances subsequent sleep reactivation of the same cell assemblies and stabilises spatial memory.",
+    "The dopamine priority signal acts at encoding but manifests at the SWR-selection stage during subsequent rest, establishing a multi-stage priority-implementation pipeline."
+  ],
+  "tags": ["mech_285", "mech_074b", "salience_interaction", "dopamine_tagging", "priority_composition"],
+  "mapping": {
+    "source_claim_statement": "Optogenetic burst stimulation of hippocampal dopaminergic fibers from midbrain neurons in mice exploring novel environments enhances the reactivation of pyramidal cell assemblies during subsequent sleep/rest, and stabilises later memory for learned goal locations.",
+    "ree_translation": "MECH-285 predicts a priority signal (epistemic staleness) dissociable from the canonical dopaminergic salience arm. McNamara et al. provide the cleanest causal demonstration of the salience arm: DA activation during encoding rewrites the subsequent replay priority. For MECH-285 this has two implications: (1) it establishes that a priority-modulation slot exists at the SWR-selection stage (an architectural good-news finding -- MECH-285's posited staleness modulator has a biologically plausible slot to plug into); (2) it does not adjudicate the composition question -- whether salience and staleness are independent arms converging at the sampler, or composed into a single weighted score. MECH-285 is consistent with either reading; the McNamara paper is silent on which.",
+    "mapping_caveat": "The paper establishes that salience modulates replay but does not test whether an orthogonal (epistemic-staleness) signal modulates it too. The MECH-285 dissociation claim requires evidence that some signal other than dopamine/salience can independently drive the same SWR-selection stage. This paper is compatible with that claim but does not test it. Rodent optogenetics in encoding paradigm, not sleep pathology.",
+    "source_context": "Mouse CA1; novel-environment exploration with optogenetic activation of VTA dopaminergic fibers targeting dorsal hippocampus; subsequent sleep/rest and spatial memory testing."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Gold-standard causal optogenetics. High on source quality. Mapping fidelity moderate because the paper speaks to the salience arm, which MECH-285 treats as adjacent but dissociable. Useful chiefly as a proof-of-concept that replay priority is biologically modulable at the right stage."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_forward_reverse_modes_diba2007",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Forward and reverse hippocampal place-cell sequences during ripples",
+    "authors": ["Kamran Diba", "Gyorgy Buzsaki"],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1961",
+    "url": "https://doi.org/10.1038/nn1961"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.67,
+  "confidence_rationale": "Canonical demonstration of two distinct SWR sampling modes -- forward sequences pre-run, reverse sequences post-run -- implying that the seed-state distribution is mode-dependent. This constrains MECH-285 architecturally: any single staleness-weighted sampler is probably insufficient; the sleep consumer likely inherits distinct forward/reverse priorities with different seeding rules. Good methods, directly relevant to the priority-shape question, but does not itself manipulate staleness or salience.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Seed-state distribution differs between forward-sequence replay (occurring in anticipation of a run) and reverse-sequence replay (occurring at end of a run); a single unified sampler cannot reproduce both.",
+    "Vector distances between place fields are preserved in the temporal structure of both forward and reverse sequences, indicating the seed distribution encodes spatial topology regardless of direction."
+  ],
+  "tags": ["mech_285", "mech_269", "forward_reverse_modes", "swr_modes", "priority_shape"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place-cell spike sequences recur in reverse order at run end and in forward order in anticipation of a run, coinciding with sharp waves; the temporal structure of these sequences preserves spatial relations between place fields.",
+    "ree_translation": "For MECH-285 the architectural implication is that the seed distribution is not mode-agnostic. Forward and reverse sequences are triggered at different behavioural moments and seed from different states: forward replay seeds near the animal's current position and runs toward the goal; reverse replay seeds at the goal and runs back. The in-silico sampler must therefore be mode-aware -- a MECH-285 priority weight may need to be factored per-mode. Staleness-weighted broad coverage may interact differently with forward vs reverse SWR triggers.",
+    "mapping_caveat": "Study is awake, not sleep. Run-triggered vs run-terminated SWR dynamics may not cleanly map onto sleep-phase modes (NREM-SWR vs REM content is a separate division). The paper does not manipulate staleness, reward, or salience; it describes the dual-mode phenomenology without adjudicating what drives seed selection within each mode.",
+    "source_context": "Rat hippocampus; elevated track runs with defined start/end points; awake recordings spanning pre-run, during-run, and post-run epochs."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Foundational phenomenological result. Mapping fidelity is moderate because the paper describes mode structure but does not directly bear on MECH-285's specific priority-shape or timing questions; it constrains the architecture (two-mode sampler likely needed) without settling any of the verdicts."
+  }
+}

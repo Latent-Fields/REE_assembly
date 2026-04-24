@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_proportional_priority_michon2019",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Post-learning hippocampal replay selectively reinforces spatial memory for highly rewarded locations",
+    "authors": ["Frederic Michon", "Jyh-Jang Sun", "Chae Young Kim", "Davide Ciliberti", "Fabian Kloosterman"],
+    "year": 2019,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2019.03.048",
+    "url": "https://doi.org/10.1016/j.cub.2019.03.048"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct test of whether replay-event count scales with reward magnitude and task demand. Finding: proportion of replay events positively correlated with reward size; ripple-specific disruption abolishes selective enhancement. This is near-direct evidence for a quantitative/proportional priority shape rather than threshold gating. Strong methods, close mapping to MECH-285's priority-shape question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Proportion of replay events correlates with reward size in a graded (not stepwise) fashion, falsifying a strictly threshold-gated priority model.",
+    "Ripple-specific disruption abolishes the selective memory enhancement for highly-rewarded locations, showing the priority signal is causally implemented in SWR scheduling rather than in encoding or retrieval."
+  ],
+  "tags": ["mech_285", "priority_shape", "proportional_priority", "reward_modulation", "swr"],
+  "mapping": {
+    "source_claim_statement": "In a familiar spatial memory task, large rewards selectively enhanced memory performance for demanding task configurations; the proportion of replay events positively correlated with reward size and task demand; selective enhancement was abolished by ripple-specific closed-loop disruption.",
+    "ree_translation": "MECH-285's priority-shape question asks whether epistemic-staleness priority scales quantitatively with accumulated V_s residuals or is threshold-gated. Michon et al. provide the closest behavioural analogue: replay-event count scales with reward magnitude and task demand in a graded fashion, consistent with a proportional priority scheme. Translated to MECH-285: the default sampler topology should be a softmax / power-weighted distribution over staleness rather than a binary 'stale-enough' flag. The ripple-disruption result also pins the priority signal to SWR scheduling rather than to upstream encoding gain -- consistent with MECH-285's location of the priority as a readout on the sampler.",
+    "mapping_caveat": "The priority signal manipulated here is reward magnitude (salience-lineage), not epistemic staleness. MECH-285 predicts that staleness is dissociable from salience, but Michon et al. only directly test the salience arm. The 'proportional priority' verdict translates to MECH-285 only under the assumption that the two arms share a common readout topology -- plausible but not demonstrated. Also a familiar-context task, so the novelty/staleness axis is not varied.",
+    "source_context": "Rat CA1; familiar spatial memory task with manipulated reward size; ripple-specific closed-loop disruption during post-learning rest."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.28,
+    "notes": "Excellent closed-loop design and causal ripple-disruption evidence. Mapping fidelity high for priority-shape (proportional vs threshold). Transfer risk low for that specific question, higher for the staleness-dissociation question."
+  }
+}

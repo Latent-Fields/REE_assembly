@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_topological_replay_wu2014",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Hippocampal replay captures the unique topological structure of a novel environment",
+    "authors": ["Xiaojing Wu", "David J. Foster"],
+    "year": 2014,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3414-13.2014",
+    "url": "https://doi.org/10.1523/JNEUROSCI.3414-13.2014"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Solid single-unit evidence that replay content is structured by experienced topology -- replays are not random samples from the place-cell population but reflect the graph of visited space. This constrains the seed-state distribution: seeds cluster on experienced trajectory segments, not on arbitrary locations. For MECH-285 this sits ambiguously -- supports the narrow reading (seeds from experienced structure) but also shows that replay can represent divergent branches simultaneously, hinting at structured broad coverage rather than visited-only.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay seeds are not uniformly distributed over all hippocampal units; they preferentially occupy places the animal has experienced, with ripple substructure mapping the experienced topology.",
+    "Overlapping replays depict divergent futures from a shared starting segment, showing the seed pool encodes branching structure rather than strictly recent trajectory."
+  ],
+  "tags": ["mech_285", "mech_269", "replay_structure", "seed_coverage_narrow"],
+  "mapping": {
+    "source_claim_statement": "In rats exploring a novel forked environment, replay events recruit the same cells to represent the common portion of divergent trajectories, flip direction at branch points, and exhibit ripple substructure that maps onto maze topology; replays arise rapidly after small numbers of experiences.",
+    "ree_translation": "For MECH-285, this paper bears on seed-coverage geometry: the start-state distribution is not arbitrary but structured by the experienced graph of places. This is compatible with a narrow reading in which only recently-active anchors seed replay, but also with a broad-but-structured reading in which the seed pool spans all anchors connected to recent experience via the topology. It argues against uniform-over-all-anchors seeding and for experience-conditioned seeding -- whichever specific scheme MECH-285 implements, it should inherit this structural bias.",
+    "mapping_caveat": "The paper studies awake post-run replay, not sleep replay. It also does not manipulate or vary the staleness of different anchors, so it cannot adjudicate staleness-proportional vs threshold-gated priority. The extension to sleep replay is plausible (Diba & Buzsaki 2007 show overlapping forward/reverse structure during ripples in both states) but not tested here.",
+    "source_context": "Rat CA1; novel forked (Y/T-maze) environment; awake rest periods immediately post-run."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Clean electrophysiology; the mapping to MECH-285 is indirect because the study doesn't manipulate the priority signals MECH-285 cares about. Useful primarily as a boundary condition: replay seeds are structured by experience, not arbitrary."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech285_sleep_replay_seed",
+  "entry_id": "2026-04-24_mech_285_goal_biased_preplay_olafsdottir2015",
+  "timestamp_utc": "2026-04-24T17:00:56Z",
+  "claim_ids_tested": ["MECH-285"],
+  "source": {
+    "title": "Hippocampal place cells construct reward related sequences through unexplored space",
+    "authors": ["H. Freyja Olafsdottir", "Caswell Barry", "Aman B. Saleem", "Demis Hassabis", "Hugo J. Spiers"],
+    "year": 2015,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.06063",
+    "url": "https://doi.org/10.7554/eLife.06063"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct place-cell recording in rats showing that offline replay seeds can correspond to never-visited portions of the environment when those portions are motivationally relevant. Strongly supports the broad-coverage reading of replay seeding, but the gating signal here is visible reward (salience), not accumulated epistemic staleness per se -- MECH-285's dissociation claim is adjacent but not directly isolated. Mapping to MECH-285 leans on the broader structural finding (replay reaches beyond visited anchors) rather than the specific priority signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the sleep-replay seed distribution were strictly confined to active (recently-visited) anchors, preplay of an unvisited-but-rewarded arm should not occur at above-chance rates; Olafsdottir et al. show that it does.",
+    "The observed gating signal is visible reward, which composes with but is not identical to the epistemic-staleness signal MECH-285 posits; the study does not dissociate the two."
+  ],
+  "tags": ["mech_285", "mech_269", "mech_284", "sleep_replay", "preplay", "seed_coverage_broad"],
+  "mapping": {
+    "source_claim_statement": "Viewing the delivery of food to an unvisited portion of an environment leads to off-line pre-activation of place-cell sequences corresponding to that space; no such preplay arises for an unrewarded but otherwise similar portion.",
+    "ree_translation": "MECH-285's start-state distribution for offline replay need not be confined to active/visited anchors. A motivational gating signal (here, visible reward) expands the seed pool to include places the agent has a reason to model but has not yet physically sampled. For MECH-285 this suggests that the broad-coverage reading is biologically available: the sleep consumer can be seeded from regions that are not currently 'active' in the narrow visited-trajectory sense.",
+    "mapping_caveat": "The gating variable in Olafsdottir et al. is visible reward, which maps onto dopaminergic salience-tagging (MECH-074b / McNamara 2014 substrate) more cleanly than onto epistemic V_s staleness. MECH-285 predicts a distinct, dissociable staleness arm; this study establishes that *some* broad-coverage mechanism exists but does not pin down whether the epistemic arm is separable from salience.",
+    "source_context": "Rat hippocampus (CA1), behaving/resting; T-maze variant in which one arm is visible but barriered from physical access and contains (or does not contain) visible food."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Strong single-unit electrophysiology in a behaviourally clean paradigm. Mapping fidelity drops because the salience/epistemic-staleness dissociation that MECH-285 lives or dies by is not directly tested -- the study speaks to broad vs narrow seed coverage, not to the priority shape or dissociability from dopamine."
+  }
+}
