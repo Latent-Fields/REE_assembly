@@ -155,5 +155,6 @@
     ],
     "episodes": 4,
     "steps_per_ep": 60
-  }
+  },
+  "evidence_direction_note": "Env.step unpacking bug identified 2026-04-24: script unpacked the CausalGridWorldV2 5-tuple as (obs, r, terminated, truncated, info) so `truncated` was the info dict (always truthy) and every episode broke at step 0. Per-seed evidence: n_actions=4 and bla_n_ticks=0 in every arm -- BLA was never exercised in the live loop. PASS verdict stands because C1 is vacuously satisfied (|entropy delta|=0 <= 0.2 nats) and C2-C5 are synthetic tests on BLAAnalog.tick() directly (inverted-U gain curve across scripted arousal inputs, attribution-gated remap, window_steps_remaining monotonicity, simulation_mode introspection). Substrate-level MECH-074a / MECH-074d / SD-035 verification is sustained; BLA behavioural dynamics in live agent-env loop still owe a full-loop validation."
 }

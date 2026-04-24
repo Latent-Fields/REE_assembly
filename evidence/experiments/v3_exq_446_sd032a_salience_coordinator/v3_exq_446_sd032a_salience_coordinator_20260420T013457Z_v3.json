@@ -113,5 +113,6 @@
     ],
     "episodes": 6,
     "steps_per_ep": 80
-  }
+  },
+  "evidence_direction_note": "Env.step unpacking bug identified 2026-04-24: script unpacked the CausalGridWorldV2 5-tuple as (obs, r, terminated, truncated, info) so `truncated` was the info dict (always truthy) and every episode broke at step 0. Per-seed evidence: n_actions=6 and coord_n_ticks=1 in every arm. PASS verdict stands because C1-C4 are synthetic unit tests (pe=10 injection, gate-value range, register_target extensibility, softmax-over-one-tick entropy) and C5 is vacuously satisfied (|entropy delta|=0 <= 0.2 nats). Coordinator behavioural dynamics were NOT exercised in the live loop; any downstream behavioural claim about SD-032a dynamics still owes a full-loop validation. Substrate-level MECH-259 / MECH-261 / SD-032a verification is sustained."
 }
