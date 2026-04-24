@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-24T06:57:48.181557Z`
+Generated: `2026-04-24T07:43:12.521333Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -19,7 +19,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-038` | directional, source_disagreement | 5 | 2 | 0.571 | `v3_exq_355a_arc038_schema_assimilation_probe_20260418T225626Z_v3` | 7 |
 | `ARC-041` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-04-02_arc_041_vmpfc_cognitive_map_value_2025` | 4 |
 | `ARC-042` | directional, source_disagreement | 5 | 3 | 0.75 | `v3_exq_211_mech153_arc042_supervised_labeling_1775168828_v3` | 8 |
-| `ARC-045` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_436_sd017_context_cond_harm_thresh_20260420T033530Z_v3` | 4 |
 | `ARC-058` | directional, mixed_evidence | 1 | 2 | 0.667 | `2026-04-20_arc_058_somatic_vicarious_dissociation_krishnan2016` | 4 |
 | `INV-010` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_430_inv010_offline_integration_necessity_20260419T123934Z_v3` | 4 |
 | `INV-054` | directional, source_disagreement | 3 | 3 | 1 | `v3_exq_435_inv054_phase_transition_sustained_recovery_1776660122_v3` | 6 |
@@ -49,7 +48,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-155` | directional, source_disagreement, mixed_evidence | 5 | 1 | 0.333 | `v3_exq_207_mech155_general_indexing_probe_1775181944_v3` | 7 |
 | `MECH-163` | directional, source_disagreement | 9 | 1 | 0.2 | `v3_exq_327_mech163_goal_conditioned_nav_20260414T054812Z_v3` | 10 |
 | `MECH-165` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-04-06_mech165_salient_replay_priority_huelingo2023` | 4 |
-| `MECH-166` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_436_sd017_context_cond_harm_thresh_20260420T033530Z_v3` | 5 |
 | `MECH-186` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015` | 5 |
 | `MECH-188` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_253_mech188_zgoal_injection_1775556946_v3` | 4 |
 | `MECH-216` | directional | 5 | 1 | 0.333 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 6 |
@@ -69,7 +67,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-012` | directional, source_disagreement, mixed_evidence | 18 | 4 | 0.364 | `2026-04-22_homeostatic_override_pws_hypothalamic_brown2022` | 23 |
 | `SD-013` | directional | 7 | 1 | 0.25 | `v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3` | 8 |
 | `SD-015` | directional, source_disagreement | 8 | 5 | 0.769 | `2026-04-14_sd_015_parallel_streams_lec_knierim2020` | 13 |
-| `SD-017` | directional, source_disagreement, mixed_evidence | 5 | 1 | 0.333 | `2026-04-20_mech_261_rem_theta_gate_boyce2016` | 7 |
 | `SD-018` | directional, source_disagreement, mixed_evidence | 1 | 1 | 1 | `2026-04-21_sd_018_nac_dopamine_approach_costa2025` | 3 |
 | `SD-021` | directional, source_disagreement | 8 | 3 | 0.545 | `v3_exq_325d_sd032c_aic_descending_modulation_20260420T160057Z_v3` | 11 |
 | `SD-023` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 5 |
@@ -308,20 +305,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `The paper studies rodent mPFC development, not primate vmPFC/OFC ethical evaluation. The cognitive functions studied (emotional memory, fear conditioning flexibility) are simpler than ethical selection.` (1)
   - `mPFC maturation in rodents occurs over weeks, while REE's training phases span episodes -- the developmental timescales are not analogous.` (1)
   - `Bengio et al.'s curriculum learning orders examples by difficulty within a fixed objective function. ARC-042's Phase 0/1/2 changes the objective function across phases (Phase 0: prediction error only; Phase 1: prediction + supervised label loss; Phase 2: frozen). Example-ordering curriculum and objective-staging are related but distinct strategies. Bengio et al.'s theory does not formally prove that objective staging is necessary, only beneficial.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### ARC-045
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.715
-- Recent entries:
-  - `2026-04-05T21:00:00Z` `literature` `targeted_review_arc_045` direction=`supports` confidence=0.82
-  - `2026-04-05T21:00:00Z` `literature` `targeted_review_arc_045` direction=`supports` confidence=0.76
-  - `2026-04-18T12:40:11.144347Z` `experimental` `v3_exq_242_sd017_sleep_phase_ablation` direction=`non_contributory` confidence=0
-  - `2026-04-18T23:02:13Z` `experimental` `v3_exq_436_sd017_context_cond_harm_thresh` direction=`non_contributory` confidence=0
-  - `2026-04-20T03:35:30Z` `experimental` `v3_exq_436_sd017_context_cond_harm_thresh` direction=`weakens` confidence=0.75
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -896,20 +879,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### MECH-166
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.757
-- Recent entries:
-  - `2026-04-05T21:00:00Z` `literature` `targeted_review_mech_166` direction=`supports` confidence=0.74
-  - `2026-04-06T00:00:00Z` `literature` `targeted_review_paper_fm3_schema_prior` direction=`supports` confidence=0.85
-  - `2026-04-18T12:40:11.144347Z` `experimental` `v3_exq_242_sd017_sleep_phase_ablation` direction=`non_contributory` confidence=0
-  - `2026-04-18T23:02:13Z` `experimental` `v3_exq_436_sd017_context_cond_harm_thresh` direction=`non_contributory` confidence=0
-  - `2026-04-20T03:35:30Z` `experimental` `v3_exq_436_sd017_context_cond_harm_thresh` direction=`weakens` confidence=0.75
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### MECH-186
 - Conflict types: directional, source_disagreement
 - Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.597
@@ -1270,26 +1239,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### SD-017
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, overall_confidence=0.756
-- Recent entries:
-  - `2026-04-20T03:35:19Z` `experimental` `v3_exq_418a_sd016_sd017_context_conditioned_action` direction=`non_contributory` confidence=0
-  - `2026-04-20T03:35:30Z` `experimental` `v3_exq_436_sd017_context_cond_harm_thresh` direction=`weakens` confidence=0.75
-  - `2026-04-20T06:17:13Z` `literature` `targeted_review_mech261_mode_gating` direction=`supports` confidence=0.8
-  - `2026-04-20T06:17:13Z` `literature` `targeted_review_mech261_mode_gating` direction=`supports` confidence=0.8
-  - `2026-04-24T02:19:32Z` `experimental` `v3_exq_418a_sd016_sd017_context_conditioned_action` direction=`non_contributory` confidence=0
-- Recurring failure signatures:
-  - `The task is spatial navigation (plus-maze goal location); it is not a context-attribution or causal assignment task, so the specific attribution-map convergence that SD-017 requires is not directly tested.` (1)
-  - `One-session learning paradigm tests formation of a single spatial memory, not the multi-episode context differentiation central to SD-017's failure mode prediction.` (1)
-  - `REM phase is not selectively manipulated -- the study addresses SWS/NREM-associated SWRs, which corresponds to only the SWS-analog half of SD-017.` (1)
-  - `The disruption targets ripple-associated activity but also affects non-ripple hippocampal afferent input -- selectivity is lower than closed-loop SWR detection approaches.` (1)
-  - `Both tasks are spatial navigation paradigms; the study does not test whether the impairment extends to non-spatial, context-attribution-based learning.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### SD-018
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.6
@@ -1309,7 +1258,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-021
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=8, weakens=3, conflict_ratio=0.545, overall_confidence=0.658
+- Evidence breakdown: supports=8, weakens=3, conflict_ratio=0.545, overall_confidence=0.657
 - Recent entries:
   - `2026-04-18T12:40:11.180494Z` `experimental` `v3_exq_261_sd021_descending_pain_mod` direction=`non_contributory` confidence=0
   - `2026-04-19T04:25:26Z` `experimental` `v3_exq_325a_sd021_descending_pain_modulation` direction=`weakens` confidence=0.75

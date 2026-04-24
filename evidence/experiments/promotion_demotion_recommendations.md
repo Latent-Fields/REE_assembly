@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-24T06:57:48.181557Z`
+Generated: `2026-04-24T07:43:12.521333Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -16,7 +16,6 @@ Use this as the human-in-the-loop review queue.
 | `ARC-038` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-041` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-042` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `ARC-045` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `ARC-058` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `INV-054` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -37,7 +36,6 @@ Use this as the human-in-the-loop review queue.
 | `MECH-150` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-153` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-165` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-166` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-186` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-188` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-220` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
@@ -69,6 +67,7 @@ Use this as the human-in-the-loop review queue.
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `SD-012` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-015` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `SD-017` | `provisional` | Promotion review: provisional -> stable | `promote_to_stable` | `pending_user` |
 | `SD-021` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-023` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `applied` |
 | `SD-029` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
@@ -196,26 +195,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-04-03T22:00:00Z`
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
 - Last rationale: Hold at candidate: conflict_ratio=0.8, EXQ-211 shows cosim only marginally reduced (weakening evidence). Dedicated conflict-resolution experiments needed.
-
-### ARC-045
-- Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.607, conflict_ratio=0.5, exp_entries=3, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
-- Evidence quality note: >
-- Recommendation: `hold_candidate_resolve_conflict`
-- Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-04-05T11:48:38.245Z`
-- Last selected option: Wait for V3 substrate implementation (correct path).
-- Last rationale: Hold at candidate. SD-017 minimal sleep infrastructure not yet implemented in V3. EXQ-242/243 queued but not run. No promotion or demotion until V3 experiments complete.
 
 ### ARC-058
 - Current status: `candidate`
@@ -587,26 +566,6 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
 - Last rationale: Hold at candidate. conf=0.6, conflict_ratio=0.5 (3 supports/1 weakens). Reverse-replay VALENCE_WANTING propagation. Hold pending conflict-resolution experiments.
 
-### MECH-166
-- Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.635, conflict_ratio=0.4, exp_entries=3, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
-- Evidence quality note: >
-- Recommendation: `hold_candidate_resolve_conflict`
-- Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-04-05T11:48:38.245Z`
-- Last selected option: Wait for V3 substrate implementation (correct path).
-- Last rationale: Hold at candidate. SD-017 slot-formation/filling substrate depends on bidirectional replay not yet implemented. EXQ-242 queued but not run. Hold until sleep phase experiments complete.
-
 ### MECH-186
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
@@ -648,7 +607,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-220
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.655, conflict_ratio=0.4, exp_entries=2, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: overall_conf=0.654, conflict_ratio=0.4, exp_entries=2, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1114,6 +1073,26 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
 - Last rationale: Hold at candidate: 11 experiments with conflict_ratio=0.889. SD-015 seeding mechanism partially validated (proximity regression) but behavior integration fails consistently. EXP-0091 will test handcrafted resource_indicator; hold until that resolves.
 
+### SD-017
+- Current status: `provisional`
+- Decision needed: Promotion review: provisional -> stable
+- Why this decision is needed: overall_conf=0.905, conflict_ratio=0, exp_entries=9, lit_entries=6; directions supports=6, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Evidence quality note: >
+- Recommendation: `promote_to_stable`
+- Options (pros/cons):
+  - Promote now (clear canonical status, risk under-tested edge cases)
+  - Hold pending stress-test replication (better stress confidence, slower closure)
+  - Split claim scope before promotion (clearer boundaries, added doc work)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+- Status note: Prior decision exists but recommendation changed; needs fresh review.
+- Last logged decision: `applied` by `user` at `2026-04-05T11:48:38.245Z`
+- Last selected option: Wait for V3 substrate implementation (correct path).
+- Last rationale: Hold at candidate. Minimal sleep phase infrastructure not yet a first-class V3 substrate component. EXQ-242-246 queued but not run. Hold until sleep phase ablation experiments complete.
+
 ### SD-021
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
@@ -1277,7 +1256,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-035
 - Current status: `provisional`
 - Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.874, conflict_ratio=0, exp_entries=4, lit_entries=3; directions supports=7, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.873, conflict_ratio=0, exp_entries=4, lit_entries=3; directions supports=7, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `promote_to_stable`
 - Options (pros/cons):
