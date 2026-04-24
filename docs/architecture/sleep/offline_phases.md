@@ -38,6 +38,22 @@ The V4 sub-phase sequence is not arbitrary. Each phase is in its position becaus
 
 **Key derivation:** This sequence was not taken from sleep biology. It was derived from asking what an agent needs to reliably know what its actions mean across contexts. The biological NREM→REM sequence converges on the same order because the failure modes are the same. That convergence is evidence for both the biological account and the computational one.
 
+### MECH-122 mechanistic refinements (2026-04-24 lit-pull)
+
+Two findings from the Friday AM literature pull clarify the internal structure of MECH-122 and confirm that Phase 0 and Phase 3 are genuinely distinct sub-mechanisms rather than two names for one thing:
+
+**1. Sensory gating and content packaging are temporally dissociated (Yang et al 2018, J Neurosci)**
+
+Thalamic (mediodorsal nucleus) firing is *suppressed* around spindle-uncoupled ripples — this is the sensory gating event. The suppression begins ~0.4 s before ripple onset, preceding the replay event. Thalamic firing is *elevated* around spindle-coupled ripples — this is the content packaging event. The two modes are sequential within a single consolidation episode, not concurrent: gate first (uncoupled ripples, thalamic step-aside), then package (spindle-coupled ripples, thalamic participation in transfer).
+
+REE implication: Phase 0 (sensory gate) corresponds to the pre-spindle thalamic suppression phase; Phase 3 (spindle coordination) corresponds to the spindle-coupled transfer phase. The two-phase architecture in this table is biologically grounded, not just an engineering choice.
+
+**2. The spindle burst is neocortex-initiated, not hippocampus-initiated (Ngo, Fell & Staresina 2020, eLife)**
+
+Directionality analyses (Granger causality) in human intracranial EEG show a neocortex→hippocampus influence during spindle-ripple coupling, not hippocampus→neocortex. Long-duration ripples produce stronger coupling.
+
+REE implication: Phase 3 is best understood as a neocortical-hippocampal-neocortical reactivation loop — E1 initiates the spindle-equivalent burst, this triggers E3 replay, and E3 content is returned to E1 within the same burst window. The ThetaBuffer bidirectional mode (Phase 3 rewiring) should therefore model E1 as the burst initiator, with E3 replay activated in response. This is consistent with the Phase 3 rewiring spec ("theta-packaged E1 updates transferred to hippocampus") but the *return path* (E3 content back to E1) is the primary consolidation payload; the E1 trigger is the mechanism that opens the window.
+
 ---
 
 ## Failure Mode
