@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-04-24T17:25:27.945395Z`
+Generated: `2026-04-24T17:38:24.779208Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -16,7 +16,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0007` | `MECH-102` | `active` | 0.9 | 0.25 | 0.3 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0008` | `MECH-075` | `candidate` | 0.857 | 0.333 | 0.396 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0009` | `SD-029` | `candidate` | 0.833 | 0.167 | 0.354 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0010` | `SD-005` | `implemented` | 0.815 | 0.333 | 0.194 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0010` | `SD-005` | `implemented` | 0.815 | 0.333 | 0.195 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0011` | `ARC-032` | `candidate` | 0.8 | 0.143 | 0.414 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0012` | `MECH-186` | `candidate` | 0.8 | 0 | 0.435 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0013` | `Q-002` | `active` | 0.8 | 0 | 0.365 | 0 | no | no | `mandatory_decision_checkpoint` |
@@ -37,7 +37,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0028` | `MECH-177` | `candidate` | 0 | 0.5 | 0.772 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0029` | `MECH-181` | `candidate` | 0 | 0.5 | 0.72 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0030` | `MECH-187` | `candidate` | 0 | 0.5 | 0.1 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0031` | `MECH-268` | `candidate` | 0 | 1 | -0.24 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0031` | `MECH-268` | `candidate` | 0 | 1 | -0.199 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0032` | `MECH-E2-DUAL-FUNCTION` | `unknown` | 0 | 0.6 | 0.815 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0033` | `Q-006` | `active` | 0 | 0.5 | 0.267 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 
