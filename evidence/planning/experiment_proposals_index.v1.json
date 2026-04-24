@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-24T11:52:23.458796Z",
+  "generated_at_utc": "2026-04-24T13:29:08Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -1179,12 +1179,12 @@
       "backlog_id": "EVB-0067",
       "claim_id": "MECH-272",
       "dispatch_mode": "targeted_probe",
-      "executed_by": "V3-EXQ-206",
+      "executed_by": "",
       "objective": "Reduce uncertainty for MECH-272 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0067",
       "proposal_type": "experimental",
-      "status": "executed",
+      "status": "open",
       "suggested_experiment_type": "claim_probe_mech_272",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3118,10 +3118,47 @@
       "proposal_type": "experimental",
       "status": "proposed",
       "target_repo": "ree-v3"
+    },
+    {
+      "backlog_id": "EVB-0144",
+      "claim_id": "MECH-273",
+      "dispatch_mode": "targeted_probe",
+      "executed_by": "",
+      "objective": "Test sleep-dependent self-model aggregation: seed a spurious single-episode SD-003 self-attribution and verify that multi-episode replay through the sleep regime (MECH-272 state-gated routing) corrects it, while the same run with sleep-phase ablation retains the spurious attribution.",
+      "priority": "medium",
+      "proposal_id": "EXP-0168",
+      "proposal_type": "experimental",
+      "status": "open",
+      "suggested_experiment_type": "claim_probe_mech_273",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "v3_pending_sleep_substrate"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0145",
+      "claim_id": "MECH-275",
+      "dispatch_mode": "targeted_probe",
+      "executed_by": "",
+      "objective": "Test generalisation of sleep-phase Bayesian aggregation beyond self-attribution: parameterise the MECH-273 template over a second attribution domain (object-schema revision) and verify sleep-phase correction when the waking feedstock is counterfactual-backed (MECH-276) but NOT when it is correlational (negative control).",
+      "priority": "medium",
+      "proposal_id": "EXP-0169",
+      "proposal_type": "experimental",
+      "status": "open",
+      "suggested_experiment_type": "claim_probe_mech_275",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "v3_pending_sleep_substrate",
+        "generalisation_of_mech_273"
+      ]
     }
   ],
-  "n_executed": 105,
-  "n_proposed_exp": 70,
+  "n_executed": 104,
+  "n_proposed_exp": 175,
   "n_proposed_lit": 18,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
