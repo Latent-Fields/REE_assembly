@@ -1,0 +1,221 @@
+{
+  "experiment_type": "v3_exq_479_sd029_balanced_curriculum_fix",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-029"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "supersedes": "v3_exq_470a_sd029_balanced_curriculum",
+  "timestamp_utc": "2026-04-24T17:35:08.834934Z",
+  "seeds": [
+    42,
+    7,
+    13,
+    91
+  ],
+  "conditions": [
+    "BASELINE",
+    "SCHEDULED"
+  ],
+  "episodes_per_seed": 3,
+  "steps_per_episode": 200,
+  "num_hazards": 2,
+  "hazard_harm": 0.02,
+  "curriculum_interval": 10,
+  "curriculum_prob": 1.0,
+  "curriculum_adjacent_only": true,
+  "results": {
+    "BASELINE": [
+      {
+        "seed": 42,
+        "scheduled": false,
+        "n_steps_total": 44,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.0388095378875732,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 7,
+        "scheduled": false,
+        "n_steps_total": 50,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 2,
+        "total_harm_last_ep": 1.190396851301193,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 13,
+        "scheduled": false,
+        "n_steps_total": 64,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 4,
+        "total_harm_last_ep": 1.53588747382164,
+        "info_keys_ok": true,
+        "injection_log": []
+      },
+      {
+        "seed": 91,
+        "scheduled": false,
+        "n_steps_total": 39,
+        "external_hazard_events_per_ep": [
+          0,
+          0,
+          0
+        ],
+        "external_hazard_events_total": 0,
+        "self_caused_events_total": 1,
+        "total_harm_last_ep": 1.1385714435577394,
+        "info_keys_ok": true,
+        "injection_log": []
+      }
+    ],
+    "SCHEDULED": [
+      {
+        "seed": 42,
+        "scheduled": true,
+        "n_steps_total": 43,
+        "external_hazard_events_per_ep": [
+          1,
+          0,
+          2
+        ],
+        "external_hazard_events_total": 3,
+        "self_caused_events_total": 1,
+        "total_harm_last_ep": 1.1739682745933533,
+        "info_keys_ok": true,
+        "injection_log": [
+          {
+            "ep": 0,
+            "step": 11,
+            "cumulative": 1
+          },
+          {
+            "ep": 2,
+            "step": 11,
+            "cumulative": 1
+          },
+          {
+            "ep": 2,
+            "step": 21,
+            "cumulative": 2
+          }
+        ]
+      },
+      {
+        "seed": 7,
+        "scheduled": true,
+        "n_steps_total": 46,
+        "external_hazard_events_per_ep": [
+          1,
+          1,
+          1
+        ],
+        "external_hazard_events_total": 3,
+        "self_caused_events_total": 3,
+        "total_harm_last_ep": 1.0992063760757447,
+        "info_keys_ok": true,
+        "injection_log": [
+          {
+            "ep": 0,
+            "step": 11,
+            "cumulative": 1
+          },
+          {
+            "ep": 1,
+            "step": 11,
+            "cumulative": 1
+          },
+          {
+            "ep": 2,
+            "step": 11,
+            "cumulative": 1
+          }
+        ]
+      },
+      {
+        "seed": 13,
+        "scheduled": true,
+        "n_steps_total": 44,
+        "external_hazard_events_per_ep": [
+          1,
+          1,
+          0
+        ],
+        "external_hazard_events_total": 2,
+        "self_caused_events_total": 2,
+        "total_harm_last_ep": 1.0095238268375397,
+        "info_keys_ok": true,
+        "injection_log": [
+          {
+            "ep": 0,
+            "step": 11,
+            "cumulative": 1
+          },
+          {
+            "ep": 1,
+            "step": 11,
+            "cumulative": 1
+          }
+        ]
+      },
+      {
+        "seed": 91,
+        "scheduled": true,
+        "n_steps_total": 40,
+        "external_hazard_events_per_ep": [
+          1,
+          1,
+          1
+        ],
+        "external_hazard_events_total": 3,
+        "self_caused_events_total": 0,
+        "total_harm_last_ep": 1.0300000202655792,
+        "info_keys_ok": true,
+        "injection_log": [
+          {
+            "ep": 0,
+            "step": 11,
+            "cumulative": 1
+          },
+          {
+            "ep": 1,
+            "step": 11,
+            "cumulative": 1
+          },
+          {
+            "ep": 2,
+            "step": 11,
+            "cumulative": 1
+          }
+        ]
+      }
+    ]
+  },
+  "criteria": {
+    "C_back_baseline_zero": true,
+    "C_fire_scheduled_ge3_per_seed": true,
+    "C_differ_baseline_vs_scheduled": true,
+    "C_info_keys_present": true
+  },
+  "passed": true,
+  "evidence_direction": "supports",
+  "run_id": "v3_exq_479_sd029_balanced_curriculum_fix_20260424T173508Z_v3"
+}
