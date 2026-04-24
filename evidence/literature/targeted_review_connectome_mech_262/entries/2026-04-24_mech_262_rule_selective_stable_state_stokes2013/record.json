@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_262",
+  "entry_id": "2026-04-24_mech_262_rule_selective_stable_state_stokes2013",
+  "timestamp_utc": "2026-04-24T08:45:34Z",
+  "claim_ids_tested": ["MECH-262"],
+  "source": {
+    "title": "Dynamic Coding for Cognitive Control in Prefrontal Cortex",
+    "authors": ["Stokes, Mark G", "Kusunoki, Makoto", "Sigala, Natasha", "Nili, Hamed", "Gaffan, David", "Duncan, John"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.01.039",
+    "pmid": "23562541",
+    "pmc": "PMC3898895"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct electrophysiological evidence from 627 lateral PFC neurons in macaque showing rule-selective stable state orthogonal to physical stimulus coding. Maps well to all three MECH-262 signatures. Source quality is high (Neuron, large cell sample, population decoding). Mapping fidelity strong for signatures 1 and 2; training-dependence (signature 3) is implicit in the trained associations rather than explicitly tested across learning stages.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The rule-differentiating delay state is a low-activity stable state, not persistent high-frequency firing -- if MECH-262 implementation requires sustained high firing rather than a reconfigured synaptic state, this paper does not support it.",
+    "Cross-temporal decoding shows the delay-period code is orthogonal to both the cue representation and the anticipated target stimulus, suggesting the mechanism is not simple memory-trace persistence but network reconfiguration via short-term synaptic plasticity -- a mechanism not yet implemented in ree-v3."
+  ],
+  "tags": ["mech_262", "lateral_pfc", "rule_selective", "stable_state", "population_coding", "macaque"],
+  "mapping": {
+    "source_claim_statement": "An instruction cue triggers rapid state transitions in lateral PFC that settle into a stable low-activity delay state differentially tuned to the current task-relevant rule. The state persists through the delay period, is orthogonal to physical stimulus coding, and aligns choice stimulus responses with the appropriate behavioral decision.",
+    "ree_translation": "The lateral-PFC-analog in REE (SD-033a substrate) maintains a stimulus-abstracted rule representation that persists across simulated time steps -- the REE analog of the stable postcue delay state. Distractor-resistant persistence (MECH-262 signature 2) maps directly to the stable low-activity state that survives subsequent stimulus presentations. Stimulus abstraction (signature 1) maps to the finding that the same neutral stimulus evokes systematically different population responses depending on the currently active rule.",
+    "mapping_caveat": "Stokes 2013 demonstrates rule-selective persistence via population-level dynamic coding in intact monkeys; MECH-262 additionally requires that this representation emerges through training (signature 3) and resists replay-event interference (MECH-092 replay gate). Neither of these specific conditions was tested in this study.",
+    "source_context": "Macaque lateral PFC (BA 8, 9/46, 45), delayed paired-associate recognition task, 627 single units, population decoding with cross-temporal classification"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "High source quality: large cell sample, sophisticated population decoding, peer-reviewed Neuron. Mapping fidelity slightly reduced because the study measures WM maintenance in a short delay context, not long-horizon rule persistence across replay episodes as MECH-262 requires in V3. Transfer risk low: macaque lateral PFC is the direct biological referent for REE's lateral-PFC-analog."
+  }
+}

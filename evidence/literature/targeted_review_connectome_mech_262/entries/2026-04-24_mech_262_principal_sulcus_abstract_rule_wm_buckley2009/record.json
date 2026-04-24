@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_262",
+  "entry_id": "2026-04-24_mech_262_principal_sulcus_abstract_rule_wm_buckley2009",
+  "timestamp_utc": "2026-04-24T08:45:34Z",
+  "claim_ids_tested": ["MECH-262"],
+  "source": {
+    "title": "Dissociable components of rule-guided behavior depend on distinct medial and prefrontal regions",
+    "authors": ["Buckley, Mark J", "Mansouri, Farshad A", "Hoda, Hassan", "Mahboubi, Majid", "Browning, Philip G F", "Kwok, Sze C", "Phillips, Adam", "Tanaka, Keiji"],
+    "year": 2009,
+    "venue": "Science",
+    "doi": "10.1126/science.1172377",
+    "pmid": "19574382"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Circumscribed lesion study with double dissociation showing principal sulcus (lateral PFC) is selectively necessary for abstract rule maintenance in working memory. Strong causal claim from a high-prestige venue. The localization maps precisely to MECH-262's lateral-PFC-analog. Mapping fidelity to signature 2 (distractor-resistant persistence) is high. Signatures 1 and 3 are not directly tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lesion to principal sulcus impairs rule maintenance in working memory but also impairs other aspects of the WCST task; the deficit is not cleanly isolated to rule persistence under distraction as MECH-262 signature 2 requires.",
+    "Principal sulcus lesions in macaques may compensate over time via other frontal regions, so the acute lesion deficit may overstate the normal role of this region in rule maintenance."
+  ],
+  "tags": ["mech_262", "principal_sulcus", "lateral_pfc", "lesion", "abstract_rule", "working_memory", "wcst", "macaque"],
+  "mapping": {
+    "source_claim_statement": "Circumscribed lesions to the principal sulcus (lateral PFC) selectively impaired maintenance of abstract rules in working memory in a WCST analog; OFC lesions impaired rule-value updating; ACC sulcus lesions impaired use of recent choice-outcome values. The triple dissociation confirms that abstract rule maintenance is specifically dependent on lateral PFC.",
+    "ree_translation": "MECH-262 locates rule-selective persistence specifically in the lateral-PFC-analog (SD-033a). Buckley et al's double/triple dissociation provides causal evidence that the biological correlate of this substrate -- the principal sulcus -- is selectively necessary for abstract rule maintenance. If the lateral-PFC-analog is ablated or its write gate disabled in REE, task-rule maintenance should fail while reward-based updating (OFC-analog) and recent-outcome reference (ACC-analog, MECH-260) should be spared.",
+    "mapping_caveat": "The WCST analog tests rule maintenance over seconds-to-minutes, which is longer than the trial-level WM tested in electrophysiology studies, but shorter than the multi-episode persistence MECH-262 requires in V3. The lesion approach cannot distinguish between failure of rule encoding, failure of persistence, or failure of retrieval.",
+    "source_context": "Macaque circumscribed lesion study (OFC, principal sulcus, superior dlPFC, vlPFC, ACC sulcus), WCST analog task, n = 5 per group"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.28,
+    "notes": "Science publication, causal lesion design with clear dissociation. Mapping fidelity high for the lateral-PFC localization claim and for signature 2 (rule persistence). Slightly reduced because the behavioral measure (WCST error rate) is coarser than the mechanistic three-signature framework of MECH-262. Transfer risk low: macaque principal sulcus is the canonical referent for the REE lateral-PFC-analog."
+  }
+}

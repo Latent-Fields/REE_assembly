@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_262",
+  "entry_id": "2026-04-24_mech_262_categorical_encoding_pfc_vs_itc_freedman2003",
+  "timestamp_utc": "2026-04-24T08:45:34Z",
+  "claim_ids_tested": ["MECH-262"],
+  "source": {
+    "title": "A comparison of primate prefrontal and inferior temporal cortices during visual categorization",
+    "authors": ["Freedman, David J", "Riesenhuber, Maximilian", "Poggio, Tomaso", "Miller, Earl K"],
+    "year": 2003,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.23-12-05235.2003",
+    "pmid": "12832548",
+    "pmc": "PMC6741148"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Shows PFC neurons encode abstract categorical meaning (cat vs dog) over physical stimulus shape, and these representations require training on an arbitrary category boundary. Maps to MECH-262 signatures 1 (stimulus-abstracted) and 3 (training-dependent). Mapping fidelity is moderate: visual categories are a simpler domain than abstract task rules, and the PFC here includes broader regions than just the principal sulcus lateral-PFC-analog.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Both PFC and ITC showed category-selective responses, suggesting that stimulus-abstracted categorical coding is not exclusive to lateral PFC -- if the lateral-PFC-analog in REE loses rule selectivity, ITC-analog regions may still carry some form of categorical signal.",
+    "The category boundary was defined visually (a morph space between cats and dogs); abstract rule representations in MECH-262 are explicitly stimulus-independent and amodal. The visual grounding of the category signal in this study may limit transfer."
+  ],
+  "tags": ["mech_262", "lateral_pfc", "categorical_encoding", "stimulus_abstraction", "training_dependent", "macaque"],
+  "mapping": {
+    "source_claim_statement": "Macaque PFC neurons showed stronger category signals (cat vs dog classification) than inferior temporal cortex neurons, greater memory effects during the delay period, and a stronger tendency to encode information in terms of behavioral meaning rather than physical stimulus shape. Monkeys required training on a parametric morphing task before PFC neurons showed category-selective responses.",
+    "ree_translation": "MECH-262 signature 1 (stimulus-abstracted format) is directly supported: PFC neurons encode the rule-relevant category label, not the metric distance in stimulus space. Signature 3 (training-dependent emergence) is also supported: PFC category selectivity emerged through training on the arbitrary cat/dog boundary. In REE, the lateral-PFC-analog (SD-033a) should develop rule-selective representations gradually through training exposure, not express them innately -- this paper provides the biological basis for that expectation.",
+    "mapping_caveat": "The study does not isolate the principal sulcus (lateral PFC) from other PFC regions. The category boundary in this task is defined by physical stimulus proximity in morph space, not by an abstract task rule applied across arbitrary stimuli. MECH-262 requires generalisation to novel stimuli under the same rule (not just novel stimuli within the trained morph space).",
+    "source_context": "Macaque PFC and ITC recordings, visual categorization task (cat/dog morphs), training-dependent arbitrary category boundary, 94 PFC neurons and 143 ITC neurons"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Strong electrophysiology paper in a high-quality venue. Mapping fidelity moderate: the visual category domain is simpler than abstract rule maintenance and the lateral-PFC specificity is not established by lesion. Transfer risk elevated because the REE rule representation is amodal (not tied to visual stimulus properties) and the specific training-dependent emergence mechanism may differ from visual category learning."
+  }
+}

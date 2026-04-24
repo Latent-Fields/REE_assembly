@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_275",
+  "entry_id": "2026-04-24_mech_275_schemas_accelerate_consolidation_tse2007",
+  "timestamp_utc": "2026-04-24T13:43:34Z",
+  "claim_ids_tested": ["MECH-275"],
+  "source": {
+    "title": "Schemas and memory consolidation.",
+    "authors": ["Tse, Dorothy", "Langston, Rosamund F.", "Kakeyama, Masaki", "Bethus, Ingrid", "Spooner, Patrick A.", "Wood, Emma R.", "Witter, Menno P.", "Morris, Richard G. M."],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1135935"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Empirical demonstration in rats of the consequence MECH-275 predicts: once a stable cortical schema has been constructed via repeated training, new episodes consistent with the schema are assimilated into long-term memory within a single trial and become hippocampus-independent within ~48 hours -- timescales orders of magnitude faster than de novo learning. This is the behavioural fingerprint of the schema-revision mechanism MECH-275 names. Confidence held below 0.8 because the study does not directly manipulate the sleep dependency of schema construction, and because the schema being modified (flavour-place associations in an arena) is much narrower than the cross-domain Bayesian aggregation MECH-275 generalises to.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Tse et al. show rapid assimilation when new associations are consistent with the existing schema. They do not test the harder MECH-275 case: revision of an existing schema in light of evidence inconsistent with it. MECH-273's correction-of-spurious-self-attribution case requires this harder revision, not just assimilation.",
+    "Schema formation in Tse et al. takes weeks of cumulative training. MECH-275's aggregation timescale is described as cross-episode within a regime, not weeks of paired-associate practice. The mapping holds for schema function once formed; schema formation timescales may differ.",
+    "The study does not isolate sleep as the consolidation period. The 48-hour hippocampus-independence timescale spans multiple sleep-wake cycles; the role of sleep specifically is inferred from broader literature, not measured."
+  ],
+  "tags": ["mech_275", "schema_consolidation", "hippocampus_neocortex", "rat_paired_associates", "systems_consolidation"],
+  "mapping": {
+    "source_claim_statement": "When a stable associative schema (flavour-place mappings learned over weeks in a constant-context arena) has been built, a single new flavour-place pairing consistent with the schema becomes hippocampus-independent within 48 hours -- in a task where naive animals require weeks of consolidation. Schemas play a causal role in the rapid creation of lasting associative memory.",
+    "ree_translation": "MECH-275 predicts that sleep-phase Bayesian aggregation produces stable schemas (cortical representations of the regularities across many waking-phase counterfactual-backed attributions). Once formed, those schemas should accelerate the assimilation of new attributions consistent with them. Tse et al. demonstrate exactly this acceleration empirically: schema-consistent new associations are absorbed orders of magnitude faster than schema-naive ones.",
+    "mapping_caveat": "Tse et al. demonstrate the behavioural consequence (acceleration) but do not isolate the mechanism. They do not show that schema construction depends on sleep specifically, nor that the schema being constructed is a Bayesian aggregate over counterfactual-backed input (the schema in their task is built by repeated correlational pairing). The paper is best read as evidence that the kind of cortical structure MECH-275 posits exists and operates as MECH-275 says it should -- not as evidence for the specific aggregation mechanism MECH-275 names.",
+    "source_context": "Rat behavioural neuroscience, hippocampal lesions and microRNA inhibition of cortical protein synthesis used to dissect the schema-acceleration effect. Schema is task-specific (event arena, flavour-place pairings)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "High-impact Science paper, well-replicated. Mapping fidelity moderate -- the behavioural consequence is exactly what MECH-275 predicts a schema should produce, but the construction mechanism is correlational rather than counterfactual-backed. Transfer risk moderate: rat paired-associate learning to general Bayesian aggregation across attribution domains is a genuine extrapolation."
+  }
+}

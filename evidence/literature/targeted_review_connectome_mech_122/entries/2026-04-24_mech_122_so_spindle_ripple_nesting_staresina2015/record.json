@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_122",
+  "entry_id": "2026-04-24_mech_122_so_spindle_ripple_nesting_staresina2015",
+  "timestamp_utc": "2026-04-24T08:45:34Z",
+  "claim_ids_tested": ["MECH-122"],
+  "source": {
+    "title": "Hierarchical nesting of slow oscillations, spindles and ripples in the human hippocampus during sleep",
+    "authors": ["Staresina, Bernhard P", "Bergmann, Til Ole", "Bonnefond, Mathilde", "van der Meij, Roemer", "Jensen, Ole", "Deuker, Lorena", "Elger, Christian E", "Axmacher, Nikolai", "Fell, Juergen"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4119",
+    "pmid": "26389842",
+    "pmc": "PMC4625581"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Canonical Nature Neuroscience paper providing direct intracranial EEG evidence from human patients for the hierarchical SO > spindle > ripple nesting. Spindles cluster ripples at spindle troughs -- the temporal framing mechanism that is MECH-122's content packaging function. Human data with cross-frequency coupling analysis, high methodological quality. Mapping fidelity high for the packaging function. Sensory gating function is not measured in this study.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The nesting relationship (spindles cluster ripples) is correlational -- the study does not demonstrate that spindle disruption prevents ripple-timed content transfer, which is the causal claim embedded in MECH-122.",
+    "The hierarchy (SO > spindle > ripple) means spindles are themselves gated by slow oscillations; in REE the equivalent of the SO is not yet implemented in V3, making the spindle-equivalent mechanism only partially instantiated."
+  ],
+  "tags": ["mech_122", "sleep_spindles", "sharp_wave_ripples", "slow_oscillations", "hierarchical_nesting", "memory_consolidation", "human_ieg"],
+  "mapping": {
+    "source_claim_statement": "In human intracranial EEG during NREM sleep, sleep spindles are modulated by the up-state of cortical slow oscillations, and spindles in turn cluster hippocampal ripples at their troughs. This three-way hierarchical nesting provides fine-tuned temporal frames for the transfer of hippocampal memory traces to the neocortex.",
+    "ree_translation": "MECH-122 posits that spindle-equivalent bursts package E3/hippocampal replay (SWR-equivalent) content for z_theta delivery to E1 (neocortex-equivalent). Staresina et al's spindle-clusters-ripples mechanism IS the packaging function: the spindle burst temporally frames the SWR replay event, windows the z_theta transmission channel, and gates content delivery to the cortical surface. The ThetaBuffer already provides theta-rate packaging in V3 (MECH-089, EXQ-052b PASS); MECH-122 extends this to the reverse direction (E3 -> E1) during offline_consolidation mode, with the spindle-equivalent burst as the delivery window.",
+    "mapping_caveat": "The study measures coupling in human hippocampus during sleep but cannot directly test whether the spindle-coupled ripple content is selectively more likely to be consolidated than spindle-uncoupled ripples. The REE mapping also requires a slow-oscillation-equivalent mechanism to gate the spindle-equivalent bursts, which is not yet implemented. The z_theta delivery directionality (E3 -> E1 during sleep vs E1 -> E3 during waking) is a REE architectural claim not directly verified here.",
+    "source_context": "Human epilepsy patients, intracranial EEG during natural sleep, hippocampus and neocortex, cross-frequency phase-amplitude coupling, 11 patients"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "Nature Neuroscience, human intracranial EEG -- highest source quality for this domain. Mapping fidelity high for the packaging mechanism but the causal link between spindle-ripple nesting and content specificity of transfer is not shown. Transfer risk low: human data with direct hippocampal recordings."
+  }
+}

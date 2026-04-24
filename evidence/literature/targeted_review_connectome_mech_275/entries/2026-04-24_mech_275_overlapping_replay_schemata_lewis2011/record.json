@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_275",
+  "entry_id": "2026-04-24_mech_275_overlapping_replay_schemata_lewis2011",
+  "timestamp_utc": "2026-04-24T13:43:34Z",
+  "claim_ids_tested": ["MECH-275", "MECH-273"],
+  "source": {
+    "title": "Overlapping memory replay during sleep builds cognitive schemata.",
+    "authors": ["Lewis, Penelope A.", "Durrant, Simon J."],
+    "year": 2011,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2011.06.004"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct theoretical mapping. Lewis & Durrant propose that NREM-sleep replay of multiple episodic traces in overlapping fashion lets the cortex extract the invariant statistical regularities across them via Hebbian learning, producing schemata. This is structurally identical to MECH-275's claim that sleep aggregates many waking-phase attributions into stable schema revisions, and to MECH-273's specialisation that single-episode SD-003 outputs are aggregated into a stable self-model. Confidence held below 0.8 because the paper does not specify counterfactual-backed feedstock as a precondition (MECH-275's input requirement), so the mapping is only fully exact if one assumes the replayed traces already carry attribution structure -- an assumption the paper does not make.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lewis & Durrant treat replayed episodes as the input; they do not distinguish counterfactual-backed attributions from raw correlation. MECH-275 is only coherent if the input is structured by deliberate intervention. The Lewis & Durrant model would, on its face, also aggregate noise-fit -- which MECH-275 explicitly rules out.",
+    "The paper's mechanism is cortical Hebbian extraction during NREM SWS, with hippocampus as the index. MECH-273 routes the aggregated output back to E1 consolidation AND to SD-033a viability-map revision via MECH-271/MECH-272 anchored channel. The Lewis & Durrant model has no equivalent dual-target routing.",
+    "Schema formation in Lewis & Durrant is monotonic (statistical regularities accumulate). MECH-273 includes a correction sub-mechanism (overturning previously-held spurious self-attributions when post-hoc evidence accumulates against them) that requires non-monotonic Bayesian revision, not just averaging."
+  ],
+  "tags": ["mech_273", "mech_275", "sleep_consolidation", "schema_extraction", "hippocampus_neocortex", "overlapping_replay", "nrem_sws"],
+  "mapping": {
+    "source_claim_statement": "Reactivation of multiple recent memories during NREM sleep, with shared elements overlapping in time, allows cortical Hebbian learning to strengthen the invariants and weaken the episode-specific details, producing a schema -- a generalised representation of the regularities common to the episodes.",
+    "ree_translation": "MECH-275: sleep aggregates many waking-phase attributions to extract the schema that is consistent with the regularities across them. MECH-273 specialises this to self-attribution: many SD-003 outputs across episodes are aggregated to extract the stable self-model -- which actions are reliably self-initiated, which counterfactuals are reliably efficacious, what biases are systematic.",
+    "mapping_caveat": "Lewis & Durrant do not require the replayed traces to be counterfactual-backed. MECH-275 explicitly requires this -- aggregating arbitrary correlations would produce noise-fit. The mapping is exact only under the additional REE assumption that what gets replayed is already attribution-structured by MECH-276's waking-phase intervention loop.",
+    "source_context": "Theoretical review in Trends in Cognitive Sciences synthesising rodent place-cell replay, human declarative consolidation, and computational modelling. No counterfactual-attribution dimension; framework is statistical/extractive rather than Bayesian-revision."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Strong, widely-cited TICS review (foundational schema/replay paper). Mapping fidelity moderate because the input-requirement gap is real -- Lewis & Durrant model would aggregate any replayed material, REE only aggregates counterfactual-backed material. Transfer risk low: the mechanism is at the cognitive/computational level and is supposed to span domains."
+  }
+}

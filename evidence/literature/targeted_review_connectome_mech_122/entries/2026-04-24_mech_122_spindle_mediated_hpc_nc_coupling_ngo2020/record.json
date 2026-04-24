@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_122",
+  "entry_id": "2026-04-24_mech_122_spindle_mediated_hpc_nc_coupling_ngo2020",
+  "timestamp_utc": "2026-04-24T08:45:34Z",
+  "claim_ids_tested": ["MECH-122"],
+  "source": {
+    "title": "Sleep spindles mediate hippocampal-neocortical coupling during long-duration ripples",
+    "authors": ["Ngo, Hong-Viet", "Fell, Juergen", "Staresina, Bernhard"],
+    "year": 2020,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.57011",
+    "pmid": "32657268",
+    "pmc": "PMC7363445"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Directly demonstrates that sleep spindles mediate elevated hippocampal-neocortical coupling time-locked to ripple events, with a causal directionality analysis showing neocortex drives hippocampus during the spindle. Long-duration ripples produce stronger coupling, suggesting the spindle is the active transmission window. Strengthens and extends Staresina 2015 to the cross-regional coupling level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Directionality analysis shows NC -> HPC influence during spindle-ripple coupling, not HPC -> NC as MECH-122's content packaging from E3 to E1 would require -- this reversal challenges the naive interpretation that spindles carry hippocampal replay content to the cortex.",
+    "Long-duration ripples drive stronger coupling, but the content selectivity of this coupling is not assessed -- it is not known whether long ripples carry more task-relevant replay than short ripples."
+  ],
+  "tags": ["mech_122", "sleep_spindles", "sharp_wave_ripples", "hippocampal_neocortical_coupling", "memory_consolidation", "long_duration_ripples"],
+  "mapping": {
+    "source_claim_statement": "Sleep spindles mediate elevated hippocampal-neocortical spindle power coupling time-locked to individual hippocampal ripple events. Directionality analyses indicated a neocortical-to-hippocampal influence during spindle-ripple coupling. Long-duration ripples showed stronger hippocampal-neocortical spindle coupling than short-duration ripples.",
+    "ree_translation": "MECH-122 claims spindle-equivalent bursts window the z_theta delivery channel for E3/hippocampal replay content. Ngo et al's coupling result confirms that spindles are the functional mediator of hippocampal-neocortical communication during replay events. The directionality finding (NC -> HPC during the coupling) suggests a neocortical-hippocampal-neocortical reactivation loop rather than simple unidirectional hippocampal-to-cortical transfer -- in REE terms, the spindle-equivalent burst may not only gate outbound E3 content to E1 but also trigger hippocampal replay by top-down input, consistent with MECH-261's write-gate architecture.",
+    "mapping_caveat": "The NC -> HPC directionality finding challenges a simple E3 -> E1 transfer model. The bidirectional loop suggested by the paper may require MECH-122 to be revised: rather than the spindle simply broadcasting E3 replay content to E1, the mechanism may be neocortical spindle broadcast that triggers hippocampal replay, with the replay content then returned to neocortex during the same spindle window. The REE analog of this bidirectional loop is not yet implemented in V3.",
+    "source_context": "Human epilepsy patients, intracranial + scalp EEG during sleep, n=pre-surgical patients, hippocampus and neocortex simultaneous recordings, coherence and directionality (Granger causality) analyses"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "eLife publication with human intracranial data and quantitative directionality analysis. Mapping fidelity slightly reduced by the directionality finding (NC -> HPC), which complicates the straightforward packaging narrative. Transfer risk low: human hippocampal recordings during natural sleep."
+  }
+}

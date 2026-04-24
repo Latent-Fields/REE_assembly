@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_275",
+  "entry_id": "2026-04-24_mech_275_sleep_inspires_insight_wagner2004",
+  "timestamp_utc": "2026-04-24T13:43:34Z",
+  "claim_ids_tested": ["MECH-275"],
+  "source": {
+    "title": "Sleep inspires insight.",
+    "authors": ["Wagner, Ullrich", "Gais, Steffen", "Haider, Hilde", "Verleger, Rolf", "Born, Jan"],
+    "year": 2004,
+    "venue": "Nature",
+    "doi": "10.1038/nature02223"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Classic demonstration that sleep restructures recently-acquired representations to support qualitatively new behaviour. Participants who slept after training on a number-reduction task with a hidden abstract rule discovered the rule at more than twice the rate of wake controls. This is a behavioural fingerprint of the schema-revision MECH-275 names: the same input data, after a sleep period, supports an inference the waking analysis did not. Confidence kept moderate because the underlying transformation in Wagner et al. is rule-extraction from a regular task, which is closer to MECH-275's regularity-extraction arm than to the cross-episode counterfactual-aggregation case the claim primarily targets.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Wagner et al. show insight emerges after sleep, but they do not show that the insight depends on aggregation across many traces -- in principle the insight could come from re-analysis of even a single training session's representation. MECH-275 specifically requires multi-episode aggregation, which this paper does not isolate.",
+    "The hidden rule in the number-reduction task is a deterministic invariant of the training data, not a probabilistic structure inferred under uncertainty. MECH-275's Bayesian framing is a stronger claim than Wagner et al. test."
+  ],
+  "tags": ["mech_275", "sleep_insight", "schema_revision", "rule_extraction", "human_behavioural"],
+  "mapping": {
+    "source_claim_statement": "Participants trained on a stimulus-response sequence task with a hidden abstract rule (a number-reduction shortcut) and re-tested 8 hours later showed roughly twice the rate of insight-driven discovery in the post-sleep group as in either the post-wake or the daytime-wake group. Sleep restructures recent memory representations to enable qualitative reorganisation of inference, not just quantitative consolidation.",
+    "ree_translation": "MECH-275 says sleep-phase Bayesian aggregation produces schema revision -- not just strengthening of what was learned awake, but reorganisation that supports new inferences. Wagner et al. demonstrate the behavioural form of exactly this reorganisation: the same task data, after sleep, supports an inference (the hidden-rule shortcut) that the waking analysis did not produce.",
+    "mapping_caveat": "Wagner et al. do not isolate which sleep stage produces the insight effect, do not show that the mechanism is multi-episode aggregation (rather than single-session re-analysis), and do not address the counterfactual-vs-correlational input distinction. The paper supports the proposition that sleep produces qualitative cognitive reorganisation; the more specific claim that this reorganisation is Bayesian aggregation over counterfactual-backed input is not tested.",
+    "source_context": "Human behavioural study, n=66 (split across three conditions), Nature 2004. Number-reduction task is a deterministic-rule task; the hidden structure is a logical invariant of the training trials."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.40,
+    "notes": "High-impact Nature paper, well-replicated. Mapping fidelity moderate-low because the paper demonstrates qualitative reorganisation but not the specific aggregation mechanism MECH-275 names. Transfer risk elevated because the task is deterministic-rule discovery rather than probabilistic schema revision."
+  }
+}

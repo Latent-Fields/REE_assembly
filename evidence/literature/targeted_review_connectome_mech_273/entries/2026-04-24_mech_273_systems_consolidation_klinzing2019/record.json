@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_273",
+  "entry_id": "2026-04-24_mech_273_systems_consolidation_klinzing2019",
+  "timestamp_utc": "2026-04-24T13:43:34Z",
+  "claim_ids_tested": ["MECH-273"],
+  "source": {
+    "title": "Mechanisms of systems memory consolidation during sleep.",
+    "authors": ["Klinzing, Jens G.", "Niethard, Niels", "Born, Jan"],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-019-0467-3"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Comprehensive Nature Neuroscience review of the hippocampus-neocortex-thalamus dialogue that implements sleep-dependent systems consolidation. The triple oscillatory rhythm (slow oscillations, sleep spindles, hippocampal sharp-wave ripples) is the substrate MECH-273 inherits for routing aggregated SD-003 outputs to E1 consolidation. Confidence held at 0.71 because the review treats episodic-trace consolidation in general terms; MECH-273 specialises this to self-attribution traces specifically and adds the SD-033a viability-map consumer, neither of which the review addresses directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Klinzing et al. describe sleep consolidation as an active process that strengthens replayed traces; they do not describe a corrective sub-mechanism that overturns previously-consolidated traces in light of accumulating counter-evidence. MECH-273's spurious-self-attribution-correction case requires the latter, and the review's framework does not obviously support it -- consolidation is generally additive in their account.",
+    "The review focuses on declarative-episodic and procedural memory. Self-attribution as a memory category is not separately discussed, and the assumption that the same triple-rhythm machinery aggregates self-attribution traces in the way MECH-273 needs is an extrapolation.",
+    "Routing of consolidated output is to neocortex generally; the dual-target routing MECH-273 requires (E1 + SD-033a via anchored channel) is not addressed."
+  ],
+  "tags": ["mech_273", "sleep_consolidation", "hippocampus_neocortex", "slow_oscillations", "sharp_wave_ripples", "spindles", "systems_consolidation"],
+  "mapping": {
+    "source_claim_statement": "Systems consolidation during sleep is an active process implemented by a precise temporal coupling of three NREM oscillatory rhythms: cortical slow oscillations (~1Hz), thalamocortical spindles (~12-15Hz), and hippocampal sharp-wave ripples (~150-250Hz). The slow oscillation up-state windows admit ripple-spindle co-occurrence, during which hippocampally-indexed replay drives cortical Hebbian re-encoding. The mechanism is selective (favours behaviourally relevant traces), repeated (across many cycles), and produces gradual transfer of the trace from hippocampus-dependent to cortex-resident.",
+    "ree_translation": "MECH-273 inherits this triple-rhythm machinery as the substrate for routing aggregated SD-003 outputs from hippocampus to E1 (world-model consolidation). The selective-aggregation property maps to MECH-285's V_s-residual priority biasing of which self-attribution episodes get aggregated first. The repeated-cycle property maps to the cross-episode aggregation MECH-273 needs to produce a stable self-model.",
+    "mapping_caveat": "The review describes the mechanism in trace-general terms (declarative and procedural memory). The specialisation to self-attribution traces -- and the additional claim that the aggregated output is dual-routed to E1 and SD-033a via MECH-271/MECH-272 anchored channel -- is REE-specific. The review supplies the substrate, not the specialisation. Also: the corrective sub-mechanism MECH-273 needs (overturning previously-held spurious self-attributions) is not naturally part of the additive-consolidation framework Klinzing et al. describe.",
+    "source_context": "Major Nature Neuroscience review synthesising rodent electrophysiology, human polysomnography, and computational modelling. State-of-the-art account of the NREM-sleep oscillatory machinery."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.32,
+    "notes": "High source quality (top-tier review). Mapping fidelity moderate because the substrate is exactly what MECH-273 needs but the specialisation (self-attribution + dual-target routing + corrective sub-mechanism) is REE-specific and not tested by the literature this review summarises. Transfer risk modest -- the review is mechanism-level and broadly applicable."
+  }
+}
