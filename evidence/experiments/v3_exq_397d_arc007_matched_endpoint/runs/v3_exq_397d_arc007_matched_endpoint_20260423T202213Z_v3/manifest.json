@@ -24,8 +24,11 @@
     "SD-004"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-007": "non_contributory",
+    "SD-004": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -41,5 +44,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Re-tagged 2026-04-24T08:10:41Z from weakens to non_contributory (governance walk). Matched-endpoint residue comparison yields matched_gap_intact=-1.639 across all phases (intact/ablated/restored); the sign contradicts the PASS direction and does not respond to ablation (ablated residue collapses to 0 because the gated input is masked, not because nav quality degrades). This is a metric/substrate pathology (hippo paths genuinely accumulate more residue than random on matched endpoints when goals are residue-dense), not disconfirming evidence for either ARC-007 path memory or SD-004 action-object backbone. Route: propose an alternative metric (e.g., success_rate, hazard_encounter_count) that directly tests navigation quality."
 }

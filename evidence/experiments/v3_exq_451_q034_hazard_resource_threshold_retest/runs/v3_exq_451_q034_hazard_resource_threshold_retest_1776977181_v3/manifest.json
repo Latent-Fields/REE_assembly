@@ -23,9 +23,9 @@
     "Q-034"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-034": "weakens"
+    "Q-034": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Re-tagged 2026-04-24T08:10:41Z from weakens to non_contributory (governance walk). Matches the 04/22 precedent (EXQ-451 run 1776700328 reclassified non_contributory with goal_reach_rate=0.0 and action_class_entropy=0.0 across 15/15 grid points). Same substrate pathology in this second run: the hazard/resource threshold sweep produces collapsed behaviour (no goal reach, no action diversity) that cannot distinguish the hypothesis from the null. Not disconfirming evidence against Q-034. Route: re-examine env configuration (hazard density vs agent survival) before the next Q-034 retest."
 }

@@ -4537,7 +4537,7 @@
   claim_type: mechanism_hypothesis
   subject: default_mode.simulation_real_distinction_write_profile
   polarity: asserts
-  status: provisional
+  status: stable
   claim_level: functional
   evidence_quality_note: |
     EXQ-140 reclassified non_contributory (2026-04-09): substrate gap -- no explicit
@@ -4549,7 +4549,8 @@
     evidence (EVB-0134, EVB-0135). Promoted candidate -> provisional 2026-04-19
     (governance): 12 supporting runs, 0 opposing, conf 0.856. EXQ-448 (SD-032e pACC
     autonomic) PASS confirmed first concrete wiring via hypothesis_tag skip (50 skipped,
-    drive_bias held at 0).
+    drive_bias held at 0). Promoted provisional -> stable 2026-04-24 (governance):
+    13 supporting lit entries, 0 opposing, conf 0.868.
   depends_on:
     - ARC-014
     - INV-011
@@ -5077,6 +5078,13 @@
     unmet -- commit locus gate fires at wrong moments in synchronous substrate; phase-reset
     absorbed by stale E3. Experiment premature. Re-run (T215640Z) identical metrics -- one result.
     Does not weaken MECH-097. Requeue after SD-006 phase 2.
+    EXQ-137 re-run 2026-04-24 (post-ARC-016/SD-005 substrate landings, V3-EXQ-137): FAIL, 3/5
+    pre-registered criteria, delta_gap (ON - ABLATED) = -0.0050, gap_on=0.003 vs C1>=0.04,
+    wrong sign. n_approach_contacts=535 (manipulation check strong; not a broken probe). Script
+    author pre-registered decision='retire_ree_claim' on this outcome. Governance 2026-04-24:
+    held at candidate (single experiment; alternative PPS encodings -- distance gradient, direction
+    field -- remain untested). Evidence recorded as weakens. Next-step: design V3-EXQ with
+    distance-gradient PPS encoding before considering demotion.
   depends_on:
     - SD-005
     - MECH-091
@@ -10871,7 +10879,7 @@
   claim_type: design_decision
   subject: sleep_phase.minimal_sleep_infrastructure_v3
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -10918,6 +10926,7 @@
     EXQ-418a + EXQ-436 (2026-04-18, non_contributory -- governance 2026-04-19): Two experiments produce zero differential signal across seeds (action_bias_div=0.0 in EXQ-418a all seeds/conditions; slot metrics identical across WAKING/SWS_ONLY/SWS_THEN_REM in EXQ-436). Shared anomaly suggests context-conditioning substrate not wired through to policy/slot structure. Reclassified as diagnostic of substrate wiring rather than test of SD-017. Flagged for further substrate investigation.
     EXQ-418a rerun 2026-04-19T10:24 (non_contributory -- governance 2026-04-19): Second occurrence of same zero-differential-signal pattern (action_bias_div=0.0 in both WITH_SLEEP_SD016 and WITHOUT_SLEEP_SD016 conditions, all seeds). Confirms wiring gap persists; same diagnostic classification applied.
     EXQ-418a + EXQ-436 04-20 reruns (non_contributory -- governance 2026-04-22): Same bit-identical zero-signal pattern repeats in third + fourth attempts. Root cause now diagnosed as SD-016 cue_action_proj consumer collapse (per-channel std ~2.7e-8 in frozen-weights regime). SD-017/ARC-045/MECH-166 cannot be discriminated until SD-016 consumer wiring fix lands; spawned diagnostic owns the fix.
+    Promoted provisional -> stable 2026-04-24 (governance): 5 supporting literature entries, 0 opposing, 1 mixed, conf 0.903. No contributing genuine experimental evidence yet -- all SD-017 ablation runs to date are non_contributory because of the upstream SD-016 ContextMemory attention-uniformity bug (V3-EXQ-477 diagnostic 2026-04-24 localised to key_proj.bias dominance, bias_over_content_ratio=4.24). Promotion rests on the consolidated sleep-phase biology literature; experimental confirmation deferred to post-SD-016-fix ablation re-run.
 
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
@@ -17903,9 +17912,9 @@
   claim_type: design_decision
   subject: cingulate.salience_network_coordinator
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 substrate-readiness PASS + V3-EXQ-455 behavioural PASS + V3-EXQ-453 06:21 write-gate landing PASS
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 substrate-readiness PASS + V3-EXQ-455 behavioural PASS + V3-EXQ-453 06:21 write-gate landing PASS. Promoted candidate -> provisional 2026-04-24 (governance): 21 supporting entries, 0 opposing, 1 genuine exp (V3-EXQ-445a mixed), conf 0.861.
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
@@ -18219,9 +18228,9 @@
   claim_type: design_decision
   subject: cingulate.pacc_autonomic_coupling
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-453 06:21 write-gate landing PASS validates SD-032e write-gate registration in salience coordinator
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-453 06:21 write-gate landing PASS validates SD-032e write-gate registration in salience coordinator. Promoted candidate -> provisional 2026-04-24 (governance): 3 supporting entries + 1 mixed, 0 opposing, conf 0.830.
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
@@ -18355,9 +18364,9 @@
   claim_type: mechanism_hypothesis
   subject: cingulate.switch_threshold
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 substrate PASSes confirm switch-threshold mechanism is firing
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 substrate PASSes confirm switch-threshold mechanism is firing. Promoted candidate -> provisional 2026-04-24 (governance): 3 supporting entries, 0 opposing, 1 genuine exp, conf 0.753.
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -18478,9 +18487,9 @@
   claim_type: mechanism_hypothesis
   subject: cingulate.mode_conditioned_write_gating
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 + V3-EXQ-453 06:21 write-gate landing PASS validates mode-conditioned write gating
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 + V3-EXQ-453 06:21 write-gate landing PASS validates mode-conditioned write gating. Promoted candidate -> provisional 2026-04-24 (governance): 21 supporting entries, 0 opposing (pre-retag), 1 genuine exp, conf 0.862. NOTE: V3-EXQ-453a 2026-04-24 FAIL per-claim weakens (mode-conditioned write-gate landing regressed on seed-level reproducibility of release gating); factored into held-at-provisional decision.
   claim_level: mechanistic
   registered_utc: 2026-04-19
   last_updated_utc: 2026-04-19
@@ -19224,9 +19233,9 @@
   claim_type: design_decision
   subject: amygdala.analog_substrate
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 + V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22; MECH-074b retrieval_bias still pending follow-up EXQ
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 + V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22; MECH-074b retrieval_bias still pending follow-up EXQ. Promoted provisional -> stable 2026-04-24 (governance): 3 supporting lit entries (Everitt 2003, Ciocchi 2010, Parkinson 2000), lit_conf 0.828.
   claim_level: architectural
   registered_utc: 2026-04-21
   depends_on:

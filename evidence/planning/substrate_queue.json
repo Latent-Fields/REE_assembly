@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-22T23:11:16Z",
+  "last_updated_utc": "2026-04-24T08:10:41Z",
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",
@@ -36,7 +36,7 @@
       "implementation_hint": "E2_harm_s is implemented (ARC-033) but training requires counterfactual perturbation signal to avoid bias in causal_sig. Add contrastive counterfactual action pair during E2_harm_s training: for each transition, sample a_cf != a_actual, compute predicted z_harm_s_cf, train E2_harm_s to produce divergent outputs for actual vs counterfactual actions. Validates SD-003 z_harm_s attribution pipeline.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -124,7 +124,7 @@
       "implementation_hint": "Encoder signal is present (prox_r2=0.9+) but E3 trajectory scoring does not convert encoder output into navigation lift. The bottleneck is action-selection integration: z_resource must feed into E3 trajectory scoring as a goal-proximity gradient, not just be encoded. MECH-112 must be resolved first (E3 structured latent goal representation). MECH-112 prerequisite resolved by co-implementation in this session (ResourceEncoder IS the MECH-112 substrate).",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -224,7 +224,7 @@
       "implementation_hint": "z_harm_a and z_harm_s must encode non-overlapping information under the split SD-011 design. SD-019 adds an orthogonality/redundancy-reduction constraint (e.g. adversarial loss or correlation penalty) between z_harm_a and z_harm_s encoder outputs. Requires ARC-016 (dynamic precision) to contextualize what counts as non-redundant in different regime states. ARC-016 wiring resolved: e3.current_precision accessible as property.",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -299,7 +299,7 @@
       "implementation_hint": "Replace z_harm_a AffectiveHarmEncoder training target from EMA-accumulated harm to a precision-weighted prediction error signal: surprise = |harm_obs - E_predicted_harm| * precision. ARC-016 dynamic precision provides the precision weight. Requires SD-019 to enforce that z_harm_s and z_harm_a encode non-redundant aspects of the harm signal. Both SD-019 and ARC-016 now implemented.",
       "priority": 1,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -378,7 +378,7 @@
       "implementation_hint": "During E3 committed-mode episodes (MECH-090 beta elevated), descending modulation gates z_harm_s PE downward. MECH-090 bistable latch and ARC-016 wiring now both implemented. SD-020 also implemented (precision-weighted PE target for z_harm_s training).",
       "priority": 2,
       "added_session": "governance-2026-04-09-c",
-      "last_seen_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-10T12:00:00Z",
@@ -453,7 +453,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-09. CausalGridWorldV2 now has 4-directional limb_damage[4] state; accumulates when moving through hazards; heals at heal_rate=0.002/step; harm_obs_a re-sourced from body damage state (7 dims: damage[4]+max+mean+residual_pain) when limb_damage_enabled=True. EXQ-319 PASS confirmed dissociation: agent with accumulated damage shows high z_harm_a and low z_harm_s when removed from hazard. r2 reduction confirmed by EXQ-318 direction (0.702->0.365) though variance threshold unmet. Promote to provisional: mechanism works, threshold failure is calibration (heal_rate too fast for 150 warmup episodes).",
       "priority": 1,
       "added_session": "governance-2026-04-11",
-      "last_seen_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implementation_status": "implemented",
       "implemented_session": "cowork-2026-04-10-substrate-5",
       "implemented_utc": "2026-04-09T00:00:00Z",
@@ -533,7 +533,7 @@
       "implementation_hint": "Forward model (E2_harm_s, ARC-033) and interventional training (SD-013) already implemented -- C1 and C2 are passing. The blocker is curriculum: event-density imbalance between self-caused and externally-caused harm makes event-conditioned SNR noisy. Curriculum must reliably produce both event types per seed. Candidates: (a) scripted mix of hazard-approach vs hazard-enter episodes; (b) scheduled hazard-appearance events (externally-caused) interleaved with agent-driven hazard encounters; (c) longer P2 eval with hazard_density tuned so both event classes accumulate >= 20 events per seed.",
       "priority": 1,
       "added_session": "governance-2026-04-19T06",
-      "last_seen_session": "governance-2026-04-19T06",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implementation_status": "implemented",
       "implemented_utc": "2026-04-21T05:54:39Z",
       "implemented_session": "cowork-2026-04-21-batch",
@@ -574,7 +574,7 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-19T21"
+      "last_seen_session": "governance-2026-04-24T08:10"
     },
     {
       "sd_id": "SD-032b",
@@ -588,7 +588,7 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-19T21"
+      "last_seen_session": "governance-2026-04-24T08:10"
     },
     {
       "sd_id": "SD-032c",
@@ -602,7 +602,7 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-19T21"
+      "last_seen_session": "governance-2026-04-24T08:10"
     },
     {
       "sd_id": "SD-032d",
@@ -616,7 +616,7 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-19T21"
+      "last_seen_session": "governance-2026-04-24T08:10"
     },
     {
       "sd_id": "SD-032e",
@@ -630,7 +630,7 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-19T21"
+      "last_seen_session": "governance-2026-04-24T08:10"
     },
     {
       "sd_id": "SD-033a",
@@ -647,7 +647,7 @@
       "implementation_hint": "Implemented 2026-04-20 in ree-v3 (ree_core/pfc/lateral_pfc_analog.py). First subdivision of SD-033 and primary consumer of MECH-261 write-gate registry. Gate-modulated EMA over (z_delta + w * z_world) with frozen-random zeroed-last-Linear bias head. Three design alternatives (A1 per-candidate vs uniform; A2 frozen-random vs trained; A3 EMA vs recurrent / synaptic-hold) documented in design doc and queued as lit-pulls in task_inbox.md.",
       "priority": 2,
       "added_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
-      "last_seen_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
+      "last_seen_session": "governance-2026-04-24T08:10",
       "implemented_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
       "implemented_utc": "2026-04-20T00:00:00Z",
       "validation_experiment": "V3-EXQ-456"
@@ -672,7 +672,10 @@
       "implementation_hint": "Implement as a regulator layer (not per-stream update logic) with global gaba_tone scalar; default tau_harm_s=0.05; cross-stream decay over z_harm_s, z_harm_a, z_beta. EXQ-475 confirms decay alone insufficient -- requires V_s landing (MECH-269) upstream before behavioural unlock manifests.",
       "priority": 1,
       "added_session": "2026-04-22-governance",
-      "last_seen_session": "2026-04-22-governance"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "status": "implemented",
+      "implementation_note_update": "SD-036 marked IMPLEMENTED 2026-04-22 in ree-v3/CLAUDE.md",
+      "implemented_utc": "2026-04-22T00:00:00Z"
     },
     {
       "sd_id": "MECH-269",
@@ -702,7 +705,351 @@
       "implementation_hint": "V_s = per-region verisimilitude (anchor probe). Without it, the policy cannot generate the operating-mode diversity required to test SD-029 attribution, SD-032b dACC behavioural adjustment, SD-036 decay-driven recovery, or Q-034 threshold-sweep validity. This is the single highest-priority substrate in the queue.",
       "priority": 1,
       "added_session": "2026-04-22-governance",
-      "last_seen_session": "2026-04-22-governance"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "status": "implemented",
+      "implementation_note_update": "MECH-269 marked IMPLEMENTED 2026-04-22 in ree-v3/CLAUDE.md",
+      "implemented_utc": "2026-04-22T00:00:00Z"
+    },
+    {
+      "sd_id": "SD-019a",
+      "title": "harm_stream.immediate_affective_valence",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-019b",
+        "MECH-219"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation. Biological grounding via SD-019 targeted reviews (Price 2000, Rainville 1997, Woolf & Salter 2000, Craig 2003, Berthier 1988). Loffler et al. 2018 (targeted_review_q_036) specifically supports the controllability non-dependence of unpleasantness. Lit pull specific to S",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-019b",
+      "title": "harm_stream.suffering_accumulator",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-019a",
+        "MECH-219",
+        "Q-036"
+      ],
+      "unblocks_claims": [
+        "MECH-219"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation. Q-036 targeted_review (2026-04-20, 3 entries, mean conf=0.72) directly supports the controllability-gating requirement. Salomons et al. 2004 (JNeurosci) confirms neural substrate of controllability effect on ACC/insula suffering circuit. De Ridder et al. 2021 grounds t",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-024",
+      "title": "hippocampal_module.da_modulated_rbf_density",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_024_da_modulated_rbf_density.md",
+      "depends_on_unresolved": [
+        "SD-004",
+        "MECH-232"
+      ],
+      "unblocks_claims": [
+        "SD-025"
+      ],
+      "failure_record": [],
+      "implementation_hint": "See claims.yaml entry.",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-025",
+      "title": "hippocampal_module.curiosity_drive",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-024",
+        "SD-004",
+        "ARC-057",
+        "MECH-111",
+        "INV-051"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "See claims.yaml entry.",
+      "priority": 3,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-026",
+      "title": "attention.prospective_precision_write_channel",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "INV-034",
+        "INV-037",
+        "INV-038",
+        "INV-009",
+        "MECH-007"
+      ],
+      "unblocks_claims": [
+        "INV-012",
+        "INV-021",
+        "INV-024",
+        "MECH-251",
+        "MECH-253",
+        "SD-027",
+        "MECH-254",
+        "SD-028",
+        "MECH-255"
+      ],
+      "failure_record": [],
+      "implementation_hint": "No direct experiments yet. Testing is gated on SD-014 (z_resource\nseparation): without a crisp resource representation, a DAN template\nablation is confounded -- template quality and target quality cannot\nbe disentangled. Do not queue SD-026 validation EXQ until SD-014 is\nat least provisional.\n\nPredi",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-027",
+      "title": "attention.access_gate_at_boundary",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "MECH-007",
+        "MECH-089",
+        "MECH-081",
+        "SD-026",
+        "INV-009"
+      ],
+      "unblocks_claims": [
+        "MECH-254"
+      ],
+      "failure_record": [],
+      "implementation_hint": "No direct experiments. V3 retrofit could be tested if prioritised:\nmeasure behavior with selection gate active (top-k, k=5) vs gate\ndisabled (all content forwarded). Predictions: disabled gate -> E3\nupdate stability degrades under high-activity conditions; committed-\nmode precision fluctuations incr",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-028",
+      "title": "attention.template_as_first_class_object",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-026",
+        "INV-034",
+        "INV-037",
+        "INV-038",
+        "MECH-007"
+      ],
+      "unblocks_claims": [
+        "MECH-255"
+      ],
+      "failure_record": [],
+      "implementation_hint": "No evidence expected until V4 vmPFC-dlPFC decomposition is\nimplemented. The minimal MECH-251 form (direct z_goal projection)\nwill provide a V3 baseline against which SD-028's context-dependent\ncompilation can be compared: if a single static projection suffices\nto produce goal-conditioned behavior ac",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-030",
+      "title": "self_attribution.comparator_z_self",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_030_e2_self_forward_model.md",
+      "depends_on_unresolved": [
+        "SD-005",
+        "MECH-256"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "No V3 evidence expected. V4 target. Registered pre-implementation so the per-stream attribution topology is explicit in the claim matrix.\n",
+      "priority": 3,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-031",
+      "title": "self_attribution.comparator_z_world",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_031_e2_world_forward_model.md",
+      "depends_on_unresolved": [
+        "SD-005",
+        "MECH-256"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "No V3 evidence expected. V4 target. Registered pre-implementation.\n",
+      "priority": 3,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-032",
+      "title": "cingulate.integration_substrate",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_032_cingulate_integration_substrate.md",
+      "depends_on_unresolved": [
+        "MECH-094",
+        "MECH-220"
+      ],
+      "unblocks_claims": [
+        "SD-032a",
+        "SD-032b",
+        "SD-032c",
+        "SD-032d",
+        "SD-032e"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation on the basis of 9-entry lit-pull (2026-04-19); mean confidence ~0.80 across entries. No V3 experimental evidence yet; dACC-analog implementation (SD-032b) is the first testable target. Design doc: docs/architecture/sd_032_cingulate_integration_substrate.md (subdivisions",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-033",
+      "title": "pfc.subdivision_architecture",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_033_pfc_subdivision_architecture.md",
+      "depends_on_unresolved": [
+        "MECH-094",
+        "MECH-261",
+        "ARC-035",
+        "MECH-116",
+        "MECH-151",
+        "MECH-152",
+        "MECH-235"
+      ],
+      "unblocks_claims": [
+        "SD-033a",
+        "SD-033b",
+        "SD-033c",
+        "SD-033d",
+        "SD-033e",
+        "SD-034",
+        "MECH-266"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation on the basis of 7-entry lit-pull (2026-04-19); mean confidence 0.80 across entries. No V3 experimental evidence yet; SD-033a implementation is the first testable target. Design doc: docs/architecture/sd_033_pfc_subdivision_architecture.md (subdivisions, MECH-261 gating ",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-033b",
+      "title": "pfc.ofc_analog_outcome_structure",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-033",
+        "MECH-263",
+        "MECH-261"
+      ],
+      "unblocks_claims": [
+        "MECH-261",
+        "MECH-263"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation. See SD-033 parent.\n",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-033c",
+      "title": "pfc.vmpfc_analog_value_integration",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-033",
+        "ARC-035",
+        "MECH-151",
+        "MECH-152",
+        "MECH-235",
+        "MECH-261"
+      ],
+      "unblocks_claims": [
+        "MECH-261",
+        "MECH-264"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation as a subdivision consolidating existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions. No new evidence requirement beyond what those claims already carry.\n",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-033d",
+      "title": "pfc.premotor_sma_analog_sequence_execution",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-033",
+        "MECH-094",
+        "MECH-261"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation as a graph-completeness subdivision mapping existing E3 sequence-selection machinery onto the primate/human premotor biology.\n",
+      "priority": 3,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-033e",
+      "title": "pfc.frontopolar_analog_branching",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-033",
+        "MECH-261",
+        "MECH-264",
+        "MECH-265"
+      ],
+      "unblocks_claims": [
+        "MECH-264",
+        "MECH-265"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Registered pre-implementation. Seven literature entries from Prong C (Koechlin & Summerfield 2007) and Prong D (Burgess 2000, Burgess 2007, Boorman 2009, Christoff 2009, Mansouri 2015, Mansouri 2017) support the V4 scoping. The Mansouri 2017 Nature Reviews synthesis is the load-bearing integrative a",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-037",
+      "title": "broadcast.override_regulator",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-280",
+        "MECH-281",
+        "MECH-282",
+        "MECH-286"
+      ],
+      "failure_record": [],
+      "implementation_hint": "No V3 substrate evidence yet; not implemented. Strong literature basis (lit-pull synthesis at literature_confidence ~0.78 across 13 papers). Promotion requires the falsifiable factorial validation above plus independent demonstration of the two failure-mode phenotypes.\n",
+      "priority": 2,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-038",
+      "title": "hippocampal.cem_anti_recency_exploration",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "MECH-289",
+        "MECH-092"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "No V3 substrate evidence yet; not implemented. Literature basis: Gupta et al. 2010 (conf=0.80, Neuron, directly evidences the anti-recency property) + indirect support from Carr 2011 and Muessig 2019 (generative replay over all available paths). Promotion requires ablation experiment demonstrating d",
+      "priority": 3,
+      "added_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-24T08:10"
     }
   ]
 }
