@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-04-25T15:15:46Z",
+  "last_review_utc": "2026-04-25T15:49:42Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -237,7 +237,18 @@
     "V3-EXQ-406b",
     "V3-EXQ-429b",
     "V3-EXQ-470a",
-    "V3-EXQ-418c"
+    "V3-EXQ-418c",
+    "V3-EXQ-471",
+    "V3-EXQ-447a",
+    "V3-EXQ-445e",
+    "V3-EXQ-445d",
+    "V3-EXQ-455a",
+    "V3-EXQ-433c",
+    "V3-EXQ-449b",
+    "V3-EXQ-449c",
+    "V3-EXQ-476",
+    "V3-EXQ-476a",
+    "V3-EXQ-476b"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2145,5 +2156,24 @@
     "v3_exq_481_vs_commit_release_20260425T101332Z_v3",
     "v3_exq_482_sd029_baseline_monostrategy_diagnostic_20260425T101638Z_v3",
     "v3_exq_418d_sd016_writepath_modes_comparison_20260425T141932Z_v3"
-  ]
+  ],
+  "discussion_notes": {
+    "2026-04-25T15:49Z_diagnose_errors": {
+      "session": "diagnose-errors-2026-04-25T15:49",
+      "summary": "All 4 ERROR entries (V3-EXQ-445d/455a/449c/476) confirmed as intentional NotImplementedError gating stubs, not code bugs. MECH-284 Phase 3 substrate landed 2026-04-24 but cascade gate V3-EXQ-476a/476b ran FAIL (V_s wired-but-inert -- accumulator integrates and MECH-269 anchor resets fire, but action_class_entropy unchanged; catatonic-lock at policy layer). Remaining blocker is SD-037 (broadcast override regulator, orexin-analog) -- next /implement-substrate target per substrate_queue.json. Gate messages updated in 4 stub scripts to point at SD-037 instead of stale MECH-284 Phase 3 wording. UNKNOWN entries (V3-EXQ-471/447a/449b verifier/PASS without flat-JSON output; V3-EXQ-445e/433c/476a/476b FAIL without indexed evidence dir) reviewed inline as part of governance + cowork sessions earlier today; marking discussed.",
+      "ids_marked": [
+        "V3-EXQ-471",
+        "V3-EXQ-447a",
+        "V3-EXQ-445e",
+        "V3-EXQ-445d",
+        "V3-EXQ-455a",
+        "V3-EXQ-433c",
+        "V3-EXQ-449b",
+        "V3-EXQ-449c",
+        "V3-EXQ-476",
+        "V3-EXQ-476a",
+        "V3-EXQ-476b"
+      ]
+    }
+  }
 }

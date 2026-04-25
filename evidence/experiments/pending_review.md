@@ -1,26 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-04-25T15:45:06Z`  
-Last review: `2026-04-25T15:15:46Z`  
-Pending: **11** item(s) -- 0 PASS, 0 FAIL, 11 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-04-25T16:24:17Z`  
+Last review: `2026-04-25T15:49:42Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-## Needs discussion (ERROR / UNKNOWN / smoke)
-
-These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
-
-| Queue ID | Result | Script | Notes |
-|----------|--------|--------|-------|
-| `V3-EXQ-471` | UNKNOWN | `?` | UNKNOWN (index stale — run build_experiment_indexes.py) |
-| `V3-EXQ-447a` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-445e` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-445d` | ERROR | `?` | ERROR |
-| `V3-EXQ-455a` | ERROR | `?` | ERROR |
-| `V3-EXQ-433c` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-449b` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-449c` | ERROR | `?` | ERROR |
-| `V3-EXQ-476` | ERROR | `?` | ERROR |
-| `V3-EXQ-476a` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-476b` | UNKNOWN | `?` | UNKNOWN |
+All experiments reviewed. Nothing pending.
 
 ---
 
