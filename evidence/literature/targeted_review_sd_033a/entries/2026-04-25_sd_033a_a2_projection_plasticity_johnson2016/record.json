@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-25_sd_033a_a2_projection_plasticity_johnson2016",
+  "timestamp_utc": "2026-04-25T14:21:06Z",
+  "claim_ids_tested": ["SD-033a"],
+  "source": {
+    "title": "Rule learning enhances structural plasticity of long-range axons in frontal cortex.",
+    "authors": ["Johnson CM", "Peckler H", "Tai LH", "Wilbrecht L"],
+    "year": 2016,
+    "venue": "Nature Communications",
+    "doi": "10.1038/ncomms10785",
+    "url": "https://doi.org/10.1038/ncomms10785"
+  },
+  "evidence_class": "empirical_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct in vivo evidence that rule learning changes a long-range frontal projection rather than merely changing activity downstream of a fixed projection. Johnson et al. imaged OFC axons in dmPFC during rule learning and found that rule training, but not reward exposure alone, increased bouton turnover; baseline bouton density and bouton gain tracked exploitative rule use, while bouton loss tracked exploration and exploratory prediction error. For SD-033a's A2 question, this is the strongest current source in the review set for the claim that the bias-projection substrate itself should be trainable and shaped by task learning, not left permanently frozen-random. Confidence is held at 0.74 because the circuit is OFC->dmPFC in mouse rather than lateral PFC -> action selector in primate, and the paper does not specify the exact learning rule or whether training should be phased versus simultaneous.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The projection under study is OFC->dmPFC, not principal-sulcus / lateral-PFC bias onto a downstream action-selection circuit. If later evidence shows that lateral-PFC rule bias is implemented by a different pathway or plasticity regime, the transfer from Johnson et al. to SD-033a is overstated.",
+    "Bouton turnover is a structural correlate of plasticity, not a direct measurement of the effective learning rule. If SD-033a's bias head is trained with a gradient or phase schedule that produces dynamics unlike exploit-linked gain and exploration-linked loss, this source does not validate that implementation detail.",
+    "The paper shows that reward alone is insufficient and rule training is sufficient to drive projection plasticity, but it does not prove that a separate phased rule-emergence signal is required. If biology updates projection weights continuously with mixed reward and error signals, the A2 phased-protocol alternative remains only a plausible design choice rather than a demanded one."
+  ],
+  "tags": ["sd_033a", "a2_alternative", "top_down_bias", "projection_plasticity", "ofc", "dmpfc", "explore_exploit"],
+  "mapping": {
+    "source_claim_statement": "During learning of an odour-based rule, long-range OFC axons projecting to dmPFC show increased bouton turnover; reward exposure alone does not produce the same change. Bouton density and gain are associated with exploitative rule use, while bouton loss scales with exploratory prediction error.",
+    "ree_translation": "SD-033a's unresolved A2 question is whether the rule-bias projection should remain a frozen-random head or be trained, and if trained, on what signal. Johnson et al. support a stronger position than the current landing: the projection substrate that carries rule-relevant frontal bias is itself remodeled by learning. In REE terms, that argues against leaving the SD-033a score_bias head permanently frozen if the module is meant to approximate biological frontal biasing. The paper also suggests a plausible division of training pressures: projection strengthening is associated with stable exploitation of a learned rule, while projection pruning is associated with exploratory prediction-error-driven adaptation. That pattern is compatible with a staged or dual-signal training protocol for the bias head, even though the paper does not uniquely select a specific algorithm.",
+    "mapping_caveat": "This is an architecture-level analogy, not a one-to-one circuit match. Johnson et al. study OFC->dmPFC axons in mice, while SD-033a is intended as a lateral-PFC-analog that biases E3 trajectory selection. The paper demonstrates that rule learning sculpts a frontal projection and links that plasticity to explore/exploit strategy, but it does not establish whether the same signal should shape SD-033a's latent rule state, its projection head, or both.",
+    "source_context": "Open-access Nature Communications paper combining two-photon imaging of OFC axons in dmPFC with behavioural rule learning and reinforcement-learning analysis of explore/exploit strategy in mice."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "High source quality and unusually direct relevance to the bias-head question because the measured object is a long-range frontal projection under rule learning. Mapping fidelity is moderate rather than high because the studied circuit is OFC->dmPFC, not a literal lateral-PFC bias head. Transfer risk remains material because REE's score_bias head is a low-dimensional parametric abstraction rather than structural bouton turnover."
+  }
+}

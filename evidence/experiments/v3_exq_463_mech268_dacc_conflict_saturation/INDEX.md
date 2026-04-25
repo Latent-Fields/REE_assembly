@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_463_mech268_dacc_conflict_saturation
 
-Generated: `2026-04-25T13:30:24.533795Z`
+Generated: `2026-04-25T15:44:31.690810Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

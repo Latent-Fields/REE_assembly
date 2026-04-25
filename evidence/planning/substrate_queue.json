@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-25T13:29:45Z",
+  "last_updated_utc": "2026-04-25T15:18:00Z",
   "next_implement_substrate": {
     "sd_id": "SD-037",
     "selected_utc": "2026-04-25T13:29:45Z",
@@ -706,15 +706,23 @@
           "experiment_type": "mixed (governance 2026-04-22)",
           "metric": "action_class_entropy=0 across all grid points; goal_reach_rate=0; behavioural divergence cannot manifest under monostrategy lock-in",
           "target": "agent generates >=2 distinct operating modes within an episode under varied drive/hazard contexts"
+        },
+        {
+          "run_id": "v3_exq_478_mech284_phase3_diagnostic_20260424T131455Z_v3, v3_exq_480_mech284_phase3_param_sweep_20260425T014558Z_v3, v3_exq_481_vs_commit_release_20260425T101332Z_v3",
+          "experiment_type": "mech284 + V_s commit-release diagnostic cluster (governance 2026-04-25)",
+          "metric": "Phase 3 staleness accumulator + anchor reset wired and firing (peaks ~0.94/0.83, resets 63/31), but freeze_recommit_count bit-identical OFF=ON across all attribution_mode/leak_factor settings; vs_commit_release_count=0 in both arms (release predicate never matches); OFF baseline action_class_entropy=0 even with SD-029 curriculum ON",
+          "target": "ON arm freeze_recommit < OFF arm in >=2/2 seeds AND vs_commit_release_count > 0; release path actually fires"
         }
       ],
       "implementation_hint": "V_s = per-region verisimilitude (anchor probe). Without it, the policy cannot generate the operating-mode diversity required to test SD-029 attribution, SD-032b dACC behavioural adjustment, SD-036 decay-driven recovery, or Q-034 threshold-sweep validity. This is the single highest-priority substrate in the queue.",
       "priority": 1,
       "added_session": "2026-04-22-governance",
-      "last_seen_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-2026-04-25T15:15",
       "status": "implemented",
       "implementation_note_update": "MECH-269 marked IMPLEMENTED 2026-04-22 in ree-v3/CLAUDE.md",
-      "implemented_utc": "2026-04-22T00:00:00Z"
+      "implemented_utc": "2026-04-22T00:00:00Z",
+      "post_implementation_validation_status": "wired_but_inert",
+      "post_implementation_note": "2026-04-25 governance: substrate is wired and accumulator/reset internals fire correctly, but read-side hooks (V_s commit release, freeze-recommit propagation) are dead on this env. Needs investigation of BoundaryEvent rate, anchor-key snapshot scope, or commit-entry capture sites in REEAgent _committed_anchor_keys before re-running unlock-test suite. Status remains implemented but not behaviorally validated."
     },
     {
       "sd_id": "SD-019a",
@@ -1056,6 +1064,35 @@
       "priority": 3,
       "added_session": "governance-2026-04-24T08:10",
       "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-016",
+      "title": "ContextMemory writepath substrate -- design v2 insufficient (V3-EXQ-418d FAIL)",
+      "ready": true,
+      "design_doc": "docs/architecture/context_memory_writepath_fix.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-150",
+        "MECH-151",
+        "MECH-152",
+        "ARC-041",
+        "INV-040",
+        "SD-017"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_418d_sd016_writepath_modes_comparison_20260425T141932Z_v3",
+          "experiment_type": "v3_exq_418d_sd016_writepath_modes_comparison",
+          "metric": "C1 attention entropy mean ~2.75-2.76 across all 3 active arms (off/train_only/sense_only/both) vs threshold 2.5 (target <2.5); C3 slot diversity mean 0.349 best (A2_sense_only) vs threshold 0.5 (only 1/3 seeds passes); C2 routing PASS",
+          "target": "attn_entropy_mean < 2.5 AND slot_diversity_mean >= 0.5 in >=2/3 seeds for at least one writepath_mode"
+        }
+      ],
+      "implementation_hint": "Part A (key_proj.bias=False) + Part B (writepath_mode flag with train_only/sense_only/both) -- the design doc v2 substrate -- is insufficient. None of the active write modes restore content-conditioned attention or slot differentiation under matched training. Deeper rework required: (a) cue_action_proj consumer-side rebuild, (b) attention-head architecture change, or (c) supervised-target shape correction. Production tie-break default A1_train_only is NOT empirically grounded.",
+      "priority": 1,
+      "added_session": "governance-2026-04-25T15:15",
+      "last_seen_session": "governance-2026-04-25T15:15",
+      "status": "implemented_but_failing_validation",
+      "implementation_note_update": "SD-016 substrate is wired (sd016_enabled=True default-on, writepath_mode flag) but evidence experiment EXQ-418d shows the design v2 cannot meet acceptance thresholds. Needs rethink before promoting to provisional or before re-running dependent SD-017/MECH-152 tests."
     }
   ]
 }

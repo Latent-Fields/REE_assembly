@@ -1,0 +1,47 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_482_sd029_baseline_monostrategy_diagnostic",
+  "run_id": "v3_exq_482_sd029_baseline_monostrategy_diagnostic_20260425T101638Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-25T10:16:38Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-029"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "SD-029": "inconclusive"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Reclassified 2026-04-25 governance: weakens -> inconclusive. Diagnostic, not hypothesis test \u2014 mechanism fires (EXQ-479 PASS at hazard-event granularity); action-class entropy metric does not surface it."
+}

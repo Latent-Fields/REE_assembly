@@ -15,7 +15,11 @@
   "timestamp_utc": "20260425T141932Z",
   "supersedes": "V3-EXQ-418c",
   "evidence_direction": "does_not_support",
-  "evidence_direction_note": "SD-016 ContextMemory write-path 4-arm comparison (Part B routing study). Part A (key_proj.bias=False) is structural and applied uniformly across arms. Outcome PASS = the chosen production default (sd016_writepath_mode in {train_only, sense_only, both}) is empirically grounded; outcome FAIL = none of the active write modes restore content-conditioned attention + slot differentiation under matched training, indicating the design doc v2 substrate is insufficient and a deeper rework is required.",
+  "evidence_direction_per_claim": {
+    "SD-016": "weakens",
+    "SD-017": "non_contributory"
+  },
+  "evidence_direction_note": "SD-016 ContextMemory write-path 4-arm comparison (Part B routing study). Part A (key_proj.bias=False) is structural and applied uniformly across arms. Outcome PASS = the chosen production default (sd016_writepath_mode in {train_only, sense_only, both}) is empirically grounded; outcome FAIL = none of the active write modes restore content-conditioned attention + slot differentiation under matched training, indicating the design doc v2 substrate is insufficient and a deeper rework is required. Per-claim correction (governance 2026-04-25): SD-016 = weakens (this experiment specifically tests SD-016 writepath substrate; all 4 active arms FAIL C1 and C3); SD-017 = non_contributory (sleep infra was not under test \u2014 sd016_enabled=True, sws/rem/shy disabled in params). The blanket does_not_support emitted by sync incorrectly attributed the SD-016 writepath FAIL to the sleep design.",
   "acceptance_checks": {
     "C1_attn_entropy_below_2_5": {
       "pass": false,

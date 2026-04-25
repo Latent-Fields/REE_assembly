@@ -8,11 +8,11 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260425T101638Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "inconclusive",
   "evidence_direction_per_claim": {
-    "SD-029": "weakens"
+    "SD-029": "inconclusive"
   },
-  "evidence_direction_note": "SD-029 baseline-monostrategy diagnostic. EXQ-480 OFF arms produced action_class_entropy=0.0 across all seeds even with SD-029 active for all arms; EXQ-479 only validated the SD-029 mechanism, not its behavioural effect at action-class granularity. PASS confirms SD-029 lifts action-class entropy in a plain baseline agent. FAIL flags the curriculum as either too sparse to break baseline monostrategy at this granularity or as having an effect invisible to action-class entropy -- in which case the metric or the curriculum scope must be revisited before SD-029 is relied upon as the monostrategy-breaking lever.",
+  "evidence_direction_note": "Reclassified 2026-04-25 governance: weakens -> inconclusive. SD-029 baseline-monostrategy diagnostic. EXQ-480 OFF arms produced action_class_entropy=0.0 across all seeds even with SD-029 active for all arms; EXQ-479 only validated the SD-029 mechanism (hazard-event granularity), not its behavioural effect at action-class granularity. EXQ-482 PASS would have confirmed SD-029 lifts action-class entropy in a plain baseline agent. FAIL flags the curriculum as either too sparse to break baseline monostrategy at this granularity or as having an effect invisible to action-class entropy -- in which case the metric or the curriculum scope must be revisited before SD-029 is relied upon as the monostrategy-breaking lever. This is a metric/scope diagnostic, not a hypothesis test against SD-029 \u2014 the mechanism fires (EXQ-479 PASS), but the action-class metric does not surface it. Not governance evidence against SD-029.",
   "pass_criteria_summary": {
     "gate_rule": "entropy(SD-029=ON) > entropy(SD-029=OFF) + 0.1 in >= 2/2 seeds",
     "per_seed_gate": [

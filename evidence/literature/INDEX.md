@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-25T13:30:24.533795Z`
+Generated: `2026-04-25T15:44:31.690810Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -206,7 +206,7 @@ Generated: `2026-04-25T13:30:24.533795Z`
 | `targeted_review_sd_032a` | [`2026-04-20_sd_032a_triple_network_menon2011`](targeted_review_sd_032a/entries/2026-04-20_sd_032a_triple_network_menon2011/record.json) | 5 | [`summary`](targeted_review_sd_032a/entries/2026-04-20_sd_032a_triple_network_menon2011/summary.md) |
 | `targeted_review_sd_032c` | [`2026-04-25_sd_032c_salience_network_switch_menon2010`](targeted_review_sd_032c/entries/2026-04-25_sd_032c_salience_network_switch_menon2010/record.json) | 3 | [`summary`](targeted_review_sd_032c/entries/2026-04-25_sd_032c_salience_network_switch_menon2010/summary.md) |
 | `targeted_review_sd_032d` | [`2026-04-20_sd_032d_pcc_macaque_default_hayden2009`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/record.json) | 4 | [`summary`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/summary.md) |
-| `targeted_review_sd_033a` | [`2026-04-21_sd_033a_a3_synaptic_hold_mongillo2008`](targeted_review_sd_033a/entries/2026-04-21_sd_033a_a3_synaptic_hold_mongillo2008/record.json) | 3 | [`summary`](targeted_review_sd_033a/entries/2026-04-21_sd_033a_a3_synaptic_hold_mongillo2008/summary.md) |
+| `targeted_review_sd_033a` | [`2026-04-25_sd_033a_a2_projection_plasticity_johnson2016`](targeted_review_sd_033a/entries/2026-04-25_sd_033a_a2_projection_plasticity_johnson2016/record.json) | 4 | [`summary`](targeted_review_sd_033a/entries/2026-04-25_sd_033a_a2_projection_plasticity_johnson2016/summary.md) |
 | `targeted_review_sd_034` | [`2026-04-24_sd_034_strategy_switch_rich2009`](targeted_review_sd_034/entries/2026-04-24_sd_034_strategy_switch_rich2009/record.json) | 4 | [`summary`](targeted_review_sd_034/entries/2026-04-24_sd_034_strategy_switch_rich2009/summary.md) |
 | `targeted_review_sd_035` | [`2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/record.json) | 3 | [`summary`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-04-05_mech123_rem_precision_recalibration_walker2009`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/record.json) | 5 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/summary.md) |

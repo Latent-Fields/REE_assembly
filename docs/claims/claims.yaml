@@ -4762,6 +4762,14 @@
     EXQ-049a (2026-04-16, PASS): Bistable concordance confirmed. Committed/uncommitted
     gate states concordant across full run. Complements EXQ-049e (steady-state two-condition
     design) and EXQ-062b (surprise selectivity); adds bistable-latch regime validation.
+    V3-EXQ-481 (2026-04-25, FAIL, diagnostic, inconclusive): V_s -> commit release substrate-
+    readiness diagnostic. vs_commit_release_count=0 in BOTH ON and OFF arms -- the
+    use_vs_commit_release hook is wired but never triggered (release path inert). Anchor
+    resets fire (63/31 per seed) but the release predicate (active anchor mark_inactive
+    OR staleness above release_threshold) never matches. Substrate-readiness only; not
+    governance evidence against MECH-090 (the existing bistable + interrupt circuits remain
+    validated). Next step: revisit BoundaryEvent rate, anchor-key snapshot scope, or
+    commit-entry capture sites in REEAgent _committed_anchor_keys before re-running.
   implementation_note: >
     BISTABLE LATCH IMPLEMENTED 2026-04-10. REEAgent._e3_tick() and select_action() in
     ree_core/agent.py. Config: HeartbeatConfig.beta_gate_bistable (bool, False default).
@@ -10861,6 +10869,20 @@
     (SD-017/ARC-045/MECH-166) FAIL with bit-identical conditions traceable to the same
     consumer collapse. Spawned diagnostic to fix the consumer wiring; SD-017/ARC-045/MECH-166
     re-tests gated on this fix landing.
+    V3-EXQ-418d FAIL (2026-04-25, evidence, weakens via per-claim correction): 4-arm
+    write-path comparison (off / train_only / sense_only / both) with Part A key_proj.bias=False
+    applied uniformly. C2 routing PASS (writes only fire in active arms), but C1 attention
+    entropy FAIL across ALL active arms (mean ~2.75-2.76 vs threshold 2.5; tight to the uniform
+    log(16)=2.7726 ceiling) and C3 slot diversity FAIL across all active arms (best mean 0.349
+    on A2_sense_only, threshold 0.5; only 1 of 3 seeds passes). Production default
+    (sd016_writepath_mode tie-break = A1_train_only) is NOT empirically grounded by this run.
+    Implication: the design doc v2 substrate (key_proj.bias=False + writepath_mode flag) is
+    insufficient to restore content-conditioned attention or slot differentiation. Deeper
+    rework required -- candidates: cue_action_proj consumer-side rebuild, attention-head
+    architecture change, or supervised-target shape correction. SD-016 status remains
+    'implemented' (substrate is wired and exercised) but flagged for rethink in
+    substrate_queue.json. SD-017 was tagged but non_contributory in this run (sws/rem/shy
+    disabled in params -- sleep substrate not under test).
   functional_restatement: >
     E1's ContextMemory stores 16 associative slots and can in principle retrieve hazard-relevant
     associations when z_world encodes a cue-dense context. But no downstream pathway existed
@@ -19965,6 +19987,21 @@
     HippocampalModule.propose_trajectories with anchor-reset hysteresis)
     plus the EXQ-471 unlock test plus the dual-trace return-of-
     avoidance test.
+
+    2026-04-25 governance: V3-EXQ-478 (Phase 3 diagnostic) and V3-EXQ-480
+    (4-arm parameter sweep) both FAIL substrate-readiness gates. Anchor
+    resets fire abundantly (63/31 per seed) and staleness peaks ~0.94/0.83,
+    but freeze_recommit_count is bit-identical OFF=ON across all
+    attribution_mode and leak_factor settings; baseline action_class_entropy=0
+    on both seeds even with SD-029 curriculum ON. Both runs tagged
+    inconclusive per_claim (correctly). Diagnosis: read-side hook is the
+    bottleneck, not parameter tuning. V3-EXQ-481 (V_s commit-release
+    hook) confirms: vs_commit_release_count=0 in both ON and OFF arms
+    -- the release path is dead code on this env. The MECH-284 +
+    MECH-269 online coupling is wired-but-behaviourally-inert; revisit
+    BoundaryEvent rate, anchor-key snapshot scope, or commit-entry
+    capture sites before the next validation pass. Substrate stays
+    candidate / v3_pending; not a weakening of MECH-269.
   implementation_note: >
     Anchor-reset arm online-arm wiring now consumes MECH-284 staleness
     as of 2026-04-24 (ree-v3 Phase 3). AnchorSet.tick_hysteresis
@@ -21189,6 +21226,21 @@
     lookup. Promotion still requires the EXQ-475 unlock test (V3-EXQ-478
     queued), the dissociation-from-prediction-error test, and the
     attribution_weight specificity test -- v3_pending retained.
+
+    2026-04-25 governance: V3-EXQ-478 (Phase 3 diagnostic, FAIL) and
+    V3-EXQ-480 (4-arm parameter sweep across attribution_mode +
+    leak_factor, FAIL) both flagged Phase 3 as wired-but-behaviourally-
+    inert. Accumulator populates correctly (mean staleness peaks
+    ~0.94/0.83 per seed), anchor resets fire (63/31 per seed), but
+    freeze_recommit_count stays at 1 across all arms and OFF baseline
+    entropy=0 even with SD-029 curriculum ON (broken at action-class
+    granularity, see EXQ-482 reclass below). Both runs tagged
+    inconclusive per_claim. Diagnosis: read-side hook is the bottleneck
+    (V3-EXQ-481 confirms vs_commit_release_count=0 in both arms --
+    release path is dead code on this env). Substrate stays candidate
+    / v3_pending; not weakening evidence against MECH-284. Next step:
+    revisit BoundaryEvent rate, anchor-key snapshot scope, or
+    commit-entry capture sites before re-running unlock-test suite.
   implementation_note: >
     MECH-284 Phase 3 implemented 2026-04-24 in ree-v3. Module
     ree_core/hippocampal/staleness_accumulator.py. Config flags

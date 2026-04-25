@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-25T13:30:24.533795Z`
+Generated: `2026-04-25T15:44:31.690810Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -16,11 +16,11 @@ Use this as the human-in-the-loop review queue.
 | `ARC-038` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-041` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-042` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `ARC-058` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `ARC-058` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `INV-054` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-073` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-074` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-074` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-075` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-093` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -37,27 +37,27 @@ Use this as the human-in-the-loop review queue.
 | `MECH-165` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-186` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-188` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-220` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
-| `MECH-256` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-257` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-258` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-260` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-262` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-264` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-265` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-266` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-267` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-268` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-269` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-270` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-271` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-272` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-273` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-275` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-284` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-285` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-287` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-288` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-220` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `MECH-256` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-257` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-258` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-260` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-262` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-264` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-265` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-266` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-267` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-268` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-269` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-270` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-271` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-272` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-273` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-275` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-284` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-285` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-287` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-288` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-019` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-021` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -68,13 +68,13 @@ Use this as the human-in-the-loop review queue.
 | `SD-015` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-021` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-023` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `applied` |
-| `SD-029` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `SD-032b` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `SD-032c` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `SD-032d` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `SD-033a` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `SD-034` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `SD-036` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `SD-029` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `SD-032b` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `SD-032c` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `SD-032d` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `SD-033a` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `SD-034` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `SD-036` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 
 ## Decision Details
 
@@ -204,7 +204,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107356Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### INV-054
 - Current status: `candidate`
@@ -246,7 +249,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-073
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.772, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: overall_conf=0.771, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -275,7 +278,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107823Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-075
 - Current status: `candidate`
@@ -525,7 +531,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-165
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.581, conflict_ratio=0.5, exp_entries=3, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.58, conflict_ratio=0.5, exp_entries=3, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -544,7 +550,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-186
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.597, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.596, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -593,7 +599,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107828Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-256
 - Current status: `candidate`
@@ -608,7 +617,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107831Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-257
 - Current status: `candidate`
@@ -623,7 +635,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107834Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-258
 - Current status: `candidate`
@@ -638,7 +653,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107836Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-260
 - Current status: `candidate`
@@ -653,7 +671,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107839Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-262
 - Current status: `candidate`
@@ -668,7 +689,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107841Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-264
 - Current status: `candidate`
@@ -683,7 +707,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107844Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-265
 - Current status: `candidate`
@@ -698,7 +725,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107846Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-266
 - Current status: `candidate`
@@ -713,7 +743,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107849Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-267
 - Current status: `candidate`
@@ -728,7 +761,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107851Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-268
 - Current status: `candidate`
@@ -743,7 +779,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107854Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-269
 - Current status: `candidate`
@@ -758,7 +797,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107856Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-270
 - Current status: `candidate`
@@ -773,7 +815,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107859Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-271
 - Current status: `candidate`
@@ -788,7 +833,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107861Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-272
 - Current status: `candidate`
@@ -803,7 +851,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107864Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-273
 - Current status: `candidate`
@@ -818,7 +869,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107866Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-275
 - Current status: `candidate`
@@ -833,7 +887,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107868Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-284
 - Current status: `candidate`
@@ -848,7 +905,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107871Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-285
 - Current status: `candidate`
@@ -863,7 +923,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107873Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-287
 - Current status: `candidate`
@@ -878,7 +941,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107876Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### MECH-288
 - Current status: `candidate`
@@ -893,7 +959,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107878Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### Q-019
 - Current status: `open`
@@ -1011,7 +1080,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-012
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.742, conflict_ratio=0.538, exp_entries=32, lit_entries=16; directions supports=19, weakens=7, mixed=4, unknown=0, conflict_ratio=0.538
+- Why this decision is needed: overall_conf=0.741, conflict_ratio=0.538, exp_entries=32, lit_entries=16; directions supports=19, weakens=7, mixed=4, unknown=0, conflict_ratio=0.538
 - Evidence quality note: EXQ-085f FAIL 3/4 (2026-03-27): drive_weight=2.0, resource_respawn_on_consume=True, curriculum=100 eps. C1 PASS: z_goal_norm=0.228 > 0.1 -- SD-012 drive modulation successfully seeds z_goal (this IS the SD-012 core claim: drive-scaled benefit enables seeding). C2 FAIL: benefit_ratio=0.28x -- goal-guided performance worse than random. C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstr…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1087,7 +1156,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-029
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=5, weakens=7, mixed=1, unknown=0, conflict_ratio=0.833
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=6, weakens=7, mixed=1, unknown=0, conflict_ratio=0.923
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1097,7 +1166,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107881Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### SD-032b
 - Current status: `candidate`
@@ -1112,7 +1184,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107883Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### SD-032c
 - Current status: `candidate`
@@ -1127,7 +1202,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107886Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### SD-032d
 - Current status: `candidate`
@@ -1142,12 +1220,15 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107888Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### SD-033a
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=11, weakens=0, mixed=2, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=11, weakens=0, mixed=3, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1157,7 +1238,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107891Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### SD-034
 - Current status: `candidate`
@@ -1172,7 +1256,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107893Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ### SD-036
 - Current status: `candidate`
@@ -1187,7 +1274,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107896Z`
+- Last selected option: Apply hold (no status change)
+- Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
 
 ## Substrate changes with dependent invariants
 
