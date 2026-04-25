@@ -20214,7 +20214,15 @@
     is a paired wake vs sleep-analog phase in the V3 hippocampal
     proposer, with routing-to-consumer logging on both sides and
     the dominance-shift as the target signature.
-  location: docs/architecture/hippocampal_anchor_selection.md
+  implementation_note: >
+    Substrate design committed 2026-04-25 in
+    docs/architecture/sleep_aggregation_cluster.md (umbrella doc for
+    MECH-272 / MECH-273 / MECH-275 / MECH-285). Lands at Phase 3 of the
+    cluster build order as ree_core/sleep/routing_gate.py: a state-
+    conditioned channel-weight gate consumed by the existing MECH-271
+    HippocampalRouter. Flag use_mech272_routing default False;
+    bit-identical waking with flag OFF.
+  location: docs/architecture/sleep_aggregation_cluster.md
 
 - id: MECH-273
   title: "The self-model has a waking half and a sleep half. The waking half is SD-003 (single-episode counterfactual self-attribution via E2). The sleep half is full-Bayesian aggregation of single-episode SD-003 outputs across many episodes, routed by the anchored channel to E1 and SD-033a, correcting for delayed consequences, failed counterfactuals, and systematic attribution biases. Without the sleep half, REE has an episode-local causal signature but not a durable self-model."
@@ -20280,7 +20288,19 @@
     without a sleep-phase aggregation step, and tests whether the
     agent can correct a seeded spurious self-attribution when
     counter-evidence accumulates.
-  location: docs/architecture/hippocampal_anchor_selection.md
+  implementation_note: >
+    Substrate design committed 2026-04-25 in
+    docs/architecture/sleep_aggregation_cluster.md (umbrella doc for
+    MECH-272 / MECH-273 / MECH-275 / MECH-285). Lands at Phase 5 of the
+    cluster build order as ree_core/sleep/self_model_aggregator.py: a
+    subclass of the MECH-275 GeneralBayesianAggregator specialised on
+    SD-003 causal_sig posterior, with offline gradient writeback to
+    E2_harm_s (low LR, MECH-094 simulation-mode tag enforced). Flag
+    use_mech273_self_model default False. Validation experiment EXP-0169
+    template (already in experiment_proposals.v1.json) runs after Phases
+    A-D land. Depends on substrate already shipped: SD-003 + ARC-033
+    E2_harm_s + SD-013 contrastive training.
+  location: docs/architecture/sleep_aggregation_cluster.md
 
 - id: MECH-274
   title: "V4-reserved. The sleep-dependent aggregation pattern of MECH-273 extends to other-attribution. Fast empathy (ARC-010) produces single-episode attributions of other-agent action-outcome links; a stable model of other minds requires full-Bayesian aggregation of those attributions during sleep, architecturally parallel to MECH-273 but operating on other-agent rather than self attributions."
@@ -20462,7 +20482,18 @@
     over which attribution domain is being aggregated. Distinguishing
     MECH-275 from naive averaging requires the counterfactual-vs-
     correlational control.
-  location: docs/architecture/scientist_agent_developmental_ordering.md
+  implementation_note: >
+    Substrate design committed 2026-04-25 in
+    docs/architecture/sleep_aggregation_cluster.md (umbrella doc for
+    MECH-272 / MECH-273 / MECH-275 / MECH-285). Lands at Phase 4 of the
+    cluster build order as ree_core/sleep/bayesian_aggregator.py:
+    GeneralBayesianAggregator with per-domain Gaussian posteriors,
+    consumer of the MECH-272 probe channel during sleep cycles. V3
+    domains: 'self' (specialised by MECH-273) and 'place' (Bayesian
+    upgrade of MECH-284 leaky integrator). Object/social domains
+    deferred to V4. Flag use_mech275_aggregator default False.
+    Validation EXP-0169 PASS unblocks the cluster.
+  location: docs/architecture/sleep_aggregation_cluster.md
 
 - id: MECH-276
   title: "The scientist-agent principle: the waking-phase mechanism that feeds MECH-275 is deliberate intervention. The agent generates hypotheses (proposer-side, via MECH-269 probe channel), selects actions that will produce informative contrast under those hypotheses, executes the actions, observes the outcomes, and computes counterfactual-backed attribution. Correlational observation is insufficient -- the agent must behave like a scientist, performing experiments whose outcomes produce structured attribution signals. Applies across all three developmental stages; specialised by MECH-277 (action-space discovery), MECH-278 (object-schema formation), and a V4 social-intervention mechanism (parallel to MECH-278 for other-agents)."
@@ -21344,7 +21375,20 @@
     - PHARM-001  # DORA-class enables this readout to fire on accumulated staleness
     - PHARM-005  # prazosin (indirect override damping) -> sustained REM -> MECH-285 firing
     - PHARM-006  # SSRIs targeting orthogonal axis (5-HT) do NOT recruit this readout
-  location: docs/architecture/hippocampal_anchor_selection.md
+  implementation_note: >
+    Online arm (MECH-284 Phase 3) landed 2026-04-24
+    (ree-v3/ree_core/hippocampal/staleness_accumulator.py). Offline arm
+    design committed 2026-04-25 in
+    docs/architecture/sleep_aggregation_cluster.md (umbrella doc for
+    MECH-272 / MECH-273 / MECH-275 / MECH-285). Lands at Phase 2 of the
+    cluster build order as ree_core/sleep/replay_sampler.py:
+    SleepReplaySampler reads StalenessAccumulator.snapshot() at sleep-
+    mode entry and the AnchorSet dual-trace (active + inactive),
+    samples via softmax(staleness / temperature) over the broad pool
+    per the 2026-04-24 lit-pull verdicts. Flag use_mech285_sampler
+    default False; bit-identical waking with flag OFF. EXP-0168
+    (already drafted) is the validation gate.
+  location: docs/architecture/sleep_aggregation_cluster.md
 
 - id: MECH-286
   title: "Override-gated sleep-state transition: SD-037 override_signal also gates entry to and exit from offline (sleep) mode. High override (sustained drive + threat under metabolic demand) suppresses sleep-mode onset; low override + accumulated MECH-284 V_s-residual staleness + permissive threat context permits onset and recruits the MECH-285 sleep-replay priority readout. Architecturally this is the recruitment authority for the offline arm of the V_s bidirectional cluster: MECH-284 accumulates the demand for offline schema repair, MECH-285 sets the priority order, and MECH-286 provides the on-switch. Without MECH-286, MECH-285 produces a priority list with no transition mechanism to consume it. This is the V3 architectural account of orexin's canonical role as wake-stability gate (Saper/Scammell flip-flop), which MECH-281 (drive-arousal coupling) understates by framing cataplexy purely as a motor-coupling failure."
