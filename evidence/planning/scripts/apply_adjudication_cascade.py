@@ -332,7 +332,6 @@ def main() -> int:
         allowed_outcomes = {
             "retain_ree",
             "hybridize",
-            "adopt_jepa_structure",
             "retire_ree_claim",
         }
     cascade_policy = adjudication.get("cascade_policy", {})
@@ -343,7 +342,7 @@ def main() -> int:
         if str(token).strip()
     }
     if not cascade_triggers:
-        cascade_triggers = {"adopt_jepa_structure", "retire_ree_claim"}
+        cascade_triggers = {"retire_ree_claim"}
     dependency_reopen_status = str(cascade_policy.get("dependency_reopen_status", "candidate"))
 
     decisions = _load_decision_log(decision_log_path)
@@ -406,7 +405,7 @@ def main() -> int:
         block_lines = list(block["lines"])
         status_before = _block_get_scalar(block_lines, "status") or "unknown"
         status_after = status_before
-        if outcome in {"retire_ree_claim", "adopt_jepa_structure"}:
+        if outcome in {"retire_ree_claim"}:
             status_after = "legacy"
 
         block_lines = _block_set_scalar(

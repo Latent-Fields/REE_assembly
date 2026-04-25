@@ -1,6 +1,6 @@
 # Experiment Pack Interface Contract (v1)
 
-This contract defines what `ree-v1-minimal` must emit for ingestion by `REE_assembly`.
+This contract defines what REE experiment substrates must emit for ingestion by `REE_assembly`.
 
 ## Required Directory Shape
 
@@ -9,7 +9,7 @@ evidence/experiments/<experiment_type>/runs/<run_id>/
   manifest.json
   metrics.json
   summary.md
-  jepa_adapter_signals.v1.json   # optional; required when adapter_signals_path is declared
+  jepa_adapter_signals.v1.json   # optional legacy adapter file; required only when declared
   traces/               # optional
   media/                # optional
 ```
@@ -28,7 +28,7 @@ Required fields:
 - `artifacts`: object with required:
   - `metrics_path` (usually `"metrics.json"`)
   - `summary_path` (usually `"summary.md"`)
-  - optional `adapter_signals_path` (usually `"jepa_adapter_signals.v1.json"`)
+  - optional `adapter_signals_path` (legacy adapter runs only)
   - optional `traces_dir`, `media_dir`
 
 Optional but recommended:
@@ -66,9 +66,12 @@ Human-readable run summary. Should include:
 
 No strict schema, but file must exist.
 
-## File: `jepa_adapter_signals.v1.json` (optional, JEPA-backed runs)
+## File: `jepa_adapter_signals.v1.json` (legacy adapter runs only)
 
 If `manifest.artifacts.adapter_signals_path` is set, this file is required and ingestion validates it.
+This is a historical bridge contract for old external-model adapter evidence. It is not the
+active REE-native evidence path for V3 revalidation, and it should not be used to validate
+MECH-058, MECH-059, or MECH-060.
 
 Schema:
 
@@ -91,7 +94,7 @@ Required core fields:
   - `precision_input_completeness_rate` (0..1)
   - plus `latent_uncertainty_calibration_error` if `uncertainty_latent=true`
 
-Optional JEPA control-proxy extension fields (recommended for `MECH-059` / `MECH-060` work):
+Legacy control-proxy extension fields (historical only, not recommended for current work):
 
 - `proxy_bank`: array of proxy declarations used by REE control routing. Each item should include:
   - `proxy_id`

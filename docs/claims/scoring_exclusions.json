@@ -2,6 +2,38 @@
   "_note": "Per-claim run exclusions for governance confidence scoring. Entries remain in matrix entries log for audit but do not contribute to claim confidence or direction counts. Reasons: code bugs, wrong module tested, or circular dependency (untestable until prerequisite fixed). Populate after governance pipeline is rebuilt.",
   "_schema": "claim_id -> list of {run_id, reason}",
 
+  "Q-012": [
+    {
+      "run_id": "v3_exq_152_q012_control_constraints_20260329T132030Z_v3",
+      "reason": "Superseded by EXQ-193. EXQ-152 used random action selection across conditions, yielding identical harm metrics and no diagnostic REE-vs-predictive comparison."
+    }
+  ],
+
+  "Q-013": [
+    {
+      "run_id": "v3_exq_153_q013_uncertainty_calibration_20260329T132242Z_v3",
+      "reason": "Q-013 was retired on 2026-03-29 when JEPA integration was decoupled from REE. The run is a post-retirement external-substrate calibration proxy; MECH-059 owns REE-native precision-routing evidence."
+    }
+  ],
+
+  "MECH-057": [
+    {
+      "run_id": "20260315T094933_attribution_completion_gating_v2",
+      "reason": "Legacy pre-split claim id. MECH-057 was split into MECH-057a and MECH-057b; this row should not keep an orphan MECH-057 confidence score alive."
+    }
+  ],
+
+  "MECH-058": [
+    {
+      "run_id": "20260315T045933_e1_e2_terrain_timescale_v2",
+      "reason": "MECH-058 is retired/superseded by MECH-069. This learning-rate/timescale probe is retained for audit but must not score a retired claim."
+    },
+    {
+      "run_id": "20260317T232028Z_v3_exq_019_timescale_v3_v3",
+      "reason": "MECH-058 is retired/superseded by MECH-069. The V3 timescale probe tested an obsolete framing and is non-contributory to current REE-native E1/E2 evidence."
+    }
+  ],
+
   "MECH-071": [
     {
       "run_id": "20260315T183757_causal_attribution_calibration_v2",
@@ -136,6 +168,10 @@
     {
       "run_id": "v3_exq_139_mech057a_action_loop_gate_pair_20260329T032833Z_v3",
       "reason": "Substrate-limited: n_seq=0 in GATE_ON condition -- no committed sequences generated as actual sequences. Results identical between conditions (harm_rate 0.7244 vs 0.7244). Manual running_variance proxy insufficient. May require full ARC-023 + SD-006 substrate."
+    },
+    {
+      "run_id": "v3_exq_203_mech057a_completion_gate_breath_20260402T230445Z_v3",
+      "reason": "Substrate/proxy-limited follow-up to EXQ-139. BreathOscillator created committed windows, but actual sequence count remained n_seq=0 and both arms were metric-identical; not evidence for or against the biological completion-gate mechanism."
     }
   ],
 

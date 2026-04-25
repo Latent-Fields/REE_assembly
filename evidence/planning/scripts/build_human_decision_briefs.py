@@ -942,7 +942,7 @@ def main() -> None:
         if str(x).strip()
     ]
     if not allowed_outcomes:
-        allowed_outcomes = ["retain_ree", "hybridize", "adopt_jepa_structure", "retire_ree_claim"]
+        allowed_outcomes = ["retain_ree", "hybridize", "retire_ree_claim"]
 
     claim_ids = sorted(set(promotion.keys()) | set(structure_items.keys()))
     cycle_dir = output_root / cycle

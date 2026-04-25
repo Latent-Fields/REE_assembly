@@ -2,6 +2,7 @@
 
 **Prepared:** 2026-02-26
 **Reason:** ree-v2 and ree-experiments-lab archived as synthetic scaffolding only. All PASS/FAIL results they produced are unreliable as evidence for REE claims.
+**Revalidation update:** 2026-04-25
 
 ---
 
@@ -9,14 +10,37 @@
 
 All experimental runs in `evidence/experiments/` that originated from `ree-v2` or `ree-experiments-lab` are **synthetic parametric data**, not genuine measurements. This audit catalogs which claims are affected and what genuine re-experimentation is required.
 
-**Valid substrate:** `ree-v1-minimal` only.
-**Genuine experiments completed so far (3 total):**
+The old run directories are retained for auditability, but governance must not treat the old
+synthetic rows as active evidence. Current scoring uses epoch applicability
+(`epoch_start_utc = 2026-02-27T00:00:00Z`) plus `docs/claims/scoring_exclusions.json`.
+Rows from the pre-cutover JEPA/synthetic experiment families should appear only as
+`stale_epoch` or explicit `invalid_run`/`superseded` audit rows.
+
+**Valid substrates at time of original audit:** `ree-v1-minimal` only.
+**Current valid substrates:** genuine post-cutover V2/V3 evidence tagged with
+`architecture_epoch: ree_hybrid_guardrails_v1`, plus retained genuine V1/V2 rows.
+**Genuine experiments completed as of original audit (3 total):**
 
 | experiment | claim | result |
 |---|---|---|
 | `consolidation_ablation` | CSH-1 (consolidation improves multi-hop reasoning) | **PASS** |
 | `training_run` | Harm reduction under training | **IMPROVED** (harm 1.0→0.675) |
 | `control_plane_precision_separation` | MECH-059 (confidence channel separate from PE) | **PASS** (2026-02-26, EVB-0037) |
+
+## 2026-04-25 Revalidation Status
+
+| claim | current status | revalidation disposition |
+|---|---|---|
+| MECH-056 | provisional | Revalidated for current scoring by `20260314T220919_residue_trajectory_placement_v2` (PASS/supports). Old `trajectory_integrity` rows are stale_epoch audit rows. |
+| MECH-057a | provisional | Not fully revalidated. V2 support remains, but V3 EXQ-139 and EXQ-203 are substrate/proxy-limited and explicitly excluded. Needs a genuine V3 action-sequence substrate test. |
+| MECH-057b | candidate | Not revalidated. Zero counted genuine experimental evidence. Needs first V3 hippocampal trajectory-promotion test after substrate support exists. |
+| MECH-058 | retired | Do not revalidate as JEPA/anchor or learning-rate separation. Retired/superseded by MECH-069; obsolete timescale probes are excluded from scoring. |
+| MECH-059 | active | Revalidated by counted precision-separation PASS (`20260314T202143_control_plane_precision_separation_v2`). Old `jepa_uncertainty_channels` rows are stale_epoch audit rows. |
+| MECH-060 | provisional | Revalidated by counted write-locus PASS (`20260314T235933_write_locus_contamination_v2`). Old `commit_dual_error_channels` rows are stale_epoch audit rows. |
+| MECH-061 | active | Revalidated by counted commit-boundary PASS (`20260315T024049_commitment_boundary_validation_v2`). |
+| Q-012 | candidate | Synthetic rows no longer count. EXQ-152 is superseded/excluded; EXQ-193 is the counted mixed V3 result and supports the REE-vs-predictive gap but not the no-learning floor criterion. |
+| Q-013 | legacy/retired | JEPA integration was decoupled 2026-03-29. V3-EXQ-153 is excluded as post-retirement external-substrate proxy evidence; MECH-059 owns the REE-native precision-routing question. |
+| Q-014 | legacy/retired | JEPA-specific question retired. V3-EXQ-154 is superseded; the REE-native blind-spot concern moved to MECH-128 and SD-008. |
 
 ---
 
@@ -120,7 +144,14 @@ These claims are already `candidate` status (correctly not promoted) but their a
 
 ## Evidence Re-Validation Roadmap
 
-Priority order for genuine ree-v1-minimal experiments:
+The original roadmap below is kept for audit history. As of 2026-04-25, P1 items
+MECH-059, MECH-060, and MECH-061 have counted genuine support. The active blockers
+are MECH-057a (faithful V3 action-sequence test), MECH-057b (first V3 trajectory
+promotion test), and Q-012 (corrected REE-vs-predictive follow-up that also beats
+the no-learning floor). MECH-058 should not be re-run under its old JEPA/anchor
+framing because the claim is retired and superseded by MECH-069.
+
+Priority order from the original 2026-02-26 audit:
 
 ### P1 — Highest priority (mechanistic predictions for active claims)
 
@@ -131,8 +162,8 @@ Priority order for genuine ree-v1-minimal experiments:
 ### P2 — Candidate promotion blockers
 
 4. **MECH-056 / trajectory_integrity**: Residue placed at trajectory positions. Needs genuine rollout experiment.
-5. **MECH-058 / jepa_anchor_ablation** (now `latent_stack.e1_e2_timescale_separation`): E1/E2 timescale separation ablation on real ree-v1-minimal LSTM vs fast predictor.
-6. **MECH-057**: JEPA PE routing alternative — may need redesign given JEPA decoupling.
+5. **MECH-058 / old anchor-ablation framing** (historical only): no active rerun; claim retired and superseded by MECH-069.
+6. **MECH-057 split**: MECH-057a needs faithful action-sequence testing; MECH-057b needs first V3 hippocampal trajectory-promotion test.
 
 ### P3 — Open question validation
 

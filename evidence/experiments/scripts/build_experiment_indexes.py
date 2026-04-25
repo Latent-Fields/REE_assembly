@@ -863,7 +863,7 @@ def _write_top_level_index(
     lines.append("- TODO queue: `TODOs.md`")
     lines.append("- Stop criteria config: `stop_criteria.v1.yaml`")
     lines.append("- Decision criteria config: `decision_criteria.v1.yaml`")
-    lines.append("- JEPA adapter signal schema: `schemas/v1/jepa_adapter_signals.v1.json`")
+    lines.append("- Legacy adapter signal schema: `schemas/v1/jepa_adapter_signals.v1.json`")
     lines.append("- Claim-evidence matrix: `claim_evidence.v1.json`")
     lines.append("- Conflicts report: `conflicts.md`")
     lines.append("- Promotion/demotion recommendations: `promotion_demotion_recommendations.md`")
@@ -1467,19 +1467,18 @@ def _default_planning_criteria() -> dict[str, Any]:
             "allowed_conflict_outcomes": [
                 "retain_ree",
                 "hybridize",
-                "adopt_jepa_structure",
                 "retire_ree_claim",
             ],
             "default_conflict_outcome": "retain_ree",
             "cascade_policy": {
                 "enabled": True,
-                "trigger_outcomes": ["adopt_jepa_structure", "retire_ree_claim"],
+                "trigger_outcomes": ["retire_ree_claim"],
                 "dependency_reopen_status": "candidate",
                 "require_followup_proposals": True,
             },
             "temporary_override_mode": {
                 "enabled": True,
-                "mode_id": "jepa_internal_proxy_override",
+                "mode_id": "external_model_proxy_override",
                 "requirements": [
                     "explicit_proxy_provenance",
                     "calibration_metrics_present",
@@ -1489,7 +1488,7 @@ def _default_planning_criteria() -> dict[str, Any]:
             "anti_lock_in_gate": {
                 "enabled": True,
                 "description": (
-                    "If matched JEPA evidence repeatedly outperforms REE assumptions, force adjudication "
+                    "If matched external-model evidence repeatedly outperforms REE assumptions, force adjudication "
                     "rather than schema-preserving tuning."
                 ),
             },
@@ -2722,14 +2721,13 @@ def _write_planning_outputs(
         allowed_conflict_outcomes = [
             "retain_ree",
             "hybridize",
-            "adopt_jepa_structure",
             "retire_ree_claim",
         ]
     default_conflict_outcome = str(adjudication.get("default_conflict_outcome", "retain_ree"))
     cascade_policy = adjudication.get("cascade_policy", {})
     cascade_enabled = bool(cascade_policy.get("enabled", True))
     cascade_trigger_outcomes_raw = cascade_policy.get(
-        "trigger_outcomes", ["adopt_jepa_structure", "retire_ree_claim"]
+        "trigger_outcomes", ["retire_ree_claim"]
     )
     cascade_trigger_outcomes = [
         str(x).strip()
@@ -2740,7 +2738,7 @@ def _write_planning_outputs(
     cascade_followup_required = bool(cascade_policy.get("require_followup_proposals", True))
     override_mode = adjudication.get("temporary_override_mode", {})
     override_mode_enabled = bool(override_mode.get("enabled", True))
-    override_mode_id = str(override_mode.get("mode_id", "jepa_internal_proxy_override"))
+    override_mode_id = str(override_mode.get("mode_id", "external_model_proxy_override"))
     override_requirements_raw = override_mode.get("requirements", [])
     override_requirements = [
         str(x).strip()
@@ -3263,7 +3261,7 @@ def _write_planning_outputs(
         if "external_precedence_pressure" in reasons:
             next_action = (
                 "Run matched-protocol adjudication and choose conflict outcome: "
-                "retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim."
+                "retain_ree|hybridize|retire_ree_claim."
             )
         if "anti_lock_in_review_required" in reasons:
             next_action = (
@@ -3282,7 +3280,7 @@ def _write_planning_outputs(
             )
         if "escalate_architecture_decision" in reasons:
             next_action = (
-                "Escalate to architecture decision queue now (retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim) "
+                "Escalate to architecture decision queue now (retain_ree|hybridize|retire_ree_claim) "
                 "and hold additional routine reruns until the decision is recorded."
             )
         if "mandatory_decision_checkpoint" in reasons:
@@ -3291,7 +3289,7 @@ def _write_planning_outputs(
                 "Decision checkpoint required"
                 + deadline_note
                 + ": choose one outcome "
-                + "retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns "
+                + "retain_ree|hybridize|retire_ree_claim and pause routine reruns "
                 + "until the decision is recorded."
             )
 
@@ -3451,7 +3449,7 @@ def _write_planning_outputs(
                 outcomes_text = (
                     "|".join(str(x) for x in outcomes if str(x).strip())
                     if isinstance(outcomes, list)
-                    else "retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim"
+                    else "retain_ree|hybridize|retire_ree_claim"
                 )
                 deadline_suffix = f" by `{deadline}`" if deadline else ""
                 acceptance_checks.append(
@@ -4025,7 +4023,6 @@ def main() -> None:
         allowed_conflict_outcomes = {
             "retain_ree",
             "hybridize",
-            "adopt_jepa_structure",
             "retire_ree_claim",
         }
     latest_adjudication_decisions = _latest_adjudication_decision_by_claim(

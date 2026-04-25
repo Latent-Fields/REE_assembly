@@ -2090,10 +2090,8 @@
   allowed_conflict_outcomes:
     - retain_ree
     - hybridize
-    - adopt_jepa_structure
     - retire_ree_claim
   cascade_on_outcomes:
-    - adopt_jepa_structure
     - retire_ree_claim
   dependency_reopen_status: candidate
   evidence_quality_note: |
@@ -2105,6 +2103,9 @@
     (trajectory-wide accumulation reduces harm vs endpoint-only). Supports φ(z) terrain concept:
     harm sites are localised along planned trajectories, not only post-hoc at terminal steps.
     Promoted candidate → provisional 2026-02-26. Re-test on more complex substrate before active.
+    Revalidation audit 2026-04-25: old synthetic trajectory_integrity rows remain in the
+    matrix for audit but are stale_epoch excluded from scoring; the counted support row is
+    20260314T220919_residue_trajectory_placement_v2.
   depends_on:
     - ARC-013
     - ARC-018
@@ -2177,6 +2178,10 @@
     However, the alternative framing (beta suppresses precision updates themselves, not just
     their propagation) is worth testing as lower priority once substrate supports it.
     Title updated from "precision updates" to "sensory precision reweighting."
+    Revalidation audit 2026-04-25: EXQ-139 and EXQ-203 are substrate/proxy-limited
+    (no actual committed sequence generation; identical condition metrics) and should not
+    move confidence. They are tracked as invalid_run exclusions. MECH-057a still needs a
+    genuine V3 action-sequence substrate test before promotion beyond provisional.
   depends_on:
     - ARC-015
     - ARC-005
@@ -2242,6 +2247,8 @@
     are suppressed vs completed sequences are promoted to E3 evaluation. This requires
     HippocampalModule trajectory promotion policy to be implemented first (V3 scope).
     See ARC-028 for the coupling between the hippocampal completion signal and BetaGate.
+    Revalidation audit 2026-04-25: still zero counted genuine experimental evidence.
+    This is the remaining MECH-057 revalidation blocker.
   depends_on:
     - ARC-015
     - ARC-005
@@ -2280,6 +2287,9 @@
     V1 EXQ-002 (e1_e2_timescale_ablation): FAIL. V2 EXQ-019 (terrain_timescale, 2026-03-15): FAIL.
     Both FAILs consistent with supersession: the test was ill-posed. LR separation ≠ functional
     domain separation. See MECH-069 for the correct claim.
+    Revalidation audit 2026-04-25: do not revalidate MECH-058 as a JEPA/anchor or
+    learning-rate claim. It is retired and superseded by MECH-069; later E2 short-horizon
+    evidence belongs under MECH-231 / MECH-069, not MECH-058.
   depends_on:
     - ARC-001
     - ARC-002
@@ -2305,13 +2315,11 @@
   allowed_conflict_outcomes:
     - retain_ree
     - hybridize
-    - adopt_jepa_structure
     - retire_ree_claim
   cascade_on_outcomes:
-    - adopt_jepa_structure
     - retire_ree_claim
   dependency_reopen_status: candidate
-  evidence_quality_note: "Prior 38 synthetic runs invalidated (ree-v2/ree-experiments-lab, archived 2026-02-26). Genuine ree-v1-minimal experiment completed 2026-02-26 (control_plane_precision_separation, EVB-0037): PASS — |corr(score_dispersion, PE)| = 0.067 (<0.3), SEPARATED harm 0.663 vs MERGED 0.875. Both mechanistic criteria met."
+  evidence_quality_note: "Prior 38 synthetic runs invalidated (ree-v2/ree-experiments-lab, archived 2026-02-26). Genuine ree-v1-minimal experiment completed 2026-02-26 (control_plane_precision_separation, EVB-0037): PASS — |corr(score_dispersion, PE)| = 0.067 (<0.3), SEPARATED harm 0.663 vs MERGED 0.875. Both mechanistic criteria met. Revalidation audit 2026-04-25: old jepa_uncertainty_channels rows remain only as stale_epoch audit rows; counted support is the genuine V2/V1-derived precision-separation run."
   depends_on:
     - ARC-005
     - ARC-004
@@ -2346,6 +2354,8 @@
     Write-locus contamination is detectable: pre-commit residue pollution inflates the residue
     field 46× vs clean. FULL condition harm ordering is sustained, confirming write-locus
     separation is architecturally load-bearing. Promoted candidate → provisional 2026-02-27.
+    Revalidation audit 2026-04-25: old commit_dual_error_channels rows remain only as
+    stale_epoch audit rows; counted support is 20260314T235933_write_locus_contamination_v2.
   adjudication_outcome: hybridize
   adjudicated_at_utc: 2026-02-25T16:33:23.830904Z
   adjudication_decision_status: applied
@@ -2354,10 +2364,8 @@
   allowed_conflict_outcomes:
     - retain_ree
     - hybridize
-    - adopt_jepa_structure
     - retire_ree_claim
   cascade_on_outcomes:
-    - adopt_jepa_structure
     - retire_ree_claim
   dependency_reopen_status: candidate
   depends_on:
@@ -2572,9 +2580,8 @@
     entirely synthetic artefacts -- do NOT act on any demote recommendation based on this data.
     3 literature entries are valid (2 supports, 1 mixed) and insufficient alone to resolve the
     question. Retain candidate status pending genuine ree-v1-minimal runs.
-    EXQ-152 FAIL/mixed (2026-03-29): REE_FULL vs PREDICTIVE_ONLY delta_harm=0; informative null
-    at current training scale. Significant training budget expected to be required before
-    meaningful differences emerge between full REE and predictive-only baselines.
+    EXQ-152 FAIL/mixed (2026-03-29): REE_FULL vs PREDICTIVE_ONLY delta_harm=0; superseded
+    by EXQ-193 because action selection remained effectively random across conditions.
     EXQ-193 FAIL/mixed (2026-04-04): REE_FULL vs PREDICTIVE_ONLY vs NO_LEARNING (3 conditions).
     C1 PASS 3/3: REE_FULL outperforms PREDICTIVE_ONLY by 7.5 harm units (11.96 vs 19.47);
     PREDICTIVE_ONLY harm INCREASES over training while REE_FULL improves -- strong directional
@@ -2583,6 +2590,8 @@
     pure predictive (no control constraints) destabilises over time while REE does not. This is
     the first experiment showing a genuine positive REE-vs-predictive gap at current training
     scale. Consistent with retain_ree adjudication.
+    Revalidation audit 2026-04-25: synthetic Q-012 rows remain only as stale_epoch audit rows;
+    EXQ-152 is scoring-excluded as superseded; EXQ-193 is the counted mixed V3 result.
   depends_on:
     - MECH-057
     - ARC-015
@@ -2595,9 +2604,9 @@
 # The uncertainty calibration question is moot without a JEPA substrate.
 # The REE-native precision routing question is now addressed by MECH-059 directly.
 - id: Q-013
-  title: "Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?"
+  title: "Retired external-substrate uncertainty calibration question; REE-native precision routing is tracked by MECH-059."
   claim_type: open_question
-  subject: uncertainty.deterministic_vs_stochastic_jepa_calibration
+  subject: uncertainty.external_substrate_calibration_legacy
   polarity: asks
   status: legacy
   lifecycle_stage: retired
@@ -2609,7 +2618,9 @@
     JEPA integration dropped from REE architecture 2026-03-29. This question is
     moot. All prior experimental evidence (jepa_uncertainty_channels, 126 runs)
     was from ree-v2 synthetic scaffolding and is invalid. REE-native precision
-    routing is addressed by MECH-059 directly. Retired.
+    routing is addressed by MECH-059 directly. V3-EXQ-153 was a post-retirement
+    external-substrate calibration proxy and is scoring-excluded for Q-013.
+    Retired.
   depends_on:
     - MECH-059
     - ARC-005
@@ -2622,7 +2633,7 @@
 # invariances can hide ethically relevant distinctions in attribution) is
 # REE-native and transferred to MECH-137a (see below).
 - id: Q-014
-  title: "Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?"
+  title: "Retired representation-invariance blind-spot question; REE-native concern moved to MECH-128 and SD-008."
   claim_type: open_question
   subject: invariance.ethical_relevance_blind_spot_risk
   polarity: asks
@@ -2762,11 +2773,13 @@
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: IMPL-020
-  title: "Formal JEPA/REE terminology alignment glossary for interoperability."
+  title: "Legacy external-model/REE terminology glossary for interoperability."
   claim_type: implementation_note
-  subject: terminology.jepa_ree_alignment_glossary
+  subject: terminology.external_model_ree_alignment_glossary
   polarity: records
-  status: stable
+  status: legacy
+  lifecycle_stage: retired
+  evidence_quality_note: "Historical interoperability record only. JEPA alignment is not an active REE architecture path after the 2026-03-29 decoupling."
   depends_on:
     - IMPL-001
     - MECH-057
@@ -2775,11 +2788,13 @@
     - docs/glossary.md
     - docs/thoughts/2026-02-13_jepa_ree_formal_alignment_glossary.md
 - id: IMPL-021
-  title: "Hybrid JEPA/REE architecture diagram contract and rendering checklist."
+  title: "Legacy hybrid external-model/REE architecture diagram contract and rendering checklist."
   claim_type: implementation_note
-  subject: diagrams.jepa_ree_hybrid_architecture_contract
+  subject: diagrams.external_model_ree_hybrid_architecture_contract
   polarity: records
-  status: stable
+  status: legacy
+  lifecycle_stage: retired
+  evidence_quality_note: "Historical diagram contract only. Not an active REE substrate or evidence target after the 2026-03-29 JEPA decoupling."
   depends_on:
     - IMPL-020
     - MECH-057
@@ -2790,18 +2805,13 @@
     - docs/architecture/jepa_ree_hybrid_diagram_spec.md
 # JEPA flags removed 2026-02-26 — historical record only (JEPA decoupled).
 - id: IMPL-022
-  title: "JEPA-like E1/E2 representation-reference contract (inputs, outputs, knobs, failure gates)."
+  title: "Legacy external representation-reference contract (inputs, outputs, knobs, failure gates)."
   claim_type: implementation_note
-  subject: integration.jepa_like_e1e2_representation_reference_contract
+  subject: integration.external_e1e2_representation_reference_contract
   polarity: records
-  status: stable
-  lifecycle_stage: adjudication_enabled
-  adjudication_mode: external_precedence_allowed
-  allowed_conflict_outcomes:
-    - retain_ree
-    - hybridize
-    - adopt_jepa_structure
-    - retire_ree_claim
+  status: legacy
+  lifecycle_stage: retired
+  evidence_quality_note: "Historical interoperability contract only. Do not use as a revalidation target for MECH-058/059/060; REE-native interfaces now own those claims."
   depends_on:
     - IMPL-021
     - MECH-057
@@ -2834,11 +2844,13 @@
     - docs/architecture/ree_v2_spec.md
     - docs/roadmap.md
 - id: IMPL-024
-  title: "v2 REE-first canonical wording policy with JEPA interface translation."
+  title: "Legacy v2 REE-first canonical wording policy with external-interface translation."
   claim_type: implementation_note
-  subject: terminology.v2_ree_first_canonical_jepa_interface_translation_policy
+  subject: terminology.v2_ree_first_canonical_external_interface_translation_policy
   polarity: records
-  status: candidate
+  status: legacy
+  lifecycle_stage: retired
+  evidence_quality_note: "Historical wording policy only. Active REE documentation should use REE-native terminology and keep external-model mapping in convergence archives."
   depends_on:
     - IMPL-020
     - IMPL-022

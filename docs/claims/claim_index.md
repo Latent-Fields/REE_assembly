@@ -131,7 +131,7 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [MECH-056](../architecture/residue_geometry.md#mech-056) Residue should constrain trajectories before distorting core representations.
 - [MECH-057a](../architecture/agency_responsibility_flow.md#mech-057a) Action-loop completion gate: committed action sequences suppress new precision updates until execution completes. *(V2-testable with multi-step substrate; V1/V2 FAILs are substrate-limited)*
 - [MECH-057b](../architecture/agency_responsibility_flow.md#mech-057b) Thought-loop trajectory promotion gate: hippocampal sequence completion must be verified before candidates are eligible for E3 selection. *(V3-scoped — requires HippocampalModule promotion policy not present in V2)*
-- [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics stabilize JEPA-like-referenced E1/E2 representation via functional rate separation.
+- [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics stabilize E1/E2 representations via functional rate separation. Retired; superseded by MECH-069.
 - [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Confidence channel (uncertainty-derived precision) must remain distinct from residual error for precision routing.
 - [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Umbrella commit-boundary separation principle with explicit phase control-variation map: pre-commit simulation and post-commit realized-error channels stay responsibility-distinct via write-boundary enforcement (MECH-061/062/066/067).
 - [MECH-061](../architecture/e3.md#mech-061) Commit-boundary token reclassifies pre-commit vs post-commit error routing.
@@ -179,8 +179,8 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [Q-010](../architecture/control_plane.md#q-010) Legacy: separation question resolved into MECH‑055.
 - [Q-011](../architecture/hippocampal_systems.md#q-011) Legacy: resolved by placing diversity-floor control in pre-commit/offline sampling while preserving residue invariants.
 - [Q-012](../architecture/agency_responsibility_flow.md#q-012) Can latent predictive world models stay agentically stable without explicit REE-like control constraints?
-- [Q-013](../architecture/agency_responsibility_flow.md#q-013) Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?
-- [Q-014](../architecture/agency_responsibility_flow.md#q-014) Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?
+- [Q-013](../architecture/agency_responsibility_flow.md#q-013) Retired external-substrate uncertainty calibration question; REE-native precision routing is tracked by MECH-059.
+- [Q-014](../architecture/agency_responsibility_flow.md#q-014) Retired representation-invariance blind-spot question; REE-native concern moved to MECH-128 and SD-008.
 - [Q-015](../architecture/e3.md#q-015) What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?
 - [Q-016](../architecture/e3.md#q-016) What arbitration policy best resolves tri-loop gate conflicts without coupling collapse?
 - [Q-017](../architecture/control_plane.md#q-017) What is the minimal orthogonal control-axis subset that preserves observed regime separations?
@@ -211,11 +211,11 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [IMPL-017](../conflicts/README.md#impl-017) Conflict index and resolution entry point.
 - [IMPL-018](../claims/claim_index.md#impl-018) Claim index and navigation.
 - [IMPL-019](../architecture/developmental_curriculum.md#impl-019) Self-first, social-later developmental testing order heuristic.
-- [IMPL-020](../glossary.md#impl-020) Formal JEPA↔REE terminology alignment glossary for interoperability.
-- [IMPL-021](../architecture/jepa_ree_hybrid_diagram_spec.md#impl-021) Hybrid JEPA↔REE architecture diagram contract and rendering checklist.
-- [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) JEPA-like E1/E2 representation-reference contract (inputs, outputs, knobs, and failure gates).
+- [IMPL-020](../glossary.md#impl-020) Legacy external-model/REE terminology glossary for interoperability.
+- [IMPL-021](../architecture/jepa_ree_hybrid_diagram_spec.md#impl-021) Legacy hybrid external-model/REE architecture diagram contract and rendering checklist.
+- [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) Legacy external representation-reference contract (inputs, outputs, knobs, and failure gates).
 - [IMPL-023](../architecture/ree_v2_spec.md#impl-023) REE-v2 representation-interface-first spec and phase gate with hook bridges to commit-boundary, tri-loop gating, and orthogonal control-axis completion.
-- [IMPL-024](../notes/jepa_language_policy.md#impl-024) v2 REE-first canonical wording policy with JEPA interface translation and convergence-owned source-method language.
+- [IMPL-024](../notes/jepa_language_policy.md#impl-024) Legacy v2 REE-first canonical wording policy with external-interface translation.
 - [IMPL-025](../architecture/hook_surface_contract.md#impl-025) Cross-version hook surface contract and registry, including v2 bridge families for commit-boundary, tri-loop arbitration, and orthogonal-axis telemetry.
 
 ---
