@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** SD-037 (parent), MECH-280 / MECH-281 / MECH-282 (children)
 **Subject:** `broadcast.override_regulator`
-**Status:** candidate, v3_pending
+**Status:** IMPLEMENTED 2026-04-25 (validation pending V3-EXQ-479)
 **Registered:** 2026-04-22
 **Origin:** Lit-pull synthesis (homeostatic override under sustained threat),
 2026-04-22, motivated by V3-EXQ-471 catatonic lock-in. Source:

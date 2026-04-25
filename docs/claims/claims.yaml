@@ -20786,6 +20786,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  implementation_note: "IMPLEMENTED 2026-04-25. Module: ree_core/regulators/broadcast_override.py (BroadcastOverrideRegulator, BroadcastOverrideConfig). Master switch: REEConfig.use_broadcast_override (default False). Three consumer sites wired: PAG freeze-gate (MECH-279) exit_threshold scaled by alpha_override; SalienceCoordinator (SD-032a) operating-mode reweight via update_signal('override_signal', ...); GoalState (SD-012) drive seeding amplification via override_goal_seeding_gain. MECH-094: simulation_mode=True returns cached signal unchanged. Backward compatible with flag OFF (95/95 contracts PASS). Validation experiment: V3-EXQ-483 queued. Lit-pull confirms defaults biologically defensible: targeted_review_orexin_kinetics/synthesis.md (Mileykovskiy 2005, Lee 2005, Karnani 2020, Johnson 2012)."
   claim_level: architectural
   registered_utc: 2026-04-22
   depends_on:
@@ -20914,6 +20915,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  implementation_note: "IMPLEMENTED 2026-04-25 as part of SD-037 landing. PAGFreezeGateConfig.alpha_override (default 0.0) accepts the override_signal scaling; PAGFreezeGate.tick() now takes override_signal arg per cycle: exit_threshold = theta_freeze * (1 + alpha_override * override_signal) * gaba_tone. REEAgent wires override_alpha_pag (default 0.5) into PAG config when both use_broadcast_override and use_pag_freeze_gate are True. Validation: V3-EXQ-483 4-arm factorial."
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
@@ -20959,6 +20961,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  implementation_note: "PARTIALLY IMPLEMENTED 2026-04-25 as part of SD-037 landing. Drive-coupling axis wired at GoalState seeding (effective_drive amplified by override_goal_seeding_gain * override_signal in REEAgent.update_z_goal) and at SalienceCoordinator (operating-mode reweight via affinity_weights['override_signal']). PFC/BLA/beta-gate targets noted in claim title rely on the same override_signal but additional consumer wiring is deferred until those substrates need it. Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) are V3-EXQ-483 secondary acceptance criteria."
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
@@ -21351,6 +21354,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  implementation_note: "PARTIAL 2026-04-25: SD-037 override_signal source IMPLEMENTED (broadcast_override.py). MECH-286 sleep-onset gating (override_signal < theta_sleep_permit AND MECH-284 staleness > theta_sleep_recruit AND permissive threat context) NOT YET wired -- sleep-mode entry path remains as enter_offline_mode without these conditions. Stays v3_pending; substrate landing requires offline-state-machine work that is downstream of MECH-285 (deferred)."
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
