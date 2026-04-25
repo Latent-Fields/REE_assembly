@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-25_mech_074d_bla_ca1_theta_coupling_makino2024",
+  "timestamp_utc": "2026-04-25T09:54:44Z",
+  "claim_ids_tested": ["MECH-074d"],
+  "source": {
+    "title": "Multi-regional control of amygdalar dynamics reliably reflects fear memory age",
+    "authors": ["Yuichi Makino", "Yi Wang", "Thomas J. McHugh"],
+    "year": 2024,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-024-54273-3"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Shows coordinated BLA-CA1 theta coupling as a reliable neural signature of fear memory age, with BLA gamma entrained by CA1 theta during remote memory recall. Provides evidence for ongoing CA1-BLA coordination during fear memory expression, supporting the circuit substrate for MECH-074d's remap_signal pathway. However the paper characterises ongoing oscillatory coupling during recall, not a discrete PE-triggered remap event; the mapping to MECH-074d's acute event-triggered remap_signal is indirect. Mixed because it supports the circuit but does not directly test the harm-PE trigger mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If BLA gamma entrainment by CA1 theta is a readout of memory recall (not a trigger for memory update), then the oscillatory coupling does not support an active remap_signal.",
+    "If the CA1 theta that entrains BLA gamma is from different place cells than those that remap (i.e. recall cells vs remap cells are non-overlapping), the coupling evidence does not constrain the remap mechanism."
+  ],
+  "tags": ["mech_074d", "basolateral_amygdala", "CA1", "theta_gamma", "fear_memory", "oscillatory_coupling"],
+  "mapping": {
+    "source_claim_statement": "Remote (older) contextual fear memory recall is characterised by weaker but more rhythmic BLA gamma activity entrained by CA1 theta oscillations; multi-regional CA1 theta + BLA gamma features reliably classify memory age. The ACC also contributes theta entrainment of BLA during remote memory.",
+    "ree_translation": "MECH-074d requires BLA to receive harm-PE information and fire remap_signal back to hippocampus. Makino et al. show CA1 theta entrains BLA gamma during fear recall -- suggesting a CA1 → BLA oscillatory channel that could carry PE-related information. The theta-gamma coupling architecture supports the hypothesis that BLA is dynamically reading CA1 hippocampal state, providing a substrate for attribution gating.",
+    "mapping_caveat": "This paper addresses ongoing recall oscillations, not acute PE-triggered remap events. The remap_signal in MECH-074d is a discrete event occurring on harm-PE spike; oscillatory coupling during recall is background coordination, not an interrupt signal. Also: remote vs recent distinction is not the same as PE-triggered vs PE-absent.",
+    "source_context": "Freely behaving mice, longitudinal multisite electrophysiology (CA1, BLA, ACC), contextual fear conditioning, recent vs remote memory recall, LFP spectral analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Nat Commun 2024, McHugh lab, RIKEN. High source quality. Mapping fidelity lower because oscillatory coupling during recall is not the same as acute PE-triggered remap. Evidence is indirect."
+  }
+}

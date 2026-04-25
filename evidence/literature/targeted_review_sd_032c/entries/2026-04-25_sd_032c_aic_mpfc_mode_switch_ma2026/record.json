@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032c",
+  "entry_id": "2026-04-25_sd_032c_aic_mpfc_mode_switch_ma2026",
+  "timestamp_utc": "2026-04-25T09:54:44Z",
+  "claim_ids_tested": ["SD-032c"],
+  "source": {
+    "title": "Targeting insulo-frontal pathway to reduce stress-evoked cognitive rigidity",
+    "authors": ["Shaorong Ma", "Kuan Hong Wang", "Yi Zuo"],
+    "year": 2026,
+    "venue": "bioRxiv (preprint)",
+    "doi": "10.64898/2026.02.12.705479"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Provides direct optogenetic causal evidence that aIC → mPFC pathway signals incorrect trial outcomes, elevates mPFC updating on subsequent trials, and restores adaptive mode-switching in stressed animals. This is the closest available empirical paper to the SD-032c urgency-interrupt hypothesis: aIC detects salient negative events and fires a control signal to prefrontal cortex that triggers behavioral mode revision. Confidence moderated by preprint status and the fact the study addresses cognitive set-shifting rather than harm-salience urgency per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If aIC signals all outcome valences (not specifically salient negative events), its role is general prediction-error reporting rather than urgency interrupt.",
+    "If the pathway effect is on working memory updating rather than network mode switching, SD-032c may need to be reframed as a PFC-update signal rather than a mode-switch trigger."
+  ],
+  "tags": ["sd_032c", "anterior_insula", "mPFC", "mode_switching", "optogenetics", "salience", "cognitive_control"],
+  "mapping": {
+    "source_claim_statement": "aIC neurons projecting to mPFC show heightened activity following incorrect (salient negative) trials; this elevated activity persists and provides a salience signal enhancing mPFC outcome-dependent updating. Optogenetic reinforcement of aIC→mPFC after incorrect trials restores cognitive flexibility in stressed mice.",
+    "ree_translation": "SD-032c proposes that AICAnalog fires a switch trigger to the SalienceCoordinator (SD-032a) when z_harm_a exceeds a threshold. Ma et al. provide causal optogenetic evidence that aIC → prefrontal signalling after salient negative events IS the mechanism for behavioural mode revision, directly supporting the interrupt-trigger architecture.",
+    "mapping_caveat": "The paper uses cognitive set-shifting (attentional set-shifting task) as the mode-switch proxy, not harm-salience urgency or homeostatic drive modulation. The drive_level dependence (SD-032c's key testable specification) is not addressed. Preprint status adds additional uncertainty.",
+    "source_context": "Mouse optogenetics, attentional set-shifting task (AST), two-photon calcium imaging of aIC → mPFC projections, stress model."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "bioRxiv preprint 2026, Zuo lab. Strong optogenetic design but preprint, and task maps to cognitive flexibility not urgency interrupt. Mapping fidelity good but not tight."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_257",
+  "entry_id": "2026-04-25_mech_257_forward_reverse_replay_shin2019",
+  "timestamp_utc": "2026-04-25T09:54:44Z",
+  "claim_ids_tested": ["MECH-257"],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making",
+    "authors": ["Justin D. Shin", "Wenbo Tang", "Shantanu P. Jadhav"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.012"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality in vivo recording in same hippocampal-prefrontal ensembles throughout learning; directly shows the same population switches between reverse (retrospective evaluation) and forward (prospective planning) replay modes as a function of learning phase. Core claim maps closely, but REE uses E2_x forward model weights rather than place cell firing sequences. Transfer risk from rat spatial task to general REE architecture is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If forward and reverse replay require distinct place cell subpopulations (not same cells), the single-substrate claim for MECH-257 is weakened.",
+    "If the learning shift is driven by context change rather than a controller signal, the gating mechanism in MECH-257 may not generalise."
+  ],
+  "tags": ["mech_257", "hippocampus", "replay", "forward_model", "mode_switching", "credit_assignment", "planning"],
+  "mapping": {
+    "source_claim_statement": "During pauses between behavioural trajectories, reverse hippocampal replay supports retrospective evaluation of past paths and forward replay supports prospective planning of future paths; the same hippocampal-prefrontal ensembles carry both, with opposing learning gradients across a task session.",
+    "ree_translation": "E2_x is a single substrate read in two modes: retrospective comparator (post-action residual) and prospective rollout-scoring (pre-action evaluation). The mode shift Shin et al. document across learning is a behavioural analogue of the controller-gated mode switch MECH-257 proposes, with hippocampal sharp-wave ripple direction (forward/reverse) as the biological gating signal.",
+    "mapping_caveat": "REE posits a moment-by-moment controller gate (MECH-094 commitment boundary), whereas Shin et al. describe a session-level learning gradient; whether the same cell population supports sub-second mode flipping within a single episode is not tested. The paper also cannot distinguish whether the same neurons contribute to both modes or whether there is task-phase-specific recruitment.",
+    "source_context": "Awake rat spatial alternation task, hippocampal CA1 + dorsal mPFC ensemble recordings, sharp-wave ripple-triggered replay analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.28,
+    "notes": "Neuron 2019, Jadhav lab; single-unit + LFP, large ensembles, within-subject longitudinal. Mapping fidelity high but not perfect: REE claim is about weight-sharing across modes, not place-cell identity per se."
+  }
+}

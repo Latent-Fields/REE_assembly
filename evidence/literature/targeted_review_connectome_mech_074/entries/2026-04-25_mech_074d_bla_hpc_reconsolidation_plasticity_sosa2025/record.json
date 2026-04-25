@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-25_mech_074d_bla_hpc_reconsolidation_plasticity_sosa2025",
+  "timestamp_utc": "2026-04-25T09:54:44Z",
+  "claim_ids_tested": ["MECH-074d"],
+  "source": {
+    "title": "A hyperexcited basolateral amygdala complex state determines the hippocampal structural plasticity associated with the reconsolidation of a fear memory",
+    "authors": ["Maria Candela Sosa", "Ramiro Comas Mutis", "Melisa Riva Gargiulo", "Irene Delia Martijena", "Crhistian Luis Bender", "Gaston Diego Calfa"],
+    "year": 2025,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2025.11.023"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Provides causal evidence that BLA state directly determines hippocampal structural plasticity (dendritic spines) during memory reconsolidation. BLA hyperexcitation (via bicuculline) blocks dorsal hippocampus reconsolidation-related remodelling, and NMDA modulation (D-cycloserine) restores it. This establishes the BLA→HPC signalling axis that MECH-074d proposes: BLA emits a remap_signal that triggers hippocampal memory update on harm-PE spike. Confidence moderated by the study using pharmacological manipulation rather than precisely characterising the BLA→HPC signal itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If BLA influence on HPC plasticity operates via downstream amygdala outputs (CeA → brainstem → NE modulation of HPC) rather than direct BLA → HPC projection, the remap_signal architecture in MECH-074d is at the wrong circuit level.",
+    "If structural spine changes reflect consolidation per se rather than targeted remapping of specific representations, the attribution-gated partial remap is not supported."
+  ],
+  "tags": ["mech_074d", "basolateral_amygdala", "hippocampus", "reconsolidation", "structural_plasticity", "fear_memory"],
+  "mapping": {
+    "source_claim_statement": "BLA hyperexcitation alters dorsal hippocampus structural plasticity during memory reconsolidation in a manner analogous to stress; NMDA receptor modulation prior to memory reactivation reverses these effects. BLA state critically gates hippocampal memory updating.",
+    "ree_translation": "MECH-074d proposes that BLAAnalog emits a remap_signal to HippocampalModule when harm-PE exceeds threshold AND attribution gating flags specific latent codes. Sosa et al. provide the biological mechanistic support: BLA state (firing rate, excitability) directly gates whether hippocampal memory traces undergo structural update during reactivation -- the biological equivalent of the remap_signal gating hippocampal code perturbation.",
+    "mapping_caveat": "The study does not characterise which hippocampal representations are selectively updated; it measures global dendritic spine density changes, not attribution-specific partial remapping. The 30-40% partial remap claim (Moita 2004) is not addressed.",
+    "source_context": "Rat contextual fear conditioning + reconsolidation paradigm; intracranial bicuculline and D-cycloserine infusions; dendritic spine quantification in dorsal hippocampus."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.28,
+    "notes": "Neuroscience 2025, full paper. Pharmacological causal design is strong; spine quantification is appropriate. Transfer risk: rats, pharmacological manipulation, structural (not functional) plasticity measure."
+  }
+}

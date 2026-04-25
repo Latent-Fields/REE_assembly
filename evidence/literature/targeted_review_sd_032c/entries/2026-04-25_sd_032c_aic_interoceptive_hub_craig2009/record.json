@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032c",
+  "entry_id": "2026-04-25_sd_032c_aic_interoceptive_hub_craig2009",
+  "timestamp_utc": "2026-04-25T09:54:44Z",
+  "claim_ids_tested": ["SD-032c"],
+  "source": {
+    "title": "How do you feel -- now? The anterior insula and human awareness",
+    "authors": ["A. D. Bud Craig"],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2555"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Canonical review establishing AIC as the re-representation locus of interoceptive state, with direct autonomic and affective efferents. Provides the biological grounding for SD-032c's claim that AIC integrates z_harm_a with interoceptive baseline (drive_level). Mapping fidelity is moderate: Craig's framework focuses on awareness and subjective feeling, not on the urgency-interrupt / mode-switch function specifically; that extension requires Menon & Uddin 2010.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If AIC activity is primarily a readout of body state (awareness) rather than a trigger for mode changes, SD-032c's urgency-interrupt role is ungrounded.",
+    "If interoceptive salience in AIC does not integrate with harm signals (z_harm_a) but with a separate pain-specific pathway, the proposed convergence mechanism needs revision."
+  ],
+  "tags": ["sd_032c", "anterior_insula", "interoception", "homeostasis", "salience", "awareness"],
+  "mapping": {
+    "source_claim_statement": "The anterior insular cortex re-represents interoceptive afferent signals (from all body systems) as subjective feelings; it is implicated in the full range of emotional and homeostatic conditions and may constitute the neural substrate of awareness via integration of the body's current state.",
+    "ree_translation": "AICAnalog receives z_harm_a and drive_level (interoceptive baseline from SD-012) and computes aic_salience. Craig establishes the biological precedent that AIC is precisely the structure that integrates harm-valenced afferents (pain, visceral signals) with homeostatic drive state to generate a salience signal -- exactly the input-output specification of SD-032c.",
+    "mapping_caveat": "Craig's paper concerns awareness and subjective phenomenology; it does not explicitly model AIC as a threshold-gated urgency trigger that fires a network-switch signal to a coordinator. That action-switch function is a downstream claim requiring the Menon & Uddin architecture.",
+    "source_context": "Comprehensive literature review across imaging, lesion, and single-unit studies in humans and non-human primates."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.22,
+    "notes": "Nat Rev Neurosci 2009, >5000 citations. Source quality very high. Mapping fidelity limited by Craig focusing on phenomenology rather than urgency-interrupt circuitry."
+  }
+}

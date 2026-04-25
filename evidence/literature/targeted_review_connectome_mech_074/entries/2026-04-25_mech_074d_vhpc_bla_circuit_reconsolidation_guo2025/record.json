@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025",
+  "timestamp_utc": "2026-04-25T09:54:44Z",
+  "claim_ids_tested": ["MECH-074d"],
+  "source": {
+    "title": "A ventral hippocampus-basolateral amygdala circuit regulates the unconditioned stimulus retrieval-induced reconsolidation of remote fear memory",
+    "authors": ["Dan Guo", "Zhong Wang", "Fanglin Liu", "Wenhao Chen", "Xuejiao Gao", "Shihao Huang", "Serik Tabarak", "Yuan Yao", "Shiya Zhang", "Jie Shi", "Lin Lu", "Ying Han"],
+    "year": 2025,
+    "venue": "Journal of Advanced Research",
+    "doi": "10.1016/j.jare.2025.10.015"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Provides chemogenetic circuit-level evidence that the vCA1-BLA pathway specifically mediates reconsolidation triggered by unconditioned stimulus (US) retrieval — i.e., by harm-PE rather than CS retrieval. Inhibiting vCA1-BLA after US retrieval disrupts remote fear memory with long-term efficacy and resistance to reinstatement. This supports MECH-074d's claim that BLA (here receiving vHPC input) gates hippocampal memory updates specifically when harm-PE is high. The bidirectionality (activating vCA1-BLA blocks propranolol effect) strengthens the circuit claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the effect is specific to ventral HPC (motivational/affective axis) and does not generalise to dorsal HPC (spatial/planning axis, E3 viability map substrate), MECH-074d's remap_signal on the planning map is not supported.",
+    "If the circuit effect requires CS retrieval (not US/harm) to be engaged, the harm-PE trigger architecture is wrong."
+  ],
+  "tags": ["mech_074d", "ventral_hippocampus", "basolateral_amygdala", "reconsolidation", "fear_memory", "chemogenetics", "circuit"],
+  "mapping": {
+    "source_claim_statement": "The vCA1 → BLA circuit specifically supports US retrieval-induced (harm-PE-driven) reconsolidation of remote fear memory; inhibiting this circuit after US retrieval produces long-lasting memory disruption; activating it blocks propranolol's reconsolidation-blocking effect.",
+    "ree_translation": "MECH-074d requires that BLAAnalog emits remap_signal specifically when harm-PE (z_harm_a - E2_harm_a_pred) is high. Guo et al. show the hippocampus-BLA circuit is specifically activated by US retrieval (harm event reactivation), supporting a PE-triggered pathway rather than a generic retrieval trigger. The vCA1 → BLA direction is the opposite of MECH-074d's BLA → HPC remap_signal, but both directions of the bidirectional circuit are needed for the full update loop.",
+    "mapping_caveat": "The paper focuses on vCA1 → BLA (hippocampus feeding BLA) whereas MECH-074d's remap_signal is BLA → hippocampus (BLA triggering hippocampal remap). Both directions of the circuit are empirically supported in this paper (chemogenetic manipulation of vCA1-BLA affects both encoding and reconsolidation), but the directional claim in MECH-074d requires the BLA → HPC direction specifically.",
+    "source_context": "Rat contextual fear conditioning, recent vs remote memory, US and CS retrieval conditions, chemogenetics (DREADDs), fiber photometry, pharmacology."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "J Adv Res 2025, full paper. Chemogenetic circuit-level causal design is strong. Mapping caveat: vCA1 not dorsal HPC; directionality is bidirectional, not just BLA->HPC."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_032c",
+  "entry_id": "2026-04-25_sd_032c_salience_network_switch_menon2010",
+  "timestamp_utc": "2026-04-25T09:54:44Z",
+  "claim_ids_tested": ["SD-032c"],
+  "source": {
+    "title": "Saliency, switching, attention and control: a network model of insula function",
+    "authors": ["Vinod Menon", "Lucina Q. Uddin"],
+    "year": 2010,
+    "venue": "Brain Structure and Function",
+    "doi": "10.1007/s00429-010-0262-0"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly provides the network-level model that SD-032c instantiates: AIC as integral hub performing (1) bottom-up detection of salient events, (2) switching between large-scale networks (task-positive vs default-mode) when a salient event is detected, (3) strong coupling with ACC for rapid motor system access. This maps precisely onto SD-032c's urgency-interrupt specification: detect z_harm_a salience > threshold, fire switch trigger to SD-032a salience coordinator. Mapping fidelity is high for the mode-switch function; transfer risk is the network vs module abstraction gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If AIC's mode-switching function is mediated by a distributed network property (not by a locally-computed salience threshold), SD-032c's AICAnalog as a local threshold module is architecturally wrong.",
+    "If the switch is always active (continuous modulation) rather than threshold-gated (urgency interrupt), the event-driven architecture of SD-032c is incorrect."
+  ],
+  "tags": ["sd_032c", "anterior_insula", "salience_network", "mode_switching", "aCC", "urgency"],
+  "mapping": {
+    "source_claim_statement": "The anterior insula is an integral hub that detects salient events, initiates switching between the central executive network and the default mode network, and provides strong coupling with ACC for rapid motor access. Core mechanisms: bottom-up salience detection, network switching, autonomic modulation of salience reactivity.",
+    "ree_translation": "SD-032c's AICAnalog module instantiates exactly the Menon & Uddin hub: it detects salience (z_harm_a + drive_level > threshold) and fires a network-switch trigger to the SalienceCoordinator (SD-032a). The ACC coupling maps to SD-032c's interaction with the dACC-like component of SD-032a that gates the transition to internal/planning mode.",
+    "mapping_caveat": "Menon & Uddin describe a large-scale resting-state network; SD-032c is a within-agent module operating on local scalar signals. The key claim that a threshold-gated interrupt (rather than continuous modulation) is the correct architecture is supported by the framework but not directly measured.",
+    "source_context": "Network analysis review integrating fMRI functional connectivity, lesion studies, and resting-state literature in humans."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Brain Struct Funct 2010, >4000 citations, foundational salience network paper. Mapping fidelity high for mode-switch function. Transfer from network-level to module-level is a gap."
+  }
+}
