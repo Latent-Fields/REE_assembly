@@ -1,0 +1,121 @@
+{
+  "run_id": "v3_exq_481_vs_commit_release_20260425T101332Z_v3",
+  "experiment_type": "v3_exq_481_vs_commit_release",
+  "claim_ids": [
+    "MECH-269",
+    "MECH-090"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260425T101332Z",
+  "outcome": "FAIL",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "MECH-269": "inconclusive",
+    "MECH-090": "inconclusive"
+  },
+  "evidence_direction_note": "V_s -> commit release substrate-readiness diagnostic. EXQ-478/480 showed the V_s invalidation circuit was wired-but-inert: anchor resets fired abundantly with no behavioural delta. This experiment isolates the read-side hook (REEAgent select_action() V_s release block) by running both arms with the full V_s circuit ON and toggling only use_vs_commit_release. PASS confirms the read-side hook produces a measurable freeze-recommit drop and that the release path is exercised. FAIL = the hook is wired but inert on this env -- revisit BoundaryEvent rate, anchor-key snapshot scope, or commit-entry capture sites. Substrate-readiness only; not governance evidence.",
+  "pass_criteria_summary": {
+    "gate_rule": "vs_commit_release_count(ON) > 0 AND freeze_recommit_count(ON) < freeze_recommit_count(OFF) in >= 2/2 seeds",
+    "per_seed_gate": [
+      {
+        "seed": 42,
+        "off_freeze_recommit": 1,
+        "on_freeze_recommit": 1,
+        "off_vs_release": 0,
+        "on_vs_release": 0,
+        "off_anchor_resets": 63,
+        "on_anchor_resets": 63,
+        "vs_release_ok": false,
+        "freeze_drop_ok": false,
+        "passed": false
+      },
+      {
+        "seed": 7,
+        "off_freeze_recommit": 1,
+        "on_freeze_recommit": 1,
+        "off_vs_release": 0,
+        "on_vs_release": 0,
+        "off_anchor_resets": 31,
+        "on_anchor_resets": 31,
+        "vs_release_ok": false,
+        "freeze_drop_ok": false,
+        "passed": false
+      }
+    ],
+    "seeds_passing": 0,
+    "seeds_required": 2,
+    "pass": false
+  },
+  "per_seed_results": [
+    {
+      "condition": "OFF",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 63,
+      "vs_commit_release_count": 0,
+      "mean_staleness_peak": 0.9411233036796581
+    },
+    {
+      "condition": "ON",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 63,
+      "vs_commit_release_count": 0,
+      "mean_staleness_peak": 0.9411233036796581
+    },
+    {
+      "condition": "OFF",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 31,
+      "vs_commit_release_count": 0,
+      "mean_staleness_peak": 0.8291666666666666
+    },
+    {
+      "condition": "ON",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 31,
+      "vs_commit_release_count": 0,
+      "mean_staleness_peak": 0.8291666666666666
+    }
+  ],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "freeze_run_len": 3
+  }
+}

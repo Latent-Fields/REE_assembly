@@ -1,0 +1,102 @@
+{
+  "run_id": "v3_exq_482_sd029_baseline_monostrategy_diagnostic_20260425T101638Z_v3",
+  "experiment_type": "v3_exq_482_sd029_baseline_monostrategy_diagnostic",
+  "claim_ids": [
+    "SD-029"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260425T101638Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-029": "weakens"
+  },
+  "evidence_direction_note": "SD-029 baseline-monostrategy diagnostic. EXQ-480 OFF arms produced action_class_entropy=0.0 across all seeds even with SD-029 active for all arms; EXQ-479 only validated the SD-029 mechanism, not its behavioural effect at action-class granularity. PASS confirms SD-029 lifts action-class entropy in a plain baseline agent. FAIL flags the curriculum as either too sparse to break baseline monostrategy at this granularity or as having an effect invisible to action-class entropy -- in which case the metric or the curriculum scope must be revisited before SD-029 is relied upon as the monostrategy-breaking lever.",
+  "pass_criteria_summary": {
+    "gate_rule": "entropy(SD-029=ON) > entropy(SD-029=OFF) + 0.1 in >= 2/2 seeds",
+    "per_seed_gate": [
+      {
+        "seed": 42,
+        "off_entropy": 0.0,
+        "on_entropy": 0.0,
+        "entropy_lift": 0.0,
+        "on_n_ext_hazard": 9,
+        "passed": false
+      },
+      {
+        "seed": 7,
+        "off_entropy": 0.0,
+        "on_entropy": 0.0,
+        "entropy_lift": 0.0,
+        "on_n_ext_hazard": 9,
+        "passed": false
+      }
+    ],
+    "seeds_passing": 0,
+    "seeds_required": 2,
+    "pass": false
+  },
+  "per_seed_results": [
+    {
+      "condition": "OFF",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_external_hazard_events": 0
+    },
+    {
+      "condition": "ON",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_external_hazard_events": 9
+    },
+    {
+      "condition": "OFF",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_external_hazard_events": 0
+    },
+    {
+      "condition": "ON",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_external_hazard_events": 9
+    }
+  ],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "entropy_lift_min": 0.1,
+    "curriculum_interval": 50,
+    "curriculum_prob": 0.5,
+    "curriculum_adjacent_only": true
+  }
+}
