@@ -20873,10 +20873,33 @@
     V3 roadmap regardless of EXQ-475's empirical outcome.
     Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
   evidence_quality_note: >
-    No V3 substrate evidence yet; not implemented. Strong literature basis
-    (lit-pull synthesis at literature_confidence ~0.78 across 13 papers).
-    Promotion requires the falsifiable factorial validation above plus
+    Substrate IMPLEMENTED 2026-04-25 (ree-v3 commit; design doc
+    sd_037_broadcast_override_regulator.md). First validation V3-EXQ-483
+    (4-arm SD-036 x SD-037 factorial, 3 seeds, 60-ep warmup) returned a
+    "wired-but-inert" pattern: substrate signature confirmed --
+    override_signal climbed from 0.0 to 0.56 mean / 0.62 max in ON arms
+    and PAG release count rose from 5.3 (override OFF) to 9.0-9.3
+    (override ON), tracking the lit-pull-predicted PAG-exit-threshold
+    scaling. Behavioural acceptance criteria (PWS / narcolepsy ratios)
+    were uninterpretable because approach_commit was 0.0 across ALL
+    arms including the SD-036-only baseline (ON_OFF), making the
+    PWS / narcolepsy ratios degenerate (0/0). The pattern matches
+    EXQ-471 / EXQ-478 / EXQ-480: substrate writes the expected signal
+    but the policy layer does not yet translate it into observable
+    behavioural divergence under the standard CausalGridWorldV2
+    benefit task. Confidence is therefore SUBSTRATE-CONFIRMED-WIRED
+    but BEHAVIOURALLY-INCONCLUSIVE -- promotion still requires
     independent demonstration of the two failure-mode phenotypes.
+    Successor V3-EXQ-483a queued (warmup 60 -> 200 to give baseline
+    arm enough exposure to potentially produce non-zero approach
+    behaviour; acceptance logic adds substrate-readiness fallback path
+    used only when the baseline arm yields no behavioural signal,
+    requiring override_mean > 0.30 AND PAG release ratio
+    ON_ON / ON_OFF > 1.30 -- both thresholds derived from EXQ-483's
+    measured values so the test discriminates against a hypothetically
+    broken substrate without depending on a behavioural readout the
+    policy layer cannot yet produce). Strong literature basis retained
+    (lit-pull synthesis at literature_confidence ~0.78 across 13 papers).
   pharmacological_predictions:
     - PHARM-001  # DORA-class (suvorexant/lemborexant) substrate intervention for hyperarousal-insomnia
     - PHARM-002  # modafinil / sodium oxybate (MECH-286 axis, narcolepsy sleep-state)
