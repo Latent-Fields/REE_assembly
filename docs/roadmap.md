@@ -14,6 +14,80 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-25 — nightly docs sync, post-Phase-3 wave)
+
+- **SDs moved to Implemented since the 2026-04-24 snapshot:**
+  - **MECH-284 Phase 3** (`hippocampal.staleness_accumulator`) -- region-indexed
+    staleness with per-tick leak (default `leak_factor=0.995`), attribution_mode
+    `equal` / `stream_overlap`, `staleness_clip=1.0`, `lookup_by_anchor_key`
+    getter consumed by MECH-269 online hysteresis. Integration site:
+    `HippocampalModule.tick_anchor_set` peek-not-drains the
+    `_broadcast_event_queue` so MECH-287 broadcast events propagate
+    transparently.
+  - **MECH-269 online hysteresis swap** (`AnchorSet.tick_hysteresis` accepts
+    optional `staleness_lookup`; orthogonal flag `use_mech284_hysteresis`,
+    default OFF). With both flags ON, `V_s_anchor = V_s(r) - staleness[r]`
+    drives anchor-reset; default OFF preserves the Phase 2 internal proxy
+    so the substrate is non-invasive.
+  - **MECH-290** (`hippocampal.backward_trajectory_credit_sweep`) -- Foster &
+    Wilson 2006 reverse replay. `record_committed_trajectory` at BetaGate
+    elevation; `backward_credit_sweep` at completion-signal release;
+    per-step credit = `outcome_quality * gamma^(T-1-t)` ->
+    `ResidueField.update_valence(VALENCE_WANTING)`. Reset on episode
+    boundary.
+- **Contracts suite:** 91/91 PASS with all flags OFF (was 85/85 before the
+  Phase 3 wave); preflight 7/7 PASS; bit-identical to the pre-Phase-3 HEAD
+  with master switches off. Activation smokes -- ARM0/1/2 for MECH-284 and
+  end-to-end direct-wiring tests for MECH-290 -- all PASS 2026-04-24.
+- **Experiment count:** 545 runner-side completions per
+  `runner_status.json` 2026-04-25 read (108 PASS / 239 FAIL / 66 ERROR /
+  132 UNKNOWN; v3 subset 88 PASS / 226 FAIL / 64 ERROR / 132 UNKNOWN).
+  Indexer carries 881 indexed runs as of the 2026-04-24 cowork rebuild;
+  indexer-vs-runner gap is the historical pre-runner_status archive plus
+  per-seed manifests collapsed to single queue entries. Next indexer
+  rebuild is gated on V3-EXQ-478 returning.
+- **Pending review:** 13 items as of `pending_review.md` regenerated
+  2026-04-24T11:54:11Z (down from 25 on the 2026-04-23 snapshot;
+  cowork-a wave reviewed V3-EXQ-433c / 449b / 447a and resolved several
+  unknowns).
+- **Queue:** EMPTY (`experiment_queue.json` `items: []` as of
+  2026-04-25T01:14Z). Active waterfall:
+  - **V3-EXQ-478 in flight** -- MECH-284 Phase 3 validation diagnostic,
+    OFF vs ON x 2 seeds; metrics `freeze_recommit_count`,
+    `anchor_reset_count`, `mean_staleness_peak`, `action_class_entropy`.
+    Auto-claimed by `DLAPTOP-4.local` 2026-04-24T13:22Z; runner_status
+    carries it as UNKNOWN pending completion. PASS unlocks the
+    previously gated V3-EXQ-445d / 449c / 455a / 476 cascade. FAIL
+    forces a Phase 3 redesign before the cascade proceeds.
+  - **V3-EXQ-479 next-up** -- SD-029 fix2 superseding 470a; queued by
+    cowork-2026-04-24-a with the curriculum / agent-caused-elicitation
+    correction.
+  - V3-EXQ-476 / 476a / 476b returned ERROR/UNKNOWN before MECH-284
+    Phase 3 was available; 476a and 476b queued in
+    `discussed_experiment_dirs` for review.
+  - V3-EXQ-449c / 445d / 455a all errored under the pre-MECH-284
+    substrate and await V3-EXQ-478 PASS before re-queueing.
+  - V3-EXQ-418c remains needs_user_review (SD-016 cue_action_proj
+    design rethink open, anchored on the 2026-04-24 V3-EXQ-477
+    `key_proj.bias` dominance diagnosis).
+  - V3-EXQ-137 FAILed 2026-04-24T02:21Z (MECH-097 PPS commit locus,
+    instrumentation-fix); V3-EXQ-477 FAILed 2026-04-24T08:06Z (SD-016
+    ContextMemory slot-store / attention-uniformity diagnostic).
+- **Current first-paper-gate bottleneck:** V3-EXQ-478 (MECH-284 Phase 3
+  validation, in flight) gates the V_s-gated cascade. SD-032 cluster
+  behavioural follow-through remains the primary cingulate-track blocker
+  (V3-EXQ-445a / 445b / 445c all FAILed; V3-EXQ-325d FAILed with zero
+  between-arm gradient on the SD-032c AIC-analog descending-modulation
+  falsification signature; V3-EXQ-454 FAILed on ARC-016 adaptive
+  commitment_threshold). SD-016 cue_action_proj forward-path is now in
+  the design-rethink anchor (V3-EXQ-477 FAIL diagnosed `key_proj.bias`
+  dominance as the substrate-level problem), gating V3-EXQ-418c.
+  Governance-cycle pass remains pending for the SD-032 behavioural
+  FAILs, the SD-035 / MECH-266 landings, the V_s invalidation runtime
+  substrate landings, and the 2026-04-24 Phase 3 wave.
+
+---
+
 ## Status Snapshot (2026-04-24 — nightly docs sync, queue refresh)
 
 - **No new SDs or governance decisions this session** (nightly docs-only sync
@@ -362,48 +436,39 @@ nav_order: 6
 
 ## Immediate Work Queue (This Cycle)
 
-- Land V3-EXQ-433c (SD-029 event-conditioned MECH-256 comparator with
-  curriculum ON + scripted agent-caused elicitation; claimed DLAPTOP-4.local
-  2026-04-23T23:23:48Z, supersedes V3-EXQ-433b) -- re-opens the SD-003
-  successor track after the agent_caused_hazard r2=0.0 trials-shortage
-  diagnosis.
-- Land V3-EXQ-476 (MECH-269 V_s validation entropy probe -- cascade gate,
-  priority 70, pending) -- the 2026-04-22 V_s invalidation runtime substrate
-  wave has landed via contracts + activation smokes; this is the end-to-end
-  behavioural validation. PASS unlocks V3-EXQ-449c and the downstream V_s-gated
-  cascade (EXQ-445d / 455a).
-- Land V3-EXQ-449b (SD-016 cue_action_proj consumer fix verification;
-  supersedes V3-EXQ-449a, smoke-PASS 2026-04-23, priority 52, pending) --
-  unblocks V3-EXQ-418c (SD-016+SD-017 context-conditioned action re-run,
-  priority 50, pending, supersedes V3-EXQ-418b).
-- Land V3-EXQ-449c (MECH-074b BLA retrieval bias V_s-gated, priority 50,
-  pending; `depends_on: V3-EXQ-445d`).
-- Land V3-EXQ-137 (MECH-097 PPS commit locus, priority 40, pending; backlog
-  EVB-0137; instrumentation fixed 2026-04-24, smoke-PASS).
-- Run the next governance cycle once V3-EXQ-433c and V3-EXQ-476 land:
-  rebuild `claim_evidence.v1.json`, regenerate `pending_review.md`,
-  ingest the SD-032 cluster behavioural FAIL pattern, the SD-035
-  landing PASSes, the fresh SD-033 cluster registrations (MECH-266 /
-  SD-029 / MECH-269-278 / ARC-059), and the V_s invalidation runtime
-  landings (SD-036 / MECH-279 / MECH-269 Phase 1/2 ii/2 iii T4 /
-  MECH-288 / MECH-287).
-- Assess whether V3-EXQ-445a's outcome vindicates the SD-032b monostrategy
-  fix or confirms that the dACC/AIC/ARC-016 behavioural loop needs
-  substrate-level redesign; decide whether to queue EXQ-445d or to pivot
-  to an SD-035 + MECH-266 behavioural-pair experiment.
-- Queue V3-EXQ-470 (SD-029 SCHEDULED vs BASELINE curriculum diagnostic) to
-  unblock C3/C4 event-conditioned SNR measurement on the MECH-256
-  comparator track.
+- Land V3-EXQ-478 (MECH-284 Phase 3 validation diagnostic, OFF vs ON x 2 seeds;
+  metrics `freeze_recommit_count`, `anchor_reset_count`, `mean_staleness_peak`,
+  `action_class_entropy`) -- in flight on `DLAPTOP-4.local` since
+  2026-04-24T13:22Z. Cascade gate: PASS unlocks the previously gated
+  V3-EXQ-445d / 449c / 455a / 476 cascade now that the staleness signal
+  drives anchor-reset hysteresis; FAIL forces a Phase 3 redesign.
+- Land V3-EXQ-479 (SD-029 fix2 superseding 470a; queued by cowork-2026-04-24-a
+  with the curriculum / agent-caused-elicitation correction) -- next-up
+  SD-029 follow-up after V3-EXQ-478.
+- Re-queue V3-EXQ-445d / 449c / 455a / 476 (the V_s end-to-end behavioural
+  cascade) once V3-EXQ-478 PASSes; both 449c and 455a target MECH-074b /
+  SD-035 retrieval-bias V_s-gating, and 476 is the entropy-probe gate the
+  prior cycle deferred to "planned but not yet queued" -- now superseded
+  by the 2026-04-24 Phase 3 wave.
+- SD-016 cue_action_proj design rethink: V3-EXQ-477 FAILed 2026-04-24T08:06Z
+  with `key_proj.bias` dominance as the substrate-level diagnosis; the
+  EXQ-418c re-run remains needs_user_review until the substrate-level
+  rethink lands. EXP-0155 instrumentation work continues as the anchor.
+- Run the next governance cycle once V3-EXQ-478 lands: rebuild
+  `claim_evidence.v1.json`, regenerate `pending_review.md`, ingest the
+  SD-032 cluster behavioural FAIL pattern, the SD-035 landing PASSes,
+  the SD-033 cluster registrations (MECH-266 / SD-029 / MECH-269-278 /
+  ARC-059), the V_s invalidation runtime landings (SD-036 / MECH-279 /
+  MECH-269 Phase 1/2 ii/2 iii T4 / MECH-288 / MECH-287), and the
+  2026-04-24 Phase 3 wave (MECH-284 + MECH-269 online hysteresis +
+  MECH-290).
 - First-pass hippocampal consumer wiring for SD-035 BLA retrieval_bias and
   remap_signal once V3-EXQ-474 behavioural signature confirmed (deferred
   from 2026-04-21 landing pass).
-- First-pass Phase 3 wiring for the V_s invalidation runtime: MECH-284
-  staleness accumulator consumer on per-region V_s (ticks monotonic in
-  (tick - last_accessed) until broadcast or hysteresis reset); MECH-272
-  state-gated anchor/probe routing (waking=anchor-dominant,
-  sleep=probe-dominant). Both remain v3_pending after the 2026-04-22
-  substrate landings -- Phase 2 produces the observables; Phase 3 wires
-  them into replay / BG / E3 consumers.
+- Continue Phase 3 V_s invalidation runtime wiring: MECH-272 state-gated
+  anchor/probe routing (waking=anchor-dominant, sleep=probe-dominant),
+  MECH-285 offline sleep-priority readout, and the BG / E3 replay-prio
+  consumers that read MECH-284 staleness alongside V_s.
 - Move MECH-266 OCD/depression-axis competing-goals behavioural variants
   (EXQ-464b / EXQ-467b) off hold once the CausalGridWorldV2 dual
   simultaneously active resource-cue env extension lands.
