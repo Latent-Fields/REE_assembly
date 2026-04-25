@@ -1,0 +1,366 @@
+{
+  "run_id": "v3_exq_480_mech284_phase3_param_sweep_20260425T014558Z_v3",
+  "experiment_type": "v3_exq_480_mech284_phase3_param_sweep",
+  "claim_ids": [
+    "MECH-284",
+    "MECH-269"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260425T014558Z",
+  "supersedes": null,
+  "outcome": "FAIL",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "MECH-284": "inconclusive",
+    "MECH-269": "inconclusive"
+  },
+  "evidence_direction_per_arm_per_claim": {
+    "A1_ON_default": {
+      "MECH-284": "inconclusive",
+      "MECH-269": "inconclusive"
+    },
+    "A2_ON_stream_overlap": {
+      "MECH-284": "inconclusive",
+      "MECH-269": "inconclusive"
+    },
+    "A3_ON_leak_099": {
+      "MECH-284": "inconclusive",
+      "MECH-269": "inconclusive"
+    },
+    "A4_ON_leak_0999": {
+      "MECH-284": "inconclusive",
+      "MECH-269": "inconclusive"
+    }
+  },
+  "evidence_direction_note": "MECH-284 Phase 3 parameter sweep after EXQ-478 FAIL (accumulator populates, resets fire, freeze unchanged, entropy=0 on both arms). This sweep adds SD-029 curriculum ON for all arms (to break OFF monostrategy) and varies attribution_mode + leak_factor. Substrate-readiness diagnostic; not governance evidence. Successor to EXQ-478 for Phase 3 behavioural validation. Gates V3-EXQ-445d / 449c / 455a Phase B.2 stub buildouts.",
+  "pass_criteria_summary": {
+    "off_entropy_gate_ok": false,
+    "off_entropies_by_seed": {
+      "42": 0.0,
+      "7": 0.0
+    },
+    "per_arm_gate": [
+      {
+        "arm": "A1_ON_default",
+        "per_seed": [
+          {
+            "seed": 42,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          },
+          {
+            "seed": 7,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          }
+        ],
+        "seeds_beating": 0,
+        "arm_wins_gate": false
+      },
+      {
+        "arm": "A2_ON_stream_overlap",
+        "per_seed": [
+          {
+            "seed": 42,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          },
+          {
+            "seed": 7,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          }
+        ],
+        "seeds_beating": 0,
+        "arm_wins_gate": false
+      },
+      {
+        "arm": "A3_ON_leak_099",
+        "per_seed": [
+          {
+            "seed": 42,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          },
+          {
+            "seed": 7,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          }
+        ],
+        "seeds_beating": 0,
+        "arm_wins_gate": false
+      },
+      {
+        "arm": "A4_ON_leak_0999",
+        "per_seed": [
+          {
+            "seed": 42,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          },
+          {
+            "seed": 7,
+            "off_freeze": 1,
+            "on_freeze": 1,
+            "beats_off": false
+          }
+        ],
+        "seeds_beating": 0,
+        "arm_wins_gate": false
+      }
+    ],
+    "winning_arms": [],
+    "outcome": "FAIL",
+    "outcome_note": "OFF baseline entropy is 0 across seeds -- curriculum did not break monostrategy; MECH-284 sweep cannot be scored because there is nothing for anchor resets to perturb. Diagnostic inconclusive at the behavioural layer."
+  },
+  "per_arm_results": [
+    {
+      "arm": "A0_OFF",
+      "seed": 42,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.995,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 0,
+      "mean_staleness_peak": 0.0,
+      "time_to_first_reset": null,
+      "staleness_at_first_reset": null
+    },
+    {
+      "arm": "A1_ON_default",
+      "seed": 42,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.995,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 63,
+      "mean_staleness_peak": 0.9727699701776421,
+      "time_to_first_reset": 87,
+      "staleness_at_first_reset": 0.5940912082298601
+    },
+    {
+      "arm": "A2_ON_stream_overlap",
+      "seed": 42,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.995,
+        "attribution_mode": "stream_overlap",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 63,
+      "mean_staleness_peak": 0.9727699701776421,
+      "time_to_first_reset": 87,
+      "staleness_at_first_reset": 0.5940912082298601
+    },
+    {
+      "arm": "A3_ON_leak_099",
+      "seed": 42,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.99,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 63,
+      "mean_staleness_peak": 0.9678816788702167,
+      "time_to_first_reset": 87,
+      "staleness_at_first_reset": 0.5911058252739312
+    },
+    {
+      "arm": "A4_ON_leak_0999",
+      "seed": 42,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.999,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 63,
+      "mean_staleness_peak": 0.9766806032235822,
+      "time_to_first_reset": 87,
+      "staleness_at_first_reset": 0.5964795145946032
+    },
+    {
+      "arm": "A0_OFF",
+      "seed": 7,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.995,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 0,
+      "mean_staleness_peak": 0.0,
+      "time_to_first_reset": null,
+      "staleness_at_first_reset": null
+    },
+    {
+      "arm": "A1_ON_default",
+      "seed": 7,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.995,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 79,
+      "mean_staleness_peak": 0.9868831136255712,
+      "time_to_first_reset": 167,
+      "staleness_at_first_reset": 0.6973906634460124
+    },
+    {
+      "arm": "A2_ON_stream_overlap",
+      "seed": 7,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.995,
+        "attribution_mode": "stream_overlap",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 79,
+      "mean_staleness_peak": 0.9868831136255712,
+      "time_to_first_reset": 167,
+      "staleness_at_first_reset": 0.6973906634460124
+    },
+    {
+      "arm": "A3_ON_leak_099",
+      "seed": 7,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.99,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 79,
+      "mean_staleness_peak": 0.9819239019993121,
+      "time_to_first_reset": 167,
+      "staleness_at_first_reset": 0.6938861877503038
+    },
+    {
+      "arm": "A4_ON_leak_0999",
+      "seed": 7,
+      "params": {
+        "curriculum_on": true,
+        "leak_factor": 0.999,
+        "attribution_mode": "equal",
+        "reset_threshold": 0.3,
+        "hysteresis_k": 5
+      },
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "3": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "freeze_recommit_count": 1,
+      "anchor_reset_count": 79,
+      "mean_staleness_peak": 0.9908504829265786,
+      "time_to_first_reset": 167,
+      "staleness_at_first_reset": 0.7001942440025792
+    }
+  ],
+  "config": {
+    "arms": [
+      "A0_OFF",
+      "A1_ON_default",
+      "A2_ON_stream_overlap",
+      "A3_ON_leak_099",
+      "A4_ON_leak_0999"
+    ],
+    "seeds": [
+      42,
+      7
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "freeze_run_len": 3,
+    "curriculum_on": true,
+    "curriculum_interval": 50,
+    "curriculum_prob": 0.5
+  }
+}
