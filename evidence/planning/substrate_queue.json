@@ -1,6 +1,12 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-24T08:10:41Z",
+  "last_updated_utc": "2026-04-25T13:29:45Z",
+  "next_implement_substrate": {
+    "sd_id": "SD-037",
+    "selected_utc": "2026-04-25T13:29:45Z",
+    "selected_by_session": "index-rebuild-and-sd037-pick-2026-04-25T13:29",
+    "rationale": "Selected over SD-019a as next /implement-substrate target. SD-037 (broadcast override regulator, orexin-analog) addresses an active known failure (V3-EXQ-471 catatonic lock) flagged by the SD-036/SD-037 lit-pull synthesis 2026-04-22 ('SD-036 alone is unlikely to fix V3-EXQ-471 architecturally'). Has factorial validation pre-specified (4-arm {SD-036, SD-037} x {OFF, ON}), 13-paper lit synthesis at conf~0.78, child cluster MECH-280/281/282 + sleep-axis MECH-286, and 5 pharmacological predictions (PHARM-001..006). SD-019a is gated on Q-036 (controllability evidence) and currently has nothing actively consuming the harm_unpleasantness tensor it would produce; deferred until Q-036 resolves or controllability gate work begins."
+  },
   "_schema_notes": {
     "metric_trajectory": {
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis.",

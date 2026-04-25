@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_237a_mech163_dual_system_discrimination
 
-Generated: `2026-04-25T09:05:17.749059Z`
+Generated: `2026-04-25T13:30:24.533795Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
