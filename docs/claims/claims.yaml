@@ -17912,9 +17912,9 @@
   claim_type: design_decision
   subject: cingulate.salience_network_coordinator
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 substrate-readiness PASS + V3-EXQ-455 behavioural PASS + V3-EXQ-453 06:21 write-gate landing PASS. Promoted candidate -> provisional 2026-04-24 (governance): 21 supporting entries, 0 opposing, 1 genuine exp (V3-EXQ-445a mixed), conf 0.861.
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 substrate-readiness PASS + V3-EXQ-455 behavioural PASS + V3-EXQ-453 06:21 write-gate landing PASS. Promoted candidate -> provisional 2026-04-24 (governance): 21 supporting entries, 0 opposing, 1 genuine exp (V3-EXQ-445a mixed), conf 0.861. Promoted provisional -> stable 2026-04-25 (governance): conf 0.928, conflict_ratio 0, 28 supports / 0 weakens / 3 mixed across 11 exp + 20 lit entries.
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
@@ -18228,9 +18228,9 @@
   claim_type: design_decision
   subject: cingulate.pacc_autonomic_coupling
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-453 06:21 write-gate landing PASS validates SD-032e write-gate registration in salience coordinator. Promoted candidate -> provisional 2026-04-24 (governance): 3 supporting entries + 1 mixed, 0 opposing, conf 0.830.
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-453 06:21 write-gate landing PASS validates SD-032e write-gate registration in salience coordinator. Promoted candidate -> provisional 2026-04-24 (governance): 3 supporting entries + 1 mixed, 0 opposing, conf 0.830. Promoted provisional -> stable 2026-04-25 (governance): conf 0.894, conflict_ratio 0, 5 supports / 0 weakens / 4 mixed across 5 exp + 4 lit entries.
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
@@ -18364,9 +18364,9 @@
   claim_type: mechanism_hypothesis
   subject: cingulate.switch_threshold
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 substrate PASSes confirm switch-threshold mechanism is firing. Promoted candidate -> provisional 2026-04-24 (governance): 3 supporting entries, 0 opposing, 1 genuine exp, conf 0.753.
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 substrate PASSes confirm switch-threshold mechanism is firing. Promoted candidate -> provisional 2026-04-24 (governance): 3 supporting entries, 0 opposing, 1 genuine exp, conf 0.753. Promoted provisional -> stable 2026-04-25 (governance): conf 0.882, conflict_ratio 0, 10 supports / 0 weakens across 8 exp + 2 lit entries.
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -18487,9 +18487,9 @@
   claim_type: mechanism_hypothesis
   subject: cingulate.mode_conditioned_write_gating
   polarity: asserts
-  status: provisional
+  status: stable
   implementation_phase: v3
-  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 + V3-EXQ-453 06:21 write-gate landing PASS validates mode-conditioned write gating. Promoted candidate -> provisional 2026-04-24 (governance): 21 supporting entries, 0 opposing (pre-retag), 1 genuine exp, conf 0.862. NOTE: V3-EXQ-453a 2026-04-24 FAIL per-claim weakens (mode-conditioned write-gate landing regressed on seed-level reproducibility of release gating); factored into held-at-provisional decision.
+  v3_pending: false  # cleared 2026-04-22: V3-EXQ-446 + V3-EXQ-455 + V3-EXQ-453 06:21 write-gate landing PASS validates mode-conditioned write gating. Promoted candidate -> provisional 2026-04-24 (governance): 21 supporting entries, 0 opposing (pre-retag), 1 genuine exp, conf 0.862. NOTE: V3-EXQ-453a 2026-04-24 FAIL per-claim weakens (mode-conditioned write-gate landing regressed on seed-level reproducibility of release gating); factored into held-at-provisional decision. Promoted provisional -> stable 2026-04-25 (governance): conf 0.891, conflict_ratio 0.167, 33 supports / 3 weakens / 0 mixed across 16 exp + 20 lit entries; engine recommendation overrides the prior hold despite residual seed-reproducibility weakens, given dominant evidence weight.
   claim_level: mechanistic
   registered_utc: 2026-04-19
   last_updated_utc: 2026-04-19
