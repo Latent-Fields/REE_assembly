@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-26_mech_280_lh_pons_foraging_marino2020",
+  "timestamp_utc": "2026-04-26T16:31:55Z",
+  "claim_ids_tested": ["MECH-280"],
+  "source": {
+    "title": "Control of food approach and eating by a GABAergic projection from lateral hypothalamus to dorsal pons",
+    "authors": ["Marino RAM", "McDevitt RA", "Gantz SC", "Shen H", "Morales M", "Lupica CR", "Bonci A"],
+    "year": 2020,
+    "venue": "Proc Natl Acad Sci USA",
+    "doi": "10.1073/pnas.1909340117",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32229573/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct circuit evidence for an LH-to-pons GABAergic projection that engages food approach -- the existence proof for the active-coping override channel MECH-280 names. PNAS-tier cell-type-specific optogenetic dissection in mouse. Mapping is closer than de Araujo Salgado in the sense that LH is the named source, but farther in that the downstream target is peri-LC dorsal pons rather than PAG -- the projection biases active engagement rather than directly raising a freeze threshold.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the override channel were a single LH-to-PAG synapse, optogenetic LH-to-pons activation should leave PAG-mediated freezing intact; this paper documents that LH-to-pons activation by itself drives food approach, suggesting the active-coping override may operate via parallel routes (LH-to-pons for engagement, LH-to-PAG for threshold) rather than a single bottleneck.",
+    "The projection is GABAergic. If MECH-280 in REE is implemented as excitatory drive on theta_freeze, the sign of the underlying biology is opposite -- the override engages by disinhibition rather than by direct excitation."
+  ],
+  "tags": ["mech_280", "lh_pons_projection", "gabaergic_override", "foraging_engagement", "sd_037"],
+  "mapping": {
+    "source_claim_statement": "An LH GABAergic projection to peri-locus-coeruleus / dorsal pons gates food approach and eating; optogenetic stimulation drives approach to food, inhibition reduces it.",
+    "ree_translation": "The MECH-280 override projection (LH -> PAG raising freeze threshold under sustained metabolic demand) is one element of an LH-driven engagement system; this paper provides the existence proof for the LH side of that system and characterises a sister projection that biases engagement toward consummation.",
+    "mapping_caveat": "The downstream target here is peri-LC dorsal pons rather than PAG, and the operation is GABAergic disinhibition rather than direct PAG threshold modulation. MECH-280's exact pathway is therefore not the one this paper records; the inference is that LH carries an active-coping engagement signal of which MECH-280's PAG-targeted override is one branch.",
+    "source_context": "Mouse; cell-type-specific opto- and chemogenetics of LH GABAergic neurons projecting to peri-LC; behavioural readouts of food approach and consummation; in vitro slice electrophysiology to confirm projection synaptic properties."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "PNAS, projection-specific manipulation, internal anatomical and physiological controls. Mapping fidelity discounted because the named pathway is LH-to-pons rather than LH-to-PAG; the paper supports the existence of an LH active-coping override system but not the precise PAG channel MECH-280 specifies. Transfer risk standard mouse-to-REE."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-26_mech_280_orexin_motivated_behaviour_sakurai2014",
+  "timestamp_utc": "2026-04-26T16:31:55Z",
+  "claim_ids_tested": ["MECH-280"],
+  "source": {
+    "title": "The role of orexin in motivated behaviours",
+    "authors": ["Sakurai T"],
+    "year": 2014,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3837",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25301357/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Single-author Nature Reviews piece by the discoverer of orexin, characterising orexin neurons as intrinsically depolarised and recruited under high-effort / high-demand conditions, with downstream gain on PAG / locus coeruleus / VTA in the 1.3x-3x firing-rate band. Directly supports MECH-280's claim that orexin is the broadcast-override scalar driving recruitment under sustained metabolic demand and threat, and gives the alpha_override scalar an order-of-magnitude anchor.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If orexin neurons fired uniformly across behavioural states, MECH-280's recruitment_threshold would have no biological referent; the review documents a ~5x active/quiet ratio which provides the threshold's biological grounding.",
+    "The 1.3x-3x downstream excitability gain is the order-of-magnitude anchor for alpha_override. If MECH-280's validation factorial sets alpha_override outside this band (e.g. 5x), the claim is going beyond what the biology supports."
+  ],
+  "tags": ["mech_280", "orexin_recruitment", "downstream_gain", "motivated_behaviour", "sd_037"],
+  "mapping": {
+    "source_claim_statement": "Orexin neurons are intrinsically depolarised, recruited under high-effort and high-demand contingencies, and exert a gain (1.3x-3x firing-rate increases for saturating doses) on downstream targets including PAG, LC, VTA, and dorsal raphe.",
+    "ree_translation": "MECH-280's override_signal corresponds to orexin recruitment under sustained metabolic demand. The multiplicative scalar alpha_override (currently 0.5, giving 1.5x maximum theta_freeze elevation) sits at the lower end of the biologically reported gain band; the literature would equally support alpha_override up to 1.0 (2x maximum elevation).",
+    "mapping_caveat": "The downstream gain is reported across multiple targets (PAG, LC, VTA, dorsal raphe); MECH-280 applies it specifically to the PAG freeze threshold. The implicit assumption is that the same gain applies at PAG as at LC/VTA, which the review supports as an order-of-magnitude claim but not as a precision constraint.",
+    "source_context": "Single-author review covering rodent physiology, optogenetics, pharmacology, and human narcolepsy data; integrates findings from approximately 200 primary sources."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Nature Reviews, single authoritative author. Mapping fidelity discounted because the gain band is a cross-target average rather than a PAG-specific anchor. Transfer risk standard."
+  }
+}

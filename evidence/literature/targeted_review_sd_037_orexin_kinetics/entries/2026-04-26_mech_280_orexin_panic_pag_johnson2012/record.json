@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-26_mech_280_orexin_panic_pag_johnson2012",
+  "timestamp_utc": "2026-04-26T16:31:55Z",
+  "claim_ids_tested": ["MECH-280"],
+  "source": {
+    "title": "Orexin, stress, and anxiety/panic states",
+    "authors": ["Johnson PL", "Molosh A", "Fitz SD", "Truitt W", "Shekhar A"],
+    "year": 2012,
+    "venue": "Progress in Brain Research",
+    "doi": "10.1016/B978-0-444-59489-1.00009-4",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22813973/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Comprehensive review of orexin's role in stress/panic states, including its bidirectional effect on PAG (panic-promoting in dorsolateral/dorsomedial PAG, escape-permissive in ventrolateral PAG). Supports the existence of an orexin-PAG modulatory channel and its recruitment under stress, but the bidirectionality is a real challenge to MECH-280's single-scalar formulation. Mixed direction reflects this -- the channel exists, but the sign depends on PAG subcolumn, which MECH-280 currently collapses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-280 treats theta_freeze as a single scalar modulated by a single override gain. The orexin literature documents that orexin in dorsolateral/dorsomedial PAG promotes panic-class active responses while orexin in ventrolateral PAG is permissive of escape. Without PAG subcolumn substrate, MECH-280 cannot represent the panic-versus-goal-directed-active-coping distinction.",
+    "Orexin antagonists block panic-class responses without abolishing baseline freezing -- consistent with multiplicative gain on freeze threshold rather than a hard switch. This is supportive of the MECH-280 multiplicative formulation but argues for restricting the gain to specific PAG subregions rather than applying it uniformly."
+  ],
+  "tags": ["mech_280", "orexin_pag", "panic_active_coping", "pag_subcolumn", "sd_037"],
+  "mapping": {
+    "source_claim_statement": "Orexin signalling at PAG modulates the freeze-to-active-coping arbitration: orexin in dorsolateral/dorsomedial PAG promotes panic-class active responses, while orexin in ventrolateral PAG is permissive of escape over freezing. Orexin antagonists selectively block panic-class active responses.",
+    "ree_translation": "MECH-280's claim (orexin-driven LH-PAG override raises theta_freeze) is consistent with the part of this literature concerning vlPAG and escape. The dorsolateral/dorsomedial PAG branch (panic-promoting) is a separate functional axis MECH-280 does not represent, and which the V4 PAG-subcolumn substrate will need to disambiguate.",
+    "mapping_caveat": "MECH-280 collapses two functionally distinct PAG channels (panic-promoting vs escape-permissive) into one scalar. This is acceptable for V3 (no PAG subcolumn substrate) but is the principal validity caveat for the claim. The literature direction is therefore mixed at the channel level: supportive of an orexin-PAG modulatory presence, but ambiguous about whether MECH-280's single-scalar formulation captures the full operating envelope.",
+    "source_context": "Review of rodent (mostly rat) physiology and pharmacology, with cross-references to human panic-disorder literature; orexin agonist/antagonist injections into specific PAG subregions; CO2 panic paradigm; sodium lactate provocation."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Authoritative review in a respected series. Mapping fidelity discounted because of the panic-versus-escape bidirectionality MECH-280 does not represent. Transfer risk elevated to 0.40 because the panic versus goal-directed active coping distinction is precisely the kind of distinction REE will need at V4 and that the claim currently elides."
+  }
+}

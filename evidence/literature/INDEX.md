@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-26T16:18:41.385833Z`
+Generated: `2026-04-26T16:37:38.230961Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -213,6 +213,7 @@ Generated: `2026-04-26T16:18:41.385833Z`
 | `targeted_review_sd_033a` | [`2026-04-25_sd_033a_a2_projection_plasticity_johnson2016`](targeted_review_sd_033a/entries/2026-04-25_sd_033a_a2_projection_plasticity_johnson2016/record.json) | 4 | [`summary`](targeted_review_sd_033a/entries/2026-04-25_sd_033a_a2_projection_plasticity_johnson2016/summary.md) |
 | `targeted_review_sd_034` | [`2026-04-24_sd_034_strategy_switch_rich2009`](targeted_review_sd_034/entries/2026-04-24_sd_034_strategy_switch_rich2009/record.json) | 4 | [`summary`](targeted_review_sd_034/entries/2026-04-24_sd_034_strategy_switch_rich2009/summary.md) |
 | `targeted_review_sd_035` | [`2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/record.json) | 3 | [`summary`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/summary.md) |
+| `targeted_review_sd_037_orexin_kinetics` | [`2026-04-26_mech_280_orexin_panic_pag_johnson2012`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-26_mech_280_orexin_panic_pag_johnson2012/record.json) | 5 | [`summary`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-26_mech_280_orexin_panic_pag_johnson2012/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-04-05_mech123_rem_precision_recalibration_walker2009`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/record.json) | 5 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |
 | `targeted_review_social_signal_legibility` | [`2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/record.json) | 10 | [`summary`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/summary.md) |

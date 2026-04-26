@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-26_mech_280_hunger_overrides_predator_dearaujosalgado2023",
+  "timestamp_utc": "2026-04-26T16:31:55Z",
+  "claim_ids_tested": ["MECH-280"],
+  "source": {
+    "title": "Toggling between food-seeking and self-preservation behaviors via hypothalamic response networks",
+    "authors": ["de Araujo Salgado I", "Li C", "Burnett CJ", "Rodriguez Gonzalez S", "Becker JJ", "Horvath A", "Earnest T", "Kravitz AV", "Krashes MJ"],
+    "year": 2023,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2023.06.011",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(23)00466-X"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct hunger-versus-predator behavioural toggling experiment with cell-type-specific manipulation in the LH-PMd-PAG-AgRP loop. PNAS-tier methods, large effect sizes, and a circuit-level mechanism that maps closely onto MECH-280's prediction: rising metabolic drive raises the effective freeze threshold so the agent transitions from threat-driven avoidance to active foraging. Mapping is one step removed (the substrate paper centres PMd-CCK and AgRP rather than LH-orexin specifically), so confidence is high but not maximal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the freeze-to-foraging transition were a hard switch rather than a graded threshold, alpha_override could be replaced by a binary gate without behavioural cost; this paper documents graded transitions.",
+    "Predator presentation acutely inhibits AgRP neurons, so the override is not simply 'hunger wins' -- threat suppresses hunger signal upstream and the override has to overcome that competition. A naive MECH-280 implementation that ignores this competition will under-predict freeze persistence under acute (rather than sustained) threat."
+  ],
+  "tags": ["mech_280", "lh_pag_override", "freeze_to_foraging", "hunger_threat_arbitration", "sd_037"],
+  "mapping": {
+    "source_claim_statement": "Hungry mice toggle from defensive to food-seeking behaviour as caloric need rises; AgRP-pathways to BNST and LH potentiate food seeking under predator duress, while PMd-CCK to PAG suppresses feeding under acute threat.",
+    "ree_translation": "MECH-280's prediction (override_signal raises theta_freeze_effective so the agent transitions from freeze to forage at a drive_level threshold) is the same behavioural dissociation this paper documents, with the sign of dependence on hunger and the route through hypothalamic-PAG circuitry both matching.",
+    "mapping_caveat": "The paper's primary cell-type focus is AgRP and PMd-CCK rather than LH orexin specifically. MECH-280's named mechanism (orexin/peri-LC GABA -> PAG) is one circuit instance of the broader hypothalamic-PAG arbitration this paper characterises; the paper does not isolate the orexin contribution within that arbitration.",
+    "source_context": "Mice; freely-moving food-versus-shelter / predator-exposure paradigms; AAV-mediated cell-type-specific opto/chemogenetics in PMd-CCK and AgRP populations; behavioural readouts (food-zone latency, food intake under predator) and fibre photometry."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Top-tier venue, cell-type-specific manipulations, replicated effect across paradigms. Mapping fidelity discounted because the paper does not isolate orexin specifically. Transfer risk moderate -- mouse-to-REE-substrate is intrinsic, but the behavioural arbitration is conserved across mammalian foraging-under-threat paradigms."
+  }
+}

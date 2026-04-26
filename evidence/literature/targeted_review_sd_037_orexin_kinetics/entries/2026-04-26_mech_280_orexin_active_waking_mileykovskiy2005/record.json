@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-26_mech_280_orexin_active_waking_mileykovskiy2005",
+  "timestamp_utc": "2026-04-26T16:31:55Z",
+  "claim_ids_tested": ["MECH-280"],
+  "source": {
+    "title": "Behavioral correlates of activity in identified hypocretin/orexin neurons",
+    "authors": ["Mileykovskiy BY", "Kiyashchenko LI", "Siegel JM"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.035",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15924864/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Identified-cell single-unit recordings in freely-moving rats covering the full sleep-wake-active behaviour cycle. Establishes the ~5x active/quiet recruitment ratio and the episode-scale firing kinetics that anchor MECH-280's sustained_threat_window and recruitment_threshold parameters. High-quality primary evidence with cell-identification controls.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If orexin neurons fired episodically rather than tonically across behavioural states, MECH-280's sustained_threat_window EMA-style integration would be the wrong substrate; the recordings show sustained elevation across whole episodes of active waking, supporting an integration-window model.",
+    "Sensory-evoked transient activation is sub-second; if MECH-280's override_signal kinetics matched these transients, override authority would dissipate too quickly to produce sustained foraging-under-threat. The episode-scale carry-over the recordings document is what justifies the slow EMA decay (decay_rate = 0.05)."
+  ],
+  "tags": ["mech_280", "orexin_recruitment", "active_waking_firing", "sustained_episode", "sd_037"],
+  "mapping": {
+    "source_claim_statement": "Identified hypocretin/orexin neurons fire transiently to single sensory stimuli (sub-second to seconds) but show sustained elevation across whole episodes of active waking lasting tens of seconds to minutes; firing is moderate during grooming and eating, maximal during exploration.",
+    "ree_translation": "The episode-scale firing kinetics directly anchor MECH-280's sustained_threat_window (12 steps; biologically defensible band 8-25 steps) and decay_rate (EMA half-life ~14 steps); the active/quiet ratio anchors the recruitment_threshold midpoint.",
+    "mapping_caveat": "Recordings are in rat under sleep-wake monitoring with food and grooming opportunities; the threat / metabolic-demand contingencies MECH-280 cares about are not the explicit experimental contrast. The mapping is from active-waking firing more generally to override_signal recruitment under sustained drive plus threat, which is one step removed.",
+    "source_context": "Rat; freely moving across sleep-wake cycle; juxtacellular labelling for cell identification; single-unit recordings; behavioural state classification by EEG/EMG plus video."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.32,
+    "notes": "Neuron-tier single-unit primary paper with cell-identification controls. Mapping fidelity discounted because the experimental contrast is sleep-wake-active rather than threat-foraging arbitration. Transfer risk standard."
+  }
+}
