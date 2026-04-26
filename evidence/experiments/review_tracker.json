@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-04-26T00:43:44Z",
+  "last_review_utc": "2026-04-26T15:39:22Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2156,9 +2156,17 @@
     "v3_exq_481_vs_commit_release_20260425T101332Z_v3",
     "v3_exq_482_sd029_baseline_monostrategy_diagnostic_20260425T101638Z_v3",
     "v3_exq_418d_sd016_writepath_modes_comparison_20260425T141932Z_v3",
-    "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3"
+    "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3",
+    "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3"
   ],
   "discussion_notes": {
+    "2026-04-26T15:39Z_governance": {
+      "session": "governance-2026-04-26T15:39",
+      "summary": "Walked 1 indexed pending: V3-EXQ-483a (SD-037 broadcast override 4-arm successor; PASS via substrate-readiness fallback). Substrate confirmed wired (override_signal mean 0.563, PAG release ratio ON_ON/ON_OFF=1.69) but behavioural acceptance still degenerate (approach_commit=0 baseline) -- same wired-but-inert pattern as predecessor V3-EXQ-483 and the V3-EXQ-471/478/480 cluster. Manifest reclassified supports -> non_contributory per-claim (SD-037, MECH-280, MECH-281); claims remain hold_pending_v3_substrate. Predecessor V3-EXQ-483 manifest run-pack copy reclassified non_contributory -> superseded (yesterday's flat JSON edit had not propagated to runs/ subdir). Promotion/demotion agenda: 9 pending_user holds applied (ARC-051, ARC-060, MECH-269b, MECH-291, MECH-292, MECH-293, MECH-294, MECH-295, SD-039 hold_pending_v3_substrate); decision log updated. MECH-294 + MECH-295 received additional governance-flag notes: MECH-294 within-cycle vs cross-cycle binding (Kay 2020 challenge) is the explicit promotion-blocker; MECH-295 strong-vs-weak liking-bridge necessity remains unresolved (weak reading provisional).",
+      "ids_marked": [
+        "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3"
+      ]
+    },
     "2026-04-26T00:43Z_governance": {
       "session": "governance-2026-04-26T00:43",
       "summary": "Walked 1 indexed pending: V3-EXQ-483 (SD-037 broadcast override 4-arm validation). FAIL but tagged experiment_purpose=diagnostic. Substrate signature confirmed (override_signal climbed 0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling). Behavioural acceptance criteria (PWS / narcolepsy ratios) were degenerate (0/0) because approach_commit was 0.0 across ALL FOUR arms including the SD-036-only baseline (ON_OFF) -- policy-layer inertia at the standard CausalGridWorldV2 benefit task, not falsification of SD-037 / MECH-280 / MECH-281. Manifest reclassified weakens -> non_contributory with evidence_direction_note (substrate-confirmed-wired but behaviourally-inconclusive). Successor V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance path) already queued and claimed. Promotion/demotion agenda: 3 pending_user holds applied (MECH-280 / MECH-281 / SD-037 hold_pending_v3_substrate); decision log updated.",

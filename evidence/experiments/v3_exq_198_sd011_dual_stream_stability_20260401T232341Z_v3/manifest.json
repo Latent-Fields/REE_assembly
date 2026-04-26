@@ -291,5 +291,8 @@
     "z_harm_s_dim": 32,
     "z_harm_a_dim": 16
   },
-  "timestamp_utc": "2026-04-01T23:23:41.106156Z"
+  "timestamp_utc": "2026-04-01T23:23:41.106156Z",
+  "evidence_direction_prior": null,
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded 2026-04-26 by Path-3 SD-011 governance cleanup. The dual-stream substrate this experiment ran on predated SD-011's second source (harm_history input to AffectiveHarmEncoder, landed 2026-04-08). Without harm_history, z_harm_a was an EMA over harm_obs_a and was not architecturally differentiated from z_harm_s in temporal-integration capacity. The result does not transfer to the completed SD-011 substrate. Excluded from SD-011 scoring. Original evidence_direction preserved in evidence_direction_prior."
 }

@@ -24,7 +24,7 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -43,5 +43,7 @@
   "evidence_direction_per_claim": {
     "SD-011": "mixed",
     "ARC-016": "mixed"
-  }
+  },
+  "evidence_direction_prior": "mixed",
+  "evidence_direction_note": "Superseded 2026-04-26 by Path-3 SD-011 governance cleanup. The dual-stream substrate this experiment ran on predated SD-011's second source (harm_history input to AffectiveHarmEncoder, landed 2026-04-08). Without harm_history, z_harm_a was an EMA over harm_obs_a and was not architecturally differentiated from z_harm_s in temporal-integration capacity. The result does not transfer to the completed SD-011 substrate. Excluded from SD-011 scoring. Original evidence_direction preserved in evidence_direction_prior."
 }

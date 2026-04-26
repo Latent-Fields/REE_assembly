@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-26T00:43:44Z",
+  "last_updated_utc": "2026-04-26T15:39:22Z",
   "next_implement_substrate": {
     "sd_id": "SD-037",
     "selected_utc": "2026-04-25T13:29:45Z",
@@ -1047,14 +1047,20 @@
         {
           "run_id": "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3",
           "experiment_type": "v3_exq_483_sd037_broadcast_override_4arm",
-          "metric": "approach_commit=0.0 across all four arms (OFF_OFF, ON_OFF, OFF_ON, ON_ON); PWS / narcolepsy ratios degenerate at 0/0 because SD-036-only baseline produces zero approach behaviour. Substrate signature confirmed (override_signal climbed 0.0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling).",
+          "metric": "approach_commit=0.0 across all four arms (OFF_OFF, ON_OFF, OFF_ON, ON_ON); PWS / narcolepsy ratios degenerate at 0/0 because SD-036-only baseline produces zero approach behaviour. Substrate signature confirmed (override_signal climbed 0.0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling). Now SUPERSEDED by V3-EXQ-483a per governance-2026-04-26T15:39.",
           "target": "approach_commit > 0 in at least the SD-036-only ON_OFF baseline so PWS / narcolepsy ratios can be evaluated; or substrate-readiness fallback path (override_mean > 0.30 AND PAG release ratio ON_ON / ON_OFF > 1.30). Successor V3-EXQ-483a queued (warmup 60->200 + substrate-readiness fallback acceptance)."
+        },
+        {
+          "run_id": "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3",
+          "experiment_type": "v3_exq_483a_sd037_broadcast_override_4arm",
+          "metric": "Warmup 60->200 did NOT recover baseline approach behaviour: approach_commit still 0.0 across all four arms. Substrate-readiness fallback path PASSED: override_mean=0.563 (> 0.30), PAG release ratio ON_ON / ON_OFF=1.69 (> 1.30). Behavioural acceptance criteria still degenerate (PWS / narcolepsy ratios 0/0). Substrate confirmed wired correctly; the catatonic-lock baseline persists with longer warmup.",
+          "target": "approach_commit > 0 in the SD-036-only ON_OFF baseline so the falsifiable PWS-hyperphagia / narcolepsy-cataplexy phenotypes can be discriminated. Likely a policy-layer / cue-side bridge issue (MECH-295 candidate) -- not solvable by tuning warmup alone. Future validation requires either (i) a benefit task tuned so baseline drives non-zero approach, or (ii) explicit liking-bridge intervention test (MECH-295 falsifiable primary)."
         }
       ],
-      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). First validation V3-EXQ-483 returned wired-but-inert: substrate signature confirmed but acceptance criteria uninterpretable because approach_commit=0 in the SD-036-only baseline. Successor V3-EXQ-483a (warmup 200 + substrate-readiness fallback acceptance) queued and claimed. Likely policy-layer issue (matches EXQ-471 / 478 / 480 cascade).",
+      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Two validation runs (EXQ-483, EXQ-483a) confirmed substrate is wired correctly (override_signal accumulates, PAG threshold scales) but baseline approach_commit remains 0.0 even at 200-ep warmup, so the falsifiable behavioural phenotypes (PWS-hyperphagia, narcolepsy/cataplexy) cannot be discriminated. Promotion blocked on policy-layer translation gap that affects EXQ-471 / 478 / 480 / 483 / 483a uniformly -- likely a drive->liking->approach bridge defect (MECH-295 territory). Suggested next step: either tune benefit task so baseline yields non-zero approach, or run a MECH-295-style liking-bridge intervention test independent of SD-037.",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
-      "last_seen_session": "governance-2026-04-26T00:43",
+      "last_seen_session": "governance-2026-04-26T15:39",
       "implementation_status": "implemented_but_failing_validation"
     },
     {
@@ -1072,6 +1078,23 @@
       "priority": 3,
       "added_session": "governance-2026-04-24T08:10",
       "last_seen_session": "governance-2026-04-24T08:10"
+    },
+    {
+      "sd_id": "SD-039",
+      "title": "hippocampal.anchor_goal_snapshot_payload",
+      "ready": true,
+      "design_doc": "docs/architecture/ghost_goal_search.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-292",
+        "MECH-293",
+        "ARC-060"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Extend `Anchor` in ree-v3/ree_core/hippocampal/anchor_set.py to carry a compact motivational payload at write / remap / mark_inactive: {z_goal_snapshot, wanting_strength, arousal_tag, last_vs, staleness_at_write}. Populate from GoalState, VALENCE_WANTING, and amygdala arousal tags. Falsifiable test: after reward relocation or path blockage, inactive anchors on the formerly valid approach path should retain non-zero goal-match with current z_goal while unrelated stale anchors do not. Literature basis: targeted_review_ghost_goal_search/ (Berridge 1998, Barch 2010, Berkowitz 1989) + MECH-269 / MECH-285 foundation pulls.",
+      "priority": 2,
+      "added_session": "governance-2026-04-26T15:39",
+      "last_seen_session": "governance-2026-04-26T15:39"
     },
     {
       "sd_id": "SD-016",

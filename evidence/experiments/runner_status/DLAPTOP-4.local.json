@@ -2,10 +2,81 @@
   "schema_version": "v1",
   "runner_pid": 16106,
   "runner_started_at": "2026-04-25T14:14:39.056014+00:00",
-  "last_updated": "2026-04-26T15:00:14.304791+00:00",
+  "last_updated": "2026-04-26T16:23:39.274319+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-433d",
+    "backlog_id": "",
+    "claim_id": "SD-029",
+    "title": "SD-029 / MECH-256 event-conditioned comparator (EXQ-479 calibrated curriculum)",
+    "description": "",
+    "script": "experiments/v3_exq_433d_sd029_eventcond_comparator.py",
+    "started_at": "2026-04-26T15:01:22.379182+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 4937,
+    "seconds_remaining": 1040,
+    "recent_lines": [
+      "/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_433d_sd029_eventcond_comparator.py:488: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+      "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
+      "Seed 42",
+      "P0 (200 eps) encoder warmup [curriculum ON, 479 params]...",
+      "P1 (200 eps) interventional [curriculum ON, 479 params]..."
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-433d",
+      "backlog_id": "",
+      "claim_id": "SD-029",
+      "title": "SD-029 / MECH-256 event-conditioned comparator (EXQ-479 calibrated curriculum)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-418e",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 Path 1 diversification loss 4-arm (auxiliary symmetry-breaking pressure)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-484",
+      "backlog_id": "",
+      "claim_id": "SD-033a",
+      "title": "SD-033a distractor-resistance under MECH-261 internal_replay gate (3-arm)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-485",
+      "backlog_id": "",
+      "claim_id": "SD-033b",
+      "title": "SD-033b OFC-analog landing diagnostic (5 sub-tests)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",

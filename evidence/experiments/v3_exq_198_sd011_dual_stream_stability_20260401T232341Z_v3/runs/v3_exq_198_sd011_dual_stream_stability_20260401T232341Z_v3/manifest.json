@@ -23,11 +23,11 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
     "SD-011": "supports"
   },
-  "evidence_direction_note": "Manifest status=UNKNOWN was an old template artifact. metrics.json shows PASS: dissociation_advantage=1.243, decision=retain_ree, all 3 seeds pass C1+C4. Corrected 2026-04-03 governance review.",
+  "evidence_direction_note": "Manifest status=UNKNOWN was an old template artifact. metrics.json shows PASS: dissociation_advantage=1.243, decision=retain_ree, all 3 seeds pass C1+C4. Corrected 2026-04-03 governance review. | Superseded 2026-04-26 by Path-3 SD-011 governance cleanup. The dual-stream substrate this experiment ran on predated SD-011's second source (harm_history input to AffectiveHarmEncoder, landed 2026-04-08). Without harm_history, z_harm_a was an EMA over harm_obs_a and was not architecturally differentiated from z_harm_s in temporal-integration capacity. The result does not transfer to the completed SD-011 substrate. Excluded from SD-011 scoring. Original evidence_direction preserved in evidence_direction_prior.",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -43,5 +43,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_prior": "supports"
 }

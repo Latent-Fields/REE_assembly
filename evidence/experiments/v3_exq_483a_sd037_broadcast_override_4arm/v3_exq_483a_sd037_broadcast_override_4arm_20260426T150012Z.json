@@ -48,12 +48,13 @@
     "MECH-281"
   ],
   "experiment_purpose": "diagnostic",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-037": "supports",
-    "MECH-280": "supports",
-    "MECH-281": "supports"
+    "SD-037": "non_contributory",
+    "MECH-280": "non_contributory",
+    "MECH-281": "non_contributory"
   },
+  "evidence_direction_note": "Reclassified supports -> non_contributory by governance 2026-04-26 (governance-2026-04-26T15:39). experiment_purpose=diagnostic; PASS via substrate-readiness fallback (override_signal climbed 0->0.563 mean / 0.622 max in ON arms; PAG release ratio ON_ON / ON_OFF = 1.69; both fallback thresholds cleared). Behavioural acceptance criteria (PWS-hyperphagia, narcolepsy ratios) remained degenerate (0/0) because approach_commit was 0.0 across all four arms including baseline ON_OFF -- same wired-but-inert pattern as predecessor V3-EXQ-483 and the V3-EXQ-471/478/480 cluster (policy-layer translation gap at standard CausalGridWorldV2 benefit task). Substrate is confirmed wired correctly but the falsifiable behavioural predictions (cataplexy lesion + PWS saturation) remain untested. Should not weight either way against SD-037 / MECH-280 / MECH-281; they remain hold_pending_v3_substrate awaiting an interpretable behavioural readout.",
   "experiment_type": "v3_exq_483a_sd037_broadcast_override_4arm",
   "supersedes": "V3-EXQ-483",
   "run_timestamp": "20260426T150012Z",

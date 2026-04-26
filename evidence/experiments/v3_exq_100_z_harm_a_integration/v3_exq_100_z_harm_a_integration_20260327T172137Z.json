@@ -20,12 +20,14 @@
     "SD-011",
     "ARC-016"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_100_z_harm_a_integration",
   "fatal_error_count": 0,
   "run_timestamp": "20260327T172137Z",
   "claim": "SD-011",
   "verdict": "FAIL",
   "run_id": "v3_exq_100_z_harm_a_integration_20260327T172137Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_prior": "mixed",
+  "evidence_direction_note": "Superseded 2026-04-26 by Path-3 SD-011 governance cleanup. The dual-stream substrate this experiment ran on predated SD-011's second source (harm_history input to AffectiveHarmEncoder, landed 2026-04-08). Without harm_history, z_harm_a was an EMA over harm_obs_a and was not architecturally differentiated from z_harm_s in temporal-integration capacity. The result does not transfer to the completed SD-011 substrate. Excluded from SD-011 scoring. Original evidence_direction preserved in evidence_direction_prior."
 }

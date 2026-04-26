@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_483a_sd037_broadcast_override_4arm",
+  "run_id": "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-04-26T15:00:12Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-037",
+    "MECH-280",
+    "MECH-281"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-037": "non_contributory",
+    "MECH-280": "non_contributory",
+    "MECH-281": "non_contributory"
+  },
+  "evidence_direction_note": "Reclassified supports -> non_contributory by governance 2026-04-26 (governance-2026-04-26T15:39). PASS path was substrate_readiness_fallback (baseline approach_commit=0 across all 4 arms blocked behavioural acceptance). Substrate-confirmed-wired but behaviourally-inconclusive; should not weight either way against SD-037/MECH-280/MECH-281.",
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

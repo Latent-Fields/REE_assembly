@@ -25,12 +25,14 @@
     "MECH-281"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-037": "weakens",
-    "MECH-280": "weakens",
-    "MECH-281": "weakens"
+    "SD-037": "superseded",
+    "MECH-280": "superseded",
+    "MECH-281": "superseded"
   },
+  "evidence_direction_note": "Superseded by V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance path) per governance 2026-04-26. EXQ-483's behavioural acceptance was uninterpretable because baseline (ON_OFF) approach_commit was 0.0, making PWS / narcolepsy ratios degenerate (0/0). Substrate signature was already confirmed wired in EXQ-483 (override_signal 0->0.563, PAG release ratio 1.69). EXQ-483a re-ran with longer warmup and an explicit fallback path; substrate-readiness PASS but baseline behaviour still inert -- the wired-but-inert characterisation is now carried by EXQ-483a's manifest. Excluded from scoring.",
+  "supersedes_note": "Superseded by V3-EXQ-483a (run_id v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3).",
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,

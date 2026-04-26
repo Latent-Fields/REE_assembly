@@ -22411,6 +22411,16 @@
     datasets; no such analysis has been published. See
     `evidence/literature/targeted_review_mech294_theta_burst_packet/SYNTHESIS.md`
     for the full breakdown.
+
+    Governance flag (2026-04-26 hold): the within-cycle vs cross-cycle
+    binding question (Kay et al. 2020 architectural challenge) is the
+    explicit promotion-blocker. Next governance cycle should not promote
+    MECH-294 above candidate without (a) a substrate-side falsification
+    test that can discriminate joint-packet from cross-cycle alternation,
+    or (b) new empirical decoding evidence resolving Kay 2020's pattern
+    against multi-stream within-cycle binding. Until then the joint
+    hypothesis is held as a candidate mechanism, not a stated load-bearing
+    invariant.
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-269b
@@ -22632,4 +22642,12 @@
     is consistent with a broken liking-bridge wiring. See
     `evidence/literature/targeted_review_mech295_liking_approach_bridge/SYNTHESIS.md`
     for the full breakdown.
+
+    Governance flag (2026-04-26 hold): the strong-vs-weak necessity
+    arbitration remains the explicit promotion-blocker. Next governance
+    cycle should not promote MECH-295 above candidate without (a) a V3
+    substrate test that holds drive_level fixed and severs vs preserves
+    the liking bridge, or (b) literature evidence resolving the DAT-
+    knockdown / Pecina 2003 inconsistency with strong necessity. The
+    weak reading remains the provisional commitment.
   location: docs/architecture/control_plane_heartbeat.md

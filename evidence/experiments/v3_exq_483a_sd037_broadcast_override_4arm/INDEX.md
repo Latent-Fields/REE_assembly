@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_483a_sd037_broadcast_override_4arm
+
+Generated: `2026-04-26T16:18:41.385833Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3` | `2026-04-26T15:00:12Z` | PASS | n_seeds=3<br>n_arms=4<br>arm_OFF_OFF_mean_eval_reward=-0.070536<br>arm_OFF_OFF_mean_eval_harm=0.266623<br>arm_OFF_OFF_mean_approach_commit=0 | - | - | - | [`summary`](runs/v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3/summary.md) / [`manifest`](runs/v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3/manifest.json) / [`metrics`](runs/v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3/metrics.json) |

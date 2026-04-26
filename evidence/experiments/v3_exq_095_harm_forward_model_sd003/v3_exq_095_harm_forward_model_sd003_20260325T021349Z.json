@@ -30,5 +30,11 @@
   "claim": "ARC-033",
   "verdict": "FAIL",
   "run_id": "v3_exq_095_harm_forward_model_sd003_20260325T021349Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_per_claim": {
+    "ARC-033": "mixed",
+    "SD-011": "non_contributory",
+    "SD-003": "mixed"
+  },
+  "evidence_direction_note": "Superseded 2026-04-26 by Path-3 SD-011 governance cleanup (per-claim path). This experiment primarily tested ARC-033 (E2_harm_s forward model on the sensory-discriminative stream); SD-011 was co-tagged because z_harm_s comes from SD-011's first source, but the experiment did not directly test the dual-stream property. Tag was over-broad. SD-011 marked non_contributory via evidence_direction_per_claim; ARC-033 evidence retained at original direction."
 }
