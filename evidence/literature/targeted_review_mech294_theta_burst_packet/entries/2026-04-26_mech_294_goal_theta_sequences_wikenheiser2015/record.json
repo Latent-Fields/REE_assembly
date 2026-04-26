@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech294_theta_burst_packet",
+  "entry_id": "2026-04-26_mech_294_goal_theta_sequences_wikenheiser2015",
+  "timestamp_utc": "2026-04-26T10:08:57Z",
+  "claim_ids_tested": ["MECH-294"],
+  "source": {
+    "title": "Hippocampal theta sequences reflect current goals.",
+    "authors": ["Wikenheiser, Andrew M.", "Redish, A. David"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3909"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Wikenheiser & Redish demonstrate that hippocampal theta-cycle place-cell sequences carry goal-relevant content -- the look-ahead distance of theta sequences scales with the distance to the rat's current goal. This is direct evidence that goal_latent is theta-locked and theta-cycle-resolved, which is one of the four content streams MECH-294 needs to bind. Confidence 0.74: direct unit-level rodent evidence, Nature Neuroscience, but the paper demonstrates only one of MECH-294's four streams (goal) being theta-locked; it does not address whether goal content is co-bound with action/risk/state content in the same theta cycle.",
+  "summary_path": "summary.md",
+  "support_tag": "b_individual_content_locked_not_joint",
+  "failure_signatures": [
+    "The paper demonstrates goal-content theta-locking. MECH-294 needs goal + action + risk + state co-bound in one cycle. Single-stream theta-locking is necessary but not sufficient evidence.",
+    "Theta sequences here are place-cell sequences (location representations modulated by goal). MECH-294's action_proposal and risk_estimate streams are not place-cell content -- they are content sourced from BG and amygdala/ACC respectively. Whether those streams are theta-locked is not addressed.",
+    "The look-ahead-scales-with-goal-distance result is a content-modulation effect, not a binding-window effect. The paper does not test whether the goal latent is co-readable with other content types in the same theta-cycle window."
+  ],
+  "tags": ["mech_294", "theta_sequence", "goal_coding", "place_cells", "ca1", "look_ahead"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta-cycle place-cell sequences project ahead of the rat's current location, and the distance projected (look-ahead) scales with the distance to the rat's current goal. Look-ahead extends farther on journeys to distant goals, is predictive of the animal's destination, and equalises across journeys at goal arrival.",
+    "ree_translation": "MECH-294 takes the Wikenheiser & Redish result as direct evidence that goal_latent (one of the four streams MECH-294 needs to bind) is theta-locked and theta-cycle-resolved. The look-ahead modulation by goal distance also supports the broader claim that theta sequences are not mere clock signals but carry task-relevant content shaped by the agent's intentions.",
+    "mapping_caveat": "The paper demonstrates a single content stream (goal-modulated place sequence) being theta-locked. MECH-294 needs four streams co-bound in one cycle. The single-stream demonstration is necessary but not sufficient. The paper also does not address whether action/risk/state content is jointly readable in the same theta window.",
+    "source_context": "Direct CA1 unit recording in rats performing a value-guided decision-making task. Nature Neuroscience, 2015. Strong methodological standards; Redish lab is well-known for theta-sequence analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Nature Neuroscience, direct rodent recording). Mapping fidelity moderate-high because goal_latent theta-locking is directly demonstrated for one of MECH-294's four streams. Transfer risk modest -- the result is single-stream and the joint-binding extension is not tested."
+  }
+}

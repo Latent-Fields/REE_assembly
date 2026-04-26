@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech294_theta_burst_packet",
+  "entry_id": "2026-04-26_mech_294_gamma_routing_colgin2009",
+  "timestamp_utc": "2026-04-26T10:08:57Z",
+  "claim_ids_tested": ["MECH-294"],
+  "source": {
+    "title": "Frequency of gamma oscillations routes flow of information in the hippocampus.",
+    "authors": ["Colgin, Laura Lee", "Denninger, Tobias", "Fyhn, Marianne", "Hafting, Torkel", "Bonnevie, Tora", "Jensen, Ole", "Moser, May-Britt", "Moser, Edvard I."],
+    "year": 2009,
+    "venue": "Nature",
+    "doi": "10.1038/nature08573"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical empirical demonstration that CA1 gamma fractionates into slow (~25-50Hz, CA3-coupled, memory) and fast (~60-100Hz, MEC-coupled, current position) bands locked to distinct theta phases. That theta-locked content routing is the strongest substrate evidence for MECH-294. Capped at 0.82 because the result is across-cycle segregation, not within-cycle joint binding, and the streams are homogeneous spatial/memory content -- not the four heterogeneous streams MECH-294 needs.",
+  "summary_path": "summary.md",
+  "support_tag": "b_individual_content_locked_not_joint",
+  "failure_signatures": [
+    "The paper's headline finding is across-cycle segregation: slow and fast gamma occur 'mostly on different theta cycles'. That pattern is closer to a serial-multiplexing architecture than to MECH-294's within-cycle joint-binding architecture.",
+    "The two demonstrated streams are both spatial/memory and both sourced from hippocampal-system upstream. MECH-294's four streams are heterogeneous in content type and sourced from non-hippocampal regions; the gamma-routing scheme may not generalise.",
+    "The paper does not address whether downstream consumers read multiple content streams jointly within one phase-aligned window, which is the consumer-side architecture MECH-294 needs."
+  ],
+  "tags": ["mech_294", "theta_gamma", "gamma_routing", "ca1", "ca3", "medial_entorhinal", "phase_segregation"],
+  "mapping": {
+    "source_claim_statement": "CA1 gamma splits into fast (60-100Hz, MEC-coherent, current-position) and slow (25-50Hz, CA3-coherent, memory-recall) bands occupying different theta phases and predominantly different theta cycles -- a temporal-segregation mechanism for content streams.",
+    "ree_translation": "MECH-294 inherits the gamma-routing scheme as substrate. REE upgrades it from two streams to four (goal_latent, action_proposal, risk_estimate, state_summary) and from across-cycle segregation to within-cycle joint binding.",
+    "mapping_caveat": "The paper's central result (segregation across cycles) is closer to serial multiplexing than to joint binding. The two streams are homogeneous spatial/memory content; MECH-294 needs heterogeneous-content generalisation that this paper does not test.",
+    "source_context": "Direct LFP + units in CA1, CA3, MEC of freely-behaving rats. Nature, 2009. Cited >2500 times. Anchor for the slow/fast gamma routing literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Nature, replicated). Mapping fidelity moderate because the across-cycle segregation result pulls against MECH-294's within-cycle joint binding upgrade. Transfer risk moderate because demonstrated streams are homogeneous spatial/memory."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech269b_vs_rollout_gating",
+  "entry_id": "2026-04-26_mech_269b_computational_anatomy_psychosis_adams2013",
+  "timestamp_utc": "2026-04-26T10:08:58Z",
+  "claim_ids_tested": ["MECH-269b"],
+  "source": {
+    "title": "The computational anatomy of psychosis.",
+    "authors": ["Adams, Rick A.", "Stephan, Klaas Enno", "Brown, Harriet R.", "Frith, Christopher D.", "Friston, Karl J."],
+    "year": 2013,
+    "venue": "Frontiers in Psychiatry",
+    "doi": "10.3389/fpsyt.2013.00047"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Clinical-pathological corroboration of the precision-weighting framework: hallucinations, delusions, sensory-attenuation deficits, catatonia, and abnormal eye movements are all unified as expressions of aberrant precision. The paper supplies an indirect failure-mode prediction that is highly relevant to MECH-269b's wired-but-inert hypothesis: when precision on prediction-error channels is mis-set, downstream consumers receive technically-correct but contextually-wrong PE signals, and behavioural revision is impaired in characteristic ways. Tag (c) inferential support plus tag (d) failure-mode evidence. Confidence 0.66 reflects clinical-mapping caveats (the syndromes are heterogeneous and the precision model is one of several competing accounts) and the fact that the paper does not directly measure per-stream precision in psychosis or the hippocampal-cortical symmetry.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Adams et al. argue that aberrant precision on sensory or prior beliefs produces specific psychopathological syndromes (hallucinations from over-precise priors, delusions from systematic precision errors, catatonia from collapsed precision on motor priors). This is a failure-mode prediction that supports the MECH-269b architectural claim by showing what happens when precision is mis-set; but it is indirect support, not direct measurement.",
+    "The paper is largely silent on whether the same precision parameter that mis-fires in psychosis is used by the hippocampal proposer. Hippocampus is mentioned briefly (in the context of memory and pattern completion) but the symmetric-application question is not engaged.",
+    "Clinical mapping is heterogeneous: not all psychotic patients have the same precision profile, and the precision-weighting account competes with dopamine-signal-to-noise and aberrant-salience accounts. The supportive force is therefore at the framework level, not at the level of any single empirical measurement."
+  ],
+  "tags": ["mech_269b", "psychosis", "schizophrenia", "aberrant_precision", "predictive_coding", "failure_mode", "support_type_c", "support_type_d"],
+  "mapping": {
+    "source_claim_statement": "A range of psychotic symptoms (hallucinosis, abnormal smooth-pursuit eye movements, sensory-attenuation deficits, catatonia, delusions) can be unified as expressions of aberrant precision on prediction errors and prior beliefs in hierarchical predictive coding. Precision is biologically encoded by post-synaptic gain (NMDA-receptor function, dopaminergic neuromodulation), and aberrant precision produces behaviours that fail to revise in light of accumulating counter-evidence -- because the prediction errors that should drive revision are themselves down-weighted.",
+    "ree_translation": "Adams et al. supply the failure-mode prediction that grounds MECH-269b's architectural-prediction half: when V_s is mis-set across cortical streams (the pathology of psychosis), downstream consumers receive technically-correct prediction-error inputs but those inputs do not weight the contribution of unreliable streams correctly, and behavioural revision is suppressed. The wired-but-inert failure mode that MECH-269b's parent claim warns about (\"stale-but-confident-looking prediction errors that suppress revision\") is exactly the clinical phenotype Adams et al. describe under aberrant precision.",
+    "mapping_caveat": "Clinical heterogeneity. Not all psychotic patients fit the precision-weighting model, and the model competes with dopamine-signal-to-noise and aberrant-salience accounts. Also, the paper does not directly measure per-stream precision -- the support is framework-level, predicting that mis-set precision produces specific failure modes, which inferentially backs the architectural claim that precision is the relevant gating signal in the first place.",
+    "source_context": "Frontiers in Psychiatry review by Friston, Frith, and clinical-computational collaborators. Bridges the theoretical predictive-coding framework with clinical psychopathology."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.40,
+    "notes": "Source quality good (peer-reviewed, senior authorship, broad clinical synthesis). Mapping fidelity moderate -- the failure-mode prediction is indirect support for the architectural claim. Transfer risk noticeable because clinical psychosis is heterogeneous and the precision account is one of several competing frameworks."
+  }
+}

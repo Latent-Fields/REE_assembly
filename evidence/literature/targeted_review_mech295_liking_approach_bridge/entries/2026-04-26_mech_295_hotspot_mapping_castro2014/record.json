@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech295_liking_approach_bridge",
+  "entry_id": "2026-04-26_mech_295_hotspot_mapping_castro2014",
+  "timestamp_utc": "2026-04-26T10:09:20Z",
+  "claim_ids_tested": ["MECH-295"],
+  "source": {
+    "title": "Advances in the neurobiological bases for food 'liking' versus 'wanting'",
+    "authors": ["Daniel C. Castro", "Kent C. Berridge"],
+    "year": 2014,
+    "venue": "Physiology & Behavior",
+    "doi": "10.1016/j.physbeh.2014.05.022",
+    "pmid": "24874776",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24874776/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "tag": "b",
+  "confidence": 0.74,
+  "confidence_rationale": "Comprehensive 2014 review consolidating a decade of hedonic-hotspot mapping across NAc shell and ventral pallidum, with anatomical specificity (rostrodorsal NAc shell hotspot ~1mm cubed; posterior VP hotspot in caudal half) and corresponding 'coldspots' where mu-opioid stimulation suppresses liking. Explicit distinction between hedonic generators (limited, spatially circumscribed) versus wanting/incentive generators (larger, more distributed). For MECH-295 this provides the substrate-level evidence that liking-stream is a real, distinct, anatomically discrete generator -- not a downstream readout of wanting. Confidence 0.74: review article (not primary), but consolidates the strongest available data with clear anatomical mapping. The necessity link is asserted theoretically but not directly tested in this paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If liking and wanting were the same signal at different sites, no anatomical hotspot/coldspot dissociation should be observable; the review documents that they are.",
+    "If the liking-stream were a passive consequence of wanting activation, the same circuits should generate both; the review documents distinct generator regions and discrete control by mu-opioid, kappa-opioid, delta-opioid, cannabinoid and orexin signalling."
+  ],
+  "tags": ["mech_295", "liking", "hedonic_hotspot", "nac_shell", "ventral_pallidum", "mu_opioid", "review", "castro", "berridge", "tag_b_liking_encoding"],
+  "mapping": {
+    "source_claim_statement": "Across a decade of mapping, two anatomically discrete hedonic hotspots have been identified: the rostrodorsal NAc shell (~1 mm cubed) and a posterior VP region. Mu-opioid stimulation in either hotspot amplifies orofacial liking reactions; stimulation outside hotspots increases food intake without amplifying liking. Liking-generators are spatially limited and discrete; wanting/incentive generators are larger and overlap with but are not coextensive with the hotspots. Multiple receptor systems (mu-opioid, anandamide, orexin) gate the hotspots.",
+    "ree_translation": "MECH-295 requires that liking-stream activation be a separable, identifiable signal -- distinct from drive amplification (SD-012, hunger raising drive_level) and from wanting/incentive salience. Castro & Berridge 2014 supply the consolidated anatomical case that this is so. The hedonic hotspots are the substrate of MECH-295's z_liking node. Their dissociation from the larger wanting-supporting territory is the substrate-level analogue of MECH-295's architectural commitment that drive does not produce approach without liking activation.",
+    "mapping_caveat": "This is a review, not primary data; its evidential weight is consolidated rather than independent. The review focuses on consummatory liking (orofacial reactions); the link to PRE-contact approach action selection (which is what MECH-295's approach_commit measures) is theoretically asserted but not the focus. The strongest test of MECH-295's necessity claim -- mu-opioid antagonist in the hotspot blocking drive-amplified approach to a learned cue -- is referenced as future work in this kind of literature but not delivered.",
+    "source_context": "Review article surveying ~15 years of NAc shell and VP hotspot mapping, primarily rat data, with anatomical, pharmacological, and behavioural taste-reactivity evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Source quality moderate-high: Phys & Behav review by canonical authors, consolidating high-quality primary data. Mapping fidelity moderate-high: the paper documents the substrate MECH-295 needs but is not focused on the necessity link. Transfer risk moderate -- consummatory liking to pre-contact approach selection requires the incentive-learning bridge."
+  }
+}

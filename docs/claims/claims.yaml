@@ -15867,6 +15867,39 @@
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
+- id: Q-040
+  title: "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?"
+  claim_type: open_question
+  subject: control.vs_generalisation_unblocks_dacc
+  polarity: open
+  status: open
+  implementation_phase: v3
+  depends_on:
+    - MECH-269   # parent V_s claim (hippocampal proposer anchor selection)
+    - MECH-269b  # candidate extension under test
+    - SD-032b    # dACC adaptive-control consumer
+    - SD-037     # broadcast override regulator (already implemented)
+  registered_utc: 2026-04-26
+  notes: >
+    Posed in response to EXQ-483 FAIL diagnostic (override fires, PAG releases up,
+    approach_commit=0 across all arms). The architectural prediction: with V_s
+    gating only the hippocampal proposer (current MECH-269 scope) but not the
+    E1/E2 forward predictions, E2 keeps grounding harm-rollouts on stale streams,
+    dACC sees a consistent-looking precision-weighted PE, no policy revision
+    fires, and freeze persists. If MECH-269b is wired (V_s also gates E1/E2
+    rollouts), does dACC adaptive-control output (SD-032b) produce non-zero
+    behavioural-adjustment magnitude on an EXQ-395 / EXQ-483-conditions retest?
+    If yes, MECH-269b is the missing link. If no, the bottleneck is upstream
+    (liking stream / cue projection per MECH-295) and MECH-269b is necessary
+    but not sufficient.
+    Resolution: V3 experiment factorial -- MECH-269b OFF/ON x baseline-config
+    (use_broadcast_override + use_dacc + use_drive_modulation all ON in both arms),
+    measure approach_commit and dACC behavioural-adjustment magnitude. PASS = ON
+    arm produces non-zero approach_commit AND non-zero dACC-driven score-bias
+    contribution. FAIL = both arms remain at zero approach_commit, indicating
+    upstream blocker (point to MECH-295).
+  location: docs/architecture/v_s_invalidation_runtime.md
+
 # ---------------------------------------------------------------------------
 # EXT — External AI Failure Modes
 #
@@ -22276,3 +22309,327 @@
     biased path search, Gillespie 2021 grounds non-current trace reactivation, and
     Muessig 2019 grounds a shared waking/offline sequence generator.
   location: docs/architecture/ghost_goal_search.md
+
+- id: MECH-294
+  title: "Theta-burst packet contains multi-content joint binding: each ~125ms theta cycle binds a {goal_latent, action_proposal, risk_estimate, state_summary} tuple within one phase-aligned window, with verisimilitude grounding the rollout step that must stay ahead of real time."
+  claim_type: mechanism_hypothesis
+  subject: theta_gamma.multi_content_joint_packet
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-26
+  depends_on:
+    - MECH-089   # cross-frequency coupling (theta-gamma nesting; the substrate primitive)
+    - MECH-091   # phase-reset of E3 heartbeat clock by salient events
+    - MECH-269   # V_s anchor selection (anchor-eligible streams contribute to packet content)
+    - MECH-269b  # V_s gating of E1/E2 rollouts (verisimilitude grounds the rollout step)
+    - SD-005     # z_self/z_world split (precondition for stream-typed packet content)
+    - SD-010     # harm stream separation
+    - SD-011     # dual nociceptive streams (z_harm_s as risk_estimate component)
+    - ARC-018    # hippocampal rollouts / viability mapping (the structure the packet propagates into)
+  functional_restatement: >
+    Mechanism hypothesis. MECH-089 establishes that theta cycles are
+    organised into gamma sub-slots that route content streams from
+    distinct upstream sources. MECH-294 specifies the content scheme:
+    one theta cycle (~125ms) binds a heterogeneous-content tuple
+    {goal_latent, action_proposal, risk_estimate, state_summary} into
+    one phase-aligned packet, NOT one content stream alternating
+    across cycles.
+
+    Joint binding within one cycle is the load-bearing claim. The
+    proposer reads the packet as a joint object: which action_proposal
+    is on the table is interpretable only against the goal_latent and
+    risk_estimate co-bound in the same cycle. Rollout step at t+1
+    consumes the packet at t and must stay ahead of real-time
+    arrival (the rollout horizon must exceed sensory latency or the
+    packet gates trigger after the action is already committed).
+
+    Verisimilitude grounding (links to MECH-269/269b). The rollout
+    step is grounded by per-stream V_s: only anchor-eligible streams
+    contribute current values to the packet; misaligned streams hold
+    last-verified snapshots. This means the packet is not a homogeneous
+    "current latent" -- it is a stream-typed object whose components
+    have potentially different temporal vintages.
+
+    Falsifiable (primary): joint multi-content decoding analyses on
+    hippocampal+amygdala+BG+ACC theta-resolved datasets should show
+    semantically-distinct content streams (goal vs risk vs state)
+    simultaneously decodable from one theta cycle's worth of population
+    activity at the binding-window timescale. If only one content axis
+    is decodable per cycle (Kay 2020 alternation pattern is the
+    dominant architecture), MECH-294's joint-packet hypothesis is
+    falsified.
+
+    Falsifiable (secondary): in V3 substrate, manipulating which
+    streams are anchor-eligible (V_s gating) should change which
+    components of the packet are current-vs-stale; downstream consumers
+    (E3 commit gate, dACC adaptive control) should respond to the
+    component-typed packet differently than to a homogeneous-latent
+    null.
+  notes: >
+    Registered 2026-04-26 from the architectural conversation around
+    theta-burst content (Daniel's question: "does this mean theta bursts
+    contain goal, action, risk, state summary, with verisimilitude
+    grounding the next rollout step which must stay ahead of real
+    time"). The within-cycle vs across-cycle binding question is the
+    strongest direct empirical risk and is named explicitly in the
+    falsifiable predictions.
+
+    Lit-pull: targeted_review_mech294_theta_burst_packet/ (7 entries).
+    Substrate well-anchored (Lisman & Jensen 2013, Colgin 2009,
+    Igarashi 2014, Wikenheiser & Redish 2015). Joint-binding
+    specialisation sparse: closest direct evidence is Igarashi et al.
+    2014 (LEC-CA1 cue+context, 2 streams within theta-organised
+    window). Kay et al. 2020 (Cell) cross-cycle alternation pattern
+    is the strongest direct architectural challenge -- MECH-294
+    requires interpretation that Kay's two streams are members of a
+    richer multi-content packet collapsed by path-decision-axis
+    analysis; the parsimonious read of Kay's data is one-stream-per-
+    cycle alternation.
+  evidence_quality_note: >
+    Substrate well-anchored, specialisation sparse. Theta-gamma
+    multiplexing substrate (theta cycles structured into gamma
+    sub-slots; gamma frequencies routing content streams from distinct
+    upstream sources) is supported by canonical work: Lisman & Jensen
+    2013 (Neuron, theta-gamma neural code), Colgin et al. 2009 (Nature,
+    gamma routes information). Direct evidence that one of MECH-294's
+    four streams (goal_latent) is theta-cycle-resolved comes from
+    Wikenheiser & Redish 2015 (Nat Neurosci). Closest direct evidence
+    for cross-region joint binding of two semantically-distinct streams
+    within a theta-organised window is Igarashi et al. 2014 (Nature,
+    LEC-CA1 cue+context). Two genuine empirical risks remain: (i)
+    channel capacity -- whether the same architecture supports four
+    heterogeneous streams, untested in the literature; (ii) within-cycle
+    vs across-cycle binding -- Kay et al. 2020 (Cell) demonstrates
+    cross-cycle alternation as the dominant pattern in their dataset,
+    which would falsify MECH-294's joint-packet hypothesis if it is the
+    only architecture present. MECH-294 is sparse-but-not-falsifying.
+    Architecture is empirically testable by joint multi-content
+    decoding analyses on hippocampal+amygdala+BG+ACC theta-resolved
+    datasets; no such analysis has been published. See
+    `evidence/literature/targeted_review_mech294_theta_burst_packet/SYNTHESIS.md`
+    for the full breakdown.
+  location: docs/architecture/control_plane_heartbeat.md
+
+- id: MECH-269b
+  title: "Regional verisimilitude V_s gates not only hippocampal proposer anchor selection but also which streams ground forward predictions in cortical world models (E1 sensory predictor, E2 transition model). Without symmetric V_s gating on E1/E2 rollouts, downstream consumers receive stale-but-confident-looking prediction errors -- the wired-but-inert failure mode."
+  claim_type: mechanism_hypothesis
+  subject: cortical_world_model.regional_verisimilitude_rollout_gating
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-26
+  instantiates: MECH-269
+  depends_on:
+    - MECH-269   # parent: V_s anchor selection on the hippocampal proposer
+    - MECH-284   # staleness accumulator (V_s_anchor read-out)
+    - SD-005     # z_self/z_world split (per-stream gating requires per-stream identity)
+    - SD-010     # harm stream separation
+    - SD-011     # dual nociceptive streams
+    - ARC-033    # E2_harm_s forward model substrate (one of the E2 streams under gating)
+  functional_restatement: >
+    Mechanism hypothesis. MECH-269 specifies V_s gating on the
+    hippocampal proposer's anchor selection (which streams contribute
+    to rollout starting-state). MECH-269b extends the same gating
+    primitive symmetrically to cortical forward predictions: at each
+    E1 sensory prediction step and each E2 transition step, the
+    contribution of stream s to the forward computation is gated by
+    V_s(s, t) >= theta_gate(s, e1_or_e2). Misaligned streams contribute
+    held-snapshot values, NOT current latent values, to the forward
+    prediction.
+
+    Why symmetric. Without symmetric V_s gating, E1/E2 forward
+    predictions consume stream slices indiscriminately -- including
+    streams whose alignment to perception has decayed. Downstream
+    consumers (dACC adaptive control, E3 commit gate, MECH-269
+    proposer scoring) receive prediction errors computed from
+    stale-but-confident-looking forward values. The wired-but-inert
+    failure mode -- modules implemented and active but no behavioural
+    consequence -- is the predicted phenotype: PE signals fire,
+    override gates fire, but the corrective signal is computed against
+    the wrong reference and produces no effective revision.
+
+    Per-stream not per-region. V_s is computed per latent stream
+    (z_world, z_self, z_harm_s, z_harm_a, z_goal, ...) not per
+    cortical region. The same V_s vector is consumed by both the
+    hippocampal proposer (MECH-269 anchor selection) and cortical
+    forward predictors (this claim). Sharing the V_s computation
+    across world-model substrates is the key architectural commitment.
+
+    Distinct from MECH-098. MECH-098 feeds V_world specifically via
+    reafference cancellation and is one signal source for the V_s
+    vector, not the gating mechanism itself.
+
+    Falsifiable (primary): a V3 ablation factorial with V_s gating
+    enabled/disabled on E1/E2 rollouts (with the hippocampal proposer
+    gating held at MECH-269 baseline) should show that disabling
+    cortical-side V_s gating reproduces the EXQ-483 wired-but-inert
+    signature: override mean elevated, PAG releases up, approach_commit
+    near zero. Enabling cortical-side V_s gating should restore
+    behavioural sensitivity to PE.
+
+    Falsifiable (secondary): clinical/neural correlates -- aberrant
+    precision phenotypes (psychosis-spectrum, autism-spectrum) should
+    map onto specific patterns of V_s mis-setting (under-precision on
+    sensory streams, over-precision on internal streams) consistent
+    with Adams 2013 / Lawson 2014 readings. This is corroborative not
+    primary evidence.
+  notes: >
+    Registered 2026-04-26 as a child instantiation mech of MECH-269.
+    Rationale: the architectural question "does V_s also context the
+    cortical world model?" was raised by Daniel and required a separate
+    claim because the symmetric-application novelty is the load-bearing
+    commitment, not the V_s primitive itself. Lit-pull:
+    targeted_review_mech269b_vs_rollout_gating/ (7 entries; mean conf
+    ~0.69; symmetric-application gap explicit).
+
+    The wired-but-inert phenotype in V3-EXQ-483 (override + PAG
+    releases without approach_commit) is the proximate motivating
+    failure. MECH-269b is one candidate root cause; MECH-295 is a
+    complementary candidate cause. The two are not mutually exclusive
+    and a factorial test should include both manipulations.
+  evidence_quality_note: >
+    Literature support is asymmetric across the claim's two
+    architectural halves. Cortex-side per-stream precision/reliability
+    gating of prediction errors has strong inferential support from the
+    predictive-coding programme: cortical microcircuits implement
+    precision-weighted PE (Bastos et al. 2012, Neuron,
+    doi:10.1016/j.neuron.2012.10.038), attention is precision (Feldman
+    & Friston 2010, Front Hum Neurosci, doi:10.3389/fnhum.2010.00215),
+    pulvinar-cortex modulatory gain is the most direct biological
+    substrate proposal (Kanai et al. 2015, Phil Trans R Soc B,
+    doi:10.1098/rstb.2014.0169), and aberrant precision produces the
+    wired-but-inert clinical phenotype the claim warns about (Adams
+    et al. 2013, doi:10.3389/fpsyt.2013.00047; Lawson et al. 2014,
+    doi:10.3389/fnhum.2014.00302). The empirical foundation for
+    per-stream reliability-weighted integration is psychophysically
+    demonstrated for cue integration (Ernst & Banks 2002, Nature,
+    doi:10.1038/415429a). However, the symmetric-application half of
+    the claim -- that the SAME V_s signal gates BOTH hippocampal
+    proposer anchor selection AND cortical E1/E2 forward predictions --
+    is genuinely novel architectural ground. The closest available
+    precedent is Daw, Niv & Dayan 2005 (Nat Neurosci,
+    doi:10.1038/nn1560), which arbitrates between two distinct
+    world-model systems by uncertainty, but is structural rather than
+    direct. No paper in the targeted review demonstrates symmetric
+    hippocampal+cortical precision-gating at the resolution MECH-269b
+    assumes. Sparse direct support for symmetric-application does NOT
+    falsify the mechanism; biology may not have been measured at this
+    resolution. Substrate validation must distinguish behavioural
+    signatures predicted by symmetric-V_s gating (cortex-side
+    wired-but-inert failure mode without V_s on E1/E2 rollouts;
+    downstream consumers receive stale-but-confident-looking PE) from
+    cortex-only-gating null hypotheses.
+  location: docs/architecture/control_plane_heartbeat.md
+
+- id: MECH-295
+  title: "Drive amplification (SD-012) reaches approach action selection only via liking-stream activation. Drive raises liking-stream gain on goal-congruent outcomes, which supplies the cue-side pull for approach. Without the liking-bridge, drive-amplified goal seeding produces a passive z_goal latent without behavioural consequence -- the EXQ-483 catatonic-lock signature."
+  claim_type: mechanism_hypothesis
+  subject: drive_to_approach.liking_stream_bridge
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-26
+  depends_on:
+    - SD-012     # homeostatic drive (the input)
+    - SD-014     # wanting/liking architecture (existing dissociation)
+    - SD-015     # liking-stream substrate
+    - SD-016     # appetitive valence stream wiring
+    - MECH-117   # wanting/liking dissociation in REE benefit_eval_head vs z_goal_latent
+    - ARC-036    # hedonic hotspot anatomical substrate
+  functional_restatement: >
+    Mechanism hypothesis. SD-012 specifies that homeostatic drive
+    amplifies goal-relevance (e.g. hunger raises drive_level on
+    food-congruent goals). MECH-295 specifies the bridge: drive does
+    NOT directly produce approach action selection; it must propagate
+    through liking-stream activation (NAc shell hedonic hotspot,
+    ventral pallidum, mu-opioid signalling, OFC pleasure coding, in
+    REE: the appetitive valence stream tracking cue-evaluated hedonic
+    value of expected outcomes).
+
+    Operationally:
+      drive_level (SD-012) ->
+        liking_gain on goal-congruent outcome predictions ->
+          approach_cue_signal at action selection (E3 / BG)
+
+    Two readings of necessity (NOT yet arbitrated by literature):
+    - Strong necessity: elevated approach_commit requires elevated
+      liking-stream activation (level-coupled).
+    - Weak necessity: baseline liking-stream activation is sufficient,
+      but the bridge wiring must be intact -- if the link is severed,
+      drive amplification produces no approach regardless of drive
+      magnitude.
+
+    The DAT-knockdown finding (Pecina 2003: more wanting, unchanged
+    liking) is incompatible with strong necessity but compatible with
+    weak necessity. MECH-295 commits to the WEAK reading provisionally,
+    pending V3 substrate evidence.
+
+    Falsifiable (primary, weak reading): a V3 factorial with the
+    drive->liking link intact vs severed (under matched drive_level)
+    should show approach_commit recovers when the bridge is intact and
+    collapses when severed. EXQ-483's all-zero approach_commit signal
+    is consistent with a broken bridge.
+
+    Falsifiable (secondary, strong reading test): pharmacologically-
+    inspired manipulation -- block hedonic-hotspot mu-opioid analog
+    in V3 substrate WHILE drive is elevated -- under strong reading,
+    approach_commit collapses; under weak reading with intact bridge,
+    approach_commit recovers via baseline liking.
+
+    Distinct from MECH-117. MECH-117 specifies the wanting/liking
+    dissociation as separate streams. MECH-295 specifies the drive ->
+    liking -> approach NECESSITY chain that must hold for behavioural
+    output, even when wanting and liking are dissociated in level.
+  notes: >
+    Registered 2026-04-26 from the architectural conversation around
+    EXQ-483's catatonic-lock failure (override fires, PAG releases up,
+    approach_commit = 0.0 across all arms). Daniel raised the question:
+    "does the hungry helps the goal seed for the liking stream to lead
+    to approach behaviour being cued" -- which is MECH-295 in question
+    form.
+
+    Lit-pull: targeted_review_mech295_liking_approach_bridge/
+    (6 entries; mean conf 0.77; 5 supports, 1 mixed). Strongest direct
+    evidence: Smith Berridge & Aldridge 2011 (PNAS, VP single-unit
+    recording: drive change recodes palatability before cue firing).
+    Foundational behavioural version: Dickinson & Balleine 1994
+    (instrumental devaluation requires outcome re-experience).
+    Architectural articulation: Berridge & Kringelbach 2015 (Neuron).
+
+    Strong-vs-weak necessity is flagged for user resolution. The
+    cleanest direct test (mu-opioid antagonist in NAc shell hotspot
+    + hunger + cue-approach) is an experimental gap.
+  evidence_quality_note: >
+    Strong literature support for the architectural premise (a
+    separable liking-stream substrate exists) and the general principle
+    (drive-state changes route through experienced hedonic value before
+    reaching action selection). Strongest direct evidence: Smith
+    Berridge & Aldridge 2011 (PNAS, doi:10.1073/pnas.1101920108; VP
+    single-unit, drive change recodes palatability before cue firing)
+    and Dickinson & Balleine 1994 (Animal Learn Behav,
+    doi:10.3758/BF03209866; instrumental devaluation requires outcome
+    re-experience). Architectural articulation in Berridge &
+    Kringelbach 2015 (Neuron, doi:10.1016/j.neuron.2015.02.018).
+    Substrate evidence: Pecina & Berridge 2005 (J Neurosci,
+    doi:10.1523/JNEUROSCI.3331-05.2005), Castro & Berridge 2014
+    (Phys Behav, doi:10.1016/j.physbeh.2014.02.063). The strong-
+    necessity reading (no liking activation => no approach) versus the
+    weak-bridge reading (baseline liking sufficient if bridge intact)
+    is NOT arbitrated by existing literature; the DAT-knockdown finding
+    (Pecina et al. 2003, J Neurosci, doi:10.1523/JNEUROSCI.23-28-09395.2003)
+    is compatible only with the weak reading. MECH-295 commits to the
+    weak reading provisionally. The cleanest direct test of MECH-295
+    (mu-opioid antagonist in NAc shell hotspot + hunger + cue-approach)
+    is an experimental gap. EXQ-483's failure signature
+    (approach_commit = 0.0 across all arms despite drive amplification)
+    is consistent with a broken liking-bridge wiring. See
+    `evidence/literature/targeted_review_mech295_liking_approach_bridge/SYNTHESIS.md`
+    for the full breakdown.
+  location: docs/architecture/control_plane_heartbeat.md

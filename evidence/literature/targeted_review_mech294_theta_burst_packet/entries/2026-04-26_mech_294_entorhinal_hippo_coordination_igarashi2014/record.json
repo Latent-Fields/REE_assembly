@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech294_theta_burst_packet",
+  "entry_id": "2026-04-26_mech_294_entorhinal_hippo_coordination_igarashi2014",
+  "timestamp_utc": "2026-04-26T10:08:57Z",
+  "claim_ids_tested": ["MECH-294"],
+  "source": {
+    "title": "Coordination of entorhinal-hippocampal ensemble activity during associative learning.",
+    "authors": ["Igarashi, Kei M.", "Lu, Li", "Colgin, Laura L.", "Moser, May-Britt", "Moser, Edvard I."],
+    "year": 2014,
+    "venue": "Nature",
+    "doi": "10.1038/nature13162"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct demonstration that olfactory cue (lateral entorhinal cortex / LEC) and spatial-context (CA1) ensemble activity co-evolve during associative learning, with theta-band coherence (20-40 Hz) developing specifically between lateral CA1 and LEC. This is one of the closest results in the literature to MECH-294's joint-binding hypothesis: two semantically-distinct content streams (olfactory cue + spatial context) become phase-coherent in the same theta-organised window during the learning of their conjunction. Confidence 0.78 -- direct rodent multi-region recording, Nature publication, but only two streams, both encoding/retrieval rather than the planning content (goal/action/risk) MECH-294 most needs.",
+  "summary_path": "summary.md",
+  "support_tag": "a_direct_support_with_caveat",
+  "failure_signatures": [
+    "Igarashi et al. demonstrate two-stream binding (olfactory cue + spatial context) in the LEC-CA1 circuit. MECH-294 needs four-stream binding (goal + action + risk + state). The paper does not test whether more than two streams can be jointly bound within one theta window.",
+    "The bound streams are sensory cue + spatial context, both encoding-side content. MECH-294's four streams include action proposals and risk estimates -- planning-side content -- which arrive from regions (BG, amygdala, ACC) not recorded in this paper.",
+    "The coherence result is at 20-40 Hz, in the boundary between high theta and low gamma. The paper does not directly characterise the within-theta-cycle gamma sub-slot structure, so the joint-binding architecture is inferred from the coherence pattern, not directly observed."
+  ],
+  "tags": ["mech_294", "theta_gamma", "lateral_entorhinal", "ca1", "associative_learning", "binding", "olfactory_cue"],
+  "mapping": {
+    "source_claim_statement": "During olfactory-spatial associative learning in rats, ensemble representations in lateral entorhinal cortex (LEC) and distal CA1 develop unique trial-outcome codes that are coupled by 20-40 Hz oscillatory coherence. Coherence emerges specifically as the cue-spatial association is learned, and is restricted to the LEC-distal-CA1 circuit (not MEC-proximal-CA1).",
+    "ree_translation": "MECH-294 takes the Igarashi result as the most direct biology evidence to date for cross-region joint binding of two semantically-distinct content streams within a theta-organised window. REE generalises from two streams (cue + context) to four (goal_latent + action_proposal + risk_estimate + state_summary) and from encoding-side content (cue + context) to mixed encoding/planning content (state + goal + action + risk).",
+    "mapping_caveat": "The two-to-four-stream extrapolation is non-trivial: the LEC-CA1 circuit may have channel capacity for two cue-context streams without obviously being able to bind four. The encoding-to-planning content extrapolation is also non-trivial: MECH-294's planning streams arrive from BG / amygdala / ACC, not LEC, and these regions' theta-coherence relationships are less well-characterised. Direct support for the substrate (joint binding exists in biology); inferential support for the four-stream specialisation.",
+    "source_context": "Multi-site LFP and ensemble recordings in freely-behaving rats during olfactory-spatial associative learning. Nature, 2014. Lab is the Moser group (Nobel laureates) -- highest-quality systems-neuroscience output."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Source quality very high (Nature, Moser lab). Mapping fidelity moderate-high because the architecture demonstrated (cross-region theta-coherent joint binding of two streams) is the closest biology analogue to MECH-294. Transfer risk moderate because extension to four heterogeneous streams (incl. non-LEC-sourced planning content) is genuinely unrooted in this dataset."
+  }
+}

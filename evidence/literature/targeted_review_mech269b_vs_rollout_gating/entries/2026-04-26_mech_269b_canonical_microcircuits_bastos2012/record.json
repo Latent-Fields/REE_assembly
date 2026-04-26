@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech269b_vs_rollout_gating",
+  "entry_id": "2026-04-26_mech_269b_canonical_microcircuits_bastos2012",
+  "timestamp_utc": "2026-04-26T10:08:58Z",
+  "claim_ids_tested": ["MECH-269b"],
+  "source": {
+    "title": "Canonical microcircuits for predictive coding.",
+    "authors": ["Bastos, Andre M.", "Usrey, W. Martin", "Adams, Rick A.", "Mangun, George R.", "Fries, Pascal", "Friston, Karl J."],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.10.038"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational synthesis showing that the cortical column's six-layer microcircuitry implements predictive coding with precision-weighted prediction errors. Directly grounds the cortex-side of MECH-269b: superficial-layer pyramidal cells are the substrate for prediction-error signals whose gain (precision) is modulated by NMDA / classical-modulatory interneuron populations and by feedback connections. This is (c) inferential-strong support: the cortex is wired to gate the contribution of each prediction-error stream by a precision parameter, which is exactly the architectural primitive MECH-269b requires on the E1/E2 side. Confidence held at 0.72 because the paper does not measure per-stream precision specifically (it argues at the column level) and does not address symmetric application across hippocampal vs cortical modules at all.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bastos et al. argue that precision is encoded by post-synaptic gain on superficial pyramidal cells reporting prediction error, but they do not specify whether the gain factor can be set independently per modality or per content-stream within a single column. The MECH-269b assumption that V_s is per-stream rather than per-region is consistent with their framework but is not directly demonstrated.",
+    "The paper says nothing about the hippocampus or about whether the hippocampal proposer's anchor-selection logic uses the same precision signal as cortical prediction-error gating. The symmetric-application claim (b) is not addressed at all here -- this is a gap in the evidence base, not a contradiction."
+  ],
+  "tags": ["mech_269b", "predictive_coding", "cortical_microcircuits", "precision_weighting", "prediction_error_gain", "support_type_c", "support_type_a"],
+  "mapping": {
+    "source_claim_statement": "The six-layer cortical microcircuit implements hierarchical Bayesian inference. Superficial-layer pyramidal cells encode prediction errors whose ascending influence on higher cortical areas is modulated by post-synaptic gain. This gain factor is mathematically the precision (inverse variance) of the prediction error and biologically maps to classical neuromodulators (acetylcholine, dopamine), NMDA-receptor function, and recurrent inhibition. Feedforward connections carry content (prediction errors); feedback connections carry both predictions and precision signals.",
+    "ree_translation": "On the cortical side of MECH-269b, this paper establishes that E1 (sensory predictor) and E2 (transition model) -- both of which are cortical-analog structures -- are biologically equipped to gate prediction-error contribution by a per-circuit precision signal. The V_s gating that MECH-269b proposes is mathematically a precision parameter applied to a stream-specific prediction-error channel, and the cortical microcircuit is built to host exactly this kind of modulation. The paper does not bind precision to per-stream identity, but neither does it forbid it.",
+    "mapping_caveat": "The paper argues at the cortical-column level. MECH-269b's per-stream V_s assumes precision can be set independently for z_world, z_self, z_harm_s, etc., and that those streams are sufficiently distinct biologically that each could carry its own gain. Bastos et al. do not test this. Also, the paper makes no claim about hippocampal proposer dynamics, so the symmetric-application question is silently passed over.",
+    "source_context": "Major Neuron review by senior figures in the predictive-coding programme, synthesising primate and rodent electrophysiology with Friston's free-energy formalism."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (top-tier peer-reviewed review). Mapping fidelity moderate because the paper supplies the architectural primitive (precision-weighted PE in cortex) but not the per-stream specialisation MECH-269b requires; the symmetric-cortical-vs-hippocampal claim is not addressed. Transfer risk modest -- the canonical-microcircuit account is broadly applied across cortical regions including those that would house E1/E2."
+  }
+}

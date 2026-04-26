@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech294_theta_burst_packet",
+  "entry_id": "2026-04-26_mech_294_goal_directed_replay_pfeiffer2013",
+  "timestamp_utc": "2026-04-26T10:08:57Z",
+  "claim_ids_tested": ["MECH-294"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals.",
+    "authors": ["Pfeiffer, Brad E.", "Foster, David J."],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Pfeiffer & Foster demonstrate that hippocampal place-cell sequences encode trajectories from current location to remembered goal locations *before* navigation begins, supporting the broader claim that hippocampal sequences carry planning content (path proposals from current state to goal). This supports MECH-294's framing that state_summary, goal_latent, and an implicit action_proposal (the trajectory) co-exist in hippocampal sequence content. Confidence 0.70: the paper's primary sequences are SWR-associated rather than theta-cycle sequences, so the binding-window evidence is for a different oscillatory regime than MECH-294's theta-cycle window. This is a partial-support / oblique-evidence entry.",
+  "summary_path": "summary.md",
+  "support_tag": "c_inferential_support",
+  "failure_signatures": [
+    "The hippocampal sequences here are sharp-wave-ripple (SWR) replay events, not theta-cycle sequences. SWR events are 100-200ms compressed sequences during pauses; theta cycles are 100-150ms cycles during active behaviour. The two oscillatory regimes have different content and different downstream consumers, so the paper's evidence is oblique to MECH-294's theta-cycle binding-window claim.",
+    "The streams co-encoded in the sequence are start location and goal location -- both spatial -- with the action proposal implicit in the trajectory shape. MECH-294 needs four explicit semantically-distinct streams. The Pfeiffer & Foster evidence implicates two-stream binding at most.",
+    "The paper does not address risk content at all. Whether risk_estimate would be co-encoded in the same hippocampal sequences is unaddressed."
+  ],
+  "tags": ["mech_294", "place_cells", "swr", "goal_directed", "trajectory_planning", "ca1"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, hippocampal place-cell sequences encode brief spatial trajectories strongly biased to progress from the rat's current location to a known goal location. These sequences are predictive of immediate future behaviour, generalise to novel start-goal combinations, and identify behaviourally relevant paths at moments of memory retrieval.",
+    "ree_translation": "MECH-294 takes Pfeiffer & Foster as evidence that hippocampal sequence content jointly encodes start-state and goal-location, with an implicit action-trajectory connecting them. This is a two-stream-with-implicit-action analogue of MECH-294's four-stream packet. The paper supports the substrate-level claim that hippocampal sequences carry planning content (state + goal + trajectory) jointly readable by downstream consumers.",
+    "mapping_caveat": "The Pfeiffer & Foster sequences are SWR-associated, not theta-cycle sequences. SWR replay and theta sequences are different oscillatory regimes with different consumers, so the paper's evidence is oblique to MECH-294's theta-cycle binding-window claim. The streams demonstrated are state + goal + implicit-trajectory -- three streams -- but all spatial; risk is not addressed.",
+    "source_context": "Direct CA1 unit recording in rats performing a goal-directed open-arena task. Nature, 2013. Foster lab is a leading hippocampal-replay group."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "High source quality (Nature, direct unit recording). Mapping fidelity moderate because the joint-content evidence is real but in the SWR regime rather than the theta-cycle regime MECH-294 needs. Transfer risk elevated because of the SWR-vs-theta regime difference -- the binding-window architectures may not be the same."
+  }
+}

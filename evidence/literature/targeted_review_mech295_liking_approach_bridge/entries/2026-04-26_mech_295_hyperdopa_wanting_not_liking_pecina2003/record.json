@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech295_liking_approach_bridge",
+  "entry_id": "2026-04-26_mech_295_hyperdopa_wanting_not_liking_pecina2003",
+  "timestamp_utc": "2026-04-26T10:09:20Z",
+  "claim_ids_tested": ["MECH-295"],
+  "source": {
+    "title": "Hyperdopaminergic mutant mice have higher 'wanting' but not 'liking' for sweet rewards",
+    "authors": ["Susana Pecina", "Birgit Cagniard", "Kent C. Berridge", "J. Wayne Aldridge", "Xiaoxi Zhuang"],
+    "year": 2003,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.23-28-09395.2003",
+    "pmid": "14561867",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/14561867/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "tag": "c",
+  "confidence": 0.70,
+  "confidence_rationale": "DAT-knockdown mice with chronically elevated synaptic dopamine show increased motivated approach and consumption of sucrose ('wanting' increased) but unchanged orofacial hedonic reactions ('liking' unchanged). This is the canonical demonstration that wanting can be amplified independently of liking -- which is the wanting/liking-dissociation background MECH-295 builds on. For MECH-295's specific necessity claim (liking required for drive-to-approach), this paper is mixed: it shows wanting can be elevated without elevating liking, which on a strict reading would weaken the necessity claim (drive-amplified approach occurred without elevated liking). However, the mice have NORMAL liking, not absent liking; the experiment is one-tailed (push wanting up, look at liking) rather than the symmetric test (block liking, look at whether drive-amplified wanting still produces approach). Confidence 0.70: high source quality, classical wanting/liking dissociation, but interpretive ambiguity for MECH-295's specific necessity claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-295 strong reading were correct (liking activation NECESSARY for drive-to-approach), then any elevation of wanting/approach should be accompanied by elevated liking; Pecina 2003 shows wanting elevated with liking unchanged.",
+    "If MECH-295 weak reading is correct (liking is the bridge that propagates drive into approach but baseline liking is sufficient -- only the LINK is necessary, not the level), then wanting can be amplified by tonic dopamine without further liking elevation; this paper is consistent with that reading."
+  ],
+  "tags": ["mech_295", "wanting", "liking", "dissociation", "dopamine", "dat_knockdown", "pecina", "berridge", "tag_c_dissociation_background"],
+  "mapping": {
+    "source_claim_statement": "DAT-knockdown mice with elevated synaptic dopamine show increased pursuit of sucrose reward (more vigorous approach, faster consumption, increased instrumental responding) but unchanged orofacial liking reactions to sucrose taste compared to wild-type controls. Elevating dopamine elevates wanting selectively.",
+    "ree_translation": "MECH-295 says drive amplification (SD-012) cannot produce approach without liking-stream activation propagating drive into cue-side pull. Pecina 2003 is the canonical demonstration that an upstream amplification of the dopamine/wanting circuit increases approach behaviour while leaving liking unchanged. On a NAIVE strong reading of MECH-295 ('elevated approach requires elevated liking') this weakens the claim. On the MORE PRECISE reading we should adopt -- 'liking-stream activation is the necessary BRIDGE that lets drive amplification reach approach selection; when drive is genuinely raised AND liking is present at normal levels, the bridge is open and approach proceeds' -- this paper is consistent. The DAT-knockdown manipulation amplifies the bridge's downstream signal (wanting); it does not test whether removing the bridge's input (liking) blocks approach. EXQ-483's failure mode is best explained by the bridge being unwired/broken rather than by liking being insufficient in level.",
+    "mapping_caveat": "This is a one-tailed dissociation experiment (push wanting up; observe that liking does not follow). The symmetric experiment relevant to MECH-295's necessity claim -- block liking-stream activation and observe whether drive-amplified approach collapses -- is not in this paper and would require mu-opioid antagonist + hunger + cue-approach paradigm. The paper is therefore primarily a calibration of the wanting/liking distinction (tag c) rather than direct evidence for MECH-295's necessity claim.",
+    "source_context": "DAT-knockdown mice (chronically elevated synaptic dopamine), wild-type controls, sucrose taste-reactivity, runway approach task, instrumental responding paradigms; replication of behavioural dissociation across multiple measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.32,
+    "notes": "J Neurosci, primary data, clean dissociation across multiple behavioural measures. Mapping fidelity is the lowest in this directory because the experimental direction is opposite to what MECH-295 needs: it amplifies wanting and looks at liking, not blocks liking and looks at wanting/approach. The paper provides essential dissociation background but is not direct evidence for the necessity link. Transfer risk moderate."
+  }
+}

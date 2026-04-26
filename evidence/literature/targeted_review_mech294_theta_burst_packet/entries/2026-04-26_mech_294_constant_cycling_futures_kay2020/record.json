@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech294_theta_burst_packet",
+  "entry_id": "2026-04-26_mech_294_constant_cycling_futures_kay2020",
+  "timestamp_utc": "2026-04-26T10:08:57Z",
+  "claim_ids_tested": ["MECH-294"],
+  "source": {
+    "title": "Constant Sub-second Cycling between Representations of Possible Futures in the Hippocampus.",
+    "authors": ["Kay, Kenneth", "Chung, Jason E.", "Sosa, Marielena", "Schor, Jonathan S.", "Karlsson, Mattias P.", "Larkin, Margaret C.", "Liu, Daniel F.", "Frank, Loren M."],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.01.014"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "Kay et al. demonstrate that hippocampal neural activity cycles continually at 8 Hz between two distinct alternative future representations -- one possible-future per ~125ms cycle. This is the strongest direct evidence in the literature that hippocampal theta-cycle content is *non-stationary across cycles* and toggles between alternatives. That is partial support for MECH-294 (theta cycles do carry distinct content packets) but partial weakening (the demonstrated architecture is one-content-per-cycle alternation rather than four-content-per-cycle joint binding -- closer to Colgin-style serial multiplexing than to MECH-294's joint packet). Confidence 0.71: direct rodent evidence in Cell, but architectural fit is ambiguous.",
+  "summary_path": "summary.md",
+  "support_tag": "b_individual_content_locked_not_joint",
+  "failure_signatures": [
+    "The Kay et al. architecture is *alternation* between content streams across cycles -- one possible future per cycle, with cycles toggling at 8 Hz. MECH-294 claims joint binding within one cycle. These are competing architectural hypotheses; if Kay et al.'s alternation pattern is the dominant theta-content scheme, MECH-294's joint-packet claim is incorrect.",
+    "The two streams demonstrated are alternative possible futures (left maze path vs right maze path) -- both planning content but of the *same content type* (path). MECH-294 needs four streams of distinct content types. The same-content-type alternation may not generalise to heterogeneous-content joint binding.",
+    "The paper finds the alternation is constant during running, not gated by decision moments. That suggests the architecture is structural (always cycling) rather than task-dependent (binding when planning is needed). MECH-294's predictions about when packets are bound (during commit windows / planning episodes) are not directly supported."
+  ],
+  "tags": ["mech_294", "theta_rhythm", "alternation", "possible_futures", "ca1", "ca2", "ca3", "planning"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal neural activity in CA1, CA2, and CA3 of rats navigating a multiple-path maze encodes two possible future scenarios in constant alternation at 8 Hz -- one scenario per ~125ms cycle. The cycling generalises across qualitatively different representational correlates (location and direction) and occurs across moving behaviours including running, suggesting a general dynamic process for representing hypothetical experience.",
+    "ree_translation": "MECH-294 takes the Kay et al. result as evidence that the theta cycle is the binding-window timescale at which hippocampal content alternates / packets. REE re-interprets the demonstrated alternation pattern as compatible with two interpretations: (i) one-content-per-cycle (Kay's framing) which weakens MECH-294's joint-packet claim, or (ii) the two streams Kay observed are actually two members of a richer multi-content packet that the paper's analysis (which projected onto the path-decision axis) collapsed into a single dimension. MECH-294 commits to interpretation (ii); the paper directly supports interpretation (i).",
+    "mapping_caveat": "This is a mixed-direction entry. The substrate (theta-cycle-resolved content packets) is supported. The specific architecture (joint binding within one cycle vs alternation across cycles) is contradicted. MECH-294 requires interpretation (ii) over (i); without further evidence, interpretation (i) is the more parsimonious read of Kay et al.'s data.",
+    "source_context": "Direct CA1+CA2+CA3 unit recording in rats navigating a multiple-path maze. Cell, 2020. Frank lab; one of the most rigorous hippocampal-systems-neuroscience groups."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.32,
+    "notes": "Source quality very high (Cell, Frank lab, rigorous methods). Mapping fidelity moderate-low because the demonstrated alternation architecture pulls against MECH-294's joint-binding architecture. Transfer risk moderate. Net direction is *mixed* -- the paper supports the broad architectural family but contradicts the specific joint-binding upgrade."
+  }
+}

@@ -2831,6 +2831,12 @@
     "title": "Hippocampal proposer anchor selection AND anchor-reset: (a) trajectory proposals issued between committed actions anchor on the subset of current latent streams whose regional verisimilitude (per-stream prediction/realization alignment) exceeds threshold; misaligned streams hold their last-verified snapshot (anchor carryover) rather than contaminate the rollout. (b) Active anchors are continuously re-evaluated against an effective verisimilitude V_s_anchor(a, t) = V_s(r, t) - staleness[r] (MECH-284 read-out); if V_s_anchor falls below theta_reset(r) for k consecutive steps the anchor is marked inactive (NOT erased -- dual-trace preservation per Bouton 2004) and a new anchor is sought from the current latent slice. A minority probe channel deliberately inverts the gate for low-verisimilitude / high-PE regions, carrying a strengthened MECH-094 hypothesis tag, and does not update the ARC-018 viability map until realized-experience validation.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-269b": {
+    "status": "candidate",
+    "subject": "cortical_world_model.regional_verisimilitude_rollout_gating",
+    "title": "Regional verisimilitude V_s gates not only hippocampal proposer anchor selection but also which streams ground forward predictions in cortical world models (E1 sensory predictor, E2 transition model). Without symmetric V_s gating on E1/E2 rollouts, downstream consumers receive stale-but-confident-looking prediction errors -- the wired-but-inert failure mode.",
+    "type": "mechanism_hypothesis"
+  },
   "MECH-270": {
     "status": "candidate",
     "subject": "hippocampus.ephaptic_verisimilitude_readout",
@@ -2973,6 +2979,18 @@
     "status": "candidate",
     "subject": "hippocampal.awake_ghost_goal_probe_search",
     "title": "Waking hippocampal search allocates a minority probe budget to top ghost-goal entries, seeding proposals around unresolved but still-wanted anchors instead of relying on pure current-anchor CEM or random probe noise.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-294": {
+    "status": "candidate",
+    "subject": "theta_gamma.multi_content_joint_packet",
+    "title": "Theta-burst packet contains multi-content joint binding: each ~125ms theta cycle binds a {goal_latent, action_proposal, risk_estimate, state_summary} tuple within one phase-aligned window, with verisimilitude grounding the rollout step that must stay ahead of real time.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-295": {
+    "status": "candidate",
+    "subject": "drive_to_approach.liking_stream_bridge",
+    "title": "Drive amplification (SD-012) reaches approach action selection only via liking-stream activation. Drive raises liking-stream gain on goal-congruent outcomes, which supplies the cue-side pull for approach. Without the liking-bridge, drive-amplified goal seeding produces a passive z_goal latent without behavioural consequence -- the EXQ-483 catatonic-lock signature.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {
@@ -3207,6 +3225,12 @@
     "status": "open",
     "subject": "architecture.tcl_control_parameters",
     "title": "Which neuromodulatory or control-plane variables directly regulate temporal integration window and phase alignment sensitivity in the TCL?",
+    "type": "open_question"
+  },
+  "Q-040": {
+    "status": "open",
+    "subject": "control.vs_generalisation_unblocks_dacc",
+    "title": "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?",
     "type": "open_question"
   },
   "SD-001": {

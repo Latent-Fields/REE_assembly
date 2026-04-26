@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech269b_vs_rollout_gating",
+  "entry_id": "2026-04-26_mech_269b_attention_uncertainty_freeenergy_feldmanfriston2010",
+  "timestamp_utc": "2026-04-26T10:08:58Z",
+  "claim_ids_tested": ["MECH-269b"],
+  "source": {
+    "title": "Attention, uncertainty, and free-energy.",
+    "authors": ["Feldman, Harriet", "Friston, Karl J."],
+    "year": 2010,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2010.00215"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "The paper formalises attention as inference about precision -- specifically, the precision (inverse uncertainty) of sensory channels that supply data to higher-level inference. This is the closest available precedent for MECH-269b's per-stream V_s gating: precision is set per channel, varies dynamically with state, and modulates how strongly that channel's prediction error drives downstream representations. Tag (a) direct support for cortex-side per-channel precision gating. Confidence held at 0.70 because the paper is computational -- it shows that this precision-is-attention scheme reproduces psychophysical and electrophysiological observations -- but it does not provide direct biological measurement of per-stream gain modulation, and again does not address hippocampal symmetry.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Feldman & Friston frame precision optimisation as state-dependent and modality-general. They do not commit to a position on whether each anatomically-distinguishable sensory stream has its own precision parameter, or whether one global precision schedule modulates all streams together. MECH-269b's per-stream V_s is consistent with the former interpretation but the paper allows the latter.",
+    "The framework is cortical and attentional. It does not engage with the question of whether the same precision signal that gates cortical sensory channels also gates hippocampal proposer anchor selection. The symmetric-application claim is therefore not tested here -- this is a measurement gap (tag d)."
+  ],
+  "tags": ["mech_269b", "precision_weighting", "attention", "free_energy", "biased_competition", "support_type_a", "support_type_c"],
+  "mapping": {
+    "source_claim_statement": "Attention can be understood as inference about the precision of sensory data. The brain optimises a free-energy bound on surprise, and in doing so must jointly estimate the state of the world and the precision (inverse variance) of the data that report on that state. State-dependent precision is what makes the Posner-cued channel more strongly weighted than the unattended channel, and it produces biased competition, attentional capture, and speed-accuracy tradeoffs as principled consequences.",
+    "ree_translation": "MECH-269b's V_s is mathematically a precision parameter, and on the cortical side this paper supplies the closest available precedent. Per-channel attentional gain in Feldman & Friston maps directly to per-stream V_s gain on the E1 / E2 side: a stream that is poorly predicted (low V_s) is the cortical analogue of an unattended channel, and its prediction-error contribution to downstream control is correspondingly muted. The mathematical structure -- precision as a state-dependent multiplicative gain on PE -- is exactly what MECH-269b assumes on the cortical side.",
+    "mapping_caveat": "Feldman & Friston model attention at the cortical sensory-channel level. They do not commit to per-anatomical-stream precision and do not address whether the same precision signal also gates a hippocampal proposer. The translation to MECH-269b is therefore: the cortical primitive is well-characterised; the per-stream specialisation is consistent but not directly tested; the symmetric-cortical-vs-hippocampal application is silent.",
+    "source_context": "Computational paper using neuronal simulations of the Posner paradigm. Reproduces psychophysical and electrophysiological observations under the precision-is-attention hypothesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Source quality good (Frontiers HN, computational simulation supplemented by psychophysical/electrophysiological grounding). Mapping fidelity moderately high because the mathematical structure is exactly what MECH-269b assumes on the cortical side. Transfer risk modest -- the framework is broadly applied across cortical sensory channels."
+  }
+}

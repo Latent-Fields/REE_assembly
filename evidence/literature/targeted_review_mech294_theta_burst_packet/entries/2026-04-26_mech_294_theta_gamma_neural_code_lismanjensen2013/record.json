@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech294_theta_burst_packet",
+  "entry_id": "2026-04-26_mech_294_theta_gamma_neural_code_lismanjensen2013",
+  "timestamp_utc": "2026-04-26T10:08:57Z",
+  "claim_ids_tested": ["MECH-294"],
+  "source": {
+    "title": "The theta-gamma neural code.",
+    "authors": ["Lisman, John E.", "Jensen, Ole"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.03.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the canonical Neuron review of theta-gamma multiplexing and the closest theoretical anchor for MECH-294. Lisman & Jensen explicitly argue that theta-gamma cross-frequency coupling forms a code for representing multiple items in an ordered way within a single theta cycle, with different gamma subcycles carrying different content. That is precisely the substrate MECH-294 needs. Confidence held at 0.74 because the review's canonical examples are homogeneous content (multiple spatial items, working-memory list items) rather than heterogeneous content streams (goal_latent + action_proposal + risk_estimate + state_summary). The theta cycle as a multi-content binding window is asserted in the review's framing; the specific REE four-content packet is an extrapolation.",
+  "summary_path": "summary.md",
+  "support_tag": "c_inferential_support",
+  "failure_signatures": [
+    "The review treats the multi-item code as ordered serial slots within a theta cycle (item 1 in gamma cycle 1, item 2 in gamma cycle 2, etc.). MECH-294 needs simultaneous heterogeneous-content binding -- four different content types co-occurring in one phase-aligned window, not four members of the same content type in serial gamma sub-slots. The review does not distinguish these architectures and does not provide direct evidence for the heterogeneous-binding case.",
+    "Lisman & Jensen's primary mechanistic case is hippocampal CA1 working-memory load, where the multiple items are spatial locations or list elements -- all of the same type. They do not address whether semantically distinct streams (goal vs risk vs state vs action) can be co-bound within a single theta cycle, nor what would distinguish a multi-content packet from a sequence of single-content packets at theta-cycle resolution.",
+    "The proposed coding scheme is sequence-organising (which gamma cycle within theta carries which item). MECH-294's claim is binding-organising (a single phase-aligned window holds heterogeneous content jointly). These are computationally different operations and the review's evidence does not directly discriminate between them."
+  ],
+  "tags": ["mech_294", "theta_gamma", "cross_frequency_coupling", "multi_item_code", "phase_coding", "binding"],
+  "mapping": {
+    "source_claim_statement": "Theta and gamma oscillations interact through cross-frequency coupling to form a code in which multiple items are represented in an ordered way -- different items occupy different gamma subcycles of the same theta cycle. The scheme is supported in hippocampal place-cell sequences, working-memory load effects, and inter-region communication, and is implicated in both sensory and memory processes.",
+    "ree_translation": "MECH-294 inherits Lisman & Jensen's core insight that the theta cycle is a structured multi-slot temporal frame organised by gamma sub-rhythms. REE re-interprets the slots as carrying heterogeneous-content streams rather than homogeneous-content list items: gamma sub-cycle A carries goal_latent, sub-cycle B carries action_proposal, sub-cycle C carries risk_estimate, sub-cycle D carries state_summary. The phase-aligned theta window binds these four content types into a single packet that downstream consumers (E3, salience coordinator, BG gates) can read coherently.",
+    "mapping_caveat": "The translation re-types the slot contents from homogeneous list items to heterogeneous content streams. Lisman & Jensen's evidence does not test heterogeneous binding directly. It is an open empirical question whether the gamma-subcycle code Lisman & Jensen identify can simultaneously carry semantically distinct streams without interference, or whether it is fundamentally a same-type sequence code that REE is repurposing. Inferential support, not direct support.",
+    "source_context": "Major Neuron review by senior figures synthesising rodent electrophysiology, primate working-memory recordings, and computational modelling. Often cited as the theoretical anchor for theta-gamma coding."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (canonical Neuron review). Mapping fidelity moderate -- the review supplies the substrate (theta-gamma multiplexing) but not the specialisation (heterogeneous-content joint binding). Transfer risk modest because the framework is general."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech295_liking_approach_bridge",
+  "entry_id": "2026-04-26_mech_295_incentive_learning_dickinson1994",
+  "timestamp_utc": "2026-04-26T10:09:20Z",
+  "claim_ids_tested": ["MECH-295"],
+  "source": {
+    "title": "Motivational control of goal-directed action",
+    "authors": ["Anthony Dickinson", "Bernard W. Balleine"],
+    "year": 1994,
+    "venue": "Animal Learning & Behavior",
+    "doi": "10.3758/BF03199951",
+    "url": "https://link.springer.com/article/10.3758/BF03199951"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "tag": "a",
+  "confidence": 0.80,
+  "confidence_rationale": "The foundational incentive-learning paper, demonstrating across multiple instrumental devaluation experiments that an outcome's current motivational value influences instrumental responding ONLY IF the animal has previously experienced that outcome in the relevant motivational state. A drive shift (e.g. hunger -> sated) does not automatically reduce approach to a previously rewarded lever; the animal must consume the outcome under the new state before approach behaviour updates. This is the cleanest behavioural demonstration that drive-state changes do not directly rewire approach -- they must propagate through experienced hedonic value (the liking-stream) before reaching action selection. This is precisely MECH-295's necessity claim, articulated in pre-Berridge instrumental-conditioning vocabulary. Confidence 0.80: foundational source, multiple converging experiments, direct mechanistic mapping to MECH-295, but the experimental paradigm is different (instrumental devaluation rather than cue-driven approach under drive amplification).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If drive amplification could produce approach without routing through experienced hedonic value, animals should reduce approach to a previously rewarded lever immediately upon a drive-state change (sated -> hungry not relevant; relevant: shift in outcome value); Dickinson & Balleine show they don't until they have experienced the outcome under the new state.",
+    "If MECH-295's necessity claim is wrong, then incentive-learning experiments should show drive-shift effects on instrumental responding without intervening outcome experience; the paradigmatic finding of this paper is that they do not."
+  ],
+  "tags": ["mech_295", "incentive_learning", "instrumental_devaluation", "motivational_state", "liking", "wanting", "dickinson", "balleine", "tag_a_direct_support"],
+  "mapping": {
+    "source_claim_statement": "Outcome devaluation (or revaluation) does not directly transfer to instrumental responding. An animal that learned to lever-press for sucrose while hungry will continue to lever-press at high rates when sated (or after sucrose has been paired with illness) UNTIL the animal has consumed sucrose in the new motivational state. The current value of the outcome must be experienced before instrumental responding updates. Drive states do not rewire action selection directly; they rewire it via experienced hedonic value of the outcome.",
+    "ree_translation": "MECH-295 says drive amplification (SD-012, hunger raising drive_level) does not by itself produce approach to a goal-cue; it must propagate through liking-stream activation, which supplies the cue-side incentive value that lets drive be converted into committed approach. Dickinson & Balleine 1994 are the foundational behavioural demonstration of exactly this principle: the link from drive state to cue-driven action runs through experienced outcome value, not directly. The 'liking-stream' is the mechanism by which experienced outcome value gets re-encoded onto the predictive cue. EXQ-483's failure mode (override fires, drive amplified, approach_commit = 0.0) is the no-incentive-learning-on-cue version of this principle: the cue has not received liking-driven incentive value, so drive cannot find a target.",
+    "mapping_caveat": "The paradigm in Dickinson & Balleine 1994 is instrumental devaluation: animals lever-press, the outcome value is shifted, and the question is whether responding updates. MECH-295's failure mode is in a cue-driven approach paradigm where the cue has been paired with reward and drive is now elevated; the question is whether approach is selected. These are related but not identical paradigms. Both rely on the same underlying architecture (drive-state effects on action require routing through experienced hedonic value of the outcome), but the experimental specifics differ. Also, the Dickinson & Balleine framework predates the wanting/liking decomposition; their 'incentive value' is the integrated motivational value that the Berridge framework decomposes into wanting and liking. The mapping requires identifying their 'incentive value, conditioned by experienced hedonic value' with MECH-295's z_liking-shaped cue incentive code.",
+    "source_context": "Multiple rodent instrumental-conditioning experiments using lever-press for food reward, with outcome devaluation by lithium-pairing or specific-satiety, comparing groups that did versus did not consume the outcome under the new motivational state."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.32,
+    "notes": "Foundational paper, widely replicated, the behavioural-theory anchor of incentive learning. Mapping fidelity high because the paper's paradigmatic finding -- drive shift does not affect responding without intervening outcome experience -- is the BEHAVIOURAL version of MECH-295's necessity claim. Transfer risk moderate (instrumental devaluation paradigm vs cue-driven approach paradigm). Source quality high but the venue (Animal Learning & Behavior) is specialised."
+  }
+}

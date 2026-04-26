@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech269b_vs_rollout_gating",
+  "entry_id": "2026-04-26_mech_269b_pulvinar_precision_kanai2015",
+  "timestamp_utc": "2026-04-26T10:08:58Z",
+  "claim_ids_tested": ["MECH-269b"],
+  "source": {
+    "title": "Cerebral hierarchies: predictive processing, precision and the pulvinar.",
+    "authors": ["Kanai, Ryota", "Komura, Yutaka", "Shipp, Stewart", "Friston, Karl"],
+    "year": 2015,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2014.0169"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The strongest direct hit in the anchor list. Kanai et al. argue that cortical hierarchies require a dedicated thalamic substrate (pulvinar) to deliver per-cortical-area modulatory gain control on prediction errors -- effectively, a per-region precision signal that selects which cortical streams contribute to ascending Bayesian inference. This is tag (a) direct cortex-side per-stream precision gating, biologically grounded in pulvinar circuitry, and explicitly framed as a route by which inference-content (driving, first-order) is dissociated from precision-context (modulatory, second-order). MECH-269b's V_s is essentially this precision channel, applied to E1 / E2 streams. Confidence 0.78 reflects high mapping fidelity for the cortex side and the explicit anatomical proposal; symmetric-application novelty (vs hippocampal proposer) remains unaddressed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Kanai et al. propose pulvinar-mediated precision gating but treat the precision parameter as set per cortical area, not per latent content stream within an area. MECH-269b's per-stream specialisation (z_world, z_self, z_harm_s independently gated) requires a finer granularity than this paper provides; the paper supplies an upper-bound substrate but does not demonstrate the specific resolution.",
+    "The hippocampal-cortical symmetry question is silently passed over. The paper's frame is cortical hierarchies plus thalamus; hippocampal anchor selection is not discussed, and so the symmetric-V_s-application claim of MECH-269b cannot be confirmed or denied from this evidence -- it is a measurement gap."
+  ],
+  "tags": ["mech_269b", "precision_weighting", "pulvinar", "thalamic_gating", "predictive_processing", "support_type_a", "support_type_c"],
+  "mapping": {
+    "source_claim_statement": "Hierarchical predictive processing requires a substrate that orchestrates and contextualises message passing across cortical areas. Kanai et al. argue this substrate is the pulvinar, which delivers second-order modulatory gain to cortical pyramidal cells reporting prediction error. The pulvinar's job is precision -- the salience or context ascribed to content -- and its anatomy supports a separation between driving (first-order, content-carrying) and modulatory (second-order, precision-carrying) extrinsic connections. Feature-ground segregation simulations demonstrate the computational consequences.",
+    "ree_translation": "Kanai et al. supply the most direct biological precedent for the MECH-269b cortex-side gate. The pulvinar-cortex precision channel is the substrate-equivalent of MECH-269b's V_s applied to E1 / E2 streams. The two-stream architecture (driving content vs modulatory precision) maps directly onto MECH-269b's separation of stream content (the latent z) from stream gain (V_s). The proposal that precision is set externally to the receiving cortical area -- by a thalamic substrate -- mirrors REE's design where V_s is computed in a separate verisimilitude-tracking module and broadcast to consumers.",
+    "mapping_caveat": "The granularity in Kanai et al. is per cortical region, not per content stream within a region. MECH-269b's claim is that precision can be set independently for each latent stream (z_world, z_self, etc.) which corresponds to different anatomical territories under REE's mapping but may include sub-regional resolution that the pulvinar literature does not address. Also, the paper does not engage with hippocampal anchor selection, so the symmetric-application claim remains untested in this paper specifically.",
+    "source_context": "Major Phil Trans B review by Friston and collaborators, synthesising primate anatomy of pulvinar-cortex projections with the predictive-processing computational framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.28,
+    "notes": "Source quality high (top-tier theoretical review, anatomically grounded). Mapping fidelity high because pulvinar-cortex precision gating is essentially the cortical specialisation of what MECH-269b proposes; transfer risk low because the mechanism is broadly cortical and applies across sensory and association areas."
+  }
+}

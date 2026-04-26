@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech269b_vs_rollout_gating",
+  "entry_id": "2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002",
+  "timestamp_utc": "2026-04-26T10:08:58Z",
+  "claim_ids_tested": ["MECH-269b"],
+  "source": {
+    "title": "Humans integrate visual and haptic information in a statistically optimal fashion.",
+    "authors": ["Ernst, Marc O.", "Banks, Martin S."],
+    "year": 2002,
+    "venue": "Nature",
+    "doi": "10.1038/415429a"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The canonical empirical demonstration that the human nervous system performs reliability-weighted (precision-weighted) multimodal integration: visual and haptic estimates are combined in proportion to their inverse variances. This is direct behavioural evidence that the brain computes per-stream reliability -- the empirical foundation that MECH-269b's per-stream V_s formalises and extends. Tag (c) strong inferential support: the per-stream precision parameter that MECH-269b proposes is psychophysically demonstrable in humans for at least the sensory-modality case. Confidence 0.74 reflects that this is direct empirical support for per-stream precision in cue integration but does not extend to forward-prediction gating or to the hippocampal-cortical symmetry.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ernst & Banks demonstrate per-modality precision in cue integration -- visual and haptic. The extension from cue integration (combining current sensory estimates) to forward-prediction gating (combining model-generated predictions weighted by per-stream reliability) is a forward-extrapolation that this paper does not directly test.",
+    "The paradigm is psychophysical and does not engage with planning, rollouts, or hippocampal proposer dynamics. The symmetric-application claim (that the same per-stream reliability signal gates both hippocampal anchor selection and cortical forward predictions) is not addressable from this evidence -- tag (d) measurement gap.",
+    "Two modalities only. The generalisation to many simultaneous streams (z_world, z_self, z_harm_s, z_harm_a, z_goal in REE) is a mathematical extension that the paper supports in principle but does not directly demonstrate."
+  ],
+  "tags": ["mech_269b", "cue_integration", "reliability_weighting", "psychophysics", "multisensory", "support_type_c"],
+  "mapping": {
+    "source_claim_statement": "Humans combine visual and haptic estimates of object height by maximum-likelihood integration: each modality's contribution to the integrated percept is weighted by its inverse variance (its reliability), and the resulting integrated estimate has lower variance than either source alone. Visual dominance in many tasks reflects lower visual variance, not a fixed perceptual bias.",
+    "ree_translation": "Ernst & Banks supply the empirical foundation that MECH-269b's per-stream V_s formalises. The brain demonstrably computes per-modality reliability and uses it to weight stream contributions in cue integration. MECH-269b extends this from current-sensory-estimate combination to forward-prediction-error gating -- the same mathematical primitive (per-stream inverse-variance weighting) applied at the level of model contributions to ascending PE rather than at the level of current sensory estimates. This is a forward extrapolation but a natural one mathematically.",
+    "mapping_caveat": "Cue integration is per-modality at the perceptual level. Extending this to per-stream gating of forward-prediction errors (E1 / E2 rollouts) is a generalisation MECH-269b makes but Ernst & Banks do not directly test. Also, the paradigm is purely cortical-perceptual and silent on hippocampal proposer dynamics.",
+    "source_context": "Classic Nature psychophysics paper. Two modalities (vision, touch), height-estimation task, manipulation of visual noise to vary visual variance. Empirically gold-standard demonstration of reliability-weighted integration."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.36,
+    "notes": "Source quality very high (Nature, behaviourally-rigorous, replicated extensively). Mapping fidelity moderate because the cue-integration setting is one step removed from forward-prediction gating; the principle transfers, but it is not directly tested in MECH-269b's setting. Transfer risk modest -- the reliability-weighting principle is broadly applicable across sensory and motor systems."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech294_theta_burst_packet",
+  "entry_id": "2026-04-26_mech_294_theta_phase_encoding_retrieval_hasselmo2005",
+  "timestamp_utc": "2026-04-26T10:08:57Z",
+  "claim_ids_tested": ["MECH-294"],
+  "source": {
+    "title": "What is the function of hippocampal theta rhythm? -- Linking behavioral data to phasic properties of field potential and unit recording data.",
+    "authors": ["Hasselmo, Michael E."],
+    "year": 2005,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.20116"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Hasselmo's review is the canonical theoretical anchor for the idea that distinct theta phases carry functionally distinct operations -- encoding on one phase, retrieval on the opposite phase, with the cholinergic/synaptic-current state of CA1 differing between phases. That establishes the principle that one theta cycle naturally carries multiple distinct operational contents at distinct phases, which is the architectural pattern MECH-294 generalises. Confidence 0.66: theoretical/computational, not direct multi-region recording, and the contents Hasselmo distinguishes are 'encoding' and 'retrieval' (two operational modes of the same content) rather than four semantically distinct content streams.",
+  "summary_path": "summary.md",
+  "support_tag": "c_inferential_support",
+  "failure_signatures": [
+    "Hasselmo's distinction is between two functional *modes* (encoding vs retrieval) that operate on the same content type. MECH-294 needs distinct *content types* (goal vs action vs risk vs state) carried in distinct phase windows. These are different architectural claims and the review's evidence does not directly distinguish them.",
+    "The review is largely a synthesis of computational modelling and cholinergic pharmacology in CA1; it does not provide direct in-vivo demonstration of multiple content streams within one theta cycle.",
+    "The two-phase encoding/retrieval scheme is binary (one phase or the other). MECH-294 needs at least four sub-windows per cycle. The review does not address how a four-slot architecture would be implemented or whether it is biologically plausible at theta resolution."
+  ],
+  "tags": ["mech_294", "theta_phase", "encoding_retrieval", "hippocampus", "cholinergic", "phase_coding"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta rhythm separates the dynamics of encoding and retrieval into distinct phases of each theta cycle: synaptic-modification dynamics dominate one phase, retrieval dynamics dominate the opposite phase. The cholinergic state of CA1 modulates the balance between phases, and cholinergic disruption impairs encoding selectively. Theta phase also enhances context-dependent retrieval of sequences and times interactions with prefrontal cortex.",
+    "ree_translation": "MECH-294 takes Hasselmo's encoding/retrieval phase distinction as a prior demonstration that one theta cycle naturally carries multiple distinct operational contents at distinct phases. REE generalises from two operational modes (encode/retrieve) to four content types (goal_latent + action_proposal + risk_estimate + state_summary) carried in distinct phase windows of one theta cycle.",
+    "mapping_caveat": "Hasselmo distinguishes two operational modes of the same content (encoding vs retrieval of memory traces). MECH-294 needs distinct content types (goal vs action vs risk vs state). These are different architectural claims and the review's evidence does not directly support the content-type-distinct case. The two-phase scheme also does not obviously generalise to four phase windows.",
+    "source_context": "Major Hippocampus review by a senior computational modeller. Synthesises rodent cholinergic pharmacology, place-cell theta-phase precession, and CA1 computational models. Often cited as the theoretical anchor for theta-phase functional segregation."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "Source quality good (specialty review, computational modelling base). Mapping fidelity moderate-low because the encoding/retrieval distinction is operational mode, not content type, and is two-phase rather than four. Transfer risk moderate because the principle (theta phase as functional segregator) generalises in spirit but not in detail."
+  }
+}

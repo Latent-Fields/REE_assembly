@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech269b_vs_rollout_gating",
+  "entry_id": "2026-04-26_mech_269b_uncertainty_competition_daw2005",
+  "timestamp_utc": "2026-04-26T10:08:58Z",
+  "claim_ids_tested": ["MECH-269b"],
+  "source": {
+    "title": "Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control.",
+    "authors": ["Daw, Nathaniel D.", "Niv, Yael", "Dayan, Peter"],
+    "year": 2005,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1560"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "The closest available precedent for tag (b) symmetric application of a reliability signal across two computationally-distinct world-model systems. Daw, Niv & Dayan propose that prefrontal model-based and dorsolateral-striatal model-free control compete for behavioural output via uncertainty-based arbitration -- each system is deployed where it should be most accurate. This is the only paper in the anchor list that engages directly with the symmetric question MECH-269b asks: when two distinct architectures (model-based vs model-free; or by analogy, hippocampal proposer vs cortical world-model) hold different opinions about a state, can a single uncertainty signal arbitrate between them? Confidence held at 0.58 because the analogy is structural rather than direct: Daw et al. arbitrate between two action-selection systems, not between hippocampal-proposer and cortical-forward-prediction streams within a planning loop. The principle (uncertainty as arbiter of cross-system contribution) maps; the specific mechanism does not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Daw, Niv & Dayan arbitrate between two distinct *action-selection* systems (PFC model-based vs DLS model-free). MECH-269b proposes V_s gates contributions to a *single* shared planning loop from two complementary substrates (hippocampal proposer + cortical world-model). The structural analogy holds (uncertainty-as-arbiter) but the specific architecture is different.",
+    "The paper does not test the prediction that the same uncertainty signal driving arbitration is also computed and consumed in the hippocampus -- they treat hippocampus as a contributor to the model-based system rather than as an architecturally-distinct precision-gated module. Tag (b) symmetric-cortical-vs-hippocampal precision gating is implied but not tested directly.",
+    "Computational paper without direct biological measurement of the arbitration signal. The framework has been extended in subsequent work but the symmetric-precision claim of MECH-269b remains a forward extension rather than a direct empirical inheritance."
+  ],
+  "tags": ["mech_269b", "uncertainty_arbitration", "model_based_model_free", "prefrontal_striatal", "reliability_competition", "support_type_b", "support_type_c"],
+  "mapping": {
+    "source_claim_statement": "The brain operates parallel model-based (prefrontal) and model-free (dorsolateral striatal) systems for behavioural choice. When they disagree, arbitration is achieved by a Bayesian principle of uncertainty: each controller is deployed when its prediction uncertainty is lower. This produces a unifying account of when habits dominate (low model-free uncertainty) versus deliberation dominates (low model-based uncertainty), as a function of training, environmental volatility, and task structure.",
+    "ree_translation": "Daw, Niv & Dayan supply the closest available precedent for the symmetric-application half of MECH-269b. The principle that a single reliability / uncertainty signal arbitrates between architecturally-distinct world-model systems is established here, with PFC and DLS as the two systems. MECH-269b extends this principle: rather than arbitrating action-selection between MB and MF systems, V_s gates within-loop contribution from hippocampal proposer (the MB-analog) and cortical forward predictors (E1, E2). The structural analogy is direct; the specific architecture differs.",
+    "mapping_caveat": "Daw, Niv & Dayan's two systems compete for behavioural output. MECH-269b's two-substrate gating is within the planning loop -- both hippocampal proposer and cortical forward-prediction streams contribute to a single rollout, with V_s setting their respective weights rather than choosing between them. The principle (uncertainty as cross-architecture arbiter) maps; the implementation (within-loop weighting vs choose-one arbitration) is meaningfully different. This is therefore tag (b) closest precedent for the symmetric-application novelty, not a direct demonstration.",
+    "source_context": "Major Nature Neuroscience computational paper formalising habits-vs-goal-directed behaviour as Bayesian uncertainty arbitration between two reinforcement-learning controllers. Foundational for the model-based / model-free literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.46,
+    "notes": "Source quality high (Nature Neuroscience, foundational computational paper). Mapping fidelity moderate-low because the structural analogy is good but the specific architecture (cross-system arbitration vs within-loop weighting) differs meaningfully. Transfer risk noticeable because the extension from action-arbitration to per-stream-rollout-gating is a forward step, not directly tested."
+  }
+}

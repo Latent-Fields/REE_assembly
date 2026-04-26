@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech269b_vs_rollout_gating",
+  "entry_id": "2026-04-26_mech_269b_aberrant_precision_autism_lawson2014",
+  "timestamp_utc": "2026-04-26T10:08:58Z",
+  "claim_ids_tested": ["MECH-269b"],
+  "source": {
+    "title": "An aberrant precision account of autism.",
+    "authors": ["Lawson, Rebecca P.", "Rees, Geraint", "Friston, Karl J."],
+    "year": 2014,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2014.00302"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Companion failure-mode prediction to Adams 2013 in a different clinical context. Autism's perceptual symptoms (sensory hypersensitivity, intolerance of uncertainty, repetitive behaviour as precision-driven prior assertion) are framed as systematic miscalibration of precision-weighting -- in particular, an over-precise sensory channel relative to the precision of priors. Tag (c) inferential support plus tag (d) failure-mode evidence. Confidence 0.64 reflects that this is a theoretical framing rather than empirical measurement, and that competing accounts (Bayesian-prior-strength accounts, weak-central-coherence) make different but overlapping predictions. Particularly relevant for MECH-269b because Lawson et al. do mention per-modality precision differences -- the closest available gesture toward per-stream precision in the clinical literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lawson et al. frame autism as imbalanced precision, but they do not commit to whether the imbalance is global (one precision parameter mis-set everywhere) or per-stream (different streams have different mis-set precisions in different patients). MECH-269b's per-stream V_s is consistent with the latter and the paper gestures at it (different sensory modalities show different sensitivities) but does not demonstrate it.",
+    "Hippocampal involvement is not a focus of the paper -- it is centred on cortical sensory-prior balance. The symmetric-application question (does autism manifest in both hippocampal proposer and cortical world-model precision?) is unaddressed. Tag (d) measurement gap.",
+    "Theoretical framing rather than empirical demonstration. Competing accounts (notably weak-central-coherence and enhanced-perceptual-functioning) make overlapping predictions and are not directly adjudicated."
+  ],
+  "tags": ["mech_269b", "autism", "aberrant_precision", "predictive_coding", "per_modality_precision", "failure_mode", "support_type_c", "support_type_d"],
+  "mapping": {
+    "source_claim_statement": "Many features of autistic perception and behaviour can be attributed to aberrant precision in hierarchical predictive coding. Specifically, an imbalance in which sensory-evidence precision is high relative to the precision of prior beliefs produces sensory hypersensitivity, intolerance of unpredictable environments, and reliance on repetitive routines (which fix the prior at high precision through behaviour). Different sensory modalities can show different precision profiles, suggesting that precision is not a single global parameter.",
+    "ree_translation": "Lawson et al. supply two relevant signals for MECH-269b. First, the failure-mode argument (analogous to Adams 2013 on psychosis): when precision is mis-set, behavioural revision is impaired in characteristic, predictable ways -- supporting the architectural claim that precision is the relevant gating signal. Second, the per-modality observation gestures at per-stream precision: different sensory channels have different precision profiles in autism, which is the closest available clinical correlate of MECH-269b's per-stream V_s assumption.",
+    "mapping_caveat": "The paper is theoretical -- it interprets existing empirical findings under a precision framework rather than measuring precision directly. Competing accounts (weak-central-coherence, enhanced-perceptual-functioning, predictive-impairment) make overlapping predictions and are not directly tested against the precision account. For MECH-269b specifically, the per-modality precision observation is suggestive but not a definitive demonstration of per-stream gating.",
+    "source_context": "Frontiers in Human Neuroscience theoretical review framing autism within the active-inference / predictive-coding programme."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "Source quality moderate (theoretical review). Mapping fidelity moderate -- the failure-mode logic supports the architectural claim and the per-modality observation is a useful gesture toward per-stream precision. Transfer risk noticeable because clinical autism is heterogeneous and the precision account competes with established alternatives."
+  }
+}
