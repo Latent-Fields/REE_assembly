@@ -58,7 +58,15 @@ except ImportError:
 SERVE_DIR = Path(__file__).resolve().parent
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"  # legacy monolithic
 STATUS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_status"       # per-machine split
+HEARTBEAT_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_heartbeats"  # per-machine heartbeats
+COMMANDS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_commands"     # per-machine command queues
 RUNNER_LOG = SERVE_DIR / "runner.log"
+
+# Command kinds the runner accepts (mirrors ree-v3/runner_remote_control.VALID_COMMAND_KINDS)
+VALID_REMOTE_COMMAND_KINDS = (
+    "stop", "force_stop", "pause", "resume", "kick", "release_claim",
+)
+MAX_REMOTE_COMMAND_HISTORY = 50
 REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
 CONTRIBUTIONS_FILE  = SERVE_DIR / "contributors" / "contributions.json"
 
@@ -564,6 +572,186 @@ def read_merged_runner_status() -> dict:
     return merged
 
 
+def read_machines() -> dict:
+    """Aggregate per-machine heartbeats + status into a single view.
+
+    Returns:
+        {
+          "schema_version": "v1",
+          "now_utc": "<iso>",
+          "machines": [
+             {
+               machine, hostname, last_tick_utc, age_seconds, fresh,
+               state, current_exq, queue_depth, recent_completed,
+               gpu, runner_pid, runner_version,
+               status_idle, status_current, status_last_updated,
+             }, ...
+          ],
+        }
+
+    `fresh` is True when last_tick_utc is within FRESH_WINDOW_SECONDS (default
+    180s -- 3x the default --loop-interval=60s, so a missed tick is OK).
+    `state` falls back to "unknown" when no heartbeat exists for a machine
+    that does have a status file.
+    """
+    from datetime import datetime, timezone
+
+    FRESH_WINDOW_SECONDS = 180
+
+    heartbeats: dict[str, dict] = {}
+    if HEARTBEAT_DIR.is_dir():
+        for f in sorted(HEARTBEAT_DIR.glob("*.json")):
+            try:
+                hb = json.loads(f.read_text())
+                key = hb.get("machine") or f.stem
+                heartbeats[key] = hb
+            except Exception:
+                pass
+
+    statuses: dict[str, dict] = {}
+    if STATUS_DIR.is_dir():
+        for f in sorted(STATUS_DIR.glob("*.json")):
+            try:
+                statuses[f.stem] = json.loads(f.read_text())
+            except Exception:
+                pass
+
+    all_machines = set(heartbeats.keys()) | set(statuses.keys())
+    now = datetime.now(timezone.utc)
+
+    out_machines = []
+    for name in sorted(all_machines):
+        hb = heartbeats.get(name, {})
+        st = statuses.get(name, {})
+
+        last_tick = hb.get("last_tick_utc") or st.get("last_updated") or ""
+        age_seconds = None
+        fresh = False
+        if last_tick:
+            try:
+                t = datetime.fromisoformat(last_tick.replace("Z", "+00:00"))
+                age_seconds = int((now - t).total_seconds())
+                fresh = 0 <= age_seconds <= FRESH_WINDOW_SECONDS
+            except Exception:
+                pass
+
+        entry = {
+            "machine": name,
+            "hostname": hb.get("hostname"),
+            "last_tick_utc": last_tick,
+            "age_seconds": age_seconds,
+            "fresh": fresh,
+            "state": hb.get("state", "unknown" if not hb else "idle"),
+            "current_exq": hb.get("current_exq"),
+            "current_exq_started_utc": hb.get("current_exq_started_utc"),
+            "queue_depth": hb.get("queue_depth"),
+            "queue_id_at_head": hb.get("queue_id_at_head"),
+            "recent_completed": hb.get("recent_completed", []),
+            "gpu": hb.get("gpu", {}),
+            "runner_pid": hb.get("runner_pid") or st.get("runner_pid"),
+            "runner_version": hb.get("runner_version"),
+            "status_idle": st.get("idle"),
+            "status_current": st.get("current"),
+            "status_last_updated": st.get("last_updated"),
+            "has_heartbeat": name in heartbeats,
+            "has_status": name in statuses,
+        }
+        out_machines.append(entry)
+
+    return {
+        "schema_version": "v1",
+        "now_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "fresh_window_seconds": FRESH_WINDOW_SECONDS,
+        "machines": out_machines,
+    }
+
+
+def _machine_safe_filename(machine: str) -> str:
+    keep = "-_."
+    return "".join(c if (c.isalnum() or c in keep) else "_" for c in machine)
+
+
+def _commands_file(machine: str) -> Path:
+    return COMMANDS_DIR / f"{_machine_safe_filename(machine)}.json"
+
+
+def read_machine_commands(machine: str) -> dict:
+    path = _commands_file(machine)
+    if not path.exists():
+        return {"schema_version": "v1", "machine": machine, "commands": []}
+    try:
+        data = json.loads(path.read_text())
+        if not isinstance(data, dict) or "commands" not in data:
+            return {"schema_version": "v1", "machine": machine, "commands": []}
+        if not isinstance(data["commands"], list):
+            data["commands"] = []
+        return data
+    except Exception:
+        return {"schema_version": "v1", "machine": machine, "commands": []}
+
+
+def append_machine_command(
+    machine: str,
+    kind: str,
+    args: dict | None,
+    issued_by: str,
+) -> tuple[bool, str, dict | None]:
+    """Append a pending command to runner_commands/<machine>.json.
+
+    Returns (ok, message, command_dict).
+    Mirrors ree-v3/runner_remote_control.append_command schema.
+    """
+    if kind not in VALID_REMOTE_COMMAND_KINDS:
+        return False, f"unknown command kind: {kind!r}", None
+    if kind in ("kick", "release_claim"):
+        if not (args and args.get("queue_id")):
+            return False, f"{kind} requires args.queue_id", None
+    try:
+        COMMANDS_DIR.mkdir(parents=True, exist_ok=True)
+    except Exception as exc:
+        return False, f"mkdir failed: {exc}", None
+
+    data = read_machine_commands(machine)
+    now = _utc_now_iso()
+    cmd = {
+        "id": f"cmd-{now}-{os.urandom(3).hex()}",
+        "kind": kind,
+        "args": args or {},
+        "issued_at_utc": now,
+        "issued_by": issued_by or "unknown",
+        "status": "pending",
+        "ack_at_utc": None,
+        "completed_at_utc": None,
+        "error": None,
+        "result_note": None,
+    }
+    cmds = data.setdefault("commands", [])
+    cmds.append(cmd)
+
+    pending = [c for c in cmds if c.get("status") in ("pending", "ack")]
+    history = [c for c in cmds if c.get("status") in ("done", "failed")]
+    if len(history) > MAX_REMOTE_COMMAND_HISTORY:
+        history = history[-MAX_REMOTE_COMMAND_HISTORY:]
+    data["commands"] = pending + history
+    data["machine"] = machine
+    data["schema_version"] = "v1"
+
+    path = _commands_file(machine)
+    try:
+        tmp = path.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(data, indent=2) + "\n")
+        os.replace(tmp, path)
+    except Exception as exc:
+        return False, f"write failed: {exc}", None
+
+    return True, f"command {cmd['id']} queued for {machine}", cmd
+
+
+def _utc_now_iso() -> str:
+    from datetime import datetime
+    return datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def scan_evidence_runs() -> dict:
     """Scan evidence/experiments dirs for actual run counts on disk."""
     result = {}
@@ -1006,8 +1194,30 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(run_preflight_suite()).encode()
             self._json_response(body)
             return
-        # STUB /api/machines -- future endpoint returning status of all known machines
-        # (hostnames, last-seen, queue assignments, GPU info from machines.json config)
+        if path == "/api/machines":
+            body = json.dumps(read_machines(), indent=2).encode()
+            self._json_response(body)
+            return
+        # /api/machines/<host>/commands -- list pending + recent for one machine
+        m = re.match(r"^/api/machines/([^/]+)/commands$", path or "")
+        if m:
+            from urllib.parse import unquote
+            host = unquote(m.group(1))
+            body = json.dumps(read_machine_commands(host), indent=2).encode()
+            self._json_response(body)
+            return
+        if path in ("/machines", "/machines.html"):
+            machines_page = SERVE_DIR / "machines.html"
+            if machines_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(machines_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
+            return
         if path == "/api/queue/v3":
             body = json.dumps(read_queue("v3")).encode()
             self._json_response(body)
@@ -1143,6 +1353,31 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 result = {"status": "ok", "discussed_experiment_dirs": dirs}
             else:
                 result = {"status": "error", "message": "missing dir_name"}
+        elif (m := re.match(r"^/api/machines/([^/]+)/command$", path or "")):
+            from urllib.parse import unquote
+            host = unquote(m.group(1))
+            length = int(self.headers.get("Content-Length", 0))
+            try:
+                payload = json.loads(self.rfile.read(length) or b"{}")
+            except Exception as exc:
+                result = {"status": "error", "message": f"bad json: {exc}"}
+                body = json.dumps(result).encode()
+                self._json_response(body, status=400)
+                return
+            kind = (payload.get("kind") or "").strip()
+            args = payload.get("args") or {}
+            issued_by = payload.get("issued_by") or "explorer"
+            ok, msg, cmd = append_machine_command(host, kind, args, issued_by)
+            result = {
+                "status": "ok" if ok else "error",
+                "message": msg,
+                "command": cmd,
+                "machine": host,
+                "valid_kinds": list(VALID_REMOTE_COMMAND_KINDS),
+            }
+            body = json.dumps(result).encode()
+            self._json_response(body, status=200 if ok else 400)
+            return
         else:
             self.send_response(404)
             self.end_headers()
