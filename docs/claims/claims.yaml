@@ -22711,4 +22711,33 @@
     the liking bridge, or (b) literature evidence resolving the DAT-
     knockdown / Pecina 2003 inconsistency with strong necessity. The
     weak reading remains the provisional commitment.
+  implementation_note: >
+    V3 substrate IMPLEMENTED 2026-04-26 in ree-v3/ree_core/regulators/
+    mech295_liking_bridge.py (MECH295LikingBridge,
+    MECH295LikingBridgeConfig, MECH295LikingBridgeOutput). Master flag
+    REEConfig.use_mech295_liking_bridge (default False). Sub-knobs:
+    mech295_drive_to_liking_gain (default 1.0), mech295_liking_to_approach_cue_gain
+    (default 0.5), mech295_min_drive_to_fire (default 0.1),
+    mech295_min_z_goal_norm_to_fire (default 0.05). Wired in agent.py at
+    two integration sites: (a) update_z_goal() writes an anticipatory
+    liking pulse to VALENCE_LIKING at the goal location (NOT the agent's
+    current location -- this is the cue-side anticipatory pulse, distinct
+    from update_liking() consummatory write), gated on
+    drive_level * z_goal_norm * drive_to_liking_gain; (b) select_action()
+    reads per-candidate goal_proximity, computes drive *
+    proximity * liking_to_approach_cue_gain, negates (E3 lower-is-better)
+    and composes additively with dacc_score_bias before e3.select().
+    Backward compatible (154/154 contracts + 7/7 preflight PASS with
+    flag OFF, bit-identical to pre-MECH-295 HEAD). Severed-bridge arm
+    (mech295_liking_to_approach_cue_gain=0.0) is the falsifiable test
+    for the weak-necessity reading: drive elevated AND write side
+    intact AND cue side severed -> approach_commit predicted to
+    collapse. V3-EXQ-493 queued (6-part substrate-landing diagnostic
+    including UC5 severed-bridge collapse signature). Behavioural
+    EXQ-483-style 4-arm approach_commit recovery deferred to a successor
+    once V3-EXQ-490 (MECH-269b) lands and the combined V_s + bridge
+    stack can be tested end-to-end. See
+    docs/architecture/mech_295_drive_liking_approach_bridge.md and
+    ree-v3/CLAUDE.md "MECH-295 Drive -> Liking-Stream -> Approach Cue
+    Bridge (2026-04-26)".
   location: docs/architecture/control_plane_heartbeat.md
