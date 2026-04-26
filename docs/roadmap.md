@@ -14,6 +14,123 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-26 — nightly docs sync, post-2026-04-25 substrate wave)
+
+- **SDs moved to Implemented since the 2026-04-25 snapshot:**
+  - **SD-037** (`regulators.broadcast_override`) -- orexin/hypocretin-analog
+    BroadcastOverrideRegulator. Scalar `override_signal` in [0,1] driven by
+    SD-012 `drive_level` + sustained-threat rolling-window magnitude over
+    `z_harm`, EMA-smoothed. Consumed at three sites: PAG freeze-gate
+    `exit_threshold` scaled by `(1 + alpha_override * override_signal)`;
+    SalienceCoordinator `update_signal("override_signal", ...)` biases
+    operating-mode aggregate toward `external_task`; GoalState seeding
+    amplified `effective_drive *= (1 + (override_goal_seeding_gain - 1) *
+    override_signal)`. MECH-094 simulation_mode gate: `tick(simulation_mode=
+    True)` returns cached signal unchanged. Failure-mode predictions:
+    PWS-hyperphagia analog (saturated override -> >=2x approach-commit
+    rate); narcolepsy/cataplexy analog (lost override -> <30% approach-
+    commit); catatonic lock-in escape (raises PAG exit_threshold under
+    sustained drive+harm).
+  - **Sleep Aggregation Cluster Phase A** (`SleepLoopManager` scaffolding) --
+    wraps the existing SD-017 surface (`run_sleep_cycle` / `enter_sws_mode`
+    / `run_sws_schema_pass` / `enter_rem_mode` / `run_rem_attribution_pass`
+    / `exit_sleep_mode`). New `SleepPhase` enum (6 phases: WAKING /
+    SLEEP_ENTRY / SWS_ANALOG / PHASE_SWITCH / REM_ANALOG / WRITEBACK) +
+    `SleepCycleState` dataclass. Master flag `use_sleep_loop` (default
+    False) + `sleep_loop_episodes_K` (default 1) + `sleep_loop_require_
+    passes` (default True). `notify_episode_end()` hooked at start of
+    REEAgent.reset() so sleep operates on the final waking state.
+  - **MECH-285 Sleep Phase B** (`sleep.replay_sampler`) -- SleepReplaySampler.
+    At SLEEP_ENTRY freezes `StalenessAccumulator.snapshot()`, then draws N
+    seeds from `AnchorSet.all_with_dual_trace()` (active + inactive,
+    Bouton 2004 dual-trace preserved) with `softmax(staleness/temperature)`
+    priority. Stateless within cycle; uniform-fallback when no accumulator.
+    Phase B is no-op consumer -- draws land in `mech285_*` metrics only.
+  - **MECH-272 Sleep Phase C** (`sleep.routing_gate`) -- RoutingGate. State-
+    conditioned channel weights `{anchor_channel, probe_channel}` flipping
+    across SWS_ANALOG / REM_ANALOG / WAKING rows per the design-doc table.
+    Per-draw `RoutedEvent`s surfaced as `mech272_*` cycle metrics.
+  - **MECH-275 Sleep Phase D** (`sleep.bayesian_aggregator`) -- BayesianAggregator.
+    Per-domain per-region Gaussian posteriors over residuals; conjugate
+    mean-and-variance update gated by `RoutedEvent.probe_channel *
+    probe_gain` (probe<=0 skipped, counted as `mech275_n_skipped_zero_
+    probe`). Snapshot+decay contract: `snapshot()` deep-copies live
+    posteriors at PHASE_SWITCH (frozen pre-REM); `decay_factor` multiplies
+    live variance per cycle. Place-domain default with `(scale, segment_
+    id)` region key matching MECH-284.
+  - **MECH-273 Sleep Phase E** (`sleep.self_model_writeback`) -- SelfModel
+    Aggregator subclass of MECH-275 specialised on SD-003 `causal_sig`
+    posterior. `offline_gradient_pass(e2_harm_s, replayed_regions, n_steps,
+    domain='self', use_snapshot=True)` reads posterior means from
+    `last_snapshot` (SWS-only frozen copy at PHASE_SWITCH); constructs
+    synthetic batch at E2_harm_s input dims; trains via Adam at
+    `waking_lr * offline_lr_scale` for n_steps bounded MSE steps.
+    MECH-094 exception scoped: optimiser constructed locally over
+    `e2_harm_s.parameters()` only -- no other module's params touched.
+    NEW API: `StalenessAccumulator.partial_decay(replayed_regions,
+    decay_factor=0.5)` multiplicatively decays only supplied region keys
+    (clamped, drops below `drop_epsilon`).
+  - **SD-016 Path 1** (`e1.context_memory_diversification_loss`) -- auxiliary
+    mean-squared-off-diagonal-cosine loss on normalised ContextMemory
+    slot vectors. Provides gradient pressure for slot symmetry-breaking
+    missing in EXQ-418d 4-arm writepath ablation (FAILed across all
+    arms with `attn_entropy_mean ~2.76` near uniform reference 2.7726
+    and bimodal seed pattern: seed 42 ~0.46 div, seeds 43/44 collapse
+    <1e-4). Smoke verified `slot_div` climbs 0.2->0.5->1.0 across arms;
+    new `sd016_diversification_weight` config wired through E1Config +
+    REEConfig.from_dims (default 0.0 -- backward compatible).
+- **Contracts suite:** 150/150 PASS (143 contracts + 7 preflight) with all
+  flags OFF after the 2026-04-25 wave (was 91/91 contracts + 7 preflight
+  before the wave). Bit-identical-when-OFF guarantee preserved across
+  SD-037 + 5 sleep phases + SD-016 Path 1.
+- **Experiment count:** 550 runner-side completions per `runner_status.json`
+  2026-04-26 read (108 PASS / 241 FAIL / 66 ERROR / 135 UNKNOWN; v3 subset
+  92 PASS / 228 FAIL / 66 ERROR / 135 UNKNOWN). +5 completions over the
+  2026-04-25 snapshot.
+- **Pending review:** 1 item as of `pending_review.md` regenerated
+  2026-04-26T00:44:10Z (down from 13 on the 2026-04-25 snapshot). The
+  remaining item is V3-EXQ-483 FAIL whose successor V3-EXQ-483a is in
+  flight.
+- **Queue (`experiment_queue.json` 2026-04-26): 2 items**.
+  - **V3-EXQ-483a in flight** -- SD-037 broadcast-override 4-arm with
+    WARMUP_EPISODES=200 + substrate-readiness fallback acceptance;
+    supersedes V3-EXQ-483. Auto-claimed by `DLAPTOP-4.local`
+    2026-04-25T23:29Z. EXQ-483 confirmed substrate-readiness
+    (override 0.0 -> 0.56 mean / 0.62 max in ON arms; PAG releases
+    5.3 -> 9.0-9.3) but behavioural metrics were uninterpretable
+    because `approach_commit=0.0` in ALL arms including the
+    SD-036-only baseline. Two changes: (1) `WARMUP_EPISODES 60 -> 200`
+    to give baseline arm enough exposure to potentially produce
+    non-zero approach behaviour; (2) acceptance logic adds substrate-
+    readiness fallback path used only when baseline arm yields no
+    behavioural signal (override_mean > 0.30 AND PAG release ratio
+    ON_ON/ON_OFF > 1.30). Behavioural path remains preferred when
+    baseline is non-zero.
+  - **V3-EXQ-418e pending** -- SD-016 Path 1 4-arm A0_off / A1_writes_only
+    / A2_div_only / A3_writes_plus_div ablation; supersedes V3-EXQ-418d.
+    Acceptance C1 `attn_entropy<2.65` AND C2 `div>0.10` ALL 3 SEEDS AND
+    C3 behavioural delta `>=0.20` AND C4 A1 replicates 418d FAIL. C2
+    raised from 2/3 to 3/3 because 418d showed bimodal seed pattern --
+    substrate-level fix must escape collapse on every seed.
+- **Current first-paper-gate bottleneck:** V3-EXQ-483a SD-037 validation
+  (in flight) gates the orexin-analog failure-mode signature -- PWS-
+  hyperphagia (saturated override -> >=2x approach-commit), narcolepsy/
+  cataplexy (lost override -> <30% approach-commit), and the V3-EXQ-471
+  catatonic-lock-in escape signature. V3-EXQ-418e SD-016 Path 1 validation
+  is the parallel SD-016 cue_action_proj design-rethink resolution path
+  -- if Path 1 lifts the bimodal seed pattern across all 3 seeds, the
+  diversification-loss substrate is the answer; if it does not, deeper
+  ContextMemory write-architecture redesign is required. SD-032 cluster
+  behavioural follow-through remains the primary cingulate-track blocker
+  (V3-EXQ-445a/b/c FAILed; V3-EXQ-325d FAILed with zero between-arm
+  gradient on the SD-032c AIC-analog descending-modulation arm); the
+  cluster awaits the next governance cycle pass.
+- **Governance:** No governance cycle run in this nightly window. Next
+  cycle should ingest V3-EXQ-483a + V3-EXQ-418e outcomes, the SD-035 /
+  MECH-266 landings, and the 2026-04-24 + 2026-04-25 substrate waves.
+
+---
+
 ## Status Snapshot (2026-04-25 — nightly docs sync, post-Phase-3 wave)
 
 - **SDs moved to Implemented since the 2026-04-24 snapshot:**
@@ -436,39 +553,33 @@ nav_order: 6
 
 ## Immediate Work Queue (This Cycle)
 
-- Land V3-EXQ-478 (MECH-284 Phase 3 validation diagnostic, OFF vs ON x 2 seeds;
-  metrics `freeze_recommit_count`, `anchor_reset_count`, `mean_staleness_peak`,
-  `action_class_entropy`) -- in flight on `DLAPTOP-4.local` since
-  2026-04-24T13:22Z. Cascade gate: PASS unlocks the previously gated
-  V3-EXQ-445d / 449c / 455a / 476 cascade now that the staleness signal
-  drives anchor-reset hysteresis; FAIL forces a Phase 3 redesign.
-- Land V3-EXQ-479 (SD-029 fix2 superseding 470a; queued by cowork-2026-04-24-a
-  with the curriculum / agent-caused-elicitation correction) -- next-up
-  SD-029 follow-up after V3-EXQ-478.
+- Land V3-EXQ-483a (SD-037 broadcast-override 4-arm with `WARMUP_EPISODES=200`
+  and substrate-readiness fallback acceptance; supersedes V3-EXQ-483) --
+  in flight on `DLAPTOP-4.local` since 2026-04-25T23:29Z. Validates the
+  PWS-hyperphagia (>=2x approach-commit under saturated override),
+  narcolepsy/cataplexy (<30% under lost override), and V3-EXQ-471
+  catatonic-lock-in escape signatures.
+- Land V3-EXQ-418e (SD-016 Path 1 4-arm A0_off / A1_writes_only /
+  A2_div_only / A3_writes_plus_div ablation; supersedes V3-EXQ-418d) --
+  pending in queue. Acceptance C1 `attn_entropy<2.65` AND C2 `div>0.10`
+  ALL 3 SEEDS AND C3 behavioural delta `>=0.20` AND C4 A1 replicates
+  418d FAIL. C2 raised to 3/3 to defeat the 418d bimodal seed pattern.
 - Re-queue V3-EXQ-445d / 449c / 455a / 476 (the V_s end-to-end behavioural
   cascade) once V3-EXQ-478 PASSes; both 449c and 455a target MECH-074b /
-  SD-035 retrieval-bias V_s-gating, and 476 is the entropy-probe gate the
-  prior cycle deferred to "planned but not yet queued" -- now superseded
-  by the 2026-04-24 Phase 3 wave.
-- SD-016 cue_action_proj design rethink: V3-EXQ-477 FAILed 2026-04-24T08:06Z
-  with `key_proj.bias` dominance as the substrate-level diagnosis; the
-  EXQ-418c re-run remains needs_user_review until the substrate-level
-  rethink lands. EXP-0155 instrumentation work continues as the anchor.
-- Run the next governance cycle once V3-EXQ-478 lands: rebuild
-  `claim_evidence.v1.json`, regenerate `pending_review.md`, ingest the
-  SD-032 cluster behavioural FAIL pattern, the SD-035 landing PASSes,
-  the SD-033 cluster registrations (MECH-266 / SD-029 / MECH-269-278 /
-  ARC-059), the V_s invalidation runtime landings (SD-036 / MECH-279 /
-  MECH-269 Phase 1/2 ii/2 iii T4 / MECH-288 / MECH-287), and the
-  2026-04-24 Phase 3 wave (MECH-284 + MECH-269 online hysteresis +
-  MECH-290).
+  SD-035 retrieval-bias V_s-gating.
+- Run the next governance cycle once V3-EXQ-483a + V3-EXQ-418e land:
+  rebuild `claim_evidence.v1.json`, regenerate `pending_review.md`,
+  ingest the SD-032 cluster behavioural FAIL pattern, the SD-035 / MECH-266
+  landings, the V_s invalidation runtime landings, the 2026-04-24 Phase 3
+  wave, and the 2026-04-25 substrate wave (SD-037 + Sleep Phases A-E +
+  SD-016 Path 1).
 - First-pass hippocampal consumer wiring for SD-035 BLA retrieval_bias and
   remap_signal once V3-EXQ-474 behavioural signature confirmed (deferred
   from 2026-04-21 landing pass).
-- Continue Phase 3 V_s invalidation runtime wiring: MECH-272 state-gated
-  anchor/probe routing (waking=anchor-dominant, sleep=probe-dominant),
-  MECH-285 offline sleep-priority readout, and the BG / E3 replay-prio
-  consumers that read MECH-284 staleness alongside V_s.
+- Continue Sleep Aggregation Cluster wiring: BG / E3 replay-prio consumers
+  reading MECH-284 staleness alongside MECH-269 V_s; downstream consumers
+  of the MECH-272 RoutingGate (HippocampalRouter / E1 ContextMemory) and
+  MECH-273 SelfModelAggregator outputs.
 - Move MECH-266 OCD/depression-axis competing-goals behavioural variants
   (EXQ-464b / EXQ-467b) off hold once the CausalGridWorldV2 dual
   simultaneously active resource-cue env extension lands.
