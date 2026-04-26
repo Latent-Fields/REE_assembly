@@ -22545,6 +22545,24 @@
     failure. MECH-269b is one candidate root cause; MECH-295 is a
     complementary candidate cause. The two are not mutually exclusive
     and a factorial test should include both manipulations.
+
+    Substrate IMPLEMENTED 2026-04-26 in ree-v3/ree_core/regulators/
+    vs_rollout_gate.py (VsRolloutGate, VsRolloutGateConfig). Read-side
+    consumer of MECH-269 Phase 1 hippocampal.per_stream_vs at the
+    cortical forward-prediction call sites: E1 sensory predictor
+    (latent.z_self / z_world / z_goal gated in REEAgent._e1_tick before
+    e1(...) and extract_cue_context()) and E2_harm_a per-tick forward
+    call (z_harm_a gated in REEAgent.select_action before
+    e2_harm_a forward). Held-snapshot semantics: snapshot refresh
+    threshold 0.5; per-side gate threshold 0.4 (each side has its own
+    threshold and per-stream override dict). 0.4-0.5 dead-band gives
+    lightweight Schmitt-trigger hysteresis. Master switch
+    use_vs_rollout_gating in HippocampalConfig (default False);
+    requires use_per_stream_vs=True at agent build time (ValueError
+    on mismatch). Backward compatible: with flag OFF or with V_s
+    seeded at 1.0, gate fires zero times. Validation experiment
+    V3-EXQ-490 queued (Q-040 factorial; 3 seeds, 80 warmup x 5 eval
+    x 200 steps). v3_pending remains true pending validation.
   evidence_quality_note: >
     Literature support is asymmetric across the claim's two
     architectural halves. Cortex-side per-stream precision/reliability
