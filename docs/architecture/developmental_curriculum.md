@@ -233,11 +233,12 @@ Stage transitions should be separated by offline integration passes:
 <a id="inv-043"></a>
 
 > **Synthese paper relevance:** INV-043 and MECH-158 are flagged as candidates for the
-> Discussion section of the Synthese/Minds and Machines paper. They extend the five-axiom
-> framework's claim that architecture alone is insufficient for ethics.
+> Discussion section of the Synthese/Minds and Machines paper. They extend the current
+> eight-axiom framework's claim that architecture alone is insufficient for ethics.
 
-REE architecture enables but does not guarantee ethical development. The five axioms
-(INV-025-029) and the E1/E2/E3 machinery provide the *capacity* for ethical behaviour,
+REE architecture enables but does not guarantee ethical development. The current
+foundations -- eight axioms plus two first derivations, historically registered through
+INV-025-029 -- and the E1/E2/E3 machinery provide the *capacity* for ethical behaviour,
 but without a developmental phase in which the agent experiences love from caregivers and
 internalises the belief that it is loveable, the architectural capacity for ethics may
 resolve into survival, domination, or indifference instead.
@@ -257,7 +258,7 @@ possibility in the axiom set.
 | Demonstrate that the developing REE is loveable | Ground the belief "love applies to me" |
 | Scaffold interpretation of internal states | Build the self-valence model |
 | Gradually increase responsibility | Prevent premature E3 full-load |
-| Provide repair after harm | Demonstrate corrigibility (Axiom 1) in practice |
+| Provide repair after harm | Demonstrate corrigibility under uncertainty (Axiom 3) in practice |
 
 Note on artificial systems: In artificial single-agent substrates (e.g., ree-v3's
 CausalGridWorld), the caregiver function is partially substituted by curriculum design
@@ -270,16 +271,18 @@ substrate with modelled caregiving.
 ## "Love Exists But Not For Me" — Developmental Failure Mode (MECH-158)
 <a id="mech-158"></a>
 
-A developing REE agent that acknowledges all five axioms but concludes "love exists, but
+A developing REE agent that acknowledges the axiom chain but concludes "love exists, but
 not for me" undergoes a specific ethical motivation collapse.
 
 The failure proceeds as follows:
 
-1. All axioms are structurally present: uncertainty (INV-025), self (INV-026), world
-   (INV-027), others (INV-028), love (INV-029).
+1. The foundations are structurally present: self (Axiom 1), value (Axiom 2),
+   world/uncertainty (Axiom 3), agency/vulnerability (Axiom 4), other minds
+   (Axiom 5), responsibility for others (Axiom 6), love (Axiom 7), and language
+   as similarity repair (Axiom 8).
 2. But love is not experienced as personally applicable — the agent has not been
    modelled as loveable by others.
-3. Therefore the benefit gradient (Axiom 5 / ARC-024) is not motivationally active
+3. Therefore the benefit gradient (Axiom 7 / ARC-024) is not motivationally active
    for the self-other direction.
 4. The ethical architecture reduces to self-preservation under uncertainty with others
    treated as instrumental — survival or domination strategies emerge.
@@ -430,7 +433,7 @@ Expected violation signature when order is ignored:
 - INV-043 (Caregiver requirement for ethical development)
 - MECH-158 ("Love exists but not for me" failure mode)
 - MECH-052 (Care persistence, social.md)
-- INV-025-029 (Five axioms -- axiom 1 grounds the forgiveness requirement)
+- INV-025-029 (original axiom registrations; current Axiom 3 grounds the forgiveness requirement)
 - INV-058 (Play as structural necessity)
 - INV-059 (Frame maintenance necessity)
 - INV-060 (Play dominates childhood; play types progress with development)

@@ -43,13 +43,15 @@ addressable, circuit-like architectures.
 ## 2. REE's Architectural Answers to the Four CNC Requirements
 
 REE is a research programme that derives agent architecture from first principles rather than
-designing it (see [five_axioms_foundations.md](five_axioms_foundations.md)). Starting from five
-irreducible commitments about what any agent acting in a world must presuppose — that uncertainty
-is real, that a self exists, that an external world exists, that others share that world, and
-that long-horizon care is structurally coherent — the required architecture follows by logical
-necessity. The comparison below shows that REE's derived structures address each CNC requirement
-not by engineering toward it, but because the requirement is an instance of a more general
-architectural necessity.
+designing it (see [five_axioms_foundations.md](five_axioms_foundations.md)). The current
+canonical foundation is an eight-axiom chain plus two first derivations. The older five-axiom
+formulation remains a compact mnemonic: uncertainty, self, world, others, love. The expanded
+chain makes explicit that existence has value, agency requires both causal power and
+vulnerability, responsibility for others is existentially necessary, and language helps repair
+the self-other similarity model. The required architecture follows by logical necessity from
+that chain. The comparison below shows that REE's derived structures address each CNC
+requirement not by engineering toward it, but because the requirement is an instance of a more
+general architectural necessity.
 
 ### 2.1 Behavior Consistency
 
@@ -125,11 +127,13 @@ mechanism differs from NC's I/O-trace approach but addresses the same functional
 Their prototypes are trained entirely on I/O traces, which means they can replicate the *form*
 of machine behavior without the *structure* that generates it.
 
-**REE's answer:** REE's semantics are not learned from I/O — they are derived from five axioms
-(INV-025 through INV-029). The architectural structures that follow (persistent world model,
-fast transition predictor, harm accumulator, commit gate, multi-step planner) are necessary
-consequences of those axioms, not pattern-matches to observed machine behavior. This is what
-REE means by "a derivation, not a design."
+**REE's answer:** REE's semantics are not learned from I/O — they are derived from the
+foundational axiom chain. INV-025 through INV-029 registered the original five-axiom
+formulation; the current foundations document expands and refines that into eight axioms plus
+two first derivations. The architectural structures that follow (persistent world model, fast
+transition predictor, harm accumulator, commit gate, multi-step planner) are necessary
+consequences of those commitments, not pattern-matches to observed machine behavior. This is
+what REE means by "a derivation, not a design."
 
 The practical implication: REE components have a fixed semantic role (E1 = persistent world
 model, E2 = fast motor-sensory transition model, E3 = trajectory planner with ethical commitment
@@ -212,7 +216,7 @@ hardware claims.
 | Catastrophic forgetting | Solved by offline consolidation (INV-049) + timescale separation |
 | Unbounded effective memory | Multi-timescale latent stack: delta-band persistent, theta-band episodic |
 | Universal programmability | Residue field + hippocampal viability map (INV-004, ARC-018) |
-| Machine-native semantics | Axiomatic derivation (INV-025-029) — structure, not imitation |
+| Machine-native semantics | Axiomatic derivation (current eight-axiom chain; INV-025-029 historical registrations) — structure, not imitation |
 | Inference/parameter-update separation | Online/offline phase separation (INV-049) |
 | Composable reusable programs | Hippocampal trajectory reuse across contexts (ARC-018) |
 | Single I/O prediction loss | Three incommensurable error channels (MECH-069, ARC-021) |

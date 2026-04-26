@@ -21,26 +21,36 @@ Previous version: `docs/processed/legacy_tree/docs/REE_overview.md`*
 REE begins from a set of irreducible commitments — things that cannot be abandoned without
 thought itself becoming incoherent. They are not design choices. They are articles of faith.
 
-The original formulation had five axioms (INV-025–029). These have been extended and refined
-to eight axioms + two first derivations (see `docs/architecture/five_axioms_foundations.md`
-for the current canonical statement). The expansion was needed to complete the loop: to make
-explicit what the original five left implicit about value, vulnerability, the existential
-necessity of responsibility for others, and language as the mechanism of similarity repair.
-Whether one of the eight is in turn derivable from the others remains an open question (Q-031).
+The original formulation had five axioms (INV-025-029): uncertainty, self, world,
+others, and love. That representation remains useful as a compression. The current
+canonical statement refines it into eight axioms plus two first derivations (see
+`docs/architecture/five_axioms_foundations.md`). The expansion makes explicit what the
+five left compressed: existence has value, agency is bidirectional causal power plus
+vulnerability, responsibility for others is existentially necessary, love is a mechanism
+and skill rather than only a fact, and language is one mechanism for recognising and
+repairing self-other similarity.
 
-The original five, which remain structurally central:
+The current dependency chain:
 
-| Layer | Axiom | Claim |
-|-------|-------|-------|
-| 0 | You cannot be sure | INV-025 |
-| 1 | I am | INV-026 |
-| 2 | Others exist | INV-028 |
-| 3 | We share the world | INV-027 |
-| 4 | Love exists | INV-029 |
+| Layer | Commitment | Type |
+|-------|------------|------|
+| 0 | I think, therefore I am | Axiom 1 |
+| 1 | Existence has value sufficient to justify its continuation | Axiom 2 |
+| 2 | I cannot be certain of the universe beyond myself, but I must act under models of it | Axiom 3 |
+| 3 | I can effect change within this universe, and my existence is vulnerable | Axiom 4 |
+| -- | I am responsible for maintaining my existence | D1, from Axioms 1+2+4 |
+| -- | I am responsible for refining my models of similarity and threat | D2, from Axiom 3+Axiom 4+D1 |
+| 4 | I have learned that others exist and are sufficiently like me | Axiom 5 |
+| 5 | Existence is only bearable if I am also responsible for others | Axiom 6 |
+| 6 | Love is the mechanism by which this responsibility is enacted | Axiom 7 |
+| 7 | Language can recognise, repair, and re-establish similarity | Axiom 8 |
 
-From these axioms, ethics follows necessarily (Layer 5 — derived, not imposed). REE (Layer 6) is the decision system that *implements* that ethics under uncertainty. It is not the source of ethics. The ethics is given by what the axioms jointly require.
+From these axioms and first derivations, ethics follows necessarily (Layer 8 -- derived,
+not imposed). REE (Layer 9) is the decision system that *implements* that ethics under
+uncertainty. It is not the source of ethics. The ethics is given by what the axioms
+jointly require.
 
-**The derived ethical objectives (INV-042):** preserve minds; preserve future options; reduce unnecessary suffering; increase shared joy; maintain corrigibility; maintain truth-seeking; maintain the ability to love and be loved; maintain the shared world; maintain the possibility of future minds and future love.
+**The derived ethical objectives (INV-042):** preserve minds; preserve future options; reduce unnecessary suffering; increase shared joy; maintain corrigibility; maintain truth-seeking; maintain the ability to love and be loved; maintain the shared world; maintain the possibility of future minds and future love; maintain honest communication.
 
 **Compressed statement:**
 
@@ -49,20 +59,28 @@ From these axioms, ethics follows necessarily (Layer 5 — derived, not imposed)
 The full conceptual stack (ARC-043) from epistemic ground through the learning loop:
 
 ```
-Layer 0 — Epistemic ground:   You cannot be sure        (INV-025)
-Layer 1 — Existence:           I am                      (INV-026)
-Layer 2 — Other minds:         Others exist              (INV-028)
-Layer 3 — Shared world:        We share the universe     (INV-027)
-Layer 4 — Love:                Love exists and I love    (INV-029)
-Layer 5 — Ethics:              Derived from Layers 0-4   (INV-042)
-Layer 6 — REE:                 Decision system implementing ethics under uncertainty
-Layer 7 — Actions:             Committed outputs
-Layer 8 — Consequences:        What actually happens
-Layer 9 — Learning / Residue:  Updated world model and residue field
-                                    ↑_____________________________________|
+Layer 0  Self:                   I think, therefore I am
+Layer 1  Value:                  Existence has value
+Layer 2  World + uncertainty:    I must act under models
+Layer 3  Agency + vulnerability: I can act and can be harmed
+--       Self-preservation:      D1, first derivation
+--       Model refinement:       D2, first derivation
+Layer 4  Other minds:            Others are sufficiently like me
+Layer 5  Shared responsibility:  Their existence is necessary for mine to be bearable
+Layer 6  Love:                   Mechanism and skill of responsibility
+Layer 7  Language:               Similarity recognition and repair
+Layer 8  Ethics:                 Derived from Layers 0-7 + D1 + D2
+Layer 9  REE:                    Decision system implementing ethics under uncertainty
+Layer 10 Actions:                Committed outputs
+Layer 11 Consequences:           What actually happens
+Layer 12 Learning / Residue:     Updated world model and residue field
+                                      ^____________________________________|
 ```
 
-REE is Layer 6 — the machinery, not the ethics. Layers 7-9 close the loop back to Layer 6 through learning. Layers 0-4 are not updated by experience; they are the ground that makes experience interpretable at all.
+REE is Layer 9 -- the machinery, not the ethics. Layers 10-12 close the loop back to
+Layer 9 through learning. Layers 0-7 are not updated by experience; they are the ground
+that makes experience interpretable at all. D1 and D2 are first derivations that bridge
+the axioms to the ethical layer.
 
 See `docs/architecture/five_axioms_foundations.md` for the full derivation.
 
@@ -155,7 +173,7 @@ See `docs/architecture/developmental_curriculum.md` (INV-043, MECH-158).
 ## Related Claims
 
 - IMPL-004
-- INV-025, INV-026, INV-027, INV-028, INV-029 (five axioms)
+- INV-025, INV-026, INV-027, INV-028, INV-029 (original axiom registrations; current foundations refine them into eight axioms plus two first derivations)
 - INV-042 (derived ethical objectives)
 - ARC-043 (conceptual stack)
 - ARC-001 (E1), ARC-002 (E2), ARC-003 (E3), ARC-004 (L-space), ARC-005 (control plane)

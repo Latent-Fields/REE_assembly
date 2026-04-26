@@ -12,6 +12,26 @@ sd_005 (z_self/z_world), ARC-043, INV-042
 
 ---
 
+## Axiomatic Frame
+
+This derivation should be read against the current foundations document: eight axioms
+plus two first derivations. The older five-axiom representation remains useful as a
+compact mnemonic -- uncertainty, self, world, others, love -- but it is no longer the
+canonical dependency chain.
+
+| Old compression | Current reading in this derivation |
+|-----------------|------------------------------------|
+| You can never be sure | Axiom 3 supplies the imperfect-signal premise and the need to act under models. |
+| I am | Axiom 1 supplies the subject to whom action, harm, and responsibility can attach. |
+| The world exists | Axioms 3 and 4 split the world into modelable structure plus causal vulnerability. |
+| Others share this world | Axiom 5 becomes the representational isomorphism requirement for V4 social modelling. |
+| Love exists | Axioms 6 and 7 make love the mechanism by which responsibility for others becomes live in trajectory evaluation. |
+
+The sections below start from Axiom 3 because comparator architecture is forced by
+imperfect signals. That is the engineering entry point, not the whole foundation. The
+ethical load comes from the full chain: a vulnerable self that must act under uncertain
+models, recognises others as self-like, and extends responsibility through love.
+
 ## The Starting Condition
 
 Every signal an agent receives is imperfect. Not contingently imperfect — not "we haven't
