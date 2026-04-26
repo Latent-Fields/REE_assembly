@@ -409,6 +409,14 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu121
     <h2>⚙️ Start the Runner
       <span class="priority-badge">✓ Low priority</span>
     </h2>
+    <details style="margin-bottom:0.8rem;font-size:0.9rem;color:var(--muted)">
+      <summary style="cursor:pointer">What the runner flags do</summary>
+      <ul style="margin-top:0.4rem">
+        <li><code>--auto-sync</code> &mdash; pull queue updates from GitHub before each pass; push results / claims back. Required for multi-machine coordination.</li>
+        <li><code>--loop</code> &mdash; keep polling for new experiments after the queue empties. Without this the runner exits when there's nothing to do.</li>
+        <li><code>--remote-control</code> &mdash; emit a per-tick heartbeat and accept commands (pause, stop, kick, release_claim) from the <a href="/machines">Machines dashboard</a>. Default in the recommended command so your machine is visible and controllable from the explorer.</li>
+      </ul>
+    </details>
     <div class="tabs" id="os-tabs">
       <button class="tab-btn active" onclick="switchTab('mac')">macOS</button>
       <button class="tab-btn" onclick="switchTab('linux')">Linux</button>
@@ -422,12 +430,12 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu121
         <div class="step-body">
           <p>From inside the <code>ree-v3/</code> directory, start the runner at low CPU priority:</p>
           <div class="code-block">
-nice -n 10 /opt/local/bin/python3 experiment_runner.py --auto-sync --loop
+nice -n 10 /opt/local/bin/python3 experiment_runner.py --auto-sync --loop --remote-control
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
           </div>
           <div class="cmd-note">
             <code>nice -n 10</code> limits CPU scheduling priority. If your Python isn't at that path, use
-            <code>nice -n 10 python3 experiment_runner.py --auto-sync --loop</code>
+            <code>nice -n 10 python3 experiment_runner.py --auto-sync --loop --remote-control</code>
           </div>
         </div>
       </div>
@@ -436,7 +444,7 @@ nice -n 10 /opt/local/bin/python3 experiment_runner.py --auto-sync --loop
         <div class="step-body">
           <p>To keep it running after you close Terminal, use <code>caffeinate</code> + <code>nohup</code>:</p>
           <div class="code-block">
-nohup nice -n 10 /opt/local/bin/python3 experiment_runner.py --auto-sync --loop &gt; runner.log 2&gt;&amp;1 &amp;
+nohup nice -n 10 /opt/local/bin/python3 experiment_runner.py --auto-sync --loop --remote-control &gt; runner.log 2&gt;&amp;1 &amp;
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
           </div>
         </div>
@@ -505,7 +513,7 @@ docker compose up -d
             <div class="step-body">
               <p>Start at low priority from inside <code>ree-v3/</code>:</p>
               <div class="code-block">
-nice -n 10 python3 experiment_runner.py --auto-sync --loop
+nice -n 10 python3 experiment_runner.py --auto-sync --loop --remote-control
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
               </div>
             </div>
@@ -521,7 +529,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=%h/ree-v3
-ExecStart=/usr/bin/python3 experiment_runner.py --auto-sync --loop
+ExecStart=/usr/bin/python3 experiment_runner.py --auto-sync --loop --remote-control
 Nice=10
 Restart=on-failure
 RestartSec=30
@@ -613,7 +621,7 @@ python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_
             <div class="step-body">
               <p>Navigate to <code>ree-v3\</code> and start at below-normal priority. Replace <code>my-machine-name</code> with a short stable ID:</p>
               <div class="code-block">
-$proc = Start-Process python -ArgumentList "experiment_runner.py --auto-sync --loop --machine my-machine-name" -PassThru -NoNewWindow
+$proc = Start-Process python -ArgumentList "experiment_runner.py --auto-sync --loop --remote-control --machine my-machine-name" -PassThru -NoNewWindow
 $proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
               </div>
@@ -625,7 +633,7 @@ $proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal
               <p>Background + log output:</p>
               <div class="code-block">
 $proc = Start-Process python `
-  -ArgumentList "experiment_runner.py --auto-sync --loop --machine my-machine-name" `
+  -ArgumentList "experiment_runner.py --auto-sync --loop --remote-control --machine my-machine-name" `
   -RedirectStandardOutput runner.log `
   -RedirectStandardError runner_err.log `
   -PassThru -WindowStyle Hidden

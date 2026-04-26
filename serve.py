@@ -121,6 +121,7 @@ RUNNERS = {
         "python": V3_PYTHON,
         "label": "V3 (ree-v3)",
         "auto_sync": True,
+        "remote_control": True,
     },
     "v2": {
         "script": SERVE_DIR.parent / "ree-v2" / "experiment_runner.py",
@@ -130,6 +131,7 @@ RUNNERS = {
         "python": V2_PYTHON,
         "label": "V2 (ree-v2)",
         "auto_sync": True,
+        "remote_control": False,
     },
 }
 
@@ -818,6 +820,8 @@ def start_runner(ver: str = "v3") -> dict:
            "--loop"]  # Keep polling for new experiments after queue exhaustion
     if cfg.get("auto_sync"):
         cmd.append("--auto-sync")
+    if cfg.get("remote_control"):
+        cmd.append("--remote-control")  # heartbeat + command channel for /machines dashboard
     # STUB: future config could set per-runner flags from a machines.json config file
     proc = subprocess.Popen(
         cmd,

@@ -234,7 +234,7 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
       <!-- Mac -->
       <div id="step3-mac" style="display:none">
         <p>From inside <code>ree-v3/</code>:</p>
-        <div class="code-block" style="margin-top:0.5rem">nice -n 10 python3 experiment_runner.py --auto-sync --loop<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="code-block" style="margin-top:0.5rem">nice -n 10 python3 experiment_runner.py --auto-sync --loop --remote-control<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note" style="margin-top:0.5rem">
           Needs Python 3.10&ndash;3.12 + PyTorch. MacPorts: <code>/opt/local/bin/python3</code>.
           See <em>Setup details</em> below if not installed.
@@ -254,6 +254,14 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
     <div class="step-num done">&#10003;</div>
     <div class="step-body">
 
+      <div class="cmd-note" style="margin-bottom:0.6rem;font-size:0.82rem">
+        <strong>About the flags:</strong>
+        <code>--auto-sync</code> pulls/pushes via GitHub for multi-machine coordination;
+        <code>--loop</code> keeps polling after the queue empties;
+        <code>--remote-control</code> emits heartbeats and accepts pause/stop/kick from the
+        <a href="/machines" style="color:var(--accent)">Machines dashboard</a>.
+      </div>
+
       <div id="step4-docker">
         <p>The runner starts automatically inside the container. After ~30 seconds:</p>
         <div class="code-block" style="margin-top:0.4rem">http://localhost:8000/explorer<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
@@ -270,7 +278,7 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
 
       <div id="step4-mac" style="display:none">
         <p>Runner is live. To keep it running after you close Terminal:</p>
-        <div class="code-block" style="margin-top:0.4rem">nohup nice -n 10 python3 experiment_runner.py --auto-sync --loop &gt; runner.log 2&gt;&amp;1 &amp;<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="code-block" style="margin-top:0.4rem">nohup nice -n 10 python3 experiment_runner.py --auto-sync --loop --remote-control &gt; runner.log 2&gt;&amp;1 &amp;<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note" style="margin-top:0.4rem">Stop: <code>pkill -f experiment_runner.py</code></div>
       </div>
 
@@ -500,7 +508,7 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
       <div class="cb">
         <div class="code-block">pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124
 # From ree-v3/
-nice -n 10 python3 experiment_runner.py --auto-sync --loop<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+nice -n 10 python3 experiment_runner.py --auto-sync --loop --remote-control<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note" style="margin-top:0.4rem">Persist with a systemd user unit &mdash; save as <code>~/.config/systemd/user/ree-runner.service</code>:</div>
         <div class="code-block" style="margin-top:0.4rem">[Unit]
 Description=REE Experiment Runner
@@ -508,7 +516,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=%h/ree-v3
-ExecStart=/usr/bin/python3 experiment_runner.py --auto-sync --loop
+ExecStart=/usr/bin/python3 experiment_runner.py --auto-sync --loop --remote-control
 Nice=10
 Restart=on-failure
 RestartSec=30
@@ -696,7 +704,7 @@ git push origin HEAD:master`;
     const esc = jsonStr.replace(/'/g, "'\\''");
     saveCmd   = `mkdir -p contributors/machines\necho '${esc}' > ${filename}`;
     gitCmd    = `git add ${filename}\ngit commit -m "register machine: ${machineName}"\ngit push origin HEAD:master`;
-    runnerCmd = `# In docker-compose.yml set REE_MACHINE_NAME=${machineName}, then:\ndocker compose down && docker compose up -d\n\n# Bare-metal alternative (from ree-v3/):\n# nice -n 10 python3 experiment_runner.py --auto-sync --loop --machine ${machineName}`;
+    runnerCmd = `# In docker-compose.yml set REE_MACHINE_NAME=${machineName}, then:\ndocker compose down && docker compose up -d\n\n# Bare-metal alternative (from ree-v3/):\n# nice -n 10 python3 experiment_runner.py --auto-sync --loop --remote-control --machine ${machineName}`;
   }
   function setCmd(id, text) {
     const el = document.getElementById(id);
