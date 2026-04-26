@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-04-25T15:49:42Z",
+  "last_review_utc": "2026-04-26T00:43:44Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2155,9 +2155,17 @@
     "v3_exq_480_mech284_phase3_param_sweep_20260425T014558Z_v3",
     "v3_exq_481_vs_commit_release_20260425T101332Z_v3",
     "v3_exq_482_sd029_baseline_monostrategy_diagnostic_20260425T101638Z_v3",
-    "v3_exq_418d_sd016_writepath_modes_comparison_20260425T141932Z_v3"
+    "v3_exq_418d_sd016_writepath_modes_comparison_20260425T141932Z_v3",
+    "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3"
   ],
   "discussion_notes": {
+    "2026-04-26T00:43Z_governance": {
+      "session": "governance-2026-04-26T00:43",
+      "summary": "Walked 1 indexed pending: V3-EXQ-483 (SD-037 broadcast override 4-arm validation). FAIL but tagged experiment_purpose=diagnostic. Substrate signature confirmed (override_signal climbed 0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling). Behavioural acceptance criteria (PWS / narcolepsy ratios) were degenerate (0/0) because approach_commit was 0.0 across ALL FOUR arms including the SD-036-only baseline (ON_OFF) -- policy-layer inertia at the standard CausalGridWorldV2 benefit task, not falsification of SD-037 / MECH-280 / MECH-281. Manifest reclassified weakens -> non_contributory with evidence_direction_note (substrate-confirmed-wired but behaviourally-inconclusive). Successor V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance path) already queued and claimed. Promotion/demotion agenda: 3 pending_user holds applied (MECH-280 / MECH-281 / SD-037 hold_pending_v3_substrate); decision log updated.",
+      "ids_marked": [
+        "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3"
+      ]
+    },
     "2026-04-25T15:49Z_diagnose_errors": {
       "session": "diagnose-errors-2026-04-25T15:49",
       "summary": "All 4 ERROR entries (V3-EXQ-445d/455a/449c/476) confirmed as intentional NotImplementedError gating stubs, not code bugs. MECH-284 Phase 3 substrate landed 2026-04-24 but cascade gate V3-EXQ-476a/476b ran FAIL (V_s wired-but-inert -- accumulator integrates and MECH-269 anchor resets fire, but action_class_entropy unchanged; catatonic-lock at policy layer). Remaining blocker is SD-037 (broadcast override regulator, orexin-analog) -- next /implement-substrate target per substrate_queue.json. Gate messages updated in 4 stub scripts to point at SD-037 instead of stale MECH-284 Phase 3 wording. UNKNOWN entries (V3-EXQ-471/447a/449b verifier/PASS without flat-JSON output; V3-EXQ-445e/433c/476a/476b FAIL without indexed evidence dir) reviewed inline as part of governance + cowork sessions earlier today; marking discussed.",

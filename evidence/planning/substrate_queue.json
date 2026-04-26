@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-25T15:18:00Z",
+  "last_updated_utc": "2026-04-26T00:43:44Z",
   "next_implement_substrate": {
     "sd_id": "SD-037",
     "selected_utc": "2026-04-25T13:29:45Z",
@@ -1034,7 +1034,7 @@
     {
       "sd_id": "SD-037",
       "title": "broadcast.override_regulator",
-      "ready": true,
+      "ready": false,
       "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -1043,11 +1043,19 @@
         "MECH-282",
         "MECH-286"
       ],
-      "failure_record": [],
-      "implementation_hint": "No V3 substrate evidence yet; not implemented. Strong literature basis (lit-pull synthesis at literature_confidence ~0.78 across 13 papers). Promotion requires the falsifiable factorial validation above plus independent demonstration of the two failure-mode phenotypes.\n",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3",
+          "experiment_type": "v3_exq_483_sd037_broadcast_override_4arm",
+          "metric": "approach_commit=0.0 across all four arms (OFF_OFF, ON_OFF, OFF_ON, ON_ON); PWS / narcolepsy ratios degenerate at 0/0 because SD-036-only baseline produces zero approach behaviour. Substrate signature confirmed (override_signal climbed 0.0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling).",
+          "target": "approach_commit > 0 in at least the SD-036-only ON_OFF baseline so PWS / narcolepsy ratios can be evaluated; or substrate-readiness fallback path (override_mean > 0.30 AND PAG release ratio ON_ON / ON_OFF > 1.30). Successor V3-EXQ-483a queued (warmup 60->200 + substrate-readiness fallback acceptance)."
+        }
+      ],
+      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). First validation V3-EXQ-483 returned wired-but-inert: substrate signature confirmed but acceptance criteria uninterpretable because approach_commit=0 in the SD-036-only baseline. Successor V3-EXQ-483a (warmup 200 + substrate-readiness fallback acceptance) queued and claimed. Likely policy-layer issue (matches EXQ-471 / 478 / 480 cascade).",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-26T00:43",
+      "implementation_status": "implemented_but_failing_validation"
     },
     {
       "sd_id": "SD-038",

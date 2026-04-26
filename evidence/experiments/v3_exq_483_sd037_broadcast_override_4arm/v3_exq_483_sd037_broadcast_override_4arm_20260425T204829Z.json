@@ -45,12 +45,13 @@
     "MECH-281"
   ],
   "experiment_purpose": "diagnostic",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-037": "weakens",
-    "MECH-280": "weakens",
-    "MECH-281": "weakens"
+    "SD-037": "non_contributory",
+    "MECH-280": "non_contributory",
+    "MECH-281": "non_contributory"
   },
+  "evidence_direction_note": "Reclassified weakens -> non_contributory by governance 2026-04-26 (governance-2026-04-26T00:43). experiment_purpose=diagnostic; substrate signature confirmed (override_signal climbed 0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling). PWS / narcolepsy ratios were uninterpretable (0/0) because approach_commit was 0.0 across ALL FOUR arms including the SD-036-only baseline (ON_OFF) -- policy-layer inertia at the standard CausalGridWorldV2 benefit task, not falsification of SD-037 / MECH-280 / MECH-281. Successor V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance path) already queued and claimed. Should not weight against the three claims; they remain hold_pending_v3_substrate awaiting EXQ-483a's interpretable evidence.",
   "experiment_type": "v3_exq_483_sd037_broadcast_override_4arm",
   "run_timestamp": "20260425T204829Z",
   "run_id": "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3",

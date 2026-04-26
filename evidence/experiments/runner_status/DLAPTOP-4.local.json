@@ -2,10 +2,48 @@
   "schema_version": "v1",
   "runner_pid": 16106,
   "runner_started_at": "2026-04-25T14:14:39.056014+00:00",
-  "last_updated": "2026-04-25T15:47:24.648876+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [],
+  "last_updated": "2026-04-26T05:10:10.465870+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-483a",
+    "backlog_id": "",
+    "claim_id": "SD-037",
+    "title": "SD-037 broadcast-override 4-arm (warmup=200, substrate-fallback acceptance)",
+    "description": "",
+    "script": "experiments/v3_exq_483a_sd037_broadcast_override_4arm.py",
+    "started_at": "2026-04-25T23:29:10.802534+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 180,
+      "episodes_total": 200,
+      "overall_pct": 90.0
+    },
+    "seconds_elapsed": 20460,
+    "seconds_remaining": 2273,
+    "recent_lines": [
+      "[warmup] ep 100/200  rv=0.0014  ep_reward=-0.3290",
+      "[warmup] ep 120/200  rv=0.0014  ep_reward=-0.4122",
+      "[warmup] ep 140/200  rv=0.0010  ep_reward=-0.1770",
+      "[warmup] ep 160/200  rv=0.1212  ep_reward=-0.5571",
+      "[warmup] ep 180/200  rv=0.0893  ep_reward=-0.2646"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-483a",
+      "backlog_id": "",
+      "claim_id": "SD-037",
+      "title": "SD-037 broadcast-override 4-arm (warmup=200, substrate-fallback acceptance)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -6216,6 +6254,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 292.4
+    },
+    {
+      "queue_id": "V3-EXQ-483",
+      "backlog_id": "",
+      "claim_id": "SD-037",
+      "title": "SD-037 Broadcast Override Regulator -- 4-arm validation",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "arm_OFF_ON_mean_eval_harm: 0.39926148215929674 | arm_ON_ON_mean_eval_harm: 0.37484334270159403",
+      "started_at": "2026-04-25T17:18:17.379759+00:00",
+      "completed_at": "2026-04-25T20:48:31.320028+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_483_sd037_broadcast_override_4arm/v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12613.9
     }
   ]
 }

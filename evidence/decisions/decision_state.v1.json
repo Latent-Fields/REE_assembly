@@ -810,6 +810,24 @@
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107868Z"
     },
+    "MECH-280": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "governance 2026-04-26: hold acknowledged. SD-037 substrate IMPLEMENTED 2026-04-25; first validation V3-EXQ-483 returned wired-but-inert (override_signal climbs 0->0.563 / PAG releases 5.3->9.0 ON, but approach_commit=0 across ALL arms including SD-036-only baseline). Successor V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance) queued and claimed by DLAPTOP-4.local. Hold maintained until 483a provides interpretable behavioural evidence.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Apply hold (no status change)",
+      "timestamp_utc": "2026-04-26T05:06:31.976504Z"
+    },
+    "MECH-281": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "governance 2026-04-26: hold acknowledged. Same substrate cluster as MECH-280 / SD-037. EXQ-483 wired-but-inert; EXQ-483a queued.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Apply hold (no status change)",
+      "timestamp_utc": "2026-04-26T05:06:31.977128Z"
+    },
     "MECH-284": {
       "actor": "governance-2026-04-25T15:15",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -1152,6 +1170,15 @@
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107896Z"
     },
+    "SD-037": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "governance 2026-04-26: hold acknowledged. Substrate IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites wired); first validation V3-EXQ-483 returned substrate-confirmed-wired but behaviourally-inconclusive (PWS / narcolepsy ratios degenerate at 0/0 because approach_commit=0 across all four arms). EXQ-483 manifest reclassified weakens -> non_contributory by this same governance cycle (diagnostic, not falsification). EXQ-483a (warmup 200, substrate-readiness fallback) queued and running.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Apply hold (no status change)",
+      "timestamp_utc": "2026-04-26T05:06:31.977157Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -1162,7 +1189,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-04-25T15:44:31.690810Z",
+  "generated_at_utc": "2026-04-26T05:06:33.496276Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
