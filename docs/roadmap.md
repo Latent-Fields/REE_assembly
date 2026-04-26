@@ -14,6 +14,42 @@ nav_order: 6
 
 ---
 
+## V3/V4 Phase Substrate Boundary -- Architectural Commitment (2026-04-26)
+
+The V3 working-model uses a **synaptic approximation** of regional verisimilitude (V_s),
+its temporal-depth integration (D_V), its routing realisation (MECH-271), and its fast-
+broadcast invalidation (MECH-287). The full phase-channel substrate -- ARC-053 Temporal
+Coherence Loop, MECH-225 oscillatory cross-frequency multiplexing, MECH-226 TCL biophysical
+substrate (inferior olive + cerebellum + thalamus + cortex), MECH-228 ephaptic field-level
+coherence support, MECH-227 anaesthesia-collapse model, MECH-270 ephaptic substrate of V_s
+-- stays **v4-deferred by architectural commitment, not by substrate prerequisite**.
+
+The architectural bet: the synaptic V3 form is **sufficient for V3 working-model deliverables**
+(closed-loop agent with V_s invalidation runtime, D_V-aware rollout selection, hypothesis-
+tag-as-routing). The V4 phase substrate **refines, not replaces**, the V3 form.
+
+**Two v4-held claims have V3 forms landing now**:
+
+- **ARC-054** (D_V trajectory selection) -- V4 form (phase-coherent V(t) integration)
+  remains v4. **V3 form** (rollout-horizon synaptic EMA over V_s readout) promoted to
+  v3 2026-04-26. Design doc: `docs/architecture/dv_temporal_depth_v3_form.md`.
+- **MECH-271** (hypothesis tag as downstream routing) -- V4 form (phase-channel routing
+  via ephaptic field strength) remains v4. **V3 substrate landing plan** committed
+  2026-04-26: discrete routing table + audit hook for confabulation-vs-psychosis
+  dissociation. Plan doc: `docs/architecture/mech_271_routing_v3_substrate_plan.md`.
+
+Full V4 deferral table, what the synaptic forms cover and don't cover, the imaginary-
+plane (phase-channel) deferral question, and the conditions under which a V4 promotion
+revisit triggers: `docs/architecture/v3_v4_phase_substrate_boundary.md`.
+
+Governance hook: the v4-held claims currently produce `hold_pending_v3_substrate`
+recommendations, which is incorrect labelling for these specifically -- they are
+v4-by-design, not v4-by-prerequisite. A separate governance-tooling session should add
+a `held_v4_by_architectural_commitment` recommendation type that reads from the boundary
+doc.
+
+---
+
 ## Status Snapshot (2026-04-26 — nightly docs sync, post-2026-04-25 substrate wave)
 
 - **SDs moved to Implemented since the 2026-04-25 snapshot:**

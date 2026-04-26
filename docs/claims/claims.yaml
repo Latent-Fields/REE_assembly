@@ -15490,10 +15490,17 @@
   subject: architecture.dv_trajectory_selection
   polarity: asserts
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v3
+  v3_pending: true
+  v3_form_promoted_utc: "2026-04-26"
   depends_on:
     - INV-068
-    - ARC-053
+    - MECH-269   # V3 form: per-region V_s readout source
+    - MECH-284   # V3 form: staleness accumulator (provides V_s_anchor)
+    - MECH-288   # V3 form: BoundaryEvent segmenter (rollout segment_id projection)
+    - ARC-007    # V3 form: hippocampal rollout substrate
+    - ARC-018    # V3 form: viability map (rollout consumer)
+    - ARC-053    # V4 form ONLY: TCL phase substrate (deferred)
   notes: >
     Hippocampal rollout evaluation criterion: trajectories are evaluated by predicted
     future D_V, not just goal attainment. Formally: J(pi) = sum_k gamma^k * V_hat_pi(t+k).
@@ -15509,8 +15516,26 @@
     The architecture naturally generalises: maximising D_V over long H corresponds
     to the ethical axioms (Axiom 5: preserve existence = avoid D_V collapse; Axiom 7:
     others' existence = extend D_V tracking).
+  v3_form_note: |
+    Promoted v4 -> v3 on 2026-04-26 in *rollout-horizon synaptic-EMA form*. The V3 form
+    reads V_hat_pi(t+k) from MECH-269 per-region V_s (Phase 2 iii T4 readout) walked
+    over the rollout via the MECH-288 BoundaryEvent segmenter, and computes
+    D_V_pi(t+k) = lambda * D_V_pi(t+k-1) + (1 - lambda) * V_hat_pi(t+k) with
+    lambda configurable (arc054_dv_lambda, default 0.85). The trajectory cost
+    J(pi) = sum_{k=0}^{H} gamma^k * D_V_pi(t+k) is added as an additive bias on the
+    existing E3 trajectory score. Master flag use_arc054_dv (default OFF, bit-identical
+    contract preserved). The V3 form drops the ARC-053 TCL dependency that kept the V4
+    form deferred -- V3 reads scalar synaptic V_s; V4 will upgrade the readout to phase-
+    aligned V(t) once ARC-053 / MECH-225 / MECH-228 land. ARC-053 retained in
+    depends_on as V4-form-only dependency. Validation V3-EXQ-491 (proposed, queue after
+    implement-mech269b lock releases): 4-arm factorial against EXQ-074b z_goal salience
+    contest + EXQ-481 V_s commit-release. Full V3 substrate plan:
+    docs/architecture/dv_temporal_depth_v3_form.md. V3/V4 boundary commitment:
+    docs/architecture/v3_v4_phase_substrate_boundary.md.
   registered: "2026-04-12"
-  location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+  location: docs/architecture/dv_temporal_depth_v3_form.md
+  source:
+    - evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
 - id: ARC-055
   title: "Verisimilitude signal availability: V(t) and D_V must be explicitly available to E3 selection and influence E1/E2 learning updates."
@@ -20188,7 +20213,25 @@
     entry point) and prefrontal engagement during replay (Jadhav
     et al 2016) as the empirical anchors for the routing
     differentiation.
-  location: docs/architecture/hippocampal_anchor_selection.md
+  v3_substrate_plan_utc: "2026-04-26"
+  v3_substrate_note: |
+    V3 substrate landing plan committed 2026-04-26. Discrete routing-table form
+    (anchored vs probe replay -> destination weights for e1_consolidation /
+    lateral_pfc_viability_map / bla_affective_tagging / nac_curiosity_scaffolding /
+    e3_planning_evaluation), destination-dispatcher in REEAgent.consume_replay,
+    audit hook (mech271_tag_loss_count) that fires when probe content reaches
+    anchored-only destinations. Master flag use_mech271_routing (default OFF, bit-
+    identical contract preserved). Validation V3-EXQ-492 (proposed, queue after
+    implement-mech269b lock releases): 4-arm with force_tag_loss_rate ablation
+    {0.0, 0.5, 1.0} for confabulation behavioural signature. The V4 form
+    (phase-channel routing via ephaptic field strength, MECH-228) remains v4-deferred;
+    V3 routing table is the synaptic approximation. Code landing scheduled for a
+    follow-up /implement-substrate session after implement-mech269b releases its lock
+    on ree-v3/ree_core/hippocampal/module.py (MECH-271 also depends on MECH-269b
+    substrate, so the ordering is appropriate). Full plan:
+    docs/architecture/mech_271_routing_v3_substrate_plan.md. V3/V4 boundary:
+    docs/architecture/v3_v4_phase_substrate_boundary.md.
+  location: docs/architecture/mech_271_routing_v3_substrate_plan.md
 
 - id: MECH-272
   title: "MECH-271 routing is state-gated. In waking, the anchor channel dominates the hippocampal fan-out: replay preferentially reaches consolidation and viability-map consumers to support decision-making. In sleep, the probe channel dominates: replay preferentially seeds Bayesian schema restructuring -- testing which action-outcome attributions held up across episodes, creating new buckets for non-fitting experiences, revising causal graphs. The informational needs of sleep (schema revision) and waking (decision support) are distinct, and the routing bias reflects that."
