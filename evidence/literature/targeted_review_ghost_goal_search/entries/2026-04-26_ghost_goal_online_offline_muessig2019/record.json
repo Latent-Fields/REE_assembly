@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-04-26_ghost_goal_online_offline_muessig2019",
+  "timestamp_utc": "2026-04-26T03:44:00Z",
+  "claim_ids_tested": ["MECH-092", "MECH-291", "MECH-293", "ARC-060"],
+  "source": {
+    "title": "Coordinated Emergence of Hippocampal Replay and Theta Sequences during Post-natal Development.",
+    "authors": ["Muessig, Laurenz", "Lasek, Michal", "Varsavsky, Isabella", "Cacucci, Francesca", "Wills, Thomas Joseph"],
+    "year": 2019,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2019.01.005"
+  },
+  "evidence_class": "connectome_primary_research",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Good architectural support that waking and offline sequence generation share substrate. This supports using one unresolved-goal representation across both modes, though the mapping to explicit ghost-goal traces is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If waking and offline sequence generation required unrelated substrates, a shared ghost-goal representation would be less motivated."
+  ],
+  "tags": ["ghost_goal", "online_offline", "shared_substrate", "theta", "swr", "sequence_generator"],
+  "mapping": {
+    "source_claim_statement": "Theta sequences and replay co-emerge as coordinated sequence-generation capacities.",
+    "ree_translation": "The same unresolved-goal substrate can reasonably feed both waking ghost probes and offline replay rather than being duplicated.",
+    "mapping_caveat": "Developmental co-emergence is indirect support for adult shared mechanism.",
+    "source_context": "Developmental rodent hippocampal sequence study."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.64,
+    "transfer_risk": 0.30,
+    "notes": "Useful for the cross-mode architectural link."
+  }
+}

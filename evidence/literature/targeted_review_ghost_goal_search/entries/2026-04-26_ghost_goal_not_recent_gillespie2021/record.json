@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-04-26_ghost_goal_not_recent_gillespie2021",
+  "timestamp_utc": "2026-04-26T03:43:00Z",
+  "claim_ids_tested": ["MECH-269", "MECH-285", "MECH-292", "MECH-293", "ARC-060"],
+  "source": {
+    "title": "Hippocampal replay reflects specific past experiences rather than a plan for subsequent choice",
+    "authors": ["Anna K. Gillespie", "Daniela A. Astudillo Maya", "Eric L. Denovellis", "Daniel F. Liu", "David B. Kastner", "Michael E. Coulter", "Demetris K. Roumis", "Uri T. Eden", "Loren M. Frank"],
+    "year": 2021,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.07.029"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Very strong support for broad, structured access to non-current and not-recent traces. This is the closest direct local evidence for the replay/search side of ghost-goal ranking.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A strict current-only seed policy predicts replay concentrated on imminent choice paths, which the paper does not find.",
+    "A pure recency bias predicts replay of recently visited states rather than the observed enrichment for not-recently-visited places."
+  ],
+  "tags": ["ghost_goal", "broad_replay", "not_recent", "non_current_trace", "priority"],
+  "mapping": {
+    "source_claim_statement": "Replay is enriched for previously rewarded and not-recently-visited places, not just for the next choice path.",
+    "ree_translation": "Unresolved-goal search should retain and prioritize non-current traces in a structured way rather than restricting search to the current anchor or random noise.",
+    "mapping_caveat": "The paper does not directly manipulate blocked goals or explicit goal payloads.",
+    "source_context": "Rat CA1 replay decoding during a dynamic memory task."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.16,
+    "notes": "Best direct replay-content support for broad ghost-goal access."
+  }
+}

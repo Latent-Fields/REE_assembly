@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-25T15:44:31.690810Z`
+Generated: `2026-04-26T03:58:45.232714Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -105,6 +105,7 @@ Generated: `2026-04-25T15:44:31.690810Z`
 | `targeted_review_dementia_attribution_pipeline` | [`2026-04-06_mech172_procedural_memory_preserved_heindel1989`](targeted_review_dementia_attribution_pipeline/entries/2026-04-06_mech172_procedural_memory_preserved_heindel1989/record.json) | 7 | [`summary`](targeted_review_dementia_attribution_pipeline/entries/2026-04-06_mech172_procedural_memory_preserved_heindel1989/summary.md) |
 | `targeted_review_e2_dual_function_mode_distinction` | [`2026-04-18_e2_dual_shenhav2016_dacc`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/record.json) | 5 | [`summary`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/summary.md) |
 | `targeted_review_event_segmentation` | [`2026-04-22_mech_288_temporal_memory_dubrow2014`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/record.json) | 11 | [`summary`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/summary.md) |
+| `targeted_review_ghost_goal_search` | [`2026-04-26_ghost_goal_online_offline_muessig2019`](targeted_review_ghost_goal_search/entries/2026-04-26_ghost_goal_online_offline_muessig2019/record.json) | 7 | [`summary`](targeted_review_ghost_goal_search/entries/2026-04-26_ghost_goal_online_offline_muessig2019/summary.md) |
 | `targeted_review_hippocampal_dopamine_gain` | [`2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/record.json) | 1 | [`summary`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/summary.md) |
 | `targeted_review_hippocampal_event_segmentation` | [`2026-04-02_arc_007_event_structure_segmentation_baldassano2017`](targeted_review_hippocampal_event_segmentation/entries/2026-04-02_arc_007_event_structure_segmentation_baldassano2017/record.json) | 1 | [`summary`](targeted_review_hippocampal_event_segmentation/entries/2026-04-02_arc_007_event_structure_segmentation_baldassano2017/summary.md) |
 | `targeted_review_hippocampal_pfc_planning` | [`2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010`](targeted_review_hippocampal_pfc_planning/entries/2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010/record.json) | 2 | [`summary`](targeted_review_hippocampal_pfc_planning/entries/2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010/summary.md) |

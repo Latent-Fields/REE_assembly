@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-04-26_ghost_goal_future_paths_pfeiffer2013",
+  "timestamp_utc": "2026-04-26T03:41:00Z",
+  "claim_ids_tested": ["ARC-032", "MECH-293", "ARC-060"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Pfeiffer BE", "Foster DJ"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Direct evidence that hippocampal sequences can be biased toward remembered goals before action. This strongly supports a goal-guided probe policy, even though the exact SWR vs theta carrier question remains open.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hippocampal future sweeps were insensitive to remembered goals, ghost-goal-guided waking probes would have weak biological support."
+  ],
+  "tags": ["ghost_goal", "hippocampus", "future_path", "goal_biased_search", "awake_probe"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal population sequences can depict paths toward remembered goals before navigation.",
+    "ree_translation": "A waking proposal branch seeded by remembered unresolved goals is biologically plausible because hippocampal search already supports goal-biased future sweeps.",
+    "mapping_caveat": "The paper does not test blocked or deferred goals specifically.",
+    "source_context": "Rat CA1 ensemble decoding during goal-directed navigation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.24,
+    "notes": "The key support is for goal-directed future-path generation, not the exact rhythm or storage format."
+  }
+}
+

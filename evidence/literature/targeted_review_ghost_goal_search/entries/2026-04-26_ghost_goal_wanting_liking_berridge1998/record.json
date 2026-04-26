@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-04-26_ghost_goal_wanting_liking_berridge1998",
+  "timestamp_utc": "2026-04-26T03:38:00Z",
+  "claim_ids_tested": ["MECH-229", "MECH-230", "ARC-051", "SD-039", "ARC-060"],
+  "source": {
+    "title": "What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?",
+    "authors": ["Berridge, Kent C.", "Robinson, Terry E."],
+    "year": 1998,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/S0165-0173(98)00019-8",
+    "pmid": "9858756"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Foundational support for treating wanting as a preserved motivational variable distinct from local reward contact. This directly strengthens the need for a goal-linked payload in unresolved-goal traces. The remaining gap is hippocampal specificity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If wanting collapsed to contact pleasure, preserving goal-linked payloads on inactive anchors would be unnecessary."
+  ],
+  "tags": ["ghost_goal", "wanting", "liking", "goal_payload", "incentive_salience"],
+  "mapping": {
+    "source_claim_statement": "Dopamine primarily mediates incentive salience ('wanting'), which is separable from hedonic impact ('liking').",
+    "ree_translation": "Ghost-goal search requires preserving a still-wanted target even when immediate contact reward is absent. This paper grounds that distinction.",
+    "mapping_caveat": "The paper does not discuss hippocampal replay or anchor persistence directly.",
+    "source_context": "Rodent lesion, pharmacology, and reward-behavior review."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Strong foundation for the motivational half of the ghost-goal argument."
+  }
+}
+

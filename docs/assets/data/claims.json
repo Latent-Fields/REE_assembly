@@ -353,6 +353,12 @@
     "title": "REE developmental training proceeds in three ordered stages: (1) self-as-object \u2014 action-space discovery via motor experimentation, producing the substrate SD-003 requires; (2) objects-as-patterns \u2014 object-schema formation via experimental action on the world; (3) others-as-special-objects \u2014 modelling other agents as objects with their own policies. The ordering is load-bearing: without a self-model the agent cannot distinguish self-produced from world-produced sensory change; without object-schemas the agent cannot recognise other-agents as a distinguished subclass of objects. Refines the generic ARC-019 curriculum-gates claim.",
     "type": "architectural_commitment"
   },
+  "ARC-060": {
+    "status": "candidate",
+    "subject": "goal.explicit_unresolved_goal_hierarchy",
+    "title": "A good agent needs both a continuous wanting landscape and a discrete bank of unresolved goal traces: field-level wanting supports smooth local guidance, while ghost-goal traces preserve blocked or deferred goals whose local gradient has collapsed.",
+    "type": "architecture_hypothesis"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -2957,6 +2963,18 @@
     "title": "Waking-online and quiescent-offline CEM modes require distinct parameter profiles: waking mode uses short rollout horizon, context-anchored start states, and low exploration weighting; quiescent mode uses longer rollout horizon, free start states drawn from the full map, and high exploration weighting (anti-recency bias per MECH-289).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-292": {
+    "status": "candidate",
+    "subject": "hippocampal.unresolved_goal_ghost_bank",
+    "title": "Inactive or strained anchors whose preserved goal payload still matches the current goal form a ranked ghost-goal bank; priority scales with wanting, goal-match, staleness, and recoverability rather than with staleness alone.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-293": {
+    "status": "candidate",
+    "subject": "hippocampal.awake_ghost_goal_probe_search",
+    "title": "Waking hippocampal search allocates a minority probe budget to top ghost-goal entries, seeding proposals around unresolved but still-wanted anchors instead of relying on pure current-anchor CEM or random probe noise.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3489,6 +3507,12 @@
     "status": "candidate",
     "subject": "hippocampal.cem_anti_recency_exploration",
     "title": "HippocampalModule CEM trajectory sampling must include an anti-recency exploration bonus that down-weights recently committed trajectory segments, ensuring the proposal distribution covers all available paths rather than converging on recency-weighted routes.",
+    "type": "design_decision"
+  },
+  "SD-039": {
+    "status": "candidate",
+    "subject": "hippocampal.anchor_goal_snapshot_payload",
+    "title": "Dual-trace anchors preserve a goal-state snapshot plus wanting/arousal payload at write or invalidation time, so unresolved goals remain queryable after the active plan fails.",
     "type": "design_decision"
   }
 }

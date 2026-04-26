@@ -22097,3 +22097,182 @@
     behavioral-state signal that ARC-028 and MECH-092 both feed into. Blocked on
     SD-006 for the quiescent path; waking-mode parameters can be refined
     independently of SD-006.
+
+- id: SD-039
+  title: "Dual-trace anchors preserve a goal-state snapshot plus wanting/arousal payload at write or invalidation time, so unresolved goals remain queryable after the active plan fails."
+  claim_type: design_decision
+  subject: hippocampal.anchor_goal_snapshot_payload
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-26
+  depends_on:
+    - MECH-216   # predictive wanting contributes to the stored motivational payload
+    - MECH-230   # z_goal latent structure provides the goal snapshot
+    - MECH-269   # dual-trace anchor substrate being extended
+    - MECH-284   # region staleness read-out paired with the payload
+  functional_restatement: >
+    Current MECH-269 anchors preserve `z_world` and active/inactive status, while
+    MECH-284 preserves a region-level staleness scalar. This is enough to say
+    "this region is unresolved" but not enough to say "this unresolved region still
+    corresponds to a live goal". SD-039 adds a compact motivational payload to each
+    anchor at write, remap, or invalidation time: `z_goal_snapshot`, wanting
+    strength, arousal tag, and optional `last_vs` / `staleness_at_write`. The
+    payload is preserved across `mark_inactive`, so inactive anchors remain
+    queryable as blocked or deferred goal traces rather than anonymous stale
+    places.
+
+    Falsifiable: after reward relocation or path blockage, inactive anchors on the
+    formerly valid approach path should retain non-zero goal-match with the current
+    `z_goal` while unrelated stale anchors do not.
+  notes: >
+    Registered 2026-04-26 from the ghost-goal lit-pull. The key design insight is
+    that MECH-284 staleness alone cannot identify which stale regions are still
+    motivationally relevant. The payload is the minimal substrate change that lets
+    waking or offline search distinguish a still-wanted blocked path from generic
+    unresolved terrain. First implementation should extend `Anchor` in
+    `ree-v3/ree_core/hippocampal/anchor_set.py` and populate the payload from
+    `GoalState`, `VALENCE_WANTING`, and amygdala arousal tags on anchor write/remap.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_ghost_goal_search/` (Berridge 1998, Barch 2010, Berkowitz
+    1989) plus the existing MECH-269 / MECH-285 foundation pulls. No substrate
+    implementation yet.
+  location: docs/architecture/ghost_goal_search.md
+
+- id: MECH-292
+  title: "Inactive or strained anchors whose preserved goal payload still matches the current goal form a ranked ghost-goal bank; priority scales with wanting, goal-match, staleness, and recoverability rather than with staleness alone."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.unresolved_goal_ghost_bank
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-26
+  depends_on:
+    - SD-039     # stored goal payload on inactive anchors
+    - MECH-216   # predictive wanting signal
+    - MECH-230   # structured z_goal latent
+    - MECH-269   # dual-trace active/inactive anchor substrate
+    - MECH-284   # region staleness
+  functional_restatement: >
+    A good agent should not treat all stale regions equally. Some stale regions are
+    still tied to currently-live goals; others are merely unresolved background.
+    MECH-292 defines a ranked unresolved-goal bank built from the existing dual-
+    trace anchor substrate. Each candidate bank entry combines (a) stored goal
+    snapshot, (b) wanting/arousal payload, (c) current region staleness, and
+    (d) a recoverability estimate derived from present `V_s` and context. Priority
+    is utility-like:
+
+      ghost_priority ~ wanting x goal_match x staleness x recoverability
+
+    This ranking is deliberately not pure low-`V_s` chasing, which would create
+    rumination over hopeless traces rather than intelligent re-probing of blocked
+    goals.
+
+    Falsifiable: in a reward-relocation or blocked-corridor task, anchors from the
+    now-obstructed but still-valued path should rank above equally stale but
+    goal-irrelevant anchors.
+  notes: >
+    Registered 2026-04-26 from the ghost-goal lit-pull. Mattar & Daw 2018 give the
+    normative utility-prioritisation argument; Gillespie 2021 provides the closest
+    neural match for broad, non-current, not-recent trace prioritisation. Initial
+    implementation can expose the bank as a derived view in HippocampalModule rather
+    than a separate persistent store.
+  evidence_quality_note: >
+    Registered candidate with direct literature anchor from
+    `targeted_review_ghost_goal_search/` and indirect support from
+    `targeted_review_mech285_sleep_replay_seed/`. No code substrate yet; blocked on
+    SD-039 payload preservation.
+  location: docs/architecture/ghost_goal_search.md
+
+- id: MECH-293
+  title: "Waking hippocampal search allocates a minority probe budget to top ghost-goal entries, seeding proposals around unresolved but still-wanted anchors instead of relying on pure current-anchor CEM or random probe noise."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.awake_ghost_goal_probe_search
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-04-26
+  depends_on:
+    - ARC-018    # waking trajectory proposal / evaluation loop being modified
+    - ARC-032    # goal-biased sequence generation
+    - MECH-089   # theta-packaged waking E3 updates
+    - MECH-269   # anchor/probe substrate
+    - MECH-291   # mode-sensitive sequence generator framing
+    - MECH-292   # ranked ghost-goal bank
+  functional_restatement: >
+    The current waking proposer is centred on the current terrain prior. MECH-293
+    adds a second awake proposal branch: a minority budget of candidate trajectories
+    seeded from the highest-priority ghost-goal entries. These proposals remain
+    hypothesis-tagged until realized validation, but they are no longer random with
+    respect to motivation. Between full E3 ticks, the same mechanism may run a
+    tiny ghost-only micro-refresh when ghost pressure is high, preserving commitment
+    stability while keeping unresolved goals computationally live.
+
+    Falsifiable: versus a random-probe control, ghost-goal probes should show
+    higher goal-match, faster recovery from blocked-goal conditions, and lower
+    revisitation of fully incoherent stale regions.
+  notes: >
+    Registered 2026-04-26. Pfeiffer & Foster 2013 support goal-directed future
+    path sweeps; Muessig 2019 supports one sequence generator in waking and offline
+    modes; Gillespie 2021 argues against a narrow current-only seed pool. First
+    implementation should extend `HippocampalModule.propose_trajectories()` with a
+    ghost-seeded branch and keep MECH-094 guardrails unchanged: ghost probes do not
+    update the viability map until realized.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_ghost_goal_search/`. The main remaining uncertainty is not
+    whether ghost-biased probing is biologically plausible, but how large the waking
+    probe fraction should be before recovery gains turn into rumination.
+  location: docs/architecture/ghost_goal_search.md
+
+- id: ARC-060
+  title: "A good agent needs both a continuous wanting landscape and a discrete bank of unresolved goal traces: field-level wanting supports smooth local guidance, while ghost-goal traces preserve blocked or deferred goals whose local gradient has collapsed."
+  claim_type: architecture_hypothesis
+  subject: goal.explicit_unresolved_goal_hierarchy
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-04-26
+  depends_on:
+    - ARC-051    # emergent multi-level wanting hierarchy
+    - SD-039     # preserved goal payload on anchors
+    - MECH-216   # predictive wanting
+    - MECH-217   # replay-spread wanting
+    - MECH-230   # structured latent goal representation
+    - MECH-292   # ghost-goal bank
+    - MECH-293   # waking ghost-goal probes
+  functional_restatement: >
+    ARC-051 argues that REE can obtain a multi-level goal hierarchy from a single
+    wanting landscape fed by contact, schema, and replay mechanisms. ARC-060 refines
+    that picture: the field is necessary but not sufficient. When local gradients
+    collapse because a path is blocked, a goal is deferred, or the environment is
+    partially remapped, the system needs a discrete unresolved-goal trace that keeps
+    the goal computationally alive. The good-agent architecture is therefore hybrid:
+
+    - continuous wanting field for smooth local navigation
+    - discrete ghost-goal bank for blocked/deferred goal persistence
+
+    The architecture predicts that agents with the field alone will navigate well
+    when gradients exist but will prematurely abandon distal or blocked goals; agents
+    with both layers will recover more flexibly after invalidation.
+  notes: >
+    Registered 2026-04-26 from the ghost-goal lit-pull. This is intentionally framed
+    as an extension to ARC-051, not a contradiction of it. ARC-051 explains how
+    approach gradients emerge; ARC-060 explains why a high-quality agent also needs
+    explicit unresolved-goal persistence once those gradients fail locally.
+  evidence_quality_note: >
+    Registered candidate. Literature support comes from
+    `targeted_review_ghost_goal_search/`: Berridge 1998 and Barch 2010 ground the
+    need for persistent wanting/goal representations, Pfeiffer 2013 grounds goal-
+    biased path search, Gillespie 2021 grounds non-current trace reactivation, and
+    Muessig 2019 grounds a shared waking/offline sequence generator.
+  location: docs/architecture/ghost_goal_search.md
