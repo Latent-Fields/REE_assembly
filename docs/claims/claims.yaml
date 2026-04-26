@@ -22182,6 +22182,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  implementation_note: "SUBSTRATE-SIDE LANDED 2026-04-26 (module-level write-site population deferred). Module: ree_core/hippocampal/anchor_set.py adds AnchorGoalPayload dataclass (z_goal_snapshot, wanting_strength, arousal_tag, last_vs, staleness_at_write, payload_written_step), Anchor.goal_payload field + Anchor.goal_match() cosine helper, AnchorSet.query_by_goal_match() helper for MECH-292 / MECH-293 consumers. Refresh-on-invalidate: payload preserved across mark_inactive (the entire point of dual-trace preservation); reset_region writes payload onto BOTH outgoing inactive trace AND new active anchor. Config: AnchorSetConfig.use_sd039_anchor_payload (default False; bit-identical OFF). 10/10 SD-039 contract tests PASS (test_sd_039_anchor_payload.py); 164/164 contracts + 7/7 preflight PASS overall. DEFERRED TO FOLLOW-ON: REEAgent / HippocampalModule population from GoalState (z_goal_snapshot) + ResidueField VALENCE_WANTING (wanting_strength) + amygdala arousal tags (arousal_tag) at write/remap/invalidate sites; validation EXQ exercising the falsifiable test."
   claim_level: architectural
   registered_utc: 2026-04-26
   depends_on:
