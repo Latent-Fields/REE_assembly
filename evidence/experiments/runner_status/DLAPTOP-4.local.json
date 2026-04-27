@@ -2,21 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 25224,
   "runner_started_at": "2026-04-27T01:21:38.829643+00:00",
-  "last_updated": "2026-04-27T09:43:11.906661+00:00",
+  "last_updated": "2026-04-27T09:43:26.680588+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-494",
-      "backlog_id": "",
-      "claim_id": "SD-039",
-      "title": "SD-039 anchor goal-snapshot payload population layer validation (6 sub-tests)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-496",
       "backlog_id": "",
@@ -6387,6 +6376,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_490_mech269b_vs_rollout_gating/v3_exq_490_mech269b_vs_rollout_gating_20260427T080413Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 5939.2
+    },
+    {
+      "queue_id": "V3-EXQ-494",
+      "backlog_id": "",
+      "claim_id": "SD-039",
+      "title": "SD-039 anchor goal-snapshot payload population layer validation (6 sub-tests)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "UC5_goal_relevant_vs_irrelevant_dissociation: PASS  {'pass': True, 'n_anchors_phase_a': 3, 'n_anchors_phase_b': 3, 'mean_goal_match_phase_a': 0.0, 'mean_goal_match_phase_b': 0.9984077413876852, 'n_phase_b_above_0p3': 3, 'max_goal_match_phase_a': 0.0, 'max_goal_match_phase_b': 0.9996696710586548} | UC6_mech094_simulation_gate: PASS  {'pass': True, 'n_new_anchors_during_replay': 0, 'n_new_with_populated_payload': 0} | [v3_exq_494] overall: PASS (8.2s)",
+      "started_at": "2026-04-27T09:43:17.155698+00:00",
+      "completed_at": "2026-04-27T09:43:26.680440+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_494_sd039_anchor_payload_validation/v3_exq_494_sd039_anchor_payload_validation_20260427T094326Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 9.5
     }
   ]
 }
