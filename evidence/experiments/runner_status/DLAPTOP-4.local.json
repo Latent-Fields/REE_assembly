@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
-  "runner_pid": 16106,
-  "runner_started_at": "2026-04-25T14:14:39.056014+00:00",
-  "last_updated": "2026-04-26T16:23:39.274319+00:00",
+  "runner_pid": 25224,
+  "runner_started_at": "2026-04-27T01:21:38.829643+00:00",
+  "last_updated": "2026-04-27T01:59:11.729208+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-433d",
@@ -11,7 +11,7 @@
     "title": "SD-029 / MECH-256 event-conditioned comparator (EXQ-479 calibrated curriculum)",
     "description": "",
     "script": "experiments/v3_exq_433d_sd029_eventcond_comparator.py",
-    "started_at": "2026-04-26T15:01:22.379182+00:00",
+    "started_at": "2026-04-27T01:21:41.030516+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
@@ -20,14 +20,13 @@
       "episodes_total": 130,
       "overall_pct": 0.0
     },
-    "seconds_elapsed": 4937,
+    "seconds_elapsed": 2251,
     "seconds_remaining": 1040,
     "recent_lines": [
       "/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_433d_sd029_eventcond_comparator.py:488: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
       "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
       "Seed 42",
-      "P0 (200 eps) encoder warmup [curriculum ON, 479 params]...",
-      "P1 (200 eps) interventional [curriculum ON, 479 params]..."
+      "P0 (200 eps) encoder warmup [curriculum ON, 479 params]..."
     ],
     "ree_version": "v3"
   },
@@ -70,6 +69,28 @@
       "backlog_id": "",
       "claim_id": "SD-033b",
       "title": "SD-033b OFC-analog landing diagnostic (5 sub-tests)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-490",
+      "backlog_id": "",
+      "claim_id": "MECH-269b",
+      "title": "MECH-269b symmetric V_s gating on E1/E2 cortical rollouts (Q-040 factorial)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-493",
+      "backlog_id": "",
+      "claim_id": "MECH-295",
+      "title": "MECH-295 drive -> liking -> approach_cue bridge validation (6 sub-tests)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",

@@ -3,16 +3,14 @@
   "experiment_type": "v3_exq_327_mech163_goal_conditioned_nav",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "claim_ids": [
-    "MECH-163",
     "SD-015"
   ],
   "experiment_purpose": "evidence",
   "evidence_direction_per_claim": {
-    "MECH-163": "non_contributory",
     "SD-015": "non_contributory"
   },
   "evidence_direction": "non_contributory",
-  "evidence_direction_note": "Goal conditioning had zero effect: GOAL_CONDITIONED and GOAL_ABLATED conditions produced identical resource_rate and benefit_exposure for all 3 seeds (c1_ratios all exactly 1.0). z_goal seeding never fired -- SD-012 homeostatic drive substrate gap. Mechanism under test was not active. This is a substrate failure, not evidence against MECH-163 or SD-015. Substrate flag: SD-012 z_goal seeding gap confirmed active for navigation experiments.",
+  "evidence_direction_note": "Goal conditioning had zero effect: GOAL_CONDITIONED and GOAL_ABLATED conditions produced identical resource_rate and benefit_exposure for all 3 seeds (c1_ratios all exactly 1.0). z_goal seeding never fired -- SD-012 homeostatic drive substrate gap. Mechanism under test was not active. This is a substrate failure, not evidence against SD-015. MECH-163 dropped from claim_ids 2026-04-27 (R1 governance fix): EXQ-327 tested goal_weight in E3.score_trajectory() on value-flat HippocampalModule proposals -- this is the SD-015 (z_resource encoder + goal-term scoring) substrate, NOT the MECH-163 dual-system distinction. MECH-163 asserts a discrimination between habit and VTA/hippocampally-planned systems; EXQ-327 has only the habit arm in it and cannot discriminate. The V3 full-completion gate (paradigm where 1-step approach is insufficient AND goal-seeded multi-step trajectory generation produces a discriminable behavioural advantage) remains the still-pending discriminative test for MECH-163. Substrate flag: SD-012 z_goal seeding gap confirmed active for navigation experiments.",
   "outcome": "FAIL",
   "criteria": {
     "c1_benefit_ratio_pass": false,

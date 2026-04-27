@@ -10672,15 +10672,55 @@
   evidence: []
   evidence_quality_note: >
     Governance 2026-04-03: hold_pending_v3_substrate applied. implementation_phase=v3,
-    2 supports from lit entries, 0 exp entries. No V3 substrate experiments yet. Standard
-    V3-pending gate: hold until V3 experiments demonstrate dual-system discrimination.
-    GOVERNANCE META (2026-04-06): Illusory conflict resolution risk + needs task redesign.
-    EXQ-237a non-contributory (z_goal substrate limitation). But even the habit condition
-    showed zero lift in simple tasks (lift_simple=0.0), suggesting the test paradigm itself
-    is flawed -- habit formation isn't observable in the current task design. Superseding
-    experiment needs: (a) a task where monostrategy IS the correct behavior (repeated
-    identical environments) to establish habit detection, then (b) novel environments where
-    planned pathway should add value. Status: needs_redesign (task paradigm + substrate).
+    9 supports from lit entries, 0 genuine exp entries. No V3 experimental evidence on
+    file for the dual-system distinction. Standard V3-pending gate: hold until V3
+    experiments demonstrate dual-system discrimination.
+
+    HISTORICAL GOVERNANCE NOTES:
+    - 2026-04-06 (illusory conflict resolution risk + needs task redesign): EXQ-237a
+      non-contributory (z_goal substrate limitation). Even the habit condition showed
+      zero lift in simple tasks (lift_simple=0.0), suggesting the test paradigm itself
+      was flawed -- habit formation not observable in the current task design.
+    - 2026-04-14: EXQ-327 ran with goal_weight in E3 trajectory scoring on value-flat
+      HippocampalModule proposals. The result cleared the SD-015 (z_resource encoder +
+      goal-term scoring) substrate path -- the HABIT ARM of MECH-163's dual-system
+      distinction.
+    - 2026-04-27 (R1 governance fix per claim_ids accuracy rule REE_assembly/CLAUDE.md):
+      EXQ-327 dropped from MECH-163 evidence (claim_ids tag corrected to ['SD-015']
+      only, run-pack manifest + flat JSON updated). EXQ-327 has only the habit arm in
+      it; it cannot discriminate the two systems and should not weight MECH-163's
+      evidence record either way. The habit-arm clearance now belongs to SD-015 alone.
+
+    STILL-PENDING DISCRIMINATIVE TEST -- V3 FULL-COMPLETION GATE:
+    A paradigm where (a) 1-step / habit-policy approach is insufficient AND (b)
+    goal-seeded multi-step trajectory generation by HippocampalModule produces a
+    discriminable behavioural advantage. Two paradigms in scope for the first pass:
+    (A) detour / blockage within a familiar grid (the habit-cached short path becomes
+    obstructed mid-episode; planned arm generates a novel multi-step detour seeded by
+    z_goal); (B) novel-context generalisation (train in env A, test in topologically-
+    novel env B with same resource semantics). See
+    REE_assembly/docs/architecture/mech163_v3_full_completion_gate_session_prompt.md.
+
+    SUBSTRATE PREREQUISITES IN PLACE (this is a writing task, not a substrate task --
+    EXCEPT for the proposal-generation hook):
+    - HippocampalModule trajectory CEM (ARC-007 strict, value-flat proposals).
+    - z_goal seeding via SD-012 (drive_weight=2.0) + SD-015 (z_resource encoder).
+    - ARC-030 D1/D2 approach/avoidance competition.
+    - SD-039 anchor goal-snapshot payload (substrate-side landed 2026-04-26).
+
+    SUBSTRATE PREREQUISITES PENDING (gate Option 2 path):
+    - SD-039 module-level write-site population (population layer deferred; queued as
+      next /implement-substrate target after MECH-269b / MECH-295 land).
+    - V3-EXQ-494 falsifiable test for the SD-039 population layer (drafted 2026-04-27,
+      not yet queued; see ree-v3/experiments/v3_exq_494_sd039_anchor_payload_validation.py).
+    - MECH-292 (ranked ghost-goal bank) -- candidate, blocked on SD-039 population.
+    - MECH-293 (waking ghost-goal probe search) -- candidate, blocked on MECH-292;
+      this is the HippocampalModule.propose_trajectories() hook the gate's Option 2
+      will call (anchor-payload-driven proposal seeding rather than CEM action-prior).
+
+    Gate is approximately 2 substrate sessions away assuming nothing slips: SD-039
+    population + V3-EXQ-494 in one session, MECH-292 + MECH-293 in a second, then the
+    V3 full-completion gate experiment (V3-EXQ-495 or higher).
 
 - id: MECH-164
   title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by

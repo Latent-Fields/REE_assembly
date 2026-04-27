@@ -20,15 +20,14 @@
   },
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
-    "MECH-163",
     "SD-015"
   ],
   "evidence_class": "simulation",
   "evidence_direction": "does_not_support",
   "evidence_direction_per_claim": {
-    "MECH-163": "does_not_support",
     "SD-015": "does_not_support"
   },
+  "evidence_direction_note": "MECH-163 dropped from claim_ids_tested 2026-04-27 (R1 governance fix, claim_ids accuracy rule REE_assembly/CLAUDE.md). EXQ-327 tests goal_weight in E3.score_trajectory() on value-flat HippocampalModule proposals -- this is the SD-015 (z_resource encoder + goal-term scoring) substrate, NOT the MECH-163 dual-system distinction. MECH-163 asserts a discrimination between habit and VTA/hippocampally-planned systems; EXQ-327 has only the habit arm in it, so it cannot discriminate and should not weight MECH-163's evidence record. The V3 full-completion gate (a paradigm where 1-step / habit-policy approach is insufficient AND goal-seeded multi-step trajectory generation by HippocampalModule produces a discriminable behavioural advantage) remains the still-pending discriminative test for MECH-163.",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
