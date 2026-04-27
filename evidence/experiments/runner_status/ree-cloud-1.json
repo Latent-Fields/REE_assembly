@@ -1,19 +1,52 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-04-19T21:30:36.048989+00:00",
-  "last_updated": "2026-04-19T22:18:06.401677+00:00",
-  "idle": true,
+  "runner_pid": 55290,
+  "runner_started_at": "2026-04-27T01:48:54.157431+00:00",
+  "last_updated": "2026-04-27T01:59:57.679932+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-445",
+      "queue_id": "V3-EXQ-433d",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032b dACC-analog adaptive control validation -- 3-arm ablation (OFF / ON-independent / ON-shared-trunk)",
+      "claim_id": "SD-029",
+      "title": "SD-029 / MECH-256 event-conditioned comparator (EXQ-479 calibrated curriculum)",
       "description": "",
-      "estimated_minutes": 156.0,
+      "estimated_minutes": 17.3,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-485",
+      "backlog_id": "",
+      "claim_id": "SD-033b",
+      "title": "SD-033b OFC-analog landing diagnostic (5 sub-tests)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-490",
+      "backlog_id": "",
+      "claim_id": "MECH-269b",
+      "title": "MECH-269b symmetric V_s gating on E1/E2 cortical rollouts (Q-040 factorial)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-493",
+      "backlog_id": "",
+      "claim_id": "MECH-295",
+      "title": "MECH-295 drive -> liking -> approach_cue bridge validation (6 sub-tests)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2406,7 +2439,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 2003.0
+    },
+    {
+      "queue_id": "V3-EXQ-418e",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 Path 1 diversification loss 4-arm (auxiliary symmetry-breaking pressure)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[summary] C1=False C2=False C3=True C4=True -> outcome=FAIL | verdict: FAIL | Outcome: FAIL",
+      "started_at": "2026-04-27T01:48:55.603074+00:00",
+      "completed_at": "2026-04-27T01:59:54.644697+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 659.0
+    },
+    {
+      "queue_id": "V3-EXQ-484",
+      "backlog_id": "",
+      "claim_id": "SD-033a",
+      "title": "SD-033a distractor-resistance under MECH-261 internal_replay gate (3-arm)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "result: PASS",
+      "started_at": "2026-04-27T01:59:56.411467+00:00",
+      "completed_at": "2026-04-27T01:59:57.679752+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_484_sd033a_distractor_resistance_v3_20260427T015957Z.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1.3
     }
-  ],
-  "draining": false
+  ]
 }
