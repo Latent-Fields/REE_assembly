@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-04-27T14:36:12.268182Z`
+Generated: `2026-04-27T14:47:47.467927Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -14,7 +14,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0005` | `MECH-257` | `candidate` | 1 | 0 | 0.414 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0006` | `SD-018` | `implemented` | 1 | 0.5 | 0.477 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0007` | `MECH-102` | `active` | 0.952 | 0.222 | 0.306 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0008` | `SD-015` | `candidate` | 0.933 | 0 | 0.302 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0008` | `SD-015` | `candidate` | 0.933 | 0 | 0.284 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0009` | `SD-029` | `candidate` | 0.923 | 0.167 | 0.307 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0010` | `SD-016` | `implemented` | 0.889 | 0.333 | 0.073 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0011` | `MECH-075` | `candidate` | 0.857 | 0.333 | 0.402 | 0 | no | no | `mandatory_decision_checkpoint` |
@@ -43,7 +43,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0034` | `MECH-268` | `candidate` | 0 | 1 | -0.193 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0035` | `MECH-E2-DUAL-FUNCTION` | `unknown` | 0 | 0.6 | 0.815 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0036` | `Q-006` | `active` | 0 | 0.5 | 0.272 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0037` | `SD-033a` | `candidate` | 0 | 0.5 | -0.1 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0037` | `SD-033a` | `candidate` | 0 | 0.5 | -0.112 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 
 ## Consider New Structure Queue
 

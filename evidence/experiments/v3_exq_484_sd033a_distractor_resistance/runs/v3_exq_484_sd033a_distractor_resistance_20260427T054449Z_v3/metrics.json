@@ -1,0 +1,34 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_a_external_task": {
+      "mode": "external_task",
+      "test_gate": 1.0,
+      "pre_warmup_norm": 0.6086782813072205,
+      "post_distractor_norm": 0.5997104048728943,
+      "drift": 0.5665538311004639
+    },
+    "arm_b_internal_replay": {
+      "mode": "internal_replay",
+      "test_gate": 0.05,
+      "pre_warmup_norm": 0.6086782813072205,
+      "post_distractor_norm": 0.5807061195373535,
+      "drift": 0.05012129247188568
+    },
+    "arm_c_internal_planning": {
+      "mode": "internal_planning",
+      "test_gate": 1.0,
+      "pre_warmup_norm": 0.6086782813072205,
+      "post_distractor_norm": 0.5997104048728943,
+      "drift": 0.5665538311004639
+    },
+    "task_drift": 0.5665538311004639,
+    "replay_drift": 0.05012129247188568,
+    "planning_drift": 0.5665538311004639,
+    "replay_to_task_drift_ratio": 0.0884669553366933,
+    "C1_task_informative": true,
+    "C2_replay_frozen": true,
+    "C3_planning_active": true,
+    "C4_gates_match_registry": true
+  }
+}

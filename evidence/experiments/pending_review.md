@@ -1,8 +1,16 @@
 # Pending Experiment Review
 
-Generated: `2026-04-27T14:36:12Z`  
+Generated: `2026-04-27T14:47:47Z`  
 Last review: `2026-04-27T14:11:00Z`  
-Pending: **3** item(s) -- 0 PASS, 0 FAIL, 3 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **6** item(s) -- 3 PASS, 0 FAIL, 3 runner-only (ERROR/UNKNOWN/smoke)
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_484_sd033a_distractor_resistance_20260427T054449Z_v3` | 2026-04-27T05:44 | MECH-261, MECH-262, SD-033a |
+| `v3_exq_485_sd033b_ofc_analog_landing_20260427T054454Z_v3` | 2026-04-27T05:44 | MECH-261, MECH-263, SD-033b |
+| `v3_exq_493_mech295_liking_bridge_validation_20260427T080304Z_v3` | 2026-04-27T08:03 | MECH-117, MECH-295, SD-012, SD-014, SD-015 |
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -10,9 +18,9 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
-| `V3-EXQ-484` | UNKNOWN | `?` | UNKNOWN (index stale — run build_experiment_indexes.py) |
-| `V3-EXQ-485` | UNKNOWN | `?` | UNKNOWN (index stale — run build_experiment_indexes.py) |
-| `V3-EXQ-493` | UNKNOWN | `?` | UNKNOWN (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-484` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-485` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-493` | UNKNOWN | `?` | UNKNOWN |
 
 ---
 

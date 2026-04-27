@@ -1,9 +1,9 @@
 {
   "schema_version": "v1",
-  "run_id": "v3_exq_493_mech295_liking_bridge_validation_v3_20260427T033832Z",
+  "run_id": "v3_exq_493_mech295_liking_bridge_validation_20260427T020011Z_v3",
   "experiment_type": "v3_exq_493_mech295_liking_bridge_validation",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "timestamp_utc": "2026-04-27T03:38:32.536446Z",
+  "timestamp_utc": "2026-04-27T02:00:11.069984Z",
   "experiment_purpose": "diagnostic",
   "claim_ids": [
     "MECH-295",
@@ -31,8 +31,8 @@
     },
     "UC3_write_side_fires": {
       "n_write_fires": 30,
-      "n_cue_fires": 4,
-      "final_goal_norm": 0.29975825548171997,
+      "n_cue_fires": 5,
+      "final_goal_norm": 0.29320457577705383,
       "pass": true
     },
     "UC4_cue_side_negative_bias": {
@@ -59,6 +59,6 @@
       "pass": true
     }
   },
-  "elapsed_seconds": 2.326096534729004,
+  "elapsed_seconds": 3.0355069637298584,
   "notes": "MECH-295 weak-reading bridge validation diagnostic. Tests substrate wiring (UC1-UC3) and the falsifiable cue-side necessity signature (UC4 cue active produces approach pull; UC5 cue severed produces zero bias even with write side intact). UC6 confirms the MECH-094 simulation gate is honoured. MECH-295 listed as primary claim; SD-012 / SD-014 / SD-015 / MECH-117 are tagged as architectural prerequisites only (non_contributory direction -- this experiment does not test their independent claims). Behavioural EXQ-483-style approach_commit recovery is deferred to a successor experiment after V3-EXQ-490 (MECH-269b) and this bridge land together."
 }

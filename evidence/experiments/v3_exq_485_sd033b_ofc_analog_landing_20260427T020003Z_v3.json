@@ -1,9 +1,9 @@
 {
   "schema_version": "v1",
-  "run_id": "v3_exq_485_sd033b_ofc_analog_landing_v3_20260426T104928Z",
+  "run_id": "v3_exq_485_sd033b_ofc_analog_landing_20260427T020003Z_v3",
   "experiment_type": "v3_exq_485_sd033b_ofc_analog_landing",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "timestamp_utc": "2026-04-26T10:49:28.936942Z",
+  "timestamp_utc": "2026-04-27T02:00:03.584001Z",
   "experiment_purpose": "diagnostic",
   "claim_ids": [
     "SD-033b",
@@ -28,9 +28,9 @@
       "pass": true
     },
     "UC2_gate_modulates_update": {
-      "delta_gate_1": 0.08203070610761642,
+      "delta_gate_1": 0.08203071355819702,
       "delta_gate_0": 0.0,
-      "ratio": 82030706107.61642,
+      "ratio": 82030713558.19702,
       "pass": true
     },
     "UC3_bias_zero_at_init": {
@@ -38,7 +38,7 @@
         5
       ],
       "bias_max_abs": 0.0,
-      "state_code_norm_at_query": 0.08203070610761642,
+      "state_code_norm_at_query": 0.08203071355819702,
       "pass": true
     },
     "UC4_backward_compat": {
@@ -51,6 +51,6 @@
       "pass": true
     }
   },
-  "elapsed_seconds": 0.09855103492736816,
+  "elapsed_seconds": 0.03739500045776367,
   "notes": "SD-033b landing diagnostic. Tests substrate wiring; bias head is frozen-random with last Linear zeroed (initial output = 0) so UC3 is a check on the zero-init contract, not a claim about biological bias function. MECH-263 functional signatures -- (a) devaluation sensitivity and (b) same-sensory-input / different-task-role discrimination -- remain deferred to behavioural EXQs that require environment work (outcome relabelling, perceptually-identical / task-distinct state pairs)."
 }

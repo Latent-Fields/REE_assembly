@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_210_mech156_theta_traversal_probe
 
-Generated: `2026-04-27T14:36:12.268182Z`
+Generated: `2026-04-27T14:47:47.467927Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
