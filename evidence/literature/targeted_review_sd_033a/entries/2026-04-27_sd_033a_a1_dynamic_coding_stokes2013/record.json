@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-27_sd_033a_a1_dynamic_coding_stokes2013",
+  "timestamp_utc": "2026-04-27T16:46:00Z",
+  "claim_ids_tested": ["SD-033a"],
+  "source": {
+    "title": "Dynamic coding for cognitive control in prefrontal cortex.",
+    "authors": ["Stokes MG", "Kusunoki M", "Sigala N", "Nili H", "Gaffan D", "Duncan J"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.01.039",
+    "url": "https://doi.org/10.1016/j.neuron.2013.01.039"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality empirical paper using time-resolved population pattern analyses on macaque PFC during a rule-conditional decision task. Direct evidence that the response to a choice stimulus diverges into different decision-related population states depending on the current rule -- i.e., the same stimulus drives stimulus-specific AND rule-specific evolution of the population code. This is the strongest available evidence that bias projection is rule-conditional at the candidate-state level rather than a uniform gain. Held below 0.85 because (a) the task uses 2 rules and a small candidate set, so the per-candidate-vs-uniform-gain question lives close to the ceiling of what 2x2 designs can resolve, and (b) the paper interprets the dynamics through a short-term-synaptic-plasticity lens, which is more relevant to the A3 question than to A1 directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Stokes 2013 uses a 2-rule, small-candidate-set design. With only 2 rules and a limited stimulus set, the rule-conditional divergence in choice-state could be implemented either by per-candidate weighting OR by a uniform gain that interacts with stimulus-specific dynamics already present in PFC -- the experimental design does not strictly discriminate.",
+    "The paper's interpretation centres on short-term synaptic plasticity as the mechanism for highly flexible tuning. If that interpretation is correct, the SD-033a static-bias-head abstraction (whether per-candidate or uniform) is missing the synaptic-plasticity component entirely, and the A1 question may be misposed at the level SD-033a operates."
+  ],
+  "tags": ["sd_033a", "lateral_pfc", "dynamic_coding", "rule_conditional_choice_state", "short_term_plasticity", "a1_alternative"],
+  "mapping": {
+    "source_claim_statement": "In macaque lateral PFC, an instruction cue triggers a rapid series of state transitions before settling into a stable low-activity state. The post-cue stable state is differentially tuned according to the current task-relevant rule. During decision-making, the response to a choice stimulus shows an initial stimulus-specific population response that then evolves to different final decision-related states depending on the current rule. Highly flexible tuning could be mediated by short-term synaptic plasticity.",
+    "ree_translation": "SD-033a posits a rule_state held in lateral PFC that biases E3 trajectory selection. Stokes 2013 supports the per-candidate A1 landing in two ways: (1) the rule-conditional differential tuning of the post-cue stable state means that the rule signal carries candidate-discriminative information, not just a scalar magnitude; (2) the rule-conditional divergence of the choice-stimulus response into different final decision-related states means the bias is read out as a candidate-state-specific shift rather than as a stimulus-invariant uniform gain. The paper's secondary suggestion that the mechanism involves short-term synaptic plasticity is more relevant to the A3 (persistence) question than to A1 directly.",
+    "mapping_caveat": "Stokes 2013 uses 2 rules and a small candidate set, so the per-candidate-vs-uniform-gain question is at the edge of what the design can resolve. The result is most cleanly described as 'rule-conditional, stimulus-specific dynamics' -- which is consistent with both the per-candidate landing and a uniform-gain alternative if the gain interacts with pre-existing stimulus-specific dynamics. The short-term-plasticity interpretation also points beyond SD-033a's static-bias-head abstraction.",
+    "source_context": "Macaque lateral PFC, single-unit recordings (~hundreds of neurons), 4 rules conditional decision task; population time-resolved pattern analyses (representational similarity / decoder) showing rule-conditional evolution of stimulus-driven response. Two animals."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Neuron 2013, primate single-unit, time-resolved population pattern analysis, well-cited as the modern dynamic-coding anchor for PFC). Mapping fidelity good: rule-conditional choice-state divergence is the closest direct empirical analogue of per-candidate bias projection. Transfer risk moderate; the population-dynamics framing is partial overlap with SD-033a's static-bias-head abstraction. The short-term-synaptic-plasticity interpretation is a flag that SD-033a may be missing a substrate."
+  }
+}

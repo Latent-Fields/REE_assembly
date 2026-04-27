@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_analog_prong_d",
+  "entry_id": "2026-04-27_prong_d_competing_goals_mansouri2017",
+  "timestamp_utc": "2026-04-27T17:08:57Z",
+  "claim_ids_tested": ["SD-033e", "MECH-265"],
+  "source": {
+    "title": "Managing competing goals - a key role for the frontopolar cortex.",
+    "authors": ["Mansouri FA", "Koechlin E", "Rosa MGP", "Buckley MJ"],
+    "year": 2017,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn.2017.111",
+    "url": "https://doi.org/10.1038/nrn.2017.111"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Major Nature Reviews Neuroscience review (2017) by Mansouri, Koechlin, Rosa & Buckley synthesising primate FPC physiology, lesion, and human imaging evidence. The central thesis is that FPC's role is monitoring the significance of *current and alternative goals*, with humans further specialising in *parallel monitoring of multiple goals*. This is the strongest direct architectural support for MECH-265 (relative-importance monitoring across competing goals): the review explicitly argues that primate FPC monitors competing goal hierarchies in parallel, with the human elaboration enabling the simultaneous tracking that distinguishes human cognition from non-human primates. Held below 0.9 because the review is synthesis rather than primary data, and the human-vs-non-human-primate distinction creates transfer risk for REE which is computational, not biological.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's central thesis (parallel monitoring of multiple goals as a uniquely human FPC specialisation) means MECH-265 may be specifying a function that requires more architectural elaboration than V3 supports. If the parallel-monitoring component is the human-specific elaboration of a more basic FPC role, V3 SD-033e may inherit only the basic role.",
+    "The review draws together findings that disagree on functional specialisation of FPC subregions (medial vs lateral, BA 10 vs BA 9). The integrative synthesis the review proposes is theoretical rather than empirically resolved; SD-033e should not lock to any particular subregional decomposition.",
+    "The argument that FPC enables uniquely human cognition is not directly testable. SD-033e's V3 implementation that adds an FPC analog to a non-biological agent is implicitly committing to the claim that the relevant computational function (parallel goal monitoring) can be implemented even without the human-evolutionary-specific cytoarchitecture. Whether this transfer is principled is open."
+  ],
+  "tags": ["sd_033e", "frontopolar", "competing_goals", "parallel_monitoring", "review", "mech_265"],
+  "mapping": {
+    "source_claim_statement": "Frontopolar cortex (FPC) plays a key role in monitoring the significance of current and alternative goals. In primates, FPC monitors competing goal hierarchies. In human evolution, FPC has acquired a further role enabling parallel monitoring of multiple goals AND switching between them. Many forms of uniquely human cognition (language, judgement, reasoning) may benefit from this FPC-mediated parallel goal-monitoring ability. FPC is enlarged in humans relative to other animals; area 10 in primates contains a unique cytoarchitectural field.",
+    "ree_translation": "MECH-265 (relative-importance monitoring across competing goals) is directly supported as the central thesis of this review. The architectural commitment that the FPC analog should track multiple goal hierarchies in parallel and switch between them when their relative importance changes is the explicit subject of the synthesis. SD-033e Prong D inherits this directly: the FPC analog should not just track pairwise counterfactuals (Boorman 2009 / MECH-264) but should support K>=2-way set-monitoring with parallel relative-importance tracking. The implementation question for V3 is how K-way parallel monitoring is realised computationally -- as a softmax over competing-goal value estimates? as a winner-take-all with threshold-mediated switching? as a graded multi-channel readout?",
+    "mapping_caveat": "Three caveats. First, the review is theoretical synthesis, not primary data. Second, the parallel-monitoring component is argued to be a human-specific elaboration of a more basic FPC role; V3 SD-033e may inherit only the basic role. Third, the review draws together findings that disagree on subregional functional specialisation -- SD-033e should not lock to any particular medial/lateral decomposition.",
+    "source_context": "Nature Reviews Neuroscience 2017, integrative synthesis combining primate FPC single-unit (Mansouri, Tanaka, Buckley work), primate lesion (Mansouri 2015 etc.), human fMRI (Koechlin, Rushworth, Boorman work), and comparative neuroanatomy (Rosa). Foundational integrative reference for modern FPC cognitive neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality (NRN 2017, multi-author integrative review, foundational reference for modern FPC cognitive neuroscience). Mapping fidelity high; the review's central thesis directly supports MECH-265's architectural commitment. Transfer risk moderate; human-specific elaboration argument creates question about how much of MECH-265 is implementable in a non-biological agent."
+  }
+}

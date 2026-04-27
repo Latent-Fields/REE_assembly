@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_268",
+  "entry_id": "2026-04-27_mech_268_volatility_learning_behrens2007",
+  "timestamp_utc": "2026-04-27T17:05:33Z",
+  "claim_ids_tested": ["MECH-268"],
+  "source": {
+    "title": "Learning the value of information in an uncertain world.",
+    "authors": ["Behrens TEJ", "Woolrich MW", "Walton ME", "Rushworth MFS"],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1954",
+    "url": "https://doi.org/10.1038/nn1954"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational fMRI paper (Nat Neurosci 2007, Behrens / Rushworth) demonstrating that ACC signal weight on each new outcome scales with the optimal Bayesian estimate of environmental volatility. Under low volatility (stable / predictable / repeated outcomes), the ACC signal weight diminishes; under high volatility (changing reward contingencies), the signal weight increases. Across the population, individual variation in ACC activity correlates with individual learning rate. This is direct empirical evidence for MECH-268's commitment that dACC conflict / prediction-error signals saturate under repeated identical outcomes -- the saturation here being the volatility-modulated downweighting under stable outcome statistics. Held below 0.9 because the paper measures fMRI BOLD rather than single-unit activity, the saturation framing is volatility-modulated rather than a strict cap, and the relevant ACC signal is a learning-rate adapter rather than a 'pe' signal in the strict sense.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The saturation here is implemented as a Bayesian learning-rate adapter (signal weight scales inversely with stability) rather than as a strict habituation cap. If MECH-268 specifies a hard saturation cap on the dACC pe signal under repetition, the volatility-adaptive downweighting Behrens 2007 demonstrates is a softer mechanism. The two would produce similar behavioural signatures under most repetition regimes but diverge under (a) sudden change after long stable runs and (b) outcomes that are noisy but unchanging in central tendency.",
+    "Behrens et al measure fMRI BOLD signal in ACC, which aggregates across multiple cell types and signal kinds. The paper's central finding is consistent with MECH-268 but does not localise the saturation mechanism to specific cell populations or specific signals (pe, conflict, surprise, attention-for-learning). MECH-268's V3 implementation that places saturation specifically on the dACC pe signal is one resolution step finer than what Behrens demonstrates.",
+    "The paper is correlational on the saturation-vs-learning-rate axis: ACC activity correlates with optimal volatility estimate, and ACC variation predicts learning rate variation. Causal manipulation (lesion / stimulation) is not provided. If ACC saturation is a downstream readout of an upstream saturation mechanism elsewhere, the dACC localisation in MECH-268 may be a measurement artefact rather than a localisation claim."
+  ],
+  "tags": ["mech_268", "dacc_saturation", "volatility_learning", "bayesian_learning_rate", "fmri", "behrens"],
+  "mapping": {
+    "source_claim_statement": "In an uncertain reward environment, the influence of each new outcome on future decisions should reflect the volatility of the reward contingencies: under stable contingencies, individual outcomes carry less information about the next decision and should be downweighted. Human subjects assess volatility in an optimal Bayesian manner. The optimal volatility estimate is reflected in the ACC fMRI signal: when a new outcome is observed, ACC activity scales with that outcome's salience for predicting future outcomes. Across the population, ACC signal variation predicts individual learning rate.",
+    "ree_translation": "MECH-268 specifies that dACC `pe` signal caps or habituates under repeated identical outcomes. Behrens 2007 supports this commitment by demonstrating that the ACC signal weight on each new outcome is volatility-modulated: under stable / repeated outcomes (low volatility), the ACC signal is downweighted, which is the natural neurobiological mechanism for the saturation MECH-268 specifies. The mapping is: 'repeated identical outcomes' = 'low volatility'; 'pe signal saturation' = 'ACC signal downweighting'. The architectural commitment that dACC adaptively modulates its own signal weight as a function of recent outcome statistics is well-grounded.",
+    "mapping_caveat": "The saturation here is a Bayesian learning-rate adapter rather than a strict habituation cap. The two are computationally related (both reduce signal weight under repetition) but mathematically distinct: the learning-rate adapter is graded and outcome-statistics-dependent, while a strict cap is a binary saturated/unsaturated state. MECH-268's 'caps / habituates' specification is compatible with both, but the V3 implementation should choose between them. Behrens 2007 supports the graded version; a strict-cap implementation would be over-specified.",
+    "source_context": "Human fMRI study, 16 subjects, 4-arm bandit task with non-stationary reward contingencies. Bayesian model of volatility estimation fit to behaviour, then to fMRI signal. ACC signal compared against a fixed-learning-rate model. The paper is a foundational demonstration of dACC's role in adaptive learning-rate control and is heavily cited in the cognitive-control literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Nat Neurosci 2007, Behrens / Rushworth, foundational paper for ACC volatility-adaptive learning, deeply cited). Mapping fidelity good: ACC signal downweighting under stable outcomes is the natural empirical analogue of MECH-268's saturation specification. Transfer risk moderate; fMRI BOLD vs single-unit, learning-rate-adapter vs strict-cap, correlational vs causal."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_034",
+  "entry_id": "2026-04-27_sd_034_backward_inhibition_mayr2000",
+  "timestamp_utc": "2026-04-27T16:52:15Z",
+  "claim_ids_tested": ["SD-034"],
+  "source": {
+    "title": "Changing internal constraints on action: the role of backward inhibition.",
+    "authors": ["Mayr U", "Keele SW"],
+    "year": 2000,
+    "venue": "Journal of Experimental Psychology: General",
+    "doi": "10.1037/0096-3445.129.1.4",
+    "url": "https://doi.org/10.1037/0096-3445.129.1.4"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational behavioural paper (six experiments, J Exp Psychol Gen 2000) establishing backward inhibition: when an abstractly-defined task set is intentionally abandoned, returning to it within a short window produces measurable response-time costs. The effect (a) survives a control for negative priming (Experiment 2), (b) is tied to top-down sequential control (Experiment 3), (c) accounts for residual shift costs (Experiment 4), and (d) occurs even with preplanned task sequences (Experiment 5). This is the most direct empirical analogue available for the SD-034 closure operator's 'temporary No-Go on the just-completed rule_state' specification: there is a real, measurable, behaviourally-defined refractory period on re-entry to a recently-abandoned task set in healthy humans. Held below 0.9 because (a) the effect is RT-cost-level rather than a hard No-Go gate, and (b) the mapping from 'abandoned task set' to 'completed rule_state' is conceptually adjacent but not strictly identical -- closure on satisfaction (SD-034) is not the same operation as forced abandonment (Mayr & Keele).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Backward inhibition is a graded RT cost, not a hard No-Go. If SD-034 implements closure as a hard refractory gate (binary admit/reject on the just-completed rule_state for N ticks), the biological signature is more accurately a temporarily lowered admission probability rather than a strict block. A hard-gate implementation would over-specify what the biology actually does.",
+    "Mayr & Keele's experiments use forced/intentional task abandonment (the cue switches the task), not closure-on-satisfaction. SD-034's closure operator is supposed to fire when the agent detects that a committed rule_state has been satisfied by its own behaviour. The mechanism that produces refractoriness on intentional abandonment may or may not generalise to closure-driven release; this is a transfer-risk flag.",
+    "The paper does not localise the inhibitory mechanism to OFC/ACC. If the backward-inhibition signature originates in basal ganglia or supplementary motor cortex rather than in PFC/ACC sequence-completion machinery, the SD-034 architectural commitment to OFC/ACC-located closure may be misplaced even though the No-Go signature is supported."
+  ],
+  "tags": ["sd_034", "closure_operator", "backward_inhibition", "task_set_disengagement", "no_go_refractory"],
+  "mapping": {
+    "source_claim_statement": "When humans intentionally shift between abstractly-defined task sets, the just-abandoned task set carries residual inhibition: returning to it within a short window produces measurable response-time costs relative to switching to a less-recently-active task set. This backward inhibition is dissociable from negative priming, depends on top-down sequential control, accounts at least partially for residual shift costs, and persists across preplanned task sequences.",
+    "ree_translation": "SD-034 specifies a closure operator that, on detecting committed rule_state satisfaction, emits (a) a release of the bistable commitment latch (MECH-090 BetaGate) and (b) a temporary No-Go bias on re-entering the just-completed rule_state. Mayr & Keele 2000 provides direct behavioural evidence for component (b): healthy humans show a measurable refractory cost on re-entering a recently-abandoned task set. The mapping is closest at the level of 'rule_state' = 'abstractly defined task set' and 'No-Go bias' = 'backward inhibition / residual inhibition'. The mechanism specified in SD-034 (a temporary No-Go on the just-completed rule_state) is the natural computational reading of the backward-inhibition phenomenon.",
+    "mapping_caveat": "Two distinctions matter for the transfer. First, Mayr & Keele induce task switching by external cue (forced abandonment), whereas SD-034 closure fires on detected satisfaction (self-driven completion). The neural mechanism that produces refractoriness on intentional abandonment may not be the same as the mechanism that produces refractoriness on completion-driven release. Second, the empirical signature is a graded RT cost, not a hard No-Go gate; an SD-034 implementation that uses a binary admit/reject gate would over-specify what the biology supports. A graded-bias implementation (a temporary additive negative score_bias on the just-completed rule_state, decaying over a refractory window) is the closer empirical match.",
+    "source_context": "Six behavioural experiments in healthy adult humans, abstractly-defined perceptual task sets (number/letter classification, shape/colour, etc.), within-subject task-switching designs with controlled lag-2 vs lag-3 task repetition. RT costs measured at 50-200 ms scale. The paper establishes the backward-inhibition phenomenon as a cognitive-control primitive."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (canonical paper for backward inhibition; six replicating experiments; J Exp Psychol Gen 2000; foundational for the task-switching / cognitive-control literature). Mapping fidelity good: the No-Go-on-just-completed-rule_state specification is the natural computational reading of the backward-inhibition phenomenon. Transfer risk moderate: forced-abandonment vs satisfaction-driven-release distinction; graded RT cost vs hard gate. The implementation-level recommendation that follows is to implement SD-034's No-Go as a graded score_bias decay, not a hard refractory gate."
+  }
+}

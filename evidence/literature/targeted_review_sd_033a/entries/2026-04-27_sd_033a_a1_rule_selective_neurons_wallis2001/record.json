@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-27_sd_033a_a1_rule_selective_neurons_wallis2001",
+  "timestamp_utc": "2026-04-27T16:46:00Z",
+  "claim_ids_tested": ["SD-033a"],
+  "source": {
+    "title": "Single neurons in prefrontal cortex encode abstract rules.",
+    "authors": ["Wallis JD", "Anderson KC", "Miller EK"],
+    "year": 2001,
+    "venue": "Nature",
+    "doi": "10.1038/35082081",
+    "url": "https://doi.org/10.1038/35082081"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "High-quality empirical paper (Nature 2001, single-unit recordings in macaque lateral PFC during a same/different rule task). Directly relevant to SD-033a's rule_state representation: a substantial fraction of PFC neurons coded the abstract rule independent of stimulus identity. For A1 specifically, however, the evidence is mixed. Rule-selective single units demonstrate that distinct rule states produce distinct PFC activity patterns (which is necessary for any rule-conditional bias projection, per-candidate or uniform), but the paper does not measure how that rule signal is read out by downstream choice circuits -- so it cannot discriminate between a rule-modulated uniform gain and a rule-modulated per-candidate weighting at the projection step. Held below 0.8 because the projection granularity question is one ARC removed from what was actually recorded.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rule-selective single units in PFC are necessary but not sufficient evidence for the per-candidate bias landing of SD-033a. If downstream readout treats the population rule signal as a single scalar (e.g. via low-rank projection onto a one-dimensional rule axis), the same single-unit data would be compatible with the uniform-gain alternative.",
+    "Wallis 2001 measured rule coding during a same/different decision with two abstract rules; SD-033a's bias projection question concerns multi-candidate trajectory selection in E3. The paper does not exercise the multi-candidate regime, so its evidence on per-candidate vs uniform-gain projection is at best indirect."
+  ],
+  "tags": ["sd_033a", "lateral_pfc", "rule_representation", "single_unit", "a1_alternative"],
+  "mapping": {
+    "source_claim_statement": "A substantial proportion of single neurons in macaque dorsolateral and ventrolateral PFC encode the abstract rule currently in effect (same vs different) independently of stimulus identity, supporting the view that PFC represents task rules as an explicit signal that can guide behaviour.",
+    "ree_translation": "SD-033a posits that the lateral-PFC-analog holds a rule_state that is then projected as a top-down bias into E3 trajectory selection. Wallis 2001 supports the existence of an abstract rule representation in lateral PFC -- the upstream side of SD-033a's mechanism. The paper is silent on the downstream projection: whether the rule signal modulates a uniform scalar gain on all candidates (A1 alternative) or a per-candidate bias vector (A1 landing). Both projections would be consistent with the rule-selective firing reported here, because the experimental task did not require multi-candidate selection.",
+    "mapping_caveat": "The claim being tested is specifically the A1 dimension -- per-candidate vs uniform gain. Wallis 2001 establishes the necessary precondition (an abstract rule signal exists in PFC) but does not discriminate between the two projection alternatives. Treating this as 'supports A1 landing' would over-read the paper.",
+    "source_context": "Macaque dorsolateral and ventrolateral PFC, single-unit extracellular recordings, two abstract rules (same/different) tested across a held-out stimulus set. Two animals."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (Nature 2001, primate single-unit, generalisation to novel stimuli demonstrated). Mapping fidelity is the binding constraint: rule-selective firing is necessary for A1 but does not discriminate per-candidate from uniform-gain projection. Transfer risk moderate; the rule-as-bias-source framing maps cleanly to SD-033a but the projection step does not."
+  }
+}

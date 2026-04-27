@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-27_sd_033a_a1_context_gating_mante2013",
+  "timestamp_utc": "2026-04-27T16:46:00Z",
+  "claim_ids_tested": ["SD-033a"],
+  "source": {
+    "title": "Context-dependent computation by recurrent dynamics in prefrontal cortex.",
+    "authors": ["Mante V", "Sussillo D", "Shenoy KV", "Newsome WT"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12742",
+    "url": "https://doi.org/10.1038/nature12742"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "High-quality empirical paper combining macaque PFC single-unit recordings with a trained recurrent-network model that reproduces the population dynamics. The paper demonstrates that PFC implements context-dependent input selection at the population-dynamics level: the same physical sensory input is integrated toward choice when context flags it as task-relevant and is suppressed when context flags it as irrelevant. This is direct evidence that the rule/context signal is read out as input-selective gating rather than as a uniform multiplicative gain across all input or candidate dimensions, which is the closest empirical analogue available for the A1 landing in SD-033a. Held below 0.85 because the task is two-input integration, not multi-candidate trajectory selection -- the input-selection result generalises to candidate-selection only by analogy, not by direct mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Mante 2013 result concerns selection among input dimensions (motion vs colour), not among multiple action candidates. If the bias projection in SD-033a operates on output candidates (trajectories) rather than input dimensions, the analogy from input-selective gating to per-candidate bias is one ARC of indirection -- and a uniform-gain readout is in principle still consistent with input-selective integration upstream.",
+    "The trained-RNN account argues that selection and integration are unified within a single dynamical process. If the V3 SD-033a abstraction (a static rule_state held in lateral PFC then projected via a single Linear layer) is too static to capture the dynamical-process-level selection mechanism Mante 2013 proposes, neither the A1 landing nor the A1 alternative may be the right level of description; SD-033a may be missing a recurrent gating component."
+  ],
+  "tags": ["sd_033a", "lateral_pfc", "context_dependent_computation", "rnn_dynamics", "input_selective_gating", "a1_alternative"],
+  "mapping": {
+    "source_claim_statement": "Macaque prefrontal cortex implements context-dependent computation by selecting and integrating noisy sensory inputs through population-level recurrent dynamics; the same neurons participate in both selection and integration, with context determining which sensory dimension is integrated toward the choice. A trained recurrent network reproduces the population dynamics, indicating that selection and integration are two aspects of a single dynamical process unfolding within the same prefrontal circuits.",
+    "ree_translation": "SD-033a's A1 question asks whether the lateral-PFC-analog projects a per-candidate bias vector or a uniform scalar gain into E3 trajectory selection. Mante 2013 provides the closest empirical analogue: in macaque PFC, the rule/context signal is read out as input-selective gating, not as a uniform multiplicative gain. Different input dimensions are differentially weighted as a function of the current context. Translated to SD-033a's selection problem, this favours the per-candidate landing -- the rule_state should differentially weight candidates rather than scale them uniformly. The mapping is by analogy from input dimensions to output candidates; the strict empirical claim is about input selection, not candidate selection.",
+    "mapping_caveat": "Mante 2013 measures selection among two input dimensions (motion direction vs colour) on each trial. SD-033a's A1 question is about per-candidate bias on multiple trajectory alternatives. Translating from 'input-selective gating' to 'per-candidate bias' requires the assumption that PFC's selection machinery generalises across the input/output asymmetry, which is plausible but not directly demonstrated. The paper is also silent on whether the same dynamics operate in lateral vs medial PFC subdivisions, which matters for SD-033a's 'lateral-PFC-analog' specificity.",
+    "source_context": "Two macaques, dorsolateral PFC single-unit recordings (~727 neurons) during a context-dependent perceptual decision task with two interleaved contexts (motion-relevant and colour-relevant). Population analyses + trained RNN modelling. Core claim is at the population-dynamics level rather than single-cell."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality (Nature 2013, large primate dataset, RNN modelling validates the dynamical interpretation, foundational for context-dependent computation literature). Mapping fidelity good but not perfect because the input-selection -> candidate-selection generalisation is by analogy. Transfer risk moderate because the dynamical-process-level mechanism may not map cleanly onto SD-033a's static rule_state -> Linear bias projection abstraction; the V3 SD-033a may be capturing only the surface signature of a deeper recurrent mechanism."
+  }
+}

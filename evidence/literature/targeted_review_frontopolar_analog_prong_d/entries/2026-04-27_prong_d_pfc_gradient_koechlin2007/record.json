@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_analog_prong_d",
+  "entry_id": "2026-04-27_prong_d_pfc_gradient_koechlin2007",
+  "timestamp_utc": "2026-04-27T17:08:57Z",
+  "claim_ids_tested": ["SD-033e"],
+  "source": {
+    "title": "An information theoretical approach to prefrontal executive function.",
+    "authors": ["Koechlin E", "Summerfield C"],
+    "year": 2007,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2007.04.005",
+    "url": "https://doi.org/10.1016/j.tics.2007.04.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational theoretical paper (Trends Cogn Sci 2007) proposing an information-theoretical account of executive control in lateral PFC, with hierarchically-ordered control signals organised along the anterior-posterior axis. Posterior PFC handles sensorimotor mappings; rostral PFC handles increasingly abstract / branching / nested control. For SD-033e this provides the architectural framing in which the FPC analog sits at the rostral end of the executive-control gradient -- at the most abstract / branching / counterfactual level. Held below 0.8 because the framework is theoretical / synthesis rather than a specific empirical test, the gradient is one organising principle among several (Badre & Nee 2018 challenge / refine the strict A-P gradient), and the mapping from Koechlin's information-theoretical control levels to MECH-264/265 / SD-033e operating modes is by structural analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The strict A-P gradient framing has been challenged by subsequent work (Badre & Nee 2018) which argues for a more graded / integrated organisation. SD-033e should not lock to a strict A-P localisation as if it were decided.",
+    "The information-theoretical framework specifies hierarchically-ordered control signals but does not directly address counterfactual evaluation or competing-goal monitoring. MECH-264 and MECH-265 are specific architectural commitments that this paper supports only at the framework level.",
+    "The gradient is described as continuous; SD-033e's operating-mode commitment is discrete. The mapping requires the assumption that operating modes correspond to discrete bins of an underlying continuous gradient -- a workable simplification, not a derived prediction."
+  ],
+  "tags": ["sd_033e", "prefrontal", "executive_function", "anterior_posterior_gradient", "information_theory", "koechlin"],
+  "mapping": {
+    "source_claim_statement": "Lateral prefrontal cortex implements executive control via hierarchically-ordered control signals processed along the anterior-posterior axis. Posterior PFC handles sensorimotor mappings; rostral PFC handles increasingly abstract control levels (context, episode, branching). Executive control operates as a unitary function despite spanning multiple specialised regions because the control signals are integrated across the gradient. The framework is information-theoretical: each level handles a specific kind of contextual conditioning of action selection.",
+    "ree_translation": "SD-033e Prong D commits to an FPC analog at the most rostral / abstract end of the executive-control architecture. Koechlin & Summerfield 2007 supports this architectural commitment by establishing the rostral-pole-as-most-abstract-control-level framing. Translated to REE: the FPC analog operates at a higher level of abstraction than SD-033a (lateral PFC analog, which handles rule-conditional bias) and SD-032 (operating mode) -- specifically, the FPC analog handles branching / counterfactual / competing-goal level control that lies above rule application. The implementation-level recommendation is that the FPC analog should not be wired in parallel with SD-033a but should sit hierarchically above it, with FPC outputs modulating SD-033a's rule_state when goal hierarchies shift.",
+    "mapping_caveat": "The framework is theoretical and the strict A-P gradient has been challenged in subsequent work (Badre & Nee 2018). SD-033e should not lock to a strict gradient localisation. The mapping from Koechlin's information-theoretical control levels to MECH-264/265 / SD-033e operating modes is by structural analogy. The continuous-gradient framework is a partial overlap with SD-033e's discrete-mode commitment.",
+    "source_context": "Trends Cogn Sci 2007 theoretical synthesis paper. Builds on Koechlin's earlier branching-and-cascade work (Koechlin 1999 Nature, Koechlin et al 2003 Science). Foundational anchor for the modern A-P-gradient view of lateral PFC executive control."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality (TiCS 2007, foundational A-P-gradient framework). Mapping fidelity moderate; the framework provides architectural framing but is one ARC removed from MECH-264/265 specific commitments. Transfer risk moderate; theoretical / synthesis vs primary data."
+  }
+}

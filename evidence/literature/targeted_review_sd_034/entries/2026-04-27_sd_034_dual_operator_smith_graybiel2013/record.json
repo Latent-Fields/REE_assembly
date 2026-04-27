@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_034",
+  "entry_id": "2026-04-27_sd_034_dual_operator_smith_graybiel2013",
+  "timestamp_utc": "2026-04-27T16:52:15Z",
+  "claim_ids_tested": ["SD-034"],
+  "source": {
+    "title": "A dual operator view of habitual behavior reflecting cortical and striatal dynamics.",
+    "authors": ["Smith KS", "Graybiel AM"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.05.038",
+    "url": "https://doi.org/10.1016/j.neuron.2013.05.038"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong empirical paper combining single-unit recording in rat sensorimotor striatum and infralimbic cortex with selective optogenetic disruption (Neuron 2013, Graybiel lab). The headline finding is that habit crystallization requires *both* a striatal action-bracketing pattern (start-spike + stop-spike framing the routine, insensitive to reward devaluation) and a separately-developing infralimbic ensemble that closely tracks habit state, with optogenetic disruption of infralimbic activity preventing habit formation. For SD-034 closure operator, the start/stop-bracketing pattern is the closest direct neural analogue of the 'detect committed sequence completion' function, complementing Barnes 2011 (advance-cued action-boundary patterns) by showing that the same bracketing structure spans purposeful->habitual transitions. Held below 0.85 because (a) bracketing is detected at action-routine boundaries rather than at rule_state satisfaction specifically, and (b) the OFC/ACC-located closure SD-034 commits to is not the structure recorded here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dual operator framework localises completion-detection to sensorimotor striatum + infralimbic cortex, not OFC/ACC. SD-034 names OFC/ACC sequence-completion cells as the substrate (Schuck 2016 / Rich & Shapiro 2009 in the existing entries). If the closure operator is anatomically distributed across striatum + IL + OFC/ACC, SD-034 may need to elevate from a single-substrate commitment to a multi-region operator -- and the V3 implementation would then need to decide which substrate carries the canonical 'done' token.",
+    "The bracketing pattern in Smith & Graybiel 2013 is for *habitual* routines (overtrained, devaluation-insensitive). SD-034's closure operator is meant to fire on rule_state satisfaction in flexible / planned mode as well -- not just for crystallised habits. If the bracketing mechanism is specific to the habitual mode, the support generalises only to one of the operating modes SD-034 needs to handle, and the planned-mode closure mechanism remains unspecified.",
+    "Optogenetic disruption of IL activity prevents habit *formation*, not necessarily habit *closure / release*. The dual operator paper does not directly test what happens when an infralimbic ensemble that has crystallised around a habit needs to release commitment on satisfaction. The closure-as-release function is one ARC removed from what was tested."
+  ],
+  "tags": ["sd_034", "closure_operator", "action_bracketing", "infralimbic_cortex", "sensorimotor_striatum", "habit_crystallization"],
+  "mapping": {
+    "source_claim_statement": "As rats overtrain on maze tasks, behaviour shifts from purposeful to habitual. This shift coincides with two simultaneously-engaged but separately-developing neural ensembles: a fast-acquired action-bracketing pattern in sensorimotor striatum (start-spike at routine onset, stop-spike at routine completion, devaluation-insensitive but automaticity-sensitive) and a late-developing pattern in upper layers of infralimbic neocortex that closely tracks habit state. Selective optogenetic disruption of infralimbic activity during overtraining prevents habit formation, supporting a dual-operator view in which both regions are necessary for habit crystallization.",
+    "ree_translation": "SD-034 specifies a closure operator that detects committed rule_state satisfaction and emits release + No-Go bias. Smith & Graybiel 2013 supports the closure-detection component by demonstrating start/stop bracketing patterns at action-routine boundaries: the stop-spike at routine completion is the closest direct neural analogue of a 'done' token. The dual-operator finding (striatum + IL both required) is also informative for SD-034's substrate commitment: the closure operation may be anatomically distributed across multiple regions rather than localised to OFC/ACC alone. The paper therefore (a) supports the existence of an empirically-grounded completion-detection mechanism that could ground SD-034 implementation, and (b) flags that the SD-034 architectural commitment to OFC/ACC may be too narrow.",
+    "mapping_caveat": "Smith & Graybiel 2013 records during habitual maze-running, not during rule-conditional decision-making. The bracketing pattern is specific to crystallised habit routines. SD-034's closure operator is meant to fire on rule_state satisfaction in flexible / planned operating modes too, where the same bracketing mechanism may or may not apply. Generalising habit-bracketing to closure-on-rule-satisfaction is a one-step transfer that the paper does not strictly support but does not contradict either. Anatomical localisation is also distinct: striatum + infralimbic cortex are separately-recorded substrates, and SD-034's existing OFC/ACC commitment is not directly addressed.",
+    "source_context": "Rat sensorimotor striatum and infralimbic cortex single-unit recordings during overtrained T-maze tasks; longitudinal acquisition spanning purposeful->habitual transition; selective optogenetic disruption of IL activity in transgenic rats. Two recording sites, three groups (control, IL-disrupted-during-acquisition, IL-disrupted-after-acquisition)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Neuron 2013, Graybiel lab, dual-region single-unit + causal optogenetic manipulation, well-cited as the canonical dual-operator paper for habit). Mapping fidelity moderate-good: action-bracketing maps onto closure-detection but only for the habit-mode case; multi-region distribution of the closure mechanism suggests SD-034 may need to elevate from single-substrate to operator-distributed-across-regions. Transfer risk moderate: habit-mode-only support, plus the non-canonical OFC/ACC localisation in this paper compared to SD-034's stated substrate."
+  }
+}

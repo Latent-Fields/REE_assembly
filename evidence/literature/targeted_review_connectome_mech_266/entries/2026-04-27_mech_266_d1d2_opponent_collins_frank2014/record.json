@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_266",
+  "entry_id": "2026-04-27_mech_266_d1d2_opponent_collins_frank2014",
+  "timestamp_utc": "2026-04-27T16:56:51Z",
+  "claim_ids_tested": ["MECH-266"],
+  "source": {
+    "title": "Opponent actor learning (OpAL): modeling interactive effects of striatal dopamine on reinforcement learning and choice incentive.",
+    "authors": ["Collins AGE", "Frank MJ"],
+    "year": 2014,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0037015",
+    "url": "https://doi.org/10.1037/a0037015"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Foundational computational paper (Psychological Review 2014) developing the OPAL model of striatal direct (D1) and indirect (D2) pathway opponent dynamics. The model formalises how the same dopaminergic state (tonic + phasic) produces asymmetric effects on Go-pathway (D1) and NoGo-pathway (D2) actor representations, generating bistable choice dynamics. For MECH-266's commitment to asymmetric hysteresis, OPAL is direct architectural support: the same neuromodulator level produces different effects on enter vs exit because enter-mode-A and exit-mode-A involve different actors with opposite dopamine sensitivities. Note: this paper is also cited under SD-034 (closure operator / OPAL); the framing here is specifically MECH-266's hysteresis question rather than SD-034's release-and-No-Go question. Held below 0.85 because the model is RL-actor-level and does not directly map onto SD-033's operating_mode register at the architectural-mode level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OPAL is an RL-actor-level model: D1/D2 dynamics operate on action representations during learning, not on operating-mode registers per se. The mapping from 'D1/D2 opponent dynamics produce bistability in actor preferences' to 'asymmetric hysteresis in mode-state' is by analogy across levels of description. If the operating_mode register lives at a different architectural level (e.g. global state shared across actions), the OPAL mechanism may not transfer directly.",
+    "The asymmetry in OPAL is between Go and NoGo pathways for a *single action*, not between enter and exit thresholds for a *single mode*. MECH-266 specifies enter vs exit thresholds on the same operating mode -- a different decomposition. The two are computationally related (both produce bistable dynamics under DA modulation) but mathematically distinct.",
+    "OPAL focuses on the learning dynamics. The hysteresis MECH-266 cares about is at the decision/control timescale, not the learning timescale. If the decision-level mode-state hysteresis is implemented differently from the learning-level D1/D2 opponent dynamics (e.g. via a different cellular or circuit mechanism), the OPAL architecture may be supportive only at the metaphor level rather than at the implementation level."
+  ],
+  "tags": ["mech_266", "asymmetric_hysteresis", "d1_d2_opponent", "striatal_pathways", "tonic_dopamine", "go_nogo_asymmetry"],
+  "mapping": {
+    "source_claim_statement": "Striatal direct (D1) and indirect (D2) pathways form an opponent actor system. Tonic dopamine biases the relative weighting between Go (D1) and NoGo (D2) pathway representations: high tonic DA emphasises Go-learning while low tonic DA emphasises NoGo-learning. The asymmetry is intrinsic to the dual-pathway architecture: the same DA state produces opposite effects on the two pathways. Phasic DA bursts further bias positive vs negative reinforcement learning asymmetrically. The OPAL model formalises these opponent dynamics and reproduces a wide range of behavioural and neural findings, including individual differences in choice incentive.",
+    "ree_translation": "MECH-266 specifies asymmetric mode hysteresis: enter and exit thresholds on a given operating mode differ, producing bistable mode-state dynamics under varying tonic DA. The natural biological grounding is the D1/D2 opponent pathway architecture: Go-pathway and NoGo-pathway represent the two ends of the mode-state axis, and the asymmetry between them under modulating DA produces the enter/exit threshold gap that MECH-266 specifies. Collins & Frank 2014 formalises this dual-pathway opponent dynamics and demonstrates that the asymmetric architecture is required to reproduce the full range of behavioural and neurobiological findings on DA + decision-making. MECH-266 inherits this asymmetry directly: a SalienceCoordinator with separate enter/exit thresholds is the cognitive-control-level analogue of OPAL's D1/D2 actor opponent dynamics.",
+    "mapping_caveat": "OPAL operates at the RL-actor level (action representations during learning), not at the operating-mode-register level. The mapping from 'D1/D2 opponent dynamics produce bistability in actor preferences' to 'asymmetric hysteresis in mode-state' is by analogy across levels. The asymmetry in OPAL is between Go and NoGo *for a single action*, not between enter and exit *for a single mode* -- these are mathematically distinct decompositions even if computationally related (both produce bistable dynamics under DA modulation). The OPAL mechanism supports the architectural commitment to asymmetric hysteresis but does not directly demonstrate it at the operating-mode level MECH-266 operates on.",
+    "source_context": "Computational neuroscience paper formalising the OPAL (opponent actor learning) model. Synthesis of striatal anatomy (D1 vs D2 medium spiny neurons), pharmacology (DA agonists/antagonists), and behavioural / neural findings from PD, healthy humans on DA manipulation, and reversal-learning paradigms. Psychological Review 2014, Frank lab. Companion to the broader BG-RL-modelling tradition (Frank 2005, 2006; Frank, Seeberger, O'Reilly 2004)."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Source quality very high (Psychological Review 2014, Frank lab, foundational paper for D1/D2 opponent RL modelling, well-cited). Mapping fidelity moderate at 0.62 -- the mapping from RL-actor-level D1/D2 opponent dynamics to operating-mode-level enter/exit threshold asymmetry is by analogy across levels of description. Transfer risk moderate-high at 0.40 because the timescale (learning) and the decomposition (Go/NoGo per action) differ from MECH-266's (decision/control, enter/exit per mode). Net direction supports MECH-266 by providing the canonical asymmetric-pathway architecture, while flagging that the V3 implementation lives one level of abstraction up from where OPAL actually operates."
+  }
+}

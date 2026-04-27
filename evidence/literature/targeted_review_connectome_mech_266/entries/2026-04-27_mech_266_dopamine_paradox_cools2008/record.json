@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_266",
+  "entry_id": "2026-04-27_mech_266_dopamine_paradox_cools2008",
+  "timestamp_utc": "2026-04-27T16:56:51Z",
+  "claim_ids_tested": ["MECH-266"],
+  "source": {
+    "title": "Role of dopamine in the motivational and cognitive control of behavior.",
+    "authors": ["Cools R"],
+    "year": 2008,
+    "venue": "The Neuroscientist",
+    "doi": "10.1177/1073858408317009",
+    "url": "https://doi.org/10.1177/1073858408317009"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality review (Neuroscientist 2008) by Roshan Cools on the paradoxical role of dopamine in motivational and cognitive control. Synthesises evidence that the same dopaminergic manipulation produces opposite effects depending on baseline state (the inverted-U / sweet-spot framing), and that distinct dopaminergic systems (mesolimbic, mesocortical, nigrostriatal) have dissociable roles. For MECH-266 (asymmetric mode hysteresis: distinct enter vs exit thresholds per operating mode), the paper supports the architectural commitment that mode transitions are not symmetric -- the same DA level produces different transition probabilities depending on which mode the system is currently in, and the relevant DA target depends on the cognitive function. Held below 0.8 because the paper is a review rather than a specific test of asymmetric thresholds, and the mapping from 'baseline-dependent paradoxical DA effects' to 'asymmetric Schmitt-trigger thresholds per mode' is one ARC of indirection.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cools 2008 frames the DA-effect dependence on baseline state primarily in terms of inverted-U dose-response curves, not in terms of explicit Schmitt-trigger threshold asymmetry. If the underlying mechanism is purely a smooth inverted-U sensitivity curve rather than a hysteretic two-threshold gate, MECH-266's specific commitment to enter-vs-exit threshold asymmetry may be over-specified relative to what the review supports.",
+    "The dissociation across mesolimbic/mesocortical/nigrostriatal DA systems means MECH-266's 'mode' may need to be elaborated into multiple parallel mode registers per substrate, rather than a single global operating_mode. SD-032a SalienceCoordinator currently holds a single mode -- this paper flags that biology may require per-substrate mode tracking.",
+    "Individual-difference effects in Cools 2008 (some individuals benefit, some are impaired by the same dopaminergic drug) imply that MECH-266's threshold parameters may be subject-specific rather than population-canonical. SD-033 / MECH-266 V3 implementation that fixes thresholds at population means may miss the substantial individual variation the biology shows."
+  ],
+  "tags": ["mech_266", "asymmetric_hysteresis", "dopamine_inverted_u", "tonic_dopamine", "operating_mode", "baseline_state_dependence"],
+  "mapping": {
+    "source_claim_statement": "Brain dopamine systems play complex and paradoxical roles in motivational and cognitive control. The same dopaminergic manipulation can produce opposite effects depending on baseline state (the inverted-U / sweet-spot framing). Distinct dopaminergic systems -- mesolimbic, mesocortical, and nigrostriatal -- have dissociable roles in different aspects of behavioural control, and individual variation in baseline dopamine produces large individual differences in response to dopaminergic drugs.",
+    "ree_translation": "MECH-266 specifies asymmetric mode hysteresis: distinct enter vs exit thresholds per operating mode, with the gap being the basis of bistable mode-state dynamics. The biological grounding for this architectural commitment is twofold: (a) tonic dopamine modulates the cost of switching between modes, and (b) the modulation is asymmetric -- the threshold to enter a given mode is not the same as the threshold to exit it. Cools 2008 supports this indirectly by establishing that DA's effect on cognitive control is fundamentally baseline-dependent, which is the natural neurobiological mechanism for asymmetric hysteresis (the threshold depends on the current mode, which depends on current baseline DA). The paper does not directly demonstrate the two-threshold Schmitt-trigger structure but provides the foundational dopamine framing that motivates it.",
+    "mapping_caveat": "The mapping from 'baseline-dependent paradoxical DA effects' to 'asymmetric Schmitt-trigger thresholds per mode' is one ARC of indirection. Cools 2008 demonstrates that DA's effect depends on baseline state, which is necessary but not sufficient for the strict two-threshold structure MECH-266 specifies. A smooth inverted-U sensitivity curve could in principle reproduce many of the same behavioural signatures without requiring discrete enter/exit thresholds. The strict test for MECH-266 -- that enter-threshold and exit-threshold differ measurably and that the gap produces hysteretic behaviour over time -- is not directly demonstrated by this paper.",
+    "source_context": "Review paper synthesising cognitive and behavioural neuroscience research on motivation and cognitive control. Covers human pharmacological manipulation studies, animal lesion / depletion work, and patient populations (Parkinson's disease primarily). Targeting an architectural-level account of DA's role rather than a specific empirical test."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Neuroscientist review 2008, Cools is a leading authority on DA + cognitive control, well-cited as the dopamine-paradox anchor). Mapping fidelity moderate: baseline-dependent DA effects support hysteresis-friendly architecture but do not directly demonstrate two-threshold Schmitt-trigger structure. Transfer risk moderate; the multi-DA-system dissociation suggests MECH-266 may need per-substrate mode tracking rather than a single operating_mode register."
+  }
+}

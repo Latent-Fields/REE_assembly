@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_analog_prong_d",
+  "entry_id": "2026-04-27_prong_d_gateway_burgess2007",
+  "timestamp_utc": "2026-04-27T17:08:57Z",
+  "claim_ids_tested": ["SD-033e"],
+  "source": {
+    "title": "The gateway hypothesis of rostral prefrontal cortex (area 10) function.",
+    "authors": ["Burgess PW", "Dumontheil I", "Gilbert SJ"],
+    "year": 2007,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2007.05.004",
+    "url": "https://doi.org/10.1016/j.tics.2007.05.004"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Foundational theoretical review (Trends Cogn Sci 2007) presenting the gateway hypothesis: rostral PFC (BA 10) supports mechanisms that switch attention between environmental stimuli (external) and self-generated / maintained representations (internal). Medial BA 10 favours external engagement; lateral BA 10 favours internal cognition. For SD-033e this provides the architectural foundation: the FPC analog should switch between externally-driven (current task / environmental) and internally-driven (counterfactual / planning) modes of operation. Held below 0.8 because the paper is theoretical / synthesis rather than a specific test, and the medial-vs-lateral mapping onto MECH-261 operating_mode is by analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The gateway hypothesis specifies a continuous-modulatory mechanism (attention switching between external and internal) rather than a discrete-switching mechanism. SD-033e's V3 implementation question (how does the FPC analog enter / exit different operating modes) is one ARC removed from what Burgess 2007 specifies.",
+    "Medial vs lateral BA 10 dissociation has been challenged by subsequent work (e.g. Mansouri 2017 review) that emphasises a more graded functional specialisation. SD-033e shouldn't lock implementation to a strict medial/lateral split.",
+    "The paper draws heavily on neuropsychological case studies and fMRI of multitasking. Generalisation to REE's operating-mode architecture is by structural analogy."
+  ],
+  "tags": ["sd_033e", "frontopolar", "gateway_hypothesis", "ba_10", "internal_external", "burgess"],
+  "mapping": {
+    "source_claim_statement": "Rostral PFC (BA 10) supports mechanisms enabling attention to switch between environmental stimuli and self-generated / maintained representations. Medial BA 10 supports external engagement; lateral BA 10 supports internal cognition. This 'gateway' role is central to high-level human cognition and may underlie cognitive abilities that distinguish humans from non-human primates.",
+    "ree_translation": "SD-033e posits an FPC analog that monitors competing goals / counterfactual options. Burgess 2007 supports this architectural commitment by establishing that rostral PFC implements the canonical external-vs-internal-cognition gateway. Translated to REE: the FPC analog should support switching between externally-driven attention (current task, environmental cues) and internally-driven attention (counterfactual evaluation, prospective planning, self-generated goal monitoring). The medial / lateral BA 10 dissociation suggests one possible MECH-261 operating_mode mapping: external-engagement modes vs internal-cognition modes.",
+    "mapping_caveat": "The gateway hypothesis is a continuous-modulatory account (attention switches between external and internal) rather than a discrete-mode account. SD-033e's V3 implementation question -- how the FPC analog enters / exits different operating modes -- is one ARC of indirection from what Burgess specifies. The medial vs lateral BA 10 mapping onto MECH-261 modes is by structural analogy.",
+    "source_context": "Theoretical synthesis paper drawing on neuropsychological case studies (BA 10 lesion patients), fMRI of multitasking and prospective memory, and architectural arguments. Trends Cogn Sci 2007. Foundational for the BA 10 gateway literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality (TiCS 2007, Burgess group, foundational gateway hypothesis paper, deeply cited). Mapping fidelity moderate; medial / lateral split + continuous-modulatory framing partial overlap with SD-033e's discrete-mode commitment. Transfer risk moderate."
+  }
+}

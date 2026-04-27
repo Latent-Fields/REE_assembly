@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_analog_prong_d",
+  "entry_id": "2026-04-27_prong_d_fpc_lesion_mansouri2015",
+  "timestamp_utc": "2026-04-27T17:08:57Z",
+  "claim_ids_tested": ["SD-033e", "MECH-264", "MECH-265"],
+  "source": {
+    "title": "Behavioral consequences of selective damage to frontal pole and posterior cingulate cortices.",
+    "authors": ["Mansouri FA", "Buckley MJ", "Mahboubi M", "Tanaka K"],
+    "year": 2015,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1422629112",
+    "url": "https://doi.org/10.1073/pnas.1422629112"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Strong empirical paper (PNAS 2015) reporting bilateral selective lesion to frontal pole cortex (FPC) in macaques tested on a Wisconsin Card Sorting Test analog and related tasks. Critically, the paper provides a *causal* lesion phenotype rather than correlational fMRI: FPC-lesioned monkeys show a specific, dissociable phenotype -- (a) no impairment in following rule switches within WCST, (b) augmented post-conflict cognitive control adjustment, (c) BETTER memory for relevant rule across distractions, but the authors propose FPC's primary role is *disengaging* executive control from current task and redistributing it to novel sources of reward. This is direct causal support for the architectural commitment that FPC operates as a 'disengage-and-explore' module rather than as a current-task executive control module. Held below 0.9 because the lesion phenotype is complex (paradoxically improved on some measures) and the interpretation as 'disengagement' is theoretical rather than directly measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The FPC lesion produced a paradoxical improvement on distractor-resistance: lesioned animals were BETTER at remembering the relevant rule across distractions. If SD-033e's FPC analog is supposed to support current-task focus, the lesion phenotype directly contradicts that role. The disengagement interpretation reconciles this -- FPC normally redirects executive control AWAY from the current task -- but it implies the FPC analog should NOT be tightly coupled to current-task focus.",
+    "FPC and PCC are studied together but show different effects. The PCC lesion is uninformative for SD-033e specifically. If SD-033e's commitment is too tightly bound to FPC alone, the broader rostral-network architecture may be missed.",
+    "The interpretation as 'disengagement and exploration' is post-hoc theoretical synthesis rather than direct empirical measurement. Alternative interpretations (e.g., FPC as a generic conflict / novelty detector with explore/exploit-orienting downstream effects) are not strictly excluded."
+  ],
+  "tags": ["sd_033e", "frontopolar", "lesion", "macaque", "disengagement", "novel_rule_impairment", "mansouri"],
+  "mapping": {
+    "source_claim_statement": "Bilateral selective lesion to frontal pole cortex (FPC) in macaques produces a dissociable phenotype: lesioned animals are not impaired at following frequent rule switches within Wisconsin Card Sorting Test, but show augmented post-conflict cognitive control adjustment and BETTER memory for the relevant rule across experimentally-imposed distractions (intervening secondary task or surprising free reward delivery). The paper interprets this as evidence that FPC normally disengages executive control from the current task to redistribute it to novel sources of reward / new opportunities.",
+    "ree_translation": "SD-033e Prong D commits to an FPC analog supporting counterfactual-value tracking (MECH-264) and competing-goal monitoring (MECH-265). Mansouri 2015 directly supports this architectural commitment via a causal lesion: the FPC analog should function as a disengage-and-redistribute module, not as a current-task focus enhancer. The lesion phenotype (better current-task focus when FPC is removed) is consistent with FPC normally pulling cognitive resources toward counterfactual / novel goals at some cost to current-task focus -- which is precisely the trade-off MECH-264/265 specify. Implementation-level: the FPC analog's score_bias should *reduce* current-candidate weight in proportion to counterfactual evidence, not increase it.",
+    "mapping_caveat": "The lesion phenotype is causal and dissociable, but the interpretation as 'disengagement and exploration' is post-hoc theoretical synthesis. Direct measurement of counterfactual-value tracking in the lesion-vulnerable circuit is not provided. The PCC arm of the study is uninformative for SD-033e specifically -- the relevant comparison is FPC-lesioned vs control, not FPC vs PCC. The species-transfer (macaque to REE abstract action space) is moderate.",
+    "source_context": "Macaque study, bilateral selective lesion of FPC vs PCC vs sham control, behavioural testing on WCST analog and related cognitive tasks. Three groups of 4 animals each. PNAS 2015. The lesion-vs-correlational distinction makes this paper unusually informative for causal-localisation claims."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Very high source quality (PNAS 2015, Buckley + Tanaka groups, primate selective lesion). Mapping fidelity high: causal lesion phenotype directly supports the architectural commitment that FPC operates as a disengage-and-redistribute module. Transfer risk low; species-transfer to REE abstract action space is the main flag."
+  }
+}

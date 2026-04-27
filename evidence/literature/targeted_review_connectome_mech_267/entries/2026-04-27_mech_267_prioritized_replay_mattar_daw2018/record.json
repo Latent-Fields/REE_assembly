@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_267",
+  "entry_id": "2026-04-27_mech_267_prioritized_replay_mattar_daw2018",
+  "timestamp_utc": "2026-04-27T17:01:40Z",
+  "claim_ids_tested": ["MECH-267"],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay.",
+    "authors": ["Mattar MG", "Daw ND"],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z",
+    "url": "https://doi.org/10.1038/s41593-018-0232-z"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational computational paper (Nat Neurosci 2018) developing the prioritized-memory-access account of hippocampal replay. The model formalises replay content as a function of two utility components -- need (probability of visiting a state in the near future) and gain (the expected improvement in future choice from updating that state's value) -- and unifies seemingly disparate replay phenomena (planning, learning, consolidation) under a single normative account in which replay content is conditioned on the agent's current goals and behavioural context. For MECH-267 (HippocampalModule.propose_trajectories conditioned on operating_mode in addition to world_state), this is direct architectural support: the same hippocampal substrate produces different proposal content depending on the current task / behavioural context. Held below 0.9 because the model is normative-computational rather than directly mechanistic, and the mapping from 'replay content varies with goals' to 'trajectory proposal conditioned on operating_mode' is one ARC of indirection (operating_mode is a mode-state-level variable; goal/need/gain are task-state-level variables).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Mattar & Daw frame conditioning of replay content in terms of need and gain -- both task-state-level / value-level variables, not mode-state-level variables. MECH-267 specifies conditioning on operating_mode (an architectural-mode signal from SD-032a SalienceCoordinator). If the biological mechanism conditions only on task-state variables and not on operating-mode-level variables, MECH-267 may need to elaborate to specify which mode-relevant signals enter the hippocampal proposal mechanism.",
+    "The paper is normative-computational: it predicts what replay content *should* be if the brain optimises future decision quality. The strict empirical claim that hippocampus *implements* this prioritization is supported but not fully demonstrated -- alternative substrates (PFC, cortico-hippocampal interactions) could also realise the optimisation. If hippocampus is one component of a distributed proposal-generation system, MECH-267's substrate commitment may be too narrow.",
+    "The model assumes a value function over states. Goal-conditioning enters through the value function (need depends on the current task's reward distribution). MECH-267 may need to specify how operating_mode modulates the value function consulted by HippocampalModule.propose_trajectories rather than parameterising mode-conditioning as a separate input."
+  ],
+  "tags": ["mech_267", "hippocampal_replay", "prioritized_memory_access", "goal_conditioned_replay", "task_set_conditioning", "planning"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay content is prioritized: at each moment, the hippocampus accesses memories of locations whose review would most improve future decisions. Prioritization balances two utility components: need (the probability of visiting a state in the near future) and gain (the expected improvement in future choice from updating that state's value). The model unifies findings from planning replay (forward-directed sequences toward goals), learning replay (recently-experienced trajectories), and consolidation replay (offline reactivation), and posits a mechanism whose dysfunction may underlie pathologies like rumination and craving.",
+    "ree_translation": "MECH-267 specifies that HippocampalModule.propose_trajectories is conditioned on operating_mode in addition to world_state. The natural biological grounding is that hippocampal replay content varies systematically with the agent's current task / behavioural context, which is what Mattar & Daw 2018 formalises. The same hippocampal substrate produces different proposal content under different operating modes (planning vs habit vs default-mode-replay) because the need/gain optimisation is conditioned on the agent's current task structure and goal hierarchy. For SD-033 governance, the implication is that mode-conditioned proposals are not a special-case extension of HippocampalModule but the canonical mode of operation -- replay is *always* mode-conditioned, even in the default-mode quiescent state where the conditioning shifts to consolidation-relevant rather than action-relevant content.",
+    "mapping_caveat": "Mattar & Daw frame replay conditioning in terms of *need* and *gain* -- both task-state-level value-related variables. MECH-267 specifies conditioning on *operating_mode* -- an architectural-mode signal from the SalienceCoordinator. These are not the same variable, even though they are related (operating_mode shapes the agent's current goals which shape need/gain). The paper supports the architectural commitment that hippocampal proposals are context-conditioned but does not directly demonstrate conditioning on operating-mode-level variables specifically. The implementation question is how operating_mode enters the proposal computation -- does it modulate the value function consulted, modulate the proposal-generation policy, or modulate which substrates participate in proposal generation? The paper does not discriminate.",
+    "source_context": "Computational neuroscience paper, Mattar & Daw, Princeton 2018. Synthesis of rodent hippocampal replay literature (forward replay, reverse replay, awake replay, sleep replay) under a single normative framework derived from value iteration in tabular MDPs. Validated against multiple experimental datasets including reward-conditioned replay, planning replay before goal-directed traversals, and consolidation-mode replay. Companion to the broader prioritized-sweeping literature in computational RL."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (Nat Neurosci 2018, Daw lab, foundational paper for prioritized-memory-access account, deeply cited as the modern unifying framework for hippocampal replay). Mapping fidelity good at 0.78 -- the architectural commitment that hippocampal proposals are context-conditioned is directly supported, with the caveat that the conditioning variable (need/gain vs operating_mode) is not exactly aligned with MECH-267's spec. Transfer risk moderate because the substrate may be distributed across hippocampus + cortex rather than hippocampus alone."
+  }
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_321b_mech090_bistable_holdrate
 
-Generated: `2026-04-27T15:49:46.619091Z`
+Generated: `2026-04-27T17:14:49.352899Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

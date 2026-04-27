@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_267",
+  "entry_id": "2026-04-27_mech_267_theta_seq_goals_wikenheiser_redish2015",
+  "timestamp_utc": "2026-04-27T17:01:40Z",
+  "claim_ids_tested": ["MECH-267"],
+  "source": {
+    "title": "Hippocampal theta sequences reflect current goals.",
+    "authors": ["Wikenheiser AM", "Redish AD"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3909",
+    "url": "https://doi.org/10.1038/nn.3909"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Strong empirical paper (Nat Neurosci 2015, Redish lab) recording hippocampal theta sequences in rats during a value-guided decision-making task. The headline finding is that the look-ahead distance of theta-cycle place-cell sequences scales with the distance to the current goal: longer look-ahead on journeys to distant goals than on journeys to proximal goals, with sequence content predictive of the animal's destination. Look-ahead becomes uniform on goal arrival regardless of starting location. This is direct empirical evidence that the within-cycle hippocampal trajectory representation is conditioned on the agent's current goal -- precisely the within-mode conditioning MECH-267 specifies. Held below 0.9 because the paper measures goal-conditioning at the within-replay-cycle scale (theta sequences), not at the proposal-content / candidate-trajectory level the V3 HippocampalModule operates on, and the conditioning signal in this study is goal-distance rather than operating-mode per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Theta sequences are within-cycle hippocampal phenomena, ~120ms timescale. The V3 HippocampalModule.propose_trajectories operates at the trial-level proposal-generation scale. If the goal-conditioning observed at the theta-sequence scale does not aggregate to a corresponding shift at the trial-level proposal scale, the support is at the wrong timescale for MECH-267's V3 spec.",
+    "The conditioning signal in Wikenheiser & Redish is goal *distance*, not operating *mode*. These are related (mode-state changes typically alter goal hierarchies which alter goal-distance representations) but distinct. The paper supports goal-conditioning of hippocampal sequences but does not directly support mode-conditioning -- the same animal may be running with the same operating-mode but different goal-distances.",
+    "The task is spatial navigation in rats. Generalising from rat goal-conditioned theta sequences to REE's goal-conditioned trajectory proposals over a more abstract action space requires a transfer step: the structure-of-content analogy (the hippocampus represents what comes next, conditioned on what it is trying to achieve) holds, but the implementation specifics may not."
+  ],
+  "tags": ["mech_267", "theta_sequences", "goal_conditioned_replay", "look_ahead", "spatial_navigation", "hippocampal_planning"],
+  "mapping": {
+    "source_claim_statement": "In rats performing a value-guided decision-making task, the look-ahead distance of hippocampal theta-cycle place-cell sequences varies on a moment-by-moment basis depending on the rat's current goals. Sequences extend farther on journeys to distant goals than on journeys to proximal goals, and look-ahead content is predictive of the animal's destination. On arrival at goals, look-ahead becomes similar regardless of where the journey began. The result provides evidence that hippocampal theta sequences contain goal- or intention-related information -- a candidate spatial substrate for planning.",
+    "ree_translation": "MECH-267 specifies that HippocampalModule.propose_trajectories is conditioned on operating_mode in addition to world_state. Wikenheiser & Redish 2015 supports the architectural commitment that hippocampal trajectory content is conditioned on the agent's current goal hierarchy: the within-cycle theta sequence look-ahead distance scales with goal distance, and content is goal-predictive. Translated to V3's HippocampalModule, this supports the claim that proposal content should depend on whether the agent is in a long-horizon planning mode (long look-ahead, distal-goal-projection trajectories) vs a short-horizon habit mode (short look-ahead, proximal-action trajectories). The mode-conditioning that MECH-267 specifies is the natural architectural reading of this scaling: operating_mode shapes the goal hierarchy which shapes the look-ahead distance which shapes the proposal content.",
+    "mapping_caveat": "The conditioning signal in Wikenheiser & Redish is goal *distance*, not operating *mode*. These are related but distinct. Goal-distance variation can occur within a single operating mode (the same animal in habit mode running to goal-distance-2 vs goal-distance-5). The paper supports goal-conditioning of hippocampal sequences but does not directly support mode-conditioning. The implementation question is whether operating_mode is best parameterised as a mode-specific scaling factor on look-ahead distance (a single parameter modulated by mode) or as a mode-specific reweighting of the proposal-generation policy (a more substantive architectural switch). The paper does not discriminate.",
+    "source_context": "Rat hippocampal CA1 single-unit and LFP recordings during a value-guided multi-arm spatial decision-making task with proximal and distal goals. Three animals. Population-level theta-sequence decoding analysis. The task requires the animal to choose among multiple paths to different goals, with goal value varying across trials, exposing within-mode goal-distance variation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Nat Neurosci 2015, Redish lab, primary empirical demonstration of goal-conditioned theta sequences, well-cited as canonical for hippocampal goal-projection at theta scale). Mapping fidelity good: goal-conditioned look-ahead distance is the strongest direct empirical signature available for MECH-267-style conditioning. Transfer risk moderate; goal-distance vs operating-mode distinction; theta-cycle vs trial-level timescale; rat spatial navigation vs REE abstract action space. Net direction supports MECH-267 with the implementation-level recommendation that operating_mode should modulate look-ahead distance / horizon parameters of the proposal mechanism."
+  }
+}

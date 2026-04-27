@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_analog_prong_d",
+  "entry_id": "2026-04-27_prong_d_counterfactual_value_boorman2009",
+  "timestamp_utc": "2026-04-27T17:08:57Z",
+  "claim_ids_tested": ["MECH-264", "MECH-265"],
+  "source": {
+    "title": "How green is the grass on the other side? Frontopolar cortex and the evidence in favor of alternative courses of action.",
+    "authors": ["Boorman ED", "Behrens TEJ", "Woolrich MW", "Rushworth MFS"],
+    "year": 2009,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2009.05.014",
+    "url": "https://doi.org/10.1016/j.neuron.2009.05.014"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational fMRI paper (Neuron 2009, Behrens / Rushworth lab) demonstrating that frontopolar cortex tracks the relative advantage of switching to a foregone alternative when choices are made voluntarily, while ventromedial PFC encodes the value of the current decision. This is direct support for MECH-264 (counterfactual-value tracking by the FPC analog): FPC carries the running estimate of unchosen-option value relative to chosen, with FPC functional connectivity changing at the moment of switching. Interindividual variation in FPC signal predicts behavioural switch propensity. Pairwise chosen-vs-alternative computation (not K>=2-way as MECH-265 specifies) -- this paper supports MECH-264 cleanly and MECH-265 only partially. Held below 0.9 because the paper measures BOLD rather than single-unit and the chosen-alternative pairwise structure does not directly demonstrate K>=2-way set-monitoring.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Boorman 2009 implements counterfactual evaluation as pairwise chosen-vs-single-alternative. MECH-265 specifies K>=2 alternatives as a set. The FPC signal in this paper does not directly speak to K>=2-way monitoring; whether the same substrate scales is empirically open.",
+    "The vmPFC vs FPC functional dissociation (vmPFC = current, FPC = counterfactual) is correlational. If the dissociation is task-design-specific (the paper uses a 4-option voluntary-switch bandit), generalisation to other counterfactual-monitoring contexts is not strict.",
+    "FPC-vmPFC functional connectivity changes are timed at switching. If the BOLD signature is a switch-execution signal rather than a counterfactual-evaluation signal, MECH-264's commitment to counterfactual *tracking* (continuous) versus counterfactual *triggering* (phasic) would be empirically underdetermined."
+  ],
+  "tags": ["sd_033e", "frontopolar", "counterfactual_value", "voluntary_switch", "mech_264", "mech_265"],
+  "mapping": {
+    "source_claim_statement": "Frontopolar cortex (FPC) tracks the relative advantage in favor of switching to a foregone alternative when choices are made voluntarily in a Bayesian RL bandit task. Functional connectivity changes when subjects decide to switch. Interindividual variation in FPC signal predicts effective behavioural adaptation. vmPFC encodes the value of the currently chosen option. Together the two regions implement complementary computations for short- and long-term behavioural flexibility.",
+    "ree_translation": "MECH-264 (counterfactual-value tracking by FPC analog) is directly supported: FPC carries a running estimate of unchosen-option value advantage. MECH-265 (relative-importance monitoring across competing goals, K>=2) is only partially supported -- this paper's design is pairwise chosen-vs-alternative. The FPC analog in SD-033e should track counterfactual value continuously (not just at switch time) and modulate its switch-relevant signal weight by interindividual / current-state factors.",
+    "mapping_caveat": "Pairwise vs K>=2-way decomposition matters: Boorman 2009 strictly supports MECH-264 (pairwise counterfactual tracking) and is necessary-but-not-sufficient for MECH-265 (K>=2 set-monitoring). The vmPFC-FPC complementarity is foundational for the SD-033e architectural commitment that the FPC analog operates as a counter-current to the value-of-current-decision substrate.",
+    "source_context": "Human fMRI study, voluntary-switch 4-arm Bayesian bandit task. ~16 subjects. Bayesian RL model fit to behaviour, then BOLD-correlated. Foundational paper for the modern FPC counterfactual-tracking literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Very high source quality (Neuron 2009, Behrens / Rushworth, foundational paper for FPC counterfactual tracking). Mapping fidelity good for MECH-264, partial for MECH-265 (pairwise vs K>=2). Transfer risk low; the design is well-suited to the counterfactual-tracking question."
+  }
+}
