@@ -22302,9 +22302,38 @@
   evidence_quality_note: >
     Registered candidate with direct literature anchor from
     `targeted_review_ghost_goal_search/` and indirect support from
-    `targeted_review_mech285_sleep_replay_seed/`. No code substrate yet; blocked on
-    SD-039 payload preservation.
-  location: docs/architecture/ghost_goal_search.md
+    `targeted_review_mech285_sleep_replay_seed/`.
+  implementation_note: >
+    SUBSTRATE IMPLEMENTED 2026-04-27 in ree-v3/ree_core/hippocampal/ghost_goal_bank.py
+    (GhostGoalBank, GhostGoalBankConfig, GhostGoalBankEntry). Pure-arithmetic
+    derived view over the SD-039 dual-trace anchor pool; no trainable parameters.
+    Wired into HippocampalModule behind HippocampalConfig.use_mech292_ghost_bank
+    (default False; bit-identical OFF). Public API: rank_ghost_goals(current_z_goal)
+    -> List[GhostGoalBankEntry]. Ranking formula per design doc: ghost_priority =
+    w_w*wanting + w_m*goal_match + w_s*staleness + w_r*recoverability with default
+    weights (1.0, 1.0, 0.5, 0.5) and goal_match_floor=0.05 (the architectural
+    rumination guard -- anchors with no payload OR cosine below floor are
+    invisible). Default pool is inactive-only (include_inactive=True,
+    include_active=False), top_k=32. Staleness preference: MECH-284 accumulator
+    snapshot when wired, else local (tick - last_accessed) * staleness_proxy_rate
+    fallback. Recoverability from Anchor.goal_payload.last_vs (clipped [0,1]) or
+    default_recoverability_when_unknown=1.0. HippocampalModule.__init__ raises
+    ValueError if use_mech292_ghost_bank=True without use_anchor_sets=True or
+    without AnchorSetConfig.use_sd039_anchor_payload=True (otherwise every
+    anchor scores goal_match=0.0 and the bank degenerates to empty). 164/164
+    contracts + 7/7 preflight PASS with master OFF (bit-identical to pre-MECH-292
+    HEAD). Validation: V3-EXQ-496 5/5 PASS Mac 2026-04-27 (UC1 module/config/
+    method exposure; UC2 master OFF -> bank None + rank returns []; UC3 ranking
+    fires with 6 inactive anchors all carrying populated payloads and
+    monotone-decreasing priorities, max=1.609; UC4 Phase A goal-inactive anchors
+    excluded by floor while Phase B admits 2 with goal_match dominant on top
+    entry; UC5 component sums match ghost_priority within float epsilon).
+    Behavioural validation (faster recovery from blocked-goal conditions vs
+    random-probe baseline) lives in V3-EXQ-495 once MECH-293 wires
+    propose_trajectories() to consume the bank. v3_pending kept TRUE: MECH-292's
+    falsifiable signature is behavioural, not substrate-only; MECH-293 is the
+    first behavioural consumer and is itself v3_pending.
+  location: docs/architecture/mech_292_ghost_goal_bank.md
 
 - id: MECH-293
   title: "Waking hippocampal search allocates a minority probe budget to top ghost-goal entries, seeding proposals around unresolved but still-wanted anchors instead of relying on pure current-anchor CEM or random probe noise."

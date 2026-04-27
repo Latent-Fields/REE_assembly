@@ -1,11 +1,14 @@
 # MECH-292 Ranked Ghost-Goal Bank
 
-**Status (2026-04-27):** DESIGNED, NOT IMPLEMENTED. Substrate prerequisite SD-039
-(anchor goal-snapshot payload + population layer) landed 2026-04-27 with
-V3-EXQ-494 6/6 PASS. MECH-292 is the first downstream consumer of that payload
-and the prerequisite for MECH-293 (waking ghost-goal probe search). This doc
-specifies the substrate that the next `/implement-substrate` session should
-build.
+**Status (2026-04-27):** IMPLEMENTED. Pure-arithmetic derived view over the
+SD-039 dual-trace anchor pool. Module: `ree-v3/ree_core/hippocampal/ghost_goal_bank.py`.
+Wired into `HippocampalModule` behind `HippocampalConfig.use_mech292_ghost_bank`
+(default False). Substrate prerequisite SD-039 (anchor goal-snapshot payload +
+population layer) landed 2026-04-27 with V3-EXQ-494 6/6 PASS. Validation
+diagnostic V3-EXQ-496 PASSed 5/5 sub-tests on 2026-04-27. MECH-292 is the
+first downstream consumer of the SD-039 payload and the prerequisite for
+MECH-293 (waking ghost-goal probe search) which wires
+`HippocampalModule.propose_trajectories()` to consume the bank.
 
 ## Why this exists
 
@@ -223,8 +226,8 @@ None. Pure arithmetic, no trainable parameters.
 
 ## Validation experiment
 
-`V3-EXQ-XXX` (placeholder; assign next free number after MECH-292 lands)
-diagnostic with five sub-tests:
+`V3-EXQ-496` diagnostic with five sub-tests (PASSed 5/5 on Mac 2026-04-27,
+~39s):
 
 - UC1 module_importable
 - UC2 master_off_no_op (`agent.hippocampal.ghost_goal_bank is None`)
