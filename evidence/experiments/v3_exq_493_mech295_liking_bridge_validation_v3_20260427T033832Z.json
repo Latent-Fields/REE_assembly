@@ -1,0 +1,64 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_493_mech295_liking_bridge_validation_v3_20260427T033832Z",
+  "experiment_type": "v3_exq_493_mech295_liking_bridge_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-27T03:38:32.536446Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-295",
+    "SD-012",
+    "SD-014",
+    "SD-015",
+    "MECH-117"
+  ],
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-295": "supports",
+    "SD-012": "non_contributory",
+    "SD-014": "non_contributory",
+    "SD-015": "non_contributory",
+    "MECH-117": "non_contributory"
+  },
+  "result": "PASS",
+  "metrics": {
+    "UC1_module_importable": {
+      "pass": true
+    },
+    "UC2_master_off_no_op": {
+      "bridge_is_none": true,
+      "pass": true
+    },
+    "UC3_write_side_fires": {
+      "n_write_fires": 30,
+      "n_cue_fires": 4,
+      "final_goal_norm": 0.29975825548171997,
+      "pass": true
+    },
+    "UC4_cue_side_negative_bias": {
+      "bias": [
+        -0.030000001192092896,
+        -0.15000000596046448,
+        -0.27000001072883606
+      ],
+      "bias_max_abs": 0.27000001072883606,
+      "bias_at_low_prox": -0.030000001192092896,
+      "bias_at_high_prox": -0.27000001072883606,
+      "pass": true
+    },
+    "UC5_severed_bridge_collapse": {
+      "bias_max_abs": 0.0,
+      "write_value": 0.45,
+      "pass": true
+    },
+    "UC6_mech094_simulation_gate": {
+      "write_under_simulation": 0.0,
+      "bias_max_abs_under_simulation": 0.0,
+      "n_write_fires": 0,
+      "n_cue_fires": 0,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 2.326096534729004,
+  "notes": "MECH-295 weak-reading bridge validation diagnostic. Tests substrate wiring (UC1-UC3) and the falsifiable cue-side necessity signature (UC4 cue active produces approach pull; UC5 cue severed produces zero bias even with write side intact). UC6 confirms the MECH-094 simulation gate is honoured. MECH-295 listed as primary claim; SD-012 / SD-014 / SD-015 / MECH-117 are tagged as architectural prerequisites only (non_contributory direction -- this experiment does not test their independent claims). Behavioural EXQ-483-style approach_commit recovery is deferred to a successor experiment after V3-EXQ-490 (MECH-269b) and this bridge land together."
+}
