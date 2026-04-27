@@ -19355,7 +19355,35 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
+  implementation_note: >
+    IMPLEMENTED 2026-04-20 in ree-v3/ree_core/governance/closure_operator.py
+    (ClosureOperator, ClosureOperatorConfig, ClosureEvent, 616 LOC). Five-
+    part "done" token: (a) MECH-090 beta_gate.release(); (b) MECH-260
+    dacc.inject_nogo(action_class, count); (c) ResidueField.discharge_
+    domain(z_world, factor, radius) with hard 1e-6 floor preserving the
+    "residue cannot be erased" invariant; (d) SalienceCoordinator.update_
+    signal("closure_event", value) re-biasing affinity toward internal_
+    planning; (e) dacc.reset_episode_pe() + optional dacc_pe_cap
+    (MECH-268 coupling). Completion detector: rule_state delta <
+    threshold for N consecutive ticks AND beta elevated AND current_mode
+    in allowed_closure_modes AND sd_033a write_gate >= min. Master
+    switch use_closure_operator (default False, bit-identical OFF).
+    Mode-conditioning generalises MECH-094 hypothesis-tag: closure
+    blocked in internal_replay / offline_consolidation modes. Validation
+    PASSed 2026-04-21: V3-EXQ-460 (verified-but-not-released, 6 sub-
+    tests), V3-EXQ-466 (satisficing / residue discharge, 5 sub-tests),
+    V3-EXQ-468 (commitment vs contradiction, coupled SD-034 + MECH-268,
+    6 sub-tests). Behavioural variants with full E3 task loop +
+    tolerance-band completion env deferred (depend on phased rule_state
+    training + CausalGridWorldV2 env extension not yet on roadmap).
+    Design doc: docs/architecture/sd_034_governance_closure_operator.md
+    (backfilled 2026-04-27). Lit-pull recommendations from 2026-04-27
+    largely match V3 implementation (graded No-Go via MECH-260 FIFO,
+    multi-region substrate-agnostic detector); one V4 reconsideration
+    flagged: route post-completion negative bias through SD-033a's
+    per-candidate bias projection rather than only via MECH-260
+    action-class FIFO.
   claim_level: architectural
   registered_utc: 2026-04-20
   depends_on:
@@ -19860,7 +19888,37 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
+  implementation_note: >
+    IMPLEMENTED 2026-04-21 as a Schmitt-trigger extension of the
+    MECH-259 symmetric switch_threshold in ree-v3/ree_core/cingulate/
+    salience_coordinator.py. Two optional dict overrides on
+    SalienceCoordinatorConfig: enter_thresholds[target_mode] (per-mode
+    enter rail; falls back to switch_threshold when unset) and
+    exit_thresholds[current_mode] (operating_mode[current_mode] must
+    fall strictly below this value before a switch out is permitted;
+    falls back to 1.0 sentinel = always satisfied for any proper
+    softmax, preserving legacy MECH-259 behaviour). Trigger:
+    salience_aggregate > enter_threshold * stability_mult AND
+    operating_mode[current_mode] < exit_threshold AND soft_argmax !=
+    current_mode. Setters: set_enter_threshold(mode, value),
+    set_exit_threshold(mode, value), set_hysteresis_ratio(ratio)
+    (uniform exit rail across registered modes for parametric sweeps).
+    Tick return dict extended with enter_threshold, exit_threshold,
+    current_mode_prob; effective_threshold retained as backward-compat
+    alias. Backward compatible: empty dicts -> trigger reduces to
+    legacy MECH-259. OCD over-binding axis: exit_thresholds[m] near 0
+    (mode collapses to near-zero before leaving). Depression / under-
+    binding axis: lower enter_threshold. Symmetric baseline: empty
+    dicts. Validation PASSed 2026-04-21: V3-EXQ-464 (EXP-0160
+    competing-goals, 5 sub-tests) and V3-EXQ-467 (EXP-0163 mode
+    stickiness 5-arm parametric sweep r in [0.10, 0.50, 1.00, 1.50,
+    2.00], 5 sub-tests). Behavioural switch-cost asymmetry +
+    goal-completion dose-response runs deferred to EXQ-464b / EXQ-467b
+    pending CausalGridWorldV2 dual simultaneously-active resource-cue
+    extension. Lit-pull recommendation match (2026-04-27): independently
+    tunable enter/exit thresholds confirmed; per-substrate mode tracking
+    flagged for V4.
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:
@@ -19942,7 +20000,34 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
+  implementation_note: >
+    IMPLEMENTED 2026-04-20 in ree-v3/ree_core/hippocampal/module.py.
+    HippocampalModule.propose_trajectories accepts an optional
+    operating_mode: Dict[str, float] kwarg (probability vector from
+    SD-032a SalienceCoordinator). When config.mode_conditioning_enabled
+    is True AND operating_mode is supplied, the CEM proposal std is
+    scaled by sum_{m} operating_mode[m] * config.mode_noise_scale.get(m,
+    1.0). Modes present in operating_mode but absent from the
+    noise-scale map default to 1.0 (no-op). Diagnostics on the module:
+    _last_operating_mode and _last_noise_scale for verification.
+    HippocampalConfig fields: mode_conditioning_enabled (bool, default
+    False) + mode_noise_scale (Dict[str, float], default empty).
+    Backward compatible: when either condition is False, behaviour is
+    unchanged (operating_mode is ignored and the legacy CEM noise scale
+    applies). Validation PASSed 2026-04-21: V3-EXQ-462 (EXP-0158 rule
+    binding, 5 sub-tests covering basic conditioning, mode-specific
+    noise multipliers, off-mode baseline, missing-mode fallback,
+    diagnostics) and V3-EXQ-465 (EXP-0161 intrusive simulation
+    filtering, 4 sub-tests). Behavioural successors deferred:
+    EXP-0155 (cue_action_proj forward-path diagnostic) for EXP-0158
+    extension; forced-replay injection hook for EXP-0161 extension.
+    Lit-pull recommendation (2026-04-27) suggested operating_mode
+    modulate look-ahead horizon at proposal generation; the V3
+    implementation modulates CEM noise scale instead -- different
+    mechanism with similar effect (mode-conditional exploration breadth
+    vs depth). V4 reconsideration could add explicit horizon
+    modulation alongside the existing noise-scale mechanism.
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:
@@ -20033,7 +20118,36 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
+  implementation_note: >
+    IMPLEMENTED 2026-04-20 in ree-v3/ree_core/cingulate/dacc.py.
+    History-conditioned PE saturation in DACCAdaptiveControl: at each
+    affective_pe step, the outcome is classified into a discrete bin
+    appended to a FIFO _outcome_history (length saturation_window).
+    Saturation factor f_sat = 1.0 / (1.0 + saturation_strength *
+    max(0, n_rec - saturation_grace)) where n_rec = count of current
+    outcome class in the last saturation_window outcomes. Applied as
+    pe_saturated = pe_capped * f_sat. Defaults preserve backward
+    compat: dacc_saturation_enabled=False -> f_sat=1.0 always (no-op);
+    when enabled, saturation_window=8, saturation_strength=0.3,
+    saturation_grace=2 (graded learning-rate adapter, NOT a binary cap).
+    Last-cycle diagnostic _last_saturation_factor exposed for
+    inspection. SD-034 closure operator coupling: closure.tick() calls
+    dacc.reset_episode_pe() (clears episode-level pe state but
+    preserves _action_history / _outcome_history -- distinct from full
+    reset()) and optionally installs dacc_pe_cap. Validation PASSed
+    2026-04-21: V3-EXQ-463 (EXP-0159 conflict saturation, 7 sub-tests)
+    and V3-EXQ-468 (EXP-0164 commitment vs contradiction, 4-arm
+    A/B/C/D interaction with SD-034, 6 sub-tests). 13/13 sub-tests
+    PASS on smoke. Behavioural arms (500+ step sustained outcome /
+    counter-evidence injection) deferred -- env extensions not yet on
+    roadmap. Lit-pull recommendation match (2026-04-27): graded
+    learning-rate adapter rather than binary cap -- V3 implementation
+    matches; signal-channel-specificity (which dACC channel saturates:
+    pe vs surprise vs commitment vs salience) flagged as V4
+    reconsideration; Quilodran 2008 temporal-transfer coupling between
+    MECH-268 and SD-034 captured in the closure_reset_pe_ema +
+    closure_pe_cap_after design.
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:
