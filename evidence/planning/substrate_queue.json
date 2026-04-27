@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-27T14:11:00Z",
+  "last_updated_utc": "2026-04-27T15:03:21Z",
   "next_implement_substrate": {
     "sd_id": "SD-037",
     "selected_utc": "2026-04-25T13:29:45Z",
@@ -1179,7 +1179,7 @@
       "sd_id": "MECH-269b",
       "title": "Symmetric V_s gating on E1 sensory predictor and E2 forward models",
       "ready": true,
-      "status": "implemented_but_failing_validation",
+      "status": "implemented_but_architectural_mismatch",
       "design_doc": "docs/architecture/mech_269b_vs_rollout_gating.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -1192,12 +1192,69 @@
           "experiment_type": "v3_exq_490_mech269b_vs_rollout_gating",
           "metric": "c1 gate-firing precondition (c1_on_total_held=0 across all arms and seeds)",
           "target": "c1_on_total_held > 0 in >=2/3 seeds in ON_ON arm"
+        },
+        {
+          "run_id": "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3 + 080413Z (and v3_exq_490a)",
+          "experiment_type": "v3_exq_490_mech269b_vs_rollout_gating",
+          "metric": "Phase 1 V_s identity proxy stays in [0.85, 1.0] under typical dynamics; per-side hold threshold 0.4 unreachable; c1_total_held = 0 across both arms in all 3 seeds",
+          "target": "EITHER per_stream_vs computed against forward-predictor error (Phase 2 T2) OR VsRolloutGate.gate() reads staleness-corrected V_s before threshold comparison",
+          "diagnosis_session": "diagnose-errors-2026-04-27T14:42"
         }
       ],
-      "implementation_hint": "Substrate landed in regulators/vs_rollout_gate.py; V3-EXQ-490 sub-diagnostic FAIL on c1 (gate not firing). Flagged for /diagnose-errors -- likely substrate gating bug or smoke-scale insufficient warmup.",
+      "implementation_hint": "Substrate landed in regulators/vs_rollout_gate.py 2026-04-26. /diagnose-errors 2026-04-27 root-cause: VsRolloutGate hold trigger (V_s < 0.4) is unreachable under typical Phase 1 V_s dynamics. Phase 1 V_s is an identity-prediction proxy (1 - normalized_step_delta) that stays near 0.9-1.0 under aligned latents; reaching 0.4 needs ~9 consecutive ticks of fully misaligned latent (doesn't happen at smoke scale). Architectural mismatch: gate reads velocity-based per_stream_vs but MECH-269b's intent is to gate on staleness-based V_s. The substrate is wired but reads the wrong signal. Two architectural follow-up paths are recorded as separate substrate_queue entries (MECH-269b-followup-A: staleness-corrected V_s in VsRolloutGate.gate; MECH-269b-followup-B: Phase 2 T2 forward-predictor V_s routing). V3-EXQ-490b queued as smoke-only substrate-readiness probe with thresholds raised to 0.85/0.95 to confirm gate-firing precondition (Q-040a) is operational, but Q-040b behavioural sufficiency is gated on one of the two follow-up paths.",
       "priority": 1,
       "added_session": "governance-2026-04-27T14:11",
-      "last_seen_session": "governance-2026-04-27T14:11"
+      "last_seen_session": "diagnose-errors-2026-04-27T14:42"
+    },
+    {
+      "sd_id": "MECH-269b-followup-B",
+      "title": "Phase 2 T2: forward-predictor V_s routing for MECH-269 per-stream verisimilitude",
+      "ready": false,
+      "status": "proposed",
+      "design_doc": "docs/architecture/v_s_invalidation_runtime.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-269b",
+        "Q-040b",
+        "Q-040 (broad)"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3 + 080413Z + v3_exq_490a",
+          "experiment_type": "v3_exq_490_mech269b_vs_rollout_gating",
+          "metric": "Phase 1 V_s identity proxy is velocity-based (1 - normalized step delta), not staleness-based; gate threshold-crossing condition can't track 'stream is stale' without forward-predictor error",
+          "target": "Phase 2 T2: route z_world V_s through ReafferencePredictor (SD-007); route z_harm_s V_s through HarmForwardModel (SD-011); other streams keep Phase 1 identity proxy as fallback. V_s reflects prediction error against the stream-appropriate forward model, which is the architectural intent of MECH-269 / MECH-269b."
+        }
+      ],
+      "implementation_hint": "Designed but not implemented per v_s_invalidation_runtime.md Phase 2 T2 milestone. update_per_stream_vs() in HippocampalModule currently computes score = clip_[0,1](1 - ||z_curr - z_prev|| / ||z_curr||) for every stream. Phase 2 T2 dispatches per stream: z_world -> ReafferencePredictor.predict_next (SD-007); z_harm_s -> E2HarmSForward (SD-011 / ARC-033); other streams keep the identity proxy. score = clip_[0,1](1 - ||z_curr - z_pred|| / ||z_curr||). EMA at tau=0.1 unchanged. Does NOT modify VsRolloutGate -- the gate already reads per_stream_vs by name; making per_stream_vs more accurate is sufficient. Affects all V_s consumers downstream (anchor reset hysteresis, MECH-284 staleness cross-check, rollout gating, commit release). Behavioural-sufficiency validation EXQ unblocks Q-040b. Larger work item: requires per-stream router, test surface for prediction-error V_s under each stream's forward model, and a new round of regression tests.",
+      "priority": 2,
+      "added_session": "diagnose-errors-2026-04-27T14:42",
+      "last_seen_session": "diagnose-errors-2026-04-27T14:42"
+    },
+    {
+      "sd_id": "MECH-269b-followup-A",
+      "title": "Staleness-corrected V_s in VsRolloutGate.gate() (alternative to Phase 2 T2)",
+      "ready": true,
+      "status": "proposed",
+      "design_doc": "docs/architecture/v_s_invalidation_runtime.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-269b",
+        "Q-040b",
+        "Q-040 (narrow)"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3 + 080413Z + v3_exq_490a",
+          "experiment_type": "v3_exq_490_mech269b_vs_rollout_gating",
+          "metric": "Phase 1 V_s velocity proxy stays in [0.85, 1.0]; gate hold threshold 0.4 unreachable",
+          "target": "VsRolloutGate.gate() subtracts staleness_accumulator readout from per_stream_vs before threshold comparison: V_s_effective = V_s_proxy - staleness_lookup(stream); held when V_s_effective < threshold. Mirrors the MECH-269 anchor hysteresis pattern (already uses staleness_lookup via use_mech284_hysteresis flag)."
+        }
+      ],
+      "implementation_hint": "Smaller substrate change than the Phase 2 T2 path. Mirrors the existing MECH-269 anchor hysteresis pattern: AnchorSet.tick_hysteresis already consumes staleness_lookup when use_mech284_hysteresis is True. Apply the same lookup at the rollout-gate read site. New flag use_vs_rollout_gating_staleness_lookup (default False) on HippocampalConfig. When ON, VsRolloutGate.gate() and gate_stream() lookup staleness for the stream's parent (scale, segment_id) region (or per-stream aggregate when no region key is in scope) and subtract from V_s before threshold comparison. Requires one of: a per-stream-to-region mapping (cleanest -- align with the per_region_vs partition); or a per-stream max-across-regions aggregate (matches the SD-039 build_goal_payload pattern). Does NOT require Phase 2 T2's per-stream forward-predictor router. Does NOT redefine V_s. Trade-off: the gate now responds to true staleness but only AT staleness-active regions; healthy streams in low-staleness regions still see Phase 1 V_s as the substrate-readiness signal. Composes cleanly with Phase 2 T2 if both land. Behavioural-sufficiency validation EXQ unblocks Q-040b on the narrow reading.",
+      "priority": 1,
+      "added_session": "diagnose-errors-2026-04-27T14:42",
+      "last_seen_session": "diagnose-errors-2026-04-27T14:42"
     }
   ]
 }
