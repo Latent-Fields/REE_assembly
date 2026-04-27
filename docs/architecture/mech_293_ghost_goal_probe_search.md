@@ -1,11 +1,16 @@
 # MECH-293 Waking Ghost-Goal Probe Search
 
-**Status (2026-04-27):** DESIGNED, NOT IMPLEMENTED. Substrate prerequisite SD-039
-landed 2026-04-27; MECH-292 (ranked ghost-goal bank) is the immediate
-prerequisite and is also designed-not-implemented (see `mech_292_ghost_goal_bank.md`).
-This doc specifies the second consumer in the ghost-goal cluster: the
-proposal-generation hook that turns a ranked ghost bank into actual probe
-trajectories.
+**Status (2026-04-27):** IMPLEMENTED 2026-04-27. Substrate prerequisite SD-039
+landed 2026-04-27; MECH-292 (ranked ghost-goal bank) landed 2026-04-27 and is
+the upstream substrate this consumer reads from. V3-EXQ-497 substrate-validation
+diagnostic 5/5 PASS (UC1 module surface; UC2 master-OFF bit-identical; UC3
+ghost branch fires with n_ghost_admitted=4 and mean_goal_match_at_seed=0.998;
+UC4 hypothesis_tag preserved on ghosts and value-flat candidates remain
+default-clean; UC5 budget arithmetic clamp + bank-size cap + min-floor all
+hold). Behavioural validation (V3 full-completion gate, MECH-163 dual systems
+test) lives in V3-EXQ-495 and is gated on this substrate. This doc specifies
+the second consumer in the ghost-goal cluster: the proposal-generation hook
+that turns a ranked ghost bank into actual probe trajectories.
 
 This is the substrate the V3 full-completion gate (V3-EXQ-495) calls as
 the PLANNED-arm proposal hook in MECH-163's dual goal-directed systems
