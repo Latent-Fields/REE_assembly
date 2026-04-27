@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 25224,
   "runner_started_at": "2026-04-27T01:21:38.829643+00:00",
-  "last_updated": "2026-04-27T04:21:33.376812+00:00",
+  "last_updated": "2026-04-27T05:35:55.850055+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-433d",
-    "backlog_id": "",
-    "claim_id": "SD-029",
-    "title": "SD-029 / MECH-256 event-conditioned comparator (EXQ-479 calibrated curriculum)",
-    "description": "",
-    "script": "experiments/v3_exq_433d_sd029_eventcond_comparator.py",
-    "started_at": "2026-04-27T01:21:41.030516+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 10792,
-    "seconds_remaining": 1040,
-    "recent_lines": [
-      "[seed=7] r2=-0.746 attn_ratio=nan snr=6.2 n_agent=0 n_env=20",
-      "Seed 13",
-      "P0 (200 eps) encoder warmup [curriculum ON, 479 params]...",
-      "P1 (200 eps) interventional [curriculum ON, 479 params]...",
-      "Balanced eval [curriculum ON, 479 params + scripted agent-caused]..."
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-433d",
-      "backlog_id": "",
-      "claim_id": "SD-029",
-      "title": "SD-029 / MECH-256 event-conditioned comparator (EXQ-479 calibrated curriculum)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-418e",
       "backlog_id": "",
@@ -6337,6 +6300,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_483a_sd037_broadcast_override_4arm/v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 55863.2
+    },
+    {
+      "queue_id": "V3-EXQ-433d",
+      "backlog_id": "",
+      "claim_id": "SD-029",
+      "title": "SD-029 / MECH-256 event-conditioned comparator (EXQ-479 calibrated curriculum)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL",
+      "started_at": "2026-04-27T01:21:41.030516+00:00",
+      "completed_at": "2026-04-27T05:35:55.823263+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 15254.7
     }
   ]
 }
