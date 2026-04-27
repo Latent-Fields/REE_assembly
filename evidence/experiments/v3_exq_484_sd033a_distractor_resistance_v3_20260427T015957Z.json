@@ -1,0 +1,64 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_484_sd033a_distractor_resistance_v3_20260427T015957Z",
+  "experiment_type": "v3_exq_484_sd033a_distractor_resistance",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-27T01:59:57.456732Z",
+  "experiment_purpose": "behavioural_validation",
+  "claim_ids": [
+    "SD-033a",
+    "MECH-261",
+    "MECH-262"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-033a": "supports",
+    "MECH-261": "supports",
+    "MECH-262": "supports"
+  },
+  "metrics": {
+    "arm_a_external_task": {
+      "mode": "external_task",
+      "test_gate": 1.0,
+      "pre_warmup_norm": 0.6086782813072205,
+      "post_distractor_norm": 0.5997104048728943,
+      "drift": 0.5665538311004639
+    },
+    "arm_b_internal_replay": {
+      "mode": "internal_replay",
+      "test_gate": 0.05,
+      "pre_warmup_norm": 0.6086782813072205,
+      "post_distractor_norm": 0.5807061195373535,
+      "drift": 0.05012129619717598
+    },
+    "arm_c_internal_planning": {
+      "mode": "internal_planning",
+      "test_gate": 1.0,
+      "pre_warmup_norm": 0.6086782813072205,
+      "post_distractor_norm": 0.5997104048728943,
+      "drift": 0.5665538311004639
+    },
+    "task_drift": 0.5665538311004639,
+    "replay_drift": 0.05012129619717598,
+    "planning_drift": 0.5665538311004639,
+    "replay_to_task_drift_ratio": 0.0884669619120443,
+    "C1_task_informative": true,
+    "C2_replay_frozen": true,
+    "C3_planning_active": true,
+    "C4_gates_match_registry": true
+  },
+  "parameters": {
+    "n_warmup_ticks": 50,
+    "n_distractor_ticks": 30,
+    "rule_dim": 16,
+    "delta_dim": 32,
+    "world_dim": 32,
+    "seed": 0,
+    "min_drift": 0.001,
+    "replay_drift_fraction_max": 0.2,
+    "gate_tol": 0.02
+  },
+  "elapsed_seconds": 0.015333175659179688,
+  "notes": "MECH-262 signature (ii) distractor-resistance test. Pinning the SalienceCoordinator operating_mode and reading the real MECH-261 registry-emitted write_gate('sd_033a'), then driving LateralPFCAnalog.update() with continuous distractor input for N ticks. Replay-mode arm should freeze rule_state (gate ~ 0.05); task-mode and planning-mode arms should drift (gate ~ 1.0). The contrast confirms the registry semantics translate end-to-end into the rule-persistence behaviour MECH-262 names. Signatures (i) abstraction and (iv) trained-head emergence remain deferred (head untrained per SD-033a landing decision A2)."
+}
