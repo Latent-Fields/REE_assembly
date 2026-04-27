@@ -1,7 +1,10 @@
 # SD-039 Dual-Trace Anchor Goal-Snapshot Payload
 
-**Status (2026-04-26):** SUBSTRATE-SIDE LANDED. Module-level write-site
-population deferred to a follow-on session.
+**Status (2026-04-27):** IMPLEMENTED. Both the substrate-side surface
+(2026-04-26) and the module-level write-site population layer (2026-04-27)
+have landed. V3-EXQ-494 6/6 PASS confirms the falsifiable signature
+(goal-relevant vs goal-irrelevant dissociation) and dual-trace preservation
+of the populated payload.
 
 ## Why this exists
 
@@ -87,46 +90,68 @@ lives in MECH-292's module.
 `threshold=-1.0` includes every payload-bearing anchor regardless of
 match (diagnostic use).
 
-## What this does NOT land
+### Module-level write-site population (this session, 2026-04-27)
 
-Deferred to a follow-on session:
+`HippocampalModule.build_goal_payload(latent_state, goal_state, residue_field,
+bla_output, current_step, simulation_mode=False)` constructs an
+`AnchorGoalPayload` once per `agent.sense()` tick from the current
+waking-stream signals:
 
-1. **Module-level write-site population.** REEAgent / HippocampalModule
-   should populate `goal_payload` from `GoalState` (`z_goal_snapshot`),
-   `ResidueField` VALENCE_WANTING (`wanting_strength`), and amygdala
-   arousal tags (`arousal_tag`) at every anchor write / remap / invalidate
-   site. The substrate accepts the payload; the population layer is a
-   separate, well-scoped change.
-2. **MECH-292 ranked ghost-goal bank.** Priority computation, bank size
-   bound, decay over time. The `query_by_goal_match` helper is the
-   substrate input; the ranking lives in MECH-292.
-3. **MECH-293 waking ghost-goal probes.** Probe-budget allocation in
+```
+z_goal_snapshot     <- goal_state.z_goal.detach().clone()  (None when inactive)
+wanting_strength    <- ResidueField.evaluate_valence(z_world)[..., VALENCE_WANTING].mean()
+arousal_tag         <- bla_output.arousal_tag              (0.0 when BLA off)
+last_vs             <- mean(per_stream_vs.values())        (None when empty)
+staleness_at_write  <- max(staleness_accumulator.snapshot().values())
+                                                           (None when accumulator off)
+payload_written_step <- agent._step_count                  (anchor_set._tick fallback)
+```
+
+`build_goal_payload` returns `None` (skipping population entirely) when:
+
+- the AnchorSet substrate is disabled,
+- `AnchorSetConfig.use_sd039_anchor_payload` is `False` (master flag OFF),
+- `simulation_mode=True` (MECH-094 gate -- replay / DMN paths must NOT
+  populate payloads from waking signals).
+
+`REEAgent.sense()` calls `build_goal_payload` after the MECH-269 Phase 1
+`update_per_stream_vs` step and forwards the result as `goal_payload=...`
+to both `tick_anchor_set` (the boundary-event-driven write/remap site)
+and `apply_invalidation_broadcasts_to_regions` (the MECH-287
+broadcast-driven mark_inactive site). Hysteresis-fired `mark_inactive`
+inside `tick_hysteresis` does not refresh the payload -- the prior
+payload is preserved as the cause-of-blockage trace per dual-trace
+semantics.
+
+`use_sd039_anchor_payload` is wired through `REEConfig.from_dims(...)`
+and propagated to `config.hippocampal.anchor_set.use_sd039_anchor_payload`,
+so experiments can enable the substrate via the standard factory.
+
+### Items still deferred to follow-on sessions
+
+1. **MECH-292 ranked ghost-goal bank.** Priority computation, bank size
+   bound, decay over time. `query_by_goal_match` is the substrate input;
+   the ranking lives in MECH-292.
+2. **MECH-293 waking ghost-goal probes.** Probe-budget allocation in
    `HippocampalModule.propose_trajectories()` plus MECH-094 guardrail
    (ghost probes do not update the viability map until realized).
-4. **ARC-060 hybrid field+bank architectural framing.** Documentation of
+3. **ARC-060 hybrid field+bank architectural framing.** Documentation of
    the continuous-wanting-field plus discrete-ghost-bank duality.
-5. **Validation EXQ.** The falsifiable test (after reward relocation or
-   path blockage, inactive anchors on the formerly valid approach path
-   retain non-zero `goal_match` against current `z_goal` while unrelated
-   stale anchors do not) is observable only once population is wired.
 
-## Why split substrate from population
-
-Two reasons:
+## Why the substrate landed before the population layer
 
 1. **The substrate is small, well-scoped, and testable in isolation.** The
    contract suite (10 tests) covers the surface completely without
-   touching agent state. A clean substrate landing means MECH-292 /
-   MECH-293 can be designed against a stable API while the population
-   layer is being wired.
+   touching agent state. A clean substrate landing meant MECH-292 /
+   MECH-293 could be designed against a stable API while the population
+   layer was being wired.
 2. **The population layer touches multiple consumer files.** Each anchor
-   write site (boundary events, hysteresis remap, FIFO eviction)
-   currently calls `write_anchor` / `mark_inactive` without the new
-   kwarg. Adding population is a sweep across `agent.py` and
-   `hippocampal/module.py` that should be reviewed as its own unit of
-   work, not folded into the substrate landing.
+   write site (boundary events, broadcast-driven invalidation) calls
+   into `consume_boundary_events` / `mark_inactive`; the population
+   layer (this session) threaded a single shared `goal_payload` argument
+   through both paths.
 
-## Falsifiable test (when population lands)
+## Falsifiable test (V3-EXQ-494, 6/6 PASS 2026-04-27)
 
 From the SD-039 claim entry:
 
@@ -134,12 +159,23 @@ From the SD-039 claim entry:
 > formerly valid approach path should retain non-zero goal-match with
 > the current `z_goal` while unrelated stale anchors do not.
 
-The validation EXQ exercises this directly: write anchors at goal A,
-relocate reward to goal B (or block path), check that the now-inactive
-A-anchors retain non-zero `goal_match` against the original `z_goal_A`
-while goal-irrelevant anchors do not. This is a substrate-landing
-diagnostic; behavioural validation (does ghost-goal querying improve
-recovery from blocked goals?) belongs to MECH-292/293's behavioural EXQ.
+V3-EXQ-494 exercises this with six sub-tests:
+
+- UC1: substrate-side classes / methods accessible (PASS).
+- UC2: master OFF, anchors carry no payload, query returns `[]` (PASS).
+- UC3: master ON, anchors carry populated payload, query returns
+  non-zero `goal_match` (PASS, 7/7 anchors match >= 0.99).
+- UC4: dual-trace preservation -- inactive anchors retain payload
+  across `mark_inactive` (PASS, 6 inactive + 1 active, all carry payload).
+- UC5: goal-relevant vs goal-irrelevant dissociation (PASS): mean
+  `goal_match` on Phase A (goal-inactive) anchors = 0.0; mean on
+  Phase B (goal-active) anchors = 0.998; 3/3 above 0.3.
+- UC6: MECH-094 simulation gate -- replay-path writes do NOT populate
+  payloads from waking signals (PASS).
+
+UC5 is the substrate-level falsifiable signature. Behavioural validation
+(does ghost-goal querying improve recovery from blocked goals?) belongs
+to MECH-292 / MECH-293's behavioural EXQ.
 
 ## Biological grounding
 
