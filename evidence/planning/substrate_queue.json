@@ -1,11 +1,11 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-27T15:03:21Z",
+  "last_updated_utc": "2026-04-27T18:10:00Z",
   "next_implement_substrate": {
-    "sd_id": "SD-037",
-    "selected_utc": "2026-04-25T13:29:45Z",
-    "selected_by_session": "index-rebuild-and-sd037-pick-2026-04-25T13:29",
-    "rationale": "Selected over SD-019a as next /implement-substrate target. SD-037 (broadcast override regulator, orexin-analog) addresses an active known failure (V3-EXQ-471 catatonic lock) flagged by the SD-036/SD-037 lit-pull synthesis 2026-04-22 ('SD-036 alone is unlikely to fix V3-EXQ-471 architecturally'). Has factorial validation pre-specified (4-arm {SD-036, SD-037} x {OFF, ON}), 13-paper lit synthesis at conf~0.78, child cluster MECH-280/281/282 + sleep-axis MECH-286, and 5 pharmacological predictions (PHARM-001..006). SD-019a is gated on Q-036 (controllability evidence) and currently has nothing actively consuming the harm_unpleasantness tensor it would produce; deferred until Q-036 resolves or controllability gate work begins."
+    "sd_id": null,
+    "selected_utc": null,
+    "selected_by_session": "substrate-queue-reconcile-2026-04-27T18:10",
+    "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21)."
   },
   "_schema_notes": {
     "metric_trajectory": {
@@ -580,7 +580,11 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-19T00:00:00Z",
+      "validation_experiment": "V3-EXQ-446",
+      "implemented_session": "cingulate-cluster-2026-04-19"
     },
     {
       "sd_id": "SD-032b",
@@ -594,7 +598,11 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-19T00:00:00Z",
+      "validation_experiment": "V3-EXQ-445",
+      "implemented_session": "cingulate-cluster-2026-04-19"
     },
     {
       "sd_id": "SD-032c",
@@ -608,7 +616,11 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-19T00:00:00Z",
+      "validation_experiment": "V3-EXQ-325b",
+      "implemented_session": "cingulate-cluster-2026-04-19"
     },
     {
       "sd_id": "SD-032d",
@@ -622,7 +634,11 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-19T00:00:00Z",
+      "validation_experiment": "V3-EXQ-447",
+      "implemented_session": "cingulate-cluster-2026-04-19"
     },
     {
       "sd_id": "SD-032e",
@@ -636,7 +652,11 @@
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-19T00:00:00Z",
+      "validation_experiment": "V3-EXQ-448",
+      "implemented_session": "cingulate-cluster-2026-04-19"
     },
     {
       "sd_id": "SD-033a",
@@ -654,14 +674,15 @@
       "priority": 2,
       "added_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
       "last_seen_session": "governance-2026-04-24T08:10",
-      "implemented_session": "implement-sd033a-mech261-consumer-2026-04-20T14",
+      "implemented_session": "implement-substrate-sd033a-2026-04-20",
       "implemented_utc": "2026-04-20T00:00:00Z",
-      "validation_experiment": "V3-EXQ-456"
+      "validation_experiment": "V3-EXQ-456",
+      "implementation_status": "implemented"
     },
     {
       "sd_id": "SD-036",
       "title": "GABAergic regulatory layer: cross-stream exponential decay (z_harm_s, z_harm_a, z_beta) modulated by tonic gaba_tone",
-      "ready": false,
+      "ready": true,
       "design_doc": "docs/architecture/sd_036_gabaergic_decay_regulator.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -681,12 +702,15 @@
       "last_seen_session": "governance-2026-04-24T08:10",
       "status": "implemented",
       "implementation_note_update": "SD-036 marked IMPLEMENTED 2026-04-22 in ree-v3/CLAUDE.md",
-      "implemented_utc": "2026-04-22T00:00:00Z"
+      "implemented_utc": "2026-04-22T00:00:00Z",
+      "implementation_status": "implemented",
+      "validation_experiment": "V3-EXQ-475",
+      "implemented_session": "implement-sd036-mech279-2026-04-22"
     },
     {
       "sd_id": "MECH-269",
       "title": "Per-region verisimilitude V_s landing -- anchor selection cluster (proximal cause of monostrategy lock-in across V3-EXQ-433/445/451/452/454 cluster)",
-      "ready": false,
+      "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -722,7 +746,10 @@
       "implementation_note_update": "MECH-269 marked IMPLEMENTED 2026-04-22 in ree-v3/CLAUDE.md",
       "implemented_utc": "2026-04-22T00:00:00Z",
       "post_implementation_validation_status": "wired_but_inert",
-      "post_implementation_note": "2026-04-25 governance: substrate is wired and accumulator/reset internals fire correctly, but read-side hooks (V_s commit release, freeze-recommit propagation) are dead on this env. Needs investigation of BoundaryEvent rate, anchor-key snapshot scope, or commit-entry capture sites in REEAgent _committed_anchor_keys before re-running unlock-test suite. Status remains implemented but not behaviorally validated."
+      "post_implementation_note": "2026-04-25 governance: substrate is wired and accumulator/reset internals fire correctly, but read-side hooks (V_s commit release, freeze-recommit propagation) are dead on this env. Needs investigation of BoundaryEvent rate, anchor-key snapshot scope, or commit-entry capture sites in REEAgent _committed_anchor_keys before re-running unlock-test suite. Status remains implemented but not behaviorally validated.",
+      "implementation_status": "implemented",
+      "validation_experiment": "V3-EXQ-476",
+      "implemented_session": "implement-mech269-cluster-2026-04-22"
     },
     {
       "sd_id": "SD-019a",
@@ -953,7 +980,7 @@
     {
       "sd_id": "SD-033b",
       "title": "pfc.ofc_analog_outcome_structure",
-      "ready": false,
+      "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [
         "SD-033",
@@ -968,7 +995,11 @@
       "implementation_hint": "Registered pre-implementation. See SD-033 parent.\n",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-26T00:00:00Z",
+      "validation_experiment": "V3-EXQ-485",
+      "implemented_session": "implement-sd033b-2026-04-26"
     },
     {
       "sd_id": "SD-033c",
@@ -1034,7 +1065,7 @@
     {
       "sd_id": "SD-037",
       "title": "broadcast.override_regulator",
-      "ready": false,
+      "ready": true,
       "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -1061,7 +1092,10 @@
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
       "last_seen_session": "governance-2026-04-26T15:39",
-      "implementation_status": "implemented_but_failing_validation"
+      "implementation_status": "implemented_but_failing_validation",
+      "implemented_utc": "2026-04-25T00:00:00Z",
+      "validation_experiment": "V3-EXQ-483",
+      "implemented_session": "implement-sd037-orexin-2026-04-25"
     },
     {
       "sd_id": "SD-038",
@@ -1082,7 +1116,7 @@
     {
       "sd_id": "SD-039",
       "title": "hippocampal.anchor_goal_snapshot_payload",
-      "ready": false,
+      "ready": true,
       "design_doc": "docs/architecture/ghost_goal_search.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -1098,7 +1132,11 @@
       "status": "implemented",
       "validating_runs": [
         "v3_exq_494_sd039_anchor_payload_validation_20260427T094326Z_v3"
-      ]
+      ],
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-27T05:25:00Z",
+      "validation_experiment": "V3-EXQ-494",
+      "implemented_session": "implement-sd039-population-layer-2026-04-27T02:20"
     },
     {
       "sd_id": "SD-016",
@@ -1133,12 +1171,16 @@
       "added_session": "governance-2026-04-25T15:15",
       "last_seen_session": "governance-2026-04-27T14:11",
       "status": "implemented_but_failing_validation",
-      "implementation_note_update": "SD-016 substrate is wired (sd016_enabled=True default-on, writepath_mode flag) but evidence experiment EXQ-418d shows the design v2 cannot meet acceptance thresholds. Needs rethink before promoting to provisional or before re-running dependent SD-017/MECH-152 tests."
+      "implementation_note_update": "SD-016 substrate is wired (sd016_enabled=True default-on, writepath_mode flag) but evidence experiment EXQ-418d shows the design v2 cannot meet acceptance thresholds. Needs rethink before promoting to provisional or before re-running dependent SD-017/MECH-152 tests.",
+      "implementation_status": "implemented_but_failing_validation",
+      "implemented_utc": "2026-04-25T00:00:00Z",
+      "validation_experiment": "V3-EXQ-418e",
+      "implemented_session": "implement-sd016-path1-2026-04-25"
     },
     {
       "sd_id": "MECH-292",
       "title": "Ranked ghost-goal bank (derived view over SD-039 dual-trace anchor pool)",
-      "ready": false,
+      "ready": true,
       "status": "implemented",
       "design_doc": "docs/architecture/mech_292_ghost_goal_bank.md",
       "depends_on_unresolved": [],
@@ -1153,12 +1195,16 @@
       "implementation_hint": "Pure-arithmetic derived view; rank() over inactive+active anchors carrying SD-039 payload; goal_match floor as architectural guard against pure-staleness rumination.",
       "priority": 1,
       "added_session": "governance-2026-04-27T14:11",
-      "last_seen_session": "governance-2026-04-27T14:11"
+      "last_seen_session": "governance-2026-04-27T14:11",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-27T05:42:00Z",
+      "validation_experiment": "V3-EXQ-496",
+      "implemented_session": "implement-substrate-mech292-2026-04-27T05:28"
     },
     {
       "sd_id": "MECH-293",
       "title": "Waking ghost-goal probe search (minority-budget branch in HippocampalModule.propose_trajectories)",
-      "ready": false,
+      "ready": true,
       "status": "implemented",
       "design_doc": "docs/architecture/mech_293_ghost_goal_probe_search.md",
       "depends_on_unresolved": [],
@@ -1173,7 +1219,11 @@
       "implementation_hint": "Pure routing logic; no trainable params; minority budget (default 0.2) ghost branch in propose_trajectories consuming MECH-292.rank(); MECH-094 hypothesis_tag preserved through CEM rollout, stripped at commit.",
       "priority": 1,
       "added_session": "governance-2026-04-27T14:11",
-      "last_seen_session": "governance-2026-04-27T14:11"
+      "last_seen_session": "governance-2026-04-27T14:11",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-04-27T06:22:11Z",
+      "validation_experiment": "V3-EXQ-497",
+      "implemented_session": "implement-substrate-mech293-2026-04-27T05:55"
     },
     {
       "sd_id": "MECH-269b",
@@ -1204,7 +1254,11 @@
       "implementation_hint": "Substrate landed in regulators/vs_rollout_gate.py 2026-04-26. /diagnose-errors 2026-04-27 root-cause: VsRolloutGate hold trigger (V_s < 0.4) is unreachable under typical Phase 1 V_s dynamics. Phase 1 V_s is an identity-prediction proxy (1 - normalized_step_delta) that stays near 0.9-1.0 under aligned latents; reaching 0.4 needs ~9 consecutive ticks of fully misaligned latent (doesn't happen at smoke scale). Architectural mismatch: gate reads velocity-based per_stream_vs but MECH-269b's intent is to gate on staleness-based V_s. The substrate is wired but reads the wrong signal. Two architectural follow-up paths are recorded as separate substrate_queue entries (MECH-269b-followup-A: staleness-corrected V_s in VsRolloutGate.gate; MECH-269b-followup-B: Phase 2 T2 forward-predictor V_s routing). V3-EXQ-490b queued as smoke-only substrate-readiness probe with thresholds raised to 0.85/0.95 to confirm gate-firing precondition (Q-040a) is operational, but Q-040b behavioural sufficiency is gated on one of the two follow-up paths.",
       "priority": 1,
       "added_session": "governance-2026-04-27T14:11",
-      "last_seen_session": "diagnose-errors-2026-04-27T14:42"
+      "last_seen_session": "diagnose-errors-2026-04-27T14:42",
+      "implementation_status": "implemented_but_failing_validation",
+      "implemented_utc": "2026-04-26T18:39:00Z",
+      "validation_experiment": "V3-EXQ-490b",
+      "implemented_session": "implement-mech269b-vs-rollout-gating-2026-04-26"
     },
     {
       "sd_id": "MECH-269b-followup-B",
