@@ -10923,6 +10923,19 @@
     'implemented' (substrate is wired and exercised) but flagged for rethink in
     substrate_queue.json. SD-017 was tagged but non_contributory in this run (sws/rem/shy
     disabled in params -- sleep substrate not under test).
+    V3-EXQ-418e FAIL (2026-04-27, evidence, does_not_support): 4-arm ablation of auxiliary
+    diversification loss path-1 at div_weight=0.5. C1 attn-entropy collapse FAIL on both
+    active arms (A2_div_only=2.7726, A3_writes_plus_div=2.7724 -- both at uniform-distribution
+    ceiling ln(16)=2.7726; the loss does NOT push attention into a sparse regime at this
+    weight). C2 slot-diversity PASS on A2_div_only (3/3 seeds, mean=1.000) but FAIL on
+    A3_writes_plus_div (1/3 seeds, min=0.005 -- bimodal seed pattern when writes are added
+    back). C3 behavioural delta PASS (A3-A0=0.456 > 0.20). C4 A1 replicates 418d FAIL
+    (ablation logic intact). Reading: path-1 div-loss at div_weight=0.5 fails its designed
+    C1 attention-collapse signature; behaviour differentiates (C3) but not via the intended
+    mechanism. SD-016 substrate remains wired; the auxiliary-diversification-loss path is
+    the question under test. Follow-up: queue EXQ-418f weight sweep at 1.0 / 2.0 / 5.0
+    BEFORE pivoting; if higher weights also fail C1, abandon path-1 and pivot to Path 2
+    or Path 3 from the original 3-path proposal.
   functional_restatement: >
     E1's ContextMemory stores 16 associative slots and can in principle retrieve hazard-relevant
     associations when z_world encodes a cue-dense context. But no downstream pathway existed
@@ -15963,6 +15976,32 @@
     arm produces non-zero approach_commit AND non-zero dACC-driven score-bias
     contribution. FAIL = both arms remain at zero approach_commit, indicating
     upstream blocker (point to MECH-295).
+  status_note: |
+    Narrowed in /governance 2026-04-27 after V3-EXQ-490 sub-diagnostic FAILs
+    (c1 gate-firing precondition itself FAILed across both runs and both arms,
+    so c2/c3 cannot be interpreted; both V3-EXQ-490 manifests reclassified
+    non_contributory). The originally-broad question splits into two narrower
+    sub-questions, both gated on /diagnose-errors clearing the c1 gate-firing
+    precondition for V3-EXQ-490:
+
+    Q-040a (precondition / substrate-readiness): Does the symmetric-V_s gate
+      fire at all under the V3-EXQ-490 substrate? PASS = c1_on_total_held > 0
+      across at least 2/3 seeds in the ON_ON arm. Resolution drives whether
+      MECH-269b is interrogable at smoke-scale at all, or requires
+      longer-warmup / different per-stream V_s thresholds / a per-stream
+      override hook that is not yet wired.
+
+    Q-040b (behavioural sufficiency, conditional on Q-040a PASS): Conditional
+      on the gate firing, does MECH-269b produce non-zero approach_commit AND
+      non-zero dACC behavioural-adjustment magnitude on EXQ-395 / EXQ-483
+      conditions? Same factorial as the original Q-040 resolution; PASS =
+      MECH-269b is the missing link; FAIL with Q-040a PASS = MECH-269b is
+      necessary but not sufficient (point at MECH-295 liking-bridge as
+      dominant blocker).
+
+    Q-040 itself remains open at lower confidence; Q-040a and Q-040b can be
+    promoted to candidate-mechanism / candidate-question status if the
+    architectural reading firms up after /diagnose-errors lands.
   location: docs/architecture/v_s_invalidation_runtime.md
 
 # ---------------------------------------------------------------------------
@@ -17614,6 +17653,16 @@
     test remains blocked by V_s monostrategy (cannot generate balanced agent-
     vs-env event distributions when policy is monomodal). Hold at candidate
     pending MECH-269 V_s landing.
+    V3-EXQ-433d FAIL (2026-04-27, evidence -> reclassified non_contributory in
+    /governance 2026-04-27). 4-seed run with EXQ-479 calibrated curriculum.
+    Trial collection per seed: env_caused_hazard=20/20/20/20, agent_caused_hazard
+    =0/0/0/0, hazard_approach=20 each, none=20 each. Same monostrategy phenotype
+    as predecessors EXQ-433/433a/433b/470: monomodal policy zeroes the
+    agent-caused branch. c0 trial-sufficiency gate FAIL 0/4, which short-circuits
+    c1 (forward_r2) and c2 (attenuation) -- the comparator hypothesis is never
+    actually tested. c3 (approach_snr) PASS 4/4. Reclassified non_contributory
+    per-claim on SD-029 + MECH-256; claims hold pending MECH-269/MECH-269b V_s
+    gating landing.
   implementation_note: >
     SD-029 substrate IMPLEMENTED 2026-04-21 via a curriculum-level env
     augmentation. CausalGridWorldV2 now exposes
@@ -17843,6 +17892,9 @@
     SD-029 evidence_quality_note). MECH-256 status unchanged -- per-stream
     instantiations cannot accrue evidence until the policy can produce
     balanced agent-vs-environment event distributions.
+    V3-EXQ-433d 2026-04-27 also reclassified non_contributory (same monomodal
+    phenotype: 0 agent_caused_hazard trials in 4/4 seeds even with EXQ-479
+    calibrated curriculum). Hold pending MECH-269/MECH-269b V_s gating landing.
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: MECH-257
@@ -22666,6 +22718,18 @@
     wired-but-inert failure mode without V_s on E1/E2 rollouts;
     downstream consumers receive stale-but-confident-looking PE) from
     cortex-only-gating null hypotheses.
+    V3-EXQ-490 FAIL x2 (2026-04-27, diagnostic -> reclassified non_contributory
+    in /governance 2026-04-27). Two near-identical FAIL runs of the Q-040
+    factorial (3 seeds each, ON_OFF vs ON_ON arms differing only in
+    use_vs_rollout_gating). Sub-diagnostic outcome: c1 gate-firing
+    precondition itself FAILed (c1_on_total_held = 0, c1_off_total_held = 0
+    across both runs and both arms). With c1 not firing, c2 (approach_commit
+    recovery) and c3 (dACC PE) cannot be interpreted -- the experiment never
+    reaches the question it was designed to answer. Two near-identical FAILs
+    across separate runs is suspicious; flagged for /diagnose-errors to
+    investigate gate-firing precondition (possible substrate gating bug or
+    smoke-scale insufficient warmup). Hold at candidate; substrate validation
+    deferred until /diagnose-errors clears the gate-firing precondition.
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-295

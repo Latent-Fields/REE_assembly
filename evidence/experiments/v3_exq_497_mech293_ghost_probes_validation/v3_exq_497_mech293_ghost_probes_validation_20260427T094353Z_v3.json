@@ -1,0 +1,73 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_497_mech293_ghost_probes_validation_20260427T094353Z_v3",
+  "experiment_type": "v3_exq_497_mech293_ghost_probes_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-27T09:43:53.013979Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-293"
+  ],
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-293": "supports"
+  },
+  "evidence_direction_note": "MECH-293 waking ghost-goal probe search substrate validation. UC1 confirms config flags / methods / Trajectory field exposure. UC2 confirms master-OFF bit-identical (no ghost trajectories, diagnostics empty, hypothesis_tag=False, metadata=None on every candidate). UC3 confirms ON + populated bank produces >=1 ghost trajectory tagged metadata['source']=='mech293_ghost_probe' with diagnostics reporting n_ghost_admitted >= 1 + reason='ok' + max_priority > 0 + mean_goal_match_at_seed > 0. UC4 confirms ghost trajectories carry hypothesis_tag=True + populated metadata dict (anchor_key + ghost_priority + goal_match) and value-flat candidates remain on the dataclass defaults. UC5 confirms budget respected: clamp(round(n*fraction), [min, max]) bounded by bank size in the large-bank arm, bank-size-cap in the small-bank arm, min floor wins over round-down in the fraction=0 arm. Behavioural validation (faster recovery from blocked-goal conditions vs random-probe baseline; lower revisitation of fully incoherent stale regions) is the V3 full-completion gate (V3-EXQ-495), gated on this substrate.",
+  "outcome": "PASS",
+  "elapsed_sec": 7.353012800216675,
+  "metrics": {
+    "UC1_module_importable": {
+      "pass": true,
+      "has_master_flag": true,
+      "has_fraction_field": true,
+      "has_min_field": true,
+      "has_max_field": true,
+      "has_replace_field": true,
+      "master_default_off": true,
+      "has_propose_ghost_seeded": true,
+      "has_mix_value_flat_with_ghost": true,
+      "has_get_last_propose_diagnostics": true,
+      "trajectory_hypothesis_tag_default_false": true,
+      "trajectory_metadata_default_none": true
+    },
+    "UC2_master_off_no_op": {
+      "pass": true,
+      "n_ghost_in_candidates": 0,
+      "diagnostics_empty": true,
+      "all_hypothesis_tag_false": true,
+      "all_metadata_none": true,
+      "n_candidates": 32
+    },
+    "UC3_ghost_branch_fires": {
+      "pass": true,
+      "n_ghost_in_candidates": 4,
+      "n_marked_inactive": 1,
+      "n_inactive_anchors_with_payload": 7,
+      "mech293_n_ghost_admitted": 4,
+      "mech293_reason": "ok",
+      "mech293_max_ghost_priority": 1.6142717656212302,
+      "mech293_mean_goal_match_at_seed": 0.9975130409002304
+    },
+    "UC4_hypothesis_tag_preserved": {
+      "pass": true,
+      "n_ghost": 4,
+      "n_non_ghost": 28,
+      "all_ghost_hypothesis_tagged": true,
+      "all_ghost_metadata_complete": true,
+      "all_non_ghost_default_provenance": true
+    },
+    "UC5_budget_respected": {
+      "pass": true,
+      "arm_a_n_ghost": 2,
+      "arm_a_n_candidates": 8,
+      "arm_a_n_marked_inactive": 1,
+      "arm_a_ok": true,
+      "arm_b_n_ghost": 1,
+      "arm_b_bank_size_proxy": 1,
+      "arm_b_ok": true,
+      "arm_c_n_ghost": 1,
+      "arm_c_ok": true
+    }
+  },
+  "dry_run": false
+}

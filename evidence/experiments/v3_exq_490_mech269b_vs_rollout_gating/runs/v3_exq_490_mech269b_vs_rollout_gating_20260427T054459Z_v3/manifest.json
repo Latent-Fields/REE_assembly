@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_490_mech269b_vs_rollout_gating",
+  "run_id": "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-27T05:44:59Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-269b",
+    "Q-040"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-269b": "non_contributory",
+    "Q-040": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Substrate-readiness diagnostic; c1 gate-firing precondition itself FAILed (0 holds across both ON_OFF / ON_ON arms in all 3 seeds). Sub-diagnostic outcome -- neither MECH-269b nor MECH-295 hypothesis is interrogated. Reclassified non_contributory in /governance 2026-04-27. Flagged for /diagnose-errors to investigate why c1 did not fire (substrate gating bug or smoke-scale insufficient)."
+}

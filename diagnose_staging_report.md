@@ -1,72 +1,79 @@
-# Diagnose-Errors Staging Report
+# Diagnose Staging Report -- 2026-04-27
 
-**Session**: ree-diagnose-queue-2026-04-23T14 / afternoon automated run
-**Generated**: 2026-04-23T14:19:02Z
-**Mode**: STAGING (headless, scheduled task)
-
----
-
-## Summary (2026-04-23 afternoon)
-
-**0 unaddressed errors requiring new fix scripts.**
-
-All ERROR entries in runner_status.json (62 total) were cross-referenced against
-the current queue, completed IDs, and TASK_CLAIMS.json. No new errors since the
-last diagnose run on 2026-04-20. Queue is currently empty (0 items).
-
-### Gap reconciliation
-
-Monolithic runner_status.json is in sync with per-machine files. Gap: 0.
-
-### Error chain analysis
-
-| Queue ID | Status | Notes |
-|---|---|---|
-| V3-EXQ-008 | Architecturally obsolete | SD-003 superseded 2026-04-18; r2/r3 successors ran at time of error |
-| V3-ONBOARD-smoke-EWIN-PC | Infrastructure test | Not a scientific experiment; no fix needed |
-| V3-ONBOARD-smoke-ree-cloud-1 | Infrastructure test | Not a scientific experiment; no fix needed |
-| All other ERRORs | Addressed | Each has completed successor in runner_status |
-
-### New errors since 2026-04-20
-
-None.
+**Session:** afternoon scheduled diagnose-errors (staging mode)
+**Generated UTC:** 2026-04-27T14:20:31Z
+**Status:** **NO ACTIONABLE ERRORS**
 
 ---
 
-## Pending experiment reviews (for user reference)
+## Summary
 
-10 items in pending_review.md (all UNKNOWN due to stale index):
+Three unaddressed ERROR entries surfaced by a successor scan of `runner_status.json`. All three are non-actionable:
 
-| Queue ID | Result | Notes |
-|---|---|---|
-| V3-EXQ-456 | UNKNOWN | Index stale — run build_experiment_indexes.py |
-| V3-EXQ-460 | UNKNOWN | Index stale |
-| V3-EXQ-462 | UNKNOWN | Index stale |
-| V3-EXQ-463 | UNKNOWN | Index stale |
-| V3-EXQ-464 | UNKNOWN | Index stale |
-| V3-EXQ-465 | UNKNOWN | Index stale |
-| V3-EXQ-466 | UNKNOWN | Index stale |
-| V3-EXQ-467 | UNKNOWN | Index stale |
-| V3-EXQ-468 | UNKNOWN | Index stale |
-| V3-EXQ-471 | UNKNOWN | Index stale |
+| Queue ID | When | Class | Disposition |
+|----------|------|-------|-------------|
+| V3-EXQ-449c | 2026-04-24 | Intentional `NotImplementedError` stub | Gates not met (476/445d FAIL) |
+| V3-EXQ-455a | 2026-04-23 | Intentional `NotImplementedError` stub | Gates not met (476 FAIL) |
+| V3-EXQ-008  | 2026-03-17 | Old, already superseded                | Successors `008r2`/`008r3` exist (legacy r-suffix) |
 
-These require human review once index is rebuilt.
+The runner_status reconciliation merged 4 IDs from per-machine files (`V3-EXQ-490a`, `V3-EXQ-494`, `V3-EXQ-496`, `V3-EXQ-497`) into the monolithic `runner_status.json` (now 561 completed entries).
 
 ---
 
-## Active stale claims noted (all > 6h)
+## V3-EXQ-449c (MECH-074b BLA retrieval bias on action selection -- V_s-gated)
 
-| Session | Age | Task |
-|---|---|---|
-| exq397c-diagnosis + queue exq397d | 14.3h | Fix EXQ-397/397c manifests + queue EXQ-397d |
-| sd033-ocd-manifest-hygiene | 15.3h | Fix 24 SD-033 OCD battery manifest hygiene issues |
-| diagnose-errors: V3-EXQ-433c + V3-EXQ-470a | 15.9h | Scripts written (draft); not queued yet |
-| fix-sd016-cue-action-proj | 16.0h | EXQ-449b script written; not queued |
-| governance-cycle-2026-04-22 | 16.5h | Full governance cycle not completed |
+**Root cause:** Intentional placeholder. Script raises `NotImplementedError` at line 115 of `experiments/v3_exq_449c_mech074b_bla_retrieval_bias.py` with the message:
 
-Scripts exist for V3-EXQ-433c, V3-EXQ-470a, V3-EXQ-449b but they are NOT in
-experiment_queue.json. User confirmation needed before queuing.
+> "V3-EXQ-449c full implementation pending: awaiting (a) V3-EXQ-476 PASS, (b) V3-EXQ-445d PASS, and (c) MECH-074b hippocampal consumer wiring landed on SD-035 (retrieval-bias-aware replay path must be added before the bias signal can influence behaviour)."
+
+**Gate status (as of 2026-04-27):**
+- V3-EXQ-476: ERROR. Successors V3-EXQ-476a, V3-EXQ-476b: both FAIL (2026-04-24).
+- V3-EXQ-445d: ERROR. Successor V3-EXQ-445e: FAIL (2026-04-23).
+- MECH-074b consumer wiring on SD-035: not landed.
+
+**Disposition:** Leave in `discussed_experiment_dirs`. Re-queue only after MECH-269 V_s validation passes (currently being explored under MECH-269b in V3-EXQ-490a).
 
 ---
 
-*Structured data: `evidence/planning/diagnose_staging.json`*
+## V3-EXQ-455a (SD-032a salience coordinator behavioural -- V_s-enabled re-run)
+
+**Root cause:** Intentional placeholder. Script raises `NotImplementedError` at line 107 of `experiments/v3_exq_455a_sd032a_salience_with_vs.py` with the message:
+
+> "V3-EXQ-455a full implementation pending: awaiting V3-EXQ-476 cascade gate PASS and MECH-284 Phase 3 consumer landing. Do not run until V_s flags have been confirmed to break the baseline monostrategy lock."
+
+**Gate status:** Same upstream gates as V3-EXQ-449c. Not met.
+
+**Disposition:** Leave in `discussed_experiment_dirs`. Re-queue only after the V_s cascade gate passes.
+
+---
+
+## V3-EXQ-008 (SD-003 Larger World + 3x3 Observation)
+
+**Root cause:** Surfaced as "unaddressed" because the successor scan uses regex `^V3-EXQ-(\d+)([a-z]*)$`, which does not match the legacy `r2`/`r3` suffixes used in March 2026 before the current alphabetic-suffix policy was adopted.
+
+**Successors that already exist:**
+- V3-EXQ-008r2: FAIL, 2026-03-17T18:37
+- V3-EXQ-008r3: FAIL, 2026-03-17T18:49
+
+**Disposition:** Already in `discussed_experiment_dirs` per the 2026-04-27T05:20 diagnose-errors session (TASK_CLAIMS.json). No further action. The SD-003 scientific question is otherwise carried forward by current SD-003 work in the V3 substrate.
+
+---
+
+## Runner status reconciliation
+
+Merged 4 entries from per-machine files into monolithic `runner_status.json`:
+
+- V3-EXQ-490a (ree-cloud-1)
+- V3-EXQ-494 (Mac)
+- V3-EXQ-496 (Mac)
+- V3-EXQ-497 (Mac)
+
+Monolithic `completed` count after merge: 561. No new ERRORs surfaced by the merge.
+
+---
+
+## Awaiting human confirmation
+
+**None.** No diagnoses written; no draft scripts written; no queue edits made. This staging report is informational only.
+
+**Recommended next action:** Continue Step 2 of the scheduled task (queue-experiment skill) to check for substrate-ready proposed experiments.

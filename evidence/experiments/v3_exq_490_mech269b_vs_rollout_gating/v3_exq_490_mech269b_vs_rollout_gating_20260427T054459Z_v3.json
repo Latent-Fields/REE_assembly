@@ -9,12 +9,12 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260427T054459Z",
   "outcome": "FAIL",
-  "evidence_direction": "inconclusive",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-269b": "inconclusive",
-    "Q-040": "inconclusive"
+    "MECH-269b": "non_contributory",
+    "Q-040": "non_contributory"
   },
-  "evidence_direction_note": "MECH-269b symmetric V_s gating substrate-readiness diagnostic. Two arms ON_OFF / ON_ON differ only in use_vs_rollout_gating; both hold broadcast override + dACC + drive modulation + full V_s invalidation circuit ON. C1 = gate fires (substrate wired). C2 = ON arm produces non-zero approach_commit in >=2/3 seeds (unblocks the EXQ-483 wired-but-inert phenotype). C3 = ON arm shows non-zero dACC score-bias magnitude (PE flowing to E3). PASS = C1 AND C2 AND C3. FAIL on C2 / C3 with C1 PASSing -> Q-040 FAIL branch; points evidence at MECH-295 liking-bridge as dominant blocker. Substrate-readiness only; not governance evidence.",
+  "evidence_direction_note": "Substrate-readiness diagnostic; c1 gate-firing precondition itself FAILed (0 holds across both ON_OFF / ON_ON arms in all 3 seeds). Sub-diagnostic outcome -- neither MECH-269b nor MECH-295 hypothesis is interrogated. Reclassified non_contributory in /governance 2026-04-27. Flagged for /diagnose-errors to investigate why c1 did not fire (substrate gating bug or smoke-scale insufficient).",
   "pass_criteria_summary": {
     "c1_pass": false,
     "c1_on_total_held": 0,

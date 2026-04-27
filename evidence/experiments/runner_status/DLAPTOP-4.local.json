@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 25224,
   "runner_started_at": "2026-04-27T01:21:38.829643+00:00",
-  "last_updated": "2026-04-27T09:43:53.156917+00:00",
+  "last_updated": "2026-04-27T14:06:46.655454+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-495",
+    "backlog_id": "",
+    "claim_id": "MECH-163",
+    "title": "MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm",
+    "description": "",
+    "script": "experiments/v3_exq_495_mech163_planned_system_gate.py",
+    "started_at": "2026-04-27T09:43:58.344967+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 15768,
+    "seconds_remaining": 1040,
+    "recent_lines": [
+      "[v3_exq_495] seed=13 paradigm=B_NOVEL_CONTEXT condition=PLANNED",
+      "[v3_exq_495] seed=13 paradigm=B_NOVEL_CONTEXT condition=ABLATED",
+      "[v3_exq_495] seed=23 paradigm=A_DETOUR condition=HABIT",
+      "[v3_exq_495] seed=23 paradigm=A_DETOUR condition=PLANNED",
+      "[v3_exq_495] seed=23 paradigm=A_DETOUR condition=ABLATED"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-495",
@@ -13,7 +39,7 @@
       "title": "MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -6397,5 +6423,6 @@
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 8.3
     }
-  ]
+  ],
+  "draining": true
 }

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_464_mech266_competing_goals
 
-Generated: `2026-04-27T05:42:42.817905Z`
+Generated: `2026-04-27T14:36:12.268182Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

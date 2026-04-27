@@ -1,21 +1,42 @@
 {
   "schema_version": "diagnose_staging/v1",
-  "session_date": "2026-04-23",
-  "generated_utc": "2026-04-23T14:19:02Z",
+  "session_date": "2026-04-27",
+  "generated_utc": "2026-04-27T14:20:31Z",
+  "session_label": "diagnose-errors: staging (afternoon scheduled)",
+  "summary": "No actionable ERROR entries found. Three unaddressed ERRORs in runner_status.json are non-actionable: V3-EXQ-449c and V3-EXQ-455a are intentional NotImplementedError stubs gated on upstream substrate work whose own gating experiments (V3-EXQ-476 / V3-EXQ-445d) FAILed; V3-EXQ-008 was already addressed by V3-EXQ-008r2/r3 successors using the legacy r-suffix naming convention (predates current alphabetic-suffix policy). All three already in review_tracker.discussed_experiment_dirs per the prior diagnose-errors session at 2026-04-27T05:20.",
   "diagnoses": [],
-  "summary": "0 unaddressed errors requiring new fix scripts. Total ERROR entries in runner_status.json: 62. Only V3-EXQ-008 (March 2026) remains flagged as nominally unaddressed by suffix scan, but it is architecturally obsolete (SD-003 superseded 2026-04-18; confirmed in diagnose-325c-2026-04-20T05 session). Onboarding smokes V3-ONBOARD-smoke-EWIN-PC and V3-ONBOARD-smoke-ree-cloud-1 are infrastructure tests, not scientific experiments. No ERROR entries since 2026-04-20. Queue is empty (0 items). All recent error chains resolved.",
-  "runner_status_checked_utc": "2026-04-23T14:19:02Z",
-  "queue_state": "0 items in queue; queue empty",
-  "pending_reviews_noted": [
-    "V3-EXQ-456 UNKNOWN (index stale)",
-    "V3-EXQ-460 UNKNOWN (index stale)",
-    "V3-EXQ-466 UNKNOWN (index stale)",
-    "V3-EXQ-463 UNKNOWN (index stale)",
-    "V3-EXQ-468 UNKNOWN (index stale)",
-    "V3-EXQ-464 UNKNOWN (index stale)",
-    "V3-EXQ-467 UNKNOWN (index stale)",
-    "V3-EXQ-462 UNKNOWN (index stale)",
-    "V3-EXQ-465 UNKNOWN (index stale)",
-    "V3-EXQ-471 UNKNOWN (index stale)"
-  ]
+  "non_actionable_errors_audited": [
+    {
+      "queue_id": "V3-EXQ-449c",
+      "completed_at": "2026-04-24T02:18:02Z",
+      "title": "MECH-074b BLA retrieval bias on action selection -- V_s-gated",
+      "completed_by": "DLAPTOP-4.local",
+      "result_summary": "Non-zero exit code 1 (intentional NotImplementedError stub)",
+      "non_actionable_reason": "Stub experiment that intentionally raises NotImplementedError until prerequisites land. Per its own error message it awaits (a) V3-EXQ-476 PASS, (b) V3-EXQ-445d PASS, and (c) MECH-074b hippocampal consumer wiring landed on SD-035. Status of gates: V3-EXQ-476 ERRORed and successors V3-EXQ-476a/b both FAILed (2026-04-24); V3-EXQ-445d ERRORed and successor V3-EXQ-445e FAILed (2026-04-23). The script cannot be re-implemented until upstream substrate work (MECH-269 V_s validation, MECH-284 Phase 3 consumer) provides a passing gate.",
+      "recommended_disposition": "Leave in discussed_experiment_dirs. Re-queue only after MECH-269 V_s validation passes (currently being explored via MECH-269b in V3-EXQ-490a)."
+    },
+    {
+      "queue_id": "V3-EXQ-455a",
+      "completed_at": "2026-04-23T23:23:46Z",
+      "title": "SD-032a salience coordinator behavioural -- V_s-enabled re-run",
+      "completed_by": "DLAPTOP-4.local",
+      "result_summary": "Non-zero exit code 1 (intentional NotImplementedError stub)",
+      "non_actionable_reason": "Stub experiment that intentionally raises NotImplementedError. Per its own error message it awaits V3-EXQ-476 cascade gate PASS and MECH-284 Phase 3 consumer landing. Same upstream gate as V3-EXQ-449c.",
+      "recommended_disposition": "Leave in discussed_experiment_dirs. Re-queue only after the V_s cascade gate passes."
+    },
+    {
+      "queue_id": "V3-EXQ-008",
+      "completed_at": "2026-03-17T18:09:01Z",
+      "title": "SD-003 Larger World + 3x3 Observation",
+      "result_summary": "Non-zero exit code 1",
+      "non_actionable_reason": "Already addressed by successors V3-EXQ-008r2 (FAIL, 2026-03-17T18:37) and V3-EXQ-008r3 (FAIL, 2026-03-17T18:49). The legacy r-suffix naming convention predates the current alphabetic-suffix policy and is missed by a regex-based successor scan (^V3-EXQ-(\\d+)([a-z]*)$ does not match 'r2'/'r3'). The scientific question (SD-003 self-attribution discriminability) was rolled into the V2 -> V3 transition roadmap and is otherwise carried by current SD-003 work.",
+      "recommended_disposition": "Already in discussed_experiment_dirs (confirmed 2026-04-27T05:20 diagnose-errors session). No further action."
+    }
+  ],
+  "runner_status_reconciliation": {
+    "merged_into_monolithic": ["V3-EXQ-490a", "V3-EXQ-494", "V3-EXQ-496", "V3-EXQ-497"],
+    "monolithic_completed_total_after_merge": 561,
+    "per_machine_files_combined": ["DLAPTOP-4.local.json", "Daniel-PC.json", "EWIN-PC.json", "ree-cloud-1.json", "ree-cloud-2.json"]
+  },
+  "status": "no_action_required"
 }

@@ -1,0 +1,60 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_module_importable": {
+      "pass": true,
+      "has_required_config_fields": true,
+      "has_master_flag": true,
+      "has_nested_cfg": true,
+      "master_default_off": true,
+      "has_rank_method": true,
+      "has_reset_method": true,
+      "has_entry_fields": true,
+      "config_fields": [
+        "default_recoverability_when_unknown",
+        "goal_match_floor",
+        "goal_match_weight",
+        "include_active",
+        "include_inactive",
+        "recoverability_weight",
+        "scale",
+        "staleness_proxy_rate",
+        "staleness_weight",
+        "top_k",
+        "wanting_weight"
+      ]
+    },
+    "UC2_master_off_no_op": {
+      "pass": true,
+      "ghost_goal_bank_is_none": true,
+      "rank_returns_empty": true
+    },
+    "UC3_ranking_fires": {
+      "pass": true,
+      "n_bank_entries": 6,
+      "is_decreasing": true,
+      "n_inactive_anchors": 6,
+      "n_inactive_with_populated_payload": 6,
+      "n_candidates_scanned": 6,
+      "n_admitted": 6,
+      "max_priority": 1.608722988040969,
+      "mean_priority": 1.5720344290754287
+    },
+    "UC4_goal_irrelevant_excluded": {
+      "pass": true,
+      "phase_a_bank_size": 0,
+      "phase_b_bank_size": 2,
+      "phase_a_n_below_floor": 2,
+      "phase_a_n_no_payload": 0,
+      "phase_b_n_admitted": 2,
+      "phase_b_max_priority": 1.5266431984024498,
+      "goal_match_dominant_top_b": true
+    },
+    "UC5_component_breakdown_consistent": {
+      "pass": true,
+      "n_bank_entries": 6,
+      "all_required_keys_present": true,
+      "max_sum_vs_priority_diff": 2.220446049250313e-16
+    }
+  }
+}

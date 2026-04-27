@@ -1,0 +1,58 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_module_importable": {
+      "pass": true,
+      "has_use_sd039_flag": true,
+      "has_anchor_goal_payload_field": true,
+      "has_query_by_goal_match": true,
+      "payload_fields": [
+        "arousal_tag",
+        "last_vs",
+        "payload_written_step",
+        "staleness_at_write",
+        "wanting_strength",
+        "z_goal_snapshot"
+      ]
+    },
+    "UC2_master_off_no_op": {
+      "pass": true,
+      "n_anchors": 3,
+      "n_anchors_with_payload": 0,
+      "n_query_results": 0
+    },
+    "UC3_population_fires": {
+      "pass": true,
+      "n_anchors": 7,
+      "n_with_payload": 7,
+      "n_with_z_goal_snapshot": 7,
+      "n_query_results": 7,
+      "n_non_zero_goal_match": 7,
+      "max_goal_match": 0.99994957447052
+    },
+    "UC4_payload_survives_mark_inactive": {
+      "pass": true,
+      "n_active": 1,
+      "n_inactive": 6,
+      "n_active_with_payload": 1,
+      "n_inactive_with_payload": 6,
+      "n_results_all": 7,
+      "n_results_active_only": 1
+    },
+    "UC5_goal_relevant_vs_irrelevant_dissociation": {
+      "pass": true,
+      "n_anchors_phase_a": 3,
+      "n_anchors_phase_b": 3,
+      "mean_goal_match_phase_a": 0.0,
+      "mean_goal_match_phase_b": 0.9984077413876852,
+      "n_phase_b_above_0p3": 3,
+      "max_goal_match_phase_a": 0.0,
+      "max_goal_match_phase_b": 0.9996696710586548
+    },
+    "UC6_mech094_simulation_gate": {
+      "pass": true,
+      "n_new_anchors_during_replay": 0,
+      "n_new_with_populated_payload": 0
+    }
+  }
+}

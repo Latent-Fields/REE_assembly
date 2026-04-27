@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-04-26T15:39:22Z",
+  "last_review_utc": "2026-04-27T14:11:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -248,7 +248,8 @@
     "V3-EXQ-449c",
     "V3-EXQ-476",
     "V3-EXQ-476a",
-    "V3-EXQ-476b"
+    "V3-EXQ-476b",
+    "V3-EXQ-433d"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2157,9 +2158,34 @@
     "v3_exq_482_sd029_baseline_monostrategy_diagnostic_20260425T101638Z_v3",
     "v3_exq_418d_sd016_writepath_modes_comparison_20260425T141932Z_v3",
     "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3",
-    "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3"
+    "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3",
+    "v3_exq_433d_sd029_eventcond_comparator_20260427T012142Z_v3",
+    "v3_exq_418e_sd016_diversification_loss_20260427T054442Z_v3",
+    "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3",
+    "v3_exq_490_mech269b_vs_rollout_gating_20260427T080413Z_v3",
+    "v3_exq_494_sd039_anchor_payload_validation_20260427T094326Z_v3",
+    "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T053946Z_v3",
+    "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T094339Z_v3",
+    "v3_exq_497_mech293_ghost_probes_validation_20260427T061745Z_v3",
+    "v3_exq_497_mech293_ghost_probes_validation_20260427T094353Z_v3"
   ],
   "discussion_notes": {
+    "2026-04-27T14:11Z_governance": {
+      "session": "governance-2026-04-27T14:11",
+      "summary": "Walked 9 indexed pending + 4 runner-only. PASS cluster (5 runs): V3-EXQ-494 SD-039 + V3-EXQ-496 MECH-292 (x2 Mac+rerun) + V3-EXQ-497 MECH-293 (x2) all substrate-readiness diagnostics; UC1-UC5/6 PASS confirms SD-039 -> MECH-292 -> MECH-293 dependency chain landed cleanly. Claims hold at hold_pending_v3_substrate. FAILs: V3-EXQ-433d SD-029/MECH-256 reclassified non_contributory (same monomodal phenotype as 433/433a/433b/470, c0 trial-sufficiency gate FAIL 0/4 seeds with 0 agent_caused_hazard trials despite EXQ-479 calibrated curriculum); V3-EXQ-418e SD-016 keeps does_not_support on path-1 div_weight=0.5 with status_note flagging 418f weight sweep follow-up; V3-EXQ-490 MECH-269b/Q-040 (x2) reclassified non_contributory (sub-diagnostic outcome -- c1 gate-firing precondition itself FAILed across both runs and both arms; flagged for /diagnose-errors). Q-040 narrowed in status_note: split into Q-040a (precondition -- does symmetric-V_s gate fire under V3-EXQ-490 substrate) and Q-040b (behavioural sufficiency, conditional on Q-040a PASS). Runner-only: V3-EXQ-433d added to discussed_experiment_dirs (duplicate of indexed FAIL); V3-EXQ-484/485/493 NOT marked discussed -- script-level run_id naming bug (run_id ends in raw timestamp instead of _v3 suffix; flat JSONs PASS but sync_v3_results.py skipped them). Flag for /diagnose-errors.",
+      "ids_marked": [
+        "v3_exq_433d_sd029_eventcond_comparator_20260427T012142Z_v3",
+        "v3_exq_418e_sd016_diversification_loss_20260427T054442Z_v3",
+        "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3",
+        "v3_exq_490_mech269b_vs_rollout_gating_20260427T080413Z_v3",
+        "v3_exq_494_sd039_anchor_payload_validation_20260427T094326Z_v3",
+        "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T053946Z_v3",
+        "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T094339Z_v3",
+        "v3_exq_497_mech293_ghost_probes_validation_20260427T061745Z_v3",
+        "v3_exq_497_mech293_ghost_probes_validation_20260427T094353Z_v3",
+        "V3-EXQ-433d"
+      ]
+    },
     "2026-04-26T15:39Z_governance": {
       "session": "governance-2026-04-26T15:39",
       "summary": "Walked 1 indexed pending: V3-EXQ-483a (SD-037 broadcast override 4-arm successor; PASS via substrate-readiness fallback). Substrate confirmed wired (override_signal mean 0.563, PAG release ratio ON_ON/ON_OFF=1.69) but behavioural acceptance still degenerate (approach_commit=0 baseline) -- same wired-but-inert pattern as predecessor V3-EXQ-483 and the V3-EXQ-471/478/480 cluster. Manifest reclassified supports -> non_contributory per-claim (SD-037, MECH-280, MECH-281); claims remain hold_pending_v3_substrate. Predecessor V3-EXQ-483 manifest run-pack copy reclassified non_contributory -> superseded (yesterday's flat JSON edit had not propagated to runs/ subdir). Promotion/demotion agenda: 9 pending_user holds applied (ARC-051, ARC-060, MECH-269b, MECH-291, MECH-292, MECH-293, MECH-294, MECH-295, SD-039 hold_pending_v3_substrate); decision log updated. MECH-294 + MECH-295 received additional governance-flag notes: MECH-294 within-cycle vs cross-cycle binding (Kay 2020 challenge) is the explicit promotion-blocker; MECH-295 strong-vs-weak liking-bridge necessity remains unresolved (weak reading provisional).",

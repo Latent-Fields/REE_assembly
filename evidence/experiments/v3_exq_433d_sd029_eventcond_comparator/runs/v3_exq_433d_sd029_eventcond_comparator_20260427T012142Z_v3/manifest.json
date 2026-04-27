@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_433d_sd029_eventcond_comparator",
+  "run_id": "v3_exq_433d_sd029_eventcond_comparator_20260427T012142Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-27T01:21:42Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-029",
+    "MECH-256"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-029": "non_contributory",
+    "MECH-256": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Same monostrategy phenotype as EXQ-433/433a/433b/470 -- 0 agent_caused_hazard trials across all 4 seeds. c0 trial-sufficiency gate prevents the comparator from being tested. Reclassified non_contributory in /governance 2026-04-27. Hold pending MECH-269/MECH-269b V_s gating landing."
+}

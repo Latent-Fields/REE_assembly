@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-26T15:39:22Z",
+  "last_updated_utc": "2026-04-27T14:11:00Z",
   "next_implement_substrate": {
     "sd_id": "SD-037",
     "selected_utc": "2026-04-25T13:29:45Z",
@@ -1082,7 +1082,7 @@
     {
       "sd_id": "SD-039",
       "title": "hippocampal.anchor_goal_snapshot_payload",
-      "ready": true,
+      "ready": false,
       "design_doc": "docs/architecture/ghost_goal_search.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -1094,7 +1094,11 @@
       "implementation_hint": "Extend `Anchor` in ree-v3/ree_core/hippocampal/anchor_set.py to carry a compact motivational payload at write / remap / mark_inactive: {z_goal_snapshot, wanting_strength, arousal_tag, last_vs, staleness_at_write}. Populate from GoalState, VALENCE_WANTING, and amygdala arousal tags. Falsifiable test: after reward relocation or path blockage, inactive anchors on the formerly valid approach path should retain non-zero goal-match with current z_goal while unrelated stale anchors do not. Literature basis: targeted_review_ghost_goal_search/ (Berridge 1998, Barch 2010, Berkowitz 1989) + MECH-269 / MECH-285 foundation pulls.",
       "priority": 2,
       "added_session": "governance-2026-04-26T15:39",
-      "last_seen_session": "governance-2026-04-26T15:39"
+      "last_seen_session": "governance-2026-04-27T14:11",
+      "status": "implemented",
+      "validating_runs": [
+        "v3_exq_494_sd039_anchor_payload_validation_20260427T094326Z_v3"
+      ]
     },
     {
       "sd_id": "SD-016",
@@ -1116,14 +1120,84 @@
           "experiment_type": "v3_exq_418d_sd016_writepath_modes_comparison",
           "metric": "C1 attention entropy mean ~2.75-2.76 across all 3 active arms (off/train_only/sense_only/both) vs threshold 2.5 (target <2.5); C3 slot diversity mean 0.349 best (A2_sense_only) vs threshold 0.5 (only 1/3 seeds passes); C2 routing PASS",
           "target": "attn_entropy_mean < 2.5 AND slot_diversity_mean >= 0.5 in >=2/3 seeds for at least one writepath_mode"
+        },
+        {
+          "run_id": "v3_exq_418e_sd016_diversification_loss_20260427T054442Z_v3",
+          "experiment_type": "v3_exq_418e_sd016_diversification_loss",
+          "metric": "C1 attn-entropy collapse FAIL on both A2_div_only=2.7726 and A3_writes_plus_div=2.7724 (both at uniform-distribution ceiling ln(16)=2.7726)",
+          "target": "attn_entropy_mean < 2.65 on at least one active arm; queue 418f weight sweep at 1.0/2.0/5.0 before pivot"
         }
       ],
       "implementation_hint": "Part A (key_proj.bias=False) + Part B (writepath_mode flag with train_only/sense_only/both) -- the design doc v2 substrate -- is insufficient. None of the active write modes restore content-conditioned attention or slot differentiation under matched training. Deeper rework required: (a) cue_action_proj consumer-side rebuild, (b) attention-head architecture change, or (c) supervised-target shape correction. Production tie-break default A1_train_only is NOT empirically grounded.",
       "priority": 1,
       "added_session": "governance-2026-04-25T15:15",
-      "last_seen_session": "governance-2026-04-25T15:15",
+      "last_seen_session": "governance-2026-04-27T14:11",
       "status": "implemented_but_failing_validation",
       "implementation_note_update": "SD-016 substrate is wired (sd016_enabled=True default-on, writepath_mode flag) but evidence experiment EXQ-418d shows the design v2 cannot meet acceptance thresholds. Needs rethink before promoting to provisional or before re-running dependent SD-017/MECH-152 tests."
+    },
+    {
+      "sd_id": "MECH-292",
+      "title": "Ranked ghost-goal bank (derived view over SD-039 dual-trace anchor pool)",
+      "ready": false,
+      "status": "implemented",
+      "design_doc": "docs/architecture/mech_292_ghost_goal_bank.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-293"
+      ],
+      "failure_record": [],
+      "validating_runs": [
+        "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T053946Z_v3",
+        "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T094339Z_v3"
+      ],
+      "implementation_hint": "Pure-arithmetic derived view; rank() over inactive+active anchors carrying SD-039 payload; goal_match floor as architectural guard against pure-staleness rumination.",
+      "priority": 1,
+      "added_session": "governance-2026-04-27T14:11",
+      "last_seen_session": "governance-2026-04-27T14:11"
+    },
+    {
+      "sd_id": "MECH-293",
+      "title": "Waking ghost-goal probe search (minority-budget branch in HippocampalModule.propose_trajectories)",
+      "ready": false,
+      "status": "implemented",
+      "design_doc": "docs/architecture/mech_293_ghost_goal_probe_search.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-163 (V3-EXQ-495 V3 full-completion gate)"
+      ],
+      "failure_record": [],
+      "validating_runs": [
+        "v3_exq_497_mech293_ghost_probes_validation_20260427T061745Z_v3",
+        "v3_exq_497_mech293_ghost_probes_validation_20260427T094353Z_v3"
+      ],
+      "implementation_hint": "Pure routing logic; no trainable params; minority budget (default 0.2) ghost branch in propose_trajectories consuming MECH-292.rank(); MECH-094 hypothesis_tag preserved through CEM rollout, stripped at commit.",
+      "priority": 1,
+      "added_session": "governance-2026-04-27T14:11",
+      "last_seen_session": "governance-2026-04-27T14:11"
+    },
+    {
+      "sd_id": "MECH-269b",
+      "title": "Symmetric V_s gating on E1 sensory predictor and E2 forward models",
+      "ready": true,
+      "status": "implemented_but_failing_validation",
+      "design_doc": "docs/architecture/mech_269b_vs_rollout_gating.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "Q-040",
+        "SD-032b (potentially)"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3 + 080413Z",
+          "experiment_type": "v3_exq_490_mech269b_vs_rollout_gating",
+          "metric": "c1 gate-firing precondition (c1_on_total_held=0 across all arms and seeds)",
+          "target": "c1_on_total_held > 0 in >=2/3 seeds in ON_ON arm"
+        }
+      ],
+      "implementation_hint": "Substrate landed in regulators/vs_rollout_gate.py; V3-EXQ-490 sub-diagnostic FAIL on c1 (gate not firing). Flagged for /diagnose-errors -- likely substrate gating bug or smoke-scale insufficient warmup.",
+      "priority": 1,
+      "added_session": "governance-2026-04-27T14:11",
+      "last_seen_session": "governance-2026-04-27T14:11"
     }
   ]
 }

@@ -1,0 +1,57 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_module_importable": {
+      "pass": true,
+      "has_master_flag": true,
+      "has_fraction_field": true,
+      "has_min_field": true,
+      "has_max_field": true,
+      "has_replace_field": true,
+      "master_default_off": true,
+      "has_propose_ghost_seeded": true,
+      "has_mix_value_flat_with_ghost": true,
+      "has_get_last_propose_diagnostics": true,
+      "trajectory_hypothesis_tag_default_false": true,
+      "trajectory_metadata_default_none": true
+    },
+    "UC2_master_off_no_op": {
+      "pass": true,
+      "n_ghost_in_candidates": 0,
+      "diagnostics_empty": true,
+      "all_hypothesis_tag_false": true,
+      "all_metadata_none": true,
+      "n_candidates": 32
+    },
+    "UC3_ghost_branch_fires": {
+      "pass": true,
+      "n_ghost_in_candidates": 4,
+      "n_marked_inactive": 1,
+      "n_inactive_anchors_with_payload": 7,
+      "mech293_n_ghost_admitted": 4,
+      "mech293_reason": "ok",
+      "mech293_max_ghost_priority": 1.6142717656212302,
+      "mech293_mean_goal_match_at_seed": 0.9975130409002304
+    },
+    "UC4_hypothesis_tag_preserved": {
+      "pass": true,
+      "n_ghost": 4,
+      "n_non_ghost": 28,
+      "all_ghost_hypothesis_tagged": true,
+      "all_ghost_metadata_complete": true,
+      "all_non_ghost_default_provenance": true
+    },
+    "UC5_budget_respected": {
+      "pass": true,
+      "arm_a_n_ghost": 2,
+      "arm_a_n_candidates": 8,
+      "arm_a_n_marked_inactive": 1,
+      "arm_a_ok": true,
+      "arm_b_n_ghost": 1,
+      "arm_b_bank_size_proxy": 1,
+      "arm_b_ok": true,
+      "arm_c_n_ghost": 1,
+      "arm_c_ok": true
+    }
+  }
+}
