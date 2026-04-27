@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_176_arc036_valence_dimension_probe
 
-Generated: `2026-04-27T01:51:27.634135Z`
+Generated: `2026-04-27T04:17:58.726847Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

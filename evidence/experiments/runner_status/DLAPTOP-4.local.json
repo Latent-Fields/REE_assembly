@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 25224,
   "runner_started_at": "2026-04-27T01:21:38.829643+00:00",
-  "last_updated": "2026-04-27T01:59:11.729208+00:00",
+  "last_updated": "2026-04-27T04:21:33.376812+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-433d",
@@ -20,13 +20,14 @@
       "episodes_total": 130,
       "overall_pct": 0.0
     },
-    "seconds_elapsed": 2251,
+    "seconds_elapsed": 10792,
     "seconds_remaining": 1040,
     "recent_lines": [
-      "/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_433d_sd029_eventcond_comparator.py:488: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
-      "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
-      "Seed 42",
-      "P0 (200 eps) encoder warmup [curriculum ON, 479 params]..."
+      "[seed=7] r2=-0.746 attn_ratio=nan snr=6.2 n_agent=0 n_env=20",
+      "Seed 13",
+      "P0 (200 eps) encoder warmup [curriculum ON, 479 params]...",
+      "P1 (200 eps) interventional [curriculum ON, 479 params]...",
+      "Balanced eval [curriculum ON, 479 params + scripted agent-caused]..."
     ],
     "ree_version": "v3"
   },
