@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-04-27T18:10:00Z",
+  "last_updated_utc": "2026-04-27T18:20:00Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1309,6 +1309,515 @@
       "priority": 1,
       "added_session": "diagnose-errors-2026-04-27T14:42",
       "last_seen_session": "diagnose-errors-2026-04-27T14:42"
+    },
+    {
+      "sd_id": "SD-034",
+      "title": "Governance closure operator -- five-part 'done' token at rule-completion",
+      "ready": true,
+      "design_doc": "evidence/planning/sd033_governance_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-033 cluster",
+        "MECH-090 release semantics",
+        "MECH-260 targeted No-Go"
+      ],
+      "failure_record": [],
+      "implementation_hint": "ClosureOperator coordinates five sub-signals at rule_state completion: (a) MECH-090 beta_gate.release(); (b) MECH-260 dacc.inject_nogo(action_class) targeted recency suppression; (c) ResidueField.discharge_domain (multiplicative decay with 1e-6 floor preserving 'cannot be erased'); (d) SalienceCoordinator update_signal('closure_event') re-bias toward internal_planning; (e) MECH-268 dacc.reset_episode_pe(). Mode-conditioning gate is the falsifiability predicate. Module: ree_core/governance/closure_operator.py. Master flag use_closure_operator (default False). Requires use_lateral_pfc_analog + use_dacc.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-sd034-closure-operator-2026-04-20",
+      "implemented_utc": "2026-04-20T00:00:00Z",
+      "validation_experiment": "V3-EXQ-460 + V3-EXQ-466",
+      "metric_trajectory": {
+        "primary_metric": "closure_signature_co_occurrence",
+        "primary_metric_description": "Five-part closure signature (beta release + targeted No-Go + residue discharge + mode relaxation + PE reset) co-occurs at rule_state completion. Falsifiable: if MECH-090/260/094 tuning alone produces the signature without the operator, SD-034 is over-specification.",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-460 + V3-EXQ-466 sub-tests PASS (substrate-readiness diagnostics)",
+        "observations": [
+          {
+            "run_id": "v3_exq_460_sd034_verified_but_not_released_v3_20260421T202347Z (+ T180858Z replicate)",
+            "experiment_type": "v3_exq_460_sd034_verified_but_not_released",
+            "date_utc": "2026-04-21",
+            "substrate_state": "SD-034 closure operator landed 2026-04-20",
+            "metric_value": "PASS x2",
+            "metric_notes": "V3-EXQ-460 6 sub-tests PASS x2 (backward compat, wiring, beta release, No-Go, pe reset, mode conditioning). V3-EXQ-466 5 sub-tests PASS x2 (residue discharge near attenuation, far spared, invariant preserved, end-to-end, distant-z spares). Behavioural variants with full E3 task loop + tolerance-band completion env are deferred -- depend on phased rule_state training and an env variant not yet on any roadmap item."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "SD-035",
+      "title": "Amygdala analogue -- BLA + CeA peer modules between z_harm_a and cingulate/hippocampus",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_035_amygdala_analog.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-046",
+        "MECH-074a",
+        "MECH-074b",
+        "MECH-074c",
+        "MECH-074d",
+        "Q-036"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Two peer non-trainable arithmetic substrates mirroring biological BLA/CeA division. BLAAnalog (slow/content): MECH-074a inverted-U arousal-dependent encoding_gain on hippocampal write strength; MECH-074b content-selective per-trace retrieval_bias; MECH-074d Moita-2004 attribution-gated remap_signal. CeAAnalog (fast/scalar): MECH-046 mode_prior log-odds bias to SalienceCoordinator; MECH-074c fast_prime candidate-prior pulse with cortical_confirmation hold. Modules: ree_core/amygdala/{bla,cea}.py. Master flag use_amygdala_analog (default False). Promoted to provisional 2026-04-22, stable 2026-04-24.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-sd035-amygdala-2026-04-21",
+      "implemented_utc": "2026-04-21T00:00:00Z",
+      "validation_experiment": "V3-EXQ-473 + V3-EXQ-474",
+      "metric_trajectory": {
+        "primary_metric": "bla_cea_activation_signature",
+        "primary_metric_description": "BLA encoding_gain follows inverted-U (1.0 at rest, ~2.5 at peak arousal); CeA mode_prior + fast_prime fire above fast_route_threshold under threat. SD-035 promoted candidate -> provisional 2026-04-22 (V3-EXQ-473/474 substrate-readiness PASS x2), provisional -> stable 2026-04-24 with 3 supporting lit entries (Everitt 2003, Ciocchi 2010, Parkinson 2000) lit_conf 0.828.",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-473 + V3-EXQ-474 substrate-readiness PASS x2",
+        "observations": [
+          {
+            "run_id": "v3_exq_473 + v3_exq_474 (substrate-readiness pair)",
+            "experiment_type": "v3_exq_473_sd035_amygdala_substrate_readiness + v3_exq_474_sd035_amygdala_validation",
+            "date_utc": "2026-04-22",
+            "substrate_state": "SD-035 amygdala BLA+CeA peer modules landed 2026-04-21",
+            "metric_value": "PASS x2",
+            "metric_notes": "Activation smoke confirmed: CeA mode_prior 0->0.3 under synthetic threat; CeA fast_prime 0->0.225; BLA encoding_gain 1.0->2.5 at synthetic arousal peak; BLA remap_signal fires on PE spike when attribution candidates supplied. MECH-074b retrieval_bias hippocampal-consumer wiring deferred (substrate produces signal but HippocampalModule does not yet read)."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-266",
+      "title": "Asymmetric per-mode hysteresis (Schmitt-trigger rails on SalienceCoordinator)",
+      "ready": true,
+      "design_doc": "evidence/planning/sd033_governance_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-032a hysteresis",
+        "OCD/depression behavioural mapping"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Per-mode enter_thresholds and exit_thresholds dicts on SalienceCoordinatorConfig. Trigger requires salience_aggregate > enter_threshold AND operating_mode[current] < exit_threshold AND argmax != current. Empty dicts reduce to legacy MECH-259 symmetric. Stuck-in-mode (OCD axis) reproducible at exit=0.05; under-binding (depression axis) at lower enter_threshold. Setters: set_enter_threshold, set_exit_threshold, set_hysteresis_ratio.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech266-hysteresis-2026-04-21",
+      "implemented_utc": "2026-04-21T00:00:00Z",
+      "validation_experiment": "V3-EXQ-464 + V3-EXQ-467",
+      "metric_trajectory": {
+        "primary_metric": "asymmetric_switch_signature",
+        "primary_metric_description": "Per-mode enter/exit threshold separation produces switch-cost asymmetry (over-binding signature on exit_threshold near 0; under-binding signature on lower enter_threshold). Symmetric baseline reduces to MECH-259 legacy.",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-464 + V3-EXQ-467 sub-tests smoke-PASS",
+        "observations": [
+          {
+            "run_id": "v3_exq_464 (EXP-0160 competing goals) + v3_exq_467 (EXP-0163 mode stickiness)",
+            "experiment_type": "v3_exq_464_competing_goals + v3_exq_467_mode_stickiness",
+            "date_utc": "2026-04-21",
+            "substrate_state": "MECH-266 asymmetric hysteresis landed 2026-04-21",
+            "metric_value": "smoke-PASS all sub-tests",
+            "metric_notes": "V3-EXQ-464 5 sub-tests + V3-EXQ-467 5-arm parametric sweep (r in [0.10, 0.50, 1.00, 1.50, 2.00]) all smoke-PASS. Full behavioural runs (switch-cost asymmetry, goal-completion dose-response) deferred to EXQ-464b/467b when CausalGridWorldV2 dual simultaneously active resource-cue extension lands."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-279",
+      "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_036_gabaergic_decay_regulator.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-036 freeze coupling",
+        "catatonic lock-in pharmacology prediction"
+      ],
+      "failure_record": [],
+      "implementation_hint": "PAGFreezeGate emits committed-freeze: duration_above_threshold counter on z_harm_a; freeze_commit when (z_harm_a * duration) > theta_freeze (default 2.0); exit_threshold = theta_freeze * gaba_tone (SD-036 GABAergic decay gates BOTH entry and exit). Action constraint: select_action() replaces emitted action with no-op one-hot when freeze_active. Module: ree_core/pag/freeze_gate.py. Master flag use_pag_freeze_gate (default False). Architectural prediction: GABA agonists treat freeze catatonia (clinical observation as architectural consequence).",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-sd036-mech279-2026-04-22",
+      "implemented_utc": "2026-04-22T00:00:00Z",
+      "validation_experiment": "V3-EXQ-475",
+      "metric_trajectory": {
+        "primary_metric": "freeze_commit_release_signature",
+        "primary_metric_description": "Freeze gate fires on z_harm_a*duration > theta; exit when z_harm_a < theta*gaba_tone; SD-037 broadcast_override scales exit_threshold via alpha_override (orexin escape-from-freeze).",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-475 (combined SD-036 + MECH-279 substrate-readiness)",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "v3_exq_475_sd036_mech279_substrate_landing",
+            "date_utc": "2026-04-22",
+            "substrate_state": "MECH-279 PAG freeze gate + SD-036 GABAergic decay landed 2026-04-22",
+            "metric_value": null,
+            "metric_notes": "Substrate-readiness landing diagnostic. Under default theta_freeze=2.0 the gate is silent on EXQ-471 dynamics by design (matched re-run of EXQ-471 with use_gabaergic_decay + use_pag_freeze_gate ON; not a supersede). End-to-end behavioural validation arrives via SD-037 catatonic-lock factorial (V3-EXQ-483)."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-284",
+      "title": "Region-indexed staleness accumulator -- Phase 3 of V_s invalidation runtime",
+      "ready": true,
+      "design_doc": "docs/architecture/v_s_invalidation_runtime.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-269 online hysteresis",
+        "MECH-285 offline replay priority"
+      ],
+      "failure_record": [],
+      "implementation_hint": "StalenessAccumulator integrates MECH-287 BroadcastEvents against active MECH-269 anchor set with attribution_mode in {equal, stream_overlap}; per-tick leak_factor (default 0.995); staleness_clip 1.0. MECH-269 online hysteresis swap: when use_mech284_hysteresis=True, AnchorSet.tick_hysteresis receives staleness_lookup callable; V_s_anchor = V_s(r) - staleness_lookup(anchor_key). Module: ree_core/hippocampal/staleness_accumulator.py.",
+      "priority": 1,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech284-phase3-2026-04-24",
+      "implemented_utc": "2026-04-24T00:00:00Z",
+      "validation_experiment": "V3-EXQ-478",
+      "metric_trajectory": {
+        "primary_metric": "staleness_integration_and_hysteresis_swap",
+        "primary_metric_description": "Phase 3 diagnostic: ARM1 confirms broadcast integration with leak; ARM2 confirms staleness-driven hysteresis fires anchor inactivation on threshold crossing.",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-478 substrate-readiness diagnostic PASS",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "v3_exq_478_mech284_phase3_diagnostic",
+            "date_utc": "2026-04-24",
+            "substrate_state": "MECH-284 staleness accumulator + MECH-269 online hysteresis swap landed 2026-04-24",
+            "metric_value": "PASS",
+            "metric_notes": "ARM1 (use_staleness_accumulator=True, use_mech284_hysteresis=False): two anchors integrate equal-credit BroadcastEvent strength=1.0 -> 0.4975 each (0.5 * leak 0.995). ARM2 (both ON): hysteresis_k=3 with staleness=0.9 each tick fires mark_inactive on tick 3. 91/91 preflight + contracts PASS with flag OFF. Unblocks combined-cluster validations V3-EXQ-445d / 449c / 455a / 476/475 re-run."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-287",
+      "title": "Invalidation trigger -- Phase 2(iv) of V_s runtime (BoundaryEvent subscriber)",
+      "ready": true,
+      "design_doc": "docs/architecture/v_s_invalidation_runtime.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-284 staleness accumulator",
+        "MECH-269 anchor reset"
+      ],
+      "failure_record": [],
+      "implementation_hint": "InvalidationTrigger subscribes to MECH-288 BoundaryEvents and re-emits as graded BroadcastEvent (broadcast_strength = posterior * gain, NO binary thresholding). Phasic/tonic guardrail: rolling-mean over tonic_window past-tick aggregated posteriors; if estimate > tonic_threshold, current tick's phasic broadcast is suppressed (Aston-Jones & Cohen 2005, Clewett 2025 failure signature 2). Architectural commitment (V_s lit-pull verdict 3 option-c): trigger is a subscriber, NOT an independent comparator -- biological CA1/CA3 mismatch comparator collapses to subscription on MECH-288 boundary queue. Module: ree_core/regulators/invalidation_trigger.py.",
+      "priority": 1,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech287-phase2-iv-2026-04-22",
+      "implemented_utc": "2026-04-22T00:00:00Z",
+      "validation_experiment": "tests/contracts/test_mech_287_invalidation_trigger.py (5 contracts)",
+      "metric_trajectory": {
+        "primary_metric": "graded_broadcast_with_tonic_guardrail",
+        "primary_metric_description": "Trigger re-emits graded posterior as BroadcastEvent; tonic guardrail suppresses next phasic under sustained high-activity period; verdict-3 dissociation: with event_segmenter lesioned, trigger never fires regardless of internal state.",
+        "direction": "higher_is_better",
+        "target": "5/5 C1-C5 contracts PASS; 70/70 contracts + 7/7 preflight with flag OFF",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "test_mech_287_invalidation_trigger contracts",
+            "date_utc": "2026-04-22",
+            "substrate_state": "MECH-287 invalidation trigger landed 2026-04-22",
+            "metric_value": "5/5 C1-C5 PASS",
+            "metric_notes": "C1 backward-compat (None when off); C2 BoundaryEvent->BroadcastEvent strength=posterior*gain; C3 graded across [0.01..1.0] no binary threshold; C4 tonic guardrail suppress + reopen after tonic_window+1 quiet ticks; C5 verdict-3 dissociation (no segmenter -> no broadcast). End-to-end behavioural validation lives in V3-EXQ-476 combined cluster."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-288",
+      "title": "Event segmenter -- Phase 2 of V_s runtime (hierarchical outer.inner BoundaryEvents)",
+      "ready": true,
+      "design_doc": "docs/architecture/v_s_invalidation_runtime.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-287 broadcast trigger",
+        "MECH-269 anchor sets"
+      ],
+      "failure_record": [],
+      "implementation_hint": "EventSegmenter emits BoundaryEvent objects with nested outer.inner segment IDs at event-scale transitions. Canonical two-scale: fast=pe_threshold over (z_world,z_self) tau=1 min_seg=2; slow=bocpd_gaussian over (z_goal,) hazard=1/40 tau=40 min_seg=15. BOCPD via Adams & MacKay 2007 with Welford online variance + top-k pruning + underflow fallback. Hierarchical rule: slow forces outer+=1, inner=0 and suppresses same-tick fast event. Module: ree_core/hippocampal/event_segmenter.py.",
+      "priority": 1,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech288-phase2-2026-04-22",
+      "implemented_utc": "2026-04-22T00:00:00Z",
+      "validation_experiment": "tests/contracts/test_mech_288_event_segmenter.py (7 contracts)",
+      "metric_trajectory": {
+        "primary_metric": "boundary_emission_correctness",
+        "primary_metric_description": "Fast pe_threshold and slow bocpd_gaussian fire at correct z-score / posterior thresholds; hierarchical outer.inner correctness; min_segment_length suppression; force_boundary bypass.",
+        "direction": "higher_is_better",
+        "target": "7/7 C1-C7 contracts PASS; 65/65 contracts + 7/7 preflight with flag OFF",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "test_mech_288_event_segmenter contracts",
+            "date_utc": "2026-04-22",
+            "substrate_state": "MECH-288 event segmenter landed 2026-04-22",
+            "metric_value": "7/7 C1-C7 PASS",
+            "metric_notes": "C1 backward-compat; C2 pe_threshold silent on baseline + fires on 10x sustained spike; C3 bocpd silent on stationary + fires on 10x regime shift; C4 hierarchical outer.inner correctness; C5 force_boundary bypasses min_segment_length; C6 BoundaryEvent payload invariants; C7 min_segment_length suppression. Phase 3 consumer wiring (anchor_set + invalidation_trigger) consumes the queue."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-272",
+      "title": "Sleep routing gate -- state-conditioned channel weights across SWS/REM/WAKING",
+      "ready": true,
+      "design_doc": "docs/architecture/sleep_aggregation_cluster.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-275 aggregator probe channel",
+        "MECH-273 self-model writeback"
+      ],
+      "failure_record": [],
+      "implementation_hint": "RoutingGate flips {anchor_channel, probe_channel} across SLEEP_ENTRY (SWS row), PHASE_SWITCH (REM row), and WAKING per the design-doc table. SleepLoopManager calls route() on each replay draw; mech272_* diagnostics surfaced on SleepCycleState.last_metrics. Module: ree_core/sleep/routing_gate.py. Master flag use_mech272_routing (default False) + 6 sub-knobs.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-sleep-cluster-phase-c-2026-04-25",
+      "implemented_utc": "2026-04-25T00:00:00Z",
+      "validation_experiment": "tests/contracts/test_sleep_phase_c_routing.py (10 contracts)",
+      "metric_trajectory": {
+        "primary_metric": "phase_dependent_channel_weights",
+        "primary_metric_description": "Channel weights flip correctly across SWS/REM/WAKING phases; backward-compat with use_mech285_sampler ON + use_mech272_routing OFF preserved.",
+        "direction": "higher_is_better",
+        "target": "10/10 Phase C contracts + 7/7 preflight + 123/123 full contracts PASS",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "test_sleep_phase_c_routing contracts",
+            "date_utc": "2026-04-25",
+            "substrate_state": "Sleep aggregation cluster Phase C (MECH-272) landed 2026-04-25",
+            "metric_value": "10/10 Phase C + 123/123 full contracts PASS",
+            "metric_notes": "Bit-identical waking with all flags OFF. No downstream consumer wiring yet -- HippocampalRouter / E1 ContextMemory consumer / aggregator land in Phases D-E (MECH-275, MECH-273)."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-275",
+      "title": "Bayesian aggregator -- Phase D of sleep cluster (per-domain per-region Gaussian posteriors)",
+      "ready": true,
+      "design_doc": "docs/architecture/sleep_aggregation_cluster.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-273 self-model writeback consumer"
+      ],
+      "failure_record": [],
+      "implementation_hint": "BayesianAggregator: per-domain per-region Gaussian posteriors over residuals; conjugate mean+variance update gated by RoutedEvent.probe_channel * probe_gain (probe<=0 skipped, counted as mech275_n_skipped_zero_probe); snapshot+decay contract; place-domain default with (scale, segment_id) region key matching MECH-284. SleepLoopManager._run_cycle: SLEEP_ENTRY freezes evidence_snapshot; SWS routed draws update; PHASE_SWITCH snapshot() BEFORE REM routing; REM re-route loop applies same update. Module: ree_core/sleep/bayesian_aggregator.py.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-sleep-cluster-phase-d-2026-04-25",
+      "implemented_utc": "2026-04-25T00:00:00Z",
+      "validation_experiment": "tests/contracts/test_sleep_phase_d_aggregator.py (10 contracts)",
+      "metric_trajectory": {
+        "primary_metric": "probe_gated_posterior_update",
+        "primary_metric_description": "Posteriors update only when RoutedEvent.probe_channel * probe_gain > 0; snapshot+decay contract preserves SWS-only posteriors at PHASE_SWITCH; bit-identical OFF.",
+        "direction": "higher_is_better",
+        "target": "10/10 + 38/38 sleep phases A-D + 133/133 contracts + 7/7 preflight PASS",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "test_sleep_phase_d_aggregator contracts",
+            "date_utc": "2026-04-25",
+            "substrate_state": "Sleep aggregation cluster Phase D (MECH-275) landed 2026-04-25",
+            "metric_value": "10/10 Phase D + 133/133 full contracts PASS",
+            "metric_notes": "MECH-094 enforced via call-site scoping (aggregator only invoked from _run_cycle, never from waking path). NO downstream writeback yet -- Phase E / MECH-273 wires the offline gradient pass."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-273",
+      "title": "Self-model writeback -- Phase E of sleep cluster (offline gradient pass on E2_harm_s)",
+      "ready": true,
+      "design_doc": "docs/architecture/sleep_aggregation_cluster.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-003 offline causal_sig refinement"
+      ],
+      "failure_record": [],
+      "implementation_hint": "SelfModelAggregator subclasses MECH-275 BayesianAggregator specialised on SD-003 causal_sig posterior. offline_gradient_pass(e2_harm_s, replayed_regions, n_steps, use_snapshot=True) reads from last_snapshot; constructs synthetic (z_harm_s zeros, action one-hot round-robin) batch; trains via Adam at waking_lr * offline_lr_scale for n_steps bounded MSE steps. MECH-094 exception scoped: optimiser local to e2_harm_s.parameters() only. NEW API: StalenessAccumulator.partial_decay(replayed_regions, decay_factor=0.5). Module: ree_core/sleep/self_model_aggregator.py.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-sleep-cluster-phase-e-2026-04-25",
+      "implemented_utc": "2026-04-25T00:00:00Z",
+      "validation_experiment": "tests/contracts/test_sleep_phase_e_self_model.py (10 contracts)",
+      "metric_trajectory": {
+        "primary_metric": "offline_gradient_pass_correctness",
+        "primary_metric_description": "WRITEBACK phase reads SWS-only frozen posterior, runs n_steps bounded gradient pass on E2_harm_s, partial-decays staleness on replayed regions only.",
+        "direction": "higher_is_better",
+        "target": "10/10 Phase E + 150/150 (143 contracts + 7 preflight) PASS",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "test_sleep_phase_e_self_model contracts",
+            "date_utc": "2026-04-25",
+            "substrate_state": "Sleep aggregation cluster Phase E (MECH-273) landed 2026-04-25",
+            "metric_value": "10/10 Phase E + 150/150 full PASS",
+            "metric_notes": "Bit-identical OFF guarantee holds. SHY normalisation (MECH-120) explicitly out of V3 scope."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-285",
+      "title": "Sleep replay sampler -- Phase B of sleep cluster (staleness-priority anchor draws)",
+      "ready": true,
+      "design_doc": "docs/architecture/sleep_aggregation_cluster.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-272 routing gate",
+        "MECH-275 aggregator"
+      ],
+      "failure_record": [],
+      "implementation_hint": "SleepReplaySampler at SLEEP_ENTRY freezes StalenessAccumulator.snapshot(), draws N seeds from AnchorSet.all_with_dual_trace() (active + inactive, Bouton 2004 dual-trace) with softmax(staleness/temperature) priority. Stateless within cycle; uniform-fallback when no accumulator (mech285_allow_uniform_fallback=True default). Module: ree_core/sleep/replay_sampler.py. Master flag use_mech285_sampler (default False) + 4 sub-knobs.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-sleep-cluster-phase-b-2026-04-25",
+      "implemented_utc": "2026-04-25T00:00:00Z",
+      "validation_experiment": "tests/contracts/test_sleep_phase_b_sampler.py (10 contracts)",
+      "metric_trajectory": {
+        "primary_metric": "staleness_priority_sampling",
+        "primary_metric_description": "Sampler draws from dual-trace pool with softmax(staleness/temp); uniform-fallback when accumulator absent; Phase B is no-op consumer (draws land in metrics only).",
+        "direction": "higher_is_better",
+        "target": "10/10 Phase B + 113/113 contracts + 7/7 preflight PASS",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "test_sleep_phase_b_sampler contracts",
+            "date_utc": "2026-04-25",
+            "substrate_state": "Sleep aggregation cluster Phase B (MECH-285) landed 2026-04-25",
+            "metric_value": "10/10 Phase B + 113/113 full PASS",
+            "metric_notes": "Phases C-E wire routing/aggregator/writeback consumers. Added AnchorSet.all_with_dual_trace() alias."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-290",
+      "title": "Backward trajectory credit sweep -- reverse replay at goal endpoint",
+      "ready": true,
+      "design_doc": "ree-v3/CLAUDE.md (MECH-290 section)",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-014 VALENCE_WANTING write paths",
+        "MECH-105 hippocampal-betagate coupling"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Foster & Wilson 2006: reverse replay fires at reward endpoint during waking, concurrent with dopamine; credit propagates backward from goal to trajectory start. record_committed_trajectory(traj) at BetaGate elevation stores executed trajectory in _committed_trajectory_buffer (distinct from _exploration_buffer). backward_credit_sweep(outcome_quality) on BetaGate release sweeps backward; credit = outcome_quality * gamma^(T-1-t); ResidueField.update_valence(z_world_t, VALENCE_WANTING, credit). No-op when outcome_quality < backward_sweep_min_quality (default 0.6). Module: ree_core/hippocampal/module.py extension.",
+      "priority": 2,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech290-backward-sweep-2026-04-24",
+      "implemented_utc": "2026-04-24T00:00:00Z",
+      "validation_experiment": "smoke C1-C7 PASS + agent boot end-to-end",
+      "metric_trajectory": {
+        "primary_metric": "backward_credit_propagation",
+        "primary_metric_description": "Backward credit sweep at hippocampal completion produces decaying VALENCE_WANTING credit along committed trajectory states; quality gate suppresses no-op runs.",
+        "direction": "higher_is_better",
+        "target": "smoke C1-C7 PASS + agent boot end-to-end PASS 2026-04-24",
+        "observations": [
+          {
+            "run_id": null,
+            "experiment_type": "smoke_mech290_backward_sweep",
+            "date_utc": "2026-04-24",
+            "substrate_state": "MECH-290 backward credit sweep landed 2026-04-24",
+            "metric_value": "C1-C7 smoke PASS",
+            "metric_notes": "Buffer management, sweep arithmetic, flag OFF no-op, valence write all PASS. Behavioural validation queued post-V3-EXQ-476a (SD-038 anti-recency sequenced after)."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-295",
+      "title": "Drive -> liking-stream -> approach cue bridge (weak reading)",
+      "ready": true,
+      "design_doc": "docs/architecture/mech_295_drive_liking_approach_bridge.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "EXQ-471 catatonic-lock factorial diagnosis (Q-040)"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Wires the missing link between SD-012 drive amplification, SD-014/SD-015 liking-stream substrate, and E3/BG action selection. Two integration sites: (a) update_z_goal() writes anticipatory liking pulse to VALENCE_LIKING at the GOAL location (NOT current z_world; distinct from update_liking() consummatory) gated on drive*z_goal_norm; (b) select_action() reads per-candidate goal_proximity, computes drive*proximity, negates (E3 lower-is-better), composes additively with dacc_score_bias before e3.select(). WEAK reading commitment: cue-side gain is function of drive * goal_proximity, not drive * residue.liking. Severed-bridge arm (cue gain=0) is the falsifiable test. Module: ree_core/regulators/mech295_liking_bridge.py.",
+      "priority": 1,
+      "added_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech295-bridge-2026-04-26T16:40",
+      "implemented_utc": "2026-04-26T19:48:32Z",
+      "validation_experiment": "V3-EXQ-493",
+      "metric_trajectory": {
+        "primary_metric": "anticipatory_liking_and_approach_cue_bias",
+        "primary_metric_description": "Bridge fires anticipatory VALENCE_LIKING pulse at z_goal location; per-candidate goal_proximity drives negative score_bias (favours approach). Severed-bridge collapse (cue_gain=0) is the falsifiable signature for weak-necessity reading.",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-493 6/6 PASS",
+        "observations": [
+          {
+            "run_id": "v3_exq_493_mech295_liking_bridge_validation",
+            "experiment_type": "v3_exq_493_mech295_liking_bridge_validation",
+            "date_utc": "2026-04-27",
+            "substrate_state": "MECH-295 weak-reading bridge landed 2026-04-26 (rebrand: weak reading provisional per claims.yaml)",
+            "metric_value": "6/6 PASS",
+            "metric_notes": "UC1 module-importable; UC2 master-OFF no-op; UC3 30-tick env loop write fires; UC4 cue side produces monotone-negative bias; UC5 SEVERED-BRIDGE COLLAPSE (cue gain=0 produces zero bias even at elevated drive + write intact); UC6 MECH-094 simulation gate. Behavioural EXQ-483-style approach_commit recovery deferred to combined-cluster successor after V3-EXQ-490 lands. Q-040 factorial: V3-EXQ-490b distinguishes MECH-269b vs MECH-295 as dominant cause."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
     }
   ]
 }
