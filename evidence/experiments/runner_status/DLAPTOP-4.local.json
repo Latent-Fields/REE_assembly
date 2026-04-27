@@ -2,32 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 25224,
   "runner_started_at": "2026-04-27T01:21:38.829643+00:00",
-  "last_updated": "2026-04-27T05:35:55.850055+00:00",
+  "last_updated": "2026-04-27T05:44:49.707287+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-418e",
-      "backlog_id": "",
-      "claim_id": "SD-016",
-      "title": "SD-016 Path 1 diversification loss 4-arm (auxiliary symmetry-breaking pressure)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-484",
-      "backlog_id": "",
-      "claim_id": "SD-033a",
-      "title": "SD-033a distractor-resistance under MECH-261 internal_replay gate (3-arm)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-485",
       "backlog_id": "",
@@ -6314,6 +6292,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 15254.7
+    },
+    {
+      "queue_id": "V3-EXQ-418e",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 Path 1 diversification loss 4-arm (auxiliary symmetry-breaking pressure)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[summary] C1=False C2=False C3=True C4=True -> outcome=FAIL | verdict: FAIL | Outcome: FAIL",
+      "started_at": "2026-04-27T05:36:00.069592+00:00",
+      "completed_at": "2026-04-27T05:44:43.958829+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 523.9
+    },
+    {
+      "queue_id": "V3-EXQ-484",
+      "backlog_id": "",
+      "claim_id": "SD-033a",
+      "title": "SD-033a distractor-resistance under MECH-261 internal_replay gate (3-arm)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "result: PASS",
+      "started_at": "2026-04-27T05:44:47.661014+00:00",
+      "completed_at": "2026-04-27T05:44:49.706463+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_484_sd033a_distractor_resistance_v3_20260427T054449Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2.0
     }
   ]
 }
