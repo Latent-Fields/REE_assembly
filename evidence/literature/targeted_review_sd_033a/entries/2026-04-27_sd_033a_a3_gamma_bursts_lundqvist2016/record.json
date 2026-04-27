@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-27_sd_033a_a3_gamma_bursts_lundqvist2016",
+  "timestamp_utc": "2026-04-27T15:45:20Z",
+  "claim_ids_tested": ["SD-033a", "MECH-262"],
+  "source": {
+    "title": "Gamma and Beta Bursts Underlie Working Memory.",
+    "authors": ["Lundqvist M", "Rose J", "Herman P", "Brincat SL", "Buschman TJ", "Miller EK"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.02.028",
+    "url": "https://doi.org/10.1016/j.neuron.2016.02.028"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct primate PFC LFP + multi-unit recording during a working memory task. Authors (Lundqvist, Buschman, Miller at MIT Picower) show that PFC working memory is NOT sustained continuous spiking but rather brief, discrete bursts of narrow-band gamma (45-100 Hz) that vary in time and frequency, accompanying encoding and re-activation of remembered items. Beta oscillations (20-35 Hz) occur in brief bursts and reflect a default state interrupted by encoding/decoding -- they may gate access to and prevent sensory interference with working memory. For SD-033a A3 (persistence dynamics: gate-modulated EMA vs recurrent activity vs synaptic-hold), this is the strongest empirical challenge to the recurrent-spiking-persistence alternative: working memory representations are reactivated discretely, not held continuously. The implication for SD-033a is two-edged: (1) the 'continuously-active recurrent GRU' alternative is biologically suspect, and (2) the 'decay and refresh' functional character of an EMA is closer to the burst-and-refresh dynamic Lundqvist documents than continuous spiking is. However, the EMA does not capture the gamma/beta gating semantics, which Lundqvist argues are central. Confidence held at 0.78 because source quality is high (Neuron, primate electrophysiology, large sample) but the paper is one side of a still-contested empirical debate (Constantinidis et al. 2018 directly disputes the interpretation; see partner entry).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If subsequent reanalysis or replication shows that the gamma bursts Lundqvist et al. report are an artefact of LFP sampling or trial alignment rather than a genuine working-memory mechanism, the empirical foundation for the discrete-burst alternative collapses and the recurrent-spiking-persistence view (Constantinidis et al. 2018) prevails. The dispute remains active.",
+    "The paper studies single-item working memory representations, not rule-selective persistence. Rule maintenance may use different dynamics from item memoranda. SD-033a's rule_state is conceptually closer to a maintained policy than a maintained item, so transfer from item-memory bursts to rule-bias persistence is non-trivial.",
+    "The gamma/beta gating mechanism Lundqvist proposes is more structured than SD-033a's EMA. The EMA captures 'decay and refresh' but not the explicit gamma-burst gating semantics; if those gating semantics turn out to be necessary for distractor-resistance (MECH-262 signature ii), the SD-033a EMA is an over-coarse abstraction.",
+    "Beta bursts in this paper reflect a 'default state' interrupted by encoding/decoding, which is conceptually adjacent to but not identical to the SalienceCoordinator write_gate('sd_033a') in V3. Mapping the biological gating onto V3's mode-conditioned gate is reasonable but not directly tested."
+  ],
+  "tags": ["sd_033a", "mech_262", "lateral_pfc", "persistence", "working_memory", "gamma_bursts", "beta_bursts", "a3_alternative", "discrete_dynamics"],
+  "mapping": {
+    "source_claim_statement": "In primate PFC during a working memory task, LFP and spiking show brief discrete bursts of narrow-band gamma (45-100 Hz) accompanying encoding and reactivation of remembered items, and beta bursts (20-35 Hz) reflecting a default state interrupted by encoding/decoding. Working memory does not appear to be supported by continuous sustained spiking; it is supported by discrete oscillatory dynamics with episodic gamma bursts.",
+    "ree_translation": "SD-033a's A3 question concerns the persistence dynamics of rule_state. The landing choice is a gate-modulated EMA (continuous decay, refresh on gate). Two alternatives: continuous recurrent activity (GRU/LSTM) and explicit synaptic-hold / short-term plasticity (the Mongillo 2008 entry already in this review). Lundqvist et al. provide direct empirical evidence against the continuous-recurrent-spiking alternative for working memory persistence. Working memory representations are reactivated in discrete bursts, gated by beta/gamma oscillations, not held by continuous spiking. This evidence is two-edged for the SD-033a EMA. POSITIVELY: the EMA's 'decay between writes, refresh on write' functional character resembles the discrete burst-and-refresh dynamic Lundqvist documents far more than continuous recurrent spiking does. NEGATIVELY: Lundqvist's mechanism is gated by oscillatory phase in a way the EMA does not capture; the gamma/beta dynamics may be functionally necessary (e.g. for MECH-262 distractor-resistance) and not just a biophysical implementation detail. Composing with Mongillo 2008 (silent synaptic facilitation): both papers favour an episodic / discrete persistence model over continuous spiking, but they disagree on the substrate (synaptic facilitation vs gamma-burst spiking). SD-033a's EMA is a coarse abstraction over both -- it captures decay-and-refresh without committing to the underlying biophysics.",
+    "mapping_caveat": "Lundqvist's findings are working memory for items, not rules. Rule maintenance may recruit different mechanisms; the transfer is plausible but not tested. The paper is also one side of an active dispute (see Constantinidis et al. 2018 partner entry); a balanced reading requires both. The EMA's mapping to gamma-burst-and-refresh is functional / abstract -- it captures the shape of the dynamic (decay between activations, refresh on activation) without modelling the gating mechanism (which Lundqvist argues is central). If MECH-262 signature (ii) distractor-resistance turns out to require the explicit oscillatory gating, the EMA is insufficient.",
+    "source_context": "Neuron 2016, primate electrophysiology study, two macaques performing a working memory task, simultaneous PFC LFP and spiking recordings, MIT Picower Institute (Lundqvist, Buschman, Miller labs)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Neuron, primate electrophysiology, large multi-unit sample). Mapping fidelity moderate -- supports 'decay and refresh' over 'continuous spiking' (favours EMA over GRU) but introduces gamma-burst gating semantics the EMA does not capture. Transfer risk moderate-high because the dispute with Constantinidis 2018 is active -- some of the empirical strength of the discrete-burst view may be revised under further analysis."
+  }
+}

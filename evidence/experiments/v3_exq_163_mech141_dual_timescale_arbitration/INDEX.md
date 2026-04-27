@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_163_mech141_dual_timescale_arbitration
 
-Generated: `2026-04-27T15:35:16.766821Z`
+Generated: `2026-04-27T15:49:46.619091Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

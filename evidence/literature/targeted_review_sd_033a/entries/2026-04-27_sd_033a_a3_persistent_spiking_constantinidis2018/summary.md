@@ -1,0 +1,33 @@
+# Constantinidis et al. 2018 — Persistent Spiking Activity Underlies Working Memory (SD-033a A3 reading)
+
+[DOI: 10.1523/JNEUROSCI.2486-17.2018](https://doi.org/10.1523/JNEUROSCI.2486-17.2018). Sourced via PubMed (PMID 30089641), PMC6083457. Constantinidis, Funahashi, Lee, Murray, Qi, Wang, and Arnsten — leading proponents of the persistent-activity view, paired in the *Journal of Neuroscience* Dual Perspectives slot against Lundqvist, Herman, and Miller's competing "Delay Activity, Yes! Persistent Activity? Maybe Not" (PMID 30089640). The two papers are deliberately published as the two sides of an active empirical dispute.
+
+## What the paper argues
+
+The argument is summarised in the title: persistent spiking activity generated in PFC during the delay period of working memory tasks represents the information being held in memory, and the persistent activity is *necessary and sufficient* to determine working memory performance. Alternative models that depend only on rhythmicity of discharges (the gamma-burst hypothesis, our partner entry on Lundqvist 2016) or exclusively on short-term synaptic plasticity (the silent-synaptic-facilitation model in our existing Mongillo 2008 entry) are, in their view, inconsistent with the neurophysiological data.
+
+The seven authors marshal the foundational primate-electrophysiology literature — Funahashi, Bruce, and Goldman-Rakic on oculomotor delayed response; the Yale dlPFC tradition under Arnsten; Daeyeol Lee's adaptive-task work; Constantinidis's own visual working-memory experiments — to argue that delay-period spiking carries the held content, that the held content can be decoded from spiking alone, and that purging-or-silencing manipulations degrade working-memory performance in proportion to how much they disrupt the persistent spiking. Models without a persistent-spiking substrate, on their reading, fail to capture how PFC actually holds information across delays.
+
+## How this maps onto SD-033a's A3 question
+
+The SD-033a landing (gate-modulated EMA) sits between the two A3 alternatives the design doc names. The Mongillo 2008 entry already in this review supports the silent-synaptic-hold alternative against continuous spiking. The Lundqvist 2016 partner entry just added supports the discrete-burst alternative against continuous spiking. Constantinidis et al. push back against *both* of those alternatives in favour of continuous persistent spiking — the GRU/LSTM-style continuous-activity variant the SD-033a EMA is meant to coarsely abstract.
+
+The implication for SD-033a is doubled-edged.
+
+**On one side**, the GRU-recurrent alternative the SD-033a EMA approximates is, on this paper's reading, the empirically supported substrate. The SD-033a EMA's lack of any continuous-activity component is a known biological mismatch under the persistent-activity view. A V4 reconsideration that wants to honour the Constantinidis-Funahashi-Arnsten reading should implement rule_state with continuous activation, not with decay-between-writes.
+
+**On the other side**, the EMA is itself a coarse abstraction of decay-and-refresh dynamics that is functionally closer to synaptic-plasticity models (Mongillo 2008) than to continuous spiking. Constantinidis et al. argue that synaptic-plasticity-only models fail to capture necessary aspects of the data. The EMA inherits some of that critique: it has a "decay between writes" character that mirrors how synaptic facilitation decays without refresh, and lacks any continuous-spiking component. If their critique is right, the EMA is not biologically grounded under either competing reading — it's a pragmatic V3 simplification, not a model of biology.
+
+The honest summary: A3 is not adjudicated at the empirical level. The Lundqvist 2016 and Constantinidis 2018 papers are deliberately published as a dual-perspective dispute precisely because the field has not yet resolved it. SD-033a's EMA is a coarse abstraction that does not match either side cleanly. For V3, this is acceptable — the EMA captures the functional shape (decay + refresh under gate) that is required for MECH-262 signature ii (distractor-resistance) to be testable end-to-end, which V3-EXQ-484 has now confirmed empirically. For any V4 reconsideration, the dispute has to be engaged: the architecture should implement a continuous-activity variant, a silent-plasticity variant, and a discrete-burst variant, and behavioural signatures should be used to discriminate.
+
+## Limitations and caveats
+
+This is an opinion / dual-perspective rebuttal authored by leading figures of the persistent-activity school, not a primary empirical paper. It summarises and synthesises a body of work (much of it from the same authors' labs) and argues for one interpretation. The dispute with Lundqvist, Herman & Miller in the parallel 2018 JNeurosci paper is active.
+
+Most of the empirical evidence cited is from spatial working memory tasks — oculomotor delayed-response, the Funahashi–Bruce–Goldman-Rakic line of work, Constantinidis's visual working-memory experiments. Rule-selective persistence may use different dynamics from spatial item memory. SD-033a's rule_state is conceptually closer to a held policy than a held item, and the transfer from spatial-WM persistent spiking to rule-bias projection dynamics requires architectural inference beyond what the paper directly tests.
+
+The paper does not adjudicate between continuous-activity variants within the persistent-activity family — GRU-style continuous activity, attractor-network dynamics, ring-attractor population codes are all compatible with its argument. SD-033a A3's GRU alternative is therefore underdetermined even if Constantinidis et al. are correct that some form of continuous activity is the right substrate.
+
+## Confidence
+
+`0.74`. Source quality is high — JNeurosci, multi-author opinion paper from leading lab heads in the persistent-activity school. Held below Lundqvist 2016 (0.88) because this is an opinion / dual-perspective rebuttal rather than primary data. Mapping fidelity is moderate — argues against the EMA's nearest substrate analogue (synaptic plasticity) but supports the GRU alternative the EMA is meant to coarsely abstract; the EMA is therefore at odds with both readings of A3. Transfer risk is moderate-to-high because the dispute is active and SD-033a A3 cannot be settled from this paper alone. Evidence direction is `mixed` to capture the dual-edged reading: supports one A3 alternative (GRU) while critiquing the EMA's nearest functional analogue (synaptic plasticity). Composes with Mongillo 2008 + Lundqvist 2016 to give a balanced unresolved A3 picture; the right SD-033a A3 disposition is to treat the EMA as a pragmatic V3 landing and revisit at V4.

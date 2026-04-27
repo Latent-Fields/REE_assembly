@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-27T15:35:16.766821Z`
+Generated: `2026-04-27T15:49:46.619091Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -210,7 +210,7 @@ Generated: `2026-04-27T15:35:16.766821Z`
 | `targeted_review_sd_032a` | [`2026-04-20_sd_032a_triple_network_menon2011`](targeted_review_sd_032a/entries/2026-04-20_sd_032a_triple_network_menon2011/record.json) | 5 | [`summary`](targeted_review_sd_032a/entries/2026-04-20_sd_032a_triple_network_menon2011/summary.md) |
 | `targeted_review_sd_032c` | [`2026-04-25_sd_032c_salience_network_switch_menon2010`](targeted_review_sd_032c/entries/2026-04-25_sd_032c_salience_network_switch_menon2010/record.json) | 3 | [`summary`](targeted_review_sd_032c/entries/2026-04-25_sd_032c_salience_network_switch_menon2010/summary.md) |
 | `targeted_review_sd_032d` | [`2026-04-20_sd_032d_pcc_macaque_default_hayden2009`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/record.json) | 4 | [`summary`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/summary.md) |
-| `targeted_review_sd_033a` | [`2026-04-27_sd_033a_a2_dynamic_emergence_mansouri2020`](targeted_review_sd_033a/entries/2026-04-27_sd_033a_a2_dynamic_emergence_mansouri2020/record.json) | 6 | [`summary`](targeted_review_sd_033a/entries/2026-04-27_sd_033a_a2_dynamic_emergence_mansouri2020/summary.md) |
+| `targeted_review_sd_033a` | [`2026-04-27_sd_033a_a3_persistent_spiking_constantinidis2018`](targeted_review_sd_033a/entries/2026-04-27_sd_033a_a3_persistent_spiking_constantinidis2018/record.json) | 8 | [`summary`](targeted_review_sd_033a/entries/2026-04-27_sd_033a_a3_persistent_spiking_constantinidis2018/summary.md) |
 | `targeted_review_sd_034` | [`2026-04-24_sd_034_strategy_switch_rich2009`](targeted_review_sd_034/entries/2026-04-24_sd_034_strategy_switch_rich2009/record.json) | 4 | [`summary`](targeted_review_sd_034/entries/2026-04-24_sd_034_strategy_switch_rich2009/summary.md) |
 | `targeted_review_sd_035` | [`2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/record.json) | 3 | [`summary`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/summary.md) |
 | `targeted_review_sd_037_orexin_kinetics` | [`2026-04-26_mech_280_orexin_panic_pag_johnson2012`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-26_mech_280_orexin_panic_pag_johnson2012/record.json) | 5 | [`summary`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-26_mech_280_orexin_panic_pag_johnson2012/summary.md) |

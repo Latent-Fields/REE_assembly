@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_033a",
+  "entry_id": "2026-04-27_sd_033a_a3_persistent_spiking_constantinidis2018",
+  "timestamp_utc": "2026-04-27T15:45:20Z",
+  "claim_ids_tested": ["SD-033a", "MECH-262"],
+  "source": {
+    "title": "Persistent Spiking Activity Underlies Working Memory.",
+    "authors": ["Constantinidis C", "Funahashi S", "Lee D", "Murray JD", "Qi XL", "Wang M", "Arnsten AFT"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2486-17.2018",
+    "url": "https://doi.org/10.1523/JNEUROSCI.2486-17.2018"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Multi-author Journal of Neuroscience opinion / dual-perspective response paper authored by leading proponents of the persistent-activity view (Constantinidis at Wake Forest, Funahashi at Kyoto -- the Funahashi-Bruce-Goldman-Rakic 1989 line of work, Daeyeol Lee at Yale, Arnsten at Yale). Direct rebuttal to Lundqvist, Herman, & Miller's competing 'Delay Activity, Yes! Persistent Activity? Maybe Not' published in the same JNeurosci dual-perspective slot. The argument: persistent spiking activity generated in PFC during delay periods of working memory tasks represents information about stimuli held in memory and determines working memory performance. Alternative models depending only on rhythmicity of discharges (Lundqvist 2016) or exclusively on short-term synaptic plasticity (Mongillo 2008) are inconsistent with the neurophysiological data. For SD-033a A3: this paper argues that the recurrent-activity-persistence alternative is well-supported by primary neurophysiology and that the discrete-burst (Lundqvist 2016, partner entry) and synaptic-hold (Mongillo 2008, existing entry) alternatives both fail to capture necessary aspects of the data. This pushes the SD-033a review toward the GRU-recurrent alternative and away from the EMA landing, which functionally resembles short-term plasticity more than continuous spiking. Confidence held at 0.74 because the paper is an opinion / dual-perspective rebuttal (vs primary empirical evidence) and the seven authors are aligned with one side of an active dispute -- balanced reading requires both this and Lundqvist 2016.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the dual-perspective debate (Constantinidis et al. 2018 vs Lundqvist, Herman, Miller 2018) is later adjudicated decisively in favour of the discrete-burst interpretation (e.g. by direct causal manipulation showing that brief silencing of spiking does not collapse working memory), this paper's argument that 'persistent spiking is necessary and sufficient' weakens to 'persistent spiking is one component'. SD-033a A3 should not over-commit to the recurrent-spiking alternative on this paper alone.",
+    "The paper argues against short-term-plasticity-only models. SD-033a's EMA is functionally closer to short-term plasticity (silent synaptic facilitation in Mongillo 2008) than to continuous recurrent spiking. If Constantinidis et al. are correct that pure synaptic-plasticity models fail, the EMA inherits some of that critique -- it captures decay-and-refresh but lacks any continuous-spiking component.",
+    "Most of the cited evidence is from spatial working memory tasks (Funahashi-Bruce-Goldman-Rakic-style oculomotor delay tasks). Rule-selective persistence may use different dynamics than spatial item memory. The transfer from spatial-WM persistent spiking to rule-bias projection dynamics requires architectural inference beyond what the paper directly tests.",
+    "The seven-author lineup represents the persistent-spiking school of thought. The paper is a forceful summary of one position in a contested literature, not an adjudication. SD-033a A3 implementation choice should not rest on this paper alone."
+  ],
+  "tags": ["sd_033a", "mech_262", "lateral_pfc", "persistence", "working_memory", "persistent_activity", "recurrent_spiking", "a3_alternative", "constantinidis", "funahashi_lee_arnsten"],
+  "mapping": {
+    "source_claim_statement": "Persistent activity generated in primate PFC during the delay period of working memory tasks represents information about stimuli held in memory and is necessary and sufficient to determine working memory performance. Alternative models that depend only on rhythmicity of discharges (gamma-burst hypothesis, Lundqvist 2016) or exclusively on short-term synaptic plasticity (Mongillo 2008) are inconsistent with the neurophysiological data. The persistent-activity model is the empirically supported account of how PFC holds information across delays.",
+    "ree_translation": "SD-033a's A3 question is whether to implement rule_state persistence as a gate-modulated EMA (landing), a continuously-active recurrent module (GRU / LSTM), or an explicit short-term plasticity mechanism. Constantinidis, Funahashi, Lee, Murray, Qi, Wang, and Arnsten argue against the latter two alternatives and in favour of continuous persistent spiking. The implication for SD-033a is doubled-edged: (1) the GRU-recurrent alternative -- which the SD-033a EMA is intended to abstract -- is empirically supported by their reading of the primary neurophysiology, and the EMA's lack of any continuous-activity component is a known biological mismatch; (2) at the same time, the EMA is also at odds with the silent-synaptic Mongillo 2008 model the same paper rejects, so the EMA does not cleanly inherit either side of the dispute. Composing with Lundqvist 2016 (partner entry, gamma-burst): the A3 dispute is unresolved at the empirical level. SD-033a should treat the EMA as a pragmatic V3 landing that does not match either competing biological model -- it captures functional decay-and-refresh without committing to a substrate. If V4 needs to engage with the empirical dispute, both a GRU-recurrent variant and a silent-synaptic variant should be implemented and compared, and behavioural signatures (especially MECH-262 distractor-resistance) used to discriminate.",
+    "mapping_caveat": "This paper is an opinion / dual-perspective rebuttal authored by proponents of the persistent-activity view. It is not a primary empirical paper -- it summarises a body of empirical work (much of it from the same authors' labs) and argues for one interpretation. The dispute with Lundqvist, Herman, and Miller's parallel 2018 paper in the same JNeurosci slot is active. The cited evidence is heavily weighted toward spatial working memory (oculomotor delayed-response tasks); transfer to rule-bias persistence is plausible but not directly tested. The paper does not adjudicate between GRU-style continuous activity and explicit attractor-network dynamics within the persistent-activity family; both are compatible with its argument.",
+    "source_context": "Journal of Neuroscience (2018) Dual Perspectives slot, paired with Lundqvist, Herman & Miller's competing 'Delay Activity, Yes! Persistent Activity? Maybe Not'. Seven-author opinion paper by leading proponents of the persistent-spiking view (Constantinidis at Wake Forest, Funahashi at Kyoto, Lee at Yale, Murray at Yale, Qi & Wang co-authors, Arnsten at Yale)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (JNeurosci, multi-author rebuttal from leading lab heads in the persistent-activity school). Source quality is held below the empirical Lundqvist paper (0.88) because this is an opinion / dual-perspective rebuttal rather than primary data. Mapping fidelity moderate -- argues against EMA's nearest substrate analogue (synaptic plasticity) but supports the GRU alternative the EMA is meant to coarsely abstract. Transfer risk moderate-to-high because the dispute is active and SD-033a A3 cannot be settled from this paper alone."
+  }
+}

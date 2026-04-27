@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-04-27T15:35:16.766821Z`
+Generated: `2026-04-27T15:49:46.619091Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -37,13 +37,14 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0028` | `INV-045` | `candidate` | 0 | 1 | 0.275 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0029` | `INV-053` | `stable` | 0 | 0.6 | -0.147 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0030` | `MECH-074d` | `provisional` | 0 | 0.5 | 0.025 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0031` | `MECH-177` | `candidate` | 0 | 0.5 | 0.772 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0031` | `MECH-177` | `candidate` | 0 | 0.5 | 0.771 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0032` | `MECH-181` | `candidate` | 0 | 0.5 | 0.719 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0033` | `MECH-187` | `candidate` | 0 | 0.5 | 0.106 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0034` | `MECH-268` | `candidate` | 0 | 1 | -0.193 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0035` | `MECH-E2-DUAL-FUNCTION` | `unknown` | 0 | 0.6 | 0.815 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0036` | `Q-006` | `active` | 0 | 0.5 | 0.272 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0037` | `SD-033a` | `candidate` | 0 | 0.625 | -0.107 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0034` | `MECH-262` | `candidate` | 0 | 0.571 | -0.09 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0035` | `MECH-268` | `candidate` | 0 | 1 | -0.193 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0036` | `MECH-E2-DUAL-FUNCTION` | `unknown` | 0 | 0.6 | 0.815 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0037` | `Q-006` | `active` | 0 | 0.5 | 0.272 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0038` | `SD-033a` | `candidate` | 0 | 0.7 | -0.104 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 
 ## Consider New Structure Queue
 
