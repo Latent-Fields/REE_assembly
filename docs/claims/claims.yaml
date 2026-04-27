@@ -19309,8 +19309,45 @@
     MECH-265 (relative-importance monitoring) registered 2026-04-19
     as the primary mechanisms grounding the four-function spec; see
     their entries for Boorman/Mansouri/Burgess literature attribution.
-    Do not implement pre-V4.
-  location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+
+    Prong D full survey complete 2026-04-27, five new entries plus
+    synthesis at evidence/literature/targeted_review_frontopolar_analog_prong_d/
+    (synthesis.md is the integrated reading): Boorman, Behrens,
+    Woolrich & Rushworth 2009 (Neuron, supports 0.84, FPC pairwise
+    counterfactual tracking -- direct anchor for MECH-264); Burgess,
+    Dumontheil & Gilbert 2007 (TiCS, supports 0.74, gateway hypothesis
+    BA10 medial / lateral); Mansouri, Buckley, Mahboubi & Tanaka 2015
+    (PNAS, supports 0.85, macaque selective FPC lesion -- *causal*
+    evidence that FPC normally disengages from current task);
+    Mansouri, Koechlin, Rosa & Buckley 2017 (NRN, supports 0.82,
+    competing-goals integrative review -- direct anchor for MECH-265);
+    Koechlin & Summerfield 2007 (TiCS, supports 0.72, A-P-gradient
+    framework). Synthesis answers the four lit-pull questions:
+    (a) MECH-264 pairwise counterfactual evaluation supported empirically
+    (Boorman 2009); MECH-265 K>=2-way set monitoring supported
+    architecturally (Mansouri 2017) but cleanest implementation is
+    parallel pairwise comparisons against value-of-current-decision.
+    (b) Continuous-modulatory gateway function (Burgess 2007); FPC
+    score_bias output should be graded, not discrete admit/reject;
+    discrete operating-mode commitment lives at SalienceCoordinator
+    not at the FPC analog itself. (c) FPC lesion produces dissociable,
+    specific phenotype (Mansouri 2015) -- not a generic executive
+    deficit; the FPC analog should function as disengage-and-redistribute,
+    its score_bias should *reduce* current-candidate weight in
+    proportion to counterfactual evidence, not augment it. (d) Training
+    signal: for V3 frozen-random head; for V4 the candidate is
+    reward-PE on counterfactual rollouts via E2 model, integrating
+    with SD-039 / MECH-292 / MECH-293 ghost-goal substrate. Three open
+    architectural questions for the SD-033e design doc itself:
+    (1) hierarchical vs parallel wiring with SD-033a; (2) substrate
+    localisation (medial / lateral split or unified); (3) computational
+    granularity of K-way alternative-goal list population. Falsifiable
+    signature: FPC-analog ablation should produce *better* current-task
+    focus and *worse* counterfactual exploration (mirroring Mansouri
+    2015 lesion phenotype). Phase 1.1 of SD-033e prep plan complete;
+    next step is the design doc, NOT V3 implementation. Do not
+    implement pre-V4.
+  location: evidence/literature/targeted_review_frontopolar_analog_prong_d/synthesis.md
 - id: SD-034
   title: "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied."
   claim_type: design_decision
@@ -19404,12 +19441,27 @@
     GAP MEMO. Prioritised ahead of MECH-266/267/268 for implementation.
   evidence_quality_note: >
     Registered 2026-04-20 as candidate with v3_pending:true. Biology
-    lit-pull queued in evidence/planning/task_inbox.md targeting OFC /
-    ACC sequence-completion cells (Rich & Shapiro 2009; Schuck 2016),
-    post-completion refractory periods, and task-set disengagement
-    (Collins & Frank 2014). V3-EXQ-460 (verified-but-not-released) and
-    V3-EXQ-466 (satisficing / residue discharge) are the primary
-    falsifiers queued in ree-v3/experiment_queue.json. See
+    lit-pull complete 2026-04-27, six entries in
+    evidence/literature/targeted_review_sd_034/entries/: Schuck 2016
+    (OFC state-map, supports), Barnes 2011 (action-bracketing,
+    supports), Rich & Shapiro 2009 (PFC strategy switch, supports),
+    Collins & Frank 2014 (OPAL D1/D2 opponent, mixed), Mayr & Keele
+    2000 (backward inhibition, supports 0.84), Smith & Graybiel 2013
+    (dual-operator action-bracketing, supports 0.78). Implementation
+    recommendations from synthesis: (1) implement No-Go as graded
+    score_bias decay on the just-completed rule_state with exponential
+    decay over a refractory window, NOT a hard refractory gate (Mayr &
+    Keele backward-inhibition is a graded RT cost, not a binary
+    block); (2) closure-detection signal can fire from multiple
+    substrates (action-bracketing in striatum + IL per Smith &
+    Graybiel; OFC/ACC sequence-completion per Schuck / Rich) -- do not
+    lock to OFC/ACC-only localisation; (3) at completion, post a
+    transient negative score_bias to the just-completed rule's score
+    channel via SD-033a's existing per-candidate bias projection
+    rather than introducing a separate gate. V3-EXQ-460
+    (verified-but-not-released) and V3-EXQ-466 (satisficing / residue
+    discharge) are the primary falsifiers queued in
+    ree-v3/experiment_queue.json. See
     evidence/planning/sd033_governance_plan.md (anchor doc).
   location: evidence/planning/sd033_governance_plan.md
 - id: SD-035
@@ -19861,12 +19913,27 @@
     current_mode == X, the salience signal must drop below exit_X, not
     below enter_X, to leave.
   evidence_quality_note: >
-    Registered candidate with v3_pending:true. Biology lit-pull queued
-    in evidence/planning/task_inbox.md targeting BG direct/indirect
-    pathway asymmetries, tonic-DA hysteresis (Cools 2008; Collins &
-    Frank 2014), and Schmitt-trigger biology in decision thresholds.
-    V3-EXQ-464 (competing goals) and V3-EXQ-467 (mode stickiness) are
-    the primary falsifiers queued in ree-v3/experiment_queue.json.
+    Registered candidate with v3_pending:true. Biology lit-pull
+    complete 2026-04-27, six entries in
+    evidence/literature/targeted_review_connectome_mech_266/entries/:
+    Fallon 2016 (asymmetric stability/flexibility, supports), O'Reilly
+    2006 (BG gating substrate, supports), Cools 2019
+    (stability/flexibility tradeoff, supports), Cools & D'Esposito
+    2011 (inverted-U, supports), Cools 2008 (paradoxical
+    baseline-dependent DA, supports 0.74), Collins & Frank 2014 OPAL
+    (D1/D2 opponent, supports 0.76). Implementation recommendations:
+    (1) keep enter and exit thresholds independently tunable rather
+    than locking to a fixed gap (Cools 2008 inverted-U is smooth
+    modulation, not fixed-gap Schmitt trigger); (2) the V3 single
+    operating_mode register may need to elaborate into per-substrate
+    mode tracking for V4 (Cools 2008 multi-DA-system dissociation
+    across mesolimbic, mesocortical, nigrostriatal); (3) the V3
+    SalienceCoordinator-level Schmitt-trigger gate inherits the
+    asymmetric-pathway architectural commitment from OPAL D1/D2
+    dynamics but does not explicitly model the dual-pathway substrate
+    -- V4 elaborations may benefit from doing so. V3-EXQ-464
+    (competing goals) and V3-EXQ-467 (mode stickiness) are the
+    primary falsifiers queued in ree-v3/experiment_queue.json.
   location: evidence/planning/sd033_governance_plan.md
 - id: MECH-267
   title: "Mode-conditioned hippocampal trajectory proposals: HippocampalModule.propose_trajectories must condition on operating_mode (SD-032a) in addition to world_state. External_task mode proposes task-relevant trajectories; internal_planning mode proposes counterfactual / branching trajectories; internal_replay mode replays past-successful trajectories; offline_consolidation mode proposes stability-check trajectories. Without mode conditioning, replay content contaminates external-task selection."
@@ -19934,11 +20001,29 @@
     plan; the others extend existing REE mechanisms, this one genuinely
     adds a function.
   evidence_quality_note: >
-    Registered candidate with v3_pending:true. Biology lit-pull queued
-    in evidence/planning/task_inbox.md targeting state-dependent replay
-    content (Pfeiffer & Foster 2013; Olafsdottir 2018), goal-directed
-    replay bias, and task-set-conditioned replay. V3-EXQ-465 (intrusive
-    simulation filtering) and V3-EXQ-462 (rule binding) are the primary
+    Registered candidate with v3_pending:true. Biology lit-pull
+    complete 2026-04-27, five entries in
+    evidence/literature/targeted_review_connectome_mech_267/entries/:
+    Pfeiffer & Foster 2013 (goal-directed forward replay, supports),
+    Tambini 2019 (reactivation bias toward task-relevant memories,
+    supports), Olafsdottir 2018 (replay review including
+    state-dependent content, supports), Mattar & Daw 2018 (prioritized
+    memory access framework, supports 0.84), Wikenheiser & Redish 2015
+    (theta-cycle look-ahead distance scales with goal distance,
+    supports 0.82). Implementation recommendations: (1) operating_mode
+    should modulate look-ahead horizon parameter at proposal
+    generation -- the simplest implementation is a mode-conditional
+    multiplier on the proposal-rollout depth; (2) condition the
+    proposal value-flat ranking (not necessarily proposal generation
+    itself) on operating_mode via the prioritized-memory-access
+    framework -- need (state-visit probability under current goals)
+    and gain (expected improvement) both depend on operating_mode
+    indirectly through the goal hierarchy; (3) Mattar & Daw's
+    rumination concern connects to MECH-292's goal_match_floor
+    rumination guard -- mode-conditioning provides a natural defence
+    against stuck-on-state pathology because mode-state-shift
+    re-prioritises content. V3-EXQ-465 (intrusive simulation
+    filtering) and V3-EXQ-462 (rule binding) are the primary
     falsifiers queued in ree-v3/experiment_queue.json.
   location: evidence/planning/sd033_governance_plan.md
 - id: MECH-268
@@ -20006,10 +20091,28 @@
     via habituation). Together they bound the pe signal in both the
     normal and the failure case.
   evidence_quality_note: >
-    Registered candidate with v3_pending:true. Biology lit-pull queued
-    in evidence/planning/task_inbox.md targeting habituation of dACC
-    error signals (Bryden 2019), EVC saturation dynamics (Shenhav
-    2016), and repeated-identical-outcome adaptation. V3-EXQ-463
+    Registered candidate with v3_pending:true. Biology lit-pull
+    complete 2026-04-27, six entries in
+    evidence/literature/targeted_review_connectome_mech_268/entries/:
+    Holroyd 2012 (ACC options, supports), Shenhav 2016 (dACC value of
+    control, supports), Shenhav 2013 (EVC theory, supports), Bryden
+    2011 (ACC attention for learning signals, supports), Behrens 2007
+    (volatility-adaptive ACC learning rate signal, supports 0.82),
+    Quilodran, Rothe & Procyk 2008 (primate ACC outcome-time signal
+    disappears in exploitation periods, supports 0.83). Implementation
+    recommendations: (1) implement saturation as a graded
+    learning-rate adapter rather than a binary habituation cap (the
+    Behrens volatility-adaptive signal is a smooth modulation, not a
+    fixed cap); (2) clarify which dACC signal channel actually
+    saturates -- pe, surprise, commitment, or salience -- because the
+    empirical evidence (Quilodran 2008) shows the saturating signal is
+    described as "specific to the first reward / end of exploration",
+    closer to a phasic surprise / commitment signal than a tonic pe;
+    (3) Quilodran's temporal-transfer finding (saturated outcome
+    signal shifts forward to predictive cue rather than dying) is the
+    architectural origin of the "expected outcome -> done token" chain
+    SD-034 closure operator depends on -- this couples MECH-268 to
+    SD-034 in a way the original V3 design did not capture. V3-EXQ-463
     (conflict saturation) and V3-EXQ-468 (commitment vs contradiction)
     are the primary falsifiers queued in ree-v3/experiment_queue.json.
   location: evidence/planning/sd033_governance_plan.md
