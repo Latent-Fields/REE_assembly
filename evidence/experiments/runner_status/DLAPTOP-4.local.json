@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 20293,
   "runner_started_at": "2026-04-28T20:19:00.788998+00:00",
-  "last_updated": "2026-04-28T20:27:03.942786+00:00",
+  "last_updated": "2026-04-28T20:29:54.532003+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-498",
-    "backlog_id": "",
-    "claim_id": "SD-034",
-    "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
-    "description": "",
-    "script": "experiments/v3_exq_498_ocd_layer1_closure_threshold_sweep.py",
-    "started_at": "2026-04-28T20:19:02.907006+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 481,
-    "seconds_remaining": 1040,
-    "recent_lines": [
-      "Seed 7 Arm LOOSE (threshold=0.005)",
-      "-> entropy=0.0000 closure_fires=0 counts={2: 1200}",
-      "Seed 7 Arm VERY_LOOSE (threshold=0.05)",
-      "-> entropy=0.0000 closure_fires=0 counts={2: 1200}",
-      "Seed 13 Arm TIGHT (threshold=0.0001)"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-495",
@@ -51,17 +25,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-498",
-      "backlog_id": "",
-      "claim_id": "SD-034",
-      "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -6466,6 +6429,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_497_mech293_ghost_probes_validation/v3_exq_497_mech293_ghost_probes_validation_20260427T094353Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 8.3
+    },
+    {
+      "queue_id": "V3-EXQ-498",
+      "backlog_id": "",
+      "claim_id": "SD-034",
+      "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL",
+      "started_at": "2026-04-28T20:19:02.907006+00:00",
+      "completed_at": "2026-04-28T20:29:54.531658+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_498_ocd_layer1_closure_threshold_sweep/v3_exq_498_ocd_layer1_closure_threshold_sweep_20260428T201903Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 651.6
     }
   ]
 }
