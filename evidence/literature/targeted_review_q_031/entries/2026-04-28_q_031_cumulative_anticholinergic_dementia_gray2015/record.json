@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_031",
+  "entry_id": "2026-04-28_q_031_cumulative_anticholinergic_dementia_gray2015",
+  "timestamp_utc": "2026-04-28T11:23:40Z",
+  "claim_ids_tested": ["Q-031"],
+  "source": {
+    "title": "Cumulative use of strong anticholinergics and incident dementia: a prospective cohort study.",
+    "authors": ["Gray SL", "Anderson ML", "Dublin S", "Hanlon JT", "Hubbard R", "Walker R", "Yu O", "Crane PK", "Larson EB"],
+    "year": 2015,
+    "venue": "JAMA Internal Medicine",
+    "doi": "10.1001/jamainternmed.2014.7663",
+    "url": "https://doi.org/10.1001/jamainternmed.2014.7663"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong prospective cohort (ACT, n=3434, 7.3y mean follow-up, computerised dispensing data so dose is well-measured) with a clear monotonic dose-response between cumulative anticholinergic TSDDs and incident dementia. Directly anchors the cumulative-dose limb of Q-031, but the design cannot dissociate REM-mediated from diurnal-cholinergic-deficit pathways; that limit pulls the score below 0.85.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cumulative dose alone is a coarse exposure marker -- it conflates daytime cholinergic blockade (relevant to Pathway 2, MECH-175) with sleep-period blockade (relevant to Pathway 1 / MECH-173 nocturnal REM suppression). The study cannot tell the two apart.",
+    "TSDDs are calibrated to a generic standardised daily dose, not to plasma half-life or CNS penetration, so two equally-dosed drugs with very different sleep-period CNS exposure are pooled."
+  ],
+  "tags": ["q_031", "anticholinergic", "dementia", "cumulative_dose", "act_cohort", "epidemiology"],
+  "mapping": {
+    "source_claim_statement": "Higher cumulative anticholinergic exposure (measured as 10-year TSDDs of strong anticholinergics) is associated with a dose-graded increase in risk of incident dementia and Alzheimer disease in a prospective cohort of community-dwelling adults age 65+.",
+    "ree_translation": "Q-031 limb (b): supports the hypothesis that cumulative anticholinergic dose is itself a dementia risk factor over decade timescales. The study establishes a dose-response curve but does not partition that signal into the two REE-relevant pathways: (i) MECH-173 nocturnal REM suppression accumulating REM-debt years across decades, vs (ii) MECH-175 diurnal cholinergic deficit accumulating daytime sensorium-loop noise. Both pathways predict a monotonic dose-response, so this paper is consistent with either or both.",
+    "mapping_caveat": "The ACT cohort had no PSG sleep architecture data, so REM% was not measured as a mediator. This means the paper cannot test the central mediation question Q-031 raises. It is best read as 'cumulative anticholinergic burden is a real dementia risk factor' and not as 'cumulative anticholinergic burden acts via REM suppression specifically'.",
+    "source_context": "Population-based prospective cohort, Group Health (Seattle), age 65+, computerised pharmacy dispensing data, mean 7.3y follow-up, Cox proportional hazards adjusted for demographics, behaviours, and comorbidities."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.2,
+    "notes": "Source quality is high (large prospective cohort, modern pharmacy dispensing, well-adjusted Cox model). Mapping fidelity is moderate because the paper measures the cumulative-dose limb of Q-031 but cannot dissociate the two REE-postulated pathways. Transfer risk is low (older adults, real prescriptions, real dementia outcomes -- the same population Q-031 is about)."
+  }
+}

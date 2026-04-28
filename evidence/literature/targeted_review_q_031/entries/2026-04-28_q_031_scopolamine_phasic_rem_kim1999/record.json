@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_031",
+  "entry_id": "2026-04-28_q_031_scopolamine_phasic_rem_kim1999",
+  "timestamp_utc": "2026-04-28T11:23:40Z",
+  "claim_ids_tested": ["Q-031"],
+  "source": {
+    "title": "Transdermal scopolamine alters phasic REM activity in normal young adults.",
+    "authors": ["Kim EJ", "Jeong DU"],
+    "year": 1999,
+    "venue": "Sleep",
+    "doi": "10.1093/sleep/22.4.515",
+    "url": "https://doi.org/10.1093/sleep/22.4.515"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Small (n=8) randomised crossover PSG study showing that transdermal scopolamine -- a clinically used muscarinic antagonist -- suppresses phasic REM activity and REM density at the lowest commercial dose. This is the substrate-level mechanism plausibility evidence for Q-031 pathway 1: anticholinergic drugs do measurably alter REM-related signal in healthy humans. But the study is small, young-adult, and short, so its transfer to elderly chronic-use anticholinergic patients is a real leap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "n=8 healthy young men is a tiny sample with limited power; phasic REM measures (REM density, total REM activity) reach significance, but tonic REM measures (duration, latency) do not -- which complicates the simple 'scopolamine suppresses REM' reading.",
+    "The study is single-night, low-dose, healthy young adults. Q-031 cares about decades of nightly anticholinergic exposure in older adults with comorbidities -- the transfer from this acute experimental result to the chronic clinical context is large.",
+    "Scopolamine is not the most common chronic anticholinergic: most Q-031-relevant exposures are bladder antimuscarinics (oxybutynin, tolterodine) or tertiary tricyclics. CNS penetration profiles differ; the substrate evidence here is genus-level not species-level."
+  ],
+  "tags": ["q_031", "scopolamine", "rem_sleep", "anticholinergic", "phasic_rem", "polysomnography"],
+  "mapping": {
+    "source_claim_statement": "Transdermal scopolamine (1.5 mg patch) significantly suppresses phasic REM components -- total REM activity and REM density -- in healthy young adult men, even at the lowest commercial dose, while leaving tonic REM measures (REM duration, REM latency) unchanged.",
+    "ree_translation": "Q-031 pathway 1 substrate evidence: confirms that a clinically relevant muscarinic antagonist measurably alters REM-related neural signature in humans. Useful as plausibility for the upstream half of the mediation chain (anticholinergic exposure --> REM disturbance) but not sufficient to establish that chronic bladder-antimuscarinic exposure produces the same kind or magnitude of REM disruption that would mediate dementia risk.",
+    "mapping_caveat": "Acute single-night transdermal scopolamine in young healthy men is a substantial transfer step from the chronic, oral, often-tertiary-amine bladder antimuscarinics that drive Q-031's clinical relevance. The selective effect on phasic (not tonic) REM is also worth noting -- earlier injection studies of scopolamine showed much larger effects on REM latency and duration. Dose, route, and duration matter.",
+    "source_context": "Randomised double-blind crossover, n=8 healthy young adult men, three nights including one adaptation, transdermal scopolamine 1.5 mg vs placebo patch, full PSG with phasic and tonic REM scoring."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.55,
+    "notes": "Source quality is moderate (well-designed crossover, blinded, full PSG, but n=8 is small and old data 1999). Mapping fidelity is moderate -- scopolamine is an anticholinergic, REM is the proposed mediator, the direction is right, but it is acute young-adult evidence rather than chronic-elderly. Transfer risk is high because the chronic bladder antimuscarinic / chronic tricyclic context Q-031 cares about is several steps from this acute scopolamine experiment."
+  }
+}

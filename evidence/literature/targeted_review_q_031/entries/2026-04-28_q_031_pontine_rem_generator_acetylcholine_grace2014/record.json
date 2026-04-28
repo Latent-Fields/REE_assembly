@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_031",
+  "entry_id": "2026-04-28_q_031_pontine_rem_generator_acetylcholine_grace2014",
+  "timestamp_utc": "2026-04-28T11:23:40Z",
+  "claim_ids_tested": ["Q-031"],
+  "source": {
+    "title": "Endogenous cholinergic input to the pontine REM sleep generator is not required for REM sleep to occur.",
+    "authors": ["Grace KP", "Vanstone LE", "Horner RL"],
+    "year": 2014,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0274-14.2014",
+    "url": "https://doi.org/10.1523/JNEUROSCI.0274-14.2014"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Carefully designed local microdialysis-with-blockade study (n=32 freely behaving rats) showing that scopolamine microperfusion of the subceruleus does not eliminate REM sleep, in contrast to longstanding cholinergic-induction theories. ACh modulates state transitions and hippocampal theta but is not required for REM generation. This is mechanistically important: it weakens the simplest 'ACh-block --> REM-suppression' story Q-031 pathway 1 leans on, because the relevant ACh effect on REM is a transition / theta modulator rather than a generator. Direction-of-effect for Q-031 is therefore mixed: it does not deny pathway 1, but it constrains the size and kind of REM disturbance you can attribute to chronic anticholinergic blockade.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "REM is NOT abolished by scopolamine microperfusion at the SubC. So 'anticholinergics suppress REM' is at most a partial story -- chronic systemic anticholinergic blockade probably reduces REM phasic intensity and theta strength rather than abolishing REM, which means the magnitude of the REM-suppression-years that Q-031 pathway 1 attributes to anticholinergics is smaller than a naive reading of clinical scopolamine studies suggests.",
+    "If the anticholinergic effect on REM is dominated by transition reinforcement and theta modulation rather than total REM amount, then PSG-measured REM% may not be the right mediator to track. Mediation analyses using REM% as the mediator could under-detect the true mediation effect."
+  ],
+  "tags": ["q_031", "rem_sleep", "acetylcholine", "subceruleus", "microdialysis", "rat"],
+  "mapping": {
+    "source_claim_statement": "Bilateral microperfusion of scopolamine into the pontine subceruleus -- the classical REM induction zone -- does not abolish REM sleep in freely behaving rats, even at concentrations sufficient to block cholinergic effects. Combined GABAA agonism plus glutamate antagonism in the same region does eliminate REM. Cholinergic blockade does, however, increase NREM-to-REM transition duration and failure rate, and attenuates the normal REM-associated hippocampal theta. The authors conclude that ACh inputs to the SubC are a transition reinforcer and theta modulator, not the REM generator.",
+    "ree_translation": "Mixed evidence on Q-031 pathway 1. (a) Weakens the strong reading that 'anticholinergics suppress REM' -- the relevant cholinergic effect is on REM transitions and on REM-associated theta, not on REM occurrence per se. So the magnitude of REM-suppression-years attributable to chronic anticholinergic exposure is bounded below what acute systemic scopolamine studies in humans suggest. (b) Supports an alternative reading: the pathway-1 mediator might not be REM% at all but rather REM-theta integrity. If chronic anticholinergic exposure preserves REM amount but degrades REM theta and transition reliability, then the REE function REM is supposed to perform (consolidation, residue clearance) could be compromised even when PSG REM% looks normal. This is a falsifiable prediction.",
+    "mapping_caveat": "Rat microdialysis with local SubC blockade is a different exposure regime from human chronic systemic anticholinergic prescription. Systemic effects on REM include cortical, basal-forebrain, and laterodorsal/pedunculopontine actions that local SubC perfusion does not test. Direction-of-effect transfers reasonably (cholinergic input is a modulator not a generator) but quantitative magnitude does not.",
+    "source_context": "Bilateral microdialysis in n=32 freely-behaving Wistar rats, EEG/EMG recording, local SubC perfusion of scopolamine vs muscimol+D-AP5, with computational modelling integration."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.5,
+    "notes": "Source quality is high (rigorous design, freely behaving rats with local pharmacology, computational integration, published in J Neurosci). Mapping fidelity is moderate-high because the paper directly addresses the substrate question 'does ACh blockade abolish REM' which is what pathway 1 leans on. Transfer risk is moderate because rat local SubC pharmacology is several steps from human chronic systemic anticholinergic exposure. Direction is interpretable; magnitude is not."
+  }
+}

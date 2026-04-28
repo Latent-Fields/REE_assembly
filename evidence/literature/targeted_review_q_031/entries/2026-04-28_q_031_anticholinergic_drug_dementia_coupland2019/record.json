@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_031",
+  "entry_id": "2026-04-28_q_031_anticholinergic_drug_dementia_coupland2019",
+  "timestamp_utc": "2026-04-28T11:23:40Z",
+  "claim_ids_tested": ["Q-031"],
+  "source": {
+    "title": "Anticholinergic Drug Exposure and the Risk of Dementia: A Nested Case-Control Study.",
+    "authors": ["Coupland CAC", "Hill T", "Dening T", "Morriss R", "Moore M", "Hippisley-Cox J"],
+    "year": 2019,
+    "venue": "JAMA Internal Medicine",
+    "doi": "10.1001/jamainternmed.2019.0677",
+    "url": "https://doi.org/10.1001/jamainternmed.2019.0677"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Large UK QResearch nested case-control (~284,000 patients) replicating and extending Gray 2015 with class-specific hazard estimates -- bladder antimuscarinics, antidepressants, antiparkinson drugs, antipsychotics, and antiepileptics each carrying their own AOR. Class-specific decomposition begins to disentangle the question implicitly because anticholinergics differ in CNS penetration and dosing time-of-day. Still cannot directly test the REM-mediation hypothesis without sleep data, so capped below 0.85.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Class-specific AORs differ widely (1.29 to 1.70) but the paper does not partition the difference into pharmacokinetic vs pharmacodynamic vs sleep-effect components, so a sleep-mediated reading of the bladder antimuscarinic AOR=1.65 is not formally tested.",
+    "The clinical bottom line ('switch from oxybutynin to mirabegron should reduce dementia risk') is what Q-031 wants to validate, but the paper offers only the prerequisite -- bladder antimuscarinics carry an elevated AOR -- not the post-switch test. A natural experiment of beta-3 substitution has not been published in this design."
+  ],
+  "tags": ["q_031", "anticholinergic", "dementia", "bladder_antimuscarinic", "qresearch", "epidemiology"],
+  "mapping": {
+    "source_claim_statement": "Cumulative exposure to drugs with strong anticholinergic activity is associated with increased dementia risk in a dose-graded fashion, with bladder antimuscarinics (AOR 1.65), antipsychotics (1.70), antiparkinson drugs (1.52), antiepileptics (1.39), and antidepressants (1.29) all showing elevated risk in the highest exposure category. Risk persists at exposure windows of 5--20 years before diagnosis.",
+    "ree_translation": "Q-031 limb (b): supports cumulative-dose pathway and additionally provides class-resolved evidence that the bladder antimuscarinic class -- the very class Q-031 names as the candidate clinical decision (oxybutynin vs mirabegron) -- carries one of the highest class-specific risks. Combined with the >=5 years lag-exposure result, this is consistent with both REE pathway 1 (chronic REM suppression accumulating) and pathway 2 (chronic daytime cholinergic deficit accumulating); the paper does not arbitrate between them.",
+    "mapping_caveat": "Class-specific AORs reflect the average effect of each drug class as prescribed in UK primary care -- they do not reflect the effect of any specific molecule (e.g. tertiary oxybutynin vs quaternary trospium), and they do not reflect sleep-period exposure separately from waking-period exposure. The paper documents that anticholinergic burden matters and that bladder antimuscarinics are among the highest-risk classes, but does not isolate the REM-suppression mechanism.",
+    "source_context": "Nested case-control, QResearch primary care database, England, 58,769 dementia cases vs 225,574 matched controls age 55+, anticholinergic exposure 1--11 years pre-index from prescription records, Cox/conditional logistic adjusted for confounders."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.18,
+    "notes": "Source quality is very high (huge sample, modern primary care records, careful lag windows, and published in JAMA IM). Mapping fidelity is moderate-high because class-specific decomposition partially probes the question by pharmacological category but does not test the REM mediation directly. Transfer risk is low because the question is explicitly about UK/equivalent older adults on real prescriptions."
+  }
+}

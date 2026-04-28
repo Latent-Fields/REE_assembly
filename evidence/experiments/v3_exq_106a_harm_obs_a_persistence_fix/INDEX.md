@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_106a_harm_obs_a_persistence_fix
 
-Generated: `2026-04-28T08:48:36.239231Z`
+Generated: `2026-04-28T11:27:55.527227Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

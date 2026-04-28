@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_031",
+  "entry_id": "2026-04-28_q_031_rem_sleep_incident_dementia_pase2017",
+  "timestamp_utc": "2026-04-28T11:23:40Z",
+  "claim_ids_tested": ["Q-031"],
+  "source": {
+    "title": "Sleep architecture and the risk of incident dementia in the community.",
+    "authors": ["Pase MP", "Himali JJ", "Grima NA", "Beiser AS", "Satizabal CL", "Aparicio HJ", "Thomas RJ", "Gottlieb DJ", "Auerbach SH", "Seshadri S"],
+    "year": 2017,
+    "venue": "Neurology",
+    "doi": "10.1212/WNL.0000000000004373",
+    "url": "https://doi.org/10.1212/WNL.0000000000004373"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Framingham Heart Study Offspring cohort with 19y maximum follow-up, home PSG measurement of REM%, and a clean signal: 9% increased dementia hazard per 1% reduction in REM. Robust to multiple covariate adjustments and to lag-window sensitivity. The signal is REM-specific (NREM stages did not predict). This is the single best human evidence that REM% itself tracks dementia risk -- the central premise of MECH-173 / Q-031 pathway 1. Held below 0.85 because n=32 incident cases is modest and the paper documents association, not mediation; it does not measure anticholinergic exposure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "REM% is associated with dementia, but the paper cannot tell whether REM disturbance is a cause, a prodrome, or a downstream marker of the same neurodegeneration that produces dementia. Reverse causation is partially addressed by excluding early converters but not eliminated.",
+    "The paper does not measure anticholinergic exposure, so it cannot test whether anticholinergic-induced REM suppression has the same dementia signature as endogenous REM reduction. The mediation chain ACh-block -> REM-suppression -> dementia is plausible but untested in this dataset."
+  ],
+  "tags": ["q_031", "rem_sleep", "dementia", "framingham", "polysomnography", "epidemiology"],
+  "mapping": {
+    "source_claim_statement": "Lower REM sleep percentage and longer REM sleep latency at baseline predict incident dementia over up to 19 years of follow-up in a community-based cohort. Each 1 percentage-point reduction in REM is associated with a 9% increase in dementia hazard (HR 0.91, 95% CI 0.86--0.97). NREM stages did not predict dementia.",
+    "ree_translation": "Q-031 limb (a): supports the premise that REM-suppression years should track dementia risk -- the mechanistic backbone of MECH-173. The signal is REM-specific (NREM did not predict), which matches the REE prediction that REM (not SWS) is the offline phase whose disruption matters most for the architectural function this pathway proposes. The paper does not establish that anticholinergic-induced REM suppression has the same effect as endogenous REM reduction, but it establishes that REM% itself is a real and prospective predictor.",
+    "mapping_caveat": "The cohort had n=32 incident dementia cases. The 9% per-percentage-point estimate is based on this number, so the precision is modest and class-specific generalisations should be cautious. The paper measures association at one PSG timepoint, not cumulative REM-years across decades, which is what Q-031's pathway 1 actually requires. Treating one-night REM% as a proxy for lifetime REM-suppression-years is a real transfer leap.",
+    "source_context": "Framingham Heart Study Offspring, n=321 participants age 60+, home polysomnography 1995--1998 (Sleep Heart Health Study), max 19y follow-up for dementia, Cox hazard model adjusted for age/sex and a richer model adjusting for vascular risk, depression, and medication use."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "Source quality is high (Framingham, home PSG, long follow-up, Neurology). Mapping fidelity is high because the paper directly measures the proposed mediator (REM%) against the proposed outcome (dementia). Transfer risk is moderate because (i) one-night REM% is a noisy estimate of lifetime REM-suppression-years and (ii) endogenous REM reduction may not generalise to anticholinergic-induced REM reduction. Modest case count (n=32) limits precision."
+  }
+}
