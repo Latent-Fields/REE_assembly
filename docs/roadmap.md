@@ -14,6 +14,77 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-28 PM — afternoon docs sync, lit-pull wave + queue refresh)
+
+- **SDs / MECHs moved to Implemented since the 2026-04-28 nightly snapshot:** none.
+  No new substrate landings between 01:21Z and 11:30Z; runner_status.json
+  unchanged at 561 completions (109 PASS / 242 FAIL / 66 ERROR / 144 UNKNOWN
+  per the 2026-04-27T08:04Z read).
+- **Experiment count (per `runner_status.json` 2026-04-27T08:04Z):** 561 total
+  (unchanged since morning). Pending review queue regenerated 2026-04-28T04:18:29Z
+  carries **15 items** -- 12 PASS (V3-EXQ-484 / 485 / 493 across multiple
+  machine/timestamp runs indexed after the 2026-04-27T14:55 /diagnose-errors
+  run_id naming-bug fix) and 3 runner-only UNKNOWN entries for the same three
+  queue IDs awaiting next governance walk. The queue grew from 6 at the
+  2026-04-27T14:47:47Z regen because each per-machine/per-timestamp PASS now
+  indexes as a distinct run; underlying queue IDs unchanged.
+- **Lit-pull wave 2026-04-28 (5 pulls totalling 25 entries; medium-priority
+  backlog largely closed):**
+  - Q-031 (anticholinergic burden / dementia / REM-mediation): 5 entries, new
+    dir `targeted_review_q_031/` (PM scheduled task, this snapshot). Gray 2015
+    ACT cohort + Coupland 2019 QResearch (cumulative-dose limb both supports);
+    Pase 2017 Framingham (REM% --> incident dementia, REM-specific not NREM);
+    Kim & Jeong 1999 (transdermal scopolamine suppresses phasic REM, n=8 acute
+    substrate); Grace-Vanstone-Horner 2014 J Neurosci mixed -- pontine SubC
+    ACh blockade does NOT abolish REM; weakens strong pathway-1, suggests
+    REM-theta integrity may be the right mediator rather than REM%.
+    lit_confidence=0.87 (was not in claim_evidence map). **Q-031c
+    mediation-analysis sub-question has no published direct test** -- flagged.
+  - Q-027 / Q-028 (irreversible harm / axiom conflict): 5 entries (AM
+    scheduled task; Sunstein 2006, Tarsney-Thomas-MacAskill 2024 SEP, IEP
+    Precautionary, McConnell 2022 SEP, Williams 1965).
+  - theta-abstraction-scaling: 5 entries -- new MECH claims registered:
+    MECH-299 (theta_cycle_content_scales_with_substrate_vocabulary; V4 firm),
+    MECH-300 (cognitive_map_traversal_at_active_abstraction_level; V4 firm),
+    MECH-301 (waking_quiescent_replay_via_mech285_priority_sampling; V4
+    default with V3 PULL-FORWARD CONDITION).
+  - action-policy-decomposition: 5 entries (Mussa-Ivaldi 2000 / Daw 2005 /
+    Graybiel 2008 / Botvinick 2009 / Dolan & Dayan 2013); synthesis verdict
+    flags habit / action-chunk substrate (level 2-3 of biological
+    decomposition) as missing in V3 -- highest-priority extension for OCD
+    modelling and potential monostrategy contributor. Filed as candidate SD.
+  - hpc-type-prototype: 5 entries (Quiroga 2005 / Schapiro 2017 / Schapiro
+    2016 / Constantinescu 2016 / Hennies 2017). Verdict: parsimonious REE
+    extension is a NEW INPUT PROJECTION onto existing AnchorSet machinery
+    (Constantinescu shared-cognitive-map reading) plus an explicit
+    prototype-readout operator running BOTH waking and sleep, NOT a fully
+    separate codebook substrate.
+- **Aggregator floor flag (recurring; third consecutive surfacing today):**
+  per-paper confidences for low/medium-anchored Q-claims average 0.62-0.74
+  but claim-level lit_confidence aggregates to 0.85-0.88 (Q-031 0.87;
+  Q-027 0.66; Q-028 0.63 morning). Worth flagging next governance walk for a
+  cap-aware aggregator review -- the floor effect is causing claim-level
+  numbers to read as more lit-supported than the per-paper scoring intends.
+- **Queue refresh (3 new diagnostics queued today, 2026-04-28):**
+  - **V3-EXQ-498** OCD Layer 1 closure-threshold sweep (SD-034 parameter
+    diagnostic; 4-arm × 3 seeds; psychiatric_failure_modes.md OCD section
+    Layer 1 hypothesis test; PASS/FAIL routes to Layer 2 / Layer 3
+    escalation). claim_ids=['SD-034']. ~60 min.
+  - **V3-EXQ-418f** SD-016 attention-uniformity diagnostic probe (single-seed
+    instrumentation of EXQ-418d/e ln(16) uniform-rail bottleneck). ~15 min.
+  - **V3-EXQ-418g** SD-016 Path 4 query-selectivity-first 4-arm with new
+    learnable temperature + attention-entropy loss substrate hooks landed
+    2026-04-28; B0_off / B1_sel_only / B2_div_only / B3_sel_plus_div × 3
+    seeds; tests Path 4 hypothesis that query selectivity (not slot content)
+    is the bottleneck. ~90 min.
+- **Current bottleneck unchanged:** V3-EXQ-495 (V3 full-completion gate /
+  MECH-163 hippocampally-planned arm) is the headline run; V3-EXQ-490b is the
+  smaller upstream factorial for Q-040a; V3-EXQ-498 is now the proximate
+  short-runtime diagnostic that can land before the 25h V3-EXQ-495 budget
+  decision.
+
+---
+
 ## Status Snapshot (2026-04-28 — nightly docs sync, post-2026-04-27 substrate wave)
 
 - **SDs / MECHs moved to Implemented since the 2026-04-27 morning snapshot:**
