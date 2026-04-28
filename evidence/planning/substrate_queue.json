@@ -1140,9 +1140,10 @@
     },
     {
       "sd_id": "SD-016",
-      "title": "ContextMemory writepath substrate -- design v2 insufficient (V3-EXQ-418d FAIL)",
-      "ready": true,
-      "design_doc": "docs/architecture/context_memory_writepath_fix.md",
+      "title": "ContextMemory cue-indexed retrieval -- validation gated on env entropy precondition (2026-04-28)",
+      "ready": false,
+      "blocked_on": "z_world cross-context separation precondition not yet satisfied in current CausalGridWorldV2 configs",
+      "design_doc": "docs/architecture/sd_016_frontal_cue_integration.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-150",
@@ -1164,18 +1165,32 @@
           "experiment_type": "v3_exq_418e_sd016_diversification_loss",
           "metric": "C1 attn-entropy collapse FAIL on both A2_div_only=2.7726 and A3_writes_plus_div=2.7724 (both at uniform-distribution ceiling ln(16)=2.7726)",
           "target": "attn_entropy_mean < 2.65 on at least one active arm; queue 418f weight sweep at 1.0/2.0/5.0 before pivot"
+        },
+        {
+          "run_id": "v3_exq_418f_sd016_attention_uniformity_probe_20260428T203014Z_v3",
+          "experiment_type": "v3_exq_418f_sd016_attention_uniformity_probe",
+          "metric": "Diagnostic probe: q_norm.std/mean = 1.2% across 64 z_world samples; slot_argmax_histogram = [0,0,0,0,64,0,...] (slot 4 wins ALL samples); pairwise cos(z_world) ~ 0.998 across batch; bias.norm ~ Wz.norm so bias-fix is small not structural. Localised the failure: queries near-constant across inputs because z_world itself near-constant.",
+          "target": "diagnostic-only; localise failure to query magnitude, key magnitude, or scale"
+        },
+        {
+          "run_id": "v3_exq_418g_sd016_selectivity_first_4arm_20260428T203517Z_v3",
+          "experiment_type": "v3_exq_418g_sd016_selectivity_first_4arm",
+          "metric": "C1+C2+C3 PASS (selectivity drove attn_entropy to 0.000-0.001 in B1/B3; div arms hit slot_diversity 1.000); C4+C5 FAIL with action_class_entropy = 1.105e-10 IDENTICALLY across ALL FOUR arms B0/B1/B2/B3. Substrate-side fix worked exactly as designed but cue_context produces zero behavioural delta because z_world is the bottleneck.",
+          "target": "C1+C2+C3+C4+C5 PASS"
         }
       ],
-      "implementation_hint": "Part A (key_proj.bias=False) + Part B (writepath_mode flag with train_only/sense_only/both) -- the design doc v2 substrate -- is insufficient. None of the active write modes restore content-conditioned attention or slot differentiation under matched training. Deeper rework required: (a) cue_action_proj consumer-side rebuild, (b) attention-head architecture change, or (c) supervised-target shape correction. Production tie-break default A1_train_only is NOT empirically grounded.",
-      "priority": 1,
+      "implementation_hint": "DIAGNOSIS REVISED 2026-04-28: V3-EXQ-418f probe + V3-EXQ-418g 4-arm together demonstrate the bottleneck is upstream of the SD-016 attention path. Even with perfectly orthogonal slots (B2/B3 slot_diversity=1.000) and delta-function-peaky attention (B1/B3 attn_entropy=0.000), action_class_entropy stays at 1.105e-10 across all arms because z_world produces near-identical queries (cosine 0.998 across batch). The substrate's mechanism (cue-indexed retrieval) requires distinguishable z_world cue patterns; the current CausalGridWorldV2 configs (size=8, 1-5 hazards, no SD-023 landmarks engaged) do not generate enough cross-context z_world entropy for any retrieval substrate to do work. Substrate-side rework (writepath_mode, diversification, learned temperature, attention-entropy minimisation, world_query_proj bias=False) all addressed downstream symptoms; none can synthesise cross-context variance that the encoder is not producing. NEW PRECONDITION (env-richness gate): any SD-016 retest must first demonstrate cross-context z_world cosine separation in the env config used. Probe queued as V3-EXQ-418h (SD-023 landmarks ON vs OFF, safe-vs-dangerous z_world batches, cosine separation metric). If the precondition is satisfied with landmarks ON, SD-016 retest reuses the EXQ-418g 4-arm under that env config; if not, SD-016 validation is parked pending broader env enrichment scope.",
+      "priority": 5,
       "added_session": "governance-2026-04-25T15:15",
-      "last_seen_session": "governance-2026-04-27T14:11",
-      "status": "implemented_but_failing_validation",
-      "implementation_note_update": "SD-016 substrate is wired (sd016_enabled=True default-on, writepath_mode flag) but evidence experiment EXQ-418d shows the design v2 cannot meet acceptance thresholds. Needs rethink before promoting to provisional or before re-running dependent SD-017/MECH-152 tests.",
-      "implementation_status": "implemented_but_failing_validation",
+      "last_seen_session": "sd016-park-pending-env-2026-04-28T20:51",
+      "status": "parked_pending_env_entropy_precondition",
+      "implementation_note_update": "SD-016 substrate (sd016_enabled, writepath_mode, diversification weight, sd016_temperature_learnable, compute_attention_entropy_loss) is fully wired and bit-identical to legacy with all flags OFF. EXQ-418d/418e/418f/418g establish that the substrate-side mechanism works as designed but the env does not generate cross-context z_world variation for the substrate to retrieve over (the user's diagnosis 2026-04-28: 'the world is too simple. not enough entropy in every single configuration to support as much information extraction'). Status changed from implemented_but_failing_validation -> parked_pending_env_entropy_precondition. SD-017 / MECH-150 / MECH-151 / MECH-152 / ARC-041 / INV-040 retests blocked on the env precondition rather than on SD-016 substrate quality. Validation experiment is now V3-EXQ-418h env-richness probe (NOT a substrate retest); SD-016 retest queue paused until env precondition is empirically satisfied.",
+      "implementation_status": "parked_pending_env_entropy_precondition",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "validation_experiment": "V3-EXQ-418e",
-      "implemented_session": "implement-sd016-path1-2026-04-25"
+      "validation_experiment": "V3-EXQ-418h",
+      "validation_precondition": "z_world cross-context cosine separation gate -- pairwise cos(z_world) within safe batch and within dangerous batch must be substantially HIGHER than cos across safe-vs-dangerous batch; absolute cross-context cosine < 0.95 in at least one env config (target: SD-023 landmarks ON). Falsifiable via V3-EXQ-418h.",
+      "implemented_session": "implement-sd016-path1-2026-04-25",
+      "parked_session": "sd016-park-pending-env-2026-04-28T20:51"
     },
     {
       "sd_id": "MECH-292",
