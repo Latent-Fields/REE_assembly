@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -3343,11 +3344,15 @@ def _write_planning_outputs(
             }
         )
 
-    # ── Backlog merge: carry forward user_notes; append pre-loaded pinned items ──
+    # ── Backlog merge: carry forward user_notes + stable backlog_ids; append pinned ──
     # Pinned items were excluded from auto-generation above so there is no collision.
-    # We still carry forward any user_notes the user added to auto-generated items.
+    # We carry forward (a) user_notes and (b) backlog_id mappings so that EVB-NNNN
+    # IDs remain stable across regenerations. The carry-forward keys on claim_id, which
+    # is unique within a single backlog (one item per claim that needs evidence).
     existing_backlog_path = planning_root / "evidence_backlog.v1.json"
     _existing_user_notes: dict[str, str] = {}
+    _existing_backlog_ids: dict[str, str] = {}  # claim_id -> EVB-NNNN
+    _used_numeric_ids: set[int] = set()
     if existing_backlog_path.exists():
         try:
             _existing_doc = json.loads(existing_backlog_path.read_text(encoding="utf-8"))
@@ -3357,8 +3362,16 @@ def _write_planning_outputs(
                 _cid = str(_item.get("claim_id", "")).strip()
                 if _cid and "user_notes" in _item and _item["user_notes"]:
                     _existing_user_notes[_cid] = str(_item["user_notes"])
+                _bid = str(_item.get("backlog_id", "")).strip()
+                # Only carry forward auto-generated IDs (EVB-NNNN, not EVB-PINNED-*).
+                # Pinned items handle their own ID via the _preloaded_pinned_items path.
+                if _cid and _bid and not _item.get("pinned", False):
+                    _m = re.fullmatch(r"EVB-(\d{4,})", _bid)
+                    if _m:
+                        _existing_backlog_ids[_cid] = _bid
+                        _used_numeric_ids.add(int(_m.group(1)))
         except Exception:
-            pass  # Corrupt or missing backlog — skip user_notes restoration
+            pass  # Corrupt or missing backlog -- skip carry-forward
 
     # Restore preserved user_notes onto auto-generated items
     for item in backlog_items:
@@ -3366,7 +3379,7 @@ def _write_planning_outputs(
         if _cid in _existing_user_notes:
             item["user_notes"] = _existing_user_notes[_cid]
 
-    # Append pre-loaded pinned items — rich content and original backlog_id intact
+    # Append pre-loaded pinned items -- rich content and original backlog_id intact
     backlog_items.extend(_preloaded_pinned_items)
     # ── end merge ────────────────────────────────────────────────────────────────
 
@@ -3376,12 +3389,20 @@ def _write_planning_outputs(
             _backlog_urgency_rank(item),
         )
     )
-    _auto_idx = 1
+    # Persistent ID assignment (fixes EVB-ID instability that affected morning-agenda
+    # references and silently mis-attached experiment_proposals.v1.json status fields).
+    # Strategy: reuse existing EVB-NNNN for any claim_id that was in the previous backlog;
+    # assign new IDs starting strictly above the prior max so collisions are impossible.
+    _next_auto_idx = (max(_used_numeric_ids) + 1) if _used_numeric_ids else 1
     for item in backlog_items:
-        if not item.get("pinned", False):
-            item["backlog_id"] = f"EVB-{_auto_idx:04d}"
-            _auto_idx += 1
-        # Pinned items retain their original backlog_id (e.g. EVB-PINNED-Q019)
+        if item.get("pinned", False):
+            continue  # Pinned items keep their EVB-PINNED-* IDs from the preload path
+        _cid = str(item.get("claim_id", ""))
+        if _cid in _existing_backlog_ids:
+            item["backlog_id"] = _existing_backlog_ids[_cid]
+        else:
+            item["backlog_id"] = f"EVB-{_next_auto_idx:04d}"
+            _next_auto_idx += 1
 
     architecture_items.sort(
         key=lambda item: (
