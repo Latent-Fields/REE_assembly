@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_policy_decomposition",
+  "entry_id": "2026-04-28_action_policy_motor_primitives_mussa_ivaldi2000",
+  "timestamp_utc": "2026-04-28T04:42:02Z",
+  "claim_ids_tested": ["SD-004"],
+  "source": {
+    "title": "Motor learning through the combination of primitives",
+    "authors": ["F A Mussa-Ivaldi", "E Bizzi"],
+    "year": 2000,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2000.0733",
+    "url": "https://royalsocietypublishing.org/doi/10.1098/rstb.2000.0733"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Phil Trans R Soc B paper, integrative review with original experimental data on spinalised frogs and rats. Establishes the lowest level of biological action decomposition: spinal-cord-resident force-field primitives that combine vectorially to produce motor behaviour. Architecturally important because it grounds the bottom of the decomposition stack -- if biology has primitives at this level, the top-down action-representation hierarchy has to terminate somewhere. Confidence 0.78: strong source quality, but transfer to REE is loose because the gridworld's 4 discrete actions don't have a meaningful motor-primitive level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The motor primitives described are spinal-cord-level force fields with continuous-time dynamics. REE's action space is discrete (4 actions in CausalGridWorldV2), so the architectural primitive Mussa-Ivaldi describe has no V3 analogue. An REE motor-primitive substrate would only be meaningful in a V4 environment with continuous limb-like control.",
+    "The paper is from 2000 and the spinal-primitive framework is contested in more recent literature (e.g., Tresch & Jarc 2009 questioning whether muscle synergies are primitives or post-hoc analytic artefacts). The architectural commitment is biologically real but the precise computational implementation remains debated."
+  ],
+  "tags": ["sd_004", "action_policy_decomposition", "motor_primitives", "spinal_cord", "force_fields"],
+  "mapping": {
+    "source_claim_statement": "The premotor circuits within the spinal cord are organized into a set of discrete modules. Each module, when activated, induces a specific force field, and the simultaneous activation of multiple modules leads to the vectorial combination of the corresponding fields. These force fields are computational primitives that the CNS uses for generating a rich grammar of motor behaviours. Higher brain structures combine these primitives along with other building blocks to construct skilled motor sequences.",
+    "ree_translation": "For SD-004 (action-object space O) and the action_object_decoder in HippocampalModule: biology has a primitive level BELOW what REE currently represents. SD-004's action_object dimension is closer to an option / subroutine level than to a primitive level. In V4 (continuous control, embodied agent), an explicit motor-primitive substrate would land below SD-004 -- a dictionary of force-field-like primitive activations that get vectorially combined to produce the action_object that gets fed to E2. In V3 with 4 discrete grid actions, this is not an architectural lacuna -- it's a level the environment doesn't need.",
+    "mapping_caveat": "REE's CausalGridWorldV2 uses 4 discrete actions (up/down/left/right). There is no continuous limb-control problem to solve, so the spinal-primitive level has no V3 analogue. The paper grounds the BOTTOM of the biological action-decomposition stack, but REE's bottom is much higher up. Transfer to REE is a V4 question.",
+    "source_context": "Theoretical review with integrated experimental data. Original experiments on spinalised frogs and rats demonstrate that spinal microstimulation evokes specific limb force fields, and combinations of stimulation sites produce vectorial combinations of those fields. Behavioural and computational arguments extended to mammalian motor cortex contributions."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality high (Phil Trans R Soc B, foundational review). Mapping fidelity moderate because the level the paper describes is below what REE V3 needs. Transfer risk elevated because V3's discrete-action environment cannot meaningfully express force-field primitives. The entry is included to ground the bottom of the decomposition stack and flag motor primitives as a V4 architectural extension when REE handles continuous control."
+  }
+}

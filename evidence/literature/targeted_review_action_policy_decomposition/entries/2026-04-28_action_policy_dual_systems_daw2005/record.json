@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_policy_decomposition",
+  "entry_id": "2026-04-28_action_policy_dual_systems_daw2005",
+  "timestamp_utc": "2026-04-28T04:42:02Z",
+  "claim_ids_tested": ["SD-004", "ARC-021", "MECH-292"],
+  "source": {
+    "title": "Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control",
+    "authors": ["Nathaniel D Daw", "Yael Niv", "Peter Dayan"],
+    "year": 2005,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1560",
+    "url": "https://www.nature.com/articles/nn1560"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Nat Neurosci paper, foundational computational and theoretical synthesis: PFC implements a model-based (goal-directed, flexible, statistically efficient) controller; dorsolateral striatum implements a model-free (habitual, computationally cheap, retrospective) controller; the brain arbitrates between them by uncertainty. This is the canonical biological decomposition of action representation into TWO computationally distinct systems, with substrate-level grounding. Confidence 0.85 because the framework is canonical and the substrate-level evidence (lesion, fMRI, behavioural) has accumulated robustly in the 20 years since.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The two-system framework is a coarse decomposition. More recent literature (Cushman 2013; Dolan & Dayan 2013, this review) argues for a spectrum or for additional intermediate levels. An REE architectural commitment that maps cleanly to 'two and only two systems' would over-simplify the biology.",
+    "The paper does not address the option / hierarchical-RL level (Botvinick 2009, this review). The 'model-based' system as Daw et al. describe it is flat goal-directed planning, not hierarchical option composition. REE's decomposition needs both -- the goal-directed/habit dichotomy AND the hierarchical-options level.",
+    "Uncertainty-based arbitration is the proposed mechanism but the precise neural substrate of the arbitrator is not pinned down. ACC is one candidate; the SD-032b dACC analog in REE is functionally close but not identical."
+  ],
+  "tags": ["sd_004", "arc_021", "mech_292", "action_policy_decomposition", "model_based_model_free", "pfc_dls_dichotomy", "habit_vs_goal"],
+  "mapping": {
+    "source_claim_statement": "The brain contains multiple systems for behavioral choice, including one associated with prefrontal cortex (model-based, goal-directed, statistically efficient at the cost of computational complexity) and another with dorsolateral striatum (model-free, habitual, computationally cheap but inflexible). A Bayesian arbitrator deploys each controller when it should be most accurate, based on the relative uncertainty of their predictions.",
+    "ree_translation": "For SD-004 (action-object space, action_object_decoder), ARC-021 (three BG-like cortico-striatal loops with distinct learning channels), and MECH-292 (ranked ghost-goal bank): the canonical biological action decomposition is at minimum TWO levels (model-free habit cache + model-based goal-directed planner). REE V3 maps onto the model-based side: HippocampalModule.propose_trajectories with E2 transition model + E3 CEM scoring + MECH-293 ghost probes is functionally a goal-directed planner. There is NO V3 analogue of the model-free habit-cache substrate -- specifically, no cached state-action value table updated by experience that can produce action selection without rollout. This is a real architectural lacuna for V3 if V3 wants to express habit-like automaticity, monostrategy lock-in via cached habits, or model-free vs model-based competition.",
+    "mapping_caveat": "The Daw 2005 framework is a flat two-system decomposition. REE's ARC-021 already specifies three BG-like loops with distinct learning channels, which is a richer architecture than the Daw 2005 two-system model. So adding a habit-cache substrate to REE is not just adding the model-free system from Daw -- it is filling in the cached-action-value role within ARC-021's three-loop frame. Also: the Daw 2005 'PFC' is a heterogeneous region; REE's frontal substrate is partitioned into SD-033a/b/c/d, so the model-based-PFC mapping is distributed across REE substrates rather than localised.",
+    "source_context": "Computational and theoretical synthesis paper. Builds on prior empirical work (rodent lesion studies of DLS / PFC, human fMRI of devaluation transfer paradigms) to propose a normative Bayesian arbitration framework. The specific paper is theoretical; the empirical anchor work is reviewed and integrated."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high (Nat Neurosci, foundational, heavily cited, framework remains canonical 20 years later). Mapping fidelity high: the model-based / model-free dichotomy maps cleanly onto REE's existing planner (model-based) and the missing habit substrate. Transfer risk low because the framework is computational/theoretical and translates directly to REE's architectural scaffolding."
+  }
+}

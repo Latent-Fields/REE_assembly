@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_policy_decomposition",
+  "entry_id": "2026-04-28_action_policy_goals_habits_spectrum_dolan2013",
+  "timestamp_utc": "2026-04-28T04:42:02Z",
+  "claim_ids_tested": ["SD-004", "ARC-021"],
+  "source": {
+    "title": "Goals and habits in the brain",
+    "authors": ["Ray J Dolan", "Peter Dayan"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.09.007",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(13)00805-2"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Neuron review by two of the field's leading figures, surveying four generations of empirical work on goal-directed vs habit dichotomy. Argues that the dichotomy is better understood as a SPECTRUM with intermediate levels, and that the strict two-system framing of Daw 2005 has been complicated by subsequent evidence (e.g., model-based and model-free systems share circuitry, Pavlovian-to-instrumental transfer reveals additional levels, the dichotomy may be parametric rather than discrete). Confidence 0.82: high source quality, definitive review of the field's state, directly informs whether REE should commit to two-system or richer architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Dolan & Dayan argue the dichotomy is more like a spectrum or a continuum than two discrete systems. An REE architectural commitment to 'two and only two systems' (habit cache + goal-directed planner) would over-simplify. The paper licenses a richer architecture but does not specify exactly how many levels or what the intermediate substrates are.",
+    "The 'fifth generation' work the paper points to (model-based / model-free interactions, Pavlovian-to-instrumental transfer, mixed strategies) is recent enough that the architectural picture is still evolving. Any REE substrate decision based on Dolan-Dayan's reading should remain provisional pending further empirical resolution.",
+    "The paper does not address hierarchical / option-level action representation directly. The decomposition Dolan & Dayan discuss is goal-directed vs habit, not goal-directed vs option-level vs habit -- these are orthogonal dimensions that REE's architectural mapping has to resolve."
+  ],
+  "tags": ["sd_004", "arc_021", "action_policy_decomposition", "goals_habits", "spectrum_not_dichotomy", "model_based_model_free"],
+  "mapping": {
+    "source_claim_statement": "An enduring and richly elaborated dichotomy in cognitive neuroscience is that of reflective versus reflexive decision making. Other literatures refer to the two ends of what is likely to be a SPECTRUM with terms such as goal-directed versus habitual, model-based versus model-free, or prospective versus retrospective. Four generations of experimental work have refined the picture; new paradigms in the fifth generation are probing and challenging the very heart of the distinction, suggesting the systems share circuitry and interact rather than competing as cleanly separated subsystems.",
+    "ree_translation": "For SD-004 (action-object space) and ARC-021 (three BG-like loops): the canonical biological reading has shifted from 'two discrete systems' (Daw 2005) to 'spectrum with shared circuitry and rich interactions' (Dolan & Dayan 2013). For REE this licenses NOT building a habit-cache and a goal-directed planner as fully separate substrates. Instead, the substrate decision should respect that the systems share circuitry (the same BG, the same PFC, the same HPC -- with different read-write patterns). REE's ARC-021 three-loop framework is consistent with the spectrum reading: three loops sharing input (from cortex) and output (to thalamus), differing in their internal learning channels and timescales. A habit substrate, if added, should integrate WITH the existing planner machinery -- e.g., as a cached lookup that the proposer queries before falling through to CEM rollout, rather than as a parallel system that competes with the proposer.",
+    "mapping_caveat": "The 'spectrum' framing is harder to operationalise architecturally than the 'two systems' framing. REE has to commit to specific substrates with specific operators; the spectrum reading licenses richness but does not specify exactly which intermediate substrates to build. A V3 implementation pass would likely simplify to the two-system framing as a starting point and refine toward the spectrum framing as evidence demands.",
+    "source_context": "Neuron review article surveying 30+ years of work on goal-directed vs habit dichotomy. Covers behavioural devaluation paradigms, computational model-based / model-free formalism, neural lesion / fMRI evidence, and the most recent work showing shared circuitry and rich interactions between the systems."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Neuron, two leading authorities, definitive review). Mapping fidelity moderate-to-high: the spectrum framing is more architecturally honest than the two-system framing but harder to translate directly into REE substrate decisions. Transfer risk modest because the framework is computational/theoretical and translates directly to REE's architectural scaffolding -- the main uncertainty is how to operationalise 'spectrum' rather than whether the framework applies."
+  }
+}

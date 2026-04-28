@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_policy_decomposition",
+  "entry_id": "2026-04-28_action_policy_habit_chunking_graybiel2008",
+  "timestamp_utc": "2026-04-28T04:42:02Z",
+  "claim_ids_tested": ["ARC-021", "SD-004"],
+  "source": {
+    "title": "Habits, rituals, and the evaluative brain",
+    "authors": ["Ann M Graybiel"],
+    "year": 2008,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.29.051605.112851",
+    "url": "https://www.annualreviews.org/doi/10.1146/annurev.neuro.29.051605.112851"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Annu Rev Neurosci review by the leading authority on basal ganglia and habit formation. Synthesises decades of single-unit, lesion, and behavioural evidence for action chunking in striatum: action sequences are 'chunked' into unitary representations whose start/stop is bracketed by phasic firing in striatal task-bracketing cells. Direct neural-substrate evidence for the action-chunk level of the decomposition. Confidence 0.84: high source quality, direct mapping to REE's missing habit / chunked-action substrate, modest transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The chunked action sequences described are typically motor sequences in well-trained animals (rats running fixed mazes, monkeys executing learned saccade chains). Whether this generalises to abstract / cognitive action chunks (e.g., 'forage at this location' as a chunk) is plausible but less directly evidenced.",
+    "The substrate is described as 'basal ganglia broadly' with emphasis on dorsolateral striatum and on cortico-striatal loops. Within REE's ARC-021 three-loop framework, the habit-chunk role would land in the dorsolateral-loop slot. The paper does not pin chunking to a specific BG subdivision in the kind of microscope-level detail REE's substrate map prefers."
+  ],
+  "tags": ["arc_021", "sd_004", "action_policy_decomposition", "habit", "action_chunking", "basal_ganglia", "task_bracketing"],
+  "mapping": {
+    "source_claim_statement": "Many behaviours could emerge as a result of experience-dependent plasticity in basal ganglia-based circuits. A broad spectrum of behavioural routines and rituals can become habitual and stereotyped through learning. Action sequences are 'chunked' into unitary representations -- striatal task-bracketing cells fire phasically at the start and end of well-learned sequences, treating the intervening sequence as a single unit of behavioural control. Repetitive behaviours in OCD, Tourette's, addiction reflect runaway expression of the same chunking machinery.",
+    "ree_translation": "For ARC-021 (three BG-like cortico-striatal loops) and SD-004 (action-object space): biology has an EXPLICIT action-chunking substrate in basal ganglia. REE has the loops claim (ARC-021) but no chunked-action substrate that does the chunking. The architectural slot for a chunked-action substrate within REE is somewhere in the dorsolateral-loop slot of ARC-021. A new SD (provisional SD-N: action_chunk_cache) would represent: a small dictionary of frequently-traversed action sequences, each indexed by a start-state signature and a stop-state signature, executable as a unit without re-rolling through CEM. Task-bracketing-cell-analogue signals would gate chunk start/stop. The OCD pathology pattern Daniel has been thinking about (over-binding, compulsive ritual) maps directly onto runaway chunking; without a chunk substrate REE cannot model the failure mode faithfully.",
+    "mapping_caveat": "Graybiel's 'chunking' is described in motor-sequence learning paradigms with fixed sensory contexts. REE's grid-world context is more variable (resource respawns, hazard movement), so the architectural primitive needs adaptation: chunks need to be context-conditional rather than fixed-trigger. This is a real engineering question for any V3 chunk substrate. Also: chunking is biologically a *consequence* of overtraining; REE experiments are typically short (200-500 steps per episode), which may not be enough to surface chunking dynamics.",
+    "source_context": "Annual Review chapter integrating single-unit recording in primates and rodents (especially Graybiel's own work on striatal task-bracketing cells), human fMRI of habit formation, and clinical evidence from OCD, Tourette's, and addiction. The chunking framework is grounded in primate single-unit data showing phasic striatal firing at sequence boundaries."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (Annual Review, Graybiel is the canonical voice on BG and habit). Mapping fidelity high: action chunking maps cleanly onto REE's missing habit / chunked-action substrate, and the connection to OCD pathology is directly relevant to REE's SD-033 governance plan. Transfer risk modest -- biological chunking studied in motor-sequence paradigms; REE's grid-world cognitive paradigm requires the same primitive at a slightly different abstraction level."
+  }
+}
