@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hpc_type_prototype_substrate",
+  "entry_id": "2026-04-28_type_prototype_conceptual_grid_constantinescu2016",
+  "timestamp_utc": "2026-04-28T04:22:18Z",
+  "claim_ids_tested": ["MECH-269", "MECH-292", "ARC-035"],
+  "source": {
+    "title": "Organizing conceptual knowledge in humans with a gridlike code",
+    "authors": ["Alexandra O Constantinescu", "Jill X O'Reilly", "Timothy E J Behrens"],
+    "year": 2016,
+    "venue": "Science",
+    "doi": "10.1126/science.aaf0941",
+    "url": "https://www.science.org/doi/10.1126/science.aaf0941"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Science paper, fMRI evidence for hexagonal grid-like code in EC and frontomedial regions when humans navigate a CONCEPTUAL 2D space (bird-shape morphing along legs/neck dimensions). Same neural machinery as spatial grid cells, but encoding non-spatial conceptual relations. Strongest direct evidence that the cognitive-map / type-substrate machinery is one machinery operating across spatial and conceptual domains -- partial but important answer to sub-question 3 (one HPC code with multiple input streams, or two distinct codes?). Confidence 0.82: high source quality, direct mapping, modest transfer risk because the human-fMRI-to-substrate transfer requires the standard caveats.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The conceptual space tested is two-dimensional and continuous (bird-shape morphing). REE's type-prototype substrate would need to handle discrete categorical structure (entity types: hazard, resource, wall) -- the grid-cell architecture this paper validates is biologically a continuous-relation primitive. Whether the same architecture extends to discrete category codes is a separate empirical question.",
+    "The signal is strongest in EC and ventromedial PFC, NOT in HPC proper. An architectural commitment that REE's prototype substrate is hippocampally-resident is partly weakened by this -- the actual cognitive-map / type substrate may be primarily entorhinal-cortex-resident, with HPC providing the instance binding."
+  ],
+  "tags": ["mech_269", "mech_292", "arc_035", "hpc_type_prototype_substrate", "conceptual_grid", "entorhinal", "cognitive_map", "non_spatial_navigation"],
+  "mapping": {
+    "source_claim_statement": "The brain organizes concepts into a mental map, allowing conceptual relationships to be navigated in a manner similar to that of space. Humans navigating conceptual two-dimensional knowledge showed the same hexagonal signal in a set of brain regions markedly similar to those activated during spatial navigation. Global relational codes may be used to organize nonspatial conceptual representations, with a hexagonal gridlike pattern when conceptual knowledge is laid out in two continuous dimensions.",
+    "ree_translation": "For MECH-269 (per-region V_s, anchor pool) and ARC-035 (vmPFC content interface): the biology supports a UNIFIED cognitive-map machinery operating across spatial and conceptual domains -- the same grid/place-cell architecture is exploited for non-spatial relations. For REE this means the prototype substrate (provisional SD-N) is plausibly NOT a fully separate architectural primitive from the existing AnchorSet -- it might be the AnchorSet operating on a different input projection. The architectural option is: instead of a new codebook substrate, a NEW INPUT PROJECTION onto the existing AnchorSet that encodes type-relevant features rather than spatial-residue features. This is a less-invasive architectural extension than a fully separate prototype substrate.",
+    "mapping_caveat": "The grid-like signal is strongest in EC and frontomedial regions (vmPFC + posterior cingulate), not in HPC proper. The cognitive-map machinery is more accurately described as EC-resident, with HPC providing instance binding. REE's mapping needs to respect this: if a type-substrate is added, its biological grounding is more EC-analogue than HPC-anchor-pool-analogue. Also: the conceptual space tested is 2D continuous (bird-shape morphing); REE's category prototypes would be discrete-category. Transfer from continuous-relational code to discrete-category code is plausible (grid cells generalise) but not directly tested.",
+    "source_context": "Human fMRI study (28 subjects). Participants learned bird-shape morphing space (2D continuous: leg-length and neck-length dimensions) and navigated it during scanning. fMRI analysis tested for hexagonal-symmetric BOLD modulation as participants traversed the conceptual space, mirroring the analysis used for entorhinal grid cells in spatial navigation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Science, replicable across sessions including >1 week apart). Mapping fidelity moderate-to-high: the unified cognitive-map machinery licenses the architectural option of *not* adding a fully separate prototype substrate, but instead adding a new input projection to existing machinery. Transfer risk modest because the continuous-conceptual-to-discrete-category gap is the main uncertainty."
+  }
+}

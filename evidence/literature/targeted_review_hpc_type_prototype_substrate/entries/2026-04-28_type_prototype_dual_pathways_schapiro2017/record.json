@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hpc_type_prototype_substrate",
+  "entry_id": "2026-04-28_type_prototype_dual_pathways_schapiro2017",
+  "timestamp_utc": "2026-04-28T04:22:18Z",
+  "claim_ids_tested": ["MECH-269", "MECH-292", "MECH-273", "MECH-275"],
+  "source": {
+    "title": "Complementary learning systems within the hippocampus: a neural network modelling approach to reconciling episodic memory with statistical learning",
+    "authors": ["Anna C Schapiro", "Nicholas B Turk-Browne", "Matthew M Botvinick", "Kenneth A Norman"],
+    "year": 2017,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0049",
+    "url": "https://royalsocietypublishing.org/doi/10.1098/rstb.2016.0049"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Phil Trans R Soc B paper, computational neural-network modelling of known hippocampal subfield architecture. The architectural finding directly answers Daniel's first sub-question: the trade-off between learning episodes and learning statistical regularities (types/categories) is handled by SEPARATE ANATOMICAL PATHWAYS WITHIN HPC. The trisynaptic pathway (EC -> DG -> CA3 -> CA1) learns individual episodes; the monosynaptic pathway (EC -> CA1 directly) supports statistical learning. This IS the dual substrate -- type-prototype representations live anatomically distinct from episode/anchor representations within the same brain region. Confidence 0.83 reflects strong architectural fit; minor reduction because it is a modelling paper (the empirical anatomical evidence for the dual-pathway functional split is built in via parameter constraints, not derived).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model is a computational instantiation of an anatomical hypothesis -- it does not provide direct empirical (lesion / inactivation) evidence that the trisynaptic pathway is selectively necessary for episodes and the monosynaptic pathway is selectively necessary for regularities. Subsequent work (Schapiro et al. 2017 Cogn Affect Behav Neurosci with amnesic patients) provides converging support but the dual-pathway claim is partly inferred from the model's match to behavioural data.",
+    "The 'statistical learning' the monosynaptic pathway is shown to support in this paper is temporal community structure (which clusters of items co-occur in sequence), not category prototype extraction in the Quiroga 2005 sense. The mapping from temporal community structure to category prototype is plausible (both are abstractions over instances) but the model does not directly demonstrate concept-cell-style invariance."
+  ],
+  "tags": ["mech_269", "mech_292", "mech_273", "mech_275", "hpc_type_prototype_substrate", "dual_pathway", "ca1_monosynaptic", "trisynaptic", "complementary_learning_systems"],
+  "mapping": {
+    "source_claim_statement": "There is a computational trade-off between learning the specifics of individual experiences and the regularities that hold across those experiences. We exposed a neural network model that instantiates known properties of hippocampal projections and subfields to sequences of items with temporal regularities. We found that the monosynaptic pathway -- the pathway connecting entorhinal cortex directly to region CA1 -- was able to support statistical learning, while the trisynaptic pathway -- connecting entorhinal cortex to CA1 through dentate gyrus and CA3 -- learned individual episodes. In paradigms involving rapid learning, the computational trade-off between learning episodes and regularities may be handled by separate anatomical pathways within the hippocampus itself.",
+    "ree_translation": "For MECH-269 (anchor pool / per-region V_s) and MECH-292 (ghost-goal bank): the biology supports a TWO-LEVEL architecture within HPC where instance-keyed anchors (REE's existing AnchorSet) and abstract regularities (REE's missing type-prototype substrate) live on anatomically separate pathways. The trisynaptic-analogue is REE's current AnchorSet; the monosynaptic-analogue would be a new SD-N substrate. They share input (EC/world_obs analogue) and converge on output (CA1-analogue / proposer interface) but do different computations. For MECH-273/275 (sleep aggregator / self-model writeback): the architectural inference is that REE's sleep operator should write to BOTH levels -- consolidating anchors AND extracting prototypes -- not to a single shared HPC substrate.",
+    "mapping_caveat": "REE does not currently have an EC-analogue substrate that could route input differently to AnchorSet (trisynaptic-analogue) vs a new prototype substrate (monosynaptic-analogue). Adding the dual pathway requires either an EC-analogue routing node or a duplicated input projection from world_obs -- this is a non-trivial architectural extension. Also: the paper studies temporal community structure as the 'regularities' substrate; REE's prototype substrate would cover spatial / category / action-type regularities, not just temporal ones. The transfer from temporal-regularity learning to general-prototype learning is plausible but not directly evidenced by this paper.",
+    "source_context": "Computational neural-network modelling paper. The model is a multi-pathway recurrent network instantiating known hippocampal subfield topology (DG sparsification, CA3 recurrence, CA1 read-out, monosynaptic EC-CA1 bypass). Trained on sequences of items with embedded temporal community structure (clusters of items that co-occur). Behavioural and fMRI data from Schapiro et al. 2013 and 2016 are used as targets for model match."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good (Phil Trans R Soc B, special issue, mechanistic model with empirical match). Mapping fidelity high: the dual-pathway architectural claim is directly the answer to whether REE's type-prototype substrate should be biologically distinct from the anchor substrate. Transfer risk modest because the temporal-regularity-to-general-prototype generalisation is plausible (both are abstractions over instances) but the paper does not directly demonstrate it."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hpc_type_prototype_substrate",
+  "entry_id": "2026-04-28_type_prototype_concept_cells_quiroga2005",
+  "timestamp_utc": "2026-04-28T04:22:18Z",
+  "claim_ids_tested": ["MECH-269", "MECH-292"],
+  "source": {
+    "title": "Invariant visual representation by single neurons in the human brain",
+    "authors": ["R Quian Quiroga", "L Reddy", "G Kreiman", "C Koch", "I Fried"],
+    "year": 2005,
+    "venue": "Nature",
+    "doi": "10.1038/nature03687",
+    "url": "https://www.nature.com/articles/nature03687"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Nature paper, single-unit recording in human medial temporal lobe (presurgical epilepsy patients), direct evidence for instance-invariant TYPE-level representations. The 'Jennifer Aniston neuron' result: individual MTL neurons fire selectively for many strikingly different pictures of one specific person/landmark/object (and even letter strings spelling the name) -- a sparse, invariant, abstract code. This is the canonical empirical anchor for biological type-prototype representations. Confidence 0.88 reflects strong evidence for the existence of such cells and clean methodology; minor reduction because the cells are described in MTL broadly (HPC + EC + parahippocampal + amygdala) rather than localised to a specific REE substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The cells respond to specific identities (this person, this landmark) -- they are *exemplar-invariant individual concept* representations, not category-prototype representations of the form 'hazard-type' or 'resource-type'. The mapping to REE's hypothetical type-prototype substrate must allow for both individual-concept and category-prototype encodings, and the paper directly evidences only the former.",
+    "Concept cells are sparse and rare (estimated <1% of recorded MTL neurons fire selectively for any given concept). An REE prototype codebook with only a handful of slots per category would be biologically faithful, but a dense category encoding (every instance lighting many slots) would not be."
+  ],
+  "tags": ["mech_269", "mech_292", "hpc_type_prototype_substrate", "concept_cells", "instance_invariance", "mtl_single_unit"],
+  "mapping": {
+    "source_claim_statement": "A subset of human MTL neurons are selectively activated by strikingly different pictures of given individuals, landmarks or objects -- and in some cases even by letter strings with their names. This suggests an invariant, sparse and explicit code, which might be important in the transformation of complex visual percepts into long-term and more abstract memories.",
+    "ree_translation": "For the proposed type-prototype substrate (potential SD-N) and for MECH-269 (V_s gating extension to type-V_s) and MECH-292 (anchor pool consumer): biology has cells that hold instance-invariant abstract identity representations. An REE codebook of compressed prototypes that survive across surface-different instances is biologically faithful. Each codebook slot would hold a sparse, explicit, multimodal-invariant representation matching what Quiroga 2005 measured. Verisimilitude-on-types matching (current LatentState cosine-matched against codebook entries) is functionally equivalent to what a concept cell does at decode time -- it 'fires' for any input that matches its abstract identity.",
+    "mapping_caveat": "These cells are recorded in epilepsy patients undergoing presurgical depth electrode placement -- not a representative healthy population. The cells are individual-identity selective (Jennifer Aniston, Sydney Opera House, etc.), not category-selective. REE's proposed prototype substrate covers categories ('hazard', 'resource', 'wall'), so the transfer requires that the same architectural primitive (sparse-invariant-MTL-cell) extends from individual identity to category prototype -- which is plausible but not directly tested in this paper. Also: concept cells are spread across MTL (HPC, EC, parahippocampal, amygdala) and the paper does not pin them to one substrate.",
+    "source_context": "Single-unit recording from depth electrodes in 8 epilepsy patients (presurgical mapping). 132 sessions, 993 selectively responsive units identified. Stimuli were photographs of famous people, landmarks, animals, objects, plus written/spoken names of the same identities. Cells classified as 'invariant' if they responded across different views/photos of the same identity but not to other identities."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Nature, Fried's clinical-recording programme is the canonical platform for human single-unit work). Mapping fidelity moderate-to-high: the existence of instance-invariant abstract representations is what REE's hypothetical prototype substrate needs; the gap is individual-identity vs category, which is plausibly the same architectural primitive at different abstraction levels. Transfer risk modest -- epilepsy patient data is the standard caveat for human single-unit work."
+  }
+}

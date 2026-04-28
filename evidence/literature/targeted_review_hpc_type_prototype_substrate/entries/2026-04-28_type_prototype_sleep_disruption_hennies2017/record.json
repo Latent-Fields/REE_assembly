@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hpc_type_prototype_substrate",
+  "entry_id": "2026-04-28_type_prototype_sleep_disruption_hennies2017",
+  "timestamp_utc": "2026-04-28T04:22:18Z",
+  "claim_ids_tested": ["MECH-273", "MECH-275", "MECH-285"],
+  "source": {
+    "title": "Cued Memory Reactivation During SWS Abolishes the Beneficial Effect of Sleep on Abstraction",
+    "authors": ["Nora Hennies", "Matthew A Lambon Ralph", "Simon J Durrant", "James N Cousins", "Penelope A Lewis"],
+    "year": 2017,
+    "venue": "Sleep",
+    "doi": "10.1093/sleep/zsx102",
+    "url": "https://academic.oup.com/sleep/article/40/8/zsx102/3926042"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Sleep journal paper, behavioural human study with auditory statistical learning + cued reactivation manipulation during SWS. Surprising and architecturally important result: cued reactivation of training stimuli during SWS *abolishes* the abstraction benefit that uncued sleep produces. This shows (a) sleep DOES extract abstraction (control group benefits) but (b) the sleep operator is delicate and content-specific -- naive replay disrupts it. The result weighs against any architectural commitment to 'just replay anchors during sleep and the prototype will fall out.' Confidence 0.74: behavioural-only methodology (no neural data), so the precise sleep operator that the cued replay disrupts is inferred not measured. Direction is mixed because the result both supports sleep-extraction-is-real (control group) and weakens naive-replay-extracts-types (cued group).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The sleep abstraction benefit is *abolished* (not just attenuated) by cued reactivation during SWS. This is a strong constraint on REE's MECH-285 sleep replay sampler: if the sampler simply replays anchors without respecting some additional structure (timing, sparsity, content selection), the prototype-extraction benefit may be ZERO not just suboptimal. Cuing-replay-disrupts-abstraction is an unusual signature in the sleep literature and constrains the architectural shape of any prototype-extraction operator REE adds.",
+    "The control group's sleep benefit was on a specific abstraction task (recognising novel sequences adhering to a learned statistical pattern) -- not category-prototype extraction in the Quiroga 2005 sense. Whether the same cued-disruption effect would apply to category-prototype extraction is not directly tested. The mapping caveat is non-trivial.",
+    "The mechanism by which cued replay disrupts (rather than enhances) abstraction is not resolved. The authors speculate that cuing focuses replay on specific instances at the expense of compositional recombination across instances, but this is not directly measured. Without a mechanism, REE cannot reliably translate the result into a substrate-design decision."
+  ],
+  "tags": ["mech_273", "mech_275", "mech_285", "hpc_type_prototype_substrate", "sleep_abstraction", "cued_reactivation", "sws_replay_specificity"],
+  "mapping": {
+    "source_claim_statement": "Sleep enhances the extraction of statistical regularities from training stimuli. Cued memory reactivation during slow wave sleep (SWS) -- replaying the exposure stream during SWS in different groups (during SWS, during pre-sleep wake, or not at all) -- abolishes the beneficial effect of sleep on abstraction. Participants who received replay in sleep performed worse in the delayed recall session than the control and the pre-sleep replay group. They also failed to show the association between SWS and task performance that has been observed in previous studies and was present in the controls. Sleep structure and sleep quality did not differ between groups.",
+    "ree_translation": "For MECH-273 (self-model writeback), MECH-275 (Bayesian aggregator), MECH-285 (sleep replay sampler): the biology shows that sleep DOES enhance abstraction (control group benefits) BUT the sleep operator is delicate -- naive content-specific replay during SWS DISRUPTS the abstraction. This constrains REE's architectural choices: (a) MECH-285's stratified-sampling approach (priority-weighted anchor sampling) is more biologically faithful than would be a simple uniform replay; (b) any new sleep type-extraction operator (prospective MECH-N) should NOT just replay all anchors uniformly -- it should respect compositional-recombination structure (sampling across goals/contexts) rather than focusing on specific instances; (c) the control group's intact abstraction in this study is the best evidence that REE's existing sleep substrate (without new prototype operator) is already partway toward biologically faithful behaviour, just under-tuned for explicit prototype extraction.",
+    "mapping_caveat": "Behavioural-only methodology -- the paper cannot directly observe the neural sleep operator that cued replay disrupts. The mechanism is inferred from the behavioural deficit. The abstraction tested is auditory statistical patterns, not category prototypes in REE's intended sense. Sample size is moderate (groups of 16-19), so the strong null effect (no sleep benefit in cued group) is statistically clean but the underlying mechanism is not pinned down. The biological constraint this places on REE is real but coarse.",
+    "source_context": "Behavioural sleep study. 50 healthy young adults (3 groups: SWS-replay 17, pre-sleep replay 16, control 17). Auditory statistical learning task: subjects exposed to a probabilistically determined tone sequence; tested for recognition of novel short sequences adhering to the same statistical pattern in immediate and delayed (post-sleep) recall sessions. Exposure stream replayed during SWS, during pre-sleep wake, or not at all. EEG monitored sleep stages."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good (Sleep journal, careful within-subject and between-group design, EEG-monitored sleep). Mapping fidelity moderate-to-high: the result directly constrains REE's sleep operator design (don't naive-replay; respect compositional structure). Transfer risk modest because the human-behavioural-to-substrate transfer requires that the disrupted operation in humans is the same architectural primitive REE wants to add."
+  }
+}

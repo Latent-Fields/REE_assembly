@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hpc_type_prototype_substrate",
+  "entry_id": "2026-04-28_type_prototype_temporal_community_schapiro2016",
+  "timestamp_utc": "2026-04-28T04:22:18Z",
+  "claim_ids_tested": ["MECH-269", "MECH-292"],
+  "source": {
+    "title": "Statistical learning of temporal community structure in the hippocampus",
+    "authors": ["Anna C Schapiro", "Nicholas B Turk-Browne", "Kenneth A Norman", "Matthew M Botvinick"],
+    "year": 2016,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22523",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/hipo.22523"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Hippocampus journal paper, fMRI representational similarity analysis, direct empirical evidence that hippocampus learns higher-order temporal community structure during *waking* exposure. Critically, the regularities are uncovered via overlapping associations -- not through transition-probability differentials -- which is the kind of compositional abstraction Daniel's framing requires. Confidence 0.78: solid empirical methodology, but fMRI is indirect (BOLD signal from a region, not single-unit), and the substrate-level prediction (which subfield does the work) is settled by the companion 2017 modelling paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 'statistical learning' demonstrated here is for temporal sequences (which items follow which in time), not for category prototypes in a perceptual sense. An REE prototype substrate that handles 'hazard-type' or 'resource-type' would need to extract structure from co-occurrence patterns in latent space, not from temporal sequences -- the architectural primitive is similar but not identical.",
+    "fMRI BOLD signal aggregates over thousands of neurons and several seconds. The paper cannot directly show which subfield (DG, CA3, CA1) carries the community structure -- that subfield-level resolution comes from the companion modelling paper. An architectural commitment 'CA1-analogue does the regularity learning' is partly inferred from the model rather than measured here."
+  ],
+  "tags": ["mech_269", "mech_292", "hpc_type_prototype_substrate", "statistical_learning", "community_structure", "waking_abstraction", "hippocampus_fmri"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus is involved in the learning and representation of temporal statistics. We test whether the hippocampus can learn higher-order structure using sequences that have no variance in transition probability and instead exhibit temporal community structure. We find that the hippocampus is indeed sensitive to this form of structure, as revealed by its representations, activity dynamics, and connectivity with other regions. These findings suggest that the hippocampus is a sophisticated learner of environmental regularities, able to uncover higher-order structure that requires sensitivity to overlapping associations.",
+    "ree_translation": "For MECH-269 (anchor pool, per-region V_s) and MECH-292 (ranked ghost-goal bank): the biology shows that hippocampal substrate can extract abstract regularities from waking experience without sleep involvement. This means an REE type-prototype substrate (provisional SD-N) does NOT strictly require a sleep operator to populate -- waking exposure can update prototypes in real-time. The MECH-269 anchor stream_mixture key is already the right shape for this: anchors with similar stream_mixtures over many writes constitute an implicit community-structure representation. What's missing is an explicit operator that *reads out* the community structure from the anchor pool and produces a compressed prototype representation that can be cosine-matched against current LatentState.",
+    "mapping_caveat": "The temporal-community-structure regularity is cleanly defined in the paper but is narrower than what REE's prototype substrate would need to handle (it would also need to extract category prototypes from co-occurring stream_mixtures, action-goal-outcome triplets, etc.). The architectural primitive (extract overlapping-association invariants) is the same; the input domain is broader. fMRI is indirect for substrate-level claims about which subfield does the work.",
+    "source_context": "Human fMRI study (n=22). Subjects were exposed to sequences of fractal images during scanning; sequence ordering had no transition-probability differences but did have temporal community structure (items in the same community co-occurred more often within local windows). Representational similarity analysis tested whether hippocampal voxel patterns reflected community membership."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Source quality good (Hippocampus journal, RSA methodology, careful task design). Mapping fidelity moderate-to-high: the paper directly evidences waking-driven hippocampal regularity extraction, which licenses the architectural claim that REE's prototype substrate does not strictly require a sleep-only operator. Transfer risk modest: temporal-sequence-to-general-category generalisation is the main uncertainty."
+  }
+}
