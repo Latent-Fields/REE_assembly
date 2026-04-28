@@ -1,0 +1,41 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_module_importable": {
+      "pass": true
+    },
+    "UC2_master_off_no_op": {
+      "bridge_is_none": true,
+      "pass": true
+    },
+    "UC3_write_side_fires": {
+      "n_write_fires": 30,
+      "n_cue_fires": 4,
+      "final_goal_norm": 0.29975825548171997,
+      "pass": true
+    },
+    "UC4_cue_side_negative_bias": {
+      "bias": [
+        -0.030000001192092896,
+        -0.15000000596046448,
+        -0.27000001072883606
+      ],
+      "bias_max_abs": 0.27000001072883606,
+      "bias_at_low_prox": -0.030000001192092896,
+      "bias_at_high_prox": -0.27000001072883606,
+      "pass": true
+    },
+    "UC5_severed_bridge_collapse": {
+      "bias_max_abs": 0.0,
+      "write_value": 0.45,
+      "pass": true
+    },
+    "UC6_mech094_simulation_gate": {
+      "write_under_simulation": 0.0,
+      "bias_max_abs_under_simulation": 0.0,
+      "n_write_fires": 0,
+      "n_cue_fires": 0,
+      "pass": true
+    }
+  }
+}
