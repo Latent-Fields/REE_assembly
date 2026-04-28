@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_026",
+  "entry_id": "2026-04-27_q_026_ross_prima_facie_duties_phillips2022",
+  "timestamp_utc": "2026-04-28T02:29:06Z",
+  "claim_ids_tested": ["Q-026"],
+  "source": {
+    "title": "William David Ross",
+    "authors": ["David Phillips"],
+    "year": 2022,
+    "venue": "Stanford Encyclopedia of Philosophy (Metaphysics Research Lab, Stanford University)",
+    "doi": null,
+    "url": "https://plato.stanford.edu/entries/william-david-ross/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.45,
+  "confidence_rationale": "SEP is canonical (high source quality). Ross's framework is the dominant modern alternative to Kantian absolutism, and it directly addresses the form of Q-026 by arguing that no action is context-independently required: prima facie duties are universal but actual duty is always settled comparatively in context. This is a substantive challenge to the very form of Q-026, so the relevance to the question is high even though the mapping to REE's specific axioms is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ross argues that determining one's actual duty in any concrete situation 'rests with perception' and yields only 'probable opinion, never certainty' -- which directly undermines any reading of Q-026 that expects a list of strictly required actions independent of context.",
+    "On Ross's view, an act's actual rightness 'belongs to it in virtue of its whole nature and of nothing less than this' -- meaning the complete contextual situation is non-eliminably part of what makes an action obligatory. Q-026's 'independent of context' clause is, on this reading, asking the wrong question."
+  ],
+  "tags": ["q_026", "ethics", "prima_facie_duty", "moral_pluralism", "deontology", "five_axioms"],
+  "mapping": {
+    "source_claim_statement": "There is a set of universal prima facie duties (fidelity, reparation, gratitude, beneficence, non-maleficence) that hold in all contexts, but no action is absolutely required in every context: actual duty is always determined by comparing the relative weight of competing prima facie duties in the specific situation.",
+    "ree_translation": "Q-026 presupposes that some actions are strictly required at all times. Ross's framework offers a serious philosophical challenge to that presupposition: the universal/context-independent thing is the *consideration set* (the prima facie duties), not the *action*. For REE this would suggest reframing Q-026 -- perhaps the axioms (INV-025..029) generate a universal *consideration set* analogous to Ross's prima facie duties, but the actual required action in any moment is settled by salience-weighted comparison in context (which is closer to how REE's harm/goal/residue machinery already works).",
+    "mapping_caveat": "Ross's prima facie duties are not derived from REE's axiom set, and his framework is not committed to anything like INV-027 (world-existence) or INV-029 (love). The connection is structural: Ross provides a model for how universal moral content can coexist with context-sensitive action selection. That structural lesson may apply to REE's axiom system, but the specific duty list does not transfer.",
+    "source_context": "Philosophy of ethics; canonical secondary literature on Ross's pluralism. Not empirical."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.40,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (SEP, peer-edited). Mapping fidelity moderate -- the structural lesson (universal considerations, contextual action selection) maps cleanly onto REE's existing architecture, but Ross's specific duty list does not. Transfer risk moderate because the framework is normative-philosophical and applying it to a computational agent is a real interpretive step."
+  }
+}

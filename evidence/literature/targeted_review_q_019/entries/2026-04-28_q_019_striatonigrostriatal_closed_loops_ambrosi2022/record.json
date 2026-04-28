@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-28_q_019_striatonigrostriatal_closed_loops_ambrosi2022",
+  "timestamp_utc": "2026-04-28T02:31:56Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Striatonigrostriatal circuit architecture for disinhibition of dopamine signaling",
+    "authors": ["Priscilla Ambrosi", "Talia N. Lerner"],
+    "year": 2022,
+    "venue": "Cell Reports",
+    "doi": "10.1016/j.celrep.2022.111228",
+    "url": "https://doi.org/10.1016/j.celrep.2022.111228"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct transsynaptic and intersectional genetic dissection of cross-loop connectivity in mouse. Tests the 'ascending spiral' hypothesis that mediates DMS->DLS handover. Finds strong evidence for closed parallel loops and only weak functional cross-loop influence (open loops do not modulate tonic dopamine firing). High source quality, but rodent-only. Mapping fidelity to Q-019's tri-loop architecture is good for the segregation question; less direct on the limbic loop specifically (paper focuses on associative vs sensorimotor).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE adopts a strict 'closed loop' interpretation that forbids any cross-loop information flow, this paper does find functional open-loop synapses -- they just fail to modulate tonic dopamine. So 'fully isolated channels' overstates the biology.",
+    "The paper studies DMS/DLS (associative/sensorimotor) but not the ventral/limbic loop directly; Q-019's three-gate architecture would need separate evidence for ventral-to-dorsal spirals."
+  ],
+  "tags": ["q_019", "basal_ganglia", "parallel_loops", "striatonigrostriatal", "dopamine"],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia operate largely in closed parallel loops, including an associative circuit (DMS) and a sensorimotor circuit (DLS). Transsynaptic and intersectional genetic experiments show strong evidence for closed loops that allow striatal subregions to regulate their own dopamine release. Functional synapses also exist in open (cross-loop) configurations, but they do not modulate tonic dopamine neuron firing -- questioning the prominence of cross-loop crosstalk.",
+    "ree_translation": "Q-019's three-gate architecture posits that the BG implement three anatomically distinct loops (sensorium, thought, action commitment) with thalamic substrate sharing but functional segregation. Ambrosi & Lerner provide modern causal evidence (transsynaptic tracing + functional synaptic recording) that the parallel-loop architecture is dominantly closed at the dopamine level, supporting the three-gate model's anatomical premise. The weak open-loop component aligns with Haber's integrative-network view (already in this targeted_review): parallel segregation is the rule, with limited integrative crosstalk -- not the other way around.",
+    "mapping_caveat": "Mouse striatonigrostriatal circuitry; the paper does not test the ventral/limbic-to-associative spiral, which is the Haber 2008 'reward to cognition to motor' bridge most often cited as the integration story. So this paper supports the segregation premise of Q-019 but does not rule out integrative spirals through the ventral striatum.",
+    "source_context": "Mouse, transsynaptic and intersectional genetic tracing, ex vivo electrophysiology of dopamine neuron firing modulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Cell Reports, peer-reviewed, modern causal methods. Mapping is high for the closed-loop segregation question but partial for the full three-gate model (no ventral loop). Transfer risk moderate -- mouse BG architecture is broadly conserved but loop counts and functional roles differ in primates."
+  }
+}

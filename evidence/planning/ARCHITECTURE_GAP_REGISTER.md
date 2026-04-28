@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-04-28T02:12:35.698752Z`
+Generated: `2026-04-28T02:39:08.143815Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -12,10 +12,10 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0003` | `INV-054` | `candidate` | 1 | 0 | 0.287 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0004` | `MECH-098` | `candidate` | 1 | 0 | 0.291 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0005` | `MECH-257` | `candidate` | 1 | 0 | 0.416 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0006` | `SD-018` | `implemented` | 1 | 0.5 | 0.478 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0006` | `SD-018` | `implemented` | 1 | 0.5 | 0.479 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0007` | `MECH-102` | `active` | 0.952 | 0.222 | 0.307 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0008` | `SD-015` | `candidate` | 0.933 | 0 | 0.285 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0009` | `SD-029` | `candidate` | 0.923 | 0.167 | 0.307 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0009` | `SD-029` | `candidate` | 0.933 | 0.222 | 0.31 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0010` | `SD-016` | `implemented` | 0.889 | 0.333 | 0.074 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0011` | `MECH-075` | `candidate` | 0.857 | 0.333 | 0.402 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0012` | `SD-005` | `implemented` | 0.815 | 0.333 | 0.201 | 0 | no | no | `mandatory_decision_checkpoint` |
@@ -44,7 +44,9 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0035` | `MECH-268` | `candidate` | 0 | 0.667 | -0.06 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0036` | `MECH-E2-DUAL-FUNCTION` | `unknown` | 0 | 0.6 | 0.814 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0037` | `Q-006` | `active` | 0 | 0.5 | 0.273 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0038` | `SD-033a` | `candidate` | 0 | 0.615 | -0.1 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0038` | `Q-025` | `open` | 0 | 0.5 | 0.632 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0039` | `Q-026` | `open` | 0 | 1 | 0.617 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0040` | `SD-033a` | `candidate` | 0 | 0.615 | -0.1 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 
 ## Consider New Structure Queue
 

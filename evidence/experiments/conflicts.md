@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-28T02:12:35.698752Z`
+Generated: `2026-04-28T02:39:08.143815Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -51,7 +51,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-188` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_253_mech188_zgoal_injection_1775556946_v3` | 4 |
 | `MECH-216` | directional | 5 | 1 | 0.333 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 6 |
 | `MECH-220` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_395_mech220_harm_hub_20260418T202544Z_v3` | 5 |
-| `MECH-256` | directional | 7 | 2 | 0.444 | `v3_exq_433c_sd029_eventcond_comparator_20260423T232350Z_v3` | 9 |
+| `MECH-256` | directional, mixed_evidence | 9 | 2 | 0.364 | `2026-04-27_sd_003_prereq_corollary_discharge_crapse2008` | 12 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 7 |
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
@@ -70,7 +70,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-018` | directional, source_disagreement, mixed_evidence | 1 | 1 | 1 | `2026-04-21_sd_018_nac_dopamine_approach_costa2025` | 3 |
 | `SD-021` | directional, source_disagreement | 8 | 3 | 0.545 | `v3_exq_325d_sd032c_aic_descending_modulation_20260420T160057Z_v3` | 11 |
 | `SD-023` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 5 |
-| `SD-029` | directional, source_disagreement, mixed_evidence | 5 | 4 | 0.889 | `v3_exq_433c_sd029_eventcond_comparator_20260423T232350Z_v3` | 10 |
+| `SD-029` | directional, source_disagreement, mixed_evidence | 7 | 4 | 0.727 | `2026-04-27_sd_003_prereq_corollary_discharge_crapse2008` | 13 |
 | `SD-032c` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-04-25_sd_032c_salience_network_switch_menon2010` | 4 |
 
 ## Conflict Details
@@ -941,14 +941,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### MECH-256
-- Conflict types: directional
-- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, overall_confidence=0.829
+- Conflict types: directional, mixed_evidence
+- Evidence breakdown: supports=9, weakens=2, conflict_ratio=0.364, overall_confidence=0.825
 - Recent entries:
-  - `2026-04-20T19:40:35Z` `literature` `targeted_review_connectome_mech_256` direction=`supports` confidence=0.82
-  - `2026-04-20T19:40:35Z` `literature` `targeted_review_connectome_mech_256` direction=`supports` confidence=0.82
-  - `2026-04-20T19:40:35Z` `literature` `targeted_review_connectome_mech_256` direction=`supports` confidence=0.7
   - `2026-04-23T23:23:50Z` `experimental` `v3_exq_433c_sd029_eventcond_comparator` direction=`weakens` confidence=0.75
   - `2026-04-27T01:21:42Z` `experimental` `v3_exq_433d_sd029_eventcond_comparator` direction=`non_contributory` confidence=0
+  - `2026-04-28T02:31:07Z` `literature` `targeted_review_sd_003` direction=`mixed` confidence=0.66
+  - `2026-04-28T02:31:07Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.74
+  - `2026-04-28T02:31:07Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.78
 - Recurring failure signatures:
   - `The unifying framing assumes a single cerebellar forward model reused across motor and agency functions. If the forward models for motor-proprioceptive streams and nociceptive/visceral streams are anatomically distinct (cerebellum vs. insula/ACC), then the single substrate reading is too strong and a per-stream substrate account is required.` (1)
   - `The paper does not specify a quantitative attenuation magnitude; mapping 'attenuated' to a specific ratio (e.g., Shergill 0.3-0.7) requires reading other primary literature.` (1)
@@ -1242,7 +1242,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-018
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.597
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.596
 - Recent entries:
   - `2026-04-06T17:19:52Z` `experimental` `v3_exq_257_sd018_resource_prox_validation` direction=`weakens` confidence=0.75
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`supports` confidence=0.78
@@ -1299,13 +1299,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-029
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.663
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.664
 - Recent entries:
-  - `2026-04-23T20:46:26.826227Z` `experimental` `v3_exq_470a_sd029_balanced_curriculum` direction=`weakens` confidence=0.55
-  - `2026-04-23T23:23:50Z` `experimental` `v3_exq_433c_sd029_eventcond_comparator` direction=`weakens` confidence=0.75
-  - `2026-04-24T17:35:08.834934Z` `experimental` `v3_exq_479_sd029_balanced_curriculum_fix` direction=`supports` confidence=0.75
   - `2026-04-25T10:16:38Z` `experimental` `v3_exq_482_sd029_baseline_monostrategy_diagnostic` direction=`inconclusive` confidence=0
   - `2026-04-27T01:21:42Z` `experimental` `v3_exq_433d_sd029_eventcond_comparator` direction=`non_contributory` confidence=0
+  - `2026-04-28T02:31:07Z` `literature` `targeted_review_sd_003` direction=`mixed` confidence=0.66
+  - `2026-04-28T02:31:07Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.74
+  - `2026-04-28T02:31:07Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.78
 - Recurring failure signatures:
   - `The paradigm is somatosensory (tactile pressure), not nociceptive. The mapping from tactile attenuation to harm-stream attenuation still requires the assumption that the forward model is modality-general across the somatosensory-nociceptive boundary.` (1)
   - `The experiments measure perceptual intensity judgments, not explicit agency attributions. Attenuation of felt intensity is necessary for MECH-256's residual mechanism but is not the same measurement as 'did I cause this'.` (1)

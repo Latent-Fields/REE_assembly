@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-28_q_019_thalamocortical_flexibility_scott2024",
+  "timestamp_utc": "2026-04-28T02:31:56Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Thalamocortical architectures for flexible cognition and efficient learning",
+    "authors": ["Daniel N. Scott", "Arghya Mukherjee", "Matthew R. Nassar", "Michael M. Halassa"],
+    "year": 2024,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2024.05.006",
+    "url": "https://doi.org/10.1016/j.tics.2024.05.006"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality 2024 review by the Halassa lab synthesising thalamocortical evidence with a Bayesian/hierarchical framing. Directly relevant to the thought loop's MD substrate and its role in regularising flexible PFC computation. Mapping fidelity is strong for the thought loop component of Q-019; weaker for the sensorium and action commitment loops, which involve different thalamic nuclei (reticular, VL).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Scott et al. emphasise reuse and flexibility via MD regularisation; Q-019's thought loop hypothesis is that MD prevents bleed-back, which is a stronger constraint than 'regularisation'. The review supports the directional claim but does not establish bleed-back prevention specifically.",
+    "The framing is hierarchical Bayesian -- if REE's commitment to incommensurable error signals (MECH-069) requires non-Bayesian update rules, the alignment is approximate at best."
+  ],
+  "tags": ["q_019", "thalamus", "mediodorsal", "prefrontal", "thought_loop", "flexibility"],
+  "mapping": {
+    "source_claim_statement": "Thalamocortical architectures may have evolved to facilitate flexibility and efficiency by coordinating distributed computations. Distributed prefrontal cortical networks compute with flexible codes, and the mediodorsal thalamus provides regularization to promote efficient reuse. Thalamocortical interactions resemble hierarchical Bayesian computations, and their network implementation can be related to existing gating, synchronization, and hub theories of thalamic function.",
+    "ree_translation": "Q-019's thought loop hypothesises that the associative cortico-striato-thalamic loop runs through mediodorsal thalamus, which prevents bleed-back into the sensorium and supports the E3 complex's tactical evaluation. Scott et al. provide modern theoretical synthesis showing that MD acts as a regulariser and gate over distributed PFC computation -- consistent with the thought loop's proposed function. The review does not contradict the three-gate model; it gives the thought loop an updated computational framing.",
+    "mapping_caveat": "The review is theoretical/synthetic, not a single empirical result. It pulls together rodent optogenetics, primate physiology, and computational modelling. Treating it as supporting evidence for Q-019 means inheriting its synthesis assumptions -- particularly the hierarchical Bayesian framing, which sits orthogonal to REE's residue-field architecture.",
+    "source_context": "Review article spanning rodent and primate thalamocortical literature, with computational modelling integration."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "TiCS review, peer-reviewed, top-tier venue, leading lab. Mapping fidelity moderate -- supports the thought loop concept and MD's distinctive role but doesn't test the three-gate vs single-gate question directly. Transfer risk low: thalamocortical principles are broadly conserved."
+  }
+}

@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-28T02:12:35.698752Z`
+Generated: `2026-04-28T02:39:08.143815Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -75,6 +75,8 @@ Use this as the human-in-the-loop review queue.
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-023` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
+| `Q-025` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
+| `Q-026` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-040` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `SD-012` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -173,7 +175,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.504, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.503, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -674,7 +676,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-256
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=7, weakens=2, mixed=0, unknown=0, conflict_ratio=0.444
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=9, weakens=2, mixed=1, unknown=0, conflict_ratio=0.364
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1199,7 +1201,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-019
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: overall_conf=0.887, conflict_ratio=0, exp_entries=0, lit_entries=10; directions supports=6, weakens=0, mixed=4, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.888, conflict_ratio=0, exp_entries=0, lit_entries=14; directions supports=10, weakens=0, mixed=4, unknown=0, conflict_ratio=0
 - Evidence quality note: Open architectural question arising 2026-02-27. Two competing models: (A) Single-gate: BG gate one action endpoint, evaluating three criteria simultaneously (sensorium readiness, thought/trajectory readiness, motor commitment). (B) Three-gate: BG implement three anatomically distinct gating loops — (1) Sensorium loop: limbic/beta-associated, gates what the system attends to — selecting not only fr…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -1291,6 +1293,36 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Narrow the question into testable sub-questions (higher tractability)
 - Last rationale: EXQ-161 superseded (dry-run artifact; implementation gap -- policy trained with entropy bonus only, z_world/z_self detached). Question narrowing applied to focus on discriminating DESCRIPTIVE vs PRESCRIPTIVE vs DIAGNOSTIC trajectory representations. Fresh experiment required.
 
+### Q-025
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: overall_conf=0.632, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### Q-026
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: overall_conf=0.617, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=0, weakens=1, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
 ### Q-033
 - Current status: `open`
 - Decision needed: Question narrowing review
@@ -1327,7 +1359,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-012
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.748, conflict_ratio=0.538, exp_entries=33, lit_entries=16; directions supports=19, weakens=7, mixed=4, unknown=0, conflict_ratio=0.538
+- Why this decision is needed: overall_conf=0.747, conflict_ratio=0.538, exp_entries=33, lit_entries=16; directions supports=19, weakens=7, mixed=4, unknown=0, conflict_ratio=0.538
 - Evidence quality note: EXQ-085f FAIL 3/4 (2026-03-27): drive_weight=2.0, resource_respawn_on_consume=True, curriculum=100 eps. C1 PASS: z_goal_norm=0.228 > 0.1 -- SD-012 drive modulation successfully seeds z_goal (this IS the SD-012 core claim: drive-scaled benefit enables seeding). C2 FAIL: benefit_ratio=0.28x -- goal-guided performance worse than random. C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstr…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1403,7 +1435,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-029
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=6, weakens=7, mixed=1, unknown=0, conflict_ratio=0.923
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=8, weakens=7, mixed=2, unknown=0, conflict_ratio=0.933
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1493,7 +1525,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-033b
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=1, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).

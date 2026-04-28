@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_025",
+  "entry_id": "2026-04-28_q_025_kant_humanity_formula_agency_prerequisites_sep2025",
+  "timestamp_utc": "2026-04-28T02:31:22Z",
+  "claim_ids_tested": ["Q-025"],
+  "source": {
+    "title": "Kant's Moral Philosophy",
+    "authors": ["Robert Johnson", "Adam Cureton"],
+    "year": 2025,
+    "venue": "Stanford Encyclopedia of Philosophy (first published 2004-02-23; substantive revision 2025-10-02)",
+    "doi": null,
+    "url": "https://plato.stanford.edu/entries/kant-moral/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.48,
+  "confidence_rationale": "The Formula of Humanity provides the closest direct philosophical analogue to Q-025's question structure: it derives a list of categorically forbidden acts (suicide, lying promises, deception, treating others as mere means) from prerequisites of rational agency itself -- the same kind of structural derivation REE attempts from INV-025-029. The mapping is real and load-bearing for INV-026 (self as prerequisite) and INV-028 (others as co-inhabitants). However, Kant grounds his derivation in autonomous rational will, whereas REE grounds it in a richer set of prerequisites including world-existence (INV-027), irreducible uncertainty (INV-025), and care-investment (INV-029). Confidence is held just below 0.5 because (a) the mapping is structural-analogical rather than direct, and (b) Kant's specific list does not exhaust what REE's axioms would derive (e.g. acts that destroy the shared world fall under INV-027/028 but are not centrally Kantian).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Kant's derivation famously over-generates prohibitions (e.g. lying to a murderer at the door) and under-generates in cases involving non-rational beings; if REE inherits the same structure naively, it inherits the same failure modes.",
+    "The Formula of Humanity is silent on most of what INV-027 (world existence) and INV-029 (love) would forbid, so leaning on Kant for Q-025 risks importing only a subset of the answer."
+  ],
+  "tags": ["q_025", "ethics", "kant", "formula_of_humanity", "agency_prerequisites", "philosophy_of_ethics"],
+  "mapping": {
+    "source_claim_statement": "Kant's Formula of Humanity holds that one must always treat humanity, whether in oneself or another, never merely as a means but always at the same time as an end. From this, Kant derives categorical prohibitions on acts that undermine the conditions of rational agency: suicide, lying promises, deception, and treating others as mere instruments. The prohibitions are grounded in the structural prerequisites of agency itself -- acts that destroy or contradict the conditions of one's own or another's rational will are forbidden.",
+    "ree_translation": "This is the closest standard-philosophy analogue to Q-025's structure. INV-026 (self as operational prerequisite for responsible agency) maps almost directly onto Kant's prohibition on acts that undermine one's own rational agency -- suggesting a REE-derived prohibition on acts that destroy the conditions of one's own continued model-building (severe self-corruption, irreversible loss of self-model coherence, deliberate destruction of one's epistemic faculties). INV-028 (shared-world ethics, modelling others as co-inhabitants) maps onto Kant's prohibition on treating others as mere means -- suggesting a REE-derived prohibition on acts that treat other minds as resources without modelling them as co-inhabitants of the consequence space. INV-029 (love as long-horizon care-investment) extends this beyond Kant: it suggests a prohibition not just on instrumentalisation but on actively destroying the loved object's long-horizon viability.",
+    "mapping_caveat": "Kant's derivation is the closest extant analogue but not a direct match. (1) Kant grounds prohibitions in rational will alone; REE grounds them in a wider set of prerequisites including world-existence, uncertainty, and care. (2) Kant's specific list (suicide, false promising, etc.) is shaped by 18th-century moral preoccupations; REE's list, derived from INV-025-029, may differ -- e.g. acts that destroy the shared world (climate-scale destruction, foreclosure of future minds) are central to INV-027/INV-029/INV-042 but peripheral in Kant. (3) The Formula of Humanity is famously prone to over-generation and under-generation problems; importing its structure into REE imports those failure modes unless REE's axiomatic basis blocks them.",
+    "source_context": "Encyclopedia overview of Kant's moral philosophy in academic philosophy; covers the Groundwork, Critique of Practical Reason, and the Metaphysics of Morals; not REE-specific."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (peer-reviewed encyclopedia, recently revised 2025). Mapping fidelity is moderate -- structurally analogous but axiomatically distinct. Transfer risk is moderate because moving from human Kantian ethics to REE's structural-axiomatic ethics is a real domain shift, particularly around INV-027 and INV-029 which lack Kantian analogues."
+  }
+}

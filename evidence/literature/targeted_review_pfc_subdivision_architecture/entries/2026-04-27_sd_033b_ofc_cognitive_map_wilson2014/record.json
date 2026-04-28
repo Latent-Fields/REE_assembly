@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-27_sd_033b_ofc_cognitive_map_wilson2014",
+  "timestamp_utc": "2026-04-28T02:30:45Z",
+  "claim_ids_tested": ["SD-033b"],
+  "source": {
+    "title": "Orbitofrontal cortex as a cognitive map of task space",
+    "authors": ["Robert C. Wilson", "Yuji K. Takahashi", "Geoffrey Schoenbaum", "Yael Niv"],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Highly cited unifying theory paper (Niv/Schoenbaum collaboration) that proposes OFC supplies a state-space labeling for RL elsewhere in the brain. This is the canonical theoretical statement of the OFC-as-cognitive-map view that SD-033b's framing (ii) directly imports. Source quality very high; mapping fidelity strong because the paper's task-space abstraction is essentially what SD-033b calls the task-structure cognitive map. Confidence reduced slightly because the paper is theoretical synthesis rather than direct empirical demonstration -- empirical confirmation comes from Schuck 2016 and the Zhou/Stalnaker entries on MECH-263.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC's contribution to RL turned out to be value caching rather than state-space labeling, the cognitive-map framing would collapse and SD-033b's framing (ii) would not be supported.",
+    "If task states could be reliably inferred without OFC even when they are unobservable from sensory input, the proposed unique role of OFC in disambiguating hidden states would be falsified."
+  ],
+  "tags": ["sd_033b", "ofc", "cognitive_map", "task_space", "state_representation", "reinforcement_learning", "pfc_subdivision"],
+  "mapping": {
+    "source_claim_statement": "OFC encodes an abstraction of the agent's current task state -- including state information that is not directly observable from sensory input (such as task phase or working-memory content) -- and this state representation is consumed by reinforcement learning circuitry elsewhere in the brain. The framework explains classic OFC-lesion findings in reversal, devaluation, extinction, and delayed alternation, plus modulation of VTA dopamine RPE signals.",
+    "ree_translation": "SD-033b framing (ii) -- the task-structure cognitive map -- is exactly the Wilson/Niv state-labeling function. In ree-v3 terms, this is the substrate that resolves which state z_self is in for purposes of E2's specific-outcome rollouts: when sensory observation underdetermines the state (partial observability), the OFC-analog disambiguates using stored task structure. SD-033b's claim that OFC-analog is E2's natural substrate address aligns with Wilson/Niv's claim that OFC supplies state labels to downstream RL.",
+    "mapping_caveat": "Wilson/Niv frame the consumer of OFC state labels as VTA/striatal RL machinery (TD-learning over scalar value), while REE's E2 is a deterministic transition model over latent z. The functional role -- supplying state identity for downstream prediction -- maps cleanly, but the computational implementation in REE is not a TD value function over OFC states. SD-033c is the closer analog of the value-RL consumer; SD-033b is specifically the structured-prediction consumer. Treat the mapping as supporting the existence and function of the substrate, not as endorsing TD-RL as the implementation.",
+    "source_context": "Theoretical synthesis paper covering rodent and primate OFC-lesion behaviour, OFC single-unit recordings, and rodent VTA dopamine modulation by OFC inactivation. Generates testable predictions to distinguish state-labeling from value-encoding accounts."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.86,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high -- Neuron paper from canonical Niv/Schoenbaum collaboration, foundational theoretical statement that has been empirically confirmed by Schuck 2016 (human fMRI) and the Zhou/Stalnaker rodent work in this same review directory. Mapping fidelity strong: the paper's state-labeling role is essentially SD-033b's framing (ii) verbatim. Transfer risk modest -- the paper is cross-species and the cognitive-map framing is cleanly architectural rather than species-specific."
+  }
+}

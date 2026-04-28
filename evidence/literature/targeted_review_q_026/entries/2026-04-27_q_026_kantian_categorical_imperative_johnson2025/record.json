@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_026",
+  "entry_id": "2026-04-27_q_026_kantian_categorical_imperative_johnson2025",
+  "timestamp_utc": "2026-04-28T02:29:06Z",
+  "claim_ids_tested": ["Q-026"],
+  "source": {
+    "title": "Kant's Moral Philosophy",
+    "authors": ["Robert Johnson", "Adam Cureton"],
+    "year": 2025,
+    "venue": "Stanford Encyclopedia of Philosophy (Metaphysics Research Lab, Stanford University)",
+    "doi": null,
+    "url": "https://plato.stanford.edu/entries/kant-moral/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.42,
+  "confidence_rationale": "SEP is the canonical philosophy reference (high source quality). Kant's perfect duties are the closest historical analogue to context-independent action requirements -- exactly Q-026's question form. But the mapping to REE is indirect: REE's five axioms (INV-025..029, INV-042) are not Kant's, and Kant's specific perfect duties (no lying, no suicide) do not derive from REE's axioms straightforwardly. Even Kant himself, per the entry, concedes that judgment is required for application -- weakening the very 'context-independent' force that Q-026 asks about. Useful for framing the question, not for answering it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Kant explicitly concedes that 'judgment is often required to determine how these duties apply to particular circumstances,' which means even on the strongest historical version of context-independent ethics, pure context-independence at the action level is not preserved.",
+    "Kant's perfect duties are derived from a contradiction-in-conception test on universalised maxims, not from the existence-of-self / existence-of-world / shared-world axioms that ground REE; the derivation routes are different and the conclusions may not coincide."
+  ],
+  "tags": ["q_026", "ethics", "categorical_imperative", "perfect_duty", "deontology", "five_axioms"],
+  "mapping": {
+    "source_claim_statement": "The categorical imperative generates perfect duties that admit of no exception in favour of inclination and bind universally on all rational agents, and imperfect duties that bind one to pursue certain ends sometimes and to some extent.",
+    "ree_translation": "Q-026 asks for actions strictly required by REE's five axioms in all contexts. Kant's perfect duties are the closest philosophical analogue to context-independent action requirements. If REE's INV-042 (derived ethical objectives) could be cashed out as perfect-duty analogues, this entry suggests the structural shape of an answer: a small set of universalisable proscriptions / prescriptions that hold independent of particular circumstances. But Kant derives them from universalisability, not from REE's axiom set.",
+    "mapping_caveat": "Indirect mapping. Kant's framework is not REE's framework. Q-026 is specifically about what REE's axioms (INV-025..029, INV-042) require, not what Kant's CI requires. This entry tells us what an answer to a Kant-shaped version of Q-026 would look like, not what the answer to REE's actual Q-026 is. Use as conceptual scaffolding only.",
+    "source_context": "Philosophy of ethics; canonical secondary literature on Kant. Not empirical."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.32,
+    "transfer_risk": 0.65,
+    "notes": "High source quality (SEP is peer-edited, canonical). Low mapping fidelity because the paper is about Kant's axioms, not REE's. High transfer risk because deriving 'context-independent action requirements' from any axiom set is sensitive to which axioms one starts from."
+  }
+}

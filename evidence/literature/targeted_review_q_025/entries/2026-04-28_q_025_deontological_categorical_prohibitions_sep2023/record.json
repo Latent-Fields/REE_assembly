@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_025",
+  "entry_id": "2026-04-28_q_025_deontological_categorical_prohibitions_sep2023",
+  "timestamp_utc": "2026-04-28T02:31:22Z",
+  "claim_ids_tested": ["Q-025"],
+  "source": {
+    "title": "Deontological Ethics",
+    "authors": ["Larry Alexander", "Michael Moore"],
+    "year": 2021,
+    "venue": "Stanford Encyclopedia of Philosophy (Winter 2021 Edition; substantive revision tracked in archives)",
+    "doi": null,
+    "url": "https://plato.stanford.edu/entries/ethics-deontological/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Authoritative philosophical reference that names a canonical short list of categorical prohibitions (killing innocents, torture, using persons as mere means, lying, breaking promises) and motivates them via agent-centered and patient-centered structures. The mapping to REE's Q-025 is real but indirect: REE's five axioms (INV-025-029) are not the standard Kantian/deontological starting points -- they include irreducible uncertainty, world-existence, and love-as-care-investment, which the SEP entry does not derive prohibitions from. The article supports the broader thesis that 'a coherent ethics implies categorically forbidden acts' but does not tell us which list falls out of REE's specific axioms. Confidence is held below 0.5 because the mapping_fidelity from SEP's deontology to INV-025-029 is partial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Threshold deontology suggests the list of categorically forbidden acts is not stable under sufficiently catastrophic counterfactuals -- a feature any REE answer must engage with rather than ignore.",
+    "Agent-centered vs patient-centered framings yield overlapping but non-identical lists, so 'forbidden by the axioms' may not pick out a single deterministic set without further commitments."
+  ],
+  "tags": ["q_025", "ethics", "deontology", "categorical_prohibitions", "philosophy_of_ethics"],
+  "mapping": {
+    "source_claim_statement": "Deontological ethics holds that some choices cannot be justified by their effects -- certain acts (killing innocents, torture, using persons as mere means, lying, breaking promises) are categorically forbidden regardless of consequences, with structural justification grounded in agent-conduct constraints (agent-centered) or rights against instrumental use (patient-centered).",
+    "ree_translation": "Q-025 asks for the analogous list strictly forbidden by REE's five axioms (INV-025 irreducible uncertainty, INV-026 self as prerequisite for responsible agency, INV-027 external world as prerequisite for grounded representation, INV-028 shared-world ethics, INV-029 love as long-horizon care-investment). The SEP entry establishes the genre of answer Q-025 expects (a short list of categorical prohibitions) and provides candidate prohibitions that plausibly carry over: acts that destroy other minds, acts that use others as mere instruments, and acts that destroy the conditions of agency. The patient-centered Means Principle in particular maps onto INV-028. The agent-centered duty to keep one's own moral house in order maps onto INV-026.",
+    "mapping_caveat": "REE's five axioms include axioms (INV-025 uncertainty, INV-027 world-existence, INV-029 love) that are not standard deontological premises. The SEP entry therefore brackets but does not directly answer Q-025: it tells us what shape the answer takes (a small list of categorical prohibitions justified by structural prerequisites of agency), but the specific REE list must be derived from INV-025-029 directly. Threshold deontology also raises the question of whether REE's prohibitions are absolute or threshold-sensitive -- a separate open question.",
+    "source_context": "Encyclopedia overview of deontological ethics in academic philosophy; covers Kant, Nagel, Nozick, Kamm; not REE-specific."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "High source quality (peer-reviewed encyclopedia, authoritative authors). Mapping fidelity is moderate-to-low because REE's axioms are a non-standard basis. Transfer risk is moderate because moving from human philosophical ethics to a structural-axiomatic agent ethics is a real domain shift."
+  }
+}

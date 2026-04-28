@@ -1,0 +1,21 @@
+# Wolpert, Miall and Kawato 1998 -- Internal models in the cerebellum
+
+According to PubMed: Wolpert, D.M., Miall, R.C., & Kawato, M. (1998). Internal models in the cerebellum. *Trends in Cognitive Sciences*, 2(9), 338-347. [DOI](https://doi.org/10.1016/s1364-6613(98)01221-2)
+
+## What the paper did
+
+Wolpert, Miall, and Kawato lay out the canonical case for the cerebellum as the principal substrate for forward and inverse internal models of the motor apparatus. Drawing on ocular following responses, reaching adaptation, and lesion data, they argue that inverse models compute the motor command needed to achieve a desired trajectory, while forward models predict the sensory consequences of motor commands and so allow the system to overcome feedback delays. They close with the MOSAIC framework -- multiple paired forward-inverse model modules selected by responsibility signals -- arguing that motor learning and control are best modelled as competition and credit assignment over a population of such pairs.
+
+## What it tells us about SD-003-prereq
+
+The reason this paper matters for SD-003-prereq is that it is the foundational citation for the *forward model* half of the comparator architecture. MECH-256 abstracts away the substrate, but the architectural prerequisite (`E2_x` exists, takes `a_actual` as input, and outputs a prediction) is precisely what Wolpert and colleagues evidence for the motor case. The cerebellum, in their account, is the canonical biological example of an `E2`-shaped structure: it receives efference copies, predicts sensory consequences, and its output can be differenced against actual sensory inflow to drive both motor correction and self-attribution.
+
+Two architectural commitments in the paper are particularly load-bearing for the REE prereq. First, forward models are explicitly framed as predictors of *future* sensory state given current state and motor command -- the same shape as `E2_x(z_x_{t-1}, a_actual) -> predicted_z_x` in MECH-256. The mapping is one-to-one at the level of computational role. Second, the MOSAIC argument -- multiple paired models, each with a context responsibility signal -- supplies a principled answer to the worry that a monolithic E2 is wrong: the brain seems to maintain a population of forward models tuned to different contexts, with a routing signal selecting among them. That is consistent with SD-029's stream-specific framing (one comparator per reafferent stream) and with REE's broader tendency toward modular, context-routed prediction.
+
+## Limitations and caveats
+
+Three caveats. First, this is a 1998 review, and the field has moved -- subsequent work (Diedrichsen, Bastian, Ito) has refined which cerebellar microcircuits do what, and there is now substantial evidence that prefrontal and parietal cortex carry forward-model-like signals as well. The cerebellum is not the only site, and a strict cerebellum-only reading of forward models would understate the architectural distribution. Second, the paper is about *motor* forward models. The leap to harm-stream forward models (SD-029's z_harm_s pipeline) is by analogy; cerebellar motor predictions and brainstem/insular interoceptive predictions are mechanistically distinct and may have different update rules. Third, the MOSAIC framework's responsibility-signal idea is theoretically suggestive but its biological implementation remains contested; treating it as an architectural blueprint would overstate its empirical grounding.
+
+## Confidence reasoning
+
+Confidence is set at 0.74. Source quality is high (0.85) -- TICS, three foundational authors, heavily cited (5000+). Mapping fidelity is high (0.78) for the forward-model-substrate claim that MECH-256/SD-003-prereq presupposes -- the role assigned to the cerebellum in this paper is structurally identical to the role assigned to `E2_x`. Transfer risk is moderate-high (0.40) because the motor-to-interoceptive transfer is the largest single inferential step, and because the paper predates much of what we now know about extra-cerebellar predictive structures. As substrate evidence for the existence of forward-model architecture in the brain, this is canonical; as direct evidence for the harm-stream comparator specifically, it is supportive only via the architectural-pattern argument.

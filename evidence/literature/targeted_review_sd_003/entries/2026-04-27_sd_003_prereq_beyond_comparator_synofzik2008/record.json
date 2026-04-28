@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-04-27_sd_003_prereq_beyond_comparator_synofzik2008",
+  "timestamp_utc": "2026-04-28T02:31:07Z",
+  "claim_ids_tested": ["SD-003-prereq", "MECH-256", "SD-029"],
+  "source": {
+    "title": "Beyond the comparator model: a multifactorial two-step account of agency.",
+    "authors": ["Synofzik, Matthis", "Vosgerau, Gottfried", "Newen, Albert"],
+    "year": 2008,
+    "venue": "Consciousness and Cognition",
+    "doi": "10.1016/j.concog.2007.03.010",
+    "url": "https://doi.org/10.1016/j.concog.2007.03.010"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "The most important cautionary citation for SD-003-prereq. Synofzik and colleagues argue that the comparator model alone -- the architectural target SD-003-prereq is built around -- is insufficient to explain sense of agency, and propose a two-step account in which a multifactorial feeling of agency feeds a separate conceptual judgement. The paper does not deny that the forward-model comparator is necessary; it argues it is not sufficient. For governance, this means MECH-256 should be treated as a building block of self-attribution rather than as the full mechanism, and SD-003-prereq architectural work should make room for downstream cue-integration and conceptual modules. Direction is mixed (supports the substrate's necessity, weakens its sufficiency). Confidence is moderated by the paper's conceptual rather than empirical character.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cases of preserved sense of agency under high comparator residual (e.g. compensated motor noise, tool use after adaptation) imply that residual alone cannot drive agency attribution -- additional cue-integration must be doing real work.",
+    "Cases of disrupted sense of agency under apparently low comparator residual (e.g. some schizophrenia passivity phenomena) imply that the comparator can be intact while agency fails, locating the failure mode upstream or downstream of the residual.",
+    "Sense of agency for thoughts (no motor efference copy) shows that an agency mechanism exists in domains the comparator model cannot reach -- so any REE self-attribution architecture needs a non-motor branch that does not depend on E2_x.",
+    "The paper's two-step structure is conceptually motivated but computationally underspecified -- adopting it as an architectural target risks importing under-determination into the REE design rather than constraining it."
+  ],
+  "tags": ["sd_003", "sd_003_prereq", "sd_029", "mech_256", "sense_of_agency", "comparator_critique", "multifactorial_agency", "schizophrenia"],
+  "mapping": {
+    "source_claim_statement": "The comparator model (forward-model match drives sense of agency) is empirically inadequate. Sense of agency is better explained by a two-step account: (1) a non-conceptual feeling of agency that integrates many cues -- comparator match, intentional-binding, sensory feedback, contextual priors -- via multifactorial weighting; (2) a conceptual judgement of agency that sits on top of the feeling and is shaped by belief, attribution, and context. Schizophrenia passivity, agency for thoughts, and several mismatch/no-mismatch dissociations are cited as cases the comparator model cannot handle.",
+    "ree_translation": "Tests SD-003-prereq specifically as the architectural target: yes the forward-model comparator is necessary (the paper lists it as a cue), but no its residual alone is not sufficient for self-attribution. For SD-029, this means the z_harm_s residual should be treated as one input into a broader self-attribution computation rather than the self-attribution signal. For MECH-256, this means the comparator residual is the *primitive*, not the agency conclusion. The architectural prerequisite work is still required, but the prereq verification cannot stop at residual-vs-no-residual experiments.",
+    "mapping_caveat": "The paper is conceptual rather than empirical -- its critique is by reinterpretation of existing findings, not new data. The proposed two-step architecture is computationally underspecified, so it cannot be adopted as an REE design target without further work. The schizophrenia case the paper leans on is contested; alien-hand and anarchic-hand cases are arguably still well explained by comparator-only models.",
+    "source_context": "Theoretical philosophy-of-mind / cognitive-neurology paper. Draws on existing clinical and behavioural studies (schizophrenia, intentional binding, motor adaptation). Senior philosophy-of-mind authorship. Frequently cited as the canonical comparator-critique paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality moderate-high -- peer-reviewed C&C, well cited, but conceptual rather than empirical. Mapping fidelity high for the central architectural argument: comparator alone is insufficient. Transfer risk moderate -- mostly human clinical/behavioural cases, mapping reasonably to REE's eventual self-attribution role, but the paper does not give a computational target architecture for what to add."
+  }
+}

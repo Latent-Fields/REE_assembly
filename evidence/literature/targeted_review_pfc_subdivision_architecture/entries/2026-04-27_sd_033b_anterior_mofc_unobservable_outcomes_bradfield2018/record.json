@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-27_sd_033b_anterior_mofc_unobservable_outcomes_bradfield2018",
+  "timestamp_utc": "2026-04-28T02:30:45Z",
+  "claim_ids_tested": ["SD-033b"],
+  "source": {
+    "title": "Inferring action-dependent outcome representations depends on anterior but not posterior medial orbitofrontal cortex",
+    "authors": ["Laura A. Bradfield", "Genevra Hart", "Bernard W. Balleine"],
+    "year": 2018,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2018.09.008"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Selective lesion study (rat) dissociating anterior from posterior medial OFC and showing that anterior mOFC is specifically required for inferring action-dependent outcome representations when those outcomes are unobservable -- exactly the specific-outcome prediction function SD-033b framing (i) requires. Combines retrograde tracing (anterior mOFC has stronger projections to nucleus accumbens core) with functional lesion behaviour (PIT, devaluation, outcome-specific reinstatement). Strong direct test of the substrate function. Confidence reduced from 0.85 because (i) rat OFC mapping to primate/human OFC is imperfect and (ii) the dissociation is within mOFC rather than between OFC and adjacent vmPFC, so the paper speaks to substrate localisation more than to the OFC/vmPFC functional split SD-033b vs SD-033c assumes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If anterior and posterior mOFC lesions produced indistinguishable deficits on outcome-specific reinstatement, the proposed functional dissociation would collapse and the substrate-localisation claim would weaken.",
+    "If the action-outcome inference deficit in anterior mOFC lesions could be reproduced by lesions outside mOFC, the substrate-specific-outcome-prediction mapping would lose its specificity."
+  ],
+  "tags": ["sd_033b", "ofc", "specific_outcome_prediction", "lesion", "rodent", "goal_directed_action", "pavlovian_instrumental_transfer", "pfc_subdivision"],
+  "mapping": {
+    "source_claim_statement": "Excitotoxic lesions of anterior medial OFC in rats impair the inference of action-dependent outcome representations on Pavlovian-instrumental transfer, instrumental outcome devaluation, and outcome-specific reinstatement -- specifically when the outcome is unobservable and must be inferred. Posterior mOFC lesions do not produce this deficit. Anterior mOFC has greater retrograde-traced projection density to nucleus accumbens core and other goal-directed-action circuitry than posterior mOFC.",
+    "ree_translation": "Direct behavioural evidence that the OFC substrate supplies specific-outcome predictions for actions when those outcomes cannot be read off the current sensory state. This is SD-033b framing (i) -- the oracle / specific-outcome-prediction function -- demonstrated by selective lesion in a structured behavioural paradigm. The anterior/posterior dissociation also tells REE that the substrate is anatomically localised within the OFC analog, which is relevant for any later attempts to identify the analog in ree-v3's architecture more precisely.",
+    "mapping_caveat": "Rat mOFC mapping to primate/human OFC is imperfect -- the field has known for decades that rodent OFC is sometimes more vmPFC-like functionally than primate OFC. The dissociation in this paper is within mOFC (anterior vs posterior), not between OFC and vmPFC, so it speaks more directly to substrate localisation than to the OFC/vmPFC functional split SD-033b vs SD-033c rests on. REE should treat the paper as supporting the existence and behavioural reality of the specific-outcome-prediction function, while being cautious about importing the anterior/posterior anatomical claim wholesale into the OFC-vs-vmPFC architectural dissociation.",
+    "source_context": "Rat (Long-Evans), n=8-12 per group across experiments. Excitotoxic lesions targeted at anterior or posterior mOFC. Behavioural battery: Pavlovian-instrumental transfer, instrumental outcome devaluation, outcome-specific reinstatement. Retrograde tracing from mediodorsal thalamus, basolateral amygdala, posterior dorsomedial striatum, nucleus accumbens core, ventral tegmental area."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Source quality solid (good lesion methodology, multi-paradigm behaviour, anatomical confirmation, Balleine lab). Mapping fidelity reasonable -- the lesion-induced deficit lines up with SD-033b framing (i). Transfer risk moderate-to-high: rat mOFC vs primate OFC alignment is the well-known problem in this literature, and this paper is rat-specific."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-04-27_sd_003_prereq_cerebellar_forward_model_wolpert1998",
+  "timestamp_utc": "2026-04-28T02:31:07Z",
+  "claim_ids_tested": ["SD-003-prereq", "MECH-256", "SD-029"],
+  "source": {
+    "title": "Internal models in the cerebellum.",
+    "authors": ["Wolpert, D.M.", "Miall, R.C.", "Kawato, M."],
+    "year": 1998,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/s1364-6613(98)01221-2",
+    "url": "https://doi.org/10.1016/s1364-6613(98)01221-2"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Foundational TICS review establishing the cerebellum as a forward/inverse internal-model substrate. Directly evidences the architectural pattern that SD-003-prereq presupposes: a structure that takes efference copy + current state and outputs predicted next sensory state, the exact computational role of E2_x in MECH-256. The MOSAIC framing (multiple paired models with responsibility signals) supports SD-029's stream-specific framing over a monolithic forward model. Confidence is moderated by the motor-to-interoceptive transfer required to map this onto the harm-stream comparator (SD-029) and by the paper's age -- subsequent work has refined and distributed the forward-model story beyond cerebellum.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cerebellar lesion does not eliminate sense of agency, only its motor-precision component -- this constrains how completely a cerebellar-style forward model can carry the full self-attribution role.",
+    "MOSAIC's responsibility-signal mechanism for selecting among multiple paired models is theoretically clean but empirically under-specified; if SD-003-prereq adopts a multi-stream architecture (one E2_x per reafferent stream), the routing/selection mechanism is the next architectural question and is not solved here.",
+    "Forward-model errors are used both for trajectory correction and for credit assignment in the paper's account. SD-029 uses the residual specifically for agency attribution; the paper does not separate these two roles and a clean separation may be an REE-specific design problem."
+  ],
+  "tags": ["sd_003", "sd_003_prereq", "sd_029", "mech_256", "forward_model", "cerebellum", "internal_model", "mosaic", "comparator_substrate"],
+  "mapping": {
+    "source_claim_statement": "The cerebellum implements internal models of the motor apparatus -- both inverse models (computing the motor command for a desired trajectory) and forward models (predicting the sensory consequences of a motor command). Forward-model predictions are used to overcome feedback delays, support motor learning, and contribute to motor awareness. The MOSAIC framework proposes that the brain maintains multiple paired forward-inverse models, with a context-dependent responsibility signal selecting which pair is active.",
+    "ree_translation": "The forward model role described here -- f(state_t, motor_command_t) -> predicted_state_{t+1} -- is structurally identical to E2_x in MECH-256: f(z_x_{t-1}, a_actual) -> predicted_z_x. SD-003-prereq is the architectural-substrate claim that REE must instantiate something with this computational role; this paper evidences that the brain instantiates exactly this structure for the motor case. The MOSAIC multi-paired-model proposal supports SD-029's framing of one comparator per reafferent stream rather than a monolithic E2.",
+    "mapping_caveat": "The paper concerns motor forward models in cerebellum; the extension to interoceptive (z_harm_s) forward models in non-cerebellar substrates is by analogy. Subsequent work has distributed forward-model functions across cerebellum, parietal cortex, and prefrontal regions; a strict cerebellum-only reading would understate the architecture. The MOSAIC responsibility-signal mechanism is theoretically clean but its biological implementation remains contested.",
+    "source_context": "TICS review covering primate and human ocular following, reaching adaptation, lesion data, and computational modelling. Three foundational authors (Wolpert, Miall, Kawato). Heavily cited; the canonical statement of the forward-model account for the motor system."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high -- TICS, foundational authors, heavily cited. Mapping fidelity high for the forward-model architectural role itself. Transfer risk is the main caveat: motor forward models do not automatically generalise to interoceptive/harm-stream comparators, and the leap is the largest single inferential step in SD-029."
+  }
+}

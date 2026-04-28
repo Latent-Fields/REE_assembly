@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-28_q_019_dms_direct_pathway_habit_yu2021",
+  "timestamp_utc": "2026-04-28T02:31:56Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Depression in the Direct Pathway of the Dorsomedial Striatum Permits the Formation of Habitual Action",
+    "authors": ["Xiaoxuan Yu", "Shijie Chen", "Qiang Shan"],
+    "year": 2021,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhab031",
+    "url": "https://doi.org/10.1093/cercor/bhab031"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Mouse causal study showing MSN-subtype-specific synaptic plasticity in DMS direct pathway is required for habit formation, alongside the well-established DLS plasticity story. Demonstrates that even within a single striatal subdomain, parallel pathways (direct vs indirect) carry distinct functional roles. Supports Q-019's segregation premise but is one mechanistic study, so confidence is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Q-019's three-gate model assumes that DMS = thought loop and DLS = action commitment loop with no further internal segregation, this paper complicates that picture: DMS itself contains direct/indirect MSN subtypes with distinct roles in habit formation. The three-gate model may need a finer-grained substrate description.",
+    "The chemogenetic rescue compromised acquisition but not expression -- so the role of DMS direct-pathway plasticity is in habit formation, not habit execution. This temporal split is not currently in Q-019's formulation."
+  ],
+  "tags": ["q_019", "striatum", "direct_pathway", "habit_formation", "msn_subtype"],
+  "mapping": {
+    "source_claim_statement": "Postsynaptic depression in the excitatory synapses of the direct-pathway striatonigral medium spiny neurons in the dorsomedial striatum is formed after habit learning. Chemogenetically rescuing this depression compromises the acquisition, but not the expression, of habitual action. Plasticity in the DMS as well as in the DLS contributes to the formation of habitual action.",
+    "ree_translation": "Q-019's three-gate architecture treats DMS (associative) and DLS (sensorimotor) as separate loops with distinct functional roles. Yu et al. show that habit formation requires plasticity in BOTH DMS and DLS -- specifically, depression in the DMS direct pathway is permissive for the DLS habit machinery to take over. This is supportive evidence for the three-gate model in a specific way: the loops do not just operate in parallel, they coordinate during automaticity transitions. Q-019's note about 'automaticity gradient' (post-commit metrics improve, task migrates to sensorimotor loop) gets a mechanistic substrate from this paper.",
+    "mapping_caveat": "The paper studies habit formation, not the full three-gate architecture. It supports the segregation premise (DMS and DLS have distinct, non-redundant roles) and the automaticity-gradient idea, but does not address the sensorium loop or the thought loop's relationship to the action commitment loop. Mouse-only.",
+    "source_context": "Mouse, instrumental conditioning task, ex vivo electrophysiology + chemogenetic rescue."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Cerebral Cortex, peer-reviewed, modern causal methods (chemogenetic rescue + ex vivo physiology). Mapping fidelity moderate -- supports the segregation+coordination story but one paper testing one mechanism. Transfer risk moderate -- mouse to human BG plasticity rules differ, though the broad architecture is conserved."
+  }
+}

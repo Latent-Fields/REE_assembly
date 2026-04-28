@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-28_q_019_md_context_inference_zheng2024",
+  "timestamp_utc": "2026-04-28T02:31:56Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Rapid context inference in a thalamocortical model using recurrent neural networks",
+    "authors": ["Wei-Long Zheng", "Zhongxuan Wu", "Ali Hummos", "Guangyu Robert Yang", "Michael M. Halassa"],
+    "year": 2024,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-024-52289-3",
+    "url": "https://doi.org/10.1038/s41467-024-52289-3"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Computational model paper proposing biologically-motivated PFC-MD circuit that achieves rapid context inference and continual learning via thalamic gating of context-irrelevant PFC neurons. Supports the thought-loop substrate hypothesis with a working artificial system, but is a model -- not a direct empirical test. Mapping fidelity is good for the gating mechanism but moderate for Q-019's full three-gate claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the thought loop's gating is implemented through residue-field weighting rather than thalamic winner-take-all, the model's specific Hebbian + adaptive thresholding mechanism is one biological implementation -- not the only one. The paper does not exclude alternative thalamic gating substrates.",
+    "Continual learning success in the model relies on MD-like gating preventing catastrophic forgetting across tasks; if REE's tasks share more structure than the model assumes, the gating story may be less critical."
+  ],
+  "tags": ["q_019", "thalamus", "mediodorsal", "prefrontal", "context_inference", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "A PFC-MD neural circuit model with Hebbian plasticity, pre-synaptic traces, adaptive thresholding, and winner-take-all normalization in MD can infer temporal contexts from prefrontal inputs within a few trials. The model thalamus gates context-irrelevant neurons in PFC, facilitating continual learning. Adding the MD-like component alleviates catastrophic forgetting and enables transfer across contexts.",
+    "ree_translation": "Q-019's thought loop posits MD as the routing substrate that prevents bleed-back into the sensorium loop and supports E3 tactical evaluation. Zheng et al. provide a working computational model showing that MD gating of context-irrelevant PFC activity is sufficient to produce rapid context inference and continual learning. This is constructive evidence that the thought-loop architecture is at least computationally viable -- a real model, not just a wiring diagram, that does the work Q-019 attributes to it.",
+    "mapping_caveat": "This is a computational model, not in-vivo evidence. The biological plausibility hinges on Hebbian plasticity with adaptive thresholding and winner-take-all normalisation in MD -- specific assumptions that may or may not hold for actual MD circuits. Treating it as Q-019 evidence means accepting the model's mapping as biologically plausible.",
+    "source_context": "Recurrent neural network model of PFC-MD interactions, evaluated on sequential cognitive tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Nature Communications, peer-reviewed, top-tier journal but a computational model. Transfer risk is moderate-high because the model makes specific assumptions about MD plasticity rules that are not directly validated in vivo."
+  }
+}

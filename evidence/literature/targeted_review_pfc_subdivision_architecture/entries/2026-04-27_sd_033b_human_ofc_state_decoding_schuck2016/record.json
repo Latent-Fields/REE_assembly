@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-27_sd_033b_human_ofc_state_decoding_schuck2016",
+  "timestamp_utc": "2026-04-28T02:30:45Z",
+  "claim_ids_tested": ["SD-033b"],
+  "source": {
+    "title": "Human Orbitofrontal Cortex Represents a Cognitive Map of State Space",
+    "authors": ["Nicolas W. Schuck", "Ming Bo Cai", "Robert C. Wilson", "Yael Niv"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.019"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Direct human fMRI test of the Wilson/Niv 2014 hypothesis. Multivariate pattern classification decodes 16 task states from OFC activity, including states that are unobservable from sensory input. Decoding accuracy correlates with behavioural performance and predicts individual errors. This is the strongest single empirical test in humans that the OFC-analog holds a structured state-space representation, which is exactly what SD-033b framing (ii) requires. Confidence high; reduced from 0.9 because fMRI MVPA infers representational content rather than directly reading neural code, and the 16-state task structure is a specific paradigm whose generalisation to richer task spaces is empirically open.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC pattern decoding accuracy did not correlate with behavioural state-tracking accuracy, the cognitive-map interpretation would be undermined and OFC activity could be a downstream readout rather than the state representation itself.",
+    "If OFC could not decode unobservable states (only sensory-driven ones), the paper's central claim about hidden-state disambiguation would fail and SD-033b's role for the substrate in partial-observability scenarios would be unsupported."
+  ],
+  "tags": ["sd_033b", "ofc", "cognitive_map", "state_space", "fmri", "mvpa", "human_neuroscience", "pfc_subdivision"],
+  "mapping": {
+    "source_claim_statement": "Multivariate pattern classification of fMRI BOLD signal in human medial OFC reliably decodes the agent's current task state in a 16-state decision-making task, including state distinctions that are unobservable from concurrent sensory input. Decoding accuracy correlates with task performance, predicts individual behavioural errors, and similarity between consecutive-state representations correlates with transition accuracy.",
+    "ree_translation": "Direct human-neuroscience confirmation that the OFC-analog holds the structured state-space representation SD-033b framing (ii) requires. The decoded representation is exactly what SD-033b calls the task-structure cognitive map: a labelling of which state the agent is in that downstream prediction machinery can read. The performance correlation provides the operational link -- when the cognitive map is degraded, behaviour fails in the predicted way -- which is the correct shape of evidence for an architectural substrate claim.",
+    "mapping_caveat": "fMRI MVPA infers representational content from BOLD pattern similarity, not from direct neural code. The 16-state task is structured, time-discrete, and well-defined; whether human OFC similarly represents continuous state spaces or open-ended task structures is not directly tested. REE should treat this as confirming that the substrate exists and behaves as predicted in a structured task, while remaining open about how naturally this generalises to less constrained settings.",
+    "source_context": "Human fMRI (n=37 across cohorts), 16-state structured decision task, multivariate pattern classification on medial OFC voxels with cross-validation across runs."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.86,
+    "transfer_risk": 0.20,
+    "notes": "Source quality high (Neuron, methodologically careful MVPA, behaviour-correlation results that go beyond simple decoding). Mapping fidelity strong because the decoded entity is exactly what SD-033b calls the task-structure cognitive map. Transfer risk low -- this is human data on a cognitively rich task, the direction REE most needs."
+  }
+}
