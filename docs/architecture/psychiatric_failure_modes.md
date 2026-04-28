@@ -1051,6 +1051,209 @@ whether the downstream targets fail jointly or selectively.
 
 ---
 
+## OCD: A Three-Layer Architectural Failure (SD-034, MECH-260, MECH-266, SD-045, SD-046)
+
+*Consolidated 2026-04-28 from the four-pull architectural-question chain. Earlier framing in
+`docs/thoughts/2026-04-20_ocd1.md` through `ocd4.md` (goal-side reading); this section adds
+the chunk-side and multi-goal-arbitration readings that emerged from the action-policy
+decomposition lit-pull (`evidence/literature/targeted_review_action_policy_decomposition/`)
+and the type-prototype follow-on (`docs/thoughts/2026-04-28_action_policy_and_multi_goal.md`).*
+
+### The exemplar
+
+Compulsive hand-washing, ordering rituals, checking behaviours, intrusive doubts that cannot
+be released even when the patient agrees they are unfounded. Two phenomenological hallmarks:
+(a) an active goal that the patient cannot release ("I have to be sure my hands are clean"
+won't yield to "I have washed three times, I will be late for work"); (b) a stereotyped
+action sequence that, once entered, plays out to a fixed completion that exceeds what the
+goal would justify (a single thorough washing becomes a 20-minute ritual). Egodystonia is
+common: the patient knows the goal is over-weighted, knows the ritual is excessive, and
+still cannot interrupt either.
+
+The 2026-04-20 ocd1-ocd4 thought files framed OCD as goal-side over-binding -- inability
+to release the active goal slot. This is correct but incomplete. Graybiel 2008 (Annu Rev
+Neurosci, [DOI 10.1146/annurev.neuro.29.051605.112851](https://doi.org/10.1146/annurev.neuro.29.051605.112851);
+indexed at `evidence/literature/targeted_review_action_policy_decomposition/`) frames OCD
+compulsions and rituals as *runaway action chunking* -- the basal-ganglia chunk substrate
+gets stuck in a self-reinforcing loop that the goal-release machinery cannot terminate
+because the failure mode is on the action-chunk side, not the goal side. Both readings
+are true; they describe two architectural layers that fail in characteristic combination.
+
+### Mechanism
+
+Three interlocking failure layers, each anchored to a distinct REE substrate:
+
+**Layer 1 -- Goal-side over-binding (SD-034 closure operator failure).**
+The current goal slot persists past the point where the closure operator would normally
+fire. SD-034's five-part closure signal -- beta_gate.release, dacc.inject_nogo, residue
+domain discharge, salience signal_event, dacc.reset_episode_pe -- depends on detecting
+that the agent's rule-state is stable, beta gate is elevated, and the closure-domain
+predicate is satisfied. In OCD, the closure-domain predicate is set so tightly (per
+ocd4 over-bound mode-exit thresholds) that no realistic completion state crosses the
+closure threshold. The goal does not release because the closure operator cannot fire.
+
+**Layer 2 -- Chunk-side runaway (SD-045 action-chunk cache failure mode).**
+Independent of the goal-side problem, the action-chunk substrate (when added) can enter
+a self-reinforcing loop where successful execution of a cached chunk strengthens the
+chunk's reinforcement signal via MECH-290 backward credit sweep, which raises its
+priority for retrieval next tick, which favours re-invoking it. Without an explicit
+chunk-level No-Go injection (the basal-ganglia task-bracketing-cell analogue), there
+is nothing to attenuate the runaway. SD-034's MECH-260 No-Go injection currently fires
+on action-class indexing at the dACC level; a chunk-side analogue is required to attenuate
+runaway chunking specifically.
+
+**Layer 3 -- Multi-goal-arbitration failure (SD-046 multi-slot GoalState absent).**
+The patient cannot maintain a competing goal ("get to work") alongside the active goal
+("be sure my hands are clean") because the GoalState is single-slot. There is no
+substrate where the competing goal can sit in parallel and accumulate priority through
+drive amplification, dACC arbitration, or MECH-266 asymmetric mode hysteresis. The
+phenomenology of "I know I should stop but I can't switch" is, architecturally, "the
+GoalState slot is occupied and there is no second slot for the alternative to compete
+from."
+
+In combination, the three layers explain the egodystonic quality of OCD: the patient's
+*knowledge* that the ritual is excessive and the alternative goal is more important is
+*not represented in the goal-arbitration system at all*. The cognitive evaluation is
+present in higher-level frontal substrates (SD-033b OFC analogue, SD-033c vmPFC
+analogue) but cannot be translated into goal-arbitration action because there is no
+multi-slot GoalState to receive the alternative. Goal-side closure cannot fire because
+the rule-state never stabilises in the over-bound mode-exit-threshold regime. Chunk-
+side runaway proceeds because the chunk substrate has no goal-independent No-Go.
+
+### Distinction from related failure modes
+
+**vs GAD-like state (z_harm_a elevated, z_goal intact):**
+GAD has goals that get *interrupted* by threat responses; OCD has goals that *cannot be
+released*. GAD is engagement-with-derailment; OCD is engagement-with-non-termination.
+The architectural difference is in which mechanism fails: GAD fails the AIC urgency-
+interrupt threshold (SD-032c) or the harm-driven mode switch (MECH-091); OCD fails the
+closure-domain predicate (SD-034) and the chunk No-Go (SD-045 missing).
+
+**vs catatonia subtype II (SD-036 / MECH-279 harm-stream lock-in):**
+Catatonia has freeze-state persistence with elevated z_harm_a sustaining the freeze
+gate; OCD has goal-state persistence with the closure operator failing to fire.
+Catatonia is motor-suppression locked open; OCD is motor-execution locked into a
+specific cached sequence. Both show "stuck" phenomenology but at different substrate
+layers -- one is PAG-analogue motor gating, the other is goal-arbitration plus chunk
+cache.
+
+**vs psychosis / delusion (MECH-094 hypothesis-tag failure, MECH-201 synthetic-real
+confusion):**
+Delusion is about *what the agent believes*; OCD is about *what the agent does despite
+its beliefs*. The MECH-094 / MECH-201 framing is at the latent-stream level (frame-tag
+errors); OCD is at the action-arbitration level (goal release plus chunk cache). The
+patient with OCD has correct frame tags -- they know the threat is unfounded -- and the
+failure is downstream of belief.
+
+### Clinical mapping
+
+| OCD phenomenology | Architectural locus |
+|---|---|
+| Inability to release current goal | SD-034 closure-operator threshold over-tightened (Layer 1) |
+| Stereotyped ritual sequence | SD-045 action-chunk cache runaway (Layer 2) |
+| Inability to switch to competing task | SD-046 multi-slot GoalState absent (Layer 3) |
+| Egodystonia (knowing the ritual is excessive) | Higher cognitive evaluation (SD-033b/c) intact but cannot reach goal-arbitration without Layer 3 |
+| Resistance escalates ritual length | Layer 2 chunk-cache runaway: blocked execution increases reinforcement on completion |
+| Comorbid OCD + tic disorder | Layer 2 chunk-cache failure shared substrate: tics are sub-second motor chunks; OCD compulsions are second-to-minute behavioural chunks; same runaway primitive at different timescales (Graybiel 2008) |
+| Symptom heterogeneity (washers vs checkers vs orderers) | Different chunk-cache content with shared Layer 1 + Layer 3 vulnerability |
+| Familial / heritable component | Vulnerability is in substrate-level parameters (closure threshold, chunk-cache update rule, goal-slot capacity) more than in any specific symptom-content trace |
+
+### What the substrates commit to
+
+- **SD-034 closure operator** (V3 implemented): the closure-domain predicate threshold
+  is the parameter that distinguishes healthy goal-release from over-binding. EXP-0156
+  (V3-EXQ-460) and EXP-0162 (V3-EXQ-466) validate the substrate; the OCD failure mode
+  is what happens when the predicate is set too tight relative to the rule-state
+  variance.
+- **MECH-260 No-Go injection** (V3 implemented): the goal-side No-Go that currently
+  fires on dACC arbitration. The OCD-specific extension is a chunk-side No-Go
+  (Layer 2) that fires when a chunk has been re-executed beyond a context-dependent
+  count threshold. Currently absent in V3.
+- **MECH-266 asymmetric mode hysteresis** (V3 implemented): per-mode enter / exit
+  thresholds. OCD over-binding is the case where exit threshold is set extremely low
+  (the current mode must collapse to near-zero probability before leaving). Already
+  implemented; V3-EXQ-464 (smoke-PASSed all sub-tests) validates substrate; OCD
+  behavioural validation deferred to V3-EXQ-464b when the dual-resource environment
+  variant lands.
+- **SD-045 action-chunk cache** (V4 default, V3 PULL-FORWARD CONDITION):
+  highest-priority candidate for V3 pull-forward if EXQ-495 successors surface
+  monostrategy persistence. The chunk-cache failure mode (Layer 2) cannot be expressed
+  without this substrate. Without it, REE can model the goal-side reading of OCD but
+  not the chunk-side reading.
+- **SD-046 multi-slot GoalState** (V4 default, V3 PULL-FORWARD CONDITION):
+  second pull-forward candidate. The multi-goal-arbitration failure mode (Layer 3)
+  cannot be expressed without this substrate. Without it, REE can model an agent that
+  fails to release a goal but cannot model an agent that fails to switch to a competing
+  goal -- the two are subtly distinct, and the second is the more clinically faithful
+  reading.
+
+### Predictions
+
+1. **Closure-threshold sweep predicts symptom severity.** SD-034 closure-domain
+   predicate threshold parameter, swept at fixed rule-state variance, should produce
+   a continuous gradient from healthy goal-release to compulsive non-release. The
+   sweep is the falsifiable test that the over-binding reading is parametric rather
+   than categorical.
+2. **Chunk-cache No-Go ablation produces comorbid tic-OCD signature.** With SD-045
+   landed and a chunk-side No-Go added, ablating the No-Go selectively (leaving
+   goal-side No-Go intact) should produce stereotyped ritual repetition with
+   intact goal-arbitration -- pure compulsion without obsession. With ablation
+   extended to multiple timescales of chunk cache, sub-second-chunk repetition
+   surfaces as tic-like behaviour.
+3. **Multi-slot vs single-slot ablation distinguishes "won't release" from
+   "can't switch".** With SD-046 multi-slot GoalState landed, single-slot ablation
+   in an environment with two equally-rewarded competing goals should produce
+   pure non-switching behaviour even when closure operates correctly on the active
+   slot. This dissociates Layer 1 (closure failure) from Layer 3 (multi-slot
+   failure).
+4. **SSRI augmentation pattern follows Layer 3 dependency.** SSRIs in clinical OCD
+   produce gradual symptom improvement over 8-12 weeks. The architectural reading:
+   tonic 5-HT (MECH-203 / MECH-187) modulates GoalState seeding gain; with chronically
+   elevated 5-HT, the threshold for the alternative goal to enter a competing slot
+   (when the slot exists, Layer 3) drops, allowing arbitration to start working
+   again. This predicts that SSRI response in OCD should correlate with measures
+   of competing-goal *availability* (was there an alternative the patient was
+   ignoring?) more than with measures of compulsion *intensity*. Falsifiable in a
+   naturalistic-data study or via an ecological-momentary-assessment trial.
+5. **CBT exposure-response prevention works on Layer 1.** ERP forces the patient
+   to experience the chunk-cache invocation followed by *failure to complete the
+   chunk to its cached endpoint*. The architectural reading: ERP attenuates the
+   chunk-cache reinforcement signal (Layer 2) and forces the closure operator to
+   fire from a non-canonical termination state (Layer 1). This predicts CBT-ERP
+   should be partially effective in single-slot architectures but maximally effective
+   when combined with interventions that recruit competing goals (Layer 3) --
+   e.g. CBT-ERP plus behavioural activation. Existing meta-analytic evidence
+   supports this combined approach; the architectural account makes the dissociation
+   testable in component analyses.
+
+### Claims Covered
+
+- SD-034 (governance.closure_operator) -- Layer 1 substrate
+- MECH-260 (cingulate.dacc_bias_suppression) -- existing goal-side No-Go
+- MECH-266 (cingulate.asymmetric_per_mode_hysteresis) -- mode-stickiness substrate
+- SD-045 (bg.action_chunk_cache_dorsolateral_loop) -- Layer 2 substrate, V4 default with V3 pull-forward
+- SD-046 (goal.multi_slot_state_per_goal_workstream) -- Layer 3 substrate, V4 default with V3 pull-forward
+- MECH-187 / MECH-188 / MECH-203 (5-HT goal-pipeline gain) -- SSRI prediction substrate
+- MECH-290 (hippocampal.backward_trajectory_credit_sweep) -- chunk reinforcement source
+- SD-033b / SD-033c (PFC subdivisions) -- egodystonic-cognition substrate (intact in OCD)
+
+### Claims NOT covered
+
+- The vulnerability factor (heritability, prefrontal cortical thickness, striatal
+  volume, etc.) is not modelled. The architectural account locates the failure
+  parametrically (in closure threshold, chunk-cache update rule, multi-slot
+  capacity) but does not commit to which biological mechanism sets those parameters
+  developmentally.
+- Pharmacological prediction (4) above is registered tentatively; entry into the
+  PHARM-NNN registry pending review of clinical-trial literature on SSRI dose-response
+  curves in OCD subtypes (washers vs checkers etc.).
+- The relationship between OCD and OCPD (obsessive-compulsive personality disorder)
+  is not modelled. OCPD's perfectionism / inflexibility may share Layer 1 / Layer 3
+  failure modes at sub-clinical thresholds without the Layer 2 chunk-cache runaway.
+  This is testable but not registered.
+
+---
+
 ## Pharmacological Predictions Registry
 
 The pharmacological / clinical-intervention predictions surfaced in the failure-mode
