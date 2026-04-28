@@ -23093,3 +23093,499 @@
     ree-v3/CLAUDE.md "MECH-295 Drive -> Liking-Stream -> Approach Cue
     Bridge (2026-04-26)".
   location: docs/architecture/control_plane_heartbeat.md
+
+- id: SD-040
+  title: "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus."
+  claim_type: design_decision
+  subject: hippocampal.type_encoder_anchor_input_projection
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-28
+  depends_on:
+    - MECH-269   # AnchorSet substrate being extended with new input projection
+    - SD-039     # anchor payload schema that this projection populates a new field of
+  functional_restatement: >
+    Concept cells in MTL hold instance-invariant abstract identity codes
+    (Quiroga 2005). Statistical-regularity learning happens via the
+    monosynaptic EC->CA1 pathway in HPC, distinct from the trisynaptic
+    DG->CA3->CA1 episode-encoding pathway (Schapiro et al. 2017 PTRSB).
+    Conceptual relations are encoded by the same gridlike machinery as
+    spatial relations (Constantinescu, O'Reilly & Behrens 2016 Science).
+
+    SD-040 adds a type-encoder substrate to REE: a learned projection
+    from LatentState (or a category-relevant subset of streams) onto a
+    type-key feature vector that gets written alongside z_world into
+    AnchorSet entries. Anchors with similar type-keys constitute an
+    implicit category cluster; the prototype-readout operator (MECH-296)
+    consumes this clustering at retrieval time. The encoder shares input
+    with the existing instance-encoder but produces a regularity-
+    extracted output, mirroring the biological complementary-learning
+    architecture.
+
+    Falsifiable: in a multi-instance environment (multiple distinct
+    hazard locations sharing a hazard-type signature), type-keyed
+    AnchorSet queries should retrieve all instances of the type while
+    location-keyed queries retrieve only the specific instance.
+  notes: >
+    Registered 2026-04-28 from the type-prototype lit-pull
+    (`evidence/literature/targeted_review_hpc_type_prototype_substrate/`).
+    V4-scope by default because V3's gridworld with discrete entity
+    types does not have enough instance-variability to surface the
+    type-vs-instance dissociation as a behavioural signature.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_hpc_type_prototype_substrate/` (Quiroga 2005,
+    Schapiro 2017 Phil Trans, Schapiro 2016 Hippocampus, Constantinescu
+    2016, Hennies 2017). No substrate implementation yet.
+  location: docs/thoughts/2026-04-28_action_object_type_abstraction.md
+
+- id: SD-041
+  title: "An explicit thalamic-routing substrate (reuniens/MD-analogue) gates and amplifies bidirectional traffic between hippocampal anchor pool and frontal substrates. Currently abstracted into the GoalState->HippocampalModule call chain; making it explicit is needed when V3 dynamics demonstrate that the implicit routing is insufficient."
+  claim_type: design_decision
+  subject: thalamic.routing_substrate_hpc_pfc_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-28
+  depends_on:
+    - SD-033     # PFC subdivision cluster (downstream of thalamic routing)
+    - MECH-269   # hippocampal anchor pool (upstream of thalamic routing)
+  functional_restatement: >
+    Mediodorsal thalamus amplifies local PFC connectivity to sustain
+    rule representations without relaying categorical content (Schmitt
+    et al. 2017 Nature). Reuniens of ventral midline thalamus orchestrates
+    HPC-PFC synchrony specifically during spatial working memory demand
+    (Hallock et al. 2016 J Neurosci) and routes prefrontal goal-context
+    into hippocampal CA1 to shape trajectory representations (Ito et al.
+    2015 Nature).
+
+    SD-041 adds an explicit thalamic-routing substrate to REE: a node
+    where "PFC sends compact handle, thalamus gates and amplifies, HPC
+    receives" is architecturally explicit, with demand-conditional gating
+    on cognitive operation type. Currently REE collapses this into the
+    GoalState->HippocampalModule call chain (z_goal as the routed signal),
+    which is biologically functional but lossy.
+
+    Falsifiable: with the substrate added, HPC anchor lookup latency
+    should be demand-conditional (faster during goal-active states,
+    slower during quiescence). Without the substrate, lookup latency is
+    flat across cognitive demand.
+  notes: >
+    Registered 2026-04-28 from the frontal_goal_grounding lit-pull. V4-
+    scope because V3's existing GoalState->HippocampalModule path is
+    biologically functional even if architecturally lossy; the explicit
+    substrate becomes load-bearing in V4 with richer task structure
+    where multi-loop arbitration matters.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_frontal_goal_grounding/` (Schmitt 2017, Hallock 2016,
+    Ito 2015). No substrate implementation yet.
+  location: docs/thoughts/2026-04-28_action_object_type_abstraction.md
+
+- id: SD-042
+  title: "Option library substrate stores a discrete codebook of named, reusable action subroutines (each as initiation-set + termination-function + internal-policy triple, per Sutton-Precup-Singh 1999), distinct from the existing continuous SD-004 action_object_decoder. Required for hierarchical action composition, tool use, social-coordination protocols, and richer ghost-probe seeding."
+  claim_type: design_decision
+  subject: action.option_library_hierarchical_subroutines
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-28
+  depends_on:
+    - SD-004     # continuous action_object substrate that the option library refines
+    - ARC-021    # three BG-like loop framework where option arbitration sits
+    - MECH-292   # ghost-goal bank consumer that benefits from option-keyed retrieval
+  functional_restatement: >
+    The hierarchical structure of behaviour - dividing into tasks,
+    subtask sequences, and atomic actions - is biologically captured by
+    options (Sutton, Precup & Singh 1999). PFC supports active maintenance
+    of the option being executed; option components map onto dorsolateral
+    and orbital PFC functional architecture (Botvinick, Niv & Barto 2009
+    Cognition).
+
+    SD-042 adds an option library substrate to REE: a learned discrete
+    codebook of named options each with (a) an initiation set
+    specifying which states the option can start from, (b) a termination
+    function specifying when the option ends, and (c) an internal policy
+    specifying what to do during execution. This is distinct from the
+    existing SD-004 action_object_decoder, which is a continuous decoder
+    over a fixed dimension rather than an indexable library. With an
+    option library, MECH-293 ghost-goal probes can additionally be
+    seeded by option-initiation-match.
+
+    Falsifiable: in a hierarchical task with reusable subroutines (e.g.
+    "approach-resource" reused across multiple resource types), a V3
+    agent without an option library re-rolls the subroutine at every
+    invocation through E2+CEM, while a V4 agent with the option library
+    invokes the cached subroutine and saves planning latency.
+  notes: >
+    Registered 2026-04-28 from the action-policy decomposition lit-pull.
+    Definitively V4-scope: gridworld too simple to validate options;
+    requires V4 environment with tool use, social coordination, or
+    hierarchical task structure.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_action_policy_decomposition/` (Botvinick 2009 +
+    surrounding hierarchical-RL literature). No substrate implementation
+    yet.
+  location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
+
+- id: SD-043
+  title: "vmPFC analogue gains an abstract task-structure encoding capacity that compresses anchor-pool geometry into a generalisable structural code, preserving similarity geometry across surface-different but structurally-matched problems. Without this, REE cannot exhibit Baram et al. 2020 task-structure abstraction signatures."
+  claim_type: design_decision
+  subject: pfc.vmpfc_abstract_task_structure_encoding
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-28
+  depends_on:
+    - SD-033     # PFC subdivision cluster (vmPFC subdivision being extended)
+    - ARC-035    # vmPFC content interface (substrate gaining new encoding capacity)
+    - MECH-292   # anchor pool whose geometry the encoding compresses
+  functional_restatement: >
+    vmPFC and entorhinal cortex preserve representational geometry
+    across surface-different RL problems if and only if task structure
+    is preserved (Baram, Muller, Nili, Garvert & Behrens 2020 Neuron).
+    The rich content vmPFC carries is task-graph topology, not "the goal
+    as a feature vector". This is a generalisable abstract structural
+    representation.
+
+    SD-043 adds an abstract task-structure encoding capacity to the
+    vmPFC analogue: the substrate compresses MECH-292 anchor-pool
+    geometry (which anchors are nearby in stream-mixture space, which
+    transitions are common, which valence patterns recur) into a
+    structural code that survives across structurally-matched but
+    surface-different episodes. Without this, the vmPFC analogue can
+    only hold instance-keyed value information, not relational structure.
+
+    Falsifiable: V4 generalisation test - train on one task structure,
+    swap surface stimuli but preserve structure, measure transfer.
+    With SD-043, transfer should be near-immediate. Without it,
+    transfer requires re-learning from scratch.
+  notes: >
+    Registered 2026-04-28 from the frontal_goal_grounding lit-pull.
+    Definitively V4-scope: V3's grid-world has fixed task structure
+    across episodes, so the structural-generalisation behavioural
+    signature is not testable in V3.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_frontal_goal_grounding/` (Baram 2020, Constantinescu
+    2016 corroborates with conceptual-grid evidence in EC). No substrate
+    implementation yet.
+  location: docs/thoughts/2026-04-28_action_object_type_abstraction.md
+
+- id: SD-044
+  title: "Motor primitive substrate at the bottom of the action-representation hierarchy: a small fixed dictionary of force-field-like primitive activations that vectorially combine to produce the action_object that E2 consumes. Required only when REE moves to continuous limb-like control."
+  claim_type: design_decision
+  subject: motor.primitive_substrate_bottom_of_action_stack
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-28
+  depends_on:
+    - SD-004     # action-object substrate above motor primitives in the stack
+  functional_restatement: >
+    The CNS organises spinal premotor circuits into discrete force-field
+    modules whose vectorial combination produces a rich grammar of
+    motor behaviours (Mussa-Ivaldi & Bizzi 2000 PTRSB).
+
+    SD-044 adds a motor-primitive substrate to REE that lands BELOW
+    SD-004 in the action-representation stack: a learned (or fixed)
+    dictionary of primitive activations, each of which contributes a
+    direction in continuous action space; the action_object that E2
+    consumes is produced as a vectorial combination of active primitives
+    rather than emitted directly by the action_object_decoder.
+
+    Falsifiable: this substrate is environmentally not testable in V3
+    (4 discrete actions). In V4 with continuous control, ablating the
+    primitive layer should produce coarser motor output and reduced
+    transfer across motor tasks.
+  notes: >
+    Registered 2026-04-28 from the action-policy decomposition lit-pull.
+    Definitively V4-scope: requires V4 environment with continuous
+    action space. Not warranted for V3's discrete-grid gridworld.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_action_policy_decomposition/` (Mussa-Ivaldi & Bizzi
+    2000). No substrate implementation yet.
+  location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
+
+- id: SD-045
+  title: "Action-chunk cache stores frequently-traversed action sequences as cached lookups, indexed by (state-signature, expected-outcome-signature). Sits in the dorsolateral-loop slot of ARC-021. Provides the model-free habit pathway missing from V3 and the runaway-chunking failure mode underlying OCD compulsions and rituals (Graybiel 2008)."
+  claim_type: design_decision
+  subject: bg.action_chunk_cache_dorsolateral_loop
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-28
+  depends_on:
+    - ARC-021    # three BG-like loop framework where chunk cache lives in DLS slot
+    - SD-004     # action-object substrate that chunks are sequences of
+    - MECH-290   # backward credit sweep that updates chunk reinforcement
+  functional_restatement: >
+    Striatal task-bracketing cells fire phasically at the start and end
+    of well-learned action sequences, treating the intervening sequence
+    as a single unit of behavioural control (Graybiel 2008 Annu Rev
+    Neurosci). The brain arbitrates between model-based (PFC + DMS) and
+    model-free (DLS) control by relative uncertainty (Daw, Niv & Dayan
+    2005 Nat Neurosci). The dichotomy is better understood as a spectrum
+    with shared circuitry and rich interactions than as fully separate
+    subsystems (Dolan & Dayan 2013 Neuron).
+
+    SD-045 adds an action-chunk cache substrate to REE: a small
+    dictionary of frequently-traversed action sequences indexed by
+    start-state signature and expected-outcome signature, executable as
+    a unit without re-rolling through E2 + CEM. Updated by reinforcement
+    from MECH-290 backward credit sweep on completed committed
+    trajectories. Gated by task-bracketing-analogue start/end signals.
+    Lives in the dorsolateral-loop slot of ARC-021. Per Dolan-Dayan
+    spectrum framing, integrates WITH the existing planner -
+    HippocampalModule.propose_trajectories or E3 selector queries the
+    cache before falling through to CEM rollout - rather than as a
+    parallel competing controller.
+
+    Falsifiable: in repeated-route foraging tasks, post-training
+    trajectories should show shorter planning latency than first-
+    exposure trajectories of the same length. In OCD-modelling tasks,
+    runaway chunking should produce compulsive ritual-like trajectory
+    repetition that the goal-release machinery (SD-034 closure
+    operator) fails to terminate.
+  notes: >
+    Registered 2026-04-28 from the action-policy decomposition lit-pull.
+    Default V4-scope, with V3 PULL-FORWARD CONDITION: if EXQ-495 V3-
+    full-completion-gate or successor experiments surface monostrategy
+    persistence that the existing planner-only architecture cannot
+    explain or escape, this is the highest-priority architectural
+    extension to pull forward into late-V3. The connection runs through
+    the hypothesis that some part of monostrategy may be a missing-habit
+    -cache issue (every action goes through model-based planning, so the
+    planner's mono-bias is the only contributor to behavioural rigidity)
+    rather than purely a goal-substrate issue. Pull-forward is also
+    relevant if SD-033 OCD modelling work surfaces a need for the
+    compulsive-ritual failure mode beyond what the goal-release machinery
+    in SD-034 can express.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_action_policy_decomposition/` (Graybiel 2008,
+    Daw 2005, Dolan & Dayan 2013, Botvinick 2009). No substrate
+    implementation yet.
+  location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
+
+- id: SD-046
+  title: "Multi-slot GoalState holds N>=2 simultaneously-active goal slots with per-slot z_goal, drive coupling, age, and persistence parameters. Each slot generates its own ghost-goal-bank rank, ghost-probe budget, and proposer trajectories; a dACC-style arbitrator selects which slot's best trajectory commits this tick."
+  claim_type: design_decision
+  subject: goal.multi_slot_state_per_goal_workstream
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: 2026-04-28
+  depends_on:
+    - SD-012     # homeostatic drive coupling that becomes per-slot
+    - SD-015     # z_resource encoder upstream of GoalState seeding
+    - MECH-292   # ranked ghost-goal bank that becomes per-slot
+    - MECH-293   # waking ghost-goal probes that become per-slot
+    - SD-032b    # dACC-style arbitration for selecting between active slots
+  functional_restatement: >
+    REE V3's GoalState is a singleton: one z_goal at a time. Multi-goal
+    parallel maintenance - holding competing goals simultaneously and
+    arbitrating between them tick-by-tick - is structurally impossible
+    in V3. This is itself a contributor to monostrategy lock-in
+    (single-goal architecture forces single behavioural strategy) and
+    to the inability to express OCD-style over-binding pathology in its
+    canonical "competing-goals failure mode" form (the agent cannot get
+    stuck because there is nothing to switch away to).
+
+    SD-046 adds multi-slot GoalState: a small set of active goal slots
+    (n=2-4 plausibly), each with its own z_goal, drive coupling, age,
+    persistence parameters. Each slot generates its own MECH-292 rank
+    against the anchor pool, its own MECH-293 ghost-probe budget, and
+    its own proposer trajectories. A dACC-style arbitrator (extension
+    of SD-032b's bundle composition) selects which active slot's best
+    trajectory wins this commitment cycle, governed by something like
+    the Daw 2005 uncertainty-based arbitrator extended to multi-option
+    selection.
+
+    Falsifiable: in a dual-resource task where the agent must alternate
+    between two resource patches with different optimal routes, single-
+    slot architecture forces sequential goal-switching with full
+    re-planning each switch. Multi-slot architecture maintains both
+    representations and exhibits faster between-switch latency plus
+    better between-switch route stability. In OCD-modelling tasks,
+    multi-slot architecture allows expression of the over-binding failure
+    mode where one slot's persistence prevents another slot from gaining
+    arbitration.
+  notes: >
+    Registered 2026-04-28 from the conversation that produced
+    `docs/thoughts/2026-04-28_action_policy_and_multi_goal.md`. Default
+    V4-scope, with V3 PULL-FORWARD CONDITION identical to SD-045: if
+    monostrategy escape requires it, this is the next-highest-priority
+    pull-forward candidate. Connects to MECH-266 asymmetric mode
+    hysteresis (which currently operates per-mode; multi-goal would
+    require a parallel per-goal hysteresis dimension).
+  evidence_quality_note: >
+    Registered candidate without a dedicated lit-pull. Architectural
+    motivation comes from monostrategy debugging in V3 plus the OCD over
+    -binding framing in `docs/thoughts/2026-04-20_ocd4.md`. A targeted
+    lit-pull on multi-goal arbitration in PFC + dACC + cingulate-
+    cortex circuits is recommended before V3 pull-forward (anchor
+    candidates: Mansouri et al. 2017 NRN competing goals; Kolling et al.
+    2012 dACC foraging value; Shenhav et al. 2013 EVC).
+  location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
+
+- id: MECH-296
+  title: "Prototype-readout operator computes a softmax-attention match between the current LatentState and the type-keyed anchor pool, returning a small set of best-matched type-keys plus their confidences. Runs both during waking (moment-to-moment type recognition) and during sleep (consolidation refinement of the type-anchor pool)."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.prototype_readout_via_type_keyed_attention
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: 2026-04-28
+  depends_on:
+    - SD-040     # type-encoder substrate produces the type-keys this operator queries
+    - MECH-269   # AnchorSet substrate that stores the type-keyed entries
+    - MECH-285   # sleep replay sampler that drives the offline refinement pass
+  functional_restatement: >
+    Concept cells at decode time fire for any input that matches their
+    abstract identity (Quiroga 2005 Nature). HPC encodes higher-order
+    statistical regularities including temporal community structure
+    during waking exposure (Schapiro 2016 Hippocampus), and sleep
+    enhances abstraction extraction but the operator is content-specific
+    and naive replay disrupts it (Hennies et al. 2017 Sleep).
+
+    MECH-296 specifies the readout operator that consumes SD-040's type-
+    keyed AnchorSet entries: a softmax-attention match between current
+    LatentState and the type-key vectors stored on each anchor, producing
+    a top-k set of matched type-keys with confidences. During waking,
+    this provides moment-to-moment type recognition that downstream
+    consumers (proposer, frontal substrates, residue write valence
+    selection) can condition on. During sleep, MECH-285's priority-
+    weighted replay drives a refinement pass where recombined replays
+    update the type-anchor pool by reinforcing co-occurring type-keys
+    and pruning rarely-matched entries.
+
+    Falsifiable: with the operator running, surface-different stimuli
+    sharing a structural type-signature should activate overlapping
+    type-key sets in the readout. Without it, type recognition is
+    instance-specific and no shared activation pattern emerges.
+  notes: >
+    Registered 2026-04-28 from the type-prototype lit-pull. V4-scope by
+    default - V3's gridworld doesn't have rich-enough type-instance
+    dissociation to validate the operator behaviourally.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_hpc_type_prototype_substrate/` (Quiroga 2005,
+    Schapiro 2016, Schapiro 2017 Phil Trans, Hennies 2017). No
+    implementation yet.
+  location: docs/thoughts/2026-04-28_action_object_type_abstraction.md
+
+- id: MECH-297
+  title: "Type-V_s gating extends MECH-269's per-stream / per-region V_s with a per-type V_s dimension keyed on the matched type-key from MECH-296. Allows the proposer / E3 to gate stream contributions by category-V_s as well as by per-stream V_s, downweighting type-confident-but-stream-degraded inputs and vice versa."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.type_vs_anchor_gating_extension_mech_269
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: 2026-04-28
+  depends_on:
+    - MECH-269   # parent V_s primitive being extended with type dimension
+    - MECH-296   # prototype-readout operator that produces matched type-keys
+    - SD-040     # type-encoder substrate that grounds the type dimension
+  functional_restatement: >
+    MECH-269 currently maintains per-stream V_s scores and per-region
+    V_s scores (Phase 1 + Phase 2 iii). MECH-297 extends this with a
+    per-type V_s dimension: for each type-key matched by MECH-296,
+    maintain a verisimilitude score that tracks how well current
+    LatentState matches the stored prototype for that type. The
+    proposer / E3 can then gate stream contributions by a combined
+    (per-stream V_s) AND (per-type V_s) signal: high per-type V_s with
+    low per-stream V_s suggests the type is correctly recognised but
+    the specific instance signal is unreliable; low per-type V_s with
+    high per-stream V_s suggests stream signals are reliable but the
+    type-prototype match is poor (novel instance or out-of-distribution).
+
+    Falsifiable: with type-V_s gating, novel instances of a known
+    type should produce low per-type V_s and trigger the probe channel
+    in MECH-269 (low-V_s anchors with strengthened MECH-094 hypothesis
+    tag). Without it, novel instances are treated identically to known
+    instances and no probe-channel firing.
+  notes: >
+    Registered 2026-04-28 from the type-prototype lit-pull. V4-scope.
+    A natural Phase-4 extension to MECH-269 once the type-encoder and
+    prototype-readout substrates land. Could alternatively be registered
+    as MECH-269 Phase 4 rather than as a separate MECH-297; current
+    convention treats MECH-269 phases as a coherent cluster and the
+    type extension as a sibling claim.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_hpc_type_prototype_substrate/` (same anchors as
+    SD-040 / MECH-296). No implementation yet.
+  location: docs/thoughts/2026-04-28_action_object_type_abstraction.md
+
+- id: MECH-298
+  title: "Event-gated frontal write at goal-instantiation moments: when GoalState transitions from inactive to active, or when z_goal changes substantially, perform a high-bandwidth one-shot transfer of LatentStack content into SD-033a rule_state and SD-033b state_code, replacing the slow-EMA update for that tick. Mirrors Spellman et al. 2015 encoding-direction HPC->PFC dependence at goal-cue encoding."
+  claim_type: mechanism_hypothesis
+  subject: pfc.event_gated_frontal_write_at_goal_instantiation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: 2026-04-28
+  depends_on:
+    - SD-033a    # lateral-PFC analogue rule_state being write-targeted
+    - SD-033b    # OFC analogue state_code being write-targeted
+    - MECH-288   # event segmenter whose slow-scale boundaries trigger the write
+  functional_restatement: >
+    Direct hippocampal-prefrontal afferents are critical for encoding
+    but not for maintenance or retrieval of spatial cues; encoding-phase
+    PFC representation depends on HPC input, while maintenance and
+    retrieval are PFC-local (Spellman, Rigotti, Ahmari, Fusi, Gogos &
+    Gordon 2015 Nature).
+
+    MECH-298 specifies an event-gated frontal write: at goal-creation
+    moments (GoalState inactive->active transition; substantial z_goal
+    change detected by MECH-288 slow-scale BOCPD boundary), perform a
+    one-shot fast-write into SD-033a rule_state and SD-033b state_code
+    from the current LatentStack content, replacing the slow-EMA update
+    for that tick. Subsequent ticks resume the EMA dynamics. This gives
+    the frontal substrates a high-bandwidth coupling to richer
+    associative content at the moments when goals are encoded, while
+    keeping maintenance local-to-PFC at all other times.
+
+    Falsifiable: with MECH-298 active, frontal rule_state / state_code
+    should show step-change dynamics at goal-onset events and smooth
+    dynamics elsewhere. Without it, dynamics are smooth across goal-
+    onset events and there is no encoding-specific HPC->PFC coupling
+    signature.
+  notes: >
+    Registered 2026-04-28 from the frontal_goal_grounding lit-pull.
+    Default V4-scope. The MECH-288 boundary-trigger machinery already
+    fires at the right moments in V3, so the missing piece is just the
+    write hook on the frontal substrates - this is one of the lighter
+    architectural extensions in the cluster and could be pulled forward
+    to V3 if SD-033a/b training-dependent emergence work needs faster
+    rule-state updates than the current EMA provides.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_frontal_goal_grounding/` (Spellman 2015 anchor
+    plus Schmitt 2017 / Hallock 2016 / Ito 2015 surrounding context).
+    No implementation yet.
+  location: docs/thoughts/2026-04-28_action_object_type_abstraction.md

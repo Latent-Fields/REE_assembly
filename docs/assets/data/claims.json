@@ -2993,6 +2993,24 @@
     "title": "Drive amplification (SD-012) reaches approach action selection only via liking-stream activation. Drive raises liking-stream gain on goal-congruent outcomes, which supplies the cue-side pull for approach. Without the liking-bridge, drive-amplified goal seeding produces a passive z_goal latent without behavioural consequence -- the EXQ-483 catatonic-lock signature.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-296": {
+    "status": "candidate",
+    "subject": "hippocampal.prototype_readout_via_type_keyed_attention",
+    "title": "Prototype-readout operator computes a softmax-attention match between the current LatentState and the type-keyed anchor pool, returning a small set of best-matched type-keys plus their confidences. Runs both during waking (moment-to-moment type recognition) and during sleep (consolidation refinement of the type-anchor pool).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-297": {
+    "status": "candidate",
+    "subject": "hippocampal.type_vs_anchor_gating_extension_mech_269",
+    "title": "Type-V_s gating extends MECH-269's per-stream / per-region V_s with a per-type V_s dimension keyed on the matched type-key from MECH-296. Allows the proposer / E3 to gate stream contributions by category-V_s as well as by per-stream V_s, downweighting type-confident-but-stream-degraded inputs and vice versa.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-298": {
+    "status": "candidate",
+    "subject": "pfc.event_gated_frontal_write_at_goal_instantiation",
+    "title": "Event-gated frontal write at goal-instantiation moments: when GoalState transitions from inactive to active, or when z_goal changes substantially, perform a high-bandwidth one-shot transfer of LatentStack content into SD-033a rule_state and SD-033b state_code, replacing the slow-EMA update for that tick. Mirrors Spellman et al. 2015 encoding-direction HPC->PFC dependence at goal-cue encoding.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3537,6 +3555,48 @@
     "status": "candidate",
     "subject": "hippocampal.anchor_goal_snapshot_payload",
     "title": "Dual-trace anchors preserve a goal-state snapshot plus wanting/arousal payload at write or invalidation time, so unresolved goals remain queryable after the active plan fails.",
+    "type": "design_decision"
+  },
+  "SD-040": {
+    "status": "candidate",
+    "subject": "hippocampal.type_encoder_anchor_input_projection",
+    "title": "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus.",
+    "type": "design_decision"
+  },
+  "SD-041": {
+    "status": "candidate",
+    "subject": "thalamic.routing_substrate_hpc_pfc_gate",
+    "title": "An explicit thalamic-routing substrate (reuniens/MD-analogue) gates and amplifies bidirectional traffic between hippocampal anchor pool and frontal substrates. Currently abstracted into the GoalState->HippocampalModule call chain; making it explicit is needed when V3 dynamics demonstrate that the implicit routing is insufficient.",
+    "type": "design_decision"
+  },
+  "SD-042": {
+    "status": "candidate",
+    "subject": "action.option_library_hierarchical_subroutines",
+    "title": "Option library substrate stores a discrete codebook of named, reusable action subroutines (each as initiation-set + termination-function + internal-policy triple, per Sutton-Precup-Singh 1999), distinct from the existing continuous SD-004 action_object_decoder. Required for hierarchical action composition, tool use, social-coordination protocols, and richer ghost-probe seeding.",
+    "type": "design_decision"
+  },
+  "SD-043": {
+    "status": "candidate",
+    "subject": "pfc.vmpfc_abstract_task_structure_encoding",
+    "title": "vmPFC analogue gains an abstract task-structure encoding capacity that compresses anchor-pool geometry into a generalisable structural code, preserving similarity geometry across surface-different but structurally-matched problems. Without this, REE cannot exhibit Baram et al. 2020 task-structure abstraction signatures.",
+    "type": "design_decision"
+  },
+  "SD-044": {
+    "status": "candidate",
+    "subject": "motor.primitive_substrate_bottom_of_action_stack",
+    "title": "Motor primitive substrate at the bottom of the action-representation hierarchy: a small fixed dictionary of force-field-like primitive activations that vectorially combine to produce the action_object that E2 consumes. Required only when REE moves to continuous limb-like control.",
+    "type": "design_decision"
+  },
+  "SD-045": {
+    "status": "candidate",
+    "subject": "bg.action_chunk_cache_dorsolateral_loop",
+    "title": "Action-chunk cache stores frequently-traversed action sequences as cached lookups, indexed by (state-signature, expected-outcome-signature). Sits in the dorsolateral-loop slot of ARC-021. Provides the model-free habit pathway missing from V3 and the runaway-chunking failure mode underlying OCD compulsions and rituals (Graybiel 2008).",
+    "type": "design_decision"
+  },
+  "SD-046": {
+    "status": "candidate",
+    "subject": "goal.multi_slot_state_per_goal_workstream",
+    "title": "Multi-slot GoalState holds N>=2 simultaneously-active goal slots with per-slot z_goal, drive coupling, age, and persistence parameters. Each slot generates its own ghost-goal-bank rank, ghost-probe budget, and proposer trajectories; a dACC-style arbitrator selects which slot's best trajectory commits this tick.",
     "type": "design_decision"
   }
 }
