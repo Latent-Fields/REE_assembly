@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontal_goal_grounding",
+  "entry_id": "2026-04-28_frontal_goal_grounding_md_thalamus_pfc_rule_schmitt2017",
+  "timestamp_utc": "2026-04-28T03:57:38Z",
+  "claim_ids_tested": ["SD-033a", "MECH-262"],
+  "source": {
+    "title": "Thalamic amplification of cortical connectivity sustains attentional control",
+    "authors": ["L Ian Schmitt", "Ralf D Wimmer", "Miho Nakajima", "Michael Happ", "Sima Mofakham", "Michael M Halassa"],
+    "year": 2017,
+    "venue": "Nature",
+    "doi": "10.1038/nature22073",
+    "url": "https://www.nature.com/articles/nature22073"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Nature paper, optogenetic, with a clean architectural finding: mediodorsal thalamus does NOT relay categorical (rule-content) information into PFC; instead it amplifies local PFC connectivity, allowing rule-specific neural sequences to emerge and be maintained. This makes the rule representation properly local-to-PFC (a compact handle-like local code), but with thalamic functional support. Directly relevant to SD-033a's rule_state architecture and to MECH-262's training-dependent persistence. Confidence 0.78 because while the methodology is excellent, the mapping to REE is partially indirect -- REE has no MD-analogue thalamic substrate and the 'thalamic amplification' role is currently absent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Mediodorsal thalamus does NOT carry the categorical rule content -- it only amplifies local PFC connectivity. An architectural reading where thalamus 'feeds rich rule information into PFC' is wrong. The rule content is intrinsically PFC-resident; thalamus only provides the gain.",
+    "PFC rule representations require external thalamic sustaining input. An architectural commitment to 'PFC alone holds the rule via recurrent local dynamics' is inadequate. SD-033a's EMA persistence of rule_state is missing this thalamic-amplification factor; persistent rule-holding in biology is a coupled cortico-thalamic phenomenon."
+  ],
+  "tags": ["sd_033a", "mech_262", "frontal_goal_grounding", "mediodorsal_thalamus", "rule_representation", "compact_handle"],
+  "mapping": {
+    "source_claim_statement": "Mediodorsal thalamus sustains rule representations in mouse prefrontal cortex without relaying categorical information. Mediodorsal input amplifies local PFC connectivity, enabling rule-specific neural sequences to emerge and thereby maintain rule representations. Broadly enhancing PFC excitability diminishes rule specificity and behavioural performance, whereas enhancing mediodorsal excitability improves both.",
+    "ree_translation": "For SD-033a (lateral-PFC-analogue rule_state) and MECH-262 (rule-selective persistence): the rule representation is properly PFC-local -- a compact handle, not a readout of richer posterior content. But the local representation is sustained by external thalamic amplification, not by PFC-internal recurrence alone. SD-033a's EMA-based rule_state persistence is a coarse abstraction of this; a tighter biological mapping would route rule_state through a thalamic-amplification node that gates which rule-specific PFC connectivity gets boosted at any given time.",
+    "mapping_caveat": "The paper studies rule-following in attentional control, not goal-pursuit. Rules and goals are biologically related but not identical -- rules constrain action selection given a context; goals specify desired outcomes. The MD-thalamus result transfers more directly to SD-033a (rule_state) than to ARC-035 (vmPFC goal/value content). Also: REE has no MD-thalamus-analogue substrate, so the 'thalamic amplification gates which PFC sequences get sustained' mechanism cannot currently be expressed in V3 architecture.",
+    "source_context": "Mice performed an attention-based rule-switching task while MD-thalamus optogenetic perturbations and PFC single-unit recordings were carried out. Rule-specific neural sequences in PFC were causally dependent on MD input; the MD itself did not encode the categorical rule but provided gain that supported sequence emergence."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality very high. Mapping fidelity moderate because the rule-vs-goal distinction matters and the result transfers more cleanly to SD-033a than to other PFC subdivisions. Transfer risk somewhat elevated because REE has no thalamic-amplification substrate at all, so the mechanism cannot be tested in V3 -- the entry primarily justifies the compact-handle reading of SD-033a's local rule_state."
+  }
+}

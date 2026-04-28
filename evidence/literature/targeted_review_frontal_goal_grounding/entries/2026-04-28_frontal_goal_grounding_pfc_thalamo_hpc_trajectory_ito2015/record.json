@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontal_goal_grounding",
+  "entry_id": "2026-04-28_frontal_goal_grounding_pfc_thalamo_hpc_trajectory_ito2015",
+  "timestamp_utc": "2026-04-28T03:57:38Z",
+  "claim_ids_tested": ["SD-033a", "ARC-035", "MECH-292", "MECH-293"],
+  "source": {
+    "title": "A prefrontal-thalamo-hippocampal circuit for goal-directed spatial navigation",
+    "authors": ["Hiroshi T Ito", "Sheng-Jia Zhang", "Menno P Witter", "Edvard I Moser", "May-Britt Moser"],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature14396",
+    "url": "https://www.nature.com/articles/nature14396"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Nature paper with three-region simultaneous recording (mPFC, nucleus reuniens, CA1) plus optogenetic silencing of reuniens, plus an elegant dissociation: trajectory-coding is abundant in CA1 (which receives reuniens input) and absent in CA3 (which does not). Direct evidence that mPFC sends goal-directed trajectory information DOWN through reuniens INTO CA1, where it shapes the hippocampal trajectory representation. This is the inverse of the Spellman 2015 direction and reverses the user's framing: in the goal-directed-navigation regime, PFC is the upstream goal-handle source and HPC is the downstream rich-trajectory generator. Confidence 0.85 reflects strong methodology and direct mapping onto the REE question -- only modest transfer risk because the goal-directed-navigation scope is explicit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Trajectory-dependent firing in CA1 was substantially reduced -- but not abolished -- by reuniens silencing. There remains a residual HPC-internal contribution to trajectory representation independent of PFC top-down input. An architectural commitment to 'PFC is the sole goal-source for HPC trajectories' is over-strong.",
+    "Trajectory-dependent activity is essentially absent in CA3 (which lacks reuniens input). The substrate where goal-handles land in HPC is CA1, not CA3. REE's ResidueField + AnchorSet substrate must accept that the PFC -> reuniens -> HPC route is CA1-specific in the biology -- if REE wants this pathway, it needs an explicit CA1-analogue write target, not a generic hippocampal write."
+  ],
+  "tags": ["sd_033a", "arc_035", "mech_292", "mech_293", "frontal_goal_grounding", "prefrontal_thalamic", "reuniens", "trajectory_coding", "goal_directed_navigation"],
+  "mapping": {
+    "source_claim_statement": "A prefrontal-thalamic neural circuit is required for hippocampal representation of routes or trajectories through the environment. Trajectory-dependent firing was observed in medial prefrontal cortex, the nucleus reuniens of the thalamus, and the CA1 region of the hippocampus in rats. Lesioning or optogenetic silencing of the nucleus reuniens substantially reduced trajectory-dependent CA1 firing. Trajectory-dependent activity was almost absent in CA3, which does not receive nucleus reuniens input.",
+    "ree_translation": "For SD-033a (lateral-PFC-analogue rule/goal handle), ARC-035 (vmPFC content interface), MECH-292 (ranked ghost-goal bank) and MECH-293 (waking ghost-goal probe search): in goal-directed navigation, the architectural direction is PFC -> thalamic-routing -> HPC, where PFC holds the compact goal handle and HPC constructs the rich trajectory under PFC top-down bias. This maps onto REE's existing GoalState -> HippocampalModule -> propose_trajectories path more directly than onto a 'frontal reads HPC' interface. The MECH-293 ghost-goal probe search, where the proposer is biased toward seeds whose anchor.z_goal_snapshot cosine-matches current z_goal, is functionally close to what reuniens does biologically: route a goal-keyed query into CA1 to bias the trajectory representation.",
+    "mapping_caveat": "REE has no explicit reuniens-analogue substrate. The thalamic routing role is abstracted into the GoalState -> HippocampalModule call chain (z_goal as the routed signal), which is biologically functional but architecturally lossy -- there is no MD/reuniens-analogue node where 'PFC sends goal-handle, thalamus sustains, HPC receives' is explicit. If REE pursued this explicitly it would be a new SD (call it loosely 'frontal_thalamo_hippocampal_goal_routing' -- a thalamic gating substrate). Also: 'goal-directed' here means 'navigating to a known reward location,' not REE's broader z_goal/wanting/liking/drive composite.",
+    "source_context": "Multi-site recording in rats during a goal-directed Y-maze task with two consistent reward locations. mPFC, nucleus reuniens, and CA1/CA3 recorded simultaneously. Optogenetic silencing of reuniens during the task selectively reduced trajectory-dependent CA1 firing without affecting place-cell firing per se."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high (Nature, Moser lab, simultaneous three-region recording, optogenetic causal manipulation, internal anatomical control via CA3 dissociation). Mapping fidelity high because the architectural finding -- 'PFC sends goal context downstream to shape HPC trajectory' -- maps cleanly onto REE's GoalState-driven proposer path. Transfer risk low because the regime under study (goal-directed navigation) is exactly the regime REE is trying to capture in V3."
+  }
+}

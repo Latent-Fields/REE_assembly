@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-28T02:39:08.143815Z`
+Generated: `2026-04-28T04:06:27.294311Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -107,6 +107,7 @@ Generated: `2026-04-28T02:39:08.143815Z`
 | `targeted_review_dementia_attribution_pipeline` | [`2026-04-06_mech172_procedural_memory_preserved_heindel1989`](targeted_review_dementia_attribution_pipeline/entries/2026-04-06_mech172_procedural_memory_preserved_heindel1989/record.json) | 7 | [`summary`](targeted_review_dementia_attribution_pipeline/entries/2026-04-06_mech172_procedural_memory_preserved_heindel1989/summary.md) |
 | `targeted_review_e2_dual_function_mode_distinction` | [`2026-04-18_e2_dual_shenhav2016_dacc`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/record.json) | 5 | [`summary`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/summary.md) |
 | `targeted_review_event_segmentation` | [`2026-04-22_mech_288_temporal_memory_dubrow2014`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/record.json) | 11 | [`summary`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/summary.md) |
+| `targeted_review_frontal_goal_grounding` | [`2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020`](targeted_review_frontal_goal_grounding/entries/2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020/record.json) | 5 | [`summary`](targeted_review_frontal_goal_grounding/entries/2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020/summary.md) |
 | `targeted_review_frontopolar_analog_prong_d` | [`2026-04-27_prong_d_pfc_gradient_koechlin2007`](targeted_review_frontopolar_analog_prong_d/entries/2026-04-27_prong_d_pfc_gradient_koechlin2007/record.json) | 5 | [`summary`](targeted_review_frontopolar_analog_prong_d/entries/2026-04-27_prong_d_pfc_gradient_koechlin2007/summary.md) |
 | `targeted_review_ghost_goal_search` | [`2026-04-26_ghost_goal_online_offline_muessig2019`](targeted_review_ghost_goal_search/entries/2026-04-26_ghost_goal_online_offline_muessig2019/record.json) | 7 | [`summary`](targeted_review_ghost_goal_search/entries/2026-04-26_ghost_goal_online_offline_muessig2019/summary.md) |
 | `targeted_review_hippocampal_dopamine_gain` | [`2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/record.json) | 1 | [`summary`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/summary.md) |

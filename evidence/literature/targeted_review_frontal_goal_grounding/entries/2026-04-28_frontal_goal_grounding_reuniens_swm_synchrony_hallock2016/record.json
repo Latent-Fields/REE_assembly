@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontal_goal_grounding",
+  "entry_id": "2026-04-28_frontal_goal_grounding_reuniens_swm_synchrony_hallock2016",
+  "timestamp_utc": "2026-04-28T03:57:38Z",
+  "claim_ids_tested": ["SD-033a", "ARC-035", "MECH-292"],
+  "source": {
+    "title": "Ventral Midline Thalamus Is Critical for Hippocampal-Prefrontal Synchrony and Spatial Working Memory",
+    "authors": ["Henry L Hallock", "Arick Wang", "Amy L Griffin"],
+    "year": 2016,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0991-16.2016",
+    "url": "https://www.jneurosci.org/content/36/32/8372"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "J Neurosci paper with a clean dual-task within-session design (SWM-dependent vs SWM-independent task) plus muscimol inactivation of reuniens/rhomboid. Causally demonstrates that Re/Rh inactivation selectively abolishes SWM-specific HPC-PFC synchrony patterns and behaviour. Adds bidirectional/orchestration role to the architectural picture: thalamus is the routing hub for both directions, not just PFC->HPC (Ito 2015) or HPC->PFC (Spellman 2015). Confidence 0.74: methodology good but pharmacological inactivation is less precise than optogenetics, and the paper does not subdivide PFC.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not establish whether the synchrony is content-bearing or purely a temporal coordination signal. It cannot directly test 'PFC sends compact handle through reuniens' vs 'reuniens carries rich content from HPC up to PFC' -- both are compatible with the synchrony observation.",
+    "Re/Rh inactivation abolished SWM-specific synchrony but did not eliminate baseline PFC activity. PFC retains some autonomous representation; the thalamic role is task-dependent gain on the bidirectional channel, not the source of the representation."
+  ],
+  "tags": ["sd_033a", "arc_035", "mech_292", "frontal_goal_grounding", "reuniens", "thalamic_routing", "hippocampal_prefrontal_synchrony"],
+  "mapping": {
+    "source_claim_statement": "Within-session dual-task comparison shows that hippocampal-prefrontal oscillatory synchrony and directionality are specifically modulated by spatial working memory demand, not by general task engagement. Transient inactivation of the reuniens and rhomboid (Re/Rh) nuclei of the ventral midline thalamus abolishes only the SWM-specific activity patterns within the HPC-PFC circuit, providing evidence for a causal role of Re/Rh in regulating HPC-PFC synchrony and SWM-directed behaviour.",
+    "ree_translation": "For SD-033a / ARC-035 / MECH-292: thalamic routing (reuniens) is the architectural substrate that gates HPC-PFC bidirectional traffic specifically during goal-relevant cognitive demand. In REE V3, there is no analogous thalamic-routing node; the GoalState -> HippocampalModule path is hard-wired and always-on regardless of demand. The Hallock 2016 finding suggests the routing should be demand-gated -- specifically, when the operating_mode is internal_planning or external_task and z_goal is active, the routing is open; otherwise it should be gated closed. SalienceCoordinator's write_gate registry already provides this kind of demand-conditional gating for downstream consumers, but it is keyed on consumer subsystems, not on a thalamic-routing node in particular.",
+    "mapping_caveat": "The paper measures spatial working memory specifically; REE's z_goal is broader. The synchrony observation does not distinguish between content-bearing routing (rich HPC content into PFC) and pure temporal coordination (clock alignment for whatever each side sends). Both architectures predict the synchrony abolition under thalamic silencing.",
+    "source_context": "Rats trained on a within-session dual-task paradigm: SWM-dependent delayed alternation and SWM-independent continuous alternation. Multi-site LFP recording in dorsal hippocampus and mPFC. Reuniens/rhomboid inactivated bilaterally with muscimol, and SWM-specific synchrony patterns disappeared while SWM-independent patterns remained intact."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good (J Neurosci, dual-task within-session control, causal pharmacological perturbation). Mapping fidelity moderate-to-high: the within-session dissociation makes the thalamic role demand-specific, which translates cleanly into REE's operating-mode-conditional architecture. Transfer risk modest because the paper studies a specific cognitive demand (SWM) that is narrower than REE's z_goal but architecturally analogous."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontal_goal_grounding",
+  "entry_id": "2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020",
+  "timestamp_utc": "2026-04-28T03:57:38Z",
+  "claim_ids_tested": ["ARC-035", "SD-033b", "MECH-292"],
+  "source": {
+    "title": "Entorhinal and ventromedial prefrontal cortices abstract and generalize the structure of reinforcement learning problems",
+    "authors": ["Alon Boaz Baram", "Timothy Howard Muller", "Hamed Nili", "Mona Maria Garvert", "Timothy Edward John Behrens"],
+    "year": 2020,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2020.11.024",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(20)30929-6"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Neuron paper, fMRI representational similarity analysis with a task-remapping paradigm: subjects solve multiple RL problems differing in structural or sensory properties. Direct evidence that vmPFC and EC representations preserve their co-activation structure across different problems IF AND ONLY IF the task structure is preserved -- structural property, not surface property. Strongest direct support in this set for the 'PFC holds rich abstract structural representation, not a compact handle' reading. Confidence 0.80 because methodology is excellent for the question and mapping to REE is reasonably direct (vmPFC -> ARC-035 + SD-033b territory).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "vmPFC encodes prediction-error structure, not goal content per se. The 'rich representation' is over the latent task-structure dimensions (state-state relationships, transition probabilities, RL graph topology), not over observable goal features. An architectural reading where vmPFC holds 'the goal as a rich feature vector' is too narrow -- vmPFC holds the task-graph in which the goal is embedded.",
+    "Generalisation depends on structural preservation. If task structure changes, vmPFC representations do NOT preserve their similarity geometry. This means the 'rich' content vmPFC carries is structure-specific, not modality-general -- one structure produces one geometry, a different structure produces a different geometry. Mapping z_goal directly into vmPFC would force vmPFC to encode many distinct structures simultaneously, which is incompatible with the single-structure-at-a-time finding."
+  ],
+  "tags": ["arc_035", "sd_033b", "mech_292", "frontal_goal_grounding", "vmpfc", "entorhinal", "task_structure", "cognitive_map", "rl_generalisation"],
+  "mapping": {
+    "source_claim_statement": "Knowledge of problem structure (relationships between stimuli) enables rapid learning and flexible inference. Using a task-remapping fMRI paradigm in humans solving multiple RL problems differing in structural or sensory properties, entorhinal cortex representations are preserved across different RL problems only if task structure is preserved. In vmPFC and ventral striatum, representations of prediction error also depend on task structure.",
+    "ree_translation": "For ARC-035 (vmPFC content interface) and SD-033b (OFC-analogue): the biology supports a rich-representation reading of vmPFC -- vmPFC encodes the abstract structural geometry of the task, not a compact handle. But the rich content vmPFC carries is the *task-graph topology*, not 'the goal as a feature vector.' This maps onto REE's MECH-292 anchor goal_payload geometry: anchors carry z_goal_snapshot + wanting + arousal_tag, which together define a small task-graph fragment around each anchor. The right architectural extension is not 'frontal reads E1' but 'vmPFC analogue maintains a graph-structured representation that compresses MECH-292 anchors into a generalisable structural code.' That graph-structure-encoding capacity is currently absent in REE's ARC-035 substrate.",
+    "mapping_caveat": "The paper studies abstract RL task structure in humans via fMRI; REE's z_goal is a low-dimensional latent in a grid-world environment. The transfer requires assuming that what REE calls 'task structure' (the residue terrain + anchor geometry) is functionally equivalent to what Baram et al. call 'task structure' (state-state graph topology). This is plausible but not directly tested. Also: vmPFC's structural-encoding role might be V4-relevant (when REE handles richer environments and longer horizons) more than V3-relevant (where the task structure is grid-world and largely fixed across episodes).",
+    "source_context": "Human fMRI study (n in mid-20s); subjects learned multiple RL problems differing in either structural relationships (state-graph topology) or sensory properties (stimulus identity), and representational similarity analysis tested whether neural geometry was preserved across structurally-matched but sensory-different problems."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Neuron, careful task design with structural-vs-sensory dissociation, RSA-based analysis). Mapping fidelity moderate-to-high: the rich-task-structure-encoding result transfers to ARC-035's content interface, but only in the V4 timeframe when REE handles richer environments. Transfer risk modest (human fMRI to REE substrate is the standard transfer; structure-vs-content distinction is properly captured)."
+  }
+}

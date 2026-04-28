@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontal_goal_grounding",
+  "entry_id": "2026-04-28_frontal_goal_grounding_hpc_pfc_encoding_spellman2015",
+  "timestamp_utc": "2026-04-28T03:57:38Z",
+  "claim_ids_tested": ["SD-033a", "SD-033b", "ARC-035"],
+  "source": {
+    "title": "Hippocampal-prefrontal input supports spatial encoding in working memory",
+    "authors": ["Timothy Spellman", "Mattia Rigotti", "Susanne E Ahmari", "Stefano Fusi", "Joseph A Gogos", "Joshua A Gordon"],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature14445",
+    "url": "https://www.nature.com/articles/nature14445"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.82,
+  "confidence_rationale": "Nature paper with optogenetic dissociation of encoding vs maintenance vs retrieval phases, single-unit recording in mPFC, gamma-coherence analysis. Direct mechanistic evidence that mPFC depends on hippocampal input ONLY during cue encoding -- once cached, PFC maintains the representation locally without HPC input. This is a temporal/phase-specific dissociation that makes 'compact handle vs rich readout' a phase-dependent question rather than a forced binary. Mapping fidelity is high for the encoding-phase claim; lower for any extension to non-spatial goal representations. Confidence sits at 0.82 because the result is decisive within its scope but doesn't directly speak to the OFC/lateral-PFC subdivisions REE distinguishes in SD-033a/b.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Once a spatial cue is cached in mPFC, hippocampal input is NOT required for maintenance or retrieval. This weakens any architectural reading where frontal subdivisions consume rich HPC-keyed content continuously across the working memory cycle. Maintenance is local-to-PFC.",
+    "The dependence is specific to the encoding phase. An architectural commitment to 'frontal systems consume z_goal-keyed readouts of E1 always' would be over-strong relative to the biology -- the rich-readout interface is gated to specific cognitive phases (encoding events), not continuously open."
+  ],
+  "tags": ["sd_033a", "sd_033b", "arc_035", "frontal_goal_grounding", "hippocampal_prefrontal", "encoding_specific", "spatial_working_memory"],
+  "mapping": {
+    "source_claim_statement": "Direct hippocampal-prefrontal afferents are critical for encoding, but not for maintenance or retrieval, of spatial cues in mice. Cue identity is represented by the activity of individual prefrontal units in a manner that is dependent on hippocampal input only during the cue-encoding phase of a spatial working memory task. Successful encoding of these cues appears to be mediated by gamma-frequency synchrony between the two structures.",
+    "ree_translation": "For SD-033a/b (PFC subdivision rule/state representations) and ARC-035 (vmPFC content-loading interface): the 'rich associative content from HPC -> compact PFC representation' transfer happens at encoding events, not continuously. In REE V3, this maps to: when a new goal/cue is encountered, the LatentStack content (z_world, z_goal at instantiation) should drive a one-shot write into a frontal-resident representation which is then maintained locally by SD-033a rule_state / SD-033b state_code. Continuous z_goal-keyed E1 querying is over-strong -- the interface is event-gated.",
+    "mapping_caveat": "The paper studies SPATIAL working memory cues; REE's z_goal in SD-015 is a location-invariant resource representation, not a spatial cue. Whether the encoding-only dependence generalises from spatial cues to abstract goal handles is not established. Also: 'hippocampus' here is dorsal HPC; REE's ResidueField + AnchorSet substrate is closer to ventral HPC + EC functional territory. Transfer-risk moderate (~0.30).",
+    "source_context": "Optogenetic + multi-unit recording in mice performing a delayed non-match-to-sample T-maze spatial working memory task. Encoding, maintenance, and retrieval phases are dissociated by phase-specific optogenetic silencing of vCA1 -> mPFC afferents."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (Nature, optogenetic, careful temporal dissociation, replicated patterns). Mapping fidelity moderate-to-high: the encoding-vs-maintenance dissociation is the architecturally informative claim and maps cleanly to event-gated frontal writes. Transfer-risk modest: spatial-cue-to-abstract-goal generalisation is the main uncertainty, mitigated by Ito 2015 showing the same circuit at trajectory-level abstraction."
+  }
+}
