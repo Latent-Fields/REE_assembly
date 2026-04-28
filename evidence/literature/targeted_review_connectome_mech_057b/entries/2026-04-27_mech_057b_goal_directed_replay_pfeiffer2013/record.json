@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_057b",
+  "entry_id": "2026-04-27_mech_057b_goal_directed_replay_pfeiffer2013",
+  "timestamp_utc": "2026-04-27T22:35:20Z",
+  "claim_ids_tested": ["MECH-057b"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals.",
+    "authors": ["Brad E Pfeiffer", "David J Foster"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "url": "https://doi.org/10.1038/nature12112"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct in-vivo demonstration that hippocampal place-cell sequences emit goal-biased trajectory candidates before goal-directed navigation. Mapping fidelity is high for MECH-057b's claim that hippocampal sequence completion (here: full goal-reaching trajectory generation) is what makes a candidate eligible for downstream selection. Source quality is exceptional (Nature, large rodent ensemble, novel start/goal pairs as a control). Transfer risk is moderate: rats in an open arena with a single goal type, and the read-out structure (BG / E3) is inferred rather than measured here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If only fragmentary sequences (not goal-reaching) appeared, MECH-057b's gate-on-completion framing would be weakened.",
+    "If sequence emission were equally biased on novel-start-and-novel-goal pairs that the animal had never solved, the inference that completion verification gates candidacy would be undermined."
+  ],
+  "tags": ["mech_057b", "hippocampus", "replay", "trajectory_planning", "candidacy_gate"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, the rat hippocampus generates brief sequences encoding spatial trajectories strongly biased to progress from current location to a known goal location, and these sequences predict immediate future behaviour.",
+    "ree_translation": "Hippocampal trajectory candidates that successfully terminate at a remembered goal (i.e. complete a goal-reaching sequence) are emitted preferentially. In REE terms, this is the candidacy gate: only sequences that can be 'completed' from current state to a stored goal are promoted to E3 evaluation. The sequence-completion check happens inside the hippocampal substrate, before downstream BG/cortical selection.",
+    "mapping_caveat": "The paper measures sequence content and predictive value, not the gate itself. We are inferring that incomplete or non-goal-reaching sequences are suppressed because the recorded population is dominated by goal-reaching sequences -- but absence of evidence for fragmentary emission is not direct evidence for suppression. A V3 instrumentation experiment must measure the suppression directly.",
+    "source_context": "Awake rats, open arena, multiple goal locations, hippocampal CA1 ensemble recording during pause-then-run epochs."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Nature, large ensemble, well-controlled novel start/goal manipulation). Mapping is good but the gating mechanism is inferred rather than dissected. Transfer risk reflects rodent-to-REE substrate generalization."
+  }
+}

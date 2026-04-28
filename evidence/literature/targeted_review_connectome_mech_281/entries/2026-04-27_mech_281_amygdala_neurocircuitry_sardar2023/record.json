@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_281",
+  "entry_id": "2026-04-27_mech_281_amygdala_neurocircuitry_sardar2023",
+  "timestamp_utc": "2026-04-27T22:31:13Z",
+  "claim_ids_tested": ["MECH-281"],
+  "source": {
+    "title": "Amygdala neurocircuitry at the interface between emotional regulation and narcolepsy with cataplexy.",
+    "authors": ["Sardar H", "Goldstein-Piekarski AN", "Giardino WJ"],
+    "year": 2023,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/fnins.2023.1152594"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Recent (2023) review consolidating CeA / BLA / BNST contributions to cataplexy with explicit framing of emotion -> motor-coupling failure under orexin loss. Lower than Burgess because it is a review rather than primary data, but the mapping to MECH-281's specific claim (BLA/CeA as a canonical downstream target of override_signal) is unusually clean -- this is the framework Sardar et al. propose.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If CeA, BLA, and BNST contributions to cataplexy are dissociable (e.g., CeA-only lesion replicates the full effect), then MECH-281 may be over-specified by naming the entire amygdala complex; the relevant gain target would be narrower.",
+    "The Sardar review notes residual gaps: human functional imaging in cataplexy is sparse, so primate-level confirmation of the rodent circuit remains pending."
+  ],
+  "tags": ["mech_281", "orexin", "cataplexy", "amygdala", "BLA", "CeA", "BNST", "review"],
+  "mapping": {
+    "source_claim_statement": "The amygdala network -- including the central nucleus (CeA), basolateral amygdala (BLA), and extended amygdala (bed nucleus of the stria terminalis, BNST) -- is a critical node linking emotional regulation to cataplexy in narcolepsy; orexin loss disrupts the normal amygdala -> brainstem coupling that gates emotional arousal into motor output.",
+    "ree_translation": "MECH-281 names BLA/CeA arbitration as a canonical downstream target of orexin-analog gain. Sardar et al. extend this to include BNST (extended amygdala) as part of the same circuit family. For REE, this suggests the override_signal target is not a single nucleus but a small distributed subset of amygdala-family nuclei whose collective output gates motor recruitment. The framework is consistent with MECH-281 and potentially extends it.",
+    "mapping_caveat": "This is a review, not primary data -- it consolidates existing rodent work and a small set of human imaging studies. The specific prediction MECH-281 makes (override_signal scales the weight of amygdala arbitration in commit-gate threshold computations) is consistent with but not directly tested by the review. Treat as supportive context rather than confirmatory evidence.",
+    "source_context": "Review of rodent cataplexy literature plus human functional neuroimaging in narcolepsy with cataplexy."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Frontiers in Neuroscience review, Stanford sleep group (Giardino). The mapping is high because the review explicitly frames amygdala as the emotional-regulation -> motor-coupling node MECH-281 names; source quality is moderate because reviews aggregate but do not generate evidence."
+  }
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_493_mech295_liking_bridge_validation
 
-Generated: `2026-04-27T17:14:49.352899Z`
+Generated: `2026-04-28T02:12:35.698752Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

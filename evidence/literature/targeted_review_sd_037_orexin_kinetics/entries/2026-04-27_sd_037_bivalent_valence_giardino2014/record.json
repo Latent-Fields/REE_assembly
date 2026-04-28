@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-27_sd_037_bivalent_valence_giardino2014",
+  "timestamp_utc": "2026-04-27T22:32:17Z",
+  "claim_ids_tested": ["SD-037"],
+  "source": {
+    "title": "Hypocretin (orexin) neuromodulation of stress and reward pathways",
+    "authors": ["William J Giardino", "Luis de Lecea"],
+    "year": 2014,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2014.07.006",
+    "url": "https://doi.org/10.1016/j.conb.2014.07.006"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Concise mechanistic review explicitly framing Hcrt as a neuromodulator that operates across both negative-valence (chronic stress, hyperarousal) and positive-valence (compulsive drug-seeking) dysregulated states. The bivalence is exactly the architectural commitment that distinguishes SD-037 from a simple threat-gating module: SD-037 commits to integrating drive+threat and outputting an override that can swing toward either threat-active coping or drive-active goal seeking. Source quality moderate-high (Curr Opin Neurobiol, de Lecea co-author). Mapping fidelity high at the architectural level. Confidence held at 0.74 because this is short-format review evidence rather than direct experimental measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Hcrt acted only on threat or only on reward, SD-037's commitment that the override_signal integrates BOTH drive and threat context would be weakened. Giardino & de Lecea explicitly position Hcrt as bivalent across stress and reward pathways."
+  ],
+  "tags": ["sd_037", "orexin", "hypocretin", "stress", "reward", "bivalence", "neuromodulation"],
+  "mapping": {
+    "source_claim_statement": "Hypocretin is a peptide neuromodulator expressed exclusively in the lateral hypothalamus that plays a fundamental role in wakefulness and arousal, and modulates dysregulated states of hyperarousal in both negative-valence (chronic stress) and positive-valence (compulsive drug-seeking) domains via projections to extended amygdala, brainstem, and mesolimbic pathways.",
+    "ree_translation": "SD-037 commits to an override_signal computed from both drive_level (positive-valence input, SD-012) and sustained-threat context (negative-valence input, rolling z_harm window). The commitment to a single integrator that can output authority for either active coping or drive-driven goal seeking depends on biology that operates on both valence axes from one upstream source. Giardino & de Lecea provide that architectural cover at the review level.",
+    "mapping_caveat": "The review describes Hcrt's role in dysregulated states (chronic stress, addiction) rather than in normal-range integration of drive and threat. SD-037's typical operating regime is the latter; the review's data are mostly from pathological extremes. Whether the same integrator-with-bivalent-output story holds in normal physiology is licensed by the wider Hcrt literature but not directly by this paper.",
+    "source_context": "Short Current Opinion review covering stress-induced hyperarousal, drug-seeking and addiction, and the mesolimbic and extended-amygdala circuit-level evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality moderate-high (Curr Opin Neurobiol, de Lecea co-authorship adds weight). Mapping fidelity high at the architectural level -- the bivalence claim is explicit. Transfer risk moderate -- rodent stress and addiction work generalises with caveats."
+  }
+}

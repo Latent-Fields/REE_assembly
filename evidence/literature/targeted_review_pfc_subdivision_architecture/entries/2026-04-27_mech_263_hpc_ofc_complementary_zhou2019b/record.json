@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-27_mech_263_hpc_ofc_complementary_zhou2019b",
+  "timestamp_utc": "2026-04-27T22:31:22Z",
+  "claim_ids_tested": ["MECH-263"],
+  "source": {
+    "title": "Complementary Task Structure Representations in Hippocampus and Orbitofrontal Cortex during an Odor Sequence Task",
+    "authors": ["Jingfeng Zhou", "Marlian Montesinos-Cartagena", "Andrew M. Wikenheiser", "Matthew P. H. Gardner", "Yael Niv", "Geoffrey Schoenbaum"],
+    "year": 2019,
+    "venue": "Current Biology 29(20):3402-3409.e3",
+    "doi": "10.1016/j.cub.2019.08.040",
+    "url": "https://doi.org/10.1016/j.cub.2019.08.040"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Within-paradigm comparison of HPC vs OFC ensemble coding on the same task. Both regions carry task-state representations but with complementary emphases: OFC tracks current task position selectively (only behaviourally relevant distinctions), HPC supports prospective memory states. Supports MECH-263's framing of SD-033b as a behaviour-relevant cognitive map (rather than a complete enumeration of states), and clarifies the HPC/OFC division of labour for ree-v3's hippocampal + E2 architecture. Slightly lower confidence because the contribution to MECH-263 is more about characterising the substrate's selectivity than testing core falsifiability criteria.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC ensembles distinguished EVERY task state regardless of behavioural relevance, this would weaken MECH-263's specification that the cognitive map carries 'structural roles each state plays in the current task' -- since structural role is task-defined, not exhaustive. Zhou 2019b finds OFC selectively distinguishes behaviourally-relevant states, which is consistent.",
+    "If HPC and OFC carried identical task-state codes, MECH-263's separation of SD-033b (OFC structured outcomes) from hippocampal task representation would be ill-motivated. The complementarity finding supports the architectural separation."
+  ],
+  "tags": ["mech_263", "sd_033b", "ofc", "hippocampus", "task_structure", "cognitive_map"],
+  "mapping": {
+    "source_claim_statement": "Hippocampus and OFC carry task-state representations that are complementary rather than redundant: OFC distinguishes states selectively when behaviourally relevant; HPC additionally distinguishes states that require prospective memory for future performance. The two regions divide labour rather than duplicating the cognitive map.",
+    "ree_translation": "MECH-263 specifies that SD-033b's cognitive map is structured by task-relevant role rather than being an exhaustive enumeration of every distinguishable state. Zhou 2019b's finding that OFC selectivity tracks behavioural relevance, while HPC carries the more comprehensive prospective-memory code, fits this characterisation. For ree-v3, this gives a clean architectural division: the hippocampal module holds the broader task representation, E2's specific-outcome predictor reads from a more selective task-relevant subspace.",
+    "mapping_caveat": "The finding constrains the SELECTIVITY of SD-033b's representation but does not directly test the value/identity dissociation that is MECH-263's core architectural claim. It is supportive scaffolding rather than core evidence. The HPC/OFC division of labour interpretation is the authors' framing, not a hypothesis-blind result -- alternative interpretations (e.g. that HPC carries higher temporal-context resolution rather than prospective memory specifically) are possible.",
+    "source_context": "Single-unit recordings from rat hippocampus CA1 (this paper) and rat OFC (companion Zhou 2019 paper) on the same odour sequence task with 24 positions; cross-region comparison of population decoding."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Current Biology, Niv-Schoenbaum, methodologically clean within-paradigm cross-region comparison. Mapping fidelity is moderate -- the paper supports MECH-263's framing of SD-033b's selectivity but does not test core falsifiability criteria directly. Useful as architectural context for the SD-033b vs hippocampal-module division of labour in ree-v3."
+  }
+}

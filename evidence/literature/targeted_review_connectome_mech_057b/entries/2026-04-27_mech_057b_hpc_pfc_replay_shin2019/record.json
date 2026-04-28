@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_057b",
+  "entry_id": "2026-04-27_mech_057b_hpc_pfc_replay_shin2019",
+  "timestamp_utc": "2026-04-27T22:35:20Z",
+  "claim_ids_tested": ["MECH-057b"],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making.",
+    "authors": ["Justin D Shin", "Wenbo Tang", "Shantanu P Jadhav"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.012",
+    "url": "https://doi.org/10.1016/j.neuron.2019.09.012"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct measurement of joint hippocampal-prefrontal replay during pause-then-decide epochs, showing that coordinated replay distinguishes correct future paths from alternatives -- which is the candidate-versus-discarded distinction MECH-057b is concerned with. Source quality is very high (Neuron, simultaneous HPC and PFC ensembles, longitudinal learning across the same animals). Mapping fidelity is good: the paper directly addresses the read-out structure (PFC) that MECH-057b implies must receive only promoted candidates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If PFC ensembles tracked all replayed paths equally regardless of correctness, the candidacy-gate framing would be weakened.",
+    "If learning never produced a forward-replay shift toward correct future paths, the proposal-promotion mechanism would lack a learning signature."
+  ],
+  "tags": ["mech_057b", "hippocampus", "prefrontal_cortex", "replay", "candidacy_gate", "decision_making"],
+  "mapping": {
+    "source_claim_statement": "Coordinated awake hippocampal-prefrontal replay distinguishes correct past and future paths from alternative choices, with a learning shift from reverse-replay-based retrospective evaluation to forward-replay-based prospective planning.",
+    "ree_translation": "PFC-side readout of hippocampal replay reflects only the trajectories that survive the candidacy gate (correct paths). Wrong/alternative paths are not equally represented downstream, suggesting that the hippocampus emits selectively and that PFC sees the post-gate output. Maps onto MECH-057b's claim that downstream selection (E3 / PFC analog) operates on already-promoted candidates.",
+    "mapping_caveat": "The paper measures coordination strength between HPC and PFC, not the gate per se. It is possible PFC itself filters incoming hippocampal content rather than receiving a pre-filtered stream. The MECH-057b claim is location-specific (gate is in hippocampus), which Shin et al. do not directly resolve.",
+    "source_context": "Awake rats on a continuous spatial alternation task; simultaneous CA1 + mPFC ensemble recording; longitudinal across learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "Excellent simultaneous-recording paper. Mapping is good because it directly speaks to the HPC-PFC coupling MECH-057b cites in ARC-028. The location of the gate (HPC vs PFC) remains unresolved by this paper alone."
+  }
+}

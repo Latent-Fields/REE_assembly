@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-27_mech_263_ofc_value_task_structure_zhou2019",
+  "timestamp_utc": "2026-04-27T22:31:22Z",
+  "claim_ids_tested": ["MECH-263"],
+  "source": {
+    "title": "Rat Orbitofrontal Ensemble Activity Contains Multiplexed but Dissociable Representations of Value and Task Structure in an Odor Sequence Task",
+    "authors": ["Jingfeng Zhou", "Matthew P. H. Gardner", "Thomas A. Stalnaker", "Seth J. Ramus", "Andrew M. Wikenheiser", "Yael Niv", "Geoffrey Schoenbaum"],
+    "year": 2019,
+    "venue": "Current Biology 29(6):897-907.e3",
+    "doi": "10.1016/j.cub.2019.01.048",
+    "url": "https://doi.org/10.1016/j.cub.2019.01.048"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Direct neural test of MECH-263's central architectural commitment: that value and structured task representation co-exist in OFC as DISSOCIABLE components rather than as competing alternatives. The paper explicitly frames the value-vs-cognitive-map debate as a false dichotomy and demonstrates both components in the same ensembles. This is the strongest available evidence for MECH-263's 'co-present framings of the same substrate' formulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC ensembles encoded only value (a scalar) and not task structure, MECH-263's cognitive-map framing would collapse and SD-033b would reduce to SD-033c (scalar value). The paper rules this out: ensembles distinguish task positions of identical value.",
+    "If OFC ensembles encoded only task structure with no value signal, MECH-263's specific-outcome-prediction framing would be weakened. The paper rules this out too: a value signal is recoverable from the same ensembles.",
+    "The paper's central finding -- multiplexed but dissociable codes -- is exactly what MECH-263 predicts. A failure mode would be finding the two representations are inseparable (same neurons coding inseparable mixtures); the paper instead finds dissociable axes."
+  ],
+  "tags": ["mech_263", "sd_033b", "ofc", "cognitive_map", "value_coding", "task_structure"],
+  "mapping": {
+    "source_claim_statement": "OFC ensembles in rats performing a 24-position odour sequence task contain multiplexed but dissociable representations of (i) task structure (cognitive map) and (ii) expected value at each location. Both components co-exist in the neural code rather than being mutually exclusive.",
+    "ree_translation": "MECH-263 explicitly states that the cognitive-map framing and the specific-outcome-prediction framing are 'co-present rather than alternatives' and that 'value signals ride on top of this structured representation'. Zhou 2019 provides the strongest available neural evidence for exactly this architectural commitment, by showing the two representations are present and dissociable in the same OFC ensemble. This grounds REE's E2 architecture: a structured task-state representation that supports specific-outcome queries, with value as a separable signal.",
+    "mapping_caveat": "The Zhou paper finds value as a separable AXIS within OFC, but does not address whether scalar value is stored in the same OFC subdivision or in vmPFC/SD-033c. MECH-263 distinguishes SD-033b from SD-033c, locating scalar value in SD-033c. Zhou's recordings do not subdivide OFC by mOFC/lOFC at the resolution needed to settle that question -- the Lopatina/Sadacca lOFC vs mOFC dissociation paper (PMID 28541078) is needed for the subdivision claim.",
+    "source_context": "Single-unit recordings from rat OFC during a 24-position odour sequence task analogous to a spatial maze; positions defined by sensory information, reward likelihood, or both."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.30,
+    "notes": "Current Biology, well-cited (Niv + Schoenbaum collaboration), 24-state task is among the richest used in OFC ensemble work. Mapping fidelity is exceptionally high because the paper's central conceptual claim is identical to MECH-263's central conceptual claim. Transfer risk is the standard rodent-to-REE."
+  }
+}

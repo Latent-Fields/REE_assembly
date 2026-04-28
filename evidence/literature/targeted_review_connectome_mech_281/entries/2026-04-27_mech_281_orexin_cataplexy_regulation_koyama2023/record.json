@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_281",
+  "entry_id": "2026-04-27_mech_281_orexin_cataplexy_regulation_koyama2023",
+  "timestamp_utc": "2026-04-27T22:31:13Z",
+  "claim_ids_tested": ["MECH-281"],
+  "source": {
+    "title": "The role of orexinergic system in the regulation of cataplexy.",
+    "authors": ["Koyama Y"],
+    "year": 2023,
+    "venue": "Peptides",
+    "doi": "10.1016/j.peptides.2023.171080"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Recent (2023) single-author review consolidating the multi-target orexinergic gain framework: orexin modulates monoaminergic/cholinergic systems, brainstem REM-atonia generators, and limbic emotion-processing circuits. Directly relevant framing for MECH-281's claim that orexin gates coupling at multiple downstream sites. Confidence is moderate because it is a review and a single-author one rather than primary data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If orexin's anticataplectic effect can be fully reproduced by manipulation at a single downstream site (e.g., amygdala alone), MECH-281's multi-target framing is over-specified.",
+    "The Koyama review notes that the relative contribution of monoaminergic vs cholinergic vs limbic targets is still debated -- if future work cleanly dissociates them, the architectural commitment to BLA/CeA arbitration as the canonical motor-coupling target may need refinement."
+  ],
+  "tags": ["mech_281", "orexin", "cataplexy", "narcolepsy", "review", "limbic"],
+  "mapping": {
+    "source_claim_statement": "Orexin/hypocretin prevents cataplexy by modulating activity at multiple points in a distributed cataplexy-inducing circuit, including monoaminergic and cholinergic neuromodulator systems, brainstem REM-atonia generators (vlPAG, LPT, sublaterodorsal nucleus), and emotion-processing limbic systems (amygdala, nucleus accumbens, medial prefrontal cortex).",
+    "ree_translation": "MECH-281 names BLA/CeA, PFC (SD-033a), and the beta-gate (MECH-090) as downstream coupling targets of the orexin-analog gain. Koyama's review frames orexin as a multi-target gain modulator that acts at monoaminergic/cholinergic, brainstem-atonia, and limbic levels simultaneously -- consistent with the broadcast-override architecture SD-037 commits to. The mPFC inclusion in Koyama's circuit map is direct support for MECH-281's PFC coupling target. The review also confirms emotional triggers route through the limbic system rather than the brainstem alone, which is the dissociation MECH-281 implicitly requires.",
+    "mapping_caveat": "Koyama is a review, not new data, and a single-author one. The mapping to the SD-037 broadcast-override architecture is good but inferential -- Koyama does not commit to a specific computational scheme. Treat as supportive context that the multi-target framing is biologically plausible.",
+    "source_context": "Review of rodent narcolepsy/cataplexy literature, drawing on monoaminergic, cholinergic, brainstem-atonia, and limbic findings."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Peptides is a legitimate but mid-tier specialty journal; single-author review. Mapping is high because the multi-target framing matches MECH-281 / SD-037 architecture; source quality is the limiting factor."
+  }
+}

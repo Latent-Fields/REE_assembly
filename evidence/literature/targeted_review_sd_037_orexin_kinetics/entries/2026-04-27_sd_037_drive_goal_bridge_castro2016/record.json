@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-27_sd_037_drive_goal_bridge_castro2016",
+  "timestamp_utc": "2026-04-27T22:32:17Z",
+  "claim_ids_tested": ["SD-037"],
+  "source": {
+    "title": "Orexin in rostral hotspot of nucleus accumbens enhances sucrose 'liking' and intake but scopolamine in caudal shell shifts 'liking' toward 'disgust' and 'fear'",
+    "authors": ["Daniel C Castro", "Rachel A Terry", "Kent C Berridge"],
+    "year": 2016,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/npp.2016.10",
+    "url": "https://doi.org/10.1038/npp.2016.10"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct causal experiment (microinjection of orexin-A into NAc shell in rats) demonstrating that orexin amplifies both 'wanting' (motivated intake) at all NAc shell sites and 'liking' (hedonic orofacial reactions) at a specific rostral hotspot. This is a clean test of the bridge between an orexin signal and downstream drive->goal-seeding behaviour, which is the SD-037 commitment that the override authority gates the drive->z_goal seeding pathway. Source quality high (Neuropsychopharmacology, Berridge lab). Mapping fidelity moderate-high: the experiment manipulates orexin tone directly at a downstream consumer node (NAc shell), so the causal chain matches the SD-037 'override_signal reweights/permits goal-seeding' architecture. Confidence held below 0.85 because the paper measures hedonic and consummatory reactions, not the full SD-037 commit-gate reweighting of z_harm under simultaneous threat.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If orexin tone in downstream consumers were neutral with respect to drive-driven goal seeking, SD-037's drive->goal seeding bridge would be unsupported. Castro et al. show the opposite: orexin causally amplifies motivated intake.",
+    "The hotspot/coldspot dissociation (rostral hedonic enhancement vs uniform 'wanting' enhancement) implies that override effects are not spatially uniform; SD-037's scalar override_signal is a simplification."
+  ],
+  "tags": ["sd_037", "orexin", "nucleus_accumbens", "drive", "goal_seeding", "wanting", "liking", "berridge"],
+  "mapping": {
+    "source_claim_statement": "Orexin-A microinjection into nucleus accumbens medial shell amplifies hedonic 'liking' reactions to sucrose at a rostral hotspot identical to the opioid hedonic hotspot, and enhances 'wanting' (palatable food intake) at all NAc shell sites. Effects are dissociable from cholinergic-dependent fear/disgust modulation in the caudal shell.",
+    "ree_translation": "SD-037 commits to an override_signal that gates the SD-012 drive->z_goal seeding bridge: when override is recruited, drive_level is permitted to seed z_goal directly. Castro et al. provide a causal demonstration of the underlying biology -- orexin tone at a downstream consumer node (NAc shell) is sufficient to amplify motivated approach to food. The 'wanting' enhancement at all shell sites maps to the SD-037 drive-seeding bridge; the 'liking' enhancement at the rostral hotspot is an additional hedonic axis not currently in SD-037 but consistent with bivalent override effects.",
+    "mapping_caveat": "The experiment uses appetitive sucrose with no concurrent threat manipulation. SD-037's central architectural commitment is that override REWEIGHTS z_harm at commit gates AND gates drive->goal seeding -- the harm reweighting axis is not directly tested here. Also, microinjection is supraphysiological tone delivery, not endogenous override recruitment under sustained drive+threat as in SD-037.",
+    "source_context": "Microinjection experiment in adult rats (n approximately 4-8 per condition by within-subjects sucrose-quinine taste reactivity testing), with orexin-A and scopolamine targeted at sub-regions of NAc medial shell. Behavioural readouts: orofacial reactions to sucrose/quinine, intake of palatable chocolates, defensive treading."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Berridge lab, peer-reviewed Neuropsychopharmacology, established taste-reactivity methodology). Mapping fidelity moderate-high: directly tests the drive-gating axis of SD-037 but not the harm-reweighting axis. Transfer risk moderate -- rat NAc shell microinjection generalises reasonably to human/REE drive-seeding architecture but not without caveats."
+  }
+}

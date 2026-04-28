@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_057b",
+  "entry_id": "2026-04-27_mech_057b_forward_reverse_replay_diba2007",
+  "timestamp_utc": "2026-04-27T22:35:20Z",
+  "claim_ids_tested": ["MECH-057b"],
+  "source": {
+    "title": "Forward and reverse hippocampal place-cell sequences during ripples.",
+    "authors": ["Kamran Diba", "Gyorgy Buzsaki"],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1961",
+    "url": "https://doi.org/10.1038/nn1961"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Foundational paper establishing that hippocampal sequences during sharp-wave ripples come in two distinct directional flavours: reverse (post-run, evaluative) and forward (pre-run, anticipatory). Provides the temporal structure MECH-057b relies on for completion as a discrete detectable event -- the run-end reverse-replay marks completion of the just-finished sequence. Mapping to MECH-057b is partial: the paper documents the post-completion evaluative pulse but does not test that this pulse acts as a candidacy gate. Marked mixed because it strongly supports the claim that completion is a detectable discrete event, but does not directly address suppression of non-completing candidates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If reverse and forward replay were not temporally bound to run-end and pre-run pause epochs, the framing of completion as a discrete event-marker would weaken.",
+    "If pre-run forward replay did not contain the upcoming trajectory, the candidacy framing would lack temporal anchoring."
+  ],
+  "tags": ["mech_057b", "hippocampus", "sharp_wave_ripple", "forward_replay", "reverse_replay", "completion_marker"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place-cell spike sequences recur in reverse order at the end of a run and in forward order in anticipation of a run, both coinciding with sharp waves; vector distances between place fields are preserved in the temporal structure.",
+    "ree_translation": "Sequence completion is a discrete detectable event in the hippocampus -- the switch from reverse-replay (evaluative) to forward-replay (anticipatory) marks the boundary. MECH-057b uses this to argue that completion verification can serve as a gate signal: the reverse-replay pulse confirms a sequence ran to its end, after which forward-replay can re-emit candidates for the next run. The two directional modes provide the temporal structure on which a candidacy gate could operate.",
+    "mapping_caveat": "Diba & Buzsaki document the sequences but do not test the gate function. The reverse/forward switch could be epiphenomenal of run timing rather than a control signal. A direct test would require silencing reverse-replay and observing whether forward-replay candidacy degrades.",
+    "source_context": "Rats running on an elevated linear track; CA1 ensemble recording; sharp-wave ripple events during pause epochs."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.32,
+    "notes": "Foundational and well-established. Mapping discount reflects that the paper documents temporal structure but does not test the gate function MECH-057b posits."
+  }
+}

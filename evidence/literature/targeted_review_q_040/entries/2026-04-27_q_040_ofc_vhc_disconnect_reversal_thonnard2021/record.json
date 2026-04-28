@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_040",
+  "entry_id": "2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021",
+  "timestamp_utc": "2026-04-27T22:30:32Z",
+  "claim_ids_tested": ["Q-040"],
+  "source": {
+    "title": "Effects of orbitofrontal cortex and ventral hippocampus disconnection on spatial reversal learning",
+    "authors": ["Thonnard D", "Callaerts-Vegh Z", "D'Hooge R"],
+    "year": 2021,
+    "venue": "Neuroscience Letters",
+    "doi": "10.1016/j.neulet.2021.135711"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Direct causal disconnection evidence: contralateral OFC + ventral hippocampus lesion impairs reversal learning despite each region individually intact, while neither unilateral lesion alone produces the deficit. This is the cleanest available analogue in the literature for the wired-but-inert architectural pattern Q-040 articulates. Mapping is good (hippocampus -> OFC pathway is functionally analogous to V_s-anchored upstream -> downstream forward-model/decision consumer); transfer risk is moderate (rodent spatial reversal -> REE harm-navigation, OFC -> dACC).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OFC and ventral hippocampus each remain individually functional after unilateral lesion, but contralateral disconnection of the two impairs reversal learning -- the downstream decision/error machinery cannot drive behavioural revision when the upstream-to-downstream state pathway is broken, which is the architectural pattern Q-040 predicts for V_s gating restricted to the proposer."
+  ],
+  "tags": ["q_040", "mech_269b", "sd_032b", "hippocampus", "ofc", "disconnect", "reversal_learning", "causal"],
+  "mapping": {
+    "source_claim_statement": "Contralateral excitotoxic lesions of OFC + ventral hippocampus impair early reversal learning in mice, while ipsilateral disconnection and unilateral lesions of either region alone do not. Spatial acquisition is preserved across all conditions. The deficit is specifically attributed to disrupted cross-hemispheric communication between OFC and hippocampus.",
+    "ree_translation": "This is the closest causal analogue I have found for Q-040's wired-but-inert hypothesis. The downstream decision/error consumer (OFC, analogous to dACC's adaptive-control role in REE) and the upstream state-representation source (hippocampus, analogous to the V_s-anchored proposer/forward-model) are each individually intact, but disconnecting them produces a behavioural-flexibility deficit on a task that requires revising a previously learned response. In REE terms: SD-032b is wired, MECH-269 is wired for the proposer, but if MECH-269b (V_s reaching E1/E2 forward predictions) is missing, the equivalent of the upstream-to-downstream pathway is functionally cut, and behavioural revision fails -- exactly the EXQ-483/483a pattern.",
+    "mapping_caveat": "OFC is not dACC. The reversal-learning deficit literature points more naturally to OFC-mediated value flexibility than to dACC-mediated adaptive control, although both are downstream consumers of upstream state. The transfer to REE's specific MECH-269b proposal (V_s gates BOTH proposer AND forward predictions) requires assuming that the relevant upstream-to-downstream pathway in mice is structurally analogous to the proposed V_s -> E1/E2 link. This is a reasonable architectural inference but not a direct measurement. Rodent spatial-reversal task is also far from harm-navigation.",
+    "source_context": "C57BL/6JRj mice; bilateral excitotoxic lesions of OFC + ventral hippocampus in either contralateral or ipsilateral configuration; spatial water-maze reversal learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "Source quality solid (causal disconnection design with appropriate control conditions, peer-reviewed). Mapping fidelity is the strongest of the four entries -- this is a literal disconnection of upstream and downstream regions producing exactly the wired-but-inert phenotype Q-040 predicts. Transfer risk moderate-high: rodent OFC <-> ventral hippocampus is not REE dACC <-> V_s-gated E1/E2; the architectural analogy carries the weight, not direct homology."
+  }
+}

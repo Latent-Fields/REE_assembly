@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-27_mech_263_ofc_state_representations_stalnaker2021",
+  "timestamp_utc": "2026-04-27T22:31:22Z",
+  "claim_ids_tested": ["MECH-263"],
+  "source": {
+    "title": "Orbitofrontal State Representations Are Related to Choice Adaptations and Reward Predictions",
+    "authors": ["Thomas A. Stalnaker", "Nishika Raheja", "Geoffrey Schoenbaum"],
+    "year": 2021,
+    "venue": "Journal of Neuroscience 41(9):1941-1951",
+    "doi": "10.1523/JNEUROSCI.0753-20.2020",
+    "url": "https://doi.org/10.1523/JNEUROSCI.0753-20.2020"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Direct empirical test of the OFC-as-cognitive-map-of-state-space hypothesis. Population decoding shows the vast majority of OFC neurons contribute to state representation, the rate of state-evidence integration predicts behavioural adaptation, and outcome predictions depend on accuracy of state representations. Maps cleanly onto MECH-263's two co-present framings (state-space map + outcome prediction). Single species (rat), single task (odour-guided block transitions); core finding generalises but quantitative parameters do not transfer to REE directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If OFC encoded outcome predictions independently of state representations, MECH-263's claim that 'specific-outcome queries are resolved against the cognitive map' would be weakened. The Stalnaker 2021 finding that outcome-prediction quality covaries with state-representation accuracy directly supports the hierarchical relationship MECH-263 asserts.",
+    "If state representations were uniform across neurons (i.e. a small dedicated subpopulation rather than a distributed code), this would constrain the substrate model of SD-033b but not falsify MECH-263. Stalnaker reports that state coding is broadly distributed, consistent with SD-033b being an ensemble-level representation."
+  ],
+  "tags": ["mech_263", "sd_033b", "ofc", "cognitive_map", "state_space", "outcome_prediction"],
+  "mapping": {
+    "source_claim_statement": "Orbitofrontal cortex ensembles encode the current state in a cognitive map of the task; the rate at which OFC integrates evidence for a new state predicts how quickly behaviour adapts; OFC outcome predictions are dependent on the accuracy of the underlying state representation.",
+    "ree_translation": "MECH-263 asserts SD-033b carries both (i) a state-space cognitive map and (ii) specific-outcome predictions that ride on top of the structured representation. Stalnaker 2021 provides direct neural evidence for this layered architecture: state representations are primary, outcome predictions are conditioned on them. This is exactly the relationship MECH-263 specifies between the cognitive-map framing and the specific-outcome framing.",
+    "mapping_caveat": "The paper records from rat OFC during an odour-block task with five discrete states. REE's task-state space is potentially much larger and more abstract, and the species transfer (rat -> ree-v3 latent E2 module) carries the usual risks. The behavioural-adaptation correlation is a between-subject metric over 6 rats; replication across labs and species is needed before the rate-of-integration finding is taken as canonical.",
+    "source_context": "Single-unit recordings from rat OFC (n=6 male Long-Evans rats) during an odour-guided choice task with five trial blocks defining distinct action-outcome contingencies (states), with unsignaled transitions between them."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "High-impact venue (J Neurosci), Schoenbaum lab is the primary proponent of the cognitive-map view of OFC, n=6 is on the low end but typical for primate-style ensemble recording. Mapping fidelity is high because the paper tests exactly the relationship between state-coding and outcome-coding that MECH-263 asserts. Transfer risk is moderate (rat -> human/REE)."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_040",
+  "entry_id": "2026-04-27_q_040_causal_acc_adaptive_rl_treuting2025",
+  "timestamp_utc": "2026-04-27T22:30:32Z",
+  "claim_ids_tested": ["Q-040"],
+  "source": {
+    "title": "Adaptive reinforcement learning is causally supported by anterior cingulate cortex and striatum",
+    "authors": ["Treuting RL", "Banaie Boroujeni K", "Gerrity CG", "Neumann A", "Tiesinga P", "Womelsdorf T"],
+    "year": 2025,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2025.05.018"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Causal microstimulation evidence in macaque ACC under varying feature-uncertainty conditions, plus single-unit recordings showing ACC neurons track error history more strongly under uncertainty. ACC stim impaired the 'optimizing exploration and use of prediction errors to reduce uncertainty' specifically under high feature uncertainty, which is the closest available analogue to the V_s-uncertainty regime Q-040 proposes. Mapping is good for the SD-032b adaptive-control consumer; the upstream V_s mechanism is not directly probed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ACC microstimulation under high feature uncertainty disrupts adaptive RL by impairing the use of prediction errors to reduce uncertainty -- consistent with Q-040's prediction that dACC behavioural revision is uncertainty-modulated and breaks down when upstream uncertainty handling is disrupted."
+  ],
+  "tags": ["q_040", "mech_269b", "sd_032b", "dacc", "causal", "uncertainty", "adaptive_rl"],
+  "mapping": {
+    "source_claim_statement": "Brief gaze-contingent electrical stimulation of macaque ACC impairs adaptive reinforcement learning specifically under high feature uncertainty, by disrupting the optimisation of exploration and the use of prediction errors to reduce uncertainty. Striatal stimulation under the same conditions improves learning, indicating opposite roles. ACC neurons track error history and fire more strongly during uncertain choices.",
+    "ree_translation": "ACC's adaptive-control output (SD-032b in REE) is uncertainty-modulated: it consumes upstream prediction-error signals weighted by an uncertainty estimate. When the uncertainty estimate is mis-formed (analogue: stale upstream forward predictions because V_s gating does not reach E1/E2 in MECH-269 scope), the ACC adaptive-control loop cannot translate PE into policy revision. This is the architectural prediction of Q-040: MECH-269b extension to E1/E2 may be the missing link that lets ACC's wired output produce non-zero behavioural adjustment.",
+    "mapping_caveat": "This study disrupts ACC directly via microstimulation; it does not manipulate the upstream forward-model anchor. The supporting inference is that ACC's role as an uncertainty-weighted PE consumer would itself be undermined if the upstream uncertainty estimate were wrong. That is consistent with Q-040 but not a direct test of MECH-269b. The macaque feature-attention task is also far from the REE harm-navigation substrate; species and task transfer risks are non-trivial.",
+    "source_context": "Macaque (rhesus) feature-based attention learning task with varying uncertainty and motivational saliency; combined gaze-contingent microstimulation of ACC and striatum, plus single-unit recordings; computational modelling of exploration-exploitation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high: causal manipulation in primate, top-tier journal (Neuron 2025), combined with neural recording and modelling. Mapping fidelity moderate: study targets the same downstream consumer (ACC) Q-040 implicates, but probes its function rather than the upstream V_s pathway. Transfer risk includes macaque feature-attention task -> REE harm-navigation substrate."
+  }
+}

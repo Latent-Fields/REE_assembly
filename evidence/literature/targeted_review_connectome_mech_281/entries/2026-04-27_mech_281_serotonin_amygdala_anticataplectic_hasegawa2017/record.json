@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_281",
+  "entry_id": "2026-04-27_mech_281_serotonin_amygdala_anticataplectic_hasegawa2017",
+  "timestamp_utc": "2026-04-27T22:31:13Z",
+  "claim_ids_tested": ["MECH-281"],
+  "source": {
+    "title": "Serotonin neurons in the dorsal raphe mediate the anticataplectic action of orexin neurons by reducing amygdala activity.",
+    "authors": ["Hasegawa E", "Maejima T", "Yoshida T", "Masseck OA", "Herlitze S", "Yoshioka M", "Sakurai T", "Mieda M"],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1614552114"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct optogenetic and chemogenetic causal evidence in mouse narcolepsy model. Identifies the DRN-serotonin -> amygdala projection as the route through which orexin's anticataplectic effect propagates. Strongly relevant to MECH-281 and to the cross-link with the 5-HT goal-pipeline gain cluster (MECH-186/187/188). Mapping fidelity is high; transfer risk is the standard rodent-to-architecture concern.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optogenetic inhibition of DRN-5HT terminals in the amygdala blocks the anticataplectic effect of orexin signaling -- so a model that locates the entire override authority in orexin alone (without 5-HT mediation) is incomplete.",
+    "Chemogenetic activation of amygdala increased cataplexy; chemogenetic inhibition decreased it -- the amygdala output gain is causally bidirectional, consistent with MECH-281's prediction that the override scales rather than silences."
+  ],
+  "tags": ["mech_281", "orexin", "cataplexy", "amygdala", "serotonin", "DRN", "optogenetics", "chemogenetics"],
+  "mapping": {
+    "source_claim_statement": "Optogenetic activation of dorsal raphe serotonin neuron terminals in the amygdala (but not in REM-atonia nuclei) suppresses cataplexy-like episodes in orexin-deficient mice. Chemogenetic inhibition of the amygdala reduces cataplexy; activation increases it. Optogenetic inhibition of 5-HT terminals in amygdala blocks the anticataplectic effect of orexin signaling in DRN serotonin neurons. Therefore, DRN serotonin neurons mediate orexin's anticataplectic action by downregulating amygdala activity.",
+    "ree_translation": "MECH-281 says the override authority gates BLA/CeA arbitration. Hasegawa locates the proximal pathway: orexin -> DRN-5HT -> amygdala. This adds a layer to MECH-281: the override_signal does not modulate amygdala directly; it acts through (or in parallel with) a 5-HT relay. This is consistent with the SD-037 plan that 5-HT (MECH-186/187/188), GABA (SD-036), and orexin (MECH-281, SD-037) form a three-regulator scheme, with overlapping rather than disjoint targets.",
+    "mapping_caveat": "The Hasegawa data is specifically about cataplexy-like episodes triggered by chocolate in mice; it does not directly speak to the broader motor-coupling failures MECH-281 covers. Also, the 5-HT mediation is one route -- other orexin -> amygdala paths (direct OX1R/OX2R signaling) are not excluded. Treat as strong evidence that the orexin -> amygdala motor-coupling axis exists and is gain-modulated, with 5-HT as one (not sole) mediator.",
+    "source_context": "Mouse, orexin-KO model, optogenetic and chemogenetic manipulation, chocolate-trigger cataplexy paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "PNAS, Sakurai/Mieda labs (canonical orexin neuroscience). Mapping is high because the experiment dissociates the proximal pathway, which is the level of detail MECH-281 needs. Slightly below Burgess because Burgess is the lesion-level proof that the path matters at all; Hasegawa is the next-step refinement."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pfc_subdivision_architecture",
+  "entry_id": "2026-04-27_mech_263_identity_specific_devaluation_howard2017",
+  "timestamp_utc": "2026-04-27T22:31:22Z",
+  "claim_ids_tested": ["MECH-263"],
+  "source": {
+    "title": "Identity-Specific Reward Representations in Orbitofrontal Cortex Are Modulated by Selective Devaluation",
+    "authors": ["James D. Howard", "Thorsten Kahnt"],
+    "year": 2017,
+    "venue": "Journal of Neuroscience 37(10):2627-2638",
+    "doi": "10.1523/JNEUROSCI.3473-16.2017",
+    "url": "https://doi.org/10.1523/JNEUROSCI.3473-16.2017"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct human-fMRI test of the devaluation-sensitivity criterion that MECH-263's falsifiability hinges on. Identity-specific reward patterns in lateral posterior OFC are selectively altered for the sated food but retained for the non-sated food, demonstrating that OFC encodes outcome IDENTITY rather than just scalar value, and that this representation is updated by changes in outcome value. Functional connectivity to vmPFC predicts behavioural choice -- supporting the SD-033b -> SD-033c handoff architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-263 specifies devaluation-sensitivity as a key criterion: 'if the value of outcome o changes while the state-action -> outcome mapping does not, behaviour changes appropriately because the outcome representation itself is structured.' Howard & Kahnt provide exactly this evidence in humans.",
+    "MECH-263 also asserts a falsification criterion: 'if SD-033b activity encodes scalar value without discriminating between same-value / different-outcome-identity states... the OFC/vmPFC dissociation does not carry.' Howard & Kahnt rule this out for humans -- lateral posterior OFC encodes outcome identity that is dissociable from value.",
+    "Connectivity from OFC to vmPFC predicts behavioural choice -- a structural test of the SD-033b -> SD-033c information flow MECH-263 implies."
+  ],
+  "tags": ["mech_263", "sd_033b", "ofc", "devaluation", "outcome_identity", "human_fmri"],
+  "mapping": {
+    "source_claim_statement": "In humans, lateral posterior OFC encodes identity-specific reward representations that are selectively modulated by outcome devaluation (here: selective satiety on one of two food odours). Functional connectivity between OFC and ventromedial PFC predicts individual differences in satiety-driven choice behaviour.",
+    "ree_translation": "MECH-263 specifies devaluation sensitivity as a load-bearing criterion: SD-033b must distinguish outcomes by identity, not just by scalar value, and outcome-identity representations must be updatable when values change. Howard & Kahnt provide direct human-fMRI evidence for both. The OFC -> vmPFC functional connectivity finding additionally supports the SD-033b (structured outcomes) -> SD-033c (scalar value) handoff that MECH-263 implies.",
+    "mapping_caveat": "fMRI pattern-similarity analysis is one level removed from single-unit codes -- 'identity-specific' here means dissociable BOLD patterns rather than identity-coding neurons. The food-odour devaluation paradigm is narrow; transfer to non-appetitive outcomes (e.g. harm-prediction in REE) involves an inferential step. The species transfer (human -> REE) is shorter than for the rat papers, but the modality transfer (BOLD -> latent E2 representations) is longer.",
+    "source_context": "Human fMRI study, hungry participants given selective devaluation (eating a meal that matches one of two food odours), pre/post-meal pattern-based decoding of OFC reward representations and OFC-vmPFC functional connectivity, plus a decision-making task."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "J Neurosci, well-controlled selective-devaluation paradigm, pattern-based fMRI rather than just univariate. Mapping fidelity high because the paper tests exactly the devaluation-sensitivity criterion MECH-263 specifies. Transfer risk lower than for the rat papers (human substrate, but BOLD modality is one inferential level removed from the latent-representation language MECH-263 uses)."
+  }
+}

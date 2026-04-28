@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-27_sd_037_broadcast_integrator_jacobson2022",
+  "timestamp_utc": "2026-04-27T22:32:17Z",
+  "claim_ids_tested": ["SD-037"],
+  "source": {
+    "title": "Hypocretins (orexins): The ultimate translational neuropeptides",
+    "authors": ["Laura H Jacobson", "Daniel Hoyer", "Luis de Lecea"],
+    "year": 2022,
+    "venue": "Journal of Internal Medicine",
+    "doi": "10.1111/joim.13406",
+    "url": "https://doi.org/10.1111/joim.13406"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Major review (J Intern Med, three established orexin investigators including de Lecea who co-discovered hypocretin) that explicitly characterises the orexin system in language that maps almost one-to-one onto SD-037: a hub that integrates diverse internal-state inputs (circadian, metabolic, emotional valence) and conveys arousal-modulating signals via widespread excitatory projections to multiple output regions. Source quality is very high; mapping fidelity is also high because the paper itself uses the integrator-and-broadcaster framing that SD-037 commits to. Confidence is held below 0.9 because the paper is a narrative review, not a quantitative test of REE's specific claim that the override REWEIGHTS rather than REPLACES downstream harm signals.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE override_signal silenced rather than reweighted z_harm at downstream commit gates, this would diverge from Hcrt biology; Jacobson et al. emphasise that Hcrt acts as a gain modulator on downstream targets, not a relay that replaces their input."
+  ],
+  "tags": ["sd_037", "orexin", "hypocretin", "broadcast", "integrator", "narcolepsy", "neuromodulation"],
+  "mapping": {
+    "source_claim_statement": "The Hcrt system is a hub that integrates diverse inputs modulating arousal (circadian rhythms, metabolic status, positive and negative emotions) and conveys this information to multiple output regions via widespread excitatory projections. Hcrt cell loss causes narcolepsy with cataplexy, demonstrating the system is non-redundant for sleep-wake stability.",
+    "ree_translation": "SD-037 commits to a small, broadly-projecting gain modulator that integrates internal homeostatic state (drive_level, SD-012) and threat context (sustained z_harm window) and outputs an override_signal that reweights z_harm at downstream commit gates and gates the drive->z_goal seeding bridge. Jacobson et al.'s 'integrator hub with widespread projections' is the closest existing biological description of this architecture; the lesion phenotype (narcolepsy + cataplexy) maps to SD-037's predicted decoupling phenotype under override loss.",
+    "mapping_caveat": "The paper does not directly test whether downstream effects are REWEIGHTING vs REPLACEMENT of harm signals. SD-037's specific commitment that override authority does not silence z_harm but only reweights it at commit gates is consistent with a gain-modulator description but not uniquely entailed by it. Also: REE's override_signal is a unitary scalar; Hcrt biology has at least two receptor systems (OX1R, OX2R) with partly dissociable downstream effects.",
+    "source_context": "Narrative review covering rodent and human Hcrt biology, with translational emphasis on insomnia, narcolepsy, addiction, and neurodegeneration."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high (J Intern Med review by domain leaders). Mapping fidelity high because the integrator-and-broadcaster framing is explicit. Transfer risk moderate-low: the paper synthesises rodent and human data and the architectural-level claim (single integrating hub with broad projection) is well established."
+  }
+}

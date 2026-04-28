@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_057b",
+  "entry_id": "2026-04-27_mech_057b_theta_seq_goals_wikenheiser_redish2015",
+  "timestamp_utc": "2026-04-27T22:35:20Z",
+  "claim_ids_tested": ["MECH-057b"],
+  "source": {
+    "title": "Hippocampal theta sequences reflect current goals.",
+    "authors": ["Andrew M Wikenheiser", "A David Redish"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3909",
+    "url": "https://doi.org/10.1038/nn.3909"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct evidence that hippocampal theta sequences modulate their look-ahead extent based on goal distance and on whether the animal is mid-journey vs at-goal. The on-arrival contraction of look-ahead is the strongest piece for MECH-057b's framing: when the goal is reached, candidate generation stops extending forward, consistent with a completion-detection mechanism gating further candidacy. Mapping fidelity is moderate -- the paper measures look-ahead extent, not explicit candidacy suppression -- but the convergence with Pfeiffer & Foster gives mutual reinforcement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If theta sequence look-ahead were invariant to goal distance, the candidacy-gate framing (proposals tuned to complete on the current goal) would be weakened.",
+    "If on-arrival look-ahead remained extended in the same way as during journeys, the gate would not appear to detect completion."
+  ],
+  "tags": ["mech_057b", "hippocampus", "theta_sequences", "goal_directed", "candidacy_gate"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta sequences project ahead of the animal's current location to an extent that depends on the rat's current goal: look-ahead extends farther on journeys to distant goals than to proximal ones, and contracts on arrival at goals.",
+    "ree_translation": "Hippocampal trajectory candidates are not generic forward-replay; their reach is matched to the active goal. In REE this is consistent with a candidacy gate that selects only completion-relevant trajectories. On goal arrival, look-ahead contracts -- a behavioural signature of the completion check firing and short-circuiting further propagation.",
+    "mapping_caveat": "The paper does not measure suppression directly; it measures the distribution of look-ahead extents. The completion-detection inference rests on the on-arrival contraction, which has multiple alternative explanations (e.g. simple value gating without a candidacy mechanism).",
+    "source_context": "Awake rats on a value-guided spatial decision task; CA1 ensemble; theta-cycle decoding."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Strong source. Mapping discount because look-ahead modulation is consistent with several gating architectures, not uniquely with completion-verification."
+  }
+}

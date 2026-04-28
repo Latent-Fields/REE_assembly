@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_040",
+  "entry_id": "2026-04-27_q_040_acc_unsigned_rpe_behavioural_adjustment_hayden2011",
+  "timestamp_utc": "2026-04-27T22:30:32Z",
+  "claim_ids_tested": ["Q-040"],
+  "source": {
+    "title": "Surprise signals in anterior cingulate cortex: neuronal encoding of unsigned reward prediction errors driving adjustment in behavior",
+    "authors": ["Hayden BY", "Heilbronner SR", "Pearson JM", "Platt ML"],
+    "year": 2011,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4652-10.2011"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong single-unit evidence from macaque dACC that surprise/unsigned-RPE responses drive trial-to-trial behavioural adjustment, AND that these responses collapse when upstream probability estimates are hidden -- directly supporting the architectural reading of Q-040 that dACC behavioural-revision is contingent on credible upstream predictions. Mapping is solid for the SD-032b adaptive-control consumer mechanism, but transfer from RPE-clarity (probabilities hidden) to V_s-anchored forward predictions is an extrapolation, not a measurement. Indirect for the specific MECH-269b prediction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When upstream probability cues are absent or unclear, dACC neuronal responses to outcomes are reduced and the corresponding behavioural-adjustment signature attenuates -- the SD-032b control loop is wired but its drive collapses without a credible upstream estimate."
+  ],
+  "tags": ["q_040", "mech_269b", "sd_032b", "dacc", "prediction_error", "behavioral_adjustment"],
+  "mapping": {
+    "source_claim_statement": "dACC neurons encode unsigned reward prediction errors that scale trial-to-trial behavioural adjustment, and these responses are reduced when prior probability is hidden -- expectation clarity gates the signal.",
+    "ree_translation": "SD-032b dACC behavioural-revision output requires that the upstream forward-model (E1/E2) predictions be themselves credible. If V_s gates only the proposer (MECH-269 scope) but not E1/E2 rollouts (MECH-269b scope), E2's harm-rollouts run on stale streams, the surprise signal that should drive dACC adjustment is dampened or mis-shaped, and approach_commit stays at zero -- the wired-but-inert pattern observed in EXQ-483/483a.",
+    "mapping_caveat": "Hayden's manipulation is removal of explicit probability cues, not staleness of an upstream forward model. The translation assumes that whatever upstream structure provides expectation clarity in the macaque task is functionally analogous to a V_s-validated E1/E2 stream; this is an architectural extrapolation, not an experimental result. Single-unit macaque data; rodent/human generalisation untested for this specific gating logic.",
+    "source_context": "Macaque (Macaca mulatta) probabilistic choice task; single-unit recordings from dorsal anterior cingulate cortex; unsigned reward prediction error encoding tied to subsequent preference shifts."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High-quality canonical single-unit study, well-replicated finding. Mapping fidelity moderate: the 'probabilities hidden' manipulation is a credible analogue to 'upstream prediction not anchored', but is not literally V_s gating. Transfer risk includes macaque->REE substrate and the conceptual gap between probability cue and forward-model staleness."
+  }
+}

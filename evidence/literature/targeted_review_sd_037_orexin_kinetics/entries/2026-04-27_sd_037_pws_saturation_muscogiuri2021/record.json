@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_037_orexin_kinetics",
+  "entry_id": "2026-04-27_sd_037_pws_saturation_muscogiuri2021",
+  "timestamp_utc": "2026-04-27T22:32:17Z",
+  "claim_ids_tested": ["SD-037"],
+  "source": {
+    "title": "Obesity in Prader-Willi syndrome: physiopathological mechanisms, nutritional and pharmacological approaches",
+    "authors": ["Giovanna Muscogiuri", "Luigi Barrea", "Filomena Faggiano", "Maria Ida Maiorino", "Mario Parrillo", "Giuseppe Pugliese", "Rosaria M Ruggeri", "Elisabetta Scarano", "Silvia Savastano", "Annamaria Colao"],
+    "year": 2021,
+    "venue": "Journal of Endocrinological Investigation",
+    "doi": "10.1007/s40618-021-01574-9",
+    "url": "https://doi.org/10.1007/s40618-021-01574-9"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Clinical review of PWS hyperphagia mechanism. Direction is MIXED because PWS supports SD-037's predicted SATURATED-OVERRIDE phenotype at the behavioural level (compulsive drive pursuit despite negative consequences) but the mechanistic story is genetic/upstream of orexin (paternal 15q11-q13 imprinting defect, hypothalamic dysfunction broader than orexin alone). PWS is therefore a phenotype anchor for SD-037 falsifiable secondary, not a mechanistic confirmation. Source quality moderate (J Endocrinol Invest review). Mapping fidelity moderate -- behaviour matches, mechanism does not exactly match.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If PWS hyperphagia did NOT include the canonical features of failed satiety arbitration plus persistent drive pursuit despite negative outcomes, SD-037's saturated-override falsifiable would lose its clinical anchor.",
+    "PWS mechanism is clearly upstream of orexin alone -- multiple hypothalamic systems are disrupted -- so MIXED evidence direction reflects honest mechanistic mismatch."
+  ],
+  "tags": ["sd_037", "prader_willi", "hyperphagia", "saturation_phenotype", "hypothalamic_dysfunction", "clinical_anchor"],
+  "mapping": {
+    "source_claim_statement": "PWS hyperphagia involves disrupted hypothalamic satiety pathways, hormonal dysregulation of appetite (elevated ghrelin, blunted PYY response), and reduced energy expenditure. Behaviourally, individuals with PWS show absent or markedly delayed satiety, compulsive food-seeking, and persistence despite negative consequences. The genetic basis is paternal chromosome 15q11-q13 deletion, maternal uniparental disomy, or imprinting defect.",
+    "ree_translation": "SD-037's secondary falsifiable predicts that saturated override (override_signal pinned high) produces compulsive drive pursuit despite negative outcomes -- a PWS-analog hyperphagia. The clinical PWS phenotype anchors the qualitative prediction: persistent drive pursuit, blunted satiety arbitration, persistence despite negative consequences. The mechanistic mismatch is that PWS disruption is upstream and broader than the orexin/SD-037 layer alone (multiple hypothalamic systems are affected), so PWS supports the BEHAVIOUR predicted by SD-037 saturation but does not pin the saturation specifically to override_signal pathology.",
+    "mapping_caveat": "PWS hyperphagia is a clinical anchor, not a mechanistic confirmation. The phenotype matches SD-037's saturated-override prediction qualitatively, but the underlying lesion is genetic and affects multiple hypothalamic populations, not a clean orexin/override-system saturation. Use this entry as the falsifiable-anchor reference, not as evidence that SD-037 IS the PWS mechanism.",
+    "source_context": "Clinical review covering PWS pathophysiology, complications of obesity in PWS, and nutritional/pharmacological management approaches in adolescents and adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Source quality moderate (clinical review, peer-reviewed J Endocrinol Invest). Mapping fidelity moderate -- behavioural phenotype maps cleanly but mechanism is upstream/broader than orexin alone. Transfer risk moderate-high because PWS is a multi-system genetic disorder, not a clean orexin pathology, so mapping it onto a single REE substrate component requires care."
+  }
+}

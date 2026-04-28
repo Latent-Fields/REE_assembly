@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_281",
+  "entry_id": "2026-04-27_mech_281_amygdala_cataplexy_burgess2013",
+  "timestamp_utc": "2026-04-27T22:31:13Z",
+  "claim_ids_tested": ["MECH-281"],
+  "source": {
+    "title": "Amygdala lesions reduce cataplexy in orexin knock-out mice.",
+    "authors": ["Burgess CR", "Oishi Y", "Mochizuki T", "Peever JH", "Scammell TE"],
+    "year": 2013,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5632-12.2013"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Direct lesion-based causal evidence in the canonical orexin-KO narcolepsy model. Bilateral amygdala lesions sharply reduce emotion-triggered cataplexy without disturbing baseline sleep-wake architecture. Anterograde/retrograde tracing maps the projection (CeA GABAergic neurons -> vlPAG, LPT, LC, DRN) -- exactly the brainstem motor-tone targets MECH-281 names. Mapping fidelity to the motor-coupling axis is high; transfer risk from mouse to a generic REE coupling claim is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If amygdala (specifically CeA GABAergic) projections to brainstem motor-tone nuclei are intact, emotion-triggered loss of motor activation (cataplexy-analog) persists in orexin-deficient animals -- consistent with MECH-281's prediction that the motor-coupling failure runs through amygdala arbitration rather than through z_harm computation itself.",
+    "Lesioning amygdala does not abolish baseline sleep-wake structure -- so a model that conflates the wake-stability axis (MECH-286) with the motor-coupling axis (MECH-281) would over-predict the lesion effect."
+  ],
+  "tags": ["mech_281", "orexin", "cataplexy", "amygdala", "motor_coupling", "narcolepsy"],
+  "mapping": {
+    "source_claim_statement": "GABAergic neurons in the central nucleus of the amygdala project heavily to brainstem nuclei that maintain waking muscle tone (vlPAG, LPT, LC, DRN); bilateral excitotoxic lesions of the amygdala in orexin-KO mice markedly reduce cataplexy events triggered by positive emotional stimuli (wheel running, chocolate) without disturbing baseline sleep-wake architecture.",
+    "ree_translation": "MECH-281 posits that orexin-analog gain modulation gates the coupling between drive_level / emotional state and motor activation, with BLA/CeA arbitration as one canonical downstream target. Burgess et al. provide the cleanest mechanistic substrate: in orexin loss, the amygdala -> brainstem motor-tone path becomes the dominant cause of emotion-triggered motor failure. The REE counterpart is the override_signal (SD-037) reweighting the amygdala arbitration term in commit-gate threshold computations; when override_signal is at zero, amygdala-driven inhibition of motor activation dominates.",
+    "mapping_caveat": "Cataplexy is REM-atonia-related and species-specific (rodent emotional triggers differ from human laughter). The REE claim is broader: any failure of drive/emotion to recruit motor activation. Burgess shows the brainstem-projecting CeA-GABA path is sufficient for emotion-induced atonia in orexin loss; it does not directly demonstrate that the same circuit handles non-atonia motor-coupling failures (e.g., depression-like psychomotor retardation). Treat as strong evidence for the canonical narcolepsy axis, suggestive for the broader claim.",
+    "source_context": "Mouse, orexin-KO model, ad libitum cataplexy-trigger paradigm (running wheel, chocolate), excitotoxic and tracing methods."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "J Neurosci, well-replicated narcolepsy lab (Scammell). Mapping is direct for the canonical motor-coupling axis; transfer risk is the rodent->primate->architectural-claim chain rather than the mechanism itself."
+  }
+}
