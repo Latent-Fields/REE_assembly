@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_theta_abstraction_scaling",
+  "entry_id": "2026-04-28_theta_abstraction_gamma_synchrony_replay_carr2012",
+  "timestamp_utc": "2026-04-28T05:21:33Z",
+  "claim_ids_tested": ["MECH-089", "MECH-285", "MECH-294"],
+  "source": {
+    "title": "Transient slow gamma synchrony underlies hippocampal memory replay",
+    "authors": ["Margaret F Carr", "Mattias P Karlsson", "Loren M Frank"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.06.014",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(12)00576-4"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Neuron paper, dual-site CA3 + CA1 LFP and single-unit recording in awake and quiescent rats. Direct evidence that transient slow-gamma (20-50 Hz) synchrony coordinates CA3-CA1 networks during sharp-wave ripple replay events. Higher slow-gamma synchrony predicts higher quality replay. This grounds the gamma-as-coordination-clock reading and provides the neural mechanism by which content gets ordered within a replay packet. Confidence 0.82: strong methodology, direct mechanistic claim, but the result is about replay (SWR-associated) gamma rather than waking-theta gamma -- the architectural translation requires noting which gamma regime is which.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The slow gamma the paper measures is during sharp-wave ripple replay events (20-50 Hz, transient, SWR-associated), NOT the gamma nesting during waking theta cycles that MECH-089 specifies (which is mid-gamma 40-80 Hz / fast gamma 60-150 Hz, theta-locked, behavioural-state-active). The architectural translation requires distinguishing which gamma regime indexes which content -- not directly resolved by Carr 2012.",
+    "The paper does not directly speak to abstraction-level scaling. It establishes the gamma synchrony mechanism for replay coordination but does not test whether gamma synchrony quality varies with content abstraction (chunked vs atomic, type-level vs instance-level)."
+  ],
+  "tags": ["mech_089", "mech_285", "mech_294", "theta_abstraction_scaling", "slow_gamma", "ca3_ca1_synchrony", "replay_coordination"],
+  "mapping": {
+    "source_claim_statement": "During sharp-wave ripples in both awake and quiescent states, there are transient increases in slow gamma (20-50 Hz) power and synchrony across dorsal CA3 and CA1 networks of both hemispheres. These gamma oscillations entrain CA3 and CA1 spiking. During awake SWRs, higher levels of slow gamma synchrony are predictive of higher quality replay of past experiences. CA3-CA1 gamma synchronization is a central component of awake memory replay; transient gamma synchronization serves as a clocking mechanism to enable coordinated memory reactivation across the hippocampal network.",
+    "ree_translation": "For MECH-089 (theta-gamma nesting), MECH-285 (sleep replay sampler), MECH-294 (theta burst as packet for E3): biology has the gamma-as-coordination-clock mechanism that REE's theta-gamma nesting needs. The paper grounds the mechanism by which content gets ordered within a replay packet -- gamma synchrony entrains spiking, providing the within-cycle indexing that REE's MECH-089 packaging logic requires. Architecturally, this means the gamma-count parameter in MECH-089 should correspond to a real coordination signal (gamma synchrony quality), and a sleep replay operator that ignored the gamma coordination structure (e.g. uniform-rate replay without phase locking) would not produce coherent reactivation.",
+    "mapping_caveat": "The slow gamma in this paper is SWR-associated (during replay events), distinct from the gamma nesting during waking theta cycles. Waking theta-locked gamma is mid-gamma / fast gamma (40-150 Hz); replay slow gamma is 20-50 Hz. They likely serve different but related coordination functions. The architectural translation needs to distinguish which gamma regime indexes which content -- the paper does not directly disambiguate, but it does establish the principle that gamma synchrony underlies coordinated reactivation. Also: the paper does not test abstraction-level scaling; it grounds the coordination mechanism, not the content-scaling architecture.",
+    "source_context": "Dual-site (CA3 + CA1) bilateral LFP and single-unit recording in rats during awake exploration plus subsequent quiescence. SWR events identified by ripple-band power; slow gamma (20-50 Hz) power and synchrony between CA3 and CA1 quantified during SWR windows. Replay quality (sequence coherence per Bayesian decoding) compared against gamma synchrony levels."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Neuron, decisive dual-site recording methodology, well-replicated). Mapping fidelity moderate-to-high: the gamma-as-coordination-clock mechanism is the right primitive for MECH-089 packaging but the SWR-slow-gamma vs waking-theta-gamma distinction matters. Transfer risk modest because the coordination-via-gamma principle generalises beyond the specific frequency band measured here."
+  }
+}

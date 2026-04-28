@@ -23589,3 +23589,176 @@
     plus Schmitt 2017 / Hallock 2016 / Ito 2015 surrounding context).
     No implementation yet.
   location: docs/thoughts/2026-04-28_action_object_type_abstraction.md
+
+- id: MECH-299
+  title: "Theta-cycle content scales with the agent's current substrate abstraction vocabulary: the unit packaged into a single theta cycle is the smallest reusable item available in the active substrate stack -- atomic actions when only those exist, action chunks when SD-045 lands, type-instance matches when SD-040/MECH-296 land, option invocations when SD-042 lands. Refinement of MECH-089 (theta-gamma nesting) on the content-of-packet axis."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.theta_cycle_content_scales_with_substrate_vocabulary
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: 2026-04-28
+  depends_on:
+    - MECH-089   # parent theta-gamma packaging primitive being refined
+    - MECH-294   # sibling claim on theta burst as packet for E3
+    - SD-040     # type-encoder substrate that supplies type-instance unit
+    - SD-042     # option library substrate that supplies option-invocation unit
+    - SD-045     # action-chunk cache that supplies chunk unit
+  functional_restatement: >
+    Theta sequence path length scales with running speed and theta cycle
+    length / number of gamma cycles within it (Gupta, van der Meer,
+    Touretzky & Redish 2012 Nat Neurosci). Theta sequences segment
+    experience into chunks. The hippocampal cognitive-map representational
+    format generalises across non-spatial cognitive dimensions and
+    hierarchical levels (Bellmund, Gardenfors, Moser & Doeller 2018
+    Science).
+
+    MECH-299 specifies that the unit of content packaged into a theta
+    cycle is the smallest reusable item available in the agent's
+    currently-active substrate vocabulary. The packaging mechanism is
+    the same as MECH-089: theta cycle x gamma count = number-of-units
+    per E3 tick. What changes is the granularity of "unit": atomic
+    actions and z_world points when only those substrates exist,
+    action chunks when SD-045 lands, type-instance matches when
+    SD-040/MECH-296 land, option invocations when SD-042 lands.
+
+    Falsifiable: longitudinal experiment where theta-sequence content
+    is measured before and after the agent acquires a chunked
+    behavioural skill. Pre-chunk content should be atomic; post-chunk
+    content should include chunk-units. The architectural prediction
+    is that the gamma-count per theta cycle stays roughly constant
+    (the packaging machinery is fixed) while the granularity scales.
+  notes: >
+    Registered 2026-04-28 from the theta-abstraction-scaling lit-pull
+    (`evidence/literature/targeted_review_theta_abstraction_scaling/`).
+    V4-scope by default: gated on at least one of SD-040 / SD-042 /
+    SD-045 landing first, since the prediction concerns what theta
+    packages once those substrates exist. No V3 pull-forward path: V3's
+    substrate vocabulary is fixed at z_world + atomic actions, so
+    there's no second granularity for theta to scale into. The MECH
+    becomes meaningful and testable once V4 expands the substrate stack.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_theta_abstraction_scaling/` (Gupta 2012 anchor +
+    Bellmund 2018 framework + Constantinescu 2016 conceptual grids
+    already in REE's lit index). No substrate implementation yet.
+  location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
+
+- id: MECH-300
+  title: "Cognitive map traversal via theta sequences operates at the agent's active abstraction level. Theta sequences do not have a fixed semantic content -- they simulate trajectories through whatever cognitive map the substrate vocabulary currently defines, whether spatial, conceptual, type-graph, or option-graph. Sister claim to MECH-299, on the map-being-traversed axis."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.cognitive_map_traversal_at_active_abstraction_level
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: 2026-04-28
+  depends_on:
+    - MECH-089   # parent theta-gamma packaging primitive
+    - MECH-269   # anchor pool that defines the cognitive-map nodes
+    - MECH-299   # sister claim on packet content scaling
+    - SD-040     # type-encoder produces type-graph nodes
+    - SD-042     # option library produces option-graph edges
+  functional_restatement: >
+    Place and grid cell population codes provide a representational
+    format for variable cognitive dimensions; the same format generalises
+    across spatial and non-spatial domains and across hierarchical
+    levels at different resolutions (Bellmund et al. 2018 Science).
+    Action sequences result in trajectories through cognitive space,
+    simulated via sequential coding (theta sequences) in hippocampus.
+
+    MECH-300 specifies that the cognitive map being traversed by
+    hippocampal theta sequences is the substrate vocabulary's currently
+    -active level. With only z_world and atomic actions, theta traverses
+    spatial trajectories. With chunks (SD-045), theta traverses
+    chunk-graphs. With types (SD-040 / MECH-296), theta traverses
+    type-graphs. With options (SD-042), theta traverses option-graphs.
+    The same theta-sequence machinery navigates whatever map the
+    substrate vocabulary defines.
+
+    Falsifiable: in a hierarchical-task paradigm where the agent has
+    learned both atomic-action sequences and option-level subroutines,
+    theta-cycle content during option execution should reflect option-
+    graph traversal (transitioning between option-nodes) rather than
+    atomic-action traversal (transitioning between specific action steps).
+    Subsequent Frank-lab work on hierarchical-task replay is the closest
+    biological anchor.
+  notes: >
+    Registered 2026-04-28 as sister claim to MECH-299. Same V4 scope and
+    same dependency on substrate-stack expansion. The two claims separate
+    cleanly: MECH-299 covers content (what unit goes in the packet);
+    MECH-300 covers map (what graph is being traversed). Both are
+    architecturally licensed by Bellmund 2018 + Constantinescu 2016 +
+    Gupta 2012 in combination.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_theta_abstraction_scaling/` (Bellmund 2018 anchor +
+    Gupta 2012 + Constantinescu 2016 already in REE's lit index). No
+    substrate implementation yet.
+  location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
+
+- id: MECH-301
+  title: "Priority-weighted anchor replay (MECH-285) runs not only during sleep but also during brief waking quiescent pauses, surfacing remote / non-current stored content for goal-directed retrieval. The architectural gating is contextual (quiescent vs active behaviour, sensory input vs absence) rather than state-categorical (waking vs sleep). Refinement / generalisation of MECH-285."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.waking_quiescent_replay_via_mech285_priority_sampling
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: 2026-04-28
+  depends_on:
+    - MECH-285   # parent sleep replay sampler being generalised
+    - MECH-272   # routing gate that currently switches stream weights between waking/sleep
+    - MECH-292   # ranked ghost-goal bank consumer of replay
+    - MECH-293   # waking ghost-goal probes consumer of replay
+  functional_restatement: >
+    Awake replay reactivates stored representations of remote / non-
+    current-environment trajectories as commonly as it reactivates
+    current-environment content; remote replay surfaces during brief
+    quiescent pauses in awake behaviour, more robustly when the agent
+    has recently been in motion than during extended quiescence
+    (Karlsson & Frank 2009 Nat Neurosci). Replay is compositional, not
+    a literal function of recent experience -- it constructs novel
+    paths and reactivates infrequently-experienced sequences (Gupta,
+    van der Meer, Touretzky & Redish 2010 Neuron).
+
+    MECH-301 specifies that REE's MECH-285 priority-weighted anchor
+    sampling should run during waking quiescent moments as well as
+    during sleep. The substrate machinery is unchanged; the gating is
+    lifted from "sleep only" to "quiescent context with no active
+    sensory input demand". Routing weights (MECH-272) may differ
+    between waking and sleep contexts, but the sampling itself is
+    not state-categorically restricted.
+
+    Falsifiable: a V3 or V4 agent with waking-quiescent replay enabled
+    should surface ghost-goal anchors during brief between-action
+    pauses, even before any sleep cycle has run. A V3 agent with the
+    sleep-only gate should NOT surface remote anchors during waking
+    quiescence. Behavioural signature: in a goal-relocation task with
+    no opportunity to sleep before retest, MECH-301-on agents should
+    show MECH-292 ghost-goal-bank-driven retrieval of relocated-goal
+    anchors during the inter-trial interval; MECH-301-off agents
+    should not.
+  notes: >
+    Registered 2026-04-28 from the theta-abstraction-scaling lit-pull.
+    Default V4-scope but with V3 PULL-FORWARD CONDITION: this is the
+    LIGHTEST-TOUCH architectural extension in the current set. The
+    MECH-285 substrate already exists; only the invocation gate needs
+    lifting. If EXQ-495 V3-full-completion-gate or successor experiments
+    surface a need for more aggressive ghost-goal probe access during
+    waking quiescent moments than the current MECH-293 architecture
+    provides, MECH-301 is the cheapest extension to pull forward into
+    late-V3. Implementation: lift sleep-only gate on MECH-285 invocation,
+    add a quiescence-detector trigger (e.g. low z_harm_a + low drive +
+    no committed trajectory active), apply MECH-272 routing weights for
+    waking-quiescent context.
+  evidence_quality_note: >
+    Registered candidate with literature support from
+    `targeted_review_theta_abstraction_scaling/` (Karlsson & Frank 2009
+    anchor + Gupta 2010 compositional replay). No substrate
+    implementation yet.
+  location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md

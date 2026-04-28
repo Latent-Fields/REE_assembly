@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_theta_abstraction_scaling",
+  "entry_id": "2026-04-28_theta_abstraction_cognitive_map_thinking_bellmund2018",
+  "timestamp_utc": "2026-04-28T05:21:33Z",
+  "claim_ids_tested": ["MECH-089", "MECH-269", "SD-040"],
+  "source": {
+    "title": "Navigating cognition: Spatial codes for human thinking",
+    "authors": ["Jacob L S Bellmund", "Peter Gardenfors", "Edvard I Moser", "Christian F Doeller"],
+    "year": 2018,
+    "venue": "Science",
+    "doi": "10.1126/science.aat6766",
+    "url": "https://www.science.org/doi/10.1126/science.aat6766"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Science theoretical review by Bellmund/Moser/Doeller integrating spatial-navigation neural codes with non-spatial cognition. Core claim: place and grid cell population codes provide a representational format for variable cognitive dimensions, enabling rapid reorganisation through remapping across behavioural contexts and yielding stable cognitive spaces at different resolutions and hierarchical levels. Action sequences result in trajectories through cognitive space, simulated via sequential coding (theta sequences) in hippocampus. This is the framework anchor for the architectural reading that hippocampal codes -- including theta sequences -- operate across abstraction levels. Confidence 0.82: theoretical review rather than primary empirical paper, but the synthesis is canonical and the anchor empirical work is reviewed in the same paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The framework is theoretical / integrative. The specific empirical claim that 'theta sequences span abstract cognitive spaces with hierarchical levels at different resolutions' is supported by anchor papers cited in the review (Constantinescu 2016 conceptual grids; Schuck 2016 task-stage decoding; Bao 2019 etc.) but the synthesis paper itself is not a primary empirical demonstration.",
+    "The 'hierarchical levels' Bellmund et al. describe are different RESOLUTIONS of the cognitive map (zoom levels), not different SUBSTRATE LEVELS in the action-decomposition sense (motor primitives vs chunks vs options). The architectural mapping requires that the same primitive supports both senses of hierarchy, which is plausible but not directly defended in this paper."
+  ],
+  "tags": ["mech_089", "mech_269", "sd_040", "theta_abstraction_scaling", "cognitive_map", "hierarchical_levels", "non_spatial_navigation"],
+  "mapping": {
+    "source_claim_statement": "Place and grid cell population codes provide a representational format to map variable dimensions of cognitive spaces. This highly dynamic mapping system enables rapid reorganization of codes through remapping between orthogonal representations across behavioral contexts, yielding a multitude of stable cognitive spaces at different resolutions and hierarchical levels. Action sequences result in trajectories through cognitive space, which can be simulated via sequential coding in the hippocampus. The spatial representational format of the hippocampal formation has the capacity to support flexible cognition and behavior.",
+    "ree_translation": "For MECH-089 (theta-gamma packaging) and MECH-269 (anchor pool / per-stream V_s) and SD-040 (type-encoder substrate): biology supports the architectural reading that the hippocampal cognitive-map machinery operates across abstraction levels and across spatial / non-spatial domains uniformly. Theta sequences -- which simulate trajectories through cognitive space -- inherit this generality. As REE adds chunk / type / option substrates, the theta-packaging primitive does not need to change architecturally; the cognitive map being navigated changes, and the same theta sequence machinery navigates the new map. This grounds the user's prediction that theta packaging scales with substrate vocabulary -- the packaging is general; the content scales because the map scales.",
+    "mapping_caveat": "Theoretical review rather than primary empirical paper. The 'hierarchical levels' Bellmund et al. discuss are different RESOLUTIONS of the cognitive map (e.g. fine-grained vs coarse-grained spatial maps that can both be active), not the substrate-level hierarchy REE distinguishes (motor primitives vs chunks vs options vs goal-directed). The architectural translation assumes these are the same primitive operating at different scales -- plausible but not directly defended in this paper. Also: the framework is most empirically supported for spatial-to-conceptual generalisation; extending to action-sequence chunking is supported by Constantinescu 2016 and Schuck 2016 but not by primary data in this review.",
+    "source_context": "Theoretical review in Science, integrating spatial-navigation electrophysiology (Moser lab work on grid / place / time cells), non-spatial cognitive-map fMRI (Constantinescu 2016, Schuck 2016, Garvert 2017), and conceptual frameworks from cognitive science (Gardenfors conceptual spaces). Argues the same place / grid cell representational format generalises across information domains."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Science, canonical synthesis from leading authorities). Mapping fidelity moderate-to-high: the framework directly licenses theta sequences operating across abstraction levels, which is the architectural primitive the user's prediction requires. Transfer risk modest because the multi-domain cognitive map framework is now well-established and the architectural extension to action-substrate vocabulary is plausible."
+  }
+}

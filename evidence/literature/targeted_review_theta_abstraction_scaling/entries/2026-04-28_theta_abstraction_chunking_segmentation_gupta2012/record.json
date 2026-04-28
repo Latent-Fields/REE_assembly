@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_theta_abstraction_scaling",
+  "entry_id": "2026-04-28_theta_abstraction_chunking_segmentation_gupta2012",
+  "timestamp_utc": "2026-04-28T05:21:33Z",
+  "claim_ids_tested": ["MECH-089", "MECH-294"],
+  "source": {
+    "title": "Segmentation of spatial experience by hippocampal theta sequences",
+    "authors": ["Anoopum S Gupta", "Matthijs A A van der Meer", "David S Touretzky", "A David Redish"],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3138",
+    "url": "https://www.nature.com/articles/nn.3138"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Nat Neurosci paper, single-unit recording in rat HPC, the canonical empirical anchor for adaptive theta-sequence content. Three direct findings: (1) theta sequence path length extends FARTHER ahead during acceleration / higher running speed and farther behind during deceleration, (2) sequence length is directly related to theta cycle length AND number of gamma cycles in it, (3) theta sequences represent the environment in segments / 'chunks'. This is the strongest possible support for the user's architectural prediction that theta packaging scales with substrate abstraction. Confidence 0.88 because the methodology is decisive and the mapping to REE's MECH-089 + MECH-294 substrates is direct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The chunking the paper measures is in spatial-trajectory terms (running speed, path length). Whether the same theta-cycle adaptive packaging scales with non-spatial abstraction levels (action chunks per SD-045, type-instances per SD-040, options per SD-042) is plausible but not directly demonstrated. The scaling parameter is observable behavioural state (running speed), not a substrate-vocabulary state.",
+    "The paper does not test the prediction that ADDING new abstraction substrates would change theta-cycle content. It establishes the adaptive-packaging mechanism, not the substrate-dependence prediction. The user's architectural prediction extends the Gupta-Redish framework but is not directly tested in this paper."
+  ],
+  "tags": ["mech_089", "mech_294", "theta_abstraction_scaling", "theta_sequences", "chunking", "gamma_nesting", "adaptive_packaging"],
+  "mapping": {
+    "source_claim_statement": "The rodent hippocampus compresses ongoing experience into repeating theta sequences. The spatial paths represented by theta sequences in rats extend farther in front of the rat during acceleration and higher running speeds, and begin farther behind during deceleration. The length of the path is directly related to the length of the theta cycle and the number of gamma cycles in it. Theta sequences represent the environment in segments or 'chunks'. These findings suggest a potential mechanism for cognitive 'chunking' of experience.",
+    "ree_translation": "For MECH-089 (theta-gamma nesting packages E1 updates for E3) and MECH-294 (theta burst as packet for E3): biology has DIRECT empirical evidence for adaptive theta-sequence packaging where (a) the unit of content scales with behavioural state, (b) the gamma-nesting count co-varies with the unit length, (c) the segmentation produces discrete chunks. This is the empirical anchor for extending MECH-089 with a substrate-vocabulary-scaling claim: when REE adds chunk / type / option substrates (SD-045 / SD-040 / SD-042), the theta packet's content should scale with whichever vocabulary is in play. The Gupta-Redish framework grounds this as 'theta cycle length x gamma count = path length' -- in REE terms: 'theta cycle x gamma count = abstraction-units per E3 tick'.",
+    "mapping_caveat": "The empirical finding is in spatial-running paradigms with simple maze tasks. The scaling parameter measured (running speed, acceleration / deceleration) is behavioural-state-dependent, not substrate-vocabulary-dependent. The architectural translation requires that the same adaptive-packaging mechanism extends to non-spatial / abstraction-level scaling. This is a plausible extension supported by Bellmund 2018 (cognitive maps generalise across information domains) but the chain Gupta 2012 -> non-spatial abstraction-units is not directly closed by any single paper.",
+    "source_context": "Single-unit recording from rat dorsal CA1 during spatial maze tasks involving alternation, multi-arm choice, and running on linear tracks. Theta sequences identified by phase-precession-aligned spike sorting; sequence length quantified by Bayesian decoding. Gamma cycles within theta cycles counted via continuous-wavelet decomposition."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (Nat Neurosci, methodologically decisive single-unit work, replicated framework). Mapping fidelity high because the adaptive-packaging mechanism is exactly the architectural primitive the user's hypothesis requires; the gap is generalising from running-speed scaling to abstraction-vocabulary scaling, which is plausible but not directly demonstrated. Transfer risk modest because the packet-scales-with-state framework is general."
+  }
+}

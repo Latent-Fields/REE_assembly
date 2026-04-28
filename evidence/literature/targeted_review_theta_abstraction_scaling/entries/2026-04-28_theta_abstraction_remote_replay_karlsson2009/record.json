@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_theta_abstraction_scaling",
+  "entry_id": "2026-04-28_theta_abstraction_remote_replay_karlsson2009",
+  "timestamp_utc": "2026-04-28T05:21:33Z",
+  "claim_ids_tested": ["MECH-285", "MECH-272"],
+  "source": {
+    "title": "Awake replay of remote experiences in the hippocampus",
+    "authors": ["Mattias P Karlsson", "Loren M Frank"],
+    "year": 2009,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2344",
+    "url": "https://www.nature.com/articles/nn.2344"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Nat Neurosci paper, single-unit recording in rat HPC during awake behaviour and sleep. Direct evidence that AWAKE replay reactivates stored representations from REMOTE experiences (a previous environment), as commonly as it reactivates current-environment trajectories. This breaks the dichotomy that 'awake replay = current experience, sleep replay = stored traces' -- both states reactivate stored representations. The finding has architectural consequences for distinguishing waking vs sleep theta function and grounds REE's MECH-272 routing gate (which switches stream weights between waking and sleep states) at the empirical level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 'remote' experiences are still spatial trajectories from a different physical environment, not abstract / type-level / option-level remote content. Whether awake replay can reactivate non-spatial stored traces (e.g. social interactions, abstract task structures) is a separate empirical question that Frank lab and others have addressed in subsequent work but not in this paper.",
+    "The paper does NOT directly support a strong functional dissociation between waking and sleep replay -- it shows the OPPOSITE: stored representations are reactivated in both states. This complicates any architectural commitment to 'sleep theta carries higher-abstraction content than waking theta'. The functional difference may be quantitative (sleep replay rate, replay quality, gamma synchrony per Carr 2012) rather than qualitative (different content domains)."
+  ],
+  "tags": ["mech_285", "mech_272", "theta_abstraction_scaling", "awake_replay", "remote_experience", "waking_vs_sleep_theta"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay is present during both sleep and waking behaviour, but although sleep replay involves the reactivation of stored representations in the absence of specific sensory inputs, awake replay was thought to depend on sensory input from the current environment. Here, we show that stored representations are reactivated during both waking and sleep replay. We found frequent awake replay of sequences of rat hippocampal place cells from a previous experience. This spatially remote replay was as common as local replay of the current environment and was more robust when the rat had recently been in motion than during extended periods of quiescence.",
+    "ree_translation": "For MECH-285 (sleep replay sampler) and MECH-272 (sleep routing gate): biology supports BOTH waking and sleep replay reactivating stored (remote) representations, not just current-experience traces. This means REE's MECH-285 sleep sampler should have a waking analog that runs during 'brief pauses in waking behaviour' (per Karlsson-Frank framing), not exclusively during sleep. The MECH-272 routing gate should accept that the same priority-weighted sampling can apply across waking/sleep states -- the waking-vs-sleep distinction is in CONTEXT (sensory input present vs absent) and in PHASE (theta oscillation profile differs), not in whether stored content is reactivated. This weakens any architectural commitment that 'only sleep extracts abstractions' and supports the type-prototype lit-pull's reading that waking learning is sufficient for some abstraction extraction.",
+    "mapping_caveat": "The 'remote experiences' in this paper are spatial trajectories from a previous physical environment. Whether awake replay reactivates non-spatial / type-level / option-level remote content is plausible (subsequent Frank lab work supports this) but not directly demonstrated in the Karlsson 2009 paper. Also: the paper does NOT support a clean waking vs sleep functional dissociation -- it shows that stored content reactivates in both. The user's architectural intuition about sleep theta carrying higher-abstraction content needs to be qualified by this.",
+    "source_context": "Single-unit recording in rat dorsal CA1 during awake behaviour on a multi-arm maze plus subsequent sleep sessions. Replay events identified during awake quiescence (brief pauses) and sleep (REM and non-REM); content classified by Bayesian decoding as local (current environment) vs remote (previous environment). Replay of remote content was as frequent as local content during awake quiescence."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Nat Neurosci, decisive single-unit methodology). Mapping fidelity moderate-to-high: the awake-vs-sleep replay reactivation finding maps directly onto MECH-272/285 architecture but partially weakens the simple sleep-extracts-abstraction reading. Transfer risk modest because the 'awake replay reactivates stored traces' finding is now well-replicated and the architectural extension to non-spatial content is supported by subsequent work."
+  }
+}

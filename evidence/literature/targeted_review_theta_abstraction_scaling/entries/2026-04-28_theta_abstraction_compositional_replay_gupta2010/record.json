@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_theta_abstraction_scaling",
+  "entry_id": "2026-04-28_theta_abstraction_compositional_replay_gupta2010",
+  "timestamp_utc": "2026-04-28T05:21:33Z",
+  "claim_ids_tested": ["MECH-285", "MECH-292", "MECH-293"],
+  "source": {
+    "title": "Hippocampal replay is not a simple function of experience",
+    "authors": ["Anoopum S Gupta", "Matthijs A A van der Meer", "David S Touretzky", "A David Redish"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.01.034",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(10)00060-7"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Neuron paper, single-unit recording in rat HPC during a two-sequence behavioural task with controlled experience frequency manipulation. Direct empirical evidence for compositional replay: forward AND backward replay of behavioural sequence B occurred when rat had been performing A for 10+ minutes (i.e. NOT current experience). Replay of nonlocal B was MORE frequent when B was infrequently experienced. Replay also constructed never-experienced novel-path sequences. This directly supports the user's architectural reading that hippocampal replay is compositional / generative, not just experience-replication. Confidence 0.85 reflects strong empirical methodology and direct mapping to MECH-285 / MECH-292 / MECH-293.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The novel-path sequences observed are spatial trajectories within the same physical environment. Whether replay constructs novel sequences across abstract / type-level / option-level dimensions (i.e. whether the compositional capacity extends from spatial-paths to abstraction-graphs) is plausible but not directly demonstrated.",
+    "Replay frequency was inversely related to experience frequency for the *non-current* sequence -- but this is a counterintuitive result that complicates simple staleness-priority accounts. The MECH-285 priority-weighted sleep replay sampler currently uses staleness, not inverse-experience-frequency. The two are correlated but not identical, and getting this wrong could mismatch the substrate behavior."
+  ],
+  "tags": ["mech_285", "mech_292", "mech_293", "theta_abstraction_scaling", "compositional_replay", "generative_sequences", "novel_paths"],
+  "mapping": {
+    "source_claim_statement": "Replay of behavioural sequences in hippocampus during sharp wave ripple complexes provides a potential mechanism for memory consolidation and learning of knowledge structures. On a task with two distinct behavioural sequences (A and B), forward and backward replay of B occurred even when rats had been performing A for >10 min. Replay of nonlocal B was MORE frequent when B was infrequently experienced. Neither forward nor backward sequences preferentially represented highly experienced trajectories. Construction of never-experienced novel-path sequences was also observed. Replay reflected all physically available trajectories within the environment, suggesting a role in active learning and maintenance of the cognitive map.",
+    "ree_translation": "For MECH-285 (sleep replay sampler -- priority-weighted anchor sampling), MECH-292 (ranked ghost-goal bank), and MECH-293 (waking ghost-goal probes): biology supports the compositional-recombination reading of hippocampal replay. Replay is NOT a literal re-run of recent trajectories; it is a generative process that constructs sequences -- including never-experienced novel paths -- spanning the available cognitive map. This validates the existing MECH-292/293 architecture (probes seeded from anchors with goal-match cosine similarity, not from recency) and supports adding compositional sleep operators that recombine across goal contexts.",
+    "mapping_caveat": "The paper's 'novel paths' are spatial. Whether compositional replay extends to abstract or hierarchical task structure is a separate question. Also: the inverse-experience-frequency finding for non-current B is counterintuitive and complicates staleness-priority models. MECH-285's priority weights might need refinement to reflect this signal. Direct transfer to type-level / option-level compositional replay (which the user's prediction implicitly requires) is plausible but not directly demonstrated.",
+    "source_context": "Single-unit recording in rat dorsal CA1 during a behavioural paradigm with two distinct learned sequences (A and B). SWR replay events identified by ripple-band power; sequence direction (forward vs backward vs novel-path) classified by Bayesian decoding of place-cell ensemble activity."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Neuron, careful experimental design with controlled experience-frequency manipulation, replicated framework). Mapping fidelity high: the compositional / generative reading of replay maps directly onto MECH-285/292/293 architecture and validates the existing priority-weighted (rather than experience-replicating) approach. Transfer risk modest because the compositional-replay-spans-cognitive-map result transfers naturally to whatever cognitive map REE builds, including the type / option extensions in V4."
+  }
+}

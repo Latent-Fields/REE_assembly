@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-28T04:48:59.458212Z`
+Generated: `2026-04-28T05:29:02.689835Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -228,6 +228,7 @@ Generated: `2026-04-28T04:48:59.458212Z`
 | `targeted_review_social_signal_legibility` | [`2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/record.json) | 10 | [`summary`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/summary.md) |
 | `targeted_review_state_abstraction_psychiatry` | [`2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005`](targeted_review_state_abstraction_psychiatry/entries/2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005/record.json) | 3 | [`summary`](targeted_review_state_abstraction_psychiatry/entries/2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005/summary.md) |
 | `targeted_review_systems_consolidation_waking_propagation` | [`2026-04-19_mech_261_systems_consolidation_review_frankland2005`](targeted_review_systems_consolidation_waking_propagation/entries/2026-04-19_mech_261_systems_consolidation_review_frankland2005/record.json) | 5 | [`summary`](targeted_review_systems_consolidation_waking_propagation/entries/2026-04-19_mech_261_systems_consolidation_review_frankland2005/summary.md) |
+| `targeted_review_theta_abstraction_scaling` | [`2026-04-28_theta_abstraction_remote_replay_karlsson2009`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/record.json) | 5 | [`summary`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-04-02_arc_018_vte_lookahead_johnson2007`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/record.json) | 17 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-15_mech059_lit-0019_completion`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/record.json) | 5 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/summary.md) |
 | `targeted_review_v3_prefrontal_control` | [`2026-02-15_mech060_lit-0021_completion`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/record.json) | 5 | [`summary`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/summary.md) |
