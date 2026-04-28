@@ -1,79 +1,89 @@
-# Diagnose Staging Report -- 2026-04-27
+# Diagnose Staging Report -- 2026-04-28
 
 **Session:** afternoon scheduled diagnose-errors (staging mode)
-**Generated UTC:** 2026-04-27T14:20:31Z
-**Status:** **NO ACTIONABLE ERRORS**
+**Generated UTC:** 2026-04-28T14:17:02Z
+**Status:** **NO FIX SCRIPTS REQUIRED** (3 governance handoffs)
 
 ---
 
 ## Summary
 
-Three unaddressed ERROR entries surfaced by a successor scan of `runner_status.json`. All three are non-actionable:
+| Metric | Value |
+|--------|-------|
+| Total ERRORs in runner_status (monolithic + per-machine) | 83 |
+| ERRORs without a successor ID | 31 |
+| Already in `discussed_experiment_dirs` (governance handled) | 28 |
+| Requiring fresh audit | **3** |
+| Requiring a fix script | **0** |
+| Runner status sync gap | 0 |
 
-| Queue ID | When | Class | Disposition |
-|----------|------|-------|-------------|
-| V3-EXQ-449c | 2026-04-24 | Intentional `NotImplementedError` stub | Gates not met (476/445d FAIL) |
-| V3-EXQ-455a | 2026-04-23 | Intentional `NotImplementedError` stub | Gates not met (476 FAIL) |
-| V3-EXQ-008  | 2026-03-17 | Old, already superseded                | Successors `008r2`/`008r3` exist (legacy r-suffix) |
+All three audited ERRORs are duplicate-machine artifacts on `ree-cloud-1` where the experiment already has authoritative outcomes on at least one other machine (FAIL/FAIL/PASS). None require a fix script. Three governance handoffs requested (add to `review_tracker.discussed_experiment_dirs` on next /governance walk).
 
-The runner_status reconciliation merged 4 IDs from per-machine files (`V3-EXQ-490a`, `V3-EXQ-494`, `V3-EXQ-496`, `V3-EXQ-497`) into the monolithic `runner_status.json` (now 561 completed entries).
-
----
-
-## V3-EXQ-449c (MECH-074b BLA retrieval bias on action selection -- V_s-gated)
-
-**Root cause:** Intentional placeholder. Script raises `NotImplementedError` at line 115 of `experiments/v3_exq_449c_mech074b_bla_retrieval_bias.py` with the message:
-
-> "V3-EXQ-449c full implementation pending: awaiting (a) V3-EXQ-476 PASS, (b) V3-EXQ-445d PASS, and (c) MECH-074b hippocampal consumer wiring landed on SD-035 (retrieval-bias-aware replay path must be added before the bias signal can influence behaviour)."
-
-**Gate status (as of 2026-04-27):**
-- V3-EXQ-476: ERROR. Successors V3-EXQ-476a, V3-EXQ-476b: both FAIL (2026-04-24).
-- V3-EXQ-445d: ERROR. Successor V3-EXQ-445e: FAIL (2026-04-23).
-- MECH-074b consumer wiring on SD-035: not landed.
-
-**Disposition:** Leave in `discussed_experiment_dirs`. Re-queue only after MECH-269 V_s validation passes (currently being explored under MECH-269b in V3-EXQ-490a).
+| Queue ID | When | Failure | Authoritative result(s) | Disposition |
+|----------|------|---------|------------------------|-------------|
+| V3-EXQ-125a | 2026-04-06T15:56Z | exit 1 (1.3s startup) on ree-cloud-1 | FAIL on Daniel-PC + FAIL on EWIN-PC | Mark discussed |
+| V3-EXQ-247  | 2026-04-06T15:56Z | exit 1 (1.4s startup) on ree-cloud-1 | FAIL on DLAPTOP-4.local + FAIL on Daniel-PC | Mark discussed |
+| V3-EXQ-249b | 2026-04-07T14:02Z | SIGTERM (-15) after 78min on ree-cloud-1 | PASS on EWIN-PC | Mark discussed |
 
 ---
 
-## V3-EXQ-455a (SD-032a salience coordinator behavioural -- V_s-enabled re-run)
+## V3-EXQ-125a (ARC-029 committed-mode harm redesign)
 
-**Root cause:** Intentional placeholder. Script raises `NotImplementedError` at line 107 of `experiments/v3_exq_455a_sd032a_salience_with_vs.py` with the message:
+**Root cause:** Duplicate-machine run artifact on `ree-cloud-1`. Exit code 1 within 1.3s of startup -- crashed before the experiment's main loop, almost certainly during environment initialization or pull race during early multi-machine deployment.
 
-> "V3-EXQ-455a full implementation pending: awaiting V3-EXQ-476 cascade gate PASS and MECH-284 Phase 3 consumer landing. Do not run until V_s flags have been confirmed to break the baseline monostrategy lock."
+**Authoritative results already exist:**
+- FAIL on Daniel-PC, 2026-04-05T23:48Z
+- FAIL on EWIN-PC, 2026-04-06T02:28Z
 
-**Gate status:** Same upstream gates as V3-EXQ-449c. Not met.
+**Fix applied:** None. Experiment outcome (FAIL on two machines) is the authoritative scientific result for ARC-029.
 
-**Disposition:** Leave in `discussed_experiment_dirs`. Re-queue only after the V_s cascade gate passes.
+**Disposition:** Governance handoff -- add `V3-EXQ-125a` to `review_tracker.discussed_experiment_dirs` in next /governance walk.
 
 ---
 
-## V3-EXQ-008 (SD-003 Larger World + 3x3 Observation)
+## V3-EXQ-247 (SD-011/SD-012 Full Integration Validation)
 
-**Root cause:** Surfaced as "unaddressed" because the successor scan uses regex `^V3-EXQ-(\d+)([a-z]*)$`, which does not match the legacy `r2`/`r3` suffixes used in March 2026 before the current alphabetic-suffix policy was adopted.
+**Root cause:** Duplicate-machine run artifact on `ree-cloud-1`. Exit code 1 within 1.4s of startup -- same pattern as V3-EXQ-125a.
 
-**Successors that already exist:**
-- V3-EXQ-008r2: FAIL, 2026-03-17T18:37
-- V3-EXQ-008r3: FAIL, 2026-03-17T18:49
+**Authoritative results already exist:**
+- FAIL on DLAPTOP-4.local, 2026-04-06T08:09Z
+- FAIL on Daniel-PC, 2026-04-07T10:50Z
+- Evidence dir: `evidence/experiments/v3_exq_247_sd011_sd012_integration/`
 
-**Disposition:** Already in `discussed_experiment_dirs` per the 2026-04-27T05:20 diagnose-errors session (TASK_CLAIMS.json). No further action. The SD-003 scientific question is otherwise carried forward by current SD-003 work in the V3 substrate.
+**Fix applied:** None. Experiment outcome (FAIL on two machines) is the authoritative scientific result for SD-011/SD-012 integration.
+
+**Disposition:** Governance handoff -- add `V3-EXQ-247` to `review_tracker.discussed_experiment_dirs`.
+
+---
+
+## V3-EXQ-249b (INV-053 Depression Attractor Replication)
+
+**Root cause:** Duplicate-machine run on `ree-cloud-1` killed by SIGTERM (-15) after 4672s (~78min). Same SIGTERM-on-cloud pattern observed in V3-EXQ-490 (handled by 2026-04-27T05:25 diagnose-errors session) -- shared-vCPU OOM neighbour pressure or transient cloud scheduler kill. Not a code crash.
+
+**Authoritative result already exists:**
+- **PASS on EWIN-PC, 2026-04-07T02:29Z** (~10h before the ree-cloud-1 kill)
+- Evidence dir: `evidence/experiments/v3_exq_249_inv053_depression_attractor_replication/`
+
+**Fix applied:** None. Experiment already PASSed on EWIN-PC; the ree-cloud-1 SIGTERM is an infrastructure event on a duplicate machine.
+
+**Disposition:** Governance handoff -- add `V3-EXQ-249b` to `review_tracker.discussed_experiment_dirs`. The PASS evidence is already authoritative.
 
 ---
 
 ## Runner status reconciliation
 
-Merged 4 entries from per-machine files into monolithic `runner_status.json`:
+No sync gap detected between monolithic `runner_status.json` and per-machine files in `runner_status/`. All per-machine `completed` IDs are present in the monolithic list. The runner's auto-merge on startup (added 2026-04-06) appears to be working.
 
-- V3-EXQ-490a (ree-cloud-1)
-- V3-EXQ-494 (Mac)
-- V3-EXQ-496 (Mac)
-- V3-EXQ-497 (Mac)
+---
 
-Monolithic `completed` count after merge: 561. No new ERRORs surfaced by the merge.
+## Optional infrastructure follow-up (informational, not for diagnose-errors)
+
+The recurring `ree-cloud-1` duplicate-claim pattern (V3-EXQ-125a + V3-EXQ-247 + V3-EXQ-249b in this report, plus V3-EXQ-490 in the 2026-04-27 session) suggests the multi-machine git-claim race has a small window where two machines can pull and start work before the first push lands. The first machine's PASS/FAIL is authoritative; the second machine's run becomes a duplicate that either crashes (env race), gets SIGTERM'd (idle / OOM), or completes redundantly. This isn't a code bug -- it's a coordination protocol question -- so it lives outside the diagnose-errors scope.
 
 ---
 
 ## Awaiting human confirmation
 
-**None.** No diagnoses written; no draft scripts written; no queue edits made. This staging report is informational only.
+**None.** No fix experiments proposed; no draft scripts written; no queue edits made. This staging report is informational only.
 
-**Recommended next action:** Continue Step 2 of the scheduled task (queue-experiment skill) to check for substrate-ready proposed experiments.
+**Recommended next action:** Step 2 of the scheduled task (queue-experiment skill) for substrate-ready proposed experiments.

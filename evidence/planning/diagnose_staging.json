@@ -1,42 +1,57 @@
 {
   "schema_version": "diagnose_staging/v1",
-  "session_date": "2026-04-27",
-  "generated_utc": "2026-04-27T14:20:31Z",
-  "session_label": "diagnose-errors: staging (afternoon scheduled)",
-  "summary": "No actionable ERROR entries found. Three unaddressed ERRORs in runner_status.json are non-actionable: V3-EXQ-449c and V3-EXQ-455a are intentional NotImplementedError stubs gated on upstream substrate work whose own gating experiments (V3-EXQ-476 / V3-EXQ-445d) FAILed; V3-EXQ-008 was already addressed by V3-EXQ-008r2/r3 successors using the legacy r-suffix naming convention (predates current alphabetic-suffix policy). All three already in review_tracker.discussed_experiment_dirs per the prior diagnose-errors session at 2026-04-27T05:20.",
+  "session_date": "2026-04-28",
+  "generated_utc": "2026-04-28T14:17:02Z",
+  "session_label": "ree-diagnose-queue (afternoon scheduled, staging mode)",
+  "runner_status_sync_gap": 0,
+  "total_errors_scanned": 83,
+  "errors_unaddressed_no_successor": 31,
+  "errors_already_in_discussed_experiment_dirs": 28,
+  "errors_requiring_diagnosis": 3,
+  "errors_requiring_fix_script": 0,
   "diagnoses": [],
   "non_actionable_errors_audited": [
     {
-      "queue_id": "V3-EXQ-449c",
-      "completed_at": "2026-04-24T02:18:02Z",
-      "title": "MECH-074b BLA retrieval bias on action selection -- V_s-gated",
-      "completed_by": "DLAPTOP-4.local",
-      "result_summary": "Non-zero exit code 1 (intentional NotImplementedError stub)",
-      "non_actionable_reason": "Stub experiment that intentionally raises NotImplementedError until prerequisites land. Per its own error message it awaits (a) V3-EXQ-476 PASS, (b) V3-EXQ-445d PASS, and (c) MECH-074b hippocampal consumer wiring landed on SD-035. Status of gates: V3-EXQ-476 ERRORed and successors V3-EXQ-476a/b both FAILed (2026-04-24); V3-EXQ-445d ERRORed and successor V3-EXQ-445e FAILed (2026-04-23). The script cannot be re-implemented until upstream substrate work (MECH-269 V_s validation, MECH-284 Phase 3 consumer) provides a passing gate.",
-      "recommended_disposition": "Leave in discussed_experiment_dirs. Re-queue only after MECH-269 V_s validation passes (currently being explored via MECH-269b in V3-EXQ-490a)."
+      "queue_id": "V3-EXQ-125a",
+      "completed_at": "2026-04-06T15:56:21Z",
+      "title": "ARC-029 committed-mode harm redesign (8 hazards, 5 seeds, majority rule)",
+      "completed_by": "ree-cloud-1",
+      "result_summary": "Non-zero exit code 1 (1.3s startup crash on ree-cloud-1)",
+      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist on other machines: FAIL on Daniel-PC (2026-04-05T23:48Z) and FAIL on EWIN-PC (2026-04-06T02:28Z). The ree-cloud-1 ERROR is a stale duplicate that crashed at startup before the deduplication mechanism kicked in -- likely environment / pull race during early multi-machine deployment.",
+      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. The FAIL run already feeds the index correctly; the ERROR row is an artifact."
     },
     {
-      "queue_id": "V3-EXQ-455a",
-      "completed_at": "2026-04-23T23:23:46Z",
-      "title": "SD-032a salience coordinator behavioural -- V_s-enabled re-run",
-      "completed_by": "DLAPTOP-4.local",
-      "result_summary": "Non-zero exit code 1 (intentional NotImplementedError stub)",
-      "non_actionable_reason": "Stub experiment that intentionally raises NotImplementedError. Per its own error message it awaits V3-EXQ-476 cascade gate PASS and MECH-284 Phase 3 consumer landing. Same upstream gate as V3-EXQ-449c.",
-      "recommended_disposition": "Leave in discussed_experiment_dirs. Re-queue only after the V_s cascade gate passes."
+      "queue_id": "V3-EXQ-247",
+      "completed_at": "2026-04-06T15:56:23Z",
+      "title": "SD-011/SD-012 Full Integration Validation (urgency gating + affective amplification + drive extraction)",
+      "completed_by": "ree-cloud-1",
+      "result_summary": "Non-zero exit code 1 (1.4s startup crash on ree-cloud-1)",
+      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist: FAIL on DLAPTOP-4.local (2026-04-06T08:09Z) and FAIL on Daniel-PC (2026-04-07T10:50Z). Evidence dir v3_exq_247_sd011_sd012_integration/ exists. The ree-cloud-1 ERROR is a stale duplicate.",
+      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk."
     },
     {
-      "queue_id": "V3-EXQ-008",
-      "completed_at": "2026-03-17T18:09:01Z",
-      "title": "SD-003 Larger World + 3x3 Observation",
-      "result_summary": "Non-zero exit code 1",
-      "non_actionable_reason": "Already addressed by successors V3-EXQ-008r2 (FAIL, 2026-03-17T18:37) and V3-EXQ-008r3 (FAIL, 2026-03-17T18:49). The legacy r-suffix naming convention predates the current alphabetic-suffix policy and is missed by a regex-based successor scan (^V3-EXQ-(\\d+)([a-z]*)$ does not match 'r2'/'r3'). The scientific question (SD-003 self-attribution discriminability) was rolled into the V2 -> V3 transition roadmap and is otherwise carried by current SD-003 work.",
-      "recommended_disposition": "Already in discussed_experiment_dirs (confirmed 2026-04-27T05:20 diagnose-errors session). No further action."
+      "queue_id": "V3-EXQ-249b",
+      "completed_at": "2026-04-07T14:02:33Z",
+      "title": "INV-053: Depression Attractor Replication (SD-018)",
+      "completed_by": "ree-cloud-1",
+      "result_summary": "Non-zero exit code -15 (SIGTERM after 4672s / ~78min)",
+      "non_actionable_reason": "Duplicate-machine run killed by SIGTERM. Authoritative result already exists: PASS on EWIN-PC (2026-04-07T02:29Z, ~10h before the kill). Same SIGTERM-on-cloud pattern observed in V3-EXQ-490 (handled by 2026-04-27T05:25 diagnose-errors session) -- shared-vCPU OOM neighbour pressure or transient cloud scheduler kill. Not a code crash. Evidence dir v3_exq_249_inv053_depression_attractor_replication/ already carries the EWIN-PC PASS.",
+      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. The PASS run is already authoritative."
     }
   ],
-  "runner_status_reconciliation": {
-    "merged_into_monolithic": ["V3-EXQ-490a", "V3-EXQ-494", "V3-EXQ-496", "V3-EXQ-497"],
-    "monolithic_completed_total_after_merge": 561,
-    "per_machine_files_combined": ["DLAPTOP-4.local.json", "Daniel-PC.json", "EWIN-PC.json", "ree-cloud-1.json", "ree-cloud-2.json"]
-  },
-  "status": "no_action_required"
+  "errors_already_discussed_no_action": [
+    "V3-EXQ-449c", "V3-EXQ-455a", "V3-EXQ-432", "V3-EXQ-267",
+    "V3-EXQ-084c", "V3-EXQ-076c", "V3-EXQ-075c", "V3-EXQ-074d",
+    "V3-EXQ-084b", "V3-EXQ-076b", "V3-EXQ-075b", "V3-EXQ-074c",
+    "V3-EXQ-084", "V3-EXQ-076", "V3-EXQ-074b", "V3-EXQ-071b",
+    "V3-EXQ-075", "V3-EXQ-074", "V3-EXQ-073", "V3-EXQ-072",
+    "V3-EXQ-051b", "V3-EXQ-071", "V3-EXQ-046c", "V3-EXQ-046b",
+    "V3-EXQ-057", "V3-EXQ-046", "V3-EXQ-038", "V3-EXQ-008"
+  ],
+  "summary": "0 ERRORs require a fix script. 3 ERRORs flagged for governance: duplicate-machine run artifacts on ree-cloud-1 where the experiment already has authoritative outcomes on other machines (FAIL/FAIL/PASS). 28 other ERRORs already in discussed_experiment_dirs.",
+  "next_actions": [
+    "Governance: add V3-EXQ-125a, V3-EXQ-247, V3-EXQ-249b to review_tracker.discussed_experiment_dirs in next /governance walk.",
+    "Optional infrastructure follow-up: the multi-machine claim race let ree-cloud-1 pick up duplicate work after another machine had completed (same root cause pattern as the V3-EXQ-490 SIGTERM noted on 2026-04-27T05:25Z). The dedup-on-claim path may have a small window where two machines pull work before the first push lands."
+  ],
+  "status": "no_action_required_governance_handoff"
 }
