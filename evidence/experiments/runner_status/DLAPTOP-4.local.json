@@ -1,17 +1,17 @@
 {
   "schema_version": "v1",
-  "runner_pid": 25224,
-  "runner_started_at": "2026-04-27T01:21:38.829643+00:00",
-  "last_updated": "2026-04-27T14:06:46.655454+00:00",
+  "runner_pid": 20293,
+  "runner_started_at": "2026-04-28T20:19:00.788998+00:00",
+  "last_updated": "2026-04-28T20:26:48.848069+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-495",
+    "queue_id": "V3-EXQ-498",
     "backlog_id": "",
-    "claim_id": "MECH-163",
-    "title": "MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm",
+    "claim_id": "SD-034",
+    "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
     "description": "",
-    "script": "experiments/v3_exq_495_mech163_planned_system_gate.py",
-    "started_at": "2026-04-27T09:43:58.344967+00:00",
+    "script": "experiments/v3_exq_498_ocd_layer1_closure_threshold_sweep.py",
+    "started_at": "2026-04-28T20:19:02.907006+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
@@ -20,14 +20,14 @@
       "episodes_total": 130,
       "overall_pct": 0.0
     },
-    "seconds_elapsed": 15768,
+    "seconds_elapsed": 466,
     "seconds_remaining": 1040,
     "recent_lines": [
-      "[v3_exq_495] seed=13 paradigm=B_NOVEL_CONTEXT condition=PLANNED",
-      "[v3_exq_495] seed=13 paradigm=B_NOVEL_CONTEXT condition=ABLATED",
-      "[v3_exq_495] seed=23 paradigm=A_DETOUR condition=HABIT",
-      "[v3_exq_495] seed=23 paradigm=A_DETOUR condition=PLANNED",
-      "[v3_exq_495] seed=23 paradigm=A_DETOUR condition=ABLATED"
+      "Seed 7 Arm LOOSE (threshold=0.005)",
+      "-> entropy=0.0000 closure_fires=0 counts={2: 1200}",
+      "Seed 7 Arm VERY_LOOSE (threshold=0.05)",
+      "-> entropy=0.0000 closure_fires=0 counts={2: 1200}",
+      "Seed 13 Arm TIGHT (threshold=0.0001)"
     ],
     "ree_version": "v3"
   },
@@ -39,7 +39,51 @@
       "title": "MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm",
       "description": "",
       "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-490b",
+      "backlog_id": "",
+      "claim_id": "Q-040",
+      "title": "MECH-269b VsRolloutGate substrate-readiness probe (Q-040a precondition)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-498",
+      "backlog_id": "",
+      "claim_id": "SD-034",
+      "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
+      "description": "",
+      "estimated_minutes": 17.3,
       "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-418f",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 attention-uniformity diagnostic probe (EXQ-418e follow-up)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-418g",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 Path 4 query-selectivity-first 4-arm (learned temperature + attention-entropy loss)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -6423,6 +6467,5 @@
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 8.3
     }
-  ],
-  "draining": true
+  ]
 }
