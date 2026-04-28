@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 17017,
   "runner_started_at": "2026-04-28T17:14:27.023834+00:00",
-  "last_updated": "2026-04-28T21:09:24.847890+00:00",
+  "last_updated": "2026-04-28T21:14:31.181169+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -14,28 +14,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-498",
-      "backlog_id": "",
-      "claim_id": "SD-034",
-      "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418f",
-      "backlog_id": "",
-      "claim_id": "SD-016",
-      "title": "SD-016 attention-uniformity diagnostic probe (EXQ-418e follow-up)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -1865,6 +1843,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_490b_mech269b_vs_rollout_gating/v3_exq_490b_mech269b_vs_rollout_gating_20260428T171429Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 14096.3
+    },
+    {
+      "queue_id": "V3-EXQ-498",
+      "backlog_id": "",
+      "claim_id": "SD-034",
+      "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15",
+      "started_at": "2026-04-28T21:09:31.679337+00:00",
+      "completed_at": "2026-04-28T21:13:59.892586+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 268.2
+    },
+    {
+      "queue_id": "V3-EXQ-418f",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 attention-uniformity diagnostic probe (EXQ-418e follow-up)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[acceptance] D1=True D2=True D3=True D4=True -> outcome=PASS | verdict: PASS | Outcome: PASS",
+      "started_at": "2026-04-28T21:14:00.418241+00:00",
+      "completed_at": "2026-04-28T21:14:31.180296+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 30.8
     }
   ]
 }
