@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_028",
+  "entry_id": "2026-04-28_q_028_ethical_consistency_williams1965",
+  "timestamp_utc": "2026-04-28T08:43:21Z",
+  "claim_ids_tested": ["Q-028"],
+  "source": {
+    "title": "Ethical Consistency",
+    "authors": ["Bernard Williams"],
+    "year": 1965,
+    "venue": "Proceedings of the Aristotelian Society, Supplementary Volume 39, pp. 103-124. Reprinted as Chapter 11 of Problems of the Self: Philosophical Papers 1956-1972 (Cambridge University Press, 1973), pp. 166-186.",
+    "doi": "10.1017/CBO9780511621253.013",
+    "url": "https://www.cambridge.org/core/books/abs/problems-of-the-self/ethical-consistency/1B123FCEB45C2D43EF56EE80B930469B"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.44,
+  "confidence_rationale": "Williams's paper is a foundational and continuously cited primary source on moral conflict and the moral-residue argument; it is the source the McConnell SEP entry (separately filed in this directory) cites as the canonical statement of the moral-residue position. Source quality is high (peer-reviewed proceedings, reprinted by CUP, 60 years of citations). Mapping fidelity is moderate: Williams's argument about the persistence of moral demands after choice maps cleanly onto the question of what REE should do with a defeated INV-026 or INV-028 after axiom-conflict resolution, but Williams writes about emotion and human moral phenomenology, which translates only loosely to a computational agent's residue field.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Williams's argument depends on the phenomenological reality of agent-regret -- a class of negative emotion that the agent has *qua agent* about the unchosen option. REE has no obvious analogue of emotion, so a translation has to be made on functional rather than phenomenological grounds. Any naive port that pretends REE 'feels regret' is overclaiming.",
+    "Williams explicitly attacks the standard moral-philosophy move of resolving conflict by arguing one ought was 'only prima facie' or 'pro tanto' or otherwise eliminable. He treats this as a way of making the conflict disappear that misses what is morally important. A REE answer that resolves axiom conflict by reducing one axiom to merely-defeasible status inherits this objection.",
+    "The argument is phenomenological-philosophical rather than mechanistic. It does not specify what residue-laying mechanism agents in fact have, only what an adequate account of conflict-resolution must preserve. Implementing Williams's lesson in REE requires architectural design Williams does not provide."
+  ],
+  "tags": ["q_028", "axiom_conflict", "moral_residue", "agent_regret", "self_vs_other", "ethics", "five_axioms", "inv_026", "inv_028"],
+  "mapping": {
+    "source_claim_statement": "Moral conflicts are not all eliminable by argument; some are genuine, and the right resolution leaves a moral remainder. The agent who chose well in a genuine conflict still has appropriate negative emotions (agent-regret) about the unchosen option. This phenomenological fact is itself evidence: a moral psychology that cannot accommodate it is missing something. Conflicts are more like conflicts of desire than conflicts of belief: one ought does not 'cancel' the other when defeated.",
+    "ree_translation": "Q-028 asks how REE should behave when its axioms conflict. Williams's argument adds a constraint to the McConnell SEP entry's analysis: whatever resolution rule REE adopts, the defeated axiom must leave a residue rather than disappearing from the agent's downstream representation. A REE architecture that simply picks the winning axiom and discards the loser is one Williams would reject as missing the structure of moral conflict. The residue need not be emotional in a phenomenological sense; it can be functional -- a downstream salience boost on actions that would later restore the defeated axiom's content (e.g. after preserving-other-over-self, REE should weight subsequent actions that restore self-preservation; after preserving-self-over-other, subsequent actions that repair the cost to the other). REE's existing residue-field representation in z_world is structurally suited to this.",
+    "mapping_caveat": "Williams writes about human moral psychology and uses agent-regret as the central evidential exhibit. REE has no phenomenological emotion. The translation must be functional: residue is a downstream signal that biases later action toward repair, not an inner felt state. Williams himself does not specify a mechanism for the residue and would likely resist a fully functional reduction. The transfer from Williams's argument to a REE architecture is therefore interpretive and depends on how seriously REE wants to honour the phenomenological commitment.",
+    "source_context": "Foundational primary-source paper in 20th-century anglophone moral philosophy. First read at the 1965 Joint Session of the Aristotelian Society and Mind Association; reprinted in Problems of the Self (1973). Cited continuously in the moral-residue and moral-dilemma literatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.40,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (foundational paper, peer-reviewed venue, CUP reprint, 60 years of citation). Mapping fidelity moderate -- the structural lesson (defeated obligation leaves a residue) maps cleanly onto REE's residue-field representation but Williams himself is committed to a phenomenological reading that does not transfer. Transfer risk moderate-high because the agent-regret framework depends on emotion and REE has none."
+  }
+}

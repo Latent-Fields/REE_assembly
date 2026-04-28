@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_027",
+  "entry_id": "2026-04-28_q_027_precautionary_principle_iep",
+  "timestamp_utc": "2026-04-28T08:43:21Z",
+  "claim_ids_tested": ["Q-027"],
+  "source": {
+    "title": "Precautionary Principles",
+    "authors": ["Internet Encyclopedia of Philosophy (no author byline shown)"],
+    "year": null,
+    "venue": "Internet Encyclopedia of Philosophy",
+    "doi": null,
+    "url": "https://iep.utm.edu/pre-caut/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.38,
+  "confidence_rationale": "IEP is a peer-reviewed reference work but lower-tier than SEP; this particular entry is unsigned in the visible metadata, which lowers source quality. The article is directly relevant to Q-027 because it explicitly addresses the question of whether the precautionary principle requires certainty about irreversibility (it does not -- it requires only a plausible threat) and surveys decision-theoretic operationalisations (maximin, minimax regret) that REE could in principle adopt. Mapping fidelity to REE's architectural primitives is low because the entry stays at the policy level. The entry's most useful contribution is the explicit framing of the under-precaution / over-precaution trade-off, which is the same trade-off Q-027 must navigate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The entry warns that strong formulations of the precautionary principle can produce 'paralysis' -- prohibiting both action and inaction when irreversible harms are on every side. A REE rule that always escalates harm tagged 'possibly irreversible' would inherit this paralysis failure mode.",
+    "The entry notes that weak formulations of the precautionary principle become trivial -- they reduce to advice the agent already has from any consequence-sensitive ethics. So if REE's Q-027 answer is too weak, it adds no protective structure beyond what the existing harm signal provides.",
+    "The IEP entry is not signed and not dated in the visible metadata, which limits how strongly any specific claim from it should be cited. Treat it as scaffolding, not as authoritative."
+  ],
+  "tags": ["q_027", "irreversible_harm", "precautionary_principle", "decision_under_uncertainty", "ethics", "five_axioms", "inv_025"],
+  "mapping": {
+    "source_claim_statement": "The precautionary principle is triggered by two conditions jointly: a threat of serious or irreversible damage, and scientific uncertainty about the extent of that damage. Crucially, it does not require certainty about irreversibility -- only a plausible threat. Decision-theoretic operationalisations include maximin (act as if the worst case is true) and minimax regret (minimise the maximum regret across possible worlds). Strong formulations risk paralysis; weak formulations risk triviality.",
+    "ree_translation": "Q-027 asks for a definition of irreversible harm that does not require certainty. The IEP entry confirms that the philosophy literature has converged on this answer at the conceptual level: the trigger is a *plausible threat* of irreversibility, not certainty. The entry also surfaces decision-theoretic operationalisations REE could draw on -- maximin and minimax regret are recipes the agent can run with imprecise probabilities. The entry's main warning is the under/over-precaution trade-off, which suggests that REE's Q-027 answer should sit between bare maximin and bare expected-value: probably a regret-minimising treatment with a bounded categorical-protection floor for INV-026/INV-029-touching harms.",
+    "mapping_caveat": "The IEP entry stays at the level of regulatory policy and environmental ethics. It does not address how a single agent's harm signal should be computed. The decision-theoretic operationalisations (maximin, minimax regret) require REE to have something like a possible-worlds distribution to compute over, which it does have in its forward models but not in a directly comparable form. The entry is also unsigned, so specific phrasings should not be over-cited.",
+    "source_context": "Reference encyclopedia entry on the precautionary principle, oriented to philosophy students and policy readers. Not empirical. References include Resnik, Hansson, Sunstein, the Rio Declaration, and the Wingspread Statement."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.40,
+    "transfer_risk": 0.55,
+    "notes": "IEP is peer-reviewed but lower-tier than SEP; entry is unsigned. Source quality moderate. Mapping fidelity moderate -- the conceptual answer (threat, not certainty) maps cleanly but the decision-theoretic apparatus does not transfer without architectural work. Transfer risk moderate because policy framing does not transfer to single-agent harm computation."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_028",
+  "entry_id": "2026-04-28_q_028_moral_dilemmas_mcconnell2022",
+  "timestamp_utc": "2026-04-28T08:43:21Z",
+  "claim_ids_tested": ["Q-028"],
+  "source": {
+    "title": "Moral Dilemmas",
+    "authors": ["Terrance McConnell"],
+    "year": 2022,
+    "venue": "Stanford Encyclopedia of Philosophy (first published 15 April 2002; substantively revised 25 July 2022)",
+    "doi": null,
+    "url": "https://plato.stanford.edu/entries/moral-dilemmas/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.46,
+  "confidence_rationale": "SEP is the canonical reference work and McConnell is the long-standing author of this entry. The entry directly surveys the philosophical question Q-028 is asking: when an agent faces conflicting obligations, what should it do? It distinguishes obligation-dilemmas from prohibition-dilemmas, surveys hierarchical-ordering solutions and the Williams/Marcus moral-residue argument, and explains why standard deontic logic struggles to allow real dilemmas. Mixed direction: the entry both supports the position that REE may need a hierarchical or disjunctive resolution rule (constructive) and constrains that position by surveying long-standing objections to every proposed resolution. Mapping fidelity is moderate -- the entry is about human moral conflict, REE's axioms are not classical deontic constraints, and Q-028's specific self-vs-other case is only one of many the entry treats.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The entry argues that standard deontic logic principles (Principle of Deontic Consistency: 'an action cannot be both obligatory and forbidden'; Principle of Deontic Logic) generate logical contradictions when combined with genuine moral dilemmas. Any REE answer that treats the axioms as classical deontic constraints inherits this contradiction-generation problem.",
+    "W. D. Ross's argument against strict hierarchical ordering (cited approvingly in the entry) directly challenges any REE answer that hard-codes one axiom as lexically prior to another -- promise-keeping does not always outweigh harm-prevention, and analogously INV-026 self-preservation does not always outweigh INV-028 shared-world ethics.",
+    "The Williams/Marcus moral-residue position (also surveyed) implies that even when REE makes the right choice between self and other, the unchosen obligation leaves a residue that the agent should track. A naive REE resolution rule that simply picks one axiom and discards the other loses this residue and so loses something philosophically important."
+  ],
+  "tags": ["q_028", "axiom_conflict", "moral_dilemma", "self_vs_other", "ethics", "five_axioms", "inv_026", "inv_028"],
+  "mapping": {
+    "source_claim_statement": "Moral dilemmas come in two structurally distinct shapes: obligation dilemmas (more than one feasible action is obligatory) and prohibition dilemmas (every feasible action is forbidden). The philosophical question is whether genuine dilemmas exist (some deontic-logic principles imply they cannot) and, if they do, how to resolve them. Hierarchical ordering of moral rules is one proposal but is challenged by Ross's pluralism. Disjunctive requirements (perform any of the conflicting obligations) are an alternative. Williams and Marcus argue that conflict resolution leaves a moral residue: agents have appropriate negative emotions about the unchosen option even when they chose well.",
+    "ree_translation": "Q-028 asks how REE should behave when its axioms conflict, paradigmatically when INV-026 (preserve self) and INV-028 (preserve others as co-inhabitants of shared consequence space) cannot be jointly satisfied. The McConnell entry tells REE that this is a structurally familiar problem (a near-prohibition dilemma in McConnell's typology), that strict hierarchical ordering of axioms is the simplest answer but is not philosophically defensible (Ross objection), and that even a defensible resolution should leave a moral residue. For REE this argues for an architecture in which axiom-conflict triggers a context-sensitive comparator (not a fixed priority order) AND a residue mechanism that preserves the unchosen-but-defeated obligation in some downstream signal. The latter is structurally like the residue/regret machinery REE already has in its trajectory representation.",
+    "mapping_caveat": "The SEP entry treats human moral agents responding to deontic obligations stated in classical logic. REE's axioms (INV-025..029) are not framed as deontic obligations -- they are existence-claims and structural commitments that ground a harm signal. The translation from 'obligation' to 'axiom-derived constraint' is interpretive, and McConnell does not address how to handle conflicts between meta-level commitments of the kind REE makes. The self-vs-other case Q-028 highlights is one specific shape of conflict among many the entry treats; the entry is not specifically about that case.",
+    "source_context": "Synoptic philosophical review entry; not empirical. References Lemmon, Williams, Marcus, Foot, Ross, van Fraassen on inconsistency, and the deontic-logic tradition."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.40,
+    "transfer_risk": 0.50,
+    "notes": "High source quality (SEP, well-established author, two decades of revision). Mapping fidelity moderate -- the structural shape of the problem maps cleanly, but REE's axioms are not classical deontic constraints and the entry does not treat self-vs-other as a special case. Transfer risk moderate because the entry assumes a human moral agent and applying its conclusions to a computational agent requires interpretive work."
+  }
+}

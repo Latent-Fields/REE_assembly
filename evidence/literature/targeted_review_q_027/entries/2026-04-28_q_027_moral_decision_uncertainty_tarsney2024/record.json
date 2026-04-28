@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_027",
+  "entry_id": "2026-04-28_q_027_moral_decision_uncertainty_tarsney2024",
+  "timestamp_utc": "2026-04-28T08:43:21Z",
+  "claim_ids_tested": ["Q-027"],
+  "source": {
+    "title": "Moral Decision-Making Under Uncertainty",
+    "authors": ["Christian Tarsney", "Teruji Thomas", "William MacAskill"],
+    "year": 2024,
+    "venue": "Stanford Encyclopedia of Philosophy (Spring 2024 Edition; first published 13 March 2024)",
+    "doi": null,
+    "url": "https://plato.stanford.edu/entries/moral-decision-uncertainty/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.42,
+  "confidence_rationale": "SEP entry is canonical, peer-edited, and synoptic over the contemporary literature. It maps cleanly onto the meta-level of Q-027: Q-027 is partly an empirical-uncertainty problem (will this harm in fact be irreversible?) and partly a normative-uncertainty problem (is this category of harm in fact ethically distinctive?). The entry's main approaches -- My Favorite Theory, expected moral value, lexical priority -- give REE a menu of formal options for how to act when it is not sure whether a harm is irreversible. Mixed direction because the entry is also the source of the strongest objections to each option (intertheoretic comparisons, fanaticism, near-bound risk-seeking), so it both supports and constrains an answer to Q-027. Mapping fidelity is low-moderate because the entry is about choosing among full moral theories rather than about classifying harm severity inside a single theory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The entry argues that lexical-priority approaches (which would give irreversible harms absolute precedence over reversible ones) are 'implausibly fanatical' because they let arbitrarily small probabilities of irreversible harm dominate every decision. A naive REE rule that hard-prioritises any harm tagged irreversible inherits this objection.",
+    "Expected-moral-value approaches require intertheoretic comparisons of choiceworthiness across moral theories, which the entry treats as an unsolved foundational problem. Q-027 cannot just defer to expected-moral-value to handle irreversibility uncertainty without inheriting that unsolved comparison problem.",
+    "The entry identifies cluelessness about long-term consequences as a structural source of deep uncertainty -- meaning REE may be unable to estimate, even probabilistically, whether a given action's consequences are irreversible at long horizons. Any definition of irreversibility that depends on long-horizon forecasts is exposed to this failure mode."
+  ],
+  "tags": ["q_027", "irreversible_harm", "decision_under_uncertainty", "moral_uncertainty", "lexical_priority", "ethics", "five_axioms", "inv_025"],
+  "mapping": {
+    "source_claim_statement": "Acting under moral uncertainty is itself a substantive ethical question: should the agent (a) follow whichever theory it has greatest credence in (My Favorite Theory), (b) maximise expected moral value across rival theories using some intertheoretic comparison (MEC), or (c) treat constraint-violations lexicographically as absolutely prior (lexical priority)? Each option has well-known objections: MFT ignores substantial moral possibilities, MEC depends on solved intertheoretic comparisons, lexical priority is fanatical. Imprecise probabilities, unawareness, and cluelessness make the problem strictly harder than ordinary decision under risk.",
+    "ree_translation": "Q-027 is partially a special case of the SEP entry's framework. Whether a candidate harm is *in fact* irreversible is empirical uncertainty; whether a candidate harm is *in fact* ethically distinctive enough to warrant categorical treatment is normative uncertainty. The SEP entry tells REE that any answer to Q-027 must position itself relative to MFT/MEC/lexical-priority. REE cannot adopt strict lexical priority for irreversible harms (fanaticism objection); it cannot adopt MEC without solving intertheoretic comparison; it cannot adopt MFT without losing the protective structure Q-027 was reaching for. The entry pushes REE toward a graded, probability-weighted treatment of irreversibility that nonetheless gives extra weight (not absolute priority) to harm-classes that bear on INV-026/INV-029 -- a hybrid that the entry surveys but does not endorse as solved.",
+    "mapping_caveat": "The SEP entry is about uncertainty across moral *theories*. Q-027 is about uncertainty about a *property* (irreversibility) of a single harm. The two problems have a similar formal structure but different content. Translating between them is interpretive work that the entry does not do.",
+    "source_context": "Synoptic philosophical review entry; not empirical. Surveys decision-theoretic literature including Bostrom on existential risk, MacAskill on moral uncertainty, Sepielli on rationality, Lockhart on subjective expected utility under moral uncertainty."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (SEP, leading authors). Mapping fidelity is low-to-moderate -- the formal apparatus is reusable but the entry treats moral-theory uncertainty rather than harm-property uncertainty. Transfer risk moderate because operationalising any of MFT/MEC/lexical inside a learning agent is non-trivial and the entry does not address that step."
+  }
+}

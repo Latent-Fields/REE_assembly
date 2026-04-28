@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_027",
+  "entry_id": "2026-04-28_q_027_irreversible_catastrophic_sunstein2006",
+  "timestamp_utc": "2026-04-28T08:43:21Z",
+  "claim_ids_tested": ["Q-027"],
+  "source": {
+    "title": "Irreversible and Catastrophic",
+    "authors": ["Cass R. Sunstein"],
+    "year": 2006,
+    "venue": "Cornell Law Review, vol. 91, no. 4, pp. 841-897",
+    "doi": null,
+    "url": "https://scholarship.law.cornell.edu/clr/vol91/iss4/2/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.48,
+  "confidence_rationale": "Sunstein's article is the canonical legal-philosophy treatment of how to define and act under 'irreversibility' when the agent does not have certainty about whether harm is irreversible. He distinguishes two operational conceptions (option-value and qualitative-distinctiveness) and proposes the Irreversible Harm Precautionary Principle, which is exactly the kind of principled-without-certainty answer Q-027 is asking for. Source quality is high (peer-reviewed flagship law review by a leading regulatory theorist). Mapping fidelity is moderate -- the framework is built for environmental and public-health regulation, not for a computational agent's harm signal -- and transfer risk is real because REE has no equivalent of the regulatory option-purchasing market. The paper supports the existence of such a definition without giving REE one it can directly adopt.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sunstein argues that 'irreversibility' has no single coherent definition and offers two distinct operational conceptions (option-value vs. qualitative-distinctive loss), so any REE definition that picks one will inherit specific weaknesses of that conception.",
+    "Sunstein explicitly notes that 'irreversible harms are sometimes on all sides of social problems', meaning a precautionary rule that always favours preserving optionality can itself foreclose options. A naive translation to REE would risk freezing the agent on both sides of any uncertainty-laden harm choice.",
+    "The Irreversible Harm Precautionary Principle works by 'purchasing an option to prevent the harm at a later date'. REE has no obvious analogue for purchasing options against future foreclosure -- the architectural translation is non-trivial and the paper does not provide it."
+  ],
+  "tags": ["q_027", "irreversible_harm", "precautionary_principle", "decision_under_uncertainty", "ethics", "five_axioms", "inv_025"],
+  "mapping": {
+    "source_claim_statement": "When a harm is potentially irreversible and regulators lack information about its magnitude and likelihood, the right principle is to 'purchase an option' to prevent the harm at a later date (the Irreversible Harm Precautionary Principle). 'Irreversibility' itself can be understood either as the loss of option-value (the future flexibility foreclosed by an action) or as a qualitatively distinctive class of loss that cannot be repaired by later compensation.",
+    "ree_translation": "Q-027 asks whether REE can define irreversible harm without requiring certainty that a harm is irreversible. Sunstein's option-value conception suggests one principled answer: REE could treat a harm as irreversible-enough-for-precaution when it would foreclose future trajectories that the agent currently cannot reproduce -- i.e., when the resulting state has measurably reduced reachability across the agent's plausible future state-space. This makes irreversibility a property of foreclosed reachability rather than a property of physical processes. Sunstein's qualitatively-distinctive conception suggests a complementary answer: certain harm classes (those affecting INV-026 self-existence, INV-029 love-bearing capacities) carry a categorical weight that should not be traded against routine harms. Together these provide a structural template: REE's harm signal could carry a separable irreversibility component computed from foreclosed-reachability + categorical-class membership, neither of which requires certainty.",
+    "mapping_caveat": "Sunstein writes for human regulators choosing among policies in an institutional context. REE is a single computational agent. The option-value framing translates only if REE has a meaningful sense of 'future trajectories foreclosed', which is non-trivial in a partially-observable environment. The qualitatively-distinctive framing risks importing human moral category-distinctions that REE has no axiomatic basis to draw. The paper supports the form of an answer to Q-027 but does not give REE a directly implementable definition.",
+    "source_context": "Legal-philosophy review article in a major US law journal. Empirical examples drawn from environmental policy (climate change, endangered species), public health (mad cow), and national security (terrorism)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.40,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (Cornell Law Review, leading author). Mapping fidelity moderate -- the option-value framing has a real structural analogue in REE (foreclosed reachability) but needs work to instantiate; qualitative-distinctiveness is more interpretive. Transfer risk moderate because the institutional regulatory context does not transfer to a single agent's internal valuation."
+  }
+}
