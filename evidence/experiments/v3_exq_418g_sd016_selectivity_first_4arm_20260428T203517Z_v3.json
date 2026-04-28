@@ -1,0 +1,334 @@
+{
+  "experiment_type": "v3_exq_418g_sd016_selectivity_first_4arm",
+  "run_id": "v3_exq_418g_sd016_selectivity_first_4arm_20260428T203517Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-016"
+  ],
+  "claim_ids_tested": [
+    "SD-016"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260428T203517Z",
+  "supersedes": "V3-EXQ-418e",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_note": "SD-016 Path 4 query-selectivity-first 4-arm. PASS = learnable attention temperature + entropy-minimisation loss (B1, B3) clears the uniform attention rail AND produces behavioural delta vs no-selectivity controls (B0, B2). The strong test: selectivity alone produces a behavioural delta (C4) AND adds on top of diversification (C5). FAIL on C1 invalidates Path 4 as wired (raise lambda_attn_ent or rescale init log_tau before re-running). FAIL on C2 invalidates the ablation -- something other than selectivity moved attention. FAIL on C4 with C1 PASS would mean attention sharpened but cue_context still does not propagate behaviourally; bottleneck is downstream of ContextMemory and Path 4 alone is insufficient. FAIL on C5 with C4 PASS = selectivity alone suffices, diversification adds nothing -- still informative but the experiment-level PASS bar is C1+C2+C3+C4+C5.",
+  "acceptance_checks": {
+    "C1_selectivity_arms_clear_uniform_rail": {
+      "pass": true,
+      "per_arm": {
+        "B1_sel_only": true,
+        "B3_sel_plus_div": true
+      },
+      "threshold": 2.65,
+      "applies_to": [
+        "B1_sel_only",
+        "B3_sel_plus_div"
+      ]
+    },
+    "C2_no_selectivity_arms_stay_at_uniform_rail": {
+      "pass": true,
+      "per_arm": {
+        "B0_off": true,
+        "B2_div_only": true
+      },
+      "floor": 2.65,
+      "applies_to": [
+        "B0_off",
+        "B2_div_only"
+      ]
+    },
+    "C3_diversification_arms_break_symmetry": {
+      "pass": true,
+      "per_arm": {
+        "B2_div_only": true,
+        "B3_sel_plus_div": true
+      },
+      "threshold": 0.1,
+      "applies_to": [
+        "B2_div_only",
+        "B3_sel_plus_div"
+      ]
+    },
+    "C4_selectivity_alone_produces_behavioural_delta": {
+      "pass": false,
+      "delta_b1_minus_b0": 0.0,
+      "threshold": 0.1,
+      "b0_action_class_entropy_mean": 1.1052408294132121e-10,
+      "b1_action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "C5_selectivity_adds_to_diversification": {
+      "pass": false,
+      "delta_b3_minus_b2": 0.0,
+      "threshold": 0.1,
+      "b2_action_class_entropy_mean": 1.1052408294132121e-10,
+      "b3_action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "overall_pass": false
+  },
+  "per_arm_summaries": {
+    "B0_off": {
+      "n_seeds": 3,
+      "n_writes_min": 0,
+      "n_writes_max": 0,
+      "slot_diversity_mean": 0.19930193159315324,
+      "slot_diversity_min": 0.19149818420410158,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 2.7725881735483804,
+      "attn_entropy_mean_max": 2.7725882530212402,
+      "attn_entropy_seeds_below_c1": 0,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "B1_sel_only": {
+      "n_seeds": 3,
+      "n_writes_min": 0,
+      "n_writes_max": 0,
+      "slot_diversity_mean": 0.37558148701985683,
+      "slot_diversity_min": 0.3442755381266276,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 0.00046067988538804155,
+      "attn_entropy_mean_max": 0.0005882965051569045,
+      "attn_entropy_seeds_below_c1": 3,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "B2_div_only": {
+      "n_seeds": 3,
+      "n_writes_min": 0,
+      "n_writes_max": 0,
+      "slot_diversity_mean": 0.9999980413406674,
+      "slot_diversity_min": 0.9996829747532805,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 2.772587617238363,
+      "attn_entropy_mean_max": 2.772587776184082,
+      "attn_entropy_seeds_below_c1": 0,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "B3_sel_plus_div": {
+      "n_seeds": 3,
+      "n_writes_min": 0,
+      "n_writes_max": 0,
+      "slot_diversity_mean": 0.9997803690222403,
+      "slot_diversity_min": 0.9974481612443924,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 0.0005807499401271343,
+      "attn_entropy_mean_max": 0.0007255272939801216,
+      "attn_entropy_seeds_below_c1": 3,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    }
+  },
+  "per_seed_results": [
+    {
+      "arm": "B0_off",
+      "temperature_learnable": false,
+      "attn_entropy_weight": 0.0,
+      "diversification_weight": 0.0,
+      "seed": 42,
+      "n_writes": 0,
+      "slot_diversity": 0.19149818420410158,
+      "attn_entropy_mean": 2.7725882530212402,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": null,
+      "log_tau_final": null
+    },
+    {
+      "arm": "B0_off",
+      "temperature_learnable": false,
+      "attn_entropy_weight": 0.0,
+      "diversification_weight": 0.0,
+      "seed": 43,
+      "n_writes": 0,
+      "slot_diversity": 0.19831975301106775,
+      "attn_entropy_mean": 2.772588014602661,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": null,
+      "log_tau_final": null
+    },
+    {
+      "arm": "B0_off",
+      "temperature_learnable": false,
+      "attn_entropy_weight": 0.0,
+      "diversification_weight": 0.0,
+      "seed": 44,
+      "n_writes": 0,
+      "slot_diversity": 0.20808785756429038,
+      "attn_entropy_mean": 2.7725882530212402,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": null,
+      "log_tau_final": null
+    },
+    {
+      "arm": "B1_sel_only",
+      "temperature_learnable": true,
+      "attn_entropy_weight": 0.05,
+      "diversification_weight": 0.0,
+      "seed": 42,
+      "n_writes": 0,
+      "slot_diversity": 0.39456590016682946,
+      "attn_entropy_mean": 0.00045460855471901596,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": 2.4260151386260986,
+      "log_tau_final": 2.314969301223755
+    },
+    {
+      "arm": "B1_sel_only",
+      "temperature_learnable": true,
+      "attn_entropy_weight": 0.05,
+      "diversification_weight": 0.0,
+      "seed": 43,
+      "n_writes": 0,
+      "slot_diversity": 0.3442755381266276,
+      "attn_entropy_mean": 0.0005882965051569045,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": 2.4260151386260986,
+      "log_tau_final": 2.3029162883758545
+    },
+    {
+      "arm": "B1_sel_only",
+      "temperature_learnable": true,
+      "attn_entropy_weight": 0.05,
+      "diversification_weight": 0.0,
+      "seed": 44,
+      "n_writes": 0,
+      "slot_diversity": 0.3879030227661133,
+      "attn_entropy_mean": 0.0003391345962882042,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": 2.4260151386260986,
+      "log_tau_final": 2.2894797325134277
+    },
+    {
+      "arm": "B2_div_only",
+      "temperature_learnable": false,
+      "attn_entropy_weight": 0.0,
+      "diversification_weight": 0.5,
+      "seed": 42,
+      "n_writes": 0,
+      "slot_diversity": 1.0004643557593227,
+      "attn_entropy_mean": 2.772587299346924,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": null,
+      "log_tau_final": null
+    },
+    {
+      "arm": "B2_div_only",
+      "temperature_learnable": false,
+      "attn_entropy_weight": 0.0,
+      "diversification_weight": 0.5,
+      "seed": 43,
+      "n_writes": 0,
+      "slot_diversity": 0.9998467935093989,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": null,
+      "log_tau_final": null
+    },
+    {
+      "arm": "B2_div_only",
+      "temperature_learnable": false,
+      "attn_entropy_weight": 0.0,
+      "diversification_weight": 0.5,
+      "seed": 44,
+      "n_writes": 0,
+      "slot_diversity": 0.9996829747532805,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": null,
+      "log_tau_final": null
+    },
+    {
+      "arm": "B3_sel_plus_div",
+      "temperature_learnable": true,
+      "attn_entropy_weight": 0.05,
+      "diversification_weight": 0.5,
+      "seed": 42,
+      "n_writes": 0,
+      "slot_diversity": 1.0002796795529625,
+      "attn_entropy_mean": 0.0005883986596018076,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": 2.4260151386260986,
+      "log_tau_final": 2.3060712814331055
+    },
+    {
+      "arm": "B3_sel_plus_div",
+      "temperature_learnable": true,
+      "attn_entropy_weight": 0.05,
+      "diversification_weight": 0.5,
+      "seed": 43,
+      "n_writes": 0,
+      "slot_diversity": 1.001613266269366,
+      "attn_entropy_mean": 0.0007255272939801216,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": 2.4260151386260986,
+      "log_tau_final": 2.2989144325256348
+    },
+    {
+      "arm": "B3_sel_plus_div",
+      "temperature_learnable": true,
+      "attn_entropy_weight": 0.05,
+      "diversification_weight": 0.5,
+      "seed": 44,
+      "n_writes": 0,
+      "slot_diversity": 0.9974481612443924,
+      "attn_entropy_mean": 0.00042832386679947376,
+      "action_class_entropy": 1.1052408294132121e-10,
+      "log_tau_init": 2.4260151386260986,
+      "log_tau_final": 2.2982192039489746
+    }
+  ],
+  "thresholds": {
+    "attn_entropy_c1_threshold": 2.65,
+    "attn_entropy_c2_floor": 2.65,
+    "slot_diversity_c3_threshold": 0.1,
+    "action_entropy_c4_delta": 0.1,
+    "action_entropy_c5_delta": 0.1
+  },
+  "params": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_episodes": 20,
+    "p1_episodes": 40,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "lambda_diversify": 0.5,
+    "lambda_attn_entropy": 0.05,
+    "eval_batch_size": 32,
+    "lr": 0.0001,
+    "arms": [
+      {
+        "label": "B0_off",
+        "temperature_learnable": false,
+        "attn_entropy_weight": 0.0,
+        "diversification_weight": 0.0
+      },
+      {
+        "label": "B1_sel_only",
+        "temperature_learnable": true,
+        "attn_entropy_weight": 0.05,
+        "diversification_weight": 0.0
+      },
+      {
+        "label": "B2_div_only",
+        "temperature_learnable": false,
+        "attn_entropy_weight": 0.0,
+        "diversification_weight": 0.5
+      },
+      {
+        "label": "B3_sel_plus_div",
+        "temperature_learnable": true,
+        "attn_entropy_weight": 0.05,
+        "diversification_weight": 0.5
+      }
+    ],
+    "sd016_enabled": true,
+    "sd016_writepath_mode": "off",
+    "sws_enabled": false,
+    "rem_enabled": false,
+    "shy_enabled": false,
+    "dry_run": false
+  }
+}

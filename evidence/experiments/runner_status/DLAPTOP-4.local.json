@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 20293,
   "runner_started_at": "2026-04-28T20:19:00.788998+00:00",
-  "last_updated": "2026-04-28T20:30:14.907407+00:00",
+  "last_updated": "2026-04-28T20:58:50.942339+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -25,17 +25,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418g",
-      "backlog_id": "",
-      "claim_id": "SD-016",
-      "title": "SD-016 Path 4 query-selectivity-first 4-arm (learned temperature + attention-entropy loss)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -6446,6 +6435,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 15.1
+    },
+    {
+      "queue_id": "V3-EXQ-418g",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 Path 4 query-selectivity-first 4-arm (learned temperature + attention-entropy loss)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[summary] C1=True C2=True C3=True C4=False C5=False -> outcome=FAIL | verdict: FAIL | Outcome: FAIL",
+      "started_at": "2026-04-28T20:30:20.418273+00:00",
+      "completed_at": "2026-04-28T20:35:18.340170+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 297.9
+    },
+    {
+      "queue_id": "V3-EXQ-418h",
+      "backlog_id": "",
+      "claim_id": "SD-016",
+      "title": "SD-016 env-entropy precondition probe (SD-023 landmarks ON vs OFF)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[summary] E1=False E2=False E3=True -> outcome=FAIL | verdict: FAIL | Outcome: FAIL",
+      "started_at": "2026-04-28T20:57:38.681495+00:00",
+      "completed_at": "2026-04-28T20:58:50.937721+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 72.3
     }
   ]
 }

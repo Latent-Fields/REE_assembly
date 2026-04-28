@@ -1,0 +1,171 @@
+{
+  "experiment_type": "v3_exq_418h_sd016_env_entropy_precondition",
+  "run_id": "v3_exq_418h_sd016_env_entropy_precondition_20260428T205850Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-016"
+  ],
+  "claim_ids_tested": [
+    "SD-016"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_class": "diagnostic_probe",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260428T205850Z",
+  "supersedes": "V3-EXQ-418g",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_note": "SD-016 env-entropy precondition probe. PURPOSE: test whether SD-023 landmarks (n_landmarks_a, n_landmarks_b in CausalGridWorldV2) supply enough cross-context z_world variation to satisfy the substrate-readiness gate that EXQ-418f/g established was missing. PASS = SD-023 landmarks ON produce cross-context cos_cross < 0.95 with separation_gap > H0+0.02 AND H0 (landmarks OFF) reproduces the EXQ-418f/g failure regime (cos_cross >= 0.95). PASS unblocks SD-016 retest in the H1 env config (queue EXQ-418i 4-arm reusing 418g substrate matrix). FAIL routes to broader env enrichment scoping. MUST NOT update SD-016 claim confidence directly -- this is an env-readiness gate probe, not a substrate retest.",
+  "acceptance_checks": {
+    "E1_h1_cross_cosine_below_ceiling_all_seeds": {
+      "pass": false,
+      "per_seed": [
+        false,
+        false
+      ],
+      "ceiling": 0.95,
+      "h1_cos_cross_per_seed": [
+        0.9961938261985779,
+        0.9896815419197083
+      ]
+    },
+    "E2_landmarks_increase_separation_gap": {
+      "pass": false,
+      "delta_h1_minus_h0": -0.0007889926433562455,
+      "threshold": 0.02,
+      "h0_separation_gap_mean": 0.003024142980575517,
+      "h1_separation_gap_mean": 0.0022351503372192716
+    },
+    "E3_h0_reproduces_failure_regime": {
+      "pass": true,
+      "floor": 0.95,
+      "h0_cos_cross_mean": 0.9934083521366119
+    },
+    "overall_pass": false
+  },
+  "per_arm_summaries": {
+    "H0_landmarks_off": {
+      "n_seeds": 2,
+      "cos_within_safe_mean": 0.9961793263753256,
+      "cos_within_danger_mean": 0.9966856638590496,
+      "cos_cross_mean": 0.9934083521366119,
+      "separation_gap_mean": 0.003024142980575517,
+      "cos_cross_max": 0.9935956597328186,
+      "cos_cross_min": 0.9932210445404053,
+      "z_world_norm_mean_mean": 0.6795780062675476
+    },
+    "H1_landmarks_on": {
+      "n_seeds": 2,
+      "cos_within_safe_mean": 0.9952702204386393,
+      "cos_within_danger_mean": 0.9950754483540853,
+      "cos_cross_mean": 0.9929376840591431,
+      "separation_gap_mean": 0.0022351503372192716,
+      "cos_cross_max": 0.9961938261985779,
+      "cos_cross_min": 0.9896815419197083,
+      "z_world_norm_mean_mean": 0.641253799200058
+    }
+  },
+  "per_seed_results": [
+    {
+      "arm": "H0_landmarks_off",
+      "n_landmarks_a": 0,
+      "n_landmarks_b": 0,
+      "world_obs_dim": 250,
+      "seed": 42,
+      "cos_within_safe": 0.995208740234375,
+      "cos_within_danger": 0.9981332143147786,
+      "cos_cross": 0.9935956597328186,
+      "separation_gap": 0.00307531754175816,
+      "z_world_norm": {
+        "mean": 0.6542098522186279,
+        "std": 0.023450609296560287,
+        "min": 0.56646728515625,
+        "max": 0.7012919783592224
+      }
+    },
+    {
+      "arm": "H0_landmarks_off",
+      "n_landmarks_a": 0,
+      "n_landmarks_b": 0,
+      "world_obs_dim": 250,
+      "seed": 43,
+      "cos_within_safe": 0.997149912516276,
+      "cos_within_danger": 0.9952381134033204,
+      "cos_cross": 0.9932210445404053,
+      "separation_gap": 0.002972968419392874,
+      "z_world_norm": {
+        "mean": 0.7049461603164673,
+        "std": 0.026055503636598587,
+        "min": 0.6293837428092957,
+        "max": 0.7476407885551453
+      }
+    },
+    {
+      "arm": "H1_landmarks_on",
+      "n_landmarks_a": 3,
+      "n_landmarks_b": 3,
+      "world_obs_dim": 300,
+      "seed": 42,
+      "cos_within_safe": 0.9961051940917969,
+      "cos_within_danger": 0.9970579783121745,
+      "cos_cross": 0.9961938261985779,
+      "separation_gap": 0.0003877600034077888,
+      "z_world_norm": {
+        "mean": 0.754462480545044,
+        "std": 0.028258947655558586,
+        "min": 0.674191415309906,
+        "max": 0.7996943593025208
+      }
+    },
+    {
+      "arm": "H1_landmarks_on",
+      "n_landmarks_a": 3,
+      "n_landmarks_b": 3,
+      "world_obs_dim": 300,
+      "seed": 43,
+      "cos_within_safe": 0.9944352467854818,
+      "cos_within_danger": 0.9930929183959961,
+      "cos_cross": 0.9896815419197083,
+      "separation_gap": 0.004082540671030754,
+      "z_world_norm": {
+        "mean": 0.528045117855072,
+        "std": 0.01486222818493843,
+        "min": 0.4777398705482483,
+        "max": 0.547182023525238
+      }
+    }
+  ],
+  "thresholds": {
+    "e1_cross_cosine_ceiling": 0.95,
+    "e2_separation_gap_delta": 0.02,
+    "e3_h0_cross_cosine_floor": 0.95
+  },
+  "params": {
+    "seeds": [
+      42,
+      43
+    ],
+    "p0_episodes": 10,
+    "p1_episodes": 20,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "eval_batch_per_ctx": 16,
+    "lr": 0.0001,
+    "arms": [
+      {
+        "label": "H0_landmarks_off",
+        "n_landmarks_a": 0,
+        "n_landmarks_b": 0
+      },
+      {
+        "label": "H1_landmarks_on",
+        "n_landmarks_a": 3,
+        "n_landmarks_b": 3
+      }
+    ],
+    "sd016_enabled": true,
+    "sd016_writepath_mode": "off",
+    "dry_run": false
+  }
+}

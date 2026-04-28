@@ -1,0 +1,119 @@
+{
+  "experiment_type": "v3_exq_418f_sd016_attention_uniformity_probe",
+  "run_id": "v3_exq_418f_sd016_attention_uniformity_probe_20260428T203014Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-016"
+  ],
+  "claim_ids_tested": [
+    "SD-016"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_class": "diagnostic_probe",
+  "outcome": "PASS",
+  "timestamp_utc": "20260428T203014Z",
+  "supersedes": "V3-EXQ-418e",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_note": "SD-016 attention-uniformity diagnostic probe. PURPOSE: localise the cause of the EXQ-418d/418e attn_entropy_mean=ln(16) uniform-rail failure (slot-side fixes alone cannot move attention; queries must be the bottleneck). Reports query/key norms, raw and scaled dot-product distributions, slot argmax histogram, attention entropy stats, and the divisor that would produce target mean entropy 1.5 nats. PASS = the probe ran successfully (diagnostic-only outcome). MUST NOT update SD-016 claim confidence -- this is instrumentation, not evidence.",
+  "acceptance_checks": {
+    "D1_data_collected": {
+      "pass": true,
+      "n_samples": 64,
+      "threshold": 16
+    },
+    "D2_entropy_in_bounds": {
+      "pass": true,
+      "attn_entropy_mean": 2.7160592079162598,
+      "uniform_reference": 2.7725887298583984
+    },
+    "D3_queries_vary": {
+      "pass": true,
+      "raw_dotprod_std": 3.1446831226348877,
+      "threshold": 1e-06
+    },
+    "D4_norms_nonzero": {
+      "pass": true,
+      "q_norm_mean": 1.8132015466690063,
+      "k_norm_mean": 1.004457950592041,
+      "threshold": 0.0001
+    },
+    "overall_pass": true
+  },
+  "probe": {
+    "n_samples": 64,
+    "num_slots": 16,
+    "memory_dim": 128,
+    "scale_used": 11.313708498984761,
+    "uniform_entropy": 2.7725887298583984,
+    "q_norm": {
+      "mean": 1.8132015466690063,
+      "std": 0.02221960574388504,
+      "min": 1.7373785972595215,
+      "max": 1.8424729108810425
+    },
+    "k_norm": {
+      "mean": 1.004457950592041,
+      "std": 2.436711549758911,
+      "min": 0.09265035390853882,
+      "max": 7.284073829650879
+    },
+    "raw_dotprod": {
+      "mean": 1.2892284393310547,
+      "std": 3.1446831226348877,
+      "min": 0.053175393491983414,
+      "max": 9.775755882263184
+    },
+    "scaled_dotprod": {
+      "mean": 0.11395277827978134,
+      "std": 0.2779533565044403,
+      "min": 0.004700085148215294,
+      "max": 0.8640629053115845
+    },
+    "attn_entropy_mean": 2.7160592079162598,
+    "attn_entropy_min": 2.714405059814453,
+    "attn_entropy_max": 2.720672130584717,
+    "attn_max_weight_mean": 0.1248684823513031,
+    "attn_max_weight_min": 0.12204437702894211,
+    "attn_max_weight_max": 0.12586131691932678,
+    "slot_argmax_histogram": [
+      0,
+      0,
+      0,
+      0,
+      64,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "target_scale_for_entropy_1p5": 2.7220534088749857
+  },
+  "thresholds": {
+    "d1_min_samples": 16,
+    "d3_dotprod_std_floor": 1e-06,
+    "d4_norm_floor": 0.0001
+  },
+  "params": {
+    "seed": 42,
+    "p0_episodes": 10,
+    "p1_episodes": 20,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "eval_batch_size": 64,
+    "lr": 0.0001,
+    "sd016_enabled": true,
+    "sd016_writepath_mode": "sense_only",
+    "sd016_diversification_weight": 0.0,
+    "sd016_temperature_learnable": false,
+    "dry_run": false
+  }
+}
