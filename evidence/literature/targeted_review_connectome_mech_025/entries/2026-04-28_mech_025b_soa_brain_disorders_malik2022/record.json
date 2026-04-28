@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_025",
+  "entry_id": "2026-04-28_mech_025b_soa_brain_disorders_malik2022",
+  "timestamp_utc": "2026-04-28T16:54:48Z",
+  "claim_ids_tested": ["MECH-025b"],
+  "source": {
+    "title": "The sense of agency for brain disorders: A comprehensive review and proposed framework.",
+    "authors": ["Malik RA", "Galang CM", "Finger E"],
+    "year": 2022,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2022.104759"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Comprehensive integrative review proposing the Agency in Brain Disorders Framework (ABDF). Maps prospective vs retrospective agency cues, top-down vs bottom-up. Useful framework for understanding how MECH-025b's precision-responsibility bridge might break in disorder, but the review aggregates many heterogeneous patient populations and does not directly test the bridge. The review explicitly notes there is no robust treatment for aberrant agency across disorders, partly because the cognitive mechanisms remain poorly synthesised -- which weakens an unconditional reading.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-025b's precision-responsibility bridge were the only operative mechanism, disorders should show coupled disturbance of precision and responsibility. Malik documents dissociations -- e.g. schizophrenia shows aberrant agency without clear changes in attributed responsibility, OCD shows preserved agency with hyperactive responsibility -- which suggest the bridge is one mechanism among several."
+  ],
+  "tags": ["mech_025b", "agency", "brain_disorders", "review", "schizophrenia", "ocd", "framework"],
+  "mapping": {
+    "source_claim_statement": "Sense of agency in brain disorders is best modelled by the Agency in Brain Disorders Framework, which separates prospective (pre-action) and retrospective (post-action) cues and crosses these with top-down vs bottom-up sources. Different disorders disturb different cells of this matrix.",
+    "ree_translation": "MECH-025b proposes a single bridge between precision and responsibility. Malik's framework implies the bridge is multi-component: prospective precision (planning depth, action selection) and retrospective precision (outcome monitoring, comparator) feed into agency through partly separable pathways. MECH-025b should be refined to specify which precision component carries which aspect of responsibility.",
+    "mapping_caveat": "This is a theoretical review, not a primary empirical test. It also covers schizophrenia, ASD, OCD, and CBS together -- the unifying ABDF framework is the contribution, not direct evidence for the precision-responsibility bridge. Useful as a constraint on how MECH-025b can be refined; not direct confirmation.",
+    "source_context": "Comprehensive review across schizophrenia, ASD, OCD, corticobasal syndrome (CBS); proposes a synthesising neurocognitive framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.30,
+    "notes": "High-quality review in a strong venue, but theoretical synthesis rather than direct test. Mapping fidelity drops because the framework refines (multi-component) rather than confirms (single bridge) MECH-025b's claim."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_187",
+  "entry_id": "2026-04-28_mech_187_5ht2c_da_vigor_bailey2018",
+  "timestamp_utc": "2026-04-28T16:58:05Z",
+  "claim_ids_tested": ["MECH-187"],
+  "source": {
+    "title": "An Interaction between Serotonin Receptor Signaling and Dopamine Enhances Goal-Directed Vigor and Persistence in Mice.",
+    "authors": ["Bailey MR", "Goldman O", "Bello EP", "Chohan MO", "Jeong N", "Winiger V", "Chun E", "Schipani E", "Kalmbach A", "Cheer JF", "Balsam PD", "Simpson EH"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2088-17.2018"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The cleanest available test of MECH-187's serotonin-modulates-DA-gain mechanism in vivo. Bailey shows that 5-HT2C-selective ligand SB242084 increases vigor and persistence on demanding work, that this is reflected in striatal DA potentiation specifically in dorsomedial striatum (not NAc reward signaling), and that the effect is dissociable from generalised activity or reward-value changes. Source quality is high (J Neurosci, Cheer/Simpson collaboration, voltammetry + microdialysis + behaviour); mapping to MECH-187's gain-on-incentive-salience reading is good but with a wrinkle: the DA potentiation is in DMS, not NAc, which is the canonical incentive-salience locus in MECH-187's framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-187 were only operative at NAc incentive salience, SB242084 effects on vigor should not show DMS-specific DA potentiation -- they do, which suggests the gain modulator reaches multiple striatal subregions with different functional consequences.",
+    "If 5-HT2C action were unrelated to motivational gain, SB242084 should affect general activity / reward perception too -- it specifically does not. The dissociation strengthens the gain-modulator reading."
+  ],
+  "tags": ["mech_187", "serotonin", "5ht2c", "dopamine", "incentive_salience", "vigor", "striatum"],
+  "mapping": {
+    "source_claim_statement": "5-HT2C-selective ligand SB242084 enhances goal-directed vigor and persistence specifically when work demands are high; this behavioural change is mediated by activity-dependent DA potentiation in the dorsomedial striatum (DMS), not by changes in NAc phasic reward signalling, generalised activity, or reward value.",
+    "ree_translation": "MECH-187 asserts that serotonin modulates the gain on dopaminergic incentive salience. Bailey provides causal mechanism: a 5-HT receptor (5-HT2C) gates DA release in a target-specific manner, and the behavioural consequence is exactly the graded-vigor signature MECH-187 predicts (effort-demanding situations show the effect; trivial work does not). The DMS-vs-NAc localisation refines MECH-187 -- the gain modulation may be on the *vigor / effort* dimension specifically, not the reward-value-coding NAc shell signal.",
+    "mapping_caveat": "Bailey shows DMS DA potentiation, not NAc. MECH-187's current statement maps the mechanism to NAc incentive salience (Berridge tradition). The Bailey result requires either (a) extending MECH-187 to include DMS as a relevant gain-modulation locus, or (b) reading MECH-187 as covering effort-vigor specifically while NAc reward-value signalling is governed by a separate pathway. Either reading is consistent with EXQ-252's z_goal seeding-gain finding, but the substrate question matters for V4.",
+    "source_context": "Mice; 5-HT2C-selective ligand SB242084 administered during quantitative goal-directed work tasks; fast scan cyclic voltammetry (NAc) + microdialysis (NAc, DMS) + behaviour."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High-quality multi-method paper (FSCV + microdialysis + behaviour). The DMS-vs-NAc localisation is the main mapping caveat; rodent-to-human transfer is the standard caveat for the NAc/DMS gain mechanism."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_025",
+  "entry_id": "2026-04-28_mech_025b_dual_process_critique_kahane2012",
+  "timestamp_utc": "2026-04-28T16:54:48Z",
+  "claim_ids_tested": ["MECH-025b"],
+  "source": {
+    "title": "On the Wrong Track: Process and Content in Moral Psychology.",
+    "authors": ["Kahane G"],
+    "year": 2012,
+    "venue": "Mind & Language",
+    "doi": "10.1111/mila.12001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Philosophical critique of Greene's dual-process model of moral judgment. Relevant to MECH-025b because the precision-responsibility bridge implicitly assumes a process->content mapping similar to Greene's (high precision/deliberation -> higher responsibility). Kahane argues this mapping is empirically unsupported, that controlled processing in 'utilitarian' judgment may actually reflect moral deliberation independent of utilitarian content. Tempers MECH-025b's bridge by warning against tying processing mode directly to moral conclusions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-025b's bridge committed to a strong process->content mapping (high precision -> particular moral verdict), Kahane's critique would directly apply. The bridge actually committed to is weaker (precision -> responsibility weight), but the warning still applies to extensions that would tie precision to specific moral verdicts."
+  ],
+  "tags": ["mech_025b", "dual_process", "moral_psychology", "philosophy", "deliberation"],
+  "mapping": {
+    "source_claim_statement": "Greene's dual-process model ties automatic processing to deontological judgment and controlled processing to utilitarian judgment. Kahane argues this tie is based on misinterpretation of evidence; controlled processing in apparently utilitarian judgments reflects general moral deliberation, not utilitarian reasoning specifically. Neuroimaging shows similar correlates for intuitive and counterintuitive judgments regardless of utilitarian/deontological content.",
+    "ree_translation": "MECH-025b's precision-responsibility bridge assumes that the precision regime under which an action is committed is the right diagnostic for responsibility weight. Kahane's critique cautions that processing-mode-to-moral-content mappings tend to be empirically fragile. For MECH-025b, this implies the bridge should commit only to responsibility weight (a structural property), not to which moral verdict obtains (which is content-level). The current MECH-025b statement is consistent with Kahane's caution; future extensions that tie precision to particular moral conclusions would risk the failure mode he describes.",
+    "mapping_caveat": "Kahane's target is Greene specifically, not MECH-025b. The relevance to MECH-025b is indirect: it constrains how the bridge can be elaborated, not whether the basic bridge holds. Kahane is also a philosophical paper (Mind & Language), not empirical -- though it cites and re-interprets neuroimaging.",
+    "source_context": "Philosophical analysis paper; cites and re-interprets Greene's neuroimaging studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Strong philosophical paper; relevance to MECH-025b is indirect (constraint on extensions, not direct test). The caveat is real and worth incorporating."
+  }
+}

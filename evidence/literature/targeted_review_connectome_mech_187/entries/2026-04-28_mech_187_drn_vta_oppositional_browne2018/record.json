@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_187",
+  "entry_id": "2026-04-28_mech_187_drn_vta_oppositional_browne2018",
+  "timestamp_utc": "2026-04-28T16:58:05Z",
+  "claim_ids_tested": ["MECH-187"],
+  "source": {
+    "title": "Dorsal raphe serotonin neurons inhibit operant responding for reward via inputs to the ventral tegmental area but not the nucleus accumbens: evidence from studies combining optogenetic stimulation and serotonin reuptake inhibition.",
+    "authors": ["Browne CJ", "Abela AR", "Chu D", "Li Z", "Ji X", "Lambe EK", "Fletcher PJ"],
+    "year": 2018,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/s41386-018-0271-x"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Adds important nuance to MECH-187. The DRN 5-HT inhibition of operant responding requires VTA-targeted 5-HT plus an SSRI; the NAc-targeted 5-HT path is not sufficient. This relocates a major component of the 5-HT-DA interaction upstream (at VTA, the source of DA neurons) rather than downstream at the NAc target. MECH-187's NAc-locus framing needs to be qualified or extended.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-187's mechanism were primarily NAc-target 5-HT signalling, optogenetic stimulation of 5-HT terminals in NAc should suffice to reduce operant responding -- it does not. The behavioural effect requires VTA-targeted 5-HT signalling.",
+    "If 5-HT and DA were straightforwardly oppositional in the operant-response axis, the SSRI requirement would not appear -- it does, suggesting the 5-HT effect is amplitude/duration-dependent rather than gating."
+  ],
+  "tags": ["mech_187", "serotonin", "dorsal_raphe", "vta", "nac", "operant", "ssri", "oppositional"],
+  "mapping": {
+    "source_claim_statement": "Optogenetic stimulation of DRN 5-HT neurons enhances downstream 5-HT release but does not by itself inhibit operant responding for sucrose reward. The behavioural inhibition requires combining the optogenetic stimulation with a low-dose SSRI (citalopram). The locus is VTA-targeted 5-HT, not NAc-targeted 5-HT.",
+    "ree_translation": "MECH-187 in its current statement maps the gain mechanism to the NAc target. Browne shows that, for the operant-responding axis at least, the relevant 5-HT signal is at VTA (source of DA neurons), not at NAc. This would relocate a major component of MECH-187's mechanism upstream, with VTA 5-HT setting the gain on DA cell firing rather than the NAc target setting the gain on DA-modulated EPSCs. Both could be operative; the question is which dominates.",
+    "mapping_caveat": "The behavioural axis tested is operant responding for sucrose -- a particular operationalisation of motivation that may not generalise to all incentive-salience contexts MECH-187 covers. The SSRI co-requirement complicates the simple optogenetic interpretation: 5-HT release has to be both phasically driven and tonically elevated for the effect, which is a non-trivial constraint on naturalistic relevance.",
+    "source_context": "Mice; optogenetic stimulation of DRN 5-HT neurons (TPH2-Cre) with selective targeting of 5-HT terminals at VTA vs NAc; SSRI co-administration; operant responding for saccharin."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Quality work in a strong venue (Neuropsychopharmacology, Fletcher lab). Mapping fidelity is moderate -- the result complicates rather than confirms MECH-187's NAc-locus framing, in a way that is informative for the substrate question."
+  }
+}

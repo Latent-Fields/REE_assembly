@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_172",
+  "entry_id": "2026-04-28_mech_172_ad_procedural_preserved_schmitz2014",
+  "timestamp_utc": "2026-04-28T16:48:59Z",
+  "claim_ids_tested": ["MECH-172"],
+  "source": {
+    "title": "The benefits of errorless learning for serial reaction time performance in Alzheimer's disease.",
+    "authors": ["Schmitz X", "Bier N", "Joubert S", "Lejeune C", "Salmon E", "Rouleau I", "Meulemans T"],
+    "year": 2014,
+    "venue": "Journal of Alzheimer's Disease (JAD)",
+    "doi": "10.3233/JAD-130887"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Direct AD-side test of MECH-172's prediction. AD patients can in fact acquire a perceptual-motor sequence under errorless conditions, demonstrating that the procedural-learning channel is functional even when episodic memory has substantially failed. Mapping fidelity is good; transfer risk is low. Source quality is moderate -- specialty journal, modest sample. The errorless qualification is a real wrinkle: it is not unconditional preservation, it is preservation when error monitoring is offloaded.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-172 were wrong and AD's pathology degrades both systems together, AD patients would fail the SRT in errorless conditions too. They did not.",
+    "Errorless > errorful in AD specifically (not just generally) suggests an interaction between feedback monitoring and procedural acquisition that the simple architectural-separation reading does not predict."
+  ],
+  "tags": ["mech_172", "alzheimer", "procedural_memory", "serial_reaction_time", "errorless_learning"],
+  "mapping": {
+    "source_claim_statement": "AD patients can acquire a 6-element perceptual-motor sequence under errorless conditions but not under errorful (standard SRT) conditions. The errorless advantage is larger in AD than in healthy older adults.",
+    "ree_translation": "MECH-172's AD half: the model-free habit/procedural channel is preserved in AD when not contaminated by failed error monitoring (which is the consolidation-pipeline component AD breaks). Schmitz shows the channel works when the part of the pipeline AD breaks is bypassed -- consistent with the architectural-separation reading.",
+    "mapping_caveat": "Schmitz finds preservation specifically under errorless conditions, not unconditionally. MECH-172 in its current statement claims procedural memory is 'preserved'; the more careful reading is that the procedural acquisition channel is preserved but the integration with feedback monitoring is not. This is a refinement to MECH-172, not a refutation -- and arguably a strengthening, since it predicts which conditions produce visible preservation and which do not.",
+    "source_context": "AD patients (early-to-middle-stage; specific MMSE range in paper) and matched healthy older adults; standard SRT task with errorless preliminary phase manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.20,
+    "notes": "JAD specialty journal; modest sample; result is real but the errorless caveat refines rather than confirms the simple version of MECH-172."
+  }
+}

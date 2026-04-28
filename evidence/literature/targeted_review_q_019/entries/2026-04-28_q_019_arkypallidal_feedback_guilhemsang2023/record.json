@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-28_q_019_arkypallidal_feedback_guilhemsang2023",
+  "timestamp_utc": "2026-04-28T17:09:57Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Arkypallidal neurons in basal ganglia circuits: Unveiling novel pallidostriatal loops?",
+    "authors": ["Guilhemsang L", "Mallet NP"],
+    "year": 2023,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2023.102814"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Adds a circuit-architecture dimension Q-019's existing 14-entry review does not cover: the Arkypallidal pallidostriatal feedback loop, a comparatively recently characterised GABAergic projection from a subpopulation of GPe neurons back to dorsal striatum. This is one of the largest extrinsic GABA inputs to dorsal striatum and operates as a feedback inhibition mechanism. For Q-019, this reshapes the architectural debate -- if BG circuits include direct feedback from GPe back to striatum, neither pure parallel-segregated nor pure single-gate models are quite right; the architecture is closed-loop with feedback inhibition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Q-019's three-loop architecture were strictly parallel and segregated, the Arkypallidal feedback projection from GPe back to striatum would not exist. It does, and it is one of the largest GABA inputs to dorsal striatum -- which forces any candidate Q-019 architecture to include feedback within each loop and possibly cross-loop interactions."
+  ],
+  "tags": ["q_019", "basal_ganglia", "arkypallidal", "feedback_inhibition", "globus_pallidus", "circuit_architecture"],
+  "mapping": {
+    "source_claim_statement": "A subpopulation of external globus pallidus (GPe) neurons -- Arkypallidal -- projects back to the dorsal striatum, providing one of the largest extrinsic GABA inputs to that target. This pallidostriatal feedback projection is structurally and functionally distinct from the classic Prototypic GPe neurons that target downstream BG nuclei. The Arkypallidal feedback conveys inhibition modulated differently by direct- and indirect-pathway striatal projections, with implications for action execution vs inhibition.",
+    "ree_translation": "Q-019 framed two architectural options (single-gate vs three-gate parallel loops). Guilhemsang's review introduces a third dimension: each loop includes intrinsic feedback inhibition that shapes its temporal dynamics and may bias toward action selection vs cancellation. For REE this means the BG model under consideration is not just 'how many gates' but 'how does each gate's internal feedback shape its commit dynamics' -- which intersects with E3's commit boundary and the post-commit gating regime.",
+    "mapping_caveat": "The review focuses on dorsal striatum (motor loop in Q-019's terminology) and primarily speculates on the Arkypallidal contribution to action execution vs inhibition. It does not directly arbitrate the three-gate-vs-single-gate question. The Arkypallidal projection's existence is settled; its functional role is still being characterised. Translating to REE requires a particular reading -- one that treats Arkypallidal feedback as a per-loop intrinsic mechanism rather than as a cross-loop integration point.",
+    "source_context": "Comprehensive review of Arkypallidal neurons in basal ganglia circuits; rodent + primate evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Curr Opin Neurobiol review by an active lab; useful Q-019 dimension expansion but not direct three-vs-one arbitration. The functional-role uncertainty is honest and worth flagging."
+  }
+}

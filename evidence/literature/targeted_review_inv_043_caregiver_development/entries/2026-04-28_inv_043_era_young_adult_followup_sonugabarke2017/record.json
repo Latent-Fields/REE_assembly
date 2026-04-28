@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_043_caregiver_development",
+  "entry_id": "2026-04-28_inv_043_era_young_adult_followup_sonugabarke2017",
+  "timestamp_utc": "2026-04-28T17:03:49Z",
+  "claim_ids_tested": ["INV-043"],
+  "source": {
+    "title": "Child-to-adult neurodevelopmental and mental health trajectories after early life deprivation: the young adult follow-up of the longitudinal English and Romanian Adoptees study.",
+    "authors": ["Sonuga-Barke EJS", "Kennedy M", "Kumsta R", "Knights N", "Golm D", "Rutter M", "Maughan B", "Schlotz W", "Kreppner J"],
+    "year": 2017,
+    "venue": "Lancet",
+    "doi": "10.1016/S0140-6736(17)30045-4"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "ERA is the closest-to-natural-experiment longitudinal evidence available for INV-043. Children with >6 months of severe institutional deprivation followed to ages 22-25 show persistent elevation in ASD-like symptoms, disinhibited social engagement, inattention/hyperactivity, mental health service use, lower educational attainment, unemployment -- despite years of nurturing adoptive families. Architecture (intact, since they recover IQ) was not sufficient; the early caregiving period was load-bearing. This is the strongest empirical anchor for INV-043's necessity claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If INV-043 were wrong and architecture alone were sufficient (given subsequent good caregiving), the >6mo group should look like the <6mo group + UK controls in young adulthood. They do not -- the deprivation effect persists across the developmental trajectory."
+  ],
+  "tags": ["inv_043", "deprivation", "era_study", "longitudinal", "young_adult", "caregiver"],
+  "mapping": {
+    "source_claim_statement": "Romanian adoptees who experienced more than 6 months of severe institutional deprivation in early life show persistent elevation across multiple neurodevelopmental and mental health outcomes through young adulthood (22-25 years), despite extended nurturance in adoptive families. The <6 month deprivation group does not show these effects. A late-onset emotional symptom pattern emerges by young adulthood. ~20% are problem-free, indicating heterogeneity but not refutation.",
+    "ree_translation": "INV-043 in REE language: architectural capacity for ethics (intact in these adoptees, who can develop attachment, schooling, etc.) is necessary but not sufficient. The early caregiving period is a developmental window during which the architecture must receive the input that orients it toward prosocial / ethical resolution. Severe deprivation during this window leaves the architecture functional but its resolution toward survival/disinhibited social engagement / poor self-regulation rather than prosocial competence. The Sonuga-Barke trajectory is the human empirical signature INV-043 predicts.",
+    "mapping_caveat": "The ERA outcomes measured are neurodevelopmental and mental health, not 'ethical' in the philosophical sense INV-043 invokes. Disinhibited social engagement, ASD-like features, ADHD symptoms are proxy outcomes; the more direct ethical outcomes (callous-unemotional traits, antisocial behaviour, moral reasoning capacity) are partially covered by the broader literature on this cohort but not centrally in this paper. Also, ERA's deprivation involved both caregiving deprivation and severe nutritional/stimulation deprivation -- the caregiver-specific component cannot be cleanly isolated.",
+    "source_context": "English and Romanian Adoptees study; n=98 high-deprivation (>6mo institutional); n=67 low-deprivation (<6mo); n=52 UK adoptee controls; longitudinal follow-up at ages 6, 11, 15, 22-25."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "Lancet, gold-standard longitudinal natural experiment, large sample retained across 19+ years. Mapping fidelity drops because outcomes are clinical rather than ethical-philosophical, and the deprivation is broader than caregiving alone."
+  }
+}

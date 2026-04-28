@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-28_q_019_closed_loop_bg_thalamo_cortical_leblois2025",
+  "timestamp_utc": "2026-04-28T17:09:57Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Reward-driven adaptation of movements requires strong recurrent basal ganglia-cortical loops.",
+    "authors": ["Leblois A", "Boraud T", "Hansel D"],
+    "year": 2025,
+    "venue": "PNAS",
+    "doi": "10.1073/pnas.2515994122",
+    "pmcid": "PMC12718356"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Recent (2025) computational arbitration of Q-019's competing models. Leblois shows that BG-thalamo-cortical adaptation requires strong recurrent closed-loop dynamics, not feedforward-only architecture. The model integrates anatomical, physiological, and behavioural evidence and demonstrates how closed-loop architecture + attractor dynamics + dopamine-dependent plasticity together explain how BG plasticity contributes to movement adaptation that does not require BG output for execution. This favours the closed-loop, multi-component reading of BG architecture that Q-019's three-gate model is one instance of, and weakens pure feedforward single-gate accounts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Q-019's architecture were purely feedforward (single feedforward gate or three feedforward gates), Leblois shows the model could not explain how reward-driven adaptation transfers to movements that no longer require BG output. The closed-loop recurrent dynamics are required."
+  ],
+  "tags": ["q_019", "computational_model", "basal_ganglia", "closed_loop", "thalamus", "motor_adaptation"],
+  "mapping": {
+    "source_claim_statement": "A computational model of the BG-thalamo-cortical multi-regional network shows that reward-driven adaptation of reaching movements requires (i) closed-loop architecture between cortex and BG, (ii) attractor dynamics from recurrent cortical connections, and (iii) reinforcement learning via dopamine-dependent cortico-striatal plasticity. Pure feedforward models cannot explain why BG plasticity persists in adaptation even after BG output becomes unnecessary for execution.",
+    "ree_translation": "Q-019 frames the architecture question as 'three-gate vs single-gate'. Leblois adds: whichever gate count, the architecture must be closed-loop with strong recurrence, not feedforward. For REE this constrains the V3/V4 implementation -- the BG-like substrate must include cortical-BG recurrent connectivity sufficient to produce attractor dynamics, not just a one-shot gating decision. ARC-021's three-loop framing would need each loop wired as a closed loop, not as a feedforward gate.",
+    "mapping_caveat": "The computational model is specifically a motor-loop instantiation (reaching movements). Q-019's three-loop framing covers sensorium, thought, and action loops; the closed-loop architectural prediction is most directly tested for the action loop. The other two loops are inferred to share the architecture by analogy. Also, the model demonstrates *sufficiency* of closed-loop architecture for reward adaptation; it does not demonstrate that single-gate feedforward architectures *cannot* in principle achieve the same with different mechanisms.",
+    "source_context": "Computational neuroscience modelling paper; integrates anatomical, physiological, and behavioural evidence; PNAS 2025."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "PNAS 2025; Leblois/Boraud/Hansel collaboration with established computational-neuroscience credentials. The model is sufficiency-not-necessity for closed-loop, but the empirical evidence integrated is broad."
+  }
+}

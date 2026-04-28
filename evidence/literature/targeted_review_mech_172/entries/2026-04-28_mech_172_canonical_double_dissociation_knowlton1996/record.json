@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_172",
+  "entry_id": "2026-04-28_mech_172_canonical_double_dissociation_knowlton1996",
+  "timestamp_utc": "2026-04-28T16:48:59Z",
+  "claim_ids_tested": ["MECH-172"],
+  "source": {
+    "title": "A neostriatal habit learning system in humans.",
+    "authors": ["Knowlton BJ", "Mangels JA", "Squire LR"],
+    "year": 1996,
+    "venue": "Science",
+    "doi": "10.1126/science.273.5280.1399"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Canonical, much-replicated double dissociation in matched neurological patient groups. Source quality is high (Science, controlled clinical comparison, foundational paper); mapping fidelity is strong because the architectural separation REE asserts (model-free habit vs declarative attribution) is the same separation Knowlton operationalised. Transfer risk is moderate -- amnesic group is mostly diencephalic/medial-temporal lesions rather than AD specifically, so AD-relevance is by inference not direct measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's architectural separation were wrong, amnesics would also be impaired on probabilistic classification (they were not).",
+    "If habit learning required a hippocampal/cortical consolidation pipeline, Parkinson patients with intact MTL would still acquire it (they did not)."
+  ],
+  "tags": ["mech_172", "habit_learning", "double_dissociation", "knowlton", "neostriatum"],
+  "mapping": {
+    "source_claim_statement": "Amnesic patients show normal probabilistic classification learning despite impaired declarative memory; Parkinson patients show the inverse pattern. The neostriatum supports a habit-learning system that is parallel to and independent of the limbic-diencephalic declarative system.",
+    "ree_translation": "MECH-172 predicts exactly this dissociation: the model-free habit system (MECH-163, D1/D2 SNc loops) does not depend on the hippocampal/E3 attribution pipeline, so degradation of one leaves the other intact. Knowlton's double dissociation is the canonical demonstration of the architectural separation REE invokes.",
+    "mapping_caveat": "Knowlton's amnesic group was diencephalic + medial-temporal (Korsakoff, anoxia), not AD specifically. Knowlton's BG-disorder group was Parkinson, not Huntington. The AD/HD framing in MECH-172 is one step removed from Knowlton's own patient groups; the inference rests on AD's hippocampal/temporal damage profile being more amnesia-like and HD's striatal damage being more Parkinson-like.",
+    "source_context": "Adult neurological patients (amnesics with diencephalic or MTL damage; Parkinson patients without dementia) and matched controls; probabilistic classification (weather-prediction) task with declarative-memory probe."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Foundational and replicated across many follow-ups; source quality near ceiling. Mapping is high but indirect for the AD-vs-HD framing of MECH-172."
+  }
+}

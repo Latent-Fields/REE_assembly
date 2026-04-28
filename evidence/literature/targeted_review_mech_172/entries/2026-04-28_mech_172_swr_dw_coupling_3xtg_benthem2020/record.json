@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_172",
+  "entry_id": "2026-04-28_mech_172_swr_dw_coupling_3xtg_benthem2020",
+  "timestamp_utc": "2026-04-28T16:48:59Z",
+  "claim_ids_tested": ["MECH-172"],
+  "source": {
+    "title": "Impaired Hippocampal-Cortical Interactions during Sleep in a Mouse Model of Alzheimer's Disease.",
+    "authors": ["Benthem SD", "Skelin I", "Moseley SC", "Stimmell AC", "Dixon JR", "Melilli AS", "Molina L", "McNaughton BL", "Wilber AA"],
+    "year": 2020,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2020.04.087"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Supplies the mechanistic substrate for MECH-172's central premise -- that the consolidation pipeline (specifically SWR-DW and spindle-DW coupling) is broken in AD. This is the broken-pipeline limb of MECH-172's architectural argument. Source quality is high (Curr Biol, multi-electrode array, McNaughton lab); mapping fidelity is good but the model is 3xTg mouse (amyloid + tau), not human early AD. Transfer risk is moderate-to-substantial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-172's premise that AD specifically degrades the offline consolidation pipeline were wrong, AD mice should show normal SWR-DW coupling (they did not) and behavioral spatial learning would not correlate with that coupling (it does)."
+  ],
+  "tags": ["mech_172", "alzheimer", "swr", "consolidation", "hippocampal_cortical_coupling", "3xtg"],
+  "mapping": {
+    "source_claim_statement": "3xTg-AD mice show impaired hippocampal sharp-wave-ripple (SWR) to cortical delta-wave (DW) coupling and impaired spindle-DW coupling during slow-wave sleep, despite increased total sleep. SWR-DW coupling correlates with next-day spatial-reorientation performance in controls, and this correlation is lost in AD mice.",
+    "ree_translation": "MECH-172 asserts that AD breaks the contextual attribution system (E3 hippocampal) by degrading the offline consolidation pipeline. Benthem provides the direct electrophysiological substrate: the SWR-DW and spindle-DW coupling that REE identifies with hippocampus-to-cortex schema installation is exactly what is broken. The procedural/habit system, which does not require this pipeline, would be expected to remain functional under the same pathology.",
+    "mapping_caveat": "The model is 3xTg mouse (familial-AD-like amyloid + tau under transgenic promoters), not sporadic human AD. The temporal trajectory of pathology in 3xTg differs from human AD. The behavioural test is spatial reorientation, not procedural memory directly -- so this paper supports the broken-consolidation premise but does not by itself test the preservation-of-habit prediction.",
+    "source_context": "3xTg-AD mice vs C57 controls; chronic recording arrays in isocortex and hippocampus; spatial reorientation task; rest-task-rest sessions."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.45,
+    "notes": "High-quality electrophysiology; the mouse-model transfer is the main limitation. The within-paper correlation between SWR-DW coupling and behavioural performance strengthens the causal reading."
+  }
+}

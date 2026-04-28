@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_187",
+  "entry_id": "2026-04-28_mech_187_input_specific_filtering_christoffel2021",
+  "timestamp_utc": "2026-04-28T16:58:05Z",
+  "claim_ids_tested": ["MECH-187"],
+  "source": {
+    "title": "Selective filtering of excitatory inputs to nucleus accumbens by dopamine and serotonin.",
+    "authors": ["Christoffel DJ", "Walsh JJ", "Hoerbelt P", "Heifets BD", "Llorach P", "Lopez RC", "Ramakrishnan C", "Deisseroth K", "Malenka RC"],
+    "year": 2021,
+    "venue": "PNAS",
+    "doi": "10.1073/pnas.2106648118",
+    "pmcid": "PMC8214692"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Provides synapse-level mechanism for MECH-187 at the canonical NAc locus. DA and 5-HT each filter excitatory inputs to NAc MSNs in input-specific patterns that overlap but differ. The DA + 5-HT joint action recapitulates the behavioural effects of methamphetamine and MDMA. This is the substrate-level account MECH-187 needs: how does 5-HT modulate the gain on DA at the NAc target, in mechanistic terms. Source quality is very high (PNAS, Malenka lab, Deisseroth tools, multi-method).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If 5-HT and DA operated through the same input-channel filter, MECH-187's gain story would be redundant -- but they target overlapping but distinct input sets (5-HT reduces PVT, vHip, BLA inputs; DA reduces PVT only), supporting MECH-187's claim that 5-HT contributes a separable gain dimension.",
+    "If MECH-187 were wrong about modality, optogenetic input inhibition tests should not reproduce drug-induced behavioural effects; they did (PVT->cocaine-CPP enhancement; mPFC->MDMA-sociability)."
+  ],
+  "tags": ["mech_187", "serotonin", "dopamine", "nac", "synaptic_filtering", "ic_circuit", "deisseroth"],
+  "mapping": {
+    "source_claim_statement": "DA reduces excitatory postsynaptic currents in NAc MSNs from PVT inputs only; 5-HT reduces EPSCs from PVT, ventral hippocampus, and BLA inputs (sparing mPFC). Endogenous DA and 5-HT release via methamphetamine and MDMA respectively recapitulate these patterns. Optogenetic inhibition of specific input streams reproduces the behavioural effects of the drugs.",
+    "ree_translation": "MECH-187's gain-on-incentive-salience mechanism cashed out at synapse level. 5-HT and DA each act at NAc, but they filter different input streams; their joint action sets the effective excitatory drive to MSNs, which is the proximal substrate of incentive salience. This is precisely the synaptic substrate where 'serotonin modulates the gain on dopaminergic incentive salience' would have to be implemented.",
+    "mapping_caveat": "The paper frames the action as 'reducing' EPSCs, which is a suppression mechanism rather than the bidirectional 'gain' mechanism MECH-187 asserts. The bidirectional reading requires that the suppression be tunable -- i.e., that endogenous 5-HT tone scales the suppression magnitude rather than gating it on/off. This is consistent with the methamphetamine/MDMA dose-dependent effects but is not directly demonstrated. Also, the paper does not directly test the SD-012 threshold-vs-graded distinction -- that translation is one inferential step.",
+    "source_context": "Mouse brain slices and behaviour; optogenetic input-specific manipulation; pharmacological release of endogenous DA (METH) and 5-HT (MDMA)."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "PNAS, Malenka + Deisseroth collaboration; multi-method (slice + behaviour + optogenetics + pharmacology). Mapping fidelity is high because the locus is exactly the one MECH-187 invokes; the suppression-vs-gain framing is the main translation step."
+  }
+}

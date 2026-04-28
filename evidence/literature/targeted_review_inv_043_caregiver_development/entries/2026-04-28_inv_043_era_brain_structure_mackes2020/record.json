@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_043_caregiver_development",
+  "entry_id": "2026-04-28_inv_043_era_brain_structure_mackes2020",
+  "timestamp_utc": "2026-04-28T17:03:49Z",
+  "claim_ids_tested": ["INV-043"],
+  "source": {
+    "title": "Early childhood deprivation is associated with alterations in adult brain structure despite subsequent environmental enrichment.",
+    "authors": ["Mackes NK", "Golm D", "Sarkar S", "Kumsta R", "Rutter M", "Fairchild G", "Mehta MA", "Sonuga-Barke EJS"],
+    "year": 2020,
+    "venue": "PNAS",
+    "doi": "10.1073/pnas.1911264116",
+    "pmcid": "PMC6955353"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Provides the structural-brain substrate for INV-043's claim. Adult Romanian adoptees (n=67) show 8.6% reduction in total brain volume vs nondeprived UK adoptees (n=21), with TBV negatively correlated with deprivation duration. The structural changes statistically mediate the relationship between deprivation and adult ADHD/IQ outcomes. This is the structural counterpart to the clinical-trajectory paper (Sonuga-Barke 2017); together they make the case that the developmental window leaves architectural trace that subsequent enrichment does not erase.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If INV-043 were wrong and the architecture is fully malleable post-window, brain structure should normalise after extended adoptive-family enrichment. It does not -- a quantifiable structural deficit persists into adulthood.",
+    "If the brain-structure changes were unrelated to functional outcomes, mediation tests should fail. They held -- TBV reduction statistically mediated both lower IQ and higher ADHD symptoms."
+  ],
+  "tags": ["inv_043", "brain_structure", "deprivation", "era_study", "mri", "adult"],
+  "mapping": {
+    "source_claim_statement": "Romanian adoptees (n=67, with 3-41 months of deprivation) showed 8.6% reduced total brain volume in young adulthood compared with non-deprived UK adoptees (n=21), with TBV negatively correlated with deprivation duration. Right inferior frontal surface area and volume were lower; right inferior temporal lobe was greater (interpreted as compensatory). Right medial prefrontal volume scaled positively with deprivation duration. TBV reductions mediated the deprivation-to-IQ and deprivation-to-ADHD-symptoms paths.",
+    "ree_translation": "INV-043 needs a substrate-level account of how the early caregiving window shapes architecture. Mackes provides it: adult brain structure shows persistent deprivation-correlated changes despite intervening enrichment. The architecture is not 'reset' by post-adoption caregiving in the way that pure architectural-capacity readings would predict. The medial PFC and inferior frontal regions implicated are, broadly, the regions REE associates with executive control, social cognition, and (in the V3/V4 transition) committed planning -- all relevant to ethical agency.",
+    "mapping_caveat": "n=21 in the control group is small; the structural-MRI-from-childhood-deprivation literature has had replication challenges. The compensatory-temporal-lobe finding is speculative. Brain structure does not directly demonstrate ethical-functioning consequences -- the clinical and behavioural outcomes are documented in the Sonuga-Barke 2017 trajectory paper, not here. The deprivation is multi-dimensional, not caregiver-specific.",
+    "source_context": "Subset of the ERA cohort with structural MRI in young adulthood; 67 Romanian adoptees vs 21 UK adoptees."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.20,
+    "notes": "PNAS, established cohort, careful covariate control. Modest control n; mapping fidelity drops because brain-structure does not directly speak to ethical outcomes."
+  }
+}

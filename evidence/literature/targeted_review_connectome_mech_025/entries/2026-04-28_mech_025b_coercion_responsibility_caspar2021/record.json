@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_025",
+  "entry_id": "2026-04-28_mech_025b_coercion_responsibility_caspar2021",
+  "timestamp_utc": "2026-04-28T16:54:48Z",
+  "claim_ids_tested": ["MECH-025b"],
+  "source": {
+    "title": "The obedient mind and the volitional brain: A neural basis for preserved sense of agency and sense of responsibility under coercion.",
+    "authors": ["Caspar EA", "Beyer F", "Cleeremans A", "Haggard P"],
+    "year": 2021,
+    "venue": "PLoS One",
+    "doi": "10.1371/journal.pone.0258884"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct test of the precision-mediates-responsibility bridge. Coercion is a precision/agency manipulation; medial frontal gyrus activity tracks the preserved sense of accountability across that manipulation. Mapping to MECH-025b is good but not perfect -- coercion alters the act-selection precision/control axis MECH-025b cares about, but Caspar's primary IV is social-coercion context rather than precision per se. n is moderate; PLoS One is open-access standard.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the precision-responsibility bridge MECH-025b proposes were absent, medial frontal activity should not track preserved agency/responsibility under coercion (it does).",
+    "If responsibility were a purely post-hoc social attribution unrelated to action-selection processes, the bridge to volition-related cortex would not appear -- but it does appear specifically there."
+  ],
+  "tags": ["mech_025b", "agency", "responsibility", "coercion", "medial_frontal", "intentional_binding"],
+  "mapping": {
+    "source_claim_statement": "Greater medial frontal gyrus activity during coerced action correlates with preserved sense of agency and explicit sense of responsibility, suggesting that volitional/planning circuits actively support accountability under reduced choice.",
+    "ree_translation": "MECH-025b's precision-responsibility bridge: actions committed at higher precision (here, with intact volitional/medial-frontal engagement) carry more accountability. Caspar's medial-frontal-engagement variable is a plausible neural correlate of REE's high-precision action mode; its tracking of preserved responsibility under a coercion challenge is direct support for the bridge.",
+    "mapping_caveat": "Caspar's primary manipulation is coercion (social context) rather than action precision per se. Coercion likely modulates several variables that REE's precision construct collapses: error monitoring, deliberation depth, conflict signalling. The medial-frontal-tracking-responsibility result is consistent with the precision bridge but does not isolate precision as such. Also, the in-scanner sample showed no average effect of coercion on agency, only an individual-differences effect -- so the inference is cross-sectional not within-subject manipulation.",
+    "source_context": "Healthy adult fMRI study; participants administered mildly painful electric shocks under free-choice or coerced conditions; intentional-binding measures + explicit responsibility ratings."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Caspar/Haggard collaboration; appropriate task and analysis. Mapping caveat brings the score down -- coercion is not a clean precision manipulation."
+  }
+}

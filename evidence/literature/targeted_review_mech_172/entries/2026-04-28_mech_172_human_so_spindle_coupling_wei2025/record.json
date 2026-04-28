@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_172",
+  "entry_id": "2026-04-28_mech_172_human_so_spindle_coupling_wei2025",
+  "timestamp_utc": "2026-04-28T16:48:59Z",
+  "claim_ids_tested": ["MECH-172"],
+  "source": {
+    "title": "Coupled sleep rhythm disruption predicts cognitive decline in Alzheimer's disease.",
+    "authors": ["Wei T", "Zhou J", "Wang Z", "Liu X", "Mi Y", "Zhao Y", "Xing Y", "Zhao B", "Zhou S", "Liu Y", "Liu Y", "Tang Y"],
+    "year": 2025,
+    "venue": "Science Bulletin",
+    "doi": "10.1016/j.scib.2025.03.023"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Recent (2025) human study with the right design: PSG + MRI + CSF biomarkers + 2-year cognitive follow-up across CN/MCI/AD. SO-theta-burst and SO-spindle coupling progressively disrupt across the disease continuum and predict subsequent decline. This is the human counterpart to Benthem 2020's mouse mechanism and substantially reduces the transfer risk of the broken-consolidation premise. n=93 is moderate but the longitudinal design strengthens the inference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-172's premise that AD degrades the offline consolidation pipeline were wrong, SO-spindle coupling should not disrupt progressively along the disease continuum (it does), should not be linked to amyloid/tau/APOE burden (it is), and should not predict cognitive decline (it does)."
+  ],
+  "tags": ["mech_172", "alzheimer", "sleep_consolidation", "so_spindle_coupling", "human", "longitudinal"],
+  "mapping": {
+    "source_claim_statement": "Across cognitively-normal, MCI-due-to-AD, and AD-dementia groups, SO-theta-burst coupling and SO-spindle coupling progressively disrupt. APOE epsilon-4 and amyloid/tau burden are associated with disrupted coupling. Hippocampal atrophy is linked to SO-theta disruption; medial PFC atrophy to SO-spindle disruption. Coupling disruption predicts accelerated 2-year cognitive decline.",
+    "ree_translation": "MECH-172's broken-consolidation premise, but in humans and along the disease trajectory: the same coupling disruption Benthem documents in 3xTg mice is observed, progressively, in human MCI and AD, tracks the AD biomarker profile, and is causally upstream of subsequent decline. The procedural/habit channel is not directly tested here, but the consolidation-pipeline failure is.",
+    "mapping_caveat": "Like Benthem, this paper documents the broken-pipeline half of MECH-172 but not the preserved-habit half. The procedural-memory dissociation has to come from separate sources (Schmitz 2014, Knowlton 1996, Holl 2012). Wei measures global cognitive decline, not procedural-vs-declarative dissociation specifically -- so the narrowness of MECH-172's selective-impairment prediction is not directly tested.",
+    "source_context": "Human PSG study; n=93 across CN (n=22), MCI-due-to-AD (n=38), AD-dementia (n=33); CSF amyloid/tau biomarkers; structural MRI; 2-year longitudinal cognitive follow-up."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.18,
+    "notes": "Recent 2025 publication; human longitudinal design substantially reduces transfer risk vs mouse models. The targeted hippocampal-vs-mPFC anatomical dissociation is a useful constraint for MECH-172's specificity."
+  }
+}
