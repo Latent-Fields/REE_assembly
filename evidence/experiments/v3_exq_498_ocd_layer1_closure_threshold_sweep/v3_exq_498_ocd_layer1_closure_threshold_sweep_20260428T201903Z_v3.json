@@ -1,0 +1,270 @@
+{
+  "run_id": "v3_exq_498_ocd_layer1_closure_threshold_sweep_20260428T201903Z_v3",
+  "experiment_type": "v3_exq_498_ocd_layer1_closure_threshold_sweep",
+  "claim_ids": [
+    "SD-034"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260428T201903Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory"
+  },
+  "evidence_direction_note": "OCD Layer 1 closure-threshold-sweep diagnostic. PASS supports the architectural reading that monostrategy in V3 is partly explained by SD-034 closure-domain-predicate over-tightening and is parameter-tuneable; further SD-034 thresholding work is fruitful before pulling SD-045 / SD-046 forward. FAIL is non_contributory for SD-034 (the substrate is unchanged and validated by EXQ-460/466) and diagnostically positive for escalating to Layer 2 (MECH-290 ablation) or Layer 3 (SD-046 pull-forward). NOT governance evidence on SD-034 correctness.",
+  "pass_criteria_summary": {
+    "gate_rule": "at AT LEAST ONE of ['LOOSE', 'VERY_LOOSE'], entropy(arm) > entropy(DEFAULT) + 0.1 in >= 2/3 seeds",
+    "arm_lifts": [
+      {
+        "arm": "LOOSE",
+        "per_seed": [
+          {
+            "seed": 42,
+            "default_entropy": 0.0,
+            "arm_entropy": 0.0,
+            "lift": 0.0,
+            "passed": false
+          },
+          {
+            "seed": 7,
+            "default_entropy": 0.0,
+            "arm_entropy": 0.0,
+            "lift": 0.0,
+            "passed": false
+          },
+          {
+            "seed": 13,
+            "default_entropy": 0.0,
+            "arm_entropy": 0.0,
+            "lift": 0.0,
+            "passed": false
+          }
+        ],
+        "seeds_passing": 0,
+        "seeds_required": 2,
+        "arm_passed": false
+      },
+      {
+        "arm": "VERY_LOOSE",
+        "per_seed": [
+          {
+            "seed": 42,
+            "default_entropy": 0.0,
+            "arm_entropy": 0.0,
+            "lift": 0.0,
+            "passed": false
+          },
+          {
+            "seed": 7,
+            "default_entropy": 0.0,
+            "arm_entropy": 0.0,
+            "lift": 0.0,
+            "passed": false
+          },
+          {
+            "seed": 13,
+            "default_entropy": 0.0,
+            "arm_entropy": 0.0,
+            "lift": 0.0,
+            "passed": false
+          }
+        ],
+        "seeds_passing": 0,
+        "seeds_required": 2,
+        "arm_passed": false
+      }
+    ],
+    "any_arm_passed": false,
+    "pass": false
+  },
+  "per_arm_seed_results": [
+    {
+      "arm": "TIGHT",
+      "closure_rule_delta_threshold": 0.0001,
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 9
+    },
+    {
+      "arm": "DEFAULT",
+      "closure_rule_delta_threshold": 0.001,
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 9
+    },
+    {
+      "arm": "LOOSE",
+      "closure_rule_delta_threshold": 0.005,
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 9
+    },
+    {
+      "arm": "VERY_LOOSE",
+      "closure_rule_delta_threshold": 0.05,
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 9
+    },
+    {
+      "arm": "TIGHT",
+      "closure_rule_delta_threshold": 0.0001,
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 11
+    },
+    {
+      "arm": "DEFAULT",
+      "closure_rule_delta_threshold": 0.001,
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 11
+    },
+    {
+      "arm": "LOOSE",
+      "closure_rule_delta_threshold": 0.005,
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 11
+    },
+    {
+      "arm": "VERY_LOOSE",
+      "closure_rule_delta_threshold": 0.05,
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 11
+    },
+    {
+      "arm": "TIGHT",
+      "closure_rule_delta_threshold": 0.0001,
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "0": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 12
+    },
+    {
+      "arm": "DEFAULT",
+      "closure_rule_delta_threshold": 0.001,
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "0": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 12
+    },
+    {
+      "arm": "LOOSE",
+      "closure_rule_delta_threshold": 0.005,
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "0": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 12
+    },
+    {
+      "arm": "VERY_LOOSE",
+      "closure_rule_delta_threshold": 0.05,
+      "seed": 13,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "0": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_closure_fires": 0,
+      "n_external_hazard_events": 12
+    }
+  ],
+  "config": {
+    "arms": [
+      {
+        "name": "TIGHT",
+        "closure_rule_delta_threshold": 0.0001
+      },
+      {
+        "name": "DEFAULT",
+        "closure_rule_delta_threshold": 0.001
+      },
+      {
+        "name": "LOOSE",
+        "closure_rule_delta_threshold": 0.005
+      },
+      {
+        "name": "VERY_LOOSE",
+        "closure_rule_delta_threshold": 0.05
+      }
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "entropy_lift_min": 0.1,
+    "curriculum_interval": 50,
+    "curriculum_prob": 0.5,
+    "curriculum_adjacent_only": true
+  }
+}
