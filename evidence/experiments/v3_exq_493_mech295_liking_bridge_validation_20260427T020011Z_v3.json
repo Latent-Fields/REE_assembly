@@ -12,13 +12,13 @@
     "SD-015",
     "MECH-117"
   ],
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "MECH-295": "supports",
-    "SD-012": "non_contributory",
-    "SD-014": "non_contributory",
-    "SD-015": "non_contributory",
-    "MECH-117": "non_contributory"
+    "MECH-295": "superseded",
+    "SD-012": "superseded",
+    "SD-014": "superseded",
+    "SD-015": "superseded",
+    "MECH-117": "superseded"
   },
   "result": "PASS",
   "metrics": {
@@ -60,5 +60,6 @@
     }
   },
   "elapsed_seconds": 3.0355069637298584,
-  "notes": "MECH-295 weak-reading bridge validation diagnostic. Tests substrate wiring (UC1-UC3) and the falsifiable cue-side necessity signature (UC4 cue active produces approach pull; UC5 cue severed produces zero bias even with write side intact). UC6 confirms the MECH-094 simulation gate is honoured. MECH-295 listed as primary claim; SD-012 / SD-014 / SD-015 / MECH-117 are tagged as architectural prerequisites only (non_contributory direction -- this experiment does not test their independent claims). Behavioural EXQ-483-style approach_commit recovery is deferred to a successor experiment after V3-EXQ-490 (MECH-269b) and this bridge land together."
+  "notes": "MECH-295 weak-reading bridge validation diagnostic. Tests substrate wiring (UC1-UC3) and the falsifiable cue-side necessity signature (UC4 cue active produces approach pull; UC5 cue severed produces zero bias even with write side intact). UC6 confirms the MECH-094 simulation gate is honoured. MECH-295 listed as primary claim; SD-012 / SD-014 / SD-015 / MECH-117 are tagged as architectural prerequisites only (non_contributory direction -- this experiment does not test their independent claims). Behavioural EXQ-483-style approach_commit recovery is deferred to a successor experiment after V3-EXQ-490 (MECH-269b) and this bridge land together.",
+  "evidence_direction_note": "2026-04-28T22Z governance: Superseded by v3_exq_493_mech295_liking_bridge_validation_20260427T080304Z_v3 (deterministic re-run replica; not independent evidence)."
 }

@@ -12,8 +12,8 @@
   "outcome": "FAIL",
   "timestamp_utc": "20260428T203517Z",
   "supersedes": "V3-EXQ-418e",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_note": "SD-016 Path 4 query-selectivity-first 4-arm. PASS = learnable attention temperature + entropy-minimisation loss (B1, B3) clears the uniform attention rail AND produces behavioural delta vs no-selectivity controls (B0, B2). The strong test: selectivity alone produces a behavioural delta (C4) AND adds on top of diversification (C5). FAIL on C1 invalidates Path 4 as wired (raise lambda_attn_ent or rescale init log_tau before re-running). FAIL on C2 invalidates the ablation -- something other than selectivity moved attention. FAIL on C4 with C1 PASS would mean attention sharpened but cue_context still does not propagate behaviourally; bottleneck is downstream of ContextMemory and Path 4 alone is insufficient. FAIL on C5 with C4 PASS = selectivity alone suffices, diversification adds nothing -- still informative but the experiment-level PASS bar is C1+C2+C3+C4+C5.",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "2026-04-28T22Z governance: Reclassified does_not_support -> non_contributory. C1+C2+C3 PASS confirms substrate-side fixes (learnable temperature + entropy-minimisation loss) work as designed; C4+C5 FAIL traced to env-entropy precondition gap (action_class_entropy=1.105e-10 IDENTICAL across all 4 arms regardless of substrate arm; cue_context produces zero behavioural delta because z_world is near-constant cos~0.998). Substrate verdict deferred to env-entropy-corrected retest per substrate_queue.json status=parked_pending_env_entropy_precondition (recorded 2026-04-28T21:05Z). Validation_experiment now V3-EXQ-418h (FAIL today; broader env enrichment scoping needed). NOT counter-evidence to SD-016.",
   "acceptance_checks": {
     "C1_selectivity_arms_clear_uniform_rail": {
       "pass": true,
@@ -330,5 +330,8 @@
     "rem_enabled": false,
     "shy_enabled": false,
     "dry_run": false
+  },
+  "evidence_direction_per_claim": {
+    "SD-016": "non_contributory"
   }
 }

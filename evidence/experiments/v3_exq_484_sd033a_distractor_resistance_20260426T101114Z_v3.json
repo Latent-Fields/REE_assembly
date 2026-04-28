@@ -11,11 +11,11 @@
     "MECH-262"
   ],
   "result": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-033a": "weakens",
-    "MECH-261": "weakens",
-    "MECH-262": "weakens"
+    "SD-033a": "superseded",
+    "MECH-261": "superseded",
+    "MECH-262": "superseded"
   },
   "metrics": {
     "arm_a_external_task": {
@@ -60,5 +60,6 @@
     "gate_tol": 0.02
   },
   "elapsed_seconds": 0.1299591064453125,
-  "notes": "MECH-262 signature (ii) distractor-resistance test. Pinning the SalienceCoordinator operating_mode and reading the real MECH-261 registry-emitted write_gate('sd_033a'), then driving LateralPFCAnalog.update() with continuous distractor input for N ticks. Replay-mode arm should freeze rule_state (gate ~ 0.05); task-mode and planning-mode arms should drift (gate ~ 1.0). The contrast confirms the registry semantics translate end-to-end into the rule-persistence behaviour MECH-262 names. Signatures (i) abstraction and (iv) trained-head emergence remain deferred (head untrained per SD-033a landing decision A2)."
+  "notes": "MECH-262 signature (ii) distractor-resistance test. Pinning the SalienceCoordinator operating_mode and reading the real MECH-261 registry-emitted write_gate('sd_033a'), then driving LateralPFCAnalog.update() with continuous distractor input for N ticks. Replay-mode arm should freeze rule_state (gate ~ 0.05); task-mode and planning-mode arms should drift (gate ~ 1.0). The contrast confirms the registry semantics translate end-to-end into the rule-persistence behaviour MECH-262 names. Signatures (i) abstraction and (iv) trained-head emergence remain deferred (head untrained per SD-033a landing decision A2).",
+  "evidence_direction_note": "2026-04-28T22Z governance: Superseded by v3_exq_484_sd033a_distractor_resistance_20260427T054449Z_v3 (deterministic re-run replica; not independent evidence)."
 }

@@ -15,7 +15,7 @@
   "evidence_direction_per_claim": {
     "SD-033b": "supports",
     "MECH-261": "supports",
-    "MECH-263": "supports"
+    "MECH-263": "non_contributory"
   },
   "metrics": {
     "UC1_instantiation": {
@@ -52,5 +52,6 @@
     }
   },
   "elapsed_seconds": 0.07930898666381836,
-  "notes": "SD-033b landing diagnostic. Tests substrate wiring; bias head is frozen-random with last Linear zeroed (initial output = 0) so UC3 is a check on the zero-init contract, not a claim about biological bias function. MECH-263 functional signatures -- (a) devaluation sensitivity and (b) same-sensory-input / different-task-role discrimination -- remain deferred to behavioural EXQs that require environment work (outcome relabelling, perceptually-identical / task-distinct state pairs)."
+  "notes": "SD-033b landing diagnostic. Tests substrate wiring; bias head is frozen-random with last Linear zeroed (initial output = 0) so UC3 is a check on the zero-init contract, not a claim about biological bias function. MECH-263 functional signatures -- (a) devaluation sensitivity and (b) same-sensory-input / different-task-role discrimination -- remain deferred to behavioural EXQs that require environment work (outcome relabelling, perceptually-identical / task-distinct state pairs).",
+  "evidence_direction_note": "2026-04-28T22Z governance: MECH-263 reclassified non_contributory: experiment tests SD-033b substrate wiring (UC1-UC5) only; MECH-263 functional signatures (a) devaluation sensitivity and (b) perceptually-identical / task-distinct discrimination remain DEFERRED. Tagging MECH-263 supports would violate claim_ids accuracy rule (per canonical EXQ-048 incident). MECH-261 + SD-033b retained as supports (registry semantics + substrate landing). Canonical replica retained; 3 deterministic re-runs marked superseded."
 }

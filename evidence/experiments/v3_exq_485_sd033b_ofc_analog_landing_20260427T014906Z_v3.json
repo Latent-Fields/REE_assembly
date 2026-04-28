@@ -11,11 +11,11 @@
     "MECH-263"
   ],
   "result": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-033b": "supports",
-    "MECH-261": "supports",
-    "MECH-263": "supports"
+    "SD-033b": "superseded",
+    "MECH-261": "superseded",
+    "MECH-263": "superseded"
   },
   "metrics": {
     "UC1_instantiation": {
@@ -52,5 +52,6 @@
     }
   },
   "elapsed_seconds": 0.09439611434936523,
-  "notes": "SD-033b landing diagnostic. Tests substrate wiring; bias head is frozen-random with last Linear zeroed (initial output = 0) so UC3 is a check on the zero-init contract, not a claim about biological bias function. MECH-263 functional signatures -- (a) devaluation sensitivity and (b) same-sensory-input / different-task-role discrimination -- remain deferred to behavioural EXQs that require environment work (outcome relabelling, perceptually-identical / task-distinct state pairs)."
+  "notes": "SD-033b landing diagnostic. Tests substrate wiring; bias head is frozen-random with last Linear zeroed (initial output = 0) so UC3 is a check on the zero-init contract, not a claim about biological bias function. MECH-263 functional signatures -- (a) devaluation sensitivity and (b) same-sensory-input / different-task-role discrimination -- remain deferred to behavioural EXQs that require environment work (outcome relabelling, perceptually-identical / task-distinct state pairs).",
+  "evidence_direction_note": "2026-04-28T22Z governance: Superseded by v3_exq_485_sd033b_ofc_analog_landing_20260427T054454Z_v3 (deterministic re-run replica; not independent evidence). Original outcome PASS preserved in audit trail."
 }

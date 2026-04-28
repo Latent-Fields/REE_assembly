@@ -10217,6 +10217,20 @@
     - INV-028
     - INV-029
     - INV-042
+  evidence_quality_note: >
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
+    2026-04-28 added 2 deliberately-bracketing entries (SEP Deontological
+    Ethics, SEP Kant Moral Philosophy) at per-paper conf <0.50 with
+    explicit mapping_caveat that REE INV-025/027/029 lack clean
+    deontological analogues. Aggregator-floor effect visible: per-paper
+    avg ~0.45 but claim-level lit_conf=0.632. Aggregator-floor flag
+    raised in 5 consecutive cycles -- treat claim-level lit-confidence
+    as upper bound, not point estimate, until indexer scoring is
+    revised. Synthesis verdict: Q-025 is best answered as
+    minimally-strict (irreversible category-class harm under low
+    epistemic uncertainty) rather than maximally-strict (lexical
+    deontological priorities); deontological framings do not map cleanly
+    to REE's residue-field / categorical-harm scaffold.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10234,6 +10248,17 @@
     - INV-028
     - INV-029
     - INV-042
+  evidence_quality_note: >
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
+    2026-04-28 added 2 entries (SEP Kant Moral Philosophy, SEP Ross
+    prima facie duties) at per-paper conf <0.50. Ross specifically
+    weakens the FORM of Q-026 -- universal action requirements may not
+    exist; only universal CONSIDERATION sets / Rossian prima facie
+    duties. Aggregator-floor effect visible: per-paper avg ~0.45 but
+    claim-level lit_conf=0.617. Recommend reframing Q-026 to operate
+    at INV-042 derived-objectives level (context-sensitive obligations
+    derived from the axioms) rather than seeking universal action-level
+    requirements. Aggregator-floor flag raised in 5 consecutive cycles.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10247,6 +10272,21 @@
   depends_on:
     - INV-025
     - ARC-024
+  evidence_quality_note: >
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
+    2026-04-28 added 3 entries (Sunstein 2006 Cornell Law Review on
+    option-value vs qualitatively-distinctive irreversibility, Tarsney/
+    Thomas/MacAskill 2024 SEP "Moral Decision-Making Under Uncertainty"
+    on MFT/MEC/lexical-priority menu and fanaticism objection, IEP
+    Precautionary Principles on threat-not-certainty trigger and
+    maximin/minimax-regret operationalisations). Synthesis verdict for
+    REE: a defensible Q-027 answer is graded probability-weighted
+    treatment of irreversibility (foreclosed-reachability +
+    categorical-class scaffold tied to INV-026/INV-029) under a
+    regret-minimising decision rule -- NOT lexical priority. Lit_conf
+    0.663 with aggregator-floor caveat (per-paper conf 0.38-0.48 but
+    claim-level inflated). Aggregator-floor flag raised in 5
+    consecutive cycles.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10263,6 +10303,18 @@
     - INV-027
     - INV-028
     - INV-029
+  evidence_quality_note: >
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
+    2026-04-28 added 2 entries (McConnell 2022 SEP "Moral Dilemmas" on
+    obligation/prohibition typology and Ross's objection to strict
+    hierarchy; Williams 1965 "Ethical Consistency" on moral residue /
+    agent-regret as constraint on adequate resolution). Synthesis
+    verdict: Q-028 should be answered by a context-sensitive comparator
+    + residue mechanism (NOT a fixed self/other priority); REE's
+    residue-field representation is structurally suited to the residue
+    role (Williams 1965 explicitly licenses this framing). Lit_conf
+    0.625 with aggregator-floor caveat (per-paper conf 0.42-0.46).
+    Aggregator-floor flag raised in 5 consecutive cycles.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -11820,6 +11872,27 @@
   depends_on:
     - MECH-175
     - MECH-173
+  evidence_quality_note: >
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
+    2026-04-28T11Z added 5 entries to new dir
+    targeted_review_q_031/. Cumulative-dose limb (b): Gray 2015 ACT
+    cohort (PMID 25621434, supports/0.78), Coupland 2019 QResearch (PMID
+    31233095, supports/0.82, bladder antimuscarinic AOR 1.65). REM-
+    mediator limb (a): Pase 2017 Framingham (PMID 28835407, supports
+    /0.78), Kim & Jeong 1999 (PMID 10389227, supports/0.62). Mechanistic
+    constraint: Grace-Vanstone-Horner 2014 (PMID 25339734, mixed/0.70 --
+    pontine SubC scopolamine does NOT abolish REM; modulates transitions
+    + REM-theta but is not the generator -- weakens strong pathway-1
+    reading). Synthesis verdict: limb (b) cumulative-dose --> dementia
+    well-supported (Gray + Coupland); the bladder-antimuscarinic-to-
+    mirabegron clinical hypothesis has its empirical foundation but no
+    natural-experiment test yet. Limb (a) supported via REM% --> dementia
+    + ACh --> REM%, but Grace 2014 suggests transition reliability +
+    REM-theta integrity may be the right mediator rather than total REM
+    amount. Mediation-analysis sub-question has no published direct
+    test -- flagged. Lit_conf 0.87 with aggregator-floor caveat
+    (per-paper conf 0.62-0.82 vs claim-level 0.87). Aggregator-floor
+    flag raised in 5 consecutive cycles.
   notes: >
     Registered 2026-04-05. Distinguishing the two anticholinergic pathways
     has direct clinical implications: if the nocturnal REM suppression
@@ -16002,6 +16075,32 @@
     Q-040 itself remains open at lower confidence; Q-040a and Q-040b can be
     promoted to candidate-mechanism / candidate-question status if the
     architectural reading firms up after /diagnose-errors lands.
+
+    2026-04-28T22Z governance update: V3-EXQ-490b (smoke-threshold-
+    override path queued by /diagnose-errors 2026-04-27T14:55Z) ran and
+    FAILed with evidence_direction=inconclusive. C1 gate-firing
+    precondition NOW PASSes (substrate-readiness diagnostic from the
+    threshold override worked), but C2 (non-zero approach_commit) and
+    C3 (non-zero dACC score-bias) BOTH FAIL across all seeds. This is
+    the "MECH-269b necessary but not sufficient" branch -- points
+    directly at MECH-295 liking-bridge as the dominant remaining
+    blocker. Notably MECH-295 is now ALSO landed (V3-EXQ-493 PASS this
+    cycle), so a successor experiment that runs both ON together
+    (broadcast override + dACC + drive modulation + V_s gate + liking
+    bridge) is the natural next gate for Q-040b. Q-040a effectively
+    answered (PASS at threshold-overridden smoke scale).
+  evidence_quality_note: >
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
+    2026-04-27 added 4 entries (Hayden 2011, Treuting 2025,
+    Brown-Braver 2007, Thonnard 2021) on V_s -> E1/E2 forward-
+    prediction generalisation; lit_conf 0.84. Lit supports MECH-269b
+    necessity but does not license sufficiency promotion. Combined
+    with V3-EXQ-490b FAIL today (Q-040a effectively PASS at threshold-
+    overridden scale, Q-040b FAILs in current substrate), the
+    architectural reading firms: MECH-269b necessary but not
+    sufficient; MECH-295 liking-bridge is the dominant remaining
+    blocker; successor EXQ should test both ON together. Aggregator-
+    floor flag continues.
   location: docs/architecture/v_s_invalidation_runtime.md
 
 # ---------------------------------------------------------------------------
@@ -19019,7 +19118,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
@@ -19074,7 +19173,24 @@
     proper substrate address, distinct from the subjective-valuation
     function covered by SD-033c / ARC-035 / MECH-151 / MECH-152.
   evidence_quality_note: >
-    Registered pre-implementation. See SD-033 parent.
+    Substrate IMPLEMENTED 2026-04-25 in
+    ree-v3/ree_core/pfc_analogs/ofc_analog.py (per
+    REE_assembly/evidence/planning/substrate_queue.json
+    implementation_status=implemented). 2026-04-28T22Z governance:
+    v3_pending flipped from true to false based on V3-EXQ-485 substrate-
+    landing PASS (canonical run 20260427T054454Z + 3 deterministic re-run
+    replicas marked superseded; UC1-UC5 all PASS: instantiation, gate
+    modulates update, bias zero at init, backward-compat, reset clears
+    state code). Lit anchors (Wilson-Niv 2014 cognitive-map, Schuck-Niv
+    2016 fMRI MVPA, Bradfield-Hart-Balleine 2018 anterior-mOFC lesion,
+    Stalnaker 2021, Zhou 2019, Howard-Kahnt 2017) provide converging
+    theoretical / human-imaging / primate-lesion / rodent-lesion
+    evidence; lit_conf 0.863. Status remains candidate -- behavioural
+    validation of SD-033b's distinct-from-anchor-field claim and
+    MECH-263 functional signatures (devaluation sensitivity,
+    perceptually-identical / task-distinct discrimination) remain
+    deferred to a successor EXQ. Promotion to provisional requires that
+    successor.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033c
   title: "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster."
@@ -19353,7 +19469,7 @@
   claim_type: design_decision
   subject: governance.closure_operator
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   v3_pending: false
   implementation_note: >
@@ -19886,7 +20002,7 @@
   claim_type: mechanism_hypothesis
   subject: salience.asymmetric_mode_hysteresis
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   v3_pending: false
   implementation_note: >
@@ -19998,7 +20114,7 @@
   claim_type: mechanism_hypothesis
   subject: hippocampal.mode_conditioned_proposals
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   v3_pending: false
   implementation_note: >
@@ -20116,7 +20232,7 @@
   claim_type: mechanism_hypothesis
   subject: dacc.conflict_saturation
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   v3_pending: false
   implementation_note: >
