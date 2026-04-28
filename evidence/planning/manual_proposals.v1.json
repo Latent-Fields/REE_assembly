@@ -945,6 +945,29 @@
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null
+    },
+    {
+      "proposal_id": "EXP-0169",
+      "claim_id": "MECH-290",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "status": "gated",
+      "added_utc": "2026-04-28",
+      "prerequisites": [
+        "V3-EXQ-498 (OCD Layer 1 closure-threshold-sweep diagnostic) complete with FAIL outcome -- closure-threshold tuning ALONE does not attenuate baseline V3 monostrategy across the swept range",
+        "If V3-EXQ-498 PASSes, this proposal becomes lower-priority because Layer 1 is the dominant monostrategy contributor and Layer 2 contribution may be secondary"
+      ],
+      "objective": "Test OCD Layer 2 hypothesis from REE_assembly/docs/architecture/psychiatric_failure_modes.md (2026-04-28 OCD section): does the MECH-290 backward credit sweep -- which reinforces residue terrain along committed trajectories via VALENCE_WANTING writes scaled by gamma decay from outcome quality -- contribute to V3 monostrategy by self-reinforcing the planner's preferred trajectory shape? PASS = ablating MECH-290 attenuates baseline monostrategy; supports Layer 2 (chunk-side runaway analogue) as a contributor and licenses SD-045 action_chunk_cache pull-forward to V3 to add an explicit chunk No-Go (the architectural fix). FAIL = MECH-290 ablation has no monostrategy effect; rules out Layer 2, escalates to Layer 3 (SD-046 multi-slot GoalState pull-forward) as the next architectural diagnostic.",
+      "design": "Discriminative pair, MECH-290 ON vs OFF, matched seeds. Base agent identical to V3-EXQ-498 base (SD-034 active, V_s circuit OFF, all abstraction substrates OFF) so the only manipulated variable is the MECH-290 backward sweep. Use HippocampalConfig.use_backward_credit_sweep flag (already wired per ree-v3/CLAUDE.md MECH-290 section). Arms: ON (use_backward_credit_sweep=True, default behavior with backward_sweep_min_quality=0.6) vs OFF (use_backward_credit_sweep=False). 3 seeds (42, 7, 13) matched across arms. Environment: CausalGridWorldV2 mirroring V3-EXQ-482 baseline (SD-029 curriculum ON, 6 episodes x 200 steps). Primary metric: action_class_entropy (Shannon entropy over executed action-class histogram) -- mirrors V3-EXQ-482 / V3-EXQ-498 protocol for direct comparability. Secondary: trajectory_variance (route-shape diversity) and n_credit_sweep_writes (sanity that MECH-290 fired in ON arm). Pre-registered threshold: PASS = entropy(MECH-290 OFF) > entropy(MECH-290 ON) + 0.1 in >= 2/3 seeds. FAIL = entropy(OFF) <= entropy(ON) + 0.05 across all seeds (MECH-290 ablation has no measurable monostrategy effect).",
+      "claims_tested": [
+        "MECH-290"
+      ],
+      "notes": "OCD Layer 2 hypothesis test. The architectural reading: without an action-chunk cache substrate (SD-045 -- V4 default with V3 pull-forward), every action goes through model-based planning, and MECH-290 backward credit sweep reinforces residue terrain along the planner's chosen trajectories -- this self-reinforcement IS a chunk cache, just one with no chunk-level No-Go. The planner becomes increasingly biased toward the same trajectory shape because the residue field rewards it. PASS confirms this self-reinforcement loop is a meaningful monostrategy contributor; FAIL rules out Layer 2 and points the architectural diagnostic toward Layer 3 (single-slot GoalState forces single strategy structurally, not parametrically). The ON arm uses MECH-290 default config (backward_sweep_gamma=0.9, backward_sweep_min_quality=0.6); the OFF arm sets use_backward_credit_sweep=False. Both arms keep ResidueField + valence writes intact -- only the post-commit credit-sweep path is ablated. This is the cheapest Layer 2 test (one config flag flip; no new substrate). Independent of EXQ-490/490b V_s pathway. Successor experiments if PASS: (a) gradient sweep of backward_sweep_gamma to find the threshold where self-reinforcement attenuation breaks the OCD-runaway pattern without losing legitimate goal-directed credit assignment, (b) SD-045 pull-forward design pass for an explicit chunk No-Go that operates without ablating the credit sweep. Successor if FAIL: SD-046 design pass for multi-slot GoalState architecture (Layer 3). Candidate script name: v3_exq_499_ocd_layer2_mech290_ablation.py. See REE_assembly/docs/architecture/psychiatric_failure_modes.md OCD section.",
+      "script_path": null,
+      "reserved_queue_id": null,
+      "queued_utc": null
     }
   ]
 }

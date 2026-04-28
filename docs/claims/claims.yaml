@@ -23436,6 +23436,32 @@
     pull-forward candidate. Connects to MECH-266 asymmetric mode
     hysteresis (which currently operates per-mode; multi-goal would
     require a parallel per-goal hysteresis dimension).
+
+    DEFINITIVE V3 PULL-FORWARD TRIGGER (added 2026-04-28): SD-046
+    becomes definitively V3-scope -- not V4-default with conditional
+    pull-forward, but V3-required -- if BOTH of the following Layer-1
+    and Layer-2 OCD-derived monostrategy diagnostics return FAIL:
+    (1) V3-EXQ-498 (queued 2026-04-28; OCD Layer 1 closure-threshold
+    sweep) FAILs to attenuate monostrategy via SD-034 parameter tuning
+    alone, AND (2) EXP-0169 (OCD Layer 2 MECH-290 backward-credit-sweep
+    ablation; gated pending V3-EXQ-498 result, registered in
+    `evidence/planning/manual_proposals.v1.json` 2026-04-28) FAILs to
+    attenuate monostrategy via residue-self-reinforcement ablation.
+    Under the OCD three-layer architectural model
+    (REE_assembly/docs/architecture/psychiatric_failure_modes.md
+    2026-04-28 OCD section), Layer 1 (SD-034 closure threshold) and
+    Layer 2 (MECH-290 chunk-runaway analogue) being ruled out leaves
+    Layer 3 (SD-046 multi-slot GoalState absent) as the architectural
+    explanation by elimination -- the failure mode is structural
+    (single-slot GoalState forces single strategy), not parametric.
+    At that point, V3 cannot demonstrate monostrategy escape under
+    its current substrate vocabulary and SD-046 must land in V3 to
+    unblock V3-EXQ-495 V3-full-completion-gate successors and the
+    SD-029 retest cluster. The lit-pull on multi-goal arbitration
+    (anchor candidates listed in evidence_quality_note below) should
+    be commissioned in advance of the V3-EXQ-498 + EXP-0169 outcome
+    so the substrate design can begin immediately on the FAIL+FAIL
+    branch without further gating.
   evidence_quality_note: >
     Registered candidate without a dedicated lit-pull. Architectural
     motivation comes from monostrategy debugging in V3 plus the OCD over
