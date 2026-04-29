@@ -1,0 +1,139 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3",
+  "experiment_type": "v3_exq_499_mech094_hypothesis_tag_writegate_discriminative",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-04-29T18:47:30.213784Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-094"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-094": "supports"
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "min_seeds_required": 2,
+    "c1_contamination_seeds_pass": 3,
+    "c2_confabulation_seeds_pass": 3,
+    "c3_routing_separation_seeds_pass": 3,
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "overall_pass": true
+  },
+  "registered_thresholds": {
+    "C1_ARM_A_MAX_CONTAMINATION": 0.05,
+    "C1_ARM_B_MIN_CONTAMINATION": 0.5,
+    "C1_MIN_ARM_DELTA": 0.4,
+    "C2_ARM_A_MAX_CONFABULATION": 0.05,
+    "C2_ARM_B_MIN_CONFABULATION": 0.3,
+    "C3_ARM_A_MIN_SEPARATION": 0.5,
+    "C3_ARM_B_MAX_SEPARATION": 0.05,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666
+  },
+  "config": {
+    "world_dim": 32,
+    "num_basis_functions": 64,
+    "n_real": 50,
+    "n_sim": 50,
+    "harm_magnitude": 0.5,
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "results_arm_a_tag_routing_on": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_A_tag_routing_on",
+      "sim_event_tag_passed": true,
+      "n_real_events": 50,
+      "n_sim_events": 50,
+      "real_weight_delta_total": 2.5000014305114746,
+      "sim_weight_delta_total": 0.0,
+      "real_signature_median_after": 0.05000000447034836,
+      "sim_signature_median_after": 0.0,
+      "contamination_index": 0.0,
+      "confabulation_rate": 0.0,
+      "routing_separation": 0.6931471805599453
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_A_tag_routing_on",
+      "sim_event_tag_passed": true,
+      "n_real_events": 50,
+      "n_sim_events": 50,
+      "real_weight_delta_total": 2.50000262260437,
+      "sim_weight_delta_total": 0.0,
+      "real_signature_median_after": 0.05000000074505806,
+      "sim_signature_median_after": 0.0,
+      "contamination_index": 0.0,
+      "confabulation_rate": 0.0,
+      "routing_separation": 0.6931471805599453
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_A_tag_routing_on",
+      "sim_event_tag_passed": true,
+      "n_real_events": 50,
+      "n_sim_events": 50,
+      "real_weight_delta_total": 2.5000288486480713,
+      "sim_weight_delta_total": 0.0,
+      "real_signature_median_after": 0.05000000447034836,
+      "sim_signature_median_after": 0.0,
+      "contamination_index": 0.0,
+      "confabulation_rate": 0.0,
+      "routing_separation": 0.6931471805599453
+    }
+  ],
+  "results_arm_b_tag_routing_off": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_B_tag_routing_off",
+      "sim_event_tag_passed": false,
+      "n_real_events": 50,
+      "n_sim_events": 50,
+      "real_weight_delta_total": 2.500001907348633,
+      "sim_weight_delta_total": 2.500000238418579,
+      "real_signature_median_after": 0.05000000074505806,
+      "sim_signature_median_after": 0.05000000074505806,
+      "contamination_index": 0.9999993320284883,
+      "confabulation_rate": 0.6399999856948853,
+      "routing_separation": 0.0
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_B_tag_routing_off",
+      "sim_event_tag_passed": false,
+      "n_real_events": 50,
+      "n_sim_events": 50,
+      "real_weight_delta_total": 2.5000040531158447,
+      "sim_weight_delta_total": 2.500000476837158,
+      "real_signature_median_after": 0.05000000074505806,
+      "sim_signature_median_after": 0.05000000074505806,
+      "contamination_index": 0.9999985690908458,
+      "confabulation_rate": 0.6399999856948853,
+      "routing_separation": 0.0
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_B_tag_routing_off",
+      "sim_event_tag_passed": false,
+      "n_real_events": 50,
+      "n_sim_events": 50,
+      "real_weight_delta_total": 2.5000150203704834,
+      "sim_weight_delta_total": 2.500006675720215,
+      "real_signature_median_after": 0.05000000074505806,
+      "sim_signature_median_after": 0.05000000074505806,
+      "contamination_index": 0.9999966617599505,
+      "confabulation_rate": 0.6399999856948853,
+      "routing_separation": 0.0
+    }
+  ],
+  "elapsed_seconds": 0.08337521553039551,
+  "notes": "Substrate-level discriminative pair for MECH-094. ARM_A passes hypothesis_tag=True for sim events (gate active); ARM_B passes False for sim events (gate inactive -- the tag-loss pathology predicted to underwrite confabulation / PTSD). Avoids the non_contributory failure mode of V3-EXQ-140 (insufficient harm density in env-loop) by operating directly on ResidueField with a forced-injection design: N_REAL deterministic real events + N_SIM deterministic sim events at disjoint z_world locations. Three pre-registered metrics: (M1) write_channel_contamination_index, (M2) confabulation_rate (sim signatures judged as real), (M3) routing_separation (MI between tag and write_occurred). PASS supports MECH-094 load-bearing status; FAIL with C1 alone passing routes evidence to a downstream consumer gap; FAIL with C1 also failing routes to substrate regression (run /diagnose-errors)."
+}
