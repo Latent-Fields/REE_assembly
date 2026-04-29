@@ -2,33 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 74270,
   "runner_started_at": "2026-04-29T05:58:56.789346+00:00",
-  "last_updated": "2026-04-29T19:27:31.324034+00:00",
+  "last_updated": "2026-04-29T19:27:53.357089+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-502",
-      "backlog_id": "",
-      "claim_id": "MECH-062",
-      "title": "EXP-0173 MECH-062 tri-loop gate coordination",
-      "description": "",
-      "estimated_minutes": 192.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-500",
-      "backlog_id": "",
-      "claim_id": "SD-017",
-      "title": "EXP-0171 SD-017 sleep-phase substrate-readiness probe",
-      "description": "",
-      "estimated_minutes": 1.2,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -6505,6 +6482,34 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2.4
+    },
+    {
+      "queue_id": "V3-EXQ-502",
+      "backlog_id": "",
+      "claim_id": "MECH-062",
+      "title": "EXP-0173 MECH-062 tri-loop gate coordination",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | verdict: FAIL | V3-EXQ-502 MECH-062 tri-loop coordination -- PASS in 0.0s",
+      "started_at": "2026-04-29T19:27:36.409704+00:00",
+      "completed_at": "2026-04-29T19:27:36.568994+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 0.2
+    },
+    {
+      "queue_id": "V3-EXQ-500",
+      "backlog_id": "",
+      "claim_id": "SD-017",
+      "title": "EXP-0171 SD-017 sleep-phase substrate-readiness probe",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | verdict: PASS | V3-EXQ-500 SD-017 sleep-phase readiness -- PASS in 11.0s",
+      "started_at": "2026-04-29T19:27:40.574018+00:00",
+      "completed_at": "2026-04-29T19:27:53.355009+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12.8
     }
   ]
 }
