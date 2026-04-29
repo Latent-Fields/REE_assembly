@@ -1,0 +1,201 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3",
+  "experiment_type": "v3_exq_502_mech062_tri_loop_gate_coordination",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260429T192736Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-062"
+  ],
+  "outcome": "PASS",
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-062": "supports"
+  },
+  "criteria": {
+    "c1_action_stability_stable_seed_passes": 3,
+    "c2_volatile_resilience_seed_passes": 3,
+    "c3_gap_widens_in_volatile_seed_passes": 3,
+    "c4_cross_loop_disagreement_nontrivial_seed_passes": 3,
+    "min_seed_passes_required": 2,
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "c4_pass": true,
+    "overall_pass": true,
+    "paired_deltas": [
+      {
+        "seed": 42,
+        "stable_gap": 0.55,
+        "volatile_gap": 0.9583333333333334,
+        "gap_widening": 0.4083333333333333,
+        "tri_disagreement_rate": 0.44346655352000375
+      },
+      {
+        "seed": 43,
+        "stable_gap": 0.5,
+        "volatile_gap": 0.9083333333333333,
+        "gap_widening": 0.4083333333333333,
+        "tri_disagreement_rate": 0.441035945977838
+      },
+      {
+        "seed": 44,
+        "stable_gap": 0.4916666666666667,
+        "volatile_gap": 0.9416666666666667,
+        "gap_widening": 0.44999999999999996,
+        "tri_disagreement_rate": 0.4405351394949266
+      }
+    ]
+  },
+  "registered_thresholds": {
+    "C1_MIN_STABLE_GAP": 0.03,
+    "C2_MIN_VOLATILE_GAP": 0.12,
+    "C3_MIN_GAP_WIDENING": 0.08,
+    "C4_MIN_TRI_DISAGREEMENT_RATE": 0.15
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "policies": [
+      "TRI_LOOP_COORDINATED",
+      "SINGLE_LIMBIC_LOOP"
+    ],
+    "env_regimes": [
+      "STABLE",
+      "VOLATILE"
+    ],
+    "num_sequences": 120,
+    "sequence_length": 8,
+    "max_wait_steps": 24,
+    "gate_threshold": 0.55
+  },
+  "condition_results": [
+    {
+      "seed": 42,
+      "policy": "TRI_LOOP_COORDINATED",
+      "regime": "STABLE",
+      "condition": "TRI_LOOP_COORDINATED_STABLE",
+      "n_sequences": 120,
+      "action_stability": 1.0,
+      "premature_termination_rate": 0.0,
+      "cross_loop_disagreement_rate": 0.06913089225589225
+    },
+    {
+      "seed": 42,
+      "policy": "SINGLE_LIMBIC_LOOP",
+      "regime": "STABLE",
+      "condition": "SINGLE_LIMBIC_LOOP_STABLE",
+      "n_sequences": 120,
+      "action_stability": 0.45,
+      "premature_termination_rate": 0.55,
+      "cross_loop_disagreement_rate": 0.17933531746031747
+    },
+    {
+      "seed": 42,
+      "policy": "TRI_LOOP_COORDINATED",
+      "regime": "VOLATILE",
+      "condition": "TRI_LOOP_COORDINATED_VOLATILE",
+      "n_sequences": 120,
+      "action_stability": 0.9583333333333334,
+      "premature_termination_rate": 0.0,
+      "cross_loop_disagreement_rate": 0.8178022147841153
+    },
+    {
+      "seed": 42,
+      "policy": "SINGLE_LIMBIC_LOOP",
+      "regime": "VOLATILE",
+      "condition": "SINGLE_LIMBIC_LOOP_VOLATILE",
+      "n_sequences": 120,
+      "action_stability": 0.0,
+      "premature_termination_rate": 1.0,
+      "cross_loop_disagreement_rate": 0.9319444444444445
+    },
+    {
+      "seed": 43,
+      "policy": "TRI_LOOP_COORDINATED",
+      "regime": "STABLE",
+      "condition": "TRI_LOOP_COORDINATED_STABLE",
+      "n_sequences": 120,
+      "action_stability": 1.0,
+      "premature_termination_rate": 0.0,
+      "cross_loop_disagreement_rate": 0.06973452473452474
+    },
+    {
+      "seed": 43,
+      "policy": "SINGLE_LIMBIC_LOOP",
+      "regime": "STABLE",
+      "condition": "SINGLE_LIMBIC_LOOP_STABLE",
+      "n_sequences": 120,
+      "action_stability": 0.5,
+      "premature_termination_rate": 0.5,
+      "cross_loop_disagreement_rate": 0.1971329365079365
+    },
+    {
+      "seed": 43,
+      "policy": "TRI_LOOP_COORDINATED",
+      "regime": "VOLATILE",
+      "condition": "TRI_LOOP_COORDINATED_VOLATILE",
+      "n_sequences": 120,
+      "action_stability": 0.9083333333333333,
+      "premature_termination_rate": 0.0,
+      "cross_loop_disagreement_rate": 0.8123373672211514
+    },
+    {
+      "seed": 43,
+      "policy": "SINGLE_LIMBIC_LOOP",
+      "regime": "VOLATILE",
+      "condition": "SINGLE_LIMBIC_LOOP_VOLATILE",
+      "n_sequences": 120,
+      "action_stability": 0.0,
+      "premature_termination_rate": 1.0,
+      "cross_loop_disagreement_rate": 0.9388888888888889
+    },
+    {
+      "seed": 44,
+      "policy": "TRI_LOOP_COORDINATED",
+      "regime": "STABLE",
+      "condition": "TRI_LOOP_COORDINATED_STABLE",
+      "n_sequences": 120,
+      "action_stability": 1.0,
+      "premature_termination_rate": 0.0,
+      "cross_loop_disagreement_rate": 0.06602693602693603
+    },
+    {
+      "seed": 44,
+      "policy": "SINGLE_LIMBIC_LOOP",
+      "regime": "STABLE",
+      "condition": "SINGLE_LIMBIC_LOOP_STABLE",
+      "n_sequences": 120,
+      "action_stability": 0.5083333333333333,
+      "premature_termination_rate": 0.49166666666666664,
+      "cross_loop_disagreement_rate": 0.15517857142857142
+    },
+    {
+      "seed": 44,
+      "policy": "TRI_LOOP_COORDINATED",
+      "regime": "VOLATILE",
+      "condition": "TRI_LOOP_COORDINATED_VOLATILE",
+      "n_sequences": 120,
+      "action_stability": 0.9416666666666667,
+      "premature_termination_rate": 0.0,
+      "cross_loop_disagreement_rate": 0.8150433429629172
+    },
+    {
+      "seed": 44,
+      "policy": "SINGLE_LIMBIC_LOOP",
+      "regime": "VOLATILE",
+      "condition": "SINGLE_LIMBIC_LOOP_VOLATILE",
+      "n_sequences": 120,
+      "action_stability": 0.0,
+      "premature_termination_rate": 1.0,
+      "cross_loop_disagreement_rate": 0.925
+    }
+  ],
+  "elapsed_seconds": 0.03403496742248535,
+  "notes": "Standalone mechanism experiment for MECH-062. The coordinated policy requires motor, cognitive-set, and motivational gates to agree before advancing a committed sequence; the ablation listens only to the limbic/motivational loop. PASS requires higher action stability in coordinated tri-loop gating, especially under volatile cross-loop disagreement."
+}

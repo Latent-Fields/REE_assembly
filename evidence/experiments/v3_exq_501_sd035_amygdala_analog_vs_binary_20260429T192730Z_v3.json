@@ -1,0 +1,1564 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
+  "experiment_type": "v3_exq_501_sd035_amygdala_analog_vs_binary",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260429T192730Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-035"
+  ],
+  "outcome": "PASS",
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-035": "supports"
+  },
+  "criteria": {
+    "c1_approach_avoid_smoothness_seed_passes": 3,
+    "c2_intermediate_valence_discrimination_seed_passes": 3,
+    "c3_mode_transition_lag_seed_passes": 3,
+    "min_seed_passes_required": 2,
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "overall_pass": true,
+    "paired_deltas": [
+      {
+        "seed": 42,
+        "rmse_reduction": 0.3144377690087856,
+        "intermediate_mae_reduction": 0.5816187534040292,
+        "lag_improvement_steps": 1
+      },
+      {
+        "seed": 43,
+        "rmse_reduction": 0.3076182789616761,
+        "intermediate_mae_reduction": 0.5838379348757904,
+        "lag_improvement_steps": 1
+      },
+      {
+        "seed": 44,
+        "rmse_reduction": 0.315816466789162,
+        "intermediate_mae_reduction": 0.5787583105732336,
+        "lag_improvement_steps": 1
+      }
+    ]
+  },
+  "registered_thresholds": {
+    "C1_MIN_RMSE_REDUCTION": 0.25,
+    "C2_MIN_INTERMEDIATE_MAE_REDUCTION": 0.25,
+    "C3_MIN_LAG_IMPROVEMENT_STEPS": 1,
+    "PASS_SEEDS_REQUIRED": 2
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "conditions": [
+      "ANALOG",
+      "BINARY_SIGN_ONLY"
+    ],
+    "episodes_per_run": 24,
+    "z_harm_a_dim": 16
+  },
+  "condition_results": [
+    {
+      "seed": 42,
+      "condition": "ANALOG",
+      "rows": [
+        {
+          "valence": 0.9896643849943535,
+          "resource_level": 0.9896643849943535,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9511535197196905,
+          "ideal_probability": 0.9812688311467866
+        },
+        {
+          "valence": 0.9082509937564094,
+          "resource_level": 0.9082509937564094,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.938471556323107,
+          "ideal_probability": 0.9742442458836628
+        },
+        {
+          "valence": 0.8320311383713859,
+          "resource_level": 0.8320311383713859,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9238674996741982,
+          "ideal_probability": 0.9653811462381406
+        },
+        {
+          "valence": 0.7483050123375928,
+          "resource_level": 0.7483050123375928,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9042110132183732,
+          "ideal_probability": 0.9522668897403024
+        },
+        {
+          "valence": 0.6373688758338201,
+          "resource_level": 0.6373688758338201,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8712556315591632,
+          "ideal_probability": 0.9275382705829097
+        },
+        {
+          "valence": 0.5745003050046827,
+          "resource_level": 0.5745003050046827,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8485792269172036,
+          "ideal_probability": 0.9087113655502596
+        },
+        {
+          "valence": 0.48093884008149457,
+          "resource_level": 0.48093884008149457,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8088904268552864,
+          "ideal_probability": 0.8725566202120827
+        },
+        {
+          "valence": 0.3829175664873078,
+          "resource_level": 0.3829175664873078,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.7592830186734606,
+          "ideal_probability": 0.8222505626320024
+        },
+        {
+          "valence": 0.30569607050505304,
+          "resource_level": 0.30569607050505304,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.714448437416723,
+          "ideal_probability": 0.7725531601472807
+        },
+        {
+          "valence": 0.22188783748121185,
+          "resource_level": 0.22188783748121185,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.6605314680841189,
+          "ideal_probability": 0.7083845988006675
+        },
+        {
+          "valence": 0.12139991212929502,
+          "resource_level": 0.12139991212929502,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.5900566902912183,
+          "ideal_probability": 0.6190692755103687
+        },
+        {
+          "valence": 0.029274339960081098,
+          "resource_level": 0.029274339960081098,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.5219416539987642,
+          "ideal_probability": 0.5292409354586277
+        },
+        {
+          "valence": -0.043317602226464316,
+          "resource_level": 0.0,
+          "harm_level": 0.043317602226464316,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.5,
+          "ideal_probability": 0.4567904490985394
+        },
+        {
+          "valence": -0.13887564336458758,
+          "resource_level": 0.0,
+          "harm_level": 0.13887564336458758,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.3645887146866913
+        },
+        {
+          "valence": -0.23149738776468395,
+          "resource_level": 0.0,
+          "harm_level": 0.23149738776468395,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.2837390555012353
+        },
+        {
+          "valence": -0.30669017149639843,
+          "resource_level": 0.0,
+          "harm_level": 0.30669017149639843,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.22674888427603457
+        },
+        {
+          "valence": -0.40369618284720443,
+          "resource_level": 0.0,
+          "harm_level": 0.40369618284720443,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.16592537587154418
+        },
+        {
+          "valence": -0.466495482534072,
+          "resource_level": 0.0,
+          "harm_level": 0.466495482534072,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.13400733165250997
+        },
+        {
+          "valence": -0.5599164066816605,
+          "resource_level": 0.0,
+          "harm_level": 0.5599164066816605,
+          "mode_prior": 0.05991643667221069,
+          "fast_prime": 0.04493732750415802,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.32827802473654644,
+          "ideal_probability": 0.09624462210500519
+        },
+        {
+          "valence": -0.6450797766185579,
+          "resource_level": 0.0,
+          "harm_level": 0.6450797766185579,
+          "mode_prior": 0.14507973194122314,
+          "fast_prime": 0.10880979895591736,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.2714176966157528,
+          "ideal_probability": 0.07041584013327319
+        },
+        {
+          "valence": -0.747434112638144,
+          "resource_level": 0.0,
+          "harm_level": 0.747434112638144,
+          "mode_prior": 0.24743425846099854,
+          "fast_prime": 0.1855756938457489,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.2118689101146733,
+          "ideal_probability": 0.04789170576961678
+        },
+        {
+          "valence": -0.8328360769706655,
+          "resource_level": 0.0,
+          "harm_level": 0.8328360769706655,
+          "mode_prior": 0.3328360915184021,
+          "fast_prime": 0.24962706863880157,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.16995939838387752,
+          "ideal_probability": 0.03451140940714359
+        },
+        {
+          "valence": -0.9272931556041896,
+          "resource_level": 0.0,
+          "harm_level": 0.9272931556041896,
+          "mode_prior": 0.427293062210083,
+          "fast_prime": 0.32046979665756226,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.13158729051820992,
+          "ideal_probability": 0.023911992971902465
+        },
+        {
+          "valence": -0.9958171960462635,
+          "resource_level": 0.0,
+          "harm_level": 0.9958171960462635,
+          "mode_prior": 0.4958171844482422,
+          "fast_prime": 0.37186288833618164,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10857140463240782,
+          "ideal_probability": 0.018284124143544266
+        }
+      ],
+      "rmse_to_graded_sigmoid": 0.11479846754439627,
+      "intermediate_valence_mae": 0.08296022540650605,
+      "mode_transition_lag_steps": 0
+    },
+    {
+      "seed": 42,
+      "condition": "BINARY_SIGN_ONLY",
+      "rows": [
+        {
+          "valence": 0.9896643849943535,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9812688311467866
+        },
+        {
+          "valence": 0.9082509937564094,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9742442458836628
+        },
+        {
+          "valence": 0.8320311383713859,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9653811462381406
+        },
+        {
+          "valence": 0.7483050123375928,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9522668897403024
+        },
+        {
+          "valence": 0.6373688758338201,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9275382705829097
+        },
+        {
+          "valence": 0.5745003050046827,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9087113655502596
+        },
+        {
+          "valence": 0.48093884008149457,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.8725566202120827
+        },
+        {
+          "valence": 0.3829175664873078,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.8222505626320024
+        },
+        {
+          "valence": 0.30569607050505304,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.7725531601472807
+        },
+        {
+          "valence": 0.22188783748121185,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.7083845988006675
+        },
+        {
+          "valence": 0.12139991212929502,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.6190692755103687
+        },
+        {
+          "valence": 0.029274339960081098,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.5292409354586277
+        },
+        {
+          "valence": -0.043317602226464316,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.4567904490985394
+        },
+        {
+          "valence": -0.13887564336458758,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.3645887146866913
+        },
+        {
+          "valence": -0.23149738776468395,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.2837390555012353
+        },
+        {
+          "valence": -0.30669017149639843,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.22674888427603457
+        },
+        {
+          "valence": -0.40369618284720443,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.16592537587154418
+        },
+        {
+          "valence": -0.466495482534072,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.13400733165250997
+        },
+        {
+          "valence": -0.5599164066816605,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.09624462210500519
+        },
+        {
+          "valence": -0.6450797766185579,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.07041584013327319
+        },
+        {
+          "valence": -0.747434112638144,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.04789170576961678
+        },
+        {
+          "valence": -0.8328360769706655,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.03451140940714359
+        },
+        {
+          "valence": -0.9272931556041896,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.023911992971902465
+        },
+        {
+          "valence": -0.9958171960462635,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.018284124143544266
+        }
+      ],
+      "rmse_to_graded_sigmoid": 0.16745156362890043,
+      "intermediate_valence_mae": 0.19828858506801197,
+      "mode_transition_lag_steps": 1
+    },
+    {
+      "seed": 43,
+      "condition": "ANALOG",
+      "rows": [
+        {
+          "valence": 1.0,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9820137900379085
+        },
+        {
+          "valence": 0.9212125080004101,
+          "resource_level": 0.9212125080004101,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9406789410687106,
+          "ideal_probability": 0.9755136905750827
+        },
+        {
+          "valence": 0.8259662736851254,
+          "resource_level": 0.8259662736851254,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9225778481302492,
+          "ideal_probability": 0.9645611684478145
+        },
+        {
+          "valence": 0.7395033451706854,
+          "resource_level": 0.7395033451706854,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9018994472787925,
+          "ideal_probability": 0.9506408595532215
+        },
+        {
+          "valence": 0.6400462064473605,
+          "resource_level": 0.6400462064473605,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8721538907403099,
+          "ideal_probability": 0.9282547677115075
+        },
+        {
+          "valence": 0.5614931398746413,
+          "resource_level": 0.5614931398746413,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8434967694287726,
+          "ideal_probability": 0.9043025697510105
+        },
+        {
+          "valence": 0.48786746917727863,
+          "resource_level": 0.48786746917727863,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8120830353779686,
+          "ideal_probability": 0.8756068284736253
+        },
+        {
+          "valence": 0.4018306053799261,
+          "resource_level": 0.4018306053799261,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.7695003060154524,
+          "ideal_probability": 0.8330393079244056
+        },
+        {
+          "valence": 0.2946334692154972,
+          "resource_level": 0.2946334692154972,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.7076298288727361,
+          "ideal_probability": 0.7646840885298679
+        },
+        {
+          "valence": 0.2154133485133932,
+          "resource_level": 0.2154133485133932,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.6561626660291244,
+          "ideal_probability": 0.7030059799577847
+        },
+        {
+          "valence": 0.13809428775634455,
+          "resource_level": 0.13809428775634455,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.6021143831274179,
+          "ideal_probability": 0.6346869321572125
+        },
+        {
+          "valence": 0.04488777799829535,
+          "resource_level": 0.04488777799829535,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.5336150503036405,
+          "ideal_probability": 0.5447675722431935
+        },
+        {
+          "valence": -0.032909601873839595,
+          "resource_level": 0.0,
+          "harm_level": 0.032909601873839595,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.5,
+          "ideal_probability": 0.4671378392222026
+        },
+        {
+          "valence": -0.13426354218406789,
+          "resource_level": 0.0,
+          "harm_level": 0.13426354218406789,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.36887312339276457
+        },
+        {
+          "valence": -0.21941963917928284,
+          "resource_level": 0.0,
+          "harm_level": 0.21941963917928284,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.293659069854043
+        },
+        {
+          "valence": -0.3187731128462261,
+          "resource_level": 0.0,
+          "harm_level": 0.3187731128462261,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.2183867547919137
+        },
+        {
+          "valence": -0.39135618093214536,
+          "resource_level": 0.0,
+          "harm_level": 0.39135618093214536,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.17286961203455609
+        },
+        {
+          "valence": -0.47966519271123104,
+          "resource_level": 0.0,
+          "harm_level": 0.47966519271123104,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.1280109822046938
+        },
+        {
+          "valence": -0.556428853154689,
+          "resource_level": 0.0,
+          "harm_level": 0.556428853154689,
+          "mode_prior": 0.05642884969711304,
+          "fast_prime": 0.04232163727283478,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3307340451872262,
+          "ideal_probability": 0.09746488729870896
+        },
+        {
+          "valence": -0.6470245101199452,
+          "resource_level": 0.0,
+          "harm_level": 0.6470245101199452,
+          "mode_prior": 0.1470245122909546,
+          "fast_prime": 0.11026838421821594,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.2701935845157719,
+          "ideal_probability": 0.06990834939708375
+        },
+        {
+          "valence": -0.740254467137736,
+          "resource_level": 0.0,
+          "harm_level": 0.740254467137736,
+          "mode_prior": 0.2402544617652893,
+          "fast_prime": 0.18019084632396698,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.2157155559018608,
+          "ideal_probability": 0.049218352141790954
+        },
+        {
+          "valence": -0.8367689598798783,
+          "resource_level": 0.0,
+          "harm_level": 0.8367689598798783,
+          "mode_prior": 0.3367690443992615,
+          "fast_prime": 0.2525767832994461,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.16819817430314313,
+          "ideal_probability": 0.033991050163878975
+        },
+        {
+          "valence": -0.907156748581758,
+          "resource_level": 0.0,
+          "harm_level": 0.907156748581758,
+          "mode_prior": 0.40715688467025757,
+          "fast_prime": 0.3053676635026932,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.1390967290102966,
+          "ideal_probability": 0.025865811322422105
+        },
+        {
+          "valence": -1.0,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.01798620996209156
+        }
+      ],
+      "rmse_to_graded_sigmoid": 0.11518231847029517,
+      "intermediate_valence_mae": 0.0820139263818954,
+      "mode_transition_lag_steps": 0
+    },
+    {
+      "seed": 43,
+      "condition": "BINARY_SIGN_ONLY",
+      "rows": [
+        {
+          "valence": 1.0,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9820137900379085
+        },
+        {
+          "valence": 0.9212125080004101,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9755136905750827
+        },
+        {
+          "valence": 0.8259662736851254,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9645611684478145
+        },
+        {
+          "valence": 0.7395033451706854,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9506408595532215
+        },
+        {
+          "valence": 0.6400462064473605,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9282547677115075
+        },
+        {
+          "valence": 0.5614931398746413,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9043025697510105
+        },
+        {
+          "valence": 0.48786746917727863,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.8756068284736253
+        },
+        {
+          "valence": 0.4018306053799261,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.8330393079244056
+        },
+        {
+          "valence": 0.2946334692154972,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.7646840885298679
+        },
+        {
+          "valence": 0.2154133485133932,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.7030059799577847
+        },
+        {
+          "valence": 0.13809428775634455,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.6346869321572125
+        },
+        {
+          "valence": 0.04488777799829535,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.5447675722431935
+        },
+        {
+          "valence": -0.032909601873839595,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.4671378392222026
+        },
+        {
+          "valence": -0.13426354218406789,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.36887312339276457
+        },
+        {
+          "valence": -0.21941963917928284,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.293659069854043
+        },
+        {
+          "valence": -0.3187731128462261,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.2183867547919137
+        },
+        {
+          "valence": -0.39135618093214536,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.17286961203455609
+        },
+        {
+          "valence": -0.47966519271123104,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.1280109822046938
+        },
+        {
+          "valence": -0.556428853154689,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.09746488729870896
+        },
+        {
+          "valence": -0.6470245101199452,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.06990834939708375
+        },
+        {
+          "valence": -0.740254467137736,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.049218352141790954
+        },
+        {
+          "valence": -0.8367689598798783,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.033991050163878975
+        },
+        {
+          "valence": -0.907156748581758,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.025865811322422105
+        },
+        {
+          "valence": -1.0,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.01798620996209156
+        }
+      ],
+      "rmse_to_graded_sigmoid": 0.16635667142911148,
+      "intermediate_valence_mae": 0.19707208622539193,
+      "mode_transition_lag_steps": 1
+    },
+    {
+      "seed": 44,
+      "condition": "ANALOG",
+      "rows": [
+        {
+          "valence": 0.988231505962413,
+          "resource_level": 0.988231505962413,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9509534151200572,
+          "ideal_probability": 0.9811631929880529
+        },
+        {
+          "valence": 0.9268111756209595,
+          "resource_level": 0.9268111756209595,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9416092848657507,
+          "ideal_probability": 0.9760429676469645
+        },
+        {
+          "valence": 0.813925782910605,
+          "resource_level": 0.813925782910605,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9199580610299527,
+          "ideal_probability": 0.9628775067689103
+        },
+        {
+          "valence": 0.7262324354040062,
+          "resource_level": 0.7262324354040062,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8983201443946854,
+          "ideal_probability": 0.948089594316232
+        },
+        {
+          "valence": 0.6405342078573677,
+          "resource_level": 0.6405342078573677,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8723170404622385,
+          "ideal_probability": 0.9283846584738273
+        },
+        {
+          "valence": 0.5687339899817704,
+          "resource_level": 0.5687339899817704,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8463430131060459,
+          "ideal_probability": 0.9067798637427061
+        },
+        {
+          "valence": 0.48850655647240354,
+          "resource_level": 0.48850655647240354,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.8123754425040837,
+          "ideal_probability": 0.8758849975303233
+        },
+        {
+          "valence": 0.378510950743435,
+          "resource_level": 0.378510950743435,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.7568585214791607,
+          "ideal_probability": 0.8196597251950195
+        },
+        {
+          "valence": 0.29913142226546235,
+          "resource_level": 0.29913142226546235,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.7104137294511682,
+          "ideal_probability": 0.7679061463698786
+        },
+        {
+          "valence": 0.22313059320019754,
+          "resource_level": 0.22313059320019754,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.6613669551051972,
+          "ideal_probability": 0.7094104273688216
+        },
+        {
+          "valence": 0.12758621466827325,
+          "resource_level": 0.12758621466827325,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.5945382816463344,
+          "ideal_probability": 0.6248873139115804
+        },
+        {
+          "valence": 0.039831058003263614,
+          "resource_level": 0.039831058003263614,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.529837798403244,
+          "ideal_probability": 0.5397470146694409
+        },
+        {
+          "valence": -0.03767295302662205,
+          "resource_level": 0.0,
+          "harm_level": 0.03767295302662205,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.5,
+          "ideal_probability": 0.4623981753139345
+        },
+        {
+          "valence": -0.11574999529736915,
+          "resource_level": 0.0,
+          "harm_level": 0.11574999529736915,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.38627438667458996
+        },
+        {
+          "valence": -0.21697990809274578,
+          "resource_level": 0.0,
+          "harm_level": 0.21697990809274578,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.29568736753857794
+        },
+        {
+          "valence": -0.3146471160344556,
+          "resource_level": 0.0,
+          "harm_level": 0.3146471160344556,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.2212169759577404
+        },
+        {
+          "valence": -0.4060401790494749,
+          "resource_level": 0.0,
+          "harm_level": 0.4060401790494749,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.16463185560738966
+        },
+        {
+          "valence": -0.4897613535619315,
+          "resource_level": 0.0,
+          "harm_level": 0.4897613535619315,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3716838117046338,
+          "ideal_probability": 0.1235703927755723
+        },
+        {
+          "valence": -0.5793444737063046,
+          "resource_level": 0.0,
+          "harm_level": 0.5793444737063046,
+          "mode_prior": 0.07934445142745972,
+          "fast_prime": 0.05950833857059479,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.3147704089489271,
+          "ideal_probability": 0.08969392118447123
+        },
+        {
+          "valence": -0.6604191274261338,
+          "resource_level": 0.0,
+          "harm_level": 0.6604191274261338,
+          "mode_prior": 0.16041910648345947,
+          "fast_prime": 0.1203143298625946,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.26185760259894214,
+          "ideal_probability": 0.06650388031310889
+        },
+        {
+          "valence": -0.7488304654567454,
+          "resource_level": 0.0,
+          "harm_level": 0.7488304654567454,
+          "mode_prior": 0.24883049726486206,
+          "fast_prime": 0.18662287294864655,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.21112671460753504,
+          "ideal_probability": 0.04763766385185679
+        },
+        {
+          "valence": -0.8152258580273609,
+          "resource_level": 0.0,
+          "harm_level": 0.8152258580273609,
+          "mode_prior": 0.31522566080093384,
+          "fast_prime": 0.23641924560070038,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.17802561420014207,
+          "ideal_probability": 0.03693705831835492
+        },
+        {
+          "valence": -0.9117843179877317,
+          "resource_level": 0.0,
+          "harm_level": 0.9117843179877317,
+          "mode_prior": 0.41178423166275024,
+          "fast_prime": 0.3088381737470627,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.13733985751045774,
+          "ideal_probability": 0.02540348285319416
+        },
+        {
+          "valence": -1.0,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.01798620996209156
+        }
+      ],
+      "rmse_to_graded_sigmoid": 0.11515547445372354,
+      "intermediate_valence_mae": 0.08382716258759608,
+      "mode_transition_lag_steps": 0
+    },
+    {
+      "seed": 44,
+      "condition": "BINARY_SIGN_ONLY",
+      "rows": [
+        {
+          "valence": 0.988231505962413,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9811631929880529
+        },
+        {
+          "valence": 0.9268111756209595,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9760429676469645
+        },
+        {
+          "valence": 0.813925782910605,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9628775067689103
+        },
+        {
+          "valence": 0.7262324354040062,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.948089594316232
+        },
+        {
+          "valence": 0.6405342078573677,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9283846584738273
+        },
+        {
+          "valence": 0.5687339899817704,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.9067798637427061
+        },
+        {
+          "valence": 0.48850655647240354,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.8758849975303233
+        },
+        {
+          "valence": 0.378510950743435,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.8196597251950195
+        },
+        {
+          "valence": 0.29913142226546235,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.7679061463698786
+        },
+        {
+          "valence": 0.22313059320019754,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.7094104273688216
+        },
+        {
+          "valence": 0.12758621466827325,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.6248873139115804
+        },
+        {
+          "valence": 0.039831058003263614,
+          "resource_level": 1.0,
+          "harm_level": 0.0,
+          "mode_prior": 0.0,
+          "fast_prime": 0.0,
+          "encoding_gain": 1.0,
+          "approach_probability": 0.9525741268224334,
+          "ideal_probability": 0.5397470146694409
+        },
+        {
+          "valence": -0.03767295302662205,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.4623981753139345
+        },
+        {
+          "valence": -0.11574999529736915,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.38627438667458996
+        },
+        {
+          "valence": -0.21697990809274578,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.29568736753857794
+        },
+        {
+          "valence": -0.3146471160344556,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.2212169759577404
+        },
+        {
+          "valence": -0.4060401790494749,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.16463185560738966
+        },
+        {
+          "valence": -0.4897613535619315,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.1235703927755723
+        },
+        {
+          "valence": -0.5793444737063046,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.08969392118447123
+        },
+        {
+          "valence": -0.6604191274261338,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.06650388031310889
+        },
+        {
+          "valence": -0.7488304654567454,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.04763766385185679
+        },
+        {
+          "valence": -0.8152258580273609,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.03693705831835492
+        },
+        {
+          "valence": -0.9117843179877317,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.02540348285319416
+        },
+        {
+          "valence": -1.0,
+          "resource_level": 0.0,
+          "harm_level": 1.0,
+          "mode_prior": 0.5,
+          "fast_prime": 0.375,
+          "encoding_gain": 2.5,
+          "approach_probability": 0.10728773307399692,
+          "ideal_probability": 0.01798620996209156
+        }
+      ],
+      "rmse_to_graded_sigmoid": 0.16831079507760854,
+      "intermediate_valence_mae": 0.1990001576094466,
+      "mode_transition_lag_steps": 1
+    }
+  ],
+  "elapsed_seconds": 0.025059938430786133,
+  "notes": "Discriminative pair for SD-035. ANALOG preserves graded valence magnitude through BLA/CeA arithmetic; BINARY_SIGN_ONLY keeps only the valence sign. PASS requires the analog arm to better match a graded approach/avoid sigmoid, discriminate intermediate valence, and avoid premature mode-transition timing."
+}
