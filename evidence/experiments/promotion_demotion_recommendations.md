@@ -1713,3 +1713,8 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-04-26T16:17:25Z`
 - Last selected option: Wait for V3 substrate implementation
 - Last rationale: v3_pending=true; ghost-goal substrate parent (registered 2026-04-26); lit-only (supports=3). Standard hold per V3-pending gate.
+
+## Substrate changes with dependent invariants
+
+No substrate status changes this run. No dependent invariants flagged.
+

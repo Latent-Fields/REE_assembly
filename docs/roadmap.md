@@ -14,7 +14,98 @@ nav_order: 6
 
 ---
 
-## Status Snapshot (2026-04-29 — nightly docs sync, post-2026-04-28 governance cycle)
+## Status Snapshot (2026-04-29 PM -- post-V3-EXQ-490c FAIL + Q-032 lit-pull + MECH-269b staleness wiring)
+
+- **SDs / MECHs moved to Implemented since the 2026-04-29 nightly snapshot:**
+  none in the substrate sense. One non-trivial wiring extension landed at
+  06:03Z: **MECH-269b + MECH-284 staleness-into-VsRolloutGate wiring** (a
+  Q-040b strong-reading enabler; effective_vs = raw_vs - staleness[s] under
+  use_vs_gate_staleness_lookup, with HippocampalModule.compute_per_stream_staleness
+  aggregating max-over-active-anchors-whose-stream_mixture-includes-stream).
+  Bit-identical to legacy raw-V_s path when flag OFF; 8/8 contract tests
+  PASS (191/191 full preflight + contracts). Successor V3-EXQ-490d can now
+  drop the smoke-threshold override and exercise C4 severance
+  (use_vs_gate_staleness_lookup OFF vs ON at matched 0.4 thresholds) as the
+  falsifiable test of the strong reading.
+- **Experiment activity since the nightly snapshot:**
+  - **V3-EXQ-490c** (MECH-269b V_s gating + MECH-295 liking-bridge factorial;
+    Q-040b behavioural sufficiency arm) **completed FAIL on Mac
+    2026-04-29T08:34Z (~2.6h)**. Preliminary reading: under matched smoke-
+    threshold overrides (0.85/0.85/0.95), MECH-269b ON + MECH-295 ON
+    jointly do NOT recover approach_commit. Q-040b strong reading is NOT
+    supported in this configuration. Pending review; governance decision
+    pending.
+  - Successor **V3-EXQ-490d** scoped (not queued): drop smoke-threshold
+    override; toggle use_vs_gate_staleness_lookup OFF vs ON at matched 0.4
+    thresholds in a 2-arm 3-seed factorial; C4 severance becomes the
+    falsifiable test of whether MECH-284 staleness shifts effective_vs
+    enough to fire the gate at biologically realistic V_s readings.
+  - Runner-status totals refreshed: **568 completed (111 PASS / 245 FAIL /
+    66 ERROR / 146 UNKNOWN; +1 vs nightly = V3-EXQ-490c)**.
+  - Pending review queue regenerated 11:36Z: **1 item** (V3-EXQ-490c
+    runner-only FAIL pending discussion).
+- **Lit-pull progress 2026-04-29 (3 sessions, 15 entries):**
+  - **AM (08:41Z) Q-029 + Q-030**: 5 entries each. Q-029 loneliness-as-
+    ethical-harm-derivable-from-INV-029 lit_conf=0.875 (Holt-Lunstad x2,
+    Wang 2023 Nat Hum Behav, Zajner/Bzdok UK Biobank, Eisenberger AnnRevPsych).
+    Q-030 z_resource/z_world separation/fusion permutations lit_conf=0.874
+    (Staresina PrC/PhC, Lee/Inah GIST, Howard/Kahnt OFC identity vs vmPFC
+    value, Kim DG-disrupted spatial-object binding, Locatello Slot Attention).
+  - **PM (11:19Z) Q-032**: 5 entries; PSG SWS/REM ratio as pharmacodynamic
+    biomarker for sleep-medication dementia outcomes; lit_conf=0.839.
+    Limb (a) PSG predicts dementia at the individual level: Himali 2023
+    JAMA Neurol (Framingham within-person SWS-decline x 17y dementia HR
+    1.27, 0.82); Winer/Mander/Walker 2020 Curr Biol (NREM SWA <1Hz
+    forecasts AB accumulation with cross-metric specificity, 0.78);
+    Suh 2019 J Alzheimers Dis (KLOSCAD short REM-per-cycle predicts MCI
+    conversion at 4y, 0.62 exploratory). Limb (a)/(c) multi-metric
+    architectural signature: D'Rozario 2020 Sleep Med Rev (10-study
+    meta-analysis MCI fingerprint, 0.72). Limb (b)/(c) field treats PSG
+    SWS as legitimate trial endpoint: Eyob 2024 J Alzheimers Dis (REST
+    trazodone protocol, 0.45). Synthesis verdict: limb (a) well-supported;
+    limb (c) PD-biomarker proposal architecturally defensible; limb (b)
+    drug-class differential SWS preservation -> differential cognitive
+    outcomes still empirically open pending REST results.
+  - **Aggregator floor flag continues (4th consecutive cycle):** per-paper
+    confidences 0.45-0.82 averaging ~0.68; claim-level lands 0.83-0.88.
+    Floor effect now visible across Q-027/Q-028/Q-029/Q-030/Q-031/Q-032.
+    Worth flagging at the next governance walk for cap-aware aggregator
+    review.
+- **Indexer state:** literature entries 1098 -> 1113 across the day's three
+  lit-pull sessions (+15); claim_evidence.v1.json + evidence_backlog.v1.json
+  regenerated 11:29Z.
+
+### Immediate Work Queue (This Cycle, 2026-04-29 PM)
+
+1. **V3-EXQ-490d successor design + queueing** -- the highest-priority
+   substrate-validation run. Toggle use_vs_gate_staleness_lookup OFF vs ON
+   at matched 0.4 thresholds, 2 arms x 3 seeds, MECH-269b V_s gating ON +
+   MECH-295 bridge ON in both arms (inherits 490c stack). C4 severance
+   acceptance criterion becomes the falsifiable test of the Q-040b strong
+   reading after the 490c FAIL.
+2. **V3-EXQ-490c review + governance decision** -- the run sits in the
+   pending-review queue (1 item). Decision tree: classify as inconclusive
+   pending V3-EXQ-490d, or accept FAIL as evidence against the strong
+   reading and re-route Q-040b to ghost-goal / planning-arm hypotheses.
+3. **V3-EXQ-495 V3-full-completion-gate queueing decision** -- still
+   deferred. The MECH-163 dual-systems test depends on Q-040 / Q-040b
+   resolution; queueing locked behind the EXQ-490d outcome.
+4. **OCD Layer 2 / 3 escalation (MECH-290 ablation; SD-046 multi-slot
+   GoalState pull-forward)** -- the EXQ-498 disconfirmation of OCD Layer
+   1 leaves Layers 2 and 3 as the live escalation paths; design /
+   queueing not yet started.
+5. **SD-016 env-entropy precondition resolution** -- SD-016 remains parked
+   pending env-entropy precondition; broader env-enrichment scoping work
+   (CausalGridWorldV2 extension) not yet started.
+6. **Aggregator-floor flag governance review** -- 5th-consecutive-cycle
+   flag at the next governance walk; cap-aware aggregator review with
+   recommendation either (a) accept the floor as architecturally
+   reasonable for narrow-open-question Q-claims, or (b) tune the floor
+   downward to expose per-paper confidence variance more faithfully.
+
+---
+
+## Status Snapshot (2026-04-29 -- nightly docs sync, post-2026-04-28 governance cycle)
 
 - **SDs / MECHs moved to Implemented since the 2026-04-28 PM snapshot:** none.
   No new substrate landings; the day's activity was dominated by the
