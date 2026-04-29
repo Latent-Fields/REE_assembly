@@ -1,14 +1,20 @@
 # Pending Experiment Review
 
-Generated: `2026-04-29T18:24:01Z`  
+Generated: `2026-04-29T18:49:08Z`  
 Last review: `2026-04-28T22:00:00Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
 | `v3_exq_490c_mech269b_with_liking_bridge_20260429T055859Z_v3` | 2026-04-29T05:58 | Q-040 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3` | 2026-04-29T18:47 | MECH-094 |
 
 ---
 

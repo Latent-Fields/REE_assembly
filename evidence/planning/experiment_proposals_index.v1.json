@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-29T18:24:00.611495Z",
+  "generated_at_utc": "2026-04-29T18:49:07.440974Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -2605,11 +2605,13 @@
     {
       "claim_id": "MECH-094",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-499",
+      "executed_queue_id": "V3-EXQ-499",
       "objective": "Generate discriminative evidence for MECH-094 (hypothesis-tag-as-categorical-write-gate). Past work has 7 PASSing diagnostic probes that confirm the tag exists and routes correctly, plus 1 non_contributory FAIL on the gate-pair test (V3-EXQ-140); zero entries currently feed claim confidence. This is a phase-2 priority because the tag is structurally load-bearing for SD-011 dual-stream gating and the canonical MECH-094 -> confabulation/PTSD mechanism in feedback_psychosis_confabulation_distinction.",
       "priority": "high",
       "proposal_id": "EXP-0170",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -3181,8 +3183,8 @@
       "target_repo": "ree-v3"
     }
   ],
-  "n_executed": 116,
-  "n_proposed_exp": 76,
+  "n_executed": 117,
+  "n_proposed_exp": 75,
   "n_proposed_lit": 9,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

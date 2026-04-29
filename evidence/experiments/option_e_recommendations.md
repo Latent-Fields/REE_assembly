@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-04-29T18:24:02.371415Z`
+Generated: `2026-04-29T18:49:09.734764Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -18,7 +18,7 @@ Generated: `2026-04-29T18:24:02.371415Z`
 
 |  | high exp (>= 0.62) | low exp |
 |---|---|---|
-| **high lit (>= 0.55)** | confirmed_established: **64** | plausible_unproven: **198** |
+| **high lit (>= 0.55)** | confirmed_established: **65** | plausible_unproven: **197** |
 | **low lit**             | novel_discovery: **1**         | speculative: **3** |
 
 Total scored claims: 266
@@ -27,7 +27,7 @@ Total scored claims: 266
 
 Claims that cross the `>= 0.62` line under one regime but not the other AND have standard gating. These are the priority items for Phase 2 reckoning -- queue an experiment, adjust status, or flag a new evidence class.
 
-Total: **135** discrepant claims (standard-gating only).
+Total: **134** discrepant claims (standard-gating only).
 
 | claim | type | status | legacy_overall | decoupled_overall | lit_conf | n_exp | n_lit | quadrant |
 |---|---|---|---:|---:|---:|---:|---:|---|
@@ -62,7 +62,6 @@ Total: **135** discrepant claims (standard-gating only).
 | `MECH-076` | mechanism_hypothesis | candidate | 0.775 | 0.000 | 0.775 | 0 | 2 | plausible_unproven |
 | `MECH-077` | mechanism_hypothesis | candidate | 0.775 | 0.000 | 0.775 | 0 | 2 | plausible_unproven |
 | `MECH-092` | mechanism_hypothesis | candidate | 0.889 | 0.000 | 0.889 | 0 | 16 | plausible_unproven |
-| `MECH-094` | mechanism_hypothesis | stable | 0.866 | 0.000 | 0.866 | 0 | 13 | plausible_unproven |
 | `MECH-096` | mechanism_hypothesis | candidate | 0.808 | 0.000 | 0.808 | 0 | 2 | plausible_unproven |
 | `MECH-103` | mechanism_hypothesis | candidate | 0.844 | 0.000 | 0.844 | 0 | 3 | plausible_unproven |
 | `MECH-121` | mechanism_hypothesis | candidate | 0.872 | 0.000 | 0.872 | 0 | 3 | plausible_unproven |
@@ -173,12 +172,11 @@ _Suppressed by gating: 21 substrate_coherence (ARC + universal invariant), 27 an
 
 Standard-gating claims with status in {stable, active, implemented, resolved} but no experimental evidence in the matrix. Under the decoupled regime they would not qualify for promotion on lit alone. This is the central question for Phase 2 -- queue an experiment per claim. (`architectural_commitment`, universal `invariant`, and `open_question` claims with this profile are surfaced separately below; they don't need experiments under their gating.)
 
-Total: **4** standard-gating claims with no exp.
+Total: **3** standard-gating claims with no exp.
 
 | claim | type | status | lit_conf | n_lit |
 |---|---|---|---:|---:|
 | `SD-017` | design_decision | stable | 0.902 | 6 |
-| `MECH-094` | mechanism_hypothesis | stable | 0.866 | 13 |
 | `SD-035` | design_decision | stable | 0.827 | 3 |
 | `MECH-062` | mechanism_hypothesis | stable | 0.780 | 2 |
 
@@ -260,7 +258,7 @@ Total: **32**.
 
 ### `lit_only_above_cap` (no exp, lit_conf >= 0.5)
 
-Total: **107**.
+Total: **106**.
 
 Claims with literature support and no experiment yet. These are candidates for the next round of experiment design.
 
@@ -307,7 +305,6 @@ Claims with literature support and no experiment yet. These are candidates for t
 | `MECH-057b` | - | 0.870 | 4 |
 | `SD-037` | candidate | 0.870 | 4 |
 | `SD-003-SUCCESSOR` | - | 0.869 | 4 |
-| `MECH-094` | stable | 0.866 | 13 |
 | `MECH-275` | candidate | 0.866 | 6 |
 | `SD-032d` | - | 0.866 | 4 |
 | `MECH-270` | candidate | 0.859 | 4 |
@@ -316,7 +313,8 @@ Claims with literature support and no experiment yet. These are candidates for t
 | `SD-034` | provisional | 0.855 | 6 |
 | `MECH-266` | provisional | 0.853 | 6 |
 | `INV-050` | candidate | 0.852 | 3 |
-| ... | ... | ... | ... (57 more) |
+| `MECH-284` | candidate | 0.852 | 14 |
+| ... | ... | ... | ... (56 more) |
 
 ---
 
