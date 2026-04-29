@@ -1,13 +1,13 @@
 {
   "schema_version": "diagnose_staging/v1",
-  "session_date": "2026-04-28",
-  "generated_utc": "2026-04-28T14:17:02Z",
+  "session_date": "2026-04-29",
+  "generated_utc": "2026-04-29T14:18:00Z",
   "session_label": "ree-diagnose-queue (afternoon scheduled, staging mode)",
   "runner_status_sync_gap": 0,
-  "total_errors_scanned": 83,
-  "errors_unaddressed_no_successor": 31,
-  "errors_already_in_discussed_experiment_dirs": 28,
-  "errors_requiring_diagnosis": 3,
+  "total_errors_scanned": 84,
+  "errors_unaddressed_no_successor": 10,
+  "errors_already_in_discussed_experiment_dirs": 6,
+  "errors_requiring_diagnosis": 4,
   "errors_requiring_fix_script": 0,
   "diagnoses": [],
   "non_actionable_errors_audited": [
@@ -17,8 +17,8 @@
       "title": "ARC-029 committed-mode harm redesign (8 hazards, 5 seeds, majority rule)",
       "completed_by": "ree-cloud-1",
       "result_summary": "Non-zero exit code 1 (1.3s startup crash on ree-cloud-1)",
-      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist on other machines: FAIL on Daniel-PC (2026-04-05T23:48Z) and FAIL on EWIN-PC (2026-04-06T02:28Z). The ree-cloud-1 ERROR is a stale duplicate that crashed at startup before the deduplication mechanism kicked in -- likely environment / pull race during early multi-machine deployment.",
-      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. The FAIL run already feeds the index correctly; the ERROR row is an artifact."
+      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist on other machines: FAIL on Daniel-PC (2026-04-05T23:48Z) and FAIL on EWIN-PC (2026-04-06T02:28Z). The ree-cloud-1 ERROR is a stale duplicate that crashed at startup before the deduplication mechanism kicked in.",
+      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. Same recommendation as the 2026-04-28 staging run -- not yet acted on."
     },
     {
       "queue_id": "V3-EXQ-247",
@@ -26,8 +26,8 @@
       "title": "SD-011/SD-012 Full Integration Validation (urgency gating + affective amplification + drive extraction)",
       "completed_by": "ree-cloud-1",
       "result_summary": "Non-zero exit code 1 (1.4s startup crash on ree-cloud-1)",
-      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist: FAIL on DLAPTOP-4.local (2026-04-06T08:09Z) and FAIL on Daniel-PC (2026-04-07T10:50Z). Evidence dir v3_exq_247_sd011_sd012_integration/ exists. The ree-cloud-1 ERROR is a stale duplicate.",
-      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk."
+      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist: FAIL on DLAPTOP-4.local (2026-04-06T08:09Z) and FAIL on Daniel-PC (2026-04-07T10:50Z). Evidence dir v3_exq_247_sd011_sd012_integration/ exists.",
+      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. Carried over from 2026-04-28 staging."
     },
     {
       "queue_id": "V3-EXQ-249b",
@@ -35,23 +35,27 @@
       "title": "INV-053: Depression Attractor Replication (SD-018)",
       "completed_by": "ree-cloud-1",
       "result_summary": "Non-zero exit code -15 (SIGTERM after 4672s / ~78min)",
-      "non_actionable_reason": "Duplicate-machine run killed by SIGTERM. Authoritative result already exists: PASS on EWIN-PC (2026-04-07T02:29Z, ~10h before the kill). Same SIGTERM-on-cloud pattern observed in V3-EXQ-490 (handled by 2026-04-27T05:25 diagnose-errors session) -- shared-vCPU OOM neighbour pressure or transient cloud scheduler kill. Not a code crash. Evidence dir v3_exq_249_inv053_depression_attractor_replication/ already carries the EWIN-PC PASS.",
-      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. The PASS run is already authoritative."
+      "non_actionable_reason": "Duplicate-machine run killed by SIGTERM. Authoritative result already exists: PASS on EWIN-PC (2026-04-07T02:29Z, ~10h before the kill). Same SIGTERM-on-cloud pattern observed in V3-EXQ-490 (handled by 2026-04-27T05:25 diagnose-errors session).",
+      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. Carried over from 2026-04-28 staging."
+    },
+    {
+      "queue_id": "V3-EXQ-498",
+      "completed_at": "2026-04-28T21:13:59Z",
+      "title": "OCD Layer 1 closure threshold sweep",
+      "completed_by": "ree-cloud-2",
+      "result_summary": "Non-zero exit code 1 on ree-cloud-2",
+      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative result on DLAPTOP-4.local 2026-04-28T20:29:54Z (UNKNOWN/non-ERROR). Already reviewed via run_id v3_exq_498_ocd_layer1_closure_threshold_sweep_20260428T201903Z_v3 in reviewed_run_ids and discussed in 2026-04-28T22:00 governance cycle (classified non_contributory; OCD Layer 1 disconfirmed; escalates to Layer 2/3). The cloud-2 ERROR row is a per-machine artifact; the monolithic merge already prefers the non-ERROR DLAPTOP-4 entry.",
+      "recommended_disposition": "Governance: add V3-EXQ-498 to review_tracker.discussed_experiment_dirs to suppress the per-machine ERROR view from future scans. (Run-level reviewed_run_id already covers governance.)"
     }
   ],
   "errors_already_discussed_no_action": [
-    "V3-EXQ-449c", "V3-EXQ-455a", "V3-EXQ-432", "V3-EXQ-267",
-    "V3-EXQ-084c", "V3-EXQ-076c", "V3-EXQ-075c", "V3-EXQ-074d",
-    "V3-EXQ-084b", "V3-EXQ-076b", "V3-EXQ-075b", "V3-EXQ-074c",
-    "V3-EXQ-084", "V3-EXQ-076", "V3-EXQ-074b", "V3-EXQ-071b",
-    "V3-EXQ-075", "V3-EXQ-074", "V3-EXQ-073", "V3-EXQ-072",
-    "V3-EXQ-051b", "V3-EXQ-071", "V3-EXQ-046c", "V3-EXQ-046b",
-    "V3-EXQ-057", "V3-EXQ-046", "V3-EXQ-038", "V3-EXQ-008"
+    "V3-EXQ-449c", "V3-EXQ-455a", "V3-EXQ-008",
+    "V3-EXQ-490", "V3-EXQ-490a", "V3-EXQ-490b"
   ],
-  "summary": "0 ERRORs require a fix script. 3 ERRORs flagged for governance: duplicate-machine run artifacts on ree-cloud-1 where the experiment already has authoritative outcomes on other machines (FAIL/FAIL/PASS). 28 other ERRORs already in discussed_experiment_dirs.",
+  "summary": "0 ERRORs require a fix script. 4 ERRORs flagged for governance handoff -- all duplicate-machine run artifacts where the experiment already has authoritative results from other machines. 3 of the 4 (125a/247/249b) carry forward unchanged from the 2026-04-28 staging report (governance walk has not yet absorbed them); 1 is new (498, completed 2026-04-28T21:13Z but already covered by run-level reviewed_run_id and governance discussion).",
   "next_actions": [
-    "Governance: add V3-EXQ-125a, V3-EXQ-247, V3-EXQ-249b to review_tracker.discussed_experiment_dirs in next /governance walk.",
-    "Optional infrastructure follow-up: the multi-machine claim race let ree-cloud-1 pick up duplicate work after another machine had completed (same root cause pattern as the V3-EXQ-490 SIGTERM noted on 2026-04-27T05:25Z). The dedup-on-claim path may have a small window where two machines pull work before the first push lands."
+    "Governance: add V3-EXQ-125a, V3-EXQ-247, V3-EXQ-249b, V3-EXQ-498 to review_tracker.discussed_experiment_dirs in next /governance walk. (3 of 4 are carryovers from 2026-04-28.)",
+    "Optional infrastructure follow-up (carryover): the multi-machine claim race continues to produce duplicate-machine ERRORs (now V3-EXQ-498 in addition to 125a/247/249b/490). Same root-cause pattern; lives outside diagnose-errors scope."
   ],
   "status": "no_action_required_governance_handoff"
 }
