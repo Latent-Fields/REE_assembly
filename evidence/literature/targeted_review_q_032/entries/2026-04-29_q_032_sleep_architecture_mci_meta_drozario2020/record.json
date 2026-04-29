@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_032",
+  "entry_id": "2026-04-29_q_032_sleep_architecture_mci_meta_drozario2020",
+  "timestamp_utc": "2026-04-29T11:19:25Z",
+  "claim_ids_tested": ["Q-032"],
+  "source": {
+    "title": "Objective measurement of sleep in mild cognitive impairment: A systematic review and meta-analysis.",
+    "authors": [
+      "D'Rozario AL", "Chapman JL", "Phillips CL", "Palmer JR", "Hoyos CM",
+      "Mowszowski L", "Duffy SL", "Marshall NS", "Benca R", "Mander B",
+      "Grunstein RR", "Naismith SL"
+    ],
+    "year": 2020,
+    "venue": "Sleep Medicine Reviews",
+    "doi": "10.1016/j.smrv.2020.101308",
+    "url": "https://doi.org/10.1016/j.smrv.2020.101308"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Systematic review and meta-analysis of 10 case-control PSG studies (n=430, 209 MCI vs 221 healthy controls) establishing that MCI shows pronounced macro-architecture changes including reduced REM, longer REM latency, increased N1, reduced sleep efficiency, and worse hypoxemia. Microarchitecture pooling was limited by available studies, but reduced spindles in NREM and greater EEG slowing in REM were noted. This is the cleanest available cross-sectional architectural-signature establishing that MCI carries a multi-metric PSG fingerprint. Held below 0.80 because case-control design cannot establish prediction, only association, and the included studies had heterogeneous PSG protocols.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Case-control design cannot distinguish whether the architectural changes precede MCI (predictor) or are downstream consequences of incipient neurodegeneration (epiphenomenon). Only prospective cohort studies (e.g. Pase 2017, Himali 2023, Suh 2019) can address this.",
+    "10 included studies is modest; heterogeneity in PSG protocols (lab vs home, full vs limited montage) and MCI definitions limits the precision of pooled estimates.",
+    "Microarchitecture pooling was limited because only 4 of 10 studies reported microarchitecture metrics. The most pharmacologically-actionable architecture features (spindle density, slow-wave coupling, REM theta) cannot be quantified at meta-analytic precision from this dataset."
+  ],
+  "tags": ["q_032", "mci", "polysomnography", "meta_analysis", "rem_sleep", "n1_sleep", "spindles", "architecture_signature"],
+  "mapping": {
+    "source_claim_statement": "Compared with cognitively healthy controls, individuals with mild cognitive impairment show greater wake after sleep onset, reduced total sleep time, lower sleep efficiency, longer sleep onset latency, longer REM sleep latency, reduced REM sleep, greater N1 sleep, and worse severity of hypoxemia. Limited microarchitecture data show reduced spindles in NREM and greater EEG slowing in REM. The combined sample is 430 participants across 10 case-control PSG studies.",
+    "ree_translation": "Q-032 limb (a) and (c): supports the multi-metric architectural-signature reading. The MCI architectural fingerprint -- reduced REM, longer REM latency, increased N1, reduced spindles, EEG slowing in REM -- maps directly onto disruption of multiple REE pipeline phases simultaneously: Phase 4 (REM precision recalibration, MECH-123) shows the strongest signal, but Phase 3 (spindle coordination, MECH-122) and Phase 1/2 (NREM consolidation depth) are also affected. This multi-phase signature is what an architecture-aware Q-032 PD biomarker would target. The spindle finding in particular is consistent with Phase 3 disruption being a real and measurable architectural feature of pre-clinical AD, complementing the SWS/REM macroscopic signal.",
+    "mapping_caveat": "Case-control design cannot establish prospective prediction. The architectural signature could be a downstream consequence of the same neurodegeneration that produces MCI, rather than an upstream predictor. For Q-032's PD-biomarker proposal, the case-control evidence is necessary but not sufficient; it must be supplemented by prospective cohort evidence (Pase 2017, Himali 2023, Suh 2019, Winer 2020). The included studies are also heterogeneous in PSG protocol and MCI definition, which limits the precision of any single architectural metric for trial-level inference.",
+    "source_context": "Systematic review and meta-analysis: PubMed/Scopus/Web of Science/Embase/Psycinfo through search date, 10 case-control PSG studies meeting inclusion criteria, n=430 (209 MCI, 221 controls), Sleep Medicine Reviews 2020."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: Sleep Medicine Reviews, systematic review with careful inclusion criteria. Mapping fidelity good: directly addresses architecture-level signature in MCI. Transfer risk moderate because case-control cannot establish predictive direction. Microarchitecture pooling was limited by data availability, capping precision on the spindle/coupling metrics that are most pharmacologically actionable."
+  }
+}

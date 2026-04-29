@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-29T08:54:33.422369Z`
+Generated: `2026-04-29T11:29:31.475197Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -197,6 +197,7 @@ Generated: `2026-04-29T08:54:33.422369Z`
 | `targeted_review_q_029` | [`2026-04-29_q_029_social_relationships_mortality_holtlunstad2010`](targeted_review_q_029/entries/2026-04-29_q_029_social_relationships_mortality_holtlunstad2010/record.json) | 5 | [`summary`](targeted_review_q_029/entries/2026-04-29_q_029_social_relationships_mortality_holtlunstad2010/summary.md) |
 | `targeted_review_q_030` | [`2026-04-29_q_030_slot_attention_object_centric_locatello2020`](targeted_review_q_030/entries/2026-04-29_q_030_slot_attention_object_centric_locatello2020/record.json) | 5 | [`summary`](targeted_review_q_030/entries/2026-04-29_q_030_slot_attention_object_centric_locatello2020/summary.md) |
 | `targeted_review_q_031` | [`2026-04-28_q_031_scopolamine_phasic_rem_kim1999`](targeted_review_q_031/entries/2026-04-28_q_031_scopolamine_phasic_rem_kim1999/record.json) | 5 | [`summary`](targeted_review_q_031/entries/2026-04-28_q_031_scopolamine_phasic_rem_kim1999/summary.md) |
+| `targeted_review_q_032` | [`2026-04-29_q_032_sws_loss_incident_dementia_himali2023`](targeted_review_q_032/entries/2026-04-29_q_032_sws_loss_incident_dementia_himali2023/record.json) | 5 | [`summary`](targeted_review_q_032/entries/2026-04-29_q_032_sws_loss_incident_dementia_himali2023/summary.md) |
 | `targeted_review_q_033` | [`2024-11-18_q_033_mood_episode_prediction_lim2024`](targeted_review_q_033/entries/2024-11-18_q_033_mood_episode_prediction_lim2024/record.json) | 4 | [`summary`](targeted_review_q_033/entries/2024-11-18_q_033_mood_episode_prediction_lim2024/summary.md) |
 | `targeted_review_q_034` | [`2026-04-09_q_034_stress_dopamine_reward_review_baik2020`](targeted_review_q_034/entries/2026-04-09_q_034_stress_dopamine_reward_review_baik2020/record.json) | 6 | [`summary`](targeted_review_q_034/entries/2026-04-09_q_034_stress_dopamine_reward_review_baik2020/summary.md) |
 | `targeted_review_q_036` | [`2026-04-20_q_036_controllability_suffering_dissociation_loffler2018`](targeted_review_q_036/entries/2026-04-20_q_036_controllability_suffering_dissociation_loffler2018/record.json) | 3 | [`summary`](targeted_review_q_036/entries/2026-04-20_q_036_controllability_suffering_dissociation_loffler2018/summary.md) |

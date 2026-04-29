@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_032",
+  "entry_id": "2026-04-29_q_032_rest_trazodone_protocol_eyob2024",
+  "timestamp_utc": "2026-04-29T11:19:25Z",
+  "claim_ids_tested": ["Q-032"],
+  "source": {
+    "title": "A Randomized-Controlled Trial Targeting Cognition in Early Alzheimer's Disease by Improving Sleep with Trazodone (REST).",
+    "authors": [
+      "Eyob E", "Shaw JS", "Bakker A", "Munro C", "Spira A", "Wu M",
+      "Rabinowitz JA", "Peters M", "Wanigatunga S", "Zipunnikov V",
+      "Thompson R", "Burhanullah MH", "Leoutsakos JM", "Rosenberg P", "Greenberg B"
+    ],
+    "year": 2024,
+    "venue": "Journal of Alzheimer's Disease",
+    "doi": "10.3233/JAD-230635",
+    "url": "https://doi.org/10.3233/JAD-230635"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Trial design and rationale paper for the REST randomized controlled trial (NCT05282550, n=100 amnestic MCI, double-blind placebo-controlled crossover) testing trazodone for SWS preservation and cognitive outcome in MCI. This is a protocol description, not results. It supports Q-032's pharmacodynamic-biomarker proposal at the institutional level -- i.e. major sleep-AD research groups treat PSG-measured SWS as a legitimate trial endpoint and the field is operationalising drug-class differential SWS preservation as a testable hypothesis. Held to 0.45 because there are no outcome data yet; this is method-establishing, not result-providing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No outcome data. The paper describes the trial design and rationale but no results are available.",
+    "Single-drug (trazodone) test cannot adjudicate between architecture-specific cognitive benefit and confounding effects (sedation, antidepressant action, etc.) without further drug-class comparators. A positive REST result would still require replication with a second SWS-promoting agent and contrast against a non-SWS-promoting agent.",
+    "Crossover design at n=100 will have limited power for distal cognitive endpoints; the primary outcomes are likely to be PSG-measured SWS and short-term cognitive proxies, not incident MCI conversion."
+  ],
+  "tags": ["q_032", "trazodone", "rct_protocol", "slow_wave_sleep", "mci", "trial_design", "pharmacodynamic_biomarker"],
+  "mapping": {
+    "source_claim_statement": "REST is a randomized, double-blind, placebo-controlled, crossover trial (NCT05282550) of trazodone in 100 older adults with amnestic MCI and sleep complaints. The rationale: SWS supports glymphatic clearance and memory consolidation; trazodone has shown promise for inducing SWS in older adults; targeting sleep architecture in the prodromal stage of AD (MCI) represents a candidate disease-modifying strategy. The trial measures effects on both sleep architecture (PSG) and cognition.",
+    "ree_translation": "Q-032 limb (b) and (c): supports the architecture-aware-trial-design proposal at the field-level rationale. The REST trial operationalises exactly the question Q-032 asks: does pharmacological preservation of SWS produce differential cognitive outcomes that map onto architecture-specific PSG metrics? Trazodone is the canonical test drug because it is one of the few sleep-promoting agents that preserves rather than suppresses SWS. A positive REST result -- trazodone improves SWS AND improves cognition -- would directly validate PSG SWS as a PD biomarker for trial design. The protocol-level acceptance of this as a fundable, IRB-approvable trial design is itself evidence that the field treats Q-032's premise as live.",
+    "mapping_caveat": "This is a protocol description, not results. The REE evidence record cannot count REST as supportive evidence for the PD-biomarker proposal until outcomes are available. What it does support is the secondary claim that the field treats PSG SWS as a legitimate biomarker target -- i.e. the methodological rationale Q-032 needs is broadly accepted in the AD trial community.",
+    "source_context": "Trial protocol paper, J Alzheimers Dis 2024, ClinicalTrials.gov NCT05282550, Johns Hopkins / multi-site, double-blind placebo-controlled crossover, n=100 amnestic MCI with sleep complaints, trazodone vs placebo, primary outcomes: PSG-measured SWS and cognitive function."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate because protocol papers are descriptive rather than evidentiary -- the design's IRB approval and funding is the only evidence of field acceptance, no outcomes yet. Mapping fidelity good because the trial directly operationalises Q-032 limb (b)/(c). Transfer risk moderate because trazodone alone cannot adjudicate architecture-specificity (would need contrast against a non-SWS-promoting active comparator) and the crossover design at n=100 has limited power for distal cognitive endpoints."
+  }
+}

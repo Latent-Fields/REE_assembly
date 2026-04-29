@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_032",
+  "entry_id": "2026-04-29_q_032_nrem_swa_amyloid_forecast_winer2020",
+  "timestamp_utc": "2026-04-29T11:19:25Z",
+  "claim_ids_tested": ["Q-032"],
+  "source": {
+    "title": "Sleep Disturbance Forecasts Beta-Amyloid Accumulation across Subsequent Years.",
+    "authors": ["Winer JR", "Mander BA", "Kumar S", "Reed M", "Baker SL", "Jagust WJ", "Walker MP"],
+    "year": 2020,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2020.08.017",
+    "url": "https://doi.org/10.1016/j.cub.2020.08.017"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct prospective test of whether PSG-measured sleep architecture forecasts a biological intermediate (cortical amyloid accumulation) for Alzheimer pathology, in a clinically normal older adult cohort with longitudinal PiB-PET tracking. The proportion of NREM slow-wave activity below 1Hz and sleep efficiency both predicted the slope of subsequent amyloid deposition. Crucially, the paper tests specificity -- no other macro- or micro-architecture metric showed forecasting sensitivity -- which is exactly the falsification structure Q-032's PD-biomarker proposal needs. Held below 0.85 because the cohort is moderately sized, AB accumulation is a biological surrogate for dementia outcome (not the outcome itself), and the SWA <1Hz subset is a microarchitecture metric not routinely captured in clinical PSG.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Beta-amyloid accumulation rate is a biological surrogate, not the clinical dementia outcome Q-032 proposes as the trial endpoint. Translating AB-accumulation forecasting into dementia-outcome forecasting is a separate inferential step.",
+    "The forecasting signal localised to NREM SWA below 1Hz, not total SWS%. Clinical PSG typically reports macroscopic stage percentages, not the <1Hz subband. Q-032's PD-biomarker proposal would need to specify whether the biomarker is total SWS% (clinically captured) or SWA <1Hz (research-grade only).",
+    "The cohort were clinically normal adults; the paper does not test whether the same architecture-AB relationship holds in MCI or in pharmacologically-suppressed-SWS samples where the upstream cause is exogenous."
+  ],
+  "tags": ["q_032", "slow_wave_activity", "amyloid", "pet_imaging", "polysomnography", "biomarker_specificity"],
+  "mapping": {
+    "source_claim_statement": "Baseline PSG measures of NREM slow-wave activity (proportion of SWA below 1Hz) and sleep efficiency prospectively predict the rate (slope) of cortical beta-amyloid deposition measured longitudinally with [11C]PiB-PET imaging in clinically normal older adults, controlling for age, sex, and sleep apnea. Other macro- and microarchitecture metrics did NOT show this forecasting sensitivity, suggesting the SWA <1Hz signal is specific.",
+    "ree_translation": "Q-032 limb (c): supports the architecture-specific PD-biomarker proposal. The Winer/Mander/Walker test design -- prospectively forecasting a biological intermediate of dementia from PSG architecture, with explicit specificity testing across other architecture metrics -- is the strongest possible methodological template for what Q-032 needs in a trial setting. The fact that SWA <1Hz specifically (and not e.g. spindle density or REM%) carries the forecasting signal is consistent with the REE pipeline-phase model where Phase 1/2 (SHY homeostasis + schema replay, MECH-120/121) sit upstream of amyloid clearance via the glymphatic mechanism.",
+    "mapping_caveat": "Two transfer steps separate this finding from Q-032. First, AB accumulation is a biological surrogate for clinical dementia, not the dementia outcome itself. Second, the forecasting signal localised to NREM SWA below 1Hz, which is a research-grade microarchitecture metric not captured by routine clinical PSG. Treating clinically-reported SWS% as equivalent to research SWA <1Hz is a methodological leap that would need to be addressed in any Q-032 trial design.",
+    "source_context": "Cohort of clinically normal older adults assessed with overnight PSG and longitudinal [11C]PiB-PET imaging tracking cortical amyloid deposition over subsequent years. Specificity controls included macro-architecture stages (N1, N2, N3, REM) and other microarchitecture metrics (sleep efficiency, spindles, etc.)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: Current Biology, longitudinal PET tracking, prospective forecasting design with explicit specificity testing. Mapping fidelity high but not perfect because AB-accumulation is a biological surrogate. Transfer risk moderate because (i) AB-accumulation does not equal dementia outcome and (ii) SWA <1Hz is a microarchitecture metric requiring research-grade scoring."
+  }
+}

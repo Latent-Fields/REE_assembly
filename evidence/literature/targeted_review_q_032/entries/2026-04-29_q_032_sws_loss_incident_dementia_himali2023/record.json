@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_032",
+  "entry_id": "2026-04-29_q_032_sws_loss_incident_dementia_himali2023",
+  "timestamp_utc": "2026-04-29T11:19:25Z",
+  "claim_ids_tested": ["Q-032"],
+  "source": {
+    "title": "Association Between Slow-Wave Sleep Loss and Incident Dementia.",
+    "authors": [
+      "Himali JJ", "Baril AA", "Cavuoto MG", "Yiallourou S", "Wiedner CD",
+      "Himali D", "DeCarli C", "Redline S", "Beiser AS", "Seshadri S", "Pase MP"
+    ],
+    "year": 2023,
+    "venue": "JAMA Neurology",
+    "doi": "10.1001/jamaneurol.2023.3889",
+    "url": "https://doi.org/10.1001/jamaneurol.2023.3889"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Framingham Heart Study cohort with two PSG nights ~5y apart and 17y dementia follow-up. Each percentage-point reduction in SWS per year is associated with a 27% increase in dementia hazard (HR 1.27, 95% CI 1.06-1.54), adjusted for APOE4, sleep medication use, antidepressant use, and other confounders. Crucially, this is the within-person change-in-SWS design: each person serves as their own control across two PSG nights, which is exactly the design Q-032 needs to validate SWS% as a pharmacodynamic biomarker. Held below 0.85 because n=52 incident cases is modest, and the paper measures endogenous SWS decline rather than drug-induced suppression -- though the demonstration that the rate of SWS change matters at the individual level is the key inferential building block.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not establish that pharmacologically-induced SWS suppression has the same outcome signature as endogenous SWS decline. APOE4 carriers showed accelerated SWS decline, suggesting some of the SWS loss is driven by neurodegeneration itself (reverse causation), not just lifestyle or pharmacology.",
+    "SWS% measured via two PSG nights ~5y apart is a sparse sample of an underlying sleep architecture trajectory. Two snapshots underdetermine lifetime SWS-years, which is what Q-032 actually proposes as the biomarker.",
+    "The paper cannot adjudicate between Phase 1/2 (homeostatic depth) and Phase 3 (spindle coordination) signatures of SWS loss, because total SWS% is a coarse proxy aggregating both."
+  ],
+  "tags": ["q_032", "slow_wave_sleep", "incident_dementia", "framingham", "polysomnography", "epidemiology", "pharmacodynamic_biomarker"],
+  "mapping": {
+    "source_claim_statement": "In community-dwelling older adults age 60+, the rate of decline in slow-wave sleep percentage measured across two polysomnography nights ~5 years apart is associated with risk of incident all-cause dementia over 17 years of follow-up (HR 1.27 per percentage-point decrease per year, 95% CI 1.06-1.54). APOE epsilon-4 allele carriers showed accelerated SWS decline. Hippocampal volumes proximal to the first PSG were not associated with SWS loss.",
+    "ree_translation": "Q-032 limb (a): supports the premise that PSG-measured SWS% is a real predictor of dementia outcome at the individual level, with the right within-person change-in-SWS design that any pharmacodynamic biomarker proposal needs. The signal is SWS-specific, which matches the REE prediction that Phases 1/2 (MECH-120/121, SHY homeostasis + schema replay) are dementia-relevant offline phases whose disruption by sleep-affecting medications would produce additive risk above and beyond their effect on total sleep time.",
+    "mapping_caveat": "The paper measures the within-person change in endogenous SWS%, not drug-induced SWS suppression. Inferring that drug-class differences in SWS preservation produce differential dementia outcomes is a transfer step the paper does not directly support. The stronger Q-032 reading -- that SWS% is a validated pharmacodynamic biomarker for trial design -- requires both this evidence and a separate trial-level demonstration that drug-induced SWS suppression has the same outcome direction.",
+    "source_context": "Framingham Heart Study, 346 participants age 60+, two overnight PSGs (1995-1998 and 2001-2003), 17y follow-up for incident dementia (n=52 cases), Cox regression adjusted for age/sex/cohort/APOE4/smoking/sleep medication/antidepressant/anxiolytic use."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: Framingham, JAMA Neurology, two PSGs (within-person change design), 17y follow-up, careful covariate adjustment including all major sleep-affecting medication classes. Mapping fidelity high: this is exactly the population-level prerequisite for SWS% as a Q-032 PD biomarker -- the rate of SWS change predicts dementia. Transfer risk moderate: endogenous decline may not generalise to drug-induced suppression, and APOE4 acceleration suggests reverse-causation (neurodegeneration causes SWS loss) is partially in play. Modest case count (n=52) limits precision but the within-person design more than compensates statistically."
+  }
+}

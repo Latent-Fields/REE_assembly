@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_032",
+  "entry_id": "2026-04-29_q_032_rem_cycle_mci_suh2019",
+  "timestamp_utc": "2026-04-29T11:19:25Z",
+  "claim_ids_tested": ["Q-032"],
+  "source": {
+    "title": "Short Average Duration of NREM/REM Cycle Is Related to Cognitive Decline in an Elderly Cohort: An Exploratory Investigation.",
+    "authors": [
+      "Suh SW", "Han JW", "Lee JR", "Byun S", "Kwak KP", "Kim BJ", "Kim SG",
+      "Kim JL", "Kim TH", "Ryu SH", "Moon SW", "Park JH", "Seo J", "Youn JC",
+      "Lee DY", "Lee DW", "Lee SB", "Lee JJ", "Jhoo JH", "Yoon IY", "Kim KW"
+    ],
+    "year": 2019,
+    "venue": "Journal of Alzheimer's Disease",
+    "doi": "10.3233/JAD-190399",
+    "url": "https://doi.org/10.3233/JAD-190399"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Prospective community cohort (n=235) age 60+, baseline PSG, 4-year MCI/dementia conversion outcome (n=14 incident cases). Short average NREM/REM cycle duration AND short average REM duration per cycle each independently predicted incident MCI/dementia. The cycle-level decomposition is exactly the kind of architecture-specific signal Q-032's PD-biomarker proposal needs -- it dissociates phase-specific metrics from total sleep time. But the small case count (n=14) caps confidence. Author labels this exploratory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "n=14 incident cases is small. The OR estimates have wide confidence intervals and replication in larger cohorts is not yet available.",
+    "Single baseline PSG, not within-person change. Cannot distinguish people whose REM was always short from people whose REM declined recently.",
+    "Authors describe the analysis as exploratory; no Bonferroni correction across multiple architecture metrics tested. Type-I risk is non-trivial."
+  ],
+  "tags": ["q_032", "rem_sleep", "nrem_rem_cycle", "mci", "polysomnography", "prospective_cohort", "korean_elderly"],
+  "mapping": {
+    "source_claim_statement": "In a community-dwelling Korean cohort age 60+ with baseline polysomnography (n=235), short average NREM/REM cycle duration (OR 0.97 per minute, 95% CI 0.94-0.99, p=0.02) and short average REM sleep duration per cycle (OR 0.87 per minute, 95% CI 0.76-0.98, p=0.03) were each significantly associated with conversion to MCI or dementia at 4-year follow-up (14/235 converters). Authors frame this as exploratory evidence that NREM/REM cycle architecture predicts cognitive decline beyond conventional individual-stage metrics.",
+    "ree_translation": "Q-032 limb (a): supports the architecture-specific PD-biomarker proposal at the cycle level. The cycle-level decomposition is methodologically interesting because it captures temporal architecture (the alternation between NREM and REM phases, MECH-120 through MECH-123 in the REE pipeline-phase model) rather than just stage-aggregate percentages. This matches the REE framing that pipeline integrity depends on the COORDINATION of phases, not just total time spent in each phase. The fact that REM-per-cycle adds predictive value over total REM% is exactly the cycle-coordination signal an architecture-aware Q-032 biomarker would capture.",
+    "mapping_caveat": "Small case count (n=14) and exploratory framing limit the strength of the inference. The signal could be a chance finding from multiple-comparison testing across architecture metrics. Replication in larger cohorts (e.g. SHHS, MrOS, Framingham) is not yet available. Single baseline PSG cannot distinguish always-short-REM from recent-REM-decline.",
+    "source_context": "Korean Longitudinal Study on Cognitive Aging and Dementia (KLOSCAD), n=235 community-dwelling cognitively normal elderly age 60+, baseline overnight PSG, 4-year follow-up for MCI/dementia conversion (n=14, 5.9%), logistic regression analyses."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate: J Alzheimers Dis is reputable but exploratory; small n=14 cases dominates uncertainty. Mapping fidelity good because cycle-level decomposition matches the REE pipeline-coordination framing. Transfer risk moderate-to-high because (i) replication needed and (ii) Korean elderly may differ from broader populations in cycle architecture norms."
+  }
+}
