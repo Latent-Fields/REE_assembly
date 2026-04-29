@@ -1,16 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-04-29T11:36:21Z`  
+Generated: `2026-04-29T15:39:37Z`  
 Last review: `2026-04-28T22:00:00Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-## Needs discussion (ERROR / UNKNOWN / smoke)
+## FAIL (action required)
 
-These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
-
-| Queue ID | Result | Script | Notes |
-|----------|--------|--------|-------|
-| `V3-EXQ-490c` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_490c_mech269b_with_liking_bridge_20260429T055859Z_v3` | 2026-04-29T05:58 | Q-040 | — |
 
 ---
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- REE Architecture Visualizer — 2026-04-16.1 -->
+<!-- REE Architecture Visualizer — 2026-04-29.1 stability overlay -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -23,6 +23,11 @@
     --harm: #ff6e5e;
     --goal: #a5f3a5;
     --beta: #c9a5ff;
+    --stab-stable: #3fb950;
+    --stab-investigating: #58a6ff;
+    --stab-active: #ff9100;
+    --stab-unsettled: #ff5252;
+    --stab-unknown: #6e7681;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
@@ -81,6 +86,30 @@
 
   /* Mini-legend overlay */
   #hint { position: absolute; top: 10px; right: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--muted); line-height: 1.8; }
+
+  /* Stability overlay legend */
+  #stab-legend { position: absolute; top: 10px; left: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 11px; color: var(--muted); line-height: 1.6; display: none; min-width: 200px; }
+  #stab-legend.visible { display: block; }
+  #stab-legend h4 { color: var(--text); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; font-weight: 600; }
+  .stab-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .stab-ring { width: 14px; height: 14px; border-radius: 50%; border: 3px solid; flex-shrink: 0; box-sizing: border-box; }
+  .stab-ring.stable { border-color: var(--stab-stable); }
+  .stab-ring.investigating { border-color: var(--stab-investigating); }
+  .stab-ring.active { border-color: var(--stab-active); }
+  .stab-ring.unsettled { border-color: var(--stab-unsettled); }
+  .stab-ring.unknown { border-color: var(--stab-unknown); }
+  .stab-meta { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 10px; color: var(--muted); }
+
+  /* Per-claim status badges in panel */
+  .claim-row { display: flex; align-items: center; gap: 6px; padding: 3px 0; font-size: 11px; }
+  .claim-status { font-size: 9px; padding: 1px 6px; border-radius: 8px; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+  .claim-status.stable { background: rgba(63,185,80,0.15); color: var(--stab-stable); border: 1px solid var(--stab-stable); }
+  .claim-status.investigating { background: rgba(88,166,255,0.15); color: var(--stab-investigating); border: 1px solid var(--stab-investigating); }
+  .claim-status.unsettled { background: rgba(255,82,82,0.15); color: var(--stab-unsettled); border: 1px solid var(--stab-unsettled); }
+  .claim-status.unknown { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+  .claim-id { font-family: monospace; color: var(--text); font-size: 11px; min-width: 80px; }
+  .claim-title { color: var(--muted); font-size: 10px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pending-exq { display: inline-block; background: rgba(255,145,0,0.18); border: 1px solid var(--stab-active); color: var(--stab-active); border-radius: 4px; padding: 1px 6px; font-size: 10px; margin: 2px 2px 0 0; font-family: monospace; }
 </style>
 </head>
 <body>
@@ -89,9 +118,10 @@
   <h1>REE V3 — Implemented Architecture</h1>
   <span class="badge">2026-04-16</span>
   <div class="controls">
+    <button class="btn" id="btn-stability" onclick="toggleStability()" title="Show claim stability and active experiment overlay">Stability</button>
     <button class="btn active" id="btn-flow" onclick="toggleFlow()">Animate flow</button>
     <button class="btn" id="btn-labels" onclick="toggleLabels()">Hide labels</button>
-    <button class="btn" onclick="resetView()">Reset view</button>
+    <button class="btn" onclick="fitToView()" title="Fit the diagram to the visible area">Fit to view</button>
   </div>
 </div>
 
@@ -106,6 +136,15 @@
       Click node for details<br>
       Scroll/pinch to zoom<br>
       Drag to pan
+    </div>
+    <div id="stab-legend">
+      <h4>Substrate Stability</h4>
+      <div class="stab-row"><div class="stab-ring active"></div><span>Active work (queued experiment)</span></div>
+      <div class="stab-row"><div class="stab-ring unsettled"></div><span>Unsettled (open claim)</span></div>
+      <div class="stab-row"><div class="stab-ring investigating"></div><span>Under investigation (candidate)</span></div>
+      <div class="stab-row"><div class="stab-ring stable"></div><span>Stable (active / provisional)</span></div>
+      <div class="stab-row"><div class="stab-ring unknown"></div><span>Unknown / no claims</span></div>
+      <div class="stab-meta" id="stab-meta">Loading claim status...</div>
     </div>
   </div>
   <div id="panel" class="collapsed">
@@ -378,6 +417,91 @@ let animFlow = true;
 let showLabels = true;
 let flowT = 0;
 let stepCounter = 0;
+let stabilityMode = false;
+
+// Stability data (populated by loadStabilityData)
+const claimStatus = {};         // {ARC-001: 'active', ...}
+const claimMeta = {};            // {ARC-001: {title, type, subject}}
+const pendingByClaimId = {};     // {ARC-007: ['V3-EXQ-490c'], ...}
+let stabilityLoaded = false;
+
+const STATUS_TIER = {
+  active: 'stable', stable: 'stable', implemented: 'stable',
+  resolved: 'stable', provisional: 'stable',
+  candidate: 'investigating',
+  open: 'unsettled', retiring: 'unsettled', deprecated: 'unsettled',
+  retired: 'unsettled', superseded: 'unsettled', legacy: 'unsettled',
+};
+const TIER_COLORS = {
+  stable: '#3fb950',
+  investigating: '#58a6ff',
+  active: '#ff9100',
+  unsettled: '#ff5252',
+  unknown: '#6e7681',
+};
+
+async function loadStabilityData() {
+  // Claim status registry
+  try {
+    const r = await fetch('docs/assets/data/claims.json?t=' + Date.now());
+    if (r.ok) {
+      const data = await r.json();
+      for (const [id, c] of Object.entries(data)) {
+        claimStatus[id] = c.status || 'unknown';
+        claimMeta[id] = { title: c.title || '', type: c.type || '', subject: c.subject || '' };
+      }
+    }
+  } catch (e) { console.warn('claims.json load failed', e); }
+  // Pending experiment queue (V3)
+  try {
+    const r = await fetch('/api/queue/v3?t=' + Date.now());
+    if (r.ok) {
+      const q = await r.json();
+      const items = (q && (q.items || q.queue)) || [];
+      for (const it of items) {
+        if (it.status && it.status !== 'pending' && it.status !== 'queued' && it.status !== 'claimed') continue;
+        const ids = it.claim_ids || (it.claim_id ? [it.claim_id] : []);
+        for (const cid of ids) {
+          if (!pendingByClaimId[cid]) pendingByClaimId[cid] = [];
+          pendingByClaimId[cid].push(it.queue_id || it.id || '?');
+        }
+      }
+    }
+  } catch (e) { console.warn('queue load failed', e); }
+  stabilityLoaded = true;
+  const meta = document.getElementById('stab-meta');
+  if (meta) {
+    const nClaims = Object.keys(claimStatus).length;
+    const nPending = Object.values(pendingByClaimId).reduce((a, b) => a + b.length, 0);
+    const nClaimsWithPending = Object.keys(pendingByClaimId).length;
+    meta.textContent = `${nClaims} claims indexed -- ${nPending} pending exp on ${nClaimsWithPending} claim(s)`;
+  }
+}
+
+function classifyNode(n) {
+  const claims = (n.detail && n.detail.claims) || [];
+  const perClaim = {};
+  let pendingExqs = [];
+  let hasUnsettled = false, hasInvestigating = false, hasStable = false;
+  for (const c of claims) {
+    const s = claimStatus[c] || 'unknown';
+    perClaim[c] = s;
+    const tier = STATUS_TIER[s] || 'unknown';
+    if (tier === 'unsettled') hasUnsettled = true;
+    else if (tier === 'investigating') hasInvestigating = true;
+    else if (tier === 'stable') hasStable = true;
+    if (pendingByClaimId[c]) pendingExqs = pendingExqs.concat(pendingByClaimId[c]);
+  }
+  pendingExqs = [...new Set(pendingExqs)];
+  // Tier priority: pending experiment > unsettled > investigating > stable > unknown
+  let overall;
+  if (pendingExqs.length > 0) overall = 'active';
+  else if (hasUnsettled) overall = 'unsettled';
+  else if (hasInvestigating) overall = 'investigating';
+  else if (hasStable) overall = 'stable';
+  else overall = 'unknown';
+  return { overall, perClaim, pendingExqs };
+}
 
 function resize() {
   const wrap = document.getElementById('canvas-wrap');
@@ -387,6 +511,8 @@ function resize() {
   canvas.height = H;
 }
 
+let userInteracted = false;
+
 function resetView() {
   // Centre on the node cluster
   const xs = NODES.map(n=>n.x), ys = NODES.map(n=>n.y);
@@ -395,6 +521,13 @@ function resetView() {
   zoom = Math.min(W/(Math.max(...xs)-Math.min(...xs)+250), H/(Math.max(...ys)-Math.min(...ys)+200), 1.2);
   pan.x = W/2 - cx*zoom;
   pan.y = H/2 - cy*zoom;
+}
+
+// Manual fit (button) -- always re-measures current canvas size first.
+function fitToView() {
+  resize();
+  resetView();
+  userInteracted = false;
 }
 
 // Transform world→screen
@@ -552,6 +685,47 @@ function drawNode(n) {
     ctx.restore();
   }
 
+  // Stability ring overlay
+  if (stabilityMode && stabilityLoaded) {
+    const cls = classifyNode(n);
+    const ringCol = TIER_COLORS[cls.overall] || TIER_COLORS.unknown;
+    const ringW = 4 * zoom;
+    const pad = 5 * zoom;
+    ctx.save();
+    // Pulse the ring when there's active queued work
+    let alpha = 0.85;
+    if (cls.overall === 'active') {
+      alpha = 0.55 + 0.35 * Math.abs(Math.sin(flowT * 2));
+    }
+    ctx.globalAlpha = alpha;
+    drawRoundRect(
+      r.sx - pad, r.sy - pad,
+      r.sw + pad*2, r.sh + pad*2,
+      (7*zoom) + pad,
+      null, ringCol, ringW
+    );
+    ctx.restore();
+
+    // Pending experiment count badge (top-right corner)
+    if (cls.pendingExqs.length > 0) {
+      const badgeR = 9 * zoom;
+      const bx = r.sx + r.sw - badgeR*0.4;
+      const by = r.sy + badgeR*0.4;
+      ctx.save();
+      ctx.fillStyle = TIER_COLORS.active;
+      ctx.beginPath();
+      ctx.arc(bx, by, badgeR, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#0d1117';
+      ctx.font = `700 ${Math.max(9, 10*zoom)}px 'Segoe UI',system-ui`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(String(cls.pendingExqs.length), bx, by + 0.5*zoom);
+      ctx.textBaseline = 'alphabetic';
+      ctx.restore();
+    }
+  }
+
   // Label
   ctx.fillStyle = n.color;
   ctx.textAlign = 'center';
@@ -599,6 +773,7 @@ canvas.addEventListener('mousemove', e => {
     const dx = e.clientX-lastMouse.x, dy = e.clientY-lastMouse.y;
     if (Math.abs(dx)>3||Math.abs(dy)>3) {
       dragging = true;
+      userInteracted = true;
       pan.x += dx; pan.y += dy;
       lastMouse = {x:e.clientX, y:e.clientY};
     }
@@ -630,6 +805,7 @@ canvas.addEventListener('mouseup', e => {
 });
 canvas.addEventListener('wheel', e => {
   e.preventDefault();
+  userInteracted = true;
   const rect = canvas.getBoundingClientRect();
   const mx=e.clientX-rect.left, my=e.clientY-rect.top;
   const factor = e.deltaY<0?1.12:0.89;
@@ -671,9 +847,30 @@ function selectNode(n) {
     html += `</div>`;
   }
   if (d.claims&&d.claims.length) {
-    html += `<div class="info-section"><h3>Claims</h3>`;
-    d.claims.forEach(c=>{ html+=`<span class="info-badge claim">${c}</span>`; });
-    html += `</div>`;
+    if (stabilityMode && stabilityLoaded) {
+      const cls = classifyNode(n);
+      html += `<div class="info-section"><h3>Stability</h3>`;
+      const tierLabel = { stable:'Stable', investigating:'Under investigation', active:'Active work queued', unsettled:'Unsettled', unknown:'Unknown' }[cls.overall];
+      html += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><div class="stab-ring ${cls.overall}" style="width:14px;height:14px;border-radius:50%;border:3px solid ${TIER_COLORS[cls.overall]};"></div><span style="color:${TIER_COLORS[cls.overall]};font-weight:600;font-size:12px;">${tierLabel}</span></div>`;
+      if (cls.pendingExqs.length) {
+        html += `<div style="font-size:11px;color:var(--muted);margin-bottom:4px;">Pending experiments:</div>`;
+        cls.pendingExqs.forEach(q=>{ html += `<span class="pending-exq">${q}</span>`; });
+      }
+      html += `</div>`;
+      html += `<div class="info-section"><h3>Claims (${d.claims.length})</h3>`;
+      d.claims.forEach(c=>{
+        const status = cls.perClaim[c] || 'unknown';
+        const tier = STATUS_TIER[status] || 'unknown';
+        const meta = claimMeta[c] || {};
+        const titleAttr = meta.title ? ` title="${meta.title.replace(/"/g,'&quot;')}"` : '';
+        html += `<div class="claim-row"${titleAttr}><span class="claim-id">${c}</span><span class="claim-status ${tier}">${status}</span><span class="claim-title">${meta.title||''}</span></div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="info-section"><h3>Claims</h3>`;
+      d.claims.forEach(c=>{ html+=`<span class="info-badge claim">${c}</span>`; });
+      html += `</div>`;
+    }
   }
   if (d.passing&&d.passing.length) {
     html += `<div class="info-section"><h3>Validated / Status</h3>`;
@@ -705,14 +902,29 @@ function toggleLabels() {
   showLabels = !showLabels;
   document.getElementById('btn-labels').textContent = showLabels ? 'Hide labels' : 'Show labels';
 }
+function toggleStability() {
+  stabilityMode = !stabilityMode;
+  document.getElementById('btn-stability').classList.toggle('active', stabilityMode);
+  document.getElementById('stab-legend').classList.toggle('visible', stabilityMode);
+  if (stabilityMode && !stabilityLoaded) loadStabilityData();
+  // Refresh panel if a node is open
+  if (selectedNode) selectNode(selectedNode);
+}
 
 // ============================================================
 // INIT
 // ============================================================
-window.addEventListener('resize', ()=>{ resize(); });
+window.addEventListener('resize', ()=>{
+  resize();
+  // Auto re-fit until the user interacts -- so the diagram fills its container
+  // when the iframe (or window) gets resized inside the explorer.
+  if (!userInteracted) resetView();
+});
 resize();
 resetView();
 requestAnimationFrame(draw);
+// Preload stability data so the toggle is instant on first click.
+loadStabilityData();
 </script>
 </body>
 </html>

@@ -969,6 +969,27 @@ def _direction_conflict_ratio(direction_counts: dict[str, int]) -> float:
     return round((2.0 * min(supports, weakens)) / float(directional_total), 3)
 
 
+# --- Option E shadow regime -------------------------------------------------
+# Lit and exp evidence play different epistemic roles: exp is load-bearing for
+# promotion, lit is sanity-check + knowledge-harvest. Phase 1 surfaces the
+# decoupled view as additional fields without changing any gates.
+# Thresholds match those used by scripts/generate_option_e_shadow.py.
+EVIDENCE_QUADRANT_HIGH_EXP = 0.62  # candidate->provisional gate
+EVIDENCE_QUADRANT_HIGH_LIT = 0.55
+
+
+def _evidence_quadrant(exp_conf: float, lit_conf: float, n_exp: int, n_lit: int) -> str:
+    has_exp = n_exp > 0 and exp_conf >= EVIDENCE_QUADRANT_HIGH_EXP
+    has_lit = n_lit > 0 and lit_conf >= EVIDENCE_QUADRANT_HIGH_LIT
+    if has_exp and has_lit:
+        return "confirmed_established"
+    if has_exp and not has_lit:
+        return "novel_discovery"
+    if not has_exp and has_lit:
+        return "plausible_unproven"
+    return "speculative"
+
+
 def _compute_claim_confidence(
     entries: list[dict[str, Any]],
     now: datetime,
@@ -1085,6 +1106,14 @@ def _summarize_claim_entries(
 
     exp_conf, lit_conf, overall_conf, rationale = _compute_claim_confidence(ordered_entries, now)
     latest = ordered_entries[-1]
+
+    # Option E shadow fields (decoupled regime, no behavioral effect yet).
+    # See REE_assembly/CLAUDE.md "Lit/Exp Decoupling Shadow" for the methodology
+    # and the phase 2/3 plan.
+    n_exp_scored = source_counts.get("experimental", 0)
+    n_lit_scored = source_counts.get("literature", 0)
+    quadrant = _evidence_quadrant(exp_conf, lit_conf, n_exp_scored, n_lit_scored)
+
     return {
         "runs_total": len(ordered_entries),
         "entries_total": len(ordered_entries),
@@ -1101,6 +1130,9 @@ def _summarize_claim_entries(
         "literature_confidence": lit_conf,
         "overall_confidence": overall_conf,
         "confidence_rationale": rationale,
+        "experimental_confidence_decoupled": exp_conf,
+        "literature_confidence_parallel": lit_conf,
+        "evidence_quadrant": quadrant,
         "recent_entries": ordered_entries[-5:],
     }
 

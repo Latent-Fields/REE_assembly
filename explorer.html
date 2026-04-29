@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-04-26.1 -->
+<!-- EXPLORER_VERSION: 2026-04-29.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -137,6 +137,20 @@
       flex-wrap: wrap;
       margin-top: 12px;
     }
+    .stats.collapsed { display: none; }
+    .stats-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0 6px 0; }
+    .stats-toggle {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--text);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .stats-toggle:hover { border-color: var(--accent); }
 
     .stat-card {
       background: var(--card);
@@ -955,6 +969,26 @@
     .claim-conf-high { background: #dff2ef; color: #2b6f72; }
     .claim-conf-med  { background: #fff5de; color: #b67923; }
     .claim-conf-low  { background: #fbecec; color: #8c2f2f; }
+
+    /* Evidence quadrant badge (Option E shadow regime).
+       Surfaces the lit/exp decoupled view as informational only -- does not
+       drive any promotion decisions in Phase 1. */
+    .evidence-quadrant-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-left: 4px;
+      vertical-align: middle;
+      border: 1px solid transparent;
+    }
+    .quadrant-confirmed_established { background: #e3eef9; color: #2c5181; border-color: #b7ccdf; }
+    .quadrant-novel_discovery       { background: #f0e3f5; color: #6b3a7c; border-color: #c8a8d2; }
+    .quadrant-plausible_unproven    { background: #fbf3d6; color: #8c6610; border-color: #e0c97a; }
+    .quadrant-speculative           { background: #ececec; color: #555; border-color: #c8c8c8; }
 
     /* Version inspector note */
     .triple-version-note {
@@ -2206,11 +2240,15 @@
       <button id="tripleViewBtn" class="view-btn">Triple View</button>
       <button id="governanceViewBtn" class="view-btn">Governance<span id="govConflictBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="experimentsViewBtn" class="view-btn">Experiments</button>
+      <button id="archViewBtn" class="view-btn" title="Architecture diagram with substrate stability overlay">Architecture</button>
       <button id="contribViewBtn" class="view-btn">Contributors</button>
       <a href="/fishtank_viz.html" target="_blank" rel="noopener" class="view-btn" style="text-decoration:none;display:inline-flex;align-items:center;padding-bottom:9px;">Fishtank &#x1F41F;</a>
       <a href="/machines" target="_blank" rel="noopener" class="view-btn" style="text-decoration:none;display:inline-flex;align-items:center;padding-bottom:9px;" title="Multi-machine runner dashboard">Machines &#x1F5A5;&#xFE0F;</a>
     </nav>
-    <div id="stats" class="stats" style="padding: 8px 0 6px 0;"></div>
+    <div class="stats-row">
+      <button id="statsToggle" class="stats-toggle" type="button" aria-expanded="false" title="Show/hide claim stats">&#9656; Stats</button>
+      <div id="stats" class="stats collapsed"></div>
+    </div>
     <div id="designStateBar" class="design-state-bar"></div>
   </header>
 
@@ -2437,6 +2475,9 @@
         </div>
         <div id="expWrap" class="exp-wrap" style="display:none">
           <div id="expContent"></div>
+        </div>
+        <div id="archWrap" class="panel" style="display:none;padding:0;overflow:hidden;">
+          <iframe id="archFrame" src="about:blank" style="width:100%;height:calc(100vh - 160px);border:0;display:block;background:#0d1117;" title="REE Architecture with Stability Overlay"></iframe>
         </div>
         <div id="tripleViewWrap" class="panel triple-view-wrap">
           <div class="triple-toolbar">
@@ -3061,6 +3102,9 @@ END CONFLICT RESOLUTION`;
       experimentsViewBtn: document.getElementById('experimentsViewBtn'),
       contribViewBtn: document.getElementById('contribViewBtn'),
       contribWrap: document.getElementById('contribWrap'),
+      archWrap: document.getElementById('archWrap'),
+      archFrame: document.getElementById('archFrame'),
+      archViewBtn: document.getElementById('archViewBtn'),
       contribContent: document.getElementById('contribContent'),
       expWrap: document.getElementById('expWrap'),
       expContent: document.getElementById('expContent'),
@@ -3076,6 +3120,7 @@ END CONFLICT RESOLUTION`;
       evidencedFilter: document.getElementById('evidencedFilter'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
+      statsToggle: document.getElementById('statsToggle'),
       designStateBar: document.getElementById('designStateBar'),
       errorBanner: document.getElementById('errorBanner'),
       refreshStatus: document.getElementById('refreshStatus'),
@@ -5364,6 +5409,7 @@ END CONFLICT RESOLUTION`;
         status: claim.status || '',
         location: claim.location || '',
         overall_confidence: typeof claim.overall_confidence === 'number' ? claim.overall_confidence : null,
+        evidence_quadrant: claim.evidence_quadrant || null,
       };
     }
 
@@ -5888,13 +5934,32 @@ END CONFLICT RESOLUTION`;
           const c = conf >= 0.7 ? 'claim-conf-high' : conf >= 0.4 ? 'claim-conf-med' : 'claim-conf-low';
           return `<span class="claim-confidence-chip ${c}">${(conf * 100).toFixed(0)}%</span>`;
         })() : '';
+        // Evidence quadrant badge (Option E shadow regime, informational only).
+        const quadrant = entry.evidence_quadrant || null;
+        const quadrantBadge = (quadrant && mode === 'claims') ? (() => {
+          const labels = {
+            confirmed_established: 'CONFIRMED',
+            novel_discovery: 'NOVEL',
+            plausible_unproven: 'UNPROVEN',
+            speculative: 'SPECULATIVE',
+          };
+          const tooltips = {
+            confirmed_established: 'high exp + high lit -- confirmed established',
+            novel_discovery: 'high exp + low lit -- novel discovery (or missing lit pull)',
+            plausible_unproven: 'low exp + high lit -- plausible, needs experimental backing',
+            speculative: 'low exp + low lit -- speculative / early candidate',
+          };
+          const label = labels[quadrant] || quadrant;
+          const tip = tooltips[quadrant] || '';
+          return `<span class="evidence-quadrant-badge quadrant-${escapeHtml(quadrant)}" title="${escapeHtml(tip)}">${escapeHtml(label)}</span>`;
+        })() : '';
         const detail = normalizeSpace(entry.detail || '');
         const source = normalizeSpace(entry.source || '');
         const href = normalizeSpace(entry.href || '');
         const hrefHtml = href ? `<div class="meta"><a href="${escapeHtml(href)}" target="_blank" rel="noopener">source</a></div>` : '';
         return `
           <li class="inspector-item" id="triple-${mode}-${stableId}">
-            <div>${titleHtml}${confChip}</div>
+            <div>${titleHtml}${confChip}${quadrantBadge}</div>
             ${detail ? `<div class="meta">${escapeHtml(detail)}</div>` : ''}
             ${source ? `<div class="meta">source: ${escapeHtml(source)}</div>` : ''}
             ${hrefHtml}
@@ -7790,6 +7855,7 @@ END CONFLICT RESOLUTION`;
         els.tripleViewBtn,
         els.governanceViewBtn,
         els.experimentsViewBtn,
+        els.archViewBtn,
       ].forEach(btn => {
         if (!btn) return;
         if (btn === activeButton) btn.classList.add('primary');
@@ -7806,6 +7872,7 @@ END CONFLICT RESOLUTION`;
       if (els.governanceWrap) els.governanceWrap.style.display = 'none';
       if (els.expWrap) { els.expWrap.style.display = 'none'; els.expWrap.style.gridColumn = ''; }
       if (els.contribWrap) els.contribWrap.style.display = 'none';
+      if (els.archWrap) { els.archWrap.style.display = 'none'; els.archWrap.style.gridColumn = ''; }
       stopExpRefresh();
       hideTripleTooltip();
     }
@@ -7862,6 +7929,18 @@ END CONFLICT RESOLUTION`;
         if (els.contribWrap) els.contribWrap.style.display = 'block';
         setPrimaryViewButton(els.contribViewBtn);
         renderContributors();
+        return;
+      }
+
+      if (view === 'arch') {
+        if (els.archWrap) {
+          els.archWrap.style.display = 'block';
+          els.archWrap.style.gridColumn = '1 / -1';
+        }
+        if (els.archFrame && els.archFrame.getAttribute('src') === 'about:blank') {
+          els.archFrame.setAttribute('src', '/ree_architecture.html');
+        }
+        setPrimaryViewButton(els.archViewBtn);
         return;
       }
 
@@ -8907,6 +8986,26 @@ END CONFLICT RESOLUTION`;
         refreshTripleAnnotationsFromCurrentFilters();
       });
 
+      // Stats lozenge collapse toggle (default collapsed; remembered across reloads)
+      if (els.statsToggle && els.stats) {
+        const STATS_KEY = 'reeExplorer.statsExpanded';
+        const applyStatsState = (expanded) => {
+          els.stats.classList.toggle('collapsed', !expanded);
+          els.statsToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          els.statsToggle.innerHTML = (expanded ? '▾' : '▸') + ' Stats';
+        };
+        let initial = false;
+        try {
+          const saved = localStorage.getItem(STATS_KEY);
+          if (saved === '1') initial = true;
+        } catch (e) {}
+        applyStatsState(initial);
+        els.statsToggle.addEventListener('click', () => {
+          const nowExpanded = els.stats.classList.contains('collapsed');
+          applyStatsState(nowExpanded);
+          try { localStorage.setItem(STATS_KEY, nowExpanded ? '1' : '0'); } catch (e) {}
+        });
+      }
       els.listViewBtn.addEventListener('click', () => setView('list'));
       els.graphViewBtn.addEventListener('click', () => setView('graph'));
       if (els.docsViewBtn) {
@@ -8923,6 +9022,9 @@ END CONFLICT RESOLUTION`;
       }
       if (els.experimentsViewBtn) {
         els.experimentsViewBtn.addEventListener('click', () => setView('experiments'));
+      }
+      if (els.archViewBtn) {
+        els.archViewBtn.addEventListener('click', () => setView('arch'));
       }
       if (els.contribViewBtn) {
         els.contribViewBtn.addEventListener('click', () => setView('contributors'));
@@ -9104,7 +9206,15 @@ END CONFLICT RESOLUTION`;
           const evClaims = evData && evData.claims ? evData.claims : {};
           for (const [cid, ev] of Object.entries(evClaims)) {
             const claim = claimMap.get(cid);
-            if (claim) claim.genuine_exp_count = ev.genuine_exp_count || 0;
+            if (claim) {
+              claim.genuine_exp_count = ev.genuine_exp_count || 0;
+              // Option E shadow fields -- informational, no behavioral effect.
+              claim.evidence_quadrant = ev.evidence_quadrant || null;
+              claim.experimental_confidence_decoupled = typeof ev.experimental_confidence_decoupled === 'number'
+                ? ev.experimental_confidence_decoupled : null;
+              claim.literature_confidence_parallel = typeof ev.literature_confidence_parallel === 'number'
+                ? ev.literature_confidence_parallel : null;
+            }
           }
         }
       } catch (e) {

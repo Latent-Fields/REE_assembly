@@ -54,6 +54,9 @@ echo "--- Step 2/4: Building experiment indexes ---"
 echo "--- Step 3/4: Generating pending review list ---"
 "$PYTHON" scripts/generate_pending_review.py
 
+echo "--- Step 3b: Generating Option E shadow recommendations ---"
+"$PYTHON" scripts/generate_option_e_shadow.py
+
 echo "--- Step 4/5: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
