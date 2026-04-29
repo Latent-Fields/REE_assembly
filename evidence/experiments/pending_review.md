@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-04-29T18:49:08Z`  
+Generated: `2026-04-29T19:32:12Z`
 Last review: `2026-04-28T22:00:00Z`  
-Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **5** item(s) -- 4 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
 ## FAIL (action required)
 
@@ -15,6 +15,9 @@ Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3` | 2026-04-29T18:47 | MECH-094 |
+| `v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3` | 2026-04-29T19:27 | SD-035 |
+| `v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3` | 2026-04-29T19:27 | MECH-062 |
+| `v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3` | 2026-04-29T19:27 | SD-017 |
 
 ---
 
