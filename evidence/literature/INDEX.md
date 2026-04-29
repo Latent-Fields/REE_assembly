@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-29T06:06:26.925099Z`
+Generated: `2026-04-29T08:54:33.422369Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -194,6 +194,8 @@ Generated: `2026-04-29T06:06:26.925099Z`
 | `targeted_review_q_026` | [`2026-04-27_q_026_ross_prima_facie_duties_phillips2022`](targeted_review_q_026/entries/2026-04-27_q_026_ross_prima_facie_duties_phillips2022/record.json) | 2 | [`summary`](targeted_review_q_026/entries/2026-04-27_q_026_ross_prima_facie_duties_phillips2022/summary.md) |
 | `targeted_review_q_027` | [`2026-04-28_q_027_precautionary_principle_iep`](targeted_review_q_027/entries/2026-04-28_q_027_precautionary_principle_iep/record.json) | 3 | [`summary`](targeted_review_q_027/entries/2026-04-28_q_027_precautionary_principle_iep/summary.md) |
 | `targeted_review_q_028` | [`2026-04-28_q_028_moral_dilemmas_mcconnell2022`](targeted_review_q_028/entries/2026-04-28_q_028_moral_dilemmas_mcconnell2022/record.json) | 2 | [`summary`](targeted_review_q_028/entries/2026-04-28_q_028_moral_dilemmas_mcconnell2022/summary.md) |
+| `targeted_review_q_029` | [`2026-04-29_q_029_social_relationships_mortality_holtlunstad2010`](targeted_review_q_029/entries/2026-04-29_q_029_social_relationships_mortality_holtlunstad2010/record.json) | 5 | [`summary`](targeted_review_q_029/entries/2026-04-29_q_029_social_relationships_mortality_holtlunstad2010/summary.md) |
+| `targeted_review_q_030` | [`2026-04-29_q_030_slot_attention_object_centric_locatello2020`](targeted_review_q_030/entries/2026-04-29_q_030_slot_attention_object_centric_locatello2020/record.json) | 5 | [`summary`](targeted_review_q_030/entries/2026-04-29_q_030_slot_attention_object_centric_locatello2020/summary.md) |
 | `targeted_review_q_031` | [`2026-04-28_q_031_scopolamine_phasic_rem_kim1999`](targeted_review_q_031/entries/2026-04-28_q_031_scopolamine_phasic_rem_kim1999/record.json) | 5 | [`summary`](targeted_review_q_031/entries/2026-04-28_q_031_scopolamine_phasic_rem_kim1999/summary.md) |
 | `targeted_review_q_033` | [`2024-11-18_q_033_mood_episode_prediction_lim2024`](targeted_review_q_033/entries/2024-11-18_q_033_mood_episode_prediction_lim2024/record.json) | 4 | [`summary`](targeted_review_q_033/entries/2024-11-18_q_033_mood_episode_prediction_lim2024/summary.md) |
 | `targeted_review_q_034` | [`2026-04-09_q_034_stress_dopamine_reward_review_baik2020`](targeted_review_q_034/entries/2026-04-09_q_034_stress_dopamine_reward_review_baik2020/record.json) | 6 | [`summary`](targeted_review_q_034/entries/2026-04-09_q_034_stress_dopamine_reward_review_baik2020/summary.md) |

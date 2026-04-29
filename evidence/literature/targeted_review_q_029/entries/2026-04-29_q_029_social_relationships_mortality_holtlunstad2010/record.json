@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_029",
+  "entry_id": "2026-04-29_q_029_social_relationships_mortality_holtlunstad2010",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-029"],
+  "source": {
+    "title": "Social relationships and mortality risk: a meta-analytic review.",
+    "authors": ["Holt-Lunstad, Julianne", "Smith, Timothy B", "Layton, J Bradley"],
+    "year": 2010,
+    "venue": "PLoS Medicine",
+    "doi": "10.1371/journal.pmed.1000316"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational meta-analysis of 148 studies covering 308,849 participants finds OR=1.50 (95% CI 1.42-1.59) for survival in those with stronger social relationships -- effect size comparable to canonical mortality risk factors (smoking, obesity). Effect held across age, sex, follow-up period, cause of death. Directly evidences the empirical claim that absence of shared-world relations is health-cost-positive at population scale, which Q-029 reframes as architectural harm. Confidence aggregate weights source_quality (large-N meta-analysis in PLoS Med) heavily, mapping_fidelity moderately (Q-029 asks an ethical/architectural question that the paper does not itself frame).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Effect was weakest for binary residential indicators (living alone vs with others; OR=1.19, CI crosses 1.0) and strongest for complex measures of social integration (OR=1.91), so any REE substrate that operationalises 'isolation' as a single binary flag will under-detect harm relative to richer relational measures."
+  ],
+  "tags": ["q_029", "loneliness", "social_isolation", "mortality", "ethics_as_structural_constraint"],
+  "mapping": {
+    "source_claim_statement": "Across 148 prospective studies, the strength and quality of an individual's social relationships predicts mortality with an effect size comparable to established medical risk factors; the effect is robust across demographic and methodological moderators.",
+    "ree_translation": "Q-029 asks whether enforced isolation constitutes architectural harm derivable from INV-029 (love as long-horizon care-investment). This paper supplies the empirical floor: at the substrate of a biological agent, removal of shared-world relations measurably degrades survival. If REE's ethics is a structural property of agents that model others as co-inhabitants (INV-028) and invest care over long horizons (INV-029), then unshared suffering is not merely psychologically aversive but structurally deleterious -- the agent's substrate fails when its relational coupling fails. This is the empirical anchor for treating loneliness as a harm category in INV-042's ethical objectives.",
+    "mapping_caveat": "The paper measures all-cause mortality in human cohorts, not architectural harm in any computational substrate. The translation assumes that what makes social relationships protective biologically (regulated stress, distributed cognition, behavioural co-regulation) has structural analogues at the level of any agent that satisfies INV-028/INV-029 -- this is a strong inference and not directly tested. The paper also does not distinguish loneliness (subjective) from isolation (objective); Q-029 is about subjective unshared suffering specifically.",
+    "source_context": "Adult human cohorts, prospective observational studies, all-cause mortality outcome, follow-up median ~7.5 years."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Source is gold-standard for the empirical claim. Mapping to architectural harm is the inferential step that carries the transfer risk -- Q-029 is itself the question of whether that transfer is licensed."
+  }
+}

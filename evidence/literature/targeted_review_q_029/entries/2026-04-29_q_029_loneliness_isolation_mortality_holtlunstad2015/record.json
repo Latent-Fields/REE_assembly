@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_029",
+  "entry_id": "2026-04-29_q_029_loneliness_isolation_mortality_holtlunstad2015",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-029"],
+  "source": {
+    "title": "Loneliness and social isolation as risk factors for mortality: a meta-analytic review.",
+    "authors": ["Holt-Lunstad, Julianne", "Smith, Timothy B", "Baker, Mark", "Harris, Tyler", "Stephenson, David"],
+    "year": 2015,
+    "venue": "Perspectives on Psychological Science",
+    "doi": "10.1177/1745691614568352"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Specifically separates loneliness (subjective) from social isolation (objective) and living alone (structural), reporting OR=1.26 for loneliness, 1.29 for isolation, 1.32 for living alone -- all comparable, and crucially, no significant difference between objective and subjective measures. This directly addresses the Q-029 distinction between unshared suffering as a felt state and social isolation as an external condition. Strong source_quality, higher mapping_fidelity than 2010 paper because it pulls out loneliness specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The non-difference between objective and subjective measures (no statistically significant moderator) is itself a partial weakening signal: it suggests loneliness and isolation may be measuring overlapping rather than dissociable harm channels, which complicates Q-029's framing of loneliness as a distinct ethical harm category. The architectural distinction (subjective unshared suffering as the harm) may not be empirically dissociable from structural relation-loss."
+  ],
+  "tags": ["q_029", "loneliness", "social_isolation", "mortality", "subjective_objective_distinction"],
+  "mapping": {
+    "source_claim_statement": "Loneliness, social isolation, and living alone each independently predict increased mortality with effect sizes around OR=1.26-1.32, with no significant difference between objective (isolation) and subjective (loneliness) measures, suggesting both forms of social deprivation independently elevate mortality risk.",
+    "ree_translation": "Q-029 asks whether subjective unshared suffering (loneliness) is an architectural harm category in its own right. This paper supplies the empirical separation Q-029 wants: loneliness *as a subjective state* predicts mortality, with magnitude comparable to objective isolation. That is consistent with treating loneliness as a substantive harm derivable from INV-029, not merely a psychological epiphenomenon of relation-loss. However, the absence of a measured difference between subjective and objective channels is also a caveat -- the paper cannot establish that loneliness adds harm beyond what objective isolation already explains.",
+    "mapping_caveat": "The meta-analytic comparison assumes that the studies' loneliness and isolation measures are clean separations -- in practice they are highly correlated, and many cohort instruments confound them. The paper cannot resolve whether subjective loneliness is a distinct harm channel or a symptom of relation-loss; Q-029's architectural claim requires the former.",
+    "source_context": "Adult human cohorts, age range from young adults to elderly, MEDLINE/CINAHL/PsycINFO sources, 1980-2014."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Higher mapping_fidelity than the 2010 paper because it explicitly extracts the subjective vs objective distinction Q-029 cares about. Source_quality slightly lower than 2010 because the included literature is more heterogeneous in measurement quality."
+  }
+}

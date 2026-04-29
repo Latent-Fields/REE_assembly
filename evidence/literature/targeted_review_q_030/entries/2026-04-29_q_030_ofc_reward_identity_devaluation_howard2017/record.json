@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_030",
+  "entry_id": "2026-04-29_q_030_ofc_reward_identity_devaluation_howard2017",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-030"],
+  "source": {
+    "title": "Identity-Specific Reward Representations in Orbitofrontal Cortex Are Modulated by Selective Devaluation.",
+    "authors": ["Howard, James D", "Kahnt, Thorsten"],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3473-16.2017"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct fMRI pattern-based evidence that orbitofrontal cortex (OFC) holds identity-specific reward representations (the 'what' of expected outcome) separately from ventromedial prefrontal cortex (vmPFC) general value coding. Selective devaluation (eating one of two food rewards) updates the identity-specific OFC pattern for the sated reward but preserves it for the non-sated. Functional connectivity between OFC and vmPFC predicts choice. This is direct evidence for a separated identity (z_resource-like) and value (z_world-evaluative) architecture with explicit feedforward routing -- highly relevant to Q-030's E3 evaluation and feedback questions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paradigm uses food-odour rewards in a hungry-then-sated state, which is a narrow operationalisation of 'identity-specific reward.' The architectural inference -- that OFC holds reward identity and vmPFC holds general value -- is a particular reading of OFC function that competes with views holding OFC encodes a more general 'cognitive map of task states' (Schoenbaum, Niv). If the cognitive-map view is correct, the clean identity/value separation REE might adopt does not map onto a real anatomical separation."
+  ],
+  "tags": ["q_030", "orbitofrontal", "vmpfc", "reward", "identity", "value", "devaluation", "goal_directed"],
+  "mapping": {
+    "source_claim_statement": "In humans, lateral posterior orbitofrontal cortex holds identity-specific reward representations that are selectively updated by sensory-specific satiety; ventromedial prefrontal cortex holds a general value signal; functional connectivity between OFC and vmPFC predicts choice behaviour. This shows separated representations of reward identity ('what is the outcome') and reward value ('how much do I want it now') with downstream functional connectivity binding identity to current value to drive goal-directed action.",
+    "ree_translation": "Q-030 axes 4 (E3 evaluation: separate harm/benefit channels vs joint?) and 5 (feedback direction) get direct evidence here. The mammalian substrate uses a separated architecture: identity-specific representation in lateral OFC (z_resource-like, encoding 'this is reward of type X') and general value in vmPFC (z_world-evaluative-like, encoding 'how much I want it now'). The two interact via functional connectivity that predicts choice. This supports Q-030 axis 4's separated-channel option (z_resource and z_world feed into separate evaluation systems) and informs axis 5: feedback (devaluation) operates on the identity-specific OFC representation, not on the general value vmPFC. This maps onto an REE design where E3 might evaluate harm and benefit on different channels, with downstream integration determining action selection.",
+    "mapping_caveat": "OFC function is contested: the identity-coding view (Howard & Kahnt) competes with the cognitive-map view (Schoenbaum, Niv) that OFC encodes more general task-state information. The paradigm tests sensory-specific satiety with food odours, which is one operationalisation of identity-specific reward; how well it generalises to abstract resources (z_resource) in a navigation context is uncertain. The OFC-vmPFC functional-connectivity finding is correlational, not causal, so the direction of information flow is inferred rather than measured.",
+    "source_context": "Human fMRI with sensory-specific satiety paradigm; food-odour rewards (high vs low intensity, sated vs non-sated); pattern-based fMRI analysis (multivoxel pattern); functional connectivity between OFC and vmPFC analysed for individual-difference prediction of choice."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.42,
+    "notes": "High source_quality (J Neurosci, MVPA + connectivity analysis). Mapping_fidelity solid because the paper directly addresses identity vs value separation, which maps onto Q-030 axes 4-5. Transfer_risk elevated because food-odour paradigm is a narrow operationalisation and OFC function is contested."
+  }
+}

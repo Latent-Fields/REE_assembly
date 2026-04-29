@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_030",
+  "entry_id": "2026-04-29_q_030_gist_goal_stimulus_parahippocampal_lee2021",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-030"],
+  "source": {
+    "title": "Goal-directed interaction of stimulus and task demand in the parahippocampal region.",
+    "authors": ["Lee, Su-Min", "Jin, Seung-Woo", "Park, Seong-Beom", "Park, Eun-Hye", "Lee, Choong-Hee", "Lee, Hyun-Woo", "Lim, Heung-Yeol", "Yoo, Seung-Woo", "Ahn, Jae Rong", "Shin, Jhoseph", "Lee, Sang Ah", "Lee, Inah"],
+    "year": 2021,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.23295"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This review proposes the GIST model (Goal-directed Interaction of Stimulus and Task-demand), which directly addresses Q-030's question about routing permutations. Initial PrC (object) / postrhinal (scene) processing happens largely independent of goal, but downstream entorhinal routing is goal-directed: medial EC for navigational goals, lateral EC for non-navigational goals. The hippocampus then integrates across goal contexts. This is a state-of-the-art synthesis of how separation/fusion permutations actually work in mammalian MTL, and it directly informs Q-030 design choices.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The GIST model is a theoretical synthesis, not a single experimental result. Some of its specific claims (lateral EC = non-navigational, medial EC = navigational) are still actively debated in the rodent literature. If the EC routing is more mixed than GIST proposes, the simple goal-conditioned permutation REE might adopt could be over-specified."
+  ],
+  "tags": ["q_030", "perirhinal", "postrhinal", "entorhinal", "hippocampus", "goal_directed", "object_scene", "GIST_model"],
+  "mapping": {
+    "source_claim_statement": "The dual-stream model of MTL (separate object and scene streams converging at hippocampus) cannot accommodate evidence that perceptual ambiguity, behavioural goal, and task demand all modulate which stream is recruited. The GIST model proposes: (1) input stimuli are first processed by both postrhinal (scene-biased) and perirhinal (object-biased) cortices in a largely goal-independent manner; (2) once recognised, information routes through medial entorhinal cortex if the goal is navigational, or through lateral entorhinal cortex if non-navigational; (3) hippocampus integrates across goal contexts to support flexible adaptive behaviour.",
+    "ree_translation": "Q-030 enumerates six permutation axes for z_resource and z_world (encoding separation, E2 input, hippocampal fusion, E3 evaluation, feedback, lateral binding). The GIST model gives a principled mammalian answer: separation at the perceptual encoder (PrC vs postrhinal) is largely goal-independent and can be hard-wired in REE; routing through the next stage (entorhinal-equivalent) is goal-conditioned and should be modulated by an REE goal signal (z_goal, z_resource); hippocampal integration is the convergence point that supports flexible recombination. This directly informs SD-015 (z_resource encoder), MECH-162 (z_resource/z_world reconvergence at hippocampus), and ARC-007 (hippocampal map). It also tells REE that the routing layer between encoder and hippocampus should be goal-conditioned -- a specific design instruction for the substrate's intermediate stage.",
+    "mapping_caveat": "GIST is a theoretical model, not a settled experimental fact. The specific claim that lateral EC handles non-navigational and medial EC handles navigational goals is one of several active accounts in the rodent literature. REE should treat the goal-conditioned-routing principle as well-supported but the specific medial/lateral assignment as more provisional. The paper also leaves open how the hippocampus integrates across goal contexts -- the convergence mechanism is named but not specified.",
+    "source_context": "Theoretical review in Hippocampus journal, synthesising rodent and human MTL literature; multi-author group from Korea Advanced Institute of Science and Technology and Seoul National University; integrates lesion, electrophysiology, and behavioural evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.86,
+    "transfer_risk": 0.3,
+    "notes": "High source_quality (Hippocampus, multi-PI synthesis). Very high mapping_fidelity because the paper's central question (how do object/scene streams interact with goal context?) is exactly Q-030's question. Transfer_risk moderate because the principle is robust but the specific routing claims are still being refined."
+  }
+}

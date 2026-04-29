@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-29T06:06:26.925099Z`
+Generated: `2026-04-29T08:54:33.422369Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -79,6 +79,8 @@ Use this as the human-in-the-loop review queue.
 | `Q-026` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `Q-027` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `Q-028` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
+| `Q-029` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
+| `Q-030` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `Q-031` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-040` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
@@ -452,7 +454,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.805, conflict_ratio=0.636, exp_entries=50, lit_entries=6; directions supports=15, weakens=7, mixed=7, unknown=0, conflict_ratio=0.636
+- Why this decision is needed: overall_conf=0.804, conflict_ratio=0.636, exp_entries=50, lit_entries=6; directions supports=15, weakens=7, mixed=7, unknown=0, conflict_ratio=0.636
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -471,7 +473,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-116
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.661, conflict_ratio=0.727, exp_entries=7, lit_entries=7; directions supports=7, weakens=4, mixed=0, unknown=0, conflict_ratio=0.727
+- Why this decision is needed: overall_conf=0.66, conflict_ratio=0.727, exp_entries=7, lit_entries=7; directions supports=7, weakens=4, mixed=0, unknown=0, conflict_ratio=0.727
 - Evidence quality note: EXQ-076d FAIL 1/4 (2026-03-27, 2 runs identical): halflife_ratio=1.0, resource_rate_gap=0, goal_norm_t1200_diff=0. Only C3 PASS (goal_norm > 0 in wanting condition). Root cause: halflife threshold (30% of peak goal_norm) never reached in either condition. At 2000 total steps with 1000-step post-removal window, goal persists robustly in both conditions -- insufficient time to observe meaningful dec…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -860,7 +862,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-268
 - Current status: `provisional`
 - Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.88, conflict_ratio=0, exp_entries=4, lit_entries=6; directions supports=6, weakens=0, mixed=4, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.879, conflict_ratio=0, exp_entries=4, lit_entries=6; directions supports=6, weakens=0, mixed=4, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `promote_to_stable`
 - Options (pros/cons):
@@ -1360,6 +1362,36 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
 
+### Q-029
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: overall_conf=0.875, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### Q-030
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: overall_conf=0.874, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=5, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
 ### Q-031
 - Current status: `open`
 - Decision needed: Question narrowing review
@@ -1432,7 +1464,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.726, conflict_ratio=0.933, exp_entries=27, lit_entries=6; directions supports=8, weakens=7, mixed=1, unknown=0, conflict_ratio=0.933
+- Why this decision is needed: overall_conf=0.725, conflict_ratio=0.933, exp_entries=27, lit_entries=6; directions supports=8, weakens=7, mixed=1, unknown=0, conflict_ratio=0.933
 - Evidence quality note: Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all 085x iterations despite contact-gated seeding). EXP-0091 will first test a handcrafted resource_indicator to confirm the diagnosis before implementing the full encoder. EXQ-085h through 085l (2026-03-30, 085l final, supersedes prior): ResourceEncoder tested across 5 iterations. 085l (proximity regression encoder): …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1451,7 +1483,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-021
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.68, conflict_ratio=0.545, exp_entries=7, lit_entries=8; directions supports=8, weakens=3, mixed=0, unknown=0, conflict_ratio=0.545
+- Why this decision is needed: overall_conf=0.679, conflict_ratio=0.545, exp_entries=7, lit_entries=8; directions supports=8, weakens=3, mixed=0, unknown=0, conflict_ratio=0.545
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1579,7 +1611,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-033b
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.916, conflict_ratio=0, exp_entries=4, lit_entries=5; directions supports=8, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.915, conflict_ratio=0, exp_entries=4, lit_entries=5; directions supports=8, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):

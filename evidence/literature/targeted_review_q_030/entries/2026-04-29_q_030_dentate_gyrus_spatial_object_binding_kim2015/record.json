@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_030",
+  "entry_id": "2026-04-29_q_030_dentate_gyrus_spatial_object_binding_kim2015",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-030"],
+  "source": {
+    "title": "Effect of dentate gyrus disruption on remembering what happened where.",
+    "authors": ["Kim, Woon Ryoung", "Lee, Jong Won", "Sun, Woong", "Lee, Sung-Hyun", "Choi, June-Seek", "Jung, Min Whan"],
+    "year": 2015,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2015.00170"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Causal lesion-style evidence (Bax-KO mice with disrupted dentate gyrus circuitry) showing the DG is required for binding internal spatial map with external object/event information when memory must persist across an interrupted delay. Online maintenance is intact; episodic encoding requiring spatial-nonspatial binding is impaired. Direct evidence for the hippocampus (specifically DG) as the convergence locus where z_resource-equivalent (objects/events) and z_world-equivalent (spatial map) are integrated. Confidence moderate because a single-mechanism mouse study and one paradigm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Bax-KO model disrupts DG by disrupting newborn-granule-cell turnover, which has effects beyond pure DG function (it changes adult neurogenesis, which affects pattern separation specifically). The paradigm is a delayed-non-match-to-place task, which is a narrow operationalisation of episodic binding. If REE's z_resource/z_world fusion happens at a hippocampal stage downstream of DG (e.g., CA3 or CA1), the DG-specific lesion may not be the right model for the convergence-locus claim."
+  ],
+  "tags": ["q_030", "dentate_gyrus", "hippocampus", "spatial_binding", "object_event", "episodic_memory", "pattern_separation"],
+  "mapping": {
+    "source_claim_statement": "In Bax-knockout mice with selectively disrupted dentate gyrus circuitry, online working memory across short delays (up to 5 min) is intact, but episodic memory requiring binding of internal spatial map with external object/event information across an interrupted delay (65 s, mouse removed from maze) is profoundly impaired. The DG is required for spatial-nonspatial binding in the formation of episodic memory.",
+    "ree_translation": "Q-030 axis 3 (hippocampal planning: fused input or parallel streams?) gets direct causal evidence here. The mammalian substrate uses fusion at a specific hippocampal subregion: the dentate gyrus is required for binding spatial map (z_world-equivalent) with object/event (z_resource-equivalent) information. This supports MECH-162 (z_resource and z_world re-converge at hippocampal planning) and provides a specific anatomical anchor: the convergence is not generic 'hippocampal,' it is DG-mediated. For REE, this informs the substrate design: the z_resource/z_world fusion locus should be the analogue of DG (a sparse pattern-separating layer), not a generic associative network. It also informs axis 5 feedback: since DG receives both spatial input (entorhinal medial path) and object input (entorhinal lateral path), the convergence is feedforward, not feedback.",
+    "mapping_caveat": "Bax-KO mouse model disrupts DG circuitry by accumulating ungroomed newborn granule cells -- this is one of many possible DG disruption methods and primarily affects pattern separation rather than DG function broadly. The paradigm (delayed-non-match-to-place) is one operationalisation of episodic binding. Generalising 'DG required for spatial-object binding' to 'REE z_resource/z_world fusion locus must be DG-like' is an analogy of function. The exact mechanism (sparse coding, pattern separation, mossy-fibre input specificity) is not characterised by the behavioural endpoint alone.",
+    "source_context": "Bax-knockout mice (genetic disruption of newborn granule cell apoptosis); delayed-non-match-to-place task; comparison with wild-type mice; single behavioural paradigm with online vs interrupted delay manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.4,
+    "notes": "Source_quality moderate-high (Frontiers behavioural, single-paradigm study). Mapping_fidelity good because the paper directly tests the binding-locus question Q-030 axis 3 asks. Transfer_risk elevated because mouse model and DG-specific lesion may not generalise to the broader hippocampal convergence question."
+  }
+}

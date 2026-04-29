@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_029",
+  "entry_id": "2026-04-29_q_029_social_pain_brain_overlap_eisenberger2014",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-029"],
+  "source": {
+    "title": "Social pain and the brain: controversies, questions, and where to go from here.",
+    "authors": ["Eisenberger, Naomi I"],
+    "year": 2015,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev-psych-010213-115146"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Eisenberger's review is the canonical statement of the 'social-physical pain overlap' hypothesis -- that the dorsal anterior cingulate cortex (dACC) and anterior insula are recruited by social rejection and physical pain. She also surfaces the three serious objections (conflict-monitoring, general negative affect, salience). Direction is 'mixed' rather than 'supports' because the review is honest that the strong neural-overlap reading is contested and the field is genuinely undecided. For Q-029, the value is that it presents both the case for treating social pain as a mechanism-level harm and the case against; this is exactly the kind of evidence that should not be over-weighted in either direction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The conflict-detection alternative interpretation is unresolved: dACC activation during social rejection may reflect detection of expectancy violation rather than affective pain. If true, the architectural claim that loneliness recruits the same harm-processing substrate as physical injury weakens substantially. The general-negative-affect alternative (dACC tracks any aversive state, not pain specifically) is similarly unresolved. Both alternatives would mean Q-029's strongest mechanistic-bridging argument -- 'the brain processes loneliness as injury' -- is not yet established."
+  ],
+  "tags": ["q_029", "social_pain", "dorsal_anterior_cingulate", "anterior_insula", "rejection", "loneliness"],
+  "mapping": {
+    "source_claim_statement": "Social pain (rejection, exclusion, loss) and physical pain partially share neural substrate in the dorsal anterior cingulate cortex and anterior insula. The strong overlap interpretation is contested by three alternative readings: dACC reflects conflict detection rather than distress, all aversive states activate these regions (not pain specifically), or these regions track salience rather than hurt. The review surveys evidence for and against each alternative without declaring a winner.",
+    "ree_translation": "Q-029 asks whether unshared suffering is an ethical harm category in its own right. The strongest mechanistic case for that framing would be: the agent's substrate processes social loss using the same hardware that processes physical injury, i.e. the same harm-pathway mechanism. Eisenberger's review provides the most careful synthesis of evidence for and against that claim. If the overlap reading holds up, REE has a clean mechanistic anchor for treating loneliness as architectural harm derivable from the same substrate that already encodes physical-harm signals (relevant to SD-010 harm-stream separation, MECH-094 hypothesis-tag write-gating, ARC-027 nociception). If the alternative readings (conflict detection, general aversive, salience) prevail, then Q-029's loneliness-as-harm claim needs to find a different mechanistic anchor -- the social-pain framework cannot do the work.",
+    "mapping_caveat": "The review honestly does not resolve the controversy. Citing it as 'support' for Q-029 would over-claim what the field actually establishes. The 'mixed' direction reflects Eisenberger's own framing: the case is interesting but contested, and any REE architectural commitment built on the strong-overlap reading is exposed to one of three live alternative interpretations.",
+    "source_context": "Annual Review survey of human neuroimaging studies of social rejection (Cyberball paradigm and variants), bereavement, and physical pain; primarily fMRI and lesion evidence; Western adult samples."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Source_quality high (Annual Review, the field's leading expert). Mapping_fidelity good because the paper engages directly with the substrate-mechanism question Q-029 needs. Transfer_risk elevated because the controversy is unresolved and the review itself flags this. Aggregate weighted toward source_quality and mapping_fidelity but pulled down by the genuine alternative interpretations."
+  }
+}

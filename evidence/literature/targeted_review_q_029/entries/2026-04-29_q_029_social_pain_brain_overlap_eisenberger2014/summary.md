@@ -1,0 +1,21 @@
+# Eisenberger (2015): Social pain and the brain -- controversies, questions, and where to go from here
+
+## What the paper did
+
+Naomi Eisenberger's 2015 Annual Review of Psychology paper revisits her own decade-old hypothesis that social pain -- rejection, exclusion, loss -- recruits some of the same neural machinery as physical pain, particularly the dorsal anterior cingulate cortex (dACC) and the anterior insula. Rather than re-asserting the original claim, she lays out three serious alternative interpretations that have accumulated against it, and asks honestly what would distinguish them. The paper is a self-critical synthesis rather than a defence.
+
+## Key findings (as a synthesis of the field)
+
+The original case for overlap rested on Cyberball-style social rejection paradigms in which dACC and anterior insula activation tracked self-reported distress, mirroring physical pain activation patterns. Eisenberger then surveys three serious objections: (1) **Conflict detection** -- dACC may reflect detection of expectancy violation (being unexpectedly excluded), not affective hurt; (2) **General negative affect** -- dACC and anterior insula may activate for any aversive state, so the overlap is not pain-specific; (3) **Salience** -- these regions may simply track the salience of stimuli, with no necessary commitment to a pain-like mechanism. For each alternative, she presents evidence for and against, and concludes that the field has not yet decisively resolved the question. Her own bet is that the overlap is real and substantive but more nuanced than the original framing.
+
+## How the findings translate to REE
+
+Q-029 asks whether loneliness -- unshared suffering -- is an ethical harm category in its own right. The strongest mechanistic case for that framing would be: the agent's substrate processes social loss using the same hardware that processes physical injury. If that holds, Q-029 has a clean architectural anchor that connects to REE's harm-processing commitments (SD-010 harm-stream separation, MECH-094 hypothesis-tag write-gating, ARC-027 nociception). The Eisenberger review is the most careful synthesis available of the evidence for and against this anchoring claim, and the honest verdict is that the field is split. If the strong-overlap reading prevails, Q-029 has its mechanistic bridge from "subjective unshared suffering" to "harm-processing substrate." If conflict-detection or general-aversive readings prevail, then Q-029's architectural claim needs to find a different mechanism -- perhaps in the HC-DMN structural covariation Zajner et al. (2021) document, or in the substrate-level mortality coupling that the meta-analyses establish, but not in the social-physical pain overlap framework.
+
+## Limitations and caveats
+
+The fundamental limitation, which the review acknowledges, is that the controversy has not been decisively resolved by any of the methodological work since the original 2003 paper. Cyberball-style social rejection paradigms confound expectancy violation with social pain. Bereavement studies (probably the cleanest comparison to Q-029's "enforced isolation" framing) are smaller and harder to control. The review is also human-only (predominantly fMRI in Western adult samples). For the REE substrate, the cross-domain transfer is twice removed: first from human dACC/insula to whatever the REE substrate's analogous harm-processing channel is, then from acute social rejection paradigms to the chronic enforced-isolation contexts Q-029's framing has in mind.
+
+## Confidence reasoning
+
+Source_quality is 0.86 -- Annual Review of Psychology, written by the field's leading proponent, who is honest about the alternative interpretations. Mapping_fidelity is 0.7: the paper engages directly with the substrate-mechanism question Q-029 needs, and explicitly identifies what would have to be true for the architectural-harm framing to find its anchor in this literature. Transfer_risk is 0.45 -- elevated because the field-internal controversy is unresolved and the review flags this. The aggregate confidence 0.65 marks this as a useful but explicitly contested anchor; the mixed direction is the most intellectually honest tag, because over-citing this paper as "support" would be exactly the kind of thing the review itself warns against.

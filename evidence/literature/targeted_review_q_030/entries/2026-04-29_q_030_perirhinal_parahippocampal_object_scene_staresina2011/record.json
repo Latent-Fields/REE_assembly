@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_030",
+  "entry_id": "2026-04-29_q_030_perirhinal_parahippocampal_object_scene_staresina2011",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-030"],
+  "source": {
+    "title": "Perirhinal and parahippocampal cortices differentially contribute to later recollection of object- and scene-related event details.",
+    "authors": ["Staresina, Bernhard P", "Duncan, Katherine D", "Davachi, Lila"],
+    "year": 2011,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4978-10.2011"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct fMRI double dissociation: perirhinal cortex (PrC) encoding activation predicts later object source memory, parahippocampal cortex (PhC) encoding activation predicts later scene source memory; hippocampus contributes to both. This is direct mechanistic evidence for separate object-identity and spatial-context streams that converge at the hippocampus -- precisely the architecture Q-030 is asking about for z_resource and z_world. Strong source quality, high mapping fidelity to the specific permutation question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The transitional zone between PrC and posterior PhC contributed to BOTH object and scene encoding, suggesting the streams are not cleanly separable -- there is a graded representation rather than a sharp boundary. If the REE substrate enforces strict z_resource/z_world separation at the encoder, this paper's evidence of a transitional/gradient zone weakens the strict-separation reading and supports a partially-shared encoding option (Q-030 permutation 1b)."
+  ],
+  "tags": ["q_030", "perirhinal", "parahippocampal", "object_recognition", "scene", "hippocampus", "source_memory", "dual_stream"],
+  "mapping": {
+    "source_claim_statement": "In a fMRI source-memory paradigm controlling perceptual input, perirhinal cortex encoding activation predicted later object source memory but not scene source memory, and parahippocampal cortex encoding activation predicted later scene source memory but not object source memory; hippocampus contributed to both. A transitional PrC-PhC zone contributed to both domains, suggesting a representational-domain gradient.",
+    "ree_translation": "Q-030 asks where in the REE pipeline z_resource (object identity) and z_world (spatial context) should separate, fuse, or share information. This paper provides the canonical mammalian architecture answer for the encoding stage: separate encoders (PrC for object, PhC for scene) feeding a shared associative locus (hippocampus). It directly supports SD-015 (z_resource as a separate encoder) and MECH-162 (z_resource and z_world re-converge at hippocampal planning). It also weakens the option of a single joint encoder at the input stage, because the mammalian substrate uses separate encoders. The transitional-zone finding adds nuance: the separation is graded, not strict, which is information for the REE design about how strictly to enforce the split.",
+    "mapping_caveat": "Mammalian medial temporal lobe (MTL) anatomy is highly conserved but is not the only viable architecture for object/scene representation; the REE substrate is not mammalian. The PrC-PhC transitional zone evidence pushes against a strict separation interpretation. The paper measures source memory (a downstream behavioural readout) rather than testing the latent representations directly, so the inference from 'encoding activation predicts source memory' to 'these regions encode the relevant latents' is standard but not direct.",
+    "source_context": "Human fMRI, source memory paradigm, object vs scene imagery with perceptual input held constant, 2011 acquisition methodology."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.32,
+    "notes": "High source_quality (J Neurosci, well-controlled paradigm, double dissociation). High mapping_fidelity because the paper directly addresses the encoding-stage permutation Q-030 cares about. Transfer_risk moderate because mammalian MTL anatomy is one viable solution among many."
+  }
+}

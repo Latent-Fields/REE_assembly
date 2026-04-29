@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_030",
+  "entry_id": "2026-04-29_q_030_slot_attention_object_centric_locatello2020",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-030"],
+  "source": {
+    "title": "Object-Centric Learning with Slot Attention",
+    "authors": ["Locatello, Francesco", "Weissenborn, Dirk", "Unterthiner, Thomas", "Mahendran, Aravindh", "Heigold, Georg", "Uszkoreit, Jakob", "Dosovitskiy, Alexey", "Kipf, Thomas"],
+    "year": 2020,
+    "venue": "NeurIPS 2020",
+    "url": "https://arxiv.org/abs/2006.15055"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational ML paper for object-centric latent representation. Slot Attention introduces a mechanism by which separate per-object representations ('slots') emerge through iterative competitive attention, enabling generalisation to unseen object compositions on both unsupervised discovery and supervised property prediction. Direct evidence from the ML side that separated per-object encoding (z_resource-like) outperforms unified scene encoding for downstream compositional tasks. Strong source quality (NeurIPS, widely cited). Mapping fidelity moderate because the paper does not address spatial-context (z_world) representation -- it is purely about object-identity slots.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Slot Attention models objects as exchangeable, unordered slots with no explicit spatial-context binding -- there is no z_world equivalent in the architecture. If REE wants z_resource and z_world to share information at matching spatial locations (Q-030 axis 6 lateral binding), Slot Attention does not provide that capability without significant architectural extension. Slot Attention also tends to fail on cluttered or occluded scenes where slot specialisation collapses, so the strong-disentanglement reading is empirically fragile."
+  ],
+  "tags": ["q_030", "slot_attention", "object_centric", "disentanglement", "compositional", "ml_architecture"],
+  "mapping": {
+    "source_claim_statement": "Slot Attention is an architectural module that produces a set of task-dependent abstract representations ('slots') through multiple rounds of competitive iterative attention. Slots are exchangeable and bind to any object in the input by specialising during attention rounds. Object-centric slots enable generalisation to unseen compositions on unsupervised object discovery and supervised property prediction tasks, outperforming distributed representations that do not capture compositional scene structure.",
+    "ree_translation": "Q-030 axis 1 (encoding: separate vs joint) and axis 6 (lateral binding) get direct ML evidence from the object-centric learning side. Slot Attention demonstrates that for tasks requiring compositional generalisation (e.g., recombining objects across scenes, novel object configurations), separated per-object representations outperform unified scene encoding. This supports SD-015 (z_resource as a separate encoder) for any REE task that requires goal-directed manipulation of object-typed targets independent of their spatial context. The competitive-iterative-attention mechanism is also informative: separation is not hand-designed but emerges from a competitive specialisation process, which is one design choice REE could adopt for the z_resource encoder. The paper does not address z_world (spatial context) representation, so it speaks only to half of Q-030's question.",
+    "mapping_caveat": "Slot Attention treats objects as exchangeable and unordered -- there is no spatial-context binding in the architecture. The mammalian-substrate convergent evolution of separated object/scene streams (Staresina 2011, Lee 2021) reaches a different design point where spatial context is explicitly maintained alongside object identity and bound at the hippocampal stage. If REE wants axis 6 lateral binding ('resource at position X'), Slot Attention alone does not suffice. The paper's strong-disentanglement claims also have known empirical fragility: slot specialisation can collapse on cluttered scenes, novel categories, or temporally complex inputs.",
+    "source_context": "ML benchmark datasets (CLEVR, Multi-dSprites for unsupervised object discovery; CLEVR property prediction for supervised); architecture trained from scratch; object-centric slots tested for compositional generalisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.4,
+    "notes": "High source_quality (NeurIPS 2020, widely cited foundational paper). Mapping_fidelity moderate because the paper covers half of Q-030's question (z_resource encoding) but not the spatial-context (z_world) or fusion/feedback axes. Transfer_risk moderate because ML benchmark performance does not always transfer to embodied/navigational settings."
+  }
+}

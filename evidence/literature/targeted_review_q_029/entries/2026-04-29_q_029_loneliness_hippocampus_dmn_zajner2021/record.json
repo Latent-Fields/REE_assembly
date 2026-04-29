@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_029",
+  "entry_id": "2026-04-29_q_029_loneliness_hippocampus_dmn_zajner2021",
+  "timestamp_utc": "2026-04-29T08:44:42Z",
+  "claim_ids_tested": ["Q-029"],
+  "source": {
+    "title": "Loneliness is linked to specific subregional alterations in hippocampus-default network covariation.",
+    "authors": ["Zajner, Chris", "Spreng, R Nathan", "Bzdok, Danilo"],
+    "year": 2021,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.00339.2021"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Population-scale (N=~40,000 UK Biobank) structural-MRI codecomposition shows loneliness associates with specific HC subfield (CA1, molecular layer) -- DMN midline subregion covariation patterns, plus fornix and nucleus accumbens involvement. Provides a substrate-level neural signature: loneliness is not merely a subjective report; it is statistically embedded in association-cortex / hippocampal architecture at population scale. This is exactly the kind of evidence Q-029's architectural framing wants. Confidence is moderate-high because the design is correlational (no causal direction) and structural-only (not functional dynamics).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Structural covariation cannot establish that loneliness causes the neural signature -- pre-existing CA1/DMN architecture might predispose to loneliness (selection effect). The structural-only design also cannot speak to whether the signature reflects active harm-during-isolation or stable trait architecture, which matters for whether Q-029's 'enforced isolation' framing maps onto the same neural correlates as dispositional loneliness."
+  ],
+  "tags": ["q_029", "loneliness", "hippocampus", "default_mode_network", "fornix", "nucleus_accumbens", "uk_biobank"],
+  "mapping": {
+    "source_claim_statement": "In ~40,000 UK Biobank adults, structural codecomposition reveals that subjective loneliness is statistically linked to specific patterns of hippocampus-default network covariation, with the strongest involvement of CA1 and molecular layer subfields, the fornix white-matter tract, and the nucleus accumbens. Separable signatures of structural covariation also show distinct associations with the polygenic predisposition to loneliness.",
+    "ree_translation": "Q-029 asks whether unshared suffering constitutes architectural harm. This paper says: at population scale in humans, loneliness is not just a phenomenological state -- it is encoded in the structural relationship between two of REE's most theoretically privileged substrates (hippocampal subfields involved in associative binding and pattern completion, and the default mode network as the offline self-and-others modelling system). For REE specifically, this maps onto the claim that the substrate of INV-028 (shared-world modelling) and the hippocampal map machinery (E1 associative manifold, MECH-154) co-vary with the felt absence of relational coupling -- which is what Q-029's architectural-harm framing requires.",
+    "mapping_caveat": "Structural covariation is correlational and cannot establish causal direction. The paper cannot tell us whether loneliness reshapes the substrate or whether pre-existing substrate variation predisposes to loneliness. The structural-only design also misses functional dynamics -- the hippocampus-DMN coupling that matters for active rehearsal of unshared suffering may differ from what static structural covariation captures. UK Biobank cohort skews older (40-69 at recruitment) and primarily white-European, which limits generalisation to enforced-isolation contexts (incarceration, post-bereavement acute loneliness, developmental social deprivation).",
+    "source_context": "Cross-sectional structural MRI on ~40,000 UK Biobank adults; subjective loneliness assessed by single-item question; structural codecomposition method (latent representations of HC subfields and DN subregions)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Source_quality high (population scale, validated method) but reduced by structural-only and single-item loneliness measure. Mapping_fidelity good because the HC-DMN axis is exactly what REE-style architectural reasoning would predict. Transfer_risk moderate because correlational design does not pin causal direction needed for the architectural-harm claim."
+  }
+}
