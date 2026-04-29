@@ -1,17 +1,29 @@
 # Thought Sweep Report
 
-Generated: `2026-04-12T16:46:39.450628Z`
+Generated: `2026-04-29T06:06:24.873195Z`
 
 | metric | count |
 |---|---|
-| total thought files | 73 |
+| total thought files | 86 |
 | processed | 73 |
-| unprocessed | 0 |
+| unprocessed | 13 |
 | processed missing `Processed in` links | 3 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-04-16` `2026-04-16_language_system_development_and_affective_expression_lateralisation.md` (status=`unprocessed`)
+- `2026-04-17` `2026-04-17_attention_coverage_audit.md` (status=`unprocessed`)
+- `2026-04-17` `2026-04-17_invariant_types_governance.md` (status=`unprocessed`)
+- `2026-04-20` `2026-04-20_analysis_of_missing_pieces_and_work_to_do.md` (status=`unprocessed`)
+- `2026-04-20` `2026-04-20_modes.md` (status=`unprocessed`)
+- `2026-04-20` `2026-04-20_ocd1.md` (status=`unprocessed`)
+- `2026-04-20` `2026-04-20_ocd2.md` (status=`unprocessed`)
+- `2026-04-20` `2026-04-20_ocd3.md` (status=`unprocessed`)
+- `2026-04-20` `2026-04-20_ocd4.md` (status=`unprocessed`)
+- `2026-04-23` `2026-04-23_binding.md` (status=`unprocessed`)
+- `2026-04-23` `2026-04-23_path_integral_constraints_search.md` (status=`unprocessed`)
+- `2026-04-28` `2026-04-28_action_object_type_abstraction.md` (status=`unprocessed`)
+- `2026-04-28` `2026-04-28_action_policy_and_multi_goal.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 

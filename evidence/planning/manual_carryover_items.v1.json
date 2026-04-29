@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-15T14:40:37.619500Z",
+  "generated_at_utc": "2026-04-29T06:03:59.475687Z",
   "items": [
     {
       "item_id": "MCI-0001",
@@ -9,6 +9,18 @@
       "source_ref": "",
       "status": "done",
       "summary": "Template item. Replace with real carryover items."
+    },
+    {
+      "item_id": "MCI-0002",
+      "last_updated_utc": "2026-04-29T06:03:59.475267Z",
+      "owner": "",
+      "priority": "medium",
+      "source_ref": "task_inbox:19cac2a19556",
+      "status": "open",
+      "summary": "Queue V3-EXQ-325e (SD-032c AIC drive-dependence, supersedes V3-EXQ-325d) once V3-EXQ-476 passes and the MECH-269 V_s invalidation circuit is validated end-to-end. Action: flip `VS_CIRCUIT_READY=True` in `ree-v3/experiments/v3_exq_325e_sd032c_aic_drive_dependence.py`, then add a queue entry (claim_ids=[SD-032c, SD-021], experiment_purpose=evidence, supersedes=v3_exq_325d_sd032c_aic_descending_modulation, estimated_minutes=~240, machine_affinity=any). Reason for gate: without V_s-driven mode-switch variation, the MECH-090 bistable commit latch keeps the agent committed for every eval tick and `safe_ratio` returns the 1.0 empty-uncommitted fallback, making C1/C4b untestable. Root-cause diagnosis of EXQ-325d bit-identical `aic_salience_mean` is documented in the new script's docstring (drive_level never fed into `update_z_goal`; single-ablation arm hit both AIC knobs simultaneously; urgency threshold unreachable pre-V_s).",
+      "tags": [
+        "task_inbox"
+      ]
     }
   ],
   "notes": "Use this file for unfinished governance items that must persist across agenda regenerations. Items with status='done' are excluded from open agenda carryover.",
