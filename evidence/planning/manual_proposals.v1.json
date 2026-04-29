@@ -74,6 +74,46 @@
       "notes": "PRIORITY 4 of 4 phase-2 experiments. MECH-062 is the cleanest case of the four -- zero prior experiments, no exclusion-mode complications. Related to MECH-090 (BG beta propagation gate, currently confirmed_established) and ARC-029 (tri-loop committed/uncommitted contrast, EXP-0085 already queued). MECH-062's specific addition is the COORDINATION across the three loops, not just gate behavior in one. Worth confirming MECH-090 and ARC-029 evidence is solid before this lands."
     },
     {
+      "proposal_id": "EXP-0174",
+      "claim_id": "SD-016",
+      "claims_tested": [
+        "SD-016",
+        "SD-023",
+        "MECH-273",
+        "MECH-275"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "high",
+      "dispatch_mode": "targeted_probe",
+      "suggested_experiment_type": "v3_exq_NNN_env_complexity_gate",
+      "estimated_minutes": 90,
+      "machine_affinity": "any",
+      "status": "proposed",
+      "added_utc": "2026-04-29",
+      "source": "manual",
+      "script_path": null,
+      "reserved_queue_id": null,
+      "queued_utc": null,
+      "objective": "Test whether V3's current or enriched environments produce enough world-state information for downstream attribution, SD-016 cue retrieval, and sleep/self-model aggregation to operate. This is an environment-readiness gate, not direct claim-confidence evidence. It follows V3-EXQ-418f/g/h, which showed SD-016 substrate mechanics can work while z_world remains too near-constant to drive behaviour.",
+      "design": "Run a matched-seed environment-complexity ladder and measure information availability before any SD-016 or sleep/self-model retest. Arms: A0 baseline CausalGridWorldV2 matching the EXQ-418f/g failure regime; A1 SD-023 landmarks-on only; A2 existing-knobs rich world using larger grid, more hazards/resources, high hazard drift, scheduled external hazards, subgoals/waypoints, landmarks, and resource respawn; A3 causal-wrapper rich world, implemented inside the experiment if needed, appending default-off diagnostic world channels for stable object identity, context/rule cue, delayed consequence marker, and matched self-caused vs env-caused event labels. For each arm, train the same short agent schedule with alpha_world=0.9, sd016_enabled=True, use_event_classifier=True, and use_resource_proximity_head=True. Collect balanced eval batches across safe, dangerous, resource-rich, delayed-consequence, self-caused, and env-caused contexts. Report raw world_state effective rank, z_world effective rank, mean pairwise z_world cosine, cross-context z_world cosine, separation_gap, linear-probe accuracy from z_world for context identity / transition_type / hazard proximity / resource proximity / self-vs-env cause, and action-conditioned predictability of z_world_{t+1} from (z_world_t, action).",
+      "acceptance_checks": [
+        "E1: A0 reproduces the failure regime: mean cross-context z_world cosine >= 0.95 and low separation_gap, matching V3-EXQ-418f/g/h.",
+        "E2: At least one enriched arm reaches mean cross-context z_world cosine < 0.90 and separation_gap >= A0 + 0.05 across matched seeds.",
+        "E3: Enriched-arm z_world effective rank is at least 2x A0 effective rank, or >= 8 absolute effective dimensions, whichever is stricter.",
+        "E4: Linear probes from frozen z_world exceed 0.75 balanced accuracy for context identity and transition_type, and exceed 0.65 for self-caused vs env-caused event source.",
+        "E5: Resource/hazard proximity probes from z_world achieve R2 >= 0.30 for both hazard and resource targets.",
+        "E6: Action-conditioned next-z_world prediction beats action-shuffled control by >= 25% MSE reduction.",
+        "PASS = E1 plus E2 plus at least three of E3-E6. PASS licenses SD-016 retest and MECH-273/MECH-275 sleep-writeback retests under the passing enriched env arm. FAIL means the environment still does not supply enough causal information; do not rerun SD-016/sleep substrates until a richer env extension is designed."
+      ],
+      "prerequisites": [
+        "Do not queue while another session owns ree-v3/experiment_queue.json.",
+        "If A3 causal-wrapper is needed, implement it inside the experiment script first rather than changing CausalGridWorldV2 globally.",
+        "Do not mark SD-016, MECH-273, or MECH-275 supported/unsupported directly from this run; evidence_direction must be diagnostic."
+      ],
+      "notes": "This proposal operationalises the user's 2026-04-29 hypothesis that attributional sleep, self-model, and other apparently inert substrates may be starved by low world complexity rather than broken internally. It is the successor to EXQ-418h's landmarks-only gate. If PASS, queue a follow-up SD-016 4-arm retest in the passing env config, then a MECH-273 self-model sleep writeback probe using the same env. If FAIL, write a focused CausalGridWorldV3 enrichment design doc before further substrate retests."
+    },
+    {
       "proposal_id": "EXP-0085",
       "claim_id": "ARC-029",
       "proposal_type": "experimental",

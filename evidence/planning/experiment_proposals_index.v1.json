@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-29T18:49:07.440974Z",
+  "generated_at_utc": "2026-04-29T19:08:15.738123Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -2645,6 +2645,17 @@
       "target_repo": "ree-v3"
     },
     {
+      "claim_id": "SD-016",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Test whether V3's current or enriched environments produce enough world-state information for downstream attribution, SD-016 cue retrieval, and sleep/self-model aggregation to operate. This is an environment-readiness gate, not direct claim-confidence evidence. It follows V3-EXQ-418f/g/h, which showed SD-016 substrate mechanics can work while z_world remains too near-constant to drive behaviour.",
+      "priority": "high",
+      "proposal_id": "EXP-0174",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "v3_exq_NNN_env_complexity_gate",
+      "target_repo": "ree-v3"
+    },
+    {
       "claim_id": "ARC-029",
       "dispatch_mode": "discriminative_pair",
       "executed_by": "V3-EXQ-125",
@@ -3184,7 +3195,7 @@
     }
   ],
   "n_executed": 117,
-  "n_proposed_exp": 75,
+  "n_proposed_exp": 76,
   "n_proposed_lit": 9,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
