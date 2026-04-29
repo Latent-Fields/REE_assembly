@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-29T15:39:36.218913Z",
+  "generated_at_utc": "2026-04-29T18:24:00.611495Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -2603,6 +2603,46 @@
       ]
     },
     {
+      "claim_id": "MECH-094",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Generate discriminative evidence for MECH-094 (hypothesis-tag-as-categorical-write-gate). Past work has 7 PASSing diagnostic probes that confirm the tag exists and routes correctly, plus 1 non_contributory FAIL on the gate-pair test (V3-EXQ-140); zero entries currently feed claim confidence. This is a phase-2 priority because the tag is structurally load-bearing for SD-011 dual-stream gating and the canonical MECH-094 -> confabulation/PTSD mechanism in feedback_psychosis_confabulation_distinction.",
+      "priority": "high",
+      "proposal_id": "EXP-0170",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "SD-017",
+      "dispatch_mode": "substrate_readiness_probe",
+      "objective": "Substrate-readiness probe for SD-017 (sleep_phase.minimal_sleep_infrastructure_v3) BEFORE queueing another discriminative pair. SD-017 has 9 prior FAIL runs all classified non_contributory (V3-EXQ-242, 418, 418a, 436, 418d) -- the substrate cannot generate the test conditions a sleep-phase ablation needs. Per feedback_nonstandard_directions.md, the right move for repeated non_contributory is /diagnose-errors then a substrate-prerequisite probe, not yet another ablation that will hit the same wall.",
+      "priority": "high",
+      "proposal_id": "EXP-0171",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "SD-035",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Generate discriminative evidence for SD-035 (amygdala.analog_substrate). Past work has 4 PASSing diagnostic probes (V3-EXQ-473 cea_mode_prior, V3-EXQ-474 bla_encoding_remap, both x 2 seeds) that confirm BLA encoding remap and CeA mode prior fire as designed; zero entries currently feed claim confidence. The diagnostic probes show the substrate exists; this proposal tests whether the analog form of the substrate is necessary or whether a quantized alternative would suffice.",
+      "priority": "medium",
+      "proposal_id": "EXP-0172",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "MECH-062",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Generate first experimental evidence for MECH-062 (commitment.tri_loop_gate_coordination). Zero prior experimental entries -- truly fresh-start case. Tests whether the commitment-boundary token must be gate-coordinated across all three BG-like loops (sensorimotor, associative, limbic) or whether a single loop suffices.",
+      "priority": "medium",
+      "proposal_id": "EXP-0173",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
       "claim_id": "ARC-029",
       "dispatch_mode": "discriminative_pair",
       "executed_by": "V3-EXQ-125",
@@ -3142,7 +3182,7 @@
     }
   ],
   "n_executed": 116,
-  "n_proposed_exp": 72,
+  "n_proposed_exp": 76,
   "n_proposed_lit": 9,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

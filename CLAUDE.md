@@ -96,6 +96,36 @@ the blend is the bug, not its weights. See
 B-strict / B-softened / C-balanced staging variants in
 `evidence/experiments/staging_aggregator_b/`.
 
+## Claim-type evidence gating
+
+Different `claim_type` values play different epistemic roles and have
+different evidence needs. The shadow report (and eventually production gates)
+applies one of three gating rules per claim:
+
+| gating | claim_types | evidence rule |
+|---|---|---|
+| `standard` | `mechanism_hypothesis`, `design_decision`, `implementation`, `invariant` (emergent / grey_zone / unspecified) | exp_conf required for promotion. Discrepancy + impl_no_exp + low_exp + lit_only flags fire normally. |
+| `substrate_coherence` | `architectural_commitment`, `invariant` + universal | Foundational design choices that ARE the substrate. Tested by the substrate's coherent operation, not isolated probes. Discrepancy / impl_no_exp / low_exp / lit_only flags suppressed; surfaced separately for transparency. |
+| `answer_state` | `open_question` | Question, not assertion. Evidence is "we reached an operating answer." Exempt from exp_conf gating until restated as a hypothesis. Same flags suppressed. |
+
+The mapping is applied in `scripts/generate_option_e_shadow.py` via
+`_evidence_gating(meta)`. Sub-type matters: `invariant_type: universal` is
+gated as `substrate_coherence`; emergent / grey_zone invariants use standard
+gating because they have substrate-level subject matter that can be probed.
+
+**Why this matters:** without claim-type-aware gating, the shadow report
+(and any cutover to decoupled production) would falsely flag every ARC and
+universal invariant as "implementation cohort with no experimental backing"
+-- but ARCs by definition can't be tested in isolation; they ARE the
+substrate. Likewise every Q-claim would be flagged as needing experimental
+backing for its "answer," which is a category error: a question becomes a
+hypothesis (re-classified as MECH/SD) before standard gating applies.
+
+**To restate a Q-claim as a testable hypothesis:** create a new MECH or SD
+that operationalises the answer; mark the original Q-claim
+`status: superseded` with a reference to the new claim. Don't change
+`claim_type` in place -- the Q-claim's history is informative.
+
 ## Invariant Types
 
 See `docs/architecture/invariant_types.md` for the full schema and governance rule.

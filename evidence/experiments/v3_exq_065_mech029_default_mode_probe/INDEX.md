@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_065_mech029_default_mode_probe
 
-Generated: `2026-04-29T15:39:36.218913Z`
+Generated: `2026-04-29T18:24:00.611495Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

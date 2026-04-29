@@ -65,6 +65,64 @@ def _parse_claim_statuses(yaml_text: str) -> dict[str, str]:
     return statuses
 
 
+def _parse_claim_metadata(yaml_text: str) -> dict[str, dict[str, str]]:
+    """Per-claim claim_type and (for invariants) invariant_type. Used to apply
+    claim_type-aware evidence gating per CLAUDE.md "Claim-type evidence
+    gating"."""
+    meta: dict[str, dict[str, str]] = {}
+    current: str | None = None
+    for line in yaml_text.splitlines():
+        m = re.match(r"^-?\s*id:\s*([A-Z0-9_\-]+)", line)
+        if m:
+            current = m.group(1).strip()
+            meta.setdefault(current, {})
+            continue
+        if current is None:
+            continue
+        for field in ("claim_type", "invariant_type"):
+            m = re.match(rf"^\s+{field}:\s*([A-Za-z_]+)", line)
+            if m:
+                meta[current][field] = m.group(1).strip()
+    return meta
+
+
+# Claim-type evidence gating policy. The shadow report (and eventually the
+# production gates) treats each claim_type by its actual epistemic role:
+#
+#  - standard           : exp_conf required for promotion. Discrepancy and
+#                         impl_no_exp flags fire normally.
+#  - substrate_coherence: foundational design choices that ARE the substrate
+#                         (ARC + universal invariants). No isolated experiment
+#                         expected; "implemented in functional substrate"
+#                         suffices. Discrepancy / impl_no_exp flags suppressed.
+#  - answer_state       : open questions where the evidence is "we reached an
+#                         operating answer." Exempt from exp_conf gating until
+#                         restated as a hypothesis.
+#
+# Mapping:
+#   architectural_commitment   -> substrate_coherence
+#   invariant + universal      -> substrate_coherence
+#   invariant + emergent/grey_zone / unspecified -> standard
+#   open_question              -> answer_state
+#   mechanism_hypothesis       -> standard
+#   design_decision            -> standard
+#   implementation             -> standard
+#   (anything else / missing)  -> standard (fail-safe: keep flagging)
+
+
+def _evidence_gating(meta: dict[str, str]) -> str:
+    ct = (meta or {}).get("claim_type", "")
+    if ct == "architectural_commitment":
+        return "substrate_coherence"
+    if ct == "invariant":
+        if (meta or {}).get("invariant_type") == "universal":
+            return "substrate_coherence"
+        return "standard"
+    if ct == "open_question":
+        return "answer_state"
+    return "standard"
+
+
 def _quadrant_from_summary(summary: dict[str, Any]) -> str:
     # Prefer the indexer-computed quadrant; recompute if absent for backwards
     # compat with older matrices.
@@ -91,17 +149,24 @@ def main() -> None:
     matrix = json.loads(MATRIX_PATH.read_text(encoding="utf-8"))
     claims = matrix.get("claims", {})
     if CLAIMS_YAML.exists():
-        statuses = _parse_claim_statuses(CLAIMS_YAML.read_text(encoding="utf-8"))
+        yaml_text = CLAIMS_YAML.read_text(encoding="utf-8")
+        statuses = _parse_claim_statuses(yaml_text)
+        metadata = _parse_claim_metadata(yaml_text)
     else:
         statuses = {}
+        metadata = {}
 
     quadrant_counts: Counter = Counter()
     quadrant_buckets: dict[str, list[tuple[str, float, float, str]]] = defaultdict(list)
+    gating_counts: Counter = Counter()
     discrepancies: list[dict[str, Any]] = []
     impl_no_exp: list[dict[str, Any]] = []
     novel_findings: list[dict[str, Any]] = []
     low_exp_flagged: list[dict[str, Any]] = []
     lit_only_above_cap: list[dict[str, Any]] = []
+    # Suppressed-by-gating buckets, surfaced separately for transparency.
+    suppressed_substrate: list[dict[str, Any]] = []
+    suppressed_answer_state: list[dict[str, Any]] = []
 
     for cid in sorted(claims.keys()):
         s = claims[cid]
@@ -116,53 +181,76 @@ def main() -> None:
         n_lit = int(counts.get("literature", 0))
         quadrant = _quadrant_from_summary(s)
         status = statuses.get(cid, "")
+        meta = metadata.get(cid, {})
+        claim_type = meta.get("claim_type", "")
+        gating = _evidence_gating(meta)
 
         quadrant_counts[quadrant] += 1
         quadrant_buckets[quadrant].append((cid, exp_c, lit_c, status))
+        gating_counts[gating] += 1
 
         # Discrepancy: regime-disagreement on the candidate->provisional gate.
+        # Only fires for standard-gating claim types; substrate_coherence and
+        # answer_state types use different evidence rules so a "discrepancy" by
+        # the standard rule is not actionable.
         legacy_above = overall_legacy >= HIGH_EXP
         decoupled_above = overall_decoupled >= HIGH_EXP
         if legacy_above != decoupled_above:
-            discrepancies.append({
+            entry = {
                 "claim_id": cid,
                 "status": status,
+                "claim_type": claim_type,
                 "legacy_overall": overall_legacy,
                 "decoupled_overall": overall_decoupled,
                 "lit_conf": lit_c,
                 "n_exp": n_exp,
                 "n_lit": n_lit,
                 "quadrant": quadrant,
-            })
+            }
+            if gating == "standard":
+                discrepancies.append(entry)
+            elif gating == "substrate_coherence":
+                suppressed_substrate.append(entry)
+            else:  # answer_state
+                suppressed_answer_state.append(entry)
 
         # Implementation-cohort claims with zero experimental backing.
-        if status in IMPL_STATUSES and n_exp == 0:
+        # Only counts as a Phase-2 priority for standard-gating types -- ARC and
+        # universal invariants don't expect direct experiments, and Q-claims
+        # are exempt by virtue of being questions.
+        if status in IMPL_STATUSES and n_exp == 0 and gating == "standard":
             impl_no_exp.append({
                 "claim_id": cid,
                 "status": status,
+                "claim_type": claim_type,
                 "lit_conf": lit_c,
                 "n_lit": n_lit,
             })
 
-        # Novel discovery surfacing.
+        # Novel discovery surfacing -- still relevant for any claim_type with
+        # high experimental backing but low literature.
         if quadrant == "novel_discovery":
             novel_findings.append({
                 "claim_id": cid,
                 "status": status,
+                "claim_type": claim_type,
                 "exp_conf": exp_c,
                 "lit_conf": lit_c,
                 "n_exp": n_exp,
                 "n_lit": n_lit,
             })
 
-        # New flags.
-        if n_exp > 0 and exp_c < LOW_EXP_FLAG:
+        # New flags. Both apply only to standard-gating types -- ARC/universal
+        # invariants/Q-claims aren't expected to clear an exp_conf bar.
+        if n_exp > 0 and exp_c < LOW_EXP_FLAG and gating == "standard":
             low_exp_flagged.append({
-                "claim_id": cid, "status": status, "exp_conf": exp_c, "n_exp": n_exp,
+                "claim_id": cid, "status": status, "claim_type": claim_type,
+                "exp_conf": exp_c, "n_exp": n_exp,
             })
-        if n_exp == 0 and lit_c >= LIT_ONLY_CAP:
+        if n_exp == 0 and lit_c >= LIT_ONLY_CAP and gating == "standard":
             lit_only_above_cap.append({
-                "claim_id": cid, "status": status, "lit_conf": lit_c, "n_lit": n_lit,
+                "claim_id": cid, "status": status, "claim_type": claim_type,
+                "lit_conf": lit_c, "n_lit": n_lit,
             })
 
     # --- Render report --------------------------------------------------------
@@ -180,6 +268,22 @@ def main() -> None:
         "report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for "
         "the transition plan."
     )
+    lines.append("")
+    lines.append("**Claim-type evidence gating** is applied: "
+                 "`architectural_commitment` and universal `invariant` claims "
+                 "are gated as `substrate_coherence` (foundational design -- "
+                 "no isolated experiment expected); `open_question` claims are "
+                 "gated as `answer_state` (exempt from exp_conf until restated "
+                 "as a hypothesis). Discrepancy/impl_no_exp/low_exp/lit_only "
+                 "flags fire only for standard-gating claim types. Suppressed "
+                 "claims are reported separately for transparency.")
+    lines.append("")
+    lines.append("### Gating distribution")
+    lines.append("")
+    lines.append("| gating | claims |")
+    lines.append("|---|---:|")
+    for g in ("standard", "substrate_coherence", "answer_state"):
+        lines.append(f"| `{g}` | {gating_counts.get(g, 0)} |")
     lines.append("")
     lines.append("## Quadrant distribution")
     lines.append("")
@@ -199,40 +303,88 @@ def main() -> None:
     lines.append("")
     lines.append(
         f"Claims that cross the `>= {HIGH_EXP}` line under one regime but not the "
-        "other. These are the priority items for Phase 2 reckoning -- queue an "
-        "experiment, adjust status, or flag a new evidence class."
+        "other AND have standard gating. These are the priority items for Phase "
+        "2 reckoning -- queue an experiment, adjust status, or flag a new "
+        "evidence class."
     )
     lines.append("")
-    lines.append(f"Total: **{len(discrepancies)}** discrepant claims.")
+    lines.append(f"Total: **{len(discrepancies)}** discrepant claims (standard-gating only).")
     lines.append("")
     if discrepancies:
-        lines.append("| claim | status | legacy_overall | decoupled_overall | lit_conf | n_exp | n_lit | quadrant |")
-        lines.append("|---|---|---:|---:|---:|---:|---:|---|")
+        lines.append("| claim | type | status | legacy_overall | decoupled_overall | lit_conf | n_exp | n_lit | quadrant |")
+        lines.append("|---|---|---|---:|---:|---:|---:|---:|---|")
         for d in sorted(discrepancies, key=lambda x: x["decoupled_overall"]):
             lines.append(
-                f"| `{d['claim_id']}` | {d['status'] or '-'} | "
+                f"| `{d['claim_id']}` | {d['claim_type'] or '-'} | {d['status'] or '-'} | "
                 f"{d['legacy_overall']:.3f} | {d['decoupled_overall']:.3f} | "
                 f"{d['lit_conf']:.3f} | {d['n_exp']} | {d['n_lit']} | {d['quadrant']} |"
             )
+        lines.append("")
+    if suppressed_substrate or suppressed_answer_state:
+        lines.append(f"_Suppressed by gating: {len(suppressed_substrate)} "
+                     f"substrate_coherence (ARC + universal invariant), "
+                     f"{len(suppressed_answer_state)} answer_state (open_question). "
+                     f"These cross the gate under one regime but not the other; "
+                     f"the discrepancy is not actionable under their evidence "
+                     f"rules. See suppressed sections below._")
         lines.append("")
 
     lines.append("## Implementation-cohort claims with zero experimental backing")
     lines.append("")
     lines.append(
-        "These claims have status in {stable, active, implemented, resolved} but "
-        "no experimental evidence in the matrix. Under the decoupled regime they "
-        "would not qualify for promotion on lit alone. This is the central "
-        "question for Phase 2."
+        "Standard-gating claims with status in {stable, active, implemented, "
+        "resolved} but no experimental evidence in the matrix. Under the "
+        "decoupled regime they would not qualify for promotion on lit alone. "
+        "This is the central question for Phase 2 -- queue an experiment per "
+        "claim. (`architectural_commitment`, universal `invariant`, and "
+        "`open_question` claims with this profile are surfaced separately "
+        "below; they don't need experiments under their gating.)"
     )
     lines.append("")
-    lines.append(f"Total: **{len(impl_no_exp)}** implementation-cohort claims with no exp.")
+    lines.append(f"Total: **{len(impl_no_exp)}** standard-gating claims with no exp.")
     lines.append("")
     if impl_no_exp:
-        lines.append("| claim | status | lit_conf | n_lit |")
-        lines.append("|---|---|---:|---:|")
+        lines.append("| claim | type | status | lit_conf | n_lit |")
+        lines.append("|---|---|---|---:|---:|")
         for d in sorted(impl_no_exp, key=lambda x: -x["lit_conf"]):
             lines.append(
-                f"| `{d['claim_id']}` | {d['status']} | {d['lit_conf']:.3f} | {d['n_lit']} |"
+                f"| `{d['claim_id']}` | {d['claim_type'] or '-'} | {d['status']} | "
+                f"{d['lit_conf']:.3f} | {d['n_lit']} |"
+            )
+        lines.append("")
+    # Surface the suppressed buckets transparently.
+    impl_substrate = [e for e in suppressed_substrate
+                      if e['status'] in IMPL_STATUSES and e['n_exp'] == 0]
+    impl_answer = [e for e in suppressed_answer_state
+                   if e['status'] in IMPL_STATUSES and e['n_exp'] == 0]
+    if impl_substrate:
+        lines.append("### Implementation cohort with no exp -- suppressed (substrate_coherence)")
+        lines.append("")
+        lines.append("These don't need experiments. They're foundational design "
+                     "choices (ARC) or universal invariants -- by definition tested "
+                     "by the substrate's coherent operation, not isolated probes.")
+        lines.append("")
+        lines.append("| claim | type | status | lit_conf | n_lit |")
+        lines.append("|---|---|---|---:|---:|")
+        for d in sorted(impl_substrate, key=lambda x: -x["lit_conf"]):
+            lines.append(
+                f"| `{d['claim_id']}` | {d['claim_type'] or '-'} | {d['status']} | "
+                f"{d['lit_conf']:.3f} | {d['n_lit']} |"
+            )
+        lines.append("")
+    if impl_answer:
+        lines.append("### Implementation cohort with no exp -- suppressed (answer_state)")
+        lines.append("")
+        lines.append("Open questions where the implementation reflects our current "
+                     "operating answer, not an experimental result. Restate as a "
+                     "MECH or SD if the answer should be tested.")
+        lines.append("")
+        lines.append("| claim | type | status | lit_conf | n_lit |")
+        lines.append("|---|---|---|---:|---:|")
+        for d in sorted(impl_answer, key=lambda x: -x["lit_conf"]):
+            lines.append(
+                f"| `{d['claim_id']}` | {d['claim_type'] or '-'} | {d['status']} | "
+                f"{d['lit_conf']:.3f} | {d['n_lit']} |"
             )
         lines.append("")
 
@@ -302,7 +454,8 @@ def main() -> None:
     OUT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Wrote {OUT_PATH.relative_to(REPO_ROOT)} "
           f"(quadrants={dict(quadrant_counts)}, "
-          f"discrepancies={len(discrepancies)}, "
+          f"gating={dict(gating_counts)}, "
+          f"discrepancies={len(discrepancies)} (suppressed {len(suppressed_substrate)} substrate + {len(suppressed_answer_state)} answer_state), "
           f"impl_no_exp={len(impl_no_exp)}, "
           f"novel={len(novel_findings)}, "
           f"low_exp={len(low_exp_flagged)}, "
