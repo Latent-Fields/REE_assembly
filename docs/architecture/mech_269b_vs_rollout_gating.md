@@ -250,6 +250,84 @@ replay consumer is wired.
 
 ---
 
+## MECH-284 staleness wiring (Q-040b strong reading, 2026-04-29)
+
+The substrate landed 2026-04-26 used raw `per_stream_vs[s]` against fixed side
+thresholds (default 0.4). EXQ-490 / 490b / 490c all had to override the
+thresholds to smoke values (0.85 / 0.85 / 0.95) to make the gate fire under
+realistic V_s readings. That made the diagnostic "C1 fires" trivially true and
+left the strong-reading question -- can the gate discriminate STALE from
+ALIGNED streams without a smoke override -- untestable.
+
+The 2026-04-29 follow-up wires MECH-284 region staleness into the threshold
+comparison:
+
+```python
+if config.use_staleness_lookup and per_stream_staleness is not None:
+    effective_vs = raw_vs - per_stream_staleness[stream]
+    if effective_vs >= side_threshold:
+        passthrough
+    else:
+        hold (substitute snapshot)
+```
+
+`per_stream_staleness` is aggregated by
+`HippocampalModule.compute_per_stream_staleness()` via:
+
+```
+For each stream s currently tracked by per_stream_vs:
+    staleness[s] = max over active anchors a where s in a.stream_mixture
+                   of staleness_accumulator.lookup_by_anchor_key(a.key)
+```
+
+`max` (not mean) captures the worst staleness the stream is currently exposed
+to: a stream's V_s is a global readout but the underlying staleness lives per
+(scale, segment_id) region; if any region the stream participates in is stale,
+the gate should treat the stream as stale. Mean would dilute under multi-region
+coverage.
+
+REEAgent caches the dict once per waking tick (top of `_e1_tick`) and reuses it
+for both the E1 gate call and the E2_harm_a gate_stream call later in
+`select_action`. The aggregator is pure arithmetic over the existing
+StalenessAccumulator + AnchorSet state -- no new persistent state.
+
+**Configuration.** A new master flag `use_vs_gate_staleness_lookup` (default
+False) turns the wiring on. When True, agent build raises ValueError unless
+`use_staleness_accumulator=True` AND `use_anchor_sets=True` -- the aggregator
+has nothing to walk otherwise. The legacy raw-V_s path (default-OFF) is
+retained byte-for-byte for backward compatibility with EXQ-490 / 490b / 490c.
+
+**Q-040b acceptance.** With this wiring, V3-EXQ-490d (the 490c successor) can
+run without smoke threshold overrides: under sustained MECH-287 broadcast
+activity the staleness on stale-region anchors climbs, per-stream staleness
+follows, effective_vs falls below the realistic 0.4 threshold, and the hold
+path fires. C1 (gate fires) becomes a non-trivial measurement; C4 (severance:
+holds vanish when staleness lookup is OFF) becomes the falsifiable test of
+the strong reading.
+
+**MECH-094 compliance.** `compute_per_stream_staleness()` is invoked only from
+`_refresh_vs_gate_staleness()` which itself is invoked only from `_e1_tick()`,
+a waking-stream call site. Replay / simulation paths must not call it. Same
+call-site-scoping pattern as MECH-269 Phase 1 / 2 ii / 2 iii, MECH-288,
+MECH-287, MECH-284.
+
+**Diagnostics.** `vs_gate_staleness_lookup_calls` counts the number of times
+the aggregator subtracted a staleness scalar this episode.
+`vs_gate_max_staleness_<stream>` records the per-stream max staleness the gate
+has been asked to subtract this episode. Both reset per-episode.
+
+**Out of scope (deferred).**
+* Per-region cortical gate (would consume per_region_vs directly; requires
+  region-typed E1/E2; deferred to V4 -- listed under open architectural
+  alternatives below).
+* Staleness-aware snapshot refresh (current refresh path uses raw V_s only; if
+  a stream's region staleness is high, snapshot refresh continues, capturing
+  fresher live content but the gate's hold decision uses the staleness-adjusted
+  V_s. Whether to also gate the refresh side is an open question for a
+  follow-up pass, not addressed here).
+
+---
+
 ## Backward compatibility
 
 `use_vs_rollout_gating=False` by default. With the flag off, `agent.vs_rollout_gate` is
