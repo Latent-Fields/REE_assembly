@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-04-28T22:00:00Z",
+  "last_review_utc": "2026-04-30T20:50:54Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2187,7 +2187,12 @@
     "v3_exq_418g_sd016_selectivity_first_4arm_20260428T203517Z_v3",
     "v3_exq_418h_sd016_env_entropy_precondition_20260428T205850Z_v3",
     "v3_exq_490b_mech269b_vs_rollout_gating_20260428T171429Z_v3",
-    "v3_exq_498_ocd_layer1_closure_threshold_sweep_20260428T201903Z_v3"
+    "v3_exq_498_ocd_layer1_closure_threshold_sweep_20260428T201903Z_v3",
+    "v3_exq_490c_mech269b_with_liking_bridge_20260429T055859Z_v3",
+    "v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3",
+    "v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3",
+    "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
+    "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3"
   ],
   "discussion_notes": {
     "2026-04-27T14:11Z_governance": {
@@ -2235,6 +2240,17 @@
         "V3-EXQ-476",
         "V3-EXQ-476a",
         "V3-EXQ-476b"
+      ]
+    },
+    "2026-04-30T20:50Z_governance_discuss_results": {
+      "session": "governance-discuss-results-2026-04-30T204541Z",
+      "summary": "Walked 5 pending results after governance.sh. V3-EXQ-490c FAIL weakens Q-040b: V_s gate fired in both arms (585 held events), but liking bridge never fired cues, dACC score bias stayed zero, and approach_commit stayed zero in ON_OFF and ON_ON; route to the prewritten 490d/490e/490f successor tree rather than promoting Q-040b. V3-EXQ-499 PASS supports MECH-094 with 3/3 seeds: tag routing ON produced zero contamination/confabulation and routing separation 0.693, while tag routing OFF produced near-total contamination and 0.64 confabulation; MECH-094 remains confirmed_established. V3-EXQ-501 PASS supports SD-035: analog BLA/CeA arithmetic beat binary sign-only in 3/3 seeds on RMSE, intermediate-valence discrimination, and transition lag; SD-035 is confirmed_established. V3-EXQ-502 PASS supports MECH-062: coordinated tri-loop gating beat single-limbic gating in stable and volatile regimes, especially under volatile disagreement; MECH-062 is confirmed_established. V3-EXQ-500 PASS is diagnostic/readiness evidence for SD-017 sleep phase machinery (3 cycles in 3/3 seeds, replay_quality ~8.10), but because experiment_purpose=diagnostic it does not count as genuine experimental backing under Option E; SD-017 remains the sole standard-gating implementation-cohort claim with zero genuine exp.",
+      "ids_marked": [
+        "v3_exq_490c_mech269b_with_liking_bridge_20260429T055859Z_v3",
+        "v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3",
+        "v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3",
+        "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
+        "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3"
       ]
     }
   }

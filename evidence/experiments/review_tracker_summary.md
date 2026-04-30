@@ -3,11 +3,11 @@
 > Maintained manually alongside `review_tracker.json`. Update when adding run IDs.
 > Purpose: lets Claude sessions know the tracker state without reading the full 47k-token file.
 
-## Stats (last updated 2026-03-30)
+## Stats (last updated 2026-04-30)
 
-- **Total reviewed run IDs**: ~1152
-- **Last review UTC**: 2026-03-30T00:00:00Z
-- **Discussed experiment dirs**: 37 entries (V1/V2 dirs and bare queue IDs not in run_id format; added V3-EXQ-166)
+- **Total reviewed run IDs**: 1938
+- **Last review UTC**: 2026-04-30T20:50:54Z
+- **Discussed experiment dirs**: 251 entries (V1/V2 dirs, runner-only queue IDs, and non-run-id artifacts)
 
 ## Coverage by experiment series
 
@@ -19,12 +19,13 @@
 | V3 EXQ-066–100 | `v3_exq_0[6-9]*_v3`, `v3_exq_100*` | All reviewed (including 2026-03-27 evening batch) |
 | V3 onboarding (Daniel-PC) | `v3_onboard_smoke_*` | All reviewed |
 | V3 scale benchmark | `v3_scale_benchmark_*` | Reviewed 2026-03-23 |
+| V3 EXQ-490c/499/500/501/502 | latest Phase 2 cohort | Reviewed 2026-04-30 governance walk |
 
 ## How to update review_tracker.json efficiently
 
-Because the file is ~1400 lines, use targeted edits:
+Because the file is large, use targeted edits:
 
-1. **Read only the tail** to find the last entry: `Read` with `offset=1385, limit=15`
+1. **Read only the tail** to find the last entry.
 2. **Edit** — replace the last entry + closing `]` with last entry + new IDs + `]`
 3. **Update `last_review_utc`** — targeted Edit on line 3 only
 4. Run `python scripts/generate_pending_review.py` to confirm 0 pending
