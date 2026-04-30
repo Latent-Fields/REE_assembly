@@ -14,6 +14,104 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-04-30 -- nightly docs sync, post-Phase-2-claim-type-gating cohort PASS wave)
+
+- **SDs / MECHs moved to Implemented since the 2026-04-29 PM snapshot:**
+  none in the substrate sense (the same-day MECH-269b + MECH-284
+  staleness-into-VsRolloutGate wiring landed at 06:03Z and was already
+  captured in the 2026-04-29 PM snapshot below). The day's primary
+  signal is on the **experimental-evidence side**: the 2026-04-29 PM
+  Phase 2 claim-type-gating reckoning surfaced four standard-gating
+  MECH/SD claims that needed first-pass experimental signal, all four
+  scripts were written + smoke-tested + queued + executed in one
+  session, and **all four PASSed in 3/3 seeds**.
+- **Phase 2 claim-type evidence gating landed (2026-04-29T15:47Z):**
+  `scripts/generate_option_e_shadow.py` extended with `_evidence_gating(meta)`
+  classifying every claim into `standard | substrate_coherence |
+  answer_state` based on `claim_type` (and `invariant_type` for
+  invariants). Discrepancy / impl_no_exp / low_exp / lit_only_above_cap
+  flags now fire only for `standard`-gating claims; the suppressed
+  buckets surface separately for transparency. Headline numbers:
+  discrepancies 183 -> 135 (48 ARC + universal invariant + Q dropped
+  out of actionable), impl_no_exp 15 -> 4 (the 4 genuinely-testable
+  MECH/SD claims that needed experiments), low_exp 50 -> 32,
+  lit_only_above_cap 142 -> 107. CLAUDE.md "Claim-type evidence
+  gating" section documents the rules + restate-Q-as-MECH/SD path.
+- **Phase 2 cohort experiments (4 PASS in 3/3 seeds; pending review):**
+  - **V3-EXQ-499 / EXP-0170 (MECH-094 hypothesis-tag write-gate
+    discriminative pair)** -- substrate-level forced-injection design
+    avoiding the V3-EXQ-140 non_contributory failure mode. ARM_A passes
+    `hypothesis_tag=True` for sim events (gate active per MECH-094);
+    ARM_B passes False (gate ablated, the tag-loss / write-channel
+    disinhibition pathology). N_REAL=50 + N_SIM=50 deterministic events
+    at disjoint z_world locations. Three pre-registered metrics with
+    PASS criteria all met >= 2/3 seeds: ARM_A contam=0.000, confab=0.000,
+    MI=0.693 (perfect log(2)); ARM_B contam=1.000, confab=0.640, MI=0.000.
+    **Governance impact:** MECH-094 quadrant flipped
+    `plausible_unproven` -> `confirmed_established`;
+    experimental_confidence 0.000 -> 0.775; overall_confidence
+    0.866 -> 0.843 (slight dip from legacy blend now weighting the new
+    exp signal). First standard-gating experimental evidence for
+    MECH-094 -- prior 9 entries excluded as
+    diagnostic_probe / non_contributory.
+  - **V3-EXQ-500 / EXP-0171 (SD-017 sleep-phase substrate-readiness
+    diagnostic)** -- nine prior FAIL/non_contributory entries on SD-017
+    led to a fresh substrate-readiness gate before any behavioural
+    retest. PASS.
+  - **V3-EXQ-501 / EXP-0172 (SD-035 amygdala analog vs binary)** --
+    discriminator between SD-035's analog amygdala substrate and a
+    degenerate binary toggle. PASS.
+  - **V3-EXQ-502 / EXP-0173 (MECH-062 tri-loop gate coordination)** --
+    truly fresh-start MECH-062 evidence (zero priors); first tri-loop
+    coordination test on the V3 substrate. PASS.
+  - manual_proposals.v1.json: EXP-0170/171/172/173 status -> executed.
+- **Experiment activity since the 2026-04-29 PM snapshot:**
+  - Runner-status totals refreshed: **572 completed (113 PASS / 246 FAIL /
+    66 ERROR / 147 UNKNOWN; +4 vs 2026-04-29 PM = V3-EXQ-499/500/501/502
+    Phase 2 cohort)**.
+  - Pending review queue regenerated 2026-04-29T19:32Z: **5 items**
+    (4 PASS V3-EXQ-499/500/501/502 + 1 FAIL V3-EXQ-490c carried over).
+- **EXP-0174 env-complexity-gate proposal** added to manual_proposals.v1.json
+  at 19:09Z (high-priority diagnostic targeted_probe for SD-016 / SD-023 /
+  MECH-273 / MECH-275 testing whether enriched environments produce enough
+  z_world information for SD-016 retrieval and sleep / self-model aggregation
+  retests; experiment_proposals + index regenerated; no queue entry reserved
+  or appended).
+
+### Immediate Work Queue (This Cycle, 2026-04-30)
+
+1. **Governance walk on the 5 pending review items** -- the 4 Phase 2
+   cohort PASSes (V3-EXQ-499/500/501/502) now carry first-pass standard-
+   gating experimental evidence for MECH-094 / SD-017 / SD-035 / MECH-062;
+   re-score against the lit/exp decoupled regime (overall_confidence_decoupled
+   = exp_conf) and check whether any quadrant flip is promotion-relevant.
+   The V3-EXQ-490c FAIL remains pending discussion with successor V3-EXQ-490d
+   already scoped.
+2. **V3-EXQ-490d successor design + queueing** -- still the highest-priority
+   substrate-validation run on the substrate side. Toggle
+   use_vs_gate_staleness_lookup OFF vs ON at matched 0.4 thresholds,
+   2 arms x 3 seeds, MECH-269b V_s gating ON + MECH-295 bridge ON in
+   both arms. C4 severance acceptance criterion is the falsifiable test
+   of the Q-040b strong reading after the 490c FAIL.
+3. **V3-EXQ-495 V3-full-completion-gate queueing decision** -- still
+   deferred. The MECH-163 dual-systems test depends on Q-040 / Q-040b
+   resolution; queueing locked behind the EXQ-490d outcome.
+4. **EXP-0174 env-complexity-gate scripting + queueing** -- the
+   2026-04-29T19:09Z proposal is unblocking for SD-016 retest path
+   (env-entropy precondition) plus sleep / self-model aggregation retests
+   (MECH-273 / MECH-275). Manual_proposals entry reserved; script not
+   yet written.
+5. **OCD Layer 2 / 3 escalation (MECH-290 ablation; SD-046 multi-slot
+   GoalState pull-forward)** -- still on the live escalation list after
+   EXQ-498 disconfirmed Layer 1; design / queueing not yet started.
+6. **Aggregator-floor flag governance review** -- 5th-consecutive-cycle
+   flag at the next governance walk; cap-aware aggregator review with
+   recommendation either (a) accept the floor as architecturally
+   reasonable for narrow-open-question Q-claims, or (b) tune the floor
+   downward to expose per-paper confidence variance more faithfully.
+
+---
+
 ## Status Snapshot (2026-04-29 PM -- post-V3-EXQ-490c FAIL + Q-032 lit-pull + MECH-269b staleness wiring)
 
 - **SDs / MECHs moved to Implemented since the 2026-04-29 nightly snapshot:**
