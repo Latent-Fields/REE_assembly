@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_155_q015_commit_boundary_minimal_contract_pair
 
-Generated: `2026-04-30T20:47:05.400440Z`
+Generated: `2026-05-01T20:19:50.318936Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

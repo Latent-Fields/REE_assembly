@@ -26,8 +26,10 @@ Dependencies: Python standard library only.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -386,6 +388,64 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
     for runs in by_experiment.values():
         runs.sort(key=lambda r: (r.timestamp, r.run_id))
     return by_experiment
+
+
+def _detect_and_mark_duplicate_emissions(
+    by_experiment: dict[str, list[RunRecord]],
+) -> list[dict[str, Any]]:
+    """Auto-mark byte-identical-output duplicate emissions as superseded.
+
+    Within each experiment_type, runs that share an identical numeric-metrics
+    signature are treated as duplicate emissions of the same underlying run
+    (typical causes: runner re-emission after restart, deterministic re-runs
+    from regex-bug-period queue replays). The latest emission is kept as
+    canonical; earlier emissions are mutated in-memory to
+    evidence_direction='superseded' so the existing scoring loop excludes them.
+
+    On-disk manifests are NOT modified -- the user's manual supersession
+    decisions (visible via evidence_direction_note) remain authoritative. If
+    any run in an experiment_type already has evidence_direction='superseded',
+    the cluster is assumed hand-resolved and the auto-detector backs off
+    entirely.
+
+    Returns a list of warning records (one per auto-marked manifest) for
+    diagnostic logging.
+    """
+    warnings: list[dict[str, Any]] = []
+    for experiment_type, runs in by_experiment.items():
+        if len(runs) < 2:
+            continue
+        # Back off if user has already hand-resolved any cluster in this
+        # experiment_type -- avoids second-guessing manual decisions.
+        if any(r.evidence_direction == "superseded" for r in runs):
+            continue
+        by_signature: dict[str, list[RunRecord]] = defaultdict(list)
+        for run in runs:
+            if not run.metrics:
+                continue  # cannot fingerprint without numeric metrics
+            sig_src = json.dumps(sorted(run.metrics.items()), default=str)
+            sig = hashlib.sha1(sig_src.encode()).hexdigest()[:12]
+            by_signature[sig].append(run)
+        for sig, dup in by_signature.items():
+            if len(dup) < 2:
+                continue
+            dup_sorted = sorted(dup, key=lambda r: r.timestamp)
+            canonical = dup_sorted[-1]
+            for stale in dup_sorted[:-1]:
+                stale.evidence_direction = "superseded"
+                # Per-claim direction overrides become moot once superseded.
+                stale.evidence_direction_per_claim = {}
+                span_min = (canonical.timestamp - stale.timestamp).total_seconds() / 60.0
+                warnings.append(
+                    {
+                        "experiment_type": experiment_type,
+                        "duplicate_run_id": stale.run_id,
+                        "canonical_run_id": canonical.run_id,
+                        "signature_sha1": sig,
+                        "span_minutes": span_min,
+                    }
+                )
+    return warnings
 
 
 def _scan_literature(
@@ -4084,6 +4144,20 @@ def main() -> None:
     )
 
     by_experiment = _scan_runs(base_dir, planning_criteria)
+    dedup_warnings = _detect_and_mark_duplicate_emissions(by_experiment)
+    if dedup_warnings:
+        print(
+            f"[dedup-guard] auto-marked {len(dedup_warnings)} duplicate emission(s) as "
+            "superseded (in-memory only; on-disk manifests unchanged):",
+            file=sys.stderr,
+        )
+        for w in dedup_warnings:
+            print(
+                f"  {w['experiment_type']}: {w['duplicate_run_id']} "
+                f"(sig={w['signature_sha1']}, +{w['span_minutes']:.1f}min vs canonical "
+                f"{w['canonical_run_id']})",
+                file=sys.stderr,
+            )
     by_literature = _scan_literature(literature_root, planning_criteria)
 
     generated_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")

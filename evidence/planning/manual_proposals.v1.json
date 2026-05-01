@@ -49,6 +49,28 @@
       "prerequisites": ["Run /diagnose-errors on V3-EXQ-242, V3-EXQ-418, V3-EXQ-418a, V3-EXQ-436 to confirm shared root cause; if all four point to a single substrate gap, fixing that gap may obviate this probe."]
     },
     {
+      "proposal_id": "EXP-0171a",
+      "claim_id": "SD-017",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "high",
+      "queue_id": "V3-EXQ-503",
+      "queued_utc": "2026-05-01",
+      "script_path": "experiments/v3_exq_503_sd017_sleep_phase_discriminative.py",
+      "estimated_minutes": 15,
+      "machine_affinity": "any",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Evidence-grade discriminative pair for SD-017 (sleep_phase.minimal_sleep_infrastructure_v3) -- the follow-up that EXP-0171 / V3-EXQ-500 anticipated. The substrate-readiness probe PASSed but its experiment_purpose=diagnostic excludes it from claim scoring under Option E, so SD-017 still sat at exp_conf=0.000 / quadrant=plausible_unproven despite the substrate being verified-ready. EXP-0171a closes the gap with the same forced-injection template that produced clean discriminative signal for V3-EXQ-499 (MECH-094), V3-EXQ-501 (SD-035), and V3-EXQ-502 (MECH-062).",
+      "design": "Discriminative pair, 3 matched seeds (42, 43, 44). Substrate-level forced-injection design (avoids env-loop entanglement): both arms pre-load identical N=20 deterministic z_world / z_self prototypes into _world_experience_buffer / _self_experience_buffer / theta_buffer.update(), then run K=3 cycles via agent.run_sleep_cycle(). ARM_A (FULL_4_PHASE_ON, sws_enabled=True + rem_enabled=True): full SWS schema pass writes prototypes; REM attribution rolls out against theta_buffer.recent. ARM_B (NO_SLEEP_BASELINE, both flags off): same call short-circuits. Three pre-registered metrics: M1 cumulative_sws_writes (ARM_A>=N_CYCLES, ARM_B==0); M2 ctxmem_state_change Frobenius norm of (memory_after - memory_before) (ARM_A>=0.10, ARM_B<=1e-6 -- magnitude probe agnostic to slot-diversity direction since SWS write can REDUCE diversity by clustering slots around real prototype geometry); M3 cumulative_rem_rollouts (ARM_A>=N_CYCLES, ARM_B==0). PASS criteria: all three in 2/3 seeds. Smoke 2026-05-01: PASS in 3/3 seeds (ARM_A: sws_writes=24, ctxmem_delta~4.6-5.0, rem_rollouts=18; ARM_B: zeros). regression --changed sleep 48/48 PASS. PASS supports SD-017 architecture (sleep substrate produces measurable work that does not happen without it); FAIL with C1 alone routes to a downstream consumer gap; FAIL with C1 also failing routes to a substrate gap V3-EXQ-500 readiness probe missed.",
+      "status": "executed",
+      "executed_by": "V3-EXQ-503",
+      "executed_queue_id": "V3-EXQ-503",
+      "executed_utc": "2026-05-01",
+      "executed_note": "PASS (3/3 seeds, all three criteria). ARM_A: sws_writes=24, ctxmem_delta=4.50-5.03, rem_rollouts=18 across all seeds. ARM_B: sws_writes=0, ctxmem_delta=0.0000, rem_rollouts=0 across all seeds. Elapsed 0.32s on DLAPTOP-4.local. Manifest: REE_assembly/evidence/experiments/v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3.json. Closes Phase 2 cohort: SD-017 evidence_quadrant flipped plausible_unproven -> confirmed_established; experimental_confidence 0.000 -> 0.775; overall_confidence 0.901 -> 0.870 (slight dip from legacy blend now weighting the new exp signal). All four EXP-0170/171/171a/172/173 standard-gating Phase 2 claims now confirmed_established.",
+      "added_utc": "2026-05-01",
+      "notes": "Closes the V3-EXQ-500 -> evidence-grade gap that the original EXP-0171 design explicitly anticipated. With the same template that worked for the other three Phase 2 cohort PASSes, success here flips SD-017 from plausible_unproven to confirmed_established (parallel to MECH-094/SD-035/MECH-062 transition 2026-04-29). One key design departure from the proposal sketch: the original spec named 'model_coherence_post_sleep' as primary metric, but the substrate-level Frobenius-norm ctxmem_state_change is a more direct probe of whether the sleep cycle actually reorganises ContextMemory -- and avoids needing a separate post-sleep evaluation loop. SD-017 lit_conf was 0.901 (strong corpus); only the experimental side was missing under Option E."
+    },
+    {
       "proposal_id": "EXP-0172",
       "claim_id": "SD-035",
       "proposal_type": "experimental",
