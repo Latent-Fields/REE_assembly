@@ -26,12 +26,15 @@
   "claim_ids": [
     "MECH-090"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_049d_mech090_beta_gate_v3",
   "fatal_error_count": 0,
   "run_timestamp": "20260321T122131Z",
   "claim": "MECH-090",
   "verdict": "FAIL",
   "run_id": "v3_exq_049d_mech090_beta_gate_v3_20260321T122131Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=2af6628be992) to v3_exq_049d_mech090_beta_gate_v3_20260321T122659Z_v3 emitted 5.5min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_049d_mech090_beta_gate_v3_20260321T122659Z_v3",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

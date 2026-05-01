@@ -27,12 +27,15 @@
     "ARC-007",
     "SD-004"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_046_arc007_path_memory_ablation",
   "fatal_error_count": 0,
   "run_timestamp": "20260323T121655Z",
   "claim": "ARC-007",
   "verdict": "FAIL",
   "run_id": "v3_exq_046_arc007_path_memory_ablation_20260323T121655Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=c2c43e140aba) to v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3 emitted 246.5min later. Git log of experiments/v3_exq_046_arc007_path_memory_ablation.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

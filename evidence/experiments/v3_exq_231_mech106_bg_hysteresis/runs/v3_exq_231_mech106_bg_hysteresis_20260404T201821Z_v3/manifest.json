@@ -24,7 +24,7 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "superseded",
-  "evidence_direction_note": "Superseded by EXQ-231a (v3_exq_231a_mech106_bg_hysteresis_redesign_20260404T231335Z_v3). Root cause: experimental manipulation never created differentiated persistent/reactive valence history -- PERSISTENT and REACTIVE conditions produced identical commit values throughout. EXQ-231a corrected the design with explicit VALENCE_BIAS vs NO_BIAS threshold conditions. 2026-04-06 governance.",
+  "evidence_direction_note": "Superseded by EXQ-231a (v3_exq_231a_mech106_bg_hysteresis_redesign_20260404T231335Z_v3). Root cause: PERSISTENT and REACTIVE conditions produced identical commit values. 2026-04-06 governance.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -41,5 +41,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "superseded_by": null,
+  "supersedes_reason": null
 }

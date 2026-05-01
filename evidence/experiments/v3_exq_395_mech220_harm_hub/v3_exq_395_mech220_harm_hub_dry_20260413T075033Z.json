@@ -6,7 +6,7 @@
     "MECH-220"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
     "MECH-220": "weakens"
   },
@@ -139,5 +139,8 @@
     "mean_hub_z_harm_a_norm": 0.8524147095282872,
     "mean_ablated_z_harm_a_norm": 0.7413222671879662,
     "mean_z_harm_a_norm_delta": 0.11109244234032101
-  }
+  },
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=bfe2ad006485) to v3_exq_395_mech220_harm_hub_dry_20260413T075133Z emitted 1.0min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_395_mech220_harm_hub_dry_20260413T075133Z",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

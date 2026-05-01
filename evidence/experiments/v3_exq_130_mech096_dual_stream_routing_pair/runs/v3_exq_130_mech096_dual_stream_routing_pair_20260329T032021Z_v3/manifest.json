@@ -23,7 +23,7 @@
     "MECH-096"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "inconclusive",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -39,5 +39,7 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Task underpowered: 8x8 grid insufficient to discriminate dual-stream routing advantage. Single-stream already saturates task capacity. Small negative delta (-0.004) within noise at this scale. Does not falsify MECH-096."
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=0aaae6271920) to v3_exq_130_mech096_dual_stream_routing_pair_20260329T215504Z_v3 emitted 1114.7min later. Git log of experiments/v3_exq_130_mech096_dual_stream_routing_pair.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_130_mech096_dual_stream_routing_pair_20260329T215504Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

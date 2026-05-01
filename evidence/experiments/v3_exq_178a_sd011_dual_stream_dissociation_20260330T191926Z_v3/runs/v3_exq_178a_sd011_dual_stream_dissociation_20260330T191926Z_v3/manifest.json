@@ -40,9 +40,11 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "superseded by EXQ-178b. C1 FAIL: harm_fwd_r2=-0.614 -- identity collapse persists. autocorr_gap=0.447 (temporal integration signal present) but forward model training insufficient.",
+  "evidence_direction_note": "Superseded by EXQ-178b (fixed C1: offline batch training of HarmForwardModel replaced online per-step training, achieving fwd_r2=0.742). C1 failure here was a training regime bug, not architectural. SD-011 dissociation signals (C2/C3/C4 all PASS) remain valid but superseded run is excluded from governance scoring.",
   "evidence_direction_per_claim": {
     "SD-011": "superseded",
     "ARC-033": "superseded"
-  }
+  },
+  "superseded_by": null,
+  "supersedes_reason": null
 }

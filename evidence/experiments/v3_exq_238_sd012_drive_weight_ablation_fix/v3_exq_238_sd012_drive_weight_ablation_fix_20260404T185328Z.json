@@ -30,7 +30,7 @@
     "SD-012": "weakens",
     "MECH-112": "weakens"
   },
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
   "supersedes": "v3_exq_233_sd012_zgoal_seeding_validation",
   "fatal_error_count": 0,
@@ -173,5 +173,8 @@
   ],
   "run_timestamp": "20260404T185328Z",
   "run_id": "v3_exq_238_20260404T185328Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=dbef94b1fcfc) to v3_exq_238_20260404T185519Z_v3 emitted 1.9min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_238_20260404T185519Z_v3",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

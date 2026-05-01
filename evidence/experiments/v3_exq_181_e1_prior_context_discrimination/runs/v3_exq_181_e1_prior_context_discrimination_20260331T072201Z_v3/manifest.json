@@ -24,7 +24,7 @@
     "ARC-041"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "inconclusive",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -43,5 +43,8 @@
   "evidence_direction_per_claim": {
     "MECH-150": "mixed",
     "ARC-041": "mixed"
-  }
+  },
+  "evidence_direction_note": "Degenerate run: n_context_B=0 across all 3 seeds -- with num_hazards=4 the hazard field is ambient everywhere in the 10x10 grid, so the hazard-distal threshold (max < 0.1) never fires. C1 was structurally unmeasurable (cosine_sim=NaN; no context B samples). C2 PASS (harm_r2=0.53) is uninterpretable without the contrastive condition. Superseded by EXQ-181b (num_hazards=1, revised thresholds), which obtained n_context_A=2157, n_context_B=1356 and confirmed C1 FAIL (cosine_sim=0.9999) -- the informative result.",
+  "superseded_by": null,
+  "supersedes_reason": null
 }

@@ -25,7 +25,7 @@
     "MECH-119"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -46,5 +46,7 @@
     "MECH-119": "mixed",
     "Q-022": "mixed"
   },
-  "evidence_direction_note": "Per-claim overrides applied. MECH-118 (Hopfield stability signal): supports -- C2/C4 confirm stability collapses with noise/novelty perturbation (0.063/0.026 vs 0.950 baseline). MECH-119 (coherent-unfamiliar regime): mixed -- stability dissociation confirmed but R3 d_eff=22.6 higher than R2 d_eff=20.8, opposite of low-d_eff prediction for coherent-unfamiliar pathology. Q-022 (D_eff/stability dissociation): mixed -- dissociation confirmed (D_eff flat while stability collapses), but D_eff ordering between noise and novelty regimes wrong (C1/C3 fail)."
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T20:00:00Z: identical signature (sha1=38ca8a3d92d0) to v3_exq_084d_q022_deff_hopfield_dissociation_20260328T160649Z_v3 emitted 29.7h earlier. Phase 3 of duplicate-manifest sweep -- attributed to runner regex bug active ~2026-03-27..03-30 (fixed in commit 071f1fc 'diagnose-errors: fix runner regex bugs + unblock queue (5 UNKNOWN re-queues)'). The bug caused the runner to mis-parse 'Done. Outcome: PASS/FAIL' as UNKNOWN, silently re-running completed experiments. The kept canonical entry is the OLDEST emission, treated as the original legitimate run; this entry is the regex-bug-period or post-fix-cleanup replay.",
+  "superseded_by": "v3_exq_084d_q022_deff_hopfield_dissociation_20260328T160649Z_v3",
+  "supersedes_reason": "regex_bug_period_replay_2026_03_27_to_03_30"
 }

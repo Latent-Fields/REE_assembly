@@ -25,7 +25,7 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "superseded",
-  "evidence_direction_note": "SUPERSEDED 2026-04-23. Metric (mean_random_residue - mean_hippo_residue) is confounded in resource-hazard-colocated envs: residue RBFs accumulate at cells the agent visits during harm (goal-adjacent in this env), so a correctly goal-directed hippocampus produces trajectories that TRAVERSE residue-dense regions by design. Random E2 rollouts wander near current z_world, mostly residue-sparse. The negative hippo_quality_gap therefore reflects goal-seeking, not harm-seeking. Behavioural evidence for ARC-007 remains via EXQ-114 (99.2% harm reduction MAP_NAV vs MAP_ABLATED). Metric-redesign successor: V3-EXQ-397d (matched-endpoint residue comparison).",
+  "evidence_direction_note": "SUPERSEDED 2026-04-23 by V3-EXQ-397d (matched-endpoint metric redesign). The hippo_quality_gap probe is metric-confounded in resource-hazard-colocated envs: residue RBFs accumulate at cells the agent visits during harm (goal-adjacent by env design), so a correctly goal-directed hippocampus produces trajectories that TRAVERSE residue-dense regions. Random E2 rollouts stay near current z_world (residue-sparse). The negative hippo_quality_gap reflects goal-seeking, not harm-seeking. ARC-007 behavioural evidence remains via EXQ-114 (99.2% harm reduction MAP_NAV vs MAP_ABLATED). Previous classification non_contributory upgraded to superseded per scoring_excluded rule.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "superseded_by": null,
+  "supersedes_reason": null
 }

@@ -23,12 +23,15 @@
   "claim_ids": [
     "SD-005"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_047g_sd005_functional_separation",
   "fatal_error_count": 0,
   "run_timestamp": "20260323T175246Z",
   "claim": "SD-005",
   "verdict": "FAIL",
   "run_id": "v3_exq_047g_sd005_functional_separation_20260323T175246Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=e7e41041d011) to v3_exq_047g_sd005_functional_separation_20260323T185711Z_v3 emitted 64.4min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_047g_sd005_functional_separation_20260323T185711Z_v3",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

@@ -25,7 +25,7 @@
   "claim_ids": [
     "ARC-023"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_131_arc023_multirate_heartbeat_pair",
   "fatal_error_count": 0,
   "run_timestamp": "20260329T032102Z",
@@ -53,5 +53,8 @@
   "claim_ids_tested": [
     "ARC-023"
   ],
-  "e3_heartbeat_k": 5
+  "e3_heartbeat_k": 5,
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=148d1c6e72f6) to v3_exq_131_arc023_multirate_heartbeat_pair_20260329T215546Z_v3 emitted 1114.7min later. Git log of experiments/v3_exq_131_arc023_multirate_heartbeat_pair.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_131_arc023_multirate_heartbeat_pair_20260329T215546Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

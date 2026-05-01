@@ -30,12 +30,15 @@
   "claim_ids": [
     "MECH-072"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_054_mech072_world_delta_gating",
   "fatal_error_count": 0,
   "run_timestamp": "20260320T082932Z",
   "claim": "MECH-072",
   "verdict": "FAIL",
   "run_id": "v3_exq_054_mech072_world_delta_gating_20260320T082932Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=828a8118037a) to v3_exq_054_mech072_world_delta_gating_20260320T180545Z_v3 emitted 576.2min later. Git log of experiments/v3_exq_054_mech072_world_delta_gating.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_054_mech072_world_delta_gating_20260320T180545Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

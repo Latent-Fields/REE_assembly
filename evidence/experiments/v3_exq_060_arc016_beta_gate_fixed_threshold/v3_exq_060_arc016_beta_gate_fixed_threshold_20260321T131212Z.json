@@ -8,7 +8,7 @@
   ],
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "2026-03-21T13:12:12.102158+00:00",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "metrics": {
     "committed_step_count": 5980,
     "uncommitted_step_count": 0,
@@ -38,5 +38,8 @@
     "commit_threshold": 0.4,
     "precision_init": 0.5,
     "seed": 0
-  }
+  },
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=11c856636efe) to 20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3 emitted 6.4min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "superseded_by": "20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

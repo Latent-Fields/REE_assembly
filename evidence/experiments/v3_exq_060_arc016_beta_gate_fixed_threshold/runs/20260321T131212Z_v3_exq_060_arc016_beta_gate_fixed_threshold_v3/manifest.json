@@ -24,7 +24,7 @@
     "MECH-090"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -43,5 +43,8 @@
   "evidence_direction_per_claim": {
     "ARC-016": "supports",
     "MECH-090": "supports"
-  }
+  },
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=11c856636efe) to 20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3 emitted 6.4min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "superseded_by": "20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

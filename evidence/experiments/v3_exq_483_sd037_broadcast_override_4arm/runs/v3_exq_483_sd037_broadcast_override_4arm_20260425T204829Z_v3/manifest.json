@@ -31,7 +31,7 @@
     "MECH-280": "superseded",
     "MECH-281": "superseded"
   },
-  "evidence_direction_note": "Superseded by V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance path) per governance 2026-04-26. EXQ-483's behavioural acceptance was uninterpretable because baseline (ON_OFF) approach_commit was 0.0, making PWS / narcolepsy ratios degenerate (0/0). Substrate signature was already confirmed wired in EXQ-483 (override_signal 0->0.563, PAG release ratio 1.69). EXQ-483a re-ran with longer warmup and an explicit fallback path; substrate-readiness PASS but baseline behaviour still inert -- the wired-but-inert characterisation is now carried by EXQ-483a's manifest. Excluded from scoring.",
+  "evidence_direction_note": "Reclassified non_contributory -> superseded by governance 2026-04-26 (governance-2026-04-26T15:39). Original yesterday-governance reclassification rationale retained: experiment_purpose=diagnostic; substrate signature confirmed (override_signal climbed 0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling). PWS / narcolepsy ratios were uninterpretable (0/0) because approach_commit was 0.0 across ALL FOUR arms including the SD-036-only baseline (ON_OFF) -- policy-layer inertia at the standard CausalGridWorldV2 benefit task, not falsification of SD-037 / MECH-280 / MECH-281. Successor V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance path) already queued and claimed. Should not weight against the three claims; they remain hold_pending_v3_substrate awaiting EXQ-483a's interpretable evidence.",
   "supersedes_note": "Superseded by V3-EXQ-483a (run_id v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3).",
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -48,5 +48,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "superseded_by": null,
+  "supersedes_reason": null
 }

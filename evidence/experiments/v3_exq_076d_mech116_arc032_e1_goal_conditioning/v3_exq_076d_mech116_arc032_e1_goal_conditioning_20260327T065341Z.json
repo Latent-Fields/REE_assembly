@@ -27,7 +27,7 @@
     "MECH-116",
     "ARC-032"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_076d_mech116_arc032_e1_goal_conditioning",
   "fatal_error_count": 0,
   "condition_results": {
@@ -68,5 +68,8 @@
   "claim": "MECH-116",
   "verdict": "FAIL",
   "run_id": "v3_exq_076d_mech116_arc032_e1_goal_conditioning_20260327T065341Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=9861c3c771de) to v3_exq_076d_mech116_arc032_e1_goal_conditioning_20260327T065549Z_v3 emitted 2.1min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_076d_mech116_arc032_e1_goal_conditioning_20260327T065549Z_v3",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

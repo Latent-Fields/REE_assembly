@@ -24,8 +24,8 @@
     "INV-034"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
-  "evidence_direction_note": "Goal latent never seeded (z_goal_norm < 0.1) -- mechanism under test was never instantiated. Non-contributory to MECH-071. Root cause: missing homeostatic drive modulation (SD-012). Requires drive-weighted benefit signal + resource respawn for repeated drive-reduction cycles. See EXQ-085e.",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=0781d98a32d1) to v3_exq_085_mech071_goal_directed_calibration_20260323T185618Z_v3 emitted 64.6min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -44,5 +44,7 @@
   "evidence_direction_per_claim": {
     "MECH-071": "mixed",
     "INV-034": "mixed"
-  }
+  },
+  "superseded_by": "v3_exq_085_mech071_goal_directed_calibration_20260323T185618Z_v3",
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
 }

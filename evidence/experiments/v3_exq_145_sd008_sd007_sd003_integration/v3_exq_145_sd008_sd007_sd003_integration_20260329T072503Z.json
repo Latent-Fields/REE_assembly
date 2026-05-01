@@ -11,9 +11,12 @@
     "SD-007",
     "SD-003"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
   "run_timestamp": "20260329T072503Z",
   "run_id": "v3_exq_145_sd008_sd007_sd003_integration_20260329T072503Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=39664c1b9e87) to v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3 emitted 873.0min later. Git log of experiments/v3_exq_145_sd008_sd007_sd003_integration.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

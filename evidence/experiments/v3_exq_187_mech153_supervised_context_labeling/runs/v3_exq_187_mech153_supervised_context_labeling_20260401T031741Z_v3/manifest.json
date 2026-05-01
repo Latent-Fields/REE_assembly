@@ -43,5 +43,8 @@
   "evidence_direction_per_claim": {
     "MECH-153": "superseded",
     "ARC-042": "superseded"
-  }
+  },
+  "evidence_direction_note": "Superseded by V3-EXQ-187a. Bug: context_memory.write() never called during training -- memory slots stayed at randn*0.01 initialization, making attention output constant regardless of z_world query. Supervised terrain_loss converged to mean(targets) but could not differentiate contexts.",
+  "superseded_by": null,
+  "supersedes_reason": null
 }

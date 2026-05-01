@@ -25,13 +25,13 @@
     "SD-003"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
     "SD-008": "supports",
     "SD-007": "weakens",
     "SD-003": "weakens"
   },
-  "evidence_direction_note": "Phase 1 gate FAIL (R2=0.0756 < threshold 0.08). SD-008 criterion (event_selectivity_margin) passed. SD-007 R2 and SD-003 calibration failed. Per-claim overrides applied 2026-03-29. Does not retire SD-007 or SD-008.",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=39664c1b9e87) to v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3 emitted 873.0min later. Git log of experiments/v3_exq_145_sd008_sd007_sd003_integration.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -46,5 +46,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "superseded_by": "v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

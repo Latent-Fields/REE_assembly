@@ -24,7 +24,7 @@
     "SD-004"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -43,5 +43,8 @@
   "evidence_direction_per_claim": {
     "ARC-007": "weakens",
     "SD-004": "weakens"
-  }
+  },
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=c2c43e140aba) to v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3 emitted 246.5min later. Git log of experiments/v3_exq_046_arc007_path_memory_ablation.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

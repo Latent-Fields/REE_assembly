@@ -24,12 +24,15 @@
   "claim_ids": [
     "MECH-111"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_073b_mech111_novelty_signal",
   "fatal_error_count": 0,
   "run_timestamp": "20260402T021831Z",
   "claim": "MECH-111",
   "verdict": "FAIL",
   "run_id": "v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T20:00:00Z: identical signature (sha1=28b8ed1ca1d2) to v3_exq_073b_mech111_novelty_signal_20260328T145319Z_v3 emitted 107.4h earlier. Phase 3 of duplicate-manifest sweep -- attributed to runner regex bug active ~2026-03-27..03-30 (fixed in commit 071f1fc 'diagnose-errors: fix runner regex bugs + unblock queue (5 UNKNOWN re-queues)'). The bug caused the runner to mis-parse 'Done. Outcome: PASS/FAIL' as UNKNOWN, silently re-running completed experiments. The kept canonical entry is the OLDEST emission, treated as the original legitimate run; this entry is the regex-bug-period or post-fix-cleanup replay.",
+  "superseded_by": "v3_exq_073b_mech111_novelty_signal_20260328T145319Z_v3",
+  "supersedes_reason": "regex_bug_period_replay_2026_03_27_to_03_30"
 }

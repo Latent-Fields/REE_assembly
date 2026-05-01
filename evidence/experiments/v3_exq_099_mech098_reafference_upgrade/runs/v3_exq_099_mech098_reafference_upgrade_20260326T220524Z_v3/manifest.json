@@ -23,7 +23,7 @@
     "MECH-098"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -38,5 +38,8 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "EXQ-099 had collection filter bug: only 1 locomotion step collected in phase 1 (expected 2000+). Predictor trained on 1 sample is meaningless. Superseded by EXQ-099a which fixes the transition_type filter. PASS result is unreliable.",
+  "superseded_by": "v3_exq_099a_mech098_reafference_upgrade",
+  "supersedes_reason": null
 }

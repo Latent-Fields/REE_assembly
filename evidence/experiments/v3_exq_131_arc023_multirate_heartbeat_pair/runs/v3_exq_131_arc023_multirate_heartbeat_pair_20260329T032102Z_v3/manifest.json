@@ -23,7 +23,7 @@
     "ARC-023"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "inconclusive",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -39,5 +39,7 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "SD-006 (async multi-rate execution) prerequisite unmet. Synchronous time-multiplexed substrate produces E3 output freeze (var_harm_eval_on=1.05e-7 vs ablated=0.00276). Polling artifact, not test of async multi-rate claim. Does not weaken ARC-023."
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=148d1c6e72f6) to v3_exq_131_arc023_multirate_heartbeat_pair_20260329T215546Z_v3 emitted 1114.7min later. Git log of experiments/v3_exq_131_arc023_multirate_heartbeat_pair.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_131_arc023_multirate_heartbeat_pair_20260329T215546Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

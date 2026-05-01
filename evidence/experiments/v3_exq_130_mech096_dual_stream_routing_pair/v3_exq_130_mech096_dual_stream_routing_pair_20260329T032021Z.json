@@ -24,7 +24,7 @@
   "claim_ids": [
     "MECH-096"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_130_mech096_dual_stream_routing_pair",
   "fatal_error_count": 0,
   "run_timestamp": "20260329T032021Z",
@@ -51,5 +51,8 @@
   "evidence_class": "discriminative_pair",
   "claim_ids_tested": [
     "MECH-096"
-  ]
+  ],
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:56:00Z: identical signature (sha1=0aaae6271920) to v3_exq_130_mech096_dual_stream_routing_pair_20260329T215504Z_v3 emitted 1114.7min later. Git log of experiments/v3_exq_130_mech096_dual_stream_routing_pair.py shows no commit between the two timestamps; script body unchanged across the cluster, so this is a runner re-emission of the same run, not an independent replication. Phase 2 of duplicate-manifest sweep.",
+  "superseded_by": "v3_exq_130_mech096_dual_stream_routing_pair_20260329T215504Z_v3",
+  "supersedes_reason": "duplicate_emission_unchanged_script_2_to_24h_window"
 }

@@ -23,7 +23,7 @@
     "ARC-026"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -41,5 +41,7 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "DUPLICATE RUN (2026-04-04): 5 runs with identical results detected (likely runner re-queue artifact). The first run (20260404T034339Z) is the canonical evidence event. This run is non_contributory to prevent 5x inflation of ARC-026 evidence count."
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T20:20Z: This manifest is one of 5 byte-identical emissions (seed_results match to 17 significant figures across all 5) from a single broken pre-fix run that hit a ZeroDivisionError in env_drift_interval -- only 20 of 1500 training episodes completed (checkpoint_results keys = {10, 20}). Script fix 8b9d7bf landed 2026-04-04T07:59 BST; the post-fix run v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3 ran the full 1500 eps and PASSed 4/4. All 5 04-04 emissions excluded from claim scoring. (Re-applied directly to per-run manifest; original flat-JSON edit on 2026-04-29 was wiped by runner auto-sync and did not propagate via mirror.)",
+  "superseded_by": "v3_exq_232_arc026_approach_contact_resolution_20260405T091846Z_v3",
+  "supersedes_reason": "duplicate_emission_pre_fix_broken_run"
 }
