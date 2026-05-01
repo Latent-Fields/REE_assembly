@@ -11,6 +11,8 @@ Do NOT create feature branches or pull requests.
 See `REE_Working/CLAUDE.md` for the session startup protocol.
 Check `REE_Working/WORKSPACE_STATE.md` before editing `docs/claims/claims.yaml`.
 
+**Editing `evidence/experiments/**` requires an active TASK_CLAIMS entry.** The runner heartbeat (`ree-v3/runner_remote_control.py:push_heartbeat`) does `git pull --rebase --autostash` against this repo every minute under `--remote-control`. With no active claim covering `evidence/experiments/` listed in `REE_Working/TASK_CLAIMS.json`, the autostash interaction can silently revert uncommitted edits across multiple ticks (real incident: 5 EXQ-232 ARC-026 supersession edits made 2026-04-29 reverted to original content by 2026-05-01 with no trace in git history). The heartbeat now skips its push entirely when an active claim is present, so register the claim *before* opening any manifest for editing, and either commit or close the claim before walking away — uncommitted edits left without an open claim remain vulnerable.
+
 ## Governance Pipeline
 
 Run `scripts/governance.sh` from repo root — it runs all steps in order:
