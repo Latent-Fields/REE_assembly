@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-04-30T20:50:54Z",
+  "last_review_utc": "2026-05-01T20:40:44Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2192,7 +2192,8 @@
     "v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3",
     "v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3",
     "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
-    "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3"
+    "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3",
+    "v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3"
   ],
   "discussion_notes": {
     "2026-04-27T14:11Z_governance": {
@@ -2251,6 +2252,13 @@
         "v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3",
         "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
         "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3"
+      ]
+    },
+    "2026-05-01T20:40Z_phase3_cutover_close": {
+      "session": "phase3-cutover-2026-05-01T2040Z",
+      "summary": "V3-EXQ-503 (EXP-0171a SD-017 sleep-phase discriminative pair) PASSed in 3/3 seeds with all three pre-registered criteria. ARM_A (FULL_4_PHASE_ON, sws+rem enabled): cumulative_sws_writes=24, ctxmem_state_change Frobenius norm 4.50-5.03, cumulative_rem_rollouts=18 across all seeds. ARM_B (NO_SLEEP_BASELINE): zeros across the board. SD-017 quadrant flipped plausible_unproven -> confirmed_established; experimental_confidence 0.000 -> 0.775; overall_confidence 0.901 -> 0.870 (slight legacy-blend dip). Closes Phase 2 standard-gating cohort -- all four claims (MECH-094, SD-017, SD-035, MECH-062) now confirmed_established with genuine experimental evidence under Option E. Reviewed as part of Phase 3 cutover preparation (cutover work itself proceeds in the same session).",
+      "ids_marked": [
+        "v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3"
       ]
     }
   }

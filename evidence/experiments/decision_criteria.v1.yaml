@@ -1,14 +1,15 @@
 {
   "schema_version": "decision_criteria/v1",
   "decision_status_default": "pending_user",
+  "_phase3_cutover_note": "Option E Phase 3 cutover 2026-05-01: promotion / demotion gates now read experimental_confidence (the decoupled signal) instead of the legacy overall_confidence blend. New threshold keys are min_exp_conf / max_exp_conf. Legacy keys (min_overall_confidence / max_overall_confidence) are still accepted by the indexer (backwards-compat fallback) for one cycle and may be removed thereafter. See REE_assembly/CLAUDE.md 'Lit/Exp Decoupling Cutover (Phase 3)' for the rationale.",
   "thresholds": {
     "candidate_to_provisional": {
-      "min_overall_confidence": 0.62,
+      "min_exp_conf": 0.62,
       "min_experimental_entries": 2,
       "max_conflict_ratio": 0.35
     },
     "provisional_to_stable": {
-      "min_overall_confidence": 0.80,
+      "min_exp_conf": 0.80,
       "min_experimental_entries": 4,
       "min_literature_entries": 2,
       "max_conflict_ratio": 0.20
@@ -16,7 +17,7 @@
     "demote_on_conflict": {
       "min_total_entries": 3,
       "min_conflict_ratio": 0.55,
-      "max_overall_confidence": 0.55
+      "max_exp_conf": 0.55
     }
   }
 }

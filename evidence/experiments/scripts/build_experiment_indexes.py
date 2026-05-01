@@ -1390,6 +1390,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     current_id: str | None = None
     current_status: str | None = None
     current_type: str | None = None
+    current_invariant_type: str | None = None
     current_v3_pending: bool = False
     current_impl_phase: str | None = None
     current_eq_note: str | None = None
@@ -1416,6 +1417,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                 registry[current_id] = {
                     "status": current_status or "unknown",
                     "claim_type": current_type or "unknown",
+                    "invariant_type": current_invariant_type or "",
                     "v3_pending": str(current_v3_pending),
                     "implementation_phase": current_impl_phase or "",
                     "evidence_quality_note": (current_eq_note or "").strip(),
@@ -1424,6 +1426,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_id = line.split(":", 1)[1].strip()
             current_status = None
             current_type = None
+            current_invariant_type = None
             current_v3_pending = False
             current_impl_phase = None
             current_eq_note = None
@@ -1437,6 +1440,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
 
         if current_id and line.startswith("  claim_type:"):
             current_type = line.split(":", 1)[1].strip()
+            continue
+
+        if current_id and line.startswith("  invariant_type:"):
+            current_invariant_type = line.split(":", 1)[1].strip()
             continue
 
         if current_id and line.startswith("  v3_pending:"):
@@ -1466,6 +1473,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
         registry[current_id] = {
             "status": current_status or "unknown",
             "claim_type": current_type or "unknown",
+            "invariant_type": current_invariant_type or "",
             "v3_pending": str(current_v3_pending),
             "implementation_phase": current_impl_phase or "",
             "evidence_quality_note": (current_eq_note or "").strip(),
@@ -1479,18 +1487,22 @@ def _is_inactive_claim_status(status: str) -> bool:
 
 
 def _default_decision_criteria() -> dict[str, Any]:
+    """Phase 3 cutover defaults: gates read experimental_confidence
+    (the decoupled signal) via min_exp_conf / max_exp_conf. The actual
+    threshold reads in the gate logic accept the legacy keys too as a
+    backwards-compat fallback for any YAMLs not yet migrated."""
     return {
         "schema_version": "decision_criteria/v1",
         "decision_status_default": "pending_user",
         "thresholds": {
             "candidate_to_provisional": {
-                "min_overall_confidence": 0.62,
+                "min_exp_conf": 0.62,
                 "min_experimental_entries": 2,
                 "max_conflict_ratio": 0.35,
                 "min_supporting_entries": 1,
             },
             "provisional_to_stable": {
-                "min_overall_confidence": 0.80,
+                "min_exp_conf": 0.80,
                 "min_experimental_entries": 4,
                 "min_literature_entries": 2,
                 "max_conflict_ratio": 0.20,
@@ -1498,7 +1510,7 @@ def _default_decision_criteria() -> dict[str, Any]:
             "demote_on_conflict": {
                 "min_total_entries": 3,
                 "min_conflict_ratio": 0.55,
-                "max_overall_confidence": 0.55,
+                "max_exp_conf": 0.55,
             },
         },
     }
@@ -1519,7 +1531,8 @@ def _default_planning_criteria() -> dict[str, Any]:
     return {
         "schema_version": "planning_criteria/v1",
         "thresholds": {
-            "low_overall_confidence": 0.55,
+            "low_exp_conf": 0.55,
+            "lit_only_above_cap": 0.50,
             "conflict_ratio_alert": 0.40,
             "candidate_min_experimental_entries": 2,
             "provisional_min_literature_entries": 2,
@@ -1964,6 +1977,27 @@ def _recommendation_for_claim(
         }
     # ── end V3-pending gate ──────────────────────────────────────────────────
 
+    # ── Claim-type evidence gating (Phase 3 cutover, Option E) ──────────────
+    # Compute a flag indicating whether exp_conf-based promotion / demotion
+    # logic should fire for this claim. substrate_coherence (ARC + universal
+    # invariant) and answer_state (open_question) types use different
+    # evidence rules and must NOT be promoted or demoted via exp_conf gates.
+    # Other recommendations that apply to ALL claim_types -- conflict
+    # resolution alerts, narrow_open_question, etc. -- still fire below.
+    # See REE_assembly/CLAUDE.md "Claim-type evidence gating" +
+    # "Lit/Exp Decoupling Cutover (Phase 3)".
+    _ct = (claim_type or "").strip()
+    _it = ""
+    if registry_meta is not None:
+        _it = str(registry_meta.get("invariant_type", "")).strip()
+    _is_substrate_coherence = (
+        _ct == "architectural_commitment"
+        or (_ct == "invariant" and _it == "universal")
+    )
+    _is_answer_state = (_ct == "open_question")
+    _exp_conf_gated = not (_is_substrate_coherence or _is_answer_state)
+    # ── end claim-type gating ────────────────────────────────────────────────
+
     thresholds = criteria.get("thresholds", {})
     t_candidate = thresholds.get("candidate_to_provisional", {})
     t_stable = thresholds.get("provisional_to_stable", {})
@@ -1971,64 +2005,89 @@ def _recommendation_for_claim(
 
     direction_counts = claim_meta.get("direction_counts", {})
     conflict_ratio = _direction_conflict_ratio(direction_counts)
+    # Phase 3 cutover (Option E): promotion / demotion gates read
+    # experimental_confidence (the decoupled signal). The legacy
+    # overall_confidence is still emitted in the matrix for the explorer and
+    # for downstream consumers in transition, but no longer drives gates.
+    exp_conf = float(claim_meta.get("experimental_confidence", 0.0))
     overall_conf = float(claim_meta.get("overall_confidence", 0.0))
     exp_entries = int(claim_meta.get("source_counts", {}).get("experimental", 0))
     lit_entries = int(claim_meta.get("source_counts", {}).get("literature", 0))
     total_entries = int(claim_meta.get("entries_total", 0))
 
+    # Threshold reads with backwards-compat fallback: prefer min_exp_conf /
+    # max_exp_conf (Phase 3 names); fall back to min_overall_confidence /
+    # max_overall_confidence if the new keys aren't present in the YAML.
+    def _t(d: dict, new_key: str, legacy_key: str, default: float) -> float:
+        if new_key in d:
+            return float(d[new_key])
+        if legacy_key in d:
+            return float(d[legacy_key])
+        return float(default)
+
     decision_needed = "No immediate status change"
     recommendation = "hold"
     rationale = (
-        f"overall_conf={_fmt_number(overall_conf)}, conflict_ratio={_fmt_number(conflict_ratio)}, "
+        f"exp_conf={_fmt_number(exp_conf)}, conflict_ratio={_fmt_number(conflict_ratio)}, "
         f"exp_entries={exp_entries}, lit_entries={lit_entries}"
     )
 
     if current_status == "candidate":
-        genuine_exp_supports = int(
-            claim_meta.get("genuine_exp_direction_counts", {}).get("supports", 0)
-        )
-        meets_promote = (
-            overall_conf >= float(t_candidate.get("min_overall_confidence", 0.62))
-            and exp_entries >= int(t_candidate.get("min_experimental_entries", 2))
-            and conflict_ratio <= float(t_candidate.get("max_conflict_ratio", 0.35))
-            and genuine_exp_supports >= int(t_candidate.get("min_supporting_entries", 1))
-        )
-        if meets_promote:
-            decision_needed = "Promotion review: candidate -> provisional"
-            recommendation = "promote_to_provisional"
-        elif conflict_ratio > float(t_candidate.get("max_conflict_ratio", 0.35)):
-            decision_needed = "Conflict resolution before promotion"
-            recommendation = "hold_candidate_resolve_conflict"
+        if _exp_conf_gated:
+            genuine_exp_supports = int(
+                claim_meta.get("genuine_exp_direction_counts", {}).get("supports", 0)
+            )
+            meets_promote = (
+                exp_conf >= _t(t_candidate, "min_exp_conf", "min_overall_confidence", 0.62)
+                and exp_entries >= int(t_candidate.get("min_experimental_entries", 2))
+                and conflict_ratio <= float(t_candidate.get("max_conflict_ratio", 0.35))
+                and genuine_exp_supports >= int(t_candidate.get("min_supporting_entries", 1))
+            )
+            if meets_promote:
+                decision_needed = "Promotion review: candidate -> provisional"
+                recommendation = "promote_to_provisional"
+            elif conflict_ratio > float(t_candidate.get("max_conflict_ratio", 0.35)):
+                decision_needed = "Conflict resolution before promotion"
+                recommendation = "hold_candidate_resolve_conflict"
+        else:
+            # Conflict-resolution alert is meaningful even for non-exp_conf-gated
+            # claim_types -- substrate validation can still produce conflicting
+            # evidence -- but promote_to_provisional is suppressed.
+            if conflict_ratio > float(t_candidate.get("max_conflict_ratio", 0.35)):
+                decision_needed = "Conflict resolution before promotion"
+                recommendation = "hold_candidate_resolve_conflict"
 
     elif current_status == "provisional":
-        meets_stable = (
-            overall_conf >= float(t_stable.get("min_overall_confidence", 0.8))
-            and exp_entries >= int(t_stable.get("min_experimental_entries", 4))
-            and lit_entries >= int(t_stable.get("min_literature_entries", 2))
-            and conflict_ratio <= float(t_stable.get("max_conflict_ratio", 0.2))
-        )
-        demote_trigger = (
-            total_entries >= int(t_demote.get("min_total_entries", 3))
-            and conflict_ratio >= float(t_demote.get("min_conflict_ratio", 0.55))
-            and overall_conf <= float(t_demote.get("max_overall_confidence", 0.55))
-        )
-        if meets_stable:
-            decision_needed = "Promotion review: provisional -> stable"
-            recommendation = "promote_to_stable"
-        elif demote_trigger:
-            decision_needed = "Demotion review: provisional -> candidate"
-            recommendation = "demote_to_candidate"
+        if _exp_conf_gated:
+            meets_stable = (
+                exp_conf >= _t(t_stable, "min_exp_conf", "min_overall_confidence", 0.8)
+                and exp_entries >= int(t_stable.get("min_experimental_entries", 4))
+                and lit_entries >= int(t_stable.get("min_literature_entries", 2))
+                and conflict_ratio <= float(t_stable.get("max_conflict_ratio", 0.2))
+            )
+            demote_trigger = (
+                total_entries >= int(t_demote.get("min_total_entries", 3))
+                and conflict_ratio >= float(t_demote.get("min_conflict_ratio", 0.55))
+                and exp_conf <= _t(t_demote, "max_exp_conf", "max_overall_confidence", 0.55)
+            )
+            if meets_stable:
+                decision_needed = "Promotion review: provisional -> stable"
+                recommendation = "promote_to_stable"
+            elif demote_trigger:
+                decision_needed = "Demotion review: provisional -> candidate"
+                recommendation = "demote_to_candidate"
 
     elif current_status in {"active", "stable"}:
-        demote_trigger = (
-            total_entries >= int(t_demote.get("min_total_entries", 3))
-            and conflict_ratio >= float(t_demote.get("min_conflict_ratio", 0.55))
-            and overall_conf <= float(t_demote.get("max_overall_confidence", 0.55))
-        )
-        if demote_trigger:
-            target = "provisional" if current_status == "stable" else "candidate"
-            decision_needed = f"Demotion review: {current_status} -> {target}"
-            recommendation = f"demote_to_{target}"
+        if _exp_conf_gated:
+            demote_trigger = (
+                total_entries >= int(t_demote.get("min_total_entries", 3))
+                and conflict_ratio >= float(t_demote.get("min_conflict_ratio", 0.55))
+                and exp_conf <= _t(t_demote, "max_exp_conf", "max_overall_confidence", 0.55)
+            )
+            if demote_trigger:
+                target = "provisional" if current_status == "stable" else "candidate"
+                decision_needed = f"Demotion review: {current_status} -> {target}"
+                recommendation = f"demote_to_{target}"
 
     elif claim_type == "open_question" and total_entries >= 2 and conflict_ratio < 0.35:
         decision_needed = "Question narrowing review"
@@ -2490,7 +2549,9 @@ def _write_conflicts_report(
             lines.append(
                 "- Evidence breakdown: "
                 + f"supports={item['supports']}, weakens={item['weakens']}, conflict_ratio={_fmt_number(item['conflict_ratio'])}, "
-                + f"overall_confidence={_fmt_number(claim_meta.get('overall_confidence', 0.0))}"
+                + f"exp_conf={_fmt_number(claim_meta.get('experimental_confidence', 0.0))}, "
+                + f"lit_conf={_fmt_number(claim_meta.get('literature_confidence', 0.0))}, "
+                + f"overall_confidence_legacy={_fmt_number(claim_meta.get('overall_confidence', 0.0))}"
             )
             lines.append("- Recent entries:")
             for entry in recent:
@@ -2559,7 +2620,9 @@ def _priority_from_reasons(reasons: list[str]) -> str:
         "atomic_split_recommended",
     }
     medium_markers = {
-        "low_overall_confidence",
+        "low_exp_conf",
+        "lit_only_above_cap",
+        "low_overall_confidence",  # legacy alias kept for one cycle
         "insufficient_experimental_replication",
         "insufficient_literature_grounding",
         "missing_literature_evidence",
@@ -2699,7 +2762,11 @@ def _write_planning_outputs(
     routing = planning_criteria.get("repo_routing", {})
     adjudication = planning_criteria.get("model_adjudication", {})
 
-    low_conf_threshold = float(thresholds.get("low_overall_confidence", 0.55))
+    # Phase 3 cutover: prefer low_exp_conf; fall back to legacy low_overall_confidence.
+    low_exp_conf_threshold = float(
+        thresholds.get("low_exp_conf", thresholds.get("low_overall_confidence", 0.55))
+    )
+    lit_only_above_cap_threshold = float(thresholds.get("lit_only_above_cap", 0.50))
     conflict_alert_threshold = float(thresholds.get("conflict_ratio_alert", 0.40))
     candidate_min_exp = int(thresholds.get("candidate_min_experimental_entries", 2))
     provisional_min_lit = int(thresholds.get("provisional_min_literature_entries", 2))
@@ -3103,8 +3170,13 @@ def _write_planning_outputs(
                 }
             )
 
-            if overall_conf < low_conf_threshold:
-                _add_reason("low_overall_confidence")
+            # Phase 3 cutover (Option E): use exp_conf for the low-confidence
+            # planning flag, with a separate lit_only_above_cap flag for the
+            # case where literature alone is propping a claim up.
+            if experimental_confidence < low_exp_conf_threshold:
+                _add_reason("low_exp_conf")
+            if exp_count == 0 and literature_confidence >= lit_only_above_cap_threshold:
+                _add_reason("lit_only_above_cap")
             if exp_count == 0:
                 _add_reason("missing_experimental_evidence")
                 evidence_needed.add("experimental")

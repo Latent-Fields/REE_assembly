@@ -44,17 +44,14 @@ python scripts/build_claims_json.py   # rebuilds docs/assets/data/claims.json fo
 `governance.sh` runs `build_claims_json.py` automatically as its final step.
 `build_claims_json.py` runs `scripts/validate_claims.py` first (warn-only mode currently).
 
-## Lit/Exp Decoupling Shadow (Option E, Phase 1)
+## Lit/Exp Decoupling (Option E) -- Phase 3 Cutover Done 2026-05-01
 
-The governance pipeline is mid-transition between two regimes for how literature
+The governance pipeline finished its three-phase transition for how literature
 and experimental evidence combine into claim confidence.
 
-**Legacy regime (still authoritative):** `overall_confidence` blends `exp_conf`
-and `lit_conf` via a weighted average. Used by every promotion/demotion gate.
-
-**Decoupled regime (shadow only in Phase 1):** lit and exp are separate signals.
-`overall_confidence_decoupled = exp_conf` (lit is informational). Each claim is
-classified into a 2D quadrant:
+**Current regime (Phase 3, authoritative):** lit and exp are separate signals.
+Promotion / demotion gates read `experimental_confidence` directly. Each claim
+is classified into a 2D quadrant:
 
 |              | high exp (>= 0.62)        | low exp           |
 |--------------|---------------------------|-------------------|
@@ -62,38 +59,58 @@ classified into a 2D quadrant:
 | **low lit**            | novel_discovery       | speculative        |
 
 The high-exp / low-lit quadrant ("novel_discovery") is where most genuinely new
-REE substrate findings live -- the legacy regime under-rated them because their
+REE substrate findings live -- the legacy blend under-rated them because their
 literature support was thin by construction.
 
-**What Phase 1 changes (no behavioral effect on promotion):**
+**What Phase 3 changes:**
 
-- `evidence/experiments/scripts/build_experiment_indexes.py` writes three new
-  fields per claim summary: `experimental_confidence_decoupled`,
-  `literature_confidence_parallel`, `evidence_quadrant`. The legacy
-  `overall_confidence` is unchanged.
-- `scripts/generate_option_e_shadow.py` (run by `governance.sh` step 3b)
-  produces `evidence/experiments/option_e_recommendations.md` -- the
-  side-by-side report of what governance would recommend under the decoupled
-  regime, including the discrepancy list, the implementation-cohort claims with
-  zero experimental backing, and the novel-discovery quadrant.
-- `explorer.html` shows a small quadrant badge alongside the confidence chip in
-  claim inspector lists. Informational only.
+- `evidence/experiments/decision_criteria.v1.yaml` thresholds renamed:
+  `min_overall_confidence` -> `min_exp_conf`, `max_overall_confidence` ->
+  `max_exp_conf`. The indexer accepts the legacy names too as a one-cycle
+  backwards-compat fallback (helper `_t(d, new_key, legacy_key, default)` in
+  `_decision_for_claim`).
+- `evidence/planning/planning_criteria.v1.yaml`: retired
+  `low_overall_confidence: 0.55`; replaced with `low_exp_conf: 0.55` and
+  `lit_only_above_cap: 0.50`.
+- Indexer gate logic now reads `claim_meta["experimental_confidence"]` instead
+  of `overall_confidence`. The legacy `overall_confidence` field is still
+  emitted on each claim summary so the explorer + transitional consumers can
+  read it; remove after one stable cycle.
+- Promotion / demotion rationale strings now report
+  `exp_conf=…, lit_conf=…, overall_confidence_legacy=…` (the legacy value is
+  kept for the audit trail).
+- Planning evidence reasons: replaced `low_overall_confidence` flag with
+  `low_exp_conf` + `lit_only_above_cap`. The legacy flag string is kept in
+  the priority-marker set as a no-op alias for one cycle.
 
-**What is intentionally NOT changed in Phase 1:**
+**What is preserved:**
 
-- `decision_criteria.v1.yaml` thresholds (`min_overall_confidence`).
-- `promotion_demotion_recommendations.md` (still keyed off `overall_confidence`).
-- Any claim's `status` in `docs/claims/claims.yaml`.
-- The `low_overall_confidence` flag in `planning_criteria.v1.yaml`.
+- `evidence_quadrant` field per claim (added in Phase 1, still emitted).
+- `scripts/generate_option_e_shadow.py` and its sibling
+  `option_e_recommendations.md` report (now matches production -- kept as a
+  cross-check that gating is internally consistent).
+- `overall_confidence` field on every claim summary for one cycle.
+- Claim-type evidence gating (substrate_coherence / answer_state / standard) --
+  see next section.
 
-**Phase 2 is the discrepancy reckoning.** Work through
-`option_e_recommendations.md` claim by claim: queue an experiment, adjust
-status, or surface a new evidence class. When the discrepancy list is empty (or
-the residue is explicitly accepted), Phase 3 cuts over: gates switch to
-`exp_conf`; legacy fields kept for one cycle then removed.
+**Phase history:**
+- **Phase 1 (2026-04-29):** shadow-only -- added decoupled fields and a
+  sibling recommendations report. No production behavior changed.
+- **Phase 2 (2026-04-29 .. 2026-05-01):** discrepancy reckoning -- the
+  shadow report exposed 15 implementation-cohort claims with zero
+  experimental backing. Categorised them along existing claim_type lines:
+  6 substrate_coherence (correctly suppressed), 5 answer_state (correctly
+  exempt), 4 standard-gating that needed experiments. All 4 standard-gating
+  claims (MECH-094, SD-017, SD-035, MECH-062) had discriminative-pair
+  experiments queued and PASSed; all are now `confirmed_established`.
+- **Phase 3 (2026-05-01):** cutover landed. Production gates now drive on
+  `experimental_confidence`. Diff against the pre-cutover snapshot:
+  +2 actionable demotion recommendations surfaced (MECH-095, MECH-102 --
+  both `mechanism_hypothesis` whose lit_conf was masking insufficient
+  exp_conf under the legacy blend), 0 prior recommendations lost.
 
 **Methodology rule:** never propose tweaking the lit/exp blend coefficients --
-the blend is the bug, not its weights. See
+the blend was the bug, not its weights. See
 `memory/feedback_lit_exp_decoupled.md` for the full rationale and the failed
 B-strict / B-softened / C-balanced staging variants in
 `evidence/experiments/staging_aggregator_b/`.
