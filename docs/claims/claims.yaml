@@ -10265,20 +10265,26 @@
     - INV-028
     - INV-029
     - INV-042
-  evidence_quality_note: >
-    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
-    2026-04-28 added 2 deliberately-bracketing entries (SEP Deontological
-    Ethics, SEP Kant Moral Philosophy) at per-paper conf <0.50 with
-    explicit mapping_caveat that REE INV-025/027/029 lack clean
-    deontological analogues. Aggregator-floor effect visible: per-paper
-    avg ~0.45 but claim-level lit_conf=0.632. Aggregator-floor flag
-    raised in 5 consecutive cycles -- treat claim-level lit-confidence
-    as upper bound, not point estimate, until indexer scoring is
-    revised. Synthesis verdict: Q-025 is best answered as
-    minimally-strict (irreversible category-class harm under low
-    epistemic uncertainty) rather than maximally-strict (lexical
-    deontological priorities); deontological framings do not map cleanly
-    to REE's residue-field / categorical-harm scaffold.
+  evidence_quality_note: |
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2
+    deliberately-bracketing entries (SEP Deontological Ethics, SEP Kant Moral Philosophy)
+    at per-paper conf <0.50 with explicit mapping_caveat that REE INV-025/027/029 lack
+    clean deontological analogues. Aggregator-floor effect visible: per-paper avg ~0.45
+    but claim-level lit_conf=0.632. Aggregator-floor flag raised in 5 consecutive cycles
+    -- treat claim-level lit-confidence as upper bound, not point estimate, until indexer
+    scoring is revised. Synthesis verdict: Q-025 is best answered as minimally-strict
+    (irreversible category-class harm under low epistemic uncertainty) rather than
+    maximally-strict (lexical deontological priorities); deontological framings do not
+    map cleanly to REE's residue-field / categorical-harm scaffold.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): derivational. The question
+    "what actions are strictly forbidden by the five axioms" is answered by working
+    through the axiom system, not by experiment. No substrate enrichment will help.
+    The standard narrow_open_question recommendation collapses this with substrate-ceiling
+    and out-of-domain cases that have different "what to do next" implications. Right
+    next step is axiomatic derivation work (or formal proof), not experimental design
+    or further lit aggregation. Reformulation suggestion: convert to a derivation
+    artifact in docs/architecture rather than continuing as a governed open_question.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10296,17 +10302,25 @@
     - INV-028
     - INV-029
     - INV-042
-  evidence_quality_note: >
-    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
-    2026-04-28 added 2 entries (SEP Kant Moral Philosophy, SEP Ross
-    prima facie duties) at per-paper conf <0.50. Ross specifically
-    weakens the FORM of Q-026 -- universal action requirements may not
-    exist; only universal CONSIDERATION sets / Rossian prima facie
-    duties. Aggregator-floor effect visible: per-paper avg ~0.45 but
-    claim-level lit_conf=0.617. Recommend reframing Q-026 to operate
-    at INV-042 derived-objectives level (context-sensitive obligations
-    derived from the axioms) rather than seeking universal action-level
-    requirements. Aggregator-floor flag raised in 5 consecutive cycles.
+  evidence_quality_note: |
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2
+    entries (SEP Kant Moral Philosophy, SEP Ross prima facie duties) at per-paper conf
+    <0.50. Ross specifically weakens the FORM of Q-026 -- universal action requirements
+    may not exist; only universal CONSIDERATION sets / Rossian prima facie duties.
+    Aggregator-floor effect visible: per-paper avg ~0.45 but claim-level lit_conf=0.617.
+    Recommend reframing Q-026 to operate at INV-042 derived-objectives level
+    (context-sensitive obligations derived from the axioms) rather than seeking
+    universal action-level requirements. Aggregator-floor flag raised in 5 consecutive
+    cycles.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): derivational (same shape as
+    Q-025). Question is answered by working through the axiom system, not by experiment.
+    The Ross-style finding from the existing lit ("universal action-requirements may
+    not exist; only consideration sets") is itself a derivational result -- it tells us
+    the answer to Q-026 is plausibly "none, by the structure of the axioms" rather than
+    "we need more data to find them." Reformulation suggestion: convert to a derivation
+    artifact arguing the negative result, or close as resolved with the no-universal-
+    action-requirements finding.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10320,21 +10334,29 @@
   depends_on:
     - INV-025
     - ARC-024
-  evidence_quality_note: >
-    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
-    2026-04-28 added 3 entries (Sunstein 2006 Cornell Law Review on
-    option-value vs qualitatively-distinctive irreversibility, Tarsney/
-    Thomas/MacAskill 2024 SEP "Moral Decision-Making Under Uncertainty"
-    on MFT/MEC/lexical-priority menu and fanaticism objection, IEP
-    Precautionary Principles on threat-not-certainty trigger and
-    maximin/minimax-regret operationalisations). Synthesis verdict for
-    REE: a defensible Q-027 answer is graded probability-weighted
-    treatment of irreversibility (foreclosed-reachability +
-    categorical-class scaffold tied to INV-026/INV-029) under a
-    regret-minimising decision rule -- NOT lexical priority. Lit_conf
-    0.663 with aggregator-floor caveat (per-paper conf 0.38-0.48 but
-    claim-level inflated). Aggregator-floor flag raised in 5
+  evidence_quality_note: |
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 3
+    entries (Sunstein 2006 Cornell Law Review on option-value vs qualitatively-distinctive
+    irreversibility, Tarsney/Thomas/MacAskill 2024 SEP "Moral Decision-Making Under
+    Uncertainty" on MFT/MEC/lexical-priority menu and fanaticism objection, IEP
+    Precautionary Principles on threat-not-certainty trigger and maximin/minimax-regret
+    operationalisations). Synthesis verdict for REE: a defensible Q-027 answer is graded
+    probability-weighted treatment of irreversibility (foreclosed-reachability +
+    categorical-class scaffold tied to INV-026/INV-029) under a regret-minimising decision
+    rule -- NOT lexical priority. Lit_conf 0.663 with aggregator-floor caveat (per-paper
+    conf 0.38-0.48 but claim-level inflated). Aggregator-floor flag raised in 5
     consecutive cycles.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): definitional + partial substrate.
+    The "what does irreversible mean under uncertainty" question is primarily definitional
+    (a regret-minimising treatment of foreclosed-reachability is the synthesis answer
+    above) but a downstream test of any chosen definition would require V3 to instantiate
+    irreversibility primitives -- the current substrate has hazards and resources that
+    drift / respawn but no genuine foreclosure of state-space reachability. The
+    definitional answer is reachable now; substrate-validation would require enrichment
+    (e.g., terminal grid states, resource extinction, agent-state lock-in). Two-step path:
+    (1) commit to the synthesis-defined answer and convert to a derivation artifact;
+    (2) defer substrate-validation to V3 enrichment when foreclosure primitives land.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10351,18 +10373,28 @@
     - INV-027
     - INV-028
     - INV-029
-  evidence_quality_note: >
-    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
-    2026-04-28 added 2 entries (McConnell 2022 SEP "Moral Dilemmas" on
-    obligation/prohibition typology and Ross's objection to strict
-    hierarchy; Williams 1965 "Ethical Consistency" on moral residue /
-    agent-regret as constraint on adequate resolution). Synthesis
-    verdict: Q-028 should be answered by a context-sensitive comparator
-    + residue mechanism (NOT a fixed self/other priority); REE's
-    residue-field representation is structurally suited to the residue
-    role (Williams 1965 explicitly licenses this framing). Lit_conf
-    0.625 with aggregator-floor caveat (per-paper conf 0.42-0.46).
-    Aggregator-floor flag raised in 5 consecutive cycles.
+  evidence_quality_note: |
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2
+    entries (McConnell 2022 SEP "Moral Dilemmas" on obligation/prohibition typology and
+    Ross's objection to strict hierarchy; Williams 1965 "Ethical Consistency" on moral
+    residue / agent-regret as constraint on adequate resolution). Synthesis verdict:
+    Q-028 should be answered by a context-sensitive comparator + residue mechanism (NOT
+    a fixed self/other priority); REE's residue-field representation is structurally
+    suited to the residue role (Williams 1965 explicitly licenses this framing). Lit_conf
+    0.625 with aggregator-floor caveat (per-paper conf 0.42-0.46). Aggregator-floor flag
+    raised in 5 consecutive cycles.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): substrate-ceiling (V4-bound).
+    The conflict-resolution mechanism the synthesis above proposes (context-sensitive
+    comparator + residue) IS V3-tractable as a wiring/mechanism question -- but
+    EXERCISING genuine axiom conflicts requires scenarios with stakes the V3 substrate
+    cannot supply. INV-026 (preserve self) vs INV-028 (preserve others) requires multi-
+    agent ecology where preserving one constrains the other. CausalGridWorldV2 has no
+    other agents, so the claim cannot be tested even with a perfect comparator
+    implementation. Two-step: (a) synthesis-derived answer (residue-field comparator) is
+    accepted in lit; (b) experimental validation deferred to V4 multi-agent substrate.
+    Reformulation: split into Q-028a (mechanism, V3-tractable) + Q-028b (behavioural
+    validation, V4-bound) once V4 scope firms up.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10377,6 +10409,27 @@
     - INV-029
     - INV-028
     - INV-042
+  evidence_quality_note: |
+    Lit-pull 2026-04-29 (lit-pull-am-Q029-Q030 session) added 5 entries: Holt-Lunstad
+    2010 PLoS Med 148-study mortality meta (OR=1.50, supports), Holt-Lunstad 2015
+    Perspect Psychol Sci (loneliness vs isolation separation, supports), Wang 2023 Nat
+    Hum Behav 90-cohort meta (HR isolation=1.32 loneliness=1.14, supports), Zajner/Bzdok
+    2021 J Neurophysiol UK Biobank N=40k loneliness/HC-CA1-DMN structural covariation
+    (supports), Eisenberger 2014 Annu Rev Psychol social-physical pain dACC overlap
+    controversy (mixed). lit_conf 0.875 from 5 entries; quadrant=plausible_unproven,
+    exp_conf=0.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): substrate-ceiling (V4-bound).
+    Loneliness is unshared suffering -- the claim depends on the ABSENCE of another
+    agent who would share. CausalGridWorldV2 has no other agents; loneliness has nothing
+    to be the absence of. The lit case is strong (5 supporting entries with strong
+    biomarker grounding) and the derivation from INV-029 is direct, but experimental
+    validation is structurally V4-bound. Until V4 social systems land, the claim sits
+    at "lit-supported, V3-untestable." Two paths: (a) accept synthesis-derived answer
+    (yes, loneliness is harm under INV-029) and re-classify as a derivation; (b) hold
+    as open_question pending V4 substrate. Recommend (b) since the answer is more
+    than just derivation -- it predicts that V4 multi-agent ecology will show specific
+    architectural deficits when isolation is enforced.
   location: docs/architecture/five_axioms_foundations.md
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -10662,21 +10715,26 @@
     - SD-005
     - MECH-162
     - ARC-007
-  notes: >
-    Registered 2026-04-02 from literature pull discussion. SD-015 establishes
-    z_resource as a separate encoder. MECH-162 claims z_resource and z_world must
-    re-converge at the hippocampal planning stage. But the design space is larger:
-    (1) At encoding: fully separate (current) vs partially shared vs joint encoder?
-    (2) At E2 prediction: does E2 operate on z_world alone, z_resource alone, or both?
-    (3) At hippocampal planning: fused input or parallel streams?
-    (4) At E3 evaluation: separate harm (z_world) vs benefit (z_resource) channels,
-        or joint evaluation?
-    (5) Feedback: does hippocampal planning output update z_resource (goal refinement)
-        or z_world (spatial prediction), or both?
-    (6) Lateral: do z_resource and z_world share information at matching spatial
-        locations (e.g., "resource at position X" binding)?
-    These permutations interact with SD-004 (action objects as map backbone) and
-    SD-005 (z_self/z_world split). Systematic experimental testing required.
+  evidence_quality_note: |
+    Lit-pull 2026-04-29 (lit-pull-am-Q029-Q030 session) added 5 entries: Staresina 2011
+    J Neurosci PrC/PhC fMRI dissociation (supports), Lee/Inah 2021 Hippocampus GIST
+    model (supports), Howard & Kahnt 2017 J Neurosci OFC identity-specific reward x vmPFC
+    general value (supports), Kim 2015 Front Behav Neurosci DG-disrupted Bax-KO
+    (supports), Locatello 2020 NeurIPS Slot Attention (supports). lit_conf 0.874 from
+    5 entries; quadrant=plausible_unproven, exp_conf=0.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): V3-tractable. The 6 sub-questions
+    in the notes (encoding shared/separate, E2 input scope, hippocampal fusion, E3
+    channel structure, feedback paths, lateral binding) are all directly testable
+    ablation questions in the V3 substrate -- z_resource is implemented (SD-015,
+    drive_weight=2.0 default), z_world stable, hippocampal proposal substrate present.
+    No substrate enrichment required; the bottleneck is experimenter time. The
+    narrow_open_question recommendation is misleading because the question doesn't
+    converge to a single "narrow it" answer -- it's a 6-cell design-space sweep that
+    needs a coordinated experiment cohort. Right next step: split Q-030 into 6
+    sub-questions (one per design-space dimension), queue ablation experiments per
+    cell, accumulate evidence per sub-question. This is the kind of question that
+    becomes 6 MECH or SD claims with their own evidence trails.
 
 - id: ARC-044
   title: "Context-dependent neuromodulatory gain is a single unifying mechanism expressed at multiple levels: ARC-016 (temporal precision from prediction error variance), MECH-152 (contextual terrain weight from cue-indexed retrieval), MECH-026 (arousal-mediated vigilance sensitivity), and MECH-093 (z_beta heartbeat frequency modulation) are all facets of a global arousal/precision signal (LC-NE) modulated by a context-specific gain signal (vmPFC/OFC)."
@@ -11920,27 +11978,39 @@
   depends_on:
     - MECH-175
     - MECH-173
-  evidence_quality_note: >
-    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
-    2026-04-28T11Z added 5 entries to new dir
-    targeted_review_q_031/. Cumulative-dose limb (b): Gray 2015 ACT
-    cohort (PMID 25621434, supports/0.78), Coupland 2019 QResearch (PMID
-    31233095, supports/0.82, bladder antimuscarinic AOR 1.65). REM-
-    mediator limb (a): Pase 2017 Framingham (PMID 28835407, supports
-    /0.78), Kim & Jeong 1999 (PMID 10389227, supports/0.62). Mechanistic
-    constraint: Grace-Vanstone-Horner 2014 (PMID 25339734, mixed/0.70 --
-    pontine SubC scopolamine does NOT abolish REM; modulates transitions
-    + REM-theta but is not the generator -- weakens strong pathway-1
-    reading). Synthesis verdict: limb (b) cumulative-dose --> dementia
-    well-supported (Gray + Coupland); the bladder-antimuscarinic-to-
-    mirabegron clinical hypothesis has its empirical foundation but no
-    natural-experiment test yet. Limb (a) supported via REM% --> dementia
-    + ACh --> REM%, but Grace 2014 suggests transition reliability +
-    REM-theta integrity may be the right mediator rather than total REM
-    amount. Mediation-analysis sub-question has no published direct
-    test -- flagged. Lit_conf 0.87 with aggregator-floor caveat
-    (per-paper conf 0.62-0.82 vs claim-level 0.87). Aggregator-floor
-    flag raised in 5 consecutive cycles.
+  evidence_quality_note: |
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28T11Z added
+    5 entries to new dir targeted_review_q_031/. Cumulative-dose limb (b): Gray 2015
+    ACT cohort (PMID 25621434, supports/0.78), Coupland 2019 QResearch (PMID 31233095,
+    supports/0.82, bladder antimuscarinic AOR 1.65). REM-mediator limb (a): Pase 2017
+    Framingham (PMID 28835407, supports/0.78), Kim & Jeong 1999 (PMID 10389227,
+    supports/0.62). Mechanistic constraint: Grace-Vanstone-Horner 2014 (PMID 25339734,
+    mixed/0.70 -- pontine SubC scopolamine does NOT abolish REM; modulates transitions
+    + REM-theta but is not the generator -- weakens strong pathway-1 reading). Synthesis
+    verdict: limb (b) cumulative-dose --> dementia well-supported (Gray + Coupland); the
+    bladder-antimuscarinic-to-mirabegron clinical hypothesis has its empirical foundation
+    but no natural-experiment test yet. Limb (a) supported via REM% --> dementia + ACh
+    --> REM%, but Grace 2014 suggests transition reliability + REM-theta integrity may
+    be the right mediator rather than total REM amount. Mediation-analysis sub-question
+    has no published direct test -- flagged. Lit_conf 0.87 with aggregator-floor caveat
+    (per-paper conf 0.62-0.82 vs claim-level 0.87). Aggregator-floor flag raised in 5
+    consecutive cycles.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): out-of-domain. The question
+    is empirical but the test domain is human pharmacological cohorts with PSG data
+    over years -- structurally outside any REE substrate, current or planned. No
+    substrate enrichment will help; this is not "wait for V4" or "wait for substrate
+    landing." It IS a legitimate clinical-research question that the lit work informs,
+    but it does not belong in the same governance queue as substrate-testable claims.
+    The narrow_open_question recommendation is misleading: the right "next step" is
+    not narrowing the REE claim, it's the prospective-cohort methodology described
+    in the notes block below. Treatment options: (a) keep as open_question with
+    out_of_domain annotation (current); (b) re-classify as a research_anchor or
+    literature_synthesis claim_type so it lives in a different governance bucket;
+    (c) close as resolved-by-synthesis with the conclusion that REE-architecture
+    cannot decide between the two pathways without external clinical data. Recommend
+    (a) for now (this Q-walk is annotate-only); revisit if/when the
+    research_anchor / out_of_domain category is formalised.
   notes: >
     Registered 2026-04-05. Distinguishing the two anticholinergic pathways
     has direct clinical implications: if the nocturnal REM suppression
@@ -11972,6 +12042,27 @@
     - INV-048
     - MECH-173
     - MECH-174
+  evidence_quality_note: |
+    Lit-pull 2026-04-29 (ree-lit-pull-pm-q032 session) added 5 entries: Himali 2023 JAMA
+    Neurol Framingham SWS-loss x 17y dementia HR 1.27 (supports/0.82, the strongest
+    individual-prediction evidence on the table); Winer/Mander/Walker 2020 Curr Biol
+    NREM SWA <1Hz forecasts AB accumulation (supports/0.78); Suh 2019 J Alzheimers Dis
+    KLOSCAD short REM-per-cycle predicts MCI (supports/0.62, exploratory n=14);
+    D'Rozario 2020 Sleep Med Rev meta-analysis MCI architectural fingerprint
+    (supports/0.72); Eyob 2024 J Alzheimers Dis REST trazodone trial protocol
+    (supports/0.45, protocol only). lit_conf 0.839; quadrant=plausible_unproven, exp_conf=0.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): out-of-domain (same shape as
+    Q-031). The question is empirical but requires PSG-stratified pharmacoepidemiology
+    over years -- structurally outside any REE substrate. The synthesis verdict from
+    the lit work above is informative (Himali within-person SWS-decline design is the
+    strongest available evidence; D'Rozario meta confirms the architectural signature;
+    REST is the canonical pending trial), but no REE experiment can test it. Same
+    treatment recommendation as Q-031: keep as open_question with out_of_domain
+    annotation; revisit if/when research_anchor / out_of_domain category is formalised.
+    These two pharmacology Q-claims (Q-031 + Q-032) and similar future claims may
+    deserve their own claim_type (e.g., research_anchor) so they live in a different
+    governance bucket and don't get fed through gates that don't apply.
   notes: >
     Registered 2026-04-05. Total sleep time is the conventional endpoint
     for sleep intervention trials. If pipeline phase fidelity is the
@@ -15403,6 +15494,29 @@
     that can distinguish continuous z_world contamination (MECH-222), episodic replay
     flooding (MECH-094), and threshold miscalibration (MECH-065) via distinct behavioral
     readouts.
+  evidence_quality_note: |
+    Lit-pull 2026-05-02 (ree-weekend-lit session) added 3 entries: Lavalle 2020 Eur
+    Psychiatry dissociable source-monitoring OCD vs SCZ (supports MECH-094/MECH-222
+    dissociation), Corlett 2025 Am J Psychiatry 20-yr aberrant salience review
+    (mixed -- argues MECH-065 may need to split into multiple sub-mechanisms), Oulton
+    2018 J Behav Ther Exp Psychiatry PTSD memory amplification reality monitoring
+    (supports MECH-094 tag-loss). lit_conf 0.823; quadrant=plausible_unproven, exp_conf=0.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): substrate-conditional. The
+    question is structurally well-formed and V3-tractable in principle (per
+    implementation_phase=v3), but it depends on ALL THREE mechanisms (MECH-094,
+    MECH-222, MECH-065) being implemented before the dissociation experiment can run.
+    Currently MECH-094 is implemented (V3-EXQ-499 PASSed under Phase 3); MECH-222 +
+    MECH-065 + MECH-223 status need to be checked. The narrow_open_question
+    recommendation is misleading: this isn't a question that needs lit narrowing --
+    it's a question that needs the upstream substrate cohort to land before a
+    dissociation triple-ablation can be queued. The Lavalle 2020 finding (OCD vs
+    SCZ source-monitoring dissociates clinically) is direct empirical support for
+    the dissociability hypothesis; Corlett 2025 weakens MECH-065 by arguing it may
+    need splitting. Two-step path: (a) verify MECH-222 + MECH-065 + MECH-223
+    implementation status; (b) when all three are landed, queue a triple-ablation
+    discriminative experiment using the Lavalle dissociation as the behavioral
+    readout template. Hold as open until (a) + (b) complete.
   registered: "2026-04-11"
   location: docs/architecture/sd_011_dual_nociceptive_streams.md
 
@@ -16023,18 +16137,24 @@
   depends_on:
     - INV-068
     - ARC-053
-  notes: >
-    Two options: (A) D_V is explicitly represented (a dedicated neural/computational
-    signal tracking persistence of coupling), or (B) D_V emerges from distributed dynamics
-    (cross-frequency coupling stability, synchrony persistence, prediction error
-    minimisation history) without a local representation.
-    Option A is computationally tractable (exponential moving average of V(t)) and
-    allows direct influence on E3 selection. Option B is more biologically plausible
-    as an emergent property but harder to use as an explicit control signal.
-    Empirical probes: oscillatory stability metrics, cross-frequency coupling persistence,
-    cerebellar prediction error integration over time.
-    Resolution would clarify ARC-055 (explicit availability requirement) implementation
-    strategy.
+  evidence_quality_note: |
+    Lit-pull 2026-05-02 (ree-weekend-lit session) added 3 entries: Pilkiw 2018
+    distributed tonic+phasic temporal codes (supports option B), Guan 2024 abstract
+    interval-invariant subsecond structure (supports option A), Gherman 2018 VMPFC
+    localised early confidence signal (supports option A by analogy). lit_conf 0.795;
+    quadrant=plausible_unproven, exp_conf=0.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): substrate-conditional (V4-
+    bound). implementation_phase=v4 already set on the claim -- Q-038 depends on
+    ARC-053 (TCL substrate) and ARC-055 (control-plane parameter map), neither of
+    which is in V3. The narrow_open_question recommendation is a category error: the
+    question is structurally well-formed and the lit literature is starting to converge
+    (Guan/Gherman lean A, Pilkiw leans B), but experimental dissociation requires the
+    TCL substrate to exist. Two paths: (a) accept the lit-leaning option-A reading
+    provisionally pending substrate; (b) hold as open until ARC-053 lands then queue
+    a discriminative pair (explicit-vs-emergent D_V probe). Recommend (b) since lit
+    is split (~2:1 toward A) and the architectural choice is consequential for
+    ARC-055's "explicit availability requirement" implementation strategy.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
@@ -16063,6 +16183,26 @@
     are allowed to couple (V(t) -- precision weights, channel gating).
     Resolution would ground ARC-053/ARC-055 in existing neuromodulatory pharmacology
     and enable testable pharmacological predictions.
+  evidence_quality_note: |
+    Lit-pull 2026-05-02 (ree-weekend-lit session) added 3 entries: Fan 2020 Cell
+    ACh-driven L1 winner-take-all + temporal high-pass filter (supports), Xiang 2023
+    Front Cell Neurosci LC NA neurons phase-lock to infra-slow rhythms organising gamma
+    (supports), Kumagai 2023 Brain Stim VNS double-dissociation -- ACh selectively
+    modulates gamma/beta, NA selectively modulates theta (supports -- cleanest
+    dissociation evidence on the table). lit_conf 0.840; quadrant=plausible_unproven,
+    exp_conf=0.
+
+    EPISTEMIC-CATEGORY FLAG (2026-05-02, Phase 3 Q-walk): substrate-conditional (V4-
+    bound). implementation_phase=v4 already set; depends on ARC-053 (TCL substrate)
+    and ARC-055 (control-plane parameter map). The lit-pull above gives a strong
+    starting hypothesis (ACh -> integration window via gamma/beta gating; NA -> phase
+    alignment via theta organisation; Kumagai 2023 VNS double-dissociation is the
+    cleanest empirical handle), but experimental validation in REE requires TCL
+    substrate to exist. Recommend: hold as open until ARC-053 lands; when it does,
+    queue pharmacological pair (e.g., ACh-modulator vs control on TCL temporal
+    integration metric) using the Kumagai dissociation as primary mapping. The
+    narrow_open_question recommendation is misleading: this question's answer is
+    becoming clear in the lit but cannot be REE-tested yet.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 

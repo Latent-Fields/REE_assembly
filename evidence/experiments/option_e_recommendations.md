@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-05-02T10:11:08.618997Z`
+Generated: `2026-05-02T10:33:13.261502Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -147,8 +147,8 @@ Total: **130** discrepant claims (standard-gating only).
 | `MECH-155` | mechanism_hypothesis | candidate | 0.655 | 0.322 | 0.877 | 2 | 5 | plausible_unproven |
 | `MECH-047` | mechanism_hypothesis | provisional | 0.750 | 0.385 | 0.871 | 1 | 4 | plausible_unproven |
 | `SD-021` | design_decision | candidate | 0.647 | 0.399 | 0.895 | 3 | 8 | plausible_unproven |
+| `MECH-026` | mechanism_hypothesis | provisional | 0.755 | 0.409 | 0.870 | 1 | 6 | plausible_unproven |
 | `MECH-029` | mechanism_hypothesis | provisional | 0.758 | 0.409 | 0.874 | 1 | 6 | plausible_unproven |
-| `MECH-026` | mechanism_hypothesis | provisional | 0.755 | 0.410 | 0.870 | 1 | 6 | plausible_unproven |
 | `MECH-022` | mechanism_hypothesis | provisional | 0.760 | 0.412 | 0.876 | 1 | 5 | plausible_unproven |
 | `MECH-025` | mechanism_hypothesis | candidate | 0.758 | 0.414 | 0.872 | 1 | 5 | plausible_unproven |
 | `MECH-153` | mechanism_hypothesis | candidate | 0.643 | 0.433 | 0.853 | 4 | 7 | plausible_unproven |
@@ -159,7 +159,7 @@ Total: **130** discrepant claims (standard-gating only).
 | `MECH-095` | mechanism_hypothesis | active | 0.714 | 0.527 | 0.900 | 9 | 7 | plausible_unproven |
 | `MECH-102` | mechanism_hypothesis | active | 0.692 | 0.534 | 0.850 | 24 | 9 | plausible_unproven |
 | `ARC-026` | architecture_hypothesis | candidate | 0.697 | 0.540 | 0.802 | 2 | 5 | plausible_unproven |
-| `ARC-030` | architecture_hypothesis | candidate | 0.736 | 0.566 | 0.906 | 7 | 9 | plausible_unproven |
+| `ARC-030` | architecture_hypothesis | candidate | 0.736 | 0.565 | 0.906 | 7 | 9 | plausible_unproven |
 | `MECH-098` | mechanism_hypothesis | candidate | 0.763 | 0.607 | 0.919 | 18 | 7 | plausible_unproven |
 
 _Suppressed by gating: 21 substrate_coherence (ARC + universal invariant), 31 answer_state (open_question). These cross the gate under one regime but not the other; the discrepancy is not actionable under their evidence rules. See suppressed sections below._
@@ -218,7 +218,7 @@ Total: **36**.
 | `SD-018` | implemented | 0.268 | 1 |
 | `MECH-188` | candidate | 0.269 | 1 |
 | `MECH-111` | candidate | 0.286 | 2 |
-| `MECH-118` | candidate | 0.287 | 2 |
+| `MECH-118` | candidate | 0.286 | 2 |
 | `MECH-216` | provisional | 0.294 | 1 |
 | `SD-023` | candidate | 0.294 | 1 |
 | `ARC-032` | candidate | 0.295 | 2 |
@@ -233,8 +233,8 @@ Total: **36**.
 | `MECH-047` | provisional | 0.385 | 1 |
 | `INV-054` | candidate | 0.398 | 3 |
 | `SD-021` | candidate | 0.399 | 3 |
+| `MECH-026` | provisional | 0.409 | 1 |
 | `MECH-029` | provisional | 0.409 | 1 |
-| `MECH-026` | provisional | 0.410 | 1 |
 | `MECH-022` | provisional | 0.412 | 1 |
 | `MECH-025` | candidate | 0.414 | 1 |
 | `SD-016` | implemented | 0.417 | 3 |

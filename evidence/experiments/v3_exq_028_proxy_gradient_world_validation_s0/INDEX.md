@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_028_proxy_gradient_world_validation_s0
 
-Generated: `2026-05-02T10:11:05.294166Z`
+Generated: `2026-05-02T10:33:08.989278Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

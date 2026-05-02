@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-02T10:11:05.294166Z`
+Generated: `2026-05-02T10:33:08.989278Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -102,7 +102,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.566, conflict_ratio=0.667, exp_entries=7, lit_entries=9; directions supports=10, weakens=5, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: exp_conf=0.565, conflict_ratio=0.667, exp_entries=7, lit_entries=9; directions supports=10, weakens=5, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -177,7 +177,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-042
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.388, conflict_ratio=0.75, exp_entries=3, lit_entries=5; directions supports=5, weakens=3, mixed=0, unknown=0, conflict_ratio=0.75
+- Why this decision is needed: exp_conf=0.387, conflict_ratio=0.75, exp_entries=3, lit_entries=5; directions supports=5, weakens=3, mixed=0, unknown=0, conflict_ratio=0.75
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -358,7 +358,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.686, conflict_ratio=0.769, exp_entries=10, lit_entries=4; directions supports=8, weakens=5, mixed=1, unknown=0, conflict_ratio=0.769
+- Why this decision is needed: exp_conf=0.685, conflict_ratio=0.769, exp_entries=10, lit_entries=4; directions supports=8, weakens=5, mixed=1, unknown=0, conflict_ratio=0.769
 - Evidence quality note: EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0). E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes; gap is negative (higher harm -> slightly lower rate) -- opposite of prediction. DIAGNOSTIC (2026-03-27): z_beta IS wired to clock rate. update_e3_rate_from_beta() is called every step in agent._e1_step() (agent.py:272). Implementation gap does NO…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -511,7 +511,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-118
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.287, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: exp_conf=0.286, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Evidence quality note: EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL. First experimental entry. EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed -- stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation. Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat ~20.6-20.8 across R1/R2…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1261,7 +1261,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: >
+- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2 deliberately-bracketing entries (SEP Deontological Ethics, SEP Kant Moral Philosophy) at per-paper conf <0.50 with explicit mapping_caveat that REE INV-025/027/029 lack clean deontological analogues. Aggregator-floor effect visible: per-paper avg ~0.45 but claim-level lit_conf=0.632. Aggregator-floor flag raised in 5…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1277,7 +1277,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=0, weakens=1, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: >
+- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2 entries (SEP Kant Moral Philosophy, SEP Ross prima facie duties) at per-paper conf <0.50. Ross specifically weakens the FORM of Q-026 -- universal action requirements may not exist; only universal CONSIDERATION sets / Rossian prima facie duties. Aggregator-floor effect visible: per-paper avg ~0.45 but claim-level lit…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1293,7 +1293,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: >
+- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 3 entries (Sunstein 2006 Cornell Law Review on option-value vs qualitatively-distinctive irreversibility, Tarsney/Thomas/MacAskill 2024 SEP "Moral Decision-Making Under Uncertainty" on MFT/MEC/lexical-priority menu and fanaticism objection, IEP Precautionary Principles on threat-not-certainty trigger and maximin/minima…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1309,7 +1309,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: >
+- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2 entries (McConnell 2022 SEP "Moral Dilemmas" on obligation/prohibition typology and Ross's objection to strict hierarchy; Williams 1965 "Ethical Consistency" on moral residue / agent-regret as constraint on adequate resolution). Synthesis verdict: Q-028 should be answered by a context-sensitive comparator + residue m…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1325,6 +1325,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Evidence quality note: Lit-pull 2026-04-29 (lit-pull-am-Q029-Q030 session) added 5 entries: Holt-Lunstad 2010 PLoS Med 148-study mortality meta (OR=1.50, supports), Holt-Lunstad 2015 Perspect Psychol Sci (loneliness vs isolation separation, supports), Wang 2023 Nat Hum Behav 90-cohort meta (HR isolation=1.32 loneliness=1.14, supports), Zajner/Bzdok 2021 J Neurophysiol UK Biobank N=40k loneliness/HC-CA1-DMN structural co…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1340,6 +1341,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=5, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Evidence quality note: Lit-pull 2026-04-29 (lit-pull-am-Q029-Q030 session) added 5 entries: Staresina 2011 J Neurosci PrC/PhC fMRI dissociation (supports), Lee/Inah 2021 Hippocampus GIST model (supports), Howard & Kahnt 2017 J Neurosci OFC identity-specific reward x vmPFC general value (supports), Kim 2015 Front Behav Neurosci DG-disrupted Bax-KO (supports), Locatello 2020 NeurIPS Slot Attention (supports). lit_conf 0.8…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1355,7 +1357,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: >
+- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28T11Z added 5 entries to new dir targeted_review_q_031/. Cumulative-dose limb (b): Gray 2015 ACT cohort (PMID 25621434, supports/0.78), Coupland 2019 QResearch (PMID 31233095, supports/0.82, bladder antimuscarinic AOR 1.65). REM-mediator limb (a): Pase 2017 Framingham (PMID 28835407, supports/0.78), Kim & Jeong 1999 (PMID 1038…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1371,6 +1373,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=5, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Evidence quality note: Lit-pull 2026-04-29 (ree-lit-pull-pm-q032 session) added 5 entries: Himali 2023 JAMA Neurol Framingham SWS-loss x 17y dementia HR 1.27 (supports/0.82, the strongest individual-prediction evidence on the table); Winer/Mander/Walker 2020 Curr Biol NREM SWA <1Hz forecasts AB accumulation (supports/0.78); Suh 2019 J Alzheimers Dis KLOSCAD short REM-per-cycle predicts MCI (supports/0.62, exploratory n=…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1419,6 +1422,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Evidence quality note: Lit-pull 2026-05-02 (ree-weekend-lit session) added 3 entries: Pilkiw 2018 distributed tonic+phasic temporal codes (supports option B), Guan 2024 abstract interval-invariant subsecond structure (supports option A), Gherman 2018 VMPFC localised early confidence signal (supports option A by analogy). lit_conf 0.795; quadrant=plausible_unproven, exp_conf=0.
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1434,6 +1438,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Evidence quality note: Lit-pull 2026-05-02 (ree-weekend-lit session) added 3 entries: Fan 2020 Cell ACh-driven L1 winner-take-all + temporal high-pass filter (supports), Xiang 2023 Front Cell Neurosci LC NA neurons phase-lock to infra-slow rhythms organising gamma (supports), Kumagai 2023 Brain Stim VNS double-dissociation -- ACh selectively modulates gamma/beta, NA selectively modulates theta (supports -- cleanest diss…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
