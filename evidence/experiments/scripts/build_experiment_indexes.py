@@ -1391,6 +1391,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     current_status: str | None = None
     current_type: str | None = None
     current_invariant_type: str | None = None
+    current_epistemic_category: str | None = None
     current_v3_pending: bool = False
     current_impl_phase: str | None = None
     current_eq_note: str | None = None
@@ -1418,6 +1419,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "status": current_status or "unknown",
                     "claim_type": current_type or "unknown",
                     "invariant_type": current_invariant_type or "",
+                    "epistemic_category": current_epistemic_category or "",
                     "v3_pending": str(current_v3_pending),
                     "implementation_phase": current_impl_phase or "",
                     "evidence_quality_note": (current_eq_note or "").strip(),
@@ -1427,6 +1429,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_status = None
             current_type = None
             current_invariant_type = None
+            current_epistemic_category = None
             current_v3_pending = False
             current_impl_phase = None
             current_eq_note = None
@@ -1444,6 +1447,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
 
         if current_id and line.startswith("  invariant_type:"):
             current_invariant_type = line.split(":", 1)[1].strip()
+            continue
+
+        if current_id and line.startswith("  epistemic_category:"):
+            current_epistemic_category = line.split(":", 1)[1].strip()
             continue
 
         if current_id and line.startswith("  v3_pending:"):
@@ -1474,6 +1481,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "status": current_status or "unknown",
             "claim_type": current_type or "unknown",
             "invariant_type": current_invariant_type or "",
+            "epistemic_category": current_epistemic_category or "",
             "v3_pending": str(current_v3_pending),
             "implementation_phase": current_impl_phase or "",
             "evidence_quality_note": (current_eq_note or "").strip(),
@@ -1484,6 +1492,55 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
 
 def _is_inactive_claim_status(status: str) -> bool:
     return str(status).strip().lower() in {"legacy", "superseded", "retired", "applied"}
+
+
+# ── Phase 3 wave 2: epistemic-category resolver ──────────────────────────────
+EPISTEMIC_CATEGORIES = (
+    "standard",
+    "substrate_coherence",
+    "answer_state",
+    "substrate_ceiling",
+    "substrate_conditional",
+    "derivational",
+    "out_of_domain",
+)
+
+
+def _resolve_epistemic_category(
+    claim_type: str,
+    invariant_type: str,
+    explicit_category: str,
+) -> str:
+    """Return the resolved epistemic_category for a claim.
+
+    If `explicit_category` is set on the claim (one of EPISTEMIC_CATEGORIES,
+    case-insensitive), it takes precedence. Otherwise the category is
+    inferred from claim_type + invariant_type using the Phase 2 mapping:
+
+      architectural_commitment            -> substrate_coherence
+      invariant + invariant_type=universal -> substrate_coherence
+      open_question                       -> answer_state
+      everything else                     -> standard
+
+    The four "explicit-only" categories (substrate_ceiling,
+    substrate_conditional, derivational, out_of_domain) cannot be inferred
+    from claim_type alone and require an explicit annotation in claims.yaml.
+
+    See REE_assembly/CLAUDE.md "Epistemic categories" for the full mapping
+    and the recommendation-dispatch consequences.
+    """
+    explicit = (explicit_category or "").strip().lower()
+    if explicit in EPISTEMIC_CATEGORIES:
+        return explicit
+    ct = (claim_type or "").strip()
+    it = (invariant_type or "").strip()
+    if ct == "architectural_commitment":
+        return "substrate_coherence"
+    if ct == "invariant" and it == "universal":
+        return "substrate_coherence"
+    if ct == "open_question":
+        return "answer_state"
+    return "standard"
 
 
 def _default_decision_criteria() -> dict[str, Any]:
@@ -1977,26 +2034,25 @@ def _recommendation_for_claim(
         }
     # ── end V3-pending gate ──────────────────────────────────────────────────
 
-    # ── Claim-type evidence gating (Phase 3 cutover, Option E) ──────────────
-    # Compute a flag indicating whether exp_conf-based promotion / demotion
-    # logic should fire for this claim. substrate_coherence (ARC + universal
-    # invariant) and answer_state (open_question) types use different
-    # evidence rules and must NOT be promoted or demoted via exp_conf gates.
-    # Other recommendations that apply to ALL claim_types -- conflict
-    # resolution alerts, narrow_open_question, etc. -- still fire below.
-    # See REE_assembly/CLAUDE.md "Claim-type evidence gating" +
-    # "Lit/Exp Decoupling Cutover (Phase 3)".
+    # ── Epistemic-category evidence gating (Phase 3 wave 2) ─────────────────
+    # Resolves an explicit `epistemic_category` field on the claim; if absent,
+    # falls back to the Phase 2 inferred mapping from claim_type +
+    # invariant_type. Resolved values: standard, substrate_coherence,
+    # answer_state, substrate_ceiling, substrate_conditional, derivational,
+    # out_of_domain. Only `standard` runs the exp_conf-based promotion /
+    # demotion logic. Conflict-resolution alerts still fire for every
+    # category. narrow_open_question fires only for `answer_state`.
+    # See REE_assembly/CLAUDE.md "Epistemic categories" for the full mapping.
     _ct = (claim_type or "").strip()
     _it = ""
+    _explicit_cat = ""
     if registry_meta is not None:
         _it = str(registry_meta.get("invariant_type", "")).strip()
-    _is_substrate_coherence = (
-        _ct == "architectural_commitment"
-        or (_ct == "invariant" and _it == "universal")
-    )
-    _is_answer_state = (_ct == "open_question")
-    _exp_conf_gated = not (_is_substrate_coherence or _is_answer_state)
-    # ── end claim-type gating ────────────────────────────────────────────────
+        _explicit_cat = str(registry_meta.get("epistemic_category", "")).strip()
+    epistemic_category = _resolve_epistemic_category(_ct, _it, _explicit_cat)
+    _exp_conf_gated = (epistemic_category == "standard")
+    _is_answer_state = (epistemic_category == "answer_state")
+    # ── end epistemic-category gating ────────────────────────────────────────
 
     thresholds = criteria.get("thresholds", {})
     t_candidate = thresholds.get("candidate_to_provisional", {})
@@ -2028,8 +2084,9 @@ def _recommendation_for_claim(
     decision_needed = "No immediate status change"
     recommendation = "hold"
     rationale = (
-        f"exp_conf={_fmt_number(exp_conf)}, conflict_ratio={_fmt_number(conflict_ratio)}, "
-        f"exp_entries={exp_entries}, lit_entries={lit_entries}"
+        f"epistemic_category={epistemic_category}, exp_conf={_fmt_number(exp_conf)}, "
+        f"conflict_ratio={_fmt_number(conflict_ratio)}, exp_entries={exp_entries}, "
+        f"lit_entries={lit_entries}"
     )
 
     if current_status == "candidate":
@@ -2089,7 +2146,11 @@ def _recommendation_for_claim(
                 decision_needed = f"Demotion review: {current_status} -> {target}"
                 recommendation = f"demote_to_{target}"
 
-    elif claim_type == "open_question" and total_entries >= 2 and conflict_ratio < 0.35:
+    elif _is_answer_state and total_entries >= 2 and conflict_ratio < 0.35:
+        # narrow_open_question fires for answer_state only -- Q-claims that
+        # have been explicitly re-categorized (derivational, out_of_domain,
+        # substrate_ceiling, substrate_conditional) skip this and stay as
+        # `hold` so they do not get inappropriate "narrow this" prompts.
         decision_needed = "Question narrowing review"
         recommendation = "narrow_open_question"
 

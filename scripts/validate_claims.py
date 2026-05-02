@@ -37,6 +37,19 @@ CLAIMS_YAML = REPO_ROOT / "docs" / "claims" / "claims.yaml"
 
 VALID_INVARIANT_TYPES = {"universal", "emergent", "grey_zone"}
 
+# Phase 3 wave 2: epistemic_category schema (warn-only).
+# When set, must be one of these values. When unset, the indexer infers
+# from claim_type + invariant_type via the Phase 2 mapping.
+VALID_EPISTEMIC_CATEGORIES = {
+    "standard",
+    "substrate_coherence",
+    "answer_state",
+    "substrate_ceiling",
+    "substrate_conditional",
+    "derivational",
+    "out_of_domain",
+}
+
 SUBSTRATE_CLAIM_TYPES = {
     "design_decision",
     "architectural_commitment",
@@ -166,6 +179,27 @@ def main():
     all_issues = []
     for c in invariants:
         all_issues.extend(validate_invariant(c, substrate_status=substrate_status))
+
+    # Phase 3 wave 2: epistemic_category warn-only validation across all claims.
+    # When the field is set, it must be one of the valid categories. The
+    # indexer's _resolve_epistemic_category() falls back to inference if
+    # the explicit value is invalid, so this is informational, not a hard
+    # gate -- elevate to ERROR after the field stabilises across the registry.
+    for c in claims:
+        ec = c.get("epistemic_category")
+        if ec is None:
+            continue
+        ec_norm = str(ec).strip().lower()
+        if not ec_norm:
+            continue
+        if ec_norm not in VALID_EPISTEMIC_CATEGORIES:
+            cid = c.get("id", "<unknown>")
+            all_issues.append((
+                "WARN",
+                f"{cid}: epistemic_category='{ec}' invalid; must be one of "
+                f"{sorted(VALID_EPISTEMIC_CATEGORIES)} (indexer will fall back "
+                "to inference for invalid values)"
+            ))
 
     errors = [msg for lvl, msg in all_issues if lvl == "ERROR"]
     warnings = [msg for lvl, msg in all_issues if lvl == "WARN"]

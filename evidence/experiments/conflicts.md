@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-02T10:33:08.989278Z`
+Generated: `2026-05-02T10:59:38.813391Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -141,7 +141,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-024
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.663, lit_conf=0.817, overall_confidence_legacy=0.74
+- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.662, lit_conf=0.817, overall_confidence_legacy=0.739
 - Recent entries:
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.78
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.7

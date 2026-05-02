@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-02T10:33:08.989278Z`
+Generated: `2026-05-02T10:59:38.813391Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -25,10 +25,8 @@ Use this as the human-in-the-loop review queue.
 | `MECH-074` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-075` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-093` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-095` | `active` | Demotion review: active -> candidate | `demote_to_candidate` | `pending_user` |
 | `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-099` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-102` | `active` | Demotion review: active -> candidate | `demote_to_candidate` | `pending_user` |
 | `MECH-111` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-112` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-116` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -73,18 +71,8 @@ Use this as the human-in-the-loop review queue.
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-023` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
-| `Q-025` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-026` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-027` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-028` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-029` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-030` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-031` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-032` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-037` | `open` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `Q-038` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
-| `Q-039` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `SD-015` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-021` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-023` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
@@ -102,7 +90,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.565, conflict_ratio=0.667, exp_entries=7, lit_entries=9; directions supports=10, weakens=5, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.565, conflict_ratio=0.667, exp_entries=7, lit_entries=9; directions supports=10, weakens=5, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -121,7 +109,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-032
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.295, conflict_ratio=0.444, exp_entries=2, lit_entries=8; directions supports=7, weakens=2, mixed=1, unknown=0, conflict_ratio=0.444
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.295, conflict_ratio=0.444, exp_entries=2, lit_entries=8; directions supports=7, weakens=2, mixed=1, unknown=0, conflict_ratio=0.444
 - Evidence quality note: EXQ-076d FAIL 1/4 (tested jointly with MECH-116, 2026-03-27): same null result as MECH-116 at 2000 steps. ARC-032's specific prediction (theta-bypass degrades goal maintenance) has not been tested -- EXQ-076 only tests joint goal conditioning; no theta-bypass ablation condition was included. ARC-032 remains untested as a standalone architectural claim. Design a separate ablation experiment isolati…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -140,7 +128,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-038
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.345, conflict_ratio=0.571, exp_entries=2, lit_entries=5; directions supports=5, weakens=2, mixed=0, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.345, conflict_ratio=0.571, exp_entries=2, lit_entries=5; directions supports=5, weakens=2, mixed=0, unknown=0, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -159,7 +147,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.254, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.254, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -177,7 +165,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-042
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.387, conflict_ratio=0.75, exp_entries=3, lit_entries=5; directions supports=5, weakens=3, mixed=0, unknown=0, conflict_ratio=0.75
+- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.387, conflict_ratio=0.75, exp_entries=3, lit_entries=5; directions supports=5, weakens=3, mixed=0, unknown=0, conflict_ratio=0.75
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -250,7 +238,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-054
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.398, conflict_ratio=1, exp_entries=3, lit_entries=3; directions supports=3, weakens=3, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.398, conflict_ratio=1, exp_entries=3, lit_entries=3; directions supports=3, weakens=3, mixed=0, unknown=0, conflict_ratio=1
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -302,7 +290,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-073
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.844, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.844, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -339,7 +327,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-075
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.48, conflict_ratio=0.857, exp_entries=5, lit_entries=6; directions supports=4, weakens=3, mixed=4, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.48, conflict_ratio=0.857, exp_entries=5, lit_entries=6; directions supports=4, weakens=3, mixed=4, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-192a FAIL 1/4 x2 runs (2026-04-03): Hippocampal-VTA novelty loop probe FAIL. Run 1 (T04:39): criteria_met=1/4. Run 2 (T10:25): criteria_met=1/4. mean_novelty_signal_on = 6.4e-05 (threshold C4 > 1e-04: FAIL). cell_gap=0, hazard_gap=0 across both conditions -- NOVELTY_LOOP_ON identical to NOVELTY_LOOP_OFF. Root cause: novelty_gain=2.0 but novelty signal itself is below detection threshold; CEM n…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -358,7 +346,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.685, conflict_ratio=0.769, exp_entries=10, lit_entries=4; directions supports=8, weakens=5, mixed=1, unknown=0, conflict_ratio=0.769
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.685, conflict_ratio=0.769, exp_entries=10, lit_entries=4; directions supports=8, weakens=5, mixed=1, unknown=0, conflict_ratio=0.769
 - Evidence quality note: EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0). E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes; gap is negative (higher harm -> slightly lower rate) -- opposite of prediction. DIAGNOSTIC (2026-03-27): z_beta IS wired to clock rate. update_e3_rate_from_beta() is called every step in agent._e1_step() (agent.py:272). Implementation gap does NO…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -374,30 +362,10 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Hold at candidate — resolve conflict first
 - Last rationale: User confirmed hold for conflict resolution. z_beta modulates E3 heartbeat frequency — conflicting V3 evidence. Hold at candidate until targeted experiment resolves.
 
-### MECH-095
-- Current status: `active`
-- Decision needed: Demotion review: active -> candidate
-- Why this decision is needed: exp_conf=0.527, conflict_ratio=0.727, exp_entries=9, lit_entries=7; directions supports=7, weakens=4, mixed=5, unknown=0, conflict_ratio=0.727
-- Evidence quality note: EXQ-047k PASS 5/5 (2026-03-25, 4 seeds): contact_recall_routed=0.796 > 0.55, recall_improvement=+0.065 > 0.04, action_dissoc=-0.007 > -0.05, n_contact_min=164. 4-seed replication with clean discriminative test. Promoted from provisional to active. Combined with lit_conf=0.907 (Blakemore 2002, Gu 2008, Pitcher & Ungerleider 2021, Rolls 2023), evidence for TPJ as agency-detection comparator is stron…
-- Recommendation: `demote_to_candidate`
-- Options (pros/cons):
-  - Demote now (reduces false certainty, destabilizes current roadmap references)
-  - Hold and run conflict-resolution suite first (more data, temporary ambiguity)
-  - Split into subclaims (isolates conflict, increases registry complexity)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-05-02T10:09:00Z`
-- Last selected option: Hold active + extend evidence_quality_note (option A)
-- Last rationale: Phase 3 production gate recommended demote_to_candidate (exp_conf=0.527, conflict_ratio=0.727) based on EXQ-047k PASS + 6 successor failures. User-led architectural review identified the conflict as substrate-ceiling (CausalGridWorldV2 lacks the textured causal background that agency-detection requires) rather than claim-error. evidence_quality_note extended with SUBSTRATE-CEILING FLAG documenting the diagnosis and three resolution paths (enrich substrate / clean conflict-resolution experiment / V4 deferral). Held at active. No status change.
-
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.607, conflict_ratio=0.889, exp_entries=18, lit_entries=7; directions supports=10, weakens=8, mixed=7, unknown=0, conflict_ratio=0.889
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.607, conflict_ratio=0.889, exp_entries=18, lit_entries=7; directions supports=10, weakens=8, mixed=7, unknown=0, conflict_ratio=0.889
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -415,7 +383,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-099
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.437, conflict_ratio=0.727, exp_entries=6, lit_entries=7; directions supports=7, weakens=4, mixed=2, unknown=0, conflict_ratio=0.727
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.437, conflict_ratio=0.727, exp_entries=6, lit_entries=7; directions supports=7, weakens=4, mixed=2, unknown=0, conflict_ratio=0.727
 - Evidence quality note: EXQ-098 (2026-03-26): Two independent FAILs. Run 1 (seeds=42, 5 eps warmup): auc_delta=0.0000 (threshold >= 0.05). Run 2 (seeds=42+7, 400 eps warmup): auc_delta=-0.0384 -- lateral head UNDERPERFORMS baseline with more training. Adverse direction in run 2 suggests lateral head may actively interfere with the existing two-stream harm signal. Hold at candidate. EXQ-098b redesign needed before closing…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -431,30 +399,10 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Hold at candidate — resolve conflict first
 - Last rationale: User confirmed hold for conflict resolution. Three-pathway visual stream — conflicting V3 reafference evidence. Hold at candidate pending resolution.
 
-### MECH-102
-- Current status: `active`
-- Decision needed: Demotion review: active -> candidate
-- Why this decision is needed: exp_conf=0.534, conflict_ratio=0.952, exp_entries=24, lit_entries=9; directions supports=10, weakens=11, mixed=12, unknown=0, conflict_ratio=0.952
-- Evidence quality note: EXQ-032b PASS (2026-03-19): Energy escalation ladder confirmed via ttype split. Random policy + CausalGridWorldV2. causal_sig by state energy: none (safe locomotion): -0.032 hazard_approach (medium): +0.006 contact (high, agent+env combined): +0.017 Actions are progressively more consequential as the agent enters higher-energy interaction states. wf_r2=0.948. PASS 5/5. Note: EXQ-032 and EXQ-032c b…
-- Recommendation: `demote_to_candidate`
-- Options (pros/cons):
-  - Demote now (reduces false certainty, destabilizes current roadmap references)
-  - Hold and run conflict-resolution suite first (more data, temporary ambiguity)
-  - Split into subclaims (isolates conflict, increases registry complexity)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-05-02T10:09:00Z`
-- Last selected option: Hold active + extend evidence_quality_note (option A)
-- Last rationale: Phase 3 production gate recommended demote_to_candidate (exp_conf=0.534, conflict_ratio=0.952) based on 24 scored entries with balanced supports/weakens/mixed across 8+ operationalisations. User-led architectural review identified the conflict as substrate-ceiling: the claim's 'all other channels fail' framing requires multi-channel coping repertoire that CausalGridWorldV2 (5 actions, 2-3 channels) cannot supply. evidence_quality_note extended with SUBSTRATE-CEILING FLAG documenting the diagnosis and three resolution paths. Also flagged a duplicate-emission pattern (timestamp-prefix vs no-prefix variants of same runs) for follow-up dup-sweep. Held at active. No status change.
-
 ### MECH-111
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.286, conflict_ratio=0.667, exp_entries=2, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.286, conflict_ratio=0.667, exp_entries=2, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: EXQ-141 FAIL/weakens (2026-03-29): novelty drive discriminative pair FAIL. First experimental entry.
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -473,7 +421,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.799, conflict_ratio=0.375, exp_entries=13, lit_entries=6; directions supports=13, weakens=3, mixed=3, unknown=0, conflict_ratio=0.375
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.799, conflict_ratio=0.375, exp_entries=13, lit_entries=6; directions supports=13, weakens=3, mixed=3, unknown=0, conflict_ratio=0.375
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -492,7 +440,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-116
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.295, conflict_ratio=0.444, exp_entries=2, lit_entries=7; directions supports=7, weakens=2, mixed=0, unknown=0, conflict_ratio=0.444
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.295, conflict_ratio=0.444, exp_entries=2, lit_entries=7; directions supports=7, weakens=2, mixed=0, unknown=0, conflict_ratio=0.444
 - Evidence quality note: EXQ-076d FAIL 1/4 (2026-03-27, 2 runs identical): halflife_ratio=1.0, resource_rate_gap=0, goal_norm_t1200_diff=0. Only C3 PASS (goal_norm > 0 in wanting condition). Root cause: halflife threshold (30% of peak goal_norm) never reached in either condition. At 2000 total steps with 1000-step post-removal window, goal persists robustly in both conditions -- insufficient time to observe meaningful dec…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -511,7 +459,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-118
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.286, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.286, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Evidence quality note: EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL. First experimental entry. EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed -- stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation. Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat ~20.6-20.8 across R1/R2…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -530,7 +478,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-120
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.319, conflict_ratio=0.444, exp_entries=2, lit_entries=7; directions supports=7, weakens=2, mixed=0, unknown=0, conflict_ratio=0.444
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.319, conflict_ratio=0.444, exp_entries=2, lit_entries=7; directions supports=7, weakens=2, mixed=0, unknown=0, conflict_ratio=0.444
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -549,7 +497,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-128
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.354, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.354, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
 - Evidence quality note: EXQ-147 FAIL/weakens (2026-03-29): E1 goal conditioning discriminative pair FAIL. First experimental entry. Failure likely reflects training budget / substrate depth rather than fundamental claim failure -- z_goal conditioning requires substantial training to show discriminative effect in trajectory quality. EXQ-147a PARTIAL/mixed (2026-04-03): E1 goal conditioning pair with SD-012 drive_weight=2.…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -586,7 +534,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-150
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.254, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.254, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -605,7 +553,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-153
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.433, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.433, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -624,7 +572,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-165
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.265, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.265, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -643,7 +591,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-186
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.319, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.319, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -662,7 +610,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-188
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.269, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.269, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -681,7 +629,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-220
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.295, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.295, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1165,7 +1113,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-019
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=16; directions supports=11, weakens=0, mixed=5, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=16; directions supports=11, weakens=0, mixed=5, unknown=0, conflict_ratio=0
 - Evidence quality note: Open architectural question arising 2026-02-27. Two competing models: (A) Single-gate: BG gate one action endpoint, evaluating three criteria simultaneously (sensorium readiness, thought/trajectory readiness, motor commitment). (B) Three-gate: BG implement three anatomically distinct gating loops — (1) Sensorium loop: limbic/beta-associated, gates what the system attends to — selecting not only fr…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -1184,7 +1132,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-021
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0.403, conflict_ratio=0, exp_entries=1, lit_entries=3; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0.402, conflict_ratio=0, exp_entries=1, lit_entries=3; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: narrow_open_question (2026-03-29): two independent pathways to behavioral flatness already identified in notes. Pathway A (drive absence, ARC-030) tested by EXQ-072; Pathway B (self-incoherence-gated commit suppression, MECH-113/114) untested. Definitive test requires both pathways. No experimental evidence yet -- question narrowing applied to focus on discriminating between the two pathways.
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -1203,7 +1151,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-022
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0.403, conflict_ratio=0, exp_entries=1, lit_entries=2; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0.403, conflict_ratio=0, exp_entries=1, lit_entries=2; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: narrow_open_question (2026-03-29): three-regime dissociation experiment design specified in notes: (1) Normal training: low D_eff + high stability; (2) Noise perturbation: high D_eff + low stability; (3) Structured novel perturbation: low D_eff + low stability (targeted basis rotation). Experiment to test whether Regime 3 is empirically distinguishable from Regime 2. No experimental evidence yet -…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -1222,7 +1170,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-023
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Evidence quality note: narrow_open_question (2026-03-29): three-step focused programme identified -- (1) prove base REE (symmetric coupling, separable harm/benefit) is an ordinal potential game; (2) show MECH-127 (counterfactual utility) breaks the standard framework; (3) characterize the extended framework (pseudo-potential or interdependent-types). No experimental evidence yet. EXQ-160 SUPERSEDED (2026-03-29): impleme…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -1241,7 +1189,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-024
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Evidence quality note: EXQ-161 T104847Z SUPERSEDED (2026-03-29): dry_run=true -- no training occurred; all harm events=0; result invalid. Manifest marked superseded. EXQ-161 T200440Z SUPERSEDED (2026-03-29): implementation gap -- policy trained only with entropy bonus, z_world/z_self detached from policy forward pass; maximum-entropy random walk (action_entropy=ln(5)=1.6094). No harm events; trajectory representation qu…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -1257,138 +1205,10 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Narrow the question into testable sub-questions (higher tractability)
 - Last rationale: EXQ-161 superseded (dry-run artifact; implementation gap -- policy trained with entropy bonus only, z_world/z_self detached). Question narrowing applied to focus on discriminating DESCRIPTIVE vs PRESCRIPTIVE vs DIAGNOSTIC trajectory representations. Fresh experiment required.
 
-### Q-025
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2 deliberately-bracketing entries (SEP Deontological Ethics, SEP Kant Moral Philosophy) at per-paper conf <0.50 with explicit mapping_caveat that REE INV-025/027/029 lack clean deontological analogues. Aggregator-floor effect visible: per-paper avg ~0.45 but claim-level lit_conf=0.632. Aggregator-floor flag raised in 5…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-026
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=0, weakens=1, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2 entries (SEP Kant Moral Philosophy, SEP Ross prima facie duties) at per-paper conf <0.50. Ross specifically weakens the FORM of Q-026 -- universal action requirements may not exist; only universal CONSIDERATION sets / Rossian prima facie duties. Aggregator-floor effect visible: per-paper avg ~0.45 but claim-level lit…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-027
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 3 entries (Sunstein 2006 Cornell Law Review on option-value vs qualitatively-distinctive irreversibility, Tarsney/Thomas/MacAskill 2024 SEP "Moral Decision-Making Under Uncertainty" on MFT/MEC/lexical-priority menu and fanaticism objection, IEP Precautionary Principles on threat-not-certainty trigger and maximin/minima…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-028
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=2; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28 added 2 entries (McConnell 2022 SEP "Moral Dilemmas" on obligation/prohibition typology and Ross's objection to strict hierarchy; Williams 1965 "Ethical Consistency" on moral residue / agent-regret as constraint on adequate resolution). Synthesis verdict: Q-028 should be answered by a context-sensitive comparator + residue m…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-029
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: Lit-pull 2026-04-29 (lit-pull-am-Q029-Q030 session) added 5 entries: Holt-Lunstad 2010 PLoS Med 148-study mortality meta (OR=1.50, supports), Holt-Lunstad 2015 Perspect Psychol Sci (loneliness vs isolation separation, supports), Wang 2023 Nat Hum Behav 90-cohort meta (HR isolation=1.32 loneliness=1.14, supports), Zajner/Bzdok 2021 J Neurophysiol UK Biobank N=40k loneliness/HC-CA1-DMN structural co…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-030
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=5, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Evidence quality note: Lit-pull 2026-04-29 (lit-pull-am-Q029-Q030 session) added 5 entries: Staresina 2011 J Neurosci PrC/PhC fMRI dissociation (supports), Lee/Inah 2021 Hippocampus GIST model (supports), Howard & Kahnt 2017 J Neurosci OFC identity-specific reward x vmPFC general value (supports), Kim 2015 Front Behav Neurosci DG-disrupted Bax-KO (supports), Locatello 2020 NeurIPS Slot Attention (supports). lit_conf 0.8…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-031
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: 2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-28T11Z added 5 entries to new dir targeted_review_q_031/. Cumulative-dose limb (b): Gray 2015 ACT cohort (PMID 25621434, supports/0.78), Coupland 2019 QResearch (PMID 31233095, supports/0.82, bladder antimuscarinic AOR 1.65). REM-mediator limb (a): Pase 2017 Framingham (PMID 28835407, supports/0.78), Kim & Jeong 1999 (PMID 1038…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-032
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=5, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Evidence quality note: Lit-pull 2026-04-29 (ree-lit-pull-pm-q032 session) added 5 entries: Himali 2023 JAMA Neurol Framingham SWS-loss x 17y dementia HR 1.27 (supports/0.82, the strongest individual-prediction evidence on the table); Winer/Mander/Walker 2020 Curr Biol NREM SWA <1Hz forecasts AB accumulation (supports/0.78); Suh 2019 J Alzheimers Dis KLOSCAD short REM-per-cycle predicts MCI (supports/0.62, exploratory n=…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
 ### Q-033
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=4; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=4; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)
@@ -1418,42 +1238,10 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
 
-### Q-038
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Evidence quality note: Lit-pull 2026-05-02 (ree-weekend-lit session) added 3 entries: Pilkiw 2018 distributed tonic+phasic temporal codes (supports option B), Guan 2024 abstract interval-invariant subsecond structure (supports option A), Gherman 2018 VMPFC localised early confidence signal (supports option A by analogy). lit_conf 0.795; quadrant=plausible_unproven, exp_conf=0.
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
-### Q-039
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Evidence quality note: Lit-pull 2026-05-02 (ree-weekend-lit session) added 3 entries: Fan 2020 Cell ACh-driven L1 winner-take-all + temporal high-pass filter (supports), Xiang 2023 Front Cell Neurosci LC NA neurons phase-lock to infra-slow rhythms organising gamma (supports), Kumagai 2023 Brain Stim VNS double-dissociation -- ACh selectively modulates gamma/beta, NA selectively modulates theta (supports -- cleanest diss…
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.635, conflict_ratio=0.667, exp_entries=6, lit_entries=6; directions supports=8, weakens=4, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.635, conflict_ratio=0.667, exp_entries=6, lit_entries=6; directions supports=8, weakens=4, mixed=0, unknown=0, conflict_ratio=0.667
 - Evidence quality note: Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all 085x iterations despite contact-gated seeding). EXP-0091 will first test a handcrafted resource_indicator to confirm the diagnosis before implementing the full encoder. EXQ-085h through 085l (2026-03-30, 085l final, supersedes prior): ResourceEncoder tested across 5 iterations. 085l (proximity regression encoder): …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1472,7 +1260,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-021
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.399, conflict_ratio=0.545, exp_entries=3, lit_entries=8; directions supports=8, weakens=3, mixed=0, unknown=0, conflict_ratio=0.545
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.399, conflict_ratio=0.545, exp_entries=3, lit_entries=8; directions supports=8, weakens=3, mixed=0, unknown=0, conflict_ratio=0.545
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1491,7 +1279,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-023
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: exp_conf=0.294, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.294, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

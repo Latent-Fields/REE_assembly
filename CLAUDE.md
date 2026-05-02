@@ -115,35 +115,55 @@ the blend was the bug, not its weights. See
 B-strict / B-softened / C-balanced staging variants in
 `evidence/experiments/staging_aggregator_b/`.
 
-## Claim-type evidence gating
+## Epistemic categories (Phase 3 wave 2, 2026-05-02)
 
-Different `claim_type` values play different epistemic roles and have
-different evidence needs. The shadow report (and eventually production gates)
-applies one of three gating rules per claim:
+Beyond `claim_type`, claims carry an **`epistemic_category`** field that
+governs which evidence rule applies. The field is OPTIONAL on `claims.yaml`
+entries; when absent the indexer infers from `claim_type` + `invariant_type`
+using the Phase 2 mapping. When set explicitly, the explicit value
+overrides inference (lets us tag a `mechanism_hypothesis` as
+`substrate_ceiling` or a specific `open_question` as `derivational`).
 
-| gating | claim_types | evidence rule |
+Resolved values + dispatch:
+
+| epistemic_category | inferred from / set explicitly when | dispatch in indexer |
 |---|---|---|
-| `standard` | `mechanism_hypothesis`, `design_decision`, `implementation`, `invariant` (emergent / grey_zone / unspecified) | exp_conf required for promotion. Discrepancy + impl_no_exp + low_exp + lit_only flags fire normally. |
-| `substrate_coherence` | `architectural_commitment`, `invariant` + universal | Foundational design choices that ARE the substrate. Tested by the substrate's coherent operation, not isolated probes. Discrepancy / impl_no_exp / low_exp / lit_only flags suppressed; surfaced separately for transparency. |
-| `answer_state` | `open_question` | Question, not assertion. Evidence is "we reached an operating answer." Exempt from exp_conf gating until restated as a hypothesis. Same flags suppressed. |
+| `standard` | claim_type in {mechanism_hypothesis, design_decision, implementation, emergent/grey_zone invariant}, OR explicit `standard` on a Q-claim that is V3-tractable | exp_conf required for promotion. Discrepancy / impl_no_exp / low_exp / lit_only flags fire normally. |
+| `substrate_coherence` | architectural_commitment, OR invariant + invariant_type=universal | Foundational design choices that ARE the substrate. promote/demote suppressed; conflict-resolution alerts still fire. |
+| `answer_state` | open_question (default) | Question, not assertion. Exempt from exp_conf gating. `narrow_open_question` recommendation fires when `total_entries >= 2 AND conflict_ratio < 0.35`. |
+| `substrate_ceiling` | EXPLICIT only -- claim is V3-tractable in principle but the substrate is too coarse to deliver the needed distinctions | promote/demote suppressed; conflict alerts fire; `narrow_open_question` does NOT fire (not appropriate). The right response is substrate enrichment, not more experiments on the existing substrate. |
+| `substrate_conditional` | EXPLICIT only -- claim depends on upstream substrate that is planned but not yet built | promote/demote suppressed; same flags as substrate_ceiling. The right response is to wait for the upstream substrate. |
+| `derivational` | EXPLICIT only -- the question is answered by working through axioms / formal proof, not by experiment | promote/demote suppressed; `narrow_open_question` suppressed. The right response is to convert to a derivation artifact (or close as resolved-by-derivation). |
+| `out_of_domain` | EXPLICIT only -- the question is empirical but its test domain is outside REE (clinical cohort, pharmacology, etc.); no substrate at any level helps | promote/demote suppressed; `narrow_open_question` suppressed. These claims may belong as `research_anchor` or `literature_synthesis` claim_type rather than `open_question`. |
 
-The mapping is applied in `scripts/generate_option_e_shadow.py` via
-`_evidence_gating(meta)`. Sub-type matters: `invariant_type: universal` is
-gated as `substrate_coherence`; emergent / grey_zone invariants use standard
-gating because they have substrate-level subject matter that can be probed.
+The resolver lives in `evidence/experiments/scripts/build_experiment_indexes.py`
+as `_resolve_epistemic_category(claim_type, invariant_type, explicit_category)`.
+The recommendation function `_recommendation_for_claim` reads the resolved
+category and dispatches accordingly.
 
-**Why this matters:** without claim-type-aware gating, the shadow report
-(and any cutover to decoupled production) would falsely flag every ARC and
-universal invariant as "implementation cohort with no experimental backing"
--- but ARCs by definition can't be tested in isolation; they ARE the
-substrate. Likewise every Q-claim would be flagged as needing experimental
-backing for its "answer," which is a category error: a question becomes a
-hypothesis (re-classified as MECH/SD) before standard gating applies.
+**Validation.** `scripts/validate_claims.py` warn-only-validates explicit
+`epistemic_category` values against the canonical set
+`{standard, substrate_coherence, answer_state, substrate_ceiling,
+substrate_conditional, derivational, out_of_domain}`. Invalid values
+fall back to inference (do not crash the indexer). Elevate to ERROR
+once the field stabilises across the registry.
 
-**To restate a Q-claim as a testable hypothesis:** create a new MECH or SD
-that operationalises the answer; mark the original Q-claim
-`status: superseded` with a reference to the new claim. Don't change
-`claim_type` in place -- the Q-claim's history is informative.
+**Why this matters.** Without category-aware gating, the production
+recommendation queue collapses 5+ genuinely distinct epistemic situations
+into either `narrow_open_question` (for Q-claims) or `demote_to_candidate`
+(for MECH/SD with mixed evidence). Both are misleading for sub-categories
+that need different next-step responses. The Phase 3 wave 2 walk
+(2026-05-02, MECH-095 + MECH-102 + Q-025..Q-039 cohort) exposed the
+collapse and the schema makes the distinction machine-readable.
+
+**To restate a claim as testable:** create a new MECH or SD that
+operationalises the answer; mark the original `status: superseded` with
+a reference to the new claim. Don't change `claim_type` in place -- the
+original's history is informative.
+
+See `docs/architecture/substrate_roadmap.md` for the V3 enrichment work
+that would unblock `substrate_ceiling` claims, and `docs/architecture/
+v4_spec.md` for the V4 substrate that addresses the V4-bound sub-cohort.
 
 ## Invariant Types
 
