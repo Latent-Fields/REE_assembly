@@ -14,6 +14,150 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-05-02 -- nightly docs sync, post-Phase-2-cohort-closure + Option-E-Phase-3-cutover + duplicate-manifest-sweep)
+
+- **SDs / MECHs moved to Implemented since the 2026-04-30 nightly snapshot:**
+  none in the substrate sense -- the substrate work is stable. The 2026-05-01
+  wave is governance / evidence / production-gate cutover work, plus the
+  Phase 2 cohort closing experiment (SD-017 discriminative pair).
+- **Phase 2 cohort CLOSED on the experimental-evidence side
+  (2026-05-01T20:15Z; reviewed 2026-05-01T20:40Z):**
+  - **V3-EXQ-503 / EXP-0171a (SD-017 sleep-phase discriminative pair)** PASS
+    3/3 seeds on Mac (~0.32s; runner result code UNKNOWN but manifest verdict
+    PASS). Closes the SD-017 evidence gap left by V3-EXQ-500 -- the
+    substrate-readiness probe was diagnostic_probe and excluded from scoring,
+    so SD-017 sat at exp_conf=0.000 / plausible_unproven despite lit_conf=0.901.
+    Three pre-registered metrics M1 cumulative_sws_writes (ARM_A>=N_CYCLES,
+    ARM_B==0); M2 ctxmem_state_change Frobenius norm (ARM_A>=0.10,
+    ARM_B<=1e-6 -- magnitude probe agnostic to slot-diversity-direction since
+    SWS write can REDUCE diversity by clustering slots around real prototype
+    geometry; the dry-run originally treated direction as the signal and FAILed
+    C1 inverted, redesign was to switch to magnitude); M3 cumulative_rem_rollouts
+    (ARM_A>=N_CYCLES, ARM_B==0). ARM_A: sws_writes=24, ctxmem_delta=4.50-5.03,
+    rem_rollouts=18 across all seeds; ARM_B: zeros across the board.
+  - **Governance impact:** SD-017 quadrant flipped plausible_unproven ->
+    confirmed_established; exp_conf 0.000 -> 0.775. **All four EXP-0170/171/171a/
+    172/173 Phase 2 standard-gating cohort claims (MECH-094, SD-017, SD-035,
+    MECH-062) are now confirmed_established under the new Phase 3 production
+    gates.**
+- **Lit/Exp Decoupling (Option E) Phase 3 cutover landed 2026-05-01:**
+  promotion / demotion gate logic now drives on `experimental_confidence`
+  directly instead of the legacy `overall_confidence` blend. Specifics:
+  - `decision_criteria.v1.yaml`: `min_overall_confidence` -> `min_exp_conf`,
+    `max_overall_confidence` -> `max_exp_conf`. Legacy keys still accepted via
+    the `_t(d, new_key, legacy_key, default)` helper for one-cycle backwards
+    compat.
+  - `planning_criteria.v1.yaml`: retired `low_overall_confidence: 0.55`;
+    replaced with `low_exp_conf: 0.55` and `lit_only_above_cap: 0.50`.
+  - `build_experiment_indexes.py:_decision_for_claim` reads
+    `claim_meta["experimental_confidence"]` directly. Recommendation rationale
+    strings now report `exp_conf=…, lit_conf=…, overall_confidence_legacy=…`.
+  - **Claim-type evidence gating brought INTO production** (was Phase 1 shadow-
+    only). `substrate_coherence` (ARC + universal invariant) and `answer_state`
+    (open_question) skip exp_conf-based promote/demote -- they fire
+    conflict-resolution alerts and narrow_open_question only. `standard` gating
+    (mechanism_hypothesis / design_decision / implementation / emergent or
+    grey_zone invariant) fires the full set. Indexer `_load_claim_registry`
+    now parses `invariant_type` from claims.yaml.
+  - `CLAUDE.md` rewrote "Lit/Exp Decoupling Shadow" as "Lit/Exp Decoupling
+    (Option E) -- Phase 3 Cutover Done 2026-05-01" with the full three-phase
+    history.
+  - **Diff against pre-cutover snapshot of `promotion_demotion_recommendations.md`:**
+    +2 actionable demotion recommendations surfaced (MECH-095, MECH-102 -- both
+    `mechanism_hypothesis` whose lit_conf was masking insufficient exp_conf
+    under the legacy blend); 0 prior recommendations lost. All 4 Phase 2
+    standard-gating claims still confirmed_established under the new gates
+    (MECH-094 exp=0.770; SD-017 exp=0.775; SD-035 exp=0.770; MECH-062
+    exp=0.770). Q-claim narrow_open_question recommendations and ARC
+    conflict-resolution alerts all preserved.
+  - **Quadrant distribution after cutover:** 194 plausible_unproven;
+    68 confirmed_established; 3 speculative; 1 novel_discovery.
+- **Duplicate-manifest sweep landed 2026-05-01 (31 phantoms / 25 clusters):**
+  - **Phase 1** -- 8 Tier-1 clusters (span < 2h between identical-signature
+    emissions). Latest emission kept canonical, older copy marked
+    evidence_direction=superseded with span-in-minutes and identical-signature
+    sha1 in note. Claims that should see conflict_ratio movement on next index
+    build: MECH-220, SD-012, MECH-112, ARC-032, MECH-116, MECH-090, ARC-016,
+    SD-005, MECH-071, INV-034.
+  - **Phase 2** -- 10 Tier-2 clusters (span 2-24h). 6 of 10 had no intervening
+    commit on the experiment script and were auto-superseded; the other 4 had
+    substantive commits between emissions and were flagged for manual review at
+    `evidence/experiments/dedup_review/phase2_manual_review.md` (074f, 497, 496, 223).
+    Claims that should see conflict_ratio movement: ARC-007, SD-004, MECH-033,
+    MECH-072, SD-003, SD-007, SD-008, MECH-096, ARC-023.
+  - **Phase 3** -- 10 Tier-3 clusters traced to **runner regex bug active
+    2026-03-27..03-30, fixed by commit 071f1fc**. Bug caused runner to mis-parse
+    "Done. Outcome: PASS/FAIL" as UNKNOWN, leading to silent re-runs of
+    completed experiments. Convention: **kept OLDEST emission (legitimate
+    original observation), superseded all later emissions (regex-bug-period
+    replays).** 12 phantom entries marked. Claims that should see conflict_ratio
+    movement: ARC-032, MECH-116, MECH-112, MECH-117, Q-007, ARC-024, MECH-071,
+    SD-003, MECH-111, Q-021, MECH-113, MECH-118, MECH-119, Q-022, ARC-029, ARC-030.
+  - **Per-run manifest mirroring** -- URGENT FIX: Phase 1/2/3 supersessions
+    were originally applied to flat-JSON files at `<exp_type>/<run_id>.json`
+    but the indexer reads `<exp_type>/runs/<run_id>_v3/manifest.json`. Mirrored
+    the supersession decisions to per-run manifests so the indexer actually
+    sees them. 31 per-run manifests across 25 clusters; 5 of 31 EXQ-232 ARC-026
+    manifests required re-application as their flat JSONs had been wiped by
+    runner auto-sync between 2026-04-29 and 2026-05-01.
+  - **Phase 5 dedup guard** -- added
+    `_detect_and_mark_duplicate_emissions()` to `build_experiment_indexes.py` as
+    in-memory dedup guard with back-off when manual supersessions present;
+    WARN logs emitted to stderr per duplicate. Smoke test passed (4s, 31 dups
+    caught across 13 experiment_types, mostly old V2 epoch-excluded synthetic
+    runs plus 4 new v3 clusters worth manual review: 074f, 133, 223, 484).
+- **Experiment activity since the 2026-04-30 nightly snapshot:**
+  - Runner-status totals refreshed: **574 completed (113 PASS / 247 FAIL /
+    66 ERROR / 148 UNKNOWN; +2 vs 2026-04-30 = V3-EXQ-490e FAIL +
+    V3-EXQ-503 EXP-0171a SD-017 discriminative PASS).** V3-EXQ-490e MECH-295
+    seeding-strengthening successor (Q-040b BASELINE-vs-RELAXED on activation-
+    floor + drive_to_liking_gain knobs with MECH-295 bridge ON in both arms)
+    **FAIL on Mac 2026-05-01T03:19Z (~6h)** -- floor-relaxation alone does not
+    recover approach_commit; combined with the V3-EXQ-490c FAIL the Q-040b
+    strong reading remains weakened.
+  - Pending review queue regenerated 2026-05-02T08:51Z: **1 item**
+    (V3-EXQ-490e FAIL on Q-040). The 2026-04-30T20:54Z governance walk reviewed
+    the four Phase 2 cohort PASSes (V3-EXQ-499/500/501/502) plus the
+    V3-EXQ-490c FAIL, dropping pending_review to 0+0 before the 490e FAIL and
+    the V3-EXQ-503 PASS re-populated it; only V3-EXQ-490e remains open
+    (V3-EXQ-503 PASS reviewed 2026-05-01T20:40Z in the Phase 3 cutover session).
+
+### Immediate Work Queue (This Cycle, 2026-05-02)
+
+1. **V3-EXQ-490e FAIL discussion** -- last open pending_review item.
+   Floor-relaxation arm has been ruled out as a Q-040b recovery path
+   (combined with the V3-EXQ-490c FAIL on the matched-smoke-threshold
+   factorial); the next-up falsification of the Q-040b strong reading
+   is the staleness-into-gate test (V3-EXQ-490d toggle of
+   use_vs_gate_staleness_lookup OFF vs ON at matched 0.4 thresholds via
+   the 2026-04-29T11:00Z MECH-284 wiring).
+2. **V3-EXQ-490d successor design + queueing** -- still the highest-priority
+   substrate-validation run on the substrate side after the V3-EXQ-490e FAIL.
+   Design refinement needed in light of the 490e FAIL before queueing.
+3. **V3-EXQ-495 V3-full-completion-gate queueing decision** -- still
+   deferred. The MECH-163 dual-systems test depends on Q-040 / Q-040b
+   resolution; queueing locked behind the cluster-successor outcome.
+4. **EXP-0174 env-complexity-gate scripting + queueing** -- the
+   2026-04-29T19:09Z proposal is unblocking for SD-016 retest path
+   (env-entropy precondition) plus sleep / self-model aggregation retests
+   (MECH-273 / MECH-275). Manual_proposals entry reserved; script not
+   yet written.
+5. **OCD Layer 2 / 3 escalation (MECH-290 ablation; SD-046 multi-slot
+   GoalState pull-forward)** -- still on the live escalation list after
+   EXQ-498 disconfirmed Layer 1; design / queueing not yet started.
+6. **MECH-095 / MECH-102 demotion recommendations** -- newly surfaced
+   by the Phase 3 cutover (both `mechanism_hypothesis` whose lit_conf
+   was masking insufficient exp_conf under the legacy blend); both need
+   review at the next governance walk. No actionable promotions or
+   demotions other than these two surfaced by the cutover.
+7. **Aggregator-floor flag governance review** -- 5th-consecutive-cycle
+   flag at the next governance walk; cap-aware aggregator review with
+   recommendation either (a) accept the floor as architecturally
+   reasonable for narrow-open-question Q-claims, or (b) tune the floor
+   downward to expose per-paper confidence variance more faithfully.
+
+---
+
 ## Status Snapshot (2026-04-30 -- nightly docs sync, post-Phase-2-claim-type-gating cohort PASS wave)
 
 - **SDs / MECHs moved to Implemented since the 2026-04-29 PM snapshot:**
