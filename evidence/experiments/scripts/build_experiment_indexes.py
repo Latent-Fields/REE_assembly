@@ -2196,6 +2196,14 @@ def _write_promotion_demotion_recommendations(
             continue
         if not is_applicable(entry):
             continue
+        # Phase 3 fix: scoring_excluded entries (diagnostic_probe,
+        # non_contributory, superseded, stale_epoch, invalid_run) must NOT
+        # feed the gate's claim summary -- the main matrix's claims dict
+        # excludes them, so the gate (which reads experimental_confidence
+        # post-cutover) was computing inflated values vs the matrix.
+        # Without this filter, gate decisions diverge from displayed values.
+        if "scoring_excluded" in entry:
+            continue
         claim_id = str(entry.get("claim_id", "")).strip()
         if claim_id:
             entries_by_claim[claim_id].append(entry)
