@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-01T20:40:44Z",
+  "last_review_utc": "2026-05-02T18:06:15Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -252,7 +252,10 @@
     "V3-EXQ-433d",
     "V3-EXQ-484",
     "V3-EXQ-485",
-    "V3-EXQ-493"
+    "V3-EXQ-493",
+    "V3-EXQ-008",
+    "V3-ONBOARD-smoke-EWIN-PC",
+    "V3-ONBOARD-smoke-ree-cloud-1"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2259,6 +2262,15 @@
       "summary": "V3-EXQ-503 (EXP-0171a SD-017 sleep-phase discriminative pair) PASSed in 3/3 seeds with all three pre-registered criteria. ARM_A (FULL_4_PHASE_ON, sws+rem enabled): cumulative_sws_writes=24, ctxmem_state_change Frobenius norm 4.50-5.03, cumulative_rem_rollouts=18 across all seeds. ARM_B (NO_SLEEP_BASELINE): zeros across the board. SD-017 quadrant flipped plausible_unproven -> confirmed_established; experimental_confidence 0.000 -> 0.775; overall_confidence 0.901 -> 0.870 (slight legacy-blend dip). Closes Phase 2 standard-gating cohort -- all four claims (MECH-094, SD-017, SD-035, MECH-062) now confirmed_established with genuine experimental evidence under Option E. Reviewed as part of Phase 3 cutover preparation (cutover work itself proceeds in the same session).",
       "ids_marked": [
         "v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3"
+      ]
+    },
+    "2026-05-02T18:06Z_diagnose_errors_obsolete_cleanup": {
+      "session": "diagnose-errors-2026-05-02T18:06Z",
+      "summary": "Cleared 3 obsolete unaddressed-error entries surfaced by /diagnose-errors. (1) V3-EXQ-008 (2026-03-17, claim_id=SD-003 'Larger World + 3x3 Observation') -- crashed at exit code 1 in March; SD-003 has since been pursued via SD-029/MECH-269 monostrategy paths on different substrate, so re-running under the same EXQ-008 number is not appropriate. Marked discussed without successor. (2) V3-ONBOARD-smoke-EWIN-PC (2026-04-05, contributor onboarding smoke for Eoin's machine) and (3) V3-ONBOARD-smoke-ree-cloud-1 (2026-04-06, Hetzner CX22 cloud onboarding) -- both contributor/cloud machine onboarding tests, not scientific experiments; the named machines are no longer in active runner rotation. Marked discussed without successor. None of these were code bugs requiring a fix; all three needed governance closure rather than a /diagnose-errors patch.",
+      "ids_marked": [
+        "V3-EXQ-008",
+        "V3-ONBOARD-smoke-EWIN-PC",
+        "V3-ONBOARD-smoke-ree-cloud-1"
       ]
     }
   }
