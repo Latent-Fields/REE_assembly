@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_039",
+  "entry_id": "2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-039"],
+  "source": {
+    "title": "Frequency-specific modulation of oscillatory activity in the rat auditory cortex by vagus nerve stimulation.",
+    "authors": ["Kumagai S", "Shiramatsu TI", "Matsumura A", "Ishishita Y", "Ibayashi K", "Onuki Y", "Kawai K", "Takahashi H"],
+    "year": 2023,
+    "venue": "Brain Stimulation",
+    "doi": "10.1016/j.brs.2023.09.019",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37777110/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "The cleanest pharmacological dissociation paper for Q-039: in the same preparation (rat auditory cortex), vagus nerve stimulation (VNS) increases evoked gamma + beta power AND decreases theta power; cholinergic antagonists selectively block the gamma/beta increase; noradrenergic antagonists selectively block the theta decrease. This is a near-textbook example of the kind of evidence Q-039 needs: ACh and NA acting on DIFFERENT frequency bands of cortical oscillation. Direct support for the proposition that ACh and NA implement DISTINCT TCL control parameters (rather than jointly controlling a single integration window). Confidence at 0.80: rigorous double-dissociation methodology, frequency-specific antagonist effects in the same animals, but it's anaesthetised rat auditory cortex and the connection to REE's TCL is by analogy of architecture (frequency-band-specific neuromodulation generalising to TCL-specific parameter assignment).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's TCL parameters are not isomorphic to specific frequency bands (i.e. if the integration window and phase-alignment sensitivity are not respectively beta/gamma- and theta-coded), then the Kumagai dissociation does not directly translate to TCL parameter assignment. The mapping depends on a frequency-band hypothesis for TCL that is itself untested.",
+    "Auditory cortex under anaesthesia is a sensory-processing setting; whether the same ACh-vs-NA dissociation holds in awake associative/prefrontal cortex (closer to REE's E3) is not tested here. Anaesthesia also dramatically alters baseline cortical state and modulator response."
+  ],
+  "tags": ["q_039", "acetylcholine", "noradrenaline", "vagus_nerve_stimulation", "gamma_oscillation", "theta_oscillation", "beta_oscillation", "auditory_cortex", "tcl", "double_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Vagus nerve stimulation (VNS) in rat auditory cortex increases auditory-evoked cortical potentials, increases evoked gamma and beta power, and decreases theta power. Local administration of cholinergic antagonists in auditory cortex selectively disrupts the VNS-induced gamma and beta power increase, while noradrenergic antagonists selectively disrupt the theta power decrease. The interpretation: VNS strengthens the feedforward (FF) pathway through the cholinergic system (gamma/beta) and attenuates the feedback (FB) pathway through the noradrenergic system (theta), producing frequency-band-specific cortical gain modulation through distinct neuromodulatory systems.",
+    "ree_translation": "Q-039 asks which neuromodulatory or control-plane variables directly regulate temporal integration window and phase alignment sensitivity in REE's TCL, and specifically whether ACh and NA play distinct roles. Kumagai et al. provide a clean pharmacological double dissociation in the same preparation: ACh acts on gamma/beta (the bands typically associated with feedforward cortical timing and integration), NA acts on theta (the band typically associated with longer-timescale phase organisation). For REE, this maps onto the architectural prediction that TCL's tau_E2-like integration window parameter is ACh-modulated (operating through gamma/beta), while the phase-alignment/reset parameter is NA-modulated (operating through theta). This is the kind of dissociation evidence that would let Q-039 close in favour of ACh+NA acting as distinct control-plane regulators in TCL, rather than jointly controlling a single window parameter.",
+    "mapping_caveat": "The mapping from frequency-band-specific neuromodulation to REE's TCL parameter assignment depends on a frequency-band hypothesis for TCL that is itself not explicitly stated. If TCL's parameters do not correspond cleanly to specific frequency bands, the Kumagai dissociation supports the general 'ACh and NA do different things' claim but not the specific REE parameter assignment. Additionally, the experiment is in anaesthetised rat auditory cortex; both anaesthesia and sensory cortex are non-trivial qualifiers for transferring the result to awake associative-cortex / TCL-relevant settings.",
+    "source_context": "Jichi Medical University + University of Tokyo collaboration, electrocorticography in 34 anaesthetised Wistar rats. Brain Stimulation, mid-tier specialty journal."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Source quality good (rigorous design, n=34, frequency-specific antagonist double-dissociation in same animals, peer-reviewed in established journal). Mapping fidelity strong -- Q-039's specific question is whether ACh and NA play distinct roles, and this paper provides the cleanest dissociation evidence. Transfer risk moderate -- anaesthetised rat auditory cortex to awake associative cortex / REE's E3 is a real leap, and the frequency-band-specific TCL parameter assignment is itself a hypothesis that would need testing."
+  }
+}

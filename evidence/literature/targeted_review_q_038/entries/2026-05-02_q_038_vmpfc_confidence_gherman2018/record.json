@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_038",
+  "entry_id": "2026-05-02_q_038_vmpfc_confidence_gherman2018",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-038"],
+  "source": {
+    "title": "Human VMPFC encodes early signatures of confidence in perceptual decisions.",
+    "authors": ["Gherman S", "Philiastides MG"],
+    "year": 2018,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.38293",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30247123/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Direct fMRI/EEG evidence that the brain implements an EXPLICIT, localised representation of decision confidence in ventromedial prefrontal cortex during perceptual decision-making, before the overt decision is made. Confidence is the closest cousin of D_V in REE: both are scalar signals about how much to trust a perceptual/predictive process, both are predicted by ARC-055's family of explicit-availability claims, both could in principle be implemented either as dedicated localised signals or as distributed dynamics. Gherman's result -- that confidence emerges early in VMPFC, prior to choice, with single-trial discriminant analysis sensitivity -- is direct empirical support that the brain DOES implement at least one member of this signal family as a localised explicit representation. Confidence at 0.70: high-quality methodology (simultaneous EEG-fMRI, multivariate decoding), but confidence is not D_V and the mapping is by computational analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Confidence and D_V are computationally analogous but not identical: confidence indexes choice-accuracy uncertainty; D_V indexes coupling-stability persistence. The brain may implement them by entirely different architectural strategies. The Gherman finding is suggestive but not direct.",
+    "VMPFC's role in confidence may itself be a read-out of distributed activity from prior decision-related regions. The paper shows VMPFC carries a confidence signal early; it does not show that confidence is COMPUTED in VMPFC. So 'localised explicit representation' may be 'localised explicit read-out of upstream distributed dynamics' -- a distinction Q-038 actually depends on."
+  ],
+  "tags": ["q_038", "verisimilitude", "explicit_representation", "vmpfc", "confidence", "perceptual_decision", "fmri", "metacognition"],
+  "mapping": {
+    "source_claim_statement": "In a direction-discrimination task, single-trial multivariate discriminant analysis of EEG identified a stimulus-independent confidence component that appeared BEFORE the overt choice and confidence report. This confidence signal aligned with predictions from accumulation-to-bound decision models. fMRI showed that single-trial variability in this confidence signal was uniquely associated with VMPFC activity, with functional coupling to frontal regions associated with perceptual decision-making and metacognition. Conclusion: VMPFC holds an early, explicit confidence representation arising from decision dynamics, preceding metacognitive evaluation.",
+    "ree_translation": "Q-038 asks whether D_V is explicitly represented or emerges from distributed dynamics. Confidence is the closest in-domain cousin of D_V -- both are scalar 'how much should I trust this' signals, both could in principle be implemented either way, both are members of the family ARC-055 says must be explicitly available. Gherman's result is direct evidence that the brain implements at least one such signal -- decision confidence -- as an early, localised, explicit representation in VMPFC. By computational analogy, this raises the probability that D_V is implemented similarly (option A). The functional coupling pattern Gherman reports (VMPFC -> frontal cortex) also suggests an architectural template: a localised confidence/precision signal feeds the broader decision/control system. REE's E3 could index a localised D_V signal in much the same way.",
+    "mapping_caveat": "Confidence is not D_V. The two signals have different computational content (choice-accuracy estimate vs coupling-stability persistence) and may be implemented by different mechanisms. There is also an important architectural ambiguity in the Gherman result itself: showing that VMPFC CARRIES a confidence signal early does not show that confidence is COMPUTED in VMPFC. The signal could be a localised read-out of upstream distributed dynamics -- which is, paradoxically, exactly the architectural pattern Q-038 is trying to choose between. So this paper supports 'option A is biologically plausible' more strongly than it supports 'option A is the correct architectural choice for D_V.'",
+    "source_context": "University of Glasgow, simultaneous EEG-fMRI design with single-trial decoding. eLife, top open-access neuroscience journal."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (top journal, methodologically rigorous, simultaneous EEG-fMRI is rare and powerful). Mapping fidelity moderate -- confidence is not D_V, but is the closest in-domain analogue. Transfer risk moderate-to-high: from confidence to D_V is a substantial computational leap, even if both signals serve similar architectural roles."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_038",
+  "entry_id": "2026-05-02_q_038_interval_invariant_subsecond_guan2024",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-038"],
+  "source": {
+    "title": "Double training reveals an interval-invariant subsecond temporal structure in the brain.",
+    "authors": ["Guan SC", "Xiong YZ", "Yu C"],
+    "year": 2024,
+    "venue": "Journal of Experimental Psychology: Human Perception and Performance",
+    "doi": "10.1037/xhp0001254",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39480346/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Behavioural evidence that an abstract, interval-invariant temporal representation exists in the brain -- direct support for Q-038's option A (explicit/dedicated signal). Standard temporal interval discrimination (TID) learning is interval-specific (training on 100ms doesn't transfer to 200ms), which had been the main argument AGAINST an abstract temporal representation. Guan et al. show that double training (primary TID task + a secondary task at a different interval) eliminates the interval specificity, enabling complete transfer of TID learning to untrained intervals. Their interpretation: an interval-invariant component of temporal interval perception exists and gets engaged when training conditions allow. This is direct support for an abstract conceptual representation of subsecond time. Confidence at 0.65: solid behavioural design and a clean dissociation, but it's a single-paradigm result in subsecond TID and the inference from 'abstract' to 'explicit local representation' is interpretive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 'abstract conceptual representation' that Guan infers is itself a behavioural inference, not a direct neural measurement. An ensemble representation (Q-038 option B) could equally show interval-invariant transfer if the read-out is interval-invariant; what the paper rules out is *strict* interval-specificity, not distributed dynamics in general.",
+    "The paradigm is subsecond perception, not REE's D_V (temporal-depth verisimilitude / coupling-stability). The lesson that abstract temporal structure exists at subsecond scales does not necessarily generalise to D_V's longer time-constant coupling-stability quantity."
+  ],
+  "tags": ["q_038", "verisimilitude", "explicit_representation", "interval_timing", "subsecond", "perceptual_learning", "abstract_representation", "transfer"],
+  "mapping": {
+    "source_claim_statement": "Subsecond temporal interval discrimination (TID) learning is normally interval-specific -- training at 100ms does not transfer to 200ms. This specificity has been read as evidence against an abstract temporal representation in favour of distributed, interval-specific neural dynamics. Guan et al. show that DOUBLE training (the primary TID task at one interval, plus a secondary task -- tone-frequency discrimination -- exposing the participant to a second interval) enables complete transfer of TID learning across intervals. The authors infer an 'interval-invariant component' of subsecond time perception, supporting the existence of an abstract conceptual representation of subsecond time in the brain.",
+    "ree_translation": "Q-038 asks whether D_V is explicitly represented (option A) or emerges from distributed dynamics (option B). Guan's behavioural finding directly supports option A in a related domain: subsecond temporal perception has an abstract, interval-invariant component that can be engaged by the right training. If the brain has an explicit representation of subsecond temporal structure, the prior probability that REE-style coupling-persistence (D_V) is also explicitly represented increases. This is the cleanest behavioural evidence for option A on the table; it pushes against pure-emergence accounts of temporal representation in the brain. The mapping is from a behavioural-perceptual result to an architectural commitment in REE: the existence of abstract temporal structure makes ARC-055's explicit-availability requirement biologically plausible.",
+    "mapping_caveat": "The paper concerns subsecond perceptual learning, not D_V. D_V is defined in REE as a verisimilitude/coupling-stability signal, not a perceptual interval. The transfer is by analogy -- abstract structure exists for one temporal quantity, therefore plausibly exists for D_V too. Additionally, 'abstract conceptual representation' is itself an inference from a behavioural transfer pattern; the paper does not directly observe or measure the representation, only the conditions under which it appears to be engaged. A distributed implementation with an interval-invariant read-out would produce the same behavioural pattern.",
+    "source_context": "Peking University Psychology. Behavioural perceptual-learning paradigm. Published in J Exp Psychol Hum Percept Perform, established journal in this subfield."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good (peer-reviewed, established journal in perceptual learning). Mapping fidelity moderate -- the paper supports abstract temporal structure in general, not D_V specifically. Transfer risk moderate-to-high: from subsecond perceptual learning to REE's coupling-stability signal is a substantial leap."
+  }
+}

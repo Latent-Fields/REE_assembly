@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_039",
+  "entry_id": "2026-05-02_q_039_acetylcholine_l1_winner_take_all_fan2020",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-039"],
+  "source": {
+    "title": "All-Optical Electrophysiology Reveals the Role of Lateral Inhibition in Sensory Processing in Cortical Layer 1.",
+    "authors": ["Fan LZ", "Kheifets S", "Bohm UL", "Wu H", "Piatkevich KD", "Xie ME", "Parot V", "Ha Y", "Evans KE", "Boyden ES", "Takesian AE", "Cohen AE"],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.01.001",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31978320/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct in-vivo evidence that cholinergic input drives a winner-takes-all dynamic in cortical layer 1 interneurons, gating sensory processing through lateral inhibition. Layer 1 is the canonical recipient of long-range modulatory input including acetylcholine, and L1 interneurons project widely within the local cortical column. Fan et al. show with all-optical electrophysiology that aversive stimuli activate cholinergic input which evokes a bimodal (winner-take-all) spiking distribution in L1, and that the network functions as a temporal high-pass filter. Direct support for Q-039's hypothesis that acetylcholine gates the temporal integration window in cortex. Confidence at 0.78 because this is exactly the kind of mechanistic, causal evidence Q-039 needs (cholinergic causal manipulation + circuit-level temporal-filtering measurement), but the experiment is in mouse barrel cortex and the L1 winner-take-all dynamic is demonstrated, not the integration-window gating per se -- temporal-window inference is from the high-pass filter property.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The temporal high-pass filter behaviour is a circuit property that emerges from lateral inhibition; it is not directly tunable by ACh independent of the inhibitory machinery. If REE's TCL needs an ACh-tunable integration window decoupled from the L1/inhibition circuit, this paper does not directly support that.",
+    "The experiment is in mouse barrel cortex (sensory). Whether L1 winner-take-all generalises to associative/prefrontal cortex (more relevant to REE's E3) is not tested here."
+  ],
+  "tags": ["q_039", "acetylcholine", "layer_1", "lateral_inhibition", "winner_take_all", "temporal_filtering", "barrel_cortex", "tcl", "neuromodulation"],
+  "mapping": {
+    "source_claim_statement": "All-optical electrophysiology in mouse barrel cortex layer 1 (L1) demonstrates that whisker stimuli evoke precisely-timed single spikes in L1 interneurons followed by strong lateral inhibition. Aversive stimuli activate cholinergic input which evokes a bimodal (winner-takes-all) spiking distribution in L1. A simple conductance-based model containing only lateral inhibition within L1 recapitulates both sensory and cholinergic responses, and predicts that the network functions as a spatial and temporal high-pass filter for excitatory inputs. ACh-driven L1 dynamics gate sensory processing in underlying cortex.",
+    "ree_translation": "Q-039 asks which neuromodulators implement the control-plane parameters of TCL (alpha_S, alpha_A, tau_E2, etc.) and specifically whether acetylcholine gates the temporal integration window. Fan et al. provide direct mechanistic evidence that cholinergic input to cortical L1 produces winner-take-all interneuron dynamics that act as a temporal high-pass filter on excitatory inputs to underlying cortex. This is exactly the kind of circuit ACh would use to set tau_E2-like integration windows: the high-pass filter property determines what counts as 'recent' for downstream cortex. For REE, this maps onto the architectural role of acetylcholine in setting alpha_A or tau_E2 in the TCL substrate. The L1 hub identified by Fan et al. is a plausible biological substrate for ARC-053's control plane.",
+    "mapping_caveat": "The paper shows ACh-driven WTA in L1 and a temporal high-pass filter property; it does not directly demonstrate that ACh tunes the cut-off of that filter. The high-pass filter is an emergent circuit property. Whether ACh tunes the window or merely toggles between filtering and non-filtering modes is an open question this paper does not resolve. Additionally, mouse barrel cortex is a sensory area; REE's E3 sits closer to prefrontal/associative cortex where the L1 organisation is similar but the modulator-receptor expression patterns differ. The transfer is plausible but not direct.",
+    "source_context": "Harvard Chemistry/MIT Media Lab/Mass Eye and Ear collaboration using novel all-optical electrophysiology methods. Cell paper, top-tier methods development."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high (Cell, methodological breakthrough, multi-PI top-tier collaboration). Mapping fidelity good -- the specific circuit mechanism (ACh gating L1 inhibition gating temporal filtering) maps directly onto Q-039's question about ACh and integration windows. Transfer risk moderate -- mouse barrel cortex to human prefrontal cortex is a substantial leap, and the paper does not directly demonstrate window-cutoff tuning."
+  }
+}

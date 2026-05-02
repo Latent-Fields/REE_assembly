@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_037",
+  "entry_id": "2026-05-02_q_037_dissociable_source_monitoring_lavalle2020",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-037"],
+  "source": {
+    "title": "Dissociable source-monitoring impairments in obsessive-compulsive disorder and schizophrenia.",
+    "authors": ["Lavalle L", "Bation R", "Donde C", "Mondino M", "Brunelin J"],
+    "year": 2020,
+    "venue": "European Psychiatry",
+    "doi": "10.1192/j.eurpsy.2020.48",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32406366/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct empirical evidence that distinct sub-types of source-monitoring (internal source vs reality monitoring) doubly dissociate across two clinical populations. SCZ patients showed deficits on BOTH internal and reality monitoring; OCD patients showed deficits on internal source monitoring ONLY. Maps cleanly onto Q-037's prediction that the three psychosis substrates have different functional fingerprints: REE's MECH-094 tag-loss (the reality-monitoring locus) should be dissociable from MECH-222 self-attribution overflow (an internal-source / self-other locus). The Lavalle et al. design provides exactly the dissociation grammar Q-037 calls for. Confidence is held below 0.85 because the experimental task probes source-memory at recall, not the upstream gating mechanism, and OCD is not one of the three substrates Q-037 enumerates -- so the mapping is by analogy of architecture (different substrates yield different behavioural fingerprints), not direct test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the three REE psychosis substrates are NOT behaviourally dissociable (i.e. all three produce similar source-monitoring fingerprints), then Q-037 closes negative and the substrates would need to be reformulated as a single graded mechanism rather than three distinct loci.",
+    "Lavalle et al. show only single dissociation between internal-source and reality-monitoring across two disorders. A REE-specific test of Q-037 would need triple dissociation across three substrates, which is a stronger claim than this paper supports."
+  ],
+  "tags": ["q_037", "psychosis", "source_monitoring", "schizophrenia", "ocd", "reality_monitoring", "dissociation", "mech_094", "mech_222"],
+  "mapping": {
+    "source_claim_statement": "Patients with OCD and SCZ both display abnormal internal source-monitoring abilities relative to healthy controls, but only SCZ patients show deficits in reality monitoring. This pattern indicates that source-monitoring sub-processes are dissociable, with reality-monitoring impairments specifically marking SCZ-type pathology while internal source confusion is a shared (transdiagnostic) deficit.",
+    "ree_translation": "REE's three psychosis substrates -- MECH-094 (hypothesis-tag write gate failure during replay -> reality-monitoring failure), MECH-222 (self-attribution overflow -> internal source confusion / referential delusion), and MECH-065/MECH-223 (precision-ratio miscalibration / animated-agency overweighting -> external attribution bias) -- predict three architecturally distinct locii. Lavalle's dissociation between reality-monitoring (SCZ-specific) and internal-source-monitoring (shared SCZ + OCD) is exactly the kind of behavioural fingerprint dissociation that would distinguish MECH-094 from MECH-222 in REE. Importantly, the paper does not collapse 'source monitoring' into a unitary signal -- it carves it at functional joints that map directly onto REE's distinction between the tag-loss substrate (replay/reality) and the self-attribution substrate (continuous z_self residualisation).",
+    "mapping_caveat": "OCD is not one of the three REE psychosis substrates. The mapping is architectural: Lavalle demonstrates THAT source-monitoring sub-processes can dissociate across disorders, which is the form Q-037 needs, but the specific OCD/SCZ dissociation is not isomorphic to the MECH-094/MECH-222/MECH-065 dissociation. Whether the same paradigms would dissociate the three REE substrates within psychosis (e.g. PTSD vs referential delusion vs paranoid ideation) is the open empirical question Q-037 asks. The paper provides existence proof, not direct evidence.",
+    "source_context": "Case-control study, n=32 OCD, n=38 SCZ, n=29 healthy controls, French clinical sample. Three computerised source-monitoring conditions (internal, external, reality) administered. Published in European Psychiatry."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Source quality moderate-to-high (peer-reviewed, decent sample size, three-way comparison). Mapping fidelity moderate -- the architectural lesson (sub-processes dissociate) maps directly, but the specific clinical groups don't map onto the three REE substrates. Transfer risk low-to-moderate: the source-monitoring framework Lavalle uses is the same conceptual frame REE's MECH-094/222 implement, so the transfer is mostly within-frame, not cross-domain."
+  }
+}

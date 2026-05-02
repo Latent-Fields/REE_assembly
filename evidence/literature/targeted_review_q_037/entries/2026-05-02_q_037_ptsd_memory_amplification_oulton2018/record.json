@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_037",
+  "entry_id": "2026-05-02_q_037_ptsd_memory_amplification_oulton2018",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-037"],
+  "source": {
+    "title": "Imagining trauma: Memory amplification and the role of elaborative cognitions.",
+    "authors": ["Oulton JM", "Strange D", "Nixon RDV", "Takarangi MKT"],
+    "year": 2018,
+    "venue": "Journal of Behavior Therapy and Experimental Psychiatry",
+    "doi": "10.1016/j.jbtep.2018.04.003",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29753170/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct empirical demonstration of the reality-monitoring failure mode that maps onto MECH-094 tag-loss in the trauma/PTSD context. Participants exposed to traumatic photographs and instructed to elaborate (imagine details beyond what was shown) showed a measurable shift in their later memory: imagined details bled into endorsed exposure. The reality-monitoring frame for this is exactly what MECH-094 implements -- a tag that distinguishes simulated/imagined content from witnessed/post-commit content, whose failure produces the source-confusion phenotype. The paper directly supports the existence of the MECH-094-style substrate in human episodic memory. Confidence at 0.72: moderate-to-high source quality (peer-reviewed, behavioural psychiatry journal, controlled design), strong mapping fidelity to MECH-094's clinical fingerprint, but the ecological gap from photo-trauma analogue to clinical PTSD limits how strongly this supports REE's claim about real-world flashbacks.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Oulton et al. found that elaboration REDUCED intrusions and reduced trauma-exposure endorsement -- the opposite of the prediction one might naively make from MECH-094 (more imagined content = more residue accumulation = more flashbacks). The biology shows that elaboration enables conceptual processing, which competes with the perceptual/affective intrusion path. MECH-094's account may need to distinguish between different KINDS of replay: rich elaborated semantic replay (which protects) vs raw perceptual replay with the tag missing (which intrudes).",
+    "The trauma-analogue paradigm does not generalise cleanly to real PTSD. If real PTSD intrusions involve mechanisms beyond reality-monitoring (e.g. amygdala-driven affective re-encoding), MECH-094 is necessary but not sufficient for the full clinical phenotype."
+  ],
+  "tags": ["q_037", "psychosis", "ptsd", "reality_monitoring", "intrusion", "memory_amplification", "mech_094", "tag_loss", "trauma"],
+  "mapping": {
+    "source_claim_statement": "Memory amplification in PTSD -- the empirical finding that trauma victims report additional traumatic events over time -- is consistent with reality-monitoring failure: imagined details about the trauma blend with what was actually experienced. Experimentally, participants who elaborated on intrusions about traumatic photographs showed FEWER intrusions and LESS endorsement of trauma exposure than controls. The authors interpret this as elaboration enhancing conceptual processing, which the reality-monitoring framework predicts.",
+    "ree_translation": "MECH-094 proposes that the hypothesis tag is the categorical write gate that prevents simulation/replay content from entering the post-commit residue channel. Tag loss causes simulated content to be written as if it were committed -- the architectural definition of a flashback / intrusive memory. Oulton's behavioural finding that elaborated imagined content can blend with veridical memory is direct empirical support for the existence of the substrate MECH-094 implements. The protective effect of elaboration is more interesting: it suggests that the tag-loss pathology may be specifically about RAW perceptual/affective replay (which lacks conceptual context), and that conceptual elaboration creates a parallel route for the content that bypasses or competes with the broken tag pathway. This matches REE's framing of the residue field as gated, not all-or-nothing.",
+    "mapping_caveat": "This is a trauma-analogue paradigm (negative photographs, lab-induced intrusions), not clinical PTSD. The mechanism that produces a 24-hour shift in lab-task endorsement may not be the same mechanism that produces years of disabling flashbacks. The protective effect of elaboration in the lab may not generalise -- in real PTSD, the affective valence is overwhelming and elaboration can re-traumatise rather than protect. The mapping to MECH-094's specific 'replay event boundary' locus is by interpretation, not direct measurement -- the experiment doesn't probe replay or boundary signals directly.",
+    "source_context": "Australian/US collaboration (Flinders University, John Jay College). Standard trauma-analogue paradigm with negative photographs, 24h follow-up, intrusion logs. Published in J Behav Ther Exp Psychiatry."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is good-not-exceptional (mid-tier specialty journal, decent design). Mapping fidelity is strong -- the experimental finding directly demonstrates the substrate-level failure mode MECH-094 predicts (imagined content blending into committed memory). Transfer risk moderate -- trauma-analogue paradigms have well-known ecological limits, and lab-induced intrusion is a pale shadow of clinical flashback."
+  }
+}

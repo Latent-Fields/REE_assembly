@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_039",
+  "entry_id": "2026-05-02_q_039_lc_phase_lock_infra_slow_xiang2023",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-039"],
+  "source": {
+    "title": "Locus coeruleus noradrenergic neurons phase-lock to prefrontal and hippocampal infra-slow rhythms that synchronize to behavioral events.",
+    "authors": ["Xiang L", "Harel A", "Todorova R", "Gao H", "Sara SJ", "Wiener SI"],
+    "year": 2023,
+    "venue": "Frontiers in Cellular Neuroscience",
+    "doi": "10.3389/fncel.2023.1131151",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37025702/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Direct in-vivo recording evidence that locus coeruleus noradrenergic neurons phase-lock to ~0.4 Hz infra-slow oscillations in prefrontal cortex and hippocampus, that these rhythms synchronise to behaviourally salient events, and that the infra-slow rhythms phase-modulate gamma amplitude (linking long-timescale behavioural rhythms to short-timescale neuronal synchrony). Direct support for Q-039's hypothesis that noradrenaline regulates phase alignment sensitivity. The 0.4 Hz rhythm operates at exactly the timescale of behavioural decision/sequence boundaries, which is where REE's TCL operates. Confidence at 0.76: strong mechanistic support, optogenetically-identified noradrenergic neurons, but the cellular-neuroscience journal is mid-tier and the result is correlational at heart (phase-locking, not causal manipulation of LC).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper shows phase-locking and phase-modulation but does not causally demonstrate that NA RELEASE drives the synchronisation. The LC neurons could be following the cortical rhythm rather than driving it. Causal optogenetic LC manipulation would be needed to establish that NA gates phase alignment.",
+    "Infra-slow rhythms (~0.4 Hz) are at a timescale relevant for behavioural sequencing but may not be the primary timescale REE's TCL operates on. If TCL's integration window is at sub-second or theta scale, the LC-infra-slow result is informative about NA's general role in cortical timing but does not directly speak to TCL parameters."
+  ],
+  "tags": ["q_039", "noradrenaline", "locus_coeruleus", "infra_slow_oscillation", "phase_locking", "prefrontal", "hippocampus", "tcl", "phase_alignment"],
+  "mapping": {
+    "source_claim_statement": "Local field potential oscillation cycles on the order of 0.4 Hz in prefrontal cortex and hippocampus phase-lock to task events at crucial maze locations during an attentional set-shifting task in awake rats. Successive cycles show different wavelengths suggesting reset by salient events. Most LC neurons (including optogenetically-identified noradrenergic neurons) phase-lock to these infra-slow rhythms, as do hippocampal and prefrontal units. The infra-slow oscillations also phase-modulate gamma amplitude, linking the behavioural-timescale rhythm to faster neuronal synchrony. Provides a mechanism whereby noradrenaline released by LC in concert with the infra-slow rhythm could facilitate synchronisation or reset of brain networks underlying behavioural adaptation.",
+    "ree_translation": "Q-039 asks which neuromodulator regulates phase alignment sensitivity in REE's TCL. Xiang et al. provide direct evidence that noradrenergic LC neurons phase-lock to behaviourally-relevant infra-slow oscillations in prefrontal cortex and hippocampus, that these oscillations reset to salient events, and that they organise gamma synchrony. This is the architectural template Q-039 is asking about: NA acts as a phase-alignment / reset signal at behavioural timescales. For REE, this maps directly onto the TCL parameters that govern when phase coupling is allowed and when it must be reset (analogous to the kappa_commit and event-boundary parameters). The 0.4 Hz timescale also matches the boundary-event timescale at which REE's commitment/replay decisions happen.",
+    "mapping_caveat": "The paper shows phase-locking (correlation) between LC firing and cortical-hippocampal rhythms, plus phase-modulation of gamma. It does not causally demonstrate that NA RELEASE drives the synchronisation -- LC neurons could be following the rhythm rather than driving it. Causal optogenetic LC manipulation would be the missing piece. Additionally, the 0.4 Hz infra-slow timescale is one of several candidate timescales for REE's TCL; if TCL operates primarily at theta or beta, this paper is informative about NA's general role in cortical timing but not directly diagnostic for TCL parameters.",
+    "source_context": "College de France/CNRS collaboration. In vivo chronic recordings from rats during attentional set-shifting. Optogenetically-identified LC noradrenergic neurons. Frontiers in Cellular Neuroscience (mid-tier open-access)."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good (mid-tier journal, but methodologically rigorous, optogenetic ID of NA neurons). Mapping fidelity strong -- Q-039 specifically asks about NA and phase alignment, and that's exactly what the paper demonstrates. Transfer risk low-to-moderate: rat to human is the standard cross-species discount, but the LC-cortex circuitry is one of the more conserved across mammals."
+  }
+}

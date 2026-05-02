@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-02T09:27:13.873541Z`
+Generated: `2026-05-02T10:00:29.791160Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -201,6 +201,9 @@ Generated: `2026-05-02T09:27:13.873541Z`
 | `targeted_review_q_033` | [`2024-11-18_q_033_mood_episode_prediction_lim2024`](targeted_review_q_033/entries/2024-11-18_q_033_mood_episode_prediction_lim2024/record.json) | 4 | [`summary`](targeted_review_q_033/entries/2024-11-18_q_033_mood_episode_prediction_lim2024/summary.md) |
 | `targeted_review_q_034` | [`2026-04-09_q_034_stress_dopamine_reward_review_baik2020`](targeted_review_q_034/entries/2026-04-09_q_034_stress_dopamine_reward_review_baik2020/record.json) | 6 | [`summary`](targeted_review_q_034/entries/2026-04-09_q_034_stress_dopamine_reward_review_baik2020/summary.md) |
 | `targeted_review_q_036` | [`2026-04-20_q_036_controllability_suffering_dissociation_loffler2018`](targeted_review_q_036/entries/2026-04-20_q_036_controllability_suffering_dissociation_loffler2018/record.json) | 3 | [`summary`](targeted_review_q_036/entries/2026-04-20_q_036_controllability_suffering_dissociation_loffler2018/summary.md) |
+| `targeted_review_q_037` | [`2026-05-02_q_037_ptsd_memory_amplification_oulton2018`](targeted_review_q_037/entries/2026-05-02_q_037_ptsd_memory_amplification_oulton2018/record.json) | 3 | [`summary`](targeted_review_q_037/entries/2026-05-02_q_037_ptsd_memory_amplification_oulton2018/summary.md) |
+| `targeted_review_q_038` | [`2026-05-02_q_038_vmpfc_confidence_gherman2018`](targeted_review_q_038/entries/2026-05-02_q_038_vmpfc_confidence_gherman2018/record.json) | 3 | [`summary`](targeted_review_q_038/entries/2026-05-02_q_038_vmpfc_confidence_gherman2018/summary.md) |
+| `targeted_review_q_039` | [`2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023`](targeted_review_q_039/entries/2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023/record.json) | 3 | [`summary`](targeted_review_q_039/entries/2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023/summary.md) |
 | `targeted_review_q_040` | [`2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021`](targeted_review_q_040/entries/2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021/record.json) | 4 | [`summary`](targeted_review_q_040/entries/2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_sd003_successor_comparator` | [`2026-04-18_sd003successor_tickle_cancellation_blakemore1998`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/record.json) | 4 | [`summary`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/summary.md) |

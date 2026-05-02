@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_038",
+  "entry_id": "2026-05-02_q_038_distributed_temporal_representations_pilkiw2018",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-038"],
+  "source": {
+    "title": "Neural representations of time-linked memory.",
+    "authors": ["Pilkiw M", "Takehara-Nishiuchi K"],
+    "year": 2018,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2018.03.024",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29614377/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong support for the distributed-dynamics-without-explicit-representation option (Q-038 option B). Pilkiw and Takehara-Nishiuchi review electrophysiological evidence that temporal information needed to bridge two events across an interval is encoded by TWO distinct firing patterns that are distributed across hippocampus, neocortex, and striatum: tonic firing (sustained activity holding a trace) and phasic firing (transient activity tiling the interval). Their classifier analysis shows that these distributed patterns carry information about both temporal expectation and explicit timing. The architectural lesson: temporal-association information is implemented by an ensemble representation distributed across multiple regions, not localised to a single 'time signal'. Confidence at 0.72: high mapping fidelity to Q-038's emergent option, but the paper addresses temporal interval representation generally (not D_V specifically), and D_V is explicitly defined in REE as a verisimilitude/coupling-stability signal rather than a timing signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's D_V requires explicit availability for E3 selection (per ARC-055), an emergent-only implementation may fail because there's no localised signal E3 can read. Pilkiw's distributed representation is information-rich at the ensemble level but does not, in itself, provide a single read-out variable that a decision module can index.",
+    "The paper concerns interval-timing for temporal association in trace conditioning, not depth-of-coupling/verisimilitude. The transfer to D_V is by analogy. If D_V is a fundamentally different kind of signal (about coupling stability rather than interval duration), the distributed-representation evidence for the latter does not automatically apply."
+  ],
+  "tags": ["q_038", "verisimilitude", "temporal_representation", "distributed_dynamics", "tonic_firing", "phasic_firing", "ensemble_coding", "hippocampus", "neocortex"],
+  "mapping": {
+    "source_claim_statement": "Temporal-association memory (bridging two events across an interval) is encoded by two distinct firing-rate patterns -- tonic and phasic -- distributed across hippocampus, neocortex, and striatum. Tonic neurons sustain a trace across the interval; phasic neurons fire at specific moments and tile the interval as an ensemble sequence. Machine-learning classification of these patterns shows that phasic firing carries more selective information about stimulus identity and temporal position than tonic firing. The temporal information needed for the association is distributed across populations, not localised to a single 'time signal'.",
+    "ree_translation": "Q-038 asks whether REE's D_V (temporal-depth verisimilitude) is explicitly represented (option A: a dedicated signal tracking persistence of coupling) or emerges from distributed dynamics (option B: cross-frequency coupling stability, prediction-error history) without local representation. Pilkiw and Takehara-Nishiuchi's review provides direct support for option B in a closely-related domain: the brain's solution for temporal-association memory is ensemble-distributed across multiple regions and uses multiple cell-type strategies (tonic + phasic) without a single localised 'time' signal. If the brain implements interval-timing this way, the prior probability that it implements coupling-persistence (D_V's quantity of interest) the same way is substantial. The architectural implication for REE is that ARC-055's 'explicit availability requirement' may be implementable as an ensemble read-out (e.g. a learned linear projection of population activity) rather than requiring a localised D_V signal.",
+    "mapping_caveat": "The paper's domain is interval-timing for temporal association, not coupling-persistence/verisimilitude. D_V is REE-specific and is defined in terms of coupling-stability persistence -- a quantity that is conceptually distinct from interval duration. Whether the brain solves coupling-persistence with the same distributed strategy as interval-timing is not established by this paper; it provides a strong existence proof that distributed solutions work for related quantities, not a direct measurement of D_V's neural substrate.",
+    "source_context": "Comprehensive review from University of Toronto. Synthesises rodent and non-human-primate single-unit recordings during trace conditioning paradigms. Includes new classifier analysis of authors' own mPFC dataset."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality good (peer-reviewed review with original analysis, established lab in temporal-memory neuroscience). Mapping fidelity moderate -- the architectural lesson (distributed ensemble representation) maps directly onto Q-038's option B, but the substantive content (interval timing) is not D_V. Transfer risk moderate: D_V's coupling-persistence may or may not be implementable by the same ensemble strategies as interval-timing."
+  }
+}

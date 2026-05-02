@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_037",
+  "entry_id": "2026-05-02_q_037_aberrant_salience_corlett2025",
+  "timestamp_utc": "2026-05-02T09:51:08Z",
+  "claim_ids_tested": ["Q-037"],
+  "source": {
+    "title": "20 Years of Aberrant Salience in Psychosis: What Have We Learned?",
+    "authors": ["Corlett PR", "Fraser KM"],
+    "year": 2025,
+    "venue": "American Journal of Psychiatry",
+    "doi": "10.1176/appi.ajp.20240556",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40134268/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Corlett's review is the most authoritative recent statement on the aberrant-salience family of computational accounts of psychosis. Mixed evidence_direction because: (a) it SUPPORTS the broad architectural claim that delusion formation involves dopamine-mediated precision/uncertainty miscalibration (REE's MECH-065), but (b) it WEAKENS the simpler form of MECH-065 by showing that 20 years of data have eroded the original Kapur formulation in favour of a more nuanced account where dopamine modulates belief formation, belief updating under uncertainty, and abductive inference. For Q-037, this matters because it argues that 'precision miscalibration' is not a single computational locus but a family of related dysfunctions, which complicates the substrate dissociability thesis. Confidence at 0.74: high source quality (Corlett is the senior figure in computational psychiatry of psychosis, AJP is top-tier), high mapping fidelity to MECH-065, but the review is theoretical and the mapping to REE's specific three-substrate carve is partial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If 'aberrant salience' is itself a multi-process construct (belief formation + belief updating + abductive inference) rather than a single dopamine-driven precision miscalibration, then MECH-065's account of paranoid ideation as 'RC-conflict threshold too low / external authority signals override internal model' may be too narrow. The substrate may need to be split into multiple sub-mechanisms.",
+    "Corlett finds that the original Kapur prediction of striatal dopamine elevation as the necessary cause of delusion has not been cleanly supported by 20 years of imaging. If REE depends on a similar 'global precision dial' framing for MECH-065, the same caveats apply -- precision is unlikely to be a scalar in either biology or REE's substrate."
+  ],
+  "tags": ["q_037", "psychosis", "aberrant_salience", "dopamine", "precision", "delusion", "mech_065", "mech_223", "predictive_coding"],
+  "mapping": {
+    "source_claim_statement": "The aberrant-salience hypothesis (Kapur 2003) -- that delusion formation arises from striatal dopamine dysfunction creating inappropriate salience attribution to neutral stimuli -- has not held up cleanly under 20 years of empirical scrutiny. Newer accounts implicate dopamine in a richer set of functions: belief formation, belief updating under uncertainty, and abductive inference to the best explanation. The original theory's specific neural and behavioural predictions are 'lacking' empirically; contemporary theories form 'a more cogent theory that fits better with the work in patients with delusions and hallucinations.'",
+    "ree_translation": "REE's MECH-065 (precision-ratio miscalibration) and MECH-223 (animated-agency overweighting bias) together implement an REE-specific version of the aberrant-salience family. MECH-065's clinical fingerprint -- 'paranoid ideation driven by specific external agents, ideas of reference toward external sources' -- is precisely the phenotype Corlett describes as best explained not by global precision dysregulation but by 'belief formation under uncertainty + abductive inference'. The paper is supportive in that it confirms the substrate exists and is pharmacologically dopamine-modulated; it is corrective in that it pushes against any reading of MECH-065 as a single scalar parameter. For Q-037, the substantive implication is that MECH-065 may itself be multi-process (belief formation + updating + abduction), which would either (a) split MECH-065 into sub-mechanisms, or (b) reformulate the substrate's behavioural fingerprint as a multivariate signature rather than a single index.",
+    "mapping_caveat": "Corlett's review is theoretical (not a primary experiment) and does not engage with REE's three-substrate framing directly. The translation from 'belief formation under uncertainty' to MECH-065's 'RC-conflict threshold too low' is interpretive. There is also a risk of selection bias in any review of one's own field's dominant theory -- Corlett is a major proponent of the predictive-coding-of-psychosis school, and his critique of Kapur is partially a defence of his own preferred frame. Use his diagnosis of where Kapur fails, but don't take 'the new synthesis' as settled.",
+    "source_context": "Yale (Wu Tsai Institute) + University of Minnesota. Published March 2025 in American Journal of Psychiatry, the senior US clinical-psychiatric journal. Critical retrospective review of a foundational theory."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality very high (Corlett is the field expert, AJP is top-tier). Mapping fidelity moderate -- the paper engages aberrant salience as a clinical/computational construct but does not address REE's specific MECH-065 formulation. Transfer risk moderate-to-high: the paper's main lesson is that simple precision-dial accounts of delusion don't hold, which is a direct caveat on any REE substrate that depends on a single scalar precision parameter."
+  }
+}
