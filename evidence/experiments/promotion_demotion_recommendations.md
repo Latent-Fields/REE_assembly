@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-02T10:00:29.791160Z`
+Generated: `2026-05-02T10:11:05.294166Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -390,9 +390,9 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
 - Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-24T15:33:11.358559Z`
-- Last selected option: Hold at candidate -- resolve conflict first
-- Last rationale: V3 experiment evidence now exists but the conflicting exp entry (EXQ-047i) had two instrumentation bugs: MSE routing loss ~0 (alpha=0.9 EMA suppressed signal) and contact probe majority-class collapse. Its evidence is unreliable. EXQ-092 (047j) fixes both issues and is currently running. Hold at candidate; if EXQ-092 passes, conflict resolves in favor of MECH-095. If 047j fails on clean instrumentation, genuine lit-vs-exp disagreement requiring targeted redesign.
+- Last logged decision: `applied` by `user` at `2026-05-02T10:09:00Z`
+- Last selected option: Hold active + extend evidence_quality_note (option A)
+- Last rationale: Phase 3 production gate recommended demote_to_candidate (exp_conf=0.527, conflict_ratio=0.727) based on EXQ-047k PASS + 6 successor failures. User-led architectural review identified the conflict as substrate-ceiling (CausalGridWorldV2 lacks the textured causal background that agency-detection requires) rather than claim-error. evidence_quality_note extended with SUBSTRATE-CEILING FLAG documenting the diagnosis and three resolution paths (enrich substrate / clean conflict-resolution experiment / V4 deferral). Held at active. No status change.
 
 ### MECH-098
 - Current status: `candidate`
@@ -446,6 +446,10 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
+- Status note: Prior decision exists but recommendation changed; needs fresh review.
+- Last logged decision: `applied` by `user` at `2026-05-02T10:09:00Z`
+- Last selected option: Hold active + extend evidence_quality_note (option A)
+- Last rationale: Phase 3 production gate recommended demote_to_candidate (exp_conf=0.534, conflict_ratio=0.952) based on 24 scored entries with balanced supports/weakens/mixed across 8+ operationalisations. User-led architectural review identified the conflict as substrate-ceiling: the claim's 'all other channels fail' framing requires multi-channel coping repertoire that CausalGridWorldV2 (5 actions, 2-3 channels) cannot supply. evidence_quality_note extended with SUBSTRATE-CEILING FLAG documenting the diagnosis and three resolution paths. Also flagged a duplicate-emission pattern (timestamp-prefix vs no-prefix variants of same runs) for follow-up dup-sweep. Held at active. No status change.
 
 ### MECH-111
 - Current status: `candidate`
@@ -1642,3 +1646,8 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-04-26T16:17:25Z`
 - Last selected option: Wait for V3 substrate implementation
 - Last rationale: v3_pending=true; ghost-goal substrate parent (registered 2026-04-26); lit-only (supports=3). Standard hold per V3-pending gate.
+
+## Substrate changes with dependent invariants
+
+No substrate status changes this run. No dependent invariants flagged.
+

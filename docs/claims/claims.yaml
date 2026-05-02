@@ -3509,6 +3509,37 @@
     MECH-102 by providing the mechanistic derivation from axioms and making epistemic
     responsibility a first-class ethical constraint.
 
+    SUBSTRATE-CEILING FLAG (2026-05-02, Phase 3 cutover queue walk):
+    Phase 3 production gates (exp_conf-driven) recommend demote_to_candidate based on
+    24 scored exp entries / 10 supports / 11 weakens / 12 mixed (conflict_ratio=0.952,
+    exp_conf=0.534). The conflict is genuine in the matrix but the architectural reading
+    is substrate ceiling, not claim error. The claim contains the word "channels" doing
+    structural work that CausalGridWorldV2 does not support: the agent has approach /
+    avoid / stay -- 2-3 coping channels at most, where the claim is about a hierarchical
+    failure cascade across MANY coping options. After 8+ distinct operationalisations
+    (energy escalation, ttype, dense grid, trajectory attribution, ethical, advantage,
+    depletion ordering, terminal correction, harm gradient), only EXQ-032b (ttype) and
+    EXQ-059c (advantage_fixed) PASSed -- both narrow operationalisations capturing
+    fragments of the claim. The persistent ambiguity reflects "the substrate cannot
+    deliver a clean signal" rather than evidential conflict about the underlying
+    mechanism. The dual-pathway formalisation (similarity collapse + threat override)
+    plus the 10-axiom derivation makes the claim explicitly multi-channel; testing
+    requires multi-agent + richer action repertoire (V4 territory). Held at active
+    pending one of: (a) substrate enrichment with multi-channel coping options,
+    (b) reformulation into falsifiable sub-claims that the current substrate CAN test,
+    (c) deferral to V4 ethical validation (already flagged in NORMATIVE STATUS NOTE
+    above). See MECH-095 for the cluster diagnosis and the substrate_ceiling category
+    if it is later formalised.
+
+    DUPLICATE-EMISSION NOTE (2026-05-02): Several of the 24 scored entries appear to
+    be timestamp-prefix vs no-prefix variants of the same run (e.g., EXQ-032 at
+    T201910Z appears as both `20260318T201910Z_v3_exq_032_...` and
+    `v3_exq_032_...20260318T201910Z_v3`). The recent dup-sweep work (Phase 1-3,
+    2026-05-01) addressed different patterns and did not catch these. The supports/
+    weakens balance is not affected since duplicates always carry the same evidence
+    direction, but the inflation in counts means the effective evidence base is closer
+    to ~12 distinct experiments. Flagged for a follow-up dup-sweep pass.
+
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
   title: "Three-gate vs single-gate BG architecture: are the three cortico-striatal loops anatomically distinct or convergent?"
@@ -5039,6 +5070,23 @@
     4-seed replication with clean discriminative test. Promoted from provisional to active.
     Combined with lit_conf=0.907 (Blakemore 2002, Gu 2008, Pitcher & Ungerleider 2021,
     Rolls 2023), evidence for TPJ as agency-detection comparator is strong.
+
+    SUBSTRATE-CEILING FLAG (2026-05-02, Phase 3 cutover queue walk):
+    Phase 3 production gates (exp_conf-driven) recommended demote_to_candidate based on
+    9 scored exp entries / 7 supports / 4 weakens / 5 mixed (conflict_ratio=0.727,
+    exp_conf=0.527). The conflict is genuine in the matrix but the architectural reading
+    is substrate ceiling, not claim error: of 7 successor attempts after the EXQ-047k PASS
+    (EXQ-089, 047i, 047j, 098b x2, 121 x2), all weakens or mixed. Each tested a different
+    operationalisation; each got a different fragment-result. Agency-detection requires
+    distinguishing self-caused from other-caused change against a textured causal background;
+    CausalGridWorldV2 supplies hazard drift (env_drift_interval=7) + resource respawn +
+    optional scheduled_external_hazard injection -- a thin world. EXQ-047k's PASS likely
+    caught a narrow dynamic regime where the agent-vs-env signal was momentarily clear.
+    Demote misattributes the issue. Held at active pending one of: (a) substrate enrichment
+    (multi-source environmental dynamics), (b) clean conflict-resolution experiment that
+    isolates the EXQ-047k condition (larger-N stratification) as the substrate-condition-of-
+    success, (c) deferral to V4 multi-channel/multi-agent territory. See MECH-102 for the
+    cluster diagnosis and the substrate_ceiling category if it is later formalised.
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
   claim_type: mechanism_hypothesis
