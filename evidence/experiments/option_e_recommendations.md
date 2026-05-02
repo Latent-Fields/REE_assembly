@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-05-02T08:51:45.069546Z`
+Generated: `2026-05-02T09:27:18.043156Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -106,7 +106,7 @@ Total: **130** discrepant claims (standard-gating only).
 | `MECH-271` | mechanism_hypothesis | candidate | 0.908 | 0.000 | 0.908 | 0 | 4 | plausible_unproven |
 | `MECH-272` | mechanism_hypothesis | candidate | 0.883 | 0.000 | 0.883 | 0 | 14 | plausible_unproven |
 | `MECH-273` | mechanism_hypothesis | candidate | 0.881 | 0.000 | 0.881 | 0 | 4 | plausible_unproven |
-| `MECH-275` | mechanism_hypothesis | candidate | 0.866 | 0.000 | 0.866 | 0 | 6 | plausible_unproven |
+| `MECH-275` | mechanism_hypothesis | candidate | 0.865 | 0.000 | 0.865 | 0 | 6 | plausible_unproven |
 | `MECH-279` | mechanism_hypothesis | candidate | 0.906 | 0.000 | 0.906 | 0 | 5 | plausible_unproven |
 | `MECH-280` | mechanism_hypothesis | candidate | 0.876 | 0.000 | 0.876 | 0 | 5 | plausible_unproven |
 | `MECH-281` | mechanism_hypothesis | candidate | 0.876 | 0.000 | 0.876 | 0 | 4 | plausible_unproven |
@@ -138,9 +138,9 @@ Total: **130** discrepant claims (standard-gating only).
 | `MECH-188` | mechanism_hypothesis | candidate | 0.675 | 0.270 | 0.810 | 1 | 3 | plausible_unproven |
 | `MECH-216` | mechanism | provisional | 0.719 | 0.294 | 0.860 | 1 | 4 | plausible_unproven |
 | `SD-023` | design_decision | candidate | 0.728 | 0.294 | 0.872 | 1 | 4 | plausible_unproven |
+| `ARC-032` | architecture_hypothesis | candidate | 0.638 | 0.295 | 0.866 | 2 | 8 | plausible_unproven |
+| `MECH-116` | mechanism_hypothesis | candidate | 0.643 | 0.295 | 0.875 | 2 | 7 | plausible_unproven |
 | `MECH-220` | mechanism_hypothesis | candidate | 0.727 | 0.295 | 0.871 | 1 | 4 | plausible_unproven |
-| `ARC-032` | architecture_hypothesis | candidate | 0.638 | 0.296 | 0.866 | 2 | 8 | plausible_unproven |
-| `MECH-116` | mechanism_hypothesis | candidate | 0.643 | 0.296 | 0.875 | 2 | 7 | plausible_unproven |
 | `MECH-091` | mechanism_hypothesis | candidate | 0.715 | 0.300 | 0.854 | 1 | 6 | plausible_unproven |
 | `SD-032c` | - | - | 0.676 | 0.300 | 0.801 | 1 | 3 | plausible_unproven |
 | `MECH-120` | mechanism_hypothesis | candidate | 0.667 | 0.319 | 0.899 | 2 | 7 | plausible_unproven |
@@ -221,15 +221,15 @@ Total: **36**.
 | `MECH-118` | candidate | 0.287 | 2 |
 | `MECH-216` | provisional | 0.294 | 1 |
 | `SD-023` | candidate | 0.294 | 1 |
+| `ARC-032` | candidate | 0.295 | 2 |
+| `MECH-116` | candidate | 0.295 | 2 |
 | `MECH-220` | candidate | 0.295 | 1 |
-| `ARC-032` | candidate | 0.296 | 2 |
-| `MECH-116` | candidate | 0.296 | 2 |
 | `MECH-091` | candidate | 0.300 | 1 |
 | `SD-032c` | - | 0.300 | 1 |
 | `MECH-120` | candidate | 0.319 | 2 |
 | `MECH-186` | candidate | 0.319 | 2 |
 | `MECH-155` | candidate | 0.322 | 2 |
-| `MECH-128` | candidate | 0.355 | 3 |
+| `MECH-128` | candidate | 0.354 | 3 |
 | `MECH-047` | provisional | 0.385 | 1 |
 | `INV-054` | candidate | 0.398 | 3 |
 | `SD-021` | candidate | 0.400 | 3 |
@@ -294,8 +294,8 @@ Claims with literature support and no experiment yet. These are candidates for t
 | `MECH-057b` | - | 0.869 | 4 |
 | `SD-003-SUCCESSOR` | - | 0.869 | 4 |
 | `SD-037` | candidate | 0.869 | 4 |
-| `MECH-275` | candidate | 0.866 | 6 |
 | `SD-032d` | - | 0.866 | 4 |
+| `MECH-275` | candidate | 0.865 | 6 |
 | `MECH-123` | candidate | 0.858 | 5 |
 | `MECH-270` | candidate | 0.858 | 4 |
 | `MECH-058` | retired | 0.855 | 9 |

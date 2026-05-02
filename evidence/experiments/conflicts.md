@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-02T08:51:41.406151Z`
+Generated: `2026-05-02T09:27:13.873541Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -221,7 +221,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-032
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, exp_conf=0.296, lit_conf=0.866, overall_confidence_legacy=0.638
+- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, exp_conf=0.295, lit_conf=0.866, overall_confidence_legacy=0.638
 - Recent entries:
   - `2026-04-16T18:10:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.82
   - `2026-04-16T18:15:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.77
@@ -687,7 +687,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-116
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, exp_conf=0.296, lit_conf=0.875, overall_confidence_legacy=0.643
+- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, exp_conf=0.295, lit_conf=0.875, overall_confidence_legacy=0.643
 - Recent entries:
   - `2026-04-04T10:36:58Z` `experimental` `v3_exq_228_mech116_arc032_theta_bypass_ablation` direction=`non_contributory` confidence=0
   - `2026-04-10T10:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.8
@@ -747,7 +747,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-128
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.355, lit_conf=0.827, overall_confidence_legacy=0.591
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.354, lit_conf=0.827, overall_confidence_legacy=0.59
 - Recent entries:
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.72
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.6

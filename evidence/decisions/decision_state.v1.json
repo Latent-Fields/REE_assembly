@@ -1091,21 +1091,21 @@
     },
     "SD-011": {
       "actor": "user",
-      "decision_needed": "Conflict resolution before promotion",
+      "decision_needed": "Promotion review: provisional -> stable",
       "decision_status": "applied",
-      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
-      "timestamp_utc": "2026-03-29T21:16:41.260169Z"
+      "rationale": "Phase 3 cutover queue walk 2026-05-02. Met all stable gate criteria under decoupled regime: exp_conf=0.871 (>= 0.80), exp_entries=7 (>= 4), lit_entries=23 (>= 2), conflict_ratio=0.148 (<= 0.20). Direction balance 25 supports / 2 weakens / 3 mixed across the largest single-claim evidence corpus in the registry. Post-Phase-2 V3-EXQ-178b PASS (harm_fwd_r2=0.742) and EXQ-323a PASS on body-damage substrate cleared the dissociation that previously held SD-011 at provisional. Flips quadrant from confirmed_established (already) and registry status provisional -> stable.",
+      "recommendation": "promote_to_stable",
+      "selected_option": "Promote now (clear canonical status)",
+      "timestamp_utc": "2026-05-02T09:25:00Z"
     },
     "SD-012": {
       "actor": "user",
-      "decision_needed": "Conflict resolution before promotion",
+      "decision_needed": "Promotion review: candidate -> provisional",
       "decision_status": "applied",
-      "rationale": "Hold at candidate: seeding mechanism works (C1 PASS) but downstream utilization fails (C2 FAIL). SD-012 core claim partially validated; resolution experiments needed for goal-to-behavior pathway.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
-      "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+      "rationale": "Phase 3 cutover queue walk 2026-05-02. Met all provisional gate criteria under decoupled regime: exp_conf=0.714 (>= 0.62), exp_entries=5 (>= 2), conflict_ratio=0.20 (<= 0.35), genuine_exp_supports >= 1. Direction balance 18 supports / 2 weakens / 1 mixed. Substrate has been implemented since 2026-04-02 (drive_weight=2.0 default in REEConfig.from_dims) -- this promotion is the registry catching up to substrate state. Flips registry status candidate -> provisional.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote now (faster convergence; substrate already in place)",
+      "timestamp_utc": "2026-05-02T09:25:00Z"
     },
     "SD-013": {
       "actor": "user",
@@ -1270,7 +1270,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-02T08:51:41.406151Z",
+  "generated_at_utc": "2026-05-02T09:27:13.873541Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
