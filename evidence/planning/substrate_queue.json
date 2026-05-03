@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-03T09:26:08Z",
+  "last_updated_utc": "2026-05-03T09:44:04Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1943,6 +1943,19 @@
       "priority": 1,
       "added_session": "sd047-substrate-queue-update-2026-05-03T09:26Z",
       "last_seen_session": "sd047-substrate-queue-update-2026-05-03T09:26Z"
+    },
+    {
+      "sd_id": "SD-048",
+      "title": "Interoceptive noise dynamics: stochastic body-state perturbations independent of the agent's motor output (autonomic background + sensitisation spikes + fatigue drift) to provide ARC-058 Level 2 interoceptive comparator an agent-independent body-state background for honest testing.",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_048_interoceptive_noise_dynamics.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": ["ARC-058", "ARC-033", "ARC-061"],
+      "failure_record": [],
+      "implementation_hint": "Three concurrent stochastic body-state noise sources added to CausalGridWorldV3 body-state update: (1) autonomic background -- fast i.i.d. Gaussian noise on harm_obs_a each step (autonomic_noise_scale=0.02); (2) sensitisation spikes -- Poisson-distributed transient multiplicative amplification of harm_obs_a (sensitisation_rate=0.008/step, magnitude=1.8x, halflife=15 steps); (3) fatigue drift -- slow AR(1) latent fatigue state additively contributing to harm_obs_a (ar_coeff=0.995). Master switch: interoceptive_noise_enabled=False (bit-identical OFF). Per-source ablation switches. Calibration target 1:1-2:1 body-noise:agent-caused harm-state-change events per episode. Validation: 4-arm noise-level sweep (OFF / 0.25x / 1.0x / 4.0x), same protocol as SD-047. Module surface: ree_core/environments/causal_grid_world.py body-state update section. New internal state: _fatigue_state, _sensitisation_state (reset at episode start).",
+      "priority": 1,
+      "added_session": "sd048-registration-2026-05-03T09:44Z",
+      "last_seen_session": "sd048-registration-2026-05-03T09:44Z"
     }
   ]
 }

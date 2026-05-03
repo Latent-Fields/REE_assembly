@@ -148,7 +148,38 @@ transient events, (3) background drift sources. Bit-identical OFF flag.
 Calibration target: 1:1–2:1 env:agent change events per episode.
 See SD-047 design doc for full specification.
 
-#### 5. Differentiated coping channels (single-agent multi-modal action repertoire)
+#### 5. Interoceptive noise dynamics — **SD-048 REGISTERED 2026-05-03**
+
+**SD claim:** `SD-048` (`body.interoceptive_noise_dynamics`, candidate, v3_pending).
+Design doc: `docs/architecture/sd_048_interoceptive_noise_dynamics.md`.
+Implementation dependencies: SD-011 (IMPLEMENTED), SD-022 (IMPLEMENTED) — ready to implement.
+
+**Missing:** after SD-022, all `z_harm_a` variance is agent-caused (limb
+damage from hazard contact) or deterministic (heal_rate). There is no
+independent body-state background for the interoceptive comparator to
+calibrate against. ARC-058's HarmForwardTrunk and ARC-033 E2_harm_a
+cannot be honestly tested — a trivial forward model passes by memorising
+action-damage coupling, not by learning to separate self-caused from
+body-noise-caused change.
+
+**Claims unblocked:**
+- `ARC-058` (candidate) — HarmForwardTrunk Level 2 interoceptive
+  comparator. V3-tractable but currently no substrate. SD-048 is the
+  registered fix. Same 4-arm noise-level sweep validation as SD-047.
+- `ARC-033` (provisional, competing) — independent-per-stream baseline
+  benefits from same enrichment; arbitration runs on SD-048 substrate.
+- `ARC-061` (candidate) — Level 2 contribution to reafference comparator
+  family. ARC-061 cannot promote until Level 2 has experimental support.
+
+**Implementation surface:** three stochastic body-state sources in
+CausalGridWorldV3 body-state update: (1) autonomic background Gaussian
+noise on harm_obs_a, (2) Poisson sensitisation spikes (multiplicative
+transient amplification), (3) AR(1) fatigue drift. Bit-identical OFF
+flag. Same calibration target as SD-047: 1:1–2:1 body-noise:agent-caused
+harm-state-change events per episode.
+See SD-048 design doc for full specification.
+
+#### 6. Differentiated coping channels (single-agent multi-modal action repertoire)
 
 **Missing:** V3 agent has 5 actions (4 cardinal moves + noop). MECH-102
 "violence as terminal error-correction triggered only when all other
@@ -193,6 +224,7 @@ learned about itself?" probes.
 | Multi-resource heterogeneity | H | MECH-112, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 | `environment.multi_resource_heterogeneity` |
 | Long-horizon regime | H | INV-049, SD-037 dynamics, MECH-260 | (calibration / no SD) |
 | Multi-source environmental dynamics | M | MECH-095, MECH-098, MECH-099 | `SD-047` (registered 2026-05-03, ready) |
+| Interoceptive noise dynamics | M | ARC-058, ARC-033, ARC-061 Level 2 | `SD-048` (registered 2026-05-03, ready) |
 | Differentiated coping channels (V3-lite) | M | MECH-102 (lite); full -> V4 | `environment.differentiated_coping_channels` |
 | Multi-frequency oscillatory probes | L | ARC-023, MECH-089/090/091 deeper | (probe expansion / no SD) |
 | Persistent agent identity | L | INV-064, MECH-214, MECH-215 | `agent.persistent_identity_across_episodes` |

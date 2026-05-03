@@ -255,8 +255,8 @@ in psychiatric_predictions.md).
 | **Failure mode (clinical)** | passivity of action, made impulses | made feelings, somatic passivity | thought insertion, confabulation |
 | **Failure direction** | symmetric over/under per S/N regime | symmetric over/under per noise | tag loss -> real attribution of simulation |
 | **Authorship tag** | cf_gap > threshold | affective-PE > threshold | hypothesis_tag = True/False |
-| **V3 status** | substrate_ceiling, SD-047 pending | V3-tractable, no SD yet | stable, confirmed_established |
-| **Calibration SD** | SD-047 (ready) | *unregistered* (gap) | not applicable |
+| **V3 status** | substrate_ceiling, SD-047 pending | V3-tractable, SD-048 pending | stable, confirmed_established |
+| **Calibration SD** | SD-047 (ready) | SD-048 (ready) | not applicable |
 | **Key literature** | Asai 2016, Blakemore/Frith 2000 | Seth/Friston 2016, Lyndon 2026 | Corlett 2025, MECH-094 notes |
 
 ---
@@ -289,13 +289,14 @@ be answered with independent single-level probes.
 This is V4-1 territory (multi-agent ecology + full simultaneous activation
 of all three comparator levels). See `docs/architecture/v4_spec.md`.
 
-### Gap 3: Level 2 calibration SD
+### Gap 3: Cross-level interaction experiment
 
-The Level 2 (interoceptive) calibration SD is the natural next step after
-SD-047 validates the Level 1 calibration pattern. Candidate subject:
-`body.interoceptive_noise_dynamics`, depending on SD-022 (IMPLEMENTED)
-and SD-011 (IMPLEMENTED). Not yet registered — ready to draft once
-SD-047 lands.
+Level 1 (SD-047) and Level 2 (SD-048) are independently implementable
+and will be validated separately. Once both land, a joint experiment
+probing the cross-level interaction becomes the next step: does Level 1
+miscalibration propagate to Level 2 tag instability, or are the levels
+cleanly decoupled? That question cannot be answered with single-level
+probes. Deferred pending both SDs validated.
 
 ---
 
@@ -320,7 +321,7 @@ indistinguishable from own affective experience — a computational model of
 the empathy dysregulation cluster in borderline/dissociative presentations.
 
 That claim cohort is currently V4-bound. The V3 work (SD-047 for Level 1,
-the unregistered interoceptive SD for Level 2) lays the calibration
+SD-048 (Level 2 interoceptive noise dynamics)) lays the calibration
 infrastructure that V4 social probes will need.
 
 ---

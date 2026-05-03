@@ -23038,6 +23038,7 @@
     - ARC-058    # Level 2: interoceptive/affective comparator (shared harm trunk)
     - MECH-094   # Level 3: propositional simulation tag, stable
     - SD-047     # Level 1 substrate enrichment (registered, ready)
+    - SD-048     # Level 2 substrate enrichment (registered, ready)
   functional_restatement: >
     Three comparator mechanisms implement the same architectural pattern at
     different levels of representational abstraction.
@@ -23072,9 +23073,9 @@
     territory -- multi-agent ecology required to test simultaneous activation of all
     three levels.
 
-    Level 2 (interoceptive comparator) has no calibration SD registered yet -- named
-    as implementation gap in the synthesis doc. Candidate SD subject:
-    body.interoceptive_noise_dynamics, depending on SD-022 + SD-011 (both IMPLEMENTED).
+    Level 2 (interoceptive comparator): SD-048 (body.interoceptive_noise_dynamics,
+    candidate, registered 2026-05-03, ready) is the calibration SD. Depends on
+    SD-022 + SD-011 (both IMPLEMENTED).
 
     The ARC-061 claim is not testable as a whole until all three constituent levels
     have substrate-level evidence. Current state: Level 3 (MECH-094) confirmed_established;
@@ -23946,6 +23947,81 @@
     Pre-implementation lit-pull recommended (anchor candidates: Saxe &
     Carey 2006; Blakemore et al. 1998; Pitcher & Ungerleider 2021).
   location: docs/architecture/sd_047_multi_source_dynamics.md
+
+- id: SD-048
+  title: "Interoceptive noise dynamics: stochastic body-state perturbations independent of the agent's motor output (autonomic background noise + sensitisation spikes + fatigue drift) provide an agent-independent interoceptive background dense enough for the affective comparator (ARC-058, Level 2 of the reafference comparator family) to be honestly tested at substrate level."
+  claim_type: design_decision
+  subject: body.interoceptive_noise_dynamics
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-03"
+  depends_on:
+    - ARC-058    # primary Level 2 comparator claim this unblocks
+    - SD-011     # dual nociceptive streams — z_harm_a must exist
+    - SD-022     # directional limb damage — agent-caused body-state variance must exist
+  functional_restatement: >
+    After SD-022, z_harm_a changes only via agent-caused limb damage
+    (hazard contact) and deterministic healing. There is no independent
+    body-state background: all z_harm_a variance is agent-caused, so
+    a trivial forward model passes by memorising the action-damage
+    coupling rather than by learning to separate self-caused from
+    body-noise-caused change. ARC-058's HarmForwardTrunk claim (and
+    ARC-033 alternative) cannot be honestly tested on this substrate.
+
+    SD-048 adds three concurrent stochastic body-state sources that are
+    NOT caused by the agent's motor output:
+    (1) Autonomic background: fast i.i.d. Gaussian noise on harm_obs_a
+    every step (HRV / sympathetic-fluctuation analog).
+    (2) Sensitisation spikes: Poisson-distributed transient multiplicative
+    amplification of harm_obs_a (inflammatory sensitisation analog).
+    (3) Fatigue drift: slow AR(1) latent fatigue state additively
+    contributing to harm_obs_a across the episode (allostatic load analog).
+
+    With these sources active, the interoceptive forward model must learn
+    to distinguish agent-caused body-state change from body-noise-caused
+    change -- the Level 2 reafference-cancellation problem. Validation
+    uses the same 4-arm noise-level sweep protocol as SD-047 (per Asai
+    2016 non-monotonic comparator competence): ARM_0 (OFF) through
+    ARM_3 (4x), with predicted inverted-U peaking at ARM_2.
+    Flat-failure across all arms routes ARC-058 from V3-tractable to
+    substrate_conditional (richer body-state substrate needed).
+  notes: >
+    Registered 2026-05-03. Level 2 counterpart to SD-047 (Level 1
+    environmental dynamics). Same three-source design rationale: diverse
+    temporal/statistical characters force structural learning rather than
+    single-pattern filtering. Sources map to biological timescales:
+    autonomic (step-level), sensitisation (episode-phase), fatigue
+    (episode-length).
+
+    Independently implementable from SD-047. Can run in parallel.
+    Cross-level interaction (SD-047 + SD-048 joint) deferred to a
+    later experiment -- the individual Level 1 and Level 2 calibrations
+    must be validated first.
+
+    Bit-identical OFF requirement (same as SD-047): when master switch
+    disabled, body-state update path is identical to pre-SD-048 baseline.
+    Per-source ablation switches for individual source contribution
+    experiments.
+
+    See `docs/architecture/reafference_comparator_family.md` for the
+    full Level 2 context and the diagnostic principles shared with
+    Level 1 (SD-047) and Level 3 (MECH-094).
+  evidence_quality_note: >
+    Registered candidate, no substrate implementation yet.
+    Architectural motivation: Level 2 of the reafference comparator
+    family (ARC-061) requires an interoceptive-noise substrate for
+    honest comparator calibration, directly analogous to SD-047 for
+    Level 1. Both SD-011 (dual streams) and SD-022 (body-damage)
+    are IMPLEMENTED -- SD-048 is ready to implement.
+    Validation experiment pre-registered in design doc (4-arm sweep).
+    No lit-pull commissioned yet; biology-before-formal-definitions rule
+    recommends a targeted pull on interoceptive prediction error and
+    affective passivity before implementation (Seth & Friston 2016
+    already in targeted_review_arc_058/ as background).
+  location: docs/architecture/sd_048_interoceptive_noise_dynamics.md
 
 - id: MECH-296
   title: "Prototype-readout operator computes a softmax-attention match between the current LatentState and the type-keyed anchor pool, returning a small set of best-matched type-keys plus their confidences. Runs both during waking (moment-to-moment type recognition) and during sleep (consolidation refinement of the type-anchor pool)."
