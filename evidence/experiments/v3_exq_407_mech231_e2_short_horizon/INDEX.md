@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_407_mech231_e2_short_horizon
 
-Generated: `2026-05-03T10:37:37.749862Z`
+Generated: `2026-05-03T12:14:13.699349Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

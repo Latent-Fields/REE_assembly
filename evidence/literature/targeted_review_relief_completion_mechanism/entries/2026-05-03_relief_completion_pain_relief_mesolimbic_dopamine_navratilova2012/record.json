@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relief_completion_mechanism",
+  "entry_id": "2026-05-03_relief_completion_pain_relief_mesolimbic_dopamine_navratilova2012",
+  "timestamp_utc": "2026-05-03T12:03:09Z",
+  "claim_ids_tested": ["MECH-057a", "MECH-091", "MECH-094"],
+  "source": {
+    "title": "Pain relief produces negative reinforcement through activation of mesolimbic reward-valuation circuitry",
+    "authors": ["Edita Navratilova", "Jennifer Y. Xie", "Alec Okun", "Chaoling Qu", "Nathan Eyde", "Shuang Ci", "Michael H. Ossipov", "Tamara King", "Howard L. Fields", "Frank Porreca"],
+    "year": 2012,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1214605109",
+    "url": "https://doi.org/10.1073/pnas.1214605109"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Direct mechanistic demonstration that pain relief activates VTA dopamine neurons and produces NAc dopamine release, and that NAc dopamine antagonism blocks the conditioned place preference for the relief context. Combines electrophysiology, microdialysis, and behaviour in the same study. Mapping fidelity is high because this is exactly the predicted Model 1 mechanism: relief firing the canonical mesolimbic reward circuit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Demonstrates DA involvement in relief-related reinforcement but does not directly compare to the temporal profile of reward-onset DA firing, so cannot fully establish 'same machinery' versus 'overlapping machinery'.",
+    "Uses postsurgical pain model rather than goal-pursuit suffering, so the transfer to a goal-pursuit substrate is via the canonical reward-circuit involvement rather than an exact substrate match."
+  ],
+  "tags": ["relief_completion", "dopamine", "mesolimbic", "nac_shell", "vta", "negative_reinforcement"],
+  "mapping": {
+    "source_claim_statement": "In rats with experimental postsurgical pain, peripheral nerve block (relieving the pain) produces conditioned place preference, activates VTA dopaminergic neurons, and increases dopamine release in the nucleus accumbens. Dopamine antagonism in the NAc blocks the place preference.",
+    "ree_translation": "Pain relief is reinforcing via the same mesolimbic dopaminergic mechanism that mediates reward-based reinforcement. This pins down the cellular substrate that the Andreatta 2012 fMRI/lesion result localises only at the structural level: the relief-completion event in REE can plausibly be modelled as a phasic dopaminergic burst into the same downstream tag-and-release circuit that goal-achievement uses, with 'things that reduce suffering' learned alongside 'things liked' in the same NAc-shell associative substrate.",
+    "mapping_caveat": "Postsurgical pain is acute physical pain, not the long-horizon homeostatic / valence-stream suffering that REE must model. The mechanism is well-established for acute pain offset; whether it extends to the SD-011 dual-stream suffering signal in the REE substrate is an inference, not a tested mapping.",
+    "source_context": "Adult Sprague-Dawley rats with hindpaw incision; conditioned place preference, single-unit VTA recordings, NAc microdialysis, pharmacological dopamine antagonism."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Combines three converging methods (electrophysiology, microdialysis, behavioural pharmacology) in one study, which raises source quality. The well-replicated Navratilova/Porreca line of work since 2012 has reinforced the finding."
+  }
+}

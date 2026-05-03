@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-03T10:37:37.749862Z`
+Generated: `2026-05-03T12:14:13.699349Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -206,6 +206,7 @@ Generated: `2026-05-03T10:37:37.749862Z`
 | `targeted_review_q_039` | [`2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023`](targeted_review_q_039/entries/2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023/record.json) | 3 | [`summary`](targeted_review_q_039/entries/2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023/summary.md) |
 | `targeted_review_q_040` | [`2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021`](targeted_review_q_040/entries/2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021/record.json) | 4 | [`summary`](targeted_review_q_040/entries/2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
+| `targeted_review_relief_completion_mechanism` | [`2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/record.json) | 8 | [`summary`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/summary.md) |
 | `targeted_review_sd003_successor_comparator` | [`2026-04-18_sd003successor_tickle_cancellation_blakemore1998`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/record.json) | 4 | [`summary`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/summary.md) |
 | `targeted_review_sd003_successor_evaluator` | [`2026-04-18_mech_102_model_based_striatal_pe_daw2011`](targeted_review_sd003_successor_evaluator/entries/2026-04-18_mech_102_model_based_striatal_pe_daw2011/record.json) | 5 | [`summary`](targeted_review_sd003_successor_evaluator/entries/2026-04-18_mech_102_model_based_striatal_pe_daw2011/summary.md) |
 | `targeted_review_sd_003` | [`2026-04-27_sd_003_prereq_corollary_discharge_crapse2008`](targeted_review_sd_003/entries/2026-04-27_sd_003_prereq_corollary_discharge_crapse2008/record.json) | 10 | [`summary`](targeted_review_sd_003/entries/2026-04-27_sd_003_prereq_corollary_discharge_crapse2008/summary.md) |

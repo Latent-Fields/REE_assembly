@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relief_completion_mechanism",
+  "entry_id": "2026-05-03_relief_completion_drosophila_relief_learning_tanimoto2004",
+  "timestamp_utc": "2026-05-03T12:03:09Z",
+  "claim_ids_tested": ["MECH-057a", "MECH-091"],
+  "source": {
+    "title": "Experimental psychology: event timing turns punishment to reward",
+    "authors": ["Hiromu Tanimoto", "Martin Heisenberg", "Bertram Gerber"],
+    "year": 2004,
+    "venue": "Nature",
+    "doi": "10.1038/430983a",
+    "url": "https://doi.org/10.1038/430983a"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical demonstration that the same aversive event becomes either an aversive or appetitive reinforcer depending purely on timing relative to the cue. Foundational for the opponent-process reading. Mapping fidelity is high for the principle that relief acts as a reinforcer; lower for the specific cellular machinery, which the paper does not resolve.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Behavioural-only demonstration; does not identify the dopaminergic or other cellular substrate of relief in Drosophila."
+  ],
+  "tags": ["relief_completion", "opponent_process", "mech_057a", "mech_091", "drosophila", "cross_species"],
+  "mapping": {
+    "source_claim_statement": "An electric shock acts as an aversive reinforcer when presented after the cue and as an appetitive reinforcer when presented before the cue (during shock offset).",
+    "ree_translation": "Pain offset is intrinsically reinforcing in a way that is structurally symmetric to reward onset. This licenses Model 1 in REE: a 'relief-completion' event can plausibly fire the same downstream tag-and-release pipeline (MECH-057a beta-gate-drop, MECH-091 phase-reset) that goal-achievement uses, with the polarity of the reinforcement set by which side of the aversive episode the cue falls on.",
+    "mapping_caveat": "Drosophila olfactory conditioning is a long way from human suffering-reduction in a goal-pursuit substrate. The conserved-across-species framing rests on the symmetry of the timing rule, not on a shared circuit.",
+    "source_context": "Drosophila melanogaster olfactory conditioning with electric shock; behavioural readout of approach/avoidance to the conditioned odour."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Nature, well-replicated paradigm, but one-step removed from the mammalian circuitry the REE substrate must instantiate. Confidence weighted toward source_quality + the strong cross-species replication that has accumulated since."
+  }
+}

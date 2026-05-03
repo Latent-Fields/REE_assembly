@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relief_completion_mechanism",
+  "entry_id": "2026-05-03_relief_completion_infralimbic_safety_signal_kreutzmann2020",
+  "timestamp_utc": "2026-05-03T12:03:09Z",
+  "claim_ids_tested": ["MECH-057a", "MECH-094"],
+  "source": {
+    "title": "Infralimbic cortex activity is required for the expression but not the acquisition of conditioned safety",
+    "authors": ["Judith C. Kreutzmann", "Tanja Jovanovic", "Markus Fendt"],
+    "year": 2020,
+    "venue": "Psychopharmacology",
+    "doi": "10.1007/s00213-020-05527-7",
+    "url": "https://doi.org/10.1007/s00213-020-05527-7"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "The IL-required-for-safety-expression result is a real qualifier on the strict reuse-the-reward-circuit reading. It establishes that *predictive* encoding of safety has its own substrate (IL, with PL controlled out), parallel to the ventral-striatal relief-completion pathway. This pushes the recommendation toward Hybrid rather than pure Model 1 at the architectural level: the completion event reuses reward machinery, but the safety-cue prediction has a parallel encoder.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses 'relief-completion event' and 'this cue predicts relief' into a single mechanism, it will lose the distinction between just-now-happened and predicted-from-cue, which the IL/IL-vs-PL evidence here suggests is real.",
+    "The paper does not record from the IL during relief itself (only during conditioned safety expression), so the reverse claim — IL is *not* part of the completion-event circuit — is not strictly tested."
+  ],
+  "tags": ["relief_completion", "safety_signal", "infralimbic", "vmpfc", "parallel_substrate", "hybrid"],
+  "mapping": {
+    "source_claim_statement": "Temporary inactivation of the infralimbic cortex (IL) prior to safety conditioning does not impair acquisition. Inactivation of the IL during safety expression completely blocks startle-attenuation responses to the safety cue. Inactivation of the neighbouring prelimbic cortex (PL) during expression has no effect.",
+    "ree_translation": "Encoding 'this cue predicts the absence/cessation of an aversive event' uses an IL-specific substrate that is dissociable from the ventral-striatal relief-completion pathway and from the adjacent PL. For REE this means a clean Model 1 reading would be inadequate: the completion event itself can reuse goal-achievement machinery, but the *predictive encoding* of safety cues (the analog of 'things liked' but for 'things that predict relief') likely needs its own substrate-equivalent rather than collapsing into the same store.",
+    "mapping_caveat": "Conditioned safety here is operationalised as startle attenuation to a CS+ that follows non-occurrence of shock — closer to threat-absence than to relief at threat-termination per se. The Andreatta 2017 entry (separate from this slate) flags that threat-absence and threat-termination dissociate behaviourally. So the IL result here is most directly relevant to the threat-absence (safety-cue-prediction) version of the architectural question.",
+    "source_context": "Adult male and female Sprague-Dawley rats; explicitly-unpaired CS-/US safety conditioning; IL or PL muscimol inactivation; startle response readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Well-controlled (PL comparison, both sexes, acquisition-vs-expression dissociation). Mapping fidelity moderate because conditioned safety is one specific operationalisation of safety-signal encoding."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relief_completion_mechanism",
+  "entry_id": "2026-05-03_relief_completion_dopamine_motivation_review_brombergmartin2010",
+  "timestamp_utc": "2026-05-03T12:03:09Z",
+  "claim_ids_tested": ["MECH-057a", "MECH-091"],
+  "source": {
+    "title": "Dopamine in motivational control: rewarding, aversive, and alerting",
+    "authors": ["Ethan S. Bromberg-Martin", "Masayuki Matsumoto", "Okihide Hikosaka"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.11.022",
+    "url": "https://doi.org/10.1016/j.neuron.2010.11.022"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.79,
+  "confidence_rationale": "Influential synthesis arguing for at least two anatomically and functionally distinct dopamine populations: a value-coding type (excited by reward, inhibited by aversive, naturally suited to reward learning) and a salience-coding type (excited by both reward and aversive, more involved in orienting and motivational arousal). High source quality and central to current understanding of DA heterogeneity. Mixed direction with respect to the M1/M2 question because it qualifies the simple 'relief uses the reward DA' reading: only one DA subtype fits the M1 story cleanly, the other does something different.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses all dopaminergic modulation into a single channel, it will mis-attribute salience-driven phasic firing to reward learning and end up with a Brischoux/Matsumoto-style failure mode where avoidance and reward signals contaminate each other.",
+    "The review does not resolve whether the value-coding population alone is sufficient to support relief learning, or whether the salience-coding population also contributes."
+  ],
+  "tags": ["relief_completion", "dopamine_heterogeneity", "value_vs_salience", "vta", "snc"],
+  "mapping": {
+    "source_claim_statement": "Midbrain dopamine neurons fall into at least two functionally and anatomically distinct types. Value-coding DA neurons are excited by reward and inhibited by aversive events; salience-coding DA neurons are excited by both reward and aversive events. A third alerting signal modulates both types.",
+    "ree_translation": "The 'relief uses the reward circuit' reading holds at the level of the ventral-striatal target (per Andreatta 2012, Navratilova 2012), but the dopaminergic source is heterogeneous. For an REE substrate that wants to model the dopaminergic teaching signal honestly, this means treating relief-completion as the *value-coding* DA population (which is also what reward-onset uses), not as a unitary 'DA pulse'. Salience-coding DA serves a different function — orienting and arousal — and should not be conflated with reinforcement.",
+    "mapping_caveat": "The review argues for the heterogeneity but the value-vs-salience boundary is not perfectly clean in subsequent work. Some DA populations show mixed properties. REE should treat 'value-coding' as a useful abstraction rather than a hard anatomical category.",
+    "source_context": "Synthesis of monkey single-unit recording, rodent electrophysiology, and human imaging across reward, aversive, and alerting paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Highly cited Neuron review whose framework still organises the field. Mapping fidelity moderated because the review is theoretical / synthetic rather than a direct test."
+  }
+}

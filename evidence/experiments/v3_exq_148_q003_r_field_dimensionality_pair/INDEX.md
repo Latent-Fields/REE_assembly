@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_148_q003_r_field_dimensionality_pair
 
-Generated: `2026-05-03T10:37:37.749862Z`
+Generated: `2026-05-03T12:14:13.699349Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_193_q012_control_constraints_pair
 
-Generated: `2026-05-03T10:37:37.749862Z`
+Generated: `2026-05-03T12:14:13.699349Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

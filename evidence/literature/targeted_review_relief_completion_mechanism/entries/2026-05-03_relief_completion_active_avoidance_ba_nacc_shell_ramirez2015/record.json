@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relief_completion_mechanism",
+  "entry_id": "2026-05-03_relief_completion_active_avoidance_ba_nacc_shell_ramirez2015",
+  "timestamp_utc": "2026-05-03T12:03:09Z",
+  "claim_ids_tested": ["MECH-057a", "MECH-091"],
+  "source": {
+    "title": "Active avoidance requires a serial basal amygdala to nucleus accumbens shell circuit",
+    "authors": ["Franchesca Ramirez", "Justin M. Moscarello", "Joseph E. LeDoux", "Robert M. Sears"],
+    "year": 2015,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1331-14.2015",
+    "url": "https://doi.org/10.1523/JNEUROSCI.1331-14.2015"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Combines lesion-equivalent (chemogenetic silencing) with circuit-disconnection logic to show that active avoidance behaviour specifically requires the basal-amygdala-to-NAc-shell projection, with the NAc-core control matched. The architectural implication for REE is direct: avoidance termination uses reward-circuit territory (NAc shell) not aversive-circuit territory (CeA), aligning with Model 1.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Identifies the BA-to-NAcSh circuit as necessary for active avoidance behaviour but does not directly record dopamine release or the precise timing of the relief signal at avoidance termination.",
+    "Active avoidance is somewhat narrower than the general 'suffering-reduction completion' the REE architecture wants to model; the paradigm tests behaviour in response to a discrete shock-paired CS rather than dynamic suffering-state changes."
+  ],
+  "tags": ["relief_completion", "active_avoidance", "basal_amygdala", "nac_shell", "ledoux"],
+  "mapping": {
+    "source_claim_statement": "Active avoidance behaviour requires the projection from the basal amygdala to the nucleus accumbens shell. Silencing the NAc shell (but not the NAc core) disrupts avoidance. Disconnecting the BA from the NAcSh disrupts avoidance to the same degree as bilateral NAcSh inactivation.",
+    "ree_translation": "When animals execute behaviours that terminate aversive episodes, the controlling circuit routes through reward-circuit territory (BA -> NAc shell), not exclusively through the aversive-circuit territory (CeA, PAG) that handles freezing and Pavlovian fear reactions. This is consistent with the Andreatta 2012 / Navratilova 2012 picture of the relief-completion event sitting on the reward-system substrate. For REE, it means the action-policy machinery that drives behaviour-to-reduce-suffering shares wiring with the action-policy machinery that drives behaviour-toward-goals.",
+    "mapping_caveat": "Active avoidance is the *acquisition and expression of behaviour* that terminates aversive episodes, not the relief-completion event itself. The paper localises the policy circuit; the *teaching signal* at termination is inferred from convergent literature, not measured here.",
+    "source_context": "Adult Sprague-Dawley rats; two-way signaled active avoidance with auditory CS and mild footshock US; c-Fos mapping plus pharmacological/chemogenetic silencing."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "J Neurosci, well-controlled (NAc-core comparison), and the disconnection logic is a strong test of pathway necessity. Mapping is direct because the architectural question is about whether avoidance termination uses reward-circuit territory."
+  }
+}
