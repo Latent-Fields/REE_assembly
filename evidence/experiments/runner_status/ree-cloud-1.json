@@ -1,67 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 108924,
-  "runner_started_at": "2026-04-28T17:14:05.158632+00:00",
-  "last_updated": "2026-04-28T17:14:10.065810+00:00",
+  "runner_pid": 670,
+  "runner_started_at": "2026-05-03T13:24:09.338046+00:00",
+  "last_updated": "2026-05-03T13:24:16.110084+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-495",
-      "backlog_id": "",
-      "claim_id": "MECH-163",
-      "title": "MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-490b",
-      "backlog_id": "",
-      "claim_id": "Q-040",
-      "title": "MECH-269b VsRolloutGate substrate-readiness probe (Q-040a precondition)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-498",
-      "backlog_id": "",
-      "claim_id": "SD-034",
-      "title": "OCD Layer 1: closure-threshold sweep on V3 monostrategy (SD-034 parameter diagnostic)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418f",
-      "backlog_id": "",
-      "claim_id": "SD-016",
-      "title": "SD-016 attention-uniformity diagnostic probe (EXQ-418e follow-up)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418g",
-      "backlog_id": "",
-      "claim_id": "SD-016",
-      "title": "SD-016 Path 4 query-selectivity-first 4-arm (learned temperature + attention-entropy loss)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -2520,6 +2464,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_106_harm_obs_a_temporal_persistence/v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 3.2
+    },
+    {
+      "queue_id": "V3-EXQ-495",
+      "backlog_id": "",
+      "claim_id": "MECH-163",
+      "title": "MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15",
+      "started_at": "2026-04-28T17:14:14.278172+00:00",
+      "completed_at": "2026-04-28T21:13:57.164363+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 14382.9
+    },
+    {
+      "queue_id": "V3-EXQ-513",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 multi-resource heterogeneity substrate readiness diagnostic",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness] outcome=PASS elapsed=3.9s",
+      "started_at": "2026-05-03T13:24:10.921843+00:00",
+      "completed_at": "2026-05-03T13:24:16.109843+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness/v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness_20260503T132415Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 5.2
     }
   ]
 }
