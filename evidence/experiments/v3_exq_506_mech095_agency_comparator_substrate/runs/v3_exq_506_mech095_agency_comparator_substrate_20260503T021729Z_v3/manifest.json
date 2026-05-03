@@ -1,0 +1,48 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_506_mech095_agency_comparator_substrate",
+  "run_id": "v3_exq_506_mech095_agency_comparator_substrate_20260503T021729Z_v3",
+  "status": "UNKNOWN",
+  "timestamp_utc": "2026-05-03T02:17:29.091917Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-095"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-095": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-05-03 governance walk: substrate-ceiling CONFIRMATION. C4-only-PASS (agent-caused vs env-correlated separation) while C1/C2/C3 fail is the exact substrate-ceiling signature predicted by MECH-095's EQN annotation (2026-05-02). Reclassified non_contributory: this is substrate-level signal, not negative evidence against MECH-095. Per Phase 3 wave 2, MECH-095 (epistemic_category=substrate_ceiling) suppresses promote/demote regardless. Excluded from claim scoring.",
+  "scoring_excluded": "substrate_ceiling_confirmation"
+}

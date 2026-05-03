@@ -65,12 +65,12 @@
     },
     "ARC-026": {
       "actor": "user",
-      "decision_needed": "Conflict resolution before promotion",
+      "decision_needed": "Promotion review: candidate -> provisional",
       "decision_status": "applied",
-      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
-      "timestamp_utc": "2026-03-29T21:16:41.111675Z"
+      "rationale": "Two PASS pillars on different methodologies: EXQ-232 (2026-04-05, phased E3 supervision, 4/4 criteria 3/3 seeds) + EXQ-507 (2026-05-03, capacity sweep world_dim {16,32,64} with random-action policy, weak-reading 'no crowding-out'). exp_conf=0.725, lit_conf=0.802, confirmed_established quadrant, conflict_ratio=0.286 below provisional gate. Strong reading (genuinely expanded long-horizon care) remains substrate-pending. Flips registry candidate -> provisional.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote now (two PASS pillars on different methodologies)",
+      "timestamp_utc": "2026-05-03T02:50:00Z"
     },
     "ARC-030": {
       "actor": "user",
@@ -279,6 +279,15 @@
       "selected_option": "Hold at candidate -- investigate committed sequence generation first",
       "timestamp_utc": "2026-03-29T21:15:31.848348Z"
     },
+    "MECH-057b": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "implementation_phase=v3, no V3 experimental runs yet. Standard V3-pending hold. No status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-03T02:50:00Z"
+    },
     "MECH-058": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -434,12 +443,12 @@
     },
     "MECH-093": {
       "actor": "user",
-      "decision_needed": "Conflict resolution before promotion",
+      "decision_needed": "Promotion review: candidate -> provisional",
       "decision_status": "applied",
-      "rationale": "User confirmed hold for conflict resolution. z_beta modulates E3 heartbeat frequency \u2014 conflicting V3 evidence. Hold at candidate until targeted experiment resolves.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Hold at candidate \u2014 resolve conflict first",
-      "timestamp_utc": "2026-03-19T19:52:00Z"
+      "rationale": "EXQ-505 (2026-05-03) substrate-level 2x2 factorial isolating z_beta -> e3_steps_per_tick channel from precision/salience confound passed cleanly via direct MultiRateClock drive. Resolves the EXQ-097 encoding-artifact conflict (which was a z_beta-encoding issue, not a channel-function issue). Three PASS pillars: 097b step-level Pearson r=0.964 + 396b cross-experiment r(hazard_harm, var_diff)=0.891 + 505 substrate-level dissociation. exp_conf=0.746, lit_conf=0.821, confirmed_established. Flips registry candidate -> provisional.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote now (substrate-level dissociation resolves prior conflict)",
+      "timestamp_utc": "2026-05-03T02:50:00Z"
     },
     "MECH-094": {
       "actor": "user",
@@ -737,6 +746,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107841Z"
+    },
+    "MECH-263": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "v3_pending flag set. 4 supports, no V3 runs against. Standard V3-pending hold. No status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-03T02:50:00Z"
     },
     "MECH-264": {
       "actor": "governance-2026-04-25T15:15",
@@ -1089,6 +1107,15 @@
       "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
       "timestamp_utc": "2026-04-05T11:48:38.245Z"
     },
+    "Q-037": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "implementation_phase=v3, no V3 experimental runs yet. epistemic_category=substrate_conditional. Lit-pull 2026-05-02 raised lit_conf to 0.823 but no exp evidence yet. Standard V3-pending hold. No status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-03T02:50:00Z"
+    },
     "SD-008": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -1181,12 +1208,12 @@
     },
     "SD-023": {
       "actor": "user",
-      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Hold at candidate despite 0.747 confidence. implementation_phase=v3 triggers V3-pending gate; evidence_quality_note flags '1:1 experimental conflict -- adjudication pending'. EXQ-332a (indexed 2026-04-18) non_contributory for SD-023 (FAIL), reinforcing the open adjudication. Await SD-023 implementation-gap fix and confirming run before promoting.",
-      "recommendation": "promote_to_provisional",
+      "rationale": "No new SD-023 evidence this cycle. exp_conf=0.293, conflict_ratio=0.40, only 1 indexed exp entry. Re-affirming the 2026-04-18 hold pending implementation-gap fix + confirming run. No status change.",
+      "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Hold until one additional confirming run (better robustness, slower progress)",
-      "timestamp_utc": "2026-04-18T15:29:57.324309Z"
+      "timestamp_utc": "2026-05-03T02:50:00Z"
     },
     "SD-029": {
       "actor": "governance-2026-04-25T15:15",
@@ -1279,7 +1306,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-02T10:59:38.813391Z",
+  "generated_at_utc": "2026-05-03T02:58:46.107770Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

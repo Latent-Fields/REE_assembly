@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-02T18:06:15Z",
+  "last_review_utc": "2026-05-03T02:50:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2196,7 +2196,13 @@
     "v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3",
     "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
     "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3",
-    "v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3"
+    "v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3",
+    "v3_exq_490e_mech295_seeding_strengthening_20260430T220232Z_v3",
+    "v3_exq_504_mech153_supervised_context_labeling_3arm_20260503T021659Z_v3",
+    "v3_exq_505_mech093_zbeta_precision_dissociation_20260503T021711Z_v3",
+    "v3_exq_506_mech095_agency_comparator_substrate_20260503T021729Z_v3",
+    "v3_exq_507_arc026_capacity_scaling_20260503T014741Z_v3",
+    "v3_exq_508_arc033_e2_harm_s_body_damage_ablation_20260503T021914Z_v3"
   ],
   "discussion_notes": {
     "2026-04-27T14:11Z_governance": {
@@ -2271,6 +2277,18 @@
         "V3-EXQ-008",
         "V3-ONBOARD-smoke-EWIN-PC",
         "V3-ONBOARD-smoke-ree-cloud-1"
+      ]
+    },
+    "2026-05-03T02:50Z_governance": {
+      "session": "governance-2026-05-03T0238Z",
+      "summary": "Walked 6 indexed pending: 1 carryover FAIL (V3-EXQ-490e Q-040 floor-relaxation, reclassified diagnostic_probe / non_contributory; routes to 490g instrumentation or 490d cue-gain sweep) and 5 from tonight's V3-EXQ-504..508 cohort. Net cohort outcome: 2 PASS / 3 FAIL on raw scoring, but post-review classification settled at: (a) V3-EXQ-505 MECH-093 PASS supports -- substrate-level 2x2 z_beta x salience dissociation passed cleanly, resolved EXQ-097 encoding-artifact conflict, drove MECH-093 candidate -> provisional; (b) V3-EXQ-507 ARC-026 PASS supports -- capacity-sweep weak-reading replication of EXQ-232, drove ARC-026 candidate -> provisional; (c) V3-EXQ-504 MECH-153 reclassified inconclusive -- soft-contrastive arm collapsed harm_r2 to -3000+ (training instability, not claim invalidation); (d) V3-EXQ-506 MECH-095 reclassified non_contributory / substrate_ceiling_confirmation -- C4-only-PASS pattern matches the substrate-ceiling signature already flagged in MECH-095's EQN; (e) V3-EXQ-508 ARC-033 left at weakens (borderline FAIL, near-threshold; ARC-033 already provisional with 55 entries, will not flip status; ARC-058 lit-pull successor flagged). Promotion/demotion agenda: ARC-026 candidate -> provisional, MECH-093 candidate -> provisional, SD-023 hold continued, MECH-057b/MECH-263/Q-037 V3-pending hold continued. pending_user dropped 5 -> 0. 8 manifest files edited (4 flat + 4 per-run). 6 decision_log entries appended. Commits + pushes pending.",
+      "ids_marked": [
+        "v3_exq_490e_mech295_seeding_strengthening_20260430T220232Z_v3",
+        "v3_exq_504_mech153_supervised_context_labeling_3arm_20260503T021659Z_v3",
+        "v3_exq_505_mech093_zbeta_precision_dissociation_20260503T021711Z_v3",
+        "v3_exq_506_mech095_agency_comparator_substrate_20260503T021729Z_v3",
+        "v3_exq_507_arc026_capacity_scaling_20260503T014741Z_v3",
+        "v3_exq_508_arc033_e2_harm_s_body_damage_ablation_20260503T021914Z_v3"
       ]
     }
   }

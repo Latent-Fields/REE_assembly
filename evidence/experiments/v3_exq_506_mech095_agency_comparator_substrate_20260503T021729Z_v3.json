@@ -9,9 +9,9 @@
     "MECH-095"
   ],
   "result": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-095": "weakens"
+    "MECH-095": "non_contributory"
   },
   "criteria": {
     "n_seeds": 3,
@@ -92,5 +92,7 @@
     }
   ],
   "elapsed_seconds": 8.630534887313843,
-  "notes": "Substrate-level test of E2_harm_s as agency-detection comparator (MECH-095 V3 instantiation via ARC-033). Trains a fresh E2HarmSForward on synthetic action-controlled transitions with SD-013 interventional loss enabled, then measures the counterfactual_forward gap on four held-out conditions: agent-caused (action drives outcome), env-caused (action irrelevant), agent-collateral (action label retained but env-driven), env-correlated (random action, env-driven). PASS supports MECH-095 substrate. C4 alone PASSing while C1-C3 fail is the substrate-ceiling signature flagged in the recent MECH-095 evidence_quality_note."
+  "notes": "Substrate-level test of E2_harm_s as agency-detection comparator (MECH-095 V3 instantiation via ARC-033). Trains a fresh E2HarmSForward on synthetic action-controlled transitions with SD-013 interventional loss enabled, then measures the counterfactual_forward gap on four held-out conditions: agent-caused (action drives outcome), env-caused (action irrelevant), agent-collateral (action label retained but env-driven), env-correlated (random action, env-driven). PASS supports MECH-095 substrate. C4 alone PASSing while C1-C3 fail is the substrate-ceiling signature flagged in the recent MECH-095 evidence_quality_note.",
+  "evidence_direction_note": "2026-05-03 governance walk: substrate-ceiling CONFIRMATION. C4-only-PASS (agent-caused vs env-correlated separation) while C1/C2/C3 fail is the exact substrate-ceiling signature predicted by MECH-095's EQN annotation (2026-05-02). Reclassified non_contributory: this is substrate-level signal, not negative evidence against MECH-095. Per Phase 3 wave 2, MECH-095 (epistemic_category=substrate_ceiling) suppresses promote/demote regardless. Excluded from claim scoring.",
+  "scoring_excluded": "substrate_ceiling_confirmation"
 }

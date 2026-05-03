@@ -1,0 +1,47 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_504_mech153_supervised_context_labeling_3arm",
+  "run_id": "v3_exq_504_mech153_supervised_context_labeling_3arm_20260503T021659Z_v3",
+  "status": "UNKNOWN",
+  "timestamp_utc": "2026-05-03T02:16:59.897013Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-153"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "MECH-153": "inconclusive"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-05-03 governance walk: reclassified inconclusive. C1 PASS replicates the known unsupervised-degeneracy baseline (cosine ~ 1.0). C2/C3/C4 FAIL but the soft-contrastive arm produced catastrophic harm_r2 collapse (-7163, -1810, -3000 across seeds) consistent with contrastive loss disrupting z_world updates rather than failing to differentiate context. Per existing EQN, supervised-training-prerequisite is upstream blocker; this run does not adjudicate the strong reading. Routes to a successor that decouples contrastive loss from z_world joint training."
+}

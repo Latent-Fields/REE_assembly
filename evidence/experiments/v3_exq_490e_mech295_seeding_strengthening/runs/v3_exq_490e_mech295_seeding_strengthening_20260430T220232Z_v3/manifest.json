@@ -23,9 +23,9 @@
     "Q-040"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-040": "weakens"
+    "Q-040": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-05-03 governance walk: reclassified as diagnostic_probe per manifest's own note ('this is a config probe, not a standalone MECH-295 weak-reading test'). 490e exhausts the floor-relaxation branch (C2/C3/C4 all FAIL with zero cue fires). Successor branches: EXQ-490g (instrumentation) / EXQ-490d (cue-gain sweep). Excluded from Q-040 scoring.",
+  "scoring_excluded": "diagnostic_probe"
 }

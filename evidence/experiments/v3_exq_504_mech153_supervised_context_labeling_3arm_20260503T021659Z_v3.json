@@ -9,9 +9,9 @@
     "MECH-153"
   ],
   "result": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "inconclusive",
   "evidence_direction_per_claim": {
-    "MECH-153": "weakens"
+    "MECH-153": "inconclusive"
   },
   "criteria": {
     "n_seeds": 5,
@@ -215,5 +215,6 @@
     }
   ],
   "elapsed_seconds": 1749.5665097236633,
-  "notes": "Three-arm extension of EXQ-239 (which ran the no-loss vs hard-CE pair). Adds a soft contrastive arm whose pair similarity targets exp(-|haz_dist|/T), providing continuous-hazard supervision without discrete tertile binning. PASS supports MECH-153 strong reading. FAIL with C1 only PASSing -> upstream z_world capacity is the blocker. FAIL with C1+C2 PASSing but C3/C4 failing -> claim narrows to discrete-label-required."
+  "notes": "Three-arm extension of EXQ-239 (which ran the no-loss vs hard-CE pair). Adds a soft contrastive arm whose pair similarity targets exp(-|haz_dist|/T), providing continuous-hazard supervision without discrete tertile binning. PASS supports MECH-153 strong reading. FAIL with C1 only PASSing -> upstream z_world capacity is the blocker. FAIL with C1+C2 PASSing but C3/C4 failing -> claim narrows to discrete-label-required.",
+  "evidence_direction_note": "2026-05-03 governance walk: reclassified inconclusive. C1 PASS replicates the known unsupervised-degeneracy baseline (cosine ~ 1.0). C2/C3/C4 FAIL but the soft-contrastive arm produced catastrophic harm_r2 collapse (-7163, -1810, -3000 across seeds) consistent with contrastive loss disrupting z_world updates rather than failing to differentiate context. Per existing EQN, supervised-training-prerequisite is upstream blocker; this run does not adjudicate the strong reading. Routes to a successor that decouples contrastive loss from z_world joint training."
 }

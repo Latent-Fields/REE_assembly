@@ -3391,7 +3391,7 @@
   claim_type: architecture_hypothesis
   subject: ethics.love_expands_under_intelligence
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   depends_on:
     - ARC-024
@@ -3405,6 +3405,13 @@
     phased E3 harm supervision from ep100). approach_slope consistently exceeds contact_slope
     at peak in all seeds. gap_at_peak=0.924-1.000. Resolves EXQ-033 depth-calibration
     artifact. Strong evidence: approach gradient expands faster than contact under training.
+    EXQ-507 PASS (2026-05-03): Independent capacity-sweep replication of the weak reading.
+    world_dim sweep {16, 32, 64} with random-action policy isolating encoded z_world
+    capacity from policy improvement. Confirms no-crowding-out across capacity range.
+    Two PASS pillars on different methodologies (phased E3 supervision vs capacity sweep);
+    conflict_ratio=0.286 below provisional gate. Promoted candidate -> provisional
+    2026-05-03. Strong reading (genuinely expanded long-horizon care) remains
+    substrate-pending.
   notes: >
     Behavioral/capability-expansion prediction split from ARC-024 (2026-03-19).
     The philosophical/foundational layer (death/love as asymptotic limits) is ARC-024,
@@ -4971,7 +4978,7 @@
   claim_type: mechanism_hypothesis
   subject: affective.z_beta_e3_update_rate_modulation
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   claim_level: functional
   depends_on:
@@ -5020,6 +5027,14 @@
     r(hazard_harm, var_diff)=0.891 across hazard_harm sweep (C1+C2 PASS). Confirms
     hazard_harm independently scales variance regardless of ARC-016 calibration
     issue. ARC-016 non_contributory in same run; MECH-093 retained as supports.
+    EXQ-505 PASS (2026-05-03): Substrate-level 2x2 factorial isolating MECH-093's
+    z_beta -> e3_steps_per_tick channel from any precision/salience confound.
+    Drives MultiRateClock directly via update_e3_rate_from_beta and mark_salient.
+    Resolves the EXQ-097 conflict by separating substrate-channel function (this
+    test) from in-env z_beta encoding (the EXQ-097 issue). Cleanest possible PASS
+    for the rate-modulation channel claim. Promoted candidate -> provisional
+    2026-05-03 on three PASS pillars (097b step-level + 396b cross-experiment +
+    505 substrate-level dissociation).
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095

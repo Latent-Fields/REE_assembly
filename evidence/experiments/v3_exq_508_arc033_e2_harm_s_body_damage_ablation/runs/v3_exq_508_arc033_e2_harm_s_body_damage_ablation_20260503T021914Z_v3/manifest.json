@@ -1,0 +1,47 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_508_arc033_e2_harm_s_body_damage_ablation",
+  "run_id": "v3_exq_508_arc033_e2_harm_s_body_damage_ablation_20260503T021914Z_v3",
+  "status": "UNKNOWN",
+  "timestamp_utc": "2026-05-03T02:19:14.211489Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-033"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-033": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-05-03 governance walk: kept evidence_direction=weakens. Borderline FAIL with C1+C2 PASS and C3 tight at threshold. Absolute discrimination is real; relative gap is small. ARC-033 already provisional with 55 entries; this adds 1 weakens to the strong-reading ablation, will not flip status. Successor direction: ARC-058 lit-pull (Wager 2013, Hofbauer 2001) on somatic/affective dissociation rather than another body-damage ablation."
+}
