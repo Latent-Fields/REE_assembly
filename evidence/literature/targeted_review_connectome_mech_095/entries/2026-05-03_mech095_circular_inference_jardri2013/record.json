@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_circular_inference_jardri2013",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095", "SD-047"],
+  "source": {
+    "title": "Circular inferences in schizophrenia",
+    "authors": ["Renaud Jardri", "Sophie Deneve"],
+    "year": 2013,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awt257",
+    "pmid": "24065721"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Quantitative computational account in Brain showing that excitation/inhibition imbalance in hierarchical Bayesian inference produces 'circular belief propagation': bottom-up sensory information and top-down predictions reverberate, so each is counted multiple times. The mechanism explains -- in the same model -- (a) erroneous percepts (hallucinations), (b) overconfidence in probabilistic choices, (c) learning of unshakable causal relationships between unrelated events, AND (d) a paradoxical immunity to perceptual illusions. The bidirectional consequences from a single substrate-level mechanism is exactly the diagnostic-signature principle for the lit-pull. High source quality (Brain), high mapping fidelity for the architectural principle.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Circular inference predicts that the same substrate pathology should produce both hallucinations and immunity to certain illusions. If REE implements analogous E/I imbalance and produces hallucinations but does NOT show paradoxical illusion immunity, the circular-inference reading would be partial; if the signature is bidirectional, it supports the architectural principle. SD-047 substrate enrichment should not eliminate this kind of bidirectional consequence -- it operates at a different architectural level."
+  ],
+  "tags": ["mech_095", "sd_047", "circular_inference", "schizophrenia", "ei_balance", "bidirectional", "predictive_coding", "jardri", "deneve"],
+  "mapping": {
+    "source_claim_statement": "Excitation/inhibition imbalance in hierarchical neural networks implementing Bayesian inference produces 'circular belief propagation', a pathological form of causal inference where bottom-up sensory information and top-down predictions reverberate -- prior beliefs are misinterpreted as sensory observations and vice versa. A single E/I imbalance pathology produces (a) erroneous percepts/hallucinations, (b) overconfidence on probabilistic choices, (c) learning of unshakable causal relationships, and (d) paradoxical immunity to perceptual illusions. These four phenomena -- including the bidirectional case (b) and (d) -- are unified consequences of the same substrate mechanism.",
+    "ree_translation": "Jardri & Deneve provide a computational worked example of the diagnostic-signature principle: one substrate pathology, multiple opposite-direction surface phenomena. For MECH-095 the architectural reading is constructive -- if the agency-detection comparator is part of a hierarchical inference circuit with its own E/I balance constraint, comparator failures should manifest in opposite directions across paradigms (over-attribution in some, under-attribution in others, immunity-to-attribution in still others). For SD-047 the implication is that substrate-side enrichment may not by itself fix all of the comparator-failure-pattern; if the failure has an E/I-like origin, substrate enrichment without precision recalibration may produce mixed results.",
+    "mapping_caveat": "Jardri & Deneve is a computational modeling paper rather than direct empirical demonstration. The circular-inference framework is well-cited but contested -- alternative computational accounts of schizophrenia exist (overly precise priors, aberrant salience, all-or-nothing updating per Nassar 2021). The mapping into REE's specific architecture is principled but draws an analogy that may not be precise.",
+    "source_context": "Computational modeling paper in Brain. Hierarchical Bayesian network simulations + theoretical analysis of E/I imbalance consequences for causal inference."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Brain venue, well-cited computational psychiatry framework. Mapping fidelity high for the architectural principle (single substrate pathology -> multiple opposite-direction surface phenomena). Transfer risk moderate because circular-inference framework competes with other computational psychiatry accounts; specific E/I imbalance mapping into REE V3 is not literal."
+  }
+}

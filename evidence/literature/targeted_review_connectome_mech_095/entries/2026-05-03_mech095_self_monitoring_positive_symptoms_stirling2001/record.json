@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_self_monitoring_positive_symptoms_stirling2001",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095"],
+  "source": {
+    "title": "Self-monitoring dysfunction and the positive symptoms of schizophrenia",
+    "authors": ["J. D. Stirling", "J. S. Hellewell", "D. Ndlovu"],
+    "year": 2001,
+    "venue": "Psychopathology",
+    "doi": "10.1159/000049307",
+    "pmid": "11549930"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "N=40 schizophrenia patients (DSM-III-R) vs N=36 controls. Self-monitoring battery showed patient impairment on two tests, surviving covariate adjustment for IQ, attention, recognition memory. Among patients, self-monitoring performance correlated with severity and extent of positive symptoms. Replication-class evidence for the Frith account; clean covariate adjustment improves the inference. Source quality solid, mapping fidelity high (the paradigms operationalise self-monitoring directly), modality risk moderate (different self-monitoring tasks vs MECH-095's hazard-field counterfactual gap, but the principle is identical).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE produces a working MECH-095 but downstream consumers of MECH-095 output fail to manifest the self-monitoring -> positive-symptom-severity gradient when challenged, the architectural reading would be that MECH-095 is intact but its downstream wiring (to E3 commitment gates, RC-loop checks, etc.) is broken. The Stirling correlation provides a quantitative target for healthy-vs-impaired performance comparison."
+  ],
+  "tags": ["mech_095", "self_monitoring", "positive_symptoms", "schizophrenia", "replication", "stirling"],
+  "mapping": {
+    "source_claim_statement": "In a clinical-vs-control study (N=40 patients DSM-III-R schizophrenia vs N=36 controls), patients showed impaired performance on two self-monitoring tasks. Impairment was preserved after covariate adjustment for IQ, attention, and recognition memory. Self-monitoring performance among patients was correlated with the severity and extent of positive symptoms (delusions, hallucinations, passivity).",
+    "ree_translation": "Stirling et al. provide replication-class behavioral evidence for the same self-monitoring breakdown that Blakemore 2000 documented at the perceptual level. For MECH-095 the implication is that the comparator-failure account is well-replicated and survives covariate adjustment for general cognitive function -- i.e. the impairment is specific to self-monitoring rather than a global cognitive deficit. The dose-response gradient (self-monitoring performance correlates with positive-symptom severity) is the kind of quantitative signature MECH-095 should reproduce: parametric variation in MECH-095 competence should produce parametric variation in downstream symptom-analog metrics.",
+    "mapping_caveat": "Stirling's tasks are self-monitoring batteries (likely including action-monitoring and verbal-self-monitoring tests; see full text), not the specific tactile attenuation paradigm of Blakemore 2000. The mapping into MECH-095's hazard-field comparator output is principled but indirect. Effect sizes from this 2001 N=40 study are also smaller than would be required for a definitive between-cohort claim today.",
+    "source_context": "Schizophrenia patients (N=40, DSM-III-R) compared with non-patient controls (N=36). Self-monitoring battery + cognitive function measures (IQ, attention, recognition memory). Symptom severity rated from clinical interview."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Source quality moderate (Psychopathology, modest sample size by current standards, DSM-III-R era). Mapping fidelity good because the variable measured (self-monitoring performance correlating with positive symptom severity) is structurally what MECH-095 should reproduce. Transfer risk moderate due to task modality difference."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_neurophenomenology_critique_gallagher2004",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095"],
+  "source": {
+    "title": "Neurocognitive models of schizophrenia: a neurophenomenological critique",
+    "authors": ["Shaun Gallagher"],
+    "year": 2004,
+    "venue": "Psychopathology",
+    "doi": "10.1159/000077014",
+    "pmid": "14988645"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "Philosophy-of-mind / phenomenology critique of Frith 1992 arguing that (a) top-down explanations for loss of sense of agency are inadequate and (b) even if delusions of control might be explained by motor-control comparator failure, the same model cannot explain thought insertion -- thoughts have no efference copy. Important falsifying voice for the strong reading that a single MECH-095-style comparator handles all passivity phenomena. For REE this maps onto an architectural distinction: action-passivity (where MECH-095 is plausibly load-bearing) vs thought-passivity (which may need a different mechanism entirely). Source quality solid for its category (peer-reviewed philosophical critique in Psychopathology); mapping fidelity moderate; transfer risk elevated because the alternative Gallagher proposes is phenomenological rather than computational and does not directly translate to REE substrate work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE attempts to handle thought insertion with the same MECH-095 comparator that handles action-attribution, Gallagher's critique predicts the model will fail. The ai-cognitive-failure-taxonomy agency_attribution_failure entry already absorbs this constraint by distinguishing action vs thought passivity sub-clusters; if implementation glosses that distinction, this is the falsifying entry."
+  ],
+  "tags": ["mech_095", "agency", "thought_insertion", "phenomenology", "comparator_critique", "gallagher", "weakens"],
+  "mapping": {
+    "source_claim_statement": "Frith's 1992 metarepresentational self-monitoring account of positive schizophrenia symptoms is inadequate. Top-down explanations for loss of sense of agency miss the phenomenological structure of the experience. Even if delusions of control map onto motor-control comparator failure (efference copy + feedback comparison), the same model cannot explain thought insertion: thoughts do not have an efference copy in the motor-control sense, so the comparator architecture has nothing to compare. A neurophenomenological account of pre-reflective self-awareness is needed instead.",
+    "ree_translation": "Gallagher's critique constrains MECH-095's architectural scope. MECH-095 in REE is plausibly load-bearing for action-passivity (counterfactual_forward gap on E2_harm_s -- a motor-comparator-shaped quantity). For thought-passivity (thought insertion, withdrawal, broadcasting), the analog architecture in REE is less obvious: there is no efference-copy equivalent for an internally generated thought stream that hasn't been emitted as action. The agency_attribution_failure taxonomy entry already distinguishes these as separate sub-clusters; the architectural reading is that thought-passivity may require a different mechanism than MECH-095 -- possibly leveraging the hypothesis tag (MECH-094) and RC loop pre-commit channel rather than the agency-detection comparator.",
+    "mapping_caveat": "Gallagher's positive proposal -- a neurophenomenological account of pre-reflective self-awareness -- is philosophical rather than computational. It diagnoses the limit of the comparator account but does not provide a computational alternative that REE can directly implement. The weakens direction reflects the diagnostic value (identifying that MECH-095 alone is not enough) rather than constructive critique that points to a specific architectural fix.",
+    "source_context": "Theoretical / philosophical critique article in Psychopathology. No empirical data; philosophical analysis of Frith 1992 + adjacent neurocognitive accounts of schizophrenia."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality solid for its category (philosophical critique, peer-reviewed). Mapping fidelity moderate -- the critique identifies a real architectural limit (comparator alone cannot handle thought insertion) but the alternative is non-computational. Transfer risk elevated because Gallagher's positive proposal does not translate to a REE substrate intervention."
+  }
+}

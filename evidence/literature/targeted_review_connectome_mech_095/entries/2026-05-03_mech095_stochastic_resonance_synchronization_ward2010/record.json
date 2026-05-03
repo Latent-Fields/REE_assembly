@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_stochastic_resonance_synchronization_ward2010",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095", "SD-047"],
+  "source": {
+    "title": "Stochastic resonance modulates neural synchronization within and between cortical sources",
+    "authors": ["Lawrence M. Ward", "Shannon E. MacLean", "Aaron Kirschner"],
+    "year": 2010,
+    "venue": "PLoS ONE",
+    "doi": "10.1371/journal.pone.0014371",
+    "pmid": "21179552",
+    "pmc": "PMC3002936"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct EEG demonstration of stochastic resonance in human auditory cortex: added moderate broadband noise enhances the 40 Hz transient response to near-threshold stimuli AND increases synchronization between cortical sources in alpha and gamma bands. This is the cleanest empirical demonstration of the non-monotonic relationship between substrate noise and neural-network competence that underlies Asai 2016's agency-attribution slope finding. Source quality solid (PLoS ONE, well-conducted EEG study with independent component analysis + dipole fitting). For SD-047 the mapping is the architectural principle that adding noise can IMPROVE comparator-relevant signal at the right level, not just degrade it -- supports the 1:1-2:1 calibration target via empirical demonstration that the inverted-U is real in human neural data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE substrate enrichment via SD-047 produces only monotonic degradation as noise increases (no inverted-U peak), the system is missing the stochastic-resonance-style optimum the Ward 2010 paper documents in human auditory cortex. This would suggest the architecture lacks the synchronization-via-shared-noise machinery that biological systems use to support comparator function under low-stimulus-strength conditions."
+  ],
+  "tags": ["mech_095", "sd_047", "stochastic_resonance", "neural_synchronization", "non_monotonic", "eeg", "auditory_cortex", "ward"],
+  "mapping": {
+    "source_claim_statement": "In a near-threshold auditory deviant-detection paradigm with added broadband noise, the human 40 Hz transient response in bilateral auditory cortex (and additional sources in posterior cingulate cortex and superior frontal gyrus) is ENHANCED by added noise rather than degraded. Synchronization between these regions in alpha and gamma frequency bands also increases with added noise. The signature is non-monotonic: too little noise leaves near-threshold signals undetected; too much noise overwhelms; an intermediate level optimises both signal detection and inter-region synchronization.",
+    "ree_translation": "Ward et al. provide direct empirical evidence for the architectural principle that comparator competence has an optimal noise level, not a maximum-noise-tolerance level. For MECH-095 this means the agency-detection comparator should be expected to perform best at intermediate substrate noise rather than at the lowest possible noise. For SD-047 the calibration target (1:1-2:1 env:agent change events per episode) is the analog of Ward's optimal-broadband-noise level. The non-monotonic shape is the same in both cases: substrate noise is the enabler of comparator function via stochastic-resonance-style synchronization, not merely a degrader. The Pull 4 architectural principle -- monitoring for symmetric over/under errors as a diagnostic signature of substrate-noise calibration -- is grounded in this kind of biological data.",
+    "mapping_caveat": "Ward et al. measured auditory perception of near-threshold pure tones, not agency attribution or any comparator-output-shaped quantity. The mapping is at the architectural-principle level (stochastic resonance is a general phenomenon of noise-enabled signal detection). Whether MECH-095's specific implementation in REE V3 exhibits stochastic resonance is an empirical question that SD-047 noise-sweep validation would directly address.",
+    "source_context": "Healthy adult participants, high-density EEG, deviant-detection paradigm with near-threshold pure tones in varying levels of added broadband noise. Independent component analysis + dipole fitting for source localisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "PLoS ONE venue, methodologically clean. Mapping fidelity moderate-high because stochastic resonance is a general principle that supports the inverted-U shape in non-auditory comparator outputs by analogy. Transfer risk moderate because auditory perception is a different task class than agency attribution, but the substrate-noise-enables-detection principle is general."
+  }
+}

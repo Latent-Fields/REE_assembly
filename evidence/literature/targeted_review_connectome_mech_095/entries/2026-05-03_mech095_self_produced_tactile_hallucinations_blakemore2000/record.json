@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_self_produced_tactile_hallucinations_blakemore2000",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095", "SD-047"],
+  "source": {
+    "title": "The perception of self-produced sensory stimuli in patients with auditory hallucinations and passivity experiences: evidence for a breakdown in self-monitoring",
+    "authors": ["Sarah-Jayne Blakemore", "Jamie Smith", "Rosaleen Steel", "C. E. Johnstone", "Christopher D. Frith"],
+    "year": 2000,
+    "venue": "Psychological Medicine",
+    "doi": "10.1017/s0033291799002676",
+    "pmid": "12027049"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Blakemore + Frith from the Frith lab. Three-group design (schizophrenia / bipolar+depression / controls) with within-group split by presence of auditory hallucinations and/or passivity experiences. Healthy participants and psychiatric controls without hallucinations/passivity show the normal self-vs-externally-produced tactile differentiation (self-produced rated less intense, less tickly, less pleasant -- the canonical signature of intact self-monitoring). Patients with hallucinations or passivity fail to show this differentiation. Crucially the effect tracks symptom presence rather than diagnosis, providing a clean computational psychiatry signal. Source quality very high (Frith lab + canonical paradigm). Mapping fidelity high (the differentiation IS the comparator-output measurement).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-095 comparator can be made to produce the self-vs-externally-produced differentiation under SD-047 substrate but the same architecture fails to differentiate when self-monitoring is structurally compromised (e.g. hypothesis tag absence per MECH-094), the model would predict the Blakemore signature -- a falsification would be REE producing intact differentiation in conditions that should structurally compromise it."
+  ],
+  "tags": ["mech_095", "sd_047", "self_monitoring", "passivity", "auditory_hallucinations", "tactile_perception", "frith"],
+  "mapping": {
+    "source_claim_statement": "Patients with auditory hallucinations and/or passivity experiences (regardless of primary diagnosis) fail to perceptually differentiate self-produced from externally produced tactile stimuli, while healthy participants and psychiatric patients without these symptoms show the normal differentiation (self-produced rated less intense, less tickly, less pleasant). The differentiation depends on self-monitoring machinery whose breakdown is associated with hallucinations and passivity rather than with schizophrenia diagnosis per se.",
+    "ree_translation": "MECH-095 in REE is the structural analog of the self-monitoring comparator Blakemore et al. tested. The expected output of an intact comparator is exactly the differentiation Blakemore measured: self-caused state changes should produce attenuated downstream representation compared to identical externally caused state changes. The Blakemore breakdown -- absent attenuation in patients with passivity -- maps onto MECH-095 returning near-equal counterfactual_forward gaps for agent-caused vs env-caused conditions, which is the V3-EXQ-506 substrate-ceiling signature. The clinical finding constrains REE: a working MECH-095 must reproduce the attenuation; a system that fails to reproduce it has the same shape of comparator failure as the patients in this study.",
+    "mapping_caveat": "Blakemore tested tactile attenuation specifically (self-produced touch on the palm). MECH-095's V3 implementation operates on hazard-field state change, not tactile sensory channels. The attenuation signature is the same shape (self-caused < externally-caused on a comparator-derived metric), but the underlying modality differs. The transfer is principled rather than literal.",
+    "source_context": "Three-group between-subjects design: schizophrenia patients, mood disorder patients, healthy controls (N values per group not in abstract; see full text). Within-group split by presence vs absence of auditory hallucinations or passivity experiences. Tactile stimulation paradigm: subjects rated intensity, ticklishness, pleasantness of self-produced (own movement) vs externally produced (experimenter-administered) tactile stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Frith lab + Psychological Medicine + canonical paradigm = high source quality. Mapping fidelity high because the measured quantity (self-other attenuation) is structurally identical to MECH-095's expected output. Transfer risk moderate because of the modality shift (tactile -> hazard-field) but the architectural principle is identical."
+  }
+}

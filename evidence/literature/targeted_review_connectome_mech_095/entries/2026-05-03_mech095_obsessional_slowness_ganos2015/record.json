@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_obsessional_slowness_ganos2015",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095"],
+  "source": {
+    "title": "Revisiting the Syndrome of 'Obsessional Slowness'",
+    "authors": ["Christos Ganos", "Panagiotis Kassavetis", "Maria Cerdan", "Roberto Erro", "Bettina Balint", "Gary Price", "Mark J. Edwards", "Kailash P. Bhatia"],
+    "year": 2015,
+    "venue": "Movement Disorders Clinical Practice",
+    "doi": "10.1002/mdc3.12140",
+    "pmid": "30713890"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Clinical-case+systematic-review paper from the Bhatia/Ganos motor disorders unit at Queen Square. Three primary cases reviewed plus 77 published cases. Key finding for the lit-pull is that echo-phenomena (echopraxia/echolalia) co-occur in obsessional slowness alongside motor poverty, OCD symptoms, bizarre postures, mannerisms, oculogyric tics. Authors conclude the syndrome is heterogeneous (OCD with motor slowness, sometimes catatonia, sometimes autism spectrum) rather than a primary entity. Source is descriptive clinical literature; mapping into REE is mostly indicative -- echo-phenomena cluster with broader motor-control dysregulation rather than appearing in isolation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE substrate enrichment lifts MECH-095 and produces clean self-other gating in isolation, but the system still fails on broader motor-control disorders (e.g. commitment dysregulation, threshold miscalibration), the Ganos case series predicts this pattern: echo-phenomena are nested within a wider motor-control syndrome cluster, not standalone."
+  ],
+  "tags": ["mech_095", "echopraxia", "obsessional_slowness", "ocd", "catatonia", "motor_disorders", "ganos"],
+  "mapping": {
+    "source_claim_statement": "The clinical syndrome called 'obsessional slowness' is a heterogeneous category. Three primary cases plus 77 published cases share features of motor slowness with poverty of movement, obsessive-compulsive symptoms, and frequently echo-phenomena, bizarre postures, mannerisms, and oculogyric tics. The diagnosis bridges OCD with motor slowness, catatonia, and (in at least one case) autism spectrum features. The authors argue the syndrome should be split rather than retained as a primary entity.",
+    "ree_translation": "Ganos et al. document that motor-channel echo-phenomena cluster with broader motor-control failures (poverty of movement, mannerisms, OCD-spectrum slowness). For MECH-095 this is a useful constraint: echo-phenomena are not produced by an agency-detection comparator failure in isolation, but typically co-occur with adjacent motor and decisional architecture problems (commitment_dysregulation in REE terms; possibly threshold miscalibration). A clean MECH-095 fix that did not address these adjacent failures would still leave the Ganos cluster intact -- which is a useful negative prediction.",
+    "mapping_caveat": "Clinical case series are descriptive; the lift into REE architectural language is interpretive. The mixed direction reflects: the entry supports the broader claim that motor agency-attribution failure is real and clinically observed, while challenging the strong reading that fixing MECH-095 alone would address the broader motor-control phenomenology. Sample is small (3 + 77), heterogeneous, and reported in a non-RCT format.",
+    "source_context": "Single-centre tertiary movement-disorders clinic (National Hospital for Neurology and Neurosurgery, London) plus systematic review of 77 published cases. Clinical examination + dopaminergic imaging in subset of primary cases."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Case-series + review = lower source quality than empirical paradigm studies. Mapping fidelity moderate: descriptive cluster of motor symptoms maps onto multiple REE failure modes, not just MECH-095. Transfer risk elevated because clinical phenomenology categories don't map one-to-one to architectural mechanisms. Useful as scope-constraining context rather than load-bearing evidence."
+  }
+}

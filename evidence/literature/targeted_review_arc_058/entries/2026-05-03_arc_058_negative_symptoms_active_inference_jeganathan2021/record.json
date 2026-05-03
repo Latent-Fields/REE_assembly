@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_058",
+  "entry_id": "2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["ARC-058", "MECH-095"],
+  "source": {
+    "title": "An active inference perspective on the negative symptoms of schizophrenia",
+    "authors": ["Jayson Jeganathan", "Michael Breakspear"],
+    "year": 2021,
+    "venue": "Lancet Psychiatry",
+    "doi": "10.1016/S2215-0366(20)30527-7",
+    "pmid": "33865502"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Lancet Psychiatry review applying active inference to negative symptoms of schizophrenia (affective blunting, avolition, asociality), explicitly drawing links between social prediction, facial affect mirroring, interoception, and 'indistinctness of self-other boundaries.' Direct relevance to the made-feelings / interoceptive-passivity cluster: paranoid delusion content and self-other indistinctness are framed as the same predictive-precision miscalibration affecting interoceptive and social channels. The review proposes a computational story for how interoceptive uncertainty produces phenomenology that the agency_attribution_failure taxonomy entry needs to absorb. Source quality high (Lancet Psychiatry); mapping fidelity moderate because the review treats schizophrenia broadly rather than passivity cluster specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the made-feelings / made-impulses sub-cluster of REE agency-attribution failure is implemented purely on a motor-style comparator (MECH-095 with motor channel only), the social-prediction and affect-mirroring components Jeganathan et al. argue are central will not be captured. The clinical story extends agency-attribution failure into social and interoceptive channels that REE V3 does not yet implement directly."
+  ],
+  "tags": ["arc_058", "mech_095", "schizophrenia", "negative_symptoms", "active_inference", "self_other", "interoception", "social_prediction"],
+  "mapping": {
+    "source_claim_statement": "Negative symptoms of schizophrenia (affective blunting, avolition, asociality) can be understood through active inference: affective behaviours such as smiling are driven by predictions about social consequences. Negative symptoms arise from uncertainty in social prediction circuits, analogously to how positive symptoms arise from uncertainty in sensory circuits. The framework explains blunted facial expressiveness, apathy-anhedonia, and -- importantly for the present pull -- the indistinctness of self-other boundaries and content of paranoid delusions. Close links are drawn between social prediction, facial affect mirroring, and interoception.",
+    "ree_translation": "Jeganathan & Breakspear extend the agency-attribution architecture into the social-interoceptive direction. For the made-feelings sub-cluster, the relevant claim is that self-other boundary indistinctness can arise from precision miscalibration in social/interoceptive prediction circuits, even when motor-channel agency is intact. For ARC-058 / ARC-033 this means the architecture should support precision miscalibration that selectively affects the affective stream while leaving the somatic-discriminative stream intact -- consistent with separate-streams (ARC-033) or with separate precision channels on a shared trunk (a partial-ARC-058 reading). For MECH-095 the relevance is to extend the agency-detection comparator's domain into social-interoceptive channels, which V3 does not yet model directly.",
+    "mapping_caveat": "The Lancet Psychiatry review treats schizophrenia broadly and does not make passivity-phenomena specifically its target. The link to made-feelings / interoceptive-passivity is plausible (negative symptoms include self-other indistinctness) but indirect. The framework also predicts empirical findings (e.g. blunted facial expressiveness analyzable via automated facial-coding) that have not yet been definitively tested. This is supports-with-caveats rather than load-bearing direct evidence.",
+    "source_context": "Theoretical review in Lancet Psychiatry 2021. Synthesises active-inference, interoception, and social-cognition literatures with focus on negative symptoms of schizophrenia."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Lancet Psychiatry venue, well-cited authors. Mapping fidelity moderate because the review's primary focus is negative symptoms broadly rather than passivity cluster specifically. Transfer risk moderate because REE V3 does not yet implement social-prediction circuits directly; the framework's extensions to social channels are partly aspirational for REE."
+  }
+}

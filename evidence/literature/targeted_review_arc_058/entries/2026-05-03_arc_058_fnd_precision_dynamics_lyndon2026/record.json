@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_058",
+  "entry_id": "2026-05-03_arc_058_fnd_precision_dynamics_lyndon2026",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["ARC-058", "MECH-095"],
+  "source": {
+    "title": "Precision dynamics of predictive coding in functional neurological disorder",
+    "authors": ["Stanley Lyndon"],
+    "year": 2026,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awag101",
+    "pmid": "41823406"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Recent (2026) paper in Brain reframing functional neurological disorder as a disorder of precision control within predictive coding, explicitly placing the mechanism in a four-level hierarchy (affective, interoceptive, proprioceptive, spinal). Directly relevant to the made-feelings / interoceptive-passivity cluster: FND symptoms include made-feelings-shaped phenomena (loss of agency without wilfulness, give-way weakness, distractibility, entrainment) that arise from precision miscalibration at the interoceptive and affective levels. The four-level precision hierarchy maps onto the architectural question ARC-058 asks (shared vs separated trunk for aversive PE) -- if FND demonstrates that precision miscalibration can selectively affect interoceptive vs proprioceptive vs affective levels, that supports separable substrate per level rather than fully shared trunk. High source quality (Brain), high mapping fidelity for the substrate-level architectural question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's affective/interoceptive harm streams are implemented with a fully shared forward-model trunk (the ARC-058 strong reading) but Lyndon's FND data shows clean dissociation across the four hierarchical levels under selective arousal challenges, the strong-shared-trunk reading should be retired in favour of separable-but-aligned streams."
+  ],
+  "tags": ["arc_058", "mech_095", "fnd", "functional_neurological_disorder", "precision", "interoception", "predictive_coding", "agency"],
+  "mapping": {
+    "source_claim_statement": "Functional neurological disorder symptoms reflect precision miscalibration in a four-level predictive-coding hierarchy (affective, interoceptive, proprioceptive, spinal). Arousal-driven precision surges can transiently make unhelpful expectations dominate, suppress corrective feedback, and produce motor, sensory, cognitive, or visceral symptoms -- often combining across levels. The framework explains positive signs (distractibility, entrainment, give-way weakness) as well as the lived experience of reduced agency without wilfulness or malingering. Therapeutic implications: physiotherapy amplifies proprioceptive feedback, psychotherapy reduces arousal, mindfulness/biofeedback raises the threshold for arousal-driven gain spikes -- all by recalibrating precision weighting.",
+    "ree_translation": "Lyndon's four-level hierarchy maps onto REE's stream separation question (ARC-033 separate streams vs ARC-058 shared trunk) and onto MECH-095's domain. The made-feelings / made-impulses passivity sub-cluster sits at the intersection of interoceptive and affective levels: a self-generated affective state arrives without the marker tagging it as self-produced. FND extends this with a clinical population whose symptoms migrate across levels under arousal -- consistent with separate-but-coupled stream architecture (ARC-033 retains validity; ARC-058's shared-trunk strong reading is challenged) and with MECH-095's expected precision-modulated output. The 'loss of agency without wilfulness' framing is the clinical crystallisation of agency-attribution failure on interoceptive/affective channels.",
+    "mapping_caveat": "Lyndon is a theoretical reframing, not new empirical data. The four-level hierarchy is a conceptual organisation of an existing literature (active inference + FND research) rather than a fresh experimental finding. The mapping into REE's specific implementation (z_harm_s, z_harm_a, harm forward models) is principled and direct, but Lyndon's hierarchy is more granular than REE V3 currently models -- REE does not yet split proprioceptive vs spinal levels.",
+    "source_context": "Theoretical / clinical review article in Brain (2026). Position paper synthesising active-inference accounts of FND with clinical bedside observations. Authored by clinician at Mass General Brigham."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Brain is a top-tier neurology venue. Mapping fidelity high because four-level precision hierarchy maps onto REE's stream architecture cleanly. Transfer risk moderate because Lyndon's hierarchy is more granular than REE V3 implements, but the shared architectural principle (precision-modulated comparator outputs) is exactly what MECH-095 + SD-047 test."
+  }
+}

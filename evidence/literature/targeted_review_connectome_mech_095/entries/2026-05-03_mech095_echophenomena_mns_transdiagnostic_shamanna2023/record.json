@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_echophenomena_mns_transdiagnostic_shamanna2023",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095"],
+  "source": {
+    "title": "Transdiagnostic investigation into the relationship between mirror neuron system activity, echo-phenomena, and theory of mind in major psychoses",
+    "authors": ["Varsha Shamanna", "Urvakhsh Meherwan Mehta", "Shalini S. Naik", "Rakshathi Basavaraju", "Jagadisha Thirthalli"],
+    "year": 2023,
+    "venue": "Asian Journal of Psychiatry",
+    "doi": "10.1016/j.ajp.2023.103504",
+    "pmid": "36801552"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Recent (2023) transdiagnostic study with N=114 participants (53 schizophrenia, 61 mania) examining echo-phenomena (echopraxia, incidental echolalia, induced echolalia) using an ecological paradigm. Subset of N=40 (20 with vs 20 without echo-phenomena) underwent TMS to measure motor resonance and cortical silent period as MNS-activity and frontal disinhibition markers. Echo-phenomena participants had greater single-pulse motor resonance, poorer theory of mind, higher frontal release reflexes, and greater symptom severity -- regardless of diagnosis. The phenotype-not-diagnosis approach mirrors Blakemore 2000's symptom-tracking-rather-than-diagnosis finding for tactile attenuation; this is the same architectural reading at the motor-imitation level. Source quality solid, mapping fidelity strong because the failure being measured (hyperactive imitation = self-other distinction failing in motor channel) is exactly MECH-095's domain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Higher MNS activity associated with echo-phenomena means the comparator is not gating action observation -> self-action contagion. If REE's MECH-095 comparator gates self-vs-observed-action attribution and substrate enrichment fails to produce that gating, the system would show the same echo-phenomena structure -- another instance of agency-attribution failure on a different modality."
+  ],
+  "tags": ["mech_095", "echopraxia", "echolalia", "mirror_neurons", "theory_of_mind", "frontal_disinhibition", "transdiagnostic"],
+  "mapping": {
+    "source_claim_statement": "In major psychoses (mania and schizophrenia), echo-phenomena (echopraxia, incidental echolalia, induced echolalia) are associated with greater motor resonance during action observation (single-pulse TMS), poorer theory of mind, higher frontal release reflexes, and greater symptom severity -- regardless of clinical diagnosis. Phenotypic categorization based on echo-phenomena presence provides better neurophysiological characterization than DSM diagnosis.",
+    "ree_translation": "Echo-phenomena are agency-attribution failure in the motor-imitation channel: action observed by the agent is not gated as 'someone else's action' but propagates to motor execution as if it were self-initiated. This is the action-passivity sub-cluster that Gallagher 2004 identified as MECH-095's plausible domain (in contrast to thought-passivity which may need separate machinery). The MNS-hyperactivity finding maps onto MECH-095's expected output: a working comparator should attenuate self-vs-other motor resonance the way Blakemore 2000 showed for tactile attenuation. Hyperactive resonance + failed attenuation is the signature of comparator failure on the motor channel. The transdiagnostic framing -- echo-phenomena predict neurophysiology better than DSM diagnosis -- supports the architectural reading that this is one mechanism, not multiple mechanisms across diagnostic categories.",
+    "mapping_caveat": "Shamanna et al. tested motor resonance via single-pulse TMS during action observation, not the cf_gap_event/cf_gap_quiet ratio that operationalises MECH-095 in V3. The mapping is at the architectural level: failed self-other gating in both cases. The mirror neuron system is also an additional mechanism layer that REE V3 does not currently model directly; the simplest mapping is that MECH-095 plays the role of the gating layer above MNS-style action observation, not that MECH-095 IS the MNS.",
+    "source_context": "Cross-sectional transdiagnostic study at a tertiary psychiatric institute (NIMHANS, Bengaluru). N=114 patients with major psychoses (schizophrenia or mania); subset N=40 for TMS measurements. Ecological paradigm simulating real-life social communication for echo-phenomena induction."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Solid sample size, transdiagnostic design, multiple physiological markers. Published in Asian Journal of Psychiatry (moderate venue). Mapping fidelity high because echo-phenomena are direct motor-channel agency-attribution failure. Transfer risk moderate because MNS is an additional architectural layer not directly in REE V3."
+  }
+}

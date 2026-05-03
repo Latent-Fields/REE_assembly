@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_all_or_nothing_belief_updating_nassar2021",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095", "SD-047"],
+  "source": {
+    "title": "All or nothing belief updating in patients with schizophrenia reduces precision and flexibility of beliefs",
+    "authors": ["Matthew R. Nassar", "James A. Waltz", "Matthew A. Albrecht", "James M. Gold", "Michael J. Frank"],
+    "year": 2021,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awaa453",
+    "pmid": "33434284"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "This is the load-bearing paper for the symmetric-over/under-attribution diagnostic signature. Nassar et al. resolve a literature paradox: patients with schizophrenia have been described as both over-sensitive AND under-sensitive to feedback in different paradigms. The resolution is mechanistic -- patients tend to either completely ignore new information (under-update) OR update completely (over-update), rather than integrating gradually. A single 'all-or-nothing' updating pathology produces both apparent failure modes depending on which behavioural paradigm probes the system. This is the cleanest available demonstration of the principle Asai 2016 articulated for agency: a single comparator pathology produces opposite-direction errors across different stimulus regimes. Brain venue, M.J. Frank coauthor, computational psychiatry methodology adjudicating between competing hypotheses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE substrate enrichment lifts MECH-095's competence and produces clean cf_gap_event/cf_gap_quiet ratios in one paradigm but the same architecture shows over-attribution in another paradigm at the same noise level, that is the all-or-nothing updating signature in REE form. Suggests the comparator's output is being treated by downstream consumers as binary rather than graded -- a separate architectural problem from substrate-ceiling."
+  ],
+  "tags": ["mech_095", "sd_047", "schizophrenia", "belief_updating", "all_or_nothing", "over_under_sensitivity", "diagnostic_signature", "computational_psychiatry"],
+  "mapping": {
+    "source_claim_statement": "In a behavioural paradigm capable of adjudicating between competing computational hypotheses, schizophrenia patients show 'all-or-nothing' belief updating: more prone to completely ignoring new information and perseverating on previous responses, but when they DO update, they tend to do so completely. This updating strategy limits integration over time, simultaneously reducing flexibility (under-sensitivity to feedback) and precision (over-sensitivity to outliers when updates do happen). A single computational pathology produces both apparent failure modes depending on the paradigm.",
+    "ree_translation": "Nassar et al.'s finding is the empirical generalisation of Asai 2016's symmetric-over/under-attribution finding to belief updating broadly. For MECH-095 the implication is architectural: if the agency-detection comparator's output is consumed by a downstream all-or-nothing belief-update process, the system will display both over- and under-attribution depending on which paradigm probes it -- and a clean substrate-ceiling fix on MECH-095 alone may not produce graded behaviour unless the downstream consumers are also calibrated for graded input. This adds a new diagnostic for SD-047 validation: the experiment should look for graded competence increases as substrate is enriched, not just binary PASS/FAIL on C1-C3. Flat performance with bimodal error patterns would indicate downstream all-or-nothing dynamics rather than substrate-ceiling lift failure.",
+    "mapping_caveat": "Nassar et al. tested belief updating in a probabilistic-feedback paradigm, not agency attribution specifically. The mapping into MECH-095 territory is principled (the all-or-nothing signature is a general computational psychiatry phenomenon, not specific to one comparator) but requires accepting that the architectural principle generalises. The clinical population is adult schizophrenia; transfer to REE V3 implementation is at the architectural level.",
+    "source_context": "Adult patients with schizophrenia and matched healthy controls. Probabilistic-feedback behavioural paradigm with computational modeling adjudicating between 'overly precise priors' vs 'aberrant salience' hypotheses. Brain 2021."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Brain venue + Frank coauthor + clean computational-psychiatry methodology = high source quality. Mapping fidelity high because the all-or-nothing signature is the same architectural shape as Asai's symmetric over/under-attribution for agency. Transfer risk moderate due to paradigm specificity (belief updating, not agency attribution) but the architectural principle generalises."
+  }
+}

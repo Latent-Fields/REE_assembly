@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_267_arc038_waking_consolidation_discriminative
 
-Generated: `2026-05-03T03:45:17.776206Z`
+Generated: `2026-05-03T04:35:53.840255Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

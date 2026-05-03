@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_two_step_agency_synofzik2008",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095", "SD-047"],
+  "source": {
+    "title": "Beyond the comparator model: a multifactorial two-step account of agency",
+    "authors": ["Matthis Synofzik", "Gottfried Vosgerau", "Albert Newen"],
+    "year": 2008,
+    "venue": "Consciousness and Cognition",
+    "doi": "10.1016/j.concog.2007.03.010",
+    "pmid": "17482480"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Theoretical review that extends the simple Frith comparator account into a richer two-step framework: (i) a non-conceptual feeling of agency arising from multifactorial weighting of multiple agency indicators (sensory, motor, intentional), and (ii) a conceptual judgement of agency produced by downstream conceptual modules. Important MIXED entry because it argues the simple comparator model does not adequately explain either the feeling or judgement of agency, particularly for thought insertion -- but the alternative they propose is still comparator-architecture-compatible, just with multiple comparator inputs and a separate judgment stage. For REE this maps cleanly: MECH-095 is the comparator core, but the architecture should expect MECH-095 to feed into a downstream attribution-judgment process rather than producing agency labels directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-095 is implemented as a single-output comparator that directly produces self/other tags, it may inherit the limitation Synofzik et al. identified -- inability to handle thought-vs-action agency uniformly. SD-047's substrate enrichment helps the comparator stage but does not address the downstream attribution-judgment stage, which may need separate architectural attention."
+  ],
+  "tags": ["mech_095", "sd_047", "agency", "two_step", "feeling_of_agency", "judgment_of_agency", "comparator_critique"],
+  "mapping": {
+    "source_claim_statement": "Sense of agency separates into a non-conceptual feeling of agency and a conceptual judgement of agency. The simple comparator model (efference-copy + feedback comparison) cannot adequately explain either: feeling of agency requires multifactorial weighting of sensory, motor, and intentional indicators, while judgement of agency requires further downstream conceptual processing. The unified two-step framework also extends to ownership and to agency-for-thoughts, neither of which the comparator model handles cleanly.",
+    "ree_translation": "MECH-095 in REE should be read as the multifactorial-weighting stage rather than as a complete agency-detection mechanism. The counterfactual_forward gap is one input among several (sensory prediction, intentional prior, contextual weighting). The judgement-of-agency stage -- producing an explicit self/other tag for downstream consumption -- is architecturally separate and may live in a different REE component (possibly the RC loop or a future TPJ/IPL elaboration). For SD-047 this means substrate enrichment helps the multifactorial-weighting input distribution but does not by itself solve the downstream tag-production problem.",
+    "mapping_caveat": "Synofzik et al. is theoretical-review work, not new empirical evidence. The two-step framework is influential but not the only available extension of Frith. For REE the mapping is principled but speculative -- whether MECH-095 should be split into weighting-stage and judgment-stage components is an architectural question that V3-EXQ-506 successors may need to address. The mixed direction reflects: the framework supports the general architectural commitment to agency-detection comparators while challenging the strong reading that a single comparator suffices.",
+    "source_context": "Theoretical review article in Consciousness and Cognition. No new empirical data; synthesis of behavioral and clinical literature on sense of agency, with extensions to ownership and agency-for-thoughts."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Theoretical review in a respected venue. Mapping fidelity moderate because the framework is influential but speculative for REE-style architectures. Transfer risk moderate because the two-step distinction may or may not be necessary at REE V3 substrate level."
+  }
+}

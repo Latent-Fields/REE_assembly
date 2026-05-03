@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_058",
+  "entry_id": "2026-05-03_arc_058_active_interoceptive_inference_seth2016",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["ARC-058", "MECH-095"],
+  "source": {
+    "title": "Active interoceptive inference and the emotional brain",
+    "authors": ["Anil K. Seth", "Karl J. Friston"],
+    "year": 2016,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0007",
+    "pmid": "28080966",
+    "pmc": "PMC5062097"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Canonical Seth & Friston review of interoceptive inference framework. Establishes that bodily states are regulated by descending predictions from deep generative models -- the architectural commitment that made-feelings / interoceptive-passivity entries depend on. Explicit on the role of precision (uncertainty) and its translation into neuromodulation, with implications for selfhood and emotion. Source quality very high (Phil Trans R Soc B, Friston coauthor). For ARC-058 the relevance is foundational: the framework requires an interoceptive comparator architecture; whether that comparator shares or separates trunks with somatic-discriminative (z_harm_s) channel is the empirical question ARC-058 vs ARC-033 disagree on. The review supports the existence of the interoceptive comparator without forcing one architectural side.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE implements a working interoceptive forward model but observes flat affective comparator output regardless of arousal precision -- that would falsify Seth & Friston's prediction that interoceptive comparator output should be modulated by precision (neuromodulation analog). The made-feelings sub-cluster requires precision-modulated interoceptive comparator output."
+  ],
+  "tags": ["arc_058", "mech_095", "interoception", "predictive_coding", "active_inference", "selfhood", "emotion", "seth", "friston"],
+  "mapping": {
+    "source_claim_statement": "Bodily states are regulated by autonomic reflexes that are 'enslaved' by descending predictions from deep generative models of the internal and external milieu. Interoceptive inference reframes emotion as a process of inferring the causes of internal sensory signals. Precision (uncertainty) plays a key role and translates into neuromodulation. The framework has implications for the emotional brain's functional anatomy and for psychiatric conditions ranging from autism to depression to disorders of self-awareness.",
+    "ree_translation": "Seth & Friston's framework establishes the architectural commitment that REE inherits when implementing the affective harm stream (z_harm_a) with a forward model. The made-feelings / interoceptive-passivity cluster -- self-generated affective state arriving without authorship tag -- requires an interoceptive comparator that produces a counterfactual-style output for the affective channel (analogous to MECH-095's counterfactual_forward gap on the somatic-discriminative channel). For ARC-058 vs ARC-033: Seth & Friston do not directly adjudicate, but they establish that the interoceptive comparator exists and operates via descending predictions and precision modulation. The shared-trunk vs separate-streams question is downstream of this architectural commitment.",
+    "mapping_caveat": "Seth & Friston is a high-level theoretical synthesis. It does not provide direct evidence for or against ARC-058's shared-trunk reading, only for the broader architectural commitment that interoceptive comparators exist. Mapping into REE V3 implementation (which already has z_harm_a in some claims and SD candidates) is principled but draws on multiple downstream papers not in this entry.",
+    "source_context": "Theoretical review article in Phil Trans R Soc B 2016. Synthesises predictive-coding, active-inference, and interoception literatures. Friston coauthor."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Phil Trans R Soc B + Friston = high source quality. Mapping fidelity moderate-high; the framework supports the architectural commitment underlying ARC-058 / ARC-033 without choosing between them. Transfer risk low for the broad commitment, higher for specific implementation choices in REE V3."
+  }
+}

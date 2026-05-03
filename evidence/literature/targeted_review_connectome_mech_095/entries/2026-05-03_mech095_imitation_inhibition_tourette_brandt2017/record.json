@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-05-03_mech095_imitation_inhibition_tourette_brandt2017",
+  "timestamp_utc": "2026-05-03T04:20:44Z",
+  "claim_ids_tested": ["MECH-095"],
+  "source": {
+    "title": "Imitation inhibition in children with Tourette syndrome",
+    "authors": ["Valerie Catherine Brandt", "Agnes Moczydlowski", "Melanie Jonas", "Kai Boelmans", "Tobias Baumer", "Marcel Brass", "Alexander Munchau"],
+    "year": 2017,
+    "venue": "Journal of Neuropsychology",
+    "doi": "10.1111/jnp.12132",
+    "pmid": "28801946"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "N=15 children with Tourette syndrome + N=15 healthy controls (7-12 yrs) on imitation inhibition paradigm. Children with Tourette show smaller compatibility-effect interference (faster on incompatible relative to baseline; overall slower) -- pattern consistent with active compensatory inhibition of automatic imitation. Brass coauthor; methodologically clean. Source quality moderate (small sample, single-centre); mapping fidelity high because the paradigm directly measures automatic-imitation control which is the motor-channel analog of MECH-095's self-other gating. The compensation-by-slowing finding is architecturally informative: it suggests intact systems CAN inhibit automatic imitation when challenged, but at a measurable cost.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-095 is implemented but cannot produce graded inhibitory effort on observed-action contagion, the system will either always echo (uncontrolled imitation) or never echo (no observation contagion at all) -- neither matches the human profile where compensation is possible at a cost. SD-047 substrate enrichment plus a graded MECH-095 should reproduce the cost-of-compensation signature."
+  ],
+  "tags": ["mech_095", "echopraxia", "imitation_inhibition", "tourette", "automatic_imitation", "brass"],
+  "mapping": {
+    "source_claim_statement": "Children with Tourette syndrome (N=15, 7-12 yrs) show overall slower reaction times than healthy children (N=15) and a smaller compatibility-vs-incompatibility interference effect on an imitation inhibition paradigm. The pattern indicates that Tourette children employ different or additional inhibition strategies for automatic imitation tendencies, compensating for what would otherwise be elevated automatic-imitation expression -- at the cost of reacting slower overall.",
+    "ree_translation": "Echo-phenomena prone systems do not necessarily exhibit florid echopraxia in controlled paradigms because compensatory inhibition is possible. For MECH-095 this means the comparator's failure mode is parametric rather than binary: a partially-failed comparator can be supported by additional inhibitory effort, with measurable cost. SD-047's substrate enrichment plus a working MECH-095 should reproduce this -- the system should be able to gate observed-action contagion under multi-source conditions, but with measurable processing cost when the input distribution is hard.",
+    "mapping_caveat": "Brandt et al. tested children specifically and a small N. The compensation-by-slowing finding is robust in the imitation inhibition literature but the developmental angle introduces transfer risk to a non-developmental REE V3 implementation. The paradigm tests a well-defined motor compatibility effect; the mapping into REE's hazard-field comparator output is principled rather than literal.",
+    "source_context": "N=15 children with Tourette syndrome + N=15 age-matched healthy controls (7-12 years). Imitation inhibition paradigm: auditory cue + simultaneous visual stimulus, finger-lift response, compatible vs incompatible trials. Reaction time analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.66,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate (small sample, single centre, J Neuropsychology). Mapping fidelity high because imitation inhibition paradigm operationalises automatic-imitation control directly. Transfer risk elevated by developmental vs adult difference and small N."
+  }
+}
