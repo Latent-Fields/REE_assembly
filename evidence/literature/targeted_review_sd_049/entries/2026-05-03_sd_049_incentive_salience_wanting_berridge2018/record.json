@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049",
+  "entry_id": "2026-05-03_sd_049_incentive_salience_wanting_berridge2018",
+  "timestamp_utc": "2026-05-03T10:18:42Z",
+  "claim_ids_tested": ["SD-049", "MECH-229", "MECH-230"],
+  "source": {
+    "title": "Evolving Concepts of Emotion and Motivation",
+    "authors": ["Kent C Berridge"],
+    "year": 2018,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2018.01647",
+    "pmid": "30245654"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Authoritative review by the originator of the wanting/liking framework, surveying three decades of evidence that incentive salience ('wanting' in quotation marks) is a separable motivation process from hedonic impact ('liking') AND from cognitive desire (wanting without quotation marks). Mediated by mesocorticolimbic dopamine systems; can dissociate from cognitive desires (addiction; depression-anhedonia). The three-way dissociation (wanting / cognitive desire / liking) is the architectural shape SD-049 needs the V3 substrate to be able to evidence -- specifically, the agent must be able to 'want' a target that differs from what it is currently 'liking' (consuming for satiation). Confidence high on source quality (peer-reviewed, canonical voice, comprehensive); mapping_fidelity high because Berridge's framework is exactly the structural distinction MECH-229 asserts; transfer risk moderate because Berridge's evidence is mostly rodent/clinical-human, not gridworld agents.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a substrate cannot dissociate wanting from liking at the trajectory level, MECH-229 cannot be honestly tested on it. The current V3 single-resource substrate is exactly such a case: with one resource type, wanting-target and liking-target are forced to coincide, so any apparent PASS is a degenerate PASS. SD-049's novelty channel + per-axis drive is the substrate fix that lets the dissociation be observable.",
+    "Berridge documents that 'wanting' can dissociate from cognitive desire too -- the agent may pursue what it does not cognitively endorse. This is a third dimension of the dissociation that the proposed V3 substrate does not yet test. Worth noting as a future-extension dimension; not a current SD-049 design requirement."
+  ],
+  "tags": ["sd_049", "mech_229", "mech_230", "wanting", "liking", "incentive_salience", "berridge"],
+  "mapping": {
+    "source_claim_statement": "Incentive salience ('wanting') is a separable motivation process mediated by mesocorticolimbic dopamine systems, distinct from hedonic impact ('liking') and from cognitive desire. The dissociation is observable in addictions (excessive 'wanting' without 'liking'), in motivational anhedonia (reduced 'wanting' for normally-liked rewards), and in fearful salience (negatively-valenced 'wanting').",
+    "ree_translation": "MECH-229's wanting/liking behavioral dissociation is exactly the dissociation Berridge characterises. SD-049 provides the substrate vocabulary that lets the dissociation be testable: identity-distinct resource types with at least one non-homeostatic identity (novelty) so the agent can 'want' a target whose current consumption does not reduce a homeostatic deficit. The per-axis drive system implements the corollary: 'wanting' an identity is independent of which axis is currently most depleted, so the agent's trajectory choice can diverge from its current consumption.",
+    "mapping_caveat": "Berridge's framework is grounded in rodent neuroscience and clinical psychiatry; SD-049's grid-world agent has no analog of mesocorticolimbic dopamine. The mapping operates at the structural level (dissociable signal channels with characteristic behavioral signatures), not the implementational level. The 'wanting != liking' trajectory metric proposed in SD-049's validation experiment is the closest behavioral analog to Berridge's framework that the V3 substrate can support.",
+    "source_context": "Theoretical review (28 pages); covers historical evolution of motivation concepts; canonical source for the wanting/liking framework. No new empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (Berridge is the originator of the framework; reviewed by major venue). Mapping fidelity high because the structural dissociation Berridge characterises is exactly what MECH-229 wants to test. Transfer risk moderate -- the architectural shape transfers well to gridworld agents, but the neural substrate does not."
+  }
+}

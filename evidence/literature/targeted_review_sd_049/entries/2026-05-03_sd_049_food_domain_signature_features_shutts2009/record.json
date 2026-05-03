@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049",
+  "entry_id": "2026-05-03_sd_049_food_domain_signature_features_shutts2009",
+  "timestamp_utc": "2026-05-03T10:18:42Z",
+  "claim_ids_tested": ["SD-049", "SD-015", "Q-030"],
+  "source": {
+    "title": "Core knowledge and its limits: the domain of food",
+    "authors": ["Kristin Shutts", "Kirsten F Condry", "Laurie R Santos", "Elizabeth S Spelke"],
+    "year": 2009,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2009.03.005",
+    "pmid": "19409538"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct empirical evidence that biological agents categorise food objects via DIFFERENT signature features (color, texture, intrinsic-substance properties) than they use for artifacts (shape, rigidity). The dissociation appears in adults, preschool children, and adult rhesus macaques but does NOT appear in 8-9-month-old human infants -- it is acquired developmentally. For SD-049 this is a substrate-design constraint: type-specific spawn distributions and benefit profiles should vary in qualitatively different feature dimensions per type, not just in identity tag. Source quality is high (Cognition; Spelke lab; rigorous looking-time methodology). Mapping fidelity is moderate -- the paper is about category-specific perceptual generalisation, which translates to substrate-design choices for SD-049 but is one architectural step removed from the wanting/liking dissociation that is the primary cohort SD-049 unblocks. Transfer risk is moderate-high because the experimental paradigm is human-infant looking-time, while SD-049 implements a grid-world agent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Shutts et al. show that the developmental acquisition of category-specific feature dimensions takes time and experience -- it is not innate and present at birth. For SD-049's curriculum hook, this is directly relevant: a developmentally-staged introduction of resource types should respect the timescale on which biological agents acquire identity-distinct categorisation. Introducing all three resource types from step 0 of episode 0 may produce learnable identity discrimination, but it does not test the developmental-trajectory question.",
+    "The paper's finding that 8-9-month-old infants do NOT show the food/artifact feature distinction (while adult macaques do) is a falsifier-adjacent observation: identity-distinct goal categorisation may require substantial training-time exposure before it emerges. SD-049 validation should report whether identity discrimination emerges within a single training run; if not, the curriculum hook becomes load-bearing earlier than expected."
+  ],
+  "tags": ["sd_049", "sd_015", "q_030", "food_categorisation", "feature_dimensions", "developmental", "category_specific", "spelke", "shutts"],
+  "mapping": {
+    "source_claim_statement": "Adults, preschool children, and adult rhesus macaques detect and categorise food objects according to substance information (color and texture), while perceiving and categorising artifacts according to shape and rigidity. This category-specific use of feature dimensions is signature -- the same observers do not use color/texture for artifacts. 8-9-month-old human infants do NOT yet show this dissociation: they detect and remember substance information for foods but do not privilege it during categorisation, and they generalise food and tool properties using the same feature dimensions. The category-specific dissociation is therefore developmentally acquired, not innate.",
+    "ree_translation": "SD-049's substrate design must respect that biological agents do not categorise all goal types using the same feature dimensions. Food cells should be distinguishable by feature-dimension X (analog of color/texture), water cells by feature-dimension Y, novelty cells by feature-dimension Z, etc. Implementing all types as identity-tagged variants of the same featural class is a substrate-design simplification that the literature flags as wrong -- the substrate would test whether the agent can attach an identity tag to perceptually-similar stimuli, not whether it can learn the right feature dimensions for each goal class. For SD-015, this constrains the z_resource encoder design: it cannot be a generic identity classifier; it must be permissive of type-specific feature attendance. For Q-030, it sharpens the 6-cell z_resource x z_world routing question: routing asymmetries should respect type-specific feature dimensions, not collapse to a generic identity-routing.",
+    "mapping_caveat": "Direct mapping is loose. Shutts et al. studied perceptual categorisation in primate looking-time paradigms; SD-049 is grid-world goal selection. The take-away is the architectural principle (different goal classes warrant different feature dimensions), not the specific feature taxonomy (color/texture is not meaningful in a grid-world). The implementation question -- which feature dimensions to vary per type in the V3 substrate -- is left to the substrate-design phase and should be empirical. The food/water/novelty triad in SD-049's default config differs in which axis they affect (drive_axis), in their satiation-curve shape (benefit_curve), and in their spawn distribution (spatial bias). These are reasonable analogs but the choice has not been validated against the Shutts finding.",
+    "source_context": "Looking-time studies with 8-9-month-old human infants; behavioral generalisation studies with adult and preschool-age humans; behavioral studies with adult rhesus macaques (Macaca mulatta) using identical displays. Six experiments total. Sample sizes per experiment ~20-40 infants."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (Cognition, Spelke lab, rigorous methodology, multi-experiment design). Mapping fidelity moderate -- the substrate-design implication (type-specific feature dimensions) is a real architectural constraint but is one step removed from MECH-229 / wanting-liking which is the primary cohort SD-049 unblocks. Transfer risk moderate-high -- looking-time / categorisation paradigms in human infants and adult macaques do not directly transfer to a grid-world agent's goal selection, but the architectural principle does."
+  }
+}

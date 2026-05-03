@@ -78,27 +78,69 @@ permanently-extinct resources, no agent-state values that lock in.
 `damage_lock_threshold: float`. Probably one new SD claim
 (`environment.foreclosure_primitives`) registering the addition.
 
-#### 2. Multi-resource heterogeneity (qualitatively distinct resource types)
+#### 2. Multi-resource heterogeneity (qualitatively distinct resource types) -- **SD-049 (candidate, registered 2026-05-03)**
+
+**Status (2026-05-03):** registered as **SD-049**
+(`environment.multi_resource_heterogeneity`, candidate, v3_pending).
+Design doc: `docs/architecture/sd_049_multi_resource_heterogeneity.md`.
+Pre-implementation lit-pull complete (5 PubMed entries; lit_conf=0.898;
+quadrant=plausible_unproven). Substrate code change blocked on
+SD-047 (overlapping file -- both touch `causal_grid_world.py`); SD-049
+implementation will layer on top once SD-047 changes are committed and
+the file is stable. Substrate queue priority=1 alongside SD-047/048.
 
 **Missing:** all current resources are interchangeable. The
 goal/wanting/liking cluster (the largest non-conclusive cluster from the
-2026-05-02 failure-landscape survey: MECH-112 22 entries, SD-012 16,
-SD-015 13, ARC-030 10, MECH-216, MECH-117, ARC-032) needs scenarios
-where the agent chooses *between* qualitatively distinct goals, not
-just whether to approach a single resource type.
+2026-05-02 failure-landscape survey) needs scenarios where the agent
+chooses *between* qualitatively distinct goals, not just whether to
+approach a single resource type.
+
+**Note (2026-04-13 atomic split):** MECH-112 was split into MECH-229
+(behavioral wanting/liking dissociation, active) and MECH-230 (drive
+coupling, gated on SD-012, provisional). The "MECH-112 22 entries"
+historical citation refers to evidence accumulated under the pre-split
+ID; current cohort is MECH-229 + MECH-230 + the listed downstream
+claims.
 
 **Claims unblocked:**
-- `MECH-112` wanting/liking dissociation
-- `MECH-117` schema readout when targets differ in identity
-- `MECH-216` predictive wanting on identity-distinct cues
-- `ARC-030` go/nogo symmetry across goal-types
-- `Q-030` (`standard`) -- the 6-cell z_resource × z_world routing sweep
-  needs multiple resource identities to make the routing question well-
-  posed.
+- `MECH-229` (active) wanting/liking behavioral dissociation -- enables
+  the discriminative experiment (agent wants novelty cell while liking
+  food cell). PASS evidence to date (EXQ-074f) was obtained on z_world
+  fallback seeding, not via genuine identity-distinct wanting.
+- `MECH-230` (provisional) goal-state latent structure -- z_goal latent
+  becomes non-trivially multi-modal under multiple resource identities.
+- `MECH-117` (stable) wanting/liking trajectory dissociation -- supports
+  current stable rating with non-degenerate evidence.
+- `MECH-216` (provisional) E1 schema-wanting -- schema generalisation
+  across identity-distinct cues becomes testable.
+- `ARC-030` (candidate) approach-avoidance symmetry across goal types.
+- `ARC-032` (candidate) theta-routing across goal identities.
+- `Q-030` (open) -- the 6-cell `z_resource × z_world` routing sweep
+  needs multiple resource identities to make the routing question
+  well-posed.
+- `SD-015` (candidate) z_resource encoder -- the upstream substrate
+  this enables; encoder currently has nothing to encode beyond
+  presence (goal_resource_r=0.066 across EXQ-085x cluster).
 
-**Implementation surface:** extend `CausalGridWorldV2` with
-`resource_types: list[str]` + per-type `benefit_profile`. SD claim:
-`environment.multi_resource_heterogeneity`.
+**Substrate scaffold for downstream developmental schedules:** SD-049's
+`resource_introduction_schedule: dict[str, int]` hook is the substrate
+prerequisite for any curriculum design that introduces resource types
+in stages. Defaults are inert (all types available from step 0); the
+hook itself is not the developmental schedule, but downstream
+curriculum design cannot be expressed without it.
+
+**Implementation surface:** extend `CausalGridWorldV3` with
+`resource_types: list[ResourceTypeConfig]` (3 types default:
+food + water + non-homeostatic novelty) + per-axis homeostatic drive
+system replacing SD-012's single scalar + curriculum-introduction hook.
+Triggers `pending_substrate_reconfirmation` on SD-012-emergent
+invariants per invariant-types governance rule. Validation: 4-arm
+substrate gradient sweep (ARM_0 OFF / ARM_1 2-type homeostatic /
+ARM_2 3-type default / ARM_3 5-type overshoot) with Woo/Spelke-style
+falsifier branch (flat-failure on `wanting != liking` trajectory metric
+routes MECH-229 to `substrate_conditional` with V4-1 multi-agent
+ecology dependency, parallel to SD-047's Woo/Spelke branch). Lit-pull
+provenance: `evidence/literature/targeted_review_sd_049/`.
 
 #### 3. Long-horizon dynamics (thousands-of-steps regimes)
 
@@ -221,7 +263,7 @@ learned about itself?" probes.
 | feature | priority | claim cohort | SD candidate |
 |---|---|---|---|
 | Foreclosure primitives | H | Q-027, MECH-097, INV-025 sub-claims | `environment.foreclosure_primitives` |
-| Multi-resource heterogeneity | H | MECH-112, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 | `environment.multi_resource_heterogeneity` |
+| Multi-resource heterogeneity | H | MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030, SD-015 | `SD-049` (registered 2026-05-03, candidate; substrate code blocked on SD-047 file release) |
 | Long-horizon regime | H | INV-049, SD-037 dynamics, MECH-260 | (calibration / no SD) |
 | Multi-source environmental dynamics | M | MECH-095, MECH-098, MECH-099 | `SD-047` (IMPLEMENTED 2026-05-03; validation V3-EXQ-509/510 pending) |
 | Interoceptive noise dynamics | M | ARC-058, ARC-033, ARC-061 Level 2 | `SD-048` (registered 2026-05-03, ready) |

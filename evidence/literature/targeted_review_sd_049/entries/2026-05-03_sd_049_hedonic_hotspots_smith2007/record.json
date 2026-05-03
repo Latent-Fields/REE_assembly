@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049",
+  "entry_id": "2026-05-03_sd_049_hedonic_hotspots_smith2007",
+  "timestamp_utc": "2026-05-03T10:18:42Z",
+  "claim_ids_tested": ["SD-049", "MECH-229", "ARC-030"],
+  "source": {
+    "title": "Opioid limbic circuit for reward: interaction between hedonic hotspots of nucleus accumbens and ventral pallidum",
+    "authors": ["Kyle S Smith", "Kent C Berridge"],
+    "year": 2007,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4205-06.2007",
+    "pmid": "17301168"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct mechanistic dissociation experiment. Mu-opioid microinjection into NAc shell or ventral pallidum hedonic hotspots; orofacial 'liking' reactions and food-intake 'wanting' measured separately. Result: liking requires cooperative activation of BOTH NAc-VP hotspots (reciprocal Fos modulation; behavioral additivity); wanting requires only NAc activation, independent of VP. This is the canonical anatomical-circuit dissociation underlying the behavioral wanting/liking framework. Source quality high (J Neurosci, controlled microinjection, double dissociation design); mapping fidelity high because the paper directly shows wanting and liking have distinct circuit architectures (one cooperative, one dominated); transfer risk moderate because the rodent neuroanatomy does not transfer to a grid-world agent but the architectural principle (dissociable mechanisms with distinct response profiles to interventions) does.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Smith & Berridge show that liking is a circuit-level cooperative function (NAc + VP) while wanting is a single-locus-dominant function (NAc primary). For SD-049, this implies the substrate must support behavioral signatures where the two can be perturbed independently. With a single-resource substrate, no perturbation can separate them at the trajectory level -- both bottom out at 'approach the only resource'. SD-049's per-axis drive + multi-identity substrate makes the perturbation possible: e.g., satiate hunger axis (kill 'liking' for food) while leaving novelty deficit (preserve 'wanting' for novel cell), then observe whether trajectory still routes to novelty.",
+    "The cooperative-vs-dominant distinction is a higher-order architectural claim worth flagging for future SD work but is beyond SD-049 scope. SD-049's job is to make the dissociation observable; it does not claim to test which architecture (cooperative vs dominant) the agent learns."
+  ],
+  "tags": ["sd_049", "mech_229", "arc_030", "wanting", "liking", "ventral_pallidum", "nucleus_accumbens", "hedonic_hotspots", "smith_berridge"],
+  "mapping": {
+    "source_claim_statement": "Hedonic 'liking' reactions to sucrose require cooperative mu-opioid activation of two anatomically distinct hotspots (nucleus accumbens shell and ventral pallidum); these hotspots reciprocally modulate Fos expression in each other and behavioral effects on liking are non-additive without joint activation. In contrast, 'wanting' (eating motivation, food intake) is dominated by NAc-shell mu-opioid activation alone and does not require concurrent VP activation. This reveals that wanting and liking, while behaviourally related, are mechanistically separable circuits with characteristic interaction profiles.",
+    "ree_translation": "MECH-229 asserts a behavioral-level dissociation between wanting and liking; this paper provides the anatomical-circuit grounding. For REE substrate purposes, the relevant takeaway is that the dissociation is real enough that targeted perturbations of one channel can leave the other untouched -- which is what SD-049's substrate must enable. The substrate's per-axis drive and identity-distinct resources are the substrate-level analogs of opioid-microinjection: they let the experimenter selectively modulate one channel (satiate one drive axis to suppress 'liking' for the corresponding identity) while leaving the other intact (novelty axis stays depleted, so 'wanting' for novelty persists). ARC-030's approach-avoidance symmetry across goal types becomes meaningfully testable: if go and nogo channels are symmetric, satiating one drive should disable approach for that identity but not for others.",
+    "mapping_caveat": "Direct anatomical mapping is impossible (no NAc, no VP, no opioid system in CausalGridWorldV3). The mapping is at the level of architectural design principles for dissociable signal channels, not implementational. The paper's most useful contribution to SD-049 design is the experimental template: targeted perturbation of one channel while measuring response in the other, applied at the substrate level rather than the neural level.",
+    "source_context": "Sprague-Dawley rats; mu-opioid agonist DAMGO microinjection into NAc shell hotspot vs VP hotspot; orofacial 'liking' reactions (taste reactivity test) and food-intake 'wanting' assessed separately; Fos immunohistochemistry to assess cross-hotspot recruitment."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high (J Neurosci, double-dissociation design, controlled microinjection, robust statistical analysis). Mapping fidelity moderately high -- the paper provides the most direct neural evidence for the wanting/liking framework that SD-049 wants to instantiate behaviorally; the gap is that the paper is about anatomical circuits and SD-049 is about behavioral signatures. Transfer risk moderate -- the architectural shape (dissociable channels with characteristic interaction profiles) transfers; the implementational details (opioid neurochemistry) do not."
+  }
+}

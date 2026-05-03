@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049",
+  "entry_id": "2026-05-03_sd_049_social_isolation_drn_dopamine_matthews2016",
+  "timestamp_utc": "2026-05-03T10:18:42Z",
+  "claim_ids_tested": ["SD-049", "MECH-229"],
+  "source": {
+    "title": "Dorsal Raphe Dopamine Neurons Represent the Experience of Social Isolation",
+    "authors": ["Gillian A Matthews", "Edward H Nieh", "Caitlin M Vander Weele", "Sarah A Halbert", "Roma V Pradhan", "Ariella S Yosafat", "Gordon F Glober", "Ehsan M Izadmehr", "Rain E Thomas", "Gabrielle D Lacy", "Craig P Wildes", "Mark A Ungless", "Kay M Tye"],
+    "year": 2016,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2015.12.040",
+    "pmid": "26871628"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Falsifier-adjacent entry. Matthews et al. demonstrate that the motivation to seek social contact (a wanting analog) under social isolation has a distinct neural substrate -- dorsal raphe nucleus dopamine neurons -- separate from the VTA-mediated primary-reward dopamine system. The motivational class is conspecific-directed: it is wanting for *another agent*, not wanting for an inanimate resource. For SD-049 this is mixed evidence. SUPPORTS the broader principle that wanting is a heterogeneous class (multiple subtypes with distinct substrates), which licenses adding novelty as one such subtype to the V3 substrate. WEAKENS any reading that the wanting/liking dissociation can be fully explored on a substrate without genuine other-agents -- the social-wanting subtype specifically requires V4-1 multi-agent ecology. The conclusion is that SD-049 covers a meaningful subset of the wanting class but explicitly does NOT cover social wanting; that subtype routes to V4. This is the falsifier-branch logic parallel to SD-047's Woo/Spelke branch -- it gives a clean architectural division of labor between V3 and V4.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Social wanting has its own neural substrate (DRN dopamine, distinct from VTA) and cannot be elicited by inanimate substitutes. SD-049's novelty channel is structurally inanimate; it does not pursue anything. If MECH-229 evidence on the SD-049 substrate generalises to the wanting class as a whole, that generalisation will overreach for the social subtype. Tag SD-049 evidence as covering the homeostatic + non-homeostatic-perceptual subtypes of wanting; explicitly route social wanting to V4-1 multi-agent ecology.",
+    "Matthews et al. document that DRN dopamine activation produces social preference but place avoidance -- the substrate signal is doubly-valenced. SD-049 does not need to model this for its primary cohort, but it is a future-extension warning: when the substrate eventually adds social interaction (V4), the wanting signal there will not be unidimensional, and the substrate design must accommodate the doubly-valenced signature."
+  ],
+  "tags": ["sd_049", "mech_229", "social_wanting", "dorsal_raphe", "dopamine", "loneliness", "v4_boundary", "tye_lab"],
+  "mapping": {
+    "source_claim_statement": "Dorsal raphe nucleus (DRN) dopamine neurons are activated by social contact following acute social isolation, and optogenetic activation of these neurons produces a social preference behavior accompanied by place avoidance. DRN dopamine neurons are necessary for promoting rebound sociability following isolation. The degree to which these neurons modulate behavior is predicted by social rank. Together, this defines a neural substrate for a loneliness-like state and the motivation to seek social contact -- a substrate distinct from the VTA-mediated primary-reward dopamine system.",
+    "ree_translation": "Wanting is a heterogeneous motivational class. Berridge's wanting/liking framework characterises wanting as incentive salience driven by mesocorticolimbic dopamine; Matthews et al. show that *social* wanting under isolation has its own DRN-dopamine substrate. The architectural implication for SD-049 is that the V3 substrate covers a meaningful subset of the wanting class -- specifically the homeostatic (food, water) and non-homeostatic-perceptual (novelty) subtypes -- but it explicitly does NOT cover social wanting. That subtype routes to V4-1 multi-agent ecology, where genuine other-agents make conspecific-directed wanting expressible. SD-049's falsifier branch in the validation experiment (flat-failure on wanting != liking trajectory metric across all arms routes MECH-229 to substrate_conditional with V4 dependency) is licensed by this paper: if SD-049's homeostatic + perceptual subtypes are insufficient to evidence MECH-229, the next architectural step is the social subtype, which V4 enables.",
+    "mapping_caveat": "Matthews et al. study acute social isolation in adolescent and adult male C57BL/6J mice; this is not the same as a grid-world agent's lack of conspecifics. The transfer risk is real -- the rodent paradigm involves rich social-recognition processing (DRN dopamine projects to mPFC for social-recognition memory), which V4 multi-agent ecology would have to substantially scaffold. The take-away for SD-049 is not the specific mechanism but the class-level division: at least one wanting subtype demonstrably requires conspecifics, so the V3-tractable scope of the wanting class is bounded above by the social subtype.",
+    "source_context": "Adolescent (4-week) and adult (14-week) male C57BL/6J mice; 1-week social isolation paradigm; in vivo calcium imaging, optogenetics, chemogenetic DREADD techniques; behavioral assays (free interaction, three-chamber social approach, place preference, social recognition memory); cell-type-specific manipulations of DRN dopamine vs PVN oxytocin neurons."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (Cell, Tye lab, comprehensive multi-method approach). Mapping fidelity moderate -- the paper directly evidences a wanting subtype that V3 cannot deliver, but the architectural take-away (wanting is heterogeneous, with at least one subtype requiring V4) requires a synthesis step. Transfer risk moderate-high -- rodent social paradigms involve substantially more architecture than a grid-world agent has, and the V4-bound conclusion depends on V4's design accommodating those scaffolds."
+  }
+}

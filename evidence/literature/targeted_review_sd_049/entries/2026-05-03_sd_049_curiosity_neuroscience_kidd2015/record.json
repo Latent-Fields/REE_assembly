@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049",
+  "entry_id": "2026-05-03_sd_049_curiosity_neuroscience_kidd2015",
+  "timestamp_utc": "2026-05-03T10:18:42Z",
+  "claim_ids_tested": ["SD-049", "MECH-216"],
+  "source": {
+    "title": "The Psychology and Neuroscience of Curiosity",
+    "authors": ["Celeste Kidd", "Benjamin Y Hayden"],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.09.010",
+    "pmid": "26539887"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "The load-bearing entry for SD-049's novelty channel. Comprehensive review of curiosity / information-seeking as a real motivational class with its own behavioral and neural signatures, distinct from primary-reward seeking. Kidd & Hayden are explicit that curiosity is a non-homeostatic motivator: it does not reduce a deficit in the same sense that food reduces hunger; it is driven by the prospect of information gain, novelty, or reduction of uncertainty, and its consummatory phase is the act of looking / attending / exploring rather than ingesting. They argue against forcing a single definition of curiosity and propose studying it as a class of information-seeking motivations grounded in ethological context. Confidence high on source quality (Neuron, comprehensive review, two leading researchers in the field); mapping fidelity high because the claim 'curiosity is a non-homeostatic motivator with characteristic decay-with-familiarity dynamics' is exactly what SD-049's novelty channel needs to be biologically licensed. Transfer risk low-moderate because the framework is explicitly cross-species and cross-modality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Kidd & Hayden warn against treating curiosity as a single phenomenon -- they argue it is a class of information-seeking motivations that vary by context and species. SD-049's novelty channel implements one specific operationalisation: benefit decays with per-cell familiarity. Kidd & Hayden's framework licenses this as a valid instance, but cautions that the agent will not generalise to other curiosity-class motivations (e.g. specific epistemic curiosity, perceptual curiosity, social information-seeking) without further substrate work. SD-049 is therefore a partial implementation of the curiosity class, not a complete one.",
+    "The curiosity class's reward signal is not deficit-reduction but uncertainty-reduction. SD-049's novelty-decay implementation is closer to a habituation analog than to a true uncertainty-reduction signal. This is a known architectural simplification; flagging here so that future child mechanisms (e.g. MECH-(TBD): predictive uncertainty as benefit signal) can be registered without confusion."
+  ],
+  "tags": ["sd_049", "mech_216", "curiosity", "information_seeking", "novelty", "non_homeostatic_motivation", "kidd_hayden"],
+  "mapping": {
+    "source_claim_statement": "Curiosity is a basic element of cognition that drives information-seeking behavior. Unlike primary-reward seeking, it is non-homeostatic: it does not reduce a physiological deficit, and its consummatory phase is the act of attending/exploring rather than ingestion. The neural substrate involves orbitofrontal cortex, anterior cingulate cortex, and dopaminergic systems, but is distinct from the substrate of primary-reward processing. Curiosity should not be defined uniquely; it is a class of information-seeking motivations that varies by ethological context.",
+    "ree_translation": "SD-049's novelty channel instantiates one specific case from the curiosity class: per-cell benefit that decays with familiarity, provides motivational salience without homeostatic deficit reduction, and produces wanting-trajectories that can diverge from the satiating-target. This is the architectural lynchpin distinguishing SD-049's fuller scope from a minimal 2-type homeostatic-only scope. Without the novelty channel, the agent cannot 'want' anything that is not currently reducing a deficit, which means MECH-229's wanting/liking dissociation collapses to drive-axis dissociation -- not the claim under test. Kidd & Hayden license the novelty channel biologically as a real class of motivation that should be substrate-supported, not a hedge or workaround.",
+    "mapping_caveat": "Kidd & Hayden's framework spans a richer phenomenology than SD-049's novelty channel implements. They distinguish epistemic curiosity, perceptual curiosity, and information-seeking-for-future-reward, each with potentially different substrates. SD-049 implements approximately the perceptual / habituation form (benefit decays with per-cell familiarity). Generalising MECH-229 evidence to curiosity-class claims as a whole would over-reach; SD-049 evidence licenses claims about *this particular* operationalisation of curiosity, not the full class.",
+    "source_context": "Theoretical review (~12 pages) covering psychology and neuroscience of curiosity; cross-species; advocates for ethological / contextual studies. No new empirical data in this paper; reviews ~100 cited primary sources."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Source quality high (Neuron, two leading curiosity-neuroscience researchers, comprehensive scope). Mapping fidelity high -- the claim that curiosity is non-homeostatic with characteristic decay-with-familiarity dynamics is exactly what SD-049's novelty channel needs. Transfer risk low because the framework is explicitly cross-species and contextual; the only transfer concern is the operationalisation choice (perceptual habituation vs uncertainty reduction)."
+  }
+}

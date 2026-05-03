@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_100_z_harm_a_integration
 
-Generated: `2026-05-03T04:35:53.840255Z`
+Generated: `2026-05-03T10:37:37.749862Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
