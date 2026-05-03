@@ -1,0 +1,219 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_504_mech153_supervised_context_labeling_3arm_20260503T021659Z_v3",
+  "experiment_type": "v3_exq_504_mech153_supervised_context_labeling_3arm",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-03T02:16:59.897013Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-153"
+  ],
+  "result": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-153": "weakens"
+  },
+  "criteria": {
+    "n_seeds": 5,
+    "min_seeds_required": 3,
+    "c1_arm_a_collapses_seeds_pass": 5,
+    "c2_arm_b_differentiates_seeds_pass": 0,
+    "c3_arm_c_differentiates_seeds_pass": 0,
+    "c4_arm_c_harm_r2_seeds_pass": 0,
+    "c5_arm_c_ge_arm_b_seeds_pass": 1,
+    "c1_pass": true,
+    "c2_pass": false,
+    "c3_pass": false,
+    "c4_pass": false,
+    "c5_pass": false,
+    "overall_pass": false,
+    "mean_arm_a_cosine": 0.9999999642372132,
+    "mean_arm_b_cosine": 0.9999999880790711,
+    "mean_arm_c_cosine": 0.9999999642372132,
+    "mean_arm_b_harm_r2": -0.09378533909900719,
+    "mean_arm_c_harm_r2": -3036.0611121035536
+  },
+  "registered_thresholds": {
+    "C1_ARM_A_MIN_COSINE": 0.95,
+    "C2_ARM_B_MAX_COSINE": 0.8,
+    "C3_ARM_C_MAX_COSINE": 0.8,
+    "C4_ARM_C_MIN_HARM_R2": 0.4,
+    "C5_HARM_R2_TOLERANCE": 0.05,
+    "PASS_FRACTION_REQUIRED": 0.6
+  },
+  "config": {
+    "self_dim": 32,
+    "world_dim": 32,
+    "warmup_episodes": 500,
+    "collect_episodes": 100,
+    "steps_per_episode": 200,
+    "lambda_terrain": 0.5,
+    "contrastive_temperature": 0.5,
+    "num_hazards": 1,
+    "seeds": [
+      42,
+      7,
+      11,
+      99,
+      31
+    ]
+  },
+  "results_arm_a_no_loss": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_A_no_loss",
+      "loss_mode": "none",
+      "cosine_sim": 0.9999999403953552,
+      "harm_r2": -0.014127539245619936,
+      "n_proximate": 777,
+      "n_distal": 414,
+      "n_total": 3059
+    },
+    {
+      "seed": 7,
+      "arm_label": "ARM_A_no_loss",
+      "loss_mode": "none",
+      "cosine_sim": 1.0,
+      "harm_r2": -0.4167223448937063,
+      "n_proximate": 828,
+      "n_distal": 343,
+      "n_total": 2939
+    },
+    {
+      "seed": 11,
+      "arm_label": "ARM_A_no_loss",
+      "loss_mode": "none",
+      "cosine_sim": 0.9999999403953552,
+      "harm_r2": -0.18907440903240547,
+      "n_proximate": 751,
+      "n_distal": 585,
+      "n_total": 3192
+    },
+    {
+      "seed": 99,
+      "arm_label": "ARM_A_no_loss",
+      "loss_mode": "none",
+      "cosine_sim": 1.0,
+      "harm_r2": -0.016296685192465965,
+      "n_proximate": 796,
+      "n_distal": 567,
+      "n_total": 3010
+    },
+    {
+      "seed": 31,
+      "arm_label": "ARM_A_no_loss",
+      "loss_mode": "none",
+      "cosine_sim": 0.9999999403953552,
+      "harm_r2": -0.0036819362916524767,
+      "n_proximate": 653,
+      "n_distal": 455,
+      "n_total": 3116
+    }
+  ],
+  "results_arm_b_hard_ce": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_B_hard_ce",
+      "loss_mode": "hard_ce",
+      "cosine_sim": 1.0,
+      "harm_r2": -0.012379840577484647,
+      "n_proximate": 777,
+      "n_distal": 414,
+      "n_total": 3059
+    },
+    {
+      "seed": 7,
+      "arm_label": "ARM_B_hard_ce",
+      "loss_mode": "hard_ce",
+      "cosine_sim": 0.9999999403953552,
+      "harm_r2": -0.41553541864177235,
+      "n_proximate": 828,
+      "n_distal": 343,
+      "n_total": 2939
+    },
+    {
+      "seed": 11,
+      "arm_label": "ARM_B_hard_ce",
+      "loss_mode": "hard_ce",
+      "cosine_sim": 1.0,
+      "harm_r2": -0.030710792728715575,
+      "n_proximate": 751,
+      "n_distal": 585,
+      "n_total": 3192
+    },
+    {
+      "seed": 99,
+      "arm_label": "ARM_B_hard_ce",
+      "loss_mode": "hard_ce",
+      "cosine_sim": 1.0,
+      "harm_r2": -0.0040815950796364575,
+      "n_proximate": 796,
+      "n_distal": 567,
+      "n_total": 3010
+    },
+    {
+      "seed": 31,
+      "arm_label": "ARM_B_hard_ce",
+      "loss_mode": "hard_ce",
+      "cosine_sim": 1.0,
+      "harm_r2": -0.006219048467426935,
+      "n_proximate": 653,
+      "n_distal": 455,
+      "n_total": 3116
+    }
+  ],
+  "results_arm_c_soft_contrastive": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_C_soft_contrastive",
+      "loss_mode": "soft_contrastive",
+      "cosine_sim": 1.0,
+      "harm_r2": -7162.669450198502,
+      "n_proximate": 777,
+      "n_distal": 414,
+      "n_total": 3059
+    },
+    {
+      "seed": 7,
+      "arm_label": "ARM_C_soft_contrastive",
+      "loss_mode": "soft_contrastive",
+      "cosine_sim": 0.9999999403953552,
+      "harm_r2": -0.42131573113026466,
+      "n_proximate": 828,
+      "n_distal": 343,
+      "n_total": 2939
+    },
+    {
+      "seed": 11,
+      "arm_label": "ARM_C_soft_contrastive",
+      "loss_mode": "soft_contrastive",
+      "cosine_sim": 1.0,
+      "harm_r2": -1809.7369834654455,
+      "n_proximate": 751,
+      "n_distal": 585,
+      "n_total": 3192
+    },
+    {
+      "seed": 99,
+      "arm_label": "ARM_C_soft_contrastive",
+      "loss_mode": "soft_contrastive",
+      "cosine_sim": 0.9999999403953552,
+      "harm_r2": -3181.5022823673903,
+      "n_proximate": 796,
+      "n_distal": 567,
+      "n_total": 3010
+    },
+    {
+      "seed": 31,
+      "arm_label": "ARM_C_soft_contrastive",
+      "loss_mode": "soft_contrastive",
+      "cosine_sim": 0.9999999403953552,
+      "harm_r2": -3025.975528755301,
+      "n_proximate": 653,
+      "n_distal": 455,
+      "n_total": 3116
+    }
+  ],
+  "elapsed_seconds": 1749.5665097236633,
+  "notes": "Three-arm extension of EXQ-239 (which ran the no-loss vs hard-CE pair). Adds a soft contrastive arm whose pair similarity targets exp(-|haz_dist|/T), providing continuous-hazard supervision without discrete tertile binning. PASS supports MECH-153 strong reading. FAIL with C1 only PASSing -> upstream z_world capacity is the blocker. FAIL with C1+C2 PASSing but C3/C4 failing -> claim narrows to discrete-label-required."
+}

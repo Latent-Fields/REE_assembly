@@ -1,0 +1,96 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_506_mech095_agency_comparator_substrate_20260503T021729Z_v3",
+  "experiment_type": "v3_exq_506_mech095_agency_comparator_substrate",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-03T02:17:29.091917Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-095"
+  ],
+  "result": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-095": "weakens"
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "min_seeds_required": 2,
+    "c1_seeds_pass": 0,
+    "c2_seeds_pass": 0,
+    "c3_seeds_pass": 0,
+    "c4_seeds_pass": 3,
+    "c1_pass": false,
+    "c2_pass": false,
+    "c3_pass": false,
+    "c4_pass": true,
+    "overall_pass": false,
+    "mean_ratio_agent_over_env": 1.0054420385249372,
+    "mean_ratio_agent_over_collateral": 1.0019096861094263,
+    "mean_ratio_agent_over_correlated": 0.9914721755452064
+  },
+  "registered_thresholds": {
+    "C1_MIN_RATIO": 1.5,
+    "C2_MIN_RATIO": 1.5,
+    "C3_MIN_RATIO": 1.5,
+    "C4_MIN_AGENT_GAP": 0.1,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666
+  },
+  "config": {
+    "z_harm_dim": 32,
+    "action_dim": 4,
+    "hidden_dim": 128,
+    "n_train_steps": 800,
+    "batch": 64,
+    "n_eval": 256,
+    "noise_scale": 0.05,
+    "interventional_margin": 0.1,
+    "interventional_fraction": 0.3,
+    "lr": 0.0005,
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "results_per_seed": [
+    {
+      "seed": 42,
+      "gap_agent_caused": 3.7563095092773438,
+      "gap_env_caused": 3.748593807220459,
+      "gap_agent_collateral": 3.7724361419677734,
+      "gap_env_correlated": 3.8209948539733887,
+      "ratio_agent_over_env": 1.002058292376737,
+      "ratio_agent_over_collateral": 0.9957251409742836,
+      "ratio_agent_over_correlated": 0.9830710725431154,
+      "train_loss_first": 0.28664925694465637,
+      "train_loss_last": 0.0044647869653999805
+    },
+    {
+      "seed": 43,
+      "gap_agent_caused": 4.14085054397583,
+      "gap_env_caused": 4.105814456939697,
+      "gap_agent_collateral": 4.111011981964111,
+      "gap_env_correlated": 4.14125394821167,
+      "ratio_agent_over_env": 1.0085332855158406,
+      "ratio_agent_over_collateral": 1.0072582036108448,
+      "ratio_agent_over_correlated": 0.9999025888677959,
+      "train_loss_first": 0.28792744874954224,
+      "train_loss_last": 0.004749301355332136
+    },
+    {
+      "seed": 44,
+      "gap_agent_caused": 4.230103969573975,
+      "gap_env_caused": 4.205984592437744,
+      "gap_agent_collateral": 4.2185211181640625,
+      "gap_env_correlated": 4.266613960266113,
+      "ratio_agent_over_env": 1.0057345376822342,
+      "ratio_agent_over_collateral": 1.0027457137431501,
+      "ratio_agent_over_correlated": 0.9914428652247081,
+      "train_loss_first": 0.30909600853919983,
+      "train_loss_last": 0.004751634318381548
+    }
+  ],
+  "elapsed_seconds": 8.630534887313843,
+  "notes": "Substrate-level test of E2_harm_s as agency-detection comparator (MECH-095 V3 instantiation via ARC-033). Trains a fresh E2HarmSForward on synthetic action-controlled transitions with SD-013 interventional loss enabled, then measures the counterfactual_forward gap on four held-out conditions: agent-caused (action drives outcome), env-caused (action irrelevant), agent-collateral (action label retained but env-driven), env-correlated (random action, env-driven). PASS supports MECH-095 substrate. C4 alone PASSing while C1-C3 fail is the substrate-ceiling signature flagged in the recent MECH-095 evidence_quality_note."
+}

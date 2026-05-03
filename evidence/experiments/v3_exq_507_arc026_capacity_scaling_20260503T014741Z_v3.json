@@ -1,0 +1,211 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_507_arc026_capacity_scaling_20260503T014741Z_v3",
+  "experiment_type": "v3_exq_507_arc026_capacity_scaling",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-03T01:47:41.344827Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "ARC-026"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "ARC-026": "supports"
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "min_seeds_required": 2,
+    "c1_seeds_pass": 3,
+    "c2_seeds_pass": 3,
+    "c3_seeds_pass": 3,
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "overall_pass": true,
+    "per_seed_summary": [
+      {
+        "seed": 42,
+        "ratio_small": 0.012575690116622558,
+        "ratio_medium": 0.012575690116622558,
+        "ratio_large": 0.012575690116622558,
+        "approach_small": 0.8719133645165384,
+        "approach_medium": 0.8719133645165384,
+        "approach_large": 0.8719133645165384,
+        "c1_pass": true,
+        "c2_pass": true,
+        "c3_pass": true
+      },
+      {
+        "seed": 43,
+        "ratio_small": 0.028365579382053124,
+        "ratio_medium": 0.028365579382053124,
+        "ratio_large": 0.028365579382053124,
+        "approach_small": 0.9180727922357619,
+        "approach_medium": 0.9180727922357619,
+        "approach_large": 0.9180727922357619,
+        "c1_pass": true,
+        "c2_pass": true,
+        "c3_pass": true
+      },
+      {
+        "seed": 44,
+        "ratio_small": 0.011077893769289927,
+        "ratio_medium": 0.011077893769289927,
+        "ratio_large": 0.011077893769289927,
+        "approach_small": 0.8946468508751588,
+        "approach_medium": 0.8946468508751588,
+        "approach_large": 0.8946468508751588,
+        "c1_pass": true,
+        "c2_pass": true,
+        "c3_pass": true
+      }
+    ]
+  },
+  "registered_thresholds": {
+    "C1_MONOTONE_TOL": 0.95,
+    "C2_MIN_RATIO_LARGE": 0.0,
+    "C3_MIN_APPROACH_RATIO": 0.5,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666,
+    "CONTACT_THRESHOLD": 0.05
+  },
+  "config": {
+    "warmup_episodes": 60,
+    "eval_episodes": 30,
+    "steps_per_episode": 150,
+    "capacity_levels": [
+      {
+        "label": "SMALL",
+        "world_dim": 16,
+        "self_dim": 16,
+        "hidden_dim": 64
+      },
+      {
+        "label": "MEDIUM",
+        "world_dim": 32,
+        "self_dim": 32,
+        "hidden_dim": 128
+      },
+      {
+        "label": "LARGE",
+        "world_dim": 64,
+        "self_dim": 32,
+        "hidden_dim": 256
+      }
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "results_per_seed_per_capacity": {
+    "42": {
+      "SMALL": {
+        "seed": 42,
+        "capacity_label": "SMALL",
+        "world_dim": 16,
+        "self_dim": 16,
+        "hidden_dim": 64,
+        "approach_score": 0.8719133645165384,
+        "contact_rate": 0.010964912280701754,
+        "ratio": 0.012575690116622558,
+        "n_total_eval_steps": 912
+      },
+      "MEDIUM": {
+        "seed": 42,
+        "capacity_label": "MEDIUM",
+        "world_dim": 32,
+        "self_dim": 32,
+        "hidden_dim": 128,
+        "approach_score": 0.8719133645165384,
+        "contact_rate": 0.010964912280701754,
+        "ratio": 0.012575690116622558,
+        "n_total_eval_steps": 912
+      },
+      "LARGE": {
+        "seed": 42,
+        "capacity_label": "LARGE",
+        "world_dim": 64,
+        "self_dim": 32,
+        "hidden_dim": 256,
+        "approach_score": 0.8719133645165384,
+        "contact_rate": 0.010964912280701754,
+        "ratio": 0.012575690116622558,
+        "n_total_eval_steps": 912
+      }
+    },
+    "43": {
+      "SMALL": {
+        "seed": 43,
+        "capacity_label": "SMALL",
+        "world_dim": 16,
+        "self_dim": 16,
+        "hidden_dim": 64,
+        "approach_score": 0.9180727922357619,
+        "contact_rate": 0.026041666666666668,
+        "ratio": 0.028365579382053124,
+        "n_total_eval_steps": 768
+      },
+      "MEDIUM": {
+        "seed": 43,
+        "capacity_label": "MEDIUM",
+        "world_dim": 32,
+        "self_dim": 32,
+        "hidden_dim": 128,
+        "approach_score": 0.9180727922357619,
+        "contact_rate": 0.026041666666666668,
+        "ratio": 0.028365579382053124,
+        "n_total_eval_steps": 768
+      },
+      "LARGE": {
+        "seed": 43,
+        "capacity_label": "LARGE",
+        "world_dim": 64,
+        "self_dim": 32,
+        "hidden_dim": 256,
+        "approach_score": 0.9180727922357619,
+        "contact_rate": 0.026041666666666668,
+        "ratio": 0.028365579382053124,
+        "n_total_eval_steps": 768
+      }
+    },
+    "44": {
+      "SMALL": {
+        "seed": 44,
+        "capacity_label": "SMALL",
+        "world_dim": 16,
+        "self_dim": 16,
+        "hidden_dim": 64,
+        "approach_score": 0.8946468508751588,
+        "contact_rate": 0.009910802775024777,
+        "ratio": 0.011077893769289927,
+        "n_total_eval_steps": 1009
+      },
+      "MEDIUM": {
+        "seed": 44,
+        "capacity_label": "MEDIUM",
+        "world_dim": 32,
+        "self_dim": 32,
+        "hidden_dim": 128,
+        "approach_score": 0.8946468508751588,
+        "contact_rate": 0.009910802775024777,
+        "ratio": 0.011077893769289927,
+        "n_total_eval_steps": 1009
+      },
+      "LARGE": {
+        "seed": 44,
+        "capacity_label": "LARGE",
+        "world_dim": 64,
+        "self_dim": 32,
+        "hidden_dim": 256,
+        "approach_score": 0.8946468508751588,
+        "contact_rate": 0.009910802775024777,
+        "ratio": 0.011077893769289927,
+        "n_total_eval_steps": 1009
+      }
+    }
+  },
+  "elapsed_seconds": 57.59368395805359,
+  "notes": "Capacity-sweep weak-reading test of ARC-026. Sweeps world_dim in {16, 32, 64} and measures approach_score, contact_rate, and the ratio metric from EXQ-033. PASS supports the 'no crowding-out' weak reading. The strong reading (genuinely expanded long-horizon care) needs a substrate that V3 does not expose; remains substrate-pending. Random action policy during both warmup and eval -- this experiment tests whether the ENCODED z_world supports goal-pursuit, not whether E3 policy improves with capacity (which would be a different test)."
+}

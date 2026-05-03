@@ -1,0 +1,119 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_508_arc033_e2_harm_s_body_damage_ablation_20260503T021914Z_v3",
+  "experiment_type": "v3_exq_508_arc033_e2_harm_s_body_damage_ablation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-03T02:19:14.211489Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "ARC-033"
+  ],
+  "result": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-033": "weakens"
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "min_seeds_required": 2,
+    "c1_seeds_pass": 0,
+    "c2_seeds_pass": 3,
+    "c3_seeds_pass": 0,
+    "c1_pass": false,
+    "c2_pass": true,
+    "c3_pass": false,
+    "overall_pass": false,
+    "mean_arm_a_snr": 0.9618209125176076,
+    "mean_arm_b_snr": 1.009767214147965
+  },
+  "registered_thresholds": {
+    "C1_MIN_SNR_ARM_A": 1.5,
+    "C2_MAX_SNR_ARM_B": 1.2,
+    "C3_MIN_RELATIVE_SNR": 1.5,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666,
+    "DELTA_HARM_THRESHOLD": 0.05
+  },
+  "config": {
+    "warmup_episodes": 100,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "self_dim": 32,
+    "world_dim": 32,
+    "harm_dim": 32,
+    "num_hazards": 2,
+    "num_resources": 3,
+    "lr": 0.001,
+    "harm_fwd_lr": 0.0005,
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "results_arm_a_e2_harm_s_on": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_A_e2_harm_s_on",
+      "use_e2_harm_s": true,
+      "n_event_steps": 14,
+      "n_quiet_steps": 1185,
+      "cf_gap_on_harm_events": 0.16926132036106928,
+      "cf_gap_on_quiet_events": 0.17237022019891296,
+      "attribution_snr": 0.9819638227864648
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_A_e2_harm_s_on",
+      "use_e2_harm_s": true,
+      "n_event_steps": 12,
+      "n_quiet_steps": 1130,
+      "cf_gap_on_harm_events": 0.14472341537475586,
+      "cf_gap_on_quiet_events": 0.15568521114445366,
+      "attribution_snr": 0.9295899996594614
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_A_e2_harm_s_on",
+      "use_e2_harm_s": true,
+      "n_event_steps": 22,
+      "n_quiet_steps": 1080,
+      "cf_gap_on_harm_events": 0.11614008721980182,
+      "cf_gap_on_quiet_events": 0.1192514879146108,
+      "attribution_snr": 0.9739089151068968
+    }
+  ],
+  "results_arm_b_e2_harm_s_off": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_B_e2_harm_s_off",
+      "use_e2_harm_s": false,
+      "n_event_steps": 14,
+      "n_quiet_steps": 1185,
+      "cf_gap_on_harm_events": 0.18325927906802722,
+      "cf_gap_on_quiet_events": 0.18501508339673658,
+      "attribution_snr": 0.9905099395331768
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_B_e2_harm_s_off",
+      "use_e2_harm_s": false,
+      "n_event_steps": 12,
+      "n_quiet_steps": 1130,
+      "cf_gap_on_harm_events": 0.23507299274206161,
+      "cf_gap_on_quiet_events": 0.21780026481214879,
+      "attribution_snr": 1.0793053578002325
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_B_e2_harm_s_off",
+      "use_e2_harm_s": false,
+      "n_event_steps": 22,
+      "n_quiet_steps": 1080,
+      "cf_gap_on_harm_events": 0.162605823779648,
+      "cf_gap_on_quiet_events": 0.1694717435097253,
+      "attribution_snr": 0.9594863451104857
+    }
+  ],
+  "elapsed_seconds": 95.27965378761292,
+  "notes": "ARC-033 ablation on the SD-022 body-damage substrate. ARM_A trains a dedicated E2_harm_s with SD-013 interventional loss. ARM_B uses z_world E2 forward as the counterfactual stand-in. Attribution SNR = cf_gap_event / cf_gap_quiet. PASS supports ARC-033 strong reading. C1+C2 PASSing but C3 also tight at the threshold -> the absolute discrimination is real but the relative gap is small; lit-pull-driven concerns about somatic/affective dissociation (Wager 2013, Hofbauer 2001 -- ARC-058) may apply."
+}
