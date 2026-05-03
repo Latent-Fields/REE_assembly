@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_boundary_belief_lock",
+  "entry_id": "2026-05-03_cbbl_dissonance_neural_correlates_izuma2010",
+  "timestamp_utc": "2026-05-03T13:20:26Z",
+  "claim_ids_tested": ["MECH-CBBL-PROPOSED"],
+  "source": {
+    "title": "Neural correlates of cognitive dissonance and choice-induced preference change",
+    "authors": ["Izuma K", "Matsumoto M", "Murayama K", "Samejima K", "Sadato N", "Matsumoto K"],
+    "year": 2010,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.1011879108",
+    "url": "https://doi.org/10.1073/pnas.1011879108"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "fMRI study with proper Chen-Risen control (matched non-choice condition), n=20 healthy adults, two convergent measures (self-report and striatum BOLD) of preference change. ACC and dlPFC track dissonance trial-by-trial. Source quality is high (PNAS, peer-reviewed, methodologically defensible against the foundational free-choice critique). Mapping fidelity for the brief is moderate-high: the experiment cleanly demonstrates that a typed choice (the commit) shifts preference and shifts the neural representation of preference, which is the empirical core of commit-boundary belief lock.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Free-choice paradigm without a non-choice control condition spuriously produces choice-induced preference change even when no true preference shift exists (Chen & Risen 2010); Izuma's design avoids this by using a blind-rating control."],
+  "tags": ["commit_boundary_belief_lock", "cognitive_dissonance", "choice_induced_preference_change", "stream_1", "fmri", "striatum", "acc", "dlpfc"],
+  "mapping": {
+    "source_claim_statement": "The mere act of making a choice between equally preferred items shifts both self-reported preference and striatal value representation; ACC and dlPFC activity tracks the trial-by-trial degree of cognitive dissonance.",
+    "ree_translation": "Direct empirical anchor for the commit-boundary belief lock hypothesis: crossing a typed commit boundary (choice between matched alternatives) causes a measurable, lasting shift in the neural value representation of the choice content. The ACC + dlPFC engagement during dissonance maps to the conflict-resolution machinery that the proposed mechanism predicts will be recruited when revising acted-upon beliefs.",
+    "mapping_caveat": "The paradigm uses preferences over consumer items, not propositional beliefs about world state; transfer from preference shifts to belief-revision-resistance assumes the same neural machinery handles both, which is plausible but not directly demonstrated. Acted-upon-vs-not asymmetry is implied by the design (no choice = no shift) but not framed as such by the authors.",
+    "source_context": "Healthy adults; preference rating + free-choice paradigm with non-choice control; fMRI; Japan."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "PNAS, methodologically rigorous (the paper that re-established the validity of the free-choice paradigm post-Chen-Risen). Transfer risk moderate because preference != belief in the strict propositional sense, but the underlying value-update circuitry is the relevant one for the proposed mechanism."
+  }
+}

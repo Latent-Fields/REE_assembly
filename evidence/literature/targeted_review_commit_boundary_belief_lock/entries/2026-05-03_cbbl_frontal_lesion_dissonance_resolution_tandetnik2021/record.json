@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_boundary_belief_lock",
+  "entry_id": "2026-05-03_cbbl_frontal_lesion_dissonance_resolution_tandetnik2021",
+  "timestamp_utc": "2026-05-03T13:20:26Z",
+  "claim_ids_tested": ["MECH-CBBL-PROPOSED"],
+  "source": {
+    "title": "Cognitive dissonance resolution depends on executive functions and frontal lobe integrity",
+    "authors": ["Tandetnik C", "Sohier E", "Capelle L", "du Boullay V", "Obadia M", "Chammat M", "Pyatigorskaia N", "Naccache L"],
+    "year": 2021,
+    "venue": "Cortex",
+    "doi": "10.1016/j.cortex.2021.02.018",
+    "url": "https://doi.org/10.1016/j.cortex.2021.02.018"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Lesion study showing that dysexecutive frontal-lobe-lesion patients fail to show choice-induced preference change EVEN WHEN their memory for the choices is intact. Non-dysexecutive lesion patients perform like controls. This dissociates memory of the commit (intact in both lesion groups) from the executive substrate that converts the commit into the downstream representational shift. Source quality good (Cortex, well-designed lesion-control comparison with neuropsychological characterisation). Mapping fidelity high -- the dissociation precisely separates the two substrates the proposed mechanism requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Patients with dysexecutive frontal-lobe lesions fail to show CIPC despite remembering their choices, demonstrating that memory of the commit alone is insufficient -- the executive frontal substrate is also required. The proposed mechanism therefore needs both substrates (commit record AND executive resolution) to operate. A clean falsification target: if the proposed mechanism does not require frontal-lobe executive function, the Tandetnik dissociation is incompatible with it."],
+  "tags": ["commit_boundary_belief_lock", "frontal_lobe", "lesion_study", "executive_function", "anterior_cingulate", "dissonance_resolution", "stream_5", "neuropsychology"],
+  "mapping": {
+    "source_claim_statement": "Choice-induced preference change requires both retained memory of the choice AND functioning executive networks (mediated by the frontal lobe and especially the anterior cingulate cortex). Dysexecutive frontal-lobe-lesion patients fail to show CIPC even when they remember their choices, while non-dysexecutive lesion patients perform like controls.",
+    "ree_translation": "Direct architectural support for the proposal's two-substrate framing. The hippocampal commit-record (Voigt 2018) is necessary but not sufficient -- the frontal/ACC executive substrate that detects and resolves the conflict between commit and prior preference is also required. The proposed mechanism therefore predicts a specific dose-response: rigidity grows with both (a) commit-record strength and (b) frontal-executive engagement, and pathological lock requires both to be high.",
+    "mapping_caveat": "The lesion study is necessarily correlational at the substrate level (we observe that dysexecutive patients fail; we do not directly manipulate the executive substrate in healthy controls). The patient sample is small and heterogeneous as is typical in lesion neuropsychology. Transfer from low-stakes preference-change tasks to high-stakes delusional belief revision is one inferential step.",
+    "source_context": "Patients with frontal-lobe lesions (n>10), classified as dysexecutive (DYS) or non-dysexecutive (NODYS) on standard neuropsychological battery; matched controls; classic free-choice paradigm with memory probe; France."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "Cortex; well-designed lesion-control comparison with neuropsychological characterisation; small patient sample as is unavoidable in lesion neuropsychology. Mapping is direct -- the dissociation isolates the two substrates the brief separates."
+  }
+}

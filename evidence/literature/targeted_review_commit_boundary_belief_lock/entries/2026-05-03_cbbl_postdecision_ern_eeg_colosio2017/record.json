@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_boundary_belief_lock",
+  "entry_id": "2026-05-03_cbbl_postdecision_ern_eeg_colosio2017",
+  "timestamp_utc": "2026-05-03T13:20:26Z",
+  "claim_ids_tested": ["MECH-CBBL-PROPOSED"],
+  "source": {
+    "title": "Neural Mechanisms of Cognitive Dissonance (Revised): An EEG Study",
+    "authors": ["Colosio M", "Shestakova A", "Nikulin VV", "Blagovechtchenski E", "Klucharev V"],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3209-16.2017",
+    "url": "https://doi.org/10.1523/JNEUROSCI.3209-16.2017"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "EEG study with proper control showing a frontocentral negative deflection at ~60 ms post-response that resembles error-related negativity. Amplitude correlates with subsequent preference-change magnitude. Rest-state long-range temporal correlations in frontocentral cortex predict both the evoked response and the preference change. Source quality good (J Neurosci, peer-reviewed); mapping is one step removed (ERN-like signal at the choice, not at the post-commit revision attempt) but supports the architectural picture: the act of committing engages performance-monitoring circuitry whose strength predicts how much the agent's representation will subsequently shift.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The signal is locked to the response (the commit), not to a later attempt to revise the just-committed belief; this paper does not directly observe the revision-cost asymmetry the brief targets, only the upstream commit-monitoring signal."],
+  "tags": ["commit_boundary_belief_lock", "cognitive_dissonance", "ERN", "performance_monitoring", "frontocentral", "stream_1", "eeg"],
+  "mapping": {
+    "source_claim_statement": "The post-decisional reevaluation of choice alternatives is preceded by a frontocentral evoked response with the spatial and temporal characteristics of error-related negativity (~60 ms post-response, frontocentral midline), and the amplitude of this response predicts the magnitude of subsequent preference change.",
+    "ree_translation": "Neural support for the proposal that crossing the commit boundary engages performance-monitoring circuitry whose engagement intensity predicts how much the agent's downstream representations will be reshaped. Maps to dACC / SMA in the existing REE control-plane signal map. The ERN-like signature at commit suggests the architecture treats the commit as a performance event, which is consistent with the typed-commit-boundary framing of INV-021.",
+    "mapping_caveat": "ERN is canonically a response-monitoring signal; its appearance here is interpreted as dissonance-monitoring by analogy. The revision-cost asymmetry the brief targets is the downstream consequence, not the directly measured signal. Resting-state long-range temporal correlations as an individual-difference predictor are interesting but the mechanism by which they confer dissonance susceptibility is not established.",
+    "source_context": "Healthy young adults; free-choice paradigm; EEG with rest-state baseline; Russia."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "J Neurosci is solid; the mapping to the proposed mechanism is one inferential step (ERN at commit predicts later representational shift, the brief proposes that commits drive lasting representational shifts). Transfer risk modest; same paradigm and demographic as Izuma 2010."
+  }
+}

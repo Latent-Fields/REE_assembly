@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-03T12:29:13.747370Z`
+Generated: `2026-05-03T13:30:07.144836Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -23,6 +23,7 @@ Generated: `2026-05-03T12:29:13.747370Z`
 | `targeted_review_arc_045` | [`2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019`](targeted_review_arc_045/entries/2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019/record.json) | 3 | [`summary`](targeted_review_arc_045/entries/2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019/summary.md) |
 | `targeted_review_arc_058` | [`2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/record.json) | 7 | [`summary`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
+| `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |
 | `targeted_review_connectome_arc_007` | [`2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/record.json) | 5 | [`summary`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/summary.md) |
 | `targeted_review_connectome_arc_016` | [`2026-04-14_arc_016_precision_action_hierarchy_limanowski2024`](targeted_review_connectome_arc_016/entries/2026-04-14_arc_016_precision_action_hierarchy_limanowski2024/record.json) | 9 | [`summary`](targeted_review_connectome_arc_016/entries/2026-04-14_arc_016_precision_action_hierarchy_limanowski2024/summary.md) |
 | `targeted_review_connectome_arc_018` | [`2026-03-29_arc_018_prioritized_replay_mattar2018`](targeted_review_connectome_arc_018/entries/2026-03-29_arc_018_prioritized_replay_mattar2018/record.json) | 5 | [`summary`](targeted_review_connectome_arc_018/entries/2026-03-29_arc_018_prioritized_replay_mattar2018/summary.md) |

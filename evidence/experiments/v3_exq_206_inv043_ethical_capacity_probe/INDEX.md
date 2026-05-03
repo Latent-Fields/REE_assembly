@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_206_inv043_ethical_capacity_probe
 
-Generated: `2026-05-03T12:29:13.747370Z`
+Generated: `2026-05-03T13:30:07.144836Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

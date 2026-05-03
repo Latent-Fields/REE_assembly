@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_245_mech120_shy_normalisation
 
-Generated: `2026-05-03T12:29:13.747370Z`
+Generated: `2026-05-03T13:30:07.144836Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

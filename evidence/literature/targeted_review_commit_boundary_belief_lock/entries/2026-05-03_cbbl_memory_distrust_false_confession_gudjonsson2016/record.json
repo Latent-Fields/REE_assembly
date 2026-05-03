@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_boundary_belief_lock",
+  "entry_id": "2026-05-03_cbbl_memory_distrust_false_confession_gudjonsson2016",
+  "timestamp_utc": "2026-05-03T13:20:26Z",
+  "claim_ids_tested": ["MECH-CBBL-PROPOSED"],
+  "source": {
+    "title": "Memory distrust syndrome, confabulation and false confession",
+    "authors": ["Gudjonsson G"],
+    "year": 2016,
+    "venue": "Cortex",
+    "doi": "10.1016/j.cortex.2016.06.013",
+    "url": "https://doi.org/10.1016/j.cortex.2016.06.013"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Authoritative review by the originator of the memory distrust syndrome (MDS) construct, with a detailed case study of a 32-year-old man who falsely confessed to murder under interrogation and developed enduring belief in the confessed content. Documents the three-type taxonomy (voluntary, pressured-compliant, pressured-internalized) and the contextual + dispositional risk factors for the internalized type. Strong source quality. Mapping fidelity is high for the proposal: pressured-internalized false confession is a near-pure naturalistic instance of belief lock under coerced commit. Transfer risk is moderate because the case-series literature is interpretive rather than experimental.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Pressured-internalized false confession is described as 'apparently quite rare', so the strong-form prediction (every coerced commit produces internalisation) is not what the literature shows; the proposed mechanism must accommodate the role of additional vulnerabilities (state factors like sleep deprivation, isolation, suggestibility, intellectual ability) that gate when commit-boundary crossing converts to durable belief lock."],
+  "tags": ["commit_boundary_belief_lock", "false_confession", "memory_distrust_syndrome", "confabulation", "Gudjonsson", "stream_3", "clinical_case", "forensic"],
+  "mapping": {
+    "source_claim_statement": "Pressured-internalized false confessions occur when contextual risk factors (isolation, persistent guilt-presumptive interrogation, high emotional intensity) interact with enduring vulnerability and acute state factors to produce a memory distrust syndrome in which the person comes to believe their false confession; this is a delayed rather than immediate suggestibility effect.",
+    "ree_translation": "Naturalistic instance of the proposed mechanism in its strongest form. The confession is a typed commit boundary in the legal-architectural sense (formal, witnessed, irreversible). After the commit, the agent's belief comes to align with what the commit asserted, even when the original belief was the opposite (innocence). The 'delayed rather than immediate' nature of the suggestibility maps onto the brief's prediction that the lock is post-commit, not pre-commit.",
+    "mapping_caveat": "Pressured-internalized confession requires additional vulnerabilities beyond the commit alone (memory distrust, suggestibility, state-level factors). The proposed mechanism cannot claim that any commit produces lock — it must specify the conditions under which the attribution-rigidity setpoint pushes the agent into durable belief alignment. The case-series literature is intrinsically interpretive; we lack experimental designs that ethically can produce this state.",
+    "source_context": "Forensic / interrogation context; clinical-case methodology; case study of a 32-year-old man in solitary confinement who kept a contemporaneous diary of his mental state during the development of MDS."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.40,
+    "notes": "Gudjonsson is the canonical authority on this construct; review in Cortex; the diary case is a rare resource. Transfer risk is real because case-series methodology is interpretive and the phenomenon is 'apparently quite rare', so the base rate question is open."
+  }
+}
