@@ -1,0 +1,721 @@
+{
+  "run_id": "v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness_20260503T132415Z_v3",
+  "experiment_type": "v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness",
+  "claim_ids": [
+    "SD-049"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "started_utc": "2026-05-03T13:24:15.865493Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "elapsed_seconds": 3.924170970916748,
+  "n_seeds": 3,
+  "n_ticks_per_arm": 200,
+  "arms": [
+    {
+      "arm": "ARM_0_off",
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "spawn_counts_initial_total": [
+        0,
+        0,
+        0
+      ],
+      "spawn_counts_total": [
+        0,
+        0,
+        0
+      ],
+      "contact_counts_total": [
+        0,
+        0,
+        0
+      ],
+      "novelty_contacts_total": 0,
+      "novelty_cells_familiar_max_sum": 0,
+      "n_seeds": 3,
+      "final_agent_energy_mean": 0.7399999999999997,
+      "peak_per_axis_drive_max": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "novelty_type_idx": 2
+    },
+    {
+      "arm": "ARM_1_2type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial_total": [
+        19,
+        17,
+        0
+      ],
+      "spawn_counts_total": [
+        83,
+        61,
+        0
+      ],
+      "contact_counts_total": [
+        485,
+        687,
+        0
+      ],
+      "novelty_contacts_total": 0,
+      "novelty_cells_familiar_max_sum": 23,
+      "n_seeds": 3,
+      "final_agent_energy_mean": 0.9770000030597051,
+      "peak_per_axis_drive_max": [
+        0.06499995291233063,
+        0.08850003033876419,
+        0.06200003623962402
+      ],
+      "novelty_type_idx": 2
+    },
+    {
+      "arm": "ARM_2_3type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial_total": [
+        15,
+        8,
+        13
+      ],
+      "spawn_counts_total": [
+        65,
+        48,
+        55
+      ],
+      "contact_counts_total": [
+        355,
+        315,
+        282
+      ],
+      "novelty_contacts_total": 282,
+      "novelty_cells_familiar_max_sum": 27,
+      "n_seeds": 3,
+      "final_agent_energy_mean": 0.9691000065455834,
+      "peak_per_axis_drive_max": [
+        0.06299994885921478,
+        0.10230006277561188,
+        0.04399999976158142
+      ],
+      "novelty_type_idx": 2
+    },
+    {
+      "arm": "ARM_3_5type",
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "spawn_counts_initial_total": [
+        11,
+        6,
+        5,
+        10,
+        4
+      ],
+      "spawn_counts_total": [
+        54,
+        45,
+        41,
+        50,
+        38
+      ],
+      "contact_counts_total": [
+        220,
+        127,
+        77,
+        109,
+        89
+      ],
+      "novelty_contacts_total": 77,
+      "novelty_cells_familiar_max_sum": 22,
+      "n_seeds": 3,
+      "final_agent_energy_mean": 0.9885000010641912,
+      "peak_per_axis_drive_max": [
+        0.07799997925758362,
+        0.12000009417533875,
+        0.029499977827072144,
+        0.05279996991157532,
+        0.05279996991157532
+      ],
+      "novelty_type_idx": 2
+    }
+  ],
+  "per_seed_per_arm": [
+    {
+      "arm": "ARM_0_off",
+      "seed": 42,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "per_axis_drive_enabled"
+      ],
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        0,
+        0,
+        0
+      ],
+      "spawn_counts_total": [
+        0,
+        0,
+        0
+      ],
+      "contact_counts_by_type": [
+        0,
+        0,
+        0
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 0,
+      "novelty_cells_familiar_max": 0,
+      "final_agent_energy": 0.7099999999999996,
+      "final_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "peak_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "n_resets": 4,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_1_2type",
+      "seed": 42,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_enabled",
+        "resource_type_distribution"
+      ],
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        5,
+        7,
+        0
+      ],
+      "spawn_counts_total": [
+        22,
+        14,
+        0
+      ],
+      "contact_counts_by_type": [
+        292,
+        504,
+        0
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 0,
+      "novelty_cells_familiar_max": 12,
+      "final_agent_energy": 0.9745000042021275,
+      "final_per_axis_drive": [
+        0.0060000005178153515,
+        0.025499995797872543,
+        0.008500000461935997
+      ],
+      "peak_per_axis_drive": [
+        0.060999952256679535,
+        0.08850003033876419,
+        0.06200003623962402
+      ],
+      "n_resets": 2,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_2_3type",
+      "seed": 42,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_enabled"
+      ],
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        5,
+        3,
+        4
+      ],
+      "spawn_counts_total": [
+        18,
+        9,
+        9
+      ],
+      "contact_counts_by_type": [
+        144,
+        167,
+        72
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 72,
+      "novelty_cells_familiar_max": 8,
+      "final_agent_energy": 0.9595000110566616,
+      "final_per_axis_drive": [
+        0.020000001415610313,
+        0.040499988943338394,
+        0.013500001281499863
+      ],
+      "peak_per_axis_drive": [
+        0.06299994885921478,
+        0.10230006277561188,
+        0.04399999976158142
+      ],
+      "n_resets": 2,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_3_5type",
+      "seed": 42,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_decay",
+        "per_axis_drive_enabled",
+        "resource_type_benefit_curves",
+        "resource_type_drive_axes",
+        "resource_type_names"
+      ],
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "spawn_counts_initial": [
+        3,
+        2,
+        2,
+        4,
+        1
+      ],
+      "spawn_counts_total": [
+        20,
+        13,
+        15,
+        20,
+        16
+      ],
+      "contact_counts_by_type": [
+        31,
+        30,
+        0,
+        17,
+        36
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 0,
+      "novelty_cells_familiar_max": 5,
+      "final_agent_energy": 0.996999999973923,
+      "final_per_axis_drive": [
+        0.0020000000949949026,
+        0.003000000026077032,
+        0.0010000000474974513,
+        0.0015999999595806003,
+        0.0015999999595806003
+      ],
+      "peak_per_axis_drive": [
+        0.0469999760389328,
+        0.078000009059906,
+        0.02599998377263546,
+        0.04159998893737793,
+        0.04159998893737793
+      ],
+      "n_resets": 6,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_0_off",
+      "seed": 43,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "per_axis_drive_enabled"
+      ],
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        0,
+        0,
+        0
+      ],
+      "spawn_counts_total": [
+        0,
+        0,
+        0
+      ],
+      "contact_counts_by_type": [
+        0,
+        0,
+        0
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 0,
+      "novelty_cells_familiar_max": 0,
+      "final_agent_energy": 0.6599999999999993,
+      "final_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "peak_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "n_resets": 3,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_1_2type",
+      "seed": 43,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_enabled",
+        "resource_type_distribution"
+      ],
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        7,
+        5,
+        0
+      ],
+      "spawn_counts_total": [
+        26,
+        22,
+        0
+      ],
+      "contact_counts_by_type": [
+        125,
+        132,
+        0
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 0,
+      "novelty_cells_familiar_max": 7,
+      "final_agent_energy": 0.9790000021457672,
+      "final_per_axis_drive": [
+        0.01400000136345625,
+        0.020999997854232788,
+        0.007000000681728125
+      ],
+      "peak_per_axis_drive": [
+        0.05899995565414429,
+        0.08850003033876419,
+        0.03899998962879181
+      ],
+      "n_resets": 3,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_2_3type",
+      "seed": 43,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_enabled"
+      ],
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        5,
+        3,
+        4
+      ],
+      "spawn_counts_total": [
+        24,
+        18,
+        18
+      ],
+      "contact_counts_by_type": [
+        178,
+        99,
+        122
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 122,
+      "novelty_cells_familiar_max": 11,
+      "final_agent_energy": 0.9745000042021275,
+      "final_per_axis_drive": [
+        0.017000000923871994,
+        0.025499995797872543,
+        0.008500000461935997
+      ],
+      "peak_per_axis_drive": [
+        0.04399998113512993,
+        0.07049999386072159,
+        0.02849997952580452
+      ],
+      "n_resets": 4,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_3_5type",
+      "seed": 43,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_decay",
+        "per_axis_drive_enabled",
+        "resource_type_benefit_curves",
+        "resource_type_drive_axes",
+        "resource_type_names"
+      ],
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "spawn_counts_initial": [
+        3,
+        4,
+        1,
+        3,
+        1
+      ],
+      "spawn_counts_total": [
+        11,
+        17,
+        9,
+        9,
+        14
+      ],
+      "contact_counts_by_type": [
+        90,
+        0,
+        73,
+        64,
+        48
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 73,
+      "novelty_cells_familiar_max": 7,
+      "final_agent_energy": 0.9775000028312206,
+      "final_per_axis_drive": [
+        0.015000001527369022,
+        0.022499997168779373,
+        0.007500000763684511,
+        0.011999997310340405,
+        0.011999997310340405
+      ],
+      "peak_per_axis_drive": [
+        0.07799997925758362,
+        0.12000009417533875,
+        0.026999982073903084,
+        0.05279996991157532,
+        0.05279996991157532
+      ],
+      "n_resets": 4,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_0_off",
+      "seed": 44,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "per_axis_drive_enabled"
+      ],
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        0,
+        0,
+        0
+      ],
+      "spawn_counts_total": [
+        0,
+        0,
+        0
+      ],
+      "contact_counts_by_type": [
+        0,
+        0,
+        0
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 0,
+      "novelty_cells_familiar_max": 0,
+      "final_agent_energy": 0.8499999999999999,
+      "final_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "peak_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "n_resets": 2,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_1_2type",
+      "seed": 44,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_enabled",
+        "resource_type_distribution"
+      ],
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        7,
+        5,
+        0
+      ],
+      "spawn_counts_total": [
+        35,
+        25,
+        0
+      ],
+      "contact_counts_by_type": [
+        68,
+        51,
+        0
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 0,
+      "novelty_cells_familiar_max": 4,
+      "final_agent_energy": 0.9775000028312206,
+      "final_per_axis_drive": [
+        0.003000000026077032,
+        0.022499997168779373,
+        0.007500000763684511
+      ],
+      "peak_per_axis_drive": [
+        0.06499995291233063,
+        0.07500000298023224,
+        0.0339999794960022
+      ],
+      "n_resets": 4,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_2_3type",
+      "seed": 44,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_enabled"
+      ],
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "spawn_counts_initial": [
+        5,
+        2,
+        5
+      ],
+      "spawn_counts_total": [
+        23,
+        21,
+        28
+      ],
+      "contact_counts_by_type": [
+        33,
+        49,
+        88
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 88,
+      "novelty_cells_familiar_max": 8,
+      "final_agent_energy": 0.9733000043779612,
+      "final_per_axis_drive": [
+        0.021000001579523087,
+        0.02669999562203884,
+        0.010500000789761543
+      ],
+      "peak_per_axis_drive": [
+        0.045999977737665176,
+        0.08550002425909042,
+        0.018999995663762093
+      ],
+      "n_resets": 5,
+      "n_ticks": 200
+    },
+    {
+      "arm": "ARM_3_5type",
+      "seed": 44,
+      "kwargs_keys": [
+        "multi_resource_heterogeneity_enabled",
+        "n_resource_types",
+        "per_axis_drive_decay",
+        "per_axis_drive_enabled",
+        "resource_type_benefit_curves",
+        "resource_type_drive_axes",
+        "resource_type_names"
+      ],
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "spawn_counts_initial": [
+        5,
+        0,
+        2,
+        3,
+        2
+      ],
+      "spawn_counts_total": [
+        23,
+        15,
+        17,
+        21,
+        8
+      ],
+      "contact_counts_by_type": [
+        99,
+        97,
+        4,
+        28,
+        5
+      ],
+      "novelty_type_idx": 2,
+      "novelty_contacts": 4,
+      "novelty_cells_familiar_max": 10,
+      "final_agent_energy": 0.9910000003874302,
+      "final_per_axis_drive": [
+        0.0060000005178153515,
+        0.008999999612569809,
+        0.0020000000949949026,
+        0.004799999762326479,
+        0.004799999762326479
+      ],
+      "peak_per_axis_drive": [
+        0.04099998623132706,
+        0.08850003033876419,
+        0.029499977827072144,
+        0.037599995732307434,
+        0.047199979424476624
+      ],
+      "n_resets": 6,
+      "n_ticks": 200
+    }
+  ],
+  "parity_arm0_vs_no_sd049": true,
+  "curriculum_check": {
+    "cc1_step0_gated": true,
+    "cc2_post_threshold": true
+  },
+  "acceptance": {
+    "C0_off_bit_identical": true,
+    "C1a_arm1_novelty_gated": true,
+    "C1b_arm1_food_water_spawned": true,
+    "C2a_arm2_world_obs_dim_325": true,
+    "C2b_arm2_all_three_types_spawned": true,
+    "C2c_arm2_per_axis_drive_evolves": true,
+    "C2d_arm2_per_type_contacts_nonzero": true,
+    "C2e_arm2_novelty_familiarity_grows": true,
+    "C2f_arm2_agent_energy_diverges_from_arm0": true,
+    "C3a_arm3_world_obs_dim_375": true,
+    "C3b_arm3_at_least_4_of_5_types_spawned": true,
+    "CC1_curriculum_gates_water_at_step0": true,
+    "CC2_curriculum_releases_water_after_threshold": true,
+    "all_pass": true
+  },
+  "thresholds": {
+    "arm2_depletion_floor_mean": 0.02,
+    "arm2_agent_energy_delta_floor": 0.01,
+    "arm3_types_spawned_floor": 4
+  },
+  "phase": "phase_1_substrate_only",
+  "phase_2_followon": "Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade through per-axis drive read sites) is registered as a follow-on substrate task. The behavioural goal_resource_r lift + identity-recovery probe validation lives in V3-EXQ-514 (queued after Phase 2 lands)."
+}
