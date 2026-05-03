@@ -51,6 +51,7 @@ roadmap below is everything still outstanding.
 | Sleep aggregator (MECH-272/273/275/285) | INV-049 sleep cluster + V3-EXQ-503 PASS | 2026-04-25 |
 | Ghost-goal substrate (SD-039 + MECH-292/293) | MECH-292/293/SD-039 trio | 2026-04-26..04-27 |
 | MECH-295 liking-bridge | EXQ-490 successors for Q-040 | 2026-04-26 |
+| Multi-source env dynamics (SD-047) | MECH-095 substrate_ceiling unblock; MECH-098, MECH-099 evaluable | 2026-05-03 |
 
 ## Outstanding V3 enrichments
 
@@ -122,31 +123,30 @@ unification. Probably no new SD; just calibration + tooling.
 
 ### M-priority
 
-#### 4. Multi-source environmental dynamics — **SD-047 REGISTERED 2026-05-03**
+#### 4. Multi-source environmental dynamics — **SD-047 IMPLEMENTED 2026-05-03**
 
-**SD claim:** `SD-047` (`environment.multi_source_dynamics`, candidate, v3_pending).
+**SD claim:** `SD-047` (`environment.multi_source_dynamics`, provisional).
 Design doc: `docs/architecture/sd_047_multi_source_dynamics.md`.
-Implementation dependencies: SD-022 (IMPLEMENTED), SD-029 (IMPLEMENTED) — ready to implement.
+**Implementation:** LANDED 2026-05-03 in `ree_core/environment/causal_grid_world.py`.
+Calibration ratio 1.95:1 env:agent (within 1:1–2:1 target band). Bit-identical OFF
+verified (7/7 preflight + 184/184 contracts PASS with master OFF).
 
-**Missing:** "other-caused" change in V3 = hazard drift + resource
-respawn + scheduled hazard injection. That's a thin causal background.
-Agency detection and similar comparator-driven claims need a richer
-multi-source environment.
+**Previously missing:** "other-caused" change in V3 = hazard drift + resource
+respawn + scheduled hazard injection. Too thin a causal background for
+agency-detection-comparator claims. Now resolved.
 
-**Claims unblocked:**
+**Claims unblocked (validation pending):**
 - `MECH-095` (`substrate_ceiling`) TPJ agency-detection comparator —
   V3-EXQ-506 confirmed the substrate-ceiling signature (C4-only-PASS).
-  SD-047 is the registered fix. Validation uses a 4-arm noise-level sweep
-  (Asai 2016 non-monotonicity grounds the inverted-U prediction; Woo/Spelke
-  falsifier branch routes to V4-bound `substrate_conditional` if flat-failure).
+  SD-047 substrate is now in place. Validation: V3-EXQ-509 (substrate
+  readiness diagnostic) → V3-EXQ-510 (4-arm noise-level sweep, Asai 2016
+  inverted-U; Woo/Spelke falsifier routes to `substrate_conditional` if
+  flat-failure).
 - `MECH-098` (reafference cancellation) under stochastic afference
 - `MECH-099` agency attribution downstream
 
-**Implementation surface:** three concurrent stochastic sources added to
-CausalGridWorldV3: (1) AR(1) spatial perturbation field, (2) Poisson
-transient events, (3) background drift sources. Bit-identical OFF flag.
-Calibration target: 1:1–2:1 env:agent change events per episode.
-See SD-047 design doc for full specification.
+**Validation still required** before MECH-095 `substrate_ceiling` flag can be
+lifted. See SD-047 design doc interpretation grid for the 5-row outcome mapping.
 
 #### 5. Interoceptive noise dynamics — **SD-048 REGISTERED 2026-05-03**
 
@@ -223,7 +223,7 @@ learned about itself?" probes.
 | Foreclosure primitives | H | Q-027, MECH-097, INV-025 sub-claims | `environment.foreclosure_primitives` |
 | Multi-resource heterogeneity | H | MECH-112, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 | `environment.multi_resource_heterogeneity` |
 | Long-horizon regime | H | INV-049, SD-037 dynamics, MECH-260 | (calibration / no SD) |
-| Multi-source environmental dynamics | M | MECH-095, MECH-098, MECH-099 | `SD-047` (registered 2026-05-03, ready) |
+| Multi-source environmental dynamics | M | MECH-095, MECH-098, MECH-099 | `SD-047` (IMPLEMENTED 2026-05-03; validation V3-EXQ-509/510 pending) |
 | Interoceptive noise dynamics | M | ARC-058, ARC-033, ARC-061 Level 2 | `SD-048` (registered 2026-05-03, ready) |
 | Differentiated coping channels (V3-lite) | M | MECH-102 (lite); full -> V4 | `environment.differentiated_coping_channels` |
 | Multi-frequency oscillatory probes | L | ARC-023, MECH-089/090/091 deeper | (probe expansion / no SD) |

@@ -23868,11 +23868,11 @@
   claim_type: design_decision
   subject: environment.multi_source_dynamics
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
-  v3_pending: true
   claim_level: architectural
   registered_utc: 2026-05-03
+  implemented_utc: 2026-05-03
   depends_on:
     - MECH-095     # the primary substrate_ceiling claim this unblocks
     - SD-022       # body-damage substrate that SD-047 layers on top of
@@ -23897,11 +23897,11 @@
     structural agent-vs-env signatures rather than a single filterable
     noise pattern.
 
-    Falsifiable: a discriminative pair experiment with substrate ON
-    vs OFF (otherwise identical seeds and hyperparameters) should
-    reproduce the V3-EXQ-506 C1-C3 FAIL pattern in the OFF arm and
-    flip C1, C2, C3 to PASS in the ON arm. PASS validates SD-047 and
-    lifts MECH-095 from substrate_ceiling.
+    Falsifiable: a 4-arm noise-level sweep (OFF / 0.25x / 1.0x / 4.0x)
+    should reproduce V3-EXQ-506 C1-C3 FAIL pattern in the OFF arm and
+    show an inverted-U (Asai 2016) across noise arms, peaking near ARM_2
+    default calibration. Woo/Spelke falsifier: if flat-failure across all
+    arms, route MECH-095 from substrate_ceiling to substrate_conditional.
   notes: >
     Registered 2026-05-03 from the substrate-ceiling walk that followed
     governance walk 2026-05-03. Direct trigger: V3-EXQ-506 (2026-05-03)
@@ -23909,43 +23909,36 @@
     evidence_quality_note (2026-05-02). Roadmap entry: substrate_roadmap.md
     M-priority #4 (`environment.multi_source_dynamics`).
 
+    IMPLEMENTED 2026-05-03 in ree_core/environment/causal_grid_world.py.
+    Flat kwargs on CausalGridWorld.__init__ (matching SD-022/SD-023/SD-029
+    precedent). Bit-identical OFF (RNG draws guarded inside master switch);
+    per-source switches for ablation; multi_source_intensity_scale is the
+    4-arm sweep lever. 7/7 preflight + 184/184 contracts PASS with master
+    OFF. Smoke at scale=1.0: calibration ratio 1.95:1 within target band.
+    Substrate-readiness diagnostic queued as V3-EXQ-509; comparator-gap
+    behavioural validation (V3-EXQ-510 successor to V3-EXQ-506) pending
+    V3-EXQ-509 PASS.
+
     Distinct from V4 multi-agent ecology (V4-1 in v4_spec.md). SD-047
     provides non-trivial but non-intentional env causation -- exactly
-    the right level for agency-detection-comparator claims, which test
-    the agent vs not-agent distinction. Agent vs other-agent is a
-    separate V4-bound claim.
+    the right level for agency-detection-comparator claims. Agent vs
+    other-agent is a separate V4-bound claim.
 
-    Distinct from `environment.differentiated_coping_channels`
-    (roadmap M-priority #5, not yet registered) which addresses MECH-102's
-    substrate_ceiling by giving the agent multiple intervention modes;
-    SD-047 addresses MECH-095's substrate_ceiling by giving the env
-    multiple causal sources. Independently implementable.
-
-    Implementation must be bit-identical OFF: when master `enabled=False`,
-    env RNG sequence and per-tick state-update path match pre-SD-047
-    baseline exactly (no spurious RNG draws). Per-source bit-identical
-    OFF too, so each sub-source can be ablated independently to identify
-    which contributes most to unblocking C1/C2/C3.
-
-    Lit-pull recommended before implementation per the
-    biology-before-formal-definitions rule: agency-detection under
-    multi-source environmental noise (Saxe & Carey 2006 developmental;
-    Pitcher & Ungerleider 2021 lateral cortex network) and reafference
-    cancellation under stochastic afference (Blakemore et al. 1998
-    cerebellar). Skipping risks philosophy-right / mechanism-wrong
-    feature choice (smoothness vs autocorrelation vs sparsity vs
-    lifespan as the discriminative signatures).
+    Pre-implementation lit-pull completed (targeted_review_sd_047/):
+    Asai 2016 (conf=0.83, supports non-monotonic noise-dependence
+    protocol revision); Sawtell 2010 (conf=0.80, cerebellum reafference);
+    Pitcher & Ungerleider 2021 (conf=0.78, lateral cortex pathway);
+    Davidson & Wolpert 2005 (conf=0.70, forward-model scaffold); Woo/
+    Liu/Spelke 2023 (conf=0.65, falsifier branch). lit_conf=0.796.
   evidence_quality_note: >
-    Registered candidate without dedicated lit-pull. Architectural
-    motivation is the substrate-ceiling diagnosis on MECH-095 confirmed
-    by V3-EXQ-506 2026-05-03 (C4-only-PASS pattern matches the signature
-    flagged in MECH-095 EQN 2026-05-02). No substrate implementation
-    yet. Validation experiment pre-registered in design doc: ON-vs-OFF
-    discriminative pair using the V3-EXQ-506 measurement with predicted
-    flip on C1/C2/C3.
-
-    Pre-implementation lit-pull recommended (anchor candidates: Saxe &
-    Carey 2006; Blakemore et al. 1998; Pitcher & Ungerleider 2021).
+    IMPLEMENTED 2026-05-03. Pre-implementation lit-pull completed
+    (targeted_review_sd_047/; lit_conf 0.0 -> 0.796). Validation pending:
+    V3-EXQ-509 (substrate-readiness diagnostic) -> V3-EXQ-510 (4-arm
+    noise-level sweep vs V3-EXQ-506 baseline; C1/C2/C3 FAIL pattern
+    expected to flip to PASS at ARM_2 calibration if substrate-ceiling
+    diagnosis is correct). MECH-095 substrate_ceiling flag will be
+    lifted on PASS; routes to substrate_conditional on flat-failure
+    (Woo/Spelke branch).
   location: docs/architecture/sd_047_multi_source_dynamics.md
 
 - id: SD-048

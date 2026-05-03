@@ -79,11 +79,13 @@ error directions depending on noise regime (Asai 2016).
 **V3 status:** `substrate_ceiling` — CausalGridWorldV3's "other-caused"
 change is too thin (single scheduled hazard source) for the comparator to
 produce a legible signal. V3-EXQ-506 confirmed the ceiling signature
-(C4-only-PASS, r2_s_to_a ~ 0.99 invariant to action type).
+(C4-only-PASS, r2_s_to_a ~ 0.99 invariant to action type). **SD-047
+substrate now IMPLEMENTED 2026-05-03** (calibration ratio 1.95:1 within
+1:1-2:1 target band; bit-identical OFF verified; 4-arm sweep validation
+queued as V3-EXQ-509/510).
 
-**Unblocking SD:** SD-047 (`environment.multi_source_dynamics`, candidate,
-registered 2026-05-03, ready for implementation). Design doc:
-`docs/architecture/sd_047_multi_source_dynamics.md`.
+**Unblocking SD:** SD-047 (`environment.multi_source_dynamics`, **IMPLEMENTED
+2026-05-03**). Design doc: `docs/architecture/sd_047_multi_source_dynamics.md`.
 
 ---
 
@@ -255,8 +257,8 @@ in psychiatric_predictions.md).
 | **Failure mode (clinical)** | passivity of action, made impulses | made feelings, somatic passivity | thought insertion, confabulation |
 | **Failure direction** | symmetric over/under per S/N regime | symmetric over/under per noise | tag loss -> real attribution of simulation |
 | **Authorship tag** | cf_gap > threshold | affective-PE > threshold | hypothesis_tag = True/False |
-| **V3 status** | substrate_ceiling, SD-047 pending | V3-tractable, SD-048 pending | stable, confirmed_established |
-| **Calibration SD** | SD-047 (ready) | SD-048 (ready) | not applicable |
+| **V3 status** | substrate_ceiling, SD-047 IMPLEMENTED | V3-tractable, SD-048 pending | stable, confirmed_established |
+| **Calibration SD** | SD-047 (implemented 2026-05-03) | SD-048 (ready) | not applicable |
 | **Key literature** | Asai 2016, Blakemore/Frith 2000 | Seth/Friston 2016, Lyndon 2026 | Corlett 2025, MECH-094 notes |
 
 ---
