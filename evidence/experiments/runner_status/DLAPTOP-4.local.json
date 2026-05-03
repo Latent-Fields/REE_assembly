@@ -2,21 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 87338,
   "runner_started_at": "2026-04-30T22:02:28.674572+00:00",
-  "last_updated": "2026-05-03T01:47:42.374604+00:00",
+  "last_updated": "2026-05-03T02:17:02.605354+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-504",
-      "backlog_id": "",
-      "claim_id": "MECH-153",
-      "title": "MECH-153 supervised context labeling 3-arm extension",
-      "description": "",
-      "estimated_minutes": 1200.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-505",
       "backlog_id": "",
@@ -6597,6 +6586,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_507_arc026_capacity_scaling_20260503T014741Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 64.0
+    },
+    {
+      "queue_id": "V3-EXQ-504",
+      "backlog_id": "",
+      "claim_id": "MECH-153",
+      "title": "MECH-153 supervised context labeling 3-arm extension",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "C3 ARM_C_soft_contrastive differentiates (cosine<0.80): FAIL | C4 ARM_C harm_r2 >= 0.40: FAIL | C5 ARM_C harm_r2 >= ARM_B harm_r2 - 0.05: FAIL",
+      "started_at": "2026-05-03T01:47:47.998283+00:00",
+      "completed_at": "2026-05-03T02:17:02.593101+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_504_mech153_supervised_context_labeling_3arm_20260503T021659Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1754.6
     }
   ]
 }
