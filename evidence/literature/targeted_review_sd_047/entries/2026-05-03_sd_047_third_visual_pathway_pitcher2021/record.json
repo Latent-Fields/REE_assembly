@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_047",
+  "entry_id": "2026-05-03_sd_047_third_visual_pathway_pitcher2021",
+  "timestamp_utc": "2026-05-03T03:40:58Z",
+  "claim_ids_tested": ["SD-047", "MECH-095"],
+  "source": {
+    "title": "Evidence for a Third Visual Pathway Specialized for Social Perception",
+    "authors": ["David Pitcher", "Leslie G. Ungerleider"],
+    "year": 2021,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2020.11.006",
+    "pmid": "33334693",
+    "pmc": "PMC7811363"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-impact review in Trends in Cognitive Sciences synthesising convergent human and non-human primate evidence for a lateral / STS pathway computing dynamic-action signatures (expressions, eye-gaze, intention, mood). Direct grounding for the architectural claim that agency-relevant signals are processed by a distinct pathway with its own feature vocabulary -- which is exactly the substrate-feature dimension SD-047 manipulates. Mapping is high-fidelity for the architectural commitment that agency comparators consume *dynamic / interactional* features distinct from object-identity (ventral) or location/action-affordance (dorsal) features. Lower confidence on the claim that environmental richness is necessary, since the review is about cortical specialisation rather than env-side substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-047's added env signals (smooth perturbation field, transient Poisson events, drift sources) do not differentially recruit STS-analog computations, the architectural mapping fails -- the agency-detection circuit may consume features the multi-source dynamics happen not to expose."
+  ],
+  "tags": ["sd_047", "mech_095", "third_visual_pathway", "sts", "agency", "social_perception"],
+  "mapping": {
+    "source_claim_statement": "A lateral cortical pathway projecting from early visual cortex via motion-selective areas into the superior temporal sulcus is specialised for the dynamic aspects of social perception (expressions, eye-gaze, audio-visual integration, intention, mood), distinct from the ventral identity pathway and dorsal action-affordance pathway.",
+    "ree_translation": "MECH-095 instantiates an agency-detection comparator that lives architecturally where the third visual pathway lives in primate cortex. SD-047's premise -- that the comparator needs richer not-self causal signal in the env to learn to discriminate agent vs not-agent -- maps onto the lateral/STS pathway's dependence on dynamic, motion-laden, time-extended input. A substrate that exposes only sparse scheduled events deprives the analog of the input distribution the biological pathway is tuned to.",
+    "mapping_caveat": "The review is about cortical pathway specialisation, not about environmental statistics. It does not directly establish that richer env distributions are necessary for the comparator to converge -- it establishes that the comparator's input vocabulary is dynamic/interactional. The bridge to SD-047 is plausible but the inference 'therefore env enrichment is needed' is one step removed.",
+    "source_context": "Review article synthesising fMRI, lesion, and electrophysiology evidence in human and non-human primates."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.25,
+    "notes": "TICS review = high venue prestige and high authority. Mapping_fidelity moderate because the bridge from 'cortical pathway exists for dynamic/social signals' to 'env must be enriched to support REE's analog' is plausible but inferential. Transfer_risk low because the architectural claim transfers cleanly to artificial agents."
+  }
+}

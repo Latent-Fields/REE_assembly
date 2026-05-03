@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_047",
+  "entry_id": "2026-05-03_sd_047_prereaching_goal_attribution_woo2023",
+  "timestamp_utc": "2026-05-03T03:40:58Z",
+  "claim_ids_tested": ["SD-047", "MECH-095"],
+  "source": {
+    "title": "Infants rationally infer the goals of other people's reaches in the absence of first-person experience with reaching actions",
+    "authors": ["Brandon M. Woo", "Shari Liu", "Elizabeth S. Spelke"],
+    "year": 2023,
+    "venue": "Developmental Science",
+    "doi": "10.1111/desc.13453",
+    "pmid": "37926777"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "5 experiments (N=117) showing that 3-month-old prereaching infants attribute goal-directedness to others' reaching actions before they themselves can reach. This directly challenges the strong reading of SD-047 -- it implies that agency / goal-attribution does not require either rich self-action experience or rich multi-source environmental noise; clean visual stimuli of intentional reaching are sufficient at very young ages. Source quality high (Spelke lab, Developmental Science, multi-experiment design with N=117, online and lab paradigms). Mapping_fidelity moderate -- the paper is about goal attribution to other agents' actions, which is one architectural level above MECH-095's self-vs-not-self comparator. The infants are recognising agency in OTHERS' reaching, not detecting whether their OWN action caused something.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If 3-month-olds can attribute goals from sparse, clean visual stimuli, the substrate-ceiling diagnosis on MECH-095 may be wrong -- the comparator might not need richer env, just different feature inputs (motion-contingency, biological-motion signatures) that V3 still doesn't expose.",
+    "SD-047's three sources may be insufficient because the relevant discriminative features are higher-level (intention cues, goal-directedness signatures) rather than the low-level smoothness/sparsity dimensions SD-047 manipulates."
+  ],
+  "tags": ["sd_047", "mech_095", "infant", "agency", "goal_attribution", "developmental", "spelke"],
+  "mapping": {
+    "source_claim_statement": "3-month-old prereaching infants -- who cannot themselves reach for objects -- nevertheless treat observed reaching actions as goal-directed and rapidly learn whether a specific agent's reaches are aimed at objects or at places. Passive movements do not produce the same inferences. This challenges the classical view that infants need first-person reaching experience before they perceive others' reaches as goal-directed.",
+    "ree_translation": "If clean, sparse visual stimuli of an agent reaching are sufficient for 3-month-olds to infer agency, then the substrate-ceiling diagnosis on MECH-095 may be reading the situation wrong. The V3 substrate produces 'too clean' env causation, but Woo et al. show that 'too clean' does not necessarily preclude agency attribution -- it depends on what features the comparator is sensitive to. Specifically, motion-contingency and goal-directedness cues may be the load-bearing features, not multi-source noise statistics. SD-047's three sources may be necessary but not sufficient; or may be addressing the wrong substrate gap entirely.",
+    "mapping_caveat": "This is goal attribution TO OTHERS, not self-vs-not-self comparator output. The paper is about infants observing agents and inferring their goals -- which is upstream of the MECH-095 comparator's job (detecting whether the agent's OWN action caused state change). The challenge to SD-047 is conditional: it weakens the strong reading of substrate-ceiling but does not directly invalidate the V3-EXQ-506 finding. The SD-047 design doc should treat this as a falsifiability hook -- if multi-source dynamics do not flip C1-C3, this is part of why.",
+    "source_context": "5 experiments with 3-month-old infants (N=117 total), using video stimuli of reaching actions presented online and in-lab. Looking-time methodology."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "Source quality high (Spelke lab, well-designed multi-experiment, N=117). Mapping fidelity moderate because the paper addresses goal attribution to others rather than self-vs-not-self comparator function. Transfer risk elevated because infant looking-time paradigms may not directly translate to REE's E2_harm_s training dynamics, but the principle (clean stimuli can support agency inference) is what transfers. Net confidence ~0.65 -- this is a weakens entry that adds intellectual honesty to the lit-pull rather than load-bearing evidence."
+  }
+}

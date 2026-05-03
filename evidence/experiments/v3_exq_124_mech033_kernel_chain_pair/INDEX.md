@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_124_mech033_kernel_chain_pair
 
-Generated: `2026-05-03T02:58:46.107770Z`
+Generated: `2026-05-03T03:45:17.776206Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

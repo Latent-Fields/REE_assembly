@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_047",
+  "entry_id": "2026-05-03_sd_047_forward_models_widespread_davidson2005",
+  "timestamp_utc": "2026-05-03T03:40:58Z",
+  "claim_ids_tested": ["SD-047", "MECH-095", "MECH-098"],
+  "source": {
+    "title": "Widespread access to predictive models in the motor system: a short review",
+    "authors": ["Paul R. Davidson", "Daniel M. Wolpert"],
+    "year": 2005,
+    "venue": "Journal of Neural Engineering",
+    "doi": "10.1088/1741-2560/2/3/S11",
+    "pmid": "16135891"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Established review by Wolpert et al. on the pervasive access to forward models across oculomotor, skeletomotor, postural, perceptual, and mental-imagery systems. Direct grounding for the broader architectural principle that comparator-style predictive subtraction is not a localised mechanism but a substrate-wide computational primitive. Used here as background support for the SD-047 architecture rather than as load-bearing direct evidence: the review establishes that REE's commitment to a counterfactual_forward comparator (E2_harm_s) is consistent with biology, but it does not directly speak to the env-side substrate question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's comparator architecture were idiosyncratic to one substrate level (e.g. only z_harm_s) while biology shows pervasive cross-system forward-model access, the architectural commitment may be too narrow -- but this is a critique of MECH-095 / ARC-033, not of SD-047 per se."
+  ],
+  "tags": ["sd_047", "forward_models", "predictive_models", "motor_control", "comparator", "wolpert"],
+  "mapping": {
+    "source_claim_statement": "Recent behavioural and computational studies suggest that access to internal predictive models of arm and object dynamics is widespread in the sensorimotor system. Multiple systems -- oculomotor and skeletomotor control, perceptual processing, postural control, mental imagery -- are able to access predictions of the motion of the arm. A capacity to make and use predictions of object dynamics is similarly widespread.",
+    "ree_translation": "MECH-095 agency-detection comparator and MECH-098 reafference cancellation both require access to forward-model predictions of self-caused state change. Davidson and Wolpert establish that such access is pervasive in biological motor control, which validates the architectural commitment that REE's E2_harm_s and z_self forward circuits are doing biologically-realistic work. SD-047 is the env-side intervention that gives those forward models a non-trivial test: predict against a noisy multi-source background rather than a clean scheduled-hazard background.",
+    "mapping_caveat": "This is a 2005 review of motor-system forward-model evidence; it is two architectural levels removed from the env-substrate question SD-047 raises. Used as background grounding rather than direct evidence. A cleaner direct citation for the cancellation architecture is Sawtell 2010 (cerebellum-like circuit); Davidson and Wolpert is the broader theoretical scaffold.",
+    "source_context": "Review article in J Neural Engineering surveying behavioural and computational evidence across oculomotor, skeletomotor, postural, perceptual, and mental-imagery domains."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Source quality solid for an established review. Mapping fidelity lower than the other entries because the paper is two steps removed from the env-substrate question. Used as background grounding rather than load-bearing evidence; net confidence ~0.70."
+  }
+}

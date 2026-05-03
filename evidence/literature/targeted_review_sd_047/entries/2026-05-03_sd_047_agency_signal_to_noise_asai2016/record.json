@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_047",
+  "entry_id": "2026-05-03_sd_047_agency_signal_to_noise_asai2016",
+  "timestamp_utc": "2026-05-03T03:40:58Z",
+  "claim_ids_tested": ["SD-047", "MECH-095"],
+  "source": {
+    "title": "Self is 'other', other is 'self': poor self-other discriminability explains schizotypal twisted agency judgment",
+    "authors": ["Tomohisa Asai"],
+    "year": 2016,
+    "venue": "Psychiatry Research",
+    "doi": "10.1016/j.psychres.2016.10.082",
+    "pmid": "27836244"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Direct empirical study of agency judgment as a function of signal-to-noise ratio in continuous self-other visual feedback. Asai shows that the slope of agency-attribution as a function of self-other discriminability is the load-bearing variable, and that high-schizotypal participants show shallower slopes (poorer discrimination) producing both over- and under-attribution errors symmetrically depending on the S/N regime. This is the cleanest published statement of the substrate-ceiling diagnosis: agency judgment is not a property of the comparator alone but of comparator-applied-to-S/N, and changing the S/N changes the comparator's apparent competence. N=104, healthy participants, well-controlled paradigm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Asai's framing predicts that adding more env-side noise without also providing the comparator a pathway to estimate that noise will degrade agency-detection performance, not improve it. SD-047's calibration target (1:1-2:1 env:agent change rate) must avoid pushing past the agent-overwhelmed regime."
+  ],
+  "tags": ["sd_047", "mech_095", "agency", "signal_to_noise", "schizotypy", "comparator", "self_other"],
+  "mapping": {
+    "source_claim_statement": "Healthy participants' agency judgments depend on the signal-to-noise ratio of their own action's contribution to a continuously varying self-other visual feedback morph. The regression slope of agency rating against self-other discriminability is the operationalisation of comparator competence; high-schizotypal participants exhibit shallower slopes, producing both over- and under-attribution errors as the S/N regime varies.",
+    "ree_translation": "MECH-095's counterfactual_forward gap (cf_gap_event vs cf_gap_quiet) is structurally the same quantity as Asai's discriminability slope: a measure of how strongly the comparator's output tracks the agent's actual contribution to state change. SD-047 is the env-side intervention that lifts the discriminability range from too-narrow (V3-EXQ-506: 1 env source produces signal that swamps the comparator at one extreme and is filterable at the other) to broad enough that the slope can be measured cleanly. The substrate-ceiling diagnosis is biologically licensed: the same comparator, given different S/N inputs, will look competent or incompetent depending on the env regime.",
+    "mapping_caveat": "Asai's paradigm uses continuous visual morphing of reaching movements. The mapping to grid-world hazard intensity perturbation requires accepting that the underlying substrate principle (S/N-dependent comparator output) generalises across modalities. Asai also shows symmetric over- AND under-attribution as S/N varies, which means SD-047 with poorly-calibrated noise levels could produce *worse* MECH-095 performance, not just unchanged performance. The 1:1-2:1 calibration target in the SD-047 design doc is therefore load-bearing.",
+    "source_context": "Healthy adult participants (N=104) performed reaching tasks with continuous self-other visual feedback morph. Schizotypal personality scores correlated with shallower agency-attribution slopes."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality solid (peer-reviewed, N=104, well-controlled). Mapping fidelity high because Asai's quantitative variable (slope) is the same shape as cf_gap_ratio. Transfer risk moderate because Asai's modality is visual morphing not gridworld hazard fields, but the substrate-ceiling principle is what transfers, not the modality."
+  }
+}

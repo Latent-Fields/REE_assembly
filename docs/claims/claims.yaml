@@ -23804,6 +23804,91 @@
     2012 dACC foraging value; Shenhav et al. 2013 EVC).
   location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
 
+- id: SD-047
+  title: "Multi-source environmental dynamics: concurrent stochastic event sources at distinct spatial and temporal scales (spatial perturbation field + transient Poisson events + background drift sources) provide an agent-independent causal background dense enough for agency-detection comparators (MECH-095) and reafference cancellation (MECH-098) to be honestly tested at substrate level."
+  claim_type: design_decision
+  subject: environment.multi_source_dynamics
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-05-03
+  depends_on:
+    - MECH-095     # the primary substrate_ceiling claim this unblocks
+    - SD-022       # body-damage substrate that SD-047 layers on top of
+    - SD-029       # scheduled external hazard substrate (SD-047 adds unscheduled sources alongside)
+  functional_restatement: >
+    CausalGridWorldV3's "other-caused" change consists of hazard drift
+    + resource respawn + scheduled hazard injection. This is too thin a
+    causal background for agency-detection-comparator claims (MECH-095)
+    or reafference-cancellation circuits (MECH-098) to be tested at
+    substrate-level honesty: the agent's counterfactual signature only
+    separates from environmental noise when there is environmental
+    noise. Narrow regimes can pass (V3-EXQ-047k contact-recall window)
+    while the broader landscape fails (V3-EXQ-506 agent-vs-env / agent-
+    vs-collateral / env-vs-correlated all collapse on 2026-05-03).
+
+    SD-047 adds three concurrent stochastic event sources to the env:
+    a slowly-evolving spatial perturbation field (continuous, smooth,
+    autocorrelated), a low-rate transient Poisson process (discrete,
+    pointwise, short-lived), and a small set of background drift
+    sources (discrete, mobile, autocorrelated). Each operates at a
+    distinct spatial / temporal scale so the comparator must learn
+    structural agent-vs-env signatures rather than a single filterable
+    noise pattern.
+
+    Falsifiable: a discriminative pair experiment with substrate ON
+    vs OFF (otherwise identical seeds and hyperparameters) should
+    reproduce the V3-EXQ-506 C1-C3 FAIL pattern in the OFF arm and
+    flip C1, C2, C3 to PASS in the ON arm. PASS validates SD-047 and
+    lifts MECH-095 from substrate_ceiling.
+  notes: >
+    Registered 2026-05-03 from the substrate-ceiling walk that followed
+    governance walk 2026-05-03. Direct trigger: V3-EXQ-506 (2026-05-03)
+    confirmed the substrate-ceiling signature flagged in MECH-095's
+    evidence_quality_note (2026-05-02). Roadmap entry: substrate_roadmap.md
+    M-priority #4 (`environment.multi_source_dynamics`).
+
+    Distinct from V4 multi-agent ecology (V4-1 in v4_spec.md). SD-047
+    provides non-trivial but non-intentional env causation -- exactly
+    the right level for agency-detection-comparator claims, which test
+    the agent vs not-agent distinction. Agent vs other-agent is a
+    separate V4-bound claim.
+
+    Distinct from `environment.differentiated_coping_channels`
+    (roadmap M-priority #5, not yet registered) which addresses MECH-102's
+    substrate_ceiling by giving the agent multiple intervention modes;
+    SD-047 addresses MECH-095's substrate_ceiling by giving the env
+    multiple causal sources. Independently implementable.
+
+    Implementation must be bit-identical OFF: when master `enabled=False`,
+    env RNG sequence and per-tick state-update path match pre-SD-047
+    baseline exactly (no spurious RNG draws). Per-source bit-identical
+    OFF too, so each sub-source can be ablated independently to identify
+    which contributes most to unblocking C1/C2/C3.
+
+    Lit-pull recommended before implementation per the
+    biology-before-formal-definitions rule: agency-detection under
+    multi-source environmental noise (Saxe & Carey 2006 developmental;
+    Pitcher & Ungerleider 2021 lateral cortex network) and reafference
+    cancellation under stochastic afference (Blakemore et al. 1998
+    cerebellar). Skipping risks philosophy-right / mechanism-wrong
+    feature choice (smoothness vs autocorrelation vs sparsity vs
+    lifespan as the discriminative signatures).
+  evidence_quality_note: >
+    Registered candidate without dedicated lit-pull. Architectural
+    motivation is the substrate-ceiling diagnosis on MECH-095 confirmed
+    by V3-EXQ-506 2026-05-03 (C4-only-PASS pattern matches the signature
+    flagged in MECH-095 EQN 2026-05-02). No substrate implementation
+    yet. Validation experiment pre-registered in design doc: ON-vs-OFF
+    discriminative pair using the V3-EXQ-506 measurement with predicted
+    flip on C1/C2/C3.
+
+    Pre-implementation lit-pull recommended (anchor candidates: Saxe &
+    Carey 2006; Blakemore et al. 1998; Pitcher & Ungerleider 2021).
+  location: docs/architecture/sd_047_multi_source_dynamics.md
+
 - id: MECH-296
   title: "Prototype-readout operator computes a softmax-attention match between the current LatentState and the type-keyed anchor pool, returning a small set of best-matched type-keys plus their confidences. Runs both during waking (moment-to-moment type recognition) and during sleep (consolidation refinement of the type-anchor pool)."
   claim_type: mechanism_hypothesis
