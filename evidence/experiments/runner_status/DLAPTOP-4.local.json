@@ -2,10 +2,55 @@
   "schema_version": "v1",
   "runner_pid": 87338,
   "runner_started_at": "2026-04-30T22:02:28.674572+00:00",
-  "last_updated": "2026-05-02T11:05:08.044531+00:00",
-  "idle": true,
+  "last_updated": "2026-05-03T01:47:42.374604+00:00",
+  "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-504",
+      "backlog_id": "",
+      "claim_id": "MECH-153",
+      "title": "MECH-153 supervised context labeling 3-arm extension",
+      "description": "",
+      "estimated_minutes": 1200.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-505",
+      "backlog_id": "",
+      "claim_id": "MECH-093",
+      "title": "MECH-093 z_beta x precision substrate-level dissociation",
+      "description": "",
+      "estimated_minutes": 0.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-506",
+      "backlog_id": "",
+      "claim_id": "MECH-095",
+      "title": "MECH-095 agency-detection comparator substrate test",
+      "description": "",
+      "estimated_minutes": 0.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-508",
+      "backlog_id": "",
+      "claim_id": "ARC-033",
+      "title": "ARC-033 E2_harm_s ablation on SD-022 body-damage substrate",
+      "description": "",
+      "estimated_minutes": 120.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -6538,6 +6583,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 3.5
+    },
+    {
+      "queue_id": "V3-EXQ-507",
+      "backlog_id": "",
+      "claim_id": "ARC-026",
+      "title": "ARC-026 capacity-scaling weak-reading test (no crowding-out)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "C1 ratio non-decreasing (LARGE>=0.95*MEDIUM>=0.95*SMALL): 3/3 -> PASS | C2 ratio_LARGE > 0: 3/3 -> PASS | C3 approach_LARGE >= 0.5 * approach_SMALL: 3/3 -> PASS",
+      "started_at": "2026-05-03T01:46:38.333989+00:00",
+      "completed_at": "2026-05-03T01:47:42.371953+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_507_arc026_capacity_scaling_20260503T014741Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 64.0
     }
   ]
 }
