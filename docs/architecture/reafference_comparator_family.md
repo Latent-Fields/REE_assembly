@@ -1,11 +1,12 @@
 # Reafference Comparator Family
 
-> Architectural synthesis document. Describes the structural relationship
-> between three substrate-level implementations of the same reafference-
-> cancellation motif in REE V3. Not a claim spec — the individual claims
-> (MECH-095, ARC-058, MECH-094) are registered separately. This document
-> captures what they have in common, why that matters for diagnostics, and
-> what is still missing.
+> **Claim:** ARC-061 (`self_attribution.reafference_comparator_family`,
+> candidate). This document is the design-doc backing for that claim.
+>
+> Describes the structural relationship between three substrate-level
+> implementations of the same reafference-cancellation motif in REE V3.
+> The individual constituent claims (MECH-095, ARC-058, MECH-094) are
+> registered separately; ARC-061 captures their shared architecture.
 >
 > Last updated: 2026-05-03
 
@@ -288,15 +289,13 @@ be answered with independent single-level probes.
 This is V4-1 territory (multi-agent ecology + full simultaneous activation
 of all three comparator levels). See `docs/architecture/v4_spec.md`.
 
-### Gap 3: Architectural claim registration
+### Gap 3: Level 2 calibration SD
 
-The motif described here could be registered as an ARC claim:
-"Self-attribution is implemented via a family of forward-model comparators
-at motor, interoceptive, and propositional levels, sharing the same
-calibration failure signature." This would make the structural relationship
-machine-readable in `claims.yaml` and would fire correctly in governance
-when any of the three levels changes status. Not registered yet — pending
-user decision.
+The Level 2 (interoceptive) calibration SD is the natural next step after
+SD-047 validates the Level 1 calibration pattern. Candidate subject:
+`body.interoceptive_noise_dynamics`, depending on SD-022 (IMPLEMENTED)
+and SD-011 (IMPLEMENTED). Not yet registered — ready to draft once
+SD-047 lands.
 
 ---
 

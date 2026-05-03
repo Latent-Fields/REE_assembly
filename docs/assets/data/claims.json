@@ -359,6 +359,12 @@
     "title": "A good agent needs both a continuous wanting landscape and a discrete bank of unresolved goal traces: field-level wanting supports smooth local guidance, while ghost-goal traces preserve blocked or deferred goals whose local gradient has collapsed.",
     "type": "architecture_hypothesis"
   },
+  "ARC-061": {
+    "status": "candidate",
+    "subject": "self_attribution.reafference_comparator_family",
+    "title": "Self-attribution is implemented via a family of forward-model comparators at motor, interoceptive, and propositional levels \u2014 each instantiating the same reafference-cancellation motif (forward model + comparator + authorship tag) at a distinct representational timescale and modality.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -3615,6 +3621,12 @@
     "status": "candidate",
     "subject": "goal.multi_slot_state_per_goal_workstream",
     "title": "Multi-slot GoalState holds N>=2 simultaneously-active goal slots with per-slot z_goal, drive coupling, age, and persistence parameters. Each slot generates its own ghost-goal-bank rank, ghost-probe budget, and proposer trajectories; a dACC-style arbitrator selects which slot's best trajectory commits this tick.",
+    "type": "design_decision"
+  },
+  "SD-047": {
+    "status": "candidate",
+    "subject": "environment.multi_source_dynamics",
+    "title": "Multi-source environmental dynamics: concurrent stochastic event sources at distinct spatial and temporal scales (spatial perturbation field + transient Poisson events + background drift sources) provide an agent-independent causal background dense enough for agency-detection comparators (MECH-095) and reafference cancellation (MECH-098) to be honestly tested at substrate level.",
     "type": "design_decision"
   }
 }

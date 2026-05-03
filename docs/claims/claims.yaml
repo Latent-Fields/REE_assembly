@@ -23025,6 +23025,64 @@
     Muessig 2019 grounds a shared waking/offline sequence generator.
   location: docs/architecture/ghost_goal_search.md
 
+- id: ARC-061
+  title: "Self-attribution is implemented via a family of forward-model comparators at motor, interoceptive, and propositional levels — each instantiating the same reafference-cancellation motif (forward model + comparator + authorship tag) at a distinct representational timescale and modality."
+  claim_type: architectural_commitment
+  subject: self_attribution.reafference_comparator_family
+  polarity: asserts
+  status: candidate
+  claim_level: architectural
+  registered_utc: "2026-05-03"
+  depends_on:
+    - MECH-095   # Level 1: motor/action comparator (TPJ), substrate_ceiling
+    - ARC-058    # Level 2: interoceptive/affective comparator (shared harm trunk)
+    - MECH-094   # Level 3: propositional simulation tag, stable
+    - SD-047     # Level 1 substrate enrichment (registered, ready)
+  functional_restatement: >
+    Three comparator mechanisms implement the same architectural pattern at
+    different levels of representational abstraction.
+
+    Level 1 (motor/action): MECH-095 -- E2_harm_s counterfactual gap (agent-caused
+    minus environment-caused state change). Forward model: E2_harm_s. Authorship tag:
+    cf_gap > threshold licenses self-attribution.
+
+    Level 2 (interoceptive/affective): ARC-058 -- HarmForwardTrunk prediction error
+    tags somatic/affective state changes as self-generated or other-generated. Forward
+    model: HarmForwardTrunk. Authorship tag: affective-PE > threshold licenses
+    other-attribution.
+
+    Level 3 (propositional/simulation): MECH-094 -- hypothesis_tag write gate marks
+    simulation-mode content as non-real, preventing viability-field accumulation.
+    Forward model: simulation rollout. Authorship tag: hypothesis_tag = True (simulation)
+    vs False (real).
+
+    Shared diagnostic signature across all three levels: symmetric over/under-attribution
+    errors under substrate miscalibration (Asai 2016 S/N-slope), non-monotonic
+    noise-dependence (Ward 2010 stochastic resonance), and bidirectional surface
+    consequences from single substrate pathology (Jardri & Deneve 2013 circular
+    inference; Nassar 2021 all-or-nothing updating). The SD-047 4-arm noise-level
+    sweep is the calibration-diagnostic template for Level 1; analogous probes are
+    required for Levels 2 and 3.
+  notes: >
+    Registered 2026-05-03. The claim is architectural rather than mechanistic: it
+    asserts that the three-level structure reflects a general solution to the
+    reafference problem at multiple representational scales, not three independent
+    mechanism discoveries. Each level can fail independently; cross-level interaction
+    (does Level 1 miscalibration propagate to Level 3 tag instability?) is V4-1
+    territory -- multi-agent ecology required to test simultaneous activation of all
+    three levels.
+
+    Level 2 (interoceptive comparator) has no calibration SD registered yet -- named
+    as implementation gap in the synthesis doc. Candidate SD subject:
+    body.interoceptive_noise_dynamics, depending on SD-022 + SD-011 (both IMPLEMENTED).
+
+    The ARC-061 claim is not testable as a whole until all three constituent levels
+    have substrate-level evidence. Current state: Level 3 (MECH-094) confirmed_established;
+    Level 1 (MECH-095) substrate_ceiling, SD-047 pending; Level 2 (ARC-058) V3-tractable
+    but no calibration SD. Governance rule: do not promote ARC-061 until all three
+    dependent levels have supporting experimental evidence.
+  location: docs/architecture/reafference_comparator_family.md
+
 - id: MECH-294
   title: "Theta-burst packet contains multi-content joint binding: each ~125ms theta cycle binds a {goal_latent, action_proposal, risk_estimate, state_summary} tuple within one phase-aligned window, with verisimilitude grounding the rollout step that must stay ahead of real time."
   claim_type: mechanism_hypothesis
