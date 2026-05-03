@@ -2,12 +2,18 @@
 
 **Claim ID:** SD-048
 **Subject:** `body.interoceptive_noise_dynamics`
-**Status:** candidate, v3_pending
+**Status:** IMPLEMENTED 2026-05-03 (substrate; v3_pending until validation experiment lands)
 **Registered:** 2026-05-03
 **Depends on:** SD-011 (dual nociceptive streams, IMPLEMENTED),
 SD-022 (directional limb damage, IMPLEMENTED)
 **Design doc for:** Level 2 of the reafference comparator family
 (see `docs/architecture/reafference_comparator_family.md`)
+**Implementation:** `ree-v3/ree_core/environment/causal_grid_world.py`
+(CausalGridWorldV2 flat `__init__` kwargs; readout-side perturbation on
+`harm_obs_a` in `_get_observation_dict` via `_apply_interoceptive_noise`).
+See `ree-v3/CLAUDE.md` SD-048 entry for the full implementation note,
+config defaults, activation-smoke results, and implementation-choice
+deviations from this doc.
 
 ---
 

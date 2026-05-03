@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-03T09:44:04Z",
+  "last_updated_utc": "2026-05-03T11:10:00Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1928,7 +1928,11 @@
       "ready": true,
       "design_doc": "docs/architecture/sd_047_multi_source_dynamics.md",
       "depends_on_unresolved": [],
-      "unblocks_claims": ["MECH-095", "MECH-098", "MECH-099"],
+      "unblocks_claims": [
+        "MECH-095",
+        "MECH-098",
+        "MECH-099"
+      ],
       "failure_record": [
         {
           "run_id": "v3_exq_506_mech095_agency_comparator_substrate_20260503T021729Z_v3",
@@ -1952,12 +1956,60 @@
       "ready": true,
       "design_doc": "docs/architecture/sd_048_interoceptive_noise_dynamics.md",
       "depends_on_unresolved": [],
-      "unblocks_claims": ["ARC-058", "ARC-033", "ARC-061"],
+      "unblocks_claims": [
+        "ARC-058",
+        "ARC-033",
+        "ARC-061"
+      ],
       "failure_record": [],
       "implementation_hint": "Three concurrent stochastic body-state noise sources added to CausalGridWorldV3 body-state update: (1) autonomic background -- fast i.i.d. Gaussian noise on harm_obs_a each step (autonomic_noise_scale=0.02); (2) sensitisation spikes -- Poisson-distributed transient multiplicative amplification of harm_obs_a (sensitisation_rate=0.008/step, magnitude=1.8x, halflife=15 steps); (3) fatigue drift -- slow AR(1) latent fatigue state additively contributing to harm_obs_a (ar_coeff=0.995). Master switch: interoceptive_noise_enabled=False (bit-identical OFF). Per-source ablation switches. Calibration target 1:1-2:1 body-noise:agent-caused harm-state-change events per episode. Validation: 4-arm noise-level sweep (OFF / 0.25x / 1.0x / 4.0x), same protocol as SD-047. Module surface: ree_core/environments/causal_grid_world.py body-state update section. New internal state: _fatigue_state, _sensitisation_state (reset at episode start).",
       "priority": 1,
+      "status": "implemented",
+      "implementation_note": "SD-048 substrate IMPLEMENTED 2026-05-03 in ree_core/environment/causal_grid_world.py. Flat kwargs on CausalGridWorldV2.__init__ (matching SD-047 / SD-022 / SD-029 env-only precedent). Readout-side perturbation on harm_obs_a in _get_observation_dict (works on both SD-022 7-dim limb-damage path AND legacy 50-dim EMA path). Bit-identical OFF (master switch False -> _apply_interoceptive_noise short-circuits, no RNG draws, no state advance). 4-arm activation smoke 2026-05-03: ARM_0 OFF zero counters, ARM_1 n_body_noise=7, ARM_2 n_aut=176 + n_sens=1 + fatigue +/-0.04, ARM_3 n_aut=200 + n_sens=5 -- all three sources fire; body_noise:agent_caused ratio dominated by random-policy contact rate at small env (164/200 agent-caused), validation experiment will use larger env / sparser policy for the 1:1-2:1 calibration band. Substrate-readiness diagnostic queued as V3-EXQ-511; ARC-058-equivalent comparator-gap behavioural validation deferred to V3-EXQ-512 successor.",
       "added_session": "sd048-registration-2026-05-03T09:44Z",
-      "last_seen_session": "sd048-registration-2026-05-03T09:44Z"
+      "last_seen_session": "implement-substrate-sd048-2026-05-03T11:10Z"
+    },
+    {
+      "sd_id": "SD-049",
+      "title": "Multi-resource heterogeneity: qualitatively distinct resource types (food + water + non-homeostatic novelty) with per-axis homeostatic drive system and curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level.",
+      "ready": false,
+      "ready_blocked_by": "Coordinated sequencing with SD-047: both touch ree-v3/ree_core/environment/causal_grid_world.py. SD-047 substrate code committed in working tree (uncommitted as of TASK_CLAIMS draft-sd049 session start). SD-049 implementation should layer on top once SD-047 changes are committed/pushed and the file is stable.",
+      "design_doc": "docs/architecture/sd_049_multi_resource_heterogeneity.md",
+      "depends_on_unresolved": [
+        "SD-047 (substrate code commit + push + stabilisation)"
+      ],
+      "unblocks_claims": [
+        "SD-015",
+        "MECH-229",
+        "MECH-230",
+        "MECH-117",
+        "MECH-216",
+        "ARC-030",
+        "ARC-032",
+        "Q-030"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_085_mech071_goal_directed_calibration_cluster (085a..085g)",
+          "experiment_type": "v3_exq_085x cluster",
+          "date_utc": "2026-03-26 to 2026-03-29",
+          "substrate_state": "CausalGridWorldV3 single-type resource substrate; SD-012 single-scalar drive; SD-015 z_resource encoder candidate without identity to encode.",
+          "metric": "goal_resource_r=0.066 across 085a-g iterations despite contact-gated z_goal seeding. Signature: encoder has nothing to encode beyond resource presence/absence; identity dimension structurally unavailable.",
+          "target": "After SD-049 lands: goal_resource_r >= 0.5 in ARM_2 (3-type default config, food + water + novelty, per-axis drive, identity tags through obs_dict). ARM_2 - ARM_0 >= 0.4 monotone gradient ARM_0 -> ARM_2. wanting != liking trajectory fraction near-zero in ARM_0/ARM_1, >= 0.6 in ARM_2."
+        },
+        {
+          "run_id": "v3_exq_074f_mech112_117_wanting_liking (PASS but degenerate)",
+          "experiment_type": "v3_exq_074f_mech112_117_wanting_liking",
+          "date_utc": "2026-04-04",
+          "substrate_state": "Single-type resource substrate. PASS evidence (wanting_l1_fraction=0.96 vs liking_l1_fraction=0.43, delta=0.53) obtained via z_world fallback seeding -- not genuine identity-distinct wanting.",
+          "metric": "PASS at the metric level but degenerate at the architectural level: with one resource type, wanting-target and liking-target are forced to coincide, so the dissociation is trivially at-most-one-type. EXQ-074d C2 PASS (l2_redirect <= 7 steps) similarly came from a single redirect to a moved single-type resource.",
+          "target": "Re-run MECH-229 / MECH-117 evidence on SD-049 substrate. Pre-registered: identity-distinct wanting (agent approaches target_A while target_B is what it would consume for satiation) on >= 60% of seeded episodes. This is the non-degenerate test."
+        }
+      ],
+      "implementation_hint": "Three additions to CausalGridWorldV3 layered on top of SD-047 (which lands first): (1) Multiple resource identities (default n_resource_types=3: food/water/novelty) with identity tags in obs_dict + type-specific spawn distribution + type-specific benefit_curve (sigmoidal_saturating / sharp_saturation / novelty_decay). (2) Per-axis homeostatic drive system replacing SD-012's single drive_weight scalar -- per-axis depletion + per-axis weight + configurable combiner (sum/max/learned). (3) curriculum-introduction hook (resource_introduction_schedule: dict[str, int]). All bit-identical OFF when master switch disabled; per-resource-type bit-identical OFF for ablation studies. Validation experiment: 4-arm noise sweep (ARM_0 OFF / ARM_1 2-type homeostatic / ARM_2 3-type default / ARM_3 5-type overshoot) with explicit interpretation grid mapping outcomes to architectural conclusions including a Woo/Spelke-style falsifier branch routing MECH-229 to substrate_conditional with V4 dependency. Module surface: CausalGridWorldV3 in ree_core/environment/causal_grid_world.py + per-axis drive cascade through encoder + E3 evaluation + downstream goal-conditioning pathway. Triggers pending_substrate_reconfirmation on SD-012-emergent invariants per invariant-types governance rule.",
+      "priority": 1,
+      "added_session": "draft-sd049-multi-resource-heterogeneity-2026-05-03T0947Z",
+      "last_seen_session": "draft-sd049-multi-resource-heterogeneity-2026-05-03T0947Z"
     }
   ]
 }

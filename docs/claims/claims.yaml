@@ -23931,15 +23931,50 @@
     Davidson & Wolpert 2005 (conf=0.70, forward-model scaffold); Woo/
     Liu/Spelke 2023 (conf=0.65, falsifier branch). lit_conf=0.796.
   evidence_quality_note: >
-    IMPLEMENTED 2026-05-03. Pre-implementation lit-pull completed
-    (targeted_review_sd_047/; lit_conf 0.0 -> 0.796). Validation pending:
-    V3-EXQ-509 (substrate-readiness diagnostic) -> V3-EXQ-510 (4-arm
-    noise-level sweep vs V3-EXQ-506 baseline; C1/C2/C3 FAIL pattern
-    expected to flip to PASS at ARM_2 calibration if substrate-ceiling
-    diagnosis is correct). MECH-095 substrate_ceiling flag will be
-    lifted on PASS; routes to substrate_conditional on flat-failure
-    (Woo/Spelke branch).
+    Substrate IMPLEMENTED 2026-05-03 (ree-v3 commit forthcoming;
+    ree_core/environment/causal_grid_world.py).
+    Three concurrent stochastic sources (AR(1) weather field + Poisson
+    transient hazards + drift sources) added as bit-identical-OFF kwargs
+    on CausalGridWorld. multi_source_intensity_scale knob is the 4-arm
+    noise-sweep lever (OFF / 0.25x / 1.0x / 4.0x). 7/7 preflight + 184/184
+    contracts PASS with master OFF. Activation smoke (200 ticks, all three
+    sources ON, scale=1.0): env_events=330 / agent_events=169, calibration
+    ratio 1.95:1 -- within the 1:1-2:1 target band specified in the SD doc.
+
+    Validation pending: V3-EXQ-509 (substrate-readiness diagnostic; queued)
+    -> V3-EXQ-510 (4-arm sweep with V3-EXQ-506-equivalent C1-C3 metrics;
+    pre-registered inverted-U prediction per Asai 2016 non-monotonic agency
+    S/N + Woo & Spelke 2023 falsifier branch). MECH-095 substrate_ceiling
+    flag will be lifted on ARM_2 PASS; routes to substrate_conditional on
+    flat-failure (Woo/Spelke branch).
+
+    Pre-implementation lit-pull complete 2026-05-03: 18 PubMed entries
+    (5 anchor + 13 passivity-cluster follow-up). lit_conf=0.841. Anchor
+    candidates substituted at pull time -- Saxe & Carey 2006 not directly
+    available, used Woo, Liu & Spelke 2023 (10.1111/desc.13453) as
+    Spelke-lab modern equivalent + falsifier; Blakemore et al. 1998 not
+    surfaced cleanly, used Sawtell 2010 (10.1016/j.neuron.2010.10.027) +
+    Davidson & Wolpert 2005 (10.1088/1741-2560/2/3/S03) as the cerebellar-
+    cancellation pillar. Asai 2016 (10.1016/j.psychres.2016.10.082) is the
+    load-bearing entry (S/N slope analysis; non-monotonic schizotypal
+    finding directly motivates the 4-arm sweep over a binary ON/OFF test).
+    Pitcher & Ungerleider 2021 found as 33334693 (the TICS review).
+
+    Implementation choice deviations from the SD doc: flat kwargs on
+    CausalGridWorld.__init__ (matches SD-022 / SD-023 / SD-029 precedent
+    for env-only SDs) rather than nested MultiSourceDynamicsConfig
+    dataclass; transient + drift hazards live in self.hazards with
+    parallel bookkeeping lists (rather than getting a new ENTITY_TYPES
+    entry that would change NUM_ENTITY_TYPES from 7 to 8 and break
+    local_view shape). Per-source bit-identical OFF preserved.
   location: docs/architecture/sd_047_multi_source_dynamics.md
+  implementation_note: |
+    SD-047 substrate IMPLEMENTED 2026-05-03 (ree-v3, ree_core/environment/
+    causal_grid_world.py). Bit-identical OFF; 4-arm noise-sweep lever via
+    multi_source_intensity_scale kwarg; per-source switches for ablation.
+    See ree-v3/CLAUDE.md "SD-047: Multi-Source Environmental Dynamics
+    (2026-05-03)" for the full implementation entry. Validation experiment
+    V3-EXQ-509 queued.
 
 - id: SD-048
   title: "Interoceptive noise dynamics: stochastic body-state perturbations independent of the agent's motor output (autonomic background noise + sensitisation spikes + fatigue drift) provide an agent-independent interoceptive background dense enough for the affective comparator (ARC-058, Level 2 of the reafference comparator family) to be honestly tested at substrate level."
@@ -24002,19 +24037,198 @@
     See `docs/architecture/reafference_comparator_family.md` for the
     full Level 2 context and the diagnostic principles shared with
     Level 1 (SD-047) and Level 3 (MECH-094).
+  implemented_utc: "2026-05-03"
   evidence_quality_note: >
-    Registered candidate, no substrate implementation yet.
-    Architectural motivation: Level 2 of the reafference comparator
-    family (ARC-061) requires an interoceptive-noise substrate for
-    honest comparator calibration, directly analogous to SD-047 for
-    Level 1. Both SD-011 (dual streams) and SD-022 (body-damage)
-    are IMPLEMENTED -- SD-048 is ready to implement.
-    Validation experiment pre-registered in design doc (4-arm sweep).
-    No lit-pull commissioned yet; biology-before-formal-definitions rule
-    recommends a targeted pull on interoceptive prediction error and
-    affective passivity before implementation (Seth & Friston 2016
-    already in targeted_review_arc_058/ as background).
+    Substrate IMPLEMENTED 2026-05-03 in
+    ree-v3/ree_core/environment/causal_grid_world.py
+    (CausalGridWorldV2). Three concurrent agent-independent stochastic
+    body-state noise sources applied to harm_obs_a readout:
+    autonomic (per-step Gaussian, default sigma=0.02), sensitisation
+    (Poisson onset, multiplicative amplification, exponential decay,
+    default rate=0.008/step / magnitude=1.8x / halflife=15 steps,
+    cumulative cap 5.0x), fatigue (AR(1) latent state, additive
+    contribution, default ar_coeff=0.995 / contribution_weight=0.15,
+    resets per episode). interoceptive_noise_scale (default 1.0) is
+    the 4-arm sweep lever per the SD doc validation protocol.
+    interoceptive_change_threshold (default 0.01) defines the |delta_
+    harm_obs_a| floor for body-noise vs agent-caused event counters.
+    Bit-identical OFF when interoceptive_noise_enabled=False (default);
+    per-source ablation switches all default True under master.
+    Implementation choices (deviations from SD doc): flat kwargs on
+    __init__ matching SD-047 / SD-022 / SD-029 precedent; readout-side
+    perturbation rather than upstream limb_damage state modification
+    (biologically correct, avoids interaction with SD-022
+    failure_prob_scale); cumulative sensitisation amplification capped
+    at 5.0x for numerical stability. See ree-v3/CLAUDE.md SD-048
+    section for the full implementation note.
+    Activation smoke (4-arm sweep, 200 ticks, 8x8 random-policy):
+    ARM_0 OFF zero counters (bit-identical OFF guarantee); ARM_1
+    n_body_noise=7; ARM_2 n_aut=176 + n_sens=1 + fatigue ~+/-0.04;
+    ARM_3 n_aut=200 saturated + n_sens=5. All three sources fire.
+    Body_noise:agent_caused ratio dominated by random-policy contact
+    rate at small env (164/200 agent-caused events); validation
+    experiment will use a larger env / sparser policy to land the
+    1:1-2:1 calibration band per the SD doc recalibration row.
+    Validation experiment V3-EXQ-511 queued (4-arm noise sweep
+    diagnostic). v3_pending remains TRUE until V3-EXQ-511 PASSes;
+    ARC-058-equivalent C1-C4 comparator-gap behavioural metrics on
+    z_harm_a deferred to V3-EXQ-512 successor.
+    No lit-pull commissioned yet; biology-before-formal-definitions
+    rule recommends a targeted pull on interoceptive prediction error
+    and affective passivity (Seth & Friston 2016 already in
+    targeted_review_arc_058/ as background) -- queue post-V3-EXQ-511
+    if comparator-gap behavioural successor is being scoped.
   location: docs/architecture/sd_048_interoceptive_noise_dynamics.md
+
+- id: SD-049
+  title: "Multi-resource heterogeneity: qualitatively distinct resource types (e.g. food / water / novelty) with per-type identity tags, type-specific spawn distributions, type-specific benefit profiles, and a per-axis homeostatic drive system, plus a curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level, and the substrate scaffold for downstream developmental-schedule work."
+  claim_type: design_decision
+  subject: environment.multi_resource_heterogeneity
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-03"
+  depends_on:
+    - SD-012     # homeostatic drive: per-axis extension required, cascades into goal-conditioning pathway
+    - SD-015     # z_resource encoder: the upstream substrate this enables
+    - SD-005     # self/world latent split: z_world routing must hold under multiple resource identities
+  functional_restatement: >
+    CausalGridWorldV3's resource model treats all resources as
+    interchangeable units of a single appetitive class -- every
+    resource cell carries the same benefit, consumption updates a
+    single scalar drive (SD-012, drive_weight=2.0), and the z_resource
+    encoder (SD-015) sees no identity-bearing signal. This is too
+    thin a substrate for the cohort of claims about identity-distinct
+    goals. The unifying signature: SD-015 sits at goal_resource_r=0.066
+    across the EXQ-085x iteration cluster despite contact-gated z_goal
+    seeding -- the encoder has nothing to encode beyond presence.
+    MECH-229 wanting/liking dissociation PASS evidence (EXQ-074f) was
+    obtained on z_world fallback seeding, not via genuine
+    identity-distinct wanting. MECH-117's C2 PASS in EXQ-074d came
+    from a single redirect to a moved single-type resource, a
+    degenerate special case. Q-030's 6-cell z_resource x z_world
+    routing question is ill-posed without identity in z_resource.
+
+    SD-049 makes three additions to the env:
+    (1) Multiple resource identities (default n_resource_types=3:
+    food + water + novelty), each with a unique identity tag in
+    obs_dict, type-specific spawn distribution, and type-specific
+    benefit profile (drive axis + satiation curve + benefit amplitude).
+    The novelty channel is non-homeostatic: benefit decays with
+    familiarity rather than satiation, generating prospective wanting
+    that does not reduce a homeostatic deficit -- the structural shape
+    MECH-229 wants to test. (2) Per-axis homeostatic drive system
+    replacing SD-012's single scalar drive_weight: each drive axis has
+    independent depletion dynamics, an independent weight, and
+    contributes additively (or via configurable combiner) to the
+    goal-conditioning signal. Cascades into encoder, E3 evaluation,
+    and triggers pending_substrate_reconfirmation on SD-012-emergent
+    invariants per the invariant-types governance rule.
+    (3) Curriculum-introduction hook (resource_introduction_schedule:
+    dict[str, int]) controlling when each resource type becomes
+    available across episodes. Defaults to all types available from
+    step 0 of episode 0 so existing experiments are unchanged;
+    populated, expresses developmental schedules. The hook itself is
+    not the developmental schedule -- that is downstream design work
+    using the hook -- but it is the substrate prerequisite.
+
+    Falsifiable: a 4-arm substrate gradient sweep (ARM_0 OFF / ARM_1
+    2-type homeostatic / ARM_2 3-type with novelty -- the default /
+    ARM_3 5-type overshoot) with pre-registered predictions on
+    goal_resource_r (target ARM_2 - ARM_0 >= 0.4), wanting != liking
+    trajectory fraction (target near-zero in ARM_0/ARM_1, >= 0.6 in
+    ARM_2), per-axis drive ANOVA on z_goal cluster ID (significant
+    in ARM_2 only), and encoder identity-recovery accuracy
+    (at-chance ARM_0, > 0.6 ARM_2, falls back ARM_3). PASS validates
+    SD-049 and unblocks the cohort.
+
+    Falsifier branch: flat-failure across all arms on the wanting !=
+    liking criterion routes MECH-229 from V3-tractable to
+    substrate_conditional with V4 dependency on V4-1 multi-agent
+    ecology (where genuine "wanting another agent" emerges). This is
+    the parallel to SD-047's Woo/Spelke branch.
+  notes: >
+    Registered 2026-05-03 from substrate-roadmap H-priority #2 walk.
+    Direct trigger: user direction (2026-05-03) on substrate-roadmap
+    after SD-047 implementation completed -- multi-resource
+    heterogeneity selected as next H-priority outstanding enrichment
+    on the basis of the largest unblockable cohort (MECH-229, MECH-230,
+    MECH-117, MECH-216, ARC-030, ARC-032, Q-030, SD-015), with
+    fuller-scope decision (3 types incl non-homeostatic novelty
+    channel + per-axis drive + curriculum hook from start) chosen over
+    minimal 2-type homeostatic-only scope. The fuller scope is
+    load-bearing: a 2-type homeostatic substrate would let MECH-229
+    PASS by exploiting drive-axis dissociation alone, which is not the
+    claim under test. The novelty channel is what produces the case
+    where wanting-target differs from satiating-target on a single
+    drive axis.
+
+    Roadmap entry: substrate_roadmap.md H-priority #2
+    (`environment.multi_resource_heterogeneity`).
+
+    Distinct from V4 multi-agent ecology (V4-1). The novelty channel
+    is the closest V3-tractable analog of "another goal-bearer" but is
+    structurally inanimate -- it does not pursue anything. The
+    wanting/liking cohort can be tested without inter-agent goal
+    interaction; the V4 dependency only opens via the falsifier
+    branch.
+
+    Distinct from SD-047 (multi-source environmental dynamics). SD-047
+    enriches the env's agent-INDEPENDENT causal background for
+    agency-detection comparators. SD-049 enriches the env's
+    agent-RELEVANT goal vocabulary. Independently implementable;
+    overlapping file (causal_grid_world.py) requires sequencing
+    (SD-047 first, SD-049 layered on top).
+
+    Distinct from environment.differentiated_coping_channels
+    (substrate-roadmap M-priority #5, not yet registered). That SD
+    addresses MECH-102's substrate-ceiling by giving the agent
+    multiple ACTION modalities; SD-049 gives the env multiple
+    RESOURCE modalities. Independently implementable.
+
+    Implementation must be bit-identical OFF: when
+    multi_resource_heterogeneity_enabled=False, env RNG sequence and
+    per-tick state-update path match pre-SD-049 baseline exactly (no
+    spurious RNG draws). Per-resource-type bit-identical OFF too, so
+    each type can be ablated independently to recover ARM_1 from
+    ARM_2 etc. without code change. Same discipline as SD-047 / SD-048.
+
+    Lit-pull recommended before implementation per the
+    biology-before-formal-definitions rule: wanting vs liking
+    dissociation (Berridge & Robinson canonical; ventral pallidum vs
+    nucleus accumbens), multi-resource foraging and identity-distinct
+    goal selection (optimal foraging theory; primate / rodent
+    multi-resource experimental work), non-homeostatic motivation
+    (curiosity / novelty-seeking / intrinsic motivation; Berlyne;
+    Kidd & Hayden 2015), and developmental introduction order of
+    motivational classes (Spelke developmental work, relevant for
+    curriculum-hook downstream validation).
+  evidence_quality_note: >
+    Registered candidate without substrate implementation. Architectural
+    motivation: cohort blocked at substrate thinness, signature is
+    SD-015 goal_resource_r=0.066 across the EXQ-085x iteration cluster
+    plus MECH-229 PASS evidence obtained on z_world fallback rather
+    than identity-distinct wanting. No substrate implementation yet
+    (cannot start until SD-047 implementation session releases
+    causal_grid_world.py -- coordinated sequencing).
+
+    Pre-implementation lit-pull commissioned same session as design doc.
+    Validation experiment pre-registered in design doc: 4-arm substrate
+    gradient sweep (ARM_0 OFF / ARM_1 2-type homeostatic / ARM_2 3-type
+    default / ARM_3 5-type overshoot) with explicit interpretation grid
+    mapping each outcome combination to a distinct architectural
+    conclusion, including a Woo/Spelke-style falsifier branch routing
+    MECH-229 to substrate_conditional with V4 dependency.
+
+    Pre-implementation lit-pull anchor candidates: Berridge & Robinson
+    2016 AJP (incentive salience review), Smith et al. 2010 (ventral
+    pallidum hedonic hotspots), Stephens & Krebs 1986 (optimal foraging
+    theory baseline), Kidd & Hayden 2015 (curiosity / non-homeostatic
+    motivation review), Spelke developmental work on object-kind
+    discrimination.
+  location: docs/architecture/sd_049_multi_resource_heterogeneity.md
 
 - id: MECH-296
   title: "Prototype-readout operator computes a softmax-attention match between the current LatentState and the type-keyed anchor pool, returning a small set of best-matched type-keys plus their confidences. Runs both during waking (moment-to-moment type recognition) and during sleep (consolidation refinement of the type-anchor pool)."
