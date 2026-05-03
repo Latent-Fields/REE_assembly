@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-03T02:50:00Z",
+  "last_updated_utc": "2026-05-03T09:26:08Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1921,6 +1921,28 @@
         "prediction": null
       },
       "status": "implemented"
+    },
+    {
+      "sd_id": "SD-047",
+      "title": "Multi-source environmental dynamics: concurrent stochastic event sources (spatial perturbation field + Poisson transient events + background drift sources) to provide agency-detection comparators an agent-independent causal background dense enough for honest substrate-level testing.",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_047_multi_source_dynamics.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": ["MECH-095", "MECH-098", "MECH-099"],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_506_mech095_agency_comparator_substrate_20260503T021729Z_v3",
+          "experiment_type": "v3_exq_506_mech095_agency_comparator_substrate",
+          "date_utc": "2026-05-03",
+          "substrate_state": "CausalGridWorldV3 without multi-source dynamics. Single scheduled hazard source only.",
+          "metric": "C4-only-PASS substrate-ceiling signature: C4 (forward model sensorimotor accuracy) PASS but C1 (env-event selectivity), C2 (self-vs-env counterfactual gap), C3 (attributor calibration) all FAIL. r2_s_to_a invariant to action type (r2 ~ 0.99 in all conditions) -- no self/env disambiguation possible with current env causation vocabulary.",
+          "target": "C1 + C2 + C3 all PASS under multi-source dynamics. Specifically: env-event selectivity > 0.5; counterfactual gap (agent-caused minus env-caused) > 0.1; attributor calibration (within-arm slope) < 0.5. Woo/Spelke falsifier branch: if all four noise arms FAIL, route MECH-095 from substrate_ceiling to substrate_conditional (V4 multi-agent dependency)."
+        }
+      ],
+      "implementation_hint": "Three concurrent stochastic sources added to CausalGridWorldV3: (1) AR(1) spatial perturbation field (weather analog -- continuous background), (2) Poisson transient events (trap analog -- discrete punctate hazards), (3) background drift sources (slow baseline modulation). Bit-identical OFF flag for discriminative testing. Calibration target 1:1-2:1 env:agent change events per episode. Validation uses 4-arm noise-level sweep (OFF / 0.25x / 1.0x / 4.0x) to probe Asai 2016 non-monotonic comparator-competence curve rather than binary ON/OFF. Module surface: CausalGridWorldV3 in ree_core/environments/; new SD-047 config dataclass.",
+      "priority": 1,
+      "added_session": "sd047-substrate-queue-update-2026-05-03T09:26Z",
+      "last_seen_session": "sd047-substrate-queue-update-2026-05-03T09:26Z"
     }
   ]
 }

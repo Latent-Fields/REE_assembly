@@ -122,7 +122,11 @@ unification. Probably no new SD; just calibration + tooling.
 
 ### M-priority
 
-#### 4. Multi-source environmental dynamics
+#### 4. Multi-source environmental dynamics — **SD-047 REGISTERED 2026-05-03**
+
+**SD claim:** `SD-047` (`environment.multi_source_dynamics`, candidate, v3_pending).
+Design doc: `docs/architecture/sd_047_multi_source_dynamics.md`.
+Implementation dependencies: SD-022 (IMPLEMENTED), SD-029 (IMPLEMENTED) — ready to implement.
 
 **Missing:** "other-caused" change in V3 = hazard drift + resource
 respawn + scheduled hazard injection. That's a thin causal background.
@@ -130,16 +134,19 @@ Agency detection and similar comparator-driven claims need a richer
 multi-source environment.
 
 **Claims unblocked:**
-- `MECH-095` (`substrate_ceiling`) TPJ agency-detection comparator
-  (the V3-EXQ-047k PASS likely caught a narrow regime where the
-  signal was momentarily clear; richer ecology should make it robust)
+- `MECH-095` (`substrate_ceiling`) TPJ agency-detection comparator —
+  V3-EXQ-506 confirmed the substrate-ceiling signature (C4-only-PASS).
+  SD-047 is the registered fix. Validation uses a 4-arm noise-level sweep
+  (Asai 2016 non-monotonicity grounds the inverted-U prediction; Woo/Spelke
+  falsifier branch routes to V4-bound `substrate_conditional` if flat-failure).
+- `MECH-098` (reafference cancellation) under stochastic afference
 - `MECH-099` agency attribution downstream
-- Possibly some of `MECH-098` (reafference cancellation) under noisy
-  causal backgrounds
 
-**Implementation surface:** add concurrent stochastic event sources
-(weather analog: spatial perturbation field with own dynamics; trap
-analog: probabilistic transient hazards). Probably an SD claim.
+**Implementation surface:** three concurrent stochastic sources added to
+CausalGridWorldV3: (1) AR(1) spatial perturbation field, (2) Poisson
+transient events, (3) background drift sources. Bit-identical OFF flag.
+Calibration target: 1:1–2:1 env:agent change events per episode.
+See SD-047 design doc for full specification.
 
 #### 5. Differentiated coping channels (single-agent multi-modal action repertoire)
 
@@ -185,7 +192,7 @@ learned about itself?" probes.
 | Foreclosure primitives | H | Q-027, MECH-097, INV-025 sub-claims | `environment.foreclosure_primitives` |
 | Multi-resource heterogeneity | H | MECH-112, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 | `environment.multi_resource_heterogeneity` |
 | Long-horizon regime | H | INV-049, SD-037 dynamics, MECH-260 | (calibration / no SD) |
-| Multi-source environmental dynamics | M | MECH-095, MECH-098, MECH-099 | `environment.multi_source_dynamics` |
+| Multi-source environmental dynamics | M | MECH-095, MECH-098, MECH-099 | `SD-047` (registered 2026-05-03, ready) |
 | Differentiated coping channels (V3-lite) | M | MECH-102 (lite); full -> V4 | `environment.differentiated_coping_channels` |
 | Multi-frequency oscillatory probes | L | ARC-023, MECH-089/090/091 deeper | (probe expansion / no SD) |
 | Persistent agent identity | L | INV-064, MECH-214, MECH-215 | `agent.persistent_identity_across_episodes` |
