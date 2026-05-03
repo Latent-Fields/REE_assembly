@@ -1,6 +1,6 @@
 # Experiment Index: control_axis_ablation
 
-Generated: `2026-05-03T10:37:37.749862Z`
+Generated: `2026-05-03T12:29:13.747370Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

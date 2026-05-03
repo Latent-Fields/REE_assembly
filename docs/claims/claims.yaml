@@ -24546,3 +24546,203 @@
     anchor + Gupta 2010 compositional replay). No substrate
     implementation yet.
   location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
+
+- id: MECH-302
+  title: "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'."
+  claim_type: mechanism_hypothesis
+  subject: relief.completion_event_reuses_goal_achievement_pipeline
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-03
+  depends_on:
+    - MECH-057a   # commitment-release / beta-gate-drop pipeline being reused
+    - MECH-091    # salient-event phase-reset (relief-completion is one such salient event)
+    - MECH-094    # hypothesis-tag write gate (the tag store being written)
+    - MECH-303    # sister claim: safety-cue prediction substrate (parallel mechanism whose teaching signal is MECH-302's completion event)
+    - SD-011      # dual nociceptive streams (the suffering-stream that the comparator reads)
+    - SD-012      # homeostatic drive (sets the baseline against which suffering-derivative is computed)
+  functional_restatement: >
+    Mechanism hypothesis. The current REE architecture has clean
+    release / completion machinery for goal achievement (MECH-057a
+    beta-gate-drop, MECH-091 phase-reset, MECH-094 categorical tag
+    write) but no architecturally analogous event for sustained
+    suffering-reduction. Avoidance from pain / suffering is implicitly
+    continuous -- as long as harm is predicted, the avoidance system
+    keeps weighting the policy, with no clean completion event that
+    closes the avoidance episode and tags 'what just worked' for
+    future approach-toward-safety.
+
+    MECH-302 asserts: when a comparator on a suffering-stream
+    derivative (read off SD-011 z_harm_s / z_harm_a) crosses a
+    downward threshold sustained for k steps, this event fires the
+    SAME downstream pipeline that goal-achievement uses. Concretely:
+    1. MECH-057a: any active avoidance commitment is released, the
+       beta-gate drops, policy update is unblocked.
+    2. MECH-091: a phase-reset marker is emitted (oscillatory in the
+       biological substrate; explicit cycle-boundary in the ANN
+       substrate).
+    3. MECH-094: a categorical hypothesis tag is written, marking
+       the trajectory / context just experienced as 'this just
+       reduced suffering'. The tag-store is shared with goal-
+       achievement -- 'things that reduced suffering' and 'things
+       liked' are stored in the same approach-attractor structure,
+       distinguished only by the polarity of the input event.
+
+    The architectural prediction is that polarity is set at the
+    input layer (suffering-derivative-crossing-threshold vs
+    goal-attainment-event), not via parallel circuitry. This is
+    the cellular complement to ARC-024-equivalent claims that the
+    ventral-striatal completion store is shared across appetitive
+    polarities.
+
+    Falsifiable: an REE substrate with MECH-302 enabled should
+    produce conditioned approach to stimuli paired with sustained
+    suffering-reduction events, with the same temporal-discounting
+    profile and same downstream tag-write signature as conditioned
+    approach to goal-attainment stimuli. With MECH-302 disabled
+    (avoidance commitments never receive a completion event), the
+    agent should accumulate persistent avoidance commitments without
+    tag-and-release -- a candidate substrate-level analogue of
+    chronic anxiety / persistent-avoidance failure modes.
+  notes: >
+    Registered 2026-05-03 from the relief-completion-mechanism
+    pre-registration lit-pull. Sister claim to MECH-303 (safety-cue
+    prediction). The two mechanisms are coordinated but architecturally
+    distinct: MECH-302 handles the just-now-occurred completion event;
+    MECH-303 handles the predictive encoding of cues that anticipate
+    relief. MECH-302's completion event is the teaching signal that
+    updates MECH-303's predictive store.
+
+    Implementation note. The lit-pull verdict surfaced a DA-heterogeneity
+    qualifier (Bromberg-Martin 2010, Brischoux 2009): not all VTA
+    dopamine neurons code value at offset; ventral-VTA can be excited
+    by aversive ONSET (salience-coding) which would contaminate a
+    naive 'phasic DA = good thing' teaching signal. The architectural
+    consequence is that REE's MECH-302 trigger should be the suffering-
+    derivative-crossing comparator (a derived signal), NOT a pooled DA
+    activity readout. The biological substrate routes through value-
+    coding DA into NAc-shell -- but the REE trigger is the comparator,
+    matching what MECH-094 already does for goal-achievement at the
+    categorical level.
+  evidence_quality_note: |
+    Registered candidate 2026-05-03. Pre-registration lit-pull anchor:
+    `evidence/literature/targeted_review_relief_completion_mechanism/verdict.md`
+    (hybrid-leaning-Model-1, conf 0.80). Direct supporting entries:
+    Andreatta 2012 Learn Mem (relief->striatum / fear->amygdala
+    cross-species double dissociation, supports 0.86 -- LOAD-BEARING),
+    Navratilova 2012 PNAS (pain relief activates VTA-DA + NAc-shell DA +
+    DA-antagonist-blockable place preference, supports 0.84), Ramirez
+    2015 J Neurosci (active avoidance requires BA -> NAc-shell circuit,
+    supports 0.78), Tanimoto 2004 Nature (Drosophila opponent-timing
+    relief-as-reinforcer principle, supports 0.78). DA-heterogeneity
+    qualifiers: Bromberg-Martin 2010 (mixed 0.79), Brischoux 2009
+    (mixed 0.80). NO substrate implementation yet -- the suffering-
+    derivative comparator + relief-completion event need to be wired
+    into ree_core. v3_pending=true until both substrate enrichment and
+    a discriminative-pair experiment land.
+  location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
+
+- id: MECH-303
+  title: "Safety-cue prediction uses a substrate parallel to but distinct from the 'things liked' goal-cue store. A predictive structure encodes 'this stimulus / context predicts that suffering will be reduced or absent', anatomically routing through prefrontal-hippocampal substrate (IL-equivalent and vHipp-PL-equivalent) rather than ventral-striatal reward substrate. The teaching signal that updates MECH-303 is the MECH-302 relief-completion event, but the store is parallel. MECH-303 modulates commitment-release thresholds (gates whether the current context is safe enough to drop an avoidance commitment) and shapes approach toward safety-associated stimuli."
+  claim_type: mechanism_hypothesis
+  subject: safety_prediction.parallel_predictive_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-03
+  depends_on:
+    - MECH-302    # sister claim: relief-completion event provides the teaching signal
+    - MECH-094    # the relief-completion tag is the input that drives MECH-303 updates
+    - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 predicts)
+    - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising)
+    - ARC-007     # hippocampal path memory (substrate for context-bound safety-prediction encoding)
+  functional_restatement: >
+    Mechanism hypothesis. The Andreatta 2012 / Navratilova 2012 /
+    Ramirez 2015 cluster localises the relief-completion EVENT to the
+    ventral-striatal reward circuit (handled by MECH-302). Separately,
+    the Kreutzmann 2020 (IL-required-for-safety-expression) and Meyer
+    2019 (cross-species vHipp-to-PL safety-cue circuit) findings
+    localise the predictive encoding of safety cues to a distinct
+    prefrontal-hippocampal substrate. MECH-303 captures this parallel
+    encoder.
+
+    The store is structurally analogous to 'things liked' (the
+    approach-attractor structure that goal-achievement writes via
+    MECH-094) but anatomically and functionally separate. Where
+    'things liked' encodes 'this thing led to goal completion',
+    MECH-303 encodes 'this thing predicts that suffering will be
+    reduced or absent'. The two stores feed the same downstream
+    approach-policy machinery but with different update rules and
+    different default behaviours during extinction.
+
+    MECH-303's predictive output gates two distinct downstream
+    behaviours:
+    1. Commitment-release thresholds: when MECH-303 predicts the
+       current context is safe (i.e. signals that suffering will not
+       rise), the threshold for dropping an active avoidance
+       commitment lowers. This is the architectural substrate for
+       'when do I stop being vigilant?'.
+    2. Approach toward safety-associated stimuli: behaviour-toward
+       (rather than away-from) stimuli whose MECH-303 prediction is
+       'this predicts low suffering'. This is the substrate for
+       attachment to relief-providers, comfort objects, and trusted
+       others -- behaviourally distinct from 'liking' but using the
+       same approach-policy output.
+
+    Falsifiable: an REE substrate with MECH-302 + MECH-303 enabled
+    should show conditioned-inhibition behaviour (a safety cue should
+    inhibit avoidance behaviour even in the presence of a threat cue,
+    matching the conditioned-inhibition paradigms used in the Meyer
+    2019 lit-pull anchor). With only MECH-302 (relief-completion
+    event, no parallel safety-prediction store), the agent should
+    show normal conditioned approach to relief-paired stimuli but
+    should NOT show conditioned inhibition -- the absence of an
+    independent safety-prediction encoder means safety cues cannot
+    gate the avoidance commitment in the way conditioned inhibition
+    requires.
+  notes: >
+    Registered 2026-05-03 from the relief-completion-mechanism
+    pre-registration lit-pull. Sister claim to MECH-302. The lit-pull
+    verdict treats MECH-302 + MECH-303 as the minimal mechanism count
+    that honours the biological evidence: a single mechanism would
+    collapse the load-bearing distinction between just-now-occurred
+    relief and predicted-from-cue safety, which the
+    Kreutzmann + Meyer convergence shows is real.
+
+    Architectural prediction. If MECH-302 fires cleanly but MECH-303
+    is degraded, the agent should learn relief-paired approach but
+    fail to use safety cues to terminate avoidance commitments
+    appropriately -- a substrate-level analogue of 'I know what
+    helped, but I cannot tell when I am safe'. If MECH-303 is intact
+    but MECH-302 fires noisily, the agent should learn safety
+    predictions adequately but the underlying tag-store will be
+    poorly written -- approach toward safety-associated stimuli will
+    be erratic. Both failure modes are clinically suggestive of
+    distinct anxiety-disorder phenotypes.
+
+    Implementation note. MECH-303's predictive store should be a
+    separate model head from the goal-cue / 'things liked' encoder,
+    not a polarity-flipped version of it. Sharing the head would
+    produce the safety-vs-liking-conflation failure mode that the
+    Kreutzmann + Meyer lit-pull anchor explicitly weakens.
+  evidence_quality_note: |
+    Registered candidate 2026-05-03. Pre-registration lit-pull anchor:
+    `evidence/literature/targeted_review_relief_completion_mechanism/verdict.md`
+    (hybrid-leaning-Model-1, conf 0.80). Direct supporting entries:
+    Kreutzmann 2020 Psychopharmacology (IL required for safety
+    expression but not acquisition; PL controlled out, weakens-the-
+    pure-M1-reading 0.74), Meyer 2019 PNAS (cross-species mouse
+    chemogenetic + human fMRI: vHipp -> PL pathway carries the
+    safety-cue prediction, weakens-the-pure-M1-reading 0.78). The
+    convergent dissociation across both species is the load-bearing
+    finding. NO substrate implementation yet -- the parallel
+    predictive encoder needs to be wired into ree_core, with
+    MECH-302's tag-write event as its teaching signal. v3_pending=true
+    until both substrate enrichment and a conditioned-inhibition
+    discriminative-pair experiment land.
+  location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md

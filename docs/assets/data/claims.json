@@ -3035,6 +3035,18 @@
     "title": "Priority-weighted anchor replay (MECH-285) runs not only during sleep but also during brief waking quiescent pauses, surfacing remote / non-current stored content for goal-directed retrieval. The architectural gating is contextual (quiescent vs active behaviour, sensory input vs absence) rather than state-categorical (waking vs sleep). Refinement / generalisation of MECH-285.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-302": {
+    "status": "candidate",
+    "subject": "relief.completion_event_reuses_goal_achievement_pipeline",
+    "title": "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-303": {
+    "status": "candidate",
+    "subject": "safety_prediction.parallel_predictive_substrate",
+    "title": "Safety-cue prediction uses a substrate parallel to but distinct from the 'things liked' goal-cue store. A predictive structure encodes 'this stimulus / context predicts that suffering will be reduced or absent', anatomically routing through prefrontal-hippocampal substrate (IL-equivalent and vHipp-PL-equivalent) rather than ventral-striatal reward substrate. The teaching signal that updates MECH-303 is the MECH-302 relief-completion event, but the store is parallel. MECH-303 modulates commitment-release thresholds (gates whether the current context is safe enough to drop an avoidance commitment) and shapes approach toward safety-associated stimuli.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3633,6 +3645,12 @@
     "status": "candidate",
     "subject": "body.interoceptive_noise_dynamics",
     "title": "Interoceptive noise dynamics: stochastic body-state perturbations independent of the agent's motor output (autonomic background noise + sensitisation spikes + fatigue drift) provide an agent-independent interoceptive background dense enough for the affective comparator (ARC-058, Level 2 of the reafference comparator family) to be honestly tested at substrate level.",
+    "type": "design_decision"
+  },
+  "SD-049": {
+    "status": "candidate",
+    "subject": "environment.multi_resource_heterogeneity",
+    "title": "Multi-resource heterogeneity: qualitatively distinct resource types (e.g. food / water / novelty) with per-type identity tags, type-specific spawn distributions, type-specific benefit profiles, and a per-axis homeostatic drive system, plus a curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level, and the substrate scaffold for downstream developmental-schedule work.",
     "type": "design_decision"
   }
 }
