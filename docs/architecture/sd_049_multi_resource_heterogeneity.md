@@ -6,8 +6,10 @@ nav_exclude: true
 
 **Claim ID:** SD-049
 **Subject:** `environment.multi_resource_heterogeneity`
-**Status:** candidate (v3_pending)
+**Status:** IMPLEMENTED (Phase 1, env-only) -- 2026-05-03
 **Registered:** 2026-05-03
+**Implemented (Phase 1):** 2026-05-03
+**Phase 2 (encoder identity expansion + SD-032 consumer cascade):** REGISTERED, not implemented. See substrate_queue.json SD-049 entry. Validation experiment for the full claim (V3-EXQ-514: goal_resource_r lift + identity-recovery probe + wanting != liking trajectory dissociation) lands after Phase 2.
 **Origin:** Substrate-roadmap H-priority #2 (`docs/architecture/substrate_roadmap.md`).
 Trigger: the wanting/liking + identity-distinct-goal cohort (MECH-229, MECH-230,
 MECH-117, MECH-216, ARC-030, ARC-032, Q-030, SD-015) operates on a substrate
@@ -504,3 +506,63 @@ Anchor candidates:
   motivation review)
 - Spelke developmental work on object-kind discrimination (relevant
   for the curriculum-introduction hook)
+
+---
+
+## Phase 1 implementation note (2026-05-03)
+
+The substrate-side additions (multi-identity resources + curriculum hook)
+and a Phase 1 per-axis drive vector parallel to the legacy `agent_energy`
+scalar were implemented on 2026-05-03 in
+`ree-v3/ree_core/environment/causal_grid_world.py` as flat kwargs on
+`CausalGridWorld.__init__`. See `ree-v3/CLAUDE.md` SD-049 section for the
+full data-flow / config surface / smoke results.
+
+Deviation from the SD doc that requires explicit follow-on tracking: the
+per-axis drive vector is implemented as PARALLEL to `agent_energy` rather
+than REPLACING it. The legacy single-scalar drive_level pathway through
+every SD-032 consumer (AIC / PCC / pACC / dACC / salience / override /
+MECH-295 bridge) continues to read `obs_body[3]` (which is overridden by
+`1.0 - combiner(per_axis_drive)` when per-axis is enabled). The per-axis
+vector is observable through `obs_dict["per_axis_drive"]` for new
+experiments and the deferred Phase 2 encoder upgrade. This is a cleaner
+phased landing: Phase 1 lands the env substrate without the cascade
+through every consumer; Phase 2 cascades the per-axis read sites into
+the SD-032 cluster with explicit consumer-by-consumer migration.
+
+**Phase 2 scope (deferred, registered in `substrate_queue.json`):**
+1. `z_resource` encoder identity expansion: one-hot identity slot
+   concatenated with magnitude OR low-D learned embedding on the larger
+   world_obs (325 ARM_2 / 375 ARM_3). The existing ResourceEncoder reads
+   the larger obs unchanged but does not yet produce an identity-aware
+   latent; Phase 2 adds the supervised identity-recovery head and the
+   phased-training protocol (P0 frozen identity-classifier head; P1
+   joint training on the identity-aware z_resource).
+2. SD-032 consumer cascade: AIC, PCC, pACC, dACC, salience coordinator,
+   override regulator, MECH-295 bridge each migrate from reading
+   `goal_state._last_drive_level` (the collapsed scalar) to reading
+   `obs_dict["per_axis_drive"]` directly when SD-049 per-axis is on.
+   Triggers `pending_substrate_reconfirmation` on SD-012-emergent
+   invariants per the invariant-types governance rule.
+3. Validation experiment V3-EXQ-514: 4-arm substrate gradient sweep
+   exercising the trained identity-aware z_resource. Pre-registered
+   acceptance: ARM_2 - ARM_0 `goal_resource_r` lift >= 0.4 (target
+   0.066 -> >= 0.5); identity-recovery linear probe accuracy > 0.6 in
+   ARM_2; `wanting_target != liking_target` trajectory fraction >= 0.6
+   in ARM_2 (near zero in ARM_0 / ARM_1); per-axis drive ANOVA on
+   z_goal cluster IDs p < 0.01 in ARM_2. Five-row interpretation grid
+   per Validation Experiment section above (including the Woo/Spelke
+   falsifier branch routing MECH-229 to substrate_conditional with V4-1
+   multi-agent-ecology dependency on flat-failure).
+
+**Phase 1 validation experiment (V3-EXQ-513):** substrate-readiness
+diagnostic only. 4-arm sweep + curriculum check. 13 acceptance criteria:
+C0 bit-identical OFF; C1a-b ARM_1 novelty-gated + food/water spawn;
+C2a-f ARM_2 substrate signatures (world_obs_dim, per-type spawn,
+per-axis drive evolution, contact counts, novelty familiarity growth,
+agent_energy divergence from legacy path); C3a-b ARM_3 obs-dim and
+4-of-5 type spawn; CC1-2 curriculum gates water at step 0 and releases
+at step 1000. PASS = SD-049 substrate is calibrated and ready for
+Phase 2. FAIL on C0 -> bit-identical OFF guarantee broken; FAIL on
+C2c -> per-axis depletion not running; FAIL on CC1/CC2 -> curriculum
+hook miswired.

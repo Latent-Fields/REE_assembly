@@ -24205,29 +24205,95 @@
     Kidd & Hayden 2015), and developmental introduction order of
     motivational classes (Spelke developmental work, relevant for
     curriculum-hook downstream validation).
+  implemented_utc: "2026-05-03"
+  implementation_note: >
+    SD-049 Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 in
+    ree-v3/ree_core/environment/causal_grid_world.py via flat kwargs on
+    CausalGridWorld.__init__ (matching SD-022/SD-023/SD-029/SD-047/SD-048
+    env-only precedent rather than nested dataclass per the SD doc --
+    nothing else uses dataclass-config for env params).
+
+    Phase 1 lands all three substrate additions:
+    (1) Multi-identity resources -- num_resources cells split across
+    n_resource_types qualitatively distinct types (default 3:
+    food / water / novelty) per resource_type_distribution; per-type
+    proximity field views appended to world_obs (world_obs_dim grows
+    by n_resource_types*25 -- 250 -> 325 default 3-type ARM_2;
+    250 -> 375 5-type ARM_3 overshoot); per-type benefit profiles via
+    resource_type_benefit_curves (sigmoidal_saturating / sharp_saturation /
+    novelty_decay) including the structurally-distinct non-homeostatic
+    novelty channel.
+    (2) Per-axis homeostatic drive vector -- per_axis_drive[n_axes]
+    parallel to legacy agent_energy. agent_energy collapses to
+    1.0 - combiner(per_axis_drive) when per_axis_drive_enabled so all
+    legacy SD-032 consumers (AIC / PCC / pACC / dACC / salience /
+    override / MECH-295 bridge) continue to read obs_body[3] without
+    modification. New observable: obs_dict["per_axis_drive"].
+    (3) Curriculum hook -- resource_introduction_schedule:
+    Dict[str, int] gates per-type spawn availability by cross-episode
+    _global_step. Defaults to None -> all types available from step 0.
+
+    Bit-identical OFF guarantee verified 2026-05-03 (50-tick parity
+    check across explicit-False vs default + V3-EXQ-513 C0 acceptance
+    criterion). 7/7 preflight + 184/184 contracts PASS with master OFF.
+    Per-resource-type bit-identical OFF preserved (setting an entry to
+    0.0 in resource_type_distribution drops that type without code
+    change -- recovers ARM_1 from ARM_2 in the validation 4-arm sweep).
+
+    Substrate-readiness diagnostic queued as V3-EXQ-513 (4-arm sweep
+    ARM_0/ARM_1/ARM_2/ARM_3 + curriculum check; 13 acceptance criteria;
+    13/13 PASS on dry-run smoke; full run ~5 min on Mac).
+
+    PHASE 2 DEFERRED: the validation experiment for the FULL CLAIM
+    (goal_resource_r lift, identity-recovery probe, wanting != liking
+    trajectory dissociation) requires (a) z_resource encoder identity
+    expansion (one-hot identity slot or learned embedding on the
+    larger world_obs) and (b) SD-032 consumer cascade reading
+    per_axis_drive directly rather than the collapsed obs_body[3].
+    Phase 2 is registered in REE_assembly/evidence/planning/substrate_queue.json
+    (SD-049 entry, phase_2 follow-on note); behavioural validation
+    lands as V3-EXQ-514 post-Phase 2. Triggers
+    pending_substrate_reconfirmation on SD-012-emergent invariants per
+    the invariant-types governance rule when Phase 2 lands.
+
+    Implementation choices documented in ree-v3/CLAUDE.md SD-049 section.
+    Design doc Status updated to IMPLEMENTED (Phase 1, env-only).
+    v3_pending=true KEPT until V3-EXQ-514 (Phase 2 behavioural
+    validation) PASSes.
   evidence_quality_note: >
-    Registered candidate without substrate implementation. Architectural
-    motivation: cohort blocked at substrate thinness, signature is
-    SD-015 goal_resource_r=0.066 across the EXQ-085x iteration cluster
-    plus MECH-229 PASS evidence obtained on z_world fallback rather
-    than identity-distinct wanting. No substrate implementation yet
-    (cannot start until SD-047 implementation session releases
-    causal_grid_world.py -- coordinated sequencing).
+    Registered candidate. SUBSTRATE PHASE 1 IMPLEMENTED 2026-05-03.
 
-    Pre-implementation lit-pull commissioned same session as design doc.
-    Validation experiment pre-registered in design doc: 4-arm substrate
-    gradient sweep (ARM_0 OFF / ARM_1 2-type homeostatic / ARM_2 3-type
-    default / ARM_3 5-type overshoot) with explicit interpretation grid
-    mapping each outcome combination to a distinct architectural
-    conclusion, including a Woo/Spelke-style falsifier branch routing
-    MECH-229 to substrate_conditional with V4 dependency.
+    Architectural motivation: cohort blocked at substrate thinness,
+    signature is SD-015 goal_resource_r=0.066 across the EXQ-085x
+    iteration cluster plus MECH-229 PASS evidence obtained on z_world
+    fallback rather than identity-distinct wanting.
 
-    Pre-implementation lit-pull anchor candidates: Berridge & Robinson
-    2016 AJP (incentive salience review), Smith et al. 2010 (ventral
-    pallidum hedonic hotspots), Stephens & Krebs 1986 (optimal foraging
-    theory baseline), Kidd & Hayden 2015 (curiosity / non-homeostatic
-    motivation review), Spelke developmental work on object-kind
-    discrimination.
+    Pre-implementation lit-pull complete (5 PubMed entries, 2026-05-03,
+    sd_049 lit_conf=0.898 in plausible_unproven quadrant): Berridge 2018
+    incentive-salience anchor; Smith & Berridge 2007 NAc-VP hedonic
+    hotspots; Kidd & Hayden 2015 curiosity / non-homeostatic motivation
+    -- LOAD-BEARING for the novelty channel; Shutts/Spelke 2009
+    type-specific feature dimensions + developmental signature; Matthews/Tye
+    2016 social wanting falsifier-adjacent licensing the V3/V4 division
+    of labor.
+
+    Phase 1 substrate validation (V3-EXQ-513): 4-arm sweep + curriculum
+    check, substrate-readiness diagnostic. Acceptance criteria target
+    bit-identical OFF, per-type spawn / contact, per-axis drive
+    evolution, novelty familiarity growth, agent_energy divergence
+    from legacy path, ARM_3 obs-dim shape + 4-of-5 type spawn,
+    curriculum gate / release. PASS = SD-049 substrate is calibrated
+    and ready for Phase 2.
+
+    Phase 2 behavioural validation (V3-EXQ-514, queued post-Phase 2):
+    pre-registered acceptance criteria from design doc -- ARM_2 - ARM_0
+    goal_resource_r lift >= 0.4 (target 0.066 -> >= 0.5);
+    identity-recovery linear probe accuracy > 0.6 in ARM_2;
+    wanting_target != liking_target trajectory fraction >= 0.6 in ARM_2
+    (near zero in ARM_0 / ARM_1); per-axis drive ANOVA on z_goal cluster
+    IDs p < 0.01 in ARM_2. Five-row interpretation grid including the
+    Woo/Spelke-style falsifier branch routing MECH-229 to
+    substrate_conditional with V4 dependency.
   location: docs/architecture/sd_049_multi_resource_heterogeneity.md
 
 - id: MECH-296
