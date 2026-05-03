@@ -14,6 +14,186 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-05-03 -- nightly docs sync, post-2026-05-02 governance walk: SD-011 stable + SD-012 provisional + Phase-3-wave-2 epistemic_category schema + substrate_roadmap + v4_spec + Q-037/038/039 lit-pull)
+
+- **SDs / MECHs moved to Implemented since the 2026-05-02 nightly snapshot:**
+  none in the substrate sense -- all substrate work landed in earlier waves.
+  The 2026-05-02 work is governance / evidence / planning-artifact work
+  layered on top of the existing run set.
+- **Promotions (2026-05-02T09:30Z queue walk):**
+  - **SD-011 (`harm_stream.dual_nociceptive_streams`) provisional -> stable.**
+    exp_conf=0.871, lit_conf=0.871, 7 exp + 23 lit, conflict_ratio=0.148
+    (under the 0.20 stable gate). 25 supports / 2 weakens / 3 mixed across
+    the largest single-claim corpus in the registry. EXQ-178b
+    (harm_fwd_r2=0.742) and EXQ-323a body-damage substrate cleared the
+    dissociation that had held it at provisional.
+  - **SD-012 (`environment.homeostatic_drive`) candidate -> provisional.**
+    exp_conf=0.714, lit_conf=0.874, 5 exp + 16 lit, conflict_ratio=0.20.
+    18 supports / 2 weakens / 1 mixed. Substrate has been implemented since
+    2026-04-02 (drive_weight=2.0 default in REEConfig.from_dims) -- this
+    promotion is the registry catching up to the substrate.
+  - Bug fix included as part of this walk (commit 81de5101c, 2026-05-01):
+    indexer recommendations function was counting scoring_excluded entries
+    (diagnostic_probe / non_contributory / superseded) into the gate's
+    exp_conf computation. Phase 3 cutover surfaced this -- spurious
+    promotion recommendations for 5 claims with exp_conf=0 in the matrix
+    were appearing pre-fix. After fix: pending_user 17 -> 15. After SD-011
+    + SD-012 promotions: 15 -> 13.
+  - Decision_log appended 2 entries (SD-011 stable, SD-012 provisional)
+    with full rationale citing exp/lit/conflict numbers and the gate
+    criteria each cleared. validate_claims --strict still PASSes 68/68
+    invariants.
+- **Phase 3 wave 2 governance schema landed 2026-05-02T11:30Z
+  (epistemic_category formalisation):**
+  - New `epistemic_category` field on `claims.yaml`, OPTIONAL, with 7
+    canonical values: `standard`, `substrate_coherence`, `answer_state`,
+    `substrate_ceiling`, `substrate_conditional`, `derivational`,
+    `out_of_domain`.
+  - `_resolve_epistemic_category(claim_type, invariant_type, explicit)`
+    helper in `build_experiment_indexes.py`: explicit value wins; falls
+    back to Phase 2 inference (architectural_commitment + universal-invariant
+    -> substrate_coherence; open_question -> answer_state; else standard).
+    Smoke-tested 10/10 cases.
+  - `_recommendation_for_claim` dispatches via the resolver: only `standard`
+    runs exp_conf gates; everything else suppresses promote/demote;
+    `narrow_open_question` fires only for `answer_state` (so derivational /
+    out_of_domain Q-claims stop getting "narrow this" recommendations).
+  - `_load_claim_registry` parses optional `epistemic_category` field.
+    `validate_claims.py` warn-only validates explicit values against the
+    canonical set; invalid falls back to inference (does not crash).
+  - **13 annotated claims backfilled with explicit categories:**
+    MECH-095, MECH-102 -> `substrate_ceiling`;
+    Q-025, Q-026, Q-027 -> `derivational`;
+    Q-028, Q-029 -> `substrate_ceiling`;
+    Q-030 -> `standard`;
+    Q-031, Q-032 -> `out_of_domain`;
+    Q-037, Q-038, Q-039 -> `substrate_conditional`.
+  - **Result:** pending decision queue dropped from 16 to 4 items (all 13
+    annotated claims correctly suppressed by their category; remaining
+    items are pre-existing V3-pending holds + SD-023 conflict alert).
+    validate_claims --strict still PASS 68/68.
+  - `CLAUDE.md` "Claim-type evidence gating" section rewritten as
+    "Epistemic categories (Phase 3 wave 2)" with the full mapping table
+    and dispatch consequences.
+- **Substrate roadmap planning artifact landed 2026-05-02
+  (`docs/architecture/substrate_roadmap.md`):**
+  - Gathers V3 enrichment work into one planning document.
+  - Documents 10 in-flight enrichments landed 2026-04-01..2026-05-02
+    (SD-022, SD-023, SD-029, SD-035, SD-036, SD-037, MECH-269 family,
+    sleep aggregator, ghost-goal substrate, MECH-295 liking-bridge).
+  - Enumerates 7 outstanding V3 enrichments:
+    - **3 H-priority:** foreclosure primitives, multi-resource
+      heterogeneity, long-horizon dynamics.
+    - **2 M-priority:** multi-source environmental dynamics,
+      differentiated coping channels V3-lite.
+    - **2 L-priority.**
+  - Each substrate feature mapped to the claims it would unblock and the
+    SD candidate that would register it.
+- **V4 spec planning artifact landed 2026-05-02
+  (`docs/architecture/v4_spec.md`):**
+  - Initial deliberate spec-first artifact for V4 substrate work.
+  - 4 V4 primitive additions:
+    - **V4-1** multi-agent ecology
+    - **V4-2** self-model integration (DR-10..DR-14 from ree-v3 CLAUDE.md)
+    - **V4-3** long-horizon dynamics + persistent identity
+    - **V4-4** richer action repertoire
+  - V4-bound claim cohort: ~12 claims explicitly waiting for V4 substrate.
+  - Process gating: Phase A (this document, draft 2026-05-02). Phase B
+    onwards gated on V3 full completion (MECH-163 PASS) + governance
+    authorization.
+  - Migration sketch: V4 substrate is additive; V3 continues for V3
+    claims; V4 evidence carries distinct architecture_epoch.
+- **Substrate-ceiling annotation walk 2026-05-02T10:35Z (13 claims
+  annotated, no status changes):** MECH-095 (TPJ agency-detection,
+  9 exp / 7 sup / 4 wk / 5 mix, conflict=0.727) and MECH-102
+  (violence-as-terminal, 24 exp / 10 sup / 11 wk / 12 mix, conflict=0.952)
+  flagged as substrate_ceiling -- both held at active. Diagnosis:
+  CausalGridWorldV2 too coarse to deliver the distinctions these claims
+  assert. 11 Q-claims (Q-025..032 / 037..039) walked and categorised
+  per the mapping above. Pattern across the cohort: existing
+  `narrow_open_question` recommendation collapses 4-5 distinct epistemic
+  situations with different next-step implications -- now machine-readable
+  via the `epistemic_category` field.
+- **Weekend lit-pull 2026-05-02T10:00Z (Q-037 / Q-038 / Q-039,
+  9 PubMed-sourced entries):**
+  - **Q-037** (psychosis substrate dissociability between MECH-094 /
+    MECH-222 / MECH-065+223): Lavalle 2020 (dissociable source-monitoring
+    OCD vs SCZ, supports MECH-094/MECH-222 dissociation), Corlett 2025
+    (20-yr aberrant salience review; argues MECH-065 may need to split
+    into multiple sub-mechanisms), Oulton 2018 (PTSD memory amplification
+    reality monitoring, supports MECH-094 tag-loss). lit_conf 0.0 -> 0.823.
+  - **Q-038** (D_V temporal-depth representational status):
+    Pilkiw 2018 (distributed tonic+phasic temporal codes, supports
+    option B), Guan 2024 (abstract interval-invariant subsecond
+    structure via double training, supports option A), Gherman 2018
+    (VMPFC localised early confidence signal, supports option A by
+    analogy). lit_conf 0.0 -> 0.795.
+  - **Q-039** (neuromodulators / control-plane vars regulating TCL
+    integration window): Fan 2020 (ACh-driven L1 winner-take-all +
+    temporal high-pass filter), Xiang 2023 (LC NA neurons phase-lock to
+    infra-slow rhythms organising gamma), Kumagai 2023 (VNS
+    double-dissociation: ACh selectively modulates gamma/beta, NA
+    selectively modulates theta -- cleanest dissociation evidence on
+    the table). lit_conf 0.0 -> 0.84.
+  - All three claims quadrant: `plausible_unproven` (high lit, no exp).
+  - Indexer ran: literature_entries 1113 -> 1122.
+- **`/diagnose-errors` cleanup 2026-05-02T18:06Z:** marked 3 obsolete
+  unaddressed-error entries discussed in `review_tracker.json`
+  (V3-EXQ-008 obsolete March SD-003 era; V3-ONBOARD-smoke-EWIN-PC
+  contributor onboarding for inactive machine; V3-ONBOARD-smoke-ree-cloud-1
+  Hetzner CX22 onboarding for inactive cloud machine). Remaining 2
+  unaddressed errors confirmed intentional NotImplementedError sentinels
+  (V3-EXQ-455a + V3-EXQ-449c) waiting on V3-EXQ-476 cascade gate +
+  named consumer wiring -- not bugs.
+- **Experiment activity since the 2026-05-02 nightly snapshot:**
+  - **No new runner completions.** runner_status.json totals unchanged
+    at 574 (113 PASS / 247 FAIL / 66 ERROR / 148 UNKNOWN).
+  - Pending review queue regenerated 2026-05-02T18:08Z: **1 item**
+    (V3-EXQ-490e FAIL on Q-040, carried over from 2026-04-30 governance
+    walk; V3-EXQ-503 PASS reviewed 2026-05-01T20:40Z in the Phase 3
+    cutover session; 3 obsolete ERROR entries cleared 2026-05-02T18:06Z).
+
+### Immediate Work Queue (This Cycle, 2026-05-03)
+
+1. **V3-EXQ-490e FAIL discussion** -- still the last open pending_review
+   item. Floor-relaxation arm has been ruled out as a Q-040b recovery
+   path (combined with the V3-EXQ-490c FAIL on the matched-smoke-threshold
+   factorial); the next-up falsification of the Q-040b strong reading
+   is the staleness-into-gate test (V3-EXQ-490d toggle of
+   use_vs_gate_staleness_lookup OFF vs ON at matched 0.4 thresholds via
+   the 2026-04-29T11:00Z MECH-284 wiring).
+2. **MECH-095 / MECH-102 demotion recommendations** -- now flagged
+   `substrate_ceiling` (Phase 3 wave 2 schema); demotion-action
+   suppressed by the new gating, but both still need a careful
+   substrate-enrichment vs status-revision review at the next governance
+   walk. The right response is substrate enrichment rather than more
+   experiments on the existing substrate.
+3. **V3-EXQ-490d successor design + queueing** -- still the
+   highest-priority substrate-validation run after the V3-EXQ-490e FAIL.
+   Design refinement needed in light of the 490e FAIL before queueing.
+4. **V3-EXQ-495 V3-full-completion-gate queueing decision** -- still
+   deferred. The MECH-163 dual-systems test depends on Q-040 / Q-040b
+   resolution; queueing locked behind the cluster-successor outcome.
+5. **EXP-0174 env-complexity-gate scripting + queueing** -- the
+   2026-04-29T19:09Z proposal is unblocking for SD-016 retest path
+   (env-entropy precondition) plus sleep / self-model aggregation
+   retests (MECH-273 / MECH-275). Manual_proposals entry reserved;
+   script not yet written.
+6. **OCD Layer 2 / 3 escalation (MECH-290 ablation; SD-046 multi-slot
+   GoalState pull-forward)** -- still on the live escalation list after
+   EXQ-498 disconfirmed Layer 1; design / queueing not yet started.
+7. **Aggregator-floor flag governance review** -- now a 6th-consecutive-
+   cycle flag at the next governance walk; cap-aware aggregator review
+   with recommendation either (a) accept the floor as architecturally
+   reasonable for narrow-open-question Q-claims, or (b) tune the floor
+   downward to expose per-paper confidence variance more faithfully.
+8. **V3 enrichment H-priority queue** -- substrate_roadmap.md flagged
+   foreclosure primitives, multi-resource heterogeneity, and long-horizon
+   dynamics as H-priority outstanding. None scheduled yet; design-doc /
+   SD-candidate registration is the gating step.
+
+---
+
 ## Status Snapshot (2026-05-02 -- nightly docs sync, post-Phase-2-cohort-closure + Option-E-Phase-3-cutover + duplicate-manifest-sweep)
 
 - **SDs / MECHs moved to Implemented since the 2026-04-30 nightly snapshot:**
