@@ -344,6 +344,11 @@ unblocking C1/C2/C3).
   M-priority #5; not yet registered) — parallel SD addressing
   MECH-102's substrate_ceiling. Independently implementable.
 
+SD-047 addresses Level 1 (motor/action comparator) of the reafference
+comparator family. For the full family context and cross-level
+diagnostic principles, see:
+`docs/architecture/reafference_comparator_family.md`
+
 ## Lit-pull recommendation (pre-implementation)
 
 Before substrate work begins, commission a focused lit-pull on:
