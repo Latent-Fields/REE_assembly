@@ -6,8 +6,9 @@ nav_exclude: true
 
 **Claim ID:** SD-047
 **Subject:** `environment.multi_source_dynamics`
-**Status:** candidate (v3_pending)
+**Status:** IMPLEMENTED 2026-05-03
 **Registered:** 2026-05-03
+**Implemented:** 2026-05-03 (ree-v3 / `ree_core/environment/causal_grid_world.py`; substrate landed bit-identical OFF; 4-arm sweep smoke verified ARM_0 legacy-parity, ARM_2 calibration ratio 1.95:1 within target band)
 **Origin:** Substrate-roadmap M-priority #4 (`docs/architecture/substrate_roadmap.md`).
 Trigger: V3-EXQ-506 (2026-05-03) confirmed the substrate-ceiling signature flagged
 in MECH-095's evidence_quality_note (2026-05-02) — the agency-detection comparator

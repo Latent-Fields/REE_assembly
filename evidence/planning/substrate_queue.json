@@ -1941,8 +1941,10 @@
       ],
       "implementation_hint": "Three concurrent stochastic sources added to CausalGridWorldV3: (1) AR(1) spatial perturbation field (weather analog -- continuous background), (2) Poisson transient events (trap analog -- discrete punctate hazards), (3) background drift sources (slow baseline modulation). Bit-identical OFF flag for discriminative testing. Calibration target 1:1-2:1 env:agent change events per episode. Validation uses 4-arm noise-level sweep (OFF / 0.25x / 1.0x / 4.0x) to probe Asai 2016 non-monotonic comparator-competence curve rather than binary ON/OFF. Module surface: CausalGridWorldV3 in ree_core/environments/; new SD-047 config dataclass.",
       "priority": 1,
+      "status": "implemented",
+      "implementation_note": "SD-047 substrate IMPLEMENTED 2026-05-03 in ree_core/environment/causal_grid_world.py. Flat kwargs on CausalGridWorld.__init__ (matching SD-022/SD-023/SD-029 env-only precedent). Bit-identical OFF (RNG draws guarded inside master switch); per-source switches for ablation; multi_source_intensity_scale knob is the 4-arm sweep lever. 7/7 preflight + 184/184 contracts PASS with master OFF. Smoke at scale=1.0 produces calibration ratio 1.95:1 within target band 1:1-2:1. Substrate-readiness diagnostic queued as V3-EXQ-509; comparator-gap behavioural validation (V3-EXQ-510 successor to V3-EXQ-506) pending V3-EXQ-509 PASS.",
       "added_session": "sd047-substrate-queue-update-2026-05-03T09:26Z",
-      "last_seen_session": "sd047-substrate-queue-update-2026-05-03T09:26Z"
+      "last_seen_session": "implement-substrate-sd047-2026-05-03T09:35Z"
     },
     {
       "sd_id": "SD-048",
