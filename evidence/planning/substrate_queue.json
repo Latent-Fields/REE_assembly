@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-03T12:03:19Z",
+  "last_updated_utc": "2026-05-03T23:56:30Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1948,7 +1948,8 @@
       "status": "implemented",
       "implementation_note": "SD-047 substrate IMPLEMENTED 2026-05-03 in ree_core/environment/causal_grid_world.py. Flat kwargs on CausalGridWorld.__init__ (matching SD-022/SD-023/SD-029 env-only precedent). Bit-identical OFF (RNG draws guarded inside master switch); per-source switches for ablation; multi_source_intensity_scale knob is the 4-arm sweep lever. 7/7 preflight + 184/184 contracts PASS with master OFF. Smoke at scale=1.0 produces calibration ratio 1.95:1 within target band 1:1-2:1. Substrate-readiness diagnostic queued as V3-EXQ-509; comparator-gap behavioural validation (V3-EXQ-510 successor to V3-EXQ-506) pending V3-EXQ-509 PASS.",
       "added_session": "sd047-substrate-queue-update-2026-05-03T09:26Z",
-      "last_seen_session": "implement-substrate-sd047-2026-05-03T09:35Z"
+      "last_seen_session": "governance-2026-05-03T2356Z",
+      "validation_note": "V3-EXQ-509 PASS 7/7 2026-05-03: ARM_2 calibration 2.03:1 in [0.5,2.5], bit-identical OFF confirmed. Substrate validated."
     },
     {
       "sd_id": "SD-048",
@@ -1967,7 +1968,8 @@
       "status": "implemented",
       "implementation_note": "SD-048 substrate IMPLEMENTED 2026-05-03 in ree_core/environment/causal_grid_world.py. Flat kwargs on CausalGridWorldV2.__init__ (matching SD-047 / SD-022 / SD-029 env-only precedent). Readout-side perturbation on harm_obs_a in _get_observation_dict (works on both SD-022 7-dim limb-damage path AND legacy 50-dim EMA path). Bit-identical OFF (master switch False -> _apply_interoceptive_noise short-circuits, no RNG draws, no state advance). 4-arm activation smoke 2026-05-03: ARM_0 OFF zero counters, ARM_1 n_body_noise=7, ARM_2 n_aut=176 + n_sens=1 + fatigue +/-0.04, ARM_3 n_aut=200 + n_sens=5 -- all three sources fire; body_noise:agent_caused ratio dominated by random-policy contact rate at small env (164/200 agent-caused), validation experiment will use larger env / sparser policy for the 1:1-2:1 calibration band. Substrate-readiness diagnostic queued as V3-EXQ-511; ARC-058-equivalent comparator-gap behavioural validation deferred to V3-EXQ-512 successor.",
       "added_session": "sd048-registration-2026-05-03T09:44Z",
-      "last_seen_session": "implement-substrate-sd048-2026-05-03T11:10Z"
+      "last_seen_session": "governance-2026-05-03T2356Z",
+      "validation_note": "V3-EXQ-511 FAIL 6/7 2026-05-03: C1b ARM_1 sub-threshold, ARM_2 calibration 2.39:1 PASS. Governance decision: non_contributory per SD doc interpretation grid. Substrate functional at default scale."
     },
     {
       "sd_id": "SD-049",
@@ -2009,7 +2011,8 @@
       "implementation_hint": "Three additions to CausalGridWorldV3 layered on top of SD-047 (which lands first): (1) Multiple resource identities (default n_resource_types=3: food/water/novelty) with identity tags in obs_dict + type-specific spawn distribution + type-specific benefit_curve (sigmoidal_saturating / sharp_saturation / novelty_decay). (2) Per-axis homeostatic drive system replacing SD-012's single drive_weight scalar -- per-axis depletion + per-axis weight + configurable combiner (sum/max/learned). (3) curriculum-introduction hook (resource_introduction_schedule: dict[str, int]). All bit-identical OFF when master switch disabled; per-resource-type bit-identical OFF for ablation studies. Validation experiment: 4-arm noise sweep (ARM_0 OFF / ARM_1 2-type homeostatic / ARM_2 3-type default / ARM_3 5-type overshoot) with explicit interpretation grid mapping outcomes to architectural conclusions including a Woo/Spelke-style falsifier branch routing MECH-229 to substrate_conditional with V4 dependency. Module surface: CausalGridWorldV3 in ree_core/environment/causal_grid_world.py + per-axis drive cascade through encoder + E3 evaluation + downstream goal-conditioning pathway. Triggers pending_substrate_reconfirmation on SD-012-emergent invariants per invariant-types governance rule.",
       "priority": 1,
       "added_session": "draft-sd049-multi-resource-heterogeneity-2026-05-03T0947Z",
-      "last_seen_session": "implement-substrate-sd049-2026-05-03T1203Z"
+      "last_seen_session": "governance-2026-05-03T2356Z",
+      "validation_note": "V3-EXQ-513 PASS 13/13 2026-05-03: Phase 1 substrate confirmed. All curriculum checks pass. Phase 2 (encoder + EXQ-514 behavioural) still pending."
     },
     {
       "sd_id": "SD-049-PHASE-2",
@@ -2039,7 +2042,7 @@
       "implementation_hint": "Edit ree-v3/ree_core/latent/stack.py ResourceEncoder to accept identity tag (one-hot or learned embedding) on the larger world_obs. Add identity-classifier aux head with phased training. Iterate SD-032 consumer files (ree_core/cingulate/ + ree_core/agent.py update_z_goal + ree_core/regulators/mech295_liking_bridge.py + override / salience / dACC / AIC / PCC / pACC consumers) to read obs_dict['per_axis_drive'] when SD-049 per-axis is on. Write V3-EXQ-514 script following the V3-EXQ-509 / V3-EXQ-513 4-arm sweep template, with phased training over the trained identity-aware z_resource and the wanting!=liking dissociation acceptance criterion as the load-bearing test.",
       "priority": 2,
       "added_session": "implement-substrate-sd049-2026-05-03T1203Z",
-      "last_seen_session": "implement-substrate-sd049-2026-05-03T1203Z"
+      "last_seen_session": "governance-2026-05-03T2356Z"
     }
   ]
 }

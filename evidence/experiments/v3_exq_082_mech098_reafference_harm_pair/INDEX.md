@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_082_mech098_reafference_harm_pair
 
-Generated: `2026-05-03T13:30:07.144836Z`
+Generated: `2026-05-04T00:09:15.721514Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

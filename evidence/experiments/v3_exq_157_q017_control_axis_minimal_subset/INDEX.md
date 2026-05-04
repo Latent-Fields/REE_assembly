@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_157_q017_control_axis_minimal_subset
 
-Generated: `2026-05-03T13:30:07.144836Z`
+Generated: `2026-05-04T00:09:15.721514Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
