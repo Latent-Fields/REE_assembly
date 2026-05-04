@@ -101,6 +101,10 @@ traditions can be read as derived stabilisations of the REE substrate
 [E3](architecture/e3.md), [Control Plane](architecture/control_plane.md),
 [Hippocampal Systems](architecture/hippocampal_systems.md)
 
+**If you want later-version scaling needs:**
+[Architecture scaling needs](architecture/architecture_scaling_needs.md) --
+derived scaling versus deliberately scaled intelligence levers
+
 **If you want what this predicts and where it is tested:**
 [Roadmap](roadmap.md) — programme phases and current experimental state
 
