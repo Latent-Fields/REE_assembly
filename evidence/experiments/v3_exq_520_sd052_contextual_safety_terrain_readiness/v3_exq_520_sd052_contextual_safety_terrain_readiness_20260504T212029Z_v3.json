@@ -1,0 +1,127 @@
+{
+  "run_id": "v3_exq_520_sd052_contextual_safety_terrain_readiness_20260504T212029Z_v3",
+  "experiment_type": "v3_exq_520_sd052_contextual_safety_terrain_readiness",
+  "claim_ids": [
+    "MECH-303"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "started_utc": "2026-05-04T21:20:29.684895Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "elapsed_seconds": 4.870640277862549,
+  "n_seeds_unit": 1,
+  "n_seeds_integration": 2,
+  "n_ticks_integration": 300,
+  "grid_size": 8,
+  "num_hazards": 3,
+  "num_resources": 2,
+  "eval_threshold": 0.1,
+  "release_threshold": 1.0,
+  "n_accum_steps_unit": 50,
+  "integration_results": [
+    {
+      "arm": "ARM_0_off_baseline",
+      "seed": 42,
+      "n_ticks": 300,
+      "terrain_enabled": false,
+      "total_safety": 0.0,
+      "num_safety_steps": 0,
+      "eval_final_z_world": 0.0,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_1_write_only",
+      "seed": 42,
+      "n_ticks": 300,
+      "terrain_enabled": true,
+      "total_safety": 15.000039100646973,
+      "num_safety_steps": 300,
+      "eval_final_z_world": 14.982927322387695,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_2_full_mech303",
+      "seed": 42,
+      "n_ticks": 300,
+      "terrain_enabled": true,
+      "total_safety": 15.000039100646973,
+      "num_safety_steps": 300,
+      "eval_final_z_world": 14.982927322387695,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_3_gate_only_noop",
+      "seed": 42,
+      "n_ticks": 300,
+      "terrain_enabled": true,
+      "total_safety": 0.0,
+      "num_safety_steps": 300,
+      "eval_final_z_world": 0.0,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_0_off_baseline",
+      "seed": 43,
+      "n_ticks": 300,
+      "terrain_enabled": false,
+      "total_safety": 0.0,
+      "num_safety_steps": 0,
+      "eval_final_z_world": 0.0,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_1_write_only",
+      "seed": 43,
+      "n_ticks": 300,
+      "terrain_enabled": true,
+      "total_safety": 15.000039100646973,
+      "num_safety_steps": 300,
+      "eval_final_z_world": 14.989419937133789,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_2_full_mech303",
+      "seed": 43,
+      "n_ticks": 300,
+      "terrain_enabled": true,
+      "total_safety": 15.000039100646973,
+      "num_safety_steps": 300,
+      "eval_final_z_world": 14.989419937133789,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_3_gate_only_noop",
+      "seed": 43,
+      "n_ticks": 300,
+      "terrain_enabled": true,
+      "total_safety": 0.0,
+      "num_safety_steps": 300,
+      "eval_final_z_world": 0.0,
+      "exception_count": 0
+    }
+  ],
+  "acceptance": {
+    "C1_accumulate_increments_total_safety": true,
+    "C2_hypothesis_tag_blocks_accumulation": true,
+    "C3_eval_near_zero_before": true,
+    "C3_eval_before": 0.0,
+    "C4_eval_above_threshold": true,
+    "C4_eval_after": 2.5,
+    "C4_threshold": 0.1,
+    "C5_off_field_returns_zero": true,
+    "C6_arm1_terrain_accumulates": true,
+    "C6_arm1_total_safety": 15.000039100646973,
+    "C6_arm1_num_steps": 300,
+    "C7_arm1_eval_above_eval_threshold": true,
+    "C7_arm1_eval_final": 14.989419937133789,
+    "C8_arm2_eval_above_release_threshold": true,
+    "C8_arm2_eval_final": 14.989419937133789,
+    "C8_release_threshold": 1.0,
+    "C9_arm3_total_safety_zero": true,
+    "C9_arm3_total_safety": 0.0,
+    "C10_no_exceptions": true,
+    "C10_total_exceptions": 0,
+    "all_pass": true
+  }
+}
