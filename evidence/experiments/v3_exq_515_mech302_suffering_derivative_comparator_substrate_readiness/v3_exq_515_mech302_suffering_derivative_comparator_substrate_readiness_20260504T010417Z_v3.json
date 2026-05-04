@@ -1,0 +1,194 @@
+{
+  "run_id": "v3_exq_515_mech302_suffering_derivative_comparator_substrate_readiness_20260504T010417Z_v3",
+  "experiment_type": "v3_exq_515_mech302_suffering_derivative_comparator_substrate_readiness",
+  "claim_ids": [
+    "MECH-302"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "started_utc": "2026-05-04T01:04:17.882653Z",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "elapsed_seconds": 1.495255947113037,
+  "n_seeds_unit": 1,
+  "n_seeds_integration": 2,
+  "n_ticks_integration": 200,
+  "grid_size": 7,
+  "num_hazards": 3,
+  "num_resources": 1,
+  "harm_ema_alpha": 0.3,
+  "min_initial_norm": 0.05,
+  "arms": [
+    {
+      "arm": "ARM_0_off",
+      "use_comparator": false,
+      "window_length": 5,
+      "drop_threshold": 0.1
+    },
+    {
+      "arm": "ARM_1_tight_w3t05",
+      "use_comparator": true,
+      "window_length": 3,
+      "drop_threshold": 0.05
+    },
+    {
+      "arm": "ARM_2_default_w5t10",
+      "use_comparator": true,
+      "window_length": 5,
+      "drop_threshold": 0.1
+    },
+    {
+      "arm": "ARM_3_slow_w10t20",
+      "use_comparator": true,
+      "window_length": 10,
+      "drop_threshold": 0.2
+    }
+  ],
+  "seq_a": [
+    0.5,
+    0.45,
+    0.4,
+    0.35,
+    0.32,
+    0.3
+  ],
+  "seq_b": [
+    0.5,
+    0.475,
+    0.45,
+    0.425,
+    0.4,
+    0.375,
+    0.35,
+    0.325,
+    0.3,
+    0.275,
+    0.25,
+    0.22
+  ],
+  "seq_c": [
+    0.03,
+    0.025,
+    0.02,
+    0.015,
+    0.01
+  ],
+  "unit_results": [
+    {
+      "arm": "ARM_0_off",
+      "use_comparator": false,
+      "fires_seqA": 0,
+      "fires_seqB": 0,
+      "fires_seqC": 0,
+      "fires_seqD_simmode": 0
+    },
+    {
+      "arm": "ARM_1_tight_w3t05",
+      "use_comparator": true,
+      "window_length": 3,
+      "drop_threshold": 0.05,
+      "fires_seqA": 3,
+      "fires_seqB": 2,
+      "fires_seqC": 0,
+      "fires_seqD_simmode": 0
+    },
+    {
+      "arm": "ARM_2_default_w5t10",
+      "use_comparator": true,
+      "window_length": 5,
+      "drop_threshold": 0.1,
+      "fires_seqA": 2,
+      "fires_seqB": 3,
+      "fires_seqC": 0,
+      "fires_seqD_simmode": 0
+    },
+    {
+      "arm": "ARM_3_slow_w10t20",
+      "use_comparator": true,
+      "window_length": 10,
+      "drop_threshold": 0.2,
+      "fires_seqA": 0,
+      "fires_seqB": 3,
+      "fires_seqC": 0,
+      "fires_seqD_simmode": 0
+    }
+  ],
+  "integration_results": [
+    {
+      "arm": "ARM_0_off",
+      "seed": 42,
+      "n_ticks": 200,
+      "fire_count": 0,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_1_tight_w3t05",
+      "seed": 42,
+      "n_ticks": 200,
+      "fire_count": 4,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_2_default_w5t10",
+      "seed": 42,
+      "n_ticks": 200,
+      "fire_count": 1,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_3_slow_w10t20",
+      "seed": 42,
+      "n_ticks": 200,
+      "fire_count": 0,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_0_off",
+      "seed": 43,
+      "n_ticks": 200,
+      "fire_count": 0,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_1_tight_w3t05",
+      "seed": 43,
+      "n_ticks": 200,
+      "fire_count": 1,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_2_default_w5t10",
+      "seed": 43,
+      "n_ticks": 200,
+      "fire_count": 0,
+      "exception_count": 0
+    },
+    {
+      "arm": "ARM_3_slow_w10t20",
+      "seed": 43,
+      "n_ticks": 200,
+      "fire_count": 0,
+      "exception_count": 0
+    }
+  ],
+  "acceptance": {
+    "C0_off_bit_identical_unit_and_integration": true,
+    "C0_unit": true,
+    "C0_integration_arm0_fires": 0,
+    "C1_arm1_fires_seqA_gt0": true,
+    "C1_arm1_fires_seqA": 3,
+    "C2_arm2_fires_seqA_gt0": true,
+    "C2_arm2_fires_seqA": 2,
+    "C3_arm3_fires_seqB_gt0": true,
+    "C3_arm3_fires_seqB": 3,
+    "C4_monotone_sensitivity_seqA": true,
+    "C4_arm1_seqA": 3,
+    "C4_arm2_seqA": 2,
+    "C4_arm3_seqA": 0,
+    "C5_simmode_gate_seqD": true,
+    "C6_min_initial_norm_gate_seqC": true,
+    "C7_no_integration_exceptions": true,
+    "C7_total_exceptions": 0,
+    "all_pass": true
+  }
+}
