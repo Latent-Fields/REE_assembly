@@ -25020,6 +25020,17 @@
     safe at home but I cannot use safety signals to calm down'. This
     maps onto a distinct PTSD phenotype from MECH-303 failure.
 
+  implementation_note: |
+    SD-051 IMPLEMENTED 2026-05-04. ConditionedSafetyStore in
+    ree_core/safety/conditioned_safety_store.py. Config:
+    REEConfig.use_conditioned_safety_store (default False, bit-identical OFF).
+    sense() updates EMA prototype on MECH-302 event ticks;
+    select_action() gates beta_gate release when cosine similarity >
+    safety_store_threshold (IL->CeA expression pathway). V3-EXQ-519
+    substrate-readiness diagnostic queued 2026-05-04. V4-deferred:
+    approach attractor (requires MECH-163 V3 completion gate) and
+    contrastive cue-specific learning (requires trainable encoder head).
+    See sd_051_conditioned_safety_store.md and v3_v4_transition_boundary.md.
   evidence_quality_note: |
     New candidate 2026-05-04. Primary lit support: Laing 2022 J
     Neurosci (conditioned inhibitor -> dorsal striatum + dlPFC;
@@ -25027,9 +25038,8 @@
     Ng & Sangha 2023 Neuropsychopharmacol (IL->CeA required for
     conditioned safety expression; IL->BLA not required), Ng & Sangha
     2023 Cereb Cortex (IL single-unit encodes conditioned inhibitors
-    specifically). NO substrate implementation yet. v3_pending=true
-    until substrate implementation (dorsal striatal encoding module +
-    IL->CeA output gate) and conditioned-inhibition discriminative-pair
-    experiment (safety cue suppresses avoidance in presence of threat
-    cue, ablation removes this).
+    specifically). Substrate IMPLEMENTED 2026-05-04 (SD-051,
+    ConditionedSafetyStore). v3_pending=true until V3-EXQ-519
+    validation PASS (conditioned-inhibition discriminative-pair gated
+    by EXQ-517 PASS).
   location: evidence/literature/targeted_review_connectome_mech_303/

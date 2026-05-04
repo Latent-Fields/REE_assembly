@@ -97,6 +97,21 @@ V4 also adds:
 - Bidirectional ThetaBuffer (MECH-122)
 - Full sleep phase controller (new module, analogous to mode_manager but for offline cycle)
 - Reverse replay for MECH-165 (replay diversity, forward/reverse balance)
+- **MECH-304 approach attractor extension (V4-1)**: V3 SD-051 implements only the
+  commitment-release gate (output 1 of the MECH-304 spec). Output 2 -- the safety cue
+  becoming an approach attractor in its own right -- requires V4 multi-step trajectory
+  planning infrastructure (HippocampalModule V3 completion gate, MECH-163). Without it,
+  a safety-cue approach attractor reduces to a step-wise proximity signal that cannot
+  compete with harm-avoidance commitments over trajectories. See
+  `sd_051_conditioned_safety_store.md` V4-Deferred Extensions section.
+- **MECH-304 contrastive cue-specific learning (V4-2)**: The V3 EMA prototype in SD-051
+  conflates any z_world co-occurring with MECH-302 events, including stable contextual
+  features that are not the conditioned safety cue per se. A contrastive store (trained
+  on paired safety-event / non-safety-event z_world samples) would produce sharper
+  cue specificity. Requires a trainable encoder head with phased-training infrastructure
+  (see EXQ-166b/c/d joint-training failure modes). V3 ceiling: prototype may over-generalise
+  safety predictions in environments with stable non-safety features co-occurring with
+  relief. See `sd_051_conditioned_safety_store.md` V4-Deferred Extensions section.
 
 **V4 social extension dependency on V3 hippocampal planning (2026-04-02):**
 

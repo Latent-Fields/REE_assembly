@@ -2095,6 +2095,30 @@
       "priority": 3,
       "added_session": "implement-substrate-sd049-phase-2-2026-05-04T0159Z",
       "last_seen_session": "implement-substrate-sd049-phase-2-2026-05-04T0159Z"
+    },
+    {
+      "sd_id": "SD-051",
+      "title": "safety_prediction.cue_specific_conditioned_inhibition_substrate -- conditioned safety store (MECH-304)",
+      "status": "implemented",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_051_conditioned_safety_store.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": ["MECH-304"],
+      "failure_record": [
+        {
+          "run_id": "none -- new mechanism with no prior FAIL",
+          "experiment_type": "N/A",
+          "metric": "no prior experiments; substrate gap was the absence of any conditioned-safety-cue substrate",
+          "target": "ConditionedSafetyStore prototype grows on MECH-302 event ticks; cosine-similarity gate releases commitment when safety cue recognized"
+        }
+      ],
+      "implementation_note": "SD-051 IMPLEMENTED 2026-05-04. ConditionedSafetyStore in ree_core/safety/conditioned_safety_store.py (non-trainable, no nn.Module). Config: REEConfig.use_conditioned_safety_store (default False, bit-identical OFF). sense() updates EMA prototype on MECH-302 event ticks; select_action() gates beta_gate release when cosine similarity > safety_store_threshold. Backward compat: PASS (disabled by default). Activation smoke: PASS (prototype grows on event, high similarity for same z_world). V3-EXQ-519 substrate-readiness diagnostic queued. V4-deferred: approach attractor (MECH-163 V3 gate) + contrastive learning (trainable encoder, phased training). See sd_051_conditioned_safety_store.md and v3_v4_transition_boundary.md.",
+      "implemented_utc": "2026-05-04T13:47:12Z",
+      "implementation_status": "implemented",
+      "validation_experiment": "V3-EXQ-519",
+      "implemented_session": "implement-substrate-mech304-sd051-2026-05-04T1347Z",
+      "priority": 1,
+      "added_session": "implement-substrate-mech304-sd051-2026-05-04T1347Z"
     }
   ]
 }
