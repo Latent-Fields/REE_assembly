@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_048",
+  "entry_id": "2026-05-04_sd_048_attenuation_schizotypy_asimakidou2022",
+  "timestamp_utc": "2026-05-04T08:42:24Z",
+  "claim_ids_tested": ["SD-048"],
+  "source": {
+    "title": "The positive dimension of schizotypy is associated with a reduced attenuation and precision of self-generated touch",
+    "authors": ["Evridiki Asimakidou", "Xavier Job", "Konstantina Kilteni"],
+    "year": 2022,
+    "venue": "Schizophrenia (Heidelberg, Germany)",
+    "doi": "10.1038/s41537-022-00264-6",
+    "pmid": "35854009",
+    "pmc": "PMC9261081"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Empirical confirmation that the comparator-competence signature predicted by Asai-style accounts of sensory attenuation extends to non-clinical individuals along a continuous schizotypy gradient -- the structural shape SD-048's 4-arm noise-level sweep validation expects to find at the substrate level. Source quality moderate-high (n=100 healthy participants, well-established psychophysics force-discrimination task, Schizophrenia journal). Mapping fidelity moderate -- the paper studies somatosensory attenuation (motor-tactile reafference cancellation, Level 1 of the reafference comparator family), not interoceptive attenuation directly. Transfer risk moderate-to-high because the inverted-U / continuous-gradient prediction maps onto SD-048's 4-arm sweep at architectural level but the empirical evidence is for somatosensory rather than interoceptive comparators.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-048's 4-arm noise-level sweep produces a flat comparator-competence profile rather than the predicted ARM_2 peak, the architectural prediction inherited from Asai-style accounts -- and supported in continuous form by this paper -- would be weakened.",
+    "If REE's interoceptive comparator behaves qualitatively differently from somatosensory comparators (no continuous gradient with input-noise level), the cross-level transfer this paper grounds would not hold."
+  ],
+  "tags": ["sd_048", "sensory_attenuation", "schizotypy", "force_matching", "psychophysics", "asimakidou", "kilteni", "asai_inverted_u"],
+  "mapping": {
+    "source_claim_statement": "100 healthy participants completed a force-discrimination psychophysics task assessing perception of self-generated and externally generated touch, alongside schizotypy assessment. Higher positive-dimension schizotypal traits were associated with reduced somatosensory attenuation (smaller perceptual difference between self vs externally generated touch) and reduced precision of self-generated touch. Effects were specific to the positive dimension and held both with continuous and categorical schizotypy treatment. Effects did not appear for negative or disorganised schizotypy dimensions. The authors interpret this as a continuous-gradient signature of the prediction-deficit story that Asai 2016 and earlier work on schizophrenia has built.",
+    "ree_translation": "The Asai-style architectural prediction for SD-048's 4-arm noise sweep is that comparator competence should be non-monotonic in input-noise amplitude -- specifically, an inverted-U with peak at ARM_2. This paper supports the broader architectural claim by showing that the equivalent comparator-competence-vs-trait gradient holds continuously in healthy people: as positive schizotypy rises, somatosensory attenuation and precision decrease. The continuous-gradient finding is the cleanest live evidence available that the comparator-competence signature is not a discrete clinical-state phenomenon but a structural feature of the comparator's parameterisation. SD-048's prediction that comparator output should track input-noise amplitude across ARM_0 / ARM_1 / ARM_2 / ARM_3 inherits the continuous-gradient logic from this and similar findings.",
+    "mapping_caveat": "The paper studies SOMATOSENSORY attenuation -- motor-to-tactile reafference cancellation, Level 1 of the reafference comparator family in REE's documentation. SD-048 is at Level 2 (interoceptive). The cross-level mapping rests on the architectural assumption that comparator competence has the same structural form across reafference levels (motor-sensory, motor-interoceptive, interoceptive-interoceptive). That assumption is principled but unprovable from somatosensory data alone -- transferring the continuous-gradient finding to interoception requires a leap. Additionally, the paper studies trait variation in healthy subjects, not parameter variation in a substrate; the 4-arm SD-048 sweep is the substrate-level analogue but the analogy is structural rather than direct.",
+    "source_context": "n=100 healthy adults, single-session force-discrimination psychophysics, schizotypy assessment via continuous and categorical scoring. Published in Schizophrenia (Heidelberg) 2022; Kilteni group at Karolinska."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.55,
+    "notes": "Adequate sample size and well-validated psychophysics task. Mapping fidelity moderate because the paper studies somatosensory rather than interoceptive attenuation -- the cross-level inheritance is principled but adds transfer risk. The continuous-gradient finding is the strongest available analogue for SD-048's 4-arm noise-level sweep prediction at the substrate level."
+  }
+}

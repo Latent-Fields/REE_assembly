@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_048",
+  "entry_id": "2026-05-04_sd_048_central_gain_fibromyalgia_pujol2022",
+  "timestamp_utc": "2026-05-04T08:42:24Z",
+  "claim_ids_tested": ["SD-048"],
+  "source": {
+    "title": "Distinctive alterations in the functional anatomy of the cerebral cortex in pain-sensitized osteoarthritis and fibromyalgia patients",
+    "authors": ["Jesus Pujol", "Laura Blanco-Hinojo", "Andrea Doreste", "Fabiola Ojeda", "Gerard Martinez-Vilavella", "Victor Perez-Sola", "Joan Deus", "Jordi Monfort"],
+    "year": 2022,
+    "venue": "Arthritis Research & Therapy",
+    "doi": "10.1186/s13075-022-02942-3",
+    "pmid": "36369217",
+    "pmc": "PMC9650905"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct evidence that pain sensitisation -- the clinical face of central gain enhancement / multiplicative amplification on the body-state stream -- presents with distinct cortical functional-connectivity signatures in fibromyalgia (broadly distributed) versus pain-sensitised osteoarthritis (insula-localised). This dissociation supports SD-048 Source 2 (sensitisation spikes as multiplicative amplification of the interoceptive readout) by showing that sensitisation does change the functional state of the cortical interoceptive substrate at the connectivity level. Source quality moderate-high (n=31 + n=38 plus replication n=34 + n=63, fMRI seed-to-voxel functional connectivity). Mapping fidelity moderate -- the paper studies clinical chronic pain populations, not transient sensitisation events of the kind SD-048 simulates with Poisson-onset/exponential-decay dynamics. Transfer risk moderate-to-high: the underlying mechanism (central gain enhancement) is the same architectural family, but timescale differs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-048 sensitisation spikes produce no detectable comparator-circuit signature, while empirical clinical sensitisation reliably does, the substrate-level analogue is failing to capture the structural feature being modelled.",
+    "If REE's comparator only reads SD-048 sensitisation events as additional damage rather than as gain changes, the multiplicative-amplification mechanism the paper documents would not transfer."
+  ],
+  "tags": ["sd_048", "central_sensitisation", "central_gain", "fibromyalgia", "osteoarthritis", "insula", "functional_connectivity", "pujol", "pain_amplification"],
+  "mapping": {
+    "source_claim_statement": "Pain-sensitised osteoarthritis (pOA, n=31, replicated n=34) and fibromyalgia (FM, n=38, replicated n=63) patients showed distinct cortical functional-connectivity signatures relative to controls. pOA showed weaker local connectivity in the insula, consistent with reduced neural activity following repeated activation -- compatible with metabolic recovery cost on a peripherally-originated chronic pain. FM showed weaker connectivity broadly across sensorimotor cortex, compatible with central-gain enhancement: low sensory tolerance from over-amplification of central reception, possibly compensating weak proprioceptive input. The paper interprets the FM pattern as a central gain enhancement signature.",
+    "ree_translation": "SD-048 Source 2 (sensitisation spikes) implements transient multiplicative amplification of `harm_obs_a` -- the substrate-level analogue of central gain enhancement on the affective harm stream. Pujol et al.'s FM pattern is the clinical end of this mechanism: chronic over-amplification of central interoceptive reception. The substrate-level prediction is that, when SD-048 Source 2 fires, the interoceptive comparator should detect a gain-style perturbation distinct from a damage-style perturbation. The paper supports the broader claim that gain-style perturbation has its own observable signature on the cortical interoceptive substrate.",
+    "mapping_caveat": "The paper studies chronic clinical populations with months-to-years sensitisation history; SD-048 Source 2 simulates transient sensitisation events with ~15-step half-life inside an episode. The structural shape (multiplicative amplification of body-state readout, central gain enhancement) is the shared feature; the timescale is not. Mapping the chronic-population signature onto a per-episode Poisson process is principled but transfer risk is moderate. Additionally, the paper does not separate sensitisation spike vs sustained gain elevation -- both would map onto SD-048 Source 2 under different rate / decay parameter regimes. The paper supports the broader category, not the specific Poisson dynamics.",
+    "source_context": "Resting-state fMRI seed-to-voxel functional connectivity, two case-control comparisons (pOA, FM), each with replication sample. n=31+34 pain-sensitised osteoarthritis, n=38+63 fibromyalgia. Spanish multi-site collaboration."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.55,
+    "notes": "Sample sizes adequate, replication included. Mapping fidelity moderate because the paper documents central gain enhancement as a chronic clinical feature, while SD-048 Source 2 implements transient sensitisation spikes. Transfer risk moderate-to-high because of timescale mismatch between chronic clinical sensitisation and per-episode Poisson events."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_048",
+  "entry_id": "2026-05-04_sd_048_exertional_fatigue_greenhousetucknott2021",
+  "timestamp_utc": "2026-05-04T08:42:24Z",
+  "claim_ids_tested": ["SD-048"],
+  "source": {
+    "title": "Toward the unity of pathological and exertional fatigue: A predictive processing model",
+    "authors": ["A. Greenhouse-Tucknott", "J. B. Butterworth", "J. G. Wrightson", "N. J. Smeeton", "H. D. Critchley", "J. Dekerle", "N. A. Harrison"],
+    "year": 2021,
+    "venue": "Cognitive, Affective & Behavioral Neuroscience",
+    "doi": "10.3758/s13415-021-00958-x",
+    "pmid": "34668170",
+    "pmc": "PMC8983507"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Useful extension of the Stephan 2016 dyshomeostasis framework to explicitly cover transient (exertional) fatigue alongside chronic pathological fatigue, on the same predictive-processing substrate. Source quality high (Critchley + Harrison coauthorship, Cognitive Affective & Behavioral Neuroscience). Mapping fidelity moderate-high for SD-048 Source 3 (fatigue drift) -- the paper unifies two timescales of fatigue under one framework, which corresponds to SD-048's choice to use a single AR(1) source for fatigue drift rather than separate transient and chronic stores. Transfer risk moderate: the paper is theoretical with empirical anchor in exercise physiology, not in the harm-tracking domain SD-048 inherits from SD-011/022.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE shows that distinct timescales of fatigue require structurally distinct substrates rather than a single AR(1) drift, the unification claim in this paper is weakened and SD-048's single-Source-3 design carries an architectural debt.",
+    "If exertional fatigue produces no comparator-level signature in REE despite chronic-style fatigue producing one, the unity-of-fatigue thesis fails to translate into substrate."
+  ],
+  "tags": ["sd_048", "exertional_fatigue", "predictive_processing", "interoception", "allostasis", "metacognition", "critchley", "harrison"],
+  "mapping": {
+    "source_claim_statement": "Pathological (prolonged or chronic) and transient (exertional) fatigue have traditionally been treated as distinct phenomena. Building on Stephan et al.'s metacognitive theory of dyshomeostasis, this paper extends the predictive-processing framework to subsume both. In the unified account, persistent detection of mismatches between prior interoceptive predictions and ascending sensory evidence (prediction error) signals low evidence for the brain's internal generative models, which undermines the agent's feeling of mastery over the body. A common foundation -- loss of certainty / confidence in control predictions -- underlies both pathological and non-pathological fatigue.",
+    "ree_translation": "SD-048's fatigue drift Source 3 is implemented as a single AR(1) latent state that resets per episode. This design choice -- one shape for slow body-state drift, parameterised to cover episode-length timescales -- is consistent with Greenhouse-Tucknott et al.'s unification thesis: the same generative shape produces transient or chronic fatigue depending on the AR(1) coefficient and innovation amplitude. The paper supports SD-048's decision NOT to introduce a separate Source 4 for chronic fatigue distinct from exertional; that would be an architectural cost the unified framework argues against.",
+    "mapping_caveat": "The paper is theoretical with empirical anchor in exercise physiology and chronic fatigue / multiple sclerosis populations. SD-048 inherits a different domain (harm-tracking via z_harm_a, not exercise effort or pathological fatigue per se). The mapping holds for the structural shape (slow body-state drift on a non-motor channel produces a comparator signature) but does not directly transfer the paper's specific claim about effort-perception or motor confidence collapse. SD-048's fatigue drift is also bounded per-episode whereas the paper's pathological fatigue is multi-episode; the mapping is over the within-episode shape, not the cross-episode trajectory.",
+    "source_context": "Theoretical review extending the Stephan 2016 dyshomeostasis framework to exertional fatigue. Empirical anchor in exercise physiology and clinical fatigue literatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.40,
+    "notes": "Critchley + Harrison authorship; reputable specialty venue. Mapping fidelity moderate-high because the paper's unification thesis directly licenses SD-048's single-source design choice for fatigue drift. Transfer risk moderate because the paper's domain is exercise physiology and chronic illness, not the harm-tracking domain SD-048 inherits."
+  }
+}

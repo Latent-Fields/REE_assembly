@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_048",
+  "entry_id": "2026-05-04_sd_048_inflammation_insula_fatigue_stefanov2020",
+  "timestamp_utc": "2026-05-04T08:42:24Z",
+  "claim_ids_tested": ["SD-048"],
+  "source": {
+    "title": "Mild Inflammation in Healthy Males Induces Fatigue Mediated by Changes in Effective Connectivity Within the Insula",
+    "authors": ["Kristian Stefanov", "John McLean", "Alison McColl", "Neil Basu", "Jonathan Cavanagh", "Rajeev Krishnadas"],
+    "year": 2020,
+    "venue": "Biological Psychiatry: Cognitive Neuroscience and Neuroimaging",
+    "doi": "10.1016/j.bpsc.2020.04.005",
+    "pmid": "32532687"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct experimental evidence that an agent-independent body-state perturbation -- induced systemic inflammation from a Salmonella typhi vaccine -- changes the effective connectivity of viscerosensory-to-visceromotor insula and mediates increased fatigue. Source quality high (RCT crossover within-subject design, n=20 healthy males, double-blind, mediation analysis). Mapping fidelity high for SD-048 Source 2 (sensitisation spikes -- inflammation acts as a transient body-state amplifier independent of motor output) and supports the broader claim that body-noise of inflammatory origin is detectable as a comparator-level signature. Transfer risk moderate: the paper studies one inflammatory induction in healthy men; SD-048's Source 2 generalises the multiplicative-amplification idea across sensitisation analogues including non-inflammatory ones (allodynia, central gain). The mapping holds for the structural shape (transient body-state amplification from a non-motor source produces detectable interoceptive comparator change) without requiring REE to model inflammation specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's interoceptive comparator detects no signature when SD-048 sensitisation events fire (independent of agent action), Stefanov et al.'s prediction that body-state perturbation should produce a measurable insula-circuit signature is weakened -- and SD-048 Source 2 fails to deliver the substrate work it claims.",
+    "If the comparator signature is present but bears no relationship to comparator performance metrics (precision, prediction-error norm), the inflammation-fatigue mediation finding does not generalise to the specific architectural prediction SD-048 supports."
+  ],
+  "tags": ["sd_048", "inflammation", "sickness_behaviour", "insula", "effective_connectivity", "interoception", "fatigue", "sensitisation", "stefanov"],
+  "mapping": {
+    "source_claim_statement": "Twenty healthy men received Salmonella typhi vaccine vs saline placebo in a double-blind crossover design and underwent resting-state fMRI 3 h post-injection. Vaccination raised IL-6 and self-rated fatigue. Spectral DCM showed augmented effective connectivity from right mid/posterior (viscerosensory) insula to bilateral anterior (visceromotor) insula under inflammation. The right-mid/posterior-to-left-anterior insula connection significantly mediated the inflammation-to-fatigue association.",
+    "ree_translation": "Inflammation is exactly the kind of agent-independent body-state perturbation SD-048 Source 2 (sensitisation spikes) is intended to provide a substrate analogue for. The mechanism in the paper -- viscerosensory-to-visceromotor effective-connectivity change driving experienced fatigue -- is the biological analogue of the comparator signature SD-048 is designed to make detectable. The detail that fatigue is the experiential output (not the input) supports the design choice in SD-048 of having sensitisation Source 2 modulate `harm_obs_a` multiplicatively rather than treating it as new tissue damage. The mediation finding is the clearest live empirical instance available of body-noise of non-motor origin producing a detectable comparator-circuit signature.",
+    "mapping_caveat": "The paper's Source 2 analogue is inflammation specifically, induced once at a known time. SD-048 Source 2 (sensitisation_rate ~0.008/step, sensitisation_magnitude 1.8x, halflife ~15 steps) is a stochastic Poisson process meant to generalise across inflammatory and non-inflammatory transient amplifications (allodynia, central gain enhancement, post-injury hyperaesthesia). Mapping the paper's single-event result onto a multi-event Poisson substrate is principled but adds transfer risk. The paper is also restricted to healthy males; sex effects on inflammation-fatigue coupling are documented elsewhere. The result speaks to the existence of a comparator-level signature, not to its functional form.",
+    "source_context": "Double-blind randomised crossover RCT, n=20 healthy males, single-session 3 T resting-state fMRI 3 h post-injection. Spectral dynamic causal modelling for effective connectivity. Mediation analysis with parametric empirical Bayes."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Strong RCT design and mediation analysis lift source quality. Mapping fidelity is high for the structural shape of SD-048 Source 2 (transient body-state amplification of non-motor origin produces detectable insula-circuit change) but the paper studies one inflammatory induction in healthy men. Transfer risk moderate because the SD-048 generalisation across sensitisation analogues is principled but not directly tested by Stefanov et al."
+  }
+}

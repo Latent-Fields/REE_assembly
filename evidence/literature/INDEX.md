@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-04T08:17:05.968596Z`
+Generated: `2026-05-04T21:31:04.229926Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -237,6 +237,7 @@ Generated: `2026-05-04T08:17:05.968596Z`
 | `targeted_review_sd_035` | [`2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/record.json) | 3 | [`summary`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/summary.md) |
 | `targeted_review_sd_037_orexin_kinetics` | [`2026-04-27_sd_037_pws_saturation_muscogiuri2021`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-27_sd_037_pws_saturation_muscogiuri2021/record.json) | 9 | [`summary`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-27_sd_037_pws_saturation_muscogiuri2021/summary.md) |
 | `targeted_review_sd_047` | [`2026-05-03_sd_047_third_visual_pathway_pitcher2021`](targeted_review_sd_047/entries/2026-05-03_sd_047_third_visual_pathway_pitcher2021/record.json) | 5 | [`summary`](targeted_review_sd_047/entries/2026-05-03_sd_047_third_visual_pathway_pitcher2021/summary.md) |
+| `targeted_review_sd_048` | [`2026-05-04_sd_048_inflammation_insula_fatigue_stefanov2020`](targeted_review_sd_048/entries/2026-05-04_sd_048_inflammation_insula_fatigue_stefanov2020/record.json) | 6 | [`summary`](targeted_review_sd_048/entries/2026-05-04_sd_048_inflammation_insula_fatigue_stefanov2020/summary.md) |
 | `targeted_review_sd_049` | [`2026-05-03_sd_049_social_isolation_drn_dopamine_matthews2016`](targeted_review_sd_049/entries/2026-05-03_sd_049_social_isolation_drn_dopamine_matthews2016/record.json) | 5 | [`summary`](targeted_review_sd_049/entries/2026-05-03_sd_049_social_isolation_drn_dopamine_matthews2016/summary.md) |
 | `targeted_review_sd_049_encoder_identity_expansion` | [`2026-05-04_sd_049_temporal_community_schapiro2016`](targeted_review_sd_049_encoder_identity_expansion/entries/2026-05-04_sd_049_temporal_community_schapiro2016/record.json) | 6 | [`summary`](targeted_review_sd_049_encoder_identity_expansion/entries/2026-05-04_sd_049_temporal_community_schapiro2016/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-04-05_mech123_rem_precision_recalibration_walker2009`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/record.json) | 5 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/summary.md) |

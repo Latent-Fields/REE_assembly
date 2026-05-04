@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_048",
+  "entry_id": "2026-05-04_sd_048_computational_interoception_petzschner2021",
+  "timestamp_utc": "2026-05-04T08:42:24Z",
+  "claim_ids_tested": ["SD-048", "ARC-058"],
+  "source": {
+    "title": "Computational Models of Interoception and Body Regulation",
+    "authors": ["Frederike H. Petzschner", "Sarah N. Garfinkel", "Martin P. Paulus", "Christof Koch", "Sahib S. Khalsa"],
+    "year": 2021,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2020.09.012",
+    "pmid": "33378658",
+    "pmc": "PMC8109616"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Authoritative review that lays out the computational landscape SD-048 is built to enable. The paper explicitly extends classical homeostatic reflex-arc control to flexible adaptive behaviour with interoceptive context, expectations, and forecasting -- the framework is exactly the one ARC-058's HarmForwardTrunk vs ARC-033's HarmForwardSeparate sit inside. SD-048 makes the substrate honest enough that this kind of computational model can be tested at all. Source quality very high (Trends in Neurosciences; Petzschner + Paulus + Khalsa coauthorship). Mapping fidelity high for Level 2 reafference cancellation framing. Transfer risk low-to-moderate -- the paper is a review, so its mapping holds across the broader category that SD-048 Sources 1-3 collectively instantiate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-048 substrate cannot support the kind of computational interoceptive forward model the paper surveys -- e.g. comparator-style prediction-error signal across body-noise sources -- then the substrate fails to be the enabling substrate it claims to be.",
+    "If models trained on SD-048 substrate generalise poorly to held-out body-noise distributions, the broader interoceptive-prediction framework the paper articulates will not transfer."
+  ],
+  "tags": ["sd_048", "arc_058", "computational_models", "interoception", "active_inference", "predictive_coding", "allostasis", "petzschner", "garfinkel", "paulus", "khalsa"],
+  "mapping": {
+    "source_claim_statement": "Adaptive behaviour preserves physiological integrity in a changing environment. Classical homeostatic reflex arcs are extended in modern computational frameworks to include flexible adaptive behaviour that takes interoceptive context, experiences, and expectations into account. The paper reviews the computational landscape -- predictive coding, active inference, reinforcement learning, hierarchical Bayesian models -- and discusses translational and translational-research challenges for these models, including what they can teach us about cognition, mental health, and physical health.",
+    "ree_translation": "SD-048's three-source design is the substrate-level commitment that makes the computational interoceptive models in this review honestly testable in REE V3. Without agent-independent body-state variance, an interoceptive forward model passes by memorising action-damage coupling rather than by learning context, expectations, or forecasts. The paper's framework requires the comparator to learn structural regularities of body-noise -- exactly what SD-048 Sources 1-3 (autonomic Gaussian, sensitisation Poisson, fatigue AR(1)) make available. ARC-058's shared-trunk architecture and ARC-033's separate-streams architecture are both instances of the computational-models category Petzschner et al. survey; SD-048 is the substrate prerequisite for testing them.",
+    "mapping_caveat": "The paper is a review covering many computational frameworks (active inference, RL, hierarchical Bayes); it does not adjudicate between them or specifically endorse SD-048's three-source design. It supports the category 'comparator-style interoceptive forward model needs an honest substrate' but is silent on which specific generative-shape decomposition is right. Transfer risk is low because the framework is broad; mapping fidelity is high for the substrate-prerequisite framing but lower for any specific architectural prediction.",
+    "source_context": "Trends in Neurosciences review, 2021. Synthesises computational models across interoception, allostasis, homeostasis, and predictive coding. Targeted at the translational-research community."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "TINS venue + Petzschner / Paulus / Khalsa authorship. Mapping fidelity high for the substrate-prerequisite framing. Transfer risk low because the review explicitly extends classical reflex arcs to the kind of interoceptive forward modelling SD-048 enables; the SD-048 / ARC-058 pipeline is downstream of the framework the paper articulates."
+  }
+}
