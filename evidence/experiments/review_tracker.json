@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-04T22:38:00Z",
+  "last_review_utc": "2026-05-04T22:42:45Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2338,6 +2338,13 @@
         "v3_exq_418e_sd016_diversification_loss_20260427T015954Z_v3",
         "v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3",
         "20260504T041122Z_v3"
+      ]
+    },
+    "2026-05-04T22:42Z_reef_substrate": {
+      "session": "reef-enrichment-env-implementation-2026-05-04T2228Z",
+      "summary": "V3-EXQ-521 SD-050 reef enrichment substrate readiness diagnostic. PASS 7/7 criteria. C0: ARM_0 obs_dim=250 reef_cells=0. C1: ARM_1/ARM_2 obs_dim=275 (+25 reef_field_view). C2: 0 hazard-in-reef violations across 30 episodes x 200 steps x 3 seeds. C3: 33 reef cells in reef-enabled arms. C4: ARM_2 mean food_dist=2.057 vs baseline 3.790 (46% reduction; food attraction working strongly). C5: ARM_2 entropy=4.049 >= 0.7 * baseline 4.557 = 3.190 (hazard diversity not collapsed). C6: ARM_1 reef_visits=1987 (agent can enter reef). Substrate diagnostic only (no claim_ids); validates reef safe zones + food-attracted hazards env plumbing for V3-EXQ-522 monostrategy-breaking experiment.",
+      "ids_marked": [
+        "v3_exq_521_reef_enrichment_20260504T223858Z_v3"
       ]
     }
   }
