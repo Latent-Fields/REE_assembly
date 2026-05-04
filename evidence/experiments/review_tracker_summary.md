@@ -3,11 +3,11 @@
 > Maintained manually alongside `review_tracker.json`. Update when adding run IDs.
 > Purpose: lets Claude sessions know the tracker state without reading the full 47k-token file.
 
-## Stats (last updated 2026-04-30)
+## Stats (last updated 2026-05-03)
 
-- **Total reviewed run IDs**: 1938
-- **Last review UTC**: 2026-04-30T20:50:54Z
-- **Discussed experiment dirs**: 251 entries (V1/V2 dirs, runner-only queue IDs, and non-run-id artifacts)
+- **Total reviewed run IDs**: 1948
+- **Last review UTC**: 2026-05-03T23:56:30Z
+- **Discussed experiment dirs**: 255 entries (V1/V2 dirs, runner-only queue IDs, and non-run-id artifacts)
 
 ## Coverage by experiment series
 
