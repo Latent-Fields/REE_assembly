@@ -281,6 +281,94 @@ def main() -> None:
             if src_comp != dst_comp:
                 component_edges.add((src_comp, dst_comp))
 
+    def component_cycle_audit(component: dict[str, Any]) -> dict[str, Any]:
+        members = component["claim_ids"]
+        member_set = set(members)
+        internal_edges = [
+            (claim_id, dep)
+            for claim_id in members
+            for dep in graph.get(claim_id, [])
+            if dep in member_set
+        ]
+        edge_set = set(internal_edges)
+        mutual_pairs = sorted(
+            (source, target)
+            for source, target in internal_edges
+            if source < target and (target, source) in edge_set
+        )
+        in_counts = Counter(target for _, target in internal_edges)
+        out_counts = Counter(source for source, _ in internal_edges)
+        type_counts = component.get("type_counts", {})
+        class_counts = component.get("class_counts", {})
+        status_counts = component.get("status_counts", {})
+        has_question_or_invariant = any(
+            key in type_counts
+            for key in ("question", "open_question", "derived_prediction", "invariant")
+        )
+        has_design_and_mechanism = (
+            "design_decision" in type_counts
+            and ("mechanism_hypothesis" in type_counts or "mechanism" in type_counts)
+        )
+        has_sd = any(str(member).startswith("SD-") for member in members)
+        size = int(component.get("size", 0) or 0)
+        if not component.get("cyclic"):
+            category = "acyclic"
+            cleanup_priority = "none"
+            rationale = "No internal dependency cycle."
+        elif "superseded" in status_counts:
+            category = "legacy_superseded_cycle"
+            cleanup_priority = "low"
+            rationale = "Cycle includes superseded registry material; preserve history unless it blocks tooling."
+        elif size >= 10:
+            category = "accepted_reciprocal_architecture"
+            cleanup_priority = "low"
+            rationale = "Large multi-claim reciprocal architecture cluster; likely reflects real feedback coupling rather than a simple ordering bug."
+        elif has_question_or_invariant and size <= 3:
+            category = "semantic_explanation_cycle"
+            cleanup_priority = "medium"
+            rationale = "Question, prediction, or invariant is mutually explanatory with its mechanism; edge type may be more precise than strict depends_on."
+        elif has_sd and has_design_and_mechanism:
+            category = "co_definition_module_function"
+            cleanup_priority = "low"
+            rationale = "Substrate/module claim and functional mechanism co-define each other; useful architecture coupling, not necessarily build-order dependency."
+        elif size <= 2 and mutual_pairs:
+            category = "edge_type_cleanup_candidate"
+            cleanup_priority = "medium"
+            rationale = "Small mutual dependency; likely wants an edge type such as co_defines_with, implements, or predicts rather than strict depends_on."
+        elif size <= 6 and mutual_pairs:
+            category = "co_definition_module_function"
+            cleanup_priority = "watch"
+            rationale = "Small reciprocal module/function cluster; probably valid coupling but worth reviewing edge semantics."
+        else:
+            category = "accepted_reciprocal_architecture"
+            cleanup_priority = "watch"
+            rationale = "Reciprocal structure is present but not clearly a hygiene issue from graph shape alone."
+        return {
+            "category": category,
+            "cleanup_priority": cleanup_priority,
+            "rationale": rationale,
+            "internal_edge_count": len(internal_edges),
+            "mutual_pair_count": len(mutual_pairs),
+            "mutual_pairs": [
+                {"source": source, "target": target}
+                for source, target in mutual_pairs[:18]
+            ],
+            "top_internal_targets": [
+                {"claim_id": claim_id, "count": int(count), "title": by_id[claim_id].get("title", "")}
+                for claim_id, count in in_counts.most_common(8)
+            ],
+            "top_internal_sources": [
+                {"claim_id": claim_id, "count": int(count), "title": by_id[claim_id].get("title", "")}
+                for claim_id, count in out_counts.most_common(8)
+            ],
+            "class_counts": class_counts,
+            "type_counts": type_counts,
+        }
+
+    for component in components:
+        if component["cyclic"]:
+            component["cycle_audit"] = component_cycle_audit(component)
+
     def claim_attention_for(claim_id: str) -> dict[str, Any]:
         claim = by_id[claim_id]
         ev = evidence.get(claim_id, {})
@@ -621,6 +709,17 @@ def main() -> None:
     else:
         drift_status = "low"
 
+    cycle_audit_counts = Counter(
+        component.get("cycle_audit", {}).get("category", "acyclic")
+        for component in components
+        if component.get("cyclic")
+    )
+    cycle_cleanup_counts = Counter(
+        component.get("cycle_audit", {}).get("cleanup_priority", "none")
+        for component in components
+        if component.get("cyclic")
+    )
+
     payload = {
         "schema_version": "claim_dependency_process/v1",
         "generated_at_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
@@ -640,6 +739,8 @@ def main() -> None:
             "class_counts": counter_dict(Counter(row["class"] for row in claim_rows)),
             "phase_counts": counter_dict(Counter(row["phase"] for row in claim_rows)),
             "lifecycle_counts": counter_dict(Counter(row["lifecycle"] for row in claim_rows)),
+            "cycle_audit_counts": counter_dict(cycle_audit_counts),
+            "cycle_cleanup_counts": counter_dict(cycle_cleanup_counts),
         },
         "weeks": weeks,
         "components": components,

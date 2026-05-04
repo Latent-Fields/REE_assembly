@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-04.4 -->
+<!-- EXPLORER_VERSION: 2026-05-04.5 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2497,6 +2497,14 @@
     .process-chip.lifecycle-experiment_planned { background: #efe5f4; color: #6f3a85; }
     .process-chip.lifecycle-substrate_implementation_active { background: #fff0df; color: #9b4d16; }
     .process-chip.lifecycle-governance_evidence_bearing { background: #dff2ef; color: #2b6f72; }
+    .process-chip.cycle-accepted_reciprocal_architecture { background: #dff2ef; color: #2b6f72; }
+    .process-chip.cycle-co_definition_module_function { background: #e6eef7; color: #315f91; }
+    .process-chip.cycle-semantic_explanation_cycle { background: #f3eee5; color: #6a6258; }
+    .process-chip.cycle-edge_type_cleanup_candidate { background: #fff0df; color: #9b4d16; }
+    .process-chip.cycle-legacy_superseded_cycle { background: #f1e4e4; color: #8c2f2f; }
+    .process-chip.priority-medium,
+    .process-chip.priority-watch { background: #fff0df; color: #9b4d16; }
+    .process-chip.priority-low { background: #dff2ef; color: #2b6f72; }
 
     .process-lifecycle-bars {
       display: flex;
@@ -4416,6 +4424,27 @@ END CONFLICT RESOLUTION`;
       return Number((counts || {})[stage] || 0);
     }
 
+    function processCycleCategoryLabel(value) {
+      const labels = {
+        accepted_reciprocal_architecture: 'Accepted reciprocal architecture',
+        co_definition_module_function: 'Co-definition / module-function',
+        semantic_explanation_cycle: 'Semantic explanation cycle',
+        edge_type_cleanup_candidate: 'Edge-type cleanup candidate',
+        legacy_superseded_cycle: 'Legacy / superseded',
+      };
+      return labels[value] || String(value || 'unknown').replace(/_/g, ' ');
+    }
+
+    function processCycleCategoryChip(value) {
+      const category = value || 'unknown';
+      return processChipHtml(processCycleCategoryLabel(category), `cycle-${category}`);
+    }
+
+    function processPriorityChip(value) {
+      const priority = value || 'none';
+      return processChipHtml(priority, `priority-${priority}`);
+    }
+
     function renderProcessSignalCard(title, value, detail, meterValue, status, detailMode) {
       const width = Math.max(0, Math.min(100, Number(meterValue || 0) * 100));
       const tag = detailMode ? 'button' : 'div';
@@ -4639,6 +4668,71 @@ END CONFLICT RESOLUTION`;
         <table class="process-table">
           <thead><tr><th>Lifecycle</th><th>Claims</th><th>Share</th></tr></thead>
           <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    function renderProcessCycleAuditSummary(summary) {
+      const auditCounts = (summary && summary.cycle_audit_counts) || {};
+      const cleanupCounts = (summary && summary.cycle_cleanup_counts) || {};
+      const rows = Object.entries(auditCounts).map(([category, count]) => `
+        <tr>
+          <td>${processCycleCategoryChip(category)}</td>
+          <td style="text-align:right">${Number(count || 0)}</td>
+        </tr>
+      `).join('');
+      const cleanup = Object.entries(cleanupCounts)
+        .map(([priority, count]) => `${priority}: ${Number(count || 0)}`)
+        .join(' | ');
+      return `
+        <div class="process-meta" style="margin-bottom:8px">
+          Read-only interpretation of cyclic SCCs. This does not change claim dependencies; it separates real reciprocal architecture from places where edge semantics may need future cleanup.
+          ${cleanup ? `<br>Cleanup priority counts: ${escapeHtml(cleanup)}` : ''}
+        </div>
+        <table class="process-table">
+          <thead><tr><th>Cycle interpretation</th><th>Components</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="2" class="meta">No cyclic SCC audit data available.</td></tr>'}</tbody>
+        </table>
+      `;
+    }
+
+    function renderProcessCycleAuditTable(components) {
+      const categoryOrder = {
+        edge_type_cleanup_candidate: 0,
+        semantic_explanation_cycle: 1,
+        co_definition_module_function: 2,
+        legacy_superseded_cycle: 3,
+        accepted_reciprocal_architecture: 4,
+      };
+      const sorted = (components || [])
+        .filter(component => component.cyclic && component.cycle_audit)
+        .slice()
+        .sort((a, b) => {
+          const ac = a.cycle_audit || {};
+          const bc = b.cycle_audit || {};
+          return (categoryOrder[ac.category] ?? 9) - (categoryOrder[bc.category] ?? 9)
+            || Number(b.size || 0) - Number(a.size || 0);
+        });
+      const rows = sorted.map(component => {
+        const audit = component.cycle_audit || {};
+        const topTargets = (audit.top_internal_targets || [])
+          .slice(0, 4)
+          .map(item => `${renderProcessClaimButton(item.claim_id || '', '')}<span class="process-hub-note">${Number(item.count || 0)}</span>`)
+          .join('');
+        return `
+          <tr>
+            <td><code>${escapeHtml(component.component_id || '')}</code><br>${processPriorityChip(audit.cleanup_priority || 'none')}</td>
+            <td style="text-align:right">${Number(component.size || 0)}<br><span class="meta">${Number(audit.internal_edge_count || 0)} edges / ${Number(audit.mutual_pair_count || 0)} mutual</span></td>
+            <td>${processCycleCategoryChip(audit.category || 'unknown')}</td>
+            <td>${escapeHtml(audit.rationale || '')}</td>
+            <td><div class="process-hub-list">${topTargets || '<span class="meta">No internal targets.</span>'}</div></td>
+          </tr>
+        `;
+      }).join('');
+      return `
+        <table class="process-table">
+          <thead><tr><th>SCC</th><th>Size / internal edges</th><th>Audit</th><th>Interpretation</th><th>Top internal targets</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="5" class="meta">No cyclic SCC audit rows available.</td></tr>'}</tbody>
         </table>
       `;
     }
@@ -4874,6 +4968,12 @@ END CONFLICT RESOLUTION`;
         <div class="process-section">
           <h3>SCC Components Receiving Recent Work</h3>
           ${renderProcessComponentTable(recentComponents)}
+        </div>
+
+        <div class="process-section">
+          <h3>SCC Cycle Audit</h3>
+          ${renderProcessCycleAuditSummary(summary)}
+          <div style="margin-top:10px">${renderProcessCycleAuditTable(cyclicComponents)}</div>
         </div>
 
         <div class="process-section">
