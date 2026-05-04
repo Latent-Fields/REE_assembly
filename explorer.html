@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-04.3 -->
+<!-- EXPLORER_VERSION: 2026-05-04.4 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2285,6 +2285,24 @@
       border-radius: 8px;
       padding: 10px 12px;
       min-width: 0;
+      width: 100%;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+    }
+
+    button.process-signal {
+      cursor: pointer;
+    }
+
+    button.process-signal:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .process-signal.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(43,111,114,0.12);
     }
 
     .process-signal.stable,
@@ -2337,6 +2355,27 @@
 
     .process-signal.warning .process-meter-fill {
       background: var(--error);
+    }
+
+    .process-detail-panel {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.78);
+      border-radius: 8px;
+      padding: 12px;
+      margin: -6px 0 18px 0;
+    }
+
+    .process-detail-title {
+      margin: 0 0 6px 0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .process-driver-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 8px;
+      margin: 10px 0 12px 0;
     }
 
     .process-section {
@@ -3513,6 +3552,7 @@ END CONFLICT RESOLUTION`;
     let governanceLoading = false;
     let processDashboard = null;
     let processDashboardError = '';
+    let processDetailMode = '';
     let tripleViewLoaded = false;
     let tripleViewLoading = false;
     const tripleZoomState = new Map();
@@ -4376,17 +4416,22 @@ END CONFLICT RESOLUTION`;
       return Number((counts || {})[stage] || 0);
     }
 
-    function renderProcessSignalCard(title, value, detail, meterValue, status) {
+    function renderProcessSignalCard(title, value, detail, meterValue, status, detailMode) {
       const width = Math.max(0, Math.min(100, Number(meterValue || 0) * 100));
+      const tag = detailMode ? 'button' : 'div';
+      const detailAttrs = detailMode
+        ? ` type="button" data-process-detail="${escapeHtml(detailMode)}"`
+        : '';
+      const activeClass = detailMode && processDetailMode === detailMode ? ' active' : '';
       return `
-        <div class="process-signal ${processStatusClass(status)}">
+        <${tag}${detailAttrs} class="process-signal ${processStatusClass(status)}${activeClass}">
           <div class="process-signal-title">${escapeHtml(title)}</div>
           <div class="process-signal-value">${escapeHtml(value)}</div>
           <div class="process-meter" aria-hidden="true">
             <div class="process-meter-fill" style="width:${width.toFixed(1)}%"></div>
           </div>
           <div class="meta">${escapeHtml(detail)}</div>
-        </div>
+        </${tag}>
       `;
     }
 
@@ -4402,16 +4447,18 @@ END CONFLICT RESOLUTION`;
           ${renderProcessSignalCard(
             'Churn health',
             churnStatus,
-            `pressure ${churnScore}/100 | recurrent hubs ${processPercent(churn.recurrent_hub_edge_share)}`,
+            `pressure ${churnScore}/100 | recurrent hubs ${processPercent(churn.recurrent_hub_edge_share)} | click for foundations`,
             churnScore / 100,
-            churnStatus
+            churnStatus,
+            'churn'
           )}
           ${renderProcessSignalCard(
             'Horizon drift',
             driftStatus,
-            `engineering ${processPercent(drift.engineering_claim_share)} | dependency edges ${processPercent(drift.dependency_share)}`,
+            `engineering ${processPercent(drift.engineering_claim_share)} | dependency edges ${processPercent(drift.dependency_share)} | click for split`,
             Math.max(Number(drift.engineering_claim_share || 0), Number(drift.dependency_share || 0)),
-            driftStatus
+            driftStatus,
+            'horizon'
           )}
           ${renderProcessSignalCard(
             'Recent created claims',
@@ -4430,9 +4477,10 @@ END CONFLICT RESOLUTION`;
           ${renderProcessSignalCard(
             'Captured ideas',
             `${Number(metrics.captured_claims || 0)} claims`,
-            `${processPercent(metrics.captured_claim_share)} of recent created claims`,
+            `${processPercent(metrics.captured_claim_share)} of recent created claims | click for lifecycle`,
             Number(metrics.captured_claim_share || 0),
-            'low'
+            'low',
+            'lifecycle'
           )}
           ${renderProcessSignalCard(
             'Active work claims',
@@ -4472,6 +4520,100 @@ END CONFLICT RESOLUTION`;
         renderProcessClaimButton(claim.claim_id || '', processClassChipClass(claim.class || ''))
       )).join('');
       return `<div class="process-hub-list">${items || '<span class="meta">No source claims listed.</span>'}</div>`;
+    }
+
+    function renderProcessDriverCard(title, value, detail) {
+      return `
+        <div class="process-stat">
+          <div class="process-stat-value">${escapeHtml(value)}</div>
+          <div class="process-stat-label">${escapeHtml(title)}</div>
+          <div class="meta" style="margin-top:4px">${escapeHtml(detail)}</div>
+        </div>
+      `;
+    }
+
+    function processChurnHubInterpretation(hub) {
+      const count = Number(hub.count || 0);
+      const weeks = Number(hub.week_count || 0);
+      const cls = String(hub.class || '');
+      const lifecycle = String(hub.lifecycle || '');
+      if (cls.includes('horizon')) return 'Future-facing foundation already attracting dependency work.';
+      if (lifecycle === 'substrate_implementation_active') return 'Active substrate foundation being unpacked into implementation work.';
+      if (count >= 35 && weeks >= 6) return 'Deep foundation: repeated work likely exposes hidden necessary granularity.';
+      if (weeks >= 4) return 'Recurrent foundation: multiple weeks of claims are closing through this point.';
+      return 'Localized hub: recent work is leaning here, but recurrence is still limited.';
+    }
+
+    function renderProcessChurnDrilldown(recent) {
+      const metrics = (recent && recent.metrics) || {};
+      const churn = (recent && recent.churn_health) || {};
+      const hubs = (recent && recent.recurrent_dependency_hubs) || [];
+      const hubRows = hubs.slice(0, 10).map(hub => `
+        <tr>
+          <td>
+            <button type="button" class="link-button" data-process-claim="${escapeHtml(hub.claim_id || '')}"><code>${escapeHtml(hub.claim_id || '')}</code></button>
+            <span class="process-claim-title">${escapeHtml(hub.title || '')}</span>
+          </td>
+          <td>${processChipHtml(hub.class || 'unknown', processClassChipClass(hub.class || ''))}<br>${processLifecycleChip(hub.lifecycle || 'captured_only')}</td>
+          <td style="text-align:right">${Number(hub.count || 0)}</td>
+          <td style="text-align:right">${Number(hub.week_count || 0)}</td>
+          <td>${escapeHtml(processChurnHubInterpretation(hub))}</td>
+          <td>${renderProcessSourceChips(hub.source_claims || [], 5)}</td>
+        </tr>
+      `).join('');
+      return `
+        <div class="process-detail-panel">
+          <h3 class="process-detail-title">Churn Health Interpretation</h3>
+          <div class="process-meta">
+            This is an integration-pressure signal. A recurrent hub can mean wasted churn, but it can also mean a broad claim is being decomposed into the granular substrate claims needed to implement it.
+          </div>
+          <div class="process-driver-grid">
+            ${renderProcessDriverCard('Pressure score', `${Number(churn.pressure_score || 0)}/100`, `${churn.status || 'unknown'} state`)}
+            ${renderProcessDriverCard('Recurrent hub edges', processPercent(churn.recurrent_hub_edge_share), 'recent dependency edges landing on multi-week hubs')}
+            ${renderProcessDriverCard('Cyclic target edges', processPercent(churn.cyclic_target_edge_share), 'recent edges landing inside SCC/cyclic components')}
+            ${renderProcessDriverCard('Top target concentration', processPercent(churn.top_target_share), 'low means no single claim is dominating')}
+            ${renderProcessDriverCard('Average outdeps', Number(churn.avg_outdeps || metrics.avg_outdeps || 0).toFixed(2), 'direct dependencies per recent created claim')}
+          </div>
+          <table class="process-table">
+            <thead><tr><th>Load-bearing foundation</th><th>Class / lifecycle</th><th>Deps</th><th>Weeks</th><th>Interpretation</th><th>Recent created claims using it</th></tr></thead>
+            <tbody>${hubRows || '<tr><td colspan="6" class="meta">No recurrent hubs available.</td></tr>'}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderProcessHorizonDrilldown(recent) {
+      const metrics = (recent && recent.metrics) || {};
+      const drift = (recent && recent.horizon_drift) || {};
+      return `
+        <div class="process-detail-panel">
+          <h3 class="process-detail-title">Horizon Drift Interpretation</h3>
+          <div class="process-meta">
+            Raw future-idea capture is reported separately from horizon engineering pressure. The warning path only cares when future claims start taking active dependency, experiment, substrate, or evidence attention.
+          </div>
+          <div class="process-driver-grid">
+            ${renderProcessDriverCard('Raw horizon capture', `${Number(drift.horizon_claims || metrics.horizon_claims || 0)} claims`, `${processPercent(drift.claim_share)} of recent created claims`)}
+            ${renderProcessDriverCard('Horizon engineering pressure', `${Number(drift.horizon_engineering_claims || metrics.horizon_engineering_claims || 0)} claims`, `${processPercent(drift.engineering_claim_share)} of recent created claims`)}
+            ${renderProcessDriverCard('Horizon dependency pressure', `${Number(drift.horizon_dependency_edges || 0)} edges`, `${processPercent(drift.dependency_share)} of recent dependency edges`)}
+            ${renderProcessDriverCard('Status', drift.status || 'unknown', 'derived from engineering and dependency pressure, not capture alone')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProcessDetailPanel(recent) {
+      if (processDetailMode === 'churn') return renderProcessChurnDrilldown(recent);
+      if (processDetailMode === 'horizon') return renderProcessHorizonDrilldown(recent);
+      if (processDetailMode === 'lifecycle') {
+        return `
+          <div class="process-detail-panel">
+            <h3 class="process-detail-title">Lifecycle Interpretation</h3>
+            <div class="process-meta">Captured-only claims are preserved memory. They become active work only when they are referenced, planned, implemented, or evidence-bearing.</div>
+            ${renderProcessLifecycleSummary((recent.metrics || {}).lifecycle_counts || {})}
+          </div>
+        `;
+      }
+      return '';
     }
 
     function renderProcessLifecycleSummary(counts) {
@@ -4636,6 +4778,17 @@ END CONFLICT RESOLUTION`;
       });
     }
 
+    function bindProcessDetailControls() {
+      if (!els.processContent) return;
+      els.processContent.querySelectorAll('[data-process-detail]').forEach(node => {
+        node.addEventListener('click', () => {
+          const detailMode = node.getAttribute('data-process-detail') || '';
+          processDetailMode = processDetailMode === detailMode ? '' : detailMode;
+          renderProcessDashboard();
+        });
+      });
+    }
+
     function renderProcessDashboard() {
       if (!els.processContent) return;
       if (!processDashboard) {
@@ -4685,6 +4838,7 @@ END CONFLICT RESOLUTION`;
         </div>
 
         ${renderProcessSignalCards(recent)}
+        ${renderProcessDetailPanel(recent)}
 
         <div class="process-section">
           <h3>Claim Attention Lifecycle</h3>
@@ -4727,6 +4881,7 @@ END CONFLICT RESOLUTION`;
           ${renderProcessComponentTable(cyclicComponents)}
         </div>
       `;
+      bindProcessDetailControls();
       bindProcessClaimLinks();
     }
 
