@@ -2043,6 +2043,30 @@
       "priority": 2,
       "added_session": "implement-substrate-sd049-2026-05-03T1203Z",
       "last_seen_session": "governance-2026-05-03T2356Z"
+    },
+    {
+      "sd_id": "MECH-302",
+      "title": "relief.completion_event_reuses_goal_achievement_pipeline -- suffering-derivative comparator",
+      "status": "implemented",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": ["MECH-302", "MECH-303"],
+      "failure_record": [
+        {
+          "run_id": "none -- new mechanism with no prior FAIL",
+          "experiment_type": "N/A",
+          "metric": "no prior experiments; substrate gap was the absence of a relief-completion event entirely",
+          "target": "SufferingDerivativeComparator fires on sustained z_harm_a norm descent >= drop_threshold within rolling window"
+        }
+      ],
+      "implementation_note_update": "MECH-302 substrate IMPLEMENTED 2026-05-04. SufferingDerivativeComparator in ree_core/comparator/suffering_derivative_comparator.py. Config: REEConfig.use_suffering_derivative_comparator (default False, bit-identical OFF). sense() ticks comparator on waking stream; select_action() consumes relief_completion_event flag via MECH-057a + MECH-094 pipeline. V3-EXQ-515 substrate readiness diagnostic queued (4-arm sweep, dry-run PASS 7/7).",
+      "implemented_utc": "2026-05-04T01:03:00Z",
+      "implementation_status": "implemented",
+      "validation_experiment": "V3-EXQ-515",
+      "implemented_session": "implement-substrate-mech302-comparator-2026-05-04T0019Z",
+      "priority": 1,
+      "added_session": "implement-substrate-mech302-comparator-2026-05-04T0019Z"
     }
   ]
 }

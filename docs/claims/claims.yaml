@@ -24613,6 +24613,63 @@
     implementation yet.
   location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
 
+- id: SD-050
+  title: "Suffering-derivative comparator: a non-trainable rolling-window descent detector on z_harm_a.norm() that fires a relief-completion event when a sustained drop from peak to trough exceeds a threshold. Provides the substrate for MECH-302 by detecting when a period of suffering has cleanly ended, reusing the same downstream tag-and-release pipeline as goal-achievement (MECH-057a beta-gate release, MECH-094 VALENCE_LIKING write). Architecturally adjacent to MECH-091 (urgency interrupt) but opposite polarity: MECH-091 fires on upward z_harm_a spike; SD-050 fires on downward sustained drop."
+  claim_type: design_decision
+  subject: relief.suffering_derivative_comparator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: "2026-05-04"
+  depends_on:
+    - SD-011      # z_harm_a affective stream (source signal for the comparator)
+    - MECH-057a   # commitment-release pipeline reused on event fire
+    - MECH-091    # adjacent urgency block in select_action(); opposite polarity
+    - MECH-094    # simulation gate: comparator tick() skips when simulation_mode=True
+  functional_restatement: >
+    REE's goal-completion pipeline (MECH-057a beta-gate drop + MECH-091
+    phase-reset + MECH-094 VALENCE_LIKING write) fires on goal-attainment
+    events. There is no architecturally analogous event for the end of a
+    period of suffering: avoidance commitments accumulate during harm but
+    no clean "relief completion" event closes the episode and tags what
+    just worked.
+
+    SD-050 implements a SufferingDerivativeComparator -- a non-trainable
+    rolling-window FIFO (window_length ticks) on z_harm_a.norm(). The
+    comparator fires (returns True) when: (1) the buffer is full; (2) the
+    oldest norm entry exceeds min_initial_norm (prevents false fires on a
+    stream that was already quiet); (3) the drop from oldest to newest
+    entry exceeds drop_threshold. The event flag is set in sense() and
+    consumed in select_action() in the same tick.
+
+    On event fire: if beta is elevated, beta_gate.release() + reset
+    committed_step_idx (MECH-057a reuse). If valence_liking_enabled and
+    not hypothesis_tag, ResidueField.update_valence(z_world, VALENCE_LIKING,
+    relief_completion_weight) (MECH-094 reuse). The comparator advances only
+    on waking ticks (simulation_mode=False), satisfying the MECH-094 gate.
+
+    Biological grounding: Navratilova 2012 (PNAS) shows pain relief
+    activates VTA-DA + NAc-shell DA via the same circuit as appetitive
+    reward, blocked by DA antagonists and producing conditioned place
+    preference -- confirming shared machinery. The comparator (not a pooled
+    DA readout) is the architecturally correct trigger per the Bromberg-
+    Martin 2010 DA-heterogeneity qualifier: value-coding VTA-DA is the
+    substrate but the REE trigger must be the derived comparator to avoid
+    mixing salience-coding DA.
+  evidence_quality_note: >
+    Implemented 2026-05-04. Module:
+    ree_core/comparator/suffering_derivative_comparator.py
+    (SufferingDerivativeComparator). Config gate:
+    REEConfig.use_suffering_derivative_comparator (default False,
+    bit-identical OFF). Additional params: suffering_window_length (5),
+    suffering_drop_threshold (0.10), suffering_min_initial_norm (0.05),
+    relief_completion_weight (1.0). All 5 smoke tests PASS 2026-05-04.
+    Validation experiment V3-EXQ-515 queued (4-arm substrate readiness
+    diagnostic). Blocks MECH-302, MECH-303.
+  location: docs/architecture/sd_050_suffering_derivative_comparator.md
+
 - id: MECH-302
   title: "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'."
   claim_type: mechanism_hypothesis
@@ -24705,10 +24762,12 @@
     supports 0.78), Tanimoto 2004 Nature (Drosophila opponent-timing
     relief-as-reinforcer principle, supports 0.78). DA-heterogeneity
     qualifiers: Bromberg-Martin 2010 (mixed 0.79), Brischoux 2009
-    (mixed 0.80). NO substrate implementation yet -- the suffering-
-    derivative comparator + relief-completion event need to be wired
-    into ree_core. v3_pending=true until both substrate enrichment and
-    a discriminative-pair experiment land.
+    (mixed 0.80). Substrate implemented 2026-05-04:
+    SufferingDerivativeComparator wired into ree_core
+    (ree_core/comparator/suffering_derivative_comparator.py);
+    config gate REEConfig.use_suffering_derivative_comparator (default False,
+    bit-identical OFF). V3-EXQ-515 queued (4-arm sweep, substrate readiness
+    diagnostic). v3_pending=true until discriminative-pair experiment lands.
   location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
 
 - id: MECH-303

@@ -3652,5 +3652,11 @@
     "subject": "environment.multi_resource_heterogeneity",
     "title": "Multi-resource heterogeneity: qualitatively distinct resource types (e.g. food / water / novelty) with per-type identity tags, type-specific spawn distributions, type-specific benefit profiles, and a per-axis homeostatic drive system, plus a curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level, and the substrate scaffold for downstream developmental-schedule work.",
     "type": "design_decision"
+  },
+  "SD-050": {
+    "status": "candidate",
+    "subject": "relief.suffering_derivative_comparator",
+    "title": "Suffering-derivative comparator: a non-trainable rolling-window descent detector on z_harm_a.norm() that fires a relief-completion event when a sustained drop from peak to trough exceeds a threshold. Provides the substrate for MECH-302 by detecting when a period of suffering has cleanly ended, reusing the same downstream tag-and-release pipeline as goal-achievement (MECH-057a beta-gate release, MECH-094 VALENCE_LIKING write). Architecturally adjacent to MECH-091 (urgency interrupt) but opposite polarity: MECH-091 fires on upward z_harm_a spike; SD-050 fires on downward sustained drop.",
+    "type": "design_decision"
   }
 }
