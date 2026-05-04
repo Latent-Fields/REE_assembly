@@ -3,7 +3,8 @@
   "literature_type": "targeted_review_connectome_mech_303",
   "entry_id": "2026-05-04_mech_303_il_encoding_conditioned_inhibitor_ng2023",
   "timestamp_utc": "2026-05-04T01:05:15Z",
-  "claim_ids_tested": ["MECH-303"],
+  "claim_ids_tested": ["MECH-304"],
+  "retag_note": "Retagged 2026-05-04 from MECH-303 to MECH-304. Single-unit IL encoding of conditioned inhibitors (cue-specific, teaching-signal-driven) belongs to the MECH-304 system, not the contextual passive safety system (MECH-303).",
   "source": {
     "title": "Encoding of conditioned inhibitors of fear in the infralimbic cortex",
     "authors": ["Ng, Ka H", "Sangha, Susan"],
@@ -15,24 +16,24 @@
   "evidence_class": "electrophysiology_single_unit",
   "evidence_direction": "supports",
   "confidence": 0.84,
-  "confidence_rationale": "Single-unit recordings show IL neurons encode conditioned inhibitors specifically -- distinct from reward-cue encoding. Three subpopulations: (1) neurons responding exclusively to the fear+safety compound, (2) neurons responding to both fear+safety and reward cues, (3) bidirectional neurons (excited by fear+safety, inhibited by fear cue). Negative correlation between IL excitation and freezing is the functional linkage. This is direct electrophysiological evidence that the IL encodes safety-cue-specific information and that this encoding is dissociable from reward. The dissociation from reward-cue responses supports MECH-303's claim of a parallel-but-distinct store.",
+  "confidence_rationale": "Single-unit recordings show IL neurons encode conditioned inhibitors specifically -- distinct from reward-cue encoding. Three subpopulations: (1) neurons responding exclusively to the fear+safety compound, (2) neurons responding to both fear+safety and reward cues, (3) bidirectional neurons (excited by fear+safety, inhibited by fear cue). Negative correlation between IL excitation and freezing is the functional linkage. This is direct electrophysiological evidence that the IL node participates in encoding the MECH-304 cue-specific conditioned inhibition system, and that this encoding is dissociable from reward. The partial overlap with reward neurons qualifies but does not refute MECH-304's parallel-but-distinct encoding claim.",
   "summary_path": "summary.md",
   "failure_signatures": [
-    "A subpopulation of IL neurons responded to both the fear+safety cue AND the reward cue, suggesting partial overlap between the safety-prediction store and the reward store -- this is a direct qualifier on MECH-303's 'distinct from the things-liked store' claim.",
-    "Neural activity was measured in response to the compound fear+safety cue, not to the safety cue alone. Most neurons responded to the compound but not to safety-alone, so the predictive encoding during safety-only contexts (the MECH-303 target) is not directly measured.",
-    "Only IL was recorded; no simultaneous recording from ventral hippocampus or prefrontal subregions that would confirm the vHipp-PL pathway that MECH-303 also posits."
+    "A subpopulation of IL neurons responded to both the fear+safety cue AND the reward cue, suggesting partial overlap between the cue-specific safety encoding node and the reward store -- this is a direct qualifier on MECH-304's 'parallel-but-distinct' claim.",
+    "Neural activity was measured in response to the compound fear+safety cue, not to the safety cue alone. Most neurons responded to the compound but not to safety-alone, so the predictive encoding during safety-only contexts (the MECH-304 cue-specificity target) is not directly measured.",
+    "Only IL was recorded; no simultaneous recording from dorsal striatum or dlPFC that would confirm the full cortico-striatal encoding substrate that MECH-304 posits."
   ],
-  "tags": ["mech_303", "infralimbic", "single_unit", "conditioned_inhibitor", "safety_encoding"],
+  "tags": ["mech_304", "infralimbic", "single_unit", "conditioned_inhibitor", "safety_encoding"],
   "mapping": {
     "source_claim_statement": "IL neurons show excitatory responses specifically to conditioned inhibitors (fear+safety compound cue), with activity negatively correlated with fear expression. A subset also responds to reward cues. Neural encoding is safety-cue-specific and distinct from pure fear or pure reward responses.",
-    "ree_translation": "MECH-303 requires a prefrontal-hippocampal encoding substrate that stores 'this context predicts suffering will be absent'. The IL single-unit data establish that IL encodes conditioned inhibition as an active representation -- not merely a passive absence of fear-cue responding. The partial overlap with reward-responding neurons is a complication: MECH-303 asserts the safety store is parallel-but-distinct from the reward store, which this data qualifies (some neurons are shared).",
-    "mapping_caveat": "The compound-cue paradigm conflates the predictive encoding of safety with the conflict-resolution computation (safety overriding fear). MECH-303 is primarily a claim about the predictive safety store (what encodes future safety), not necessarily about the conflict-resolution node.",
+    "ree_translation": "MECH-304 posits a cortico-striatal encoding substrate (dorsal striatum + dlPFC) with an IL->CeA expression pathway for cue-specific conditioned safety. The IL single-unit data establish that IL neurons encode conditioned inhibitors as active representations -- not merely a passive absence of fear-cue responding -- and that this encoding is functionally dissociable from reward-cue encoding. The partial overlap with reward-responding neurons is a direct qualifier: MECH-304 asserts the cue-specific safety store is parallel-but-distinct from the reward store, which this data qualifies (some neurons are shared). This paper covers the IL encoding node, complementing the Ng & Sangha 2023 Neuropsychopharmacology paper on the IL->CeA expression projection.",
+    "mapping_caveat": "The compound-cue paradigm conflates the predictive encoding of safety with the conflict-resolution computation (safety overriding fear). MECH-304 is primarily a claim about the cue-specific predictive safety store and its expression pathway (IL->CeA), not necessarily about the conflict-resolution node itself.",
     "source_context": "Male Long Evans rats, single-unit recordings in IL, Pavlovian conditional discrimination task with fear, reward, and safety cues."
   },
   "confidence_components": {
     "source_quality": 0.88,
     "mapping_fidelity": 0.80,
     "transfer_risk": 0.25,
-    "notes": "High quality electrophysiology from a well-characterised paradigm. Mapping fidelity is good but docked because the compound-cue context differs from the standalone safety-cue prediction scenario MECH-303 targets. The partial overlap with reward neurons is a genuine qualifier on the 'distinct' claim, recorded directly in the data."
+    "notes": "High quality electrophysiology from a well-characterised paradigm. Mapping fidelity is good but docked because the compound-cue context differs from the standalone safety-cue prediction scenario MECH-304 targets. The partial overlap with reward neurons is a genuine qualifier on the 'distinct' claim, recorded directly in the data."
   }
 }

@@ -24813,103 +24813,170 @@
   location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
 
 - id: MECH-303
-  title: "Safety-cue prediction uses a substrate parallel to but distinct from the 'things liked' goal-cue store. A predictive structure encodes 'this stimulus / context predicts that suffering will be reduced or absent', anatomically routing through prefrontal-hippocampal substrate (IL-equivalent and vHipp-PL-equivalent) rather than ventral-striatal reward substrate. The teaching signal that updates MECH-303 is the MECH-302 relief-completion event, but the store is parallel. MECH-303 modulates commitment-release thresholds (gates whether the current context is safe enough to drop an avoidance commitment) and shapes approach toward safety-associated stimuli."
+  title: "Context-bound passive safety representation: the agent encodes 'this environment predicts absence of suffering' through sustained non-occurrence of harm, without requiring a discrete teaching event. Substrate is prefrontal-hippocampal (IL for expression gating; vHipp-to-PL-equivalent for contextual store). Update rule is diffuse and slow -- accumulated context exposure without harm drives the store. Output lowers background vigilance threshold: reduces the general avoidance commitment level when the agent is in an environment the store predicts as safe. Parallel to the 'things liked' goal-cue store but tracking suffering-absence rather than reward-presence. Sister claim to MECH-304 (cue-specific conditioned inhibition pathway)."
   claim_type: mechanism_hypothesis
-  subject: safety_prediction.parallel_predictive_substrate
+  subject: safety_prediction.contextual_passive_substrate
   polarity: asserts
   status: candidate
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-05-03
+  revised_utc: 2026-05-04
   depends_on:
-    - MECH-302    # sister claim: relief-completion event provides the teaching signal
-    - MECH-094    # the relief-completion tag is the input that drives MECH-303 updates
-    - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 predicts)
-    - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising)
-    - ARC-007     # hippocampal path memory (substrate for context-bound safety-prediction encoding)
+    - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 tracks)
+    - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising over time)
+    - ARC-007     # hippocampal path memory (substrate for context-bound safety encoding)
+    - MECH-304    # sister claim: cue-specific conditioned inhibition pathway
   functional_restatement: >
-    Mechanism hypothesis. The Andreatta 2012 / Navratilova 2012 /
-    Ramirez 2015 cluster localises the relief-completion EVENT to the
-    ventral-striatal reward circuit (handled by MECH-302). Separately,
-    the Kreutzmann 2020 (IL-required-for-safety-expression) and Meyer
-    2019 (cross-species vHipp-to-PL safety-cue circuit) findings
-    localise the predictive encoding of safety cues to a distinct
-    prefrontal-hippocampal substrate. MECH-303 captures this parallel
-    encoder.
+    Mechanism hypothesis. MECH-303 covers one of two dissociable
+    safety-learning systems identified by Laing et al. 2022 (7T fMRI,
+    J Neurosci): the standard safety signal pathway. When a context
+    or stimulus is passively associated with the absence of harm --
+    without an explicit discrete teaching event -- a contextual
+    safety representation forms in vmPFC/hippocampal substrate
+    (vHipp-to-PL for storage; IL required for expression, per
+    Kreutzmann 2020 and Meyer 2019).
 
     The store is structurally analogous to 'things liked' (the
-    approach-attractor structure that goal-achievement writes via
-    MECH-094) but anatomically and functionally separate. Where
-    'things liked' encodes 'this thing led to goal completion',
-    MECH-303 encodes 'this thing predicts that suffering will be
-    reduced or absent'. The two stores feed the same downstream
-    approach-policy machinery but with different update rules and
-    different default behaviours during extinction.
+    approach-attractor written by MECH-094 during goal-achievement)
+    but anatomically and functionally separate. It encodes 'this
+    environment predicts suffering will not rise' rather than 'this
+    thing led to goal completion'. The two stores share downstream
+    approach-policy machinery but have distinct update rules and
+    different default extinction behaviours (contextual safety
+    representations extinguish slowly, consistent with context-
+    dependent safety memory persistence observed clinically).
 
-    MECH-303's predictive output gates two distinct downstream
-    behaviours:
-    1. Commitment-release thresholds: when MECH-303 predicts the
-       current context is safe (i.e. signals that suffering will not
-       rise), the threshold for dropping an active avoidance
-       commitment lowers. This is the architectural substrate for
-       'when do I stop being vigilant?'.
-    2. Approach toward safety-associated stimuli: behaviour-toward
-       (rather than away-from) stimuli whose MECH-303 prediction is
-       'this predicts low suffering'. This is the substrate for
-       attachment to relief-providers, comfort objects, and trusted
-       others -- behaviourally distinct from 'liking' but using the
-       same approach-policy output.
+    Primary output: lowers the background avoidance commitment
+    threshold in familiar safe environments. This is the substrate
+    for 'feeling safe at home' -- a diffuse reduction in vigilance
+    tone driven by context, not by a specific cue signal.
 
-    Falsifiable: an REE substrate with MECH-302 + MECH-303 enabled
-    should show conditioned-inhibition behaviour (a safety cue should
-    inhibit avoidance behaviour even in the presence of a threat cue,
-    matching the conditioned-inhibition paradigms used in the Meyer
-    2019 lit-pull anchor). With only MECH-302 (relief-completion
-    event, no parallel safety-prediction store), the agent should
-    show normal conditioned approach to relief-paired stimuli but
-    should NOT show conditioned inhibition -- the absence of an
-    independent safety-prediction encoder means safety cues cannot
-    gate the avoidance commitment in the way conditioned inhibition
-    requires.
+    Falsifiable: an REE substrate with MECH-303 enabled should show
+    slower extinction of context-conditioned safety than cue-
+    conditioned safety (MECH-304). MECH-303-ablated agents should
+    fail to reduce background vigilance in repeatedly safe
+    environments even when specific safety cues (MECH-304) are
+    intact.
+
   notes: >
-    Registered 2026-05-03 from the relief-completion-mechanism
-    pre-registration lit-pull. Sister claim to MECH-302. The lit-pull
-    verdict treats MECH-302 + MECH-303 as the minimal mechanism count
-    that honours the biological evidence: a single mechanism would
-    collapse the load-bearing distinction between just-now-occurred
-    relief and predicted-from-cue safety, which the
-    Kreutzmann + Meyer convergence shows is real.
+    Revised 2026-05-04: Laing et al. 2022 (J Neurosci 7T fMRI)
+    dissociates conditioned inhibitors (cue-specific, teaches via
+    discrete teaching signal -> dorsal striatum + dlPFC) from
+    standard safety signals (contextual, passive accumulation ->
+    vmPFC + hippocampus). Original MECH-303 conflated both systems.
+    Revised to cover only the contextual/passive pathway. Cue-
+    specific conditioned inhibition moved to MECH-304.
 
-    Architectural prediction. If MECH-302 fires cleanly but MECH-303
-    is degraded, the agent should learn relief-paired approach but
-    fail to use safety cues to terminate avoidance commitments
-    appropriately -- a substrate-level analogue of 'I know what
-    helped, but I cannot tell when I am safe'. If MECH-303 is intact
-    but MECH-302 fires noisily, the agent should learn safety
-    predictions adequately but the underlying tag-store will be
-    poorly written -- approach toward safety-associated stimuli will
-    be erratic. Both failure modes are clinically suggestive of
-    distinct anxiety-disorder phenotypes.
+    Architectural failure mode prediction: if MECH-303 is degraded
+    but MECH-304 is intact, the agent can use specific learned
+    safety cues to suppress fear transiently but cannot reduce
+    background vigilance in safe environments -- a substrate-level
+    analogue of 'I know when to suppress fear but I never feel
+    safe'. Clinical counterpart: PTSD patients who can cognitively
+    identify safety but cannot achieve physiological calm.
 
-    Implementation note. MECH-303's predictive store should be a
-    separate model head from the goal-cue / 'things liked' encoder,
-    not a polarity-flipped version of it. Sharing the head would
-    produce the safety-vs-liking-conflation failure mode that the
-    Kreutzmann + Meyer lit-pull anchor explicitly weakens.
   evidence_quality_note: |
-    Registered candidate 2026-05-03. Pre-registration lit-pull anchor:
-    `evidence/literature/targeted_review_relief_completion_mechanism/verdict.md`
-    (hybrid-leaning-Model-1, conf 0.80). Direct supporting entries:
-    Kreutzmann 2020 Psychopharmacology (IL required for safety
-    expression but not acquisition; PL controlled out, weakens-the-
-    pure-M1-reading 0.74), Meyer 2019 PNAS (cross-species mouse
-    chemogenetic + human fMRI: vHipp -> PL pathway carries the
-    safety-cue prediction, weakens-the-pure-M1-reading 0.78). The
-    convergent dissociation across both species is the load-bearing
-    finding. NO substrate implementation yet -- the parallel
-    predictive encoder needs to be wired into ree_core, with
-    MECH-302's tag-write event as its teaching signal. v3_pending=true
-    until both substrate enrichment and a conditioned-inhibition
-    discriminative-pair experiment land.
-  location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
+    Revised candidate 2026-05-04. Primary lit support: Kreutzmann
+    2020 Psychopharmacology (IL required for safety expression not
+    acquisition; PL null), Meyer 2019 PNAS (vHipp->PL pathway for
+    safety-cue inhibition, cross-species), Laing 2022 J Neurosci
+    (standard safety signal -> vmPFC + hippocampus, dissociated from
+    conditioned inhibitor -> dorsal striatum). Ng & Sangha 2023
+    papers (IL circuit and IL single-unit) retagged to MECH-304
+    (conditioned inhibition paradigm). v3_pending=true until
+    substrate implementation and context-conditioned-vs-cue-
+    conditioned safety extinction discriminative-pair experiment.
+  location: evidence/literature/targeted_review_connectome_mech_303/
+
+- id: MECH-304
+  title: "Cue-specific conditioned safety prediction: a discrete predictive structure encodes 'this stimulus actively predicts that suffering will be omitted', updated by explicit MECH-302 relief-completion events as its teaching signal. Encoding substrate is cortico-striatal (dorsal striatum + dlPFC). Expression/output pathway is IL-to-CeA. This is the conditioned-inhibition mechanism: when a specific cue co-occurs with relief, a separate learned prediction forms that can gate avoidance commitment release when the cue is later present. Sister claim to MECH-303 (contextual passive safety representation)."
+  claim_type: mechanism_hypothesis
+  subject: safety_prediction.cue_specific_conditioned_inhibition_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-04
+  depends_on:
+    - MECH-302    # provides the teaching signal: the relief-completion event that trains the MECH-304 store
+    - MECH-094    # hypothesis-tag write gate (the tag from MECH-302 is the MECH-304 update trigger)
+    - SD-011      # dual nociceptive streams (the suffering signal whose omission MECH-304 predicts)
+    - SD-012      # homeostatic drive (baseline against which suffering-omission is computed)
+    - MECH-303    # sister claim: contextual passive safety pathway; MECH-303 + MECH-304 are the minimal two-system count
+  functional_restatement: >
+    Mechanism hypothesis. MECH-304 covers the second of two
+    dissociable safety-learning systems identified by Laing et al.
+    2022: the conditioned inhibitor pathway. When a specific cue
+    co-occurs with a MECH-302 relief-completion event, a cue-specific
+    predictive store updates: 'this cue predicts suffering will be
+    omitted'. The encoding step recruits dorsal striatum + dlPFC
+    (Laing 2022 conditioned inhibitor data); the expression/output
+    pathway requires IL-to-CeA (Ng & Sangha 2023 Neuropsychopharmacol,
+    chemogenetic circuit dissection). This is the conditioned-
+    inhibition substrate: the specific cue that co-occurred with
+    relief onset drives a learned prediction that overrides ongoing
+    avoidance commitment when the cue is present.
+
+    MECH-304 is cue-specific and event-driven, in contrast to
+    MECH-303 which is context-diffuse and passive. The two systems
+    dissociate behaviourally: MECH-304 supports the classical
+    conditioned inhibition phenomenon (a safety cue inhibits fear
+    even in the presence of a threat cue), while MECH-303 supports
+    background vigilance reduction in safe environments.
+
+    Primary outputs:
+    1. Commitment-release gating: when the MECH-304-encoded cue is
+       present, the threshold for dropping an active avoidance
+       commitment lowers -- the IL-to-CeA pathway provides the
+       downstream signal. This is the substrate for 'stop being
+       afraid when the safety signal appears'.
+    2. Approach toward safety-signalling cues: the cue that reliably
+       predicts relief onset becomes an approach attractor in its own
+       right (distinct from MECH-303's contextual safety tone and
+       from MECH-302's approach toward relief-paired stimuli).
+
+    Falsifiable: an REE substrate with MECH-304 enabled (and
+    MECH-302 as its teaching signal) should show classical conditioned
+    inhibition -- a learned safety cue suppresses avoidance even when
+    presented concurrently with a threat cue. MECH-304 ablation should
+    preserve contextual safety (MECH-303 intact) but should abolish
+    cue-specific safety inhibition of fear.
+
+  notes: >
+    Registered 2026-05-04 from the MECH-303/MECH-304 split. Original
+    MECH-303 conflated contextual and cue-specific safety systems.
+    Laing et al. 2022 (J Neurosci 7T fMRI) provides the load-bearing
+    dissociation: conditioned inhibitors (MECH-304 pathway) recruit
+    dorsal striatum + dlPFC during encoding, not vmPFC/hippocampus.
+    The vmPFC/hippocampus finding is MECH-303's contextual pathway.
+
+    The IL involvement (Kreutzmann 2020, Ng & Sangha 2023) is now
+    attributed to MECH-304's expression pathway (IL-to-CeA is the
+    output gate for conditioned safety expression). This reconciles
+    the rodent IL necessity findings with the human fMRI dorsal
+    striatum encoding finding: encoding and expression dissociate
+    at the circuit level.
+
+    Architectural failure mode prediction: if MECH-304 is degraded
+    but MECH-303 is intact, the agent can feel safe in familiar
+    environments but cannot learn to use specific safety cues to
+    suppress fear on-demand -- a substrate-level analogue of 'I feel
+    safe at home but I cannot use safety signals to calm down'. This
+    maps onto a distinct PTSD phenotype from MECH-303 failure.
+
+  evidence_quality_note: |
+    New candidate 2026-05-04. Primary lit support: Laing 2022 J
+    Neurosci (conditioned inhibitor -> dorsal striatum + dlPFC;
+    dissociated from standard safety signal -> vmPFC/hippocampus),
+    Ng & Sangha 2023 Neuropsychopharmacol (IL->CeA required for
+    conditioned safety expression; IL->BLA not required), Ng & Sangha
+    2023 Cereb Cortex (IL single-unit encodes conditioned inhibitors
+    specifically). NO substrate implementation yet. v3_pending=true
+    until substrate implementation (dorsal striatal encoding module +
+    IL->CeA output gate) and conditioned-inhibition discriminative-pair
+    experiment (safety cue suppresses avoidance in presence of threat
+    cue, ablation removes this).
+  location: evidence/literature/targeted_review_connectome_mech_303/
