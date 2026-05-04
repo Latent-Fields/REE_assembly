@@ -1,11 +1,56 @@
 {
   "schema_version": "v1",
-  "runner_pid": 25483,
-  "runner_started_at": "2026-05-04T07:36:09.232876+00:00",
-  "last_updated": "2026-05-04T10:06:50.167294+00:00",
+  "runner_pid": 95719,
+  "runner_started_at": "2026-05-04T15:02:52.435368+00:00",
+  "last_updated": "2026-05-04T15:02:58.547340+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-519",
+      "backlog_id": "",
+      "claim_id": "MECH-304",
+      "title": "SD-051 ConditionedSafetyStore substrate readiness (MECH-304)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-485a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-033b OFC-analog oracle landing (UC6 round-trip)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-517",
+      "backlog_id": "",
+      "claim_id": "MECH-302",
+      "title": "MECH-302 relief-completion behavioural discriminative pair",
+      "description": "",
+      "estimated_minutes": 56.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-514a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -6692,6 +6737,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_514_sd049_phase_2_behavioural_validation/v3_exq_514_sd049_phase_2_behavioural_validation_20260504T100649Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 7981.9
+    },
+    {
+      "queue_id": "V3-EXQ-518",
+      "backlog_id": "",
+      "claim_id": "SD-019a",
+      "title": "SD-019a harm_unpleasantness_channel substrate readiness",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "UC2b (AIC reads z_harm_un not z_harm_a): True | UC3  (z_harm_un not attenuated by SD-021): True | /Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_518_sd019a_harm_unpleasantness_substrate_readiness.py:395: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+      "started_at": "2026-05-04T15:02:54.712579+00:00",
+      "completed_at": "2026-05-04T15:02:58.544675+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3.8
     }
   ]
 }
