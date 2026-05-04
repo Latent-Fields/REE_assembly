@@ -14532,6 +14532,16 @@
     Loffler et al. 2018 (targeted_review_q_036) specifically supports the controllability
     non-dependence of unpleasantness. Lit pull specific to SD-019a (medial pathway fast
     component, ACC/insula unpleasantness encoding) is flagged as needed.
+  implementation_note: >
+    IMPLEMENTED 2026-05-04. LatentStackConfig.use_harm_un (bool, default False);
+    LatentStackConfig.harm_un_ema_alpha (float, default 0.2). Non-trainable EMA buffer
+    REEAgent._harm_un_ema maintained in agent.sense() on z_harm_s; populates
+    LatentState.z_harm_un. AIC urgency redirect (aic_z_norm reads z_harm_un.norm()
+    when use_harm_un=True) and E3 short-horizon urgency redirect (z_harm_a variable
+    shadowed by z_harm_un in select_action()). Controllability parity enforced:
+    SD-021 descending modulation only multiplies new_latent.z_harm, not z_harm_un
+    (Loffler 2018 three-way dissociation preserved). 184/184 contracts PASS with flag
+    OFF. Validation experiment: V3-EXQ-518 queued (dry-run PASS 2026-05-04; 9/9 UCs).
   location: docs/architecture/affect_primitives.md
 
 - id: SD-019b

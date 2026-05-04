@@ -781,7 +781,11 @@
       "implementation_hint": "Registered pre-implementation. Biological grounding via SD-019 targeted reviews (Price 2000, Rainville 1997, Woolf & Salter 2000, Craig 2003, Berthier 1988). Loffler et al. 2018 (targeted_review_q_036) specifically supports the controllability non-dependence of unpleasantness. Lit pull specific to S",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
-      "last_seen_session": "governance-2026-04-24T08:10"
+      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_status": "implemented",
+      "validation_experiment": "V3-EXQ-518",
+      "implemented_session": "implement-sd019a-2026-05-04",
+      "post_implementation_note": "2026-05-04: Implemented as non-trainable EMA buffer (alpha=0.2) on z_harm_s. LatentStackConfig.use_harm_un=False default. AIC and E3 urgency-signal consumers redirect to z_harm_un when enabled. Controllability parity confirmed (UC3 PASS): SD-021 descending mod does not touch z_harm_un. V3-EXQ-518 queued as substrate-readiness diagnostic (9-criterion dry-run PASS)."
     },
     {
       "sd_id": "SD-019b",
@@ -789,7 +793,6 @@
       "ready": false,
       "design_doc": null,
       "depends_on_unresolved": [
-        "SD-019a",
         "MECH-219",
         "Q-036"
       ],
