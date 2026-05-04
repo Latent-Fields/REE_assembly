@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-04.2 -->
+<!-- EXPLORER_VERSION: 2026-05-04.3 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2453,6 +2453,32 @@
     .process-chip.cyclic { background: #fff0df; color: #9b4d16; }
     .process-chip.recurrent { background: #e6eef7; color: #315f91; }
     .process-chip.single-week { background: #f3eee5; color: #6a6258; }
+    .process-chip.lifecycle-captured_only { background: #f2f0ea; color: #6a6258; }
+    .process-chip.lifecycle-dependency_referenced { background: #e5eef1; color: #2f6672; }
+    .process-chip.lifecycle-experiment_planned { background: #efe5f4; color: #6f3a85; }
+    .process-chip.lifecycle-substrate_implementation_active { background: #fff0df; color: #9b4d16; }
+    .process-chip.lifecycle-governance_evidence_bearing { background: #dff2ef; color: #2b6f72; }
+
+    .process-lifecycle-bars {
+      display: flex;
+      height: 26px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      margin-bottom: 8px;
+    }
+
+    .process-lifecycle-segment {
+      min-width: 2px;
+      height: 100%;
+    }
+
+    .process-lifecycle-segment.captured_only { background: #bbb5ab; }
+    .process-lifecycle-segment.dependency_referenced { background: #6f9aa3; }
+    .process-lifecycle-segment.experiment_planned { background: #8e5ea2; }
+    .process-lifecycle-segment.substrate_implementation_active { background: #b45a2a; }
+    .process-lifecycle-segment.governance_evidence_bearing { background: #2b6f72; }
 
     button.process-chip {
       border: 0;
@@ -4322,6 +4348,34 @@ END CONFLICT RESOLUTION`;
       return '';
     }
 
+    const PROCESS_LIFECYCLE_ORDER = [
+      'captured_only',
+      'dependency_referenced',
+      'experiment_planned',
+      'substrate_implementation_active',
+      'governance_evidence_bearing',
+    ];
+
+    function processLifecycleLabel(value) {
+      const labels = {
+        captured_only: 'Captured only',
+        dependency_referenced: 'Dependency-referenced',
+        experiment_planned: 'Experiment planned',
+        substrate_implementation_active: 'Substrate/implementation',
+        governance_evidence_bearing: 'Evidence-bearing',
+      };
+      return labels[value] || String(value || 'unknown').replace(/_/g, ' ');
+    }
+
+    function processLifecycleChip(value) {
+      const stage = value || 'unknown';
+      return processChipHtml(processLifecycleLabel(stage), `lifecycle-${stage}`);
+    }
+
+    function processLifecycleCount(counts, stage) {
+      return Number((counts || {})[stage] || 0);
+    }
+
     function renderProcessSignalCard(title, value, detail, meterValue, status) {
       const width = Math.max(0, Math.min(100, Number(meterValue || 0) * 100));
       return `
@@ -4355,8 +4409,8 @@ END CONFLICT RESOLUTION`;
           ${renderProcessSignalCard(
             'Horizon drift',
             driftStatus,
-            `claims ${processPercent(drift.claim_share)} | dependency edges ${processPercent(drift.dependency_share)}`,
-            Math.max(Number(drift.claim_share || 0), Number(drift.dependency_share || 0)),
+            `engineering ${processPercent(drift.engineering_claim_share)} | dependency edges ${processPercent(drift.dependency_share)}`,
+            Math.max(Number(drift.engineering_claim_share || 0), Number(drift.dependency_share || 0)),
             driftStatus
           )}
           ${renderProcessSignalCard(
@@ -4372,6 +4426,20 @@ END CONFLICT RESOLUTION`;
             `${processPercent(metrics.recurrent_hub_edge_share)} of recent dependency edges`,
             Number(metrics.recurrent_hub_edge_share || 0),
             Number(metrics.recurrent_hub_edge_share || 0) >= 0.40 ? 'watch' : 'stable'
+          )}
+          ${renderProcessSignalCard(
+            'Captured ideas',
+            `${Number(metrics.captured_claims || 0)} claims`,
+            `${processPercent(metrics.captured_claim_share)} of recent created claims`,
+            Number(metrics.captured_claim_share || 0),
+            'low'
+          )}
+          ${renderProcessSignalCard(
+            'Active work claims',
+            `${Number(metrics.active_work_claims || 0)} claims`,
+            `${processPercent(metrics.active_work_claim_share)} planned, substrate, or evidence-bearing`,
+            Number(metrics.active_work_claim_share || 0),
+            'stable'
           )}
           ${renderProcessSignalCard(
             'V3 closure share',
@@ -4404,6 +4472,33 @@ END CONFLICT RESOLUTION`;
         renderProcessClaimButton(claim.claim_id || '', processClassChipClass(claim.class || ''))
       )).join('');
       return `<div class="process-hub-list">${items || '<span class="meta">No source claims listed.</span>'}</div>`;
+    }
+
+    function renderProcessLifecycleSummary(counts) {
+      const total = PROCESS_LIFECYCLE_ORDER.reduce((sum, stage) => sum + processLifecycleCount(counts, stage), 0);
+      const segments = PROCESS_LIFECYCLE_ORDER.map(stage => {
+        const count = processLifecycleCount(counts, stage);
+        const width = total ? (count / total) * 100 : 0;
+        return `<div class="process-lifecycle-segment ${stage}" style="width:${width.toFixed(2)}%" title="${escapeHtml(processLifecycleLabel(stage))}: ${count}"></div>`;
+      }).join('');
+      const rows = PROCESS_LIFECYCLE_ORDER.map(stage => {
+        const count = processLifecycleCount(counts, stage);
+        const share = total ? count / total : 0;
+        return `
+          <tr>
+            <td>${processLifecycleChip(stage)}</td>
+            <td style="text-align:right">${count}</td>
+            <td style="text-align:right">${processPercent(share)}</td>
+          </tr>
+        `;
+      }).join('');
+      return `
+        <div class="process-lifecycle-bars">${segments}</div>
+        <table class="process-table">
+          <thead><tr><th>Lifecycle</th><th>Claims</th><th>Share</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
     }
 
     function renderProcessWeeklyRows(weeks) {
@@ -4444,6 +4539,7 @@ END CONFLICT RESOLUTION`;
           <td><button type="button" class="link-button" data-process-claim="${escapeHtml(target.claim_id || '')}"><code>${escapeHtml(target.claim_id || '')}</code></button></td>
           <td>${escapeHtml(target.title || '')}</td>
           <td>${processChipHtml(target.class || 'unknown', processClassChipClass(target.class || ''))}</td>
+          <td>${processLifecycleChip(target.lifecycle || 'captured_only')}</td>
           <td style="text-align:right">${Number(target.count || 0)}</td>
           <td style="text-align:right">${Number(target.week_count || 0)}</td>
           <td><code>${escapeHtml(target.component_id || '')}</code></td>
@@ -4452,8 +4548,8 @@ END CONFLICT RESOLUTION`;
       `).join('');
       return `
         <table class="process-table">
-          <thead><tr><th>Target</th><th>Title</th><th>Class</th><th>Recent deps</th><th>Weeks</th><th>SCC</th><th>Created claims using it</th></tr></thead>
-          <tbody>${rows || '<tr><td colspan="7" class="meta">No dependency targets available.</td></tr>'}</tbody>
+          <thead><tr><th>Target</th><th>Title</th><th>Class</th><th>Lifecycle</th><th>Recent deps</th><th>Weeks</th><th>SCC</th><th>Created claims using it</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="8" class="meta">No dependency targets available.</td></tr>'}</tbody>
         </table>
       `;
     }
@@ -4467,14 +4563,15 @@ END CONFLICT RESOLUTION`;
             <span class="process-claim-title">${escapeHtml(claim.title || '')}</span>
           </td>
           <td>${processChipHtml(claim.class || 'unknown', processClassChipClass(claim.class || ''))}</td>
+          <td>${processLifecycleChip(claim.lifecycle || 'captured_only')}</td>
           <td style="text-align:right">${Number(claim.depends_on_count || 0)}</td>
           <td>${renderProcessHubChips(claim.hub_targets || [], 7)}</td>
         </tr>
       `).join('');
       return `
         <table class="process-table">
-          <thead><tr><th>Created</th><th>Claim</th><th>Class</th><th>Deps</th><th>Associated hubs</th></tr></thead>
-          <tbody>${rows || '<tr><td colspan="5" class="meta">No recent created claims available.</td></tr>'}</tbody>
+          <thead><tr><th>Created</th><th>Claim</th><th>Class</th><th>Lifecycle</th><th>Deps</th><th>Associated hubs</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="6" class="meta">No recent created claims available.</td></tr>'}</tbody>
         </table>
       `;
     }
@@ -4488,6 +4585,7 @@ END CONFLICT RESOLUTION`;
           </td>
           <td><span class="process-claim-title">${escapeHtml(hub.title || '')}</span></td>
           <td>${processChipHtml(hub.class || 'unknown', processClassChipClass(hub.class || ''))}</td>
+          <td>${processLifecycleChip(hub.lifecycle || 'captured_only')}</td>
           <td style="text-align:right">${Number(hub.count || 0)}</td>
           <td style="text-align:right">${Number(hub.week_count || 0)}</td>
           <td>${renderProcessSourceChips(hub.source_claims || [], 7)}</td>
@@ -4495,8 +4593,8 @@ END CONFLICT RESOLUTION`;
       `).join('');
       return `
         <table class="process-table">
-          <thead><tr><th>Hub</th><th>Title</th><th>Class</th><th>Deps</th><th>Weeks</th><th>Created claims using it</th></tr></thead>
-          <tbody>${rows || '<tr><td colspan="6" class="meta">No recurrent hubs in the current window.</td></tr>'}</tbody>
+          <thead><tr><th>Hub</th><th>Title</th><th>Class</th><th>Lifecycle</th><th>Deps</th><th>Weeks</th><th>Created claims using it</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="7" class="meta">No recurrent hubs in the current window.</td></tr>'}</tbody>
         </table>
       `;
     }
@@ -4568,8 +4666,8 @@ END CONFLICT RESOLUTION`;
           <div>
             <h2 class="process-title">Claim Dependency Process</h2>
             <div class="process-meta">
-              Weekly claim creation is joined to direct dependency targets, recurrent load-bearing hubs, and SCC-collapsed components.
-              This separates active V3 closure work from horizon scope and makes repeated dependency pressure visible.
+              Weekly claim creation is joined to attention lifecycle, direct dependency targets, recurrent load-bearing hubs,
+              and SCC-collapsed components. Captured ideas are counted separately from claims drawing active work.
             </div>
           </div>
           <div class="process-meta" style="text-align:right">
@@ -4587,6 +4685,11 @@ END CONFLICT RESOLUTION`;
         </div>
 
         ${renderProcessSignalCards(recent)}
+
+        <div class="process-section">
+          <h3>Claim Attention Lifecycle</h3>
+          ${renderProcessLifecycleSummary((recent.metrics || {}).lifecycle_counts || {})}
+        </div>
 
         <div class="process-section">
           <h3>Weekly Claim Creation</h3>

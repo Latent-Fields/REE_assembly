@@ -24,8 +24,12 @@ ROOT = Path(__file__).resolve().parents[1]
 CLAIMS_PATH = ROOT / "docs" / "claims" / "claims.yaml"
 CLAIMS_GIT_PATH = "docs/claims/claims.yaml"
 EVIDENCE_PATH = ROOT / "evidence" / "experiments" / "claim_evidence.v1.json"
+SUBSTRATE_QUEUE_PATH = ROOT / "evidence" / "planning" / "substrate_queue.json"
+EXPERIMENT_PROPOSALS_PATH = ROOT / "evidence" / "planning" / "experiment_proposals.v1.json"
+V3_EXPERIMENT_QUEUE_PATH = ROOT.parent / "ree-v3" / "experiment_queue.json"
 OUT_PATH = ROOT / "docs" / "assets" / "data" / "claim_dependency_process.v1.json"
 CLAIM_ID_RE = re.compile(r"^-\s+id:\s*([A-Z]+-\d{3}[A-Za-z]?)", re.MULTILINE)
+CLAIM_TOKEN_RE = re.compile(r"\b(?:ARC|INV|MECH|Q|SD|IMPL)-\d{3}[A-Za-z]?\b")
 
 
 def run_git(args: list[str]) -> str:
@@ -147,6 +151,25 @@ def counter_dict(counter: Counter[Any]) -> dict[str, int]:
     return {str(k): int(v) for k, v in counter.most_common()}
 
 
+def load_json(path: Path) -> Any:
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text())
+
+
+def extract_claim_tokens(value: Any) -> set[str]:
+    tokens: set[str] = set()
+    if isinstance(value, str):
+        tokens.update(CLAIM_TOKEN_RE.findall(value))
+    elif isinstance(value, list):
+        for item in value:
+            tokens.update(extract_claim_tokens(item))
+    elif isinstance(value, dict):
+        for item in value.values():
+            tokens.update(extract_claim_tokens(item))
+    return tokens
+
+
 def main() -> None:
     claims = yaml.safe_load(CLAIMS_PATH.read_text())
     if not isinstance(claims, list):
@@ -159,6 +182,37 @@ def main() -> None:
     if EVIDENCE_PATH.exists():
         evidence_payload = json.loads(EVIDENCE_PATH.read_text())
         evidence = evidence_payload.get("claims", {}) if isinstance(evidence_payload, dict) else {}
+
+    substrate_queue_payload = load_json(SUBSTRATE_QUEUE_PATH)
+    substrate_queue_items = substrate_queue_payload.get("queue", []) if isinstance(substrate_queue_payload, dict) else []
+    substrate_target_ids: set[str] = set()
+    substrate_unblock_ids: set[str] = set()
+    for item in substrate_queue_items:
+        if not isinstance(item, dict):
+            continue
+        sd_id = item.get("sd_id")
+        if isinstance(sd_id, str):
+            substrate_target_ids.add(sd_id)
+        substrate_unblock_ids.update(
+            claim_id for claim_id in item.get("unblocks_claims", []) or [] if isinstance(claim_id, str)
+        )
+
+    experiment_planned_ids: set[str] = set()
+    proposals_payload = load_json(EXPERIMENT_PROPOSALS_PATH)
+    proposal_items = proposals_payload.get("items", []) if isinstance(proposals_payload, dict) else []
+    for item in proposal_items:
+        if not isinstance(item, dict):
+            continue
+        status = str(item.get("status", "")).lower()
+        if status in {"executed", "closed", "retired", "superseded", "cancelled"}:
+            continue
+        experiment_planned_ids.update(extract_claim_tokens(item))
+
+    v3_queue_payload = load_json(V3_EXPERIMENT_QUEUE_PATH)
+    if isinstance(v3_queue_payload, list):
+        experiment_planned_ids.update(extract_claim_tokens(v3_queue_payload))
+    elif isinstance(v3_queue_payload, dict):
+        experiment_planned_ids.update(extract_claim_tokens(v3_queue_payload))
 
     for claim_id, claim in by_id.items():
         if claim_id not in first_seen:
@@ -185,6 +239,7 @@ def main() -> None:
         deps = [dep for dep in claim.get("depends_on", []) or [] if dep in by_id]
         graph[claim_id] = deps
         edge_count += len(deps)
+    incoming_counts = Counter(dep for deps in graph.values() for dep in deps)
 
     components_raw = tarjan_scc(graph)
     components_raw.sort(key=lambda comp: (-len(comp), comp[0]))
@@ -226,9 +281,54 @@ def main() -> None:
             if src_comp != dst_comp:
                 component_edges.add((src_comp, dst_comp))
 
+    def claim_attention_for(claim_id: str) -> dict[str, Any]:
+        claim = by_id[claim_id]
+        ev = evidence.get(claim_id, {})
+        evidence_bearing = (
+            int(ev.get("genuine_exp_count", 0) or 0) > 0
+            or int(ev.get("entries_total", 0) or 0) > 0
+            or bool(ev.get("latest_run_id"))
+            or bool(ev.get("source_counts"))
+        )
+        dependency_referenced = incoming_counts[claim_id] > 0
+        experiment_planned = claim_id in experiment_planned_ids
+        substrate_active = (
+            claim_id in substrate_target_ids
+            or phase_for(claim) == "v3"
+            or claim.get("v3_pending") is True
+        )
+        if evidence_bearing:
+            lifecycle = "governance_evidence_bearing"
+        elif substrate_active:
+            lifecycle = "substrate_implementation_active"
+        elif experiment_planned:
+            lifecycle = "experiment_planned"
+        elif dependency_referenced:
+            lifecycle = "dependency_referenced"
+        else:
+            lifecycle = "captured_only"
+        return {
+            "lifecycle": lifecycle,
+            "attention_rank": {
+                "captured_only": 0,
+                "dependency_referenced": 1,
+                "experiment_planned": 2,
+                "substrate_implementation_active": 3,
+                "governance_evidence_bearing": 4,
+            }[lifecycle],
+            "dependency_referenced": dependency_referenced,
+            "incoming_dependency_count": int(incoming_counts[claim_id]),
+            "experiment_planned": experiment_planned,
+            "substrate_target": claim_id in substrate_target_ids,
+            "substrate_unblocked": claim_id in substrate_unblock_ids,
+            "substrate_active": substrate_active,
+            "evidence_bearing": evidence_bearing,
+        }
+
     def claim_digest(claim_id: str) -> dict[str, Any]:
         claim = by_id[claim_id]
         ev = evidence.get(claim_id, {})
+        attention = claim_attention_for(claim_id)
         return {
             "claim_id": claim_id,
             "title": claim.get("title", ""),
@@ -239,6 +339,7 @@ def main() -> None:
             "component_id": claim_to_component[claim_id],
             "evidence_quadrant": ev.get("evidence_quadrant"),
             "genuine_exp_count": int(ev.get("genuine_exp_count", 0) or 0),
+            **attention,
         }
 
     claim_rows = []
@@ -247,6 +348,7 @@ def main() -> None:
         "created_claim_ids": [],
         "class_counts": Counter(),
         "phase_counts": Counter(),
+        "lifecycle_counts": Counter(),
         "type_counts": Counter(),
         "status_counts": Counter(),
         "dependency_target_category_counts": Counter(),
@@ -263,6 +365,7 @@ def main() -> None:
         claim_phase = phase_for(claim)
         deps = graph.get(claim_id, [])
         ev = evidence.get(claim_id, {})
+        attention = claim_attention_for(claim_id)
         row = {
             "id": claim_id,
             "title": claim.get("title", ""),
@@ -280,6 +383,7 @@ def main() -> None:
             "dependency_components": sorted({claim_to_component[dep] for dep in deps}),
             "genuine_exp_count": int(ev.get("genuine_exp_count", 0) or 0),
             "evidence_quadrant": ev.get("evidence_quadrant"),
+            **attention,
         }
         claim_rows.append(row)
 
@@ -289,6 +393,7 @@ def main() -> None:
         bucket["created_claim_ids"].append(claim_id)
         bucket["class_counts"][claim_class] += 1
         bucket["phase_counts"][claim_phase] += 1
+        bucket["lifecycle_counts"][attention["lifecycle"]] += 1
         bucket["type_counts"][row["type"]] += 1
         bucket["status_counts"][row["status"]] += 1
         bucket["outdeps_total"] += len(deps)
@@ -313,6 +418,7 @@ def main() -> None:
             "avg_outdeps": round(item["outdeps_total"] / new_claims, 3) if new_claims else 0.0,
             "class_counts": counter_dict(item["class_counts"]),
             "phase_counts": counter_dict(item["phase_counts"]),
+            "lifecycle_counts": counter_dict(item["lifecycle_counts"]),
             "type_counts": counter_dict(item["type_counts"]),
             "status_counts": counter_dict(item["status_counts"]),
             "dependency_target_category_counts": counter_dict(item["dependency_target_category_counts"]),
@@ -349,6 +455,7 @@ def main() -> None:
             "claim_id": row["id"],
             "title": row["title"],
             "class": row["class"],
+            "lifecycle": row["lifecycle"],
             "phase": row["phase"],
             "status": row["status"],
             "first_seen_week": row["first_seen_week"],
@@ -419,10 +526,18 @@ def main() -> None:
             "status": row["status"],
             "phase": row["phase"],
             "class": row["class"],
+            "lifecycle": row["lifecycle"],
+            "attention_rank": row["attention_rank"],
             "first_seen_date": row["first_seen_date"],
             "first_seen_week": row["first_seen_week"],
             "component_id": row["component_id"],
             "depends_on_count": row["depends_on_count"],
+            "incoming_dependency_count": row["incoming_dependency_count"],
+            "experiment_planned": row["experiment_planned"],
+            "substrate_target": row["substrate_target"],
+            "substrate_unblocked": row["substrate_unblocked"],
+            "substrate_active": row["substrate_active"],
+            "evidence_bearing": row["evidence_bearing"],
             "hub_targets": hub_targets,
         })
 
@@ -438,8 +553,19 @@ def main() -> None:
         if component_by_id.get(claim_to_component[claim_id], {}).get("cyclic")
     )
     recent_class_counts = Counter(row["class"] for row in recent_claim_rows)
+    recent_lifecycle_counts = Counter(row["lifecycle"] for row in recent_claim_rows)
     recent_horizon_claim_count = (
         recent_class_counts.get("horizon_v4", 0) + recent_class_counts.get("horizon_v5", 0)
+    )
+    recent_horizon_engineering_claim_count = sum(
+        1
+        for row in recent_claim_rows
+        if row["class"] in {"horizon_v4", "horizon_v5"}
+        and (
+            row["experiment_planned"]
+            or row["substrate_active"]
+            or row["incoming_dependency_count"] >= 2
+        )
     )
     recent_v3_claim_count = recent_class_counts.get("active_v3_closure", 0)
     recent_horizon_dependency_edges = sum(
@@ -453,8 +579,15 @@ def main() -> None:
     top_target_share = round(top_target_count / recent_edge_count, 4) if recent_edge_count else 0.0
     cyclic_target_edge_share = round(cyclic_target_edge_count / recent_edge_count, 4) if recent_edge_count else 0.0
     horizon_claim_share = round(recent_horizon_claim_count / recent_new_claim_count, 4) if recent_new_claim_count else 0.0
+    horizon_engineering_claim_share = round(recent_horizon_engineering_claim_count / recent_new_claim_count, 4) if recent_new_claim_count else 0.0
     horizon_dependency_share = round(recent_horizon_dependency_edges / recent_edge_count, 4) if recent_edge_count else 0.0
     v3_claim_share = round(recent_v3_claim_count / recent_new_claim_count, 4) if recent_new_claim_count else 0.0
+    captured_claim_share = round(recent_lifecycle_counts.get("captured_only", 0) / recent_new_claim_count, 4) if recent_new_claim_count else 0.0
+    active_work_claim_count = sum(
+        recent_lifecycle_counts.get(key, 0)
+        for key in ("experiment_planned", "substrate_implementation_active", "governance_evidence_bearing")
+    )
+    active_work_claim_share = round(active_work_claim_count / recent_new_claim_count, 4) if recent_new_claim_count else 0.0
 
     churn_pressure_score = min(100, round(
         35 * top_target_share
@@ -481,9 +614,9 @@ def main() -> None:
 
     if recent_new_claim_count == 0:
         drift_status = "unknown"
-    elif horizon_claim_share >= 0.25 or horizon_dependency_share >= 0.15:
+    elif horizon_engineering_claim_share >= 0.12 or horizon_dependency_share >= 0.15:
         drift_status = "warning"
-    elif horizon_claim_share >= 0.10 or horizon_dependency_share >= 0.05:
+    elif horizon_engineering_claim_share >= 0.05 or horizon_dependency_share >= 0.05:
         drift_status = "watch"
     else:
         drift_status = "low"
@@ -506,6 +639,7 @@ def main() -> None:
             "largest_component_size": max((component["size"] for component in components), default=0),
             "class_counts": counter_dict(Counter(row["class"] for row in claim_rows)),
             "phase_counts": counter_dict(Counter(row["phase"] for row in claim_rows)),
+            "lifecycle_counts": counter_dict(Counter(row["lifecycle"] for row in claim_rows)),
         },
         "weeks": weeks,
         "components": components,
@@ -530,12 +664,19 @@ def main() -> None:
                 "v3_claim_share": v3_claim_share,
                 "horizon_claims": int(recent_horizon_claim_count),
                 "horizon_claim_share": horizon_claim_share,
+                "horizon_engineering_claims": int(recent_horizon_engineering_claim_count),
+                "horizon_engineering_claim_share": horizon_engineering_claim_share,
                 "horizon_dependency_edges": int(recent_horizon_dependency_edges),
                 "horizon_dependency_share": horizon_dependency_share,
+                "captured_claims": int(recent_lifecycle_counts.get("captured_only", 0)),
+                "captured_claim_share": captured_claim_share,
+                "active_work_claims": int(active_work_claim_count),
+                "active_work_claim_share": active_work_claim_share,
                 "recurrent_hub_edges": int(recurrent_edge_count),
                 "recurrent_hub_edge_share": recurrent_edge_share,
                 "top_target_edge_share": top_target_share,
                 "cyclic_target_edge_share": cyclic_target_edge_share,
+                "lifecycle_counts": counter_dict(recent_lifecycle_counts),
             },
             "churn_health": {
                 "status": churn_status,
@@ -548,8 +689,10 @@ def main() -> None:
             "horizon_drift": {
                 "status": drift_status,
                 "claim_share": horizon_claim_share,
+                "engineering_claim_share": horizon_engineering_claim_share,
                 "dependency_share": horizon_dependency_share,
                 "horizon_claims": int(recent_horizon_claim_count),
+                "horizon_engineering_claims": int(recent_horizon_engineering_claim_count),
                 "horizon_dependency_edges": int(recent_horizon_dependency_edges),
             },
             "top_dependency_targets": [
