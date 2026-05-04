@@ -1,0 +1,45 @@
+{
+  "run_id": "v3_exq_518_sd019a_20260504T150257Z",
+  "experiment_id": "v3_exq_518_sd019a_harm_unpleasantness_substrate_readiness",
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_id": "SD-019a",
+  "outcome": "PASS",
+  "started_at_utc": "2026-05-04T15:02:57.697133Z",
+  "completed_at_utc": "2026-05-04T15:02:57.970792Z",
+  "metrics": {
+    "uc0a": true,
+    "uc0b": true,
+    "uc1a": true,
+    "uc1b": true,
+    "uc1c": true,
+    "uc1d": true,
+    "norm_un_final": 0.5679290890693665,
+    "norm_s_final": 0.5740882158279419,
+    "uc2a": true,
+    "uc2b": true,
+    "norm_slow": 0.6581141948699951,
+    "norm_fast": 0.5720544457435608,
+    "uc3": true,
+    "norm_un_pre": 0.6134284138679504,
+    "norm_un_committed": 0.6283021569252014,
+    "norm_s_pre": 0.6624780297279358,
+    "norm_s_committed": 0.35091936588287354
+  },
+  "acceptance_checks": {
+    "PASS": true,
+    "required": [
+      "uc0a",
+      "uc0b",
+      "uc1a",
+      "uc1b",
+      "uc1c",
+      "uc1d",
+      "uc2a",
+      "uc2b",
+      "uc3"
+    ]
+  },
+  "substrate_sd": "SD-019a",
+  "notes": "Substrate readiness diagnostic for SD-019a harm_unpleasantness_channel. 4 arms: backward compat, EMA activation, alpha comparison + AIC redirect, controllability parity (Loffler 2018 constraint: z_harm_un not attenuated by SD-021)."
+}

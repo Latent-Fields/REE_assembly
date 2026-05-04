@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-04T21:04:38Z",
+  "last_review_utc": "2026-05-04T22:01:16Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2215,7 +2215,17 @@
     "v3_exq_514_sd049_phase_2_behavioural_validation_20260504T100649Z_v3",
     "v3_exq_518_sd019a_20260504T150257Z",
     "v3_exq_519_sd051_conditioned_safety_store_readiness_20260504T150326Z_v3",
-    "v3_exq_485a_sd033b_ofc_oracle_landing_20260504T150333Z_v3"
+    "v3_exq_485a_sd033b_ofc_oracle_landing_20260504T150333Z_v3",
+    "v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3",
+    "20260504T041122Z_v3",
+    "v3_exq_512a_sd048_comparator_gap_recalibrated_20260504T093916Z_v3",
+    "v3_exq_519a_sd051_conditioned_safety_store_readiness_20260504T210916Z_v3",
+    "v3_exq_520_sd052_contextual_safety_terrain_readiness_20260504T212029Z_v3",
+    "v3_exq_418e_sd016_diversification_loss_20260427T015954Z_v3",
+    "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T132505Z_v3",
+    "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T132543Z_v3",
+    "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T150341Z_v3",
+    "v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3"
   ],
   "discussion_notes": {
     "2026-04-27T14:11Z_governance": {
@@ -2311,6 +2321,22 @@
         "v3_exq_509_sd047_multi_source_substrate_readiness_20260503T103241Z_v3",
         "v3_exq_511_sd048_interoceptive_noise_substrate_readiness_20260503T113836Z_v3",
         "v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness_20260503T132415Z_v3"
+      ]
+    },
+    "2026-05-04T22:01Z_governance": {
+      "session": "governance-2026-05-04T2133Z",
+      "summary": "Walked 10 indexed pending + 1 runner-only ERROR. (1) V3-EXQ-517 (3 runs): dry-run contamination corrected -- 2 dry-run artifacts (T132505Z, T132543Z) and 1 real run with calibration gap (T150341Z: comparator window 5-step / drop_threshold=5% cannot detect healing rate 0.002/step -> max drop 0.010 below required 0.025). All 3 reclassified non_contributory. MECH-302 hold maintained; EXQ-517a with recalibrated comparator window to be queued. (2) V3-EXQ-510 (SD-047 / MECH-095 WOO_SPELKE branch): flat failure across all noise arms despite non-zero C4 gap; reclassified via EXQ-510 evidence note as non_contributory (substrate_ceiling_confirmation pattern). MECH-095 epistemic_category reclassification deferred to further analysis. (3) V3-EXQ-512a (SD-048): PASS at 3x noise confirms comparator wiring; non_contributory for SD-048 confidence (noise scale not default). (4) V3-EXQ-519a (SD-051 / MECH-303): diagnostic PASS, substrate wired; MECH-303 hold maintained. (5) V3-EXQ-520 (SD-052 / MECH-304): diagnostic PASS, substrate wired; MECH-304 hold maintained. (6) V3-EXQ-418e (SD-016): does_not_support on path-1 div_weight=0.5; EXQ-418f weight sweep (div_weight 1.0/2.0/5.0) queued as follow-up. (7) V3-EXQ-106 (MECH-219): non_contributory older re-run. (8) V3-EXQ-516 (EXQ-516 support probe): short run_id, previously covered by discussed_experiment_dirs V3-EXQ-516; run_id added to reviewed_run_ids. Runner-only: V3-EXQ-514a ERROR -- flagged for /diagnose-errors, NOT marked reviewed. Promotion/demotion: 6 pending_user holds applied (MECH-302, MECH-303, MECH-304, Q-036 narrowed to MECH-305, SD-048, SD-049). New claim MECH-305 registered (harm_stream.controllability_weighted_affective_load). Q-036 evidence_quality_note updated. claims.json and experiment index rebuilt. EXQ-418f weight sweep and EXQ-517a recalibrated comparator to be queued in follow-up session.",
+      "ids_marked": [
+        "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T132505Z_v3",
+        "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T132543Z_v3",
+        "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T150341Z_v3",
+        "v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3",
+        "v3_exq_512a_sd048_comparator_gap_recalibrated_20260504T093916Z_v3",
+        "v3_exq_519a_sd051_conditioned_safety_store_readiness_20260504T210916Z_v3",
+        "v3_exq_520_sd052_contextual_safety_terrain_readiness_20260504T212029Z_v3",
+        "v3_exq_418e_sd016_diversification_loss_20260427T015954Z_v3",
+        "v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3",
+        "20260504T041122Z_v3"
       ]
     }
   }

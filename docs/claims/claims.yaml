@@ -14691,6 +14691,10 @@
     remain untested. narrow_open_question appropriate: the controllability sub-question is
     now empirically settled; the broader variable set is open.
 
+    NARROWED 2026-05-04: controllability branch converted to candidate MECH-305
+    (harm_stream.controllability_weighted_affective_load). Q-036 remains open for
+    persistence, recovery failure, inescapability, and prediction-error variables.
+
 - id: INV-065
   title: proxy_goal_necessity
   claim_type: invariant
@@ -25053,3 +25057,79 @@
     validation PASS (conditioned-inhibition discriminative-pair gated
     by EXQ-517 PASS).
   location: evidence/literature/targeted_review_connectome_mech_303/
+
+- id: MECH-305
+  title: "z_harm_a requires a controllability-modulated weighting term beyond MECH-219 temporal hysteresis: perceived uncontrollability or inescapability amplifies the affective load integrator, while perceived controllability suppresses it. Biological locus is dorsal ACC, which integrates noxious stimulus input with controllability context and projects to the medial suffering pathway (ACC/insula, overlapping with salience network)."
+  claim_type: mechanism_hypothesis
+  subject: harm_stream.controllability_weighted_affective_load
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-04
+  depends_on:
+    - MECH-219   # temporal hysteresis integrator that MECH-305 extends
+    - SD-011     # dual nociceptive streams: z_harm_a is the stream being modulated
+    - SD-032     # salience-network coordinator: medial suffering pathway overlaps with salience network (De Ridder 2021)
+  functional_restatement: >
+    MECH-219 implements temporal hysteresis: z_harm_a accumulates harm
+    events over time and decays slowly. The Q-036 lit-pull (2026-04-20)
+    establishes this is necessary but not sufficient. Suffering has an
+    additional determinant -- perceived controllability or escapability
+    of the harm source.
+
+    MECH-305 asserts that z_harm_a's effective magnitude should be
+    gated or weighted by a controllability estimate: when harm is
+    perceived as controllable or escapable, the integrator's gain is
+    suppressed. When harm is perceived as uncontrollable or inescapable,
+    the gain is amplified. Biological evidence: Salomons 2004 (identical
+    stimuli produce different dorsal ACC/insula activation depending
+    solely on perceived controllability) and Loffler 2018 (three-way
+    behavioural dissociation: controllability reduces suffering but not
+    intensity or unpleasantness).
+
+    In REE substrate terms: the controllability estimate reads from
+    the agent's recent action-outcome history -- specifically, whether
+    attempted avoidance actions reliably reduce harm (high
+    controllability, gain suppressed) or fail to do so (low
+    controllability, gain amplified). This connects to SD-032 (salience
+    coordinator) because the medial suffering pathway overlaps with the
+    salience network, which already coordinates mode-switches (MECH-259).
+
+    Falsifiable: an REE substrate with MECH-305 enabled should show
+    higher z_harm_a values (and stronger avoidance urgency) when the
+    agent's avoidance actions have been persistently ineffective,
+    relative to an identically harmed agent whose avoidance actions
+    reliably work. MECH-305-ablated agents should be equally loaded
+    in both conditions (pure temporal integration).
+  notes: >
+    Registered 2026-05-04 by narrowing Q-036 (what additional variables
+    beyond temporal integration are required for z_harm_a as a distinct
+    load state?). Q-036 lit-pull identified controllability as the
+    strongest-evidenced variable. Q-036 remains open for persistence,
+    recovery failure, inescapability, and prediction error, which were
+    less directly isolated.
+
+    Implementation path: a sliding-window controllability estimate
+    (n_avoidance_actions_that_reduced_harm / n_avoidance_actions_attempted)
+    over recent episodes could serve as the gate. This may read from
+    SD-032 (salience coordinator already tracks action-outcome contingency
+    at coarse level via MECH-259 mode switch).
+
+    Second lit-pull recommended before implementation: inescapability /
+    learned helplessness (Maier & Watkins; Amat et al.) and pain
+    prediction error (Fazeli & Buchel 2018). Per biology-before-formal-
+    definitions protocol.
+  evidence_quality_note: |
+    Narrowed from Q-036 2026-05-04. Lit-pull anchors (targeted_review_q_036, 2026-04-20):
+    Salomons 2004 JNeurosci (fMRI n=16, controllability -> dorsal ACC/insula activation
+    change without stimulus change; conf=0.75, supports). Loffler 2018 Pain Reports
+    (behavioural, three-way dissociation intensity/unpleasantness/suffering; controllability
+    selectively reduces suffering; conf=0.72, supports). De Ridder 2021 Neurosci Biobehav
+    Rev (medial/lateral pathway dissociation; suffering pathway = salience network; acute-to-
+    chronic transition implicates inescapability; conf=0.70, supports). Aggregate lit_conf ~0.808
+    (three supports, zero weakens). No experimental evidence yet. Second lit-pull recommended
+    for inescapability (Maier & Watkins) and pain prediction error (Fazeli & Buchel) before
+    V3 implementation.
+  location: evidence/literature/targeted_review_q_036/

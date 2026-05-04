@@ -1,10 +1,16 @@
 # Pending Experiment Review
 
-Generated: `2026-05-04T21:05:23Z`  
-Last review: `2026-05-04T21:04:38Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-05-04T22:03:16Z`  
+Last review: `2026-05-04T22:01:16Z`  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
 
-All experiments reviewed. Nothing pending.
+## Needs discussion (ERROR / UNKNOWN / smoke)
+
+These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
+
+| Queue ID | Result | Script | Notes |
+|----------|--------|--------|-------|
+| `V3-EXQ-514a` | ERROR | `?` | ERROR |
 
 ---
 
