@@ -24205,8 +24205,48 @@
     Kidd & Hayden 2015), and developmental introduction order of
     motivational classes (Spelke developmental work, relevant for
     curriculum-hook downstream validation).
-  implemented_utc: "2026-05-03"
+  implemented_utc: "2026-05-04"
   implementation_note: >
+    SD-049 Phase 2 (hybrid identity-aware z_resource encoder; Option C per
+    2026-05-04 lit-pull verdict at confidence 0.78) IMPLEMENTED 2026-05-04.
+    Encoder-side follow-on to the SD-049 Phase 1 substrate (env-only)
+    landed 2026-05-03. Modules: ree-v3/ree_core/latent/stack.py
+    (ResourceEncoder identity_head + LatentState.identity_logits);
+    ree-v3/ree_core/utils/config.py (LatentStackConfig
+    use_identity_classifier + identity_classifier_n_types);
+    ree-v3/ree_core/agent.py (compute_resource_identity_loss);
+    ree-v3/ree_core/environment/causal_grid_world.py (info dict
+    sd049_consumed_type_tag_this_tick supervision target plumbing).
+    Encoder shape (Option C hybrid): shared trunk MLP producing 32-dim
+    z_resource (Schapiro 2017 monosynaptic-analog distributed substrate)
+    + identity-classifier head supervised by cross-entropy on
+    obs_dict["sd049_consumed_type_tag_this_tick"] (Ballesta-Padoa-Schioppa
+    2019 labeled lines + Quiroga 2005 sparse readouts + Schapiro 2017
+    trisynaptic-analog) + magnitude head reusing existing SD-018 pattern.
+    z_resource OUTPUT shape unchanged (32 dims) -- classifier shapes
+    trunk via training pressure; identity_logits exposed as separate
+    LatentState field for the loss term (avoids GoalState seeding
+    dim-mismatch a pure-concat instantiation would create). Backward
+    compatible: use_identity_classifier=False default; existing SD-015
+    experiments behave bit-identically. 7/7 preflight + 184/184 contracts
+    PASS with classifier OFF. Activation smoke 2026-05-04: classifier
+    instantiates, loss fires (~ln(3) at random init), backward succeeds,
+    target=0 skipping works. Env consumed-type plumbing verified.
+    Phased training (V3-EXQ-514 methodology, NOT a substrate requirement):
+    P0 joint trunk + classifier + prox heads; P1 freeze identity_head
+    requires_grad; P2 evaluate identity-recovery linear probe +
+    goal_resource_r + per-axis drive evolution per V3-EXQ-514 acceptance.
+    Validation experiment V3-EXQ-514 queued (estimated_minutes=90). PASS
+    = SD-049 Phase 2 validated; SD-015 promotable; SD-049 v3_pending may
+    be cleared. FAIL routes to verdict.md 6-row interpretation grid;
+    row 6 is the Woo/Spelke-style substrate-ceiling falsifier (joint
+    failure across ARM_2 + ARM_3 routes MECH-229 to substrate_conditional
+    with V4-1 multi-agent ecology dependency).
+    PHASE 3 DEFERRED: SD-032 consumer cascade (AIC/PCC/pACC/dACC/salience/
+    override/MECH-295 migrate to obs_dict["per_axis_drive"]) registered
+    in substrate_queue.json SD-049-PHASE-3 entry; action-trigger =
+    V3-EXQ-514 failure on SD-032-mediated pathway only.
+
     SD-049 Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 in
     ree-v3/ree_core/environment/causal_grid_world.py via flat kwargs on
     CausalGridWorld.__init__ (matching SD-022/SD-023/SD-029/SD-047/SD-048

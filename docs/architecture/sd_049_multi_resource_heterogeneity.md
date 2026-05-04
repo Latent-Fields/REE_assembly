@@ -6,10 +6,12 @@ nav_exclude: true
 
 **Claim ID:** SD-049
 **Subject:** `environment.multi_resource_heterogeneity`
-**Status:** IMPLEMENTED (Phase 1, env-only) -- 2026-05-03
+**Status:** IMPLEMENTED (Phase 2 hybrid encoder, encoder + Phase 1 env substrate) -- 2026-05-04
 **Registered:** 2026-05-03
-**Implemented (Phase 1):** 2026-05-03
-**Phase 2 (encoder identity expansion + SD-032 consumer cascade):** REGISTERED, not implemented. See substrate_queue.json SD-049 entry. Validation experiment for the full claim (V3-EXQ-514: goal_resource_r lift + identity-recovery probe + wanting != liking trajectory dissociation) lands after Phase 2.
+**Implemented (Phase 1, env-only):** 2026-05-03
+**Implemented (Phase 2 hybrid encoder):** 2026-05-04 (encoder side; Option C per verdict.md, lit-anchored at confidence 0.78)
+**Validation experiment:** V3-EXQ-514 queued 2026-05-04 (estimated_minutes=90). PASS clears Phase 2 + lifts SD-015 promotable; FAIL routes to verdict.md 6-row interpretation grid including the Woo/Spelke substrate-ceiling falsifier branch.
+**Phase 3 (SD-032 consumer cascade reading per_axis_drive directly):** REGISTERED in substrate_queue.json SD-049-PHASE-3 entry; action-triggered by V3-EXQ-514 failure on SD-032-mediated pathway only (not predicted by encoder-driven failure modes per verdict.md).
 **Origin:** Substrate-roadmap H-priority #2 (`docs/architecture/substrate_roadmap.md`).
 Trigger: the wanting/liking + identity-distinct-goal cohort (MECH-229, MECH-230,
 MECH-117, MECH-216, ARC-030, ARC-032, Q-030, SD-015) operates on a substrate
@@ -566,3 +568,167 @@ at step 1000. PASS = SD-049 substrate is calibrated and ready for
 Phase 2. FAIL on C0 -> bit-identical OFF guarantee broken; FAIL on
 C2c -> per-axis depletion not running; FAIL on CC1/CC2 -> curriculum
 hook miswired.
+
+**Phase 1 validation outcome (V3-EXQ-513):** PASS 13/13 on 2026-05-03.
+Substrate calibrated, Phase 2 unblocked.
+
+---
+
+## Phase 2 implementation note (2026-05-04)
+
+The encoder-side Phase 2 follow-on landed on 2026-05-04, anchored on the
+2026-05-04 lit-pull verdict
+(`evidence/literature/targeted_review_sd_049_encoder_identity_expansion/
+verdict.md`, **Option C hybrid at confidence 0.78**). The verdict
+recommendation: shared trunk MLP encoder + identity-classifier head
+(cross-entropy on `obs_dict["sd049_consumed_type_tag_this_tick"]`) +
+magnitude head (existing SD-018 `resource_prox_head` pattern preserved).
+
+### Implementation surface
+
+`ree-v3/ree_core/latent/stack.py` -- `ResourceEncoder` extended:
+
+```python
+class ResourceEncoder(nn.Module):
+    def __init__(self, world_obs_dim, z_resource_dim=32, hidden_dim=64,
+                 use_identity_classifier=False, n_resource_types=3):
+        super().__init__()
+        # Shared trunk (Schapiro 2017 monosynaptic-analog)
+        self.encoder = nn.Sequential(
+            nn.Linear(world_obs_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, z_resource_dim),
+        )
+        # Magnitude head (SD-018 pattern preserved)
+        self.resource_prox_head = nn.Sequential(
+            nn.Linear(z_resource_dim, 1),
+            nn.Sigmoid(),
+        )
+        # Identity-classifier head (Schapiro 2017 trisynaptic-analog readout;
+        # Ballesta-Padoa-Schioppa 2019 labeled-line per-type populations;
+        # Quiroga 2005 sparse explicit-code readouts)
+        if use_identity_classifier:
+            self.identity_head = nn.Linear(z_resource_dim, n_resource_types)
+        else:
+            self.identity_head = None
+
+    def forward(self, world_obs):
+        z_resource = self.encoder(world_obs)
+        resource_prox_pred_r = self.resource_prox_head(z_resource)
+        identity_logits = (
+            self.identity_head(z_resource)
+            if self.identity_head is not None
+            else None
+        )
+        return z_resource, resource_prox_pred_r, identity_logits
+```
+
+`ree-v3/ree_core/utils/config.py` -- `LatentStackConfig` gains:
+
+```python
+use_identity_classifier: bool = False
+identity_classifier_n_types: int = 3
+```
+
+`ree-v3/ree_core/agent.py` -- new `compute_resource_identity_loss` method:
+cross-entropy on `obs_dict["sd049_consumed_type_tag_this_tick"]` (1..n_types
+when consumption fired this tick; 0 otherwise -- skip supervision when 0).
+
+`ree-v3/ree_core/environment/causal_grid_world.py` -- env now caches the
+consumed-type tag BEFORE clearing the cell tag in the resource-consumption
+branch and surfaces it as `info["sd049_consumed_type_tag_this_tick"]`. This
+is the supervision target for the identity classifier; without this fix the
+training loop would never receive a non-zero target because the cell tag
+was being cleared before the info dict was built.
+
+### Design choice: trunk-output preservation rather than concat
+
+The verdict.md offered three Option-C instantiations: (1) shared-backbone-
+split-heads with `z_resource = concat(z_trunk, identity_softmax)`; (2)
+single-output-with-supervision (classifier as training-only auxiliary
+head); (3) two parallel encoders. The implementation chose **a hybrid of
+(1) and (2)**: identity_logits is exposed as a SEPARATE LatentState field
+(not concatenated into z_resource), preserving `z_resource_dim=32` so
+GoalState seeding (`z_goal_dim=32`) continues to work without a projection
+layer or dim-mismatch shim. The classifier head's gradient still shapes
+the trunk via the supervised cross-entropy loss (as in instantiation 1),
+but downstream consumers read just the trunk output (as in instantiation
+2). This is the minimum-cost realization of the Option-C hybrid that
+respects existing GoalState dim contracts.
+
+### Phased training (V3-EXQ-514 methodology)
+
+- **P0 (joint training):** enable `use_identity_classifier=True`; backprop
+  identity cross-entropy + resource_prox MSE + downstream task losses
+  through the trunk. Default 30 episodes per arm.
+- **P1 (frozen-classifier continuation):** freeze
+  `identity_head.requires_grad_(False)`; continue trunk training under
+  E1/E3/downstream task losses + resource_prox loss only. Default 10
+  episodes per arm. Trunk develops similarity structure beyond what
+  classifier supervision alone provides (Schapiro 2016 distributed
+  substrate development).
+- **P2 (evaluation):** measure goal_resource_r, identity-recovery linear-
+  probe accuracy, per-axis drive evolution. Default 15 episodes per arm.
+
+### Validation experiment (V3-EXQ-514) acceptance criteria
+
+10 pre-registered checks across the 4-arm sweep (ARM_0 OFF baseline /
+ARM_1 2-type / ARM_2 3-type default / ARM_3 5-type overshoot):
+
+- **C0 ARM_0 baseline replicates:** `goal_resource_r >= 0.06` (V3-EXQ-322a
+  baseline floor).
+- **C1a ARM_1 obs_dim:** 250 + 3*25 = 325.
+- **C1b ARM_1 classifier trains:** P0 last-quartile classifier loss
+  decreases relative to first-quartile / random-init (~ln(3) = 1.10).
+- **C2a ARM_2 obs_dim:** 325.
+- **C2b ARM_2 goal_resource_r target:** `goal_resource_r >= 0.5` (target
+  lift from EXQ-085x 0.066 baseline).
+- **C2c ARM_2 lift over ARM_0:** `goal_resource_r_arm2 - goal_resource_r_arm0
+  >= 0.2`.
+- **C2d ARM_2 identity-recovery:** linear-probe accuracy on z_resource >
+  0.6 (load-bearing signal per the verdict).
+- **C2e ARM_2 per-axis drive evolves:** peak drive > 0.02 (sanity matching
+  V3-EXQ-513 Phase 1 substrate readiness).
+- **C3a ARM_3 obs_dim:** 250 + 5*25 = 375.
+- **C3b ARM_3 classifier did fire:** P0 last-quartile loss > 0 (no crash
+  on 5-type config).
+
+PASS = all 10. PASS reading: SD-049 Phase 2 hybrid encoder validated.
+SD-015 promotable; SD-049 v3_pending may be cleared (pending governance
+review). FAIL maps to the 6-row interpretation grid in verdict.md
+including the Woo/Spelke-style substrate-ceiling falsifier branch (joint
+failure across ARM_2 AND ARM_3 with similar magnitude routes MECH-229 to
+substrate_conditional with V4-1 multi-agent ecology dependency).
+
+### Phase 3 follow-on (deferred)
+
+The SD-032 consumer cascade -- migrating AIC, PCC, pACC, dACC,
+salience-coordinator, override-regulator, MECH-295 liking-bridge from
+reading `goal_state._last_drive_level` (collapsed scalar) to reading
+`obs_dict["per_axis_drive"]` directly -- is registered in
+`substrate_queue.json` as the **SD-049-PHASE-3** entry. Action-trigger:
+V3-EXQ-514 failure on SD-032-mediated mode-switching pathway only. The
+encoder-driven failure modes documented in verdict.md (rows 1-5 of the
+falsifier grid) do not predict that the SD-032 cascade is the bottleneck;
+only the row-6 substrate-ceiling falsifier suggests it (and that branch
+routes to V4 rather than to Phase 3 anyway). The cascade is a cleanup-of-
+substrate-coverage refinement, not an acceptance-criterion prerequisite.
+
+### What this Phase does NOT settle
+
+1. The wanting != liking trajectory dissociation (MECH-229 primary
+   behavioural test) is not directly measured by V3-EXQ-514 acceptance
+   criteria. Identity-recovery + goal_resource_r lift are the proxies
+   the verdict commits to. A deeper MECH-229 behavioural test would
+   require a custom paradigm (agent prefers X while satiating on Y) and
+   is deferred to a follow-on EXQ post-V3-EXQ-514 PASS.
+2. Whether to use contrastive supervision on the trunk in addition to
+   the identity-classifier supervision. The verdict left this open;
+   Phase 2 lands without contrastive aux loss. If V3-EXQ-514 ARM_2
+   produces high identity-recovery but low goal_resource_r lift, this
+   is one Phase 2.5 refinement to consider.
+3. The SD-012 emergent-invariant `pending_substrate_reconfirmation` flag.
+   Phase 2 does not change SD-012's interface (drive_level scalar still
+   semantically meaningful via the combiner); whether the encoder change
+   re-opens SD-012-emergent invariants for reconfirmation is a governance
+   call deferred to the next governance cycle.

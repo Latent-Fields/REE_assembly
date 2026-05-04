@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-03T23:56:30Z",
+  "last_updated_utc": "2026-05-04T01:59:43Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2017,8 +2017,8 @@
     {
       "sd_id": "SD-049-PHASE-2",
       "title": "SD-049 Phase 2: z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavioural validation. Phase 2 of multi_resource_heterogeneity. Phase 1 (env-only substrate) landed 2026-05-03; Phase 2 lands the encoder upgrade and consumer cascade required for the FULL behavioural claim (goal_resource_r lift, identity-recovery probe, wanting != liking trajectory dissociation).",
-      "status": "phase_2_pending",
-      "ready": true,
+      "status": "phase_2_implemented",
+      "ready": false,
       "design_doc": "docs/architecture/sd_049_multi_resource_heterogeneity.md (Phase 1 implementation note section)",
       "depends_on_unresolved": [],
       "phase_2_scope": [
@@ -2042,7 +2042,9 @@
       "implementation_hint": "Edit ree-v3/ree_core/latent/stack.py ResourceEncoder to accept identity tag (one-hot or learned embedding) on the larger world_obs. Add identity-classifier aux head with phased training. Iterate SD-032 consumer files (ree_core/cingulate/ + ree_core/agent.py update_z_goal + ree_core/regulators/mech295_liking_bridge.py + override / salience / dACC / AIC / PCC / pACC consumers) to read obs_dict['per_axis_drive'] when SD-049 per-axis is on. Write V3-EXQ-514 script following the V3-EXQ-509 / V3-EXQ-513 4-arm sweep template, with phased training over the trained identity-aware z_resource and the wanting!=liking dissociation acceptance criterion as the load-bearing test.",
       "priority": 2,
       "added_session": "implement-substrate-sd049-2026-05-03T1203Z",
-      "last_seen_session": "governance-2026-05-03T2356Z"
+      "last_seen_session": "implement-substrate-sd049-phase-2-2026-05-04T0159Z",
+      "ready_blocked_by": "Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3 failure) routes MECH-229 to substrate_conditional with V4-1 dependency. SD-032 consumer cascade (Phase 3) tracked separately as SD-049-PHASE-3.",
+      "implementation_note": "SD-049 Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 in ree-v3/ree_core/latent/stack.py (ResourceEncoder identity_head + LatentState.identity_logits), ree-v3/ree_core/utils/config.py (LatentStackConfig use_identity_classifier + identity_classifier_n_types), ree-v3/ree_core/agent.py (compute_resource_identity_loss), and ree-v3/ree_core/environment/causal_grid_world.py (info dict sd049_consumed_type_tag_this_tick supervision target plumbing). Encoder shape: shared trunk MLP + identity-classifier head + magnitude head per Option C verdict, with z_resource OUTPUT shape preserved at 32 dims (identity_logits exposed as separate LatentState field rather than concatenated, avoiding GoalState dim-mismatch). Bit-identical OFF default; 7/7 preflight + 184/184 contracts PASS with classifier OFF. V3-EXQ-514 queued (estimated_minutes=90); 4-arm sweep with phased training P0 joint -> P1 freeze classifier -> P2 evaluate; 10 acceptance criteria covering goal_resource_r >= 0.5 in ARM_2 + identity-recovery linear-probe accuracy > 0.6 + per-axis drive evolution + ARM_3 5-type overshoot + ARM_0 baseline replication."
     },
     {
       "sd_id": "MECH-302",
@@ -2051,7 +2053,10 @@
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
-      "unblocks_claims": ["MECH-302", "MECH-303"],
+      "unblocks_claims": [
+        "MECH-302",
+        "MECH-303"
+      ],
       "failure_record": [
         {
           "run_id": "none -- new mechanism with no prior FAIL",
@@ -2067,6 +2072,26 @@
       "implemented_session": "implement-substrate-mech302-comparator-2026-05-04T0019Z",
       "priority": 1,
       "added_session": "implement-substrate-mech302-comparator-2026-05-04T0019Z"
+    },
+    {
+      "sd_id": "SD-049-PHASE-3",
+      "title": "SD-049 Phase 3: SD-032 consumer cascade reading per_axis_drive directly. Migrates AIC, PCC, pACC, dACC adaptive control, salience-coordinator, override-regulator, MECH-295 liking-bridge from reading goal_state._last_drive_level (collapsed scalar) to reading obs_dict['per_axis_drive'] directly when SD-049 per-axis is on. Completes the substrate cascade originally specified in the SD-049 design doc.",
+      "status": "phase_3_pending",
+      "ready": false,
+      "ready_blocked_by": "Action-triggered by V3-EXQ-514 failure on SD-032-mediated mode-switching pathway specifically. The encoder-driven failure modes documented in verdict.md (rows 1-5 of the falsifier grid) do not predict that the SD-032 cascade is the bottleneck; only row 6 substrate-ceiling falsifier suggests it (and that branch routes to V4 rather than to Phase 3 anyway). Cascade is a cleanup-of-substrate-coverage refinement, not an acceptance-criterion prerequisite.",
+      "design_doc": "docs/architecture/sd_049_multi_resource_heterogeneity.md (Phase 2 implementation note section, deferred Phase 3 follow-on)",
+      "depends_on_unresolved": [],
+      "phase_3_scope": [
+        "Migrate AIC (cingulate/aic_analog.py), PCC (cingulate/pcc_analog.py), pACC (cingulate/pacc_analog.py), dACC (cingulate/dacc.py), SalienceCoordinator (cingulate/salience_coordinator.py), BroadcastOverrideRegulator (regulators/broadcast_override.py), MECH295LikingBridge (regulators/mech295_liking_bridge.py) from reading goal_state._last_drive_level (collapsed scalar) to optionally reading obs_dict['per_axis_drive'] directly when SD-049 per-axis is on.",
+        "Each consumer's tick() function gains an optional per_axis_drive: Optional[Sequence[float]] kwarg. When non-None, the consumer can use the per-axis vector for its modulation; when None, falls back to the legacy scalar.",
+        "SD-012 emergent-invariant pending_substrate_reconfirmation flag may be triggered per the invariant-types governance rule when this Phase 3 lands -- the cascade changes how SD-012's drive_level interface is consumed across the cluster.",
+        "No new validation experiment required if Phase 3 is purely a refactor (no behavioural change); a regression run on V3-EXQ-514 may be sufficient to confirm bit-identical OFF and activation correctness."
+      ],
+      "unblocks_claims": [],
+      "implementation_hint": "Per-consumer migration order: start with MECH-295 liking-bridge (simplest -- reads scalar; can add per-axis if relevant); then salience-coordinator; then dACC; then AIC/PCC/pACC. Each consumer preserves bit-identical OFF when per_axis_drive is None or SD-049 per-axis is OFF. Test suite run after each consumer.",
+      "priority": 3,
+      "added_session": "implement-substrate-sd049-phase-2-2026-05-04T0159Z",
+      "last_seen_session": "implement-substrate-sd049-phase-2-2026-05-04T0159Z"
     }
   ]
 }
