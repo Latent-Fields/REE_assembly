@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-04.5 -->
+<!-- EXPLORER_VERSION: 2026-05-04.6 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9582,8 +9582,11 @@ END CONFLICT RESOLUTION`;
           const j = await pf.json();
           let ageLabel = '';
           if (j.cached_at) {
-            const ageSec = Math.max(0, Math.round((Date.now() / 1000) - j.cached_at));
-            ageLabel = ageSec < 60 ? ` (${ageSec}s ago)` : ` (${Math.round(ageSec / 60)}m ago)`;
+            const cachedAtMs = Date.parse(j.cached_at);
+            if (!Number.isNaN(cachedAtMs)) {
+              const ageSec = Math.max(0, Math.round((Date.now() - cachedAtMs) / 1000));
+              ageLabel = ageSec < 60 ? ` (${ageSec}s ago)` : ` (${Math.round(ageSec / 60)}m ago)`;
+            }
           }
           if (j.ok) {
             const dur = j.duration_s ? ` in ${j.duration_s.toFixed(1)}s` : '';
