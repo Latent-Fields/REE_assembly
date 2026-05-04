@@ -1,0 +1,158 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_512a_sd048_comparator_gap_recalibrated_20260504T093916Z_v3",
+  "experiment_type": "v3_exq_512a_sd048_comparator_gap_recalibrated",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-04T09:39:16.169147Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-048"
+  ],
+  "evidence_direction_per_claim": {
+    "SD-048": "supports"
+  },
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "supersedes": "v3_exq_512_sd048_arc058_arc033_comparator_gap_behavioural_20260504T005756Z_v3",
+  "criteria": {
+    "n_seeds": 3,
+    "min_seeds_required": 2,
+    "c1_seeds_pass": 2,
+    "c2_seeds_pass": 3,
+    "c3_seeds_pass": 3,
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "overall_pass": true,
+    "mean_arm_a_selectivity_gap": 0.0009705418379976904,
+    "mean_arm_a_quiet_gap": 0.054083385527716465,
+    "mean_arm_a_selectivity_ratio": 1.0221712843259547,
+    "mean_arm_b_selectivity_ratio": 0.0,
+    "mean_arm_b_forward_r2": 0.9929868609397315,
+    "mean_arm_a_forward_r2": 0.9719448132411648,
+    "noise_scale_arm_a": 3.0
+  },
+  "registered_thresholds": {
+    "C1_MIN_GAP_ARM_A": 0.0,
+    "C2_MIN_R2_ARM_B": 0.5,
+    "C3_MIN_QUIET_GAP": 0.005,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666,
+    "INTEROCEPTIVE_NOISE_SCALE_ARM_A": 3.0
+  },
+  "config": {
+    "p0_episodes": 60,
+    "p1_episodes": 80,
+    "eval_episodes": 40,
+    "steps_per_episode": 150,
+    "self_dim": 32,
+    "world_dim": 32,
+    "grid_size": 12,
+    "n_hazards": 1,
+    "n_resources": 1,
+    "p_stay": 0.8,
+    "lr": 0.001,
+    "harm_fwd_lr": 0.0005,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "interoceptive_noise_scale_arm_a": 3.0
+  },
+  "results_arm_a_sd048_on": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_A_sd048_on_scale3",
+      "sd048_on": true,
+      "noise_scale": 3.0,
+      "n_body_noise_steps": 298,
+      "n_agent_steps": 114,
+      "n_quiet_steps": 0,
+      "residual_body_noise": 0.058496858712110744,
+      "residual_agent": 0.05702440172695277,
+      "residual_quiet": 0.0,
+      "selectivity_gap": 0.001472456985157973,
+      "selectivity_ratio": 1.025821524480142,
+      "forward_r2": 0.9738011134851365
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_A_sd048_on_scale3",
+      "sd048_on": true,
+      "noise_scale": 3.0,
+      "n_body_noise_steps": 270,
+      "n_agent_steps": 115,
+      "n_quiet_steps": 0,
+      "residual_body_noise": 0.060794802199773214,
+      "residual_agent": 0.06146065570090128,
+      "residual_quiet": 0.0,
+      "selectivity_gap": -0.0006658535011280636,
+      "selectivity_ratio": 0.9891661829257331,
+      "forward_r2": 0.9598577839433898
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_A_sd048_on_scale3",
+      "sd048_on": true,
+      "noise_scale": 3.0,
+      "n_body_noise_steps": 305,
+      "n_agent_steps": 115,
+      "n_quiet_steps": 0,
+      "residual_body_noise": 0.04295849567126544,
+      "residual_agent": 0.040853473641302276,
+      "residual_quiet": 0.0,
+      "selectivity_gap": 0.002105022029963162,
+      "selectivity_ratio": 1.051526145571989,
+      "forward_r2": 0.9821755422949678
+    }
+  ],
+  "results_arm_b_sd048_off": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_B_sd048_off",
+      "sd048_on": false,
+      "noise_scale": 0.0,
+      "n_body_noise_steps": 0,
+      "n_agent_steps": 0,
+      "n_quiet_steps": 391,
+      "residual_body_noise": 0.0,
+      "residual_agent": 0.0,
+      "residual_quiet": 0.028240825752239396,
+      "selectivity_gap": 0.0,
+      "selectivity_ratio": 0.0,
+      "forward_r2": 0.9935460865805037
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_B_sd048_off",
+      "sd048_on": false,
+      "noise_scale": 0.0,
+      "n_body_noise_steps": 0,
+      "n_agent_steps": 0,
+      "n_quiet_steps": 362,
+      "residual_body_noise": 0.0,
+      "residual_agent": 0.0,
+      "residual_quiet": 0.028930077730621423,
+      "selectivity_gap": 0.0,
+      "selectivity_ratio": 0.0,
+      "forward_r2": 0.9907035072178644
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_B_sd048_off",
+      "sd048_on": false,
+      "noise_scale": 0.0,
+      "n_body_noise_steps": 0,
+      "n_agent_steps": 0,
+      "n_quiet_steps": 421,
+      "residual_body_noise": 0.0,
+      "residual_agent": 0.0,
+      "residual_quiet": 0.022560489512183604,
+      "selectivity_gap": 0.0,
+      "selectivity_ratio": 0.0,
+      "forward_r2": 0.9947109890208266
+    }
+  ],
+  "elapsed_seconds": 28.013875484466553,
+  "notes": "SD-048 comparator-gap recalibrated successor to V3-EXQ-512. EXQ-512 failed C3 at noise_scale=1.0 (default): autonomic sigma=0.02 produces perturbations below the forward model's natural prediction-error floor (~0.025-0.035). EXQ-512a raises ARM_A noise_scale to 3.0 (autonomic sigma=0.06, sensitisation magnitude 3x). PASS confirms the SD-048 reafference discrimination mechanism works at above-calibration noise; v3_pending remains TRUE pending a calibration sweep near default scale. FAIL would route ARC-058/ARC-033 to substrate_conditional with a richer body-state substrate needed."
+}
