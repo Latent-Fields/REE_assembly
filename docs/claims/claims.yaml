@@ -19433,7 +19433,14 @@
     MECH-263 functional signatures (devaluation sensitivity,
     perceptually-identical / task-distinct discrimination) remain
     deferred to a successor EXQ. Promotion to provisional requires that
-    successor.
+    successor. Oracle path landed 2026-05-04: OFCConfig.use_outcome_oracle
+    (default False) adds query_outcome() delegating to E2HarmSForward;
+    V3-EXQ-485a queued (6-sub-test UC6 round-trip: oracle output matches
+    e2_harm_s.forward() <1e-6 diff; AssertionError when disabled; reset()
+    clears caches; oracle_is_ready False by default; get_state() exposes
+    oracle diagnostics). The oracle path is the MECH-263 prospective query
+    substrate -- devaluation sensitivity and task-role discrimination
+    remain deferred to env-extension EXQs.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033c
   title: "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster."
@@ -20094,6 +20101,15 @@
     Registered pre-implementation. Aggregate support from two
     complementary entries in targeted_review_pfc_subdivision_architecture
     (Rudebeck & Murray confidence 0.83; Stalnaker et al confidence 0.80).
+    Specific-outcome oracle path landed 2026-05-04 (oracle substrate only;
+    behavioural signatures deferred): OFCAnalog.query_outcome() delegates
+    to E2HarmSForward via OFCConfig.use_outcome_oracle (default False);
+    bit-identical OFF. V3-EXQ-485a queued to confirm round-trip fidelity
+    (UC6 sub-tests A-E). This fulfills the structural prerequisite for
+    MECH-263 devaluation sensitivity and task-role discrimination; those
+    behavioural signatures still require env-extension EXQs (outcome
+    relabelling, task-distinct state pairs). v3_pending remains true pending
+    behavioural evidence.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: MECH-264
   title: "Frontopolar counterfactual-value tracking: SD-033e maintains, in parallel with SD-033c's chosen-option value signal, a running estimate of the value of unchosen alternatives. A switch-to-alternative decision is signalled when the counterfactual estimate exceeds the chosen estimate by a threshold-sensitive margin."
