@@ -1,0 +1,240 @@
+{
+  "experiment_type": "v3_exq_418i_sd016_divweight_sweep",
+  "run_id": "v3_exq_418i_sd016_divweight_sweep_20260504T221922Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-016"
+  ],
+  "claim_ids_tested": [
+    "SD-016"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260504T221922Z",
+  "supersedes": "V3-EXQ-418e",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_note": "SD-016 Path 1 div_weight sweep at 1.0/2.0/5.0 (all arms: writepath_mode=off, temperature_learnable=False). PASS = at least one weight above 0.5 breaks the uniform attention rail in all seeds AND produces a behavioural delta, confirming that Path 1 alone can establish cue-indexed retrieval given strong enough gradient pressure. FAIL on C1 with C2 PASS = the attention bottleneck is categorically in query selectivity, not slot orthogonality; Path 1 alone is insufficient regardless of weight. FAIL on C1 with C4 FAIL = substrate inconsistency. FAIL on C3 with C1+C2 PASS = slots differentiated and attention selective but cue_action_proj output still uninformative.",
+  "acceptance_checks": {
+    "C1_attn_breaks_uniform_any_arm": {
+      "pass": false,
+      "per_arm": {
+        "A1_div_1p0": false,
+        "A2_div_2p0": false,
+        "A3_div_5p0": false
+      },
+      "threshold": 2.65
+    },
+    "C2_slot_diversity_survives_all_arms": {
+      "pass": true,
+      "per_arm": {
+        "A1_div_1p0": true,
+        "A2_div_2p0": true,
+        "A3_div_5p0": true
+      },
+      "threshold": 0.1
+    },
+    "C3_behavioural_delta_above_0_20": {
+      "pass": false,
+      "best_arm": "A1_div_1p0",
+      "delta": 0.0,
+      "threshold": 0.2,
+      "a0_act_ent": 1.1052408294132121e-10,
+      "best_act_ent": 1.1052408294132121e-10
+    },
+    "C4_baseline_replicates_prior_fail": {
+      "pass": false,
+      "attn_entropy_mean": 2.7725881735483804,
+      "attn_floor": 2.65,
+      "slot_diversity_mean": 0.19930193159315324,
+      "slot_div_floor": 0.9
+    },
+    "overall_pass": false
+  },
+  "per_arm_summaries": {
+    "A0_baseline": {
+      "n_seeds": 3,
+      "slot_diversity_mean": 0.19930193159315324,
+      "slot_diversity_min": 0.19149818420410158,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 2.7725881735483804,
+      "attn_entropy_mean_min": 2.772588014602661,
+      "attn_entropy_seeds_pass": 0,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "A1_div_1p0": {
+      "n_seeds": 3,
+      "slot_diversity_mean": 0.9998309271099668,
+      "slot_diversity_min": 0.9998002737605324,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 2.772587776184082,
+      "attn_entropy_mean_min": 2.772587776184082,
+      "attn_entropy_seeds_pass": 0,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "A2_div_2p0": {
+      "n_seeds": 3,
+      "slot_diversity_mean": 0.9999328331129315,
+      "slot_diversity_min": 0.9999069400519753,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 2.772587855656942,
+      "attn_entropy_mean_min": 2.772587776184082,
+      "attn_entropy_seeds_pass": 0,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    },
+    "A3_div_5p0": {
+      "n_seeds": 3,
+      "slot_diversity_mean": 0.9999747125739104,
+      "slot_diversity_min": 0.9999618009508898,
+      "slot_diversity_seeds_pass": 3,
+      "attn_entropy_mean_mean": 2.772587855656942,
+      "attn_entropy_mean_min": 2.772587776184082,
+      "attn_entropy_seeds_pass": 0,
+      "action_class_entropy_mean": 1.1052408294132121e-10
+    }
+  },
+  "per_seed_results": [
+    {
+      "arm": "A0_baseline",
+      "diversification_weight": 0.0,
+      "seed": 42,
+      "slot_diversity": 0.19149818420410158,
+      "attn_entropy_mean": 2.7725882530212402,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A0_baseline",
+      "diversification_weight": 0.0,
+      "seed": 43,
+      "slot_diversity": 0.19831975301106775,
+      "attn_entropy_mean": 2.772588014602661,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A0_baseline",
+      "diversification_weight": 0.0,
+      "seed": 44,
+      "slot_diversity": 0.20808785756429038,
+      "attn_entropy_mean": 2.7725882530212402,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A1_div_1p0",
+      "diversification_weight": 1.0,
+      "seed": 42,
+      "slot_diversity": 0.9998002737605324,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A1_div_1p0",
+      "diversification_weight": 1.0,
+      "seed": 43,
+      "slot_diversity": 0.9998408728900056,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A1_div_1p0",
+      "diversification_weight": 1.0,
+      "seed": 44,
+      "slot_diversity": 0.9998516346793622,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A2_div_2p0",
+      "diversification_weight": 2.0,
+      "seed": 42,
+      "slot_diversity": 0.9999325288226828,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A2_div_2p0",
+      "diversification_weight": 2.0,
+      "seed": 43,
+      "slot_diversity": 0.9999590304641364,
+      "attn_entropy_mean": 2.772588014602661,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A2_div_2p0",
+      "diversification_weight": 2.0,
+      "seed": 44,
+      "slot_diversity": 0.9999069400519753,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A3_div_5p0",
+      "diversification_weight": 5.0,
+      "seed": 42,
+      "slot_diversity": 0.9999696038352947,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A3_div_5p0",
+      "diversification_weight": 5.0,
+      "seed": 43,
+      "slot_diversity": 0.9999927329355462,
+      "attn_entropy_mean": 2.772588014602661,
+      "action_class_entropy": 1.1052408294132121e-10
+    },
+    {
+      "arm": "A3_div_5p0",
+      "diversification_weight": 5.0,
+      "seed": 44,
+      "slot_diversity": 0.9999618009508898,
+      "attn_entropy_mean": 2.772587776184082,
+      "action_class_entropy": 1.1052408294132121e-10
+    }
+  ],
+  "thresholds": {
+    "attn_entropy_c1_threshold": 2.65,
+    "slot_diversity_c2_threshold": 0.1,
+    "action_entropy_c3_delta": 0.2,
+    "c4_attn_entropy_floor": 2.65,
+    "c4_slot_div_floor": 0.9
+  },
+  "params": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "p0_episodes": 20,
+    "p1_episodes": 40,
+    "steps_per_episode": 150,
+    "context_switch_every": 5,
+    "lambda_terrain": 0.1,
+    "lambda_cue_action": 0.5,
+    "eval_batch_size": 32,
+    "lr": 0.0001,
+    "arms": [
+      {
+        "label": "A0_baseline",
+        "div_weight": 0.0
+      },
+      {
+        "label": "A1_div_1p0",
+        "div_weight": 1.0
+      },
+      {
+        "label": "A2_div_2p0",
+        "div_weight": 2.0
+      },
+      {
+        "label": "A3_div_5p0",
+        "div_weight": 5.0
+      }
+    ],
+    "sd016_enabled": true,
+    "sd016_writepath_mode": "off",
+    "sd016_temperature_learnable": false,
+    "sws_enabled": false,
+    "rem_enabled": false,
+    "shy_enabled": false,
+    "dry_run": false
+  }
+}
