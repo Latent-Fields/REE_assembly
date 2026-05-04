@@ -11,12 +11,12 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "started_utc": "2026-05-04T10:06:49.202016Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-049": "weakens",
-    "SD-015": "supports",
-    "MECH-229": "non_contributory",
-    "MECH-230": "non_contributory"
+    "SD-049": "superseded",
+    "SD-015": "superseded",
+    "MECH-229": "superseded",
+    "MECH-230": "superseded"
   },
   "elapsed_seconds": 7978.840969085693,
   "n_seeds": 3,
@@ -369,5 +369,7 @@
     "C2d_probe_accuracy_floor": 0.6,
     "C2e_drive_peak_floor": 0.02
   },
-  "verdict_provenance": "REE_assembly/evidence/literature/targeted_review_sd_049_encoder_identity_expansion/verdict.md"
+  "verdict_provenance": "REE_assembly/evidence/literature/targeted_review_sd_049_encoder_identity_expansion/verdict.md",
+  "evidence_direction_note": "Superseded by V3-EXQ-514a 2026-05-04. The 7/10 FAIL was instrumentation, not architectural: (1) sparse contact rate (~8 identity samples per arm-seed for a 3-class probe -- the probe code \"<2 unique classes -> return 0.0\" guard fired silently); (2) goal_resource_r saturated at ~1.0 across all arms because cosine was measured at every step with z_goal seeded from z_resource -- structurally degenerate at per-step granularity; (3) classifier loss diverged at unit weight against much-larger E1/E3/prox losses. V3-EXQ-514a fixes all three: smaller env + more resources + no hazards + longer episodes for ~10x contact rate; neighborhood-dominant-type probe for dense sampling; classifier_loss_weight=0.1 for stable joint training. Per claim_ids rule, this manifest is excluded from confidence scoring; SD-015 \"supports\" direction is preserved for the historical record.",
+  "superseded_by": "v3_exq_514a_sd049_phase_2_behavioural_validation"
 }
