@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049_encoder_identity_expansion",
+  "entry_id": "2026-05-04_sd_049_hybrid_cls_schapiro2017",
+  "timestamp_utc": "2026-05-04T01:25:28Z",
+  "claim_ids_tested": ["SD-049", "SD-015", "MECH-229", "MECH-230"],
+  "source": {
+    "title": "Complementary learning systems within the hippocampus: a neural network modelling approach to reconciling episodic memory with statistical learning.",
+    "authors": ["Anna C Schapiro", "Nicholas B Turk-Browne", "Matthew M Botvinick", "Kenneth A Norman"],
+    "year": 2017,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0049"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The architectural-resolution paper for the labeled-line vs distributed-coding tension. Models the hippocampus as having TWO pathways with different computational roles: monosynaptic (entorhinal -> CA1 direct) supports statistical learning / similarity-preserving regularities; trisynaptic (entorhinal -> DG -> CA3 -> CA1) supports per-episode pattern separation / labeled-line-like specificity. This is direct biological licensing for OPTION C (hybrid) in the SD-049 verdict: a substrate with both a similarity-preserving distributed embedding pathway AND a labeled-line-like per-instance pathway. Source quality high (peer-reviewed Phil Trans, Schapiro/Norman/Botvinick lab triumvirate). Mapping fidelity strong: the architectural commitment is exactly what option C licenses. Transfer risk moderate -- model is hippocampus-internal architecture, REE encoder is a single MLP head, so the bi-pathway architecture would need to be re-instantiated at the encoder level rather than transplanted.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Option A choice produces strong per-cell pattern-separation (good for labeled-line / one-hot identity) but no similarity-preserving statistical-learning capacity. Predicted V3-EXQ-514 signature: high identity-recovery accuracy + low cross-cell-instance generalisation = trisynaptic-only failure mode in this paper's framework.",
+    "Option B choice produces strong similarity-preserving distributed coding but loses per-instance specificity. Predicted signature: low identity-recovery + good similarity-structure inferences = monosynaptic-only failure mode. The wanting/liking dissociation MECH-229 cares about may pass on similarity grounds but fail on identity-recovery.",
+    "Option C hybrid licensed by this paper would predict that BOTH signatures pass: high identity-recovery + similarity structure preserved. The architecture is biologically grounded in two known anatomical pathways. If V3-EXQ-514 ARM_2 fails on either dimension, the architecture may need explicit two-head implementation rather than a single z_resource encoder."
+  ],
+  "tags": ["sd_049", "sd_015", "mech_229", "mech_230", "hippocampus", "complementary_learning_systems", "hybrid_architecture", "schapiro", "monosynaptic", "trisynaptic"],
+  "mapping": {
+    "source_claim_statement": "A neural network model instantiating known properties of hippocampal projections shows that the trade-off between learning episodes (per-instance specificity) and learning regularities (similarity-preserving statistical structure) can be handled by separate anatomical pathways within the hippocampus. The monosynaptic pathway (entorhinal cortex -> CA1 direct) supports statistical learning by allowing distributed similarity-preserving representations to develop. The trisynaptic pathway (entorhinal -> dentate gyrus -> CA3 -> CA1) supports per-episode pattern separation through DG sparsification and CA3 recurrence. Apparent representations of regularities emerge from the trisynaptic side via associative reactivation through recurrence, but the specialized statistical-learning pathway is monosynaptic.",
+    "ree_translation": "The biological architecture for reconciling labeled-line per-instance coding (option A) with distributed similarity-preserving coding (option B) is to have BOTH pathways. SD-049 option C hybrid is the direct architectural translation: a one-hot identity-classifier head supervised on resource-type tags (analog of trisynaptic pattern separation), backed by a distributed learned embedding that develops similarity structure across types (analog of monosynaptic statistical-learning pathway). The two pathways share input but produce different read-outs serving different computational roles. REE z_resource encoder under option C would have an identity-classifier head AND a similarity-rich embedding component, with downstream consumers reading whichever fits their needs.",
+    "mapping_caveat": "The Schapiro model is anatomically specific to hippocampus (DG, CA3, CA1, entorhinal). REE's z_resource encoder is a single MLP head, not a recurrent multi-pathway network. The architectural primitive (have two complementary pathways) transfers, but the specific anatomical instantiation does not. A clean Phase 2 implementation of option C would need to commit to what 'two pathways' means at the encoder layer -- e.g. shared backbone with separate identity-classifier and embedding heads, vs entirely independent encoders. Phase 2 design needs to make this explicit.",
+    "source_context": "Computational neural-network model of hippocampal subfields trained on sequences exhibiting community structure; comparison of monosynaptic-only, trisynaptic-only, and full-circuit ablations; mapping of network behaviour to fMRI findings from the Schapiro 2016 paper (cross-tag entry)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "The Schapiro/Norman/Botvinick collaboration is canonical for CLS modeling, and this paper provides the architectural resolution of the labeled-line vs distributed-coding tension that runs through the rest of the slate. Mapping fidelity strong because the option-C hybrid REE wants to license is precisely the bi-pathway architecture this paper instantiates. Transfer risk modest because the architectural primitive is general."
+  }
+}

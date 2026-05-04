@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049_encoder_identity_expansion",
+  "entry_id": "2026-05-04_sd_049_sparse_identity_quiroga2005",
+  "timestamp_utc": "2026-05-04T01:25:28Z",
+  "claim_ids_tested": ["SD-049", "SD-015", "MECH-229"],
+  "source": {
+    "title": "Invariant visual representation by single neurons in the human brain.",
+    "authors": ["R Quian Quiroga", "L Reddy", "G Kreiman", "C Koch", "I Fried"],
+    "year": 2005,
+    "venue": "Nature",
+    "doi": "10.1038/nature03687"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical paper. Single-unit human MTL recordings. Direct evidence that biological identity coding can be sparse and explicit at the single-unit readout level. Nature publication, Caltech + UCLA epilepsy patient series. The mapping to z_resource is partial: this is the readout end of the system, not the substrate that produces it. Confidence weighted toward source quality (peer review, replicability, large neuron yield) but reduced for transfer risk: the human MTL paradigm is visual-identity invariance, not goal/resource-identity in a rodent-grid-world analog. Mapping fidelity is moderate -- 'sparse explicit code' is the relevant architectural signature for option A, but the substrate that produces it is almost certainly distributed (cf. Schapiro 2016/2017 cross-tag).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the SD-049 z_resource encoder produces sparse identity-like activation (option A: one-hot slot + magnitude), the structural-readout signature this paper documents is what the validation experiment should look for: high response selectivity at one type per unit, low across-type generalisation. Failure to find this signature with option A indicates the encoder is not learning the supervision target.",
+    "Concept cells in this paper fired even to letter strings of the named individual -- the identity code is amodal. If REE's z_resource fails to generalise across e.g. food-the-cell vs food-the-spatial-bias, option A's labeled-line architecture is too rigid to capture this and option B/C's similarity-preserving embedding is structurally the right move."
+  ],
+  "tags": ["sd_049", "sd_015", "mech_229", "identity_coding", "sparse_coding", "mtl", "concept_cells"],
+  "mapping": {
+    "source_claim_statement": "A subset of human MTL neurons fires selectively to strikingly different pictures of given individuals, landmarks or objects (and in some cases letter strings of the names), suggesting an invariant, sparse and explicit code that may be important for transforming complex visual percepts into long-term memory.",
+    "ree_translation": "Biological identity coding can be sparse-and-explicit at the single-unit readout level, supporting an architectural option where z_resource carries identity as a one-hot-like signal (SD-049 option A: one-hot identity slot concatenated with magnitude latent). The paper does not adjudicate whether the upstream substrate that produces these sparse readouts is itself sparse or distributed -- but it establishes that the read-out end of an identity-coding system can be sparse, which is the relevant precedent for option A's supervision target choice.",
+    "mapping_caveat": "Cross-domain transfer risk: Quiroga et al. record from human visual MTL during recognition of identity-bearing visual stimuli; SD-049 is goal-identity coding for resource types in a rodent-style grid world. The 'sparse explicit code' signature is at the read-out / decoded end, not the encoder's representation. The encoder substrate may itself be distributed (Schapiro 2016) and concept cells may be downstream readouts. This paper supports option A's architectural plausibility, NOT its biological dominance over option B's distributed substrate.",
+    "source_context": "Single-unit recordings from the human medial temporal lobe in 8 epilepsy patients undergoing pre-surgical evaluation; 993 single units; visual stimuli of well-known individuals, landmarks, and animals."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (Nature, replicated multiple times). Moderate mapping fidelity: the architectural signature (sparse explicit code) does map onto option A's design but at the readout end, not the encoder substrate. Substantial transfer risk: visual identity in human MTL vs goal-resource identity in REE grid-world rodent analog -- the supporting role for option A is partial."
+  }
+}

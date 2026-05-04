@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049_encoder_identity_expansion",
+  "entry_id": "2026-05-04_sd_049_temporal_community_schapiro2016",
+  "timestamp_utc": "2026-05-04T01:25:28Z",
+  "claim_ids_tested": ["SD-049", "SD-015", "MECH-229", "MECH-230"],
+  "source": {
+    "title": "Statistical learning of temporal community structure in the hippocampus.",
+    "authors": ["Anna C Schapiro", "Nicholas B Turk-Browne", "Kenneth A Norman", "Matthew M Botvinick"],
+    "year": 2015,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22523"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct evidence that hippocampus learns higher-order temporal community structure in a way that requires sensitivity to overlapping associations -- i.e. distributed similarity-preserving codes, not labeled-line per-item codes. The community-structure paradigm has no per-transition variance in transition probability, so the regularity is genuinely higher-order and cannot be captured by labeled lines alone. Strong evidence WEAKENING option A's labeled-line-only architecture and supporting option B's learned similarity-preserving embedding. Source quality high (Schapiro lab, peer-reviewed Hippocampus, replicated in 2017 modeling paper). Mapping fidelity moderate -- the paradigm is sequential item exposure with community-graph transition structure, not goal-resource identity in a grid world, but the architectural primitive (distributed similarity-preserving substrate) transfers cleanly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If option A is chosen and ARM_2 fails to produce wanting != liking trajectory dissociation despite passing identity-recovery, the failure mode is the absent similarity structure -- option A's one-hot slot cannot represent that food and water are both consummatory while novelty is not. The structural prediction this paper licenses is that representations of types within the same superordinate category (consummatory) should be closer than across-category types (consummatory vs novelty). Option A cannot produce that structure; option B and option C can. If V3-EXQ-514 ARM_2 fails wanting!=liking with option A, the recommendation is to upgrade to option C hybrid.",
+    "If hippocampus is modulating z_resource through the upstream replay path, the substrate that reaches z_resource is distributed-and-similarity-preserving regardless of whether z_resource ITSELF is one-hot or embedding. This may produce silent failures with option A: identity recovers fine, but the similarity-rich upstream signal is lost at the encoder bottleneck."
+  ],
+  "tags": ["sd_049", "sd_015", "mech_229", "mech_230", "hippocampus", "statistical_learning", "community_structure", "distributed_coding", "schapiro"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus is sensitive to higher-order temporal community structure, as revealed by its representations, activity dynamics, and connectivity with other regions. Subjects exposed to sequences of items where transitions follow a community-graph structure (no variance in transition probability) develop hippocampal representations whose similarity structure mirrors the underlying community grouping. This is a sophisticated form of statistical learning that requires sensitivity to overlapping associations -- inconsistent with labeled-line per-item codes.",
+    "ree_translation": "Hippocampus -- and by extension, distributed cortical-hippocampal substrates that REE's encoder pipeline depends on -- represents stimulus identity in a similarity-preserving distributed embedding, not as labeled-line per-item codes. SD-049 z_resource encoding 3 resource types in a similarity-rich way (food and water both consummatory; novelty distinct) is biologically natural under option B's learned embedding architecture. Option A's one-hot identity slot CANNOT represent this similarity structure, full stop -- it represents identities as orthogonal axes by construction. If REE wants similarity-rich identity coding, option B is the structural fit. If REE only wants identity-discriminability, option A suffices.",
+    "mapping_caveat": "The Schapiro paradigm is sequential item presentation with a community-graph transition structure -- a higher-order statistical regularity that REE's grid-world resource encounter pattern does not directly replicate. The architectural primitive (distributed similarity-preserving substrate) transfers, but the specific kind of regularity hippocampus learns in this paradigm is not the regularity z_resource needs to learn. z_resource needs to learn 'what type is at the cell' (a labeling task), while Schapiro's hippocampus learns 'which items co-occur' (a graph-structure task). These are different inferential targets. Option A may suffice for the labeling task even if option B is structurally more biologically faithful.",
+    "source_context": "Human fMRI; subjects exposed to sequences of fractal images organised on a community graph; 4-day exposure protocol; pattern analysis on hippocampus and connectivity to MTL cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (Schapiro lab, peer reviewed, replicated in 2017 modeling paper). Mapping fidelity moderate because the paradigm is statistical-learning-of-graph-structure, not identity-labeling -- the architectural primitive transfers but the specific learning task does not. Transfer risk substantial because the human-fMRI-fractal paradigm is far from REE's grid-world rodent-analog setting. The structural argument (similarity-preserving substrate is the biological default in MTL/hippocampus) is what carries weight here, not the specific empirical finding."
+  }
+}

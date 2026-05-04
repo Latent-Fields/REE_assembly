@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049_encoder_identity_expansion",
+  "entry_id": "2026-05-04_sd_049_class_collapse_levi2021",
+  "timestamp_utc": "2026-05-04T01:25:28Z",
+  "claim_ids_tested": ["SD-049", "SD-015"],
+  "source": {
+    "title": "Rethinking preventing class-collapsing in metric learning with margin-based losses",
+    "authors": ["Elad Levi", "Tete Xiao", "Xiaolong Wang", "Trevor Darrell"],
+    "year": 2021,
+    "venue": "ICCV 2021 (also arXiv 2006.05162)",
+    "doi": "10.48550/arXiv.2006.05162",
+    "url": "https://arxiv.org/abs/2006.05162"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "ENGINEERING COUNSEL ONLY -- not architectural authority. The paper proves theoretically that under reasonable noise assumptions, margin-based metric-learning losses tend to project all samples of a class onto a single point, regardless of intra-class structure ('class collapse'). This is a documented failure mode of learned-embedding training in multi-class settings, directly applicable to the option-B / option-C training risk for SD-049 Phase 2. Confidence at 0.74 because the paper is ML/DL not biological -- it speaks to engineering hazards under option B, not to whether option B is biologically correct. ICCV 2021 acceptance gives it peer-review weight as engineering counsel.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Class collapse: under triplet-style or contrastive losses with reasonable noise assumptions, all samples of one class project to a single point in embedding space, regardless of within-class diversity. For SD-049 Phase 2 under option B, this would manifest as: novelty cells with high familiarity and low familiarity collapsing to the same z_resource, even though the agent's behavioural response should differ.",
+    "Mitigation: each sample selects its nearest same-class counterpart in batch as positive element rather than averaging across positives. This is a non-trivial training-loop modification; if Phase 2 picks option B without implementing it, class collapse is the likely failure mode at V3-EXQ-514.",
+    "Architectural counter-evidence to option B / option C: if the engineering hazard of class-collapse cannot be mitigated within the Phase 2 timeline, option A (one-hot, deterministic, no training loop) becomes the engineering-conservative default."
+  ],
+  "tags": ["sd_049", "sd_015", "metric_learning", "class_collapse", "ml_engineering", "embedding_collapse", "phased_training"],
+  "mapping": {
+    "source_claim_statement": "Under reasonable noise assumptions, prevalent embedding losses in metric learning -- such as triplet loss and contrastive loss with margin -- tend to project all samples of a class with various modes onto a single point in the embedding space, resulting in a class collapse that renders the embedding ill-sorted for fine-grained classification or retrieval. The authors propose an adaptive sampling modification where each sample selects its nearest same-class counterpart in a batch as the positive element, allowing multiple sub-clusters per class.",
+    "ree_translation": "If SD-049 Phase 2 chooses option B (learned embedding) or option C (hybrid with embedding component), the canonical training-loop hazard is class collapse: the encoder collapses all instances of e.g. 'novelty' cells to the same point in embedding space, losing the within-type structure (familiar novelty vs unfamiliar novelty). This is the engineering counterpart of the EXQ-166b/c/d historical pattern Phase 2's phased-training protocol must defend against. Under option A (one-hot identity slot + magnitude), there is no embedding to collapse -- the architecture is collapse-immune by construction. Under option B/C, the Phase 2 training loop must include explicit anti-collapse mechanisms (adaptive sampling, regularisation, or supervised auxiliary losses).",
+    "mapping_caveat": "ENGINEERING COUNSEL, NOT ARCHITECTURAL AUTHORITY (per the implement-substrate skill rule on Layer 7). This paper does not say anything about whether biological identity coding is sparse or distributed -- it only says that learned-embedding training is fragile in specific known ways. The verdict cannot use this paper to argue against option B as a biological architecture; it can only use it to argue that option B's Phase 2 implementation cost is higher than option A's because of training-loop hazards.",
+    "source_context": "ML/DL paper; ICCV 2021 (peer-reviewed) plus arXiv preprint 2006.05162. Fine-grained image retrieval benchmarks (e.g. CUB, Cars-196). Metric learning context: train an embedding to make same-class items close and different-class items far apart. Failure mode demonstrated theoretically and empirically with intra-class diversity."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.50,
+    "notes": "ICCV 2021 is a top-tier peer-reviewed CV venue. Mapping fidelity moderate because the failure mode (class collapse in metric learning) is one of several training hazards REE Phase 2 may face -- it is not the only one, and not all of them apply to all option-B implementations. Transfer risk substantial: this is engineering counsel, not biological evidence, and it should never override a biologically-grounded architectural choice. It is included as a Phase 2 implementation hazard to defend against, not as an argument against any particular architecture."
+  }
+}

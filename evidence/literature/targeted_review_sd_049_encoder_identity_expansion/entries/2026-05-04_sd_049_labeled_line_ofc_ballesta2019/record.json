@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049_encoder_identity_expansion",
+  "entry_id": "2026-05-04_sd_049_labeled_line_ofc_ballesta2019",
+  "timestamp_utc": "2026-05-04T01:25:28Z",
+  "claim_ids_tested": ["SD-049", "SD-015", "MECH-229", "MECH-230"],
+  "source": {
+    "title": "Economic Decisions through Circuit Inhibition.",
+    "authors": ["Sebastien Ballesta", "Camillo Padoa-Schioppa"],
+    "year": 2019,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2019.09.027"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Direct single-unit OFC recording in macaque during economic choice. Shows OFC encodes good identities and values in juice-based 'labeled lines' -- distinct neural populations encode distinct juice identities. This is THE most architecturally direct evidence for option A's labeled-line / one-hot identity coding at the OFC level. Confidence high on source quality (Padoa-Schioppa lab, peer-reviewed Curr Biol). Mapping fidelity strong: 'good identity' in this paper maps cleanly onto SD-049's resource-type identity. Transfer risk moderate -- macaque OFC vs REE substrate, but the architectural primitive (per-juice-identity neural populations) is the cleanest precedent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If option A wins (one-hot slot identity coding) and ARM_2 still fails to produce goal_resource_r >= 0.5 at V3-EXQ-514, the labeled-line architecture is not the bottleneck -- check identity-classifier head training (P0 phase) and the supervision signal quality, not the architectural choice.",
+    "If labeled-line representation produces brittle generalisation across distinct grid configurations of the same type, REE may need to add the similarity-preserving layer that Schapiro 2016 substrate requires (i.e. fall back to option C hybrid)."
+  ],
+  "tags": ["sd_049", "sd_015", "mech_229", "mech_230", "ofc", "labeled_lines", "identity_coding", "padoa_schioppa"],
+  "mapping": {
+    "source_claim_statement": "OFC neurons recorded during sequential-offer juice choice encoded good identities and values in a juice-based representation (labeled lines). Distinct neural populations encoded distinct juice identities; values within each identity were encoded by neurons of that population. Decisions appear to involve circuit inhibition, where each offer value indirectly inhibits neurons encoding the opposite choice outcome.",
+    "ree_translation": "OFC's biological architecture for encoding distinct outcome identities is labeled-line: one population per identity, with within-population coding of value/magnitude on top. This is the precise architectural signature SD-049 option A proposes: one-hot identity slot (the labeled line) concatenated with magnitude latent (the within-line value coding). The Ballesta-Padoa-Schioppa finding is the cleanest direct biological precedent for option A in the cohort of papers reviewed here.",
+    "mapping_caveat": "Mapping fidelity is high but not perfect. (1) OFC labeled-line populations may emerge from a distributed substrate upstream (Schapiro 2016 / Howard 2015 cross-tag) rather than being substrate-level labeled lines. (2) The juice-based representation in this paper is task-locked: the animal has been trained on these specific juice options. SD-049's defaults (food / water / novelty) are categorically distinct in a way the trained-juice paradigm is not. (3) The decision mechanism (circuit inhibition) is not what z_resource implements -- z_resource is a pre-decision identity representation, not the choice-resolution mechanism. The architectural primitive that transfers is the separate-population-per-identity claim, not the inhibition mechanism.",
+    "source_context": "Single-unit recording in OFC (areas 11/13) of two macaques choosing between two juices presented sequentially in a delayed match-to-sample paradigm. Compared firing patterns across simultaneous-offer and sequential-offer conditions; the labeled-line finding holds across both modalities."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Padoa-Schioppa is a leading OFC electrophysiologist; the labeled-line vs distributed-coding question has been a focus of his lab for over a decade. High mapping fidelity because 'good identity' is precisely the variable SD-049 wants z_resource to carry. Transfer risk is moderate -- macaque OFC vs REE substrate -- but the architectural primitive transfers cleanly enough that this is the strongest single biological signal for option A in the slate."
+  }
+}

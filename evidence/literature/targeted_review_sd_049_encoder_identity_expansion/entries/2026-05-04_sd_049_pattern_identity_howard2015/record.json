@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_049_encoder_identity_expansion",
+  "entry_id": "2026-05-04_sd_049_pattern_identity_howard2015",
+  "timestamp_utc": "2026-05-04T01:25:28Z",
+  "claim_ids_tested": ["SD-049", "SD-015", "MECH-229", "MECH-230"],
+  "source": {
+    "title": "Identity-specific coding of future rewards in the human orbitofrontal cortex.",
+    "authors": ["James D Howard", "Jay A Gottfried", "Philippe N Tobler", "Thorsten Kahnt"],
+    "year": 2015,
+    "venue": "PNAS",
+    "doi": "10.1073/pnas.1503550112"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.79,
+  "confidence_rationale": "MVPA-based dissociation of identity-specific (lateral OFC) vs identity-general (vmPFC) reward representations in human classical conditioning with food odors. Mixed verdict because the finding has two parallel implications: (a) OFC carries distributed pattern-based identity codes (favours option B/C: similarity-preserving embedding), AND (b) the dissociation suggests separate substrates for identity-specific and identity-general value (consistent with option A's labeled-line + magnitude split). Source quality high (PNAS, replication-track lab). Mapping fidelity strong: human OFC, future reward identity, exactly the architectural variable SD-049 cares about. Transfer risk moderate -- human vs REE rodent-analog, but the principle is general.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pattern-based identity coding is the dominant biological signature (not labeled-line), option A's one-hot slot may underfit -- it cannot capture similarity structure across types. Falsifier signal at V3-EXQ-514: option A produces low identity-recovery on held-out cell configurations because each cell-instance becomes its own labeled line.",
+    "If lateral OFC vs vmPFC dissociation is the architectural signature REE should reproduce, the implementation may need TWO heads: one for identity (option A's slot) and one for identity-general value (vmPFC analog). This is a legitimate Phase 2 design refinement that this paper licenses."
+  ],
+  "tags": ["sd_049", "sd_015", "mech_229", "mech_230", "ofc", "vmpfc", "identity_coding", "mvpa", "pattern_based"],
+  "mapping": {
+    "source_claim_statement": "By manipulating the value and identity of appetizing food odors in a pattern-based fMRI paradigm of human classical conditioning, the authors identified dissociable predictive representations of identity-specific reward in lateral OFC and identity-general reward in vmPFC. Reward-related functional coupling between OFC and olfactory (piriform) cortex and between vmPFC and amygdala revealed parallel pathways for identity-specific and identity-general predictive signaling.",
+    "ree_translation": "Human OFC carries identity-specific reward representations (decoded via MVPA from distributed activity patterns), while vmPFC carries identity-general value. SD-049 z_resource maps onto the lateral-OFC identity-specific pattern: a representation that allows decoding of *which* specific outcome is expected, not just that *some* outcome is expected. The MVPA paradigm reads identity from distributed pattern, not from labeled-line single units. This favours option B (learned embedding) or option C (hybrid: embedding-based substrate with identity-classifier readout) over option A's pure one-hot slot.",
+    "mapping_caveat": "MVPA cannot adjudicate between distributed substrate and per-identity neural populations -- it would decode identity successfully under either architecture (labeled-line populations contribute to the pattern, just as a distributed substrate would). The Ballesta-Padoa-Schioppa 2019 single-unit data is more decisive on this question than fMRI MVPA can be. The dissociation between lateral OFC (identity-specific) and vmPFC (identity-general) is robust across this paper and Kahnt's later 2017 review (cross-tag entry in this lit-pull) and is the architecturally cleanest result -- it suggests two parallel substrates, which favours option C hybrid over a single architectural choice.",
+    "source_context": "Human fMRI; 30 participants; classical conditioning with food-odor outcomes (banana, garlic) and visual cues; multivariate pattern analysis on lateral OFC and vmPFC ROIs; functional connectivity to piriform and amygdala."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "PNAS publication; Kahnt has continued to replicate these findings in subsequent work (cross-tag entry 38402210 from this lit-pull). The MVPA methodology is the right fMRI tool for asking the identity-coding question, but its inferential reach is bounded -- it shows decodable identity but cannot adjudicate the substrate (labeled-line vs distributed). Mapping is strong because the variable is exactly z_resource's variable (which-outcome identity)."
+  }
+}
