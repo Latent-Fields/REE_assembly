@@ -1,0 +1,70 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_485a_sd033b_ofc_oracle_landing_20260504T150333Z_v3",
+  "experiment_type": "v3_exq_485a_sd033b_ofc_oracle_landing",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-04T15:03:33.734119Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-033b",
+    "MECH-261",
+    "MECH-263"
+  ],
+  "supersedes": "v3_exq_485_sd033b_ofc_analog_landing",
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-033b": "supports",
+    "MECH-261": "supports",
+    "MECH-263": "supports"
+  },
+  "metrics": {
+    "UC1_instantiation": {
+      "ofc_is_not_none": true,
+      "state_code_shape": [
+        1,
+        16
+      ],
+      "state_dim_expected": 16,
+      "pass": true
+    },
+    "UC2_gate_modulates_update": {
+      "delta_gate_1": 0.08203070610761642,
+      "delta_gate_0": 0.0,
+      "ratio": 82030706107.61642,
+      "pass": true
+    },
+    "UC3_bias_zero_at_init": {
+      "bias_shape": [
+        5
+      ],
+      "bias_max_abs": 0.0,
+      "state_code_norm_at_query": 0.08203070610761642,
+      "pass": true
+    },
+    "UC4_backward_compat": {
+      "ofc_is_none": true,
+      "pass": true
+    },
+    "UC5_reset_clears_state_code": {
+      "pre_reset_norm": 0.6583178043365479,
+      "post_reset_norm": 0.0,
+      "pass": true
+    },
+    "UC6_oracle_round_trip": {
+      "subtest_a_round_trip_max_diff": 0.0,
+      "subtest_a_pass": true,
+      "subtest_b_assertion_on_disabled": true,
+      "subtest_c_reset_clears_pred": true,
+      "subtest_c_reset_clears_list": true,
+      "subtest_c_pass": true,
+      "subtest_d_oracle_ready_false_by_default": true,
+      "subtest_e_get_state_oracle_enabled": true,
+      "subtest_e_get_state_pred_norm": 5.749985218048096,
+      "subtest_e_pass": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.07433605194091797,
+  "notes": "SD-033b oracle landing diagnostic. Extends EXQ-485 with UC6: the specific-outcome oracle path (MECH-263) implemented as OFCAnalog.query_outcome() delegating to E2HarmSForward. UC6 confirms: (A) oracle output is bit-identical to e2_harm_s.forward() (max diff < 1e-6); (B) AssertionError when oracle disabled; (C) reset() clears prediction caches; (D) oracle_is_ready=False by default; (E) get_state() exposes oracle diagnostics. MECH-263 devaluation sensitivity and same-sensory-input / different-task-role discrimination remain deferred to behavioural EXQs requiring env extension (outcome relabelling, task-distinct state pairs)."
+}
