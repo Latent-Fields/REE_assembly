@@ -14630,11 +14630,10 @@
 
 - id: Q-036
   title: "What additional variables, beyond temporal integration, are required for affective harm to become a genuinely distinct load state: persistence, recovery failure, uncontrollability, inescapability, or prediction error?"
-  claim_type: question
+  claim_type: open_question
   subject: harm_stream.affective_load_drivers
-  polarity: open_question
+  polarity: open
   status: open
-  confidence: 0.0
   depends_on:
     - SD-019
     - MECH-219
@@ -14653,6 +14652,34 @@
     variables should be persistence of exposure, recovery failure after offset,
     uncontrollability or inescapability, and prediction-error weighted threat.
   suggested_experiment_type: discriminative_pair
+  targeted_reviews:
+    - targeted_review_q_036
+  evidence_quality_note: |
+    Lit-pull 2026-04-20 (3 entries, targeted_review_q_036). lit_conf 0.808; no weakening
+    evidence; conflict_ratio=0. quadrant=plausible_unproven (exp_conf=0, no experiments yet).
+
+    Loffler et al. 2018 (Pain Reports, conf=0.72): Three-way behavioural dissociation --
+    controllability selectively reduces suffering while leaving pain intensity and
+    unpleasantness unchanged. Direct evidence that controllability is a required variable
+    for z_harm_a beyond temporal integration. Architectural implication: z_harm_un (SD-019a)
+    is NOT modulated by controllability; the gate is specific to z_harm_a. Satisfies the
+    SD-019a social gate.
+
+    Salomons et al. 2004 (J Neurosci, conf=0.75): fMRI -- identical noxious stimuli under
+    controllable vs uncontrollable conditions produce differential ACC/insula/SII activation.
+    Controllability (orthogonal to stimulus intensity) drives the affective pain circuit.
+    Direct evidence that at least one non-temporal variable modulates affective load.
+
+    De Ridder et al. 2021 (Neurosci Biobehav Rev, conf=0.70): Three-pathway model
+    (lateral=painfulness; medial=suffering; descending inhibitory). Suffering is determined
+    by salience and context (behavioural meaning), not sensory magnitude alone. Supports the
+    premise that temporal integration is insufficient; context variables are required. Does
+    not decompose into the specific variables Q-036 lists (persistence, recovery failure, PE).
+
+    PARTIAL ANSWER: controllability/escapability confirmed as a required variable for z_harm_a
+    beyond temporal integration. Persistence, recovery failure, and prediction-error weighting
+    remain untested. narrow_open_question appropriate: the controllability sub-question is
+    now empirically settled; the broader variable set is open.
 
 - id: INV-065
   title: proxy_goal_necessity
