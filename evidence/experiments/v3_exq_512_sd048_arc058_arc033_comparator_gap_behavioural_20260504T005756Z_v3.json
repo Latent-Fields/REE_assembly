@@ -1,0 +1,149 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_512_sd048_arc058_arc033_comparator_gap_behavioural_20260504T005756Z_v3",
+  "experiment_type": "v3_exq_512_sd048_arc058_arc033_comparator_gap_behavioural",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-04T00:57:56.800806Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-048"
+  ],
+  "result": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-048": "weakens"
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "min_seeds_required": 2,
+    "c1_seeds_pass": 3,
+    "c2_seeds_pass": 3,
+    "c3_seeds_pass": 0,
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": false,
+    "overall_pass": false,
+    "mean_arm_a_selectivity_gap": 0.0015658949792366334,
+    "mean_arm_a_quiet_gap": -0.001509667615276292,
+    "mean_arm_a_selectivity_ratio": 1.0528954350585116,
+    "mean_arm_b_selectivity_ratio": 0.0,
+    "mean_arm_b_forward_r2": 0.9929868611492267,
+    "mean_arm_a_forward_r2": 0.9904301031502182
+  },
+  "registered_thresholds": {
+    "C1_MIN_GAP_ARM_A": 0.0,
+    "C2_MIN_R2_ARM_B": 0.5,
+    "C3_MIN_QUIET_GAP": 0.005,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666
+  },
+  "config": {
+    "p0_episodes": 60,
+    "p1_episodes": 80,
+    "eval_episodes": 40,
+    "steps_per_episode": 150,
+    "self_dim": 32,
+    "world_dim": 32,
+    "grid_size": 12,
+    "n_hazards": 1,
+    "n_resources": 1,
+    "p_stay": 0.8,
+    "lr": 0.001,
+    "harm_fwd_lr": 0.0005,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "interoceptive_noise_scale": 1.0
+  },
+  "results_arm_a_sd048_on": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_A_sd048_on",
+      "sd048_on": true,
+      "n_body_noise_steps": 293,
+      "n_agent_steps": 114,
+      "n_quiet_steps": 5,
+      "residual_body_noise": 0.03482606734622766,
+      "residual_agent": 0.0310198238135822,
+      "residual_quiet": 0.040752005949616435,
+      "selectivity_gap": 0.00380624353264546,
+      "selectivity_ratio": 1.1227035832156749,
+      "forward_r2": 0.9911014484635325
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_A_sd048_on",
+      "sd048_on": true,
+      "n_body_noise_steps": 263,
+      "n_agent_steps": 114,
+      "n_quiet_steps": 8,
+      "residual_body_noise": 0.0353866325188499,
+      "residual_agent": 0.03534042595869355,
+      "residual_quiet": 0.03619967168197036,
+      "selectivity_gap": 4.6206560156351884e-05,
+      "selectivity_ratio": 1.0013074703799654,
+      "forward_r2": 0.9863498943018336
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_A_sd048_on",
+      "sd048_on": true,
+      "n_body_noise_steps": 301,
+      "n_agent_steps": 114,
+      "n_quiet_steps": 5,
+      "residual_body_noise": 0.02522097276740296,
+      "residual_agent": 0.02437573792249487,
+      "residual_quiet": 0.023010997846722604,
+      "selectivity_gap": 0.0008452348449080882,
+      "selectivity_ratio": 1.0346752515798947,
+      "forward_r2": 0.9938389666852886
+    }
+  ],
+  "results_arm_b_sd048_off": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_B_sd048_off",
+      "sd048_on": false,
+      "n_body_noise_steps": 0,
+      "n_agent_steps": 0,
+      "n_quiet_steps": 391,
+      "residual_body_noise": 0.0,
+      "residual_agent": 0.0,
+      "residual_quiet": 0.02824082437311978,
+      "selectivity_gap": 0.0,
+      "selectivity_ratio": 0.0,
+      "forward_r2": 0.993546086912653
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_B_sd048_off",
+      "sd048_on": false,
+      "n_body_noise_steps": 0,
+      "n_agent_steps": 0,
+      "n_quiet_steps": 362,
+      "residual_body_noise": 0.0,
+      "residual_agent": 0.0,
+      "residual_quiet": 0.02893007745276828,
+      "selectivity_gap": 0.0,
+      "selectivity_ratio": 0.0,
+      "forward_r2": 0.9907035068522194
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_B_sd048_off",
+      "sd048_on": false,
+      "n_body_noise_steps": 0,
+      "n_agent_steps": 0,
+      "n_quiet_steps": 421,
+      "residual_body_noise": 0.0,
+      "residual_agent": 0.0,
+      "residual_quiet": 0.022560488667135566,
+      "selectivity_gap": 0.0,
+      "selectivity_ratio": 0.0,
+      "forward_r2": 0.9947109896828079
+    }
+  ],
+  "elapsed_seconds": 13.173720836639404,
+  "notes": "SD-048 ARC-058 / ARC-033 comparator-gap behavioural successor to V3-EXQ-511 substrate-readiness diagnostic. Discriminative pair on SD-022 limb_damage substrate: ARM_A SD-048 ON at default calibration vs ARM_B SD-048 OFF baseline. Both arms train E2_harm_a forward model (ARC-033 path, independent per-stream) under the canonical phased-training recipe (P0 encoder warmup, P1 frozen-encoder forward-model training on .detach()ed targets, P2 eval). C1 selectivity_gap > 0 validates the architectural commitment (body-noise events produce larger forward-model residual than agent-caused events). C2 ARM_B forward_r2 >= 0.5 sanity-checks the agent build can learn the SD-022 substrate. C3 ARM_A vs ARM_B selectivity-ratio delta confirms the discrimination signal is genuinely SD-048-induced, not random-policy event-tagging noise. PASS lifts SD-048 v3_pending gate."
+}
