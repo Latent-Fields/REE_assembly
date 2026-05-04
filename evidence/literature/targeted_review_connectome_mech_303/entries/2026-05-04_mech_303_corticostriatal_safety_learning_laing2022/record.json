@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_303",
+  "entry_id": "2026-05-04_mech_303_corticostriatal_safety_learning_laing2022",
+  "timestamp_utc": "2026-05-04T01:05:15Z",
+  "claim_ids_tested": ["MECH-303"],
+  "source": {
+    "title": "Cortico-Striatal Activity Characterizes Human Safety Learning via Pavlovian Conditioned Inhibition",
+    "authors": ["Laing, Patrick A F", "Steward, Trevor", "Davey, Christopher G", "Felmingham, Kim L", "Fullana, Miguel Angel", "Vervliet, Bram", "Greaves, Matthew D", "Moffat, Bradford", "Glarin, Rebecca K", "Harrison, Ben J"],
+    "year": 2022,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2181-21.2022",
+    "pmid": "35577553"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.76,
+  "confidence_rationale": "7T human fMRI study dissociating conditioned inhibitor (actively predicts threat omission when paired with known threat signal) from standard safety signal (passively unpaired with threat). The dissociation is architecturally important: the conditioned inhibitor recruits dorsal striatum + anterior insula + dlPFC; the standard safety signal recruits vmPFC + hippocampus + posterior cingulate. The standard safety signal substrate (vmPFC/hippocampus) aligns with MECH-303's prefrontal-hippocampal claim. But whether MECH-303's safety-cue prediction store corresponds to the conditioned inhibitor or the standard safety signal pathway is unresolved -- if MECH-303 is about active prediction of suffering-absence (teaching-signal driven), it may be the striatal/conditioned-inhibitor route, not the vmPFC/hippocampal one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The conditioned inhibitor (which most closely approximates a teaching-signal-driven predictive safety store) recruits dorsal striatum and dlPFC -- not vmPFC/hippocampus. If MECH-303 is about the actively-learned 'this cue predicts safety' store, this result places the substrate in the wrong circuit.",
+    "The study used healthy human participants. The vmPFC/hippocampus finding for standard safety signals may reflect retrieval or expression of safety rather than the encoding/updating of the predictive store. These are confounded in the blocked fMRI design.",
+    "No single-unit resolution; cannot distinguish encoding from retrieval, or distinguish safety-prediction updating from safety-prediction retrieval expression."
+  ],
+  "tags": ["mech_303", "vmPFC", "hippocampus", "dorsal_striatum", "conditioned_inhibition", "human_fmri"],
+  "mapping": {
+    "source_claim_statement": "Conditioned inhibition (actively predicting threat omission) engages dorsal striatal cortico-striatal circuitry; standard safety signals (CS-) engage vmPFC + hippocampus. These two forms of safety learning dissociate at the neural level in humans.",
+    "ree_translation": "MECH-303 posits a prefrontal-hippocampal substrate (IL/vmPFC-equivalent + vHipp-PL-equivalent). The vmPFC + hippocampus finding for standard safety signals directly supports this. However, if MECH-303's safety-cue prediction store is driven by the MECH-302 relief-completion event as a teaching signal -- making it analogous to a conditioned inhibitor -- then the dorsal striatum / cortico-striatal finding is the more relevant mapping, which would challenge the prefrontal-hippocampal claim.",
+    "mapping_caveat": "The conditioned inhibitor vs. standard safety signal distinction is crucial and underspecified in MECH-303. MECH-303 posits a teaching signal (MECH-302 event), making the predictive safety store more similar to a conditioned inhibitor than a passively acquired standard safety signal. This paper suggests those two cases may have different neural substrates -- a distinction MECH-303 does not currently address.",
+    "source_context": "49 healthy human participants, ultra-high field 7T fMRI, Pavlovian conditioned inhibition paradigm, two types of safety signal contrasted within-subjects."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (7T fMRI, n=49, whole-brain corrected, peer-reviewed J Neurosci). Mapping fidelity is lower because the conditioned inhibitor vs standard safety signal distinction cuts across MECH-303's claim in a way the claim does not anticipate. The human fMRI setting means low rodent-to-human transfer risk, but high encoding-vs-retrieval confound risk."
+  }
+}

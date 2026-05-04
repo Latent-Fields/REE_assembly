@@ -13,9 +13,10 @@
     "url": "https://doi.org/10.1073/pnas.1910481116"
   },
   "evidence_class": "fmri_connectivity",
-  "evidence_direction": "weakens",
+  "evidence_direction": "supports",
+  "evidence_direction_correction_note": "Corrected 2026-05-04 from 'weakens' to 'supports'. Original direction was assigned during a MECH-302 lit pull where these papers weaken the single-pipeline reading. But MECH-303 IS the parallel-substrate claim -- the vHipp->PL safety-circuit finding directly supports MECH-303's claim that safety-cue prediction routes through prefrontal-hippocampal substrate.",
   "confidence": 0.78,
-  "confidence_rationale": "Cross-species (mouse chemogenetics + human fMRI) convergent demonstration that conditioned inhibition via safety learning routes through a vHipp-to-PL pathway, dissociable from amygdala connectivity. Reinforces the Kreutzmann 2020 reading that safety-cue prediction has its own substrate. Direction is 'weakens' for the strong Model 1 reading (single-pipeline reuse) and supports the hybrid recommendation.",
+  "confidence_rationale": "Cross-species (mouse chemogenetics + human fMRI) convergent demonstration that conditioned inhibition via safety learning routes through a vHipp-to-PL pathway (or human homologue vHipp-dACC), dissociable from amygdala and vmPFC connectivity. Specifically: vHipp neurons projecting to PL (NOT to IL or BLA) are more active to safety and compound cues, and their activity correlates with freezing. This is the strongest direct anatomical support for MECH-303's vHipp-PL pathway claim.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "An REE substrate that models 'predicting where relief will come from' as the same mechanism that handles 'this thing just made suffering drop' will lose the architectural distinction between the safety-prediction circuit (vHipp -> PL) and the relief-completion circuit (BA -> NAcSh).",

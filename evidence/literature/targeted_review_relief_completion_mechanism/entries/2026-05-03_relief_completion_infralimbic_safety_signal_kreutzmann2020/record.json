@@ -13,9 +13,10 @@
     "url": "https://doi.org/10.1007/s00213-020-05527-7"
   },
   "evidence_class": "behavioral_animal",
-  "evidence_direction": "weakens",
+  "evidence_direction": "supports",
+  "evidence_direction_correction_note": "Corrected 2026-05-04 from 'weakens' to 'supports'. Original direction was assigned during a MECH-302 lit pull where IL/vHipp-PL papers weaken the single-pipeline reading of MECH-302. But MECH-303 IS the parallel-substrate claim -- IL being the required substrate for safety-cue expression directly supports MECH-303.",
   "confidence": 0.74,
-  "confidence_rationale": "The IL-required-for-safety-expression result is a real qualifier on the strict reuse-the-reward-circuit reading. It establishes that *predictive* encoding of safety has its own substrate (IL, with PL controlled out), parallel to the ventral-striatal relief-completion pathway. This pushes the recommendation toward Hybrid rather than pure Model 1 at the architectural level: the completion event reuses reward machinery, but the safety-cue prediction has a parallel encoder.",
+  "confidence_rationale": "IL is required for safety-cue expression (not acquisition), with PL controlled out. This establishes IL as a distinct substrate for predictive safety-cue encoding, parallel to the ventral-striatal relief-completion pathway -- exactly what MECH-303 claims. The acquisition-vs-expression dissociation maps to MECH-303's commitment-release gating function: the store can form without IL, but IL is required to read it out and release the avoidance commitment.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "If REE collapses 'relief-completion event' and 'this cue predicts relief' into a single mechanism, it will lose the distinction between just-now-happened and predicted-from-cue, which the IL/IL-vs-PL evidence here suggests is real.",

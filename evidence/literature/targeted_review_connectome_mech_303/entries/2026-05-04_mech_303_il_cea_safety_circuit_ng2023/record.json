@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_303",
+  "entry_id": "2026-05-04_mech_303_il_cea_safety_circuit_ng2023",
+  "timestamp_utc": "2026-05-04T01:05:15Z",
+  "claim_ids_tested": ["MECH-303"],
+  "source": {
+    "title": "Suppressing fear in the presence of a safety cue requires infralimbic cortical signaling to central amygdala",
+    "authors": ["Ng, Ka", "Pollock, Michael", "Escobedo, Abraham", "Bachman, Brent", "Miyazaki, Nanami", "Bartlett, Edward L", "Sangha, Susan"],
+    "year": 2023,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/s41386-023-01598-0",
+    "pmid": "37188848"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Circuit-level chemogenetic dissection showing IL->CeA (not IL->BLA) is the necessary projection for expressing learned safety in the presence of threat. This is downstream-specificity evidence for the IL node that MECH-303 centres on. The IL->BLA null finding is particularly clean: it rules out the simpler fear-extinction story (IL->BLA consolidation) and isolates a separate recall pathway. Transfer risk is moderate (rodent only, male only, single conditioning paradigm), but the circuit specificity is high.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Female rats in this paradigm typically do not show fear suppression to the fear+safety cue, raising the possibility that the IL->CeA mechanism is sex-limited in this species and task. If MECH-303 is implemented as a species-general mechanism, the female data constitute a disconfirmation candidate.",
+    "The study tested only expression (recall), not acquisition, of safety. It is unclear whether IL->CeA is also required to initially encode the safety-cue prediction store that MECH-303 posits.",
+    "Safety was demonstrated via fear suppression, not via approach toward safety-associated stimuli. The approach-toward-safety arm of MECH-303 is not tested here."
+  ],
+  "tags": ["mech_303", "infralimbic", "central_amygdala", "safety_circuit", "chemogenetics"],
+  "mapping": {
+    "source_claim_statement": "The infralimbic cortex projection to the central amygdala is necessary for expressing learned fear suppression in the presence of a safety cue; the projection to the basolateral amygdala is not.",
+    "ree_translation": "MECH-303 posits a prefrontal substrate (IL-equivalent) for safety-cue prediction. This paper localises the critical output pathway for safety-cue expression to IL->CeA, which in REE terms maps to the PFC-equivalent gating node that modulates the threat-salience stream. The IL->CeA circuit acts as a release valve on avoidance commitment -- exactly what MECH-303 calls commitment-release threshold modulation.",
+    "mapping_caveat": "The paper measures fear suppression under conflicting cue compound (fear+safety simultaneously), not the standalone safety-cue prediction store. The IL->CeA result establishes the output path of safety expression, not the encoding store itself. MECH-303 is primarily a claim about the predictive store (what encodes 'this context predicts safety'), which may sit upstream of the IL->CeA output.",
+    "source_context": "Male Long Evans rats, Pavlovian conditional discrimination task, cue-compound safety suppression, chemogenetic projection-specific inhibition."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High methodological quality (intersectional chemogenetics, within-subjects design, histological verification, virus-free and miss controls). Mapping fidelity docked because the paper addresses the expression/output pathway rather than the predictive encoding store that is MECH-303's primary target. Transfer risk is moderate: rodent-male only and species-specific cue compounds."
+  }
+}
