@@ -128,5 +128,6 @@ MECH-091 (opposite-polarity urgency interrupt), MECH-094 (VALENCE_LIKING write g
 
 ## Validation Experiment
 
-V3-EXQ-515 queued (4-arm substrate readiness diagnostic: OFF / ON / ON+valence / ON+no-hazards).
-See experiment script `experiments/v3_exq_515_mech302_suffering_derivative_relief_completion.py`.
+V3-EXQ-515 PASS 2026-05-04 (4-arm comparator logic diagnostic: unit tests on synthetic norm sequences).
+V3-EXQ-516 queued (4-arm agent-loop integration diagnostic: OFF / event-fires / valence-write / flat-signal).
+See experiment script `experiments/v3_exq_516_mech302_suffering_derivative_integration.py`.

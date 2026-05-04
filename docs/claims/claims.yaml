@@ -24666,8 +24666,9 @@
     bit-identical OFF). Additional params: suffering_window_length (5),
     suffering_drop_threshold (0.10), suffering_min_initial_norm (0.05),
     relief_completion_weight (1.0). All 5 smoke tests PASS 2026-05-04.
-    Validation experiment V3-EXQ-515 queued (4-arm substrate readiness
-    diagnostic). Blocks MECH-302, MECH-303.
+    V3-EXQ-515 PASS 2026-05-04 (comparator logic unit diagnostic).
+    V3-EXQ-516 queued (agent-loop integration diagnostic). Blocks MECH-302,
+    MECH-303.
   location: docs/architecture/sd_050_suffering_derivative_comparator.md
 
 - id: MECH-302
@@ -24766,8 +24767,9 @@
     SufferingDerivativeComparator wired into ree_core
     (ree_core/comparator/suffering_derivative_comparator.py);
     config gate REEConfig.use_suffering_derivative_comparator (default False,
-    bit-identical OFF). V3-EXQ-515 queued (4-arm sweep, substrate readiness
-    diagnostic). v3_pending=true until discriminative-pair experiment lands.
+    bit-identical OFF). V3-EXQ-515 PASS 2026-05-04 (comparator logic
+    diagnostic). V3-EXQ-516 queued (agent-loop integration diagnostic).
+    v3_pending=true until discriminative-pair experiment lands.
   location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
 
 - id: MECH-303
