@@ -9,10 +9,12 @@
     "SD-048"
   ],
   "result": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-048": "weakens"
+    "SD-048": "superseded"
   },
+  "evidence_direction_note": "Superseded by V3-EXQ-512a. EXQ-512 ran at interoceptive_noise_scale=1.0 (default calibration) and failed C3 (body-noise residual indistinguishable from quiet baseline, mean quiet_gap=-0.00151). Root cause: autonomic sigma=0.02 produces perturbations at the same scale as the forward model's natural prediction error (~0.025-0.035 residual in both arms). The failure reflects insufficient noise magnitude to create a clear discriminative signal, not a falsification of the SD-048 architectural principle. EXQ-512a recalibrates at scale=3.0 to confirm the mechanism works; governance holds v3_pending pending EXQ-512a.",
+  "superseded_by": "V3-EXQ-512a",
   "criteria": {
     "n_seeds": 3,
     "min_seeds_required": 2,
