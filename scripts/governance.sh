@@ -11,8 +11,9 @@
 #   2. Build all evidence indexes (experiments, literature, planning, recommendations)
 #   3. Generate pending_review.md
 #   4. Rebuild claims.json for GitHub Pages hover tooltips
-#   5. Rebuild contributor ledger
-#   6. Refresh governance_agenda.v1.json timestamps (keeps explorer banner current)
+#   5. Rebuild claim dependency process dashboard data
+#   6. Rebuild contributor ledger
+#   7. Refresh governance_agenda.v1.json timestamps (keeps explorer banner current)
 #
 # Note: V3 experiments write run packs directly to evidence/experiments/ -- no sync needed.
 
@@ -39,31 +40,34 @@ if ! "$PYTHON" scripts/validate_claims.py --strict; then
 fi
 
 if [ "$V2" -eq 1 ]; then
-  echo "--- Step 1/4: Syncing V2 results from ree-v2/ ---"
+  echo "--- Step 1/7: Syncing V2 results from ree-v2/ ---"
   "$PYTHON" evidence/experiments/scripts/sync_v2_results.py
 else
-  echo "--- Step 1/4: Skipping V2 sync (V3 mode) ---"
+  echo "--- Step 1/7: Skipping V2 sync (V3 mode) ---"
 fi
 
 echo "--- Step 1b: Syncing V3 flat JSON results to run-pack format ---"
 "$PYTHON" evidence/experiments/scripts/sync_v3_results.py
 
-echo "--- Step 2/4: Building experiment indexes ---"
+echo "--- Step 2/7: Building experiment indexes ---"
 "$PYTHON" evidence/experiments/scripts/build_experiment_indexes.py
 
-echo "--- Step 3/4: Generating pending review list ---"
+echo "--- Step 3/7: Generating pending review list ---"
 "$PYTHON" scripts/generate_pending_review.py
 
 echo "--- Step 3b: Generating Option E shadow recommendations ---"
 "$PYTHON" scripts/generate_option_e_shadow.py
 
-echo "--- Step 4/5: Rebuilding claims.json for site tooltips ---"
+echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
-echo "--- Step 5/5: Rebuilding contributor ledger ---"
+echo "--- Step 5/7: Rebuilding claim dependency process dashboard data ---"
+"$PYTHON" scripts/build_claim_dependency_process.py
+
+echo "--- Step 6/7: Rebuilding contributor ledger ---"
 "$PYTHON" contributors/build_contributions.py
 
-echo "--- Step 6/6: Refreshing governance_agenda.v1.json timestamps ---"
+echo "--- Step 7/7: Refreshing governance_agenda.v1.json timestamps ---"
 "$PYTHON" scripts/refresh_governance_agenda_timestamp.py
 
 echo ""

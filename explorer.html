@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-04-29.2 -->
+<!-- EXPLORER_VERSION: 2026-05-04.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2214,6 +2214,195 @@
       font-size: 11px;
       color: var(--muted);
     }
+
+    /* -- Process dashboard -------------------------------------------------- */
+    .process-wrap {
+      padding: 18px 20px;
+      max-width: 1200px;
+    }
+
+    .process-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .process-title {
+      margin: 0 0 4px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .process-meta {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 760px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 12px 0 18px 0;
+    }
+
+    .process-stat {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.74);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+
+    .process-stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .process-stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .process-section {
+      margin-top: 18px;
+    }
+
+    .process-section h3 {
+      margin: 0 0 8px 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .process-week {
+      display: grid;
+      grid-template-columns: 94px minmax(220px, 1fr) 96px;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(216,208,195,0.65);
+      font-size: 12px;
+    }
+
+    .process-week:last-child {
+      border-bottom: none;
+    }
+
+    .process-bars {
+      height: 22px;
+      display: flex;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .process-bar {
+      min-width: 2px;
+      height: 100%;
+    }
+
+    .process-bar.v3 { background: #2b6f72; }
+    .process-bar.horizon { background: #8e5ea2; }
+    .process-bar.substrate { background: #b45a2a; }
+    .process-bar.general { background: #9aa0a6; }
+
+    .process-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .process-legend-dot {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 2px;
+      margin-right: 4px;
+      vertical-align: -1px;
+    }
+
+    .process-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .process-table th {
+      text-align: left;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      background: var(--bg-2);
+      padding: 7px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .process-table td {
+      padding: 8px;
+      border-bottom: 1px solid var(--bg-2);
+      vertical-align: top;
+    }
+
+    .process-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .process-chip {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--bg-2);
+      color: var(--muted);
+      margin: 0 4px 4px 0;
+      white-space: nowrap;
+    }
+
+    .process-chip.v3 { background: #dff2ef; color: #2b6f72; }
+    .process-chip.horizon { background: #efe5f4; color: #6f3a85; }
+    .process-chip.cyclic { background: #fff0df; color: #9b4d16; }
+
+    .link-button {
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .link-button:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 760px) {
+      .process-week {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2237,6 +2426,7 @@
       <button id="graphViewBtn" class="view-btn">Graph</button>
       <button id="docsViewBtn" class="view-btn">Docs</button>
       <button id="mapViewBtn" class="view-btn">Map</button>
+      <button id="processViewBtn" class="view-btn" title="Weekly claim growth and SCC-collapsed dependency process view">Process</button>
       <button id="tripleViewBtn" class="view-btn">Triple View</button>
       <button id="governanceViewBtn" class="view-btn">Governance<span id="govConflictBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="experimentsViewBtn" class="view-btn">Experiments</button>
@@ -2456,6 +2646,11 @@
           </div>
           <div id="mapMeta" class="map-summary"></div>
           <div id="mapGrid" class="map-grid"></div>
+        </div>
+        <div id="processWrap" class="panel process-wrap" style="display:none">
+          <div id="processContent">
+            <div class="meta">Loading claim process dashboard...</div>
+          </div>
         </div>
         <div id="governanceWrap" class="panel governance-wrap">
           <div class="meta" id="governanceMeta" style="display:flex;align-items:center;justify-content:space-between">
@@ -2678,6 +2873,7 @@
     const GOVERNANCE_BACKLOG_URL = 'evidence/planning/evidence_backlog.v1.json';
     const GOVERNANCE_PROPOSALS_URL = 'evidence/planning/experiment_proposals.v1.json';
     const RUNNER_STATUS_URL = 'evidence/experiments/runner_status.json';
+    const PROCESS_DASHBOARD_URL = 'docs/assets/data/claim_dependency_process.v1.json';
     const API_RUN_URL = '/api/run';
     const VERSION_MANIFEST_URL = 'docs/architecture/version_manifest.json';
     const REFRESH_MS = 60000;
@@ -3080,6 +3276,8 @@ END CONFLICT RESOLUTION`;
       graphWrap: document.getElementById('graphWrap'),
       docsWrap: document.getElementById('docsWrap'),
       mapWrap: document.getElementById('mapWrap'),
+      processWrap: document.getElementById('processWrap'),
+      processContent: document.getElementById('processContent'),
       tripleViewWrap: document.getElementById('tripleViewWrap'),
       mapLegend: document.getElementById('mapLegend'),
       mapLegendMode: document.getElementById('mapLegendMode'),
@@ -3097,6 +3295,7 @@ END CONFLICT RESOLUTION`;
       graphViewBtn: document.getElementById('graphViewBtn'),
       docsViewBtn: document.getElementById('docsViewBtn'),
       mapViewBtn: document.getElementById('mapViewBtn'),
+      processViewBtn: document.getElementById('processViewBtn'),
       tripleViewBtn: document.getElementById('tripleViewBtn'),
       governanceViewBtn: document.getElementById('governanceViewBtn'),
       experimentsViewBtn: document.getElementById('experimentsViewBtn'),
@@ -3182,6 +3381,8 @@ END CONFLICT RESOLUTION`;
     let governanceError = '';
     let governanceLoadedAt = '';
     let governanceLoading = false;
+    let processDashboard = null;
+    let processDashboardError = '';
     let tripleViewLoaded = false;
     let tripleViewLoading = false;
     const tripleZoomState = new Map();
@@ -3974,6 +4175,194 @@ END CONFLICT RESOLUTION`;
         if (governanceOnly) tokens.push('Governance filter: ON');
         els.mapMeta.textContent = tokens.join(' | ');
       }
+    }
+
+    function processCount(obj, key) {
+      if (!obj || !Object.prototype.hasOwnProperty.call(obj, key)) return 0;
+      return Number(obj[key] || 0);
+    }
+
+    function processClassGroup(counts) {
+      const v3 = processCount(counts, 'active_v3_closure');
+      const horizon = processCount(counts, 'horizon_v4') + processCount(counts, 'horizon_v5');
+      const substrate = processCount(counts, 'substrate_or_design') + processCount(counts, 'substrate_gap_marked');
+      const known = v3 + horizon + substrate;
+      const total = Object.values(counts || {}).reduce((sum, value) => sum + Number(value || 0), 0);
+      return {
+        v3,
+        horizon,
+        substrate,
+        general: Math.max(0, total - known),
+        total,
+      };
+    }
+
+    function processChipHtml(label, cls) {
+      return `<span class="process-chip ${cls || ''}">${escapeHtml(label)}</span>`;
+    }
+
+    function renderProcessWeeklyRows(weeks) {
+      const visibleWeeks = (weeks || []).slice(-14);
+      const maxNew = Math.max(1, ...visibleWeeks.map(week => Number(week.new_claims || 0)));
+      return visibleWeeks.map(week => {
+        const groups = processClassGroup(week.class_counts || {});
+        const widthFor = value => `${Math.max(0, (Number(value || 0) / Math.max(1, groups.total)) * 100).toFixed(2)}%`;
+        const targetCounts = week.dependency_target_category_counts || {};
+        const targetText = [
+          `V3 deps ${Number(week.v3_dependency_edges || 0)}`,
+          `horizon deps ${Number(week.horizon_dependency_edges || 0)}`,
+          `avg deps ${Number(week.avg_outdeps || 0).toFixed(2)}`,
+        ].join(' | ');
+        return `
+          <div class="process-week">
+            <div><strong>${escapeHtml(week.week_start || 'unknown')}</strong><br><span class="meta">${Number(week.new_claims || 0)} new</span></div>
+            <div>
+              <div class="process-bars" title="${escapeHtml(JSON.stringify(week.class_counts || {}))}">
+                <div class="process-bar v3" style="width:${widthFor(groups.v3)}"></div>
+                <div class="process-bar horizon" style="width:${widthFor(groups.horizon)}"></div>
+                <div class="process-bar substrate" style="width:${widthFor(groups.substrate)}"></div>
+                <div class="process-bar general" style="width:${widthFor(groups.general)}"></div>
+              </div>
+              <div class="meta" style="margin-top:4px">
+                V3 ${groups.v3} | horizon ${groups.horizon} | substrate/gap ${groups.substrate} | other ${groups.general}
+              </div>
+            </div>
+            <div class="meta" title="${escapeHtml(JSON.stringify(targetCounts))}">${escapeHtml(targetText)}<br>peak ${Math.round((Number(week.new_claims || 0) / maxNew) * 100)}%</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderProcessTargetTable(targets) {
+      const rows = (targets || []).slice(0, 12).map(target => `
+        <tr>
+          <td><button type="button" class="link-button" data-process-claim="${escapeHtml(target.claim_id || '')}"><code>${escapeHtml(target.claim_id || '')}</code></button></td>
+          <td>${escapeHtml(target.title || '')}</td>
+          <td>${processChipHtml(target.class || 'unknown', String(target.class || '').includes('v3') ? 'v3' : String(target.class || '').includes('horizon') ? 'horizon' : '')}</td>
+          <td style="text-align:right">${Number(target.count || 0)}</td>
+          <td><code>${escapeHtml(target.component_id || '')}</code></td>
+        </tr>
+      `).join('');
+      return `
+        <table class="process-table">
+          <thead><tr><th>Target</th><th>Title</th><th>Class</th><th>Recent deps</th><th>SCC</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="5" class="meta">No dependency targets available.</td></tr>'}</tbody>
+        </table>
+      `;
+    }
+
+    function renderProcessComponentTable(components) {
+      const rows = (components || []).slice(0, 10).map(component => {
+        const sample = (component.sample_claim_ids || component.claim_ids || [])
+          .slice(0, 8)
+          .map(id => `<button type="button" class="process-chip ${component.cyclic ? 'cyclic' : ''}" data-process-claim="${escapeHtml(id)}">${escapeHtml(id)}</button>`)
+          .join('');
+        const classes = component.class_counts || {};
+        const groups = processClassGroup(classes);
+        return `
+          <tr>
+            <td><code>${escapeHtml(component.component_id || '')}</code>${component.cyclic ? '<br>' + processChipHtml('cyclic', 'cyclic') : ''}</td>
+            <td style="text-align:right">${Number(component.size || 0)}</td>
+            <td>${processChipHtml(component.dominant_class || 'unknown', String(component.dominant_class || '').includes('v3') ? 'v3' : String(component.dominant_class || '').includes('horizon') ? 'horizon' : '')}</td>
+            <td>V3 ${groups.v3} | horizon ${groups.horizon} | other ${groups.general + groups.substrate}</td>
+            <td>${Number(component.evidenced_claims || 0)} evidenced<br><span class="meta">${Number(component.genuine_exp_count || 0)} genuine exp refs</span></td>
+            <td>${sample}</td>
+          </tr>
+        `;
+      }).join('');
+      return `
+        <table class="process-table">
+          <thead><tr><th>SCC</th><th>Size</th><th>Dominant</th><th>Mix</th><th>Evidence</th><th>Sample claims</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="6" class="meta">No components available.</td></tr>'}</tbody>
+        </table>
+      `;
+    }
+
+    function bindProcessClaimLinks() {
+      if (!els.processContent) return;
+      els.processContent.querySelectorAll('[data-process-claim]').forEach(node => {
+        node.addEventListener('click', () => {
+          const claimId = node.getAttribute('data-process-claim');
+          if (claimId && claimMap.has(claimId)) selectClaim(claimId);
+        });
+      });
+    }
+
+    function renderProcessDashboard() {
+      if (!els.processContent) return;
+      if (!processDashboard) {
+        els.processContent.innerHTML = `
+          <div class="process-head">
+            <div>
+              <h2 class="process-title">Claim Dependency Process</h2>
+              <div class="process-meta">
+                Process dashboard data is unavailable. Run <code>/opt/local/bin/python3 scripts/build_claim_dependency_process.py</code>
+                from <code>REE_assembly</code>, then refresh.
+              </div>
+            </div>
+          </div>
+          <div class="error-banner" style="display:block">${escapeHtml(processDashboardError || 'No dashboard payload loaded.')}</div>
+        `;
+        return;
+      }
+      const summary = processDashboard.summary || {};
+      const source = processDashboard.source || {};
+      const recent = processDashboard.recent || {};
+      const weeks = processDashboard.weeks || [];
+      const cyclicComponents = (processDashboard.components || [])
+        .filter(component => component.cyclic)
+        .sort((a, b) => Number(b.size || 0) - Number(a.size || 0));
+      const recentComponents = recent.top_dependency_components || cyclicComponents;
+      els.processContent.innerHTML = `
+        <div class="process-head">
+          <div>
+            <h2 class="process-title">Claim Dependency Process</h2>
+            <div class="process-meta">
+              Weekly claim creation is joined to direct dependency targets and SCC-collapsed components.
+              This view separates active V3 closure work from horizon scope and prevents dependency cycles from inflating reach.
+            </div>
+          </div>
+          <div class="process-meta" style="text-align:right">
+            Generated ${escapeHtml(processDashboard.generated_at_utc || 'unknown')}<br>
+            HEAD <code>${escapeHtml(source.git_head || '')}</code>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-stat"><div class="process-stat-value">${Number(summary.claims_total || 0)}</div><div class="process-stat-label">claims</div></div>
+          <div class="process-stat"><div class="process-stat-value">${Number(summary.dependency_edges || 0)}</div><div class="process-stat-label">dependency edges</div></div>
+          <div class="process-stat"><div class="process-stat-value">${Number(summary.components_total || 0)}</div><div class="process-stat-label">SCC-collapsed components</div></div>
+          <div class="process-stat"><div class="process-stat-value">${Number(summary.cyclic_components || 0)}</div><div class="process-stat-label">cyclic components</div></div>
+          <div class="process-stat"><div class="process-stat-value">${Number(summary.largest_component_size || 0)}</div><div class="process-stat-label">largest SCC size</div></div>
+        </div>
+
+        <div class="process-section">
+          <h3>Weekly Claim Creation</h3>
+          <div class="process-legend">
+            <span><span class="process-legend-dot process-bar v3"></span>V3 closure</span>
+            <span><span class="process-legend-dot process-bar horizon"></span>V4/V5 horizon</span>
+            <span><span class="process-legend-dot process-bar substrate"></span>Substrate/design/gap</span>
+            <span><span class="process-legend-dot process-bar general"></span>Other registry work</span>
+          </div>
+          ${renderProcessWeeklyRows(weeks)}
+        </div>
+
+        <div class="process-section">
+          <h3>Recent Dependency Targets</h3>
+          ${renderProcessTargetTable(recent.top_dependency_targets || [])}
+        </div>
+
+        <div class="process-section">
+          <h3>SCC Components Receiving Recent Work</h3>
+          ${renderProcessComponentTable(recentComponents)}
+        </div>
+
+        <div class="process-section">
+          <h3>Largest Cyclic Components</h3>
+          ${renderProcessComponentTable(cyclicComponents)}
+        </div>
+      `;
+      bindProcessClaimLinks();
     }
 
     async function fetchJson(url) {
@@ -7852,6 +8241,7 @@ END CONFLICT RESOLUTION`;
         els.graphViewBtn,
         els.docsViewBtn,
         els.mapViewBtn,
+        els.processViewBtn,
         els.tripleViewBtn,
         els.governanceViewBtn,
         els.experimentsViewBtn,
@@ -7868,6 +8258,7 @@ END CONFLICT RESOLUTION`;
       if (els.graphWrap) els.graphWrap.style.display = 'none';
       if (els.docsWrap) els.docsWrap.style.display = 'none';
       if (els.mapWrap) els.mapWrap.style.display = 'none';
+      if (els.processWrap) els.processWrap.style.display = 'none';
       if (els.tripleViewWrap) els.tripleViewWrap.style.display = 'none';
       if (els.governanceWrap) els.governanceWrap.style.display = 'none';
       if (els.expWrap) { els.expWrap.style.display = 'none'; els.expWrap.style.gridColumn = ''; }
@@ -7899,6 +8290,13 @@ END CONFLICT RESOLUTION`;
         if (els.mapWrap) els.mapWrap.style.display = 'block';
         setPrimaryViewButton(els.mapViewBtn);
         renderMap();
+        return;
+      }
+
+      if (view === 'process') {
+        if (els.processWrap) els.processWrap.style.display = 'block';
+        setPrimaryViewButton(els.processViewBtn);
+        renderProcessDashboard();
         return;
       }
 
@@ -9014,6 +9412,9 @@ END CONFLICT RESOLUTION`;
       if (els.mapViewBtn) {
         els.mapViewBtn.addEventListener('click', () => setView('map'));
       }
+      if (els.processViewBtn) {
+        els.processViewBtn.addEventListener('click', () => setView('process'));
+      }
       if (els.tripleViewBtn) {
         els.tripleViewBtn.addEventListener('click', () => setView('triple'));
       }
@@ -9220,6 +9621,20 @@ END CONFLICT RESOLUTION`;
       } catch (e) {
         // non-fatal: filter simply won't show any evidenced claims
         console.warn('claim_evidence.v1.json load failed:', e);
+      }
+
+      try {
+        const procResp = await fetch(PROCESS_DASHBOARD_URL, { cache: 'no-store' });
+        if (procResp.ok) {
+          processDashboard = await procResp.json();
+          processDashboardError = '';
+        } else {
+          processDashboard = null;
+          processDashboardError = `Process dashboard data unavailable (${procResp.status}).`;
+        }
+      } catch (e) {
+        processDashboard = null;
+        processDashboardError = String(e);
       }
 
       conflictsMap = await loadConflicts();
