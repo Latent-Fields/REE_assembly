@@ -1,0 +1,69 @@
+{
+  "run_id": "20260504T041122Z_v3",
+  "experiment_type": "v3_exq_516_mech302_suffering_derivative_integration",
+  "claim_ids": [
+    "MECH-302"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "status": "PASS",
+  "pass": true,
+  "elapsed_s": 0.78,
+  "all_checks": {
+    "C0a_comparator_is_none": true,
+    "C0b_no_events_over_flat_steps": true,
+    "C1a_comparator_not_none": true,
+    "C1b_event_fired_after_prefill": true,
+    "C1c_event_cleared_by_select_action": true,
+    "C2a_event_fired": true,
+    "C2b_valence_write_on_event": true,
+    "C3_no_events_on_flat_signal": true
+  },
+  "arms": {
+    "ARM_0_off": {
+      "arm": "ARM_0_off",
+      "checks": {
+        "C0a_comparator_is_none": true,
+        "C0b_no_events_over_flat_steps": true
+      },
+      "n_events": 0,
+      "PASS": true
+    },
+    "ARM_1_on_event_fires": {
+      "arm": "ARM_1_on_event_fires",
+      "checks": {
+        "C1a_comparator_not_none": true,
+        "C1b_event_fired_after_prefill": true,
+        "C1c_event_cleared_by_select_action": true
+      },
+      "event_fired": true,
+      "PASS": true
+    },
+    "ARM_2_valence_write": {
+      "arm": "ARM_2_valence_write",
+      "checks": {
+        "C2a_event_fired": true,
+        "C2b_valence_write_on_event": true
+      },
+      "valence_writes": 1,
+      "event_fired": true,
+      "PASS": true
+    },
+    "ARM_3_flat_signal_no_fire": {
+      "arm": "ARM_3_flat_signal_no_fire",
+      "checks": {
+        "C3_no_events_on_flat_signal": true
+      },
+      "n_events": 0,
+      "PASS": true
+    }
+  },
+  "config": {
+    "diag_window_length": 3,
+    "diag_drop_threshold": 0.001,
+    "diag_min_initial_norm": 0.0001,
+    "prefill_norm": 0.5,
+    "n_flat_steps": 100
+  },
+  "dry_run": false
+}
