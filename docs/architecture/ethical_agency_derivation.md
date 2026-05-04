@@ -343,6 +343,7 @@ distribution mismatch is uncharacterised is not.
 | Document | What it provides |
 |---|---|
 | `five_axioms_foundations.md` | The eight axioms and their logical dependency chain |
+| `established_ethical_systems.md` | How established ethical systems can be read as derived stabilisations of the REE substrate |
 | `overview.md` | E1/E2/E3 component architecture |
 | `sd_011_dual_nociceptive_streams.md` | Dual harm stream design decision |
 | `sd_004_sd_005_encoder_codesign.md` | z_self/z_world separation |

@@ -13,7 +13,7 @@ present, then prepends the canonical block.
 import os
 import re
 
-DOCS = "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/docs"
+DOCS = os.path.dirname(os.path.abspath(__file__))
 ARCH = os.path.join(DOCS, "architecture")
 
 # ---------------------------------------------------------------------------
@@ -79,6 +79,7 @@ SPEC["architecture/control_plane.md"]      = {"title": "Control Plane",         
 SPEC["architecture/hippocampal_systems.md"]= {"title": "Hippocampal Systems",        "parent": "Architecture", "nav_order": 6}
 SPEC["architecture/default_mode.md"]       = {"title": "Default Mode",               "parent": "Architecture", "nav_order": 7}
 SPEC["architecture/residue_geometry.md"]   = {"title": "Residue",                    "parent": "Architecture", "nav_order": 8}
+SPEC["architecture/established_ethical_systems.md"] = {"title": "Established Ethical Systems", "parent": "Architecture", "nav_order": 9}
 
 # --- Architecture: exclude everything else --------------------------------
 

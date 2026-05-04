@@ -186,6 +186,7 @@ Humans are on the cusp. We have the mechanism -- we model others as self-like. W
 
 - [Architecture overview](docs/REE_overview.md) -- the full conceptual stack
 - [Eight axioms and derivations](docs/architecture/five_axioms_foundations.md) -- formal grounding
+- [Established ethical systems](docs/architecture/established_ethical_systems.md) -- how autonomy, justice, rights, care, sustainability, and related traditions derive from the REE substrate
 - [Claims registry](docs/claims/claims.yaml) -- all 200+ registered claims
 - [Invariants](docs/invariants.md) -- the non-negotiable architectural constraints
 - [Experiment evidence](evidence/experiments/INDEX.md) -- what has been tested

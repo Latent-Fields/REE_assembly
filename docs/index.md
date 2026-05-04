@@ -90,6 +90,11 @@ the derivation in full; the cognifold motif; why the brain result matters
 [Foundations](architecture/five_axioms_foundations.md) —
 the irreducible axioms from which the architecture follows; derived ethical objectives
 
+**If you want the relation to established ethics:**
+[Established ethical systems](architecture/established_ethical_systems.md) —
+how autonomy, justice, rights, care, sustainability, uncertainty ethics, and other
+traditions can be read as derived stabilisations of the REE substrate
+
 **If you want the component architecture:**
 [Architecture overview](architecture/overview.md) — then
 [E1](architecture/e1.md), [E2](architecture/e2.md),
