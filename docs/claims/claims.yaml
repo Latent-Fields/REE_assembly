@@ -24930,6 +24930,16 @@
     safe'. Clinical counterpart: PTSD patients who can cognitively
     identify safety but cannot achieve physiological calm.
 
+  implementation_note: |
+    IMPLEMENTED 2026-05-04 as SD-052 (contextual_passive_substrate).
+    ResidueField extended: safety_terrain_rbf_field (RBFLayer),
+    accumulate_safety(), evaluate_safety(). Agent wired: sense()
+    writes to terrain on harm-absent waking steps; select_action()
+    reads terrain and releases beta_gate when threshold met.
+    Config: REEConfig.use_contextual_safety_terrain (default False),
+    contextual_safety_accum_weight (0.01), contextual_safety_harm_threshold
+    (0.05), contextual_safety_release_threshold (1.0). All no-op at defaults.
+    Validation experiment V3-EXQ-520 queued 2026-05-04.
   evidence_quality_note: |
     Revised candidate 2026-05-04. Primary lit support: Kreutzmann
     2020 Psychopharmacology (IL required for safety expression not
@@ -24938,9 +24948,9 @@
     (standard safety signal -> vmPFC + hippocampus, dissociated from
     conditioned inhibitor -> dorsal striatum). Ng & Sangha 2023
     papers (IL circuit and IL single-unit) retagged to MECH-304
-    (conditioned inhibition paradigm). v3_pending=true until
-    substrate implementation and context-conditioned-vs-cue-
-    conditioned safety extinction discriminative-pair experiment.
+    (conditioned inhibition paradigm). Substrate implemented 2026-05-04
+    (SD-052). v3_pending=true until V3-EXQ-520 context-conditioned
+    safety extinction discriminative-pair experiment completes.
   location: evidence/literature/targeted_review_connectome_mech_303/
 
 - id: MECH-304
