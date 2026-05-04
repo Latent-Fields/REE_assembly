@@ -1,11 +1,34 @@
 {
   "schema_version": "v1",
-  "runner_pid": 670,
-  "runner_started_at": "2026-05-04T04:11:19.755924+00:00",
-  "last_updated": "2026-05-04T04:11:23.445608+00:00",
+  "runner_pid": 672,
+  "runner_started_at": "2026-05-04T09:38:45.470207+00:00",
+  "last_updated": "2026-05-04T09:39:16.623058+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-485a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-033b OFC-analog oracle landing (UC6 round-trip)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-514",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 Phase 2 hybrid encoder behavioural validation",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -2506,6 +2529,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_516_mech302_suffering_derivative_integration_20260504T041122Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 2.1
+    },
+    {
+      "queue_id": "V3-EXQ-512a",
+      "backlog_id": "",
+      "claim_id": "SD-048",
+      "title": "SD-048 interoceptive-noise comparator-gap behavioural recalibrated (scale=3.0)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "C1 ARM_A selectivity_gap > 0.0: 2/3 -> PASS (mean gap=+0.0010) | C2 ARM_B forward_r2 >= 0.5: 3/3 -> PASS (mean r2=0.993) | C3 ARM_A body_noise - quiet >= 0.005: 3/3 -> PASS (mean quiet_gap=+0.0541)",
+      "started_at": "2026-05-04T09:38:47.112479+00:00",
+      "completed_at": "2026-05-04T09:39:16.621900+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_512a_sd048_comparator_gap_recalibrated_20260504T093916Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 28.1
     }
   ]
 }
