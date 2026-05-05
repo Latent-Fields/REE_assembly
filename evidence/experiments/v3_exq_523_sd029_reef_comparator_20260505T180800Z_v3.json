@@ -1,0 +1,48 @@
+{
+  "run_id": "v3_exq_523_sd029_reef_comparator_20260505T180800Z_v3",
+  "experiment_type": "v3_exq_523_sd029_reef_comparator",
+  "queue_id": "V3-EXQ-523",
+  "claim_ids": [
+    "SD-029",
+    "MECH-256"
+  ],
+  "evidence_direction": "supports",
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-05T18:08:00.765249Z",
+  "outcome": "FAIL",
+  "metrics": {
+    "per_arm": {
+      "ARM_0_baseline": {
+        "n_self": 1165.0,
+        "n_ext": 0.0,
+        "harm_forward_r2": 0.566378260551337,
+        "mean_cf_gap_self": -0.0049121761845258615,
+        "mean_cf_gap_ext": 0.0,
+        "mean_p1_loss": 0.02113379850197696,
+        "mean_p2_loss": 0.0007979740648625011
+      },
+      "ARM_1_reef_food_ext": {
+        "n_self": 549.3333333333334,
+        "n_ext": 34.0,
+        "harm_forward_r2": 0.5770941122931902,
+        "mean_cf_gap_self": -0.0003166699388906557,
+        "mean_cf_gap_ext": -0.0006497515738698187,
+        "mean_p1_loss": 0.02314510200618043,
+        "mean_p2_loss": 0.0005866175888331782
+      }
+    },
+    "criteria": {
+      "C0": true,
+      "C1": false,
+      "C2": false,
+      "C3": true,
+      "C4": true
+    },
+    "overall_pass": false,
+    "n_episodes": 80,
+    "steps_per_ep": 200,
+    "n_seeds": 3,
+    "n_train_steps": 2000
+  }
+}
