@@ -1,0 +1,187 @@
+{
+  "run_id": "v3_exq_452a_mech257_dual_function_e2_reef_20260505T215753Z_v3",
+  "experiment_type": "v3_exq_452a_mech257_dual_function_e2_reef",
+  "supersedes": "v3_exq_452_mech257_dual_function_e2",
+  "claim_ids": [
+    "MECH-257",
+    "SD-013",
+    "ARC-033"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260505T215753Z",
+  "outcome": "FAIL",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {
+    "MECH-257": "weakens",
+    "SD-013": "mixed",
+    "ARC-033": "mixed"
+  },
+  "pass_criteria_summary": {
+    "c1_comparator_valid": {
+      "std_wins": 3,
+      "interventional_wins": 3,
+      "threshold": 0.05,
+      "pass": true,
+      "desc": "counterfactual_separation > 0.05 in >=2/3 seeds for STD AND INTERVENTIONAL"
+    },
+    "c2_evaluator_valid": {
+      "std_wins": 1,
+      "interventional_wins": 0,
+      "threshold": 0.15,
+      "pass": false,
+      "desc": "pe_harm_surprise_corr > 0.15 in >=2/3 seeds for STD AND INTERVENTIONAL"
+    },
+    "c3_interventional_improves_comparator": {
+      "wins": 1,
+      "pass": false,
+      "desc": "interventional cf_sep > std cf_sep in >=2/3 seeds (diagnostic refinement)"
+    },
+    "c4_interventional_does_not_harm_evaluator": {
+      "wins": 2,
+      "slack": 0.1,
+      "pass": true,
+      "desc": "interventional pe_corr >= std pe_corr - 0.1 in >=2/3 seeds (diagnostic refinement)"
+    },
+    "baseline_contrast": {
+      "off_baseline_cf_sep_mean": 0.7869899995502926,
+      "off_baseline_pe_corr_mean": 0.043077329967422084,
+      "desc": "DUAL_OFF_BASELINE reference: untrained projection + identity predictor"
+    }
+  },
+  "per_unit_results": [
+    {
+      "seed": 42,
+      "condition": "DUAL_STD",
+      "metrics": {
+        "counterfactual_separation": 0.14479145182976647,
+        "pe_harm_surprise_corr": 0.1823178563012299,
+        "forward_r2": 0.6071040631087559,
+        "n_steps": 189
+      },
+      "verdict": "PASS"
+    },
+    {
+      "seed": 42,
+      "condition": "DUAL_INTERVENTIONAL",
+      "metrics": {
+        "counterfactual_separation": 0.12425471092948968,
+        "pe_harm_surprise_corr": -0.02114451445958562,
+        "forward_r2": 0.7343508717260832,
+        "n_steps": 174
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "seed": 42,
+      "condition": "DUAL_OFF_BASELINE",
+      "metrics": {
+        "counterfactual_separation": 0.7105033921186256,
+        "pe_harm_surprise_corr": 0.20948933050409912,
+        "forward_r2": 0.5869386961216911,
+        "n_steps": 189
+      },
+      "verdict": "PASS"
+    },
+    {
+      "seed": 7,
+      "condition": "DUAL_STD",
+      "metrics": {
+        "counterfactual_separation": 0.17764609527020228,
+        "pe_harm_surprise_corr": 0.00999020753812161,
+        "forward_r2": 0.8008265197952036,
+        "n_steps": 210
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "seed": 7,
+      "condition": "DUAL_INTERVENTIONAL",
+      "metrics": {
+        "counterfactual_separation": 0.1502603316864772,
+        "pe_harm_surprise_corr": 0.056270015242599815,
+        "forward_r2": 0.7008787173012181,
+        "n_steps": 171
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "seed": 7,
+      "condition": "DUAL_OFF_BASELINE",
+      "metrics": {
+        "counterfactual_separation": 0.8463747612067631,
+        "pe_harm_surprise_corr": 0.007688259160985537,
+        "forward_r2": 0.7931458185519943,
+        "n_steps": 210
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "seed": 13,
+      "condition": "DUAL_STD",
+      "metrics": {
+        "counterfactual_separation": 0.12605770538799727,
+        "pe_harm_surprise_corr": -0.10409014966115465,
+        "forward_r2": 0.6038644705518839,
+        "n_steps": 199
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "seed": 13,
+      "condition": "DUAL_INTERVENTIONAL",
+      "metrics": {
+        "counterfactual_separation": 0.24482971295080286,
+        "pe_harm_surprise_corr": -0.032779246568096894,
+        "forward_r2": 0.7322256922244628,
+        "n_steps": 188
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "seed": 13,
+      "condition": "DUAL_OFF_BASELINE",
+      "metrics": {
+        "counterfactual_separation": 0.8040918453254892,
+        "pe_harm_surprise_corr": -0.0879455997628184,
+        "forward_r2": 0.6121532411946591,
+        "n_steps": 199
+      },
+      "verdict": "FAIL"
+    }
+  ],
+  "config": {
+    "conditions": [
+      "DUAL_STD",
+      "DUAL_INTERVENTIONAL",
+      "DUAL_OFF_BASELINE"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 30,
+    "p1_eps": 80,
+    "p2_eps": 20,
+    "steps_per_ep": 120,
+    "harm_obs_dim": 51,
+    "harm_obs_a_dim": 50,
+    "harm_history_len": 10,
+    "z_harm_dim": 32,
+    "z_harm_a_dim": 16,
+    "action_dim": 4,
+    "env": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 3,
+      "hazard_harm": 0.04,
+      "proximity_harm_scale": 0.12
+    },
+    "thresholds": {
+      "c1_sep": 0.05,
+      "c2_corr": 0.15,
+      "c4_slack": 0.1
+    }
+  }
+}

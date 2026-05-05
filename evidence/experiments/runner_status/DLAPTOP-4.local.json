@@ -2,58 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 52928,
   "runner_started_at": "2026-05-05T07:27:46.425299+00:00",
-  "last_updated": "2026-05-05T20:46:19.845227+00:00",
+  "last_updated": "2026-05-05T21:58:15.058818+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-325f",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-032c AIC descending modulation -- reef (monostrategy fix)",
-    "description": "",
-    "script": "experiments/v3_exq_325f_sd032c_aic_descending_reef.py",
-    "started_at": "2026-05-05T18:22:45.956432+00:00",
-    "progress": {
-      "run_label": "Seed 44 / CONTROL",
-      "runs_done": 11,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 150,
-      "overall_pct": 1100.0
-    },
-    "seconds_elapsed": 8614,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "[train] seed=44 cond=LEGACY ep 150/150",
-      "LEGACY: rv_after_train=0.0000 committed_flag=True",
-      "LEGACY: z_s_ratio=1.0000 z_a_ratio=1.0000 committed=6000 aic_sal_mean=0.0000",
-      "verdict: PASS",
-      "Seed 44 Condition CONTROL"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-325f",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032c AIC descending modulation -- reef (monostrategy fix)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-452a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-257/SD-013/ARC-033 dual-function E2 comparator -- reef (monostrategy fix)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-454a",
       "backlog_id": "",
@@ -6934,6 +6886,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2270.8
+    },
+    {
+      "queue_id": "V3-EXQ-325f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032c AIC descending modulation -- reef (monostrategy fix)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "seed=42: FAIL s_aic=1.0000 s_abl=1.0000 s_ctl=1.0000 sal=11.740 | seed=43: FAIL s_aic=1.0000 s_abl=1.0000 s_ctl=1.0000 sal=11.277 | seed=44: FAIL s_aic=1.0000 s_abl=1.0000 s_ctl=1.0000 sal=0.848",
+      "started_at": "2026-05-05T18:22:45.956432+00:00",
+      "completed_at": "2026-05-05T21:57:49.266770+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_325f_sd032c_aic_descending_reef/v3_exq_325d_sd032c_aic_descending_modulation_20260505T182247Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12903.2
+    },
+    {
+      "queue_id": "V3-EXQ-452a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-257/SD-013/ARC-033 dual-function E2 comparator -- reef (monostrategy fix)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "c2_evaluator_valid: {'std_wins': 1, 'interventional_wins': 0, 'threshold': 0.15, 'pass': False, 'desc': 'pe_harm_surprise_corr > 0.15 in >=2/3 seeds for STD AND INTERVENTIONAL'} | c4_interventional_does_not_harm_evaluator: {'wins': 2, 'slack': 0.1, 'pass': True, 'desc': 'interventional pe_corr >= std pe_corr - 0.1 in >=2/3 seeds (diagnostic refinement)'} | baseline_contrast: {'off_baseline_cf_sep_mean': 0.7869899995502926, 'off_baseline_pe_corr_mean': 0.043077329967422084, 'desc': 'DUAL_OFF_BASELINE reference: untrained projection + identity predictor'}",
+      "started_at": "2026-05-05T21:57:51.570010+00:00",
+      "completed_at": "2026-05-05T21:58:15.055108+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 23.5
     }
   ]
 }
