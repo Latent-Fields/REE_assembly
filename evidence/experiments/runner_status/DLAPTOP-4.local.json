@@ -1,11 +1,93 @@
 {
   "schema_version": "v1",
-  "runner_pid": 81348,
-  "runner_started_at": "2026-05-04T21:20:19.273413+00:00",
-  "last_updated": "2026-05-05T06:55:03.290207+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [],
+  "runner_pid": 52928,
+  "runner_started_at": "2026-05-05T07:27:46.425299+00:00",
+  "last_updated": "2026-05-05T17:01:37.948403+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-433e",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-029/MECH-256 event-conditioned comparator -- reef (monostrategy fix)",
+    "description": "",
+    "script": "experiments/v3_exq_433e_sd029_eventcond_comparator_reef.py",
+    "started_at": "2026-05-05T07:27:49.603784+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 9497,
+    "seconds_remaining": 1040,
+    "recent_lines": [
+      "P1 (200 eps) interventional [curriculum ON, 479 params]...",
+      "Balanced eval [curriculum ON, 479 params + scripted agent-caused]...",
+      "[seed=13] r2=0.960 attn_ratio=5.645 snr=nan n_agent=20 n_env=4",
+      "Seed 99",
+      "P0 (200 eps) encoder warmup [curriculum ON, 479 params]..."
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-433e",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-029/MECH-256 event-conditioned comparator -- reef (monostrategy fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-445f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b/MECH-258/MECH-260 dACC adaptive control -- reef (monostrategy fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-325f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032c AIC descending modulation -- reef (monostrategy fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-452a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-257/SD-013/ARC-033 dual-function E2 comparator -- reef (monostrategy fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-454a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-016 adaptive commit_threshold via E2 PE variance -- reef (monostrategy fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
