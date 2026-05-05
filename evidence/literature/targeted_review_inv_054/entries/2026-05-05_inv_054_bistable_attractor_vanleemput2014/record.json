@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_054",
+  "entry_id": "2026-05-05_inv_054_bistable_attractor_vanleemput2014",
+  "timestamp_utc": "2026-05-05T22:55:18Z",
+  "claim_ids_tested": ["INV-054"],
+  "source": {
+    "title": "Critical slowing down as early warning for the onset and termination of depression",
+    "authors": ["van de Leemput IA", "Wichers M", "Cramer AOJ", "Borsboom D", "Tuerlinckx F", "Kuppens P", "van Nes EH", "Viechtbauer W", "Giltay EJ", "Aggen SH", "Derom C", "Jacobs N", "Kendler KS", "van der Maas HLJ", "Neale MC", "Peeters F", "Thiery E", "Zachar P", "Scheffer M"],
+    "year": 2014,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.1312114110",
+    "pmid": "24324144"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "High-quality PNAS paper combining real patient ecological momentary assessment data with dynamical systems theory. Directly demonstrates bistable mood attractor structure with tipping points and critical slowing down signatures. Maps precisely onto INV-054's claim that depression is a self-maintaining attractor separated from normal function by a threshold. Both source quality and mapping fidelity are strong. Transfer risk low: human real-world mood data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Critical slowing down was observed in individual subjects transitioning into and out of depression, but not all transitions showed the predicted signal, suggesting heterogeneity in attractor structure across individuals.",
+    "The paper does not identify which specific feedback loops maintain the depressed attractor -- the mechanistic grounding remains at the phenomenological level of autocorrelation signatures."
+  ],
+  "tags": ["inv_054", "bistable_attractor", "tipping_point", "critical_slowing_down", "depression_chronicity", "phase_transition"],
+  "mapping": {
+    "source_claim_statement": "Mood states in depression and healthy controls show signatures of alternative stable states (bistability) separated by tipping points. Critical slowing down (elevated temporal autocorrelation and variance before a transition) is detectable before both the onset and termination of depressive episodes.",
+    "ree_translation": "INV-054 proposes that the depressive state is a self-sustaining attractor maintained by a closed negative feedback loop (reduced VALENCE_WANTING -> reduced exploration -> reduced benefit encounters -> continued sub-threshold seeding). The van de Leemput paper provides the empirical signature of exactly this attractor structure: mood fluctuations slow down (autocorrelation rises) as the system approaches the tipping point between attractors, consistent with a bistable dynamical landscape. Recovery requires crossing a threshold -- not gradual linear improvement -- which is INV-054's core non-linear prediction.",
+    "mapping_caveat": "The paper establishes the bistability of mood empirically but does not specify which feedback loops create the wells. In REE, the loop is benefit_terrain -> VALENCE_WANTING -> exploration -> benefit_exposure -> terrain. In the van de Leemput model, the maintaining loops are unspecified. The mapping is structural (attractor geometry) not mechanistic (which variables form the loop). The REE interpretation that benefit terrain is the key state variable in the attractor well is not directly tested here.",
+    "source_context": "Ecological momentary assessment data from multiple European cohorts (n=~700 individuals), including individuals transitioning into and out of MDD episodes. Dynamical systems analysis of emotional autocorrelation signatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "PNAS, human clinical data, rigorous methodology combining empirical data with dynamical systems theory. Mapping fidelity excellent at the structural/attractor level; penalised only because the mechanistic loops maintaining the depressive attractor are not specified, so REE's specific terrain-loop interpretation is an extrapolation."
+  }
+}

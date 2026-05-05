@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-05T22:10:14.293367Z`
+Generated: `2026-05-05T22:57:46.033199Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -131,7 +131,7 @@ Generated: `2026-05-05T22:10:14.293367Z`
 | `targeted_review_inv_051` | [`2026-04-06_inv_051_synaptic_homeostasis_tononi+cirelli2006`](targeted_review_inv_051/entries/2026-04-06_inv_051_synaptic_homeostasis_tononi+cirelli2006/record.json) | 2 | [`summary`](targeted_review_inv_051/entries/2026-04-06_inv_051_synaptic_homeostasis_tononi+cirelli2006/summary.md) |
 | `targeted_review_inv_052` | [`2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008`](targeted_review_inv_052/entries/2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008/record.json) | 4 | [`summary`](targeted_review_inv_052/entries/2026-04-09_inv_052_serotonin_inhibition_neg_mood_dayan2008/summary.md) |
 | `targeted_review_inv_053` | [`2026-04-18_inv_053_decision_theoretic_depression_huys2015`](targeted_review_inv_053/entries/2026-04-18_inv_053_decision_theoretic_depression_huys2015/record.json) | 5 | [`summary`](targeted_review_inv_053/entries/2026-04-18_inv_053_decision_theoretic_depression_huys2015/summary.md) |
-| `targeted_review_inv_054` | [`2026-04-06_inv_054_stard_response_latency_trivedi2006`](targeted_review_inv_054/entries/2026-04-06_inv_054_stard_response_latency_trivedi2006/record.json) | 3 | [`summary`](targeted_review_inv_054/entries/2026-04-06_inv_054_stard_response_latency_trivedi2006/summary.md) |
+| `targeted_review_inv_054` | [`2026-05-05_inv_054_sudden_gains_tang1999`](targeted_review_inv_054/entries/2026-05-05_inv_054_sudden_gains_tang1999/record.json) | 6 | [`summary`](targeted_review_inv_054/entries/2026-05-05_inv_054_sudden_gains_tang1999/summary.md) |
 | `targeted_review_mcc_effort_value` | [`2026-04-19_mcc_serotonin_effort_learning_scholl2017`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/record.json) | 5 | [`summary`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/summary.md) |
 | `targeted_review_mech261_mode_gating` | [`2026-04-20_mech_261_triple_coupling_gating_latchoumane2017`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/record.json) | 5 | [`summary`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/summary.md) |
 | `targeted_review_mech269b_vs_rollout_gating` | [`2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/record.json) | 7 | [`summary`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/summary.md) |

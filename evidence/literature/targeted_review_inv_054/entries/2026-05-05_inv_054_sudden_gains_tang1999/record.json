@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_054",
+  "entry_id": "2026-05-05_inv_054_sudden_gains_tang1999",
+  "timestamp_utc": "2026-05-05T22:55:18Z",
+  "claim_ids_tested": ["INV-054"],
+  "source": {
+    "title": "Sudden gains and critical sessions in cognitive-behavioral therapy for depression",
+    "authors": ["Tang TZ", "DeRubeis RJ"],
+    "year": 1999,
+    "venue": "Journal of Consulting and Clinical Psychology",
+    "doi": "10.1037/0022-006x.67.6.894",
+    "pmid": "10596511"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Well-cited foundational study establishing sudden gains as a common feature of recovery from depression in CBT. Directly supports INV-054's prediction that recovery is discontinuous (phase-transition-like), not gradual linear. Source quality high (JCCP, large RCT secondary analysis, extensively replicated). Mapping fidelity good but indirect: sudden gains in symptom scores are the observable signature of crossing INV-054's benefit_exposure threshold, but the paper does not measure terrain or motivational variables. Transfer risk moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sudden gains require a 'critical session' precursor with elevated cognitive change, suggesting the threshold crossing may be cognitive not purely behavioral, potentially weakening the terrain-only interpretation.",
+    "Not all patients show sudden gains (~50% do), suggesting recovery can also be gradual, which would be inconsistent with a strict bistable model for all individuals."
+  ],
+  "tags": ["inv_054", "sudden_gains", "non_linear_recovery", "phase_transition", "depression_treatment"],
+  "mapping": {
+    "source_claim_statement": "Approximately 50% of patients in CBT for depression show sudden gains -- large abrupt symptom improvements (mean 11 BDI points) occurring within a single between-session interval. Sudden gains account for approximately 50% of total improvement, are preceded by a 'critical session', and predict superior outcomes at post-treatment and 18-month follow-up.",
+    "ree_translation": "INV-054 predicts that recovery from the depressive attractor is a phase transition: once benefit_exposure crosses the seeding threshold, VALENCE_WANTING terrain begins recovering through a positive feedback loop (more terrain -> more exploration -> more benefit_exposure -> more terrain recovery). This self-amplifying escape from the attractor would produce abrupt improvement rather than gradual linear change. The sudden gain is the observable symptom-level signature of this threshold crossing -- the moment when the benefit terrain tips back toward the normal attractor.",
+    "mapping_caveat": "The paper measures symptom scores (BDI), not benefit_exposure or VALENCE_WANTING terrain. The sudden gain may reflect a cognitive shift (the 'critical session' finding) rather than a motivational terrain change, which would implicate schema-level reorganisation rather than the benefit_exposure loop. The finding that ~50% of patients show sudden gains while ~50% show more gradual improvement suggests the bistable model may be correct only for a subgroup. Transfer risk is moderate: CBT-for-depression in outpatients to REE's grid-world agent.",
+    "source_context": "Secondary analysis of a large RCT of CBT vs pharmacotherapy for MDD (n=~100 in CBT arms). US outpatient clinical setting. Sudden gains defined as meeting three criteria: large inter-session gain, stability of gain, and significantly larger than preceding fluctuations."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.73,
+    "transfer_risk": 0.30,
+    "notes": "Strong foundational paper, extensively replicated. Mapping fidelity penalised because the critical session (cognitive-change precursor) finding complicates the terrain-only interpretation. Transfer risk slightly elevated relative to van de Leemput because this is a symptom-score measure rather than a dynamical systems signature."
+  }
+}

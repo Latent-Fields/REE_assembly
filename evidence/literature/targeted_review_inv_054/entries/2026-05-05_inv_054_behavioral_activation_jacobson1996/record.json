@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_054",
+  "entry_id": "2026-05-05_inv_054_behavioral_activation_jacobson1996",
+  "timestamp_utc": "2026-05-05T22:55:18Z",
+  "claim_ids_tested": ["INV-054"],
+  "source": {
+    "title": "A component analysis of cognitive-behavioral treatment for depression",
+    "authors": ["Jacobson NS", "Dobson KS", "Truax PA", "Addis ME", "Koerner K", "Gollan JK", "Gortner E", "Prince SE"],
+    "year": 1996,
+    "venue": "Journal of Consulting and Clinical Psychology",
+    "doi": "10.1037/0022-006x.64.2.295",
+    "pmid": "8871414"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational RCT demonstrating BA alone matches full CBT efficacy. Directly supports INV-054's prediction that external scaffolding of reward contact (BA scheduling) is sufficient to restore terrain, without cognitive restructuring. Source quality high (n=150 RCT, JCCP). Mapping fidelity good: the active ingredient being reward-contact scheduling rather than cognitive change maps onto benefit_exposure as the key variable. Minor caveat: does not test the loop mechanism or attractor structure directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Full CT did not outperform BA component alone, suggesting the attractor model may underspecify the role of cognitive content in recovery.",
+    "BA component also changed negative thinking, challenging a clean separation between behavioral (terrain) and cognitive (schema) recovery pathways."
+  ],
+  "tags": ["inv_054", "behavioral_activation", "depression_treatment", "reward_contact", "benefit_terrain"],
+  "mapping": {
+    "source_claim_statement": "Behavioral activation alone -- scheduling external contact with rewarding activities -- produces equivalent antidepressant outcomes to full cognitive-behavioral therapy at acute termination and 6-month follow-up.",
+    "ree_translation": "INV-054 predicts that once benefit terrain collapses, internal motivation cannot self-restart without externally scaffolded benefit encounters. BA provides exactly this forcing function: it increases benefit_exposure above the SD-012 seeding threshold from outside the motivational system, enabling terrain recovery before internal VALENCE_WANTING has recovered.",
+    "mapping_caveat": "BA outcome studies measure symptom change, not benefit terrain directly. The BA mechanism in REE (forcing benefit_exposure above seeding threshold) is plausible but inferred from the equivalent-outcome finding; the paper does not measure motivational trajectories. Transfer from clinical populations to REE grid-world agent also involves abstraction loss.",
+    "source_context": "n=150 outpatients with major depressive disorder, randomised to BA, BA+automatic thoughts, or full CT. Naturalistic clinical setting, US."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "High-quality RCT, canonical citation in BA literature. Mapping fidelity penalised because the paper establishes BA efficacy, not the terrain-loop mechanism specifically. Transfer risk modest: human clinical data maps cleanly to the therapeutic prediction in INV-054."
+  }
+}
