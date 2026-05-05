@@ -2999,7 +2999,11 @@ def _write_planning_outputs(
             continue
         claim_key = str(entry.get("claim_id", "")).strip()
         if claim_key:
-            if is_applicable(entry):
+            # Mirror _write_claim_evidence_matrix policy: literature entries are
+            # not epoch-filtered. Without this exemption, pre-cutoff lit entries
+            # were silently dropped from the backlog view, causing
+            # missing_literature_evidence to fire on claims with valid literature.
+            if entry.get("source_type") == "literature" or is_applicable(entry):
                 entries_by_claim[claim_key].append(entry)
 
     # ── Pre-load pinned items to prevent auto-generation collision ────────────────

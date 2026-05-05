@@ -1,0 +1,52 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "per_arm": {
+      "ARM_0_baseline": {
+        "world_obs_dim": 250.0,
+        "n_reef_cells": 0.0,
+        "reef_violations": 0.0,
+        "reef_visits": 0.0,
+        "mean_hazard_food_dist": 3.7897150393990438,
+        "hazard_pos_entropy": 4.557162973245458
+      },
+      "ARM_1_reef_only": {
+        "world_obs_dim": 275.0,
+        "n_reef_cells": 33.0,
+        "reef_violations": 0.0,
+        "reef_visits": 1986.6666666666667,
+        "mean_hazard_food_dist": 3.5324988338914927,
+        "hazard_pos_entropy": 4.143848238128171
+      },
+      "ARM_2_reef_food": {
+        "world_obs_dim": 275.0,
+        "n_reef_cells": 33.0,
+        "reef_violations": 0.0,
+        "reef_visits": 2060.0,
+        "mean_hazard_food_dist": 2.0571438834105975,
+        "hazard_pos_entropy": 4.049157099763398
+      },
+      "ARM_3_food_only": {
+        "world_obs_dim": 250.0,
+        "n_reef_cells": 0.0,
+        "reef_violations": 0.0,
+        "reef_visits": 0.0,
+        "mean_hazard_food_dist": 3.954674542957271,
+        "hazard_pos_entropy": 4.558430344452351
+      }
+    },
+    "criteria": {
+      "C0": true,
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true,
+      "C6": true
+    },
+    "overall_pass": true,
+    "n_episodes": 30,
+    "steps_per_ep": 200,
+    "n_seeds": 3
+  }
+}

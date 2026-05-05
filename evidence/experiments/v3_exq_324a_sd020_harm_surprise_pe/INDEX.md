@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_324a_sd020_harm_surprise_pe
 
-Generated: `2026-05-05T06:53:28.694648Z`
+Generated: `2026-05-05T17:52:31.521199Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

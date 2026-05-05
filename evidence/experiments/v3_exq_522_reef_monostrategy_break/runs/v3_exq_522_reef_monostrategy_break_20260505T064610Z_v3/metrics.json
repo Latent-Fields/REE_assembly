@@ -1,0 +1,43 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "per_arm": {
+      "ARM_0_baseline": {
+        "reef_visit_fraction": 0.0,
+        "foraging_fraction": 1.0,
+        "zone_transitions_per_ep": 0.0,
+        "mean_position_entropy": 3.662523312178591,
+        "n_reef_cells": 0.0,
+        "world_obs_dim": 250.0
+      },
+      "ARM_1_reef_food": {
+        "reef_visit_fraction": 0.5007777777777778,
+        "foraging_fraction": 0.4992222222222222,
+        "zone_transitions_per_ep": 48.944444444444436,
+        "mean_position_entropy": 1.957165855613552,
+        "n_reef_cells": 33.0,
+        "world_obs_dim": 275.0
+      },
+      "ARM_2_reef_only": {
+        "reef_visit_fraction": 0.5248333333333333,
+        "foraging_fraction": 0.4751666666666667,
+        "zone_transitions_per_ep": 36.31111111111111,
+        "mean_position_entropy": 2.659476094705715,
+        "n_reef_cells": 33.0,
+        "world_obs_dim": 275.0
+      }
+    },
+    "criteria": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true,
+      "C6": true
+    },
+    "overall_pass": true,
+    "n_episodes": 30,
+    "steps_per_ep": 200,
+    "n_seeds": 3
+  }
+}

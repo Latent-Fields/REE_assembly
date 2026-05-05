@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_355_arc038_schema_assimilation_probe
 
-Generated: `2026-05-05T06:53:28.694648Z`
+Generated: `2026-05-05T17:52:31.521199Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
