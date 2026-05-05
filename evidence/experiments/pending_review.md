@@ -1,17 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-05-05T17:52:32Z`  
-Last review: `2026-05-05T06:52:26Z`  
-Pending: **6** item(s) -- 0 PASS, 4 FAIL, 2 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-05-05T20:44:53Z`  
+Last review: `2026-05-05T20:40:03Z`  
+Pending: **3** item(s) -- 0 PASS, 2 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_418i_sd016_divweight_sweep_20260504T221922Z_v3` | 2026-05-04T22:19 | SD-016 | — |
-| `v3_exq_517a_mech302_relief_completion_discriminative_pair_20260504T222032Z_v3` | 2026-05-04T22:20 | MECH-302 | — |
-| `v3_exq_433e_sd029_eventcond_comparator_reef_20260505T072754Z_v3` | 2026-05-05T07:27 | MECH-256, SD-029 | — |
-| `v3_exq_514b_sd049_phase_2_behavioural_validation_20260505T005802Z_v3` | 2026-05-05T17:52 | MECH-229, MECH-230, SD-015, SD-049 | — |
+| `v3_exq_445f_sd032b_dacc_reef_20260505T174448Z_v3` | 2026-05-05T17:44 | MECH-258, MECH-260, SD-032b | — |
+| `v3_exq_523_sd029_reef_comparator_20260505T180800Z_v3` | 2026-05-05T18:08 | MECH-256, SD-029 | — |
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -19,8 +17,7 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
-| `V3-EXQ-517a` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-433e` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-445f` | UNKNOWN | `?` | UNKNOWN |
 
 ---
 

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_098b_mech099_agency_attribution
 
-Generated: `2026-05-05T17:52:31.521199Z`
+Generated: `2026-05-05T20:43:17.812139Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

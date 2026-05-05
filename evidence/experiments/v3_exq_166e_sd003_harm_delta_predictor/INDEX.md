@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_166e_sd003_harm_delta_predictor
 
-Generated: `2026-05-05T17:52:31.521199Z`
+Generated: `2026-05-05T20:43:17.812139Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

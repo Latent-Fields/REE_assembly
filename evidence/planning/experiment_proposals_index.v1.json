@@ -1,25 +1,6 @@
 {
-  "generated_at_utc": "2026-05-05T17:52:31.521199Z",
+  "generated_at_utc": "2026-05-05T20:43:17.812139Z",
   "items": [
-    {
-      "backlog_id": "EVB-0007",
-      "claim_id": "SD-029",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-114",
-      "executed_queue_id": "V3-EXQ-114",
-      "objective": "Generate decision-grade discriminative evidence for SD-029 before governance deadline.",
-      "priority": "high",
-      "proposal_id": "EXP-0001",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "v3_exq_433_sd029_eventcond_comparator",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert",
-        "mandatory_decision_checkpoint"
-      ]
-    },
     {
       "backlog_id": "EVB-0003",
       "claim_id": "INV-054",
@@ -28,7 +9,7 @@
       "executed_queue_id": "V3-EXQ-111",
       "objective": "Generate decision-grade discriminative evidence for INV-054 before governance deadline.",
       "priority": "high",
-      "proposal_id": "EXP-0002",
+      "proposal_id": "EXP-0001",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_250_inv054_phase_transition_recovery",
@@ -46,7 +27,7 @@
       "dispatch_mode": "discriminative_pair",
       "objective": "Generate decision-grade discriminative evidence for MECH-257 before governance deadline.",
       "priority": "high",
-      "proposal_id": "EXP-0003",
+      "proposal_id": "EXP-0002",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_452_mech257_dual_function_e2",
@@ -65,7 +46,7 @@
       "executed_queue_id": "V3-EXQ-112",
       "objective": "Generate decision-grade discriminative evidence for MECH-102 before governance deadline.",
       "priority": "high",
-      "proposal_id": "EXP-0004",
+      "proposal_id": "EXP-0003",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_102",
@@ -74,6 +55,25 @@
         "active_conflict",
         "directional_conflict_alert",
         "low_exp_conf",
+        "mandatory_decision_checkpoint"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0007",
+      "claim_id": "SD-029",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-114",
+      "executed_queue_id": "V3-EXQ-114",
+      "objective": "Generate decision-grade discriminative evidence for SD-029 before governance deadline.",
+      "priority": "high",
+      "proposal_id": "EXP-0004",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "v3_exq_433_sd029_eventcond_comparator",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
         "mandatory_decision_checkpoint"
       ]
     },
@@ -764,24 +764,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-0056",
-      "claim_id": "MECH-256",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-365",
-      "executed_queue_id": "V3-EXQ-365",
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-256 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0042",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "v3_exq_433_sd029_eventcond_comparator",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert"
-      ]
-    },
-    {
       "backlog_id": "EVB-0043",
       "claim_id": "MECH-165",
       "dispatch_mode": "discriminative_pair",
@@ -789,7 +771,7 @@
       "executed_queue_id": "V3-EXQ-215",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-165 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0043",
+      "proposal_id": "EXP-0042",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_244_mech165_reverse_replay_diversity",
@@ -808,7 +790,7 @@
       "executed_queue_id": "V3-EXQ-204",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-188 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0044",
+      "proposal_id": "EXP-0043",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_253_mech188_zgoal_injection",
@@ -826,7 +808,7 @@
       "executed_by": "V3-EXQ-191",
       "objective": "Run a discriminative support-vs-ablation pair for INV-010 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0045",
+      "proposal_id": "EXP-0044",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_430_inv010_offline_integration_necessity",
@@ -844,7 +826,7 @@
       "executed_by": "V3-EXQ-192",
       "objective": "Run a discriminative support-vs-ablation pair for SD-032c with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0046",
+      "proposal_id": "EXP-0045",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_325d_sd032c_aic_descending_modulation",
@@ -864,10 +846,28 @@
       "executed_queue_id": "V3-EXQ-129",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-095 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0047",
+      "proposal_id": "EXP-0046",
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "v3_exq_098b_mech099_agency_attribution",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0056",
+      "claim_id": "MECH-256",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-365",
+      "executed_queue_id": "V3-EXQ-365",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-256 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0047",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "v3_exq_433_sd029_eventcond_comparator",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
