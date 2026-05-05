@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-04-05.1 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-05-05.1 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,6 +125,7 @@
     .mode-approach { background: #14532d; color: #86efac; }
     .mode-explore  { background: #78350f; color: #fcd34d; }
     .mode-neutral  { background: #1e3a5f; color: #93c5fd; }
+    .mode-shelter  { background: #164e63; color: #67e8f9; }
 
     /* Bars */
     .barRow { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
@@ -304,6 +305,7 @@
       <div>
         <div class="iLabel">Behaviour</div>
         <div id="modeBadgeWrap"><span class="modeBadge mode-neutral">DRIFTING</span></div>
+        <div id="zoneBadgeWrap" style="margin-top:4px;min-height:14px"></div>
         <div id="eventTag"></div>
       </div>
       <div>
@@ -372,7 +374,8 @@ const MODE_LABELS = {
   avoid:    'EVADING',
   approach: 'FEEDING',
   explore:  'EXPLORING',
-  neutral:  'DRIFTING'
+  neutral:  'DRIFTING',
+  shelter:  'SHELTERING'
 };
 
 const EVENT_LABELS = {
@@ -382,7 +385,9 @@ const EVENT_LABELS = {
   hazard_approach:     'danger nearby',
   benefit_approach:    'food nearby',
   sequence_complete:   'path complete!',
-  waypoint:            'waypoint reached'
+  waypoint:            'waypoint reached',
+  reef_entry:          'entered reef!',
+  reef_exit:           'left reef'
 };
 
 // Seaweed specs as fraction of canvas width
@@ -417,6 +422,7 @@ let currentHealth    = 1.0;
 let currentEnergy    = 1.0;
 let currentHazards   = [];
 let currentResources = [];
+let currentReefCells = [];
 
 // Particles
 let bubbles  = [];
@@ -597,6 +603,52 @@ function drawSeaweed(ctx, baseX, baseY, t, segments, phase) {
 }
 
 // ══════════════════════════════════════════════════════════════
+//  Drawing: Reef safe zone
+// ══════════════════════════════════════════════════════════════
+function drawReef(ctx, reefCells, t) {
+  if (!reefCells || reefCells.length === 0) return;
+
+  // Teal-tinted fill + border for each reef cell
+  for (const [cx, cy] of reefCells) {
+    const px = cx * CELL, py = cy * CELL;
+    ctx.fillStyle = 'rgba(13,148,136,0.16)';
+    ctx.fillRect(px, py, CELL, CELL);
+    ctx.strokeStyle = 'rgba(45,212,191,0.22)';
+    ctx.lineWidth = 0.75;
+    ctx.strokeRect(px + 0.375, py + 0.375, CELL - 0.75, CELL - 0.75);
+  }
+
+  // Coral decorations on a deterministic subset of cells
+  const coralCells = reefCells.filter((_, i) => i % 6 === 2);
+  for (const [cx, cy] of coralCells) {
+    const baseX = cx * CELL + CELL / 2;
+    const baseY = cy * CELL + CELL - 8;
+    const sway  = Math.sin(t * 1.1 + cx * 0.7 + cy * 0.5) * 3;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(45,212,191,0.45)';
+    ctx.lineWidth   = 2;
+    ctx.lineCap     = 'round';
+    // Main stem
+    ctx.beginPath();
+    ctx.moveTo(baseX + sway * 0.2, baseY);
+    ctx.quadraticCurveTo(baseX + sway, baseY - 10, baseX + sway * 0.5, baseY - 18);
+    ctx.stroke();
+    // Side branches
+    ctx.lineWidth = 1.5;
+    const tipX = baseX + sway * 0.5, tipY = baseY - 12;
+    ctx.beginPath();
+    ctx.moveTo(tipX, tipY);
+    ctx.lineTo(tipX + 7, tipY - 6);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(tipX, tipY);
+    ctx.lineTo(tipX - 6, tipY - 5);
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
 //  Drawing: Jellyfish
 // ══════════════════════════════════════════════════════════════
 function drawJellyfish(ctx, hx, hy, jIndex, t) {
@@ -706,7 +758,8 @@ function drawFish(ctx, cx, cy, faceRight, mode, health, t) {
     avoid:    '#ef4444',
     approach: '#22c55e',
     explore:  '#f59e0b',
-    neutral:  '#60a5fa'
+    neutral:  '#60a5fa',
+    shelter:  '#06b6d4'
   }[mode] || '#60a5fa';
 
   const faded = health < 0.3;
@@ -891,6 +944,7 @@ function renderFrame(now) {
   const fishY = fishGYw * CELL + CELL / 2;
 
   drawBackground(ctx, W, H, animT);
+  drawReef(ctx, currentReefCells, animT);
 
   for (let i = 0; i < currentHazards.length; i++) {
     const [hx, hy] = currentHazards[i];
@@ -968,6 +1022,7 @@ function goToStep(n) {
   currentEnergy    = step.energy != null ? step.energy : 1.0;
   currentHazards   = step.hazards   || [];
   currentResources = step.resources || [];
+  currentReefCells = step.reef_cells || curEp().reef_cells || [];
 
   emitBubbles(curPos[0] * CELL + CELL / 2, curPos[1] * CELL + CELL / 2, 2);
 
@@ -989,6 +1044,19 @@ function updateInfo() {
 
   document.getElementById('modeBadgeWrap').innerHTML =
     `<span class="modeBadge mode-${mode}">${MODE_LABELS[mode] || mode.toUpperCase()}</span>`;
+
+  // Zone indicator (only shown when reef data present)
+  const zoneEl = document.getElementById('zoneBadgeWrap');
+  if (currentReefCells && currentReefCells.length > 0) {
+    const inReef = s.in_reef != null
+      ? s.in_reef
+      : currentReefCells.some(([rx, ry]) => rx === (s.pos||[])[0] && ry === (s.pos||[])[1]);
+    zoneEl.innerHTML = inReef
+      ? '<span style="font-size:10px;color:#67e8f9;font-weight:600">&#x1F41A; REEF ZONE</span>'
+      : '<span style="font-size:10px;color:var(--muted)">&#x1F30A; OPEN WATER</span>';
+  } else {
+    zoneEl.innerHTML = '';
+  }
 
   const evtLabel = EVENT_LABELS[s.transition_type] || '';
   document.getElementById('eventTag').textContent = evtLabel ? '\u25b8 ' + evtLabel : '';
@@ -1139,6 +1207,7 @@ function fullRefresh() {
   currentEnergy    = step.energy != null ? step.energy : 1.0;
   currentHazards   = step.hazards   || [];
   currentResources = step.resources || [];
+  currentReefCells = step.reef_cells || curEp().reef_cells || [];
 
   buildSeedBtns();
   buildTimeline();
@@ -1200,9 +1269,11 @@ function loadData(data) {
   document.title = 'REE Fishtank \u2014 ' + (data.run_id || 'episode');
 
   const pb = document.getElementById('phaseBadgeWrap');
-  const torTag = (data.toroidal || (data.env_config && data.env_config.toroidal))
+  const torTag  = (data.toroidal || (data.env_config && data.env_config.toroidal))
     ? `<span class="phaseBadge" style="background:#1e3a5f;color:#c4b5fd;margin-left:4px">TOROIDAL</span>` : '';
-  pb.innerHTML = (data.phase ? `<span class="phaseBadge">${data.phase}</span>` : '') + torTag;
+  const reefTag = (data.env_config && data.env_config.reef_enabled)
+    ? `<span class="phaseBadge" style="background:#134e4a;color:#5eead4;margin-left:4px">REEF</span>` : '';
+  pb.innerHTML = (data.phase ? `<span class="phaseBadge">${data.phase}</span>` : '') + torTag + reefTag;
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('picker').style.display  = 'none';
