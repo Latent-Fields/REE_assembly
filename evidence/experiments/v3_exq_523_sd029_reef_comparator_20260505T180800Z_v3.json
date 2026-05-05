@@ -6,7 +6,13 @@
     "SD-029",
     "MECH-256"
   ],
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Undertrained: n_train_steps=2000 fixed yielded r2=0.57 (C1 needs >=0.9). Hardcoded 'supports' was incorrect regardless of outcome. Superseded by EXQ-523a which uses adaptive graduation gate. Per-claim direction also non_contributory for both SD-029 and MECH-256.",
+  "evidence_direction_per_claim": {
+    "SD-029": "non_contributory",
+    "MECH-256": "non_contributory"
+  },
+  "superseded_by": "v3_exq_523a_sd029_reef_comparator",
   "experiment_purpose": "evidence",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "2026-05-05T18:08:00.765249Z",

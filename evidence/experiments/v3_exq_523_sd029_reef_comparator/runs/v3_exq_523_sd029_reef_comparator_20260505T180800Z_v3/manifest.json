@@ -24,8 +24,12 @@
     "MECH-256"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Undertrained: n_train_steps=2000 fixed yielded r2=0.57 (C1 needs >=0.9). Hardcoded 'supports' was incorrect regardless of outcome. Superseded by EXQ-523a which uses adaptive graduation gate.",
+  "evidence_direction_per_claim": {
+    "SD-029": "non_contributory",
+    "MECH-256": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
