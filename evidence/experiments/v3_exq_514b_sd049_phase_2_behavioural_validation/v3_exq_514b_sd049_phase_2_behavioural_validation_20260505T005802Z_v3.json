@@ -1,0 +1,390 @@
+{
+  "run_id": "v3_exq_514b_sd049_phase_2_behavioural_validation_20260505T005802Z_v3",
+  "experiment_type": "v3_exq_514b_sd049_phase_2_behavioural_validation",
+  "claim_ids": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "V3-EXQ-514a",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "started_utc": "2026-05-05T00:58:02.141063Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-049": "weakens",
+    "SD-015": "weakens",
+    "MECH-229": "non_contributory",
+    "MECH-230": "non_contributory"
+  },
+  "elapsed_seconds": 8272.635058879852,
+  "n_seeds": 3,
+  "p0_episodes": 30,
+  "p1_episodes": 10,
+  "eval_episodes": 15,
+  "steps_per_episode": 300,
+  "lr": 0.001,
+  "classifier_loss_weight": 0.1,
+  "arms": [
+    {
+      "arm": "ARM_0_off",
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "use_identity_classifier": false,
+      "classifier_loss_weight": 0.1,
+      "n_seeds": 3,
+      "probe_acc_consumption_mean": 0.0,
+      "probe_acc_neighborhood_mean": 0.0,
+      "p0_classifier_loss_first_q_mean": 0.0,
+      "p0_classifier_loss_last_q_mean": 0.0,
+      "peak_per_axis_drive_max": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "n_identity_samples_consumption_total": 0,
+      "n_identity_samples_neighborhood_total": 0
+    },
+    {
+      "arm": "ARM_1_2type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "n_seeds": 3,
+      "probe_acc_consumption_mean": 0.4000000000000001,
+      "probe_acc_neighborhood_mean": 0.5812345679012346,
+      "p0_classifier_loss_first_q_mean": 2.4670468118633146,
+      "p0_classifier_loss_last_q_mean": 2.204825461119889,
+      "peak_per_axis_drive_max": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ],
+      "n_identity_samples_consumption_total": 41,
+      "n_identity_samples_neighborhood_total": 13500
+    },
+    {
+      "arm": "ARM_2_3type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "n_seeds": 3,
+      "probe_acc_consumption_mean": 0.20000000000000004,
+      "probe_acc_neighborhood_mean": 0.482962962962963,
+      "p0_classifier_loss_first_q_mean": 2.3921004912936716,
+      "p0_classifier_loss_last_q_mean": 1.849236488007052,
+      "peak_per_axis_drive_max": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ],
+      "n_identity_samples_consumption_total": 41,
+      "n_identity_samples_neighborhood_total": 13500
+    },
+    {
+      "arm": "ARM_3_5type",
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "n_seeds": 3,
+      "probe_acc_consumption_mean": 0.2333333333333333,
+      "probe_acc_neighborhood_mean": 0.4669135802469136,
+      "p0_classifier_loss_first_q_mean": 4.854699033133873,
+      "p0_classifier_loss_last_q_mean": 2.718651640628065,
+      "peak_per_axis_drive_max": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135,
+        0.2399996519088745,
+        0.2399996519088745
+      ],
+      "n_identity_samples_consumption_total": 53,
+      "n_identity_samples_neighborhood_total": 13500
+    }
+  ],
+  "per_seed_per_arm": [
+    {
+      "seed": 42,
+      "arm": "ARM_0_off",
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "use_identity_classifier": false,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 0.0,
+      "p0_classifier_loss_last_quarter": 0.0,
+      "p0_n_classifier_updates": 0,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 0,
+      "probe_acc_neighborhood": 0.0,
+      "n_identity_samples_neighborhood": 0,
+      "peak_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "seed": 42,
+      "arm": "ARM_1_2type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 2.2170429360303388,
+      "p0_classifier_loss_last_quarter": 2.5284150595325627,
+      "p0_n_classifier_updates": 35,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.8,
+      "n_identity_samples_consumption": 16,
+      "probe_acc_neighborhood": 0.6651851851851852,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ]
+    },
+    {
+      "seed": 42,
+      "arm": "ARM_2_3type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 2.5674303916748613,
+      "p0_classifier_loss_last_quarter": 1.6403602185018826,
+      "p0_n_classifier_updates": 35,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.4,
+      "n_identity_samples_consumption": 16,
+      "probe_acc_neighborhood": 0.5288888888888889,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ]
+    },
+    {
+      "seed": 42,
+      "arm": "ARM_3_5type",
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 4.550888071457545,
+      "p0_classifier_loss_last_quarter": 2.394976209435198,
+      "p0_n_classifier_updates": 39,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.3333333333333333,
+      "n_identity_samples_consumption": 18,
+      "probe_acc_neighborhood": 0.5303703703703704,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135,
+        0.2399996519088745,
+        0.2399996519088745
+      ]
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_0_off",
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "use_identity_classifier": false,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 0.0,
+      "p0_classifier_loss_last_quarter": 0.0,
+      "p0_n_classifier_updates": 0,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 0,
+      "probe_acc_neighborhood": 0.0,
+      "n_identity_samples_neighborhood": 0,
+      "peak_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_1_2type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 3.1808552399955015,
+      "p0_classifier_loss_last_quarter": 1.9520435522903095,
+      "p0_n_classifier_updates": 47,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 9,
+      "probe_acc_neighborhood": 0.5466666666666666,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ]
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_2_3type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 1.7680749758146703,
+      "p0_classifier_loss_last_quarter": 2.37134489013503,
+      "p0_n_classifier_updates": 48,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 9,
+      "probe_acc_neighborhood": 0.5288888888888889,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ]
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_3_5type",
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 4.358971549404992,
+      "p0_classifier_loss_last_quarter": 2.2094852891233234,
+      "p0_n_classifier_updates": 36,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.16666666666666666,
+      "n_identity_samples_consumption": 20,
+      "probe_acc_neighborhood": 0.4666666666666667,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135,
+        0.2399996519088745,
+        0.2399996519088745
+      ]
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_0_off",
+      "world_obs_dim": 250,
+      "n_resource_types": 3,
+      "use_identity_classifier": false,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 0.0,
+      "p0_classifier_loss_last_quarter": 0.0,
+      "p0_n_classifier_updates": 0,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 0,
+      "probe_acc_neighborhood": 0.0,
+      "n_identity_samples_neighborhood": 0,
+      "peak_per_axis_drive": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_1_2type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 2.0032422595641037,
+      "p0_classifier_loss_last_quarter": 2.134017771536795,
+      "p0_n_classifier_updates": 37,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.4,
+      "n_identity_samples_consumption": 16,
+      "probe_acc_neighborhood": 0.5318518518518518,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ]
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_2_3type",
+      "world_obs_dim": 325,
+      "n_resource_types": 3,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 2.840796106391483,
+      "p0_classifier_loss_last_quarter": 1.536004355384244,
+      "p0_n_classifier_updates": 37,
+      "p0_n_prox_updates": 9000,
+      "probe_acc_consumption": 0.2,
+      "n_identity_samples_consumption": 16,
+      "probe_acc_neighborhood": 0.39111111111111113,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135
+      ]
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_3_5type",
+      "world_obs_dim": 375,
+      "n_resource_types": 5,
+      "use_identity_classifier": true,
+      "classifier_loss_weight": 0.1,
+      "p0_classifier_loss_first_quarter": 5.654237478539081,
+      "p0_classifier_loss_last_quarter": 3.5514934233256747,
+      "p0_n_classifier_updates": 30,
+      "p0_n_prox_updates": 8725,
+      "probe_acc_consumption": 0.2,
+      "n_identity_samples_consumption": 15,
+      "probe_acc_neighborhood": 0.40370370370370373,
+      "n_identity_samples_neighborhood": 4500,
+      "peak_per_axis_drive": [
+        0.2999996840953827,
+        0.45000115036964417,
+        0.14999984204769135,
+        0.2399996519088745,
+        0.2399996519088745
+      ]
+    }
+  ],
+  "acceptance": {
+    "C0_arm0_runs_clean": true,
+    "C1a_arm1_world_obs_dim_325": true,
+    "C1b_arm1_classifier_converges": true,
+    "C2a_arm2_world_obs_dim_325": true,
+    "C2b_arm2_probe_acc_neighborhood": false,
+    "C2c_arm2_n_identity_samples_consumption": true,
+    "C2d_arm2_per_axis_drive_evolves": true,
+    "C3a_arm3_world_obs_dim_375": true,
+    "C3b_arm3_classifier_did_fire": true,
+    "all_pass": false
+  },
+  "thresholds": {
+    "C1b_loss_decrease_frac": 0.95,
+    "C2b_probe_neighborhood_floor": 0.6,
+    "C2c_n_id_samples_floor": 30,
+    "C2d_drive_peak_floor": 0.02
+  },
+  "verdict_provenance": "REE_assembly/evidence/literature/targeted_review_sd_049_encoder_identity_expansion/verdict.md",
+  "supersedes_note": "V3-EXQ-514a errored with exit code -15 (SIGTERM) on ree-cloud-1 after 108 minutes. Root cause: cloud provider process timeout. Estimated runtime was ~231 minutes (660 eps x 0.35 min/ep); timeout fired at ~108 minutes. No code error. Fix: routed to DLAPTOP-4.local (macbook, ~99 min estimated). Script unchanged."
+}
