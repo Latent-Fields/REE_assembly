@@ -1,19 +1,41 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-04T15:24:00.442740+00:00",
-  "last_updated": "2026-05-04T17:12:20.042117+00:00",
-  "idle": true,
+  "runner_pid": 6782,
+  "runner_started_at": "2026-05-05T18:07:32.372351+00:00",
+  "last_updated": "2026-05-05T21:31:52.870386+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-517",
+      "queue_id": "V3-EXQ-325f",
       "backlog_id": "",
-      "claim_id": "MECH-302",
-      "title": "MECH-302 relief-completion behavioural discriminative pair",
+      "claim_id": "",
+      "title": "SD-032c AIC descending modulation -- reef (monostrategy fix)",
       "description": "",
-      "estimated_minutes": 56.0,
+      "estimated_minutes": 17.3,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-452a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-257/SD-013/ARC-033 dual-function E2 comparator -- reef (monostrategy fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-514c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 Phase 2 reef-environment behavioural validation (monostrategy fix for 514b)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2546,7 +2568,48 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 6495.1
+    },
+    {
+      "queue_id": "V3-EXQ-523",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-029/MECH-256 reef-unblocked self-attribution comparator",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Overall: FAIL",
+      "started_at": "2026-05-05T18:07:34.016213+00:00",
+      "completed_at": "2026-05-05T18:08:01.157046+00:00",
+      "output_file": "/home/ree/REE_Working/ree-v3/experiments/../../REE_assembly/evidence/experiments/v3_exq_523_sd029_reef_comparator_20260505T180800Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 27.1
+    },
+    {
+      "queue_id": "V3-EXQ-454a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-016 adaptive commit_threshold via E2 PE variance -- reef (monostrategy fix)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[seed=13 STATIC_HIGH] commit_rate=1.000 survival=16.00 rv_mean=0.5000 low_rate=1.000 high_rate=0.000 goal_reach=0.167 verdict: PASS | [seed=13 ADAPTIVE] commit_rate=0.000 survival=0.00 rv_mean=0.5000 low_rate=0.000 high_rate=0.000 goal_reach=0.167 verdict: FAIL | Outcome: FAIL",
+      "started_at": "2026-05-05T18:47:02.569555+00:00",
+      "completed_at": "2026-05-05T21:30:48.339259+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 9825.8
+    },
+    {
+      "queue_id": "V3-EXQ-418j",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-016 context memory reef fix: 2x2 factorial {SD-016, reef}",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-05-05T21:30:50.396970+00:00",
+      "completed_at": "2026-05-05T21:31:52.870228+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 62.5
     }
-  ],
-  "draining": false
+  ]
 }
