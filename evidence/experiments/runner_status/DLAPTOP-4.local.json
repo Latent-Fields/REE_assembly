@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-06T04:31:00.667342+00:00",
+  "last_updated": "2026-05-06T06:48:43.960363+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-514e",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-049 BG gating seaweed diagnostic -- schema predictability + BG gate commitment",
-    "description": "",
-    "script": "experiments/v3_exq_514e_bg_gating_seaweed_diagnostic.py",
-    "started_at": "2026-05-06T02:36:32.844580+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 1,
-      "episodes_total": 90,
-      "overall_pct": 1.1
-    },
-    "seconds_elapsed": 6868,
-    "seconds_remaining": 28454,
-    "recent_lines": [
-      "Seed 42 ARM_A_random",
-      "[train] seed=42 arm=ARM_A_random ep 1/90 ever_committed=False rv_final=0.5000 contacts=98 world_obs_dim=325 elapsed=3378.2s",
-      "Seed 42 ARM_B_seaweed",
-      "[train] seed=42 arm=ARM_B_seaweed ep 1/90 ever_committed=False rv_final=0.5000 contacts=122 world_obs_dim=375 elapsed=3391.0s",
-      "Seed 43 ARM_A_random"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-514c",
@@ -40,17 +14,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-514e",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-049 BG gating seaweed diagnostic -- schema predictability + BG gate commitment",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -7040,6 +7003,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 3674.0
+    },
+    {
+      "queue_id": "V3-EXQ-514e",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 BG gating seaweed diagnostic -- schema predictability + BG gate commitment",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "outcome: FAIL",
+      "started_at": "2026-05-06T02:36:32.844580+00:00",
+      "completed_at": "2026-05-06T06:48:43.950258+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 15131.0
     }
   ]
 }
