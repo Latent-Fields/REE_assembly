@@ -1,0 +1,72 @@
+{
+  "run_id": "v3_exq_531_sd015_resource_encoder_ablation_20260506T094124Z_v3",
+  "experiment_type": "v3_exq_531_sd015_resource_encoder_ablation",
+  "queue_id": "V3-EXQ-531",
+  "claim_ids": [
+    "SD-015"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "criteria": {
+    "C1_arm1_r2_ge_0.5": false,
+    "C2_arm0_no_prediction": true
+  },
+  "arm1_r2": 0.2953943251064987,
+  "arm0_r2": null,
+  "arm1_mae": 0.14025711095632545,
+  "results": {
+    "ARM_0_no_encoder": {
+      "seed_results": [
+        {
+          "resource_prox_r2": null,
+          "resource_prox_mae": null,
+          "n_samples": 0
+        },
+        {
+          "resource_prox_r2": null,
+          "resource_prox_mae": null,
+          "n_samples": 0
+        },
+        {
+          "resource_prox_r2": null,
+          "resource_prox_mae": null,
+          "n_samples": 0
+        }
+      ],
+      "mean_r2": null,
+      "mean_mae": null,
+      "use_resource_encoder": false
+    },
+    "ARM_1_resource_encoder": {
+      "seed_results": [
+        {
+          "resource_prox_r2": 0.16024083600892913,
+          "resource_prox_mae": 0.1522001591888634,
+          "n_samples": 370
+        },
+        {
+          "resource_prox_r2": 0.46578107416024295,
+          "resource_prox_mae": 0.12472817520196525,
+          "n_samples": 382
+        },
+        {
+          "resource_prox_r2": 0.2601610651503241,
+          "resource_prox_mae": 0.14384299847814772,
+          "n_samples": 450
+        }
+      ],
+      "mean_r2": 0.2953943251064987,
+      "mean_mae": 0.14025711095632545,
+      "use_resource_encoder": true
+    }
+  },
+  "config": {
+    "n_train_eps": 50,
+    "n_eval_eps": 20,
+    "n_seeds": 3,
+    "grid_size": 12,
+    "dry_run": false
+  },
+  "elapsed_seconds": 41.835729122161865,
+  "generated_utc": "2026-05-06T09:41:24.231187Z"
+}

@@ -1,0 +1,45 @@
+{
+  "outcome": "FAIL",
+  "metrics": {
+    "hf_r2_mean": 0.33626461029052734,
+    "hf_r2_std": 0.0,
+    "attribution_gap_mean": -0.0015587206386650603,
+    "attribution_gap_std": 0.0,
+    "intact_approach_mean": -0.0015587206386650603,
+    "intact_none_mean": 0.0,
+    "intact_env_mean": 0.0,
+    "intact_agent_mean": 0.008644632063806057,
+    "ablated_approach_mean": -0.0009281386155635118,
+    "intact_vs_ablated_mean": -0.0006305820231015484,
+    "null_cf_max_mean": 0.0,
+    "n_approach_mean": 48.0,
+    "c3_seeds_pass": 0.0,
+    "c6_seeds_pass": 0.0,
+    "criteria_met": 2.0,
+    "n_seeds": 1.0,
+    "seed42_hf_r2": 0.33626461029052734,
+    "seed42_attribution_gap": -0.0015587206386650603,
+    "seed42_intact_approach": -0.0015587206386650603,
+    "seed42_intact_none": 0.0,
+    "seed42_ablated_approach": -0.0009281386155635118,
+    "seed42_intact_vs_ablated": -0.0006305820231015484,
+    "seed42_null_cf_max": 0.0,
+    "seed42_n_approach": 48.0
+  },
+  "summary_markdown": "# V3-EXQ-525 -- SD-003 Harm Attribution Anchor\n\n**Outcome:** FAIL\n**Claims:** SD-003, ARC-033\n**Supersedes:** V3-EXQ-205\n**Seeds:** [42]  **P0:** 5 eps  **P1:** 5 eps  **Eval:** 5 eps\n\n## Architecture\n\n- P0: HarmEncoder warmup (autoencoder + center-cell regression)\n- P1: Frozen encoder; ResidualHarmForward + E3.harm_eval_z_harm on .detach()ed z_harm_s\n- Pipeline: causal_sig = eval(harm_fwd(z, a_actual)) - eval(harm_fwd(z, a_cf))\n- attribution_gap = causal_sig(approach) - causal_sig(none)\n\n## Results by Seed\n\n| Seed | hf_r2 | gap | intact_approach | intact_none | intact_vs_ablated | null_cf_max | n_approach |\n|------|-------|-----|-----------------|------------|------------------|------------|-----------|\n| 42 | 0.3363 | -0.001559 | -0.001559 | 0.000000 | -0.000631 | 0.00e+00 | 48 |\n\n\n## Aggregate\n\n- hf_r2 mean: 0.3363 +/- 0.0000\n- attribution_gap mean: -0.001559 +/- 0.000000\n- intact_approach mean: -0.001559\n- intact_vs_ablated mean: -0.000631\n\n## PASS Criteria\n\n| Criterion | Value | Required | Result |\n|-----------|-------|---------|--------|\n| C1 attribution_gap | -0.001559 | > 0.002 | FAIL |\n| C2 hf_r2 | 0.3363 | > 0.05 | PASS |\n| C3 approach>0 | 0/1 seeds | >= 3 | FAIL |\n| C4 n_approach | 48 | >= 50 | FAIL |\n| C5 null_cf_max | 0.00e+00 | < 1e-05 | PASS |\n| C6 intact>ablated | 0/1 seeds | >= 3 | FAIL |\n\nCriteria met: 2/6 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: attribution_gap_mean=-0.001559 <= 0.002\n- C3 FAIL: causal_sig_approach > 0 in 0/1 seeds (need 3)\n- C4 FAIL: n_approach_mean=48 < 50\n- C6 FAIL: intact > ablated in 0/1 seeds (need 3)\n",
+  "claim_ids": [
+    "SD-003",
+    "ARC-033"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-003": "weakens",
+    "ARC-033": "weakens"
+  },
+  "experiment_type": "v3_exq_525_sd003_attribution_anchor",
+  "supersedes": "V3-EXQ-205",
+  "timestamp_utc": "20260505T220444Z",
+  "run_id": "v3_exq_525_sd003_attribution_anchor_20260505T220444Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

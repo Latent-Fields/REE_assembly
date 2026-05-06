@@ -1,0 +1,88 @@
+{
+  "run_id": "v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3",
+  "experiment_type": "v3_exq_533_mech102_harm_stream_ablation",
+  "queue_id": "V3-EXQ-533",
+  "claim_ids": [
+    "MECH-102"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "PASS",
+  "experiment_purpose": "diagnostic",
+  "criteria": {
+    "C1_arm1_vhr_le_arm0_x1.2": true,
+    "C2_arm1_food_ge_arm0_x0.7": true
+  },
+  "arm0_voluntary_harm_rate": 0.7978491287792161,
+  "arm1_voluntary_harm_rate": 0.7989980850275092,
+  "arm0_food_rate": 4.575,
+  "arm1_food_rate": 4.408333333333333,
+  "note": "MECH-102 substrate_ceiling diagnostic. V3 proxy: does harm stream change voluntary hazard approach rate? Expected: no strong effect (documents substrate ceiling). PASS criterion is permissive (<=1.2x) to confirm harm stream does not disrupt baseline.",
+  "results": {
+    "ARM_0_no_harm_stream": {
+      "seed_results": [
+        {
+          "voluntary_harm_rate": 0.7986486486486486,
+          "food_rate": 2.9,
+          "voluntary_harm_events": 591,
+          "food_events": 116,
+          "total_steps": 740
+        },
+        {
+          "voluntary_harm_rate": 0.7901234567901234,
+          "food_rate": 5.375,
+          "voluntary_harm_events": 576,
+          "food_events": 215,
+          "total_steps": 729
+        },
+        {
+          "voluntary_harm_rate": 0.8047752808988764,
+          "food_rate": 5.45,
+          "voluntary_harm_events": 573,
+          "food_events": 218,
+          "total_steps": 712
+        }
+      ],
+      "mean_voluntary_harm_rate": 0.7978491287792161,
+      "mean_food_rate": 4.575,
+      "use_harm_stream": false
+    },
+    "ARM_1_harm_stream": {
+      "seed_results": [
+        {
+          "voluntary_harm_rate": 0.800557880055788,
+          "food_rate": 5.175,
+          "voluntary_harm_events": 574,
+          "food_events": 207,
+          "total_steps": 717
+        },
+        {
+          "voluntary_harm_rate": 0.7897503285151117,
+          "food_rate": 4.15,
+          "voluntary_harm_events": 601,
+          "food_events": 166,
+          "total_steps": 761
+        },
+        {
+          "voluntary_harm_rate": 0.8066860465116279,
+          "food_rate": 3.9,
+          "voluntary_harm_events": 555,
+          "food_events": 156,
+          "total_steps": 688
+        }
+      ],
+      "mean_voluntary_harm_rate": 0.7989980850275092,
+      "mean_food_rate": 4.408333333333333,
+      "use_harm_stream": true
+    }
+  },
+  "config": {
+    "n_train_eps": 40,
+    "n_seeds": 3,
+    "grid_size": 12,
+    "reef_enabled": true,
+    "hazard_food_attraction": 0.7,
+    "dry_run": false
+  },
+  "elapsed_seconds": 20.529529094696045,
+  "generated_utc": "2026-05-06T09:41:57.300916Z"
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_517b_mech302_relief_completion_discriminative_pair_20260506T013515Z_v3",
+  "experiment_type": "v3_exq_517b_mech302_relief_completion_discriminative_pair",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260506T013515Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-302"
+  ],
+  "supersedes": "v3_exq_517a_mech302_relief_completion_discriminative_pair",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-302": "non_contributory"
+  },
+  "registered_thresholds": {
+    "C1_MIN_EVENTS_PER_SEED": 3,
+    "C2_MIN_WRITES_PER_SEED": 2,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "a_seeds_pass": 0,
+    "b_seeds_pass": 3,
+    "a_pass_rate": 0.0,
+    "b_pass_rate": 1.0,
+    "a_pass_rate_meets_threshold": false,
+    "b_pass_rate_meets_threshold": true,
+    "overall_pass": false,
+    "mean_arm_a_p1_events": 0.0,
+    "mean_arm_a_p1_writes": 0.0,
+    "mean_arm_b_p1_events": 0.0,
+    "mean_arm_b_p1_writes": 0.0
+  },
+  "config": {
+    "p0_episodes": 30,
+    "p1_episodes": 40,
+    "steps_per_episode": 300,
+    "env_size": 12,
+    "n_hazards": 3,
+    "n_resources": 2,
+    "body_obs_dim": 17,
+    "world_obs_dim": 250,
+    "harm_obs_a_dim": 7,
+    "action_dim": 5,
+    "comp_window_length": 30,
+    "comp_drop_threshold": 0.005,
+    "comp_min_initial_norm": 0.01,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "dry_run": false
+  },
+  "results_arm_a_mech302_on": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_A_mech302_on",
+      "arm_on": true,
+      "p1_episodes": 40,
+      "p1_events": 0,
+      "p1_writes": 0,
+      "c1_pass": false,
+      "c2_pass": false,
+      "c3_pass": true,
+      "c4_pass": true,
+      "seed_pass": false
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_A_mech302_on",
+      "arm_on": true,
+      "p1_episodes": 40,
+      "p1_events": 0,
+      "p1_writes": 0,
+      "c1_pass": false,
+      "c2_pass": false,
+      "c3_pass": true,
+      "c4_pass": true,
+      "seed_pass": false
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_A_mech302_on",
+      "arm_on": true,
+      "p1_episodes": 40,
+      "p1_events": 0,
+      "p1_writes": 0,
+      "c1_pass": false,
+      "c2_pass": false,
+      "c3_pass": true,
+      "c4_pass": true,
+      "seed_pass": false
+    }
+  ],
+  "results_arm_b_mech302_off": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_B_mech302_off",
+      "arm_on": false,
+      "p1_episodes": 40,
+      "p1_events": 0,
+      "p1_writes": 0,
+      "c1_pass": true,
+      "c2_pass": true,
+      "c3_pass": true,
+      "c4_pass": true,
+      "seed_pass": true
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_B_mech302_off",
+      "arm_on": false,
+      "p1_episodes": 40,
+      "p1_events": 0,
+      "p1_writes": 0,
+      "c1_pass": true,
+      "c2_pass": true,
+      "c3_pass": true,
+      "c4_pass": true,
+      "seed_pass": true
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_B_mech302_off",
+      "arm_on": false,
+      "p1_episodes": 40,
+      "p1_events": 0,
+      "p1_writes": 0,
+      "c1_pass": true,
+      "c2_pass": true,
+      "c3_pass": true,
+      "c4_pass": true,
+      "seed_pass": true
+    }
+  ],
+  "elapsed_seconds": 3670.7566232681274,
+  "notes": "MECH-302 relief-completion discriminative pair -- longer episodes. Supersedes EXQ-517a (mean 0.33 events/seed: episode length 150 steps is structurally too short relative to heal_rate=0.002/step healing dynamics requiring ~500 steps for full healing). Fix: steps_per_episode 150->300. heal_rate=0.002 unchanged (biological timescale claim). Comparator thresholds unchanged from 517a (window=30, threshold=0.005, min_norm=0.01). ARM_A (ON): use_suffering_derivative_comparator=True + valence_liking_enabled=True; ARM_B (OFF): both False. limb_damage_enabled=True (SD-022), heal_rate=0.002/step. C1: ARM_A events >= 3/seed. C2: ARM_A writes >= 2/seed. C3: ARM_B events == 0. C4: ARM_B writes == 0. PASS lifts gate (c) for MECH-304 conditioned-inhibition experiment."
+}

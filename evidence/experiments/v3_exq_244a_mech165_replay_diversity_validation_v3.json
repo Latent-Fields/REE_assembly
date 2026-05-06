@@ -1,0 +1,394 @@
+{
+  "run_id": "v3_exq_244a_mech165_replay_diversity_validation_v3",
+  "experiment_type": "v3_exq_244a_mech165_replay_diversity_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-165"
+  ],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "conditions": [
+    "NO_REPLAY",
+    "FORWARD_REPLAY",
+    "BALANCED_REPLAY"
+  ],
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1024
+  ],
+  "condition_stats": {
+    "NO_REPLAY": {
+      "mean_retention": -9.301983071842916e-11,
+      "std_retention": 6.879569845151931e-13,
+      "retentions": [
+        -9.246522706203896e-11,
+        -9.333684308250037e-11,
+        -9.405203680917307e-11,
+        -9.208531467476186e-11,
+        -9.315973196367152e-11
+      ]
+    },
+    "FORWARD_REPLAY": {
+      "mean_retention": -9.301983071842916e-11,
+      "std_retention": 6.879569845151931e-13,
+      "retentions": [
+        -9.246522706203896e-11,
+        -9.333684308250037e-11,
+        -9.405203680917307e-11,
+        -9.208531467476186e-11,
+        -9.315973196367152e-11
+      ]
+    },
+    "BALANCED_REPLAY": {
+      "mean_retention": 0.0026858157370095734,
+      "std_retention": 0.005371631659834505,
+      "retentions": [
+        -9.280859500148352e-11,
+        0.013429079056678582,
+        -9.396099494807766e-11,
+        -9.190041735868459e-11,
+        -9.296070806373639e-11
+      ]
+    }
+  },
+  "pass_criteria": {
+    "seeds_balanced_wins": 4,
+    "seeds_needed": 3,
+    "mean_advantage": true,
+    "pass_criterion_met": true
+  },
+  "phase1_config": {
+    "episodes": 30,
+    "steps": 200,
+    "epsilon": 0.5
+  },
+  "phase2_config": {
+    "episodes": 20,
+    "steps": 200
+  },
+  "sws_cycles": 5,
+  "per_seed_results": [
+    {
+      "condition": "NO_REPLAY",
+      "seed": 42,
+      "phase1_entropy": 1.0814877272938803,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.246522706203896e-11,
+      "phase1_action_dist": {
+        "2": 3720,
+        "1": 743,
+        "3": 766,
+        "0": 771
+      },
+      "phase2_action_dist": {
+        "2": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "NO_REPLAY",
+      "seed": 123,
+      "phase1_entropy": 1.071388371049224,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.333684308250037e-11,
+      "phase1_action_dist": {
+        "0": 3758,
+        "2": 750,
+        "3": 750,
+        "1": 742
+      },
+      "phase2_action_dist": {
+        "0": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "NO_REPLAY",
+      "seed": 456,
+      "phase1_entropy": 1.0632412828223186,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.405203680917307e-11,
+      "phase1_action_dist": {
+        "3": 3788,
+        "0": 747,
+        "1": 727,
+        "2": 738
+      },
+      "phase2_action_dist": {
+        "3": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "NO_REPLAY",
+      "seed": 789,
+      "phase1_entropy": 1.08594957428586,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.208531467476186e-11,
+      "phase1_action_dist": {
+        "0": 3702,
+        "3": 796,
+        "2": 722,
+        "1": 780
+      },
+      "phase2_action_dist": {
+        "0": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "NO_REPLAY",
+      "seed": 1024,
+      "phase1_entropy": 1.0734252467367875,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.315973196367152e-11,
+      "phase1_action_dist": {
+        "3": 3748,
+        "0": 703,
+        "2": 810,
+        "1": 739
+      },
+      "phase2_action_dist": {
+        "3": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "FORWARD_REPLAY",
+      "seed": 42,
+      "phase1_entropy": 1.0814877272938803,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.246522706203896e-11,
+      "phase1_action_dist": {
+        "2": 3720,
+        "1": 743,
+        "3": 766,
+        "0": 771
+      },
+      "phase2_action_dist": {
+        "2": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "FORWARD_REPLAY",
+      "seed": 123,
+      "phase1_entropy": 1.071388371049224,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.333684308250037e-11,
+      "phase1_action_dist": {
+        "0": 3758,
+        "2": 750,
+        "3": 750,
+        "1": 742
+      },
+      "phase2_action_dist": {
+        "0": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "FORWARD_REPLAY",
+      "seed": 456,
+      "phase1_entropy": 1.0632412828223186,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.405203680917307e-11,
+      "phase1_action_dist": {
+        "3": 3788,
+        "0": 747,
+        "1": 727,
+        "2": 738
+      },
+      "phase2_action_dist": {
+        "3": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "FORWARD_REPLAY",
+      "seed": 789,
+      "phase1_entropy": 1.08594957428586,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.208531467476186e-11,
+      "phase1_action_dist": {
+        "0": 3702,
+        "3": 796,
+        "2": 722,
+        "1": 780
+      },
+      "phase2_action_dist": {
+        "0": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "FORWARD_REPLAY",
+      "seed": 1024,
+      "phase1_entropy": 1.0734252467367875,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.315973196367152e-11,
+      "phase1_action_dist": {
+        "3": 3748,
+        "0": 703,
+        "2": 810,
+        "1": 739
+      },
+      "phase2_action_dist": {
+        "3": 4000
+      },
+      "exploration_buffer_size": 0,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "BALANCED_REPLAY",
+      "seed": 42,
+      "phase1_entropy": 1.0774865007647043,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.280859500148352e-11,
+      "phase1_action_dist": {
+        "2": 3735,
+        "1": 736,
+        "3": 759,
+        "0": 770
+      },
+      "phase2_action_dist": {
+        "2": 4000
+      },
+      "exploration_buffer_size": 50,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "BALANCED_REPLAY",
+      "seed": 123,
+      "phase1_entropy": 1.074326437522991,
+      "phase2_entropy": 0.01442721466217611,
+      "entropy_retention": 0.013429079056678582,
+      "phase1_action_dist": {
+        "0": 3747,
+        "2": 762,
+        "3": 744,
+        "1": 747
+      },
+      "phase2_action_dist": {
+        "0": 3992,
+        "1": 8
+      },
+      "exploration_buffer_size": 50,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "BALANCED_REPLAY",
+      "seed": 456,
+      "phase1_entropy": 1.0642714918493208,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.396099494807766e-11,
+      "phase1_action_dist": {
+        "3": 3784,
+        "0": 746,
+        "1": 717,
+        "2": 753
+      },
+      "phase2_action_dist": {
+        "3": 4000
+      },
+      "exploration_buffer_size": 50,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "BALANCED_REPLAY",
+      "seed": 789,
+      "phase1_entropy": 1.0881344301053613,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.190041735868459e-11,
+      "phase1_action_dist": {
+        "0": 3693,
+        "3": 810,
+        "2": 716,
+        "1": 781
+      },
+      "phase2_action_dist": {
+        "0": 4000
+      },
+      "exploration_buffer_size": 50,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    },
+    {
+      "condition": "BALANCED_REPLAY",
+      "seed": 1024,
+      "phase1_entropy": 1.075723392731415,
+      "phase2_entropy": -1.000000082690371e-10,
+      "entropy_retention": -9.296070806373639e-11,
+      "phase1_action_dist": {
+        "3": 3740,
+        "0": 721,
+        "2": 808,
+        "1": 731
+      },
+      "phase2_action_dist": {
+        "3": 4000
+      },
+      "exploration_buffer_size": 50,
+      "sws_metrics": {
+        "sws_cycles": 5,
+        "reverse_replayed": 0
+      }
+    }
+  ],
+  "elapsed_seconds": 19395.23789191246,
+  "supersedes": "v3_exq_244_mech165_replay_diversity_monostrategy_v3"
+}

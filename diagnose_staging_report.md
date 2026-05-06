@@ -29,15 +29,89 @@ The six unaddressed ERRORs split into three categories. None require a code-fix 
 
 ---
 
-## Infrastructure observation
+## Infrastructure root cause IDENTIFIED 2026-05-06T14:30Z
 
-**Coincident cloud-runner kill 2026-05-06T09:28:51-09:28:53Z**
-Both ree-cloud-1 (V3-EXQ-530) and ree-cloud-2 (V3-EXQ-244a) issued SIGTERM to active runs within 2 seconds of each other.
-- ree-cloud-1 last heartbeat 09:16:44Z (idle)
-- ree-cloud-2 last heartbeat 08:06:40Z (idle)
-- Same SIGTERM-on-cloud pattern as V3-EXQ-495 (2026-04-28T21:13Z, also ree-cloud-1) and V3-EXQ-249b (2026-04-07T14:02Z, also ree-cloud-1).
+**Cause: race in this project's own GitHub Actions cloud-scaler workflow. NOT an hcloud TOS / process-length limit.**
 
-Recurring cloud worker kill behaviour. Worth investigating whether ree-cloud workers are hitting a shared host-side timeout or being intentionally cycled. If unintentional, restart with `--auto-sync --loop --remote-control`.
+Mechanism (code path traced end-to-end):
+1. `experiment_runner.py:466` -- when the runner claims an item via `attempt_claim()`, it sets
+   `item["status"] = "claimed"` (NOT `"pending"`) on the queue file and pushes.
+2. `ree-v3/.github/workflows/cloud-scaler.yml:48-58` -- the every-15-minute scaler counts
+   ONLY items with `status == "pending"`:
+   ```python
+   n = sum(1 for i in q.get('items', [])
+           if i.get('status') == 'pending'
+           and i.get('machine_affinity') in ('any', aff))
+   ```
+3. `cloud-scaler.yml:73-76` -- when CLAIMABLE drops to 0 and the server is `running`, it
+   issues `hcloud server shutdown`. The comment even acknowledges this triggers SIGTERM:
+   ```
+   # shutdown (not poweroff) so systemd sends SIGTERM for graceful drain
+   hcloud server shutdown "$SERVER_NAME"
+   ```
+4. Result: every long-running cloud experiment is at risk every 15 minutes. As soon as a
+   runner claims its item (legitimately, status="claimed"), the scaler thinks "no claimable
+   pending work" and turns the machine off mid-experiment.
+
+Timing fingerprint matches GitHub Actions cron schedule (every */15 with the typical 0-15
+min delay from cron event to job execution):
+
+| Event | SIGTERM (UTC) | Prev :00/:15/:30/:45 tick | Delay |
+|-------|---------------|---------------------------|-------|
+| V3-EXQ-325c | 22:18:04 | 22:15 | +3.1 min |
+| V3-EXQ-495  | 21:13:57 | 21:00 | +13.9 min |
+| V3-EXQ-514a | 17:12:18 | 17:00 | +12.3 min |
+| V3-EXQ-244a | 09:28:53 | 09:15 | +13.9 min |
+| V3-EXQ-530  | 09:28:51 | 09:15 | +13.8 min |
+
+All five SIGTERMs land inside the 15-minute cron window. The 2026-05-06T09:28Z coincident
+kill on both clouds is a single GitHub Actions run hitting both servers in the same loop
+iteration.
+
+**Why this didn't surface earlier:** when the queue had multiple `pending` items at the
+same affinity, CLAIMABLE stayed > 0 even with one claimed item, so the scaler did not
+shut anything down. The kill rate scales with *fraction of time the queue is empty-of-
+pending while the runner is mid-experiment* -- precisely when the runner is doing its job.
+
+**Fixes (pick one; option 1 is the minimal one-line change):**
+1. `cloud-scaler.yml` -- count `claimed` as well as `pending`:
+   ```python
+   if i.get('status') in ('pending', 'claimed')
+   ```
+   Original intent of the scaler was "is there anything for this machine to work on or
+   already working on?" Items with `status=claimed` and `claimed_by.machine ==
+   server_affinity` are exactly that.
+2. `cloud-scaler.yml` -- additionally consult heartbeats: if
+   `runner_heartbeats/<server>.json` reports `current_exq != null`, never shut down.
+   Race-free even if the queue file is stale.
+3. `experiment_runner.py:466` -- keep `status="pending"` and rely on `claimed_by` alone
+   to signal claim. Need to confirm nothing else (explorer, validate_queue, governance)
+   consumes `status="claimed"` before doing this.
+4. `cloud-scaler.yml` -- disable scheduled shutdown; rely on manual stop / billing
+   alerts. Simplest if the auto-stop savings are small.
+
+Recommend **option 1 + option 2 together**. Option 1 fixes the dominant case; option 2 is
+defence in depth against any future status-state addition.
+
+**Other implications for the SIGTERM list:**
+- V3-EXQ-249b (2026-04-07, ree-cloud-1, ~78 min): same mechanism. Already tagged in
+  2026-04-29 staging as duplicate-machine artifact -- diagnosis was incomplete, the
+  SIGTERM was scaler-induced, not duplicate-machine churn.
+- V3-EXQ-490 (cited in earlier diagnosis as same pattern): same mechanism.
+- DLAPTOP-4.local SIGTERMs (2026-03-29/30, V3-EXQ-157/158/159/157a) are NOT this
+  mechanism (laptop has no auto-scaler) -- those are local cancels / OS sleep, separate
+  issue.
+
+**Confidence:** high. Code path traced end-to-end (runner-status mutation -> scaler-
+counting logic -> shutdown command -> systemd SIGTERM). Timing fits cron cadence with
+characteristic 0-15 min Actions delay. No alternative explanation needed.
+
+**Workers stuck off?** If V3-EXQ-244a / V3-EXQ-530 caused the scaler shutdown, the
+servers will be `off` until the next cron tick fires with `CLAIMABLE > 0` -- the queue is
+currently empty so they will stay off. Either restart manually via `hcloud server
+poweron`, or queue a new experiment (the next */15 tick will start them once a `pending`
+item is visible). Either is fine; the queue is supposed to be empty right now anyway
+(today's batch already ran).
 
 ---
 
