@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-05T23:34:29.902769+00:00",
+  "last_updated": "2026-05-06T01:35:08.381608+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -14,17 +14,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-514d",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-049 BG gating diagnostic -- does running_variance ever drop below commit_threshold?",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -7008,6 +6997,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 3347.1
+    },
+    {
+      "queue_id": "V3-EXQ-514d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 BG gating diagnostic -- does running_variance ever drop below commit_threshold?",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[514d] outcome=FAIL  bg_functional=False  mean_rv_final=0.5000  mean_committed_frac_last=0.000",
+      "started_at": "2026-05-05T23:34:35.625003+00:00",
+      "completed_at": "2026-05-06T01:35:08.370304+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 7232.7
     }
   ]
 }
