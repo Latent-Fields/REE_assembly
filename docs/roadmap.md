@@ -14,6 +14,23 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-05-06T11:31Z -- afternoon update, scheduled ree-lit-pull-pm: Q-019 disconfirming-balance lit pull + 627 runner completions + 18-item pending_review)
+
+- **Q-019 disconfirming-balance lit pull (2026-05-06T11:21Z, scheduled ree-lit-pull-pm).** The pinned EVB-PINNED-Q019 backlog item was registered 2026-02-27 with a 6-paper reading list now satisfied; the genuine remaining gap was a confirmation-bias signature in the 16-entry corpus (11 supports / 5 mixed / **0 weakens**). Pulled 4 disconfirming entries:
+  - **Redgrave / Prescott / Gurney 1999** (Neuroscience, [10.1016/s0306-4522(98)00319-4](https://doi.org/10.1016/s0306-4522(98)00319-4)) -- canonical unified-selection thesis (BG = single centralised selection device). conf=0.78.
+  - **Mink 1996** (Prog Neurobiol, [10.1016/s0301-0082(96)00042-1](https://doi.org/10.1016/s0301-0082(96)00042-1)) -- focused selection / surround-inhibit + focal-disinhibit on shared GPi/SNr output. conf=0.74.
+  - **Gurney / Prescott / Redgrave 2001 Part I** (Biol Cybern, [10.1007/PL00007984](https://doi.org/10.1007/PL00007984)) -- GPR computational model: selection + control decomposition explicitly contra direct/indirect partitioning. conf=0.70.
+  - **Wouterlood et al. 2018** (J Neurosci Res, [10.1002/jnr.24242](https://doi.org/10.1002/jnr.24242)) -- empirical cross-loop dopaminergic linkage from medial ventral striatum (limbic) to nigrostriatal cells projecting to dorsolateral striatum (sensorimotor); rules out strict three-loop segregation in the strongest form. conf=0.72.
+- **Effect on Q-019 evidence:** entries 16 -> 20; direction_counts 11s/5m/0w -> **11s/5m/4w**; lit_conf 0.884 -> **0.776**; quadrant unchanged (plausible_unproven). Total lit entries 1179 -> 1183. The corpus is now properly balanced for governance to weigh option (A) single-gate against option (B) three-loop without the prior selection bias. REE_assembly pushed (75de72dc3).
+- **Substrate / SD status: no change since the morning 2026-05-06T01:35Z snapshot.** Lit pull does not touch ree-v3 SD implementation, queue state, or runner_status.
+- **Runner activity since the morning 2026-05-06 snapshot:** 608 -> **627 completions** (+19 runs since the morning 04:28Z snapshot; cumulative breakdown 120 PASS / 255 FAIL / 72 ERROR / 180 UNKNOWN). Queue depth: 0 pending (everything has been claimed / completed); pending_review now lists **18 items** (3 PASS / 10 FAIL / 5 runner-only ERROR/UNKNOWN/smoke). The pending_review backlog grew because the morning's queued backlog (EXQ-528/531/533/534) plus the in-flight reef-superseding wave (514c/d/e, 517b, 523a, 526, 527) have been completing through the afternoon faster than they have been reviewed.
+
+### Immediate Work Queue (This Cycle, 2026-05-06 afternoon)
+
+1. **Pending_review walk (18 items)** -- 3 PASS to verify-and-close (V3-EXQ-418f SD-016 attention uniformity probe, V3-EXQ-523a SD-029 reef comparator, V3-EXQ-525 SD-003 attribution anchor); 10 FAIL to walk (the reef-superseding wave + V3-EXQ-525 + V3-EXQ-445g + V3-EXQ-517b + V3-EXQ-527 + V3-EXQ-526 + V3-EXQ-418k); 5 runner-only ERROR/UNKNOWN to triage via /diagnose-errors (V3-EXQ-445g, V3-EXQ-514d, V3-EXQ-517b, V3-EXQ-514e, V3-EXQ-418j).
+2. **Q-019 governance position** -- with 4 weakens entries now in the corpus, the question genuinely shifts from "three-gate vs single-gate" to "strict-segregation vs unified-with-topographic-inputs vs softer-multi-loop-with-cross-talk". Strict segregation is the version Wouterlood 2018 directly disproves; the remaining viable hypotheses have smaller arbitration distance from each other than the existing corpus suggested. Q-019 was not promoted/demoted by this lit pull -- the substrate-level question remains open and the next move is experimental, not bibliographic.
+3. **EVB-PINNED-Q019 backlog item** -- the pinned status note still reads "No literature extracted yet" (registered 2026-02-27). Its reading list has been fully satisfied since Feb and the corpus is now bias-corrected. A future cleanup should either un-pin or rewrite the status_reason; not blocking.
+
 ## Status Snapshot (2026-05-06 -- nightly docs sync, post-2026-05-04/05/06 reef-enrichment supersession wave: SD-019a / SD-051 / SD-052 / SD-050 reef substrate landings + reef-superseding monostrategy-blocked predecessors queued + INV-054 lit supplement + indexer backlog literature epoch-filter parity fix)
 
 - **SDs / MECHs moved to Implemented since the 2026-05-04 nightly snapshot:**
