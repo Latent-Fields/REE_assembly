@@ -1,9 +1,9 @@
 {
   "schema_version": "v1",
-  "runner_pid": 16287,
+  "runner_pid": null,
   "runner_started_at": "2026-05-06T07:59:47.950360+00:00",
-  "last_updated": "2026-05-06T08:00:29.196656+00:00",
-  "idle": false,
+  "last_updated": "2026-05-06T09:28:56.104150+00:00",
+  "idle": true,
   "current": null,
   "queue": [
     {
@@ -13,7 +13,7 @@
       "title": "Q-034 reef-enabled threshold sweep -- monostrategy fix for EXQ-451",
       "description": "",
       "estimated_minutes": 240.0,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -1927,6 +1927,21 @@
       "output_file": "",
       "completed_by": "ree-cloud-2",
       "actual_secs": 38.1
+    },
+    {
+      "queue_id": "V3-EXQ-244a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-165 reverse replay diversity scheduler validation (redesign of EXQ-244)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15",
+      "started_at": "2026-05-06T08:08:44.159143+00:00",
+      "completed_at": "2026-05-06T09:28:53.864120+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 4809.7
     }
-  ]
+  ],
+  "draining": false
 }
