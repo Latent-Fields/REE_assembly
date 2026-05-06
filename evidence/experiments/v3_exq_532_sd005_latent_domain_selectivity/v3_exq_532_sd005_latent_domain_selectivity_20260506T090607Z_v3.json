@@ -1,0 +1,71 @@
+{
+  "run_id": "v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3",
+  "experiment_type": "v3_exq_532_sd005_latent_domain_selectivity",
+  "queue_id": "V3-EXQ-532",
+  "claim_ids": [
+    "SD-005"
+  ],
+  "evidence_direction": "weakens",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-06T09:06:07.315791Z",
+  "outcome": "FAIL",
+  "metrics": {
+    "corr_z_self_body": 0.16918971149736506,
+    "corr_z_world_body": 0.043469893928874744,
+    "corr_z_world_world_obs": 0.04358878362561652,
+    "corr_z_self_world_obs": 0.07539884480942811,
+    "self_body_advantage": 0.1257198175684903,
+    "world_obs_advantage": -0.031810061183811585,
+    "mean_n_samples": 690.0
+  },
+  "criteria": {
+    "C1": true,
+    "C2": false,
+    "C3": true
+  },
+  "per_seed": [
+    {
+      "n_samples": 692,
+      "corr_z_self_body": 0.15016027570208806,
+      "corr_z_world_body": 0.07412817086983314,
+      "corr_z_world_world_obs": 0.08243289798695706,
+      "corr_z_self_world_obs": 0.04212922356235366,
+      "self_body_advantage": 0.07603210483225492,
+      "world_obs_advantage": 0.040303674424603406
+    },
+    {
+      "n_samples": 693,
+      "corr_z_self_body": 0.26675036734337526,
+      "corr_z_world_body": 0.055796186059379305,
+      "corr_z_world_world_obs": 0.03986026287266963,
+      "corr_z_self_world_obs": 0.15164305565905498,
+      "self_body_advantage": 0.21095418128399596,
+      "world_obs_advantage": -0.11178279278638534
+    },
+    {
+      "n_samples": 685,
+      "corr_z_self_body": 0.09065849144663185,
+      "corr_z_world_body": 0.0004853248574117912,
+      "corr_z_world_world_obs": 0.008473190017222874,
+      "corr_z_self_world_obs": 0.03242425520687571,
+      "self_body_advantage": 0.09017316658922006,
+      "world_obs_advantage": -0.023951065189652836
+    }
+  ],
+  "config": {
+    "n_eps": 30,
+    "steps_per_ep": 200,
+    "n_seeds": 3,
+    "seeds": [
+      79914,
+      16528,
+      71530
+    ],
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 3,
+      "num_resources": 5,
+      "use_proxy_fields": true
+    }
+  }
+}
