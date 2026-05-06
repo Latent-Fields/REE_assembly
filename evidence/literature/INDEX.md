@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-06T08:46:19.957163Z`
+Generated: `2026-05-06T11:28:14.649892Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -186,7 +186,7 @@ Generated: `2026-05-06T08:46:19.957163Z`
 | `targeted_review_q_016` | [`2026-03-29_q016_proactive_reactive_inhibition_zhang2019`](targeted_review_q_016/entries/2026-03-29_q016_proactive_reactive_inhibition_zhang2019/record.json) | 3 | [`summary`](targeted_review_q_016/entries/2026-03-29_q016_proactive_reactive_inhibition_zhang2019/summary.md) |
 | `targeted_review_q_017` | [`2026-03-29_q017_valence_arousal_orthogonal_fmri_bush2018`](targeted_review_q_017/entries/2026-03-29_q017_valence_arousal_orthogonal_fmri_bush2018/record.json) | 3 | [`summary`](targeted_review_q_017/entries/2026-03-29_q017_valence_arousal_orthogonal_fmri_bush2018/summary.md) |
 | `targeted_review_q_018` | [`2026-03-29_q018_thought_insertion_predictive_coding_sterzer2016`](targeted_review_q_018/entries/2026-03-29_q018_thought_insertion_predictive_coding_sterzer2016/record.json) | 3 | [`summary`](targeted_review_q_018/entries/2026-03-29_q018_thought_insertion_predictive_coding_sterzer2016/summary.md) |
-| `targeted_review_q_019` | [`2026-04-28_q_019_closed_loop_bg_thalamo_cortical_leblois2025`](targeted_review_q_019/entries/2026-04-28_q_019_closed_loop_bg_thalamo_cortical_leblois2025/record.json) | 16 | [`summary`](targeted_review_q_019/entries/2026-04-28_q_019_closed_loop_bg_thalamo_cortical_leblois2025/summary.md) |
+| `targeted_review_q_019` | [`2026-05-06_q_019_unified_selection_redgrave1999`](targeted_review_q_019/entries/2026-05-06_q_019_unified_selection_redgrave1999/record.json) | 20 | [`summary`](targeted_review_q_019/entries/2026-05-06_q_019_unified_selection_redgrave1999/summary.md) |
 | `targeted_review_q_020` | [`2026-04-02_q020_reward_map_reorganization_dupret2010`](targeted_review_q_020/entries/2026-04-02_q020_reward_map_reorganization_dupret2010/record.json) | 6 | [`summary`](targeted_review_q_020/entries/2026-04-02_q020_reward_map_reorganization_dupret2010/summary.md) |
 | `targeted_review_q_021` | [`2026-03-29_q_021_avolition_effort_schizophrenia_culbreth2020`](targeted_review_q_021/entries/2026-03-29_q_021_avolition_effort_schizophrenia_culbreth2020/record.json) | 3 | [`summary`](targeted_review_q_021/entries/2026-03-29_q_021_avolition_effort_schizophrenia_culbreth2020/summary.md) |
 | `targeted_review_q_022` | [`2026-03-29_q_022_mixed_selectivity_dimensionality_rigotti2013`](targeted_review_q_022/entries/2026-03-29_q_022_mixed_selectivity_dimensionality_rigotti2013/record.json) | 2 | [`summary`](targeted_review_q_022/entries/2026-03-29_q_022_mixed_selectivity_dimensionality_rigotti2013/summary.md) |

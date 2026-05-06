@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-05-06_q_019_unified_selection_redgrave1999",
+  "timestamp_utc": "2026-05-06T11:21:35Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "The basal ganglia: a vertebrate solution to the selection problem?",
+    "authors": ["Redgrave P", "Prescott TJ", "Gurney K"],
+    "year": 1999,
+    "venue": "Neuroscience",
+    "doi": "10.1016/s0306-4522(98)00319-4"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical statement of the unified-selection hypothesis: the basal ganglia are a single, centralised switching mechanism that resolves conflicts over a restricted resource (motor and cognitive output) by signal selection. This is the strongest theoretical alternative to Q-019's three-gate option (B). The 14 existing Q-019 entries lean heavily toward multi-loop / segregated-circuit framings; Redgrave 1999 is the canonical opposing view and its absence from the prior corpus was a confirmation-bias gap. High confidence because the paper's core claim -- unified selection device -- is stated explicitly, has dominated computational BG modelling for two decades, and maps cleanly onto Q-019's option (A).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Q-019 (option B, three anatomically and functionally distinct gating loops) is correct, then Redgrave 1999's central premise is wrong: the BG would not be a single centralised selection device but three parallel switches with separate evaluation criteria.",
+    "If unified selection holds, the apparent 'three loops' in Alexander 1990 / Haber 2008 would be parameterised inputs to one selection mechanism rather than functionally distinct gates -- and what looks like loop-specific failure modes in Parkinson's, OCD, and addiction would reflect input-channel weighting, not loss of a specific loop's gating function.",
+    "Pure unified-selection cannot easily explain why limbic, associative, and motor loops have characteristic dopaminergic populations (VTA vs SNc) with distinct phasic-burst profiles -- a finding that constrains the unified-vs-segregated debate and is left under-addressed in Redgrave 1999."
+  ],
+  "tags": ["q_019", "basal_ganglia", "unified_selection", "redgrave", "vertebrate_evolution", "single_gate"],
+  "mapping": {
+    "source_claim_statement": "A selection problem arises whenever two or more competing systems seek simultaneous access to a restricted resource. The vertebrate basal ganglia have evolved as a centralised selection device, specialised to resolve conflicts over access to limited motor and cognitive resources. Their functional architecture and position in the wider anatomical framework satisfy many requirements expected of an efficient selection mechanism.",
+    "ree_translation": "Q-019 framed two architectural options: (A) single-gate evaluating multiple criteria simultaneously, or (B) three anatomically distinct gating loops. Redgrave, Prescott, and Gurney 1999 is the canonical statement of option (A) -- the BG are a single switching mechanism whose internal architecture (off-centre, on-surround disinhibition) implements winner-take-all selection across whatever inputs the cortex routes to it. For REE this means option (A) is not a strawman; it is the dominant theoretical alternative to the three-loop framing the existing Q-019 corpus has been pulling toward.",
+    "mapping_caveat": "The paper is theoretical / argumentative rather than empirical. It does not claim the BG have ZERO topographic specialisation -- it allows for parallel input channels into a unified selection mechanism. So the test is not 'Redgrave proves single gate, Alexander proves three gates' but 'do the parallel topographic channels each carry an independent selection computation, or do they feed a shared selection circuit?' Redgrave 1999 argues the latter; the existing Q-019 corpus largely argues the former. The two views are NOT mutually exclusive in their weakest forms but are clearly competing in their strongest forms.",
+    "source_context": "Conceptual / theoretical review in Neuroscience, 1999. Cross-species (vertebrate) evolutionary framing. No new empirical data; synthesises BG anatomy, function, and computational requirements."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Highly cited canonical paper. Mapping fidelity is high because the paper directly argues for unified BG selection -- exactly what Q-019 option (A) proposes. Transfer risk is low (vertebrate-general framing). Source-quality slightly below 1.0 because it is theoretical, not empirical; its evidential weight comes from argument structure, not measurement."
+  }
+}

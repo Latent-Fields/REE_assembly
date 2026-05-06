@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-05-06_q_019_cross_loop_da_integration_wouterlood2018",
+  "timestamp_utc": "2026-05-06T11:21:35Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Mesencephalic dopamine neurons interfacing the shell of nucleus accumbens and the dorsolateral striatum in the rat",
+    "authors": ["Wouterlood FG", "Engel A", "Daal M", "Houwen G", "Meinderts A", "Jorda Siquier T", "Belien JAM", "van Dongen YC", "Scheel-Kruger J", "Thierry AM", "Groenewegen HJ", "Deniau JM"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience Research",
+    "doi": "10.1002/jnr.24242"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "Empirical demonstration -- combining anterograde and retrograde tracing with neurophysiology -- of a direct functional dopaminergic linkage between the limbic loop (NAcc shell) and the sensorimotor loop (dorsolateral striatum) via ventral mesencephalon. Stimulation of medial ventral striatum INHIBITED nigrostriatal DA neurons projecting to the dorsolateral striatum. This is direct measurement, not theoretical argument, and it weakens strict three-loop segregation by showing functional cross-loop interaction is built into the substrate. The 0.72 reflects: high source quality and direct empirical evidence, balanced against the fact that ONE cross-loop pathway (limbic -> sensorimotor) does not by itself disprove a three-gate architecture -- it just disproves the strongest segregation hypothesis.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Q-019 option (B) requires the three loops to be functionally segregated for arbitration to work, Wouterlood 2018's direct demonstration of cross-loop dopaminergic linkage shows the substrate violates that segregation. Whether this is a bug or a feature for option (B) depends on the interpretation; for the strongest version of option (B), it is a bug.",
+    "If three independent gates each have their own dopaminergic gain modulation, then ventral-striatum activity should NOT modulate sensorimotor-striatum dopamine. Wouterlood 2018 shows it does. Strict per-loop independence is therefore not anatomically supported.",
+    "The cross-loop linkage demonstrated is unidirectional in this study (ventral -> sensorimotor via DA inhibition). The reverse direction is not tested, so this evidence specifically weakens the assumption that the LIMBIC loop is independent of the MOTOR loop -- not necessarily the symmetric assumption."
+  ],
+  "tags": ["q_019", "basal_ganglia", "dopamine", "cross_loop_integration", "nucleus_accumbens", "dorsolateral_striatum", "ventral_mesencephalon", "loop_segregation"],
+  "mapping": {
+    "source_claim_statement": "Combined anterograde + retrograde tracing in rat reveals close anatomical appositions between fibres from the medial ventral striatum and nigrostriatal DA neurons projecting to the dorsolateral striatum (DLS). Neurophysiologically, orthodromic stimulation in medial ventral striatum INHIBITED dopaminergic nigrostriatal neurons -- demonstrating a functional link between the ventromedial emotional/motivational striatum and the sensorimotor DLS via ventral mesencephalic DA neurons. Parallel corticostriatonigral circuits exist, but functional integration between them is mediated through this DA-neuron interface.",
+    "ree_translation": "Q-019 asks whether three loops are anatomically AND functionally distinct, or convergent. Wouterlood 2018 provides direct experimental evidence of FUNCTIONAL cross-loop linkage at the dopamine-system level: limbic-loop activity directly modulates sensorimotor-loop dopaminergic gain. For REE this means the strongest version of option (B) -- three loops truly independent -- is empirically wrong. The question shifts from 'three independent loops vs unified selector' to 'three topographic loops with engineered cross-talk vs unified selector with topographic input channels'. Both remaining options have reduced arbitration distance from each other.",
+    "mapping_caveat": "Rat data; primate / human anatomy is broadly similar but not identical at the substantia-nigra / VTA boundary. Also, this study demonstrates cross-loop linkage in ONE direction (ventral -> sensorimotor via DA inhibition); the opposite direction is not tested in this study. So the entry weakens the symmetric independence assumption only by inference. The strict-segregation hypothesis is what is most clearly disproven; weaker forms of multi-loop architecture (with engineered cross-talk) are unaffected. Q-019's option (B) does not explicitly require strict segregation, so the weakening is calibrated.",
+    "source_context": "Empirical neuroanatomy + neurophysiology paper, J Neurosci Res 2018. Rat tract-tracing combined with extracellular unit recording. Multi-lab collaboration (Amsterdam, Aarhus, Paris). Full text available via PMC."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (direct empirical neuroanatomy + electrophysiology, peer-reviewed multi-lab). Mapping fidelity moderate-high -- the paper directly demonstrates one form of cross-loop functional linkage that strict three-gate segregation forbids. Transfer risk moderate (rat -> human BG). Confidence kept at 0.72 because ONE cross-loop pathway weakens but does not disprove three-gate; it disproves strict segregation specifically."
+  }
+}

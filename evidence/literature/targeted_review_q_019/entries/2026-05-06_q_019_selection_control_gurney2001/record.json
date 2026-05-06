@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-05-06_q_019_selection_control_gurney2001",
+  "timestamp_utc": "2026-05-06T11:21:35Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "A computational model of action selection in the basal ganglia. I. A new functional anatomy",
+    "authors": ["Gurney K", "Prescott TJ", "Redgrave P"],
+    "year": 2001,
+    "venue": "Biological Cybernetics",
+    "doi": "10.1007/PL00007984"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "The GPR model implements the Redgrave 1999 unified-selection thesis as a working computational architecture, and -- the key bit for Q-019 -- explicitly contrasts its two-pathway decomposition (selection + control) with the prevailing direct/indirect partitioning. Twenty years of follow-up work (Humphries & Gurney 2021 retrospective, PMID 34272969) demonstrate that the GPR model has been productive and is the canonical computational alternative to multi-loop frameworks. Confidence is moderate -- 0.7 -- because the model is a model. It does not prove the BG implement selection-and-control rather than three loops; it shows that you can build a working signal-selector with surprisingly few BG-anatomy primitives without invoking three separate gates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If three anatomically distinct gating loops are computationally necessary (Q-019 option B), then the GPR model -- which has only one selection circuit and no notion of three parallel gates -- should fail at tasks requiring distinct sensorium / thought / commitment arbitration. Twenty years of GPR-descendant work (reviewed Humphries & Gurney 2021) suggest these models perform basic action-selection competently without three gates.",
+    "The selection / control decomposition CONTRASTS with the direct/indirect partitioning that some multi-loop accounts inherit. If Q-019 option (B) implicitly assumes direct/indirect partitioning per loop, GPR's alternative architecture is a constraint: you don't get three loops just by stacking direct/indirect pairs.",
+    "Computational sufficiency is not biological necessity. GPR shows you CAN build a working selector this way; it does not show the brain DOES. This is the principal limitation for using the GPR model as evidence against three-gate architecture."
+  ],
+  "tags": ["q_019", "basal_ganglia", "GPR_model", "selection_control_pathways", "computational_model", "single_gate", "gurney"],
+  "mapping": {
+    "source_claim_statement": "A biologically plausible model of intrinsic basal ganglia processing, premised on action selection as the primary BG function. By encoding the propensity for selecting an action as a scalar 'salience', action selection is recast as signal selection. The model decomposes BG anatomy into two pathways -- 'selection' (off-centre / on-surround feedforward selection) and 'control' (regulating the selection pathway and synergising with dopaminergic modulation). This contrasts with the prevailing 'direct' / 'indirect' pathway partitioning.",
+    "ree_translation": "Q-019 asks whether BG implement three loops or one gate. The GPR model is the working computational instantiation of the one-gate view. Two key features map onto Q-019: (1) selection happens via a single circuit with off-centre / on-surround dynamics across whatever inputs the cortex routes to it -- not three separate selection circuits; (2) the model's pathway decomposition is selection / control, NOT direct / indirect or per-loop. Both features weaken the Q-019 three-gate option (B) by providing a worked alternative.",
+    "mapping_caveat": "GPR is a model, not a measurement. It demonstrates computational viability of the unified-selection view; it does not adjudicate whether the brain actually implements it that way. Also, GPR's two-pathway decomposition (selection + control) is not the same as Q-019's two options -- it is an alternative decomposition altogether. Citing GPR against Q-019 option (B) requires the reader to follow that GPR's alternative decomposition is incompatible with strict three-loop functional segregation.",
+    "source_context": "Computational neuroscience model paper, Biological Cybernetics 2001. Part I of a two-paper sequence; Part II (PMID 11417053) provides simulation analysis. Influence summarised in Humphries & Gurney (2021) editorial retrospective."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.30,
+    "notes": "Computational model paper -- evidential weight comes from architectural argument and twenty years of follow-up demonstrating the model's productivity (Humphries 2021). Mapping fidelity moderate because the alternative decomposition (selection + control) is not the same as either Q-019 option but stands as a third architectural framing that weakens strict three-gate. Source quality good (Bio Cybernetics is solid for computational neuroscience)."
+  }
+}
