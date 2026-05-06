@@ -2,10 +2,21 @@
   "schema_version": "v1",
   "runner_pid": 38320,
   "runner_started_at": "2026-05-06T07:59:47.321804+00:00",
-  "last_updated": "2026-05-06T08:29:15.634365+00:00",
+  "last_updated": "2026-05-06T09:06:07.547699+00:00",
   "idle": false,
   "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-244a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-165 reverse replay diversity scheduler validation (redesign of EXQ-244)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-524",
       "backlog_id": "",
@@ -2616,6 +2627,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 38.7
+    },
+    {
+      "queue_id": "V3-EXQ-532",
+      "backlog_id": "",
+      "claim_id": "SD-005",
+      "title": "SD-005 latent domain selectivity -- z_self/z_world domain probe",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL | corr_z_self_body=0.1692  corr_z_world_body=0.0435  self_body_adv=0.1257  C1=True | corr_z_world_world=0.0436  corr_z_self_world=0.0754  world_obs_adv=-0.0318  C2=False",
+      "started_at": "2026-05-06T09:06:03.672326+00:00",
+      "completed_at": "2026-05-06T09:06:07.547454+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_532_sd005_latent_domain_selectivity/v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 3.9
     }
   ]
 }
