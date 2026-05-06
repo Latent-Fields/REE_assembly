@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_490c_mech269b_with_liking_bridge
 
-Generated: `2026-05-05T22:10:14.293367Z`
+Generated: `2026-05-06T04:19:26.877305Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
