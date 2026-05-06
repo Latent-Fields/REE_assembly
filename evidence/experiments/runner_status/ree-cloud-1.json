@@ -1,41 +1,19 @@
 {
   "schema_version": "v1",
-  "runner_pid": 6782,
-  "runner_started_at": "2026-05-05T18:07:32.372351+00:00",
-  "last_updated": "2026-05-05T21:31:52.870386+00:00",
+  "runner_pid": 38320,
+  "runner_started_at": "2026-05-06T07:59:47.321804+00:00",
+  "last_updated": "2026-05-06T08:29:15.634365+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-325f",
+      "queue_id": "V3-EXQ-524",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-032c AIC descending modulation -- reef (monostrategy fix)",
+      "title": "Reef fishtank showcase -- reef zone viz + shelter mode episode log",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-452a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-257/SD-013/ARC-033 dual-function E2 comparator -- reef (monostrategy fix)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-514c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-049 Phase 2 reef-environment behavioural validation (monostrategy fix for 514b)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2610,6 +2588,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 62.5
+    },
+    {
+      "queue_id": "V3-EXQ-526",
+      "backlog_id": "",
+      "claim_id": "Q-034",
+      "title": "Q-034 reef-enabled threshold sweep -- monostrategy fix for EXQ-451",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "-> FAIL (evidence_direction=weakens) | Status: FAIL",
+      "started_at": "2026-05-06T07:59:48.902916+00:00",
+      "completed_at": "2026-05-06T08:28:35.382811+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1726.5
+    },
+    {
+      "queue_id": "V3-EXQ-527",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 goal-directed behavior -- identity encoder + reef (fresh angle over EXQ-189)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS  seed=13 cond=GOAL_ABSENT res_rate=0.278 benefit=0.0265 z_goal_norm=0.000 probe_acc=0.000 | -> FAIL (evidence_direction=mixed)",
+      "started_at": "2026-05-06T08:28:36.952963+00:00",
+      "completed_at": "2026-05-06T08:29:15.633720+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 38.7
     }
   ]
 }
