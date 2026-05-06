@@ -1,61 +1,101 @@
 {
   "schema_version": "diagnose_staging/v1",
-  "session_date": "2026-04-29",
-  "generated_utc": "2026-04-29T14:18:00Z",
+  "session_date": "2026-05-06",
+  "generated_utc": "2026-05-06T14:17:00Z",
   "session_label": "ree-diagnose-queue (afternoon scheduled, staging mode)",
   "runner_status_sync_gap": 0,
-  "total_errors_scanned": 84,
-  "errors_unaddressed_no_successor": 10,
-  "errors_already_in_discussed_experiment_dirs": 6,
-  "errors_requiring_diagnosis": 4,
+  "total_errors_scanned": 72,
+  "errors_unaddressed_no_successor": 6,
+  "errors_requiring_diagnosis": 6,
   "errors_requiring_fix_script": 0,
-  "diagnoses": [],
-  "non_actionable_errors_audited": [
+  "summary": "0 ERRORs require a code-fix script. 6 unaddressed ERRORs split into three categories: (1) intentional NotImplementedError placeholders awaiting upstream prerequisites (V3-EXQ-455a, V3-EXQ-449c) -- these are not bugs and were already flagged in the 2026-04-29 staging report; (2) coincident SIGTERM (exit -15) on both cloud workers at 2026-05-06T09:28Z (V3-EXQ-530 on ree-cloud-1, V3-EXQ-244a on ree-cloud-2) plus a prior SIGTERM (V3-EXQ-495 on ree-cloud-1, 2026-04-28T21:13Z) -- infrastructure failures, no code fix; (3) one stale March-2026 SD-003 attempt (V3-EXQ-008) functionally superseded by the 27-experiment SD-003 program (anchor V3-EXQ-525 PASSed today). Note: V3-EXQ-449c, V3-EXQ-455a, V3-EXQ-008 also appeared in the 2026-04-29 staging report's errors_already_discussed_no_action list -- carryover for review_tracker handoff.",
+  "diagnoses": [
     {
-      "queue_id": "V3-EXQ-125a",
-      "completed_at": "2026-04-06T15:56:21Z",
-      "title": "ARC-029 committed-mode harm redesign (8 hazards, 5 seeds, majority rule)",
-      "completed_by": "ree-cloud-1",
-      "result_summary": "Non-zero exit code 1 (1.3s startup crash on ree-cloud-1)",
-      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist on other machines: FAIL on Daniel-PC (2026-04-05T23:48Z) and FAIL on EWIN-PC (2026-04-06T02:28Z). The ree-cloud-1 ERROR is a stale duplicate that crashed at startup before the deduplication mechanism kicked in.",
-      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. Same recommendation as the 2026-04-28 staging run -- not yet acted on."
+      "failed_queue_id": "V3-EXQ-008",
+      "proposed_fix_id": null,
+      "category": "stale_abandoned",
+      "root_cause": "March 17 2026 SD-003 larger-world / smaller-observation probe exited code 1 in 0.9s. Pre-runner.log retention period; traceback unrecoverable from local logs. SD-003 has had 27 follow-on experiments since then; V3-EXQ-525 PASSed as the SD-003 anchor 2026-05-06T06:51Z.",
+      "fix_applied": "None. Scientific question functionally absorbed into the SD-003 program via different EXQ numbers; no longer load-bearing under this ID. Already listed in the 2026-04-29 staging report's errors_already_discussed_no_action -- carryover for review_tracker handoff.",
+      "draft_script_path": null,
+      "proposed_claim_ids": [],
+      "claim_ids_rationale": "No fix written.",
+      "draft_queue_entry": null,
+      "status": "no_fix_needed_recommend_mark_discussed"
     },
     {
-      "queue_id": "V3-EXQ-247",
-      "completed_at": "2026-04-06T15:56:23Z",
-      "title": "SD-011/SD-012 Full Integration Validation (urgency gating + affective amplification + drive extraction)",
-      "completed_by": "ree-cloud-1",
-      "result_summary": "Non-zero exit code 1 (1.4s startup crash on ree-cloud-1)",
-      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative results already exist: FAIL on DLAPTOP-4.local (2026-04-06T08:09Z) and FAIL on Daniel-PC (2026-04-07T10:50Z). Evidence dir v3_exq_247_sd011_sd012_integration/ exists.",
-      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. Carried over from 2026-04-28 staging."
+      "failed_queue_id": "V3-EXQ-455a",
+      "proposed_fix_id": null,
+      "category": "intentional_placeholder",
+      "root_cause": "Script raises NotImplementedError at top of run with self-documenting message: 'V3-EXQ-455a full implementation pending: awaiting V3-EXQ-476 cascade gate PASS and MECH-284 Phase 3 consumer landing.' Exit 1 in 0.05s. Intentional precondition gate, not a bug.",
+      "fix_applied": "None. V3-EXQ-476 is itself a NotImplementedError placeholder; successors V3-EXQ-476a and V3-EXQ-476b both UNKNOWN. Until MECH-284 Phase 3 consumer + V_s flag plumbing in REEConfig.from_dims() are complete, no work is appropriate on V3-EXQ-455a. Already listed in the 2026-04-29 staging report -- carryover for review_tracker handoff.",
+      "draft_script_path": null,
+      "proposed_claim_ids": [],
+      "claim_ids_rationale": "No fix to claim against; gate experiment will determine claim_ids when prerequisites land.",
+      "draft_queue_entry": null,
+      "status": "blocked_on_upstream_prerequisites"
     },
     {
-      "queue_id": "V3-EXQ-249b",
-      "completed_at": "2026-04-07T14:02:33Z",
-      "title": "INV-053: Depression Attractor Replication (SD-018)",
-      "completed_by": "ree-cloud-1",
-      "result_summary": "Non-zero exit code -15 (SIGTERM after 4672s / ~78min)",
-      "non_actionable_reason": "Duplicate-machine run killed by SIGTERM. Authoritative result already exists: PASS on EWIN-PC (2026-04-07T02:29Z, ~10h before the kill). Same SIGTERM-on-cloud pattern observed in V3-EXQ-490 (handled by 2026-04-27T05:25 diagnose-errors session).",
-      "recommended_disposition": "Governance: add to review_tracker.discussed_experiment_dirs in next /governance walk. Carried over from 2026-04-28 staging."
+      "failed_queue_id": "V3-EXQ-449c",
+      "proposed_fix_id": null,
+      "category": "intentional_placeholder",
+      "root_cause": "Script raises NotImplementedError at top of run with self-documenting message: 'V3-EXQ-449c full implementation pending: awaiting (a) V3-EXQ-476 PASS, (b) V3-EXQ-445d PASS, and (c) MECH-074b hippocampal consumer wiring landed on SD-035.' Exit 1 in 0.1s. Intentional gate.",
+      "fix_applied": "None. All three prerequisites unmet: V3-EXQ-476 ERROR (placeholder), V3-EXQ-445d ERROR (also a placeholder awaiting V3-EXQ-476), MECH-074b retrieval-bias-aware replay path not yet present in SD-035. Pure dependency chain. Already listed in the 2026-04-29 staging report -- carryover for review_tracker handoff.",
+      "draft_script_path": null,
+      "proposed_claim_ids": [],
+      "claim_ids_rationale": "No fix to claim against.",
+      "draft_queue_entry": null,
+      "status": "blocked_on_upstream_prerequisites"
     },
     {
-      "queue_id": "V3-EXQ-498",
-      "completed_at": "2026-04-28T21:13:59Z",
-      "title": "OCD Layer 1 closure threshold sweep",
-      "completed_by": "ree-cloud-2",
-      "result_summary": "Non-zero exit code 1 on ree-cloud-2",
-      "non_actionable_reason": "Duplicate-machine run artifact. Authoritative result on DLAPTOP-4.local 2026-04-28T20:29:54Z (UNKNOWN/non-ERROR). Already reviewed via run_id v3_exq_498_ocd_layer1_closure_threshold_sweep_20260428T201903Z_v3 in reviewed_run_ids and discussed in 2026-04-28T22:00 governance cycle (classified non_contributory; OCD Layer 1 disconfirmed; escalates to Layer 2/3). The cloud-2 ERROR row is a per-machine artifact; the monolithic merge already prefers the non-ERROR DLAPTOP-4 entry.",
-      "recommended_disposition": "Governance: add V3-EXQ-498 to review_tracker.discussed_experiment_dirs to suppress the per-machine ERROR view from future scans. (Run-level reviewed_run_id already covers governance.)"
+      "failed_queue_id": "V3-EXQ-495",
+      "proposed_fix_id": null,
+      "category": "infrastructure_sigterm",
+      "root_cause": "MECH-163 V3 full-completion gate (VTA / hippocampally-planned arm) ran 4.0 hours on ree-cloud-1 starting 2026-04-28T17:14Z, then exit -15 (SIGTERM) at 21:13Z. SIGTERM is an external signal -- cloud worker process killed by parent (timeout, restart, or remote shutdown). No Python traceback.",
+      "fix_applied": "None. Not a code bug. The estimate budget for MECH-163 (heavyweight full-completion gate) likely exceeded the cloud worker's runtime ceiling, or the worker was restarted mid-run. Recommend: (a) confirm whether still scientifically wanted, (b) if yes, re-queue with force_rerun=true OR fresh letter (V3-EXQ-495a) and pin machine_affinity to a host with sufficient runtime headroom (DLAPTOP-4.local typically OK for long runs).",
+      "draft_script_path": null,
+      "proposed_claim_ids": ["MECH-163"],
+      "claim_ids_rationale": "Inherited from predecessor since the script never produced measurement -- SIGTERM tells us nothing about scope. If a human re-runs, claim_ids should be re-evaluated against the actual script body.",
+      "draft_queue_entry": null,
+      "status": "infrastructure_failure_no_code_fix_user_decides_rerun"
+    },
+    {
+      "failed_queue_id": "V3-EXQ-530",
+      "proposed_fix_id": null,
+      "category": "infrastructure_sigterm",
+      "root_cause": "ARC-016 precision-to-commitment circuit ran 10.0 minutes on ree-cloud-1 starting 2026-05-06T09:18:48Z, then SIGTERM at 09:28:51Z. ree-cloud-1 last heartbeat 09:16:44Z (idle). Coincident with V3-EXQ-244a SIGTERM on ree-cloud-2 at 09:28:53Z (within 2 seconds) -- simultaneous shutdown of both cloud workers around 09:28-29Z today.",
+      "fix_applied": "None. This experiment was smoke-tested PASS earlier today (~70s smoke run, all code paths exercised; per WORKSPACE_STATE 'write-exq530-arc016-precision-commit 2026-05-06T09:18Z'). The 10-minute SIGTERM is purely an infrastructure event, not a script regression. Recommend: re-queue under same ID with force_rerun=true, OR assign V3-EXQ-530a; consider machine_affinity adjustment if cloud restart pattern repeats.",
+      "draft_script_path": null,
+      "proposed_claim_ids": ["ARC-016"],
+      "claim_ids_rationale": "Inherited from queued predecessor -- SIGTERM produced no measurement, so claim_ids unchanged from original design (ARC-016 dACC precision_commit_ratio). Re-evaluate at re-queue time only if script is modified.",
+      "draft_queue_entry": null,
+      "status": "infrastructure_failure_no_code_fix_user_decides_rerun"
+    },
+    {
+      "failed_queue_id": "V3-EXQ-244a",
+      "proposed_fix_id": null,
+      "category": "infrastructure_sigterm",
+      "root_cause": "MECH-165 reverse replay diversity validation ran 1.34 hours on ree-cloud-2 starting 2026-05-06T08:08:44Z, then SIGTERM at 09:28:53Z. ree-cloud-2 last heartbeat 08:06:40Z (idle). Coincident with V3-EXQ-530 SIGTERM on ree-cloud-1 at 09:28:51Z. Same cloud-shutdown event.",
+      "fix_applied": "None. There is a flat-JSON evidence file at REE_assembly/evidence/experiments/v3_exq_244a_mech165_replay_diversity_validation_v3.json with outcome=PASS, but its run_id has no timestamp suffix and the file is untracked in git -- this is a smoke-test artifact from local dry-run, NOT a real production run. condition_stats show NO_REPLAY/FORWARD_REPLAY retentions of -9.3e-11 (zero noise) and BALANCED_REPLAY at 0.013 driven by a single seed -- implausibly clean for a real run, consistent with a smoke-test artifact. Recommend: (a) delete the smoke-test JSON before re-running so it cannot be mistaken for evidence, (b) re-queue under same ID with force_rerun=true, OR assign V3-EXQ-244b.",
+      "draft_script_path": null,
+      "proposed_claim_ids": ["MECH-165"],
+      "claim_ids_rationale": "Inherited from predecessor -- SIGTERM produced no real measurement. Re-evaluate only if script body is modified.",
+      "draft_queue_entry": null,
+      "status": "infrastructure_failure_no_code_fix_user_decides_rerun_delete_smoke_artifact_first"
     }
   ],
-  "errors_already_discussed_no_action": [
-    "V3-EXQ-449c", "V3-EXQ-455a", "V3-EXQ-008",
-    "V3-EXQ-490", "V3-EXQ-490a", "V3-EXQ-490b"
-  ],
-  "summary": "0 ERRORs require a fix script. 4 ERRORs flagged for governance handoff -- all duplicate-machine run artifacts where the experiment already has authoritative results from other machines. 3 of the 4 (125a/247/249b) carry forward unchanged from the 2026-04-28 staging report (governance walk has not yet absorbed them); 1 is new (498, completed 2026-04-28T21:13Z but already covered by run-level reviewed_run_id and governance discussion).",
+  "infrastructure_observation": {
+    "incident_utc": "2026-05-06T09:28:51Z",
+    "affected_machines": ["ree-cloud-1", "ree-cloud-2"],
+    "affected_runs": ["V3-EXQ-530", "V3-EXQ-244a"],
+    "signature": "Both cloud workers issued SIGTERM to active runs within 2 seconds of each other. Heartbeats from both machines are stale (last ticks 08:06Z and 09:16Z respectively).",
+    "recommendation": "Investigate whether ree-cloud workers were intentionally stopped or hit a shared host-side limit. If unintentional, restart the runners with --auto-sync --loop --remote-control. The same incident also explains why no later runs by either cloud worker appear in runner_status. The 2026-04-28T21:13Z V3-EXQ-495 SIGTERM on ree-cloud-1 is the same pattern from earlier (cloud worker kills mid-run); recurring infra problem worth flagging.",
+    "carryover_observation": "The 2026-04-29 staging report flagged duplicate-machine artifacts (V3-EXQ-125a / V3-EXQ-247 / V3-EXQ-249b / V3-EXQ-498) for governance handoff to review_tracker.discussed_experiment_dirs. None of those have been absorbed into review_tracker yet (the 2026-04-29 next_actions remain open). Today's run identifies three more candidates (V3-EXQ-008, V3-EXQ-455a, V3-EXQ-449c) already noted in that prior report as errors_already_discussed_no_action."
+  },
   "next_actions": [
-    "Governance: add V3-EXQ-125a, V3-EXQ-247, V3-EXQ-249b, V3-EXQ-498 to review_tracker.discussed_experiment_dirs in next /governance walk. (3 of 4 are carryovers from 2026-04-28.)",
-    "Optional infrastructure follow-up (carryover): the multi-machine claim race continues to produce duplicate-machine ERRORs (now V3-EXQ-498 in addition to 125a/247/249b/490). Same root-cause pattern; lives outside diagnose-errors scope."
+    "Governance handoff: add V3-EXQ-008, V3-EXQ-455a, V3-EXQ-449c, V3-EXQ-495, V3-EXQ-530, V3-EXQ-244a to review_tracker.discussed_experiment_dirs in the next /governance walk so they stop appearing as undiagnosed ERRORs.",
+    "User decision: confirm whether V3-EXQ-495 / V3-EXQ-530 / V3-EXQ-244a should be re-queued. For V3-EXQ-244a, delete the smoke-test JSON at evidence/experiments/v3_exq_244a_mech165_replay_diversity_validation_v3.json BEFORE re-queuing so it is not mistaken for evidence.",
+    "Infra: investigate the 2026-05-06T09:28Z coincident SIGTERM on ree-cloud-1 and ree-cloud-2 (heartbeats stale; restart runners with --auto-sync --loop --remote-control if workers are still down). Same pattern as 2026-04-28 V3-EXQ-495 SIGTERM and 2026-04-07 V3-EXQ-249b SIGTERM -- recurring cloud worker kill behaviour.",
+    "Upstream blockers: V3-EXQ-455a and V3-EXQ-449c will keep ERRORing until V3-EXQ-476 lands (which itself awaits MECH-284 Phase 3 + V_s flag plumbing in REEConfig.from_dims())."
   ],
-  "status": "no_action_required_governance_handoff"
+  "status": "no_action_required_governance_handoff_plus_user_decisions"
 }

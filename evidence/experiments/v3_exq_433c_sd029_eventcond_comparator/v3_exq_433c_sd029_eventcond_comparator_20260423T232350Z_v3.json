@@ -9,8 +9,9 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260423T232350Z",
   "outcome": "FAIL",
-  "evidence_direction": "inconclusive_insufficient_events",
-  "evidence_direction_per_claim": {
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by V3-EXQ-433d (2026-04-27, evidence_direction=non_contributory) and V3-EXQ-433e (2026-05-05, reef-enabled successor). Original direction `inconclusive_insufficient_events` is not a canonical evidence_direction value and was being normalised to `unknown` by the indexer, then re-inferred as `weakens` from FAIL outcome -- producing a spurious blanket-weakens warning on a run whose successor chain has already addressed the same scientific question.",
+  "evidence_direction_per_claim_original": {
     "SD-029": "inconclusive_insufficient_events",
     "MECH-256": "inconclusive_insufficient_events"
   },

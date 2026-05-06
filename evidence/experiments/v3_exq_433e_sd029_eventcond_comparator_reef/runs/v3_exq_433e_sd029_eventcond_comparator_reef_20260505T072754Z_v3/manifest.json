@@ -24,8 +24,13 @@
     "MECH-256"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "inconclusive_insufficient_events",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Direction `inconclusive_insufficient_events` (script's bespoke value) is not canonical and was being normalised to `unknown` by the indexer, then re-inferred as `weakens` from FAIL outcome. Re-tagged as `non_contributory` to match the canonical semantic of the predecessor V3-EXQ-433d (same outcome on the same scientific question: c0_trials_sufficient_gate FAIL means the run did not generate enough events to make a determination, so it should not influence governance). Original direction preserved in evidence_direction_per_claim_original.",
   "evidence_direction_per_claim": {
+    "SD-029": "non_contributory",
+    "MECH-256": "non_contributory"
+  },
+  "evidence_direction_per_claim_original": {
     "SD-029": "inconclusive_insufficient_events",
     "MECH-256": "inconclusive_insufficient_events"
   },
