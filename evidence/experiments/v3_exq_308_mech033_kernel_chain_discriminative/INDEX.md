@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_308_mech033_kernel_chain_discriminative
 
-Generated: `2026-05-06T04:19:26.877305Z`
+Generated: `2026-05-06T08:46:19.957163Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

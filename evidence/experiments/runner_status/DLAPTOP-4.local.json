@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-06T06:51:03.325185+00:00",
+  "last_updated": "2026-05-06T08:57:00.663889+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-524",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "Reef fishtank showcase -- reef zone viz + shelter mode episode log",
+    "description": "",
+    "script": "experiments/v3_exq_524_reef_fishtank_showcase.py",
+    "started_at": "2026-05-06T06:51:09.015372+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 30,
+      "episodes_total": 60,
+      "overall_pct": 50.0
+    },
+    "seconds_elapsed": 7552,
+    "seconds_remaining": 7552,
+    "recent_lines": [
+      "[EXQ-524] Seed 2 -- world_obs_dim=275  body_obs_dim=12  reef_enabled=True",
+      "[EXQ-524] Seed 2 -- Phase 0: warmup (dual-stream + SD-018 aux losses)",
+      "[warmup] ep 10/60  rv=0.0001  ep_reward=-0.4287",
+      "[warmup] ep 20/60  rv=0.0007  ep_reward=-0.4275",
+      "[warmup] ep 30/60  rv=0.0010  ep_reward=-0.7570"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-514c",
@@ -24,7 +50,7 @@
       "title": "Reef fishtank showcase -- reef zone viz + shelter mode episode log",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
