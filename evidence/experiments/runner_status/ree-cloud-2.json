@@ -1,30 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 4349,
-  "runner_started_at": "2026-05-05T18:07:39.833151+00:00",
-  "last_updated": "2026-05-05T23:51:43.608483+00:00",
+  "runner_pid": 16287,
+  "runner_started_at": "2026-05-06T07:59:47.950360+00:00",
+  "last_updated": "2026-05-06T08:00:29.196656+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-325f",
+      "queue_id": "V3-EXQ-526",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032c AIC descending modulation -- reef (monostrategy fix)",
+      "claim_id": "Q-034",
+      "title": "Q-034 reef-enabled threshold sweep -- monostrategy fix for EXQ-451",
       "description": "",
-      "estimated_minutes": 17.3,
-      "status": "claimed",
+      "estimated_minutes": 240.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-454a",
+      "queue_id": "V3-EXQ-524",
       "backlog_id": "",
       "claim_id": "",
-      "title": "ARC-016 adaptive commit_threshold via E2 PE variance -- reef (monostrategy fix)",
+      "title": "Reef fishtank showcase -- reef zone viz + shelter mode episode log",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1913,6 +1913,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_514c_sd049_phase_2_reef_behavioural_validation/v3_exq_514c_sd049_phase_2_reef_behavioural_validation_20260505T235143Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 18211.6
+    },
+    {
+      "queue_id": "V3-EXQ-527",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 goal-directed behavior -- identity encoder + reef (fresh angle over EXQ-189)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS  seed=13 cond=GOAL_ABSENT res_rate=0.278 benefit=0.0265 z_goal_norm=0.000 probe_acc=0.000 | -> FAIL (evidence_direction=mixed)",
+      "started_at": "2026-05-06T07:59:51.115911+00:00",
+      "completed_at": "2026-05-06T08:00:29.195423+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 38.1
     }
   ]
 }
