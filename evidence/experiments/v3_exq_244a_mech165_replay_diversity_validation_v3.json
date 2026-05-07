@@ -8,6 +8,7 @@
   "experiment_purpose": "diagnostic",
   "outcome": "PASS",
   "evidence_direction": "supports",
+  "evidence_quality_note": "Marginal PASS (reviewed 2026-05-07): only 1/5 seeds shows a genuine BALANCED_REPLAY advantage (+0.013 margin); 3/5 seeds win by ~1e-13 (floating-point noise). Critically, FORWARD_REPLAY == NO_REPLAY byte-for-byte in all seeds (reverse_replayed=0 everywhere), meaning the FORWARD vs NO_REPLAY comparison never exercised the intended mechanism. Direction kept as 'supports' per conservative governance default, but this result is diagnostic-quality only; MECH-165 requires an experiment where forward replay is actually invoked.",
   "conditions": [
     "NO_REPLAY",
     "FORWARD_REPLAY",

@@ -13,10 +13,11 @@
   "outcome": "FAIL",
   "evidence_direction": "diagnostic",
   "evidence_direction_per_claim": {
-    "MECH-257": "weakens",
+    "MECH-257": "mixed",
     "SD-013": "mixed",
     "ARC-033": "mixed"
   },
+  "evidence_direction_note": "Corrected 2026-05-07: experiment_purpose=diagnostic. C1 PASS (comparator separation valid), C2 FAIL (pe_harm_surprise_corr<0.15 in STD seeds). Diagnostic FAIL does not constitute a clean weakens verdict for MECH-257 -- substrate enrichment (reef) still insufficient to produce the evaluator signal needed. All per-claim directions set to mixed to reflect the ambiguous diagnostic outcome. Superseded by further reef experiments.",
   "pass_criteria_summary": {
     "c1_comparator_valid": {
       "std_wins": 3,
