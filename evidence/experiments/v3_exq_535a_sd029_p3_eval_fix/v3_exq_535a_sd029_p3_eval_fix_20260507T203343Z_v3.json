@@ -1,0 +1,94 @@
+{
+  "run_id": "v3_exq_535a_sd029_p3_eval_fix_20260507T203343Z_v3",
+  "experiment_type": "v3_exq_535a_sd029_p3_eval_fix",
+  "queue_id": "V3-EXQ-535a",
+  "claim_ids": [
+    "SD-029",
+    "MECH-256"
+  ],
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "SD-029": "supports",
+    "MECH-256": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "supersedes": "v3_exq_535_sd029_p1_target_fix",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-07T20:33:43.217904Z",
+  "outcome": "FAIL",
+  "metrics": {
+    "per_arm": {
+      "ARM_0_baseline": {
+        "n_self": 1628.6666666666667,
+        "n_ext": 0.0,
+        "harm_forward_r2": 0.7468816306230135,
+        "mean_cf_gap_self": 0.00746103608349866,
+        "mean_cf_gap_ext": 0.0,
+        "mean_p1_loss": 0.009840708794469594,
+        "mean_p2_loss": 0.0014269951659298386,
+        "p1_steps": 1200.0,
+        "p1_r2": 0.7562910460443257,
+        "p2_steps": 2133.3333333333335,
+        "p2_r2": 0.7317059894411626,
+        "p0_n_self": 1628.6666666666667,
+        "p0_n_ext": 0.0,
+        "p3_n_self": 0.0,
+        "p3_n_ext": 0.0,
+        "p3_steps": 0.0,
+        "p1_graduated_all": true,
+        "p2_graduated_all": true
+      },
+      "ARM_1_reef_food_ext": {
+        "n_self": 88.66666666666667,
+        "n_ext": 50.0,
+        "harm_forward_r2": 0.6599455878678879,
+        "mean_cf_gap_self": 0.08235358755473059,
+        "mean_cf_gap_ext": -0.00016507109006245907,
+        "mean_p1_loss": 0.008188511913130693,
+        "mean_p2_loss": 0.0011739413244564881,
+        "p1_steps": 2133.3333333333335,
+        "p1_r2": 0.7134627881666306,
+        "p2_steps": 6400.0,
+        "p2_r2": 0.6935362760795902,
+        "p0_n_self": 1081.3333333333333,
+        "p0_n_ext": 31.0,
+        "p3_n_self": 88.66666666666667,
+        "p3_n_ext": 50.0,
+        "p3_steps": 322.6666666666667,
+        "p1_graduated_all": true,
+        "p2_graduated_all": true
+      }
+    },
+    "criteria": {
+      "C0": true,
+      "C1": false,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "c1_events": true,
+      "c1_r2": false
+    },
+    "overall_pass": false,
+    "outcome": "FAIL",
+    "graduated": true,
+    "evidence_direction_per_claim": {
+      "SD-029": "supports",
+      "MECH-256": "weakens"
+    },
+    "n_episodes": 120,
+    "steps_per_ep": 200,
+    "n_seeds": 3,
+    "p0_epsilon": 0.4,
+    "grad_threshold": 0.65,
+    "grad_window_size": 200,
+    "grad_n_windows_req": 5,
+    "grad_max_windows": 120,
+    "p1_target": "max_hazard_field_view",
+    "p1_target_ceiling_r2": 0.798,
+    "p3_ext_interval": 5,
+    "p3_ext_prob": 1.0,
+    "p3_target_ext": 50,
+    "p3_target_self": 50,
+    "p3_max_steps": 10000
+  }
+}
