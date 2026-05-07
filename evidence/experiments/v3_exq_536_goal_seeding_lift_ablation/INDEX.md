@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_536_goal_seeding_lift_ablation
+
+Generated: `2026-05-07T20:46:48.152004Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3` | `2026-05-07T20:46:46.981129Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3/summary.md) / [`manifest`](runs/v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3/manifest.json) / [`metrics`](runs/v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3/metrics.json) |
