@@ -3029,7 +3029,18 @@ def _write_planning_outputs(
 
     backlog_items: list[dict[str, Any]] = []
     architecture_items: list[dict[str, Any]] = []
+    # Pseudo-claim filter: drop non-canonical claim_ids that flow in via the
+    # evidence matrix (e.g. "onboarding" from contributor smoke tests). These
+    # are bucket labels for instrumentation runs, not registered claims; without
+    # this filter they auto-generate spurious backlog items (canonical incident:
+    # phantom EVB-0131 onboarding, surfaced repeatedly in lit-pull-am scans
+    # 2026-05-05..05-07). Real claims either (a) appear in claim_registry, or
+    # (b) match the canonical prefix pattern and will be added to the registry
+    # when fully described.
+    _CANONICAL_CLAIM_RE = re.compile(r"^(INV|ARC|MECH|SD|Q|IMPL)-")
     for claim_id in claim_ids:
+        if claim_id not in claim_registry and not _CANONICAL_CLAIM_RE.match(claim_id):
+            continue  # Pseudo-claim (smoke-test bucket, instrumentation label, etc.)
         registry_meta = claim_registry.get(claim_id, {})
         current_status = str(registry_meta.get("status", "unknown"))
         if _is_inactive_claim_status(current_status):
