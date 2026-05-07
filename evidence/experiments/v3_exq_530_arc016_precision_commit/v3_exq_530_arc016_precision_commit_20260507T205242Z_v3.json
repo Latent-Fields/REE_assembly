@@ -1,0 +1,133 @@
+{
+  "run_id": "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3",
+  "experiment_type": "v3_exq_530_arc016_precision_commit",
+  "queue_id": "V3-EXQ-530",
+  "claim_ids": [
+    "ARC-016"
+  ],
+  "evidence_direction": "weakens",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260507T214246Z",
+  "outcome": "FAIL",
+  "metrics": {
+    "arm0_mean_precision_commit_ratio": 0.0,
+    "arm1_mean_precision_commit_ratio": 0.0,
+    "arm0_mean_commit_rate": 0.0,
+    "arm1_mean_commit_rate": 0.0,
+    "arm0_mean_precision": 1.999996000008,
+    "arm1_mean_precision": 1.999996000008,
+    "c1_arm1_ratio_gt_arm0": false,
+    "c2_arm1_ratio_gt_1": false,
+    "c3_arm1_commit_positive": false,
+    "per_seed_results": [
+      {
+        "arm_id": 0,
+        "seed": 1803,
+        "commit_rate": 0.0,
+        "high_precision_commit_rate": 0.0,
+        "low_precision_commit_rate": 0.0,
+        "precision_commit_ratio": 0.0,
+        "mean_precision": 1.999996000008,
+        "median_precision": 1.999996000008,
+        "n_steps": 3807,
+        "n_high_steps": 0,
+        "n_low_steps": 3807
+      },
+      {
+        "arm_id": 0,
+        "seed": 7964,
+        "commit_rate": 0.0,
+        "high_precision_commit_rate": 0.0,
+        "low_precision_commit_rate": 0.0,
+        "precision_commit_ratio": 0.0,
+        "mean_precision": 1.999996000008,
+        "median_precision": 1.999996000008,
+        "n_steps": 3611,
+        "n_high_steps": 0,
+        "n_low_steps": 3611
+      },
+      {
+        "arm_id": 0,
+        "seed": 6890,
+        "commit_rate": 0.0,
+        "high_precision_commit_rate": 0.0,
+        "low_precision_commit_rate": 0.0,
+        "precision_commit_ratio": 0.0,
+        "mean_precision": 1.999996000008,
+        "median_precision": 1.999996000008,
+        "n_steps": 117,
+        "n_high_steps": 0,
+        "n_low_steps": 117
+      },
+      {
+        "arm_id": 1,
+        "seed": 1803,
+        "commit_rate": 0.0,
+        "high_precision_commit_rate": 0.0,
+        "low_precision_commit_rate": 0.0,
+        "precision_commit_ratio": 0.0,
+        "mean_precision": 1.999996000008,
+        "median_precision": 1.999996000008,
+        "n_steps": 3807,
+        "n_high_steps": 0,
+        "n_low_steps": 3807
+      },
+      {
+        "arm_id": 1,
+        "seed": 7964,
+        "commit_rate": 0.0,
+        "high_precision_commit_rate": 0.0,
+        "low_precision_commit_rate": 0.0,
+        "precision_commit_ratio": 0.0,
+        "mean_precision": 1.999996000008,
+        "median_precision": 1.999996000008,
+        "n_steps": 3611,
+        "n_high_steps": 0,
+        "n_low_steps": 3611
+      },
+      {
+        "arm_id": 1,
+        "seed": 6890,
+        "commit_rate": 0.0,
+        "high_precision_commit_rate": 0.0,
+        "low_precision_commit_rate": 0.0,
+        "precision_commit_ratio": 0.0,
+        "mean_precision": 1.999996000008,
+        "median_precision": 1.999996000008,
+        "n_steps": 117,
+        "n_high_steps": 0,
+        "n_low_steps": 117
+      }
+    ],
+    "elapsed_seconds": 3003.541132926941,
+    "n_seeds": 3,
+    "n_train_eps": 30,
+    "n_eval_eps": 20
+  },
+  "config": {
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_seeds": 3,
+    "grid_size": 12,
+    "steps_per_ep": 200,
+    "lr": 0.0005,
+    "arms": [
+      {
+        "arm_id": 0,
+        "use_dacc": false,
+        "label": "ARM_0_no_dacc"
+      },
+      {
+        "arm_id": 1,
+        "use_dacc": true,
+        "label": "ARM_1_dacc"
+      }
+    ],
+    "reef_kwargs": {
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7
+    }
+  }
+}
