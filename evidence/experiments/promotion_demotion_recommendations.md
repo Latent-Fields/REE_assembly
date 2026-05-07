@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-07T04:20:30.096034Z`
+Generated: `2026-05-07T04:35:02.476433Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -65,15 +65,15 @@ Use this as the human-in-the-loop review queue.
 | `MECH-293` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-294` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-295` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-302` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-303` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-304` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-302` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-303` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-304` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-021` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-023` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
-| `Q-036` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
+| `Q-036` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-037` | `open` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-015` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-021` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -86,8 +86,8 @@ Use this as the human-in-the-loop review queue.
 | `SD-036` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-037` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-039` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `SD-048` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `SD-049` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `SD-048` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `SD-049` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 
 ## Decision Details
 
@@ -1114,7 +1114,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: v3_pending=true; high conflict_ratio=0.857 noted but gated by v3_pending -- no status change. Hold until V3 substrate experiments clarify the mechanism.
 
 ### MECH-303
 - Current status: `candidate`
@@ -1129,7 +1132,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: v3_pending=true; conflict_ratio=0, clean evidence (supports=3, mixed=1). Standard V3-pending hold. No status change.
 
 ### MECH-304
 - Current status: `candidate`
@@ -1144,7 +1150,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: v3_pending=true; conflict_ratio=0, clean evidence (supports=3). Standard V3-pending hold. No status change.
 
 ### Q-021
 - Current status: `open`
@@ -1254,7 +1263,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
+- Last selected option: Narrow the question into testable sub-questions (higher tractability)
+- Last rationale: Apply narrow_open_question. Lit-pull identified candidate variables (persistence, recovery failure, uncontrollability, inescapability, prediction error). Sub-question scaffolding should map each to a testable experiment design. No status change to the open question.
 
 ### Q-037
 - Current status: `open`
@@ -1488,7 +1500,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: v3_pending=true; conflict_ratio=0, clean evidence (supports=7). Substrate implemented 2026-05-03 in CausalGridWorldV2. Hold until V3 experiments exercise the new interoceptive noise dynamics. No status change.
 
 ### SD-049
 - Current status: `candidate`
@@ -1503,7 +1518,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: v3_pending=true; conflict_ratio=0.6 noted but gated by v3_pending. Substrate implemented 2026-05-03 (multi-resource heterogeneity in CausalGridWorldV2). Hold until V3 experiments exercise the new substrate. No status change.
 
 ## Substrate changes with dependent invariants
 

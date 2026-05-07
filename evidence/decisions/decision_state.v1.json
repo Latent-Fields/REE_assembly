@@ -963,6 +963,33 @@
       "selected_option": "Wait for V3 substrate implementation; flag strong-vs-weak necessity unresolved",
       "timestamp_utc": "2026-04-26T16:17:25Z"
     },
+    "MECH-302": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "v3_pending=true; high conflict_ratio=0.857 noted but gated by v3_pending -- no status change. Hold until V3 substrate experiments clarify the mechanism.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-07T04:14:02Z"
+    },
+    "MECH-303": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "v3_pending=true; conflict_ratio=0, clean evidence (supports=3, mixed=1). Standard V3-pending hold. No status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-07T04:14:02Z"
+    },
+    "MECH-304": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "v3_pending=true; conflict_ratio=0, clean evidence (supports=3). Standard V3-pending hold. No status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-07T04:14:02Z"
+    },
     "Q-006": {
       "actor": "user",
       "decision_needed": "Open-question governance lane initialization",
@@ -1106,6 +1133,15 @@
       "recommendation": "narrow_open_question",
       "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
       "timestamp_utc": "2026-04-05T11:48:38.245Z"
+    },
+    "Q-036": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Apply narrow_open_question. Lit-pull identified candidate variables (persistence, recovery failure, uncontrollability, inescapability, prediction error). Sub-question scaffolding should map each to a testable experiment design. No status change to the open question.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-05-07T04:14:02Z"
     },
     "Q-037": {
       "actor": "user",
@@ -1296,6 +1332,24 @@
       "selected_option": "Wait for V3 substrate implementation",
       "timestamp_utc": "2026-04-26T16:17:25Z"
     },
+    "SD-048": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "v3_pending=true; conflict_ratio=0, clean evidence (supports=7). Substrate implemented 2026-05-03 in CausalGridWorldV2. Hold until V3 experiments exercise the new interoceptive noise dynamics. No status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-07T04:14:02Z"
+    },
+    "SD-049": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "v3_pending=true; conflict_ratio=0.6 noted but gated by v3_pending. Substrate implemented 2026-05-03 (multi-resource heterogeneity in CausalGridWorldV2). Hold until V3 experiments exercise the new substrate. No status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-07T04:14:02Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -1306,7 +1360,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-07T04:20:30.096034Z",
+  "generated_at_utc": "2026-05-07T04:35:02.476433Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
