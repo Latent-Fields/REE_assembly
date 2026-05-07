@@ -1,0 +1,104 @@
+{
+  "run_id": "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3",
+  "experiment_type": "v3_exq_536_goal_seeding_lift_ablation",
+  "queue_id": "V3-EXQ-536",
+  "claim_ids": [
+    "ARC-030",
+    "MECH-112",
+    "SD-018",
+    "SD-012",
+    "MECH-295"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "criteria": {
+    "C1_benefit_eval_r2_gt_0.3": false,
+    "C2_z_goal_active_fraction_gt_0.2": false,
+    "C3_goal_lift_ge_1.5_in_2of3_seeds": false
+  },
+  "mean_goal_lift": 0.0,
+  "seeds_passing_lift": 0,
+  "per_seed_lifts": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "arm1_mean_benefit_eval_r2": 0.2229260100184333,
+  "arm1_mean_z_goal_active_fraction": 0.0,
+  "arm0_mean_approach_commit_rate": 0.0,
+  "arm1_mean_approach_commit_rate": 0.0,
+  "seed_details": [
+    {
+      "seed": 0,
+      "arm0": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": null,
+        "benefit_eval_r2": null,
+        "resource_contacts_per_ep": 0.0,
+        "total_eval_steps": 252,
+        "approach_commit_steps": 0
+      },
+      "arm1": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "benefit_eval_r2": 0.17992168284845222,
+        "resource_contacts_per_ep": 0.0,
+        "total_eval_steps": 345,
+        "approach_commit_steps": 0
+      },
+      "goal_lift": 0.0
+    },
+    {
+      "seed": 1,
+      "arm0": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": null,
+        "benefit_eval_r2": null,
+        "resource_contacts_per_ep": 0.0,
+        "total_eval_steps": 256,
+        "approach_commit_steps": 0
+      },
+      "arm1": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "benefit_eval_r2": 0.23750533310905586,
+        "resource_contacts_per_ep": 0.25,
+        "total_eval_steps": 8000,
+        "approach_commit_steps": 0
+      },
+      "goal_lift": 0.0
+    },
+    {
+      "seed": 2,
+      "arm0": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": null,
+        "benefit_eval_r2": null,
+        "resource_contacts_per_ep": 0.2,
+        "total_eval_steps": 8000,
+        "approach_commit_steps": 0
+      },
+      "arm1": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "benefit_eval_r2": 0.2513510140977918,
+        "resource_contacts_per_ep": 0.25,
+        "total_eval_steps": 8000,
+        "approach_commit_steps": 0
+      },
+      "goal_lift": 0.0
+    }
+  ],
+  "config": {
+    "n_train_eps": 100,
+    "n_eval_eps": 40,
+    "n_steps": 200,
+    "n_seeds": 3,
+    "grid_size": 12,
+    "approach_thresh": 0.25,
+    "dry_run": false,
+    "e3_goal_weight_fix": "cfg.e3.goal_weight=1.0 (from_dims does not set E3Config.goal_weight)"
+  },
+  "elapsed_seconds": 959.811901807785,
+  "generated_utc": "2026-05-07T20:28:58.303745Z"
+}
