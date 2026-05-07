@@ -2,9 +2,34 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-07T21:48:48.852166+00:00",
+  "last_updated": "2026-05-07T22:09:52.598676+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-490f",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "MECH-295 seeding-strengthening: bistable (Bug 1 fix)",
+    "description": "",
+    "script": "experiments/v3_exq_490f_mech295_seeding_strengthening.py",
+    "started_at": "2026-05-07T21:48:53.973301+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 60,
+      "episodes_total": 80,
+      "overall_pct": 75.0
+    },
+    "seconds_elapsed": 1259,
+    "seconds_remaining": 420,
+    "recent_lines": [
+      "Seed 42 Arm BASELINE",
+      "[train] seed42_BASELINE ep 20/80 rv=0.0001 ep_reward=-0.4003",
+      "[train] seed42_BASELINE ep 40/80 rv=0.0003 ep_reward=-0.1794",
+      "[train] seed42_BASELINE ep 60/80 rv=0.0004 ep_reward=-0.3507"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-433f",
@@ -35,7 +60,7 @@
       "title": "MECH-295 seeding-strengthening: bistable (Bug 1 fix)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },

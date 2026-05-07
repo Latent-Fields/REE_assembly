@@ -6,11 +6,12 @@
     "SD-029",
     "MECH-256"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-029": "supports",
-    "MECH-256": "weakens"
+    "SD-029": "non_contributory",
+    "MECH-256": "non_contributory"
   },
+  "evidence_direction_note": "Manifest corrected 2026-05-07T22:06Z. Original tags (SD-029=supports, MECH-256=weakens) were misapplied. The script (_eval_cf_gaps in v3_exq_535a_sd029_p3_eval_fix.py:309) computes a TWO-PASS counterfactual gap: ||E2(z, a_actual)|| - ||E2(z, a_opposite)||. This is the superseded SD-003 design, not the SD-029/MECH-256 single-pass comparator residual (z_observed - E2(z, a_actual)) the spec requires. SD-029 functional_restatement explicitly states 'No counterfactual branch. No E2(a_cf) call.' MECH-256 falsifier explicitly states 'one forward pass. No counterfactual'. Therefore the cf_gap_self/cf_gap_ext dissociation, while correctly signed under two-pass semantics, does not bear on SD-029/MECH-256. Substrate readiness (balanced n_self=89/n_ext=50 under reef_food_ext curriculum) is genuine progress and a real SD-029 milestone, but is properly attributed to the SD-029 substrate design (curriculum hook) not to the comparator residual claim being tested. C1 forward fit harm_forward_r2=0.660 < 0.9 spec threshold remains the binding prerequisite for any future MECH-256 test. Successor experiment will compute the actual single-pass residual.",
   "experiment_purpose": "evidence",
   "supersedes": "v3_exq_535_sd029_p1_target_fix",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -72,8 +73,8 @@
     "outcome": "FAIL",
     "graduated": true,
     "evidence_direction_per_claim": {
-      "SD-029": "supports",
-      "MECH-256": "weakens"
+      "SD-029": "non_contributory",
+      "MECH-256": "non_contributory"
     },
     "n_episodes": 120,
     "steps_per_ep": 200,
