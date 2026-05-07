@@ -1,8 +1,9 @@
-# Experiment: v3_exq_131_arc023_multirate_heartbeat_pair
 
-## What it tests
 
-- TODO: describe the invariant or mechanism this experiment validates.
+<!-- AUTO-DESIGN-IMPLICATIONS:START -->
+No recent FAIL runs. Keep monitoring key stop metrics.
+<!-- AUTO-DESIGN-IMPLICATIONS:END -->
+ validates.
 
 ## Failure modes it detects
 

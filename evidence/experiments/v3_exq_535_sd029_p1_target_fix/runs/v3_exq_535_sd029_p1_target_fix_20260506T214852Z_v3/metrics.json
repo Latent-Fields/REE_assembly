@@ -1,0 +1,61 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "per_arm": {
+      "ARM_0_baseline": {
+        "n_self": 1628.6666666666667,
+        "n_ext": 0.0,
+        "harm_forward_r2": 0.7431564544156074,
+        "mean_cf_gap_self": 0.007929594789344525,
+        "mean_cf_gap_ext": 0.0,
+        "mean_p1_loss": 0.00991183339708158,
+        "mean_p2_loss": 0.0014076291056881018,
+        "p1_steps": 1200.0,
+        "p1_r2": 0.7545453113958952,
+        "p2_steps": 1933.3333333333333,
+        "p2_r2": 0.7263188049675376,
+        "p1_graduated_all": true,
+        "p2_graduated_all": true
+      },
+      "ARM_1_reef_food_ext": {
+        "n_self": 1081.3333333333333,
+        "n_ext": 31.0,
+        "harm_forward_r2": 0.679785060924338,
+        "mean_cf_gap_self": 0.09226482894460486,
+        "mean_cf_gap_ext": 0.028612705715846665,
+        "mean_p1_loss": 0.007873449246843153,
+        "mean_p2_loss": 0.0012266950604528876,
+        "p1_steps": 2066.6666666666665,
+        "p1_r2": 0.7096799380522065,
+        "p2_steps": 4933.333333333333,
+        "p2_r2": 0.7127971512331941,
+        "p1_graduated_all": true,
+        "p2_graduated_all": true
+      }
+    },
+    "criteria": {
+      "C0": true,
+      "C1": false,
+      "C2": true,
+      "C3": true,
+      "C4": true
+    },
+    "overall_pass": false,
+    "outcome": "FAIL",
+    "graduated": true,
+    "evidence_direction_per_claim": {
+      "SD-029": "supports",
+      "MECH-256": "weakens"
+    },
+    "n_episodes": 120,
+    "steps_per_ep": 200,
+    "n_seeds": 3,
+    "p0_epsilon": 0.4,
+    "grad_threshold": 0.65,
+    "grad_window_size": 200,
+    "grad_n_windows_req": 5,
+    "grad_max_windows": 120,
+    "p1_target": "max_hazard_field_view",
+    "p1_target_ceiling_r2": 0.798
+  }
+}

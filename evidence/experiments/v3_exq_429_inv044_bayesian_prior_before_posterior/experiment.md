@@ -1,14 +1,4 @@
-# Experiment: v3_exq_429_inv044_bayesian_prior_before_posterior
 
-## What it tests
-
-- TODO: describe the invariant or mechanism this experiment validates.
-
-## Failure modes it detects
-
-- TODO: list concrete failure signatures this experiment is expected to surface.
-
-## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
