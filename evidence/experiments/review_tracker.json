@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-07T22:06:32Z",
+  "last_review_utc": "2026-05-07T23:12:55Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -272,7 +272,13 @@
     "V3-EXQ-517b",
     "V3-EXQ-531",
     "V3-EXQ-533",
-    "V3-EXQ-534"
+    "V3-EXQ-534",
+    "V3-EXQ-476c",
+    "V3-EXQ-514d",
+    "V3-EXQ-514e",
+    "V3-EXQ-524",
+    "V3-EXQ-530",
+    "V3-EXQ-536"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2266,7 +2272,13 @@
     "v3_exq_244a_mech165_replay_diversity_validation_v3",
     "v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3",
     "v3_exq_534_sd016_cue_terrain_training_20260506T094249Z_v3",
-    "v3_exq_535a_sd029_p3_eval_fix_20260507T203343Z_v3"
+    "v3_exq_535a_sd029_p3_eval_fix_20260507T203343Z_v3",
+    "v3_exq_476c_mech269_vs_validation_probe_20260507T214359Z_v3",
+    "v3_exq_514d_sd049_bg_gating_diagnostic_20260506T013506Z_v3",
+    "v3_exq_514e_bg_gating_seaweed_diagnostic_20260506T064842Z_v3",
+    "v3_exq_524_reef_fishtank_showcase_20260506T093201Z_v3",
+    "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3",
+    "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3"
   ],
   "discussion_notes": {
     "2026-04-27T14:11Z_governance": {
@@ -2404,6 +2416,13 @@
         "v3_exq_514b_sd049_phase_2_behavioural_validation_20260505T005802Z_v3"
       ]
     },
+    "2026-05-07T23:03Z_exq476c_cascade_gate_unmeasurable": {
+      "session": "exq476c-review-2026-05-07T2303Z",
+      "summary": "V3-EXQ-476c (MECH-269 V_s validation cascade gate FAIL) marked reviewed. Both seeds: OFF entropy=0.0 / ON entropy=0.0 / delta=0.0 -- every one of 1200 ticks emits the same action class (class 1 on seed 42; class 2 on seed 7). The cascade gate metric (entropy_delta >= 0.1) cannot be measured on an untrained-policy degenerate-argmax baseline; entropy can't go down from zero. Per pre-registered evidence_direction='inconclusive' for MECH-269/287/288 -- a FAIL on this gate does not weaken the substrate claims. CRITICAL: the V_s instrumentation IS firing on the ON arm: boundary_event_count=3/2, broadcast_event_count=3/2, anchor_active_peak=1, all zero in OFF -- Phase 1+2 substrate alive end-to-end. Cross-reference V3-EXQ-478 (MECH-284 Phase 3 diagnostic, FAIL 2026-04-24): same degenerate signature (action_class_entropy=0 in both arms; OFF/ON freeze_recommit=1/1) BUT MECH-284 substrate confirmed firing per anchor_reset_count=63/31 and mean_staleness_peak=0.94/0.83. Both 476c and 478 are unmeasurable for the same root cause: random-init policy + urgency_weight=0 produces argmax-locked behaviour. Recommendation: do NOT queue 476d. Route attention to V3-EXQ-495 (V3 full-completion gate, MECH-163 dual-systems test) which exercises the cascade behaviourally with a trained agent rather than gating on entropy delta over an untrained one. The MECH-269/287/288/284 cluster remains hold_pending_v3_substrate; the substrate is wired and instrumented, but waking-stream behavioural validation requires a trained baseline.",
+      "ids_marked": [
+        "v3_exq_476c_mech269_vs_validation_probe_20260507T214359Z_v3"
+      ]
+    },
     "2026-05-07T22:06Z_exq535a_manifest_corrected": {
       "session": "exq535a-manifest-correction-2026-05-07T2206Z",
       "summary": "EXQ-535a (SD-029 P3 eval fix, FAIL) reclassified non_contributory for both SD-029 and MECH-256. The script (_eval_cf_gaps in v3_exq_535a_sd029_p3_eval_fix.py:309) computes a TWO-PASS counterfactual gap ||E2(z, a_actual)|| - ||E2(z, a_opposite)||, which is the SUPERSEDED SD-003 design, not the SD-029/MECH-256 single-pass comparator residual (z_observed - E2(z, a_actual)). SD-029 functional_restatement explicitly forbids the second E2 call ('No counterfactual branch. No E2(a_cf) call.'). MECH-256 falsifier explicitly states 'one forward pass'. The cf_gap_self/cf_gap_ext dissociation (0.082 vs ~0) is correctly signed under TWO-pass semantics but does not bear on either claim. Substrate readiness milestone (n_self=89, n_ext=50 in ARM_1 reef_food_ext, first balanced agent-vs-env distribution measurement on z_harm_s) is real and a genuine SD-029 substrate-design milestone, but properly attributed to the curriculum hook, not the comparator residual. C1 forward fit harm_forward_r2=0.660 < 0.9 spec threshold remains the binding prerequisite for any future MECH-256 test. Successor experiment (single-pass residual) to be designed next.",
@@ -2418,6 +2437,44 @@
         "v3_exq_445f_sd032b_dacc_reef_20260505T174448Z_v3",
         "v3_exq_523_sd029_reef_comparator_20260505T180800Z_v3"
       ]
+    },
+    "2026-05-07T23:12Z_rv_pinned_cluster": {
+      "session": "rv-pinned-cluster-review-2026-05-07T2300Z",
+      "summary": "Reviewed 5 runner-only UNKNOWN/ERROR experiments (V3-EXQ-514d, 514e, 524, 530, 536) that share a single root cause: their experiment scripts call agent.select_action() but never agent.update_residue(). update_residue() is the only call site of E3Selector.post_action_update(), which is the only call site of update_running_variance(). With that path dormant, _running_variance stays at precision_init=0.5 forever; the BG commit gate (commit when rv < 0.40) never fires; current_precision = 1/(0.5+1e-6) = 1.999996 (matches EXQ-530 mean_precision constant exactly). (1) EXQ-514d (SD-049 BG gating diagnostic): rv pinned, 0/3 seeds ever committed -- diagnostic confirmed. (2) EXQ-514e (schema predictability): both ARM_A and ARM_B ever_committed=False; MECH-216 schema readout is NOT the missing ingredient; whatever pins rv is upstream of schema availability. (3) EXQ-524 (reef fishtank showcase): N/A diagnostic showcase, indexed PASS, just discussion-marked. (4) EXQ-530 (ARC-016 precision-to-commit): manifest evidence_direction reclassified weakens -> non_contributory for ARC-016. The arms could not differentiate because precision was constant in both. (5) EXQ-536 (goal seeding lift): manifest evidence_direction set non_contributory for all 5 claims (ARC-030, MECH-112, SD-018, SD-012, MECH-295). Pipeline downstream of SD-018 was not exercised because BG never committed -> no resource contacts in eval -> z_goal_active_fraction=0.0 all seeds. Architectural follow-up: 514b/514d/514e/530/536 all share this scripting omission. Either (a) document the contract that experiment loops MUST call agent.update_residue() each step even when residue isn't the focus, or (b) move the rv update out of update_residue() into select_action() / a dedicated post_action() hook so the BG gate can't be silently dormant. Consider registering a Q-claim for this contract decision.",
+      "ids_marked": [
+        "v3_exq_514d_sd049_bg_gating_diagnostic_20260506T013506Z_v3",
+        "v3_exq_514e_bg_gating_seaweed_diagnostic_20260506T064842Z_v3",
+        "v3_exq_524_reef_fishtank_showcase_20260506T093201Z_v3",
+        "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3",
+        "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3"
+      ],
+      "queue_ids_marked": [
+        "V3-EXQ-514d",
+        "V3-EXQ-514e",
+        "V3-EXQ-524",
+        "V3-EXQ-530",
+        "V3-EXQ-536"
+      ],
+      "manifest_patches": {
+        "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3": {
+          "evidence_direction": "weakens -> non_contributory",
+          "evidence_direction_per_claim": {
+            "ARC-016": "non_contributory"
+          },
+          "root_cause_tag": "rv_pinned_no_post_action_update"
+        },
+        "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3": {
+          "evidence_direction": "(absent) -> non_contributory",
+          "evidence_direction_per_claim": {
+            "ARC-030": "non_contributory",
+            "MECH-112": "non_contributory",
+            "SD-018": "non_contributory",
+            "SD-012": "non_contributory",
+            "MECH-295": "non_contributory"
+          },
+          "root_cause_tag": "rv_pinned_no_post_action_update"
+        }
+      }
     }
   }
 }

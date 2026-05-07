@@ -5,7 +5,7 @@
   "claim_ids": [
     "ARC-016"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260507T214246Z",
   "outcome": "FAIL",
@@ -129,5 +129,10 @@
       "reef_patch_radius": 2,
       "hazard_food_attraction": 0.7
     }
-  }
+  },
+  "evidence_direction_note": "Substrate failure: experiment script does not call agent.update_residue() in its training/eval loops, so e3.post_action_update() and update_running_variance() are never invoked. _running_variance stays at precision_init=0.5 for every step in every seed; current_precision = 1/(0.5+1e-6) = 1.999996 (matches manifest mean_precision exactly). ARC-016 was therefore not actually tested -- the precision signal was a constant in both arms, so dACC had nothing to differentiate. Reclassified non_contributory rather than 'weakens'. Same root cause cluster as EXQ-514d/514e/536 (rv pinned at 0.5).",
+  "evidence_direction_per_claim": {
+    "ARC-016": "non_contributory"
+  },
+  "root_cause_tag": "rv_pinned_no_post_action_update"
 }

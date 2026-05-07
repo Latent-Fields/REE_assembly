@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_255_mech203_benefit_tagging
 
-Generated: `2026-05-07T22:30:18.880166Z`
+Generated: `2026-05-07T23:14:26.960570Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
