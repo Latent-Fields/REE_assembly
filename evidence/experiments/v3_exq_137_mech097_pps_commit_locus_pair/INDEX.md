@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_137_mech097_pps_commit_locus_pair
 
-Generated: `2026-05-07T22:08:17.767252Z`
+Generated: `2026-05-07T22:30:18.880166Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

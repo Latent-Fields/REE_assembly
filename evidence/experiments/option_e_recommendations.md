@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-05-07T22:08:19.761458Z`
+Generated: `2026-05-07T22:30:21.691380Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -81,7 +81,7 @@ Total: **136** discrepant claims (standard-gating only).
 | `MECH-177` | mechanism_hypothesis | candidate | 0.769 | 0.000 | 0.769 | 0 | 2 | plausible_unproven |
 | `MECH-178` | mechanism_hypothesis | candidate | 0.800 | 0.000 | 0.800 | 0 | 3 | plausible_unproven |
 | `MECH-179` | mechanism_hypothesis | candidate | 0.800 | 0.000 | 0.800 | 0 | 3 | plausible_unproven |
-| `MECH-180` | mechanism_hypothesis | candidate | 0.898 | 0.000 | 0.898 | 0 | 4 | plausible_unproven |
+| `MECH-180` | mechanism_hypothesis | candidate | 0.897 | 0.000 | 0.897 | 0 | 4 | plausible_unproven |
 | `MECH-181` | mechanism_hypothesis | candidate | 0.716 | 0.000 | 0.716 | 0 | 2 | plausible_unproven |
 | `MECH-182` | mechanism_hypothesis | candidate | 0.741 | 0.000 | 0.741 | 0 | 3 | plausible_unproven |
 | `MECH-183` | mechanism_hypothesis | candidate | 0.829 | 0.000 | 0.829 | 0 | 5 | plausible_unproven |
@@ -168,7 +168,7 @@ Total: **136** discrepant claims (standard-gating only).
 | `MECH-095` | mechanism_hypothesis | active | 0.720 | 0.596 | 0.844 | 10 | 24 | plausible_unproven |
 | `SD-004` | design_decision | implemented | 0.759 | 0.617 | 0.901 | 7 | 14 | plausible_unproven |
 
-_Suppressed by gating: 21 substrate_coherence (ARC + universal invariant), 32 answer_state (open_question). These cross the gate under one regime but not the other; the discrepancy is not actionable under their evidence rules. See suppressed sections below._
+_Suppressed by gating: 21 substrate_coherence (ARC + universal invariant), 31 answer_state (open_question). These cross the gate under one regime but not the other; the discrepancy is not actionable under their evidence rules. See suppressed sections below._
 
 ## Implementation-cohort claims with zero experimental backing
 
@@ -223,7 +223,7 @@ Total: **37**.
 | `MECH-165` | candidate | 0.253 | 1 |
 | `MECH-188` | candidate | 0.257 | 1 |
 | `MECH-111` | candidate | 0.274 | 2 |
-| `MECH-118` | candidate | 0.275 | 2 |
+| `MECH-118` | candidate | 0.274 | 2 |
 | `MECH-216` | provisional | 0.282 | 1 |
 | `SD-023` | candidate | 0.282 | 1 |
 | `ARC-032` | candidate | 0.283 | 2 |
@@ -270,7 +270,7 @@ Claims with literature support and no experiment yet. These are candidates for t
 | `MECH-163` | candidate | 0.901 | 9 |
 | `SD-014` | candidate | 0.901 | 4 |
 | `MECH-166` | candidate | 0.900 | 4 |
-| `MECH-180` | candidate | 0.898 | 4 |
+| `MECH-180` | candidate | 0.897 | 4 |
 | `SD-033e` | - | 0.896 | 10 |
 | `MECH-122` | provisional | 0.895 | 4 |
 | `MECH-293` | candidate | 0.894 | 7 |

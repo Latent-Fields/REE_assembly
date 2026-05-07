@@ -16360,6 +16360,107 @@
     floor flag continues.
   location: docs/architecture/v_s_invalidation_runtime.md
 
+- id: Q-041
+  title: "Does REE require a unified meta-level threshold supervisor that adapts pass/fail and commit/release thresholds across substrates from system-wide instability metrics, or do the existing scattered adaptive loci (ARC-016 dynamic precision, SD-032c AIC interoceptive baseline EMA, SD-032d PCC stability scalar, SD-032e pACC drive bias) produce coherent meta-stability under chronic load without a supervisor?"
+  claim_type: open_question
+  subject: control.unified_threshold_supervisor
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: 2026-05-07
+  depends_on:
+    - ARC-016         # E3 dynamic precision (per-step EMA, internal to E3)
+    - SD-032c         # AIC-analog interoceptive baseline EMA (drive-dependent salience)
+    - SD-032d         # PCC-analog stability scalar (modulates SD-032a switch threshold)
+    - SD-032e         # pACC drive bias EMA (slow setpoint drift, ~347-step half-life)
+    - MECH-040        # safety baseline / volatility (provisional, never validated)
+    - MECH-204        # serotonergic REM gate zero-point (snapshot exists; writeback absent)
+    - MECH-258        # precision-weighted PE (the variable a Behrens-style volatility tracker would integrate)
+    - INV-049         # sleep necessity (the offline phase a recalibration writeback would land in)
+  notes: >
+    The brain dynamically manages thresholds for commitment, release,
+    surprise, urgency, and pass/fail across multiple timescales. REE
+    has accumulated several adaptive-threshold mechanisms but each is
+    scoped to a single substrate and operates at one timescale.
+    Timescale spread today is ~10 steps (ARC-016 EMA) up to ~347 steps
+    (SD-032e pACC drive bias) -- nothing operates at the cross-substrate
+    sleep-bout / multi-day timescale at which neuromodulator setpoints
+    biologically recalibrate.
+
+    Q-041 asks whether this scatter is sufficient or whether REE needs a
+    distinct meta-level supervisor. Three architectural gaps motivate
+    the question:
+
+    1. Cross-substrate volatility tracking. Each adaptive locus tracks
+       variance internal to its own signal; nothing aggregates across
+       loci. A Behrens et al 2007 (Nat Neurosci) style volatility
+       estimator would read multiple PE streams jointly and emit a
+       system-level learning-rate signal that downstream thresholds
+       consume.
+
+    2. Sleep-mediated writeback. MECH-204 captures a precision zero-
+       point at REM entry but the writeback path that uses it to
+       recalibrate waking thresholds is unimplemented. Tononi & Cirelli
+       2014 (Neuron, Synaptic Homeostasis Hypothesis) frame sleep as
+       global recalibration; REE captures the snapshot and discards it.
+
+    3. Setpoint drift under chronic load. SD-032e is the closest
+       existing analogue but writes only to drive_level. Chronic-stress
+       5-HT/DA setpoint shifts in biology recalibrate many downstream
+       thresholds simultaneously (commit, release, surprise) -- REE
+       has no joint mechanism.
+
+    Resolution path. A V3 diagnostic that subjects the agent to
+    sustained chronic load (e.g., drive_level=0.9 for ~1000 steps) and
+    measures cross-substrate threshold coherence: do effective commit
+    threshold, effective beta-gate release threshold, AIC switch
+    threshold, and dACC pe_cap normalisation move along a shared
+    low-dimensional trajectory (consistent with a hidden joint signal)
+    or independently (consistent with no supervisor)? PASS-coherent
+    licenses Q-041 closure as 'no separate supervisor needed'. PASS-
+    independent licenses promotion to a SD cluster (supervisor + sleep
+    writeback MECH + volatility-tracker MECH).
+
+    Why a question, not a substrate. The simplest threshold supervisor
+    is a slow EMA of EMAs and could land in V3; the full sleep-mediated
+    writeback supervisor requires MECH-204 to act on its snapshot,
+    which depends on sleep substrate enrichment (MECH-285, MECH-286,
+    INV-049 full implementation) that is V4-bound. The V3-vs-V4
+    placement is itself part of what the question resolves.
+
+    Anchor literature (registration-time, pre-lit-pull):
+      Behrens et al 2007 Nat Neurosci 10:1214 (dACC volatility tracking
+        adjusts learning rate);
+      Adams, Shipp & Friston 2013 (precision-weighted PE as the
+        canonical adaptive-control variable);
+      Tononi & Cirelli 2014 Neuron 81:12 (Synaptic Homeostasis -- sleep
+        as global recalibration).
+
+    A targeted lit-pull on "adaptive learning rate dACC volatility" +
+    "neuromodulator setpoint chronic stress recalibration" + "synaptic
+    homeostasis SHY recalibration" is the natural Q-041 successor;
+    staged as a follow-on planning item (proposal_type: literature).
+
+    V3-pending. Diagnostic gated on V_s-monostrategy substrate gap
+    clearing (MECH-269 V_s landing) -- many adaptive loci including
+    SD-032b/c and ARC-016 currently show non_contributory behaviour
+    because the V_s lock-in dominates threshold-dependent dynamics.
+    Re-poseable once the substrate unlocks alternative operating modes.
+  evidence_quality_note: >
+    Registered as research-anchor question 2026-05-07 from observation
+    that REE has scattered adaptive-threshold mechanisms (ARC-016,
+    SD-032c/d/e, MECH-040, MECH-204) without a unifying meta-level
+    coordinator. No experimental evidence yet. Survey of existing
+    scattered mechanisms in the linked architecture doc.
+
+    Successor cluster (NOT registered; license is conditional on Q-041
+    resolution): a supervisor SD covering cross-substrate volatility
+    aggregation and a sleep-writeback MECH covering MECH-204 -> waking
+    threshold update path. Default toward registering only the Q
+    until evidence directs.
+  location: docs/architecture/threshold_supervisor_survey.md
+
 # ---------------------------------------------------------------------------
 # EXT — External AI Failure Modes
 #

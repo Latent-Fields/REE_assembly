@@ -1122,6 +1122,33 @@
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null
+    },
+    {
+      "proposal_id": "EXP-0170",
+      "claim_id": "Q-041",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "dispatch_mode": "exploratory_probe",
+      "status": "gated",
+      "added_utc": "2026-05-07",
+      "prerequisites": [
+        "MECH-269 V_s landing (current V_s-monostrategy substrate gap dominates threshold-dependent dynamics across ARC-016, SD-032b/c, masking the threshold-coherence signature Q-041 measures)",
+        "Telemetry hooks exposing per-step values for: ARC-016 commit_threshold, SD-032a coordinator effective_threshold, AIC switch threshold (aic_salience baseline), dACC pe_cap normalisation, beta-gate release threshold, SD-032e drive_bias"
+      ],
+      "objective": "Exploratory probe of cross-substrate threshold coherence under sustained chronic load. Test whether the existing scattered adaptive loci (ARC-016, SD-032c, SD-032d, SD-032e) move along a shared low-dimensional trajectory under sustained drive_level=0.9 -- consistent with an implicit joint signal, licensing Q-041 closure as 'no separate supervisor needed' -- or move independently, licensing promotion to a SD cluster (supervisor + sleep-writeback MECH + volatility-tracker MECH). This is a research-anchor probe, not a make-or-break test; the goal is to characterise the regime, not to gate a single claim.",
+      "design": "Two-arm matched-seed exploratory probe. Arm A (chronic load): drive_level pinned high (0.9) for 1000 sustained steps in CausalGridWorldV2 with all SD-032 cluster substrates ON (use_salience_coordinator, use_aic_analog, use_pcc_analog, use_pacc_analog, use_dacc all True). Arm B (nominal): identical config but drive_level held at nominal baseline (0.5) for same duration and seed-set. 3 seeds matched across arms. Telemetry: log per-step ARC-016 commit_threshold, SD-032a coordinator effective_threshold (post pcc_stability and pacc drive_bias modulation), AIC aic_salience baseline, dACC pe normalisation scale, beta-gate release threshold, SD-032e drive_bias. Primary analysis: principal-component decomposition of the joint threshold trajectory in Arm A. PASS-coherent (Q-041 -> 'no supervisor needed'): >= 80% of variance in Arm A on a single PC, AND that PC shows monotone shift relative to Arm B baseline. PASS-independent (Q-041 -> 'cluster justified'): top PC explains <= 50% variance, indicating substrate-independent drift. Mixed (most likely): 50-80% variance on top PC -- indicates partial coupling, points at which loci share a hidden signal vs which are genuinely independent. Secondary: pairwise correlation matrix of the six threshold time-series; identify the most-decoupled pair as the strongest argument for or against a supervisor.",
+      "claims_tested": [
+        "Q-041",
+        "ARC-016",
+        "SD-032c",
+        "SD-032d",
+        "SD-032e"
+      ],
+      "notes": "Research-anchor framing per Q-041 registration. Lightweight: no new substrate code required, just telemetry hooks on existing loci. The exploratory_probe dispatch is intentional -- this is a regime characterisation, not a discriminative pair, because Q-041 itself is asking whether the regime exists at all. If PCA result is decisive (>= 80% on PC1 or <= 50% on PC1), Q-041 narrows toward closure or cluster registration respectively; if mixed, the result becomes input to a follow-up discriminative pair on the most-decoupled pair of loci. Gated on V_s-monostrategy substrate clearing because chronic load currently produces lock-in regardless of threshold dynamics, which would mask the signature this probe measures. Companion successor proposal (literature, not yet registered): targeted lit-pull on 'adaptive learning rate dACC volatility' + 'neuromodulator setpoint chronic stress recalibration' + 'synaptic homeostasis SHY recalibration' to firm the claim text before any cluster-promotion decision. Candidate script name: v3_exq_NNN_threshold_coherence_chronic_load.py.",
+      "script_path": null,
+      "reserved_queue_id": null,
+      "queued_utc": null
     }
   ]
 }
