@@ -1,19 +1,41 @@
 {
   "schema_version": "v1",
-  "runner_pid": 667,
-  "runner_started_at": "2026-05-08T14:56:41.005111+00:00",
-  "last_updated": "2026-05-08T16:16:52.780323+00:00",
-  "idle": false,
+  "runner_pid": null,
+  "runner_started_at": "2026-05-08T17:53:08.411897+00:00",
+  "last_updated": "2026-05-08T19:26:38.890012+00:00",
+  "idle": true,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-141b",
+      "queue_id": "V3-EXQ-530c",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-111 novelty drive: corrected-substrate retest (paired discriminative)",
+      "claim_id": "ARC-016",
+      "title": "ARC-016 precision_commit retest under StepHarness (Tier-1 slam-dunk)",
       "description": "",
-      "estimated_minutes": 17.3,
+      "estimated_minutes": 24.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-537b",
+      "backlog_id": "",
+      "claim_id": "SD-029",
+      "title": "SD-029/MECH-256 single-pass comparator with decoupled training/eval curricula (supersedes 537a)",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-539a",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 commit-gating discriminative ablation (539 cloud-1 manifest unsynced; mac re-run)",
+      "description": "",
+      "estimated_minutes": 222.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2665,11 +2687,11 @@
       "claim_id": "",
       "title": "SD-029 event-conditioned comparator: reef substrate (Bug 1+2 fix)",
       "description": "",
-      "result": "FAIL",
-      "result_summary": "Outcome: FAIL (C0 gate FAIL in 3/4 seeds: agent_caused_trials_sufficient=False; evidence_direction=non_contributory per 2026-05-08 diagnose-errors triage). Reclassified from UNKNOWN: flat JSON is real and complete, runner classified UNKNOWN because output synced after bookkeeping window.",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL",
       "started_at": "2026-05-07T21:39:48.668618+00:00",
       "completed_at": "2026-05-08T02:41:19.669213+00:00",
-      "output_file": "evidence/experiments/v3_exq_433f_sd029_eventcond_comparator_reef/v3_exq_433f_sd029_eventcond_comparator_reef_20260507T213949Z_v3.json",
+      "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 18091.0
     },
@@ -2784,6 +2806,21 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_539_mech307_commit_gating_check/v3_exq_539_mech307_commit_gating_check_20260508T161652Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 4809.5
+    },
+    {
+      "queue_id": "V3-EXQ-514g",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 BG gating wider-seed sweep under StepHarness (Tier-1 diagnostic)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS",
+      "started_at": "2026-05-08T17:53:09.993241+00:00",
+      "completed_at": "2026-05-08T19:26:34.647081+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 5603.2
     }
-  ]
+  ],
+  "draining": false
 }
