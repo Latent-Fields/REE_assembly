@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-08T17:03:28Z",
+  "last_updated_utc": "2026-05-08T21:15:34Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -523,7 +523,7 @@
       "sd_id": "SD-029",
       "title": "Single-pass comparator on z_harm_s reafferent stream (SD-003 successor)",
       "ready": true,
-      "design_doc": "docs/architecture/self_attribution_per_stream.md",
+      "design_doc": "evidence/planning/self_attribution_plan.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-256"
@@ -551,7 +551,7 @@
       "implementation_hint": "Forward model (E2_harm_s, ARC-033) and interventional training (SD-013) already implemented -- C1 and C2 are passing. The blocker is curriculum: event-density imbalance between self-caused and externally-caused harm makes event-conditioned SNR noisy. Curriculum must reliably produce both event types per seed. Candidates: (a) scripted mix of hazard-approach vs hazard-enter episodes; (b) scheduled hazard-appearance events (externally-caused) interleaved with agent-driven hazard encounters; (c) longer P2 eval with hazard_density tuned so both event classes accumulate >= 20 events per seed.",
       "priority": 1,
       "added_session": "governance-2026-04-19T06",
-      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
+      "last_seen_session": "self-attribution-plan-doc-2026-05-08",
       "implementation_status": "implemented",
       "implemented_utc": "2026-04-21T05:54:39Z",
       "implemented_session": "cowork-2026-04-21-batch",
@@ -1556,6 +1556,86 @@
       "status": "implemented"
     },
     {
+      "sd_id": "MECH-267",
+      "title": "Mode-conditioned hippocampal proposals -- HippocampalModule.propose_trajectories conditioned on operating_mode",
+      "ready": true,
+      "design_doc": "evidence/planning/commitment_closure_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-004 mode conditioning",
+        "SD-032a mode-aware proposals",
+        "ocd2 step 4 (mode-conditioning of hippocampal proposals)"
+      ],
+      "failure_record": [],
+      "implementation_hint": "HippocampalModule.propose_trajectories takes operating_mode parameter; HippocampalConfig.mode_conditioning_enabled (default False) flag; per-mode CEM-noise multipliers tune proposal width by mode (sharper in committed/dACC-active modes; broader in exploration/internal_planning). Module: ree_core/hippocampal/module.py + ree_core/utils/config.py. Master flag use_lateral_pfc_analog upstream provides operating_mode signal via SalienceCoordinator. Falsifiability predicate: proposal distribution should differ measurably across modes; flag OFF reduces to legacy MECH-259 mode-blind behaviour. Behavioural successors deferred pending EXP-0155 (cue_action_proj forward-path diagnostic) and a forced-replay injection hook respectively.",
+      "priority": 2,
+      "added_session": "queue-completeness-mech267-mech268-2026-05-08T2012Z",
+      "last_seen_session": "queue-completeness-mech267-mech268-2026-05-08T2012Z",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech267-mode-conditioned-proposals-2026-04-20",
+      "implemented_utc": "2026-04-20T00:00:00Z",
+      "validation_experiment": "V3-EXQ-462 + V3-EXQ-465",
+      "metric_trajectory": {
+        "primary_metric": "mode_conditioned_proposal_signature",
+        "primary_metric_description": "HippocampalModule.propose_trajectories produces distinguishable proposal distributions per operating_mode (CEM-noise width modulated). Flag OFF reduces to legacy mode-blind behaviour. EXP-0158 (V3-EXQ-462) and EXP-0161 (V3-EXQ-465) substrate-landing diagnostics; full behavioural successors blocked on EXP-0155 + forced-replay injection hook env extensions.",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-462 + V3-EXQ-465 substrate-landing sub-tests PASS",
+        "observations": [
+          {
+            "run_id": "v3_exq_462 + v3_exq_465 (substrate-landing diagnostics, smoke)",
+            "experiment_type": "v3_exq_462_rule_binding + v3_exq_465_intrusive_simulation_filtering",
+            "date_utc": "2026-04-20",
+            "substrate_state": "MECH-267 mode-conditioned hippocampal proposals landed 2026-04-20",
+            "metric_value": "PASS 10/10 sub-tests",
+            "metric_notes": "10/10 sub-tests PASS on smoke (rule-binding + intrusive-simulation-filtering coverage). Behavioural arms (full E3 task loop with task-distinct rule states, MECH-094-tagged distractor injection) deferred -- depend on EXP-0155 cue_action_proj forward-path diagnostic landing first and on a forced-replay injection hook not yet on any roadmap item. SD-033 governance plan (evidence/planning/sd033_governance_plan.md) maps these to V3-EXQ-462/465 reserved slots."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
+      "sd_id": "MECH-268",
+      "title": "dACC conflict saturation -- pe(t) habituates under repeated identical outcomes; reset on closure_event",
+      "ready": true,
+      "design_doc": "evidence/planning/commitment_closure_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-032b dACC saturation",
+        "SD-034 closure-event reset pipeline",
+        "ocd1 constraint 4 (conflict signal must cap, not run away)"
+      ],
+      "failure_record": [],
+      "implementation_hint": "DACCAdaptiveControl applies f_sat = 1.0 / (1.0 + strength * max(0, n_rec - grace)) over a FIFO outcome history of length history_window; pe(t) -> pe(t) * f_sat. ClosureOperator wired to call dacc.reset_outcome_history() at rule_state completion (closure_event). REEConfig.from_dims wired with 4 saturation knobs (saturation_strength, saturation_grace, history_window, saturation_enabled) + closure_reset_outcome_history flag. Module: ree_core/cingulate/dacc.py + ree_core/governance/closure_operator.py. Master flag use_dacc_saturation (default False). Falsifiability predicate: under sustained identical (z_harm_a, action) tuples, pe should decay monotonically; closure_event should restore unsaturated pe. Behavioural arms (500+ step sustained outcome / counter-evidence injection sweeps) deferred -- env extensions not yet on roadmap.",
+      "priority": 2,
+      "added_session": "queue-completeness-mech267-mech268-2026-05-08T2012Z",
+      "last_seen_session": "queue-completeness-mech267-mech268-2026-05-08T2012Z",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-mech268-dacc-saturation-2026-04-20",
+      "implemented_utc": "2026-04-20T00:00:00Z",
+      "validation_experiment": "V3-EXQ-463 + V3-EXQ-468",
+      "metric_trajectory": {
+        "primary_metric": "dacc_pe_saturation_signature",
+        "primary_metric_description": "dACC pe(t) decays as 1/(1 + strength * (n_rec - grace)) under repeated identical outcomes; closure_event invokes reset_outcome_history() and restores baseline. Master OFF reduces to legacy unsaturated dacc. ClosureEvent.outcome_history_reset stamps the reset for audit. Falsifiable: if pe never saturates under 500+ identical-outcome ticks with master ON, MECH-268 is mis-implemented; if it saturates with master OFF, the gating is incorrect.",
+        "direction": "higher_is_better",
+        "target": "V3-EXQ-463 + V3-EXQ-468 substrate-landing sub-tests PASS",
+        "observations": [
+          {
+            "run_id": "v3_exq_463 + v3_exq_468 (substrate-landing diagnostics, smoke)",
+            "experiment_type": "v3_exq_463_conflict_saturation + v3_exq_468_commitment_vs_contradiction",
+            "date_utc": "2026-04-20",
+            "substrate_state": "MECH-268 dACC conflict saturation landed 2026-04-20; ClosureOperator threads reset_outcome_history flag (SD-034 dependency wired)",
+            "metric_value": "PASS 13/13 sub-tests",
+            "metric_notes": "V3-EXQ-463 7 sub-tests PASS (saturation kicks in over FIFO window; grace honoured; reset on closure event; master OFF no-op). V3-EXQ-468 6 sub-tests PASS including 4-arm A/B/C/D interaction (saturation x closure-reset crossbar). Behavioural arms (500+ step sustained-outcome and counter-evidence injection arms) deferred -- env extensions not yet on roadmap. SD-033 governance plan (evidence/planning/sd033_governance_plan.md) maps these to V3-EXQ-463/468 reserved slots."
+          }
+        ],
+        "current_blocker": null,
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
       "sd_id": "MECH-279",
       "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit",
       "ready": true,
@@ -2228,6 +2308,147 @@
       "priority": 1,
       "added_session": "governance-cycle-friday-pm-2026-05-08",
       "last_seen_session": "governance-cycle-friday-pm-2026-05-08"
+    },
+    {
+      "sd_id": "MECH-256",
+      "title": "Self-attribution = single-pass forward-model comparator: residual = z_x_observed - E2_x(z_x_{t-1}, a_actual). Stream-agnostic mechanism over any reafferent latent z_x with an efference-copy-driven forward model.",
+      "status": "candidate_v3_pending",
+      "ready": false,
+      "ready_blocked_by": "MECH-204 sleep recalibration + MECH-269 V_s landing + MECH-307 conjunction architecture must close before C2/C3 are measurable on z_harm_s",
+      "design_doc": "evidence/planning/self_attribution_plan.md",
+      "depends_on_unresolved": [
+        "MECH-204",
+        "MECH-269",
+        "MECH-307"
+      ],
+      "unblocks_claims": [
+        "SD-029",
+        "MECH-257",
+        "INV-049",
+        "Q-041"
+      ],
+      "failure_record": [
+        {
+          "exq": "V3-EXQ-433",
+          "outcome": "non_contributory",
+          "note": "V_s monostrategy (2026-04-19)"
+        },
+        {
+          "exq": "V3-EXQ-433a",
+          "outcome": "non_contributory",
+          "note": "V_s monostrategy (2026-04-19)"
+        },
+        {
+          "exq": "V3-EXQ-433b",
+          "outcome": "non_contributory",
+          "note": "V_s monostrategy (2026-04-20)"
+        },
+        {
+          "exq": "V3-EXQ-470",
+          "outcome": "non_contributory",
+          "note": "balanced-curriculum substrate probe; behavioural attribution still V_s-blocked (2026-04-21)"
+        },
+        {
+          "exq": "V3-EXQ-433d",
+          "outcome": "non_contributory",
+          "note": "EXQ-479 calibrated curriculum, agent_caused_hazard=0/0/0/0 in 4 seeds (2026-04-27)"
+        },
+        {
+          "exq": "V3-EXQ-433f",
+          "outcome": "non_contributory",
+          "note": "SD-050 reef enrichment; C0 trials-sufficient FAIL 3/4 seeds (2026-05-08)"
+        },
+        {
+          "exq": "V3-EXQ-537",
+          "outcome": "non_contributory",
+          "note": "single-pass forward R2 ~0.65 vs 0.85 target; capacity gap (2026-05-08)"
+        },
+        {
+          "exq": "V3-EXQ-537a",
+          "outcome": "non_contributory",
+          "note": "same architectural read as 537 (2026-05-08)"
+        },
+        {
+          "exq": "V3-EXQ-523b",
+          "outcome": "non_contributory",
+          "note": "reef arm severely undertrained, p1_r2 ~0.18 (2026-05-08)"
+        }
+      ],
+      "implementation_hint": "Mechanism is wired end-to-end (E2_harm_s ARC-033 + interventional training SD-013 + balanced-hazard curriculum SD-029 implementation_note); blocker is upstream substrate. Phase 2 of self_attribution_plan.md sequences the retest after sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture. Acceptance: C0 trials-sufficient PASS 3/4 seeds (>=20 agent_caused AND >=20 env_caused); C1 forward_r2 >= 0.9; C2 partial attenuation (Shergill 2003, NOT binary); C3 approach-event SNR > threshold.",
+      "priority": 1,
+      "added_session": "self-attribution-plan-doc-2026-05-08",
+      "last_seen_session": "self-attribution-plan-doc-2026-05-08"
+    },
+    {
+      "sd_id": "MECH-257",
+      "title": "E2_x is a dual-function substrate: one forward model read in two modes (retrospective comparator vs prospective rollout-scoring), arbitrated by a controller signal (V3: MECH-094 hypothesis tag; V4: dACC EVC or heartbeat-phase gating).",
+      "status": "candidate_v3_pending",
+      "ready": false,
+      "ready_blocked_by": "Phase 2 PASS (need balanced events for both modes to be exercised) + Phase 1 verdict on ARC-033 vs ARC-058 (need to know whether E2_x is one substrate or two)",
+      "design_doc": "evidence/planning/self_attribution_plan.md",
+      "depends_on_unresolved": [
+        "MECH-256",
+        "ARC-058",
+        "MECH-094"
+      ],
+      "unblocks_claims": [],
+      "failure_record": [
+        {
+          "exq": "V3-EXQ-452",
+          "outcome": "non_contributory",
+          "note": "dual-function gated-readout cannot resolve under V_s monostrategy: both reads operate over the same locked policy; mode-specific differences cannot manifest (governance 2026-04-22, two FAIL runs 20260420T144002Z + 20260420T155214Z)"
+        }
+      ],
+      "implementation_hint": "Phase 3 of self_attribution_plan.md. After Phase 2 PASS, re-queue 3-arm ablation: comparator-only training, evaluator-only training, joint training. Acceptance: joint training matches mode-split baselines (single substrate sufficient) OR joint training degrades performance >X% on either mode (split required, parameter doubling). V3 controller signal: MECH-094 hypothesis tag.",
+      "priority": 2,
+      "added_session": "self-attribution-plan-doc-2026-05-08",
+      "last_seen_session": "self-attribution-plan-doc-2026-05-08"
+    },
+    {
+      "sd_id": "MECH-258",
+      "title": "z_harm_a enters action selection as precision-weighted PE (harm_surprise_PE / SD-020) against E2_harm_a forward model, not raw magnitude. Upgrades SD-020 from provisional to prerequisite for SD-032b dACC-analog.",
+      "status": "candidate_v3_pending",
+      "ready": true,
+      "ready_blocked_by": null,
+      "design_doc": "evidence/planning/self_attribution_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-032b"
+      ],
+      "failure_record": [
+        {
+          "exq": "V3-EXQ-445h",
+          "outcome": "supports",
+          "note": "C1 wins 2/3 seeds; harm_a forward R2=0.94-0.99; first clean supports for shared-substrate harm prediction on dACC reef (2026-05-08 governance)"
+        }
+      ],
+      "implementation_hint": "IMPLEMENTED 2026-04-19 (E2HarmAForward in ree_core/predictors/e2_harm_a.py; precision weighting in cingulate/dacc.py). Owned by self_attribution_plan.md Phase 1 from the comparator-output side; cross-link to commitment_closure_plan.md for the consumer-side dACC bundle sequencing (MECH-258 is the input channel feeding the commit-chain decisions). Phase 1 forensic read of EXQ-445h compares ARC-033 path vs ARC-058 shared-trunk path.",
+      "priority": 1,
+      "added_session": "self-attribution-plan-doc-2026-05-08",
+      "last_seen_session": "self-attribution-plan-doc-2026-05-08",
+      "implementation_status": "implemented",
+      "implemented_session": "2026-04-19-cingulate-cluster-implementation",
+      "implemented_utc": "2026-04-19T00:00:00Z",
+      "validation_experiment": "V3-EXQ-445 / 445a / 445b / 445c / 445h"
+    },
+    {
+      "sd_id": "ARC-058",
+      "title": "Shared HarmForwardTrunk + per-stream HarmForwardHead for aversive prediction: a single trunk encodes a modality-independent unsigned aversive PE shared across z_harm_s + z_harm_a; stream-specific heads produce signed readouts. COMPETES WITH ARC-033.",
+      "status": "candidate_v3_pending",
+      "ready": true,
+      "ready_blocked_by": null,
+      "design_doc": "evidence/planning/self_attribution_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [],
+      "failure_record": [],
+      "implementation_hint": "Phase 1 of self_attribution_plan.md is the arbitration: compare ARC-033 path (shared_trunk=None, independent ResidualHarmForward per stream) vs ARC-058 path (shared_trunk=HarmForwardTrunk instance, both streams share trunk own only heads) on V3-EXQ-445h forensic read. Acceptance per Q2: degradation > 5% on z_harm_s forward_r2 in shared-trunk path weakens ARC-058; <5% with usable shared-PE signal weakens ARC-033 in favour of parameter parsimony. Lit anchor: Horing & Buchel 2022 (J Neurosci) modality-general unsigned aversive PE in anterior insula.",
+      "priority": 1,
+      "added_session": "self-attribution-plan-doc-2026-05-08",
+      "last_seen_session": "self-attribution-plan-doc-2026-05-08",
+      "implementation_status": "implemented",
+      "implemented_session": "2026-04-19-cingulate-cluster-implementation",
+      "implemented_utc": "2026-04-19T00:00:00Z",
+      "validation_experiment": "V3-EXQ-445 three-arm ablation"
     }
   ]
 }
