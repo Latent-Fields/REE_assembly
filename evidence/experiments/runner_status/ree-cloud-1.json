@@ -1,40 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-08T17:53:08.411897+00:00",
-  "last_updated": "2026-05-08T19:26:38.890012+00:00",
-  "idle": true,
+  "runner_pid": 669,
+  "runner_started_at": "2026-05-08T23:40:49.514998+00:00",
+  "last_updated": "2026-05-08T23:43:02.547164+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-530c",
-      "backlog_id": "",
-      "claim_id": "ARC-016",
-      "title": "ARC-016 precision_commit retest under StepHarness (Tier-1 slam-dunk)",
+      "queue_id": "V3-EXQ-141d",
+      "backlog_id": "EVB-0061",
+      "claim_id": "MECH-111",
+      "title": "MECH-111 novelty drive: RNG desync between arms (supersedes 141c)",
       "description": "",
-      "estimated_minutes": 24.0,
+      "estimated_minutes": 160.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-537b",
-      "backlog_id": "",
-      "claim_id": "SD-029",
-      "title": "SD-029/MECH-256 single-pass comparator with decoupled training/eval curricula (supersedes 537a)",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-539a",
+      "queue_id": "V3-EXQ-540",
       "backlog_id": "",
       "claim_id": "MECH-307",
-      "title": "MECH-307 commit-gating discriminative ablation (539 cloud-1 manifest unsynced; mac re-run)",
+      "title": "MECH-307 3-arm gap decomposition + Path B consumer conjunction read",
       "description": "",
-      "estimated_minutes": 222.0,
+      "estimated_minutes": 84.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2820,7 +2809,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 5603.2
+    },
+    {
+      "queue_id": "V3-EXQ-541",
+      "backlog_id": "",
+      "claim_id": "MECH-204",
+      "title": "MECH-204 precision recalibration consumer (Phase 1 validation)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | V3-EXQ-541 MECH-204 recalibration consumer -- FAIL in 130.1s | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-541 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-541.json",
+      "started_at": "2026-05-08T23:40:51.145179+00:00",
+      "completed_at": "2026-05-08T23:43:02.546710+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_541_mech204_precision_recalibration_consumer_20260508T234302Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 130.4
     }
-  ],
-  "draining": false
+  ]
 }
