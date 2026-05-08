@@ -990,6 +990,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-05-07T04:14:02Z"
     },
+    "MECH-307": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "v3_pending=true; pipeline gate. EXQ-540 is the queued discriminative validation; revisit after it runs.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-08T22:34:09Z"
+    },
     "Q-006": {
       "actor": "user",
       "decision_needed": "Open-question governance lane initialization",
@@ -1151,6 +1160,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-05-03T02:50:00Z"
+    },
+    "Q-040": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Apply narrow_open_question. Decomposed into Q-040.a (factorial 2x2 of {MECH-269b OFF/ON} x {SD-032b OFF/ON} on EXQ-483a retest -- load-bearing arbitration), Q-040.b (alternative-hypothesis isolator: is the upstream blocker MECH-295 liking-stream wiring? cross-witness EXQ-536b force-arm probe), Q-040.c (mechanism quantification: dACC weight delta proportional to |precision-weighted forward-PE|? EXQ-475a-conditions retest). Empirical resolution gated on StepHarness migration + MECH-307 substrate + MECH-269b V_s-rollout-gate landing.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-05-08T22:34:09Z"
     },
     "Q-041": {
       "actor": "user",
@@ -1378,7 +1396,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-08T20:46:34.933627Z",
+  "generated_at_utc": "2026-05-08T22:38:34.313374Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

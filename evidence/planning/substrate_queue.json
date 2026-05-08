@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-08T21:15:34Z",
+  "last_updated_utc": "2026-05-08T22:37:33Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2343,12 +2343,18 @@
           "experiment_type": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation",
           "metric": "Pre-MECH-307 affect-stream architecture mixed harm and benefit surprise; classifier_loss ~0.015-0.023 (target <0.005), probe_acc ~0.48-0.53 (target >0.70)",
           "target": "After MECH-307 substrate lands and affect-stream is unmixed, classifier_loss must converge below 0.005 and probe_acc above 0.70."
+        },
+        {
+          "run_id": "v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3",
+          "experiment_type": "v3_exq_539_mech307_commit_gating_check",
+          "metric": "Substrate-readiness counters dissociated correctly (liking_writes 0->2711, z_beta_excursion 0->0.151, neg_surprise_centers 0->33 between ARM_OFF and ARM_ON), but approach_commit_rate stayed at 1.0 in both arms because no consumer existed to read the conjunction signal. Per-claim: MECH-307 mixed; MECH-216/205/093 supports; SD-014 non_contributory. (2026-05-08)",
+          "target": "EXQ-540 (3-arm gap decomposition with MECH295LikingBridge.compute_conjunction_score_bias() consumer ON in all arms, queued same-day) is the discriminative validation. PASS = approach_commit_rate ARM_2 >= ARM_0 + 0.10 in 2/3 seeds AND ARM_2 > ARM_1; conjunction-fire rate >= 0.10 in ARM_2 only."
         }
       ],
       "implementation_hint": "Four-gap conjunction fix to existing channels: (1) signed VALENCE_SURPRISE (negative for harm-paired surprise, positive for reward-paired); (2) MECH-216 z_beta coupling so arousal pulse fires on VALENCE_SURPRISE write; (3) anticipatory VALENCE_LIKING write at the predicted future location (not the current one); (4) write-at-predicted-z_world via the cached e1_prior, not at current_z_world. All four must fire conjunctively to generate excitement/dread; missing any one yields the wired-but-inert pattern observed in EXQ-490f, 514f, 536b, etc. ~40 lines of code per the 2026-05-08 design doc. SD-014 6-channel amendment (add VALENCE_EXCITEMENT + VALENCE_DREAD as discrete channels) is the fallback architectural option if MECH-307 conjunction does not produce the expected derived states.",
       "priority": 1,
       "added_session": "governance-cycle-friday-pm-2026-05-08",
-      "last_seen_session": "governance-cycle-friday-pm-2026-05-08"
+      "last_seen_session": "governance-cycle-2026-05-08T2221Z"
     },
     {
       "sd_id": "MECH-256",
@@ -2413,6 +2419,11 @@
           "exq": "V3-EXQ-523b",
           "outcome": "non_contributory",
           "note": "reef arm severely undertrained, p1_r2 ~0.18 (2026-05-08)"
+        },
+        {
+          "exq": "V3-EXQ-537d",
+          "outcome": "non_contributory",
+          "note": "USE_INTERVENTIONAL=False to isolate SD-013 margin-loss hypothesis after 537c hidden_dim 128->256 capacity lift did not recover R^2 ceiling; same V_s monostrategy substrate-ceiling pattern (2026-05-08; head-of-chain after 537/537b/537c flipped to superseded). p1_r2~0.67 / p2_r2~0.69 / harm_forward_r2~0.56."
         }
       ],
       "implementation_hint": "Mechanism is wired end-to-end (E2_harm_s ARC-033 + interventional training SD-013 + balanced-hazard curriculum SD-029 implementation_note); blocker is upstream substrate. Phase 2 of self_attribution_plan.md sequences the retest after sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture. Acceptance: C0 trials-sufficient PASS 3/4 seeds (>=20 agent_caused AND >=20 env_caused); C1 forward_r2 >= 0.9; C2 partial attenuation (Shergill 2003, NOT binary); C3 approach-event SNR > threshold.",
@@ -2491,5 +2502,6 @@
       "implemented_utc": "2026-04-19T00:00:00Z",
       "validation_experiment": "V3-EXQ-445 three-arm ablation"
     }
-  ]
+  ],
+  "last_seen_session": "governance-cycle-2026-05-08T2221Z"
 }

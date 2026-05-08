@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-08T21:48:10.910631+00:00",
+  "last_updated": "2026-05-08T22:39:43.699599+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-141d",
+    "backlog_id": "EVB-0061",
+    "claim_id": "MECH-111",
+    "title": "MECH-111 novelty drive: RNG desync between arms (supersedes 141c)",
+    "description": "",
+    "script": "experiments/v3_exq_141d_mech111_novelty_drive_rng_desync.py",
+    "started_at": "2026-05-08T21:48:16.185365+00:00",
+    "progress": {
+      "run_label": "Seed 42 / NOVELTY_ABLATED",
+      "runs_done": 1,
+      "runs_total": 6,
+      "episodes_done": 200,
+      "episodes_total": 200,
+      "overall_pct": 33.3
+    },
+    "seconds_elapsed": 3087,
+    "seconds_remaining": 6726,
+    "recent_lines": [
+      "[V3-EXQ-141] TRAIN NOVELTY_ABLATED seed=42 warmup=200 eval=50 nav_bias=0.5",
+      "[train] NOVELTY_ABLATED seed=42 ep 50/200 harm=1.300 novelty_ema=0.00000",
+      "[train] NOVELTY_ABLATED seed=42 ep 100/200 harm=1.300 novelty_ema=0.00000",
+      "[train] NOVELTY_ABLATED seed=42 ep 150/200 harm=1.300 novelty_ema=0.00000",
+      "[train] NOVELTY_ABLATED seed=42 ep 200/200 harm=1.000 novelty_ema=0.00000"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-141d",
@@ -13,7 +39,7 @@
       "title": "MECH-111 novelty drive: RNG desync between arms (supersedes 141c)",
       "description": "",
       "estimated_minutes": 160.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }

@@ -1,0 +1,138 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm0_mean_precision_commit_ratio": 0.9999999900000002,
+    "arm1_mean_precision_commit_ratio": 0.9999999900000002,
+    "arm0_mean_commit_rate": 1.0,
+    "arm1_mean_commit_rate": 1.0,
+    "arm0_mean_precision": 211.8488940447974,
+    "arm1_mean_precision": 211.8488940447974,
+    "arm0_rv_final_per_seed": [
+      0.004938672280920848,
+      0.004273520290592633,
+      0.0050405068448965236
+    ],
+    "arm1_rv_final_per_seed": [
+      0.004938672280920848,
+      0.004273520290592633,
+      0.0050405068448965236
+    ],
+    "arm0_rv_after_training_per_seed": [
+      0.004953636552509991,
+      0.004272264405591539,
+      0.005130509964426441
+    ],
+    "arm1_rv_after_training_per_seed": [
+      0.004953636552509991,
+      0.004272264405591539,
+      0.005130509964426441
+    ],
+    "c0_rv_moved_both_arms": true,
+    "c1_arm1_ratio_gt_arm0": false,
+    "c2_arm1_ratio_gt_1": false,
+    "c3_arm1_commit_positive": true,
+    "per_seed_results": [
+      {
+        "arm_id": 0,
+        "arm_label": "ARM_0_no_dacc",
+        "seed": 1803,
+        "commit_rate": 1.0,
+        "high_precision_commit_rate": 1.0,
+        "low_precision_commit_rate": 1.0,
+        "precision_commit_ratio": 0.9999999900000002,
+        "mean_precision": 203.20764988810166,
+        "median_precision": 203.59761399269658,
+        "rv_after_training": 0.004953636552509991,
+        "rv_final": 0.004938672280920848,
+        "n_steps": 3807,
+        "n_high_steps": 1903,
+        "n_low_steps": 1904
+      },
+      {
+        "arm_id": 0,
+        "arm_label": "ARM_0_no_dacc",
+        "seed": 7964,
+        "commit_rate": 1.0,
+        "high_precision_commit_rate": 1.0,
+        "low_precision_commit_rate": 1.0,
+        "precision_commit_ratio": 0.9999999900000002,
+        "mean_precision": 234.39771288831227,
+        "median_precision": 234.584821996208,
+        "rv_after_training": 0.004272264405591539,
+        "rv_final": 0.004273520290592633,
+        "n_steps": 3611,
+        "n_high_steps": 1805,
+        "n_low_steps": 1806
+      },
+      {
+        "arm_id": 0,
+        "arm_label": "ARM_0_no_dacc",
+        "seed": 6890,
+        "commit_rate": 1.0,
+        "high_precision_commit_rate": 1.0,
+        "low_precision_commit_rate": 1.0,
+        "precision_commit_ratio": 0.9999999900000002,
+        "mean_precision": 197.94131935797824,
+        "median_precision": 198.01490112675722,
+        "rv_after_training": 0.005130509964426441,
+        "rv_final": 0.0050405068448965236,
+        "n_steps": 117,
+        "n_high_steps": 58,
+        "n_low_steps": 59
+      },
+      {
+        "arm_id": 1,
+        "arm_label": "ARM_1_dacc",
+        "seed": 1803,
+        "commit_rate": 1.0,
+        "high_precision_commit_rate": 1.0,
+        "low_precision_commit_rate": 1.0,
+        "precision_commit_ratio": 0.9999999900000002,
+        "mean_precision": 203.20764988810166,
+        "median_precision": 203.59761399269658,
+        "rv_after_training": 0.004953636552509991,
+        "rv_final": 0.004938672280920848,
+        "n_steps": 3807,
+        "n_high_steps": 1903,
+        "n_low_steps": 1904
+      },
+      {
+        "arm_id": 1,
+        "arm_label": "ARM_1_dacc",
+        "seed": 7964,
+        "commit_rate": 1.0,
+        "high_precision_commit_rate": 1.0,
+        "low_precision_commit_rate": 1.0,
+        "precision_commit_ratio": 0.9999999900000002,
+        "mean_precision": 234.39771288831227,
+        "median_precision": 234.584821996208,
+        "rv_after_training": 0.004272264405591539,
+        "rv_final": 0.004273520290592633,
+        "n_steps": 3611,
+        "n_high_steps": 1805,
+        "n_low_steps": 1806
+      },
+      {
+        "arm_id": 1,
+        "arm_label": "ARM_1_dacc",
+        "seed": 6890,
+        "commit_rate": 1.0,
+        "high_precision_commit_rate": 1.0,
+        "low_precision_commit_rate": 1.0,
+        "precision_commit_ratio": 0.9999999900000002,
+        "mean_precision": 197.94131935797824,
+        "median_precision": 198.01490112675722,
+        "rv_after_training": 0.005130509964426441,
+        "rv_final": 0.0050405068448965236,
+        "n_steps": 117,
+        "n_high_steps": 58,
+        "n_low_steps": 59
+      }
+    ],
+    "elapsed_seconds": 2194.2037329673767,
+    "n_seeds": 3,
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "steps_per_ep": 200
+  }
+}

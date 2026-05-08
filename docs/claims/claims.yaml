@@ -16299,6 +16299,8 @@
     [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
 
     [2026-05-08 governance]: EXQ-490f reclassified weakens -> non_contributory (manifest patched). Cascade test ran on pre-MECH-307 conjunction architecture; the four-gap wiring fault confounds the result. Re-test required after MECH-307 substrate lands. Cross-witness: EXQ-536b force-arm probe (z_goal_inject=0.3, action-time fraction=1.0) also yielded approach_commit_rate=0.0, consistent with downstream-inert at the same architectural layer.
+
+    [2026-05-08 governance: narrow_open_question applied]. The broad question decomposes into three machine-testable sub-questions, each of which can be falsified by an experiment on the StepHarness-corrected substrate after MECH-307 conjunction architecture lands: (Q-040.a) Does MECH-269b (V_s gating E1/E2 forward predictions in addition to the hippocampal proposer anchor) restore non-zero approach_commit_rate when SD-032b dACC adaptive-control is ON? Test = factorial 2x2 of {MECH-269b OFF/ON} x {SD-032b OFF/ON} on EXQ-483a-conditions retest under StepHarness; PASS = MECH-269b=ON x SD-032b=ON arm produces approach_commit_rate > 0 AND non-zero dACC-driven score-bias contribution; non-MECH-269b-ON arms remain at zero. (Q-040.b) If Q-040.a FAILs, is the upstream blocker MECH-295 liking-stream wiring? Test = MECH-295 force-arm probe (already evidence-of-record at EXQ-536b: action-time injection fraction=1.0, approach_commit_rate=0.0) plus a corrected EXQ-490g re-run under StepHarness + MECH-307 substrate. (Q-040.c) Is dACC behavioural-adjustment magnitude proportional to V_s precision-modulated PE under MECH-269b=ON? Test = EXQ-475a-conditions retest measuring dACC weight delta as a function of |precision-weighted forward-PE|; PASS = nonzero correlation in MECH-269b=ON arm and ~zero in OFF arm. Resolution path: Q-040.a is the load-bearing arbitration; Q-040.b is the alternative-hypothesis isolator; Q-040.c is the mechanism-quantification follow-on. Empirical answer is gated on (i) StepHarness migration of EXQ-471a/475a/483c/490g/524a (cohort scheduled), (ii) MECH-307 four-gap conjunction substrate landing (EXQ-540 discriminative validation queued), and (iii) MECH-269b V_s-rollout-gate landing (per substrate_queue MECH-269b-followup-A). No claim-status change; question stays open with these sub-questions as the testable scaffolding.
   title: "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?"
   claim_type: open_question
   subject: control.vs_generalisation_unblocks_dacc
@@ -25601,6 +25603,16 @@
     0.77 across 9 entries (8 supports, 1 mixed, 0 weakens). No experimental evidence yet on the
     REE substrate. EXQ-XXX (MECH-307 conjunction-fix discriminative pair) queued behind
     EXQ-537 + EXQ-141b clearance.
+
+    [2026-05-08 governance]: hold_pending_v3_substrate applied (v3_pending=true; pipeline gate).
+    EXQ-539 (substrate-readiness check) ran 2026-05-08 with mixed direction on MECH-307 (substrate
+    counters dissociated -- liking_writes / z_beta_excursion / neg_surprise_centers all fired in
+    ARM_ON only, but approach_commit_rate stayed at 1.0 in both arms because the conjunction
+    signal had no downstream consumer that could read it). The 2026-05-08 follow-on landed the
+    MECH295LikingBridge.compute_conjunction_score_bias() consumer (ree-v3 6cd0962, behind
+    use_mech307_consumer_conjunction_read flag), and EXQ-540 (3-arm gap decomposition
+    ARM_0_off / ARM_1_signed_pe / ARM_2_full with the consumer ON in all arms) is queued as
+    the discriminative validation. Hold remains in force until EXQ-540 runs.
   experimental_test: >
     4-arm discriminative pair on a CausalGridWorldV2 task with reward cues at predictable
     locations: ARM_0_off (current substrate, all 4 wiring gaps unfixed); ARM_1_signed_PE_only

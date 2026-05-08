@@ -1,6 +1,6 @@
 {
   "schema_version": "contributions/v1",
-  "last_updated": "2026-05-08T15:58:40Z",
+  "last_updated": "2026-05-08T22:23:20Z",
   "compute": {
     "cost_model": {
       "electricity_kwh_rate": 0.27,
@@ -29,12 +29,12 @@
         "hardware": "Apple M2 Air 8GB",
         "tdp_watts": 15,
         "gpu_watts": 0,
-        "total_cpu_hours": 419.299,
-        "total_experiments": 406,
+        "total_cpu_hours": 422.657,
+        "total_experiments": 411,
         "first_run": "2026-03-22T01:42:13.931249+00:00",
-        "last_run": "2026-05-08T15:31:01.199579+00:00",
-        "estimated_electricity_cost_eur": 1.6982,
-        "estimated_cloud_equivalent_cost_usd": 17.4428
+        "last_run": "2026-05-08T20:59:35.760867+00:00",
+        "estimated_electricity_cost_eur": 1.7118,
+        "estimated_cloud_equivalent_cost_usd": 17.5825
       },
       "Daniel-PC": {
         "display_name": "CyberPower PC (i5-8600K + RTX 2060 Super)",
@@ -68,12 +68,12 @@
         "hardware": "Hetzner CX22 (2x shared vCPU, 4 GB RAM, no GPU)",
         "tdp_watts": 20,
         "gpu_watts": 0,
-        "total_cpu_hours": 68.939,
-        "total_experiments": 52,
+        "total_cpu_hours": 72.24,
+        "total_experiments": 55,
         "first_run": "2026-04-06T15:55:57.691885+00:00",
-        "last_run": "2026-05-08T02:41:19.669213+00:00",
-        "estimated_electricity_cost_eur": 0.3723,
-        "estimated_cloud_equivalent_cost_usd": 2.8679
+        "last_run": "2026-05-08T19:26:34.647081+00:00",
+        "estimated_electricity_cost_eur": 0.3901,
+        "estimated_cloud_equivalent_cost_usd": 3.0052
       },
       "ree-cloud-2": {
         "display_name": "Hetzner CX22 Cloud Worker (second)",
@@ -90,32 +90,32 @@
       }
     },
     "totals": {
-      "cpu_hours": 671.003,
-      "experiments": 638
+      "cpu_hours": 677.662,
+      "experiments": 646
     }
   },
   "decisions": {
-    "total_governance_decisions": 216,
+    "total_governance_decisions": 218,
     "contributors": {
       "user": {
         "actor_id": "user",
-        "decisions": 173,
-        "proportion": 0.8009
+        "decisions": 175,
+        "proportion": 0.8028
       },
       "governance-2026-04-25T15:15": {
         "actor_id": "governance-2026-04-25T15:15",
         "decisions": 30,
-        "proportion": 0.1389
+        "proportion": 0.1376
       },
       "Daniel Golden": {
         "actor_id": "dgolden",
         "decisions": 7,
-        "proportion": 0.0324
+        "proportion": 0.0321
       },
       "codex": {
         "actor_id": "codex",
         "decisions": 6,
-        "proportion": 0.0278
+        "proportion": 0.0275
       }
     },
     "source": "evidence/decisions/decision_log.v1.jsonl"
@@ -123,13 +123,13 @@
   "coding": {
     "baseline_method": "git_co_authorship",
     "baseline_date": "2026-05-08",
-    "total_lines_analyzed": 7999764,
-    "total_commits_analyzed": 8760,
+    "total_lines_analyzed": 8696650,
+    "total_commits_analyzed": 8933,
     "contributors": {
       "Claude (Anthropic)": {
-        "lines_added": 1653815,
-        "commits": 1238,
-        "proportion_by_lines": 0.2067,
+        "lines_added": 1665146,
+        "commits": 1262,
+        "proportion_by_lines": 0.1915,
         "proportion_by_commits": 0.1413,
         "basis": "git_history_co_authorship"
       },
@@ -141,10 +141,10 @@
         "basis": "git_history_co_authorship"
       },
       "Daniel Golden": {
-        "lines_added": 6345949,
-        "commits": 7519,
-        "proportion_by_lines": 0.7933,
-        "proportion_by_commits": 0.8583,
+        "lines_added": 7031504,
+        "commits": 7668,
+        "proportion_by_lines": 0.8085,
+        "proportion_by_commits": 0.8584,
         "basis": "git_history_co_authorship"
       }
     },

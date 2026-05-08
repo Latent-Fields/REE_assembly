@@ -1,18 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-08T20:46:36Z`  
-Last review: `2026-05-08T19:35:24Z`  
-Pending: **3** item(s) -- 0 PASS, 0 FAIL, 3 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-05-08T22:38:35Z`  
+Last review: `2026-05-08T22:34:09Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-## Needs discussion (ERROR / UNKNOWN / smoke)
+## FAIL (action required)
 
-These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
-
-| Queue ID | Result | Script | Notes |
-|----------|--------|--------|-------|
-| `V3-EXQ-530c` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
-| `V3-EXQ-537b` | UNKNOWN | `?` | UNKNOWN (index stale — run build_experiment_indexes.py) |
-| `V3-EXQ-539a` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_530c_arc016_precision_commit_stepharness_20260508T172357Z_v3` | 2026-05-08T18:00 | ARC-016 | — |
 
 ---
 
