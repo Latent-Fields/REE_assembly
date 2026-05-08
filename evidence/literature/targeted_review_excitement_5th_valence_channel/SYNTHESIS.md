@@ -6,7 +6,9 @@
 
 **Architectural question:** is excitement a primitive affect channel architecturally distinct from VALENCE_WANTING + z_beta arousal modulation, or a derived state already covered by the existing substrate?
 
-**Verdict: REGISTER** VALENCE_EXCITEMENT as a 5th channel in SD-014, **with VALENCE_DREAD as a 6th channel** for symmetric anticipatory affect representation. Confidence aggregate **0.78** across 9 entries (8 supports / 1 mixed / 0 weakens).
+**Verdict (revised 2026-05-08, post-code-inspection): FIX EXISTING WIRING (MECH-307 conjunction architecture, registered candidate / v3_pending in claims.yaml).** Excitement and dread should emerge as derived states from a four-gap fix to existing channels (signed `VALENCE_SURPRISE` + MECH-216 `z_beta` coupling + anticipatory `VALENCE_LIKING` write + write-at-predicted-location), NOT as new VALENCE channels. The SD-014 6-channel amendment (`VALENCE_EXCITEMENT` + `VALENCE_DREAD` as discrete channels) is registered as the **FALLBACK** architecture if the conjunction-fix proves unreliable. Confidence aggregate **0.77** across 9 entries (8 supports / 1 mixed / 0 weakens).
+
+> **Why the verdict was revised.** The original verdict ("REGISTER VALENCE_EXCITEMENT as 5th channel") was the right inference from the lit-pull but the wrong architectural conclusion. Code inspection of [`agent.py:3075-3077`](../../../ree-v3/ree_core/agent.py#L3075) and [`agent.py:3753-3757`](../../../ree-v3/ree_core/agent.py#L3753) showed that the V3 substrate has all the upstream pieces required to produce excitement as a derived conjunction (E1 PE, MECH-216 schema readout, z_beta arousal, MECH-216 → VALENCE_WANTING write) but lacks the wiring between them. Biology does not have a "VALENCE_EXCITEMENT neuron type" either — the NAcc-anticipation signal measured in Knutson 2001a is the anatomical convergence of DA RPE + hippocampal preplay + ANS arousal at one structure. Fixing the four wiring gaps (~40 lines, all backward-compatible behind config flags) is more biologically faithful and more parsimonious than adding new channels. The 9 entries below still anchor the verdict; they argue for representational adequacy of anticipatory positive/negative arousal, which the conjunction architecture provides without growing the residue field's valence buffer from `[K, 4]` to `[K, 6]`. Cross-references: [`anticipatory_affect_conjunction_vs_dual_channel.md`](../../docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md), `claims.yaml` MECH-307 entry.
 
 ## Entries
 
@@ -38,14 +40,27 @@
 
 **5. Symmetric architecture: dread is the negative analog.** Berns 2006 establishes dread as its own construct, dissociable from fear/anxiety and from harm-at-receipt. If REE registers VALENCE_EXCITEMENT, the symmetric architectural choice is to also register VALENCE_DREAD. The clinical literature (depression: Knutson 2008; bipolar: Johnson 2019) further supports the channel-separability principle by showing how each channel can be selectively altered in pathology.
 
-## Counter-reading and why it loses
+## Counter-reading and why it partially survives
 
-The Bromberg-Martin 2010 review offers the architectural alternative: excitement is the salience-coding signal, captured by z_beta arousal modulation (MECH-093 already exists for heartbeat-rate gating). This reading would let REE avoid adding new channels. Two reasons it loses:
+The Bromberg-Martin 2010 review offered the original counter-reading: excitement is the salience-coding signal, captured by z_beta arousal modulation alone (MECH-093 already exists for heartbeat-rate gating). The original SYNTHESIS rejected this on two grounds:
 
-- **Empirical**: Knutson 2001a's NAcc-anticipation is positive-valence-selective, not pure salience. Punishment anticipation activates a different region. So the human-fMRI excitement signature is value-coded, not salience-coded — the Bromberg-Martin salience route is the wrong route for what humans report as excitement.
-- **Architectural**: z_beta in REE modulates timing (heartbeat rate), not representation. To capture excitement via z_beta + VALENCE_WANTING joint reads at consumer sites, every consumer (MECH-205 replay write, MECH-292 ghost-priority, etc.) would need to know to do the joint read. That is dispersed and error-prone. A dedicated channel writes once and consumers read directly.
+- **Empirical**: Knutson 2001a's NAcc-anticipation is positive-valence-selective, not pure salience. Punishment anticipation activates a different region. So the human-fMRI excitement signature is value-coded, not salience-coded — the salience-only route is the wrong route for what humans report as excitement.
+- **Architectural**: z_beta in REE modulates timing (heartbeat rate), not representation. Capturing excitement via z_beta alone would still require consumer-side joint reads with VALENCE_WANTING.
 
-## Recommended SD-014 amendment text
+Both critiques are still valid. But the **revised verdict (MECH-307 conjunction)** preserves the spirit of the counter-reading — excitement composes from existing pieces — while fixing the empirical problem (the conjunction is *signed-positive PE × MECH-216 schema × z_beta × predicted-location* — value-selective, not pure salience) and the architectural problem (consumers can read a single conjunction predicate, hidden behind a small helper, rather than every consumer hand-rolling joint reads). The four wiring gaps (G1 signed `VALENCE_SURPRISE`, G2 MECH-216 multi-channel write, G3 z_beta path, G4 write-at-predicted-location) are the *missing scaffolding* the original counter-reading needed to be true. They are now registered as MECH-307.
+
+## SD-014 amendment text (FALLBACK -- moved to architecture doc 2026-05-08)
+
+The full SD-014 6-channel amendment proposal text is retained as the FALLBACK
+architecture and now lives in
+[`docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md`](../../docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md)
+under "SD-014 amendment proposal text (FALLBACK)". It is referenced from SD-014's
+`evidence_quality_note` in `claims.yaml` and is not yet applied to the registry; the
+empirical 4-arm experiment (described below in "Falsification design") adjudicates
+between MECH-307 (first-line) and the SD-014 amendment (fallback). Original text
+preserved below for the SYNTHESIS audit trail:
+
+## Original (now FALLBACK) SD-014 amendment text
 
 ```
 SD-014 — Hippocampal Valence Vector Node Recording (amendment 2026-05-XX)
@@ -98,14 +113,37 @@ The cleanest direct test of the value-vs-salience question for excitement (lesio
 
 A second gap: the Russell circumplex 2D framework is well-established but the *specific neural mapping of high-arousal-positive vs low-arousal-positive* is less consolidated than the 2D principle itself. Whether VALENCE_EXCITEMENT and a hypothetical VALENCE_CONTENTMENT (low-arousal-positive) would also need separation depends on whether REE wants the full 4-quadrant circumplex or just the high-arousal axis added to its existing valence-axis representation.
 
-## Recommended next step
+## Recommended next step (revised 2026-05-08)
 
-1. **Register MECH-XX (proposed: MECH-307 anticipatory_affect_dual_channel)** as a candidate mechanism_hypothesis with implementation_phase=v3, v3_pending=true. Its content: SD-014 should be extended to a 6-component valence vector to represent high-arousal anticipatory affect (positive: VALENCE_EXCITEMENT; negative: VALENCE_DREAD) as separable from VALENCE_WANTING (directional motivation) and VALENCE_LIKING (consummatory hedonic).
+1. **MECH-307 `anticipatory_affect_conjunction` -- REGISTERED 2026-05-08** (claims.yaml,
+   `candidate / v3_pending`). Asserts excitement and dread emerge as derived states from
+   the four-gap wiring fix. Lit anchors from this directory; cross-tags MECH-111 because
+   the same wiring gaps likely substrate-confounded EXQ-141. ~40 lines of code, all
+   backward-compatible.
 
-2. **Hold SD-014 amendment** pending the EXQ-141b retest (MECH-111 curiosity drive on corrected commit-chain substrate) so we don't add channels to a substrate that is currently buggy in known ways. The EXQ-141b plus an EXQ-XXX excitement-channel falsification could be designed as a paired experiment.
+2. **SD-014 amendment to 6-component valence vector -- PROPOSED, NOT APPLIED.** Full
+   amendment text recorded in [`docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md`](../../docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md)
+   and cross-referenced in SD-014's `evidence_quality_note`. Will be applied to the
+   registry only if the MECH-307 conjunction-fix experiment fails C3 (the parsimony
+   head-to-head against ARM_3_5channel).
 
-3. **Engage Daniel** before claim registration. The architectural decision -- 6 channels vs 4 channels in SD-014 -- is significant enough that user signoff before registry edit is the right governance move.
+3. **Sequencing** (unchanged): hold the discriminative experiment until **EXQ-537** (SD-029
+   single-pass comparator) and **EXQ-141b** (MECH-111 curiosity drive retest on corrected
+   commit-chain substrate) clear. The MECH-307 4-arm + SD-014-amendment alternative
+   experiment is queued behind both. User confirmation required before queue insertion.
 
 ## Confidence verdict
 
-Aggregate literature confidence: 0.77 across 9 entries. Above the 0.6 design-proceed floor. Below the ~0.95 ceiling for lit-only promotion. The right zone for a pre-registered V3 substrate amendment with a paired falsification experiment.
+Aggregate literature confidence: 0.77 across 9 entries. Above the 0.6 design-proceed floor.
+Below the ~0.95 ceiling for lit-only promotion. The right zone for a pre-registered V3
+substrate amendment (now via MECH-307 conjunction architecture) with a paired falsification
+experiment.
+
+The verdict revision (REGISTER-CHANNEL → FIX-WIRING) does not change the lit confidence — the
+9 entries support either architecture as long as the construct (anticipatory positive arousal
+distinct from wanting + liking + arousal alone) is represented somewhere in the substrate. The
+revision is an *architectural* preference for parsimony, biological fidelity, and avoiding
+papering-over-of-wiring-gaps with new representational primitives — informed by code
+inspection and the prior architectural pattern (MECH-111 + ghost-projection / MECH-188 vs
+MECH-295 dual-path) where fixing existing machinery has consistently been more correct than
+adding new layers.
