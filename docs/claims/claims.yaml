@@ -16473,7 +16473,7 @@
   claim_type: open_question
   subject: control.precision_update_call_site
   polarity: open
-  status: open
+  status: candidate_resolved
   implementation_phase: v3
   claim_level: architectural
   registered_utc: 2026-05-08
@@ -16613,6 +16613,20 @@
     Q-042 will move to candidate-resolved once the regression test
     lands and at least one V3 experiment exercises both StepHarness
     and the new test.
+
+    UPDATE 2026-05-08: regression test landed at
+    ree-v3/tests/contracts/test_running_variance_contract.py
+    (commit 5cff117 on ree-v3 main). Three guarantees enforced:
+    R1 rv moves >1e-6 from precision_init under update_residue() loop;
+    R2 rv stays EXACTLY at precision_init when update_residue() is
+    omitted (locks the EXQ-514d/530/536 failure mode and forbids a
+    silent parallel update path being added in the future);
+    R3 StepHarness canonical loop keeps rv live.
+    Contract suite: 192/192 PASS (was 189 + 3 new).
+    Q-042 promoted to candidate_resolved. Full resolution to resolved
+    after the next V3 experiment that uses StepHarness completes
+    successfully (the EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a /
+    EXQ-524a retest cohort).
   location: docs/architecture/precision_update_callsite.md
 
 # ---------------------------------------------------------------------------
