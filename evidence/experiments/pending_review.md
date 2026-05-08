@@ -1,10 +1,23 @@
 # Pending Experiment Review
 
-Generated: `2026-05-08T00:43:48Z`  
+Generated: `2026-05-08T04:18:21Z`  
 Last review: `2026-05-08T00:50:00Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **3** item(s) -- 0 PASS, 1 FAIL, 2 runner-only (ERROR/UNKNOWN/smoke)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3` | 2026-05-08T00:29 | MECH-258, MECH-260, SD-032b | — |
+
+## Needs discussion (ERROR / UNKNOWN / smoke)
+
+These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
+
+| Queue ID | Result | Script | Notes |
+|----------|--------|--------|-------|
+| `V3-EXQ-445h` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-433f` | UNKNOWN | `?` | UNKNOWN |
 
 ---
 

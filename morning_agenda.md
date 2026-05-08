@@ -1,78 +1,80 @@
-# Morning Agenda -- 2026-05-07
+# Morning Agenda -- 2026-05-08
 
-Generated: 2026-05-07T04:27:59Z
+Generated: 2026-05-08T04:21:31Z
 
 ---
 
 ## Queue Status
-- Total pending: **1** (Mac: 0 | PC: 0 | EWIN: 0 | any: 1)
-- **ALERT: Queue critically low** -- only V3-EXQ-530 pending (the ERROR re-queue from yesterday's evening governance walk).
-- DLAPTOP-4.local heartbeat fresh (last_tick 2026-05-07T04:27:01Z, state=idle, queue_depth=0). Mac runner alive and waiting; will pick up V3-EXQ-530 on next tick.
-- Cloud heartbeats stale: ree-cloud-1 last 2026-05-06T10:17, ree-cloud-2 last 2026-05-06T09:07 (both 18+ hours old -- workers offline).
-- Daniel-PC: no heartbeat present.
+- Total pending: **4** (Mac: 0 | PC: 0 | EWIN: 0 | any: 4)
+- In flight (claimed, not pending): 2 -- V3-EXQ-483b (ree-cloud-2), V3-EXQ-514f (DLAPTOP-4.local)
+- [ALERT: Queue is shallow -- 4 pending; will drop below the 3-item threshold if 483b/514f finish before more are queued]
+- All 4 pending items are `machine_affinity: any`. Both runners are currently busy on claimed items, so no idle capacity.
+
+Pending items:
+- V3-EXQ-523b (sd029_reef_comparator) -- supersedes V3-EXQ-523a
+- V3-EXQ-536a (goal_seeding_instrumentation) -- diagnostic
+- V3-EXQ-536b (goal_seeding_inject_forcearm) -- diagnostic
+- V3-EXQ-537 (sd029_single_pass_residual) -- supersedes V3-EXQ-535a
 
 ---
 
-## Experiments Awaiting Review (0 indexed / 4 runner-only)
+## Experiments Awaiting Review (1 indexed / 2 runner-only)
 
-No indexed PASS/FAIL pending review -- yesterday's evening governance session (`governance-cycle-2026-05-06-evening`, completed 2026-05-07T04:23:41Z) already walked all 21 indexed entries and absorbed the rest into discussed_experiment_dirs.
+### V3-EXQ-445h -- sd032b_dacc_reef -- FAIL
+- **Claims tested:** SD-032b (candidate, exp_conf=0.505, dirs supports=12 / mixed=9 / weakens=2 -- quadrant: plausible_unproven), MECH-258 (candidate, exp_conf=0.955, supports=17 / mixed=1 -- confirmed_established), MECH-260 (candidate, exp_conf=0.955, supports=10 -- confirmed_established)
+- **Per-claim direction:** SD-032b -> does_not_support; MECH-258 -> supports; MECH-260 -> supports
+- **Pass criteria:** c1_mech258 PASS (wins=2), **c2_sd032b FAIL (wins=0)**, c3_mech260 PASS (wins=3)
+- **Key metrics:** action_class_entropy=0.0 in all 6 (seed x condition) cells; mean_score_bias_abs=0.0 (OFF) -> 2.0 (ON_INDEPENDENT); harm_a_forward_r2 lifts from null -> ~0.94 in 4/6 cells (one -0.89 outlier at seed=13). Action distribution is monomodal in every cell (one action takes 134-1889 steps; others zero) -- the same V_s monostrategy signature that gates SD-029 retest is also showing up here.
+- **Classification:** evidence (per-claim direction tags supplied; manifest is correctly multi-direction).
+- **Governance impact if confirmed:** SD-032b stays near 0.505 -- the per-claim tag is `does_not_support` not `weakens`, so this lands as a non-promotion data point and adds to the existing high mixed/conflict count. MECH-258 and MECH-260 each gain another supports row; both are already deep in confirmed_established (0.955) so no movement.
+- **Supersedes:** V3-EXQ-445g -- bug-fix iteration from the 2026-05-07T20:35Z cohort (BreathOscillator disabled + _committed_step_idx saturation in non-bistable path).
+- **Caveat to flag:** action_class_entropy=0 across the board means the policy is monomodal -- check whether SD-032b can be measured at all on a monostrategy substrate, or whether this is the same gate that has the SD-029 retest on hold under MECH-269 V_s.
 
-Runner-only entries (UNKNOWN / ERROR) are listed under "Errors to Diagnose" below.
+### V3-EXQ-445h (runner-only UNKNOWN)
+- Same queue_id appears as runner-only UNKNOWN because runner_status.json was written before the indexer absorbed the manifest. The indexed FAIL above is the canonical record. Once reviewed, add `V3-EXQ-445h` to `discussed_experiment_dirs` and the run_id to `reviewed_run_ids`.
+
+### V3-EXQ-433f (runner-only UNKNOWN)
+- Bug-fix iteration of EXQ-433e (sd029_eventcond_comparator_reef) from the 2026-05-07T20:35Z cohort. UNKNOWN means no manifest landed in `evidence/experiments/` for the indexer to pick up. Either the script crashed without writing JSON (treat as ERROR -- needs `/diagnose-errors`) or the manifest is in an unexpected location. Verify before marking discussed.
 
 ---
 
-## Errors to Diagnose (0 unaddressed)
+## Errors to Diagnose (1)
 
-V3-EXQ-530 is the only ERROR but is **not unaddressed** -- it has been re-queued by the evening governance session (`force_rerun=true`, status `pending` in `experiment_queue.json`, `claimed_by: null`). Will retry on next runner tick. Original ERROR was a SIGTERM at 2026-05-06T09:28:51Z (coincident cloud-worker kill on ree-cloud-1/2 per yesterday's diagnose-errors staging).
+- **V3-EXQ-244a** -- `MECH-165 reverse replay diversity scheduler validation (redesign of EXQ-244)` -- ERROR (exit code -15, SIGTERM after 80 min runtime), completed 2026-05-06T09:28:53Z on ree-cloud-2. **No lettered successor queued or completed.**
+  - Likely SIGTERM from a runner shutdown rather than a code bug -- exit -15 is the canonical signature of an interrupt mid-run.
+  - Needs `/diagnose-errors`: decide whether to re-queue under the same ID via `--force-rerun` (if the script is fine) or write a 244b successor (if the SIGTERM was triggered by something inside the script, e.g. memory pressure).
+  - Claimed for MECH-165 (reverse replay diversity scheduler).
 
-The 3 remaining UNKNOWN runner-only entries (V3-EXQ-514d, V3-EXQ-514e, V3-EXQ-524) were classified `intentional` by the evening governance walk per its completion note -- they are diagnostic / showcase runs that produced episode logs but no canonical indexed manifest. No action needed; they will be absorbed into `discussed_experiment_dirs` by the next governance walk that touches them. Carrying them in pending_review is informational only.
+(Other recent ERRORs since 2026-05-01 -- V3-EXQ-519, V3-EXQ-514a, V3-EXQ-418j, V3-EXQ-530 -- all have lettered successors already in flight or completed. EXQ-244a is the only outstanding item.)
 
 ---
 
-## Governance Agenda (6 recommendations)
+## Governance Agenda (1 recommendation)
 
-All six are from the recommendations file generated at 2026-05-07T04:20:30Z. The evening governance session marked them `pending_user`; they remain holds because none have V3 substrate evidence yet.
-
-- **MECH-302** (candidate) -- Recommendation: **`hold_pending_v3_substrate`**
-  - Evidence: 4 supporting, 3 weakens, 2 mixed (conflict_ratio=0.857)
-  - Reason: `v3_pending` flag set; cannot promote/demote until cleared.
-- **MECH-303** (candidate) -- Recommendation: **`hold_pending_v3_substrate`**
-  - Evidence: 3 supporting, 0 weakens, 1 mixed (conflict_ratio=0)
-  - Reason: `v3_pending` flag set.
-- **MECH-304** (candidate) -- Recommendation: **`hold_pending_v3_substrate`**
-  - Evidence: 3 supporting, 0 weakens, 0 mixed (conflict_ratio=0)
-  - Reason: `v3_pending` flag set.
-- **Q-036** (open) -- Recommendation: **`narrow_open_question`**
-  - Evidence: 0 experimental, 3 literature (lit_conf=0.808, no weakening); quadrant=plausible_unproven.
-  - Discussion: scope-narrowing into testable sub-questions, vs. promote one branch to candidate mechanism.
-- **SD-048** (candidate) -- Recommendation: **`hold_pending_v3_substrate`**
-  - Evidence: 7 supporting, 0 weakens, 0 mixed (conflict_ratio=0)
-  - Reason: `v3_pending` flag set.
-- **SD-049** (candidate) -- Recommendation: **`hold_pending_v3_substrate`**
-  - Evidence: 7 supporting, 3 weakens, 2 mixed (conflict_ratio=0.6)
-  - Reason: `v3_pending` flag set.
-
-The three MECH-30x entries plus SD-048/049 are all gated by V3 substrate -- the evening session did not (and could not) resolve them. They remain as informational reminders of the V3-pending backlog. Q-036 is the only one where action (question-narrowing) is possible without substrate work.
+- **Q-040** (open) -- Recommendation: **narrow_open_question**
+  - epistemic_category=answer_state, exp_conf=0.0, lit_entries=4 (all supports, conflict_ratio=0), exp_entries=0
+  - Decision needed: narrow into testable sub-questions vs. keep broad.
+  - The rest of the recommendation queue (60+ rows) is `decision_status: applied` -- Q-040 is the only `pending_user`.
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-| # | Claim | Subject | Priority | Existing entries |
-|---|-------|---------|----------|-----------------|
-| 1 | Q-019 | Three-loop BG hypothesis: O'Reilly/Frank PBWM, Aron STN, Brittain/Brown beta, Buckner DMN, Crick/Zikopoulos reticular, plus disconfirming pull | medium | 20 (well-covered) |
-| 2 | onboarding (phantom) | EVB-0131 onboarding -- no real claim attached | medium | 0 (phantom; safe to dismiss) |
+Only 3 items currently flag `evidence_needed: literature` in the backlog -- the 2026-05-07 lit-pull cleanup pruned the rest. No urgent pulls.
 
-Only one genuine literature backlog item remains (Q-019), and it is already well-covered with 20 entries (16 originally + 4 disconfirming pulled 2026-05-06). The "onboarding" phantom is the same residual artifact noted in yesterday's morning digest. Effective lit backlog: **0**.
+| # | Claim | Priority | Existing entries | Note |
+|---|-------|----------|------------------|------|
+| 1 | Q-019 | medium | 1 | Pinned standing entry. |
+| 2 | Q-041 | low | 0 | Threshold-supervisor research direction registered 2026-05-07; see `docs/architecture/threshold_supervisor_survey.md`. |
+| 3 | Q-042 | low | 0 | Running-variance precision-update contract -- just resolved as candidate_resolved 2026-05-08T01:39Z; a lit pull would sanity-check the precision-update biology. |
 
 ---
 
 ## Serve.py Status
-- **RUNNING** on port 8000 (PID 9657).
+- **RUNNING on port 8000** (PID 9657, IPv4 LISTEN).
 
 ---
 
 ## Blocked Items
-
-- **Concurrent governance session race (resolved cleanly).** When this digest started at 04:18:35Z, the claim `governance-cycle-2026-05-06-evening` (claimed_at 2026-05-06T21:56:30Z, age 6h22m) was past the 6-hour stale threshold and was treated as cleared per skill rules. That session in fact completed at 04:23:41Z -- *during* this digest's run -- and updated review_tracker.json at ~04:22:40Z, mid-run. I re-ran `generate_pending_review.py` at 04:25:30Z so the agenda reflects the post-governance state (4 runner-only pending, not the 9 from the first generation). Suggestion: bump the morning-digest stale threshold to 8h, or have the digest delay its governance.sh run by ~5 min, to avoid this race in future. Both sessions completed cleanly -- no data loss, no overwrites.
-- **Queue depth=1 is the operational blocker for today.** With cloud workers offline (ree-cloud-1/2 stale 18+ hours) and Daniel-PC absent, the only active machine is the Mac, and only V3-EXQ-530 is queued. Once that finishes, the runner idles. Next session should write/queue further experiments (governance backlog candidates, V3-pending cohort substrate work).
+- None. No TASK_CLAIMS collisions; governance.sh ran clean (582 claims validated, 68 invariants validated, indexer rebuilt, contributor ledger refreshed; 983 indexed runs).
+- One soft anomaly: `eoin-golden.json` contributor file is empty / unparseable ("could not read eoin-golden.json: Expecting value: line 1 column 1 (char 0)"). Non-blocking; affects contributor ledger only.

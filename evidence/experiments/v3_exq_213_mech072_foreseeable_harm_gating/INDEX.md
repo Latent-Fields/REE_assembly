@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_213_mech072_foreseeable_harm_gating
 
-Generated: `2026-05-08T00:44:02.303674Z`
+Generated: `2026-05-08T04:18:19.928916Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

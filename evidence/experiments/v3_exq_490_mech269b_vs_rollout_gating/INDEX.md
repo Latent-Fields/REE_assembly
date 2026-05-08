@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_490_mech269b_vs_rollout_gating
 
-Generated: `2026-05-08T00:44:02.303674Z`
+Generated: `2026-05-08T04:18:19.928916Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

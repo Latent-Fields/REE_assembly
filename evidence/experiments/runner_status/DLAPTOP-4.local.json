@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-08T01:04:51.544614+00:00",
+  "last_updated": "2026-05-08T04:23:07.149732+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-514f",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-049 Phase 2 reef behavioural validation (Bug 1+2 fix)",
+    "description": "",
+    "script": "experiments/v3_exq_514f_sd049_phase_2_reef_behavioural_validation.py",
+    "started_at": "2026-05-08T01:04:57.059302+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 11890,
+    "seconds_remaining": 1040,
+    "recent_lines": [
+      "seed=43 arm=ARM_2_3type    obs_dim=350 reef=True probe_neigh=0.545 probe_cons=0.000 clf_first/last=2.943/3.119 n_id_cons=9 n_id_neigh=4500 peak_drive=[0.3, 0.45, 0.15] elapsed=1148.2s",
+      "seed=43 arm=ARM_3_5type    obs_dim=400 reef=True probe_neigh=0.260 probe_cons=0.250 clf_first/last=7.334/7.244 n_id_cons=13 n_id_neigh=4500 peak_drive=[0.3, 0.45, 0.15, 0.24, 0.24] elapsed=993.0s",
+      "seed=44 arm=ARM_0_off      obs_dim=250 reef=False probe_neigh=0.000 probe_cons=0.000 clf_first/last=0.000/0.000 n_id_cons=0 n_id_neigh=0 peak_drive=[0.0, 0.0, 0.0] elapsed=1076.8s",
+      "seed=44 arm=ARM_1_2type    obs_dim=350 reef=True probe_neigh=0.534 probe_cons=0.000 clf_first/last=2.672/3.217 n_id_cons=14 n_id_neigh=4500 peak_drive=[0.3, 0.45, 0.15] elapsed=1047.1s",
+      "seed=44 arm=ARM_2_3type    obs_dim=350 reef=True probe_neigh=0.460 probe_cons=0.200 clf_first/last=2.577/1.375 n_id_cons=14 n_id_neigh=4500 peak_drive=[0.3, 0.45, 0.15] elapsed=1067.3s"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-433f",
@@ -35,7 +61,7 @@
       "title": "SD-049 Phase 2 reef behavioural validation (Bug 1+2 fix)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
