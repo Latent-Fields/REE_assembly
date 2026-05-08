@@ -156,7 +156,8 @@ Open questions this surfaces:
 
 ## Related Claims (IDs)
 
-- MECH-010 (this claim)
+- MECH-010 (this claim — language emergence and bootstrapping; the basic-expression-catalog and play-as-language-substrate sections above refine its steps 1 and 3)
+- **MECH-308 (companion claim — language acquisition tracks play_mode maturation; registered 2026-05-08; the play-as-language-game framing above is its primary architectural anchor)**
 - INV-058 (play structurally necessary)
 - INV-059 (bilateral play-frame signal)
 - MECH-194 (synthetic signal substitution under play)

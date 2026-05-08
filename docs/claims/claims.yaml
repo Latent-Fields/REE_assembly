@@ -25614,3 +25614,243 @@
     fewer net residue-field writes. PASS = all three. PARTIAL PASS (C1 + C2 only) routes to
     SD-014 amendment fallback.
   location: evidence/literature/targeted_review_excitement_5th_valence_channel/
+
+- id: MECH-308
+  title: "Language acquisition tracks play_mode maturation: socially-grounded compositional language emerges as a specialised game type instantiated within play_mode (INV-058 / MECH-194 / ARC-049), not via a parallel language-acquisition substrate. The basic expression catalog (play pose, head tilt, laughter, mutual gaze, distress vocalisation, approach cue, vocal mimicry, pointing) acts as the bilateral frame-opening signal; conversational violations function as synthetic z_harm; utterance-as-goal acts as synthetic z_goal; proto-symbols accrete as conditional modifiers attached to basic-expression channels. Predicts that systems trained without play_mode-like episodes fail to acquire socially-grounded compositional language even when pattern-matching imitation succeeds."
+  claim_type: mechanism_hypothesis
+  subject: language.acquisition_tracks_play_mode
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-08
+  depends_on:
+    - MECH-010   # parent: language emergence and bootstrapping (this MECH refines step 1 + step 3)
+    - MECH-194   # play synthetic signal substitution -- the substrate this MECH runs on
+    - MECH-195   # strategy / calibration dissociation -- explains why language errors don't leak into real harm budgets
+    - INV-058    # play structurally necessary -- pre-condition
+    - INV-059    # bilateral play frame signal -- the basic expressions instantiate this
+    - ARC-049    # play frame tag -- authorisation mechanism for synthetic stakes
+    - ARC-009    # parent architectural commitment: language as coordination layer
+    - ARC-010    # social cognition / OTHER_SELFLIKE detection
+    - MECH-014   # minimal signalling channel (pre-language interface this MECH extends)
+  location: docs/architecture/language/emergence_and_bootstrapping.md
+  functional_restatement: >
+    Three coupled architectural commitments. (1) The bootstrap of step 1 (affective signalling)
+    is decomposed into a small inventory of stereotyped basic expressions, each carrying a
+    specific learning-signal role. (2) The bootstrap of step 3 (proto-symbols) is reframed:
+    proto-symbols are conditional modifiers attached to basic-expression channels, not arbitrary
+    signals competing for behavioural relevance from scratch. (3) The substrate that runs steps 1-5
+    of MECH-010 is play_mode itself: language is a specialised play-game instantiation in which
+    utterance-as-goal acts as synthetic z_goal and conversational violation acts as synthetic z_harm,
+    with the strategy / calibration dissociation of MECH-195 explaining why language-game errors
+    do not leak into real-world harm budgets. The composite mechanism predicts that language
+    acquisition onset and competence track play_mode maturation, and that language degradation
+    under stress / fatigue / aphasia tracks loss-of-play-mode-availability rather than selective
+    damage to a putative language module -- except where dorsal sequence->motor or ventral
+    meaning pathways are themselves lesioned (cf. arcuate_fasciculus.md).
+  acceptance_criteria: >
+    A1 (developmental): cohort study showing language milestones (first words, two-word stage,
+    productive grammar) correlate more strongly with play-behaviour milestones (joint attention,
+    pretend play onset, social-frame opening / closing competence) than with motor or sensory
+    milestones at matched ages.
+    A2 (artificial-system ablation): an artificial REE-style system without play_mode substrate
+    fails to acquire socially-grounded compositional language even when pattern-matching imitation
+    works, while a matched system with play_mode succeeds.
+    A3 (clinical / cross-species): conditions producing loss-of-play-availability (severe
+    depression with anhedonia; specific frontal lesions; certain stress states) produce language
+    degradation that recovers as play recovers, controlling for direct lesion of dorsal-sequence
+    or ventral-meaning pathways.
+    Provisional promotion: any 2 of A1 / A2 / A3.
+  evidence_quality_note: "Pre-promotion gate per 'biology before formal definitions' rule (memory feedback_biology_before_formal_definitions): commission a developmental psychology lit-pull on play-language tracking (Tomasello, Bates, joint-attention -> language onset cohort studies; pretend-play -> theory of mind -> compositional language) BEFORE attempting promotion to provisional. Aggressive registration as candidate is appropriate -- the claim is biology-anchored from the start (developmental tracking is observable in dogs, primates, human infants) and registering it now lines it up for systematic lit harvest and eventual experimental test under V4 substrate."
+  notes: "Companion claim to MECH-010 (which it refines) and MECH-194 (whose substrate it instantiates as a specialised game). Anchored in the 2026-05-08 expansion of emergence_and_bootstrapping.md (basic expression catalog + language-as-play-game framing). v3_pending=true because the play_mode substrate the claim depends on is V3-scoped but the language-game integration is V4-scoped. Three open questions are listed in the parent doc: innate vs scaffolded catalog acquisition, minimum sufficient catalog for compositional bootstrapping, predicted failure modes for systems trained without play_mode substrate."
+
+- id: SD-051
+  title: "Conditioned safety store: a non-trainable cue-specific predictive structure encoding 'this z_world prototype predicts that suffering will be omitted'. EMA-prototype encoder updated by MECH-302 relief-completion events; cosine-similarity expression head provides commitment-release gate when current z_world matches the learned safety prototype. Implements MECH-304 (cue-specific conditioned inhibition substrate): the encoded prototype is the dorsal-striatum / dlPFC encoding-pathway analog; the cosine-similarity gate is the IL->CeA expression-pathway analog."
+  claim_type: design_decision
+  subject: safety_prediction.cue_specific_conditioned_inhibition_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-08"
+  depends_on:
+    - MECH-304    # the claim this SD implements
+    - MECH-302    # provides the relief-completion event that gates the EMA prototype update (teaching signal)
+    - SD-011      # z_harm_a affective stream feeding MECH-302
+    - MECH-057a   # commitment-release pipeline reused on safety-cue match
+    - MECH-094    # simulation gate: update(sim_mode=True) is silent (waking-only)
+  functional_restatement: >
+    SD-051 implements the substrate for MECH-304 (cue-specific conditioned safety
+    prediction). A non-trainable ConditionedSafetyStore in
+    ree_core/safety/conditioned_safety_store.py maintains an EMA prototype of
+    z_world, updated only at MECH-302 relief-completion event ticks (encoding
+    pathway: dorsal striatum + dlPFC analog). On each subsequent waking step,
+    cosine similarity between current z_world and the prototype is sigmoided into
+    a safety_prediction scalar (expression pathway: IL->CeA analog). When the
+    scalar exceeds safety_store_threshold and beta_gate is elevated, the store
+    fires beta_gate.release() + an optional VALENCE_LIKING write (MECH-094 reuse).
+
+    Per-step decay toward zero (safety_store_decay_rate) provides forgetting
+    without reinforcement. update(sim_mode=True) returns 0.0 without advancing
+    the prototype, satisfying the MECH-094 waking-only gate.
+
+    V4-deferred: (1) approach attractor toward safety-signaling cues (requires
+    V4 multi-step planning + MECH-163 V3 completion gate); (2) contrastive
+    cue-specific learning (requires trainable encoder head + phased training).
+    See v3_v4_transition_boundary.md.
+
+    Falsifiable: an REE substrate with SD-051 enabled (and MECH-302 as its
+    teaching signal source) should show classical conditioned inhibition --
+    a learned safety cue suppresses avoidance even when presented concurrently
+    with a threat cue. SD-051-ablated agents with intact SD-052 should preserve
+    contextual safety but should abolish cue-specific safety inhibition of fear.
+  evidence_quality_note: >
+    Implemented 2026-05-04. Module: ree_core/safety/conditioned_safety_store.py
+    (ConditionedSafetyStore -- non-trainable, no nn.Module inheritance; pure
+    arithmetic). New package ree_core/safety/__init__.py. Config gate:
+    REEConfig.use_conditioned_safety_store (default False, bit-identical OFF).
+    Additional params: safety_store_ema_alpha (0.1), safety_store_decay_rate
+    (0.001), safety_store_min_norm (0.1), safety_store_threshold (0.5),
+    safety_store_commitment_weight (1.0). All defaults are no-op. Validation
+    experiment V3-EXQ-519 queued 2026-05-04 (4-arm substrate-readiness
+    diagnostic). v3_pending=true until V3-EXQ-519 PASS and the gated MECH-304
+    conditioned-inhibition discriminative pair PASS.
+  notes: >
+    Registered 2026-05-08 to close a registry gap: SD-051 was previously
+    referenced inside MECH-304's implementation_note and in ree-v3/CLAUDE.md
+    but had no top-level claims.yaml entry. Sister substrate to SD-052
+    (contextual passive pathway). The two-system count (cue-specific +
+    contextual) follows the Laing et al. 2022 J Neurosci 7T fMRI dissociation
+    of conditioned inhibitor vs standard safety signal pathways.
+  location: docs/architecture/sd_051_conditioned_safety_store.md
+
+- id: SD-052
+  title: "Contextual passive safety terrain: a non-trainable RBF-field accumulator over z_world that integrates 'suffering-absent' waking ticks into a slow contextual safety representation. Provides the substrate for MECH-303 (contextual passive safety pathway; vmPFC + hippocampus / vHipp-to-PL biological analog). When the field's local mean exceeds release threshold and beta_gate is elevated, drops the avoidance commitment to lower background vigilance. Parallel architecture to ARC-030 / MECH-117 benefit_terrain; uses a separate RBF field, no sharing with benefit_terrain or main residue values."
+  claim_type: design_decision
+  subject: safety_prediction.contextual_passive_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-08"
+  depends_on:
+    - MECH-303    # the claim this SD implements
+    - SD-011      # z_harm_a affective stream gating accumulation (harm-absent ticks only)
+    - ARC-007     # hippocampal path memory substrate for context-bound encoding
+    - ARC-030     # benefit_terrain RBF parallel architecture
+    - MECH-117    # benefit_terrain RBF mechanism reused
+    - MECH-094    # simulation gate: accumulate_safety(hypothesis_tag=True) is silent
+  functional_restatement: >
+    SD-052 implements the substrate for MECH-303 (context-bound passive safety
+    representation). ResidueField (ree_core/residue/field.py) is extended with
+    a separate safety_terrain_rbf_field plus accumulate_safety() and
+    evaluate_safety() methods (no new file; extends existing ResidueField).
+    On each waking step where z_harm_a.norm() falls below
+    contextual_safety_harm_threshold and hypothesis_tag is False, the field
+    accumulates a small (default 0.01) residue at the agent's current z_world.
+    During select_action(), when beta_gate is elevated, evaluate_safety(z_world)
+    yields the local mean; if it meets contextual_safety_release_threshold the
+    avoidance commitment is dropped (beta_gate.release(), _committed_step_idx=0,
+    _committed_anchor_keys=None).
+
+    The architecture is parallel to ARC-030 / MECH-117 (benefit_terrain) but
+    uses a separate RBF field -- no sharing with benefit_terrain or main
+    residue values. The slow / diffuse update rule (~0.01/step) contrasts with
+    SD-051 / MECH-304's fast event-driven prototype update; the two systems
+    dissociate as expected from Laing 2022 (contextual safety pathway ->
+    vmPFC + hippocampus; cue-specific pathway -> dorsal striatum + dlPFC).
+
+    Falsifiable: SD-052-enabled agents should reduce background vigilance
+    (avoidance commitment level) in repeatedly safe environments, while
+    SD-052-ablated agents with intact SD-051 should fail to do so even when
+    specific safety cues remain functional.
+  evidence_quality_note: >
+    Implemented 2026-05-04. Extends ResidueField in ree_core/residue/field.py
+    (no new file). Config gate: REEConfig.use_contextual_safety_terrain
+    (default False, bit-identical OFF); ResidueConfig.safety_terrain_enabled
+    auto-set when use_contextual_safety_terrain=True. Additional params:
+    contextual_safety_accum_weight (0.01), contextual_safety_harm_threshold
+    (0.05), contextual_safety_release_threshold (1.0). All defaults are no-op.
+    Validation experiment V3-EXQ-520 queued 2026-05-04 (4-arm substrate-readiness
+    diagnostic). v3_pending=true until V3-EXQ-520 PASS and the gated MECH-303
+    context-conditioned-safety extinction discriminative pair PASS.
+  notes: >
+    Registered 2026-05-08 to close a registry gap: SD-052 was previously
+    referenced inside MECH-303's implementation_note and in ree-v3/CLAUDE.md
+    but had no top-level claims.yaml entry. Sister substrate to SD-051
+    (cue-specific conditioned inhibition pathway). The two-system count
+    follows the Laing et al. 2022 J Neurosci 7T fMRI dissociation of
+    standard safety signal vs conditioned inhibitor pathways.
+  location: docs/architecture/mech_303_contextual_safety_terrain.md
+
+- id: SD-054
+  title: "Reef enrichment substrate: env-level behavioral-diversity substrate adding coral-reef safe zones (hazard-free patches with a static scent gradient) and food-attracted hazard drift to CausalGridWorldV2. Creates two competing behavioral attractors -- 'flee to reef' vs 'forage' -- to break monomodal route-exploitation in agents whose policy collapses to a single fixed trajectory, unblocking SD-029 C2 / C3 measurement. Pure environment substrate; no trainable parameters; no MECH-094 interaction. Renamed from SD-050 on 2026-05-08 to resolve a registry-ID collision with the suffering-derivative comparator."
+  claim_type: design_decision
+  subject: environment.reef_enrichment_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: "2026-05-08"
+  depends_on: []
+  functional_restatement: >
+    SD-054 extends CausalGridWorldV2 (ree_core/environment/causal_grid_world.py)
+    with two new mechanisms motivated by the observation that monomodal policies
+    prevent balanced agent-vs-environment event distributions and therefore
+    block C2 / C3 measurement for SD-029 (self-attribution comparator).
+
+    Reef safe zones: circular Manhattan-radius patches around corner-adjacent
+    centers where hazards cannot enter and no food / hazards spawn. The agent
+    can enter reef cells (attractor for safety-seeking). A static 5x5
+    normalized Manhattan-decay scent gradient is appended to world_state when
+    reef_enabled=True (world_obs_dim 250 -> 275; +25 reef_field_view dimensions).
+
+    Food-attracted hazards: during _drift_hazards(), with probability
+    hazard_food_attraction, each hazard biases its random walk step toward the
+    nearest food cell rather than sampling uniformly. Default 0.0 leaves the
+    legacy random walk bit-identical. Together with reef safety this creates
+    a structurally richer strategy space (foraging is actively more dangerous;
+    reef is a refugium).
+
+    Biological analog: coral-reef refugia as behavioral partitioning substrate
+    -- distinct safe-zone vs foraging microhabitats force context-dependent
+    strategy selection rather than single-template exploitation.
+
+    Falsifiable: agents trained under SD-054-enabled environments should
+    produce measurably more diverse behavior distributions (reef visits,
+    forage events, zone transitions per episode) than agents trained under
+    reef_enabled=False baseline -- the prerequisite for unblocking SD-029
+    C2 / C3 measurement.
+  evidence_quality_note: >
+    Implemented 2026-05-04 in CausalGridWorldV2. Config: reef_enabled (bool,
+    default False), n_reef_patches (int, default 3), reef_patch_radius (int,
+    default 2), hazard_food_attraction (float, default 0.0). Backward
+    compatible: reef_enabled=False and hazard_food_attraction=0.0 by default;
+    _reef_cells empty; world_obs_dim=250; existing experiments unaffected.
+    V3-EXQ-521 substrate-readiness diagnostic PASS 2026-05-04 (7/7 criteria:
+    ARM_0 obs_dim=250 reef_cells=0; ARM_1/ARM_2 obs_dim=275 reef_cells=33;
+    0 reef violations across 30 ep x 200 steps x 3 seeds; ARM_2 food_dist
+    2.057 vs baseline 3.790 -- 46% reduction; entropy not collapsed). V3-EXQ-522
+    monostrategy-breaking behavioral-diversity test PASS 2026-05-05.
+
+    No trainable parameters. Pure environment substrate; no MECH-094 interaction
+    (env observation stream, not replay content). v3_pending=false because the
+    substrate-readiness and behavioral-diversity experiments have already
+    delivered the substrate-level claim under test; the SD does not gate on
+    a downstream PASS. Whether SD-054 is sufficient to unblock SD-029
+    C2 / C3 measurement is a separate question tracked under SD-029 and
+    MECH-269 (V_s monostrategy is the current SD-029 blocker per memory).
+  notes: >
+    Originally documented as SD-050 in ree-v3/CLAUDE.md (entry dated 2026-05-04)
+    in error. Renamed to SD-054 on 2026-05-08 after the registry-ID collision
+    with the canonical SD-050 (Suffering-Derivative Comparator) was identified.
+    SD-053 was left informally reserved for a sustained-drive claim per
+    docs/architecture/sustained_drive_anticipatory_wanting.md. Seventeen
+    experiment scripts with SD-050 reef references were swept to SD-054 in
+    the same 2026-05-08 cleanup; ree-v3/CLAUDE.md anchor moved to SD-054.
+  location: ree-v3/CLAUDE.md#sd-054-reef-enrichment-substrate-2026-05-04

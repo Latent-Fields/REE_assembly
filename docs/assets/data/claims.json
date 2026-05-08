@@ -3065,6 +3065,12 @@
     "title": "Anticipatory positive affect (excitement) and anticipatory negative affect (dread) emerge as derived states from the conjunction of (a) signed VALENCE_SURPRISE, (b) MECH-216 schema readout coupled to z_beta arousal, (c) anticipatory VALENCE_LIKING write at predicted-imminent-positive-event locations, and (d) MECH-216 writes at predicted rather than current location. Four-gap substrate amendment to MECH-216 + MECH-205 + the residue valence buffer, NOT a new VALENCE channel.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-308": {
+    "status": "candidate",
+    "subject": "language.acquisition_tracks_play_mode",
+    "title": "Language acquisition tracks play_mode maturation: socially-grounded compositional language emerges as a specialised game type instantiated within play_mode (INV-058 / MECH-194 / ARC-049), not via a parallel language-acquisition substrate. The basic expression catalog (play pose, head tilt, laughter, mutual gaze, distress vocalisation, approach cue, vocal mimicry, pointing) acts as the bilateral frame-opening signal; conversational violations function as synthetic z_harm; utterance-as-goal acts as synthetic z_goal; proto-symbols accrete as conditional modifiers attached to basic-expression channels. Predicts that systems trained without play_mode-like episodes fail to acquire socially-grounded compositional language even when pattern-matching imitation succeeds.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3687,6 +3693,24 @@
     "status": "candidate",
     "subject": "relief.suffering_derivative_comparator",
     "title": "Suffering-derivative comparator: a non-trainable rolling-window descent detector on z_harm_a.norm() that fires a relief-completion event when a sustained drop from peak to trough exceeds a threshold. Provides the substrate for MECH-302 by detecting when a period of suffering has cleanly ended, reusing the same downstream tag-and-release pipeline as goal-achievement (MECH-057a beta-gate release, MECH-094 VALENCE_LIKING write). Architecturally adjacent to MECH-091 (urgency interrupt) but opposite polarity: MECH-091 fires on upward z_harm_a spike; SD-050 fires on downward sustained drop.",
+    "type": "design_decision"
+  },
+  "SD-051": {
+    "status": "candidate",
+    "subject": "safety_prediction.cue_specific_conditioned_inhibition_substrate",
+    "title": "Conditioned safety store: a non-trainable cue-specific predictive structure encoding 'this z_world prototype predicts that suffering will be omitted'. EMA-prototype encoder updated by MECH-302 relief-completion events; cosine-similarity expression head provides commitment-release gate when current z_world matches the learned safety prototype. Implements MECH-304 (cue-specific conditioned inhibition substrate): the encoded prototype is the dorsal-striatum / dlPFC encoding-pathway analog; the cosine-similarity gate is the IL->CeA expression-pathway analog.",
+    "type": "design_decision"
+  },
+  "SD-052": {
+    "status": "candidate",
+    "subject": "safety_prediction.contextual_passive_substrate",
+    "title": "Contextual passive safety terrain: a non-trainable RBF-field accumulator over z_world that integrates 'suffering-absent' waking ticks into a slow contextual safety representation. Provides the substrate for MECH-303 (contextual passive safety pathway; vmPFC + hippocampus / vHipp-to-PL biological analog). When the field's local mean exceeds release threshold and beta_gate is elevated, drops the avoidance commitment to lower background vigilance. Parallel architecture to ARC-030 / MECH-117 benefit_terrain; uses a separate RBF field, no sharing with benefit_terrain or main residue values.",
+    "type": "design_decision"
+  },
+  "SD-054": {
+    "status": "candidate",
+    "subject": "environment.reef_enrichment_substrate",
+    "title": "Reef enrichment substrate: env-level behavioral-diversity substrate adding coral-reef safe zones (hazard-free patches with a static scent gradient) and food-attracted hazard drift to CausalGridWorldV2. Creates two competing behavioral attractors -- 'flee to reef' vs 'forage' -- to break monomodal route-exploitation in agents whose policy collapses to a single fixed trajectory, unblocking SD-029 C2 / C3 measurement. Pure environment substrate; no trainable parameters; no MECH-094 interaction. Renamed from SD-050 on 2026-05-08 to resolve a registry-ID collision with the suffering-derivative comparator.",
     "type": "design_decision"
   }
 }
