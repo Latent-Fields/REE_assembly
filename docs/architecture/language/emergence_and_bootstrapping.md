@@ -148,6 +148,67 @@ Open questions this surfaces:
 
 ---
 
+## Cross-Species Naturalistic Observation: the Negation Primitive
+
+The minimum-sufficient-catalog question (open question 2 below) asked what additional
+basic-expression entries would be needed for compositional bootstrapping beyond the eight
+already enumerated. The strongest theoretical prediction was a *negation primitive* — without
+active negation, compositional generalisation collapses (you can mark "this" but not "not
+this," "X" but not "X is not Y").
+
+A naturalistic observation in a non-language-acquiring social vertebrate (Steve, a domestic
+dog) sharpens the prediction substantially. Steve displays three architecturally distinct
+negation primitives:
+
+1. **Directional / demonstrative negation** — pulls the lead the opposite way, *clearly enough
+   for signal but not trying to actually go that way*. The action is performed rather than
+   enacted: he produces the literal-direction-action precisely because he expects it to be read
+   as signal. Cognitively this requires modelling the partner's interpretation and trusting
+   them to read performance-not-literal.
+2. **Play-frame negation (comic offer-and-withdraw)** — offers a toy then withdraws it
+   demonstratively to mean "the negative is the intention." The negation is *only legible
+   because play_mode is open*. Outside the play frame, snatching back an offered thing reads as
+   defection or possessiveness; inside the frame, it reads as comedic negation precisely
+   because play_mode's synthetic-stakes authorisation lets the partner interpret the action as
+   performance.
+3. **Attentional negation (pointed gaze-aversion)** — when withholding a toy and the partner
+   seeks it, Steve plants his gaze pointedly elsewhere and holds his position. This is *very
+   different from ignoring*: it is an active not-looking that requires Steve to model that the
+   partner expects shared attention and to actively decline it. Structurally it is the inverse
+   of the joint-attention frame-opening primitive — refusal at the frame-management layer
+   rather than the content layer.
+
+**The architectural sharpening.** All three primitives are *demonstrative rather than literal*
+— they live in a meta-layer that requires the partner to interpret the action as performance.
+That meta-layer is precisely the play_mode authorisation structure (MECH-194 / ARC-049):
+actions whose literal consequences are bracketed and whose interpretation lives in the
+play-frame-adjacent meta-layer. The negation primitive is therefore not "head shake or
+turn-away as a token"; it is **any action that means its-own-opposite-as-signal under
+play-frame authorisation**.
+
+The cross-species evidence reinforces MECH-308's central claim. Negation in a vertebrate that
+does not acquire compositional language nonetheless recruits the play_mode substrate the
+language-game would later run on — exactly the pattern predicted if play_mode is the
+phylogenetically-prior substrate that hosts the bootstrap primitives. The same cognitive
+machinery (model partner's interpretation; produce action-as-signal; trust partner to read
+performance) is in place, awaiting the conditional-modifier layer (proto-symbols) that humans
+add on top.
+
+This also makes a falsifiable cross-species prediction testable in principle: vertebrates
+without a robust play_mode substrate (i.e. species whose play repertoire is narrow or absent)
+should fail to display demonstrative negation primitives, even if they display literal
+withdrawal or aggression. Conversely, vertebrates with rich play repertoires (corvids,
+cetaceans, canids, primates) should display the demonstrative-negation pattern that Steve
+shows.
+
+The pre-linguistic infant analogue: the head-shake at 9–12 months is famously *demonstrative*
+— performed as signal before negation has propositional content (Spitz 1957 and the
+developmental literature on the second of "the three organisers"). The same demonstrative
+character is what the catalog entry should specify; head-shake-as-token is a culturally-shaped
+instantiation of the deeper primitive.
+
+---
+
 ## Open Questions
 
 - Innate vs scaffolded acquisition of the basic expression catalog (above).
