@@ -25794,7 +25794,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: false
+  v3_pending: true
   claim_level: architectural
   registered_utc: "2026-05-08"
   depends_on: []
@@ -25835,16 +25835,30 @@
     V3-EXQ-521 substrate-readiness diagnostic PASS 2026-05-04 (7/7 criteria:
     ARM_0 obs_dim=250 reef_cells=0; ARM_1/ARM_2 obs_dim=275 reef_cells=33;
     0 reef violations across 30 ep x 200 steps x 3 seeds; ARM_2 food_dist
-    2.057 vs baseline 3.790 -- 46% reduction; entropy not collapsed). V3-EXQ-522
-    monostrategy-breaking behavioral-diversity test PASS 2026-05-05.
+    2.057 vs baseline 3.790 -- 46% reduction; entropy not collapsed).
+    V3-EXQ-522 substrate-ceiling demonstration PASS 2026-05-05 -- BUT under
+    a hand-coded reef-aware avoidance heuristic, NOT under trained REE policy.
 
     No trainable parameters. Pure environment substrate; no MECH-094 interaction
-    (env observation stream, not replay content). v3_pending=false because the
-    substrate-readiness and behavioral-diversity experiments have already
-    delivered the substrate-level claim under test; the SD does not gate on
-    a downstream PASS. Whether SD-054 is sufficient to unblock SD-029
-    C2 / C3 measurement is a separate question tracked under SD-029 and
-    MECH-269 (V_s monostrategy is the current SD-029 blocker per memory).
+    (env observation stream, not replay content).
+
+    v3_pending corrected to true 2026-05-08 after rereading the validation
+    evidence: the substrate-readiness claim is delivered, but the SD's
+    purpose-claim (the substrate unblocks SD-029 C2 / C3 measurement under
+    trained policy) has not been validated. All trained-agent SD-029 retests
+    on the SD-054 substrate -- V3-EXQ-433e, V3-EXQ-433f, V3-EXQ-523, 523a,
+    523b -- returned non_contributory for the same reason (insufficient
+    agent-caused trials; monomodal V_s monostrategy substrate-ceiling pattern).
+    The trained policy did not adopt the discriminative reef-vs-forage regime
+    EXQ-522's heuristic externalises. The gap between EXQ-522 (heuristic,
+    diverse) and EXQ-433e/f / 523-series (trained, monomodal) is registered
+    as MECH-309 (monomodal-collapse-as-equilibrium-without-rule-apprehender).
+    The proximate next-stage blocker is the rule-apprehension layer
+    (ARC-062 weak reading, V3 first pass; ARC-063 strong reading, V4-deferred),
+    with MECH-269 V_s monostrategy as a representational precondition. SD-054
+    will move to v3_pending=false when a rule-apprehension layer is in place
+    and a trained-agent SD-029 retest on this substrate produces the C2 / C3
+    contrastive event distribution.
   notes: >
     Originally documented as SD-050 in ree-v3/CLAUDE.md (entry dated 2026-05-04)
     in error. Renamed to SD-054 on 2026-05-08 after the registry-ID collision
@@ -25856,3 +25870,347 @@
     Dedicated design doc landed 2026-05-08 at
     docs/architecture/sd_054_reef_enrichment_substrate.md.
   location: docs/architecture/sd_054_reef_enrichment_substrate.md
+
+- id: MECH-309
+  title: "Monomodal policy collapse is the equilibrium of a parametric-policy agent without a rule-apprehension layer. Bayesian update and gradient descent revise weights over a hypothesis space they do not invent; without a non-Bayesian rule-creator that proposes discriminative policy modes ('near-hazard -> reef regime; else -> forage regime'), the trainer collapses to the smoothest single regime good-enough across the whole state space. Monostrategy is therefore not a bug of training but the predicted output of an architecture in which only updaters exist and no apprehender does. Falsifiable by the weak-reading rule-apprehension experiment (ARC-062): a gated-policy architecture trained on the same substrate should break the collapse where standard E3 does not."
+  claim_type: mechanism_hypothesis
+  subject: policy.monomodal_collapse_as_equilibrium_without_rule_apprehender
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-08"
+  depends_on:
+    - SD-054      # the substrate that demonstrates this -- substrate readiness PASS, trained-agent purpose validation FAIL
+    - SD-029      # the downstream measurement blocked by monomodal collapse (C2 / C3 require contrastive event distributions)
+    - MECH-256    # SD-029 successor mechanism that consumes the same enriched event stream
+    - MECH-269    # V_s monostrategy: representational precondition for any rule-apprehension layer
+    - ARC-062     # rule-apprehension architectural slot, weak reading -- the falsifying-condition for MECH-309
+    - ARC-063     # rule-apprehension architectural slot, strong reading -- the V4-deferred form
+  functional_restatement: >
+    Strict Bayesian inference does not invent hypotheses: the support of the
+    posterior is the support of the prior. Non-parametric Bayes (CRP, HDP)
+    can grow new components, but the component-generating process is itself
+    a non-Bayesian structured prior -- so the logical-necessity argument
+    survives that refinement. REE's actual trainer is empirical risk on a
+    parametric policy, which has the capacity to represent two modes
+    (mixture-of-experts, gated computation, etc.) but currently lacks the
+    inductive bias that would push gradient descent toward a discriminative
+    split. Without a structural pressure to split, gradient descent finds
+    the smoothest single regime that is good-enough across the whole state
+    space.
+
+    The substrate-ceiling vs trained-agent gap on SD-054 is the empirical
+    foundation. Under EXQ-522's hand-coded reef-aware avoidance heuristic
+    ("if hazard within 2 cells and reef available -> flee to reef; else ->
+    forage") the substrate carries diverse behaviour: ~50/50 reef/forage
+    occupancy, ~49 zone transitions per episode. Under trained REE policy,
+    every SD-029 retest on the same substrate (V3-EXQ-433e, 433f, 523,
+    523a, 523b) returned non_contributory for the same reason: insufficient
+    agent-caused trials; monomodal V_s monostrategy substrate-ceiling pattern.
+    The heuristic externalises an apprehension layer; the trained policy
+    has no internal equivalent.
+
+    MECH-309 reframes monomodal collapse from a training failure into the
+    predicted equilibrium output of an architecture whose only learners
+    are updaters. The "fix" is not more training, larger nets, or richer
+    substrate: it is a non-Bayesian rule-creator that proposes
+    discriminative policy modes for the updaters to refine. ARC-062 is
+    the V3 instantiation of this slot (weak reading: gated-policy
+    architecture with learned context discriminator). ARC-063 is the V4
+    deferred form (strong reading: distributed CandidateRule field with
+    tolerance-gated availability and structured evidence-trace records,
+    per the 2026-05-04 thought-intake on tolerance-gated rule
+    apprehension).
+
+    Clinical / cognitive corollary. The same logic explains why agents
+    (biological or artificial) in clinical-pathology states can verbally
+    describe alternative behaviours but fail to enact them: the
+    apprehension layer has no candidate rule available for the updaters
+    to weight, even when the verbal-report system can articulate one.
+    A rule may become psychologically real not when it is endorsed in
+    language but when it begins constraining which futures the system can
+    easily generate (cf. rollout-eligibility framing in
+    rule_apprehension_layer.md).
+
+    Falsifiable: a gated-policy architecture (ARC-062 weak-reading
+    instantiation: at least two policy heads with a learned context
+    discriminator, trained alongside the existing E3 on SD-054 substrate)
+    should break the EXQ-433e/f / 523-series monomodal pattern. Specific
+    pre-registered prediction: ARM_1 (gated heads, learned discriminator)
+    reef_visit_fraction in [0.3, 0.7] and zone_transitions_per_ep at
+    least 5x ARM_0 (single-head baseline) under the same training budget;
+    SD-029 C0 trials-sufficient gate PASSes in 3/4 seeds. Falsification:
+    if ARM_1 also produces monomodal behaviour matching ARM_0, MECH-309's
+    diagnosis is wrong (the missing capacity is something other than
+    rule-apprehension at the policy layer -- candidates: representational
+    discriminability via MECH-269 V_s landing first, or training-procedure
+    issues independent of architecture).
+  evidence_quality_note: >
+    Registered 2026-05-08 from the SD-054 substrate-purpose-validation
+    discussion. Empirical anchors: V3-EXQ-522 substrate-ceiling PASS under
+    heuristic policy (reef substrate carries ~50/50 reef/forage split when
+    a discriminative policy is externally injected); V3-EXQ-433e / 433f /
+    523 / 523a / 523b all non_contributory under trained policy on the
+    same substrate (monomodal V_s monostrategy substrate-ceiling pattern;
+    insufficient agent-caused trials for SD-029 C2 / C3 calibration).
+
+    Not yet experimentally tested as an architectural claim. The weak-
+    reading discriminative-pair experiment (ARM_0 single-head E3 vs ARM_1
+    gated-heads with learned context discriminator on SD-054 substrate)
+    is the proximate validation gate; proposal in
+    evidence/planning/experiment_proposals.v1.json (proposal_id pending).
+
+    Lit anchor (one): the 2026-05-04 thought-intake on tolerance-gated
+    rule apprehension (PNAS 10.1073/pnas.2508061123 "A simple threshold
+    captures the social learning of conventions") provides the
+    biology-grounded form of the rule-apprehension hypothesis.
+    Biology-before-formal-definitions lit-pull on the broader rule-
+    apprehension cluster (hippocampal rollout selection, basal ganglia
+    commitment, sleep-vs-waking refinement) is recommended before
+    promoting MECH-309 from candidate.
+  notes: >
+    Diagnostic claim, not a substrate or implementation claim. MECH-309
+    explains why SD-054 (and any substrate alone) is insufficient to
+    unblock SD-029 measurement under current REE training. The fix lives
+    at ARC-062 / ARC-063, not in further substrate enrichment.
+
+    Cross-references: SD-054 evidence_quality_note (the substrate side),
+    rule_apprehension_layer.md (architecture doc covering ARC-062 /
+    ARC-063 cluster).
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: ARC-062
+  title: "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063, V4-deferred). Architectural slot, not yet implemented."
+  claim_type: architectural_commitment
+  subject: policy.rule_apprehension_layer.weak_reading
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-08"
+  depends_on:
+    - MECH-309    # the diagnostic claim ARC-062 falsifies (or supports)
+    - SD-054      # the substrate ARC-062's first-pass experiment runs on
+    - MECH-269    # V_s monostrategy: representational precondition (regions must be discriminably represented before a context discriminator can route between policy heads)
+    - SD-029      # the downstream measurement gated by ARC-062's success
+  functional_restatement: >
+    ARC-062 is the V3 architectural slot for the rule-apprehension layer
+    that MECH-309 identifies as logically necessary. The weak-reading
+    instantiation is engineering-cheap: instead of registering a discrete
+    distributed CandidateRule field with tolerance gates and evidence
+    records (the strong reading; ARC-063), give the policy network a
+    structural inductive bias toward modular decomposition.
+
+    Concrete V3 first pass (proposed):
+      - Two policy heads sharing the existing E3 encoder features
+      - A small context discriminator (learned, ~16-32 hidden units)
+        that takes z_world / z_harm features and produces a soft gating
+        weight in [0, 1] over the two heads
+      - Both heads trained jointly via the existing E3 loss; no separate
+        objective for the discriminator (its gradient flows from whichever
+        head is selected; soft gating allows differentiability)
+      - Backward-compat config flag: REEConfig.use_gated_policy (default
+        False); when False, single-head behaviour is bit-identical to
+        current E3
+      - Initialisation: heads initialised with small random
+        differentiation so symmetry breaking is possible from step 0
+
+    Why this is a useful first test of MECH-309. The architecture provides
+    the structural pressure to split that single-head E3 lacks: when the
+    discriminator finds a discriminative cut in the input stream, gradient
+    descent has an incentive to specialise the two heads to the two sides
+    of that cut. If MECH-309's diagnosis is correct, this should be
+    sufficient to break monomodal collapse on SD-054 substrate; if it is
+    not (ARM_1 collapses identically to ARM_0), the missing capacity is
+    not at the policy layer and the diagnosis fails.
+
+    What the weak reading does NOT cover (defers to ARC-063 strong reading):
+      - Discrete `CandidateRule` objects with named status flags
+        (latent / rollout_eligible / strengthened / weakened / split / merged
+        / retired)
+      - Tolerance-Principle-style availability gates that depend on a
+        ratio of supporting examples to exceptions
+      - Structured per-action evidence trace records linking
+        active-rule -> rollout-generated -> action-selected -> outcome
+      - Hippocampal-rollout-eligibility shaping (rules biasing which
+        futures are generated, not just which heads gate)
+      - Sleep / replay-side rule refinement (split, merge, prune)
+      - Moral-residue attribution to the rule-field that biased rollout
+
+    These are the "biology-faithful" structural commitments. The weak
+    reading tests whether the simplest possible apprehension layer is
+    enough; the strong reading is V4-deferred precisely because if the
+    weak reading PASSes, we can defer the heavier machinery, and if it
+    FAILs, we know the heavy machinery is the next thing to try.
+  evidence_quality_note: >
+    Registered 2026-05-08 as the V3 architectural slot for the rule-
+    apprehension layer the MECH-309 / SD-054 substrate-purpose-validation
+    discussion identifies as logically necessary. Not yet implemented.
+    Implementation cost estimate: ~150-300 lines across ree_core/agent.py
+    or a new ree_core/policy/gated_policy.py module + REEConfig flag +
+    an experiment script. Validation: discriminative-pair experiment
+    (ARM_0 single-head E3 vs ARM_1 gated heads with learned context
+    discriminator, both on SD-054 reef + food_attraction substrate);
+    proposal in evidence/planning/experiment_proposals.v1.json.
+
+    No biology lit-pull yet on the policy-layer architecture specifically.
+    The thought-intake doc grounds the broader cluster
+    (rule_apprehension_layer.md). The weak reading is closer to standard
+    ML mixture-of-experts work than to neuroscience: explicit lit support
+    is moderate (Shazeer et al. sparsely-gated MoE; Ba et al. modular
+    networks). The ML support is sufficient to register and run the
+    falsifying-pair experiment without a deep biology lit-pull, but the
+    biology side becomes load-bearing for the strong reading (ARC-063).
+  notes: >
+    The split between ARC-062 (weak) and ARC-063 (strong) follows the
+    feedback_biology_before_formal_definitions principle in reverse: we
+    are NOT formalising a biology-grounded mechanism with light evidence;
+    we are testing the simplest engineering-cheap form of the architectural
+    commitment first, and only formalising the heavier biology-grounded
+    form (ARC-063) if the simple form fails or is insufficient at scale.
+    This matches the methodological note in MECH-309's functional_restatement.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: ARC-063
+  title: "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Implementation deferred to V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
+  claim_type: architectural_commitment
+  subject: policy.rule_apprehension_layer.strong_reading
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: "2026-05-08"
+  depends_on:
+    - MECH-309    # the diagnostic claim that motivates the rule-apprehension layer cluster
+    - ARC-062     # the V3 weak-reading first pass; ARC-063 is its biology-faithful elaboration or successor
+    - SD-029      # the downstream measurement; ARC-063 carries SD-029 the rest of the way if ARC-062 cannot
+    - SD-033a     # rule_state substrate (committed-rule side); ARC-063 sits upstream of SD-033a in the apprehension -> commitment pipeline
+    - SD-034      # closure operator for committed rule_states; complementary to ARC-063 on the release side
+    - MECH-269    # V_s monostrategy: representational precondition
+  functional_restatement: >
+    ARC-063 registers the V4 architectural slot for the strong-reading
+    form of the rule-apprehension layer. It formalises the structural
+    cluster proposed in the 2026-05-04 thought-intake on tolerance-gated
+    rule apprehension (rule_apprehension_layer.md), in which:
+
+      - Candidate regularities are tracked as named CandidateRule objects
+        with per-rule supporting / exception evidence counts, tolerance
+        scores, context tags, affective weights, salience weights, goal
+        relevance, approach / avoid weights, and status flags
+        (latent | rollout_eligible | action_tested | strengthened |
+        weakened | split | merged | retired)
+      - A Tolerance-Principle-style availability gate determines when a
+        candidate regularity becomes rollout-eligible (the threshold need
+        not be the final action-selection mechanism; it is a rule-access
+        gate)
+      - Hippocampal rollout generation is biased by active CandidateRule
+        objects: rules embed in the rollout landscape itself, becoming
+        "psychologically real" by shaping which futures are easy to
+        imagine rather than by being verbally endorsed
+      - Goal systems then weight rule-shaped rollouts on the existing
+        approach / avoid / reward / threat / attachment / status /
+        curiosity / energy / social / moral / pain dimensions
+      - Basal ganglia commitment (existing SD-033a / SD-034 cluster)
+        crystallises the weighted field into action; the apprehension
+        layer feeds it but is not the same system
+      - Per-action evidence trace records are stored, linking active
+        rules -> generated rollouts -> selected rollout -> suppressed
+        alternatives -> commitment -> outcome -> prediction error ->
+        harm / benefit -> moral residue
+      - Waking refinement and sleep refinement are both substantial:
+        waking weakens / strengthens / splits / merges rules and updates
+        rollout eligibility; sleep continues that work via replay-side
+        compression, schema renormalisation, exception-cluster detection,
+        and counterfactual recombination
+      - Moral residue attaches not only to outcomes but to the rule-
+        field that biased rollout, the goal weights that pushed
+        selection, and the suppressed-alternatives at the commitment
+        bottleneck
+
+    Falsifiable predictions distinguishing ARC-063 from ARC-062 (after
+    ARC-062 has been tested):
+      (a) ARC-062 succeeds on SD-054 / SD-029 but fails to scale to
+          environments with more than two competing strategies, OR fails
+          when the discriminative cut is itself a function of agent
+          history rather than current observation -- ARC-063 should
+          handle both because CandidateRule objects can carry context
+          tags that include history.
+      (b) Clinical / cognitive failure modes that require a rule-field
+          to attribute to (trauma schemas, paranoid rule fields,
+          depressive rollout-constraint, OCD over-generation,
+          attachment-mediated approach-avoid biasing) cannot be
+          implemented within ARC-062 alone -- they need ARC-063's
+          named CandidateRule structure for residue attribution.
+      (c) Sleep-vs-waking refinement asymmetry (waking can do
+          substantial rule-update; sleep does compression /
+          renormalisation / counterfactual recombination on top) needs
+          structured evidence trace records that ARC-062 does not
+          provide.
+
+    These three test classes are the V4 validation gates for ARC-063.
+    None of them is V3-tractable; all three are V4-bound.
+
+    Persistent-flag function. ARC-063 is registered now -- ahead of
+    implementation -- as the user-requested machine-grep-able commitment
+    that the strong-reading form of rule apprehension is expected to be
+    needed across the system. Cross-references from MECH-309, ARC-062,
+    SD-054, SD-029, SD-033a, SD-034 keep this flag visible on every
+    governance run. The implementation_phase=v4 setting prevents the V3-
+    Pending Gate from spuriously demoting it for lack of V3 evidence,
+    and surfaces it as a known V4 architectural commitment in the
+    promotion / demotion recommendations report.
+  evidence_quality_note: >
+    Registered 2026-05-08 as the persistent V4-deferred flag for the
+    strong-reading rule-apprehension cluster. Implementation cost
+    estimate: substantial -- this is a V4 architectural commitment
+    spanning policy, hippocampal rollout, evidence-trace memory, and
+    sleep-side processing; not a single-module change.
+
+    Lit base. The 2026-05-04 thought-intake (rule_apprehension_layer.md)
+    anchors on PNAS 10.1073/pnas.2508061123 (Tolerance Principle for
+    convention learning). A wider biology lit-pull is recommended
+    before any V4 implementation work begins, covering at minimum:
+    Tomasello / Bates on early rule acquisition; hippocampal-rollout
+    literature (Buzsaki, Pfeiffer & Foster, Carr et al. on preplay /
+    replay); basal-ganglia gating literature (Mink, Frank et al.);
+    waking-vs-sleep memory consolidation asymmetry literature; clinical
+    schema-formation literature (Beck on depressive schemas, Foa on
+    PTSD-schema, etc.). The biology-before-formal-definitions principle
+    (memory feedback file) applies here.
+
+    Sub-claims to register if / when ARC-063 is taken up for V4
+    implementation, drawn directly from the thought-intake doc:
+      MECH-310 -- tolerance-gated rule-availability mechanism
+      MECH-311 -- rules-as-rollout-selection-structures mechanism
+      MECH-312 -- rule-evidence-trace records mechanism
+      MECH-313 -- waking-vs-sleep rule-refinement asymmetry mechanism
+      INV-XXX -- action-requires-collapse invariant (already covered
+                 by INV-COMMITMENT-001 candidate in intake; needs V4 ID)
+      INV-XXX -- no-waking-rule-is-final invariant (INV-UNCERTAINTY-001
+                 candidate)
+
+    These are NOT registered as separate top-level claims now, to avoid
+    premature commitment. They are listed here so the cluster is
+    machine-grep-able (e.g., a future indexer query for "ARC-063
+    sub-claims to register" returns this list).
+  notes: >
+    Persistent flag function. ARC-063 is the user-requested mechanism
+    by which the strong reading of rule apprehension stays visible to
+    every future governance cycle and every memory walk. Three places
+    where it surfaces:
+      1. claims.yaml entry with implementation_phase=v4 -- the V3-
+         Pending Gate excludes it from current promotion logic but
+         surfaces it under "V4-deferred architectural commitments"
+         in promotion_demotion_recommendations.md.
+      2. Cross-reference network -- depends_on / depended_by relations
+         from MECH-309, ARC-062, SD-054, SD-029, SD-033a, SD-034 keep
+         it linked from the live experimental cluster.
+      3. rule_apprehension_layer.md design doc -- the architecture-
+         doc-level anchor that any future designer working on rule-
+         apprehension, sleep-vs-waking refinement, moral-residue
+         attribution, or schema-failure-mode pathology will surface.
+  location: docs/architecture/rule_apprehension_layer.md

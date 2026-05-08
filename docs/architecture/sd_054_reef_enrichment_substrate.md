@@ -165,27 +165,59 @@ substrate-readiness time (V3-EXQ-521).
 
 ---
 
-## Why this enables SD-029 measurement
+## Design hypothesis vs. observed outcome
 
-Without SD-054:
-- Single attractor (food). Optimal policy is a fixed corner-to-corner shuttle.
-- Hazards drift uniformly. Agent-initiated contacts dominate; environment-initiated contacts
-  are rare and stereotyped.
-- C2 / C3 require contrastive event distributions: "agent caused this harm" vs. "world caused
-  this harm". The substrate cannot produce enough variance in the environment-initiated
-  category for the comparator to fit.
+**Design hypothesis (what SD-054 was supposed to enable).** Without SD-054 the only attractor
+is food, and the optimal policy is a fixed corner-to-corner shuttle. With SD-054 the
+environment carries two anti-correlated attractors (reef safety, food); a policy that
+discriminates threat-context from safe-context can occupy both, producing a contrastive
+agent-vs-environment harm-event distribution -- the data SD-029 / MECH-256 need for C2 / C3
+calibration.
 
-With SD-054:
-- Two attractors with anti-correlated locations. Fixed routes cannot exploit both.
-- Hazard drift is biased toward food, so the agent-vs-environment causal landscape is
-  non-stationary along forage paths.
-- Behaviour partitions into reef-occupancy phases (low-harm, no food) and foraging phases
-  (food, rising harm density). Each phase produces a different agent-vs-environment ratio
-  in the harm event stream -- the contrast SD-029 needs.
+**What the substrate actually delivered.** Under a hand-coded reef-aware avoidance heuristic
+(EXQ-522 ARM_1: "if hazard within 2 cells and reef available -> flee to reef; else -> forage")
+the substrate produces ~50/50 reef/forage occupancy, ~49 zone transitions per episode, and a
+materially different position-entropy profile from the reef_disabled baseline. This is the
+substrate-ceiling demonstration: **given a discriminative policy**, SD-054 carries the
+intended behaviour into the data stream.
 
-This is why SD-054 is documented as a substrate prerequisite for SD-029, not as a solution
-to SD-029. SD-054 produces the data; SD-029 / MECH-256 / MECH-269 still need to do the
-attribution work on top of it.
+**What the substrate did not deliver.** Under trained REE policy (the same E3 + E1 + LatentStack
+substrate that EXQ-522's heuristic replaces), every SD-029 retest on SD-054 substrate has
+returned `non_contributory` for the same reason:
+
+| Run | Outcome | Direction | Diagnosis |
+|---|---|---|---|
+| EXQ-523 | n/a | non_contributory | Undertrained: r2=0.57 < 0.9 graduation gate |
+| EXQ-523a | INCONCLUSIVE_UNDERTRAINED | non_contributory | Same |
+| EXQ-523b (x2) | INCONCLUSIVE_UNDERTRAINED | non_contributory | Same |
+| EXQ-433e | FAIL | non_contributory | Insufficient agent-caused trials |
+| EXQ-433f | FAIL | non_contributory | C0 trials-sufficient gate FAILed in 3/4 seeds (agent_caused_trials: 15/7/20/3 vs target 20). Same monomodal V_s monostrategy substrate-ceiling pattern as 433/433d |
+
+The trained agent does not adopt a discriminative reef-vs-forage policy. It stays monomodal
+under gradient descent on a single-policy parameterisation, even with the reef substrate
+present. The behavioural-diversity ceiling that the heuristic in EXQ-522 reaches is not
+reached by the trained policy. The contrastive harm-event distribution SD-029 needs is
+therefore not produced under current REE training.
+
+**Diagnosis (registered as MECH-309).** The gap between EXQ-522 (heuristic, diverse) and
+EXQ-433e/f / 523-series (trained, monomodal) is the size of an absent rule-apprehension
+capacity at the policy layer. Bayesian / gradient-style updaters revise weights over a
+hypothesis space they do not invent; without a non-Bayesian rule-creator that proposes
+discriminative policy modes ("near-hazard -> reef regime; else -> forage regime"), the
+trainer collapses to the smoothest single policy that is good-enough across the whole
+state space. Monomodal collapse on this substrate is the equilibrium output of the
+present architecture, not a failure of training. EXQ-522's hand-coded heuristic externalises
+the missing apprehension layer; this is why it works where the trained agent does not.
+
+**What this means for SD-054.** The SD is necessary substrate for behavioural diversity --
+the heuristic-policy upper bound proves the environment can carry the split. It is not
+sufficient under current REE training. The proximate next-stage blocker is the
+rule-apprehension layer (registered as ARC-062 / ARC-063), with MECH-269 V_s monostrategy
+as a representational precondition. SD-054 substrate-readiness is delivered (V3-EXQ-521,
+V3-EXQ-522 PASS); SD-054's **purpose claim** -- that the substrate unblocks SD-029
+measurement under trained policy -- is not. The latter is recorded as v3_pending until
+the rule-apprehension layer (weak reading first; strong reading deferred to V4) is built
+and re-tested.
 
 ---
 
@@ -219,24 +251,60 @@ the two gradient signals are comparable in scale.
 - Agent reef-visits = 1987 across the diagnostic in ARM_1 (reef is reachable and visited
   under uniform exploration)
 
-### V3-EXQ-522 -- monostrategy-breaking behavioural diversity (PASS, 2026-05-05)
+### V3-EXQ-522 -- substrate-ceiling demonstration via heuristic policy (PASS, 2026-05-05)
 
-Confirmed that agents trained under `reef_enabled=True, hazard_food_attraction=0.7` produce
-materially more diverse behaviour distributions than the `reef_enabled=False` baseline:
-non-trivial reef-occupancy fraction, periodic reef <-> forage transitions, zone-transition
-counts in the tens per episode rather than ~0. ARM_1_reef_food was selected as the canonical
-config for downstream experiments (see V3-EXQ-524 fishtank showcase).
+**Important framing.** EXQ-522 used a hand-coded reef-aware avoidance heuristic
+([v3_exq_522_reef_monostrategy_break.py:65](../../ree-v3/experiments/v3_exq_522_reef_monostrategy_break.py))
+as the policy under test, not a trained REE agent. The heuristic is:
+```
+if hazard within FLEE_THRESHOLD cells AND reef cells available:
+    move toward nearest reef cell
+else:
+    move toward nearest food
+```
+Under this heuristic, ARM_1 (`reef_enabled=True, hazard_food_attraction=0.7`) produces
+~50/50 reef/forage occupancy, ~49 zone transitions per episode, and a materially different
+position-entropy profile from ARM_0 (`reef_enabled=False`). This demonstrates that **the
+substrate can carry diverse behaviour given a discriminative policy** -- it is the substrate
+ceiling. ARM_1_reef_food was selected as the canonical reef config for downstream experiments
+(see V3-EXQ-524 fishtank showcase).
+
+EXQ-522 is silent on whether trained REE agents reach this ceiling. They do not (see below).
+
+### Trained-agent retests on SD-054 substrate (FAIL / non_contributory)
+
+V3-EXQ-433e, V3-EXQ-433f, V3-EXQ-523, V3-EXQ-523a, V3-EXQ-523b: all trained-agent SD-029
+retests on the reef substrate (often combined with hazard_food_attraction>0) returned
+`non_contributory` for the same diagnostic reason -- monomodal V_s monostrategy substrate-
+ceiling pattern; insufficient agent-caused trials for C2 / C3 calibration. The substrate
+was present and validated; the trained policy did not exploit the structural opportunity
+the substrate offered.
+
+This is the empirical foundation for MECH-309 (monomodal-collapse-as-equilibrium-without-
+rule-apprehender). The substrate is necessary; the rule-apprehension layer (ARC-062 weak
+reading, ARC-063 strong reading) is the next-stage architectural commitment that needs to
+land before SD-054's purpose-claim can be re-tested.
 
 ---
 
 ## Related claims
 
-- **SD-054** -- this SD (env behavioural-diversity substrate)
-- **SD-029** -- self-attribution comparator (primary beneficiary; SD-054 unblocks C2 / C3
-  measurement, does not implement the comparator itself)
+- **SD-054** -- this SD (env behavioural-diversity substrate; substrate-readiness PASS,
+  purpose-claim v3_pending under trained policy)
+- **MECH-309** -- monomodal-collapse-as-equilibrium-without-rule-apprehender; the diagnosis
+  that explains the EXQ-433e/f and 523-series non_contributory pattern
+- **ARC-062** -- rule-apprehension architectural slot, weak reading (gated-policy
+  architecture; V3 first pass)
+- **ARC-063** -- rule-apprehension architectural slot, strong reading (distributed
+  CandidateRule field with tolerance-gated availability and evidence-trace records;
+  implementation_phase=v4 deferred flag)
+- **SD-029** -- self-attribution comparator (primary downstream beneficiary; SD-054 +
+  rule-apprehension layer together are the prerequisites for SD-029 C2 / C3 measurement,
+  not SD-054 alone)
 - **MECH-256** -- SD-029 successor mechanism; consumes the same enriched event stream
-- **MECH-269** -- regional verisimilitude V_s monostrategy diagnostic; the current
-  SD-029 retest blocker is V_s, with SD-054 already in place
+- **MECH-269** -- regional verisimilitude V_s monostrategy diagnostic; representational
+  precondition for ARC-062 / ARC-063 (you cannot apprehend a rule about a region you
+  cannot represent as discriminably different from another region)
 - **SD-023** -- environmental gradient texture (parallel substrate enrichment pattern;
   SD-054 reuses the static-field-with-5x5-view design from SD-023 landmarks)
 - **SD-049** -- multi-resource heterogeneity (parallel env enrichment; world_obs_dim stacks

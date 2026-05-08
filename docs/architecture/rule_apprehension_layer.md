@@ -1,3 +1,34 @@
+---
+nav_exclude: true
+---
+
+# Rule Apprehension Layer (architecture anchor)
+
+**Status:** registered architectural slot; weak reading (ARC-062) at implementation_phase=v3 candidate, strong reading (ARC-063) at implementation_phase=v4 candidate. Falsifiable claim: MECH-309 (monomodal collapse as equilibrium without rule-apprehender).
+
+**Origin:** this document was promoted from `docs/thoughts/2026-05-04_Waking_rule_apprehension_later_sleep_schema.md` to `docs/architecture/rule_apprehension_layer.md` on 2026-05-08 after the SD-054 substrate-purpose-validation discussion identified the rule-apprehension layer as the proximate next-stage architectural commitment that explains the EXQ-433e/f / 523-series non_contributory pattern. The body of the doc is preserved verbatim from the original intake; this preamble adds the cross-reference scaffolding.
+
+**Cross-references:**
+- MECH-309 (claims.yaml) -- the diagnostic claim ("monomodal collapse is the equilibrium of a parametric-policy agent without a rule-apprehension layer"). MECH-309 is falsifiable by the ARC-062 weak-reading experiment.
+- ARC-062 (claims.yaml) -- weak-reading architectural slot: gated-policy architecture with learned context discriminator. V3 first pass; engineering-cheap.
+- ARC-063 (claims.yaml) -- strong-reading architectural slot: distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, waking-vs-sleep refinement asymmetry. V4-deferred. Persistent flag for future governance cycles.
+- SD-054 (claims.yaml + sd_054_reef_enrichment_substrate.md) -- the substrate that exposes the gap between substrate-readiness and substrate-purpose-validation under trained policy.
+- SD-029, MECH-256, MECH-269 -- the downstream measurement and representational precondition cluster.
+- SD-033a (sd_033a_lateral_pfc_analog.md) -- the *committed* rule_state substrate; sits downstream of the apprehension layer on the apprehension -> commitment pipeline.
+- SD-034 (sd_034_governance_closure_operator.md) -- closure operator on the release side; complementary to ARC-063.
+
+**Sub-claim cluster to register if / when ARC-063 is taken up for V4 implementation** (listed in the ARC-063 evidence_quality_note for machine-grep-ability):
+- MECH-310 -- tolerance-gated rule-availability mechanism
+- MECH-311 -- rules-as-rollout-selection-structures mechanism
+- MECH-312 -- rule-evidence-trace records mechanism
+- MECH-313 -- waking-vs-sleep rule-refinement asymmetry mechanism
+- INV-XXX -- action-requires-collapse invariant
+- INV-XXX -- no-waking-rule-is-final invariant
+
+These are NOT registered as separate top-level claims now, to avoid premature commitment. The intake-doc-original "Proposed REE claims" section below preserves the original IDs (MECH-TOLERANCE-ACCESS-001 etc.); those names are the intake-doc internal labels and do not match REE's MECH-NNN registry. Treat the labels as design tokens, not registered IDs.
+
+---
+
 Thought Intake: Tolerance-Gated Rule Apprehension, Hippocampal Rollout Selection, and Basal Ganglia Commitment
 
 Intake title

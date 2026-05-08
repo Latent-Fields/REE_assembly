@@ -365,6 +365,18 @@
     "title": "Self-attribution is implemented via a family of forward-model comparators at motor, interoceptive, and propositional levels \u2014 each instantiating the same reafference-cancellation motif (forward model + comparator + authorship tag) at a distinct representational timescale and modality.",
     "type": "architectural_commitment"
   },
+  "ARC-062": {
+    "status": "candidate",
+    "subject": "policy.rule_apprehension_layer.weak_reading",
+    "title": "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063, V4-deferred). Architectural slot, not yet implemented.",
+    "type": "architectural_commitment"
+  },
+  "ARC-063": {
+    "status": "candidate",
+    "subject": "policy.rule_apprehension_layer.strong_reading",
+    "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Implementation deferred to V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -3069,6 +3081,12 @@
     "status": "candidate",
     "subject": "language.acquisition_tracks_play_mode",
     "title": "Language acquisition tracks play_mode maturation: socially-grounded compositional language emerges as a specialised game type instantiated within play_mode (INV-058 / MECH-194 / ARC-049), not via a parallel language-acquisition substrate. The basic expression catalog (play pose, head tilt, laughter, mutual gaze, distress vocalisation, approach cue, vocal mimicry, pointing) acts as the bilateral frame-opening signal; conversational violations function as synthetic z_harm; utterance-as-goal acts as synthetic z_goal; proto-symbols accrete as conditional modifiers attached to basic-expression channels. Predicts that systems trained without play_mode-like episodes fail to acquire socially-grounded compositional language even when pattern-matching imitation succeeds.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-309": {
+    "status": "candidate",
+    "subject": "policy.monomodal_collapse_as_equilibrium_without_rule_apprehender",
+    "title": "Monomodal policy collapse is the equilibrium of a parametric-policy agent without a rule-apprehension layer. Bayesian update and gradient descent revise weights over a hypothesis space they do not invent; without a non-Bayesian rule-creator that proposes discriminative policy modes ('near-hazard -> reef regime; else -> forage regime'), the trainer collapses to the smoothest single regime good-enough across the whole state space. Monostrategy is therefore not a bug of training but the predicted output of an architecture in which only updaters exist and no apprehender does. Falsifiable by the weak-reading rule-apprehension experiment (ARC-062): a gated-policy architecture trained on the same substrate should break the collapse where standard E3 does not.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {
