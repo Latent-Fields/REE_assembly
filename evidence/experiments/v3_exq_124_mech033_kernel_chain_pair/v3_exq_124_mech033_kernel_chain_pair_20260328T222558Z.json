@@ -25,7 +25,7 @@
     "MECH-033"
   ],
   "evidence_class": "experimental",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_124_mech033_kernel_chain_pair",
   "per_seed_on": [
     {
@@ -87,5 +87,9 @@
   "claim": "MECH-033",
   "verdict": "FAIL",
   "run_id": "v3_exq_124_mech033_kernel_chain_pair_20260328T222558Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_per_claim": {
+    "MECH-033": "superseded"
+  },
+  "evidence_direction_note": "[env_reset_mid_episode_corrupts_e2_warmup] Diagnosed 2026-05-08: warmup loop calls env.reset() inside the per-step inner loop (line 417: `_, obs_dict_next_tmp = env.reset()`) for each E2 world_forward training step after the first. The intent (per code comment) was to obtain a fresh next-state observation for E2 forward training, but env.reset() reinitialises the env state under the agent at every step. Result: E2 world_forward is trained on (z_world_t, a) -> z_world_post_reset, a meaningless transition. The KERNEL_CHAIN_ON arm uses E2 kernels for CEM in action-object space, so it operates on a corrupted forward model; the KERNEL_CHAIN_ABLATED arm uses random candidates and is unaffected. ABLATED >= ON therefore does not falsify MECH-033's load-bearing claim -- it shows that random candidates beat CEM-with-broken-E2-kernels, which is uninformative. Supersedes the original 'weakens MECH-033' direction. Awaiting StepHarness migration (which removes the env.reset bug structurally) + re-run as EXQ-124a."
 }

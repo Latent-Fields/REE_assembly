@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_078_sd005_split_vs_unified_harm_pair
 
-Generated: `2026-05-07T23:58:57.158037Z`
+Generated: `2026-05-08T00:41:22.959212Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

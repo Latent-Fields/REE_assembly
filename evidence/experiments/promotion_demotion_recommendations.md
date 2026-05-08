@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-07T23:58:57.158037Z`
+Generated: `2026-05-08T00:41:22.959212Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -75,7 +75,6 @@ Use this as the human-in-the-loop review queue.
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-036` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-037` | `open` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `Q-040` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `SD-015` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-021` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-023` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -448,7 +447,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-118
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.274, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.235, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL. First experimental entry. EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed -- stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation. Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat ~20.6-20.8 across R1/R2…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -542,7 +541,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-153
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.421, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.42, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1287,26 +1286,10 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: implementation_phase=v3, no V3 experimental runs yet. epistemic_category=substrate_conditional. Lit-pull 2026-05-02 raised lit_conf to 0.823 but no exp evidence yet. Standard V3-pending hold. No status change.
 
-### Q-040
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: epistemic_category=answer_state, exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=4; directions supports=4, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Evidence quality note: >
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.635, conflict_ratio=0.8, exp_entries=8, lit_entries=13; directions supports=12, weakens=8, mixed=1, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.634, conflict_ratio=0.8, exp_entries=8, lit_entries=13; directions supports=12, weakens=8, mixed=1, unknown=0, conflict_ratio=0.8
 - Evidence quality note: Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all 085x iterations despite contact-gated seeding). EXP-0091 will first test a handcrafted resource_indicator to confirm the diagnosis before implementing the full encoder. EXQ-085h through 085l (2026-03-30, 085l final, supersedes prior): ResourceEncoder tested across 5 iterations. 085l (proximity regression encoder): …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-08T00:11:14.907872+00:00",
+  "last_updated": "2026-05-08T00:43:24.862799+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-490f",
+    "queue_id": "V3-EXQ-445h",
     "backlog_id": "",
     "claim_id": "",
-    "title": "MECH-295 seeding-strengthening: bistable (Bug 1 fix)",
+    "title": "SD-032b dACC reef substrate (Bug 1+2 fix)",
     "description": "",
-    "script": "experiments/v3_exq_490f_mech295_seeding_strengthening.py",
-    "started_at": "2026-05-07T21:48:53.973301+00:00",
+    "script": "experiments/v3_exq_445h_sd032b_dacc_reef.py",
+    "started_at": "2026-05-08T00:29:51.735726+00:00",
     "progress": {
       "run_label": "starting...",
-      "runs_done": 5,
+      "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 20,
-      "episodes_total": 80,
-      "overall_pct": 525.0
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
     },
-    "seconds_elapsed": 8541,
-    "seconds_remaining": 0,
+    "seconds_elapsed": 813,
+    "seconds_remaining": 1040,
     "recent_lines": [
-      "[train] seed19_BASELINE ep 80/80 rv=0.0034 ep_reward=-0.1917",
-      "-> approach=0  freeze=20  pag_release=0  override_mean=0.563  dacc_bias_mean=0.0000  bridge_writes=0  bridge_cues=0  cue_bias_mean_max=0.0000  goal_norm_max=0.0000  vs_held_e1=195  vs_held_e2=0",
-      "verdict: FAIL",
-      "Seed 19 Arm RELAXED",
-      "[train] seed19_RELAXED ep 20/80 rv=0.0002 ep_reward=-0.5058"
+      "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
+      "Seed 42",
+      "Running OFF...",
+      "[seed=42 OFF] r2=n/a entropy=0.000 bias=0.00",
+      "Running ON_INDEPENDENT..."
     ],
     "ree_version": "v3"
   },
@@ -55,24 +55,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-490f",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-295 seeding-strengthening: bistable (Bug 1 fix)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-445h",
       "backlog_id": "",
       "claim_id": "",
       "title": "SD-032b dACC reef substrate (Bug 1+2 fix)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -7233,6 +7222,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 290.5
+    },
+    {
+      "queue_id": "V3-EXQ-490f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-295 seeding-strengthening: bistable (Bug 1 fix)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | verdict: FAIL | Outcome: FAIL",
+      "started_at": "2026-05-07T21:48:53.973301+00:00",
+      "completed_at": "2026-05-08T00:29:48.676769+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_490f_mech295_seeding_strengthening/v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 9654.6
     }
   ]
 }

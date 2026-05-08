@@ -43,5 +43,6 @@
   "evidence_direction_per_claim": {
     "MECH-095": "supports",
     "SD-005": "supports"
-  }
+  },
+  "evidence_direction_note": "[multi_sense_audit_2026_05_08_cleared] AST-flagged for multi-sense in inner loop. Re-examined 2026-05-08: the pattern is a deliberate probe loop (sense E_t -> env.step -> sense E_{t+1} -> env.step), giving exactly 1 sense() per env state and 2 env.step() per iteration. Substrates tick correctly per env transition. Not the EXQ-471 cohort bug. Probe metric is contact_dissociation / action_dissociation, which does not read residue or running_variance, so the missing update_residue call is also non-issue here. evidence_direction unchanged."
 }

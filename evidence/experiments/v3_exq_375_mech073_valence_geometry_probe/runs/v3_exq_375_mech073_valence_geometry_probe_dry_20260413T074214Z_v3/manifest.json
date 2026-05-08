@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[multi_sense_audit_2026_05_08_training_only_symmetric] AST-flagged for multi-sense in inner loop (training phase, lines 240 + 300). The second sense() at 300 is for compute_event_contrastive_loss which needs a differentiable forward pass. Substrate-tick rate during training is 2x the env-step rate. Eval phase (P2) is single-sense per state and is symmetric across VALENCE_GEOM vs VALENCE_ABLATED arms, so the C1/C2/C3 probe-AUROC comparison is structurally valid. Script correctly calls update_residue and update_z_goal. The 'supports MECH-073' direction is preserved with lower confidence: training-time substrate confound may have biased encoder learning. Re-run via StepHarness recommended to confirm the magnitude of GEOM > ABLATED."
 }

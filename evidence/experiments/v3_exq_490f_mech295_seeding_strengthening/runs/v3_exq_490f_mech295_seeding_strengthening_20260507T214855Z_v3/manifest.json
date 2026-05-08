@@ -1,0 +1,47 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_490f_mech295_seeding_strengthening",
+  "run_id": "v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-07T21:48:55Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-040"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "superseded",
+  "evidence_direction_per_claim": {
+    "Q-040": "superseded"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "[update_z_goal_typeerror_swallowed] Diagnosed 2026-05-07: experiment script called agent.update_z_goal(latent, benefit_exposure=..., drive_level=...) which raised TypeError every tick; bare except wrapper silently swallowed it. GoalState.update never called -> goal_state.is_active() always False -> z_goal stayed at 0 -> MECH-295 bridge precondition unmet. Confirmed by per-seed results: goal_active_ticks=0, goal_norm_max=0, bridge_n_write_fires_total=0, approach_commit_count=0 across all 6 seeds even though base_drive_mean=0.75 and override_mean=0.56 -- the override regulator and drive accumulator were both functioning. Same cohort bugs as EXQ-471/475/483/483a/483b/490/490b/490c/490e/524: 2x agent.sense() per warmup step, agent.update_residue() never called, dACC bias diagnostic reading wrong tensor. Awaiting StepHarness re-run as EXQ-490g."
+}

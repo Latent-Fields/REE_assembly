@@ -27,12 +27,16 @@
   "claim_ids": [
     "MECH-118"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_143_mech118_hopfield_familiarity_pair",
   "fatal_error_count": 0,
   "run_timestamp": "20260329T064420Z",
   "claim": "MECH-118",
   "verdict": "FAIL",
   "run_id": "v3_exq_143_mech118_hopfield_familiarity_pair_20260329T064420Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_per_claim": {
+    "MECH-118": "superseded"
+  },
+  "evidence_direction_note": "[multi_sense_audit_2026_05_08_eval_asymmetric] AST-flagged for multi-sense in inner loop. The eval loop calls sense() at line 519 (no_grad), then conditionally calls sense() again at line 551 to obtain a differentiable z_self for the hopfield gradient step. This re-sense fires only when hopfield_enabled (the ON arm). ON arm: 2x substrate ticks per env state; OFF arm: 1x. The two arms therefore ran under structurally different substrate dynamics (GABA decay rate, AIC EMA rate, V_s readouts, anchor-set hysteresis, broadcast_override EMA). The 'mixed MECH-118' direction is invalidated: any difference between arms could be the substrate-rate confound rather than the hopfield familiarity mechanism. Supersede; re-run via StepHarness."
 }

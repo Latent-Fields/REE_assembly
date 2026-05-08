@@ -30,5 +30,6 @@
   "claim": "MECH-095",
   "verdict": "PASS",
   "run_id": "v3_exq_047k_tpj_routing_larger_n_20260325T021558Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "[multi_sense_audit_2026_05_08_cleared] AST-flagged for multi-sense in inner loop. Re-examined 2026-05-08: the pattern is a deliberate probe loop (sense E_t -> env.step -> sense E_{t+1} -> env.step), giving exactly 1 sense() per env state and 2 env.step() per iteration. Substrates tick correctly per env transition. Not the EXQ-471 cohort bug. Probe metric is contact_dissociation / action_dissociation, which does not read residue or running_variance, so the missing update_residue call is also non-issue here. evidence_direction unchanged."
 }

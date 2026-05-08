@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_454a_arc016_adaptive_commitment_reef
 
-Generated: `2026-05-07T23:58:57.158037Z`
+Generated: `2026-05-08T00:41:22.959212Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_239_mech153_context_memory_sufficient_signal
 
-Generated: `2026-05-07T23:58:57.158037Z`
+Generated: `2026-05-08T00:41:22.959212Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

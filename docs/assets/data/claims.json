@@ -3305,6 +3305,12 @@
     "title": "Does REE require a unified meta-level threshold supervisor that adapts pass/fail and commit/release thresholds across substrates from system-wide instability metrics, or do the existing scattered adaptive loci (ARC-016 dynamic precision, SD-032c AIC interoceptive baseline EMA, SD-032d PCC stability scalar, SD-032e pACC drive bias) produce coherent meta-stability under chronic load without a supervisor?",
     "type": "open_question"
   },
+  "Q-042": {
+    "status": "open",
+    "subject": "control.precision_update_call_site",
+    "title": "Should the running-variance / dynamic-precision update fire at action-selection time (early, control-plane-coupled), at outcome-integration time (late, residue-coupled, current location), or at both? Equivalently: is the StepHarness contract that requires experiment loops to call agent.update_residue() each step sufficient, or does ARC-016 precision need a call site that is structurally guaranteed to fire whenever the agent is selecting actions?",
+    "type": "open_question"
+  },
   "SD-001": {
     "status": "resolved",
     "subject": "hippocampal_module.cem_trajectory_search_placement",

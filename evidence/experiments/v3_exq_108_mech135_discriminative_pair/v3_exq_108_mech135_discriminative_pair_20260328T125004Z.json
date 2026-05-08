@@ -46,5 +46,6 @@
   "seed_42_resource_e1coe": true,
   "run_timestamp": "20260328T125004Z",
   "run_id": "v3_exq_108_mech135_discriminative_pair_20260328T125004Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "[multi_sense_audit_2026_05_08_training_only_symmetric] AST-flagged for multi-sense in inner loop (training phase, lines 129 + 139 within the same for-loop body). Each env state gets sensed twice: once as latent_next in iter T, again as latent_prev in iter T+1. Substrate-tick rate during training is 2x the env-step rate. Eval phase (plan generation + real-env execution) is single-sense per state and is symmetric across FROZEN vs E1_COE arms, so the C1/C2 comparison structure is intact. The 'weakens MECH-135' direction is preserved with lower confidence: training-time substrate confound may have biased E1 learning. Re-run via StepHarness recommended to confirm direction."
 }

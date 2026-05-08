@@ -1693,6 +1693,7 @@
   source:
     - docs/architecture/social.md
 - id: MECH-033
+  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-124 evidence superseded 2026-05-08 due to warmup loop calls env.reset() inside the per-step inner loop, corrupting E2 world_forward training (E2 is taught z_world_t + a -> z_world_post_reset, a meaningless mapping); the KERNEL_CHAIN_ON arm uses the corrupted E2 for CEM kernels. Awaiting StepHarness re-run."
   title: "E2 forward-prediction kernels seed hippocampal rollouts."
   claim_type: mechanism_hypothesis
   subject: hippocampus.kernel_chaining_interface
@@ -3857,6 +3858,7 @@
   source:
     - docs/architecture/valenced_hippocampal_map.md
 - id: MECH-073
+  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-375 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (line 240 + line 300 for grad-enabled compute_event_contrastive_loss); training-time substrate-tick rate was 2x; eval (P2) was clean. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation."
   title: "Valence is intrinsic to hippocampal map geometry, not applied downstream — conflict with ARC-007, pending adjudication."
   claim_type: mechanism_hypothesis
   subject: hippocampal.intrinsic_map_valence
@@ -5038,6 +5040,7 @@
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
+  evidence_quality_note: "[multi_sense_audit_2026_05_08_cleared] EXQ-047i/j/k: audit re-examined the multi-sense flag on the 047 cluster and confirmed it is a deliberate probe pattern (sense E_t -> step -> sense E_{t+1} -> step), giving exactly 1 sense per env state. Not the EXQ-471 cohort bug. Direction and confidence unchanged."
   title: "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change."
   claim_type: mechanism_hypothesis
   subject: tpj.agency_detection_comparator
@@ -6082,6 +6085,7 @@
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
 - id: SD-005
+  evidence_quality_note: "[multi_sense_audit_2026_05_08_cleared] EXQ-047i/j/k: audit re-examined the multi-sense flag on the 047 cluster and confirmed it is a deliberate probe pattern (sense E_t -> step -> sense E_{t+1} -> step), giving exactly 1 sense per env state. Not the EXQ-471 cohort bug. Direction and confidence unchanged."
   title: "z_gamma split into z_self (E2 motor-sensory domain) and z_world (E3/Hippocampus domain)."
   claim_type: design_decision
   subject: latent_stack.self_world_latent_split
@@ -6919,6 +6923,7 @@
     Registered 2026-03-23.
 
 - id: MECH-118
+  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-143 evidence superseded 2026-05-08 due to the eval loop calls sense() twice per step in the hopfield-ON arm only (once no-grad, once grad-enabled for the familiarity-pull update); ON arm ticks substrates 2x per env state, OFF arm 1x; the two arms therefore ran under structurally different substrate dynamics. Awaiting StepHarness re-run."
   title: "Hopfield-style pattern familiarity of z_self states (stability against stored self-state memories) is a distinct self-maintenance signal from D_eff coherence."
   claim_type: mechanism_hypothesis
   subject: self_maintenance.hopfield_familiarity_signal
@@ -9008,6 +9013,7 @@
     Backward compatible. Validation: V3-EXQ-322 queued.
 
 - id: MECH-135
+  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-108 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (latent_prev / latent_next pattern at lines 129 and 139); substrate-tick rate during training was 2x the env-step rate, while eval was clean single-sense. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation."
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
   claim_type: mechanism_hypothesis
   subject: planning.e1_e2_parallel_rollout
@@ -16461,6 +16467,153 @@
     threshold update path. Default toward registering only the Q
     until evidence directs.
   location: docs/architecture/threshold_supervisor_survey.md
+
+- id: Q-042
+  title: "Should the running-variance / dynamic-precision update fire at action-selection time (early, control-plane-coupled), at outcome-integration time (late, residue-coupled, current location), or at both? Equivalently: is the StepHarness contract that requires experiment loops to call agent.update_residue() each step sufficient, or does ARC-016 precision need a call site that is structurally guaranteed to fire whenever the agent is selecting actions?"
+  claim_type: open_question
+  subject: control.precision_update_call_site
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: 2026-05-08
+  depends_on:
+    - ARC-016     # E3 dynamic precision (the signal whose update site is in question)
+    - MECH-090    # BG commit gate (downstream consumer; commits when rv < threshold)
+    - MECH-258    # precision-weighted PE in dACC (downstream consumer)
+    - SD-006      # asynchronous multi-rate loop execution (the timing decision lives here)
+    - INV-049     # sleep / offline recalibration (the slow-timescale arm)
+  notes: >
+    Posed in response to the 2026-05-07 EXQ-514d/514e/524/530/536
+    cluster, where five experiment scripts skipped agent.update_residue()
+    and the BG commit gate was silently dormant for entire runs:
+    _running_variance pinned at precision_init=0.5; current_precision =
+    1/(0.5+1e-6) = 1.999996 constant; EXQ-530 manifest's
+    "ARC-016 weakens" classification was not actually a test of ARC-016
+    because the precision signal was never a variable.
+
+    The same week, a separate cohort fix surfaced 11 scripts with a
+    related update_z_goal() bug (EXQ-471/475/483/483a/483b/490/490b/
+    490c/490e/490f/524). The shared lesson: when a control-plane state
+    update is delegated to experiment loops, the loops can silently
+    omit it without crashing, and a whole cohort of evidence becomes
+    contaminated. The 2026-05-07 fix landed a StepHarness (canonical
+    sense / update_z_goal / update_residue sequence, kwargs-only call
+    shape, contract test) -- this is Option A in code form.
+
+    Q-042 asks whether StepHarness alone is sufficient, OR whether the
+    precision update specifically should be hoisted upstream so it
+    cannot be silently dormant even under a non-StepHarness loop.
+
+    Two implementation options:
+
+    A) CONTRACT-ENFORCEMENT (current direction). Keep the rv update
+       inside agent.update_residue() / E3.post_action_update().
+       Make calling it mandatory via StepHarness; gate non-conforming
+       loops at the regression-suite level. Reading: precision is
+       computed on observed prediction errors, so it lives downstream
+       of action AND downstream of outcome arrival. The call-site
+       location encodes "rv tracks how surprising real outcomes were."
+       Cost: every new experiment script must use StepHarness or
+       reproduce its sequence.
+
+    B) EARLY UPDATE / HOIST. Move (or duplicate) the rv update into
+       agent.select_action() or a dedicated post_action() hook that
+       always fires regardless of downstream loop content. Reading:
+       precision is a control-plane state that should be live
+       whenever the agent is selecting actions. Cost: rv would need
+       a signal source available at action-selection time (e.g.
+       cached prediction error from the previous tick, or a separate
+       fast EMA over latent-prediction error that does not depend on
+       outcome arrival).
+
+    The dual-update variant (B with A retained) is the most
+    biologically plausible by default but pays a small cost in
+    interpretability (two updates per step, two timescales).
+
+  resolution: >
+    Two evidence streams to weigh:
+
+    (1) Biological faithfulness. Where in the action-outcome loop is
+        the analogous "precision of prediction error" actually computed
+        in cortex / basal ganglia? Anchor papers to pull: Yu & Dayan
+        2005 (LC-NE unexpected uncertainty), Aston-Jones & Cohen 2005
+        (phasic vs tonic LC), Behrens 2007 (ACC volatility tracking
+        timing), Sales 2019 (LC-NE volatility), Nassar 2012 (mixture
+        model of unexpected uncertainty). Question: do these signals
+        update at action time, at outcome time, or both? If LC-NE /
+        ACC volatility-tracking is a continuous control-plane state
+        rather than a per-trial-outcome update, biology favours B
+        (or B+A).
+
+    (2) AI/ML workhorse practice. In production-grade RL and world-
+        model architectures, where does the variance / advantage-
+        normalisation / latent-precision update fire? PPO running
+        statistics (per-step), Kalman / particle filters
+        (predict pre-action, update post-observation -- canonical
+        BOTH pattern), Dreamer V1/V2/V3 (latent-state precision
+        in posterior at observation time), MuZero (value-prefix
+        prediction at every node expansion), active-inference
+        precision-weighted PE (precision is a state variable,
+        updated on each tick, not just at outcome arrival).
+
+    Resolution: lit-pull both streams; if biology and ML workhorse
+    pattern agree on B (or B+A), resolve Q-042 by hoisting rv into
+    select_action() and adding a contract test that asserts
+    _running_variance changes during a representative episode even
+    when update_residue() is never called. If they disagree, REE
+    should follow biology since the architectural commitment is
+    biological faithfulness.
+
+    Default-licensed action even before lit-pull: the StepHarness
+    contract (Option A) is preserved as the canonical loop pattern
+    AND a regression test that fails if _running_variance does not
+    move during a 100-step random-action episode is added; this
+    catches future scripts that bypass StepHarness as well as the
+    original failure mode.
+  status_note: |
+    Lit-pull (2026-05-08, see docs/architecture/precision_update_callsite.md):
+    biology AND ML workhorse practice converge on Option A.
+
+    Biology: Behrens et al. 2007 (PMID 17676057) shows ACC volatility
+    encoding is confined to the outcome-monitoring period; Nassar et al.
+    2012 (PMID 22660479) shows pupil-linked LC change-point signal is
+    driven by the most-recent-outcome PE; Aston-Jones & Cohen 2005
+    (PMID 16022602) phasic LC follows decision-outcome evaluation with
+    tonic LC as a separate slow channel; Yu & Dayan 2005 (PMID 15944135)
+    NE-as-unexpected-uncertainty is event-driven on surprising outcomes
+    (ACh handles the action-time / context-stable arm); Friston active
+    inference includes explicit sensory attenuation at action time
+    (precision is suppressed pre-action, dominant update post-outcome).
+
+    ML workhorses: Kalman / particle filters (textbook predict-then-
+    update; covariance only changes at update step); PPO advantage
+    normalisation over the rollout buffer after collection; DreamerV3
+    posterior precision and percentile return normalisation in the
+    world-model training step (post-experience, not in the actor
+    forward pass); MuZero value statistics in the training step on
+    collected trajectories.
+
+    Hoisting rv into select_action() (Option B) would require updating
+    on either (i) a stale PE from the previous step (off-by-one) or
+    (ii) a forward-simulated PE (conflates expected with realized
+    variance, exactly the failure mode Yu & Dayan and the active-
+    inference literature warn against). The original failure mode
+    is a software-contract issue, not an architectural one.
+
+    Recommended resolution (NOT YET LANDED): keep Option A; add a
+    contract test that asserts e3._running_variance changes by more
+    than a tolerance during a representative random-action episode
+    even when an experiment loop bypasses StepHarness. If a future
+    use case needs a live precision read at action time without
+    outcome integration, expose a separate tonic/baseline precision
+    channel (Aston-Jones tonic-LC analog) rather than collapsing
+    both regimes into _running_variance.
+
+    Q-042 will move to candidate-resolved once the regression test
+    lands and at least one V3 experiment exercises both StepHarness
+    and the new test.
+  location: docs/architecture/precision_update_callsite.md
 
 # ---------------------------------------------------------------------------
 # EXT — External AI Failure Modes
