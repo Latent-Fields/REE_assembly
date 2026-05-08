@@ -30,7 +30,7 @@
   "claim_ids": [
     "MECH-111"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "experiment_type": "v3_exq_141b_mech111_novelty_drive_corrected_substrate",
   "fatal_error_count": 0,
   "run_timestamp": "20260508T153100Z",
@@ -61,5 +61,8 @@
     "MECH-111"
   ],
   "supersedes": "v3_exq_141_mech111_novelty_drive_pair",
-  "substrate_correction_note": "Retests MECH-111 on the post-2026-04-15 commit-chain-corrected substrate (BreathOscillator + _committed_step_idx + Q-042 running_variance fixes all landed). EXQ-141 (2026-03-29) FAIL/weakens reclassified as substrate-confounded by 2026-05-08 MECH-307 analysis. If 141b PASSes or partial-PASSes, MECH-111 remains live; if it FAILS again, the MECH-307 conjunction-fix substrate is the next architectural lever."
+  "substrate_correction_note": "Retests MECH-111 on the post-2026-04-15 commit-chain-corrected substrate (BreathOscillator + _committed_step_idx + Q-042 running_variance fixes all landed). EXQ-141 (2026-03-29) FAIL/weakens reclassified as substrate-confounded by 2026-05-08 MECH-307 analysis. If 141b PASSes or partial-PASSes, MECH-111 remains live; if it FAILS again, the MECH-307 conjunction-fix substrate is the next architectural lever.",
+  "evidence_direction_note": "Reclassified weakens -> non_contributory 2026-05-08T19:35Z (per /diagnose-errors + analysis session). Three measurement-validity bugs identified: (1) novelty_bonus_weight=0.10 produced 1e-5 effective E3 score perturbation, 4-6 OOM below E3 score scale (O(0.1-1.0)) so the substrate flag had no behavioural consequence; (2) nav_bias action override torch.randint(0, ACTION_DIM, (1, ACTION_DIM), dtype=torch.float32) produced a [1, ACTION_DIM] tensor of random ints argmax'd to action 0 on ties, making the 'random exploration' deterministic and biased identically across arms; (3) n_harm_min=0 across both arms in 10000 eval steps confirms broken exploration. Smoking-gun signature: bit-identical metrics across arms (mean_entropy_on=mean_entropy_abl=-9.99e-10; mean_cells_on=mean_cells_abl=52.33; harm_rate=0 both). Two truly-different conditions cannot produce bit-identical aggregates across 3 seeds * 50 eval episodes unless the differing config has zero behavioural effect. Successor V3-EXQ-141c (queued 2026-05-08T19:00Z) applies all three fixes plus a C0 action-divergence sanity check that explicitly fails-fast on bit-identical arm collapse. Do NOT weight 141b as evidence against MECH-111.",
+  "reclassified_at": "2026-05-08T19:35:24Z",
+  "superseded_by": "V3-EXQ-141c"
 }
