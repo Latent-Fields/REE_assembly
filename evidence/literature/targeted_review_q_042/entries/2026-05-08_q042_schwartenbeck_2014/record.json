@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_042",
+  "entry_id": "2026-05-08_q042_schwartenbeck_2014",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-042"
+  ],
+  "source": {
+    "title": "The Dopaminergic Midbrain Encodes the Expected Certainty about Desired Outcomes",
+    "authors": [
+      "Schwartenbeck P",
+      "FitzGerald THB",
+      "Mathys C",
+      "Dolan R",
+      "Friston K"
+    ],
+    "year": 2014,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhu159",
+    "pmid": "25056572",
+    "pmcid": "PMC4585497"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Active-inference framing with direct empirical test: dopaminergic midbrain BOLD tracks the precision of beliefs about optimal policies, where 'precision' is the active-inference quantity that most closely maps to REE's running-variance precision. The DA signal fires at the choice/commit moment, not at outcome arrival -- supporting Option B in Q-042. Discount because the active-inference mapping requires accepting a specific theoretical framework, the BOLD measure is indirect, and the 'limited offer' task domain is narrow.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's precision signal lives only post-outcome, the Schwartenbeck reading predicts that the analogue of dopaminergic midbrain activity -- the policy-precision broadcaster -- has no live signal at the moment of choice, equivalent to a brain commit gate that fires on stale precision."
+  ],
+  "tags": [
+    "q_042",
+    "active_inference",
+    "policy_precision",
+    "dopamine",
+    "midbrain",
+    "vta",
+    "substantia_nigra",
+    "limited_offer",
+    "decision_timing"
+  ],
+  "mapping": {
+    "source_claim_statement": "Under active inference, dopamine encodes the precision of beliefs about optimal policies -- the agent's confidence that a chosen policy will lead to desired outcomes. In a 'limited offer' fMRI task, midbrain BOLD (encompassing VTA and substantia nigra dopamine projection neurons) was accurately predicted by trial-by-trial active-inference estimates of policy precision. The dopaminergic signal is locked to the choice / commit moment.",
+    "ree_translation": "Schwartenbeck et al. provide the strongest active-inference-framed evidence for Option B in Q-042. The brain's policy-precision quantity -- which is the closest theoretical match to REE's running-variance precision -- is broadcast at the moment of policy commit, by midbrain dopamine projections, before outcome integration. If REE keeps the rv update at outcome time only (Option A), the analogous broadcast is unavailable at decision time. The active-inference framing also clarifies what the timing answer should mean for REE: precision is a confidence-in-the-current-policy quantity, and confidence is necessarily a pre-commit signal -- if it were post-commit, it would be backward-looking confidence, not the kind that gates the choice itself.",
+    "mapping_caveat": "The active-inference framing is a specific theoretical commitment; alternative models would attribute midbrain DA activity to reward prediction error rather than to precision. The 'limited offer' task is narrow; the strong claim that DA encodes policy precision rather than reward expectation is contested. BOLD is an indirect measure of dopamine. The translation to REE's running-variance update is at the architectural level (precision signal fires pre-commit) and should not be lifted as substrate.",
+    "source_context": "Cerebral Cortex, 2014. Healthy human adults; 'limited offer' fMRI task; active-inference Bayesian model fit to behaviour and BOLD."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high (Cerebral Cortex, well-cited, methodologically careful Friston-lab work). Mapping fidelity high (0.75) -- the active-inference policy-precision framing is the closest available theoretical match to REE's running-variance precision. Transfer risk moderate (0.32) -- the active-inference framing is one of several possible interpretations of the DA signal, and the substrate identification depends on accepting that frame."
+  }
+}

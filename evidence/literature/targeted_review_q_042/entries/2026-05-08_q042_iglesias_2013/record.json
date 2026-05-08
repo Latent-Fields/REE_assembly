@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_042",
+  "entry_id": "2026-05-08_q042_iglesias_2013",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-042"
+  ],
+  "source": {
+    "title": "Hierarchical prediction errors in midbrain and basal forebrain during sensory learning",
+    "authors": [
+      "Iglesias S",
+      "Mathys C",
+      "Brodersen KH",
+      "Kasper L",
+      "Piccirelli M",
+      "den Ouden HEM",
+      "Stephan KE"
+    ],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.09.009",
+    "pmid": "24139048"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct empirical evidence that hierarchical prediction errors are computed at OUTCOME time, in midbrain (low-level PEs about stimulus outcome, putatively dopamine) and basal forebrain (high-level PEs about stimulus probabilities, putatively acetylcholine). This is the most direct biological case for Option A in Q-042 -- the precision-related update fires on observed prediction errors, downstream of outcome arrival. Replicated across two cohorts. Discount because BOLD is an indirect neuromodulator proxy and the claim about DA-vs-ACh assignment is contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE moves the running-variance update fully upstream to action selection (pure Option B), the Iglesias reading predicts loss of the post-outcome arm that biology specifically relies on for hierarchical PE computation -- the agent would update precision based on anticipated rather than observed errors, breaking the calibration loop that update_residue's current location preserves."
+  ],
+  "tags": [
+    "q_042",
+    "hierarchical_prediction_error",
+    "midbrain",
+    "basal_forebrain",
+    "dopamine",
+    "acetylcholine",
+    "outcome_time",
+    "sensory_learning",
+    "computational_fmri"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a hierarchical Bayesian framework, prediction errors at different levels of the hierarchy may be encoded by different neuromodulators. In an audio-visual associative learning fMRI task, low-level PEs about visual stimulus outcome were reflected in midbrain BOLD (consistent with dopamine), and high-level PEs about stimulus probabilities (i.e., volatility-relevant) were reflected in basal forebrain BOLD (consistent with acetylcholine). Both signals were time-locked to outcome arrival -- the moment the cue reveals what actually happened. Replicated across two independent cohorts.",
+    "ree_translation": "Iglesias et al. provide the strongest available empirical case for keeping a precision update at outcome time -- Option A in Q-042. The brain computes hierarchical prediction errors AT outcome arrival and broadcasts them through dedicated neuromodulator systems. Crucially, the high-level (volatility-relevant) PE is the one most directly analogous to ARC-016's precision update -- it tracks how surprising the just-arrived outcome was relative to the agent's prior expectation, and it modulates downstream learning rate. The Iglesias reading argues that REE's current ARC-016 location (inside agent.update_residue(), downstream of outcome arrival) is biologically faithful to where the analogous neuromodulator signal actually fires. Combined with the action-selection-time evidence (Aston-Jones, Frank, Schwartenbeck), this paper is the dual-update reading: biology runs both arms, with the post-outcome arm specifically responsible for the precision update on observed errors.",
+    "mapping_caveat": "The neuromodulator assignments (DA = low-level PE, ACh = high-level PE) are based on indirect BOLD inference and partly on the Yu-Dayan framework; later pharmacological work has complicated the clean assignments. The audio-visual learning task is narrow -- the strong claim about hierarchical PE timing may not generalise to all decision domains. The paper does not address what fires AT action selection, only what fires AT outcome.",
+    "source_context": "Neuron, 2013. Healthy human adults; computational fMRI; hierarchical Bayesian model fit to behaviour and BOLD; replicated across two independent cohorts."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.27,
+    "notes": "High source quality (Neuron, replicated across two cohorts, methodologically careful Stephan-lab work). Mapping fidelity high (0.74) -- the high-level PE in basal forebrain is the closest available biological analogue of ARC-016's precision update. Transfer risk low-moderate (0.27) -- the post-outcome timing claim transfers cleanly even though the specific neuromodulator assignments are contested."
+  }
+}

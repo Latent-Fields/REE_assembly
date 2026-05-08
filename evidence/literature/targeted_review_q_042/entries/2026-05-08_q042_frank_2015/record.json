@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_042",
+  "entry_id": "2026-05-08_q042_frank_2015",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-042"
+  ],
+  "source": {
+    "title": "fMRI and EEG predictors of dynamic decision parameters during human reinforcement learning",
+    "authors": [
+      "Frank MJ",
+      "Gagne C",
+      "Nyhus E",
+      "Masters S",
+      "Wiecki TV",
+      "Cavanagh JF",
+      "Badre D"
+    ],
+    "year": 2015,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2036-14.2015",
+    "pmid": "25589744",
+    "pmcid": "PMC4293405"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Strongest available empirical evidence that the brain's decision threshold is updated trial-by-trial DURING action selection, not after outcome arrival. Combines drift-diffusion modelling of choice behaviour with simultaneous fMRI+EEG and finds STN BOLD + medial frontal theta jointly predict the trial-specific threshold value. The threshold update is therefore happening AT the action-selection moment, in a circuit (preSMA->STN) that is structurally upstream of outcome integration. This is the most direct biological argument for Option B in Q-042.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE keeps the precision update at outcome time (Option A), the Frank et al. prediction is that the BG commit gate cannot adapt within a single decision -- threshold modulation that biology computes pre-commit will be unavailable to REE until the next step's update_residue cycle, which is exactly the EXQ-514d/530/536 silent-dormancy failure mode."
+  ],
+  "tags": [
+    "q_042",
+    "drift_diffusion",
+    "subthalamic_nucleus",
+    "decision_threshold",
+    "preSMA",
+    "mediofrontal_theta",
+    "human_neuroimaging",
+    "action_selection_timing"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human reinforcement-learning choice behaviour is well described by a drift-diffusion model in which trial-by-trial reward values are sequentially sampled until the value signal crosses a decision threshold. The threshold is not fixed across trials. Simultaneous fMRI and EEG show that trial-by-trial threshold variation is predicted by STN BOLD and by mediofrontal theta (pre-SMA EEG). When choices differ subtly in reward values, pre-SMA communicates with STN to raise the threshold, allowing more time to choose the statistically more rewarding option. The threshold modulation occurs DURING action selection, not after outcome arrival.",
+    "ree_translation": "Frank et al. provide direct empirical evidence for Option B in Q-042. The decision threshold -- the closest biological analogue of REE's BG commit gate -- is updated within a single decision cycle, before outcome arrival, by a pre-SMA->STN communication channel. The trial-by-trial modulation is exactly the kind of signal REE's running-variance is supposed to carry. If the rv update fires only at outcome time (current ARC-016 location), the analogous within-decision modulation is unavailable to the BG commit gate. Specifically: the EXQ-514d/530/536 cluster bug -- where _running_variance pinned at precision_init=0.5 because update_residue was never called -- corresponds biologically to a brain whose pre-SMA never communicates with STN. The Frank reading suggests the structural fix is to make the rv update structurally upstream of action selection, not to enforce its post-outcome scheduling.",
+    "mapping_caveat": "The DDM threshold and REE's running-variance precision are related but not identical computational roles. DDM threshold sets how much evidence to accumulate before commit; ARC-016 precision modulates what counts as an actionable error signal. The mapping is at the architectural level (both are pre-commit gain controls) rather than as a literal one-to-one. Sample size is moderate; the simultaneous fMRI+EEG methodology is technically demanding and the specific BOLD-EEG-DDM coupling may not survive replication at the strength reported.",
+    "source_context": "Journal of Neuroscience, 2015. Healthy human adults; reinforcement-learning task with fMRI+EEG; hierarchical drift-diffusion modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (J Neurosci, well-cited, methodologically rigorous). Mapping fidelity high (0.78) -- the paper directly tests when the threshold updates fire and finds the timing answer Q-042 needs. Transfer risk low-moderate (0.25) -- the architectural pattern (within-decision threshold update via cortico-STN) transfers cleanly into REE's BG-gate analogue."
+  }
+}

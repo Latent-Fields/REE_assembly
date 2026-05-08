@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_041",
+  "entry_id": "2026-05-08_q041_silvetti_2013",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-041"
+  ],
+  "source": {
+    "title": "The influence of the noradrenergic system on optimal control of neural plasticity",
+    "authors": [
+      "Silvetti M",
+      "Seurinck R",
+      "van Bochove ME",
+      "Verguts T"
+    ],
+    "year": 2013,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2013.00160",
+    "pmid": "24312028",
+    "pmcid": "PMC3826478"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Combines empirical pupillometry (LC proxy) with a computational model of LC-ACC interaction in volatility estimation, directly addressing whether the brain has a *coupled* meta-supervisor (rather than a single locus or fully scattered loci). Behaviour and pupil data both track volatility in ways predicted by the LC-ACC model. Discount because the empirical sample is modest, the LC-as-pupil mapping is an indirect proxy, and the integrative computational claim runs ahead of the direct evidence base.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's threshold supervisor is implemented as a single locus rather than a two-region coupled system, the Silvetti prediction is failure to dissociate fast-trial LC-style and slow-context ACC-style volatility responses."
+  ],
+  "tags": [
+    "q_041",
+    "locus_coeruleus",
+    "anterior_cingulate_cortex",
+    "volatility",
+    "pupillometry",
+    "norepinephrine",
+    "computational_model",
+    "supervisor_coupling"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a reinforcement-learning task with periodic volatility shifts, pupil diameter (taken as an LC-noradrenergic activity proxy) tracks both environmental volatility and trial-by-trial learning rate. The authors propose a computational model in which ACC computes a volatility estimate, LC translates it into a noradrenergic gain signal that gates plasticity, and the two interact: ACC supplies the slow integrative signal, LC supplies the fast broadcast that delivers the gain change to downstream learners.",
+    "ree_translation": "Silvetti et al. extend the Behrens 2007 picture by proposing the supervisor is not a single locus but a coupled two-region system: one node (ACC) does the slow integration, another node (LC) does the fast broadcast. For Q-041, this is direct evidence in favour of a hybrid architecture in which (a) at least one node performs cross-substrate aggregation, AND (b) at least one separate node fans the resulting signal out to many downstream modules. REE's existing scattered loci (ARC-016, SD-032c/d/e) all play the *broadcast* role -- each is local to one substrate -- and none plays the integrative role. The Silvetti reading suggests REE is missing the integrator, not the broadcasters.",
+    "mapping_caveat": "Pupil-as-LC proxy is well established but indirect; LC was not directly recorded in this study. The computational LC-ACC coupling model is theoretical, fit to the behavioural and pupil data rather than independently validated. Sample size is modest. The model also conflates 'volatility' with 'unexpected uncertainty' in places where the Yu & Dayan framework would distinguish them.",
+    "source_context": "Frontiers in Behavioral Neuroscience, 2013. Pupillometry during a probabilistic reinforcement-learning task with volatility blocks; computational model fit to data."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Moderate source quality (Frontiers, mid-impact venue, modest sample). Mapping fidelity high (0.78) -- the paper directly addresses the architectural question Q-041 raises and proposes a specific hybrid answer. Transfer risk moderate (0.30) -- the LC-ACC coupling model transfers as an architectural slot but the specific substrate mapping into REE is non-trivial."
+  }
+}

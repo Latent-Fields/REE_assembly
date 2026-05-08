@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_041",
+  "entry_id": "2026-05-08_q041_tononi_cirelli_2014",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-041",
+    "INV-049"
+  ],
+  "source": {
+    "title": "Sleep and the price of plasticity: from synaptic and cellular homeostasis to memory consolidation and integration",
+    "authors": [
+      "Tononi G",
+      "Cirelli C"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.12.025",
+    "pmid": "24411729",
+    "pmcid": "PMC3921176"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct support for Q-041's second motivating gap (sleep-mediated writeback). The synaptic homeostasis hypothesis (SHY) frames sleep specifically as the timescale at which the brain renormalises gain across many circuits simultaneously -- the precise mechanism REE has captured the snapshot of (MECH-204) but not the writeback. SHY is supported by a substantial empirical literature in cortex, hippocampus, and at the molecular level. Discount slightly because SHY is a hypothesis under active debate (Frank 2012/2018 has alternative readings), and because biological synaptic-strength renormalisation does not map one-to-one onto REE's threshold-supervisor question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE never implements a sleep-bout-scale writeback, the Tononi-Cirelli prediction is that thresholds will drift incoherently across substrates under chronic load, with no global recalibration step to restore baseline. EXQ-538 (SD-049 Phase 2 with sleep loop on) is the closest in-substrate test."
+  ],
+  "tags": [
+    "q_041",
+    "inv_049",
+    "sleep",
+    "synaptic_homeostasis",
+    "shy",
+    "consolidation",
+    "writeback",
+    "global_recalibration"
+  ],
+  "mapping": {
+    "source_claim_statement": "Wakefulness drives net synaptic potentiation as the brain learns statistical regularities; this saturates learning and degrades signal-to-noise. Sleep -- especially slow-wave sleep -- spontaneously down-selects synapses, renormalising aggregate synaptic weight. The renormalisation is global (cortical and subcortical), activity-dependent, and serves multiple functions at once: energy, memory consolidation, integration, and restoration of plasticity headroom.",
+    "ree_translation": "SHY is a positive answer to Q-041's second motivating gap. The brain has a multi-substrate, global recalibration mechanism that fires at the sleep timescale and resets thresholds across many circuits simultaneously. REE has the precision-zero-point snapshot at REM entry (MECH-204) but lacks the writeback path that uses it to recalibrate waking thresholds. Tononi & Cirelli describe what that writeback path would look like: not a fine-grained per-substrate update, but a coarse global down-selection that restores plasticity headroom and resets a system-level baseline. This favours a hybrid architecture for REE: per-substrate adaptive loci (current ARC-016, SD-032c/d/e) + a sleep-bout-scale recalibration arm (currently absent) that touches all of them.",
+    "mapping_caveat": "SHY is a synaptic-strength hypothesis; REE's threshold supervisor is one architectural level higher. The mapping requires us to assume that biological synaptic renormalisation translates into computational threshold renormalisation, which is plausible but not direct. SHY is also under empirical debate -- alternative theories of sleep function (active replay, glymphatic clearance, metabolic restoration) are not necessarily exclusive of SHY but emphasise different mechanisms. Map the architectural slot, not the literal SHY substrate.",
+    "source_context": "Major review in Neuron synthesising over a decade of empirical work on sleep-dependent synaptic regulation. Authors are the originators of SHY."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Very high source quality (Neuron review by hypothesis originators, foundational reference). Mapping fidelity high-moderate -- SHY supports the architectural slot but the level of description is one step below REE's threshold supervisor. Low-moderate transfer risk -- the architectural pattern (global recalibration on sleep timescale) transfers cleanly even if the specific synaptic mechanism does not."
+  }
+}

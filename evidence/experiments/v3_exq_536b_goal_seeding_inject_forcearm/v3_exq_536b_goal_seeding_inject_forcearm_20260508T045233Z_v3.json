@@ -1,0 +1,113 @@
+{
+  "run_id": "v3_exq_536b_goal_seeding_inject_forcearm_20260508T045233Z_v3",
+  "experiment_type": "v3_exq_536b_goal_seeding_inject_forcearm",
+  "queue_id": "V3-EXQ-536b",
+  "claim_ids": [
+    "ARC-030",
+    "MECH-112",
+    "SD-018",
+    "SD-012",
+    "MECH-295"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Diagnostic z_goal_inject force-arm probe. Compares EXQ-536 ARM_1 with cfg.goal.z_goal_inject=0.0 vs cfg.goal.z_goal_inject=0.3 to isolate whether the EXQ-536 approach_commit_rate=0.0 collapse is upstream (z_goal never seeded) or downstream (commit chain inert even when z_goal is action-time active). Not weighted as evidence.",
+  "evidence_direction_per_claim": {
+    "ARC-030": "non_contributory",
+    "MECH-112": "non_contributory",
+    "SD-018": "non_contributory",
+    "SD-012": "non_contributory",
+    "MECH-295": "non_contributory"
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "DIAGNOSTIC_COMPLETE",
+  "interpretation": "downstream_chain_inert_even_with_active_z_goal",
+  "mean_arm0_approach_commit_rate": 0.0,
+  "mean_arm1_approach_commit_rate": 0.0,
+  "mean_inject_lift": 0.0,
+  "per_seed_lifts": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "seed_details": [
+    {
+      "seed": 0,
+      "arm0_no_inject": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "inject_observed_fraction": 0.0,
+        "benefit_eval_r2": 0.17992168284845222,
+        "resource_contacts_per_ep": 0.0,
+        "total_eval_steps": 345,
+        "approach_commit_steps": 0
+      },
+      "arm1_inject": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "inject_observed_fraction": 1.0,
+        "benefit_eval_r2": 0.17992168284845222,
+        "resource_contacts_per_ep": 0.0,
+        "total_eval_steps": 345,
+        "approach_commit_steps": 0
+      },
+      "inject_lift": 0.0
+    },
+    {
+      "seed": 1,
+      "arm0_no_inject": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "inject_observed_fraction": 0.0,
+        "benefit_eval_r2": 0.23750533310905586,
+        "resource_contacts_per_ep": 0.25,
+        "total_eval_steps": 8000,
+        "approach_commit_steps": 0
+      },
+      "arm1_inject": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "inject_observed_fraction": 1.0,
+        "benefit_eval_r2": 0.23750533310905586,
+        "resource_contacts_per_ep": 0.25,
+        "total_eval_steps": 8000,
+        "approach_commit_steps": 0
+      },
+      "inject_lift": 0.0
+    },
+    {
+      "seed": 2,
+      "arm0_no_inject": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "inject_observed_fraction": 0.0,
+        "benefit_eval_r2": 0.2513510140977918,
+        "resource_contacts_per_ep": 0.25,
+        "total_eval_steps": 8000,
+        "approach_commit_steps": 0
+      },
+      "arm1_inject": {
+        "approach_commit_rate": 0.0,
+        "z_goal_active_fraction": 0.0,
+        "inject_observed_fraction": 1.0,
+        "benefit_eval_r2": 0.2513510140977918,
+        "resource_contacts_per_ep": 0.25,
+        "total_eval_steps": 8000,
+        "approach_commit_steps": 0
+      },
+      "inject_lift": 0.0
+    }
+  ],
+  "config": {
+    "n_train_eps": 100,
+    "n_eval_eps": 40,
+    "n_steps": 200,
+    "n_seeds": 3,
+    "grid_size": 12,
+    "approach_thresh": 0.25,
+    "inject_norm": 0.3,
+    "dry_run": false
+  },
+  "elapsed_seconds": 928.5802180767059,
+  "generated_utc": "2026-05-08T04:52:33.595836Z"
+}

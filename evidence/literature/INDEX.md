@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-08T06:34:02.413478Z`
+Generated: `2026-05-08T08:54:57.680152Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -208,6 +208,8 @@ Generated: `2026-05-08T06:34:02.413478Z`
 | `targeted_review_q_038` | [`2026-05-02_q_038_vmpfc_confidence_gherman2018`](targeted_review_q_038/entries/2026-05-02_q_038_vmpfc_confidence_gherman2018/record.json) | 3 | [`summary`](targeted_review_q_038/entries/2026-05-02_q_038_vmpfc_confidence_gherman2018/summary.md) |
 | `targeted_review_q_039` | [`2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023`](targeted_review_q_039/entries/2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023/record.json) | 3 | [`summary`](targeted_review_q_039/entries/2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023/summary.md) |
 | `targeted_review_q_040` | [`2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021`](targeted_review_q_040/entries/2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021/record.json) | 4 | [`summary`](targeted_review_q_040/entries/2026-04-27_q_040_ofc_vhc_disconnect_reversal_thonnard2021/summary.md) |
+| `targeted_review_q_041` | [`2026-05-08_q041_yu_dayan_2005`](targeted_review_q_041/entries/2026-05-08_q041_yu_dayan_2005/record.json) | 5 | [`summary`](targeted_review_q_041/entries/2026-05-08_q041_yu_dayan_2005/summary.md) |
+| `targeted_review_q_042` | [`2026-05-08_q042_schwartenbeck_2014`](targeted_review_q_042/entries/2026-05-08_q042_schwartenbeck_2014/record.json) | 5 | [`summary`](targeted_review_q_042/entries/2026-05-08_q042_schwartenbeck_2014/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_relief_completion_mechanism` | [`2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/record.json) | 8 | [`summary`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/summary.md) |
 | `targeted_review_sd003_successor_comparator` | [`2026-04-18_sd003successor_tickle_cancellation_blakemore1998`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/record.json) | 4 | [`summary`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/summary.md) |

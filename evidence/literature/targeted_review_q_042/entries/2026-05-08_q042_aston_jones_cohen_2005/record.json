@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_042",
+  "entry_id": "2026-05-08_q042_aston_jones_cohen_2005",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-042"
+  ],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": [
+      "Aston-Jones G",
+      "Cohen JD"
+    ],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "pmid": "16022602"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Foundational review establishing that LC fires phasically at task-decision time -- not at outcome time. Phasic LC discharge is driven by the outcome of decision processes (the moment of commit), not the arrival of subsequent reward. This is the cleanest biological evidence for Option B in Q-042: the precision/gain channel fires AT action-selection time, before outcome arrival. Discount because the evidence is from primate single-unit work in the early 2000s, with the standard caveats about LC-as-NE proxy and task-specific generalisability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's running-variance update fires only after outcome arrival (current ARC-016 location), the Aston-Jones reading predicts that the BG commit gate's effective precision input will lag actual decision-time uncertainty by one tick -- exactly the dormancy mode the EXQ-514d/530/536 cluster exhibited."
+  ],
+  "tags": [
+    "q_042",
+    "locus_coeruleus",
+    "norepinephrine",
+    "phasic_tonic",
+    "decision_timing",
+    "exploration_exploitation",
+    "anterior_cingulate_cortex"
+  ],
+  "mapping": {
+    "source_claim_statement": "Locus coeruleus neurons exhibit two modes: phasic and tonic. Phasic LC activation is driven by the outcome of task-related decision processes -- it fires AT or immediately FOLLOWING the moment of commit -- and is proposed to facilitate ensuing behaviours and optimise task performance (exploitation). Tonic LC activity is associated with disengagement and exploration. The phasic/tonic balance is regulated by ACC and OFC inputs to LC.",
+    "ree_translation": "The Aston-Jones-Cohen reading is direct evidence for Option B in Q-042: the gain / precision update channel fires at action-selection time, not at outcome-integration time. Phasic LC discharge precedes (or coincides with) the action; the noradrenergic broadcast that modulates downstream gain is therefore live AT decision time. REE's current ARC-016 location (downstream of outcome arrival, inside agent.update_residue()) is the structurally opposite choice. The Aston-Jones picture would prefer hoisting the rv update to action selection so that precision is computed and broadcast before commitment is finalised. However, the post-decision phasic firing also carries information about the just-completed decision, so the biological pattern is closer to a dual-update (early signal at commit + late update at outcome) than to a pure Option B.",
+    "mapping_caveat": "LC-as-NE is well-established but the paper is a review synthesising primate single-unit data, not a definitive causal claim about timing in human cortex. The 'phasic LC fires at decision time' claim collapses several distinct sub-events (cue, decision, reward) that more recent recording studies separate. The translation to REE's running-variance update is by analogy to the gain-control function of NE; it is not a literal substrate map.",
+    "source_context": "Annual Review of Neuroscience, 2005. Synthesis of primate single-unit recording, neurophysiology, and computational modelling on LC-NE."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality (Annual Review, foundational, ~3500 citations). Mapping fidelity high-moderate -- the timing claim transfers cleanly but the substrate analogy (LC gain = ARC-016 precision) is loose. Transfer risk moderate -- the action-selection-time gain hypothesis is well-replicated but the specific neuromodulator may not map onto REE's threshold supervisor."
+  }
+}

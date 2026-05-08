@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_041",
+  "entry_id": "2026-05-08_q041_behrens_2007",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-041"
+  ],
+  "source": {
+    "title": "Learning the value of information in an uncertain world",
+    "authors": [
+      "Behrens TEJ",
+      "Woolrich MW",
+      "Walton ME",
+      "Rushworth MFS"
+    ],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1954",
+    "pmid": "17676057"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct empirical and computational evidence that anterior cingulate cortex computes a system-level volatility estimate that modulates learning rate. The single-region locus is exactly what Q-041 calls a meta-level threshold supervisor; cross-subject variation in ACC signal predicts behavioural learning-rate variation, which is the strongest possible mapping. Some discount because the task probes one decision domain (binary reward/no-reward), not the cross-substrate coordination Q-041 specifically targets.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE produces coherent meta-stability without a unified locus, the Behrens result implies REE is missing a candidate biological mechanism that the brain does have."
+  ],
+  "tags": [
+    "q_041",
+    "volatility",
+    "anterior_cingulate_cortex",
+    "learning_rate",
+    "bayesian_observer",
+    "fmri",
+    "supervisor_locus"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human subjects estimate environmental volatility in a way that approaches the optimal Bayesian observer. The volatility estimate modulates trial-by-trial learning rate. fMRI BOLD in anterior cingulate cortex tracks this estimate; cross-subject variation in ACC signal predicts cross-subject variation in learning rate.",
+    "ree_translation": "ACC behaves as the kind of meta-level threshold supervisor Q-041 describes -- a single locus that aggregates outcome statistics across time, computes a system-level uncertainty quantity, and exports it to downstream gain controls. This is concrete evidence in favour of the unified-supervisor reading of Q-041 (one node is doing the cross-aggregation work) rather than the scattered-loci reading. The closest REE analogue currently is ARC-016's per-step EMA, but that runs at a single timescale (~10 steps), is local to E3, and does not aggregate across SD-032c/d/e or MECH-258. Behrens specifically shows that the brain uses a separate, slower, integrative signal whose timescale is set by the volatility regime itself.",
+    "mapping_caveat": "ACC volatility tracking has been observed in a single decision domain (probabilistic reward learning). The paper does not establish that the same ACC signal coordinates thresholds in motor commit, sleep recalibration, or interoceptive setpoint drift -- those are the three specific gaps Q-041 raises. The 'supervisor' reading is therefore an extrapolation beyond what the paper directly measures.",
+    "source_context": "Healthy human adults; probabilistic reward-learning fMRI task with periodic volatility shifts; 3T BOLD; Bayesian model comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Nature Neuroscience, replicated across 1000+ citations of follow-on volatility-tracking work). Mapping fidelity moderate because the paper isolates volatility tracking but does not test the cross-substrate aggregation Q-041 targets. Transfer risk moderate -- the human cortex has structures REE does not yet model at this granularity."
+  }
+}

@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-08T04:52:34.017807+00:00",
+  "last_updated": "2026-05-08T08:57:55.653017+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-483b",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-037 broadcast override 4-arm: bistable (Bug 1 fix)",
+    "description": "",
+    "script": "experiments/v3_exq_483b_sd037_broadcast_override_4arm.py",
+    "started_at": "2026-05-08T04:52:38.632981+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 80,
+      "episodes_total": 200,
+      "overall_pct": 40.0
+    },
+    "seconds_elapsed": 14717,
+    "seconds_remaining": 22075,
+    "recent_lines": [
+      "[EXQ-483a ON_OFF s2] -- Phase 0: warmup",
+      "[warmup] ep 20/200  rv=0.0006  ep_reward=-0.1056",
+      "[warmup] ep 40/200  rv=0.0002  ep_reward=-0.4436",
+      "[warmup] ep 60/200  rv=0.0013  ep_reward=-0.1008",
+      "[warmup] ep 80/200  rv=0.0025  ep_reward=-0.0730"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-483b",
@@ -13,7 +39,7 @@
       "title": "SD-037 broadcast override 4-arm: bistable (Bug 1 fix)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "claimed",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },

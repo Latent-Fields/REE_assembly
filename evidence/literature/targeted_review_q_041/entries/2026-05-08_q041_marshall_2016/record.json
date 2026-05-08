@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_041",
+  "entry_id": "2026-05-08_q041_marshall_2016",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-041"
+  ],
+  "source": {
+    "title": "Pharmacological Fingerprints of Contextual Uncertainty",
+    "authors": [
+      "Marshall L",
+      "Mathys C",
+      "Ruge D",
+      "de Berker AO",
+      "Dayan P",
+      "Stephan KE",
+      "Bestmann S"
+    ],
+    "year": 2016,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.1002575",
+    "pmid": "27846219",
+    "pmcid": "PMC5113004"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct empirical pharmacological dissection of how three neuromodulator systems (NE, ACh, DA) contribute to uncertainty computations under a unified Bayesian framework. The evidence weakens the strong Yu-Dayan reading (clean ACh/NE division) and supports a more entangled multi-channel architecture -- which is informative for Q-041 even if mixed in direction. Strong methods (128 humans, hierarchical Bayesian model, double-blind pharmacology). Discount for the indirect mapping from neuromodulator dynamics to REE's threshold-supervisor question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE attempts a clean two-channel uncertainty supervisor along Yu-Dayan lines (ACh-style + NE-style), Marshall predicts behavioural failure modes where unexpected and expected uncertainty become coupled in ways the clean architecture cannot capture."
+  ],
+  "tags": [
+    "q_041",
+    "uncertainty",
+    "pharmacology",
+    "norepinephrine",
+    "acetylcholine",
+    "dopamine",
+    "hierarchical_bayesian",
+    "human_behavioural"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 128 healthy humans performing a probabilistic serial reaction time task, double-blind pharmacological blockade of NE, ACh, or DA receptors selectively perturbed different uncertainty quantities computed by a hierarchical Bayesian model. NE primarily affected learning of uncertainty arising from unexpected environmental changes. ACh primarily affected the attribution of uncertainty between within-context noise and contextual switches. DA primarily affected the use of uncertainty representations for fast adaptive responses, not the uncertainty computation itself.",
+    "ree_translation": "Marshall et al. give the most rigorous available empirical answer to Q-041's architectural question. The brain does not have a single supervisor. It has at least three pharmacologically dissociable channels, each contributing a different sub-quantity to the broader uncertainty computation. NE handles regime-shift detection; ACh handles attribution between noise and context; DA handles policy-level use of uncertainty. The architecture is specifically multi-channel -- not single-supervisor, not scattered-loci, but a small number of system-level channels that together implement what looks externally like meta-stability. For REE: the existing four adaptive loci (ARC-016, SD-032c/d/e) all live closest to the DA channel (using uncertainty for fast response selection). Both the NE channel (regime-shift detection) and the ACh channel (noise vs context attribution) are missing as architectural slots in REE.",
+    "mapping_caveat": "Receptor blockade is not equivalent to lesioning the channel; partial pharmacological effects can be misleading. The hierarchical Bayesian model used to define 'expected' and 'unexpected' uncertainty is one of several possible parameterisations and may favour finding the channels it asks about. The mapping from neuromodulator pharmacology to REE substrate is necessarily indirect.",
+    "source_context": "PLoS Biology, 2016. 128 healthy human volunteers, double-blind double-dummy pharmacological design, hierarchical Bayesian learning model fit to behavioural data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (PLoS Biology, large sample, rigorous double-blind pharmacology). Mapping fidelity high-moderate -- directly addresses the multi-channel architectural question. Transfer risk moderate -- pharmacology to REE substrate is one architectural step removed."
+  }
+}

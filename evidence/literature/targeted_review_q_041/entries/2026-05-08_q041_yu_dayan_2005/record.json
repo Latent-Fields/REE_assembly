@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_041",
+  "entry_id": "2026-05-08_q041_yu_dayan_2005",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-041"
+  ],
+  "source": {
+    "title": "Uncertainty, neuromodulation, and attention",
+    "authors": [
+      "Yu AJ",
+      "Dayan P"
+    ],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "pmid": "15944135"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "The most cited theoretical framework on the question Q-041 actually asks: does the brain coordinate uncertainty across substrates with a single supervisor or with parallel neuromodulator channels? Yu & Dayan argue for two distinct uncertainty channels -- ACh = expected uncertainty, NE = unexpected uncertainty -- which is structurally an answer that REE can implement either as parallel adaptive loci OR as a unified supervisor whose output factors into channels. Mixed direction because the paper does not pick a side on the architectural question; it shows the channels exist but is silent on whether a higher-level coordinator gates them.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses ACh-style and NE-style uncertainty into a single signal, Yu & Dayan predicts identifiable behavioural failure modes (over-learning during stable contexts, under-learning at context switches)."
+  ],
+  "tags": [
+    "q_041",
+    "uncertainty",
+    "neuromodulation",
+    "acetylcholine",
+    "norepinephrine",
+    "expected_uncertainty",
+    "unexpected_uncertainty",
+    "computational_theory"
+  ],
+  "mapping": {
+    "source_claim_statement": "Bayesian-optimal inference under unreliable observations and changing contexts requires representing two kinds of uncertainty: 'expected uncertainty' (the known unreliability of cues within a fixed context) and 'unexpected uncertainty' (the probability that the context itself has switched). Acetylcholine signals expected uncertainty; norepinephrine signals unexpected uncertainty. The two interact part-antagonistically and part-synergistically to gate learning, attention, and inference.",
+    "ree_translation": "Yu & Dayan provide a biologically grounded answer to Q-041's architectural question and the answer is, importantly, hybrid. The brain does NOT have a single supervisor in the strong sense -- there are two uncertainty channels carried by separate neuromodulatory systems with different anatomy and dynamics. But the channels are not just scattered loci either: ACh and NE each broadcast globally and each is a system-wide signal. So the framework supports a 'two-supervisor' reading. For REE: the four current adaptive loci (ARC-016, SD-032c/d/e) all live in roughly the 'expected uncertainty / volatility' track. There is no REE analogue of the NE / unexpected-uncertainty channel that fires specifically on context switches. This is a concrete architectural gap Q-041 should consider naming.",
+    "mapping_caveat": "The framework is theoretical; while broadly supported by pharmacology and physiology, the strong claim that ACh and NE map cleanly to expected vs unexpected uncertainty is contested by later work (Marshall 2016 dissects the dopamine/NE/ACh channels and finds the assignments are more entangled than Yu & Dayan propose). REE should not lift the ACh/NE labels directly into substrate; the architectural proposal is what transfers, not the neurotransmitter assignments.",
+    "source_context": "Theoretical/computational paper; integrates Bayesian inference framework with pharmacological and electrophysiological data on cholinergic and noradrenergic systems."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Neuron, foundational, ~3000 citations). Mapping fidelity moderate-to-high -- the paper directly addresses the architectural question Q-041 asks. Transfer risk moderate because the specific neurotransmitter assignments may not survive into a clean REE implementation."
+  }
+}

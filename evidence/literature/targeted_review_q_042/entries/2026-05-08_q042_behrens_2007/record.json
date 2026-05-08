@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_042",
+  "entry_id": "2026-05-08_q042_behrens_2007",
+  "timestamp_utc": "2026-05-08T08:41:15Z",
+  "claim_ids_tested": [
+    "Q-042"
+  ],
+  "source": {
+    "title": "Learning the value of information in an uncertain world",
+    "authors": [
+      "Behrens TEJ",
+      "Woolrich MW",
+      "Walton ME",
+      "Rushworth MFS"
+    ],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1954",
+    "pmid": "17676057"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Cross-tagged with Q-041 because the same Behrens result speaks to Q-042 from a different angle: the ACC volatility signal is computed and updated at the moment of trial outcome, not at action selection. Direct empirical evidence for Option A. The same paper also separately implies the existence of a pre-commit gain mechanism (because subjects' learning rate adjusts behaviourally on the trial after a volatility shift, before the next outcome arrives) but does not localise that signal here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE removes the post-outcome rv update entirely (pure Option B), the Behrens reading predicts that the running-variance estimator becomes uncalibrated -- it is broadcasting confidence at action selection but never updating that confidence based on observed outcomes."
+  ],
+  "tags": [
+    "q_042",
+    "q_041_crossref",
+    "volatility",
+    "anterior_cingulate_cortex",
+    "outcome_time",
+    "post_outcome_update",
+    "fmri",
+    "bayesian_observer"
+  ],
+  "mapping": {
+    "source_claim_statement": "ACC BOLD signal at trial outcome reflects the optimal Bayesian estimate of environmental volatility -- the updated estimate that incorporates the just-observed outcome. Activity in this region tracks the moment-by-moment volatility estimate as it changes with each new piece of evidence. Subjects' subsequent behavioural learning rate is predicted by their ACC signal, indicating that the post-outcome volatility update is downstream of behaviour-relevant learning rate adjustments.",
+    "ree_translation": "Behrens et al. is dual-tagged for Q-041 (volatility supervisor existence) and Q-042 (timing of the supervisor update). For Q-042: the ACC volatility update fires AT outcome arrival, not at action selection. The signal is locked to outcome BOLD response, not to cue or response time. This supports Option A. The implication for REE: the post-outcome update is when the volatility / precision statistic is genuinely revised based on new evidence, and that timing is what makes the statistic faithful. The pre-commit broadcast (Option B) consumes that statistic but does not produce it. Combined with Iglesias 2013 (post-outcome PE at midbrain/basal forebrain), this paper makes the late-arm case clean: the underlying statistical update lives at outcome time.",
+    "mapping_caveat": "ACC volatility signal is one of several candidate neural correlates of the volatility estimate; later work (Iglesias 2013 [DOI](https://doi.org/10.1016/j.neuron.2013.09.009), Mathys 2014) has refined and partly relocated the signal. The 2007 paper does not directly test alternative timings (action-selection vs outcome) -- it observes the outcome-locked response and infers the volatility update happens there. So the timing claim is direct in the sense that the BOLD response is outcome-locked, but the inference about when the update 'really happens' is one step beyond the data.",
+    "source_context": "Nature Neuroscience, 2007. Healthy human adults; probabilistic reward-learning fMRI task with periodic volatility shifts; Bayesian model comparison; ACC outcome-locked BOLD analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.28,
+    "notes": "High source quality (Nature Neuroscience, foundational, well-replicated). Mapping fidelity moderate-to-high (0.70) -- the timing claim transfers cleanly, but the cross-tagging from Q-041 to Q-042 makes this paper supplementary rather than primary for the timing question. Transfer risk low-moderate (0.28). For Q-042, this is corroborating evidence to Iglesias 2013 rather than the primary anchor."
+  }
+}
