@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-08T00:45:50.808700+00:00",
+  "last_updated": "2026-05-08T01:04:51.544614+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-445h",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-032b dACC reef substrate (Bug 1+2 fix)",
-    "description": "",
-    "script": "experiments/v3_exq_445h_sd032b_dacc_reef.py",
-    "started_at": "2026-05-08T00:29:51.735726+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 959,
-    "seconds_remaining": 1040,
-    "recent_lines": [
-      "ts = datetime.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")",
-      "Seed 42",
-      "Running OFF...",
-      "[seed=42 OFF] r2=n/a entropy=0.000 bias=0.00",
-      "Running ON_INDEPENDENT..."
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-EXQ-433f",
@@ -51,17 +25,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-445h",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-032b dACC reef substrate (Bug 1+2 fix)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -7236,6 +7199,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_490f_mech295_seeding_strengthening/v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 9654.6
+    },
+    {
+      "queue_id": "V3-EXQ-445h",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC reef substrate (Bug 1+2 fix)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL",
+      "started_at": "2026-05-08T00:29:51.735726+00:00",
+      "completed_at": "2026-05-08T01:04:51.537949+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2099.8
     }
   ]
 }
