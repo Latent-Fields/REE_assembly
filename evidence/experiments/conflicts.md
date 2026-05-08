@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-07T23:14:26.960570Z`
+Generated: `2026-05-07T23:58:57.158037Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -64,7 +64,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `Q-019` | directional, mixed_evidence | 11 | 4 | 0.533 | `2026-05-06_q_019_unified_selection_redgrave1999` | 20 |
 | `Q-020` | directional, mixed_evidence | 1 | 4 | 0.4 | `2026-04-02_q020_reward_map_reorganization_dupret2010` | 6 |
 | `Q-034` | directional, source_disagreement | 8 | 3 | 0.545 | `v3_exq_526_q034_reef_threshold_sweep_20260506T082834Z_v3` | 11 |
-| `Q-040` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_490c_mech269b_with_liking_bridge_20260429T055859Z_v3` | 5 |
 | `SD-004` | directional, source_disagreement | 17 | 4 | 0.381 | `2026-04-28_action_policy_motor_primitives_mussa_ivaldi2000` | 21 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 11 | 13 | 0.917 | `v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3` | 29 |
 | `SD-007` | directional, mixed_evidence | 16 | 7 | 0.609 | `v3_exq_118_c1fail_20260328T212454Z_v3` | 24 |
@@ -363,7 +362,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-054
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=6, weakens=3, conflict_ratio=0.667, exp_conf=0.386, lit_conf=0.858, overall_confidence_legacy=0.622
+- Evidence breakdown: supports=6, weakens=3, conflict_ratio=0.667, exp_conf=0.385, lit_conf=0.858, overall_confidence_legacy=0.622
 - Recent entries:
   - `2026-04-18T23:49:49Z` `experimental` `v3_exq_435_inv054_phase_transition_sustained_recovery` direction=`weakens` confidence=0.75
   - `2026-04-20T04:42:02Z` `experimental` `v3_exq_435_inv054_phase_transition_sustained_recovery` direction=`weakens` confidence=0.75
@@ -935,7 +934,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-220
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.283, lit_conf=0.87, overall_confidence_legacy=0.723
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.282, lit_conf=0.87, overall_confidence_legacy=0.723
 - Recent entries:
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.8
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.72
@@ -1196,25 +1195,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### Q-040
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.306, lit_conf=0.837, overall_confidence_legacy=0.704
-- Recent entries:
-  - `2026-04-27T22:30:32Z` `literature` `targeted_review_q_040` direction=`supports` confidence=0.75
-  - `2026-04-27T22:30:32Z` `literature` `targeted_review_q_040` direction=`supports` confidence=0.7
-  - `2026-04-28T17:14:29Z` `experimental` `v3_exq_490b_mech269b_vs_rollout_gating` direction=`inconclusive` confidence=0
-  - `2026-04-29T05:58:59Z` `experimental` `v3_exq_490c_mech269b_with_liking_bridge` direction=`weakens` confidence=0.75
-  - `2026-04-30T22:02:32Z` `experimental` `v3_exq_490e_mech295_seeding_strengthening` direction=`non_contributory` confidence=0
-- Recurring failure signatures:
-  - `ACC's behavioural-control signal is a function of upstream predicted error likelihood and magnitude; if those upstream predictions are stale or non-credibly anchored, the ACC signal will track the stale prediction faithfully and produce no behavioural revision -- consistent with Q-040's wired-but-inert hypothesis.` (1)
-  - `When upstream probability cues are absent or unclear, dACC neuronal responses to outcomes are reduced and the corresponding behavioural-adjustment signature attenuates -- the SD-032b control loop is wired but its drive collapses without a credible upstream estimate.` (1)
-  - `ACC microstimulation under high feature uncertainty disrupts adaptive RL by impairing the use of prediction errors to reduce uncertainty -- consistent with Q-040's prediction that dACC behavioural revision is uncertainty-modulated and breaks down when upstream uncertainty handling is disrupted.` (1)
-  - `OFC and ventral hippocampus each remain individually functional after unilateral lesion, but contralateral disconnection of the two impairs reversal learning -- the downstream decision/error machinery cannot drive behavioural revision when the upstream-to-downstream state pathway is broken, which is the architectural pattern Q-040 predicts for V_s gating restricted to the proposer.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### SD-004
 - Conflict types: directional, source_disagreement
 - Evidence breakdown: supports=17, weakens=4, conflict_ratio=0.381, exp_conf=0.617, lit_conf=0.901, overall_confidence_legacy=0.759
@@ -1394,7 +1374,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-018
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.256, lit_conf=0.753, overall_confidence_legacy=0.587
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.255, lit_conf=0.753, overall_confidence_legacy=0.587
 - Recent entries:
   - `2026-04-06T17:19:52Z` `experimental` `v3_exq_257_sd018_resource_prox_validation` direction=`weakens` confidence=0.75
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`supports` confidence=0.78

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-07T23:12:55Z",
+  "last_review_utc": "2026-05-07T23:55:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2278,7 +2278,8 @@
     "v3_exq_514e_bg_gating_seaweed_diagnostic_20260506T064842Z_v3",
     "v3_exq_524_reef_fishtank_showcase_20260506T093201Z_v3",
     "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3",
-    "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3"
+    "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3",
+    "v3_exq_483b_sd037_broadcast_override_4arm_20260507T211221Z_v3"
   ],
   "discussion_notes": {
     "2026-04-27T14:11Z_governance": {
@@ -2475,6 +2476,33 @@
           "root_cause_tag": "rv_pinned_no_post_action_update"
         }
       }
+    },
+    "2026-05-07T23:55Z_update_z_goal_cohort": {
+      "session": "fix-update-z-goal-bug",
+      "summary": "Diagnosed and patched the update_z_goal TypeError-swallowed cohort. 11 ree-v3 experiment scripts (EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524) called agent.update_z_goal(latent, benefit_exposure=..., drive_level=...) which collided with the benefit_exposure positional and raised TypeError. A bare `except Exception: pass` wrapper (commented in EXQ-471 as 'signature tolerant; skip if the runtime shape mismatches') silently swallowed the error every tick. GoalState.is_active() was always False -> z_goal stayed at 0 -> MECH-295 bridge precondition unmet. Cohort-wide additional bugs: (a) 2x agent.sense() per warmup step (substrate updates fire at 2x env rate during training, 1x during eval); (b) agent.update_residue() never called -> e3.post_action_update never fires -> running_variance pinned, residue field empty, no VALENCE_* writes; (c) dACC bias diagnostic reads bundle['mode_ev'] not the [K] score_bias passed to E3.select. All 11 scripts patched for the update_z_goal call shape + bare-except removed. Manifests for the 4 currently-weighting results (EXQ-483b, EXQ-490c, EXQ-490b, EXQ-483a) marked superseded; the 6 already-non_contributory + 1 already-superseded got a diagnosis note appended. evidence_quality_note added to claims Q-040, MECH-269b, MECH-295, SD-037, MECH-280, MECH-281, SD-036, MECH-279. Indexes rebuilt. Next: build StepHarness module + canonical metrics extractors + contract tests, then re-queue as EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a.",
+      "ids_marked": [
+        "v3_exq_483b_sd037_broadcast_override_4arm_20260507T211221Z_v3"
+      ],
+      "manifests_superseded": [
+        "v3_exq_483b_sd037_broadcast_override_4arm",
+        "v3_exq_490c_mech269b_with_liking_bridge",
+        "v3_exq_490b_mech269b_vs_rollout_gating",
+        "v3_exq_483a_sd037_broadcast_override_4arm"
+      ],
+      "claims_quality_noted": [
+        "Q-040",
+        "MECH-269b",
+        "MECH-295",
+        "SD-037",
+        "MECH-280",
+        "MECH-281",
+        "SD-036",
+        "MECH-279"
+      ],
+      "queue_modifications": [
+        "removed V3-EXQ-490f (pre-execution withdrawal)"
+      ],
+      "root_cause_tag": "update_z_goal_typeerror_swallowed"
     }
   }
 }

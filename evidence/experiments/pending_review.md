@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-05-07T23:14:27Z`  
-Last review: `2026-05-07T23:12:55Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-05-08T00:01:24Z`  
+Last review: `2026-05-07T23:55:00Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_483b_sd037_broadcast_override_4arm_20260507T211221Z_v3` | 2026-05-07T21:12 | MECH-280, MECH-281, SD-037 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 

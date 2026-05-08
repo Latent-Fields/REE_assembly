@@ -25,13 +25,13 @@
     "MECH-281"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-037": "non_contributory",
-    "MECH-280": "non_contributory",
-    "MECH-281": "non_contributory"
+    "SD-037": "superseded",
+    "MECH-280": "superseded",
+    "MECH-281": "superseded"
   },
-  "evidence_direction_note": "Reclassified supports -> non_contributory by governance 2026-04-26 (governance-2026-04-26T15:39). PASS path was substrate_readiness_fallback (baseline approach_commit=0 across all 4 arms blocked behavioural acceptance). Substrate-confirmed-wired but behaviourally-inconclusive; should not weight either way against SD-037/MECH-280/MECH-281.",
+  "evidence_direction_note": "Reclassified supports -> non_contributory by governance 2026-04-26 (governance-2026-04-26T15:39). PASS path was substrate_readiness_fallback (baseline approach_commit=0 across all 4 arms blocked behavioural acceptance). Substrate-confirmed-wired but behaviourally-inconclusive; should not weight either way against SD-037/MECH-280/MECH-281. | [update_z_goal_typeerror_swallowed] Diagnosed 2026-05-07: experiment script called agent.update_z_goal(latent, benefit_exposure=..., drive_level=...) which raised TypeError (latent collided with the benefit_exposure positional). A bare `except Exception: pass` wrapper silently swallowed the error on every tick. GoalState.update was never called -> goal_state.is_active() always False -> z_goal stayed at 0 -> MECH-295 bridge precondition unmet -> no anticipatory liking write, no approach cue bias. The agent was operating with permanently null goal state. Additional cohort-wide bugs found in the same scripts: (a) agent.sense() called twice per warmup step, advancing all per-tick substrate updates (GABA decay, AIC EMA, BLA tag, broadcast_override EMA, V_s readouts, anchor_set hysteresis, MECH-287 tonic window, suffering_comparator window, etc.) at 2x the env rate vs eval; (b) agent.update_residue() never called -> e3.post_action_update never fires -> running_variance pinned, residue field empty, no VALENCE_* writes, ARC-016 precision dead, MECH-292 ghost bank empty; (c) dACC bias diagnostic reads bundle['mode_ev'] not the [K] score_bias passed to E3.select. See REE_Working session log 2026-05-07. Re-run under StepHarness with corrected substrate plumbing.",
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,

@@ -38,5 +38,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[update_z_goal_typeerror_swallowed] Diagnosed 2026-05-07: experiment script called agent.update_z_goal(latent, benefit_exposure=..., drive_level=...) which raised TypeError (latent collided with the benefit_exposure positional). A bare `except Exception: pass` wrapper silently swallowed the error on every tick. GoalState.update was never called -> goal_state.is_active() always False -> z_goal stayed at 0 -> MECH-295 bridge precondition unmet -> no anticipatory liking write, no approach cue bias. The agent was operating with permanently null goal state. Additional cohort-wide bugs found in the same scripts: (a) agent.sense() called twice per warmup step, advancing all per-tick substrate updates (GABA decay, AIC EMA, BLA tag, broadcast_override EMA, V_s readouts, anchor_set hysteresis, MECH-287 tonic window, suffering_comparator window, etc.) at 2x the env rate vs eval; (b) agent.update_residue() never called -> e3.post_action_update never fires -> running_variance pinned, residue field empty, no VALENCE_* writes, ARC-016 precision dead, MECH-292 ghost bank empty; (c) dACC bias diagnostic reads bundle['mode_ev'] not the [K] score_bias passed to E3.select. See REE_Working session log 2026-05-07. Re-run under StepHarness with corrected substrate plumbing."
 }

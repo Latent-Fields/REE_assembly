@@ -16276,6 +16276,7 @@
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
 - id: Q-040
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?"
   claim_type: open_question
   subject: control.vs_generalisation_unblocks_dacc
@@ -21550,6 +21551,7 @@
 
 
 - id: SD-036
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "GABAergic regulatory layer applies cross-stream exponential decay (z_harm_s, z_harm_a, z_beta) modulated by tonic gaba_tone; missing-decay regulator is the proximal substrate cause of harm-stream lock-in (catatonia subtype II) observed in V3-EXQ-471."
   claim_type: design_decision
   subject: gabaergic.cross_stream_decay_regulator
@@ -21628,6 +21630,7 @@
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: MECH-279
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia."
   claim_type: mechanism_hypothesis
   subject: pag.gabaergic_freeze_gate
@@ -21685,6 +21688,7 @@
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: SD-037
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists."
   claim_type: design_decision
   subject: broadcast.override_regulator
@@ -21837,6 +21841,7 @@
     diversity/monostrategy improvement.
 
 - id: MECH-280
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys."
   claim_type: mechanism_hypothesis
   subject: lh_pag.override_projection
@@ -21883,6 +21888,7 @@
   location: docs/architecture/sd_037_broadcast_override_regulator.md
 
 - id: MECH-281
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy)."
   claim_type: mechanism_hypothesis
   subject: orexin.drive_arousal_coupling
@@ -23356,6 +23362,7 @@
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-269b
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "Regional verisimilitude V_s gates not only hippocampal proposer anchor selection but also which streams ground forward predictions in cortical world models (E1 sensory predictor, E2 transition model). Without symmetric V_s gating on E1/E2 rollouts, downstream consumers receive stale-but-confident-looking prediction errors -- the wired-but-inert failure mode."
   claim_type: mechanism_hypothesis
   subject: cortical_world_model.regional_verisimilitude_rollout_gating
@@ -23499,6 +23506,7 @@
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-295
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
   title: "Drive amplification (SD-012) reaches approach action selection only via liking-stream activation. Drive raises liking-stream gain on goal-congruent outcomes, which supplies the cue-side pull for approach. Without the liking-bridge, drive-amplified goal seeding produces a passive z_goal latent without behavioural consequence -- the EXQ-483 catatonic-lock signature."
   claim_type: mechanism_hypothesis
   subject: drive_to_approach.liking_stream_bridge
