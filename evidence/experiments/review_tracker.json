@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-07T23:55:00Z",
+  "last_review_utc": "2026-05-08T00:50:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2279,7 +2279,8 @@
     "v3_exq_524_reef_fishtank_showcase_20260506T093201Z_v3",
     "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3",
     "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3",
-    "v3_exq_483b_sd037_broadcast_override_4arm_20260507T211221Z_v3"
+    "v3_exq_483b_sd037_broadcast_override_4arm_20260507T211221Z_v3",
+    "v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3"
   ],
   "discussion_notes": {
     "2026-04-27T14:11Z_governance": {
@@ -2503,6 +2504,38 @@
         "removed V3-EXQ-490f (pre-execution withdrawal)"
       ],
       "root_cause_tag": "update_z_goal_typeerror_swallowed"
+    },
+    "2026-05-08T00:50Z_multi_sense_triage": {
+      "session": "triage-7-weighting-multi-sense",
+      "summary": "Triaged 7 currently-weighting scripts flagged by the multi-sense audit. EXQ-124 superseded (env.reset() inside per-step inner loop corrupts E2 world_forward training -- E2 taught z_world_t + a -> z_world_post_reset). EXQ-143 superseded (eval-time double-sense in ON arm only -- structurally asymmetric substrate dynamics across arms). EXQ-108 + EXQ-375 retained with quality_note (training-time double-sense, eval symmetric, both arms equally affected so comparison structure preserved with lower-confidence magnitude). EXQ-047i/j/k cluster retained -- multi-sense AST flag was a false alarm, the pattern is a deliberate probe loop with 1 sense per env state. Also caught EXQ-490f which had run between this session's queue-removal and audit; same cohort bug, superseded. Added evidence_quality_note to MECH-033, MECH-118, MECH-135, MECH-073, MECH-095, SD-005.",
+      "ids_marked": [
+        "v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3"
+      ],
+      "manifests_superseded": [
+        "v3_exq_124_mech033_kernel_chain_pair",
+        "v3_exq_143_mech118_hopfield_familiarity_pair",
+        "v3_exq_490f_mech295_seeding_strengthening"
+      ],
+      "manifests_trace_noted": [
+        "v3_exq_108_mech135_discriminative_pair",
+        "v3_exq_375_mech073_valence_geometry_probe",
+        "v3_exq_047i_tpj_routing_poc",
+        "v3_exq_047j_tpj_routing_ce",
+        "v3_exq_047k_tpj_routing_larger_n"
+      ],
+      "claims_quality_noted": [
+        "MECH-033",
+        "MECH-118",
+        "MECH-135",
+        "MECH-073",
+        "MECH-095",
+        "SD-005"
+      ],
+      "root_cause_tags": [
+        "env_reset_mid_episode_corrupts_e2_warmup",
+        "eval_double_sense_asymmetric_across_arms",
+        "training_double_sense_substrate_rate_2x"
+      ]
     }
   }
 }

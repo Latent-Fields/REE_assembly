@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_470a_sd029_balanced_curriculum
 
-Generated: `2026-05-08T00:41:22.959212Z`
+Generated: `2026-05-08T00:44:02.303674Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

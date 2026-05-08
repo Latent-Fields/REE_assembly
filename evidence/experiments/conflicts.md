@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-08T00:41:22.959212Z`
+Generated: `2026-05-08T00:44:02.303674Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -64,7 +64,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `Q-019` | directional, mixed_evidence | 11 | 4 | 0.533 | `2026-05-06_q_019_unified_selection_redgrave1999` | 20 |
 | `Q-020` | directional, mixed_evidence | 1 | 4 | 0.4 | `2026-04-02_q020_reward_map_reorganization_dupret2010` | 6 |
 | `Q-034` | directional, source_disagreement | 8 | 3 | 0.545 | `v3_exq_526_q034_reef_threshold_sweep_20260506T082834Z_v3` | 11 |
-| `Q-040` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3` | 5 |
 | `SD-004` | directional, source_disagreement | 17 | 4 | 0.381 | `2026-04-28_action_policy_motor_primitives_mussa_ivaldi2000` | 21 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 11 | 13 | 0.917 | `v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3` | 29 |
 | `SD-007` | directional, mixed_evidence | 16 | 7 | 0.609 | `v3_exq_118_c1fail_20260328T212454Z_v3` | 24 |
@@ -1191,25 +1190,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `Crucial resource is not operationalised or quantified.` (1)
   - `Model operates at neural circuit level -- does not specify environmental resource density as the parameter.` (1)
   - `Ratio threshold is not parametrically defined in the model.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### Q-040
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.325, lit_conf=0.837, overall_confidence_legacy=0.709
-- Recent entries:
-  - `2026-04-27T22:30:32Z` `literature` `targeted_review_q_040` direction=`supports` confidence=0.7
-  - `2026-04-28T17:14:29Z` `experimental` `v3_exq_490b_mech269b_vs_rollout_gating` direction=`superseded` confidence=0.55
-  - `2026-04-29T05:58:59Z` `experimental` `v3_exq_490c_mech269b_with_liking_bridge` direction=`superseded` confidence=0.55
-  - `2026-04-30T22:02:32Z` `experimental` `v3_exq_490e_mech295_seeding_strengthening` direction=`non_contributory` confidence=0
-  - `2026-05-07T21:48:55Z` `experimental` `v3_exq_490f_mech295_seeding_strengthening` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `ACC's behavioural-control signal is a function of upstream predicted error likelihood and magnitude; if those upstream predictions are stale or non-credibly anchored, the ACC signal will track the stale prediction faithfully and produce no behavioural revision -- consistent with Q-040's wired-but-inert hypothesis.` (1)
-  - `When upstream probability cues are absent or unclear, dACC neuronal responses to outcomes are reduced and the corresponding behavioural-adjustment signature attenuates -- the SD-032b control loop is wired but its drive collapses without a credible upstream estimate.` (1)
-  - `ACC microstimulation under high feature uncertainty disrupts adaptive RL by impairing the use of prediction errors to reduce uncertainty -- consistent with Q-040's prediction that dACC behavioural revision is uncertainty-modulated and breaks down when upstream uncertainty handling is disrupted.` (1)
-  - `OFC and ventral hippocampus each remain individually functional after unilateral lesion, but contralateral disconnection of the two impairs reversal learning -- the downstream decision/error machinery cannot drive behavioural revision when the upstream-to-downstream state pathway is broken, which is the architectural pattern Q-040 predicts for V_s gating restricted to the proposer.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.

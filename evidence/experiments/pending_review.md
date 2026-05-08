@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-05-08T00:41:25Z`  
-Last review: `2026-05-07T23:55:00Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-05-08T00:43:48Z`  
+Last review: `2026-05-08T00:50:00Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3` | 2026-05-07T21:48 | Q-040 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 
