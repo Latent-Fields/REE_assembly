@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_reward_lc_remapping_kaufman2020",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011", "SD-012"],
+  "source": {
+    "title": "A Role for the Locus Coeruleus in Hippocampal CA1 Place Cell Reorganization during Spatial Reward Learning",
+    "authors": ["Alexandra M. Kaufman", "Tristan Geiller", "Attila Losonczy"],
+    "year": 2020,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.12.029",
+    "pmid": "31980319"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Causal optogenetic evidence that LC-CA1 input drives goal-zone overrepresentation by reorganizing the place ensemble (rate remapping near reward). Establishes that at least one neuromodulator system writes affect-stream-relevant information into the place map by remapping, not just by modulating firing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Goal-zone overrepresentation is not a passive consequence of running near reward — it is causally driven by LC neuromodulatory input.",
+    "If REE assumed reward signals reach the hippocampus only through dopaminergic VTA-CA1, this paper falsifies that exclusivity: noradrenaline via LC has its own write-channel."
+  ],
+  "tags": ["reward", "goal", "rate_remapping", "overrepresentation", "neuromodulation", "lc", "sd_011", "sd_012", "ca1"],
+  "mapping": {
+    "source_claim_statement": "LC-CA1 noradrenergic projections signal reward translocation, and optogenetic mimicry of LC-CA1 activity induces place-cell reorganization near reward; inhibition of LC-CA1 reduces reward-zone overrepresentation.",
+    "ree_translation": "Reward-channel imprinting on the hippocampal map happens via a specific neuromodulatory write-pathway (LC noradrenaline) that triggers rate remapping toward goal-relevant locations. This is direct evidence that affect-stream tagging and place-cell reorganization are causally coupled, at least for the reward channel.",
+    "mapping_caveat": "LC release is not affect-channel-specific in general — LC also fires for novelty, salience, surprise. So the mechanism may be 'LC writes whatever salient signal it carries' rather than a reward-specific channel. The reward-zone effect here is downstream of behaviour-confined LC firing.",
+    "source_context": "Mouse, head-fixed virtual reality, two-photon Ca2+ imaging in dorsal CA1, Ca2+ imaging of LC-CA1 fibres, optogenetic stimulation/inhibition of LC-CA1 axons."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Strong causal manipulation, direct fibre imaging in CA1. Mapping fidelity moderated because LC is a salience/arousal node — the signal carried may not be reward-specific. Transfer risk is low for the architectural point that neuromodulators write affect-relevant information into the place ensemble via reorganization."
+  }
+}

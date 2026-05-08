@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-08T16:59:55.436260Z`
+Generated: `2026-05-08T17:20:08.971957Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -1577,8 +1577,3 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: v3_pending=true; conflict_ratio=0.6 noted but gated by v3_pending. Substrate implemented 2026-05-03 (multi-resource heterogeneity in CausalGridWorldV2). Hold until V3 experiments exercise the new substrate. No status change.
-
-## Substrate changes with dependent invariants
-
-No substrate status changes this run. No dependent invariants flagged.
-

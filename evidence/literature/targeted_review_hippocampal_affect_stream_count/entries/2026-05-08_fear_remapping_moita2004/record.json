@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_fear_remapping_moita2004",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Putting fear in its place: remapping of hippocampal place cells during fear conditioning",
+    "authors": ["Marta A. P. Moita", "Svetlana Rosis", "Yu Zhou", "Joseph E. LeDoux", "Hugh T. Blair"],
+    "year": 2004,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5492-03.2004",
+    "pmid": "15295037"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Foundational demonstration that aversive reinforcement induces place-cell remapping even when the physical environment is unchanged, and that the remapping is contingent on the rat's *learned fear of the environment* (contextual > auditory fear). This is the canonical evidence for fear/threat as a privileged map-tagging affect stream.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Place-cell remapping is not driven only by sensory environment changes — affective context (learned fear of an environment) is sufficient to drive remapping.",
+    "Auditory fear conditioning produces less remapping than contextual fear conditioning, so the remapping is fear-of-environment-specific, not generic-fear-modulation."
+  ],
+  "tags": ["fear", "aversive", "global_remapping", "contextual_fear", "sd_011", "ca1"],
+  "mapping": {
+    "source_claim_statement": "Fear conditioning causes hippocampal place cells to remap their preferred firing locations in the conditioned environment, with significantly more remapping for contextual than auditory fear conditioning.",
+    "ree_translation": "Fear/threat is a second affect stream (alongside reward) for which the hippocampal map demonstrably reorganizes — at the level of place-field location, not just firing rate. This is the canonical existence proof for the SD-011-generalization that multiple affect channels have privileged map-tagging.",
+    "mapping_caveat": "The paper does not dissect whether the remapping reflects sensory-discriminative fear (predator detection, shock locus) versus affective-motivational fear (general dread). For SD-011's specific dual-nociceptive split (sensory vs affective), the fear-conditioning literature is on the affective side — direct shock receptor signals are more likely to be in primary somatosensory streams.",
+    "source_context": "Sprague-Dawley rats, dorsal CA1 single-unit recording, contextual vs auditory fear conditioning."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "JNeurosci 2004, LeDoux/Blair labs — canonical work, widely replicated. Mapping fidelity is high for the existence question and moderate for the SD-011 sensory/affective split because the paradigm doesn't isolate the two."
+  }
+}

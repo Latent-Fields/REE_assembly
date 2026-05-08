@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_social_self_other_danjo2018",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Spatial representations of self and other in the hippocampus",
+    "authors": ["Teruko Danjo", "Taro Toyoizumi", "Shigeyoshi Fujisawa"],
+    "year": 2018,
+    "venue": "Science",
+    "doi": "10.1126/science.aao3898",
+    "pmid": "29326273"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Replicates the social-place-cell finding in rats with a different paradigm (observational T-maze) and identifies CA1 cells that jointly encode self and other. Companion to Omer 2018 in bats — together they establish social position as a cross-species privileged map channel.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rat dorsal CA1 contains cells that jointly and discretely encode the spatial location of self and another rat; some cells have identical receptive fields for self and other.",
+    "If REE assumed each agent has its own self-only spatial map, this falsifies that assumption: the same map natively represents another agent's trajectory."
+  ],
+  "tags": ["social", "self_other", "joint_coding", "sd_011", "rat", "ca1"],
+  "mapping": {
+    "source_claim_statement": "Dorsal CA1 pyramidal cells in observer rats jointly and discretely encode the spatial location of both self and another rat in an observational T-maze; a subset have identical receptive fields for self and other.",
+    "ree_translation": "The shared-receptive-field result is the strongest version of the social-channel claim: the same place-coding machinery is used for self-position and conspecific-position, with some cells genuinely abstract over the agent identity. This argues that 'agent in space' may be a more fundamental representational primitive than 'self in space.'",
+    "mapping_caveat": "Observational T-maze is a constrained paradigm; the rats are restrained and observe a fixed trajectory. Whether the same cells generalize to multiple conspecifics or to free social interaction is not addressed.",
+    "source_context": "Long-Evans rats, observational T-maze task, single-unit recording in dorsal CA1 of observer rat during demonstrator runs."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Science paper, companion to Omer 2018 in bats. Rat result reduces transfer risk for the cross-species claim. Confidence is bounded by the constrained T-maze paradigm."
+  }
+}

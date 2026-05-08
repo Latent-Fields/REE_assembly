@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_reward_conjunctive_coding_xiao2020",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011", "SD-012"],
+  "source": {
+    "title": "Conjunctive reward-place coding properties of dorsal distal CA1 hippocampus cells",
+    "authors": ["Zhuocheng Xiao", "Kevin Lin", "Jean-Marc Fellous"],
+    "year": 2020,
+    "venue": "Biological Cybernetics",
+    "doi": "10.1007/s00422-020-00830-0",
+    "pmid": "32266474"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Reanalysis of multi-task rat data confirming a continuum from pure place to pure reward cells with conjunctive 'hybrid' cells in between, plus cells that transition between modes within a session. Constrains the dedicated-population picture: reward coding is not strictly segregated, it shades into the place ensemble.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reward and place coding are not cleanly orthogonal populations — many cells mix the two, and individual cells transition between them.",
+    "If REE assumed strict population segregation between affect-streams and place-streams, this paper falsifies that assumption: the architecture has to allow conjunctive coding."
+  ],
+  "tags": ["reward", "goal", "conjunctive_coding", "hybrid_cells", "sd_011", "sd_012", "ca1"],
+  "mapping": {
+    "source_claim_statement": "Dorsal distal CA1 contains a continuum of cells from pure place cells, through hybrid place-reward cells, to reward-only cells; some cells transition between modes within a 5-task session.",
+    "ree_translation": "Affect-stream privilege in the hippocampal map is not all-or-nothing dedicated populations. Channels coexist with conjunctive coding cells that integrate space and channel-specific information. SD-011's dual-stream architecture, generalized, would need to allow both stream-specific cells and conjunctive cells.",
+    "mapping_caveat": "This is a reanalysis of behavioural data with computational characterization, so the cell-type continuum claim depends on classification thresholds. The transition-within-session result is small (a small group of cells).",
+    "source_context": "Reanalysis of dorsal distal CA1 single-unit data from Brown Norway rats running 5 consecutive tasks varying reward locations and spatial context."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Mid-tier journal but Fellous's lab has a strong track record. The mixed reading is appropriate because the paper supports the general architectural claim (channels exist) while complicating the dedicated-population picture from Gauthier & Tank."
+  }
+}

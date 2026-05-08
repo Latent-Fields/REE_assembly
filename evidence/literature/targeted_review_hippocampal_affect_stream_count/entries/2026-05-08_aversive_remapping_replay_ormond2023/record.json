@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_aversive_remapping_replay_ormond2023",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Enhanced Reactivation of Remapping Place Cells during Aversive Learning",
+    "authors": ["Jake Ormond", "Simon A. Serka", "Joshua P. Johansen"],
+    "year": 2023,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1450-22.2022",
+    "pmid": "36596695"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Demonstrates that aversive learning produces partial remapping in CA1 and that the remapping cells are preferentially recruited into sharp-wave ripple replay. Couples affect-channel map-tagging to the consolidation/replay mechanism, strengthening the architectural picture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Aversive context-tagging in the hippocampal map is privileged not just at the level of place-field reorganization but also at the level of replay recruitment.",
+    "If REE assumed replay was a uniform sample of recent activity, this falsifies that: remapping cells are over-recruited, biasing replay toward newly affect-tagged content."
+  ],
+  "tags": ["fear", "aversive", "partial_remapping", "replay", "ripple", "consolidation", "sd_011", "ca1"],
+  "mapping": {
+    "source_claim_statement": "Rats learning a multi-arm maze with both rewarded and aversive arms showed partial remapping in CA1 place cells; remapping cells were recruited into sharp-wave ripples and replay events to a greater extent than non-remapping stable cells.",
+    "ree_translation": "Affect-channel map-tagging is coupled to the consolidation pathway. Cells that remap to encode the new affective context get preferential access to replay, which is the natural mechanism for stabilizing the new representation. This provides the bridge between the SD-011 architecture and the sleep/replay claims (MECH-285, INV-049).",
+    "mapping_caveat": "The task mixes reward and aversive arms, so the replay enrichment cannot be cleanly attributed to either valence individually. The paper's framing is 'context change' rather than 'aversive specifically.'",
+    "source_context": "Long-Evans rats, multi-arm maze with food reward and aversive air-puff arms, single-unit recording in CA1, sleep recording for ripple/replay analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Recent JNeurosci, methodologically careful. Mapping fidelity moderated because the task mixes valences and the headline claim is replay enrichment for remapping cells generally rather than aversive-specific replay enrichment. Still, the aversive component is what triggers the partial remapping."
+  }
+}

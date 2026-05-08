@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_social_place_cells_omer2018",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Social place-cells in the bat hippocampus",
+    "authors": ["David B. Omer", "Shir R. Maimon", "Liora Las", "Nachum Ulanovsky"],
+    "year": 2018,
+    "venue": "Science",
+    "doi": "10.1126/science.aao3474",
+    "pmid": "29326274"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Identifies a dedicated CA1 cell population that encodes the position of a conspecific in allocentric coordinates, distinguishable from cells encoding inanimate moving objects. Establishes social/conspecific position as a privileged map channel.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal CA1 encodes conspecific position with cells distinct from those encoding inanimate moving objects, so social tracking is not a byproduct of generic moving-object representation.",
+    "If REE assumed only self-position is map-tagged, this falsifies that assumption: another agent's position is also a privileged channel."
+  ],
+  "tags": ["social", "conspecific_position", "dedicated_population", "sd_011", "bat", "ca1"],
+  "mapping": {
+    "source_claim_statement": "Dorsal CA1 in observer bats contains a subpopulation that represents the position of another bat in allocentric coordinates; about half of these cells also represent the observer's own position. The representation differs from that of inanimate moving objects.",
+    "ree_translation": "Social/conspecific position is a third map-tagged channel beyond self-position. Architecturally, this argues that the hippocampal map can be augmented with channel-specific cells for any behaviourally relevant object class — and that 'social' qualifies as such a class with its own cell pool.",
+    "mapping_caveat": "Bat is a less common model; whether the same cell-class structure exists in rodents and primates was unknown when this paper was published (Danjo 2018 confirms the rat case in observational T-maze). Allocentric encoding in bats may benefit from echolocation precision in ways that don't transfer to other species.",
+    "source_context": "Egyptian fruit bats, observational learning task, single-unit recording in dorsal CA1 of observer bat tracking demonstrator bat."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Science paper, Ulanovsky lab, careful controls including inanimate-object comparator. Transfer risk slightly elevated by bat-specific factors (echolocation, flight) but Danjo 2018 in rat replicates the core finding."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_reward_dedicated_population_gauthier2018",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011", "SD-012"],
+  "source": {
+    "title": "A Dedicated Population for Reward Coding in the Hippocampus",
+    "authors": ["Jeffrey L. Gauthier", "David W. Tank"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.06.008",
+    "pmid": "30008297"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Strong, mechanistically clear evidence for a dedicated CA1 population that encodes reward across environments where standard place cells remap randomly. Directly supports the generalization that hippocampus reserves channel-specific cells for at least one affect stream (reward/goal) beyond pure space.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE were to assume only a single homogeneous map-with-affect-overlay, this paper falsifies it: a dedicated, channel-specific population coexists with the random-remapping ensemble.",
+    "Reward-cell activity does not collapse onto sensory cues or stereotyped reward-anticipation behaviour, so the channel cannot be reduced to a sensory- or motor-gated subset of conventional place cells."
+  ],
+  "tags": ["reward", "goal", "dedicated_population", "hippocampal_remapping", "sd_011", "sd_012", "ca1"],
+  "mapping": {
+    "source_claim_statement": "A small, specialized CA1/subiculum cell population is consistently active near rewarded goals across environments where most cells remap randomly, suggesting a dedicated channel for reward.",
+    "ree_translation": "Reward/goal is one privileged affect-stream that the hippocampal map represents through a dedicated subpopulation rather than via conventional place-cell remapping. This is the strongest candidate for an SD-011-style stream-specific architectural slot beyond harm.",
+    "mapping_caveat": "Mouse virtual reality with shifting reward contingencies; not a generic affect channel test. The dedicated-population pattern may be reward-specific (driven by VTA/LC inputs and behavioural relevance) rather than a template for arbitrary affect streams.",
+    "source_context": "Mouse, head-fixed virtual-reality linear track, two-photon Ca2+ imaging in CA1 and subiculum, shifting reward contingencies."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Neuron paper, large-scale imaging, internally controlled across multiple environments. Mapping fidelity moderated by the fact that the REE generalization asks about *N* affect streams, while this paper convincingly addresses only one (reward). Transfer risk is bounded — rodent CA1 results carry to the architectural question well, but the bound on whether other affect channels follow the same dedicated-population template is the open problem this lit-pull is scoping."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_reward_value_insensitive_duvelle2019",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011", "SD-012"],
+  "source": {
+    "title": "Insensitivity of Place Cells to the Value of Spatial Goals in a Two-Choice Flexible Navigation Task",
+    "authors": ["Eleonore Duvelle", "Roddy M. Grieves", "Vincent Hok", "Bruno Poucet", "Angelo Arleo", "Kate J. Jeffery", "Etienne Save"],
+    "year": 2019,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1578-18.2018",
+    "pmid": "30696727"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "Carefully controlled negative result: rats prefer the higher-value goal but CA1/CA3 place cells do not encode goal value. Constrains the generalization — value-modulation of the place ensemble is not a universal property, so the hippocampal map cannot be assumed to tag arbitrary affect dimensions onto generic place cells.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal place cells in dorsal CA1/CA3 do not encode goal value, even when the animal's behaviour clearly tracks value.",
+    "If REE were to assume the place ensemble itself carries a graded valence/value signal, this falsifies that model: value-tagging happens elsewhere and is read out by other circuits."
+  ],
+  "tags": ["reward", "value", "goal", "modulated_firing_absent", "sd_011", "sd_012", "ca1", "ca3"],
+  "mapping": {
+    "source_claim_statement": "Dorsal CA1 and CA3 place cells form a value-free spatial map: they do not modulate firing rate with goal value despite the animal preferring higher-value goals.",
+    "ree_translation": "The hippocampal map encodes space independently of the value associated with each location. Affect-stream channels (SD-011, SD-012) cannot simply be 'colour' overlays on the place ensemble — they must occupy distinct populations or read-out circuits, which is consistent with the dedicated-population pattern Gauthier & Tank found for reward identity.",
+    "mapping_caveat": "Goal-value signals could exist in other hippocampal subregions (ventral CA1) or in non-place cells not analysed here. The negative result speaks to the generic-modulation hypothesis, not to whether dedicated subpopulations exist.",
+    "source_context": "Long-Evans rats, two-choice continuous place-navigation task with goals of different reward magnitude, single-unit recording in dorsal CA1 and CA3."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Direct test of the generic-value-modulation hypothesis with a clear behavioural marker (preference) confirming the rat tracks value. The negative result is informative — it forces the SD-011-generalization hypothesis to take the dedicated-population shape rather than the place-cell-tagging shape."
+  }
+}

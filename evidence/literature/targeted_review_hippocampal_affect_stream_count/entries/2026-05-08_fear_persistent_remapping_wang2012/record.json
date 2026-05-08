@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_fear_persistent_remapping_wang2012",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Long-term stabilization of place cell remapping produced by a fearful experience",
+    "authors": ["Melissa E. Wang", "Ellen G. Wann", "Robin K. Yuan", "Manuel M. Ramos Alvarez", "Squire M. Stead", "Isabel A. Muzzio"],
+    "year": 2012,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0480-12.2012",
+    "pmid": "23136419"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Confirms and extends Moita 2004: fear-induced remapping persists for days, and the new fear-context representation stabilizes long-term. Adds the persistence dimension that map-tagging is consolidated, not transient.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Fear-induced remapping is not a transient state-modulation; the new representation stabilizes long-term.",
+    "If REE assumed affect-driven remapping was a within-episode phenomenon only, this falsifies that assumption: the map carries the affective tag forward."
+  ],
+  "tags": ["fear", "aversive", "global_remapping", "long_term_stability", "predator_odor", "sd_011", "ca1"],
+  "mapping": {
+    "source_claim_statement": "Recording from the same CA1 place cells across days of predator-odor contextual fear conditioning, a subset of cells changed their preferred firing locations during the fearful experience, and the new firing patterns stabilized in the long term.",
+    "ree_translation": "The hippocampal map's affect-channel tagging is not a transient state phenomenon. Once a context acquires fear/threat-stream loading, the remapped representation persists, which is the architectural feature you'd expect of a stream that carries forward into future planning, simulation, and replay.",
+    "mapping_caveat": "Predator-odor conditioning recruits innate-threat pathways (PAG, central amygdala) that may not be the same as shock-based fear used by Moita 2004 — the convergence of results across paradigms strengthens rather than weakens the cross-paradigm claim, but the inferred neuromodulatory pathway might differ.",
+    "source_context": "Mice, dorsal CA1 single-unit recording across multiple days, predator-odor (TMT or fox urine analog) contextual fear conditioning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Cross-day recording is methodologically demanding and adds the persistence claim that Moita 2004 could not address. Confidence is bounded by sample size and the predator-odor paradigm specifics, but the result converges with Moita and is internally consistent."
+  }
+}

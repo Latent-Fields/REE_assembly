@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_073b_mech111_novelty_signal
 
-Generated: `2026-05-08T16:59:55.436260Z`
+Generated: `2026-05-08T17:20:08.971957Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

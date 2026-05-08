@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_affect_stream_count",
+  "entry_id": "2026-05-08_anxiety_vca1_dedicated_jimenez2018",
+  "timestamp_utc": "2026-05-08T17:07:53Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Anxiety Cells in a Hippocampal-Hypothalamic Circuit",
+    "authors": ["Jessica C. Jimenez", "Katy Su", "Alexander R. Goldberg", "Victor M. Luna", "Jeremy S. Biane", "Gokhan Ordek", "Pengcheng Zhou", "Samantha K. Ong", "Matthew A. Wright", "Larry Zweifel", "Liam Paninski", "Rene Hen", "Mazen A. Kheirbek"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.01.016",
+    "pmid": "29397273"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Identifies a dedicated cell population in vCA1 that is activated by anxiogenic environments and required for avoidance behaviour, with a specific projection-target identity (LHA, not BA). This is anxiety/sustained-threat as a distinct affect channel — but in vCA1 these cells are 'modulated firing' to anxiogenic state rather than place-field remapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anxiety is encoded in ventral CA1 by dedicated cells projecting to LHA, not by remapping of dorsal place cells.",
+    "If REE assumed all hippocampal-map affect channels share the same architectural mechanism (remapping in dorsal CA1), this falsifies that uniformity: anxiety operates through projection-target-defined modulated firing in ventral CA1."
+  ],
+  "tags": ["anxiety", "sustained_threat", "modulated_firing", "vca1", "projection_specific", "sd_011"],
+  "mapping": {
+    "source_claim_statement": "Ventral CA1 contains 'anxiety cells' activated by anxiogenic environments and required for avoidance; they are enriched in the vCA1 population projecting to the lateral hypothalamic area, not the basal amygdala. The same vCA1-LHA pathway is causally required for innate anxiety behaviour.",
+    "ree_translation": "Anxiety/sustained threat is a distinct affect stream from acute fear (Moita/Wang) and from reward (Gauthier/Tank), with its own anatomical substrate: ventral CA1 cells defined by their LHA projection. Architecturally, this means the SD-011 generalization needs to allow channel-specific cells to differ in their *projection target* and *subregion* (dorsal vs ventral), not just their identity.",
+    "mapping_caveat": "These cells show modulated firing in anxiogenic environments rather than the canonical place-field remapping seen in dorsal CA1. So whether 'anxiety' qualifies as map-remapping or map-modulation depends on which criterion you adopt. Dorsal place cells in the same paradigm do not show the same anxiety encoding.",
+    "source_context": "Mice, ventral and dorsal CA1, freely-moving Ca2+ imaging, optogenetic activation/inhibition, anxiogenic environments (elevated plus maze, open field)."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Neuron paper, Hen/Kheirbek labs, large authorship team, optogenetic causal manipulation. Mapping fidelity moderated by the modulated-firing-vs-remapping distinction: anxiety qualifies as a privileged channel by the dedicated-population criterion but not by the place-field-reorganization criterion."
+  }
+}
