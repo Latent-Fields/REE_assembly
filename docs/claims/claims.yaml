@@ -8915,6 +8915,7 @@
     no evidential experiments have run yet. V3-EXQ-432 (SD-014 validation) queued
     to produce first evidence.
     EXQ-432 (2026-04-18, non_contributory -- governance 2026-04-19): Replay-gate surprise-vs-wanting prioritization test. n_surprise_writes_d2=0 across all seeds; surprise signal not propagating to replay gate. The replay-gate design cannot be tested until surprise-write substrate is operational. Reclassified as diagnostic of surprise-write pipeline gap. Flagged for /diagnose-errors.
+    Excitement / dread amendment proposal (2026-05-08): targeted_review_excitement_5th_valence_channel/ established (lit_conf 0.77, 9 entries) that anticipatory positive arousal (NAcc-anticipation in MID, Knutson 2001a) is neurally distinct from VALENCE_WANTING and VALENCE_LIKING. Two competing architectural answers are now in the registry: MECH-307 anticipatory_affect_conjunction (FIRST-LINE: fix four wiring gaps so excitement and dread emerge as conjunction-states from the existing 4 channels) and a proposed SD-014 amendment (FALLBACK: extend SD-014 to 6 components by adding VALENCE_EXCITEMENT and VALENCE_DREAD as discrete channels). MECH-307 is more biologically faithful and ~40 lines of code; the SD-014 amendment is the fallback if conjunction-state detection at consumer sites proves unreliable. Both share the same lit base; the architectural choice is empirical. See docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md for the full proposal text and falsification design. Hold SD-014 amendment pending MECH-307 conjunction-fix experiment outcome.
   experimental_test: >
     Discriminative pair (EXP-0098). Two conditions: UNIFIED_VALUE (single composite reward
     signal, current architecture) vs DISSOCIATED_VALENCE (separate w and l tracking, SD-014
@@ -25409,3 +25410,157 @@
     for inescapability (Maier & Watkins) and pain prediction error (Fazeli & Buchel) before
     V3 implementation.
   location: evidence/literature/targeted_review_q_036/
+
+- id: MECH-307
+  title: "Anticipatory positive affect (excitement) and anticipatory negative affect (dread) emerge as derived states from the conjunction of (a) signed VALENCE_SURPRISE, (b) MECH-216 schema readout coupled to z_beta arousal, (c) anticipatory VALENCE_LIKING write at predicted-imminent-positive-event locations, and (d) MECH-216 writes at predicted rather than current location. Four-gap substrate amendment to MECH-216 + MECH-205 + the residue valence buffer, NOT a new VALENCE channel."
+  claim_type: mechanism_hypothesis
+  subject: affect.anticipatory_conjunction_architecture
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-08
+  depends_on:
+    - SD-014       # the residue valence vector this amends
+    - MECH-216     # E1 predictive wanting / schema readout (the upstream signal)
+    - MECH-205     # surprise-gated replay write path (consumer of signed VALENCE_SURPRISE)
+    - MECH-093     # z_beta modulates E3 heartbeat rate (target of new arousal coupling)
+    - MECH-111     # curiosity / novelty drive (likely upstream-blocked by same wiring gaps)
+    - MECH-292     # ranked ghost-goal bank (downstream consumer of conjunction)
+  functional_restatement: >
+    The 2026-05-08 lit-pull on excitement-as-5th-channel
+    (evidence/literature/targeted_review_excitement_5th_valence_channel/, lit_conf 0.77 across
+    9 entries) established that anticipatory positive arousal at reward cues (NAcc-anticipation
+    in MID; Knutson 2001a et seq.) is neurally distinct from VALENCE_WANTING (directional
+    motivation), VALENCE_LIKING (consummatory hedonic), and z_beta arousal (timing modulation).
+    The naive verdict of that lit-pull was REGISTER VALENCE_EXCITEMENT as a 5th channel in
+    SD-014. On code-level inspection of the V3 substrate, the better answer is that excitement
+    SHOULD emerge as a derived conjunction of existing channels but currently does not because
+    of four specific wiring gaps:
+
+    Gap 1 -- VALENCE_SURPRISE is unsigned magnitude. agent.py:3075-3077 writes
+    `surprise = max(0.0, pe_mag - pe_ema)` to the residue field. Sign information is discarded
+    at the write site. Positive PE (good thing happened unexpectedly -- the dopamine RPE that
+    underlies excitement) and negative PE (bad thing happened unexpectedly -- the habenula
+    signature of dread) are collapsed identically. Fix: store signed PE in VALENCE_SURPRISE,
+    or split into VALENCE_POSITIVE_SURPRISE and VALENCE_NEGATIVE_SURPRISE.
+
+    Gap 2 -- MECH-216 schema readout writes only to VALENCE_WANTING. agent.py:3753-3757 writes
+    a single channel when schema_salience fires above threshold. Biology's NAcc-anticipation
+    drives sympathetic activation jointly with wanting amplification and partial anticipatory
+    hedonic activation. Fix: MECH-216 also writes a partial VALENCE_LIKING amplitude AND raises
+    z_beta arousal proportional to schema_salience.
+
+    Gap 3 -- z_beta has no input path from cue prediction. z_beta is encoded from observation
+    and read by MECH-093 to modulate E3 rate. There is no path from MECH-216 schema readout to
+    z_beta amplitude. Fix: add z_beta arousal write site driven by schema_salience (subsumed
+    in Gap 2 fix architecturally; named separately because the z_beta path is a distinct
+    consumer).
+
+    Gap 4 -- MECH-216 writes at the agent's current z_world, not at the predicted-imminent
+    location. agent.py:3754 writes to `self._current_latent.z_world`. Fix: use E1's forward
+    prediction of z_world to identify the predicted-reward location and write VALENCE_WANTING +
+    VALENCE_LIKING + (via z_beta) the conjunction signature at that location. This is what
+    NAcc-anticipation marks in biology -- the predicted goal location, not the current location.
+
+    Under the four-gap fix, "excitement" emerges as the joint occurrence in z_world space of
+    high VALENCE_WANTING + high VALENCE_LIKING + high VALENCE_POSITIVE_SURPRISE + high z_beta
+    arousal at the predicted location. A consumer (MECH-205 replay write priority, MECH-292
+    ghost_priority, MECH-279 PAG freeze gate) can detect this conjunction by joint-reading the
+    four channels. "Dread" emerges symmetrically as high VALENCE_HARM_DISCRIMINATIVE +
+    VALENCE_NEGATIVE_SURPRISE + z_beta arousal at predicted-harm locations.
+
+    Falsifiable: an REE substrate with all four gaps fixed should produce (a) Adcock 2006
+    prediction: locations with high anticipatory-conjunction-state at encoding receive >= 1.5x
+    replay frequency in MECH-285 SleepReplaySampler vs uniform-priority baseline; (b) MECH-292
+    ghost-priority elevation at conjunction-state locations relative to staleness-only
+    baseline; (c) clean Knutson 2001a-style separation of "anticipation" residue writes
+    (predicted location, conjunction-state) vs "outcome" residue writes (current location,
+    consummatory VALENCE_LIKING).
+  notes: >
+    Registered 2026-05-08 as the parsimonious alternative to the SD-014 amendment (6-component
+    valence vector with VALENCE_EXCITEMENT + VALENCE_DREAD as 5th + 6th channels, lit-pull
+    verdict). The conjunction-fix reading is more biologically faithful: biology does not have
+    a VALENCE_EXCITEMENT neuron type; the excitement signal measured in NAcc fMRI is the
+    anatomical convergence of DA RPE + hippocampal place-cell preplay + ANS arousal at one
+    structure. REE has all the upstream pieces (E1 PE, MECH-216 schema readout, z_beta) but
+    not the wiring between them. Fixing the wiring is ~40 lines of code, all backward-compatible
+    behind config flags. Adding new channels would paper over the wiring gaps rather than
+    diagnose them.
+
+    The same four wiring gaps likely explain why MECH-111 (curiosity / novelty drive) failed
+    at EXQ-141 (2026-03-29). MECH-111's commit-threshold-modulation reading depends on an
+    upstream signal of "novel-positive-event-imminent" that the substrate cannot currently
+    produce because Gap 1 (sign-collapsed VALENCE_SURPRISE) and Gap 3 (z_beta uncoupled
+    from schema readout) prevent the conjunction-state from forming. EXQ-141 was therefore
+    likely substrate-confounded rather than architecturally falsifying. EXQ-141b on the
+    corrected substrate is the appropriate retest (see also Q-041 threshold supervisor cluster).
+
+    Relationship to the SD-014 amendment proposal (6-channel expansion):
+    - MECH-307 is the FIRST-LINE proposal: fix wiring, let excitement and dread emerge as
+      conjunction-states from the existing 4 channels.
+    - SD-014 amendment to 6 channels is the FALLBACK if MECH-307's conjunction-state cannot
+      be reliably detected by downstream consumers, or if the bookkeeping of joint reads at
+      every consumer site proves too dispersed in practice.
+    - Both proposals share the same lit base (targeted_review_excitement_5th_valence_channel/);
+      the architectural choice is empirical, not lit-determined.
+
+    Implementation prerequisites:
+    - EXQ-537 (SD-029 single-pass comparator) lands first to clear the currently-running
+      commit-chain diagnostic queue before introducing new substrate.
+    - EXQ-141b (MECH-111 retest on corrected commit-chain substrate) lands to clear the
+      curiosity-drive question.
+    - Then queue EXQ-XXX (MECH-307 conjunction-fix discriminative pair, ~3-4h on Mac).
+
+    Architectural cost estimate: ~40 lines across goal.py / e1_deep.py / residue/field.py /
+    agent.py (signed PE storage, MECH-216 multi-channel write, MECH-216 -> z_beta coupling,
+    write-at-predicted-location). All backward-compatible behind config flags
+    (use_mech307_conjunction default False).
+
+    Write site contracts (proposed):
+      gap1_signed_surprise: residue/field.update_valence accepts negative values for
+        VALENCE_SURPRISE under config.surprise_signed=True; consumers read magnitude or sign
+        as needed.
+      gap2_mech216_multi: when schema_salience > threshold and use_mech307_conjunction=True,
+        MECH-216 writes to all of {VALENCE_WANTING, VALENCE_LIKING_anticipatory, z_beta_arousal_pulse}
+        proportional to (schema_salience x drive_level x prediction_certainty).
+      gap3_z_beta_coupling: subsumed into gap2; specifically z_beta is incremented (not
+        replaced) by schema_pulse * z_beta_schema_gain.
+      gap4_predicted_location: MECH-216 receives an optional z_world_predicted argument from
+        E1's forward pass; when supplied, writes target z_world_predicted instead of current
+        z_world. Falls back to current z_world when prediction not available.
+
+    Architecture doc:
+    docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md
+  evidence_quality_note: |
+    Lit anchors (cross-referenced from targeted_review_excitement_5th_valence_channel/, 2026-05-08):
+    Knutson 2001a J Neurosci (NAcc anticipation = self-reported happiness, positive-valence-
+    selective; conf=0.85). Knutson 2001b Neuroreport (anticipation/outcome anatomical
+    dissociation; conf=0.78). Adcock 2006 Neuron (anticipatory NAcc activation predicts
+    subsequent memory formation 24h later; conf=0.82 -- the load-bearing finding for
+    MECH-307's tie-in to MECH-205 sleep-replay-priority). Bromberg-Martin Hikosaka 2010
+    Neuron (DA value vs salience review; conf=0.74 -- mixed direction, supports multi-channel
+    anticipatory affect but offers the alternative architectural reading). Bromberg-Martin
+    2010b Neuron (tonic vs phasic anticipatory dissociation in primate single-unit; conf=0.80).
+    Berns 2006 Science (dread is its own construct, dissociable from fear/anxiety; conf=0.78
+    -- supports symmetric VALENCE_NEGATIVE_SURPRISE conjunction). Posner Russell 2009 Hum
+    Brain Mapp (circumplex valence x arousal as separate neural networks; conf=0.72 --
+    representational adequacy argument for conjunction). Knutson 2008 depression and Johnson
+    2019 bipolar (clinical channel-separability evidence, conf=0.72 / 0.74). Aggregate lit_conf
+    0.77 across 9 entries (8 supports, 1 mixed, 0 weakens). No experimental evidence yet on the
+    REE substrate. EXQ-XXX (MECH-307 conjunction-fix discriminative pair) queued behind
+    EXQ-537 + EXQ-141b clearance.
+  experimental_test: >
+    4-arm discriminative pair on a CausalGridWorldV2 task with reward cues at predictable
+    locations: ARM_0_off (current substrate, all 4 wiring gaps unfixed); ARM_1_signed_PE_only
+    (Gap 1 fix only); ARM_2_full_conjunction (all 4 fixes); ARM_3_alternative_5channel
+    (SD-014 6-channel amendment, VALENCE_EXCITEMENT + VALENCE_DREAD added as discrete writes
+    by MECH-216). Three pre-registered acceptance criteria: (C1) conjunction-state detection
+    rate at predicted-reward locations: ARM_2 >= 0.7, ARM_0 < 0.2; (C2) Adcock 2006 prediction:
+    sleep-replay frequency at conjunction-state locations / uniform-priority baseline >= 1.5x
+    in ARM_2; (C3) ARM_2 vs ARM_3 head-to-head: probe accuracy on subsequent identity
+    discrimination tasks (analog of EXQ-538 SD-049 Phase 2) is comparable, but ARM_2 uses
+    fewer net residue-field writes. PASS = all three. PARTIAL PASS (C1 + C2 only) routes to
+    SD-014 amendment fallback.
+  location: evidence/literature/targeted_review_excitement_5th_valence_channel/

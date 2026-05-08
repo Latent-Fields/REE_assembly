@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-05-08T08:54:57.680152Z`
+Generated: `2026-05-08T10:20:28.850615Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -8,25 +8,25 @@ This register highlights claims under structural pressure and flags where the ev
 | gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | confidence_delta_lit_minus_exp | recurring_signatures | consider_new_structure | external_precedence_candidate | recommendation |
 |---|---|---|---|---|---|---|---|---|---|
 | `AGR-0001` | `MECH-102` | `active` | 1 | 0.222 | 0.217 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0002` | `SD-018` | `implemented` | 1 | 0.5 | 0.416 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0003` | `MECH-098` | `candidate` | 0.96 | 0 | 0.286 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0004` | `SD-015` | `candidate` | 0.957 | 0.231 | 0.252 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0005` | `ARC-016` | `provisional` | 0.941 | 0.111 | 0.182 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0002` | `SD-015` | `candidate` | 1 | 0.231 | 0.253 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0003` | `SD-018` | `implemented` | 1 | 0.5 | 0.334 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0004` | `MECH-098` | `candidate` | 0.96 | 0 | 0.287 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0005` | `ARC-016` | `provisional` | 0.941 | 0.111 | 0.181 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0006` | `SD-016` | `implemented` | 0.941 | 0.333 | 0.087 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0007` | `MECH-075` | `candidate` | 0.857 | 0.333 | 0.423 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0008` | `SD-005` | `implemented` | 0.846 | 0.333 | 0.129 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0009` | `MECH-186` | `candidate` | 0.8 | 0 | 0.461 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0010` | `MECH-257` | `candidate` | 0.8 | 0 | 0.306 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0011` | `Q-002` | `active` | 0.8 | 0 | 0.401 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0012` | `Q-003` | `active` | 0.8 | 0 | 0.523 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0010` | `MECH-257` | `candidate` | 0.8 | 0 | 0.307 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0011` | `Q-002` | `active` | 0.8 | 0 | 0.402 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0012` | `Q-003` | `active` | 0.8 | 0 | 0.524 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0013` | `ARC-024` | `provisional` | 0.75 | 0 | 0.128 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0014` | `ARC-042` | `candidate` | 0.75 | 0 | 0.419 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0015` | `SD-029` | `candidate` | 0.75 | 0.222 | 0.224 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0016` | `ARC-032` | `candidate` | 0.727 | 0.125 | 0.443 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0015` | `SD-029` | `candidate` | 0.75 | 0.222 | 0.226 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0016` | `ARC-032` | `candidate` | 0.727 | 0.125 | 0.444 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0017` | `MECH-099` | `candidate` | 0.727 | 0 | 0.476 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0018` | `MECH-116` | `candidate` | 0.727 | 0 | 0.448 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0019` | `MECH-093` | `provisional` | 0.714 | 0 | 0.104 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0020` | `ARC-030` | `candidate` | 0.706 | 0 | 0.366 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0020` | `ARC-030` | `candidate` | 0.706 | 0 | 0.368 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0021` | `MECH-090` | `active` | 0.6 | 0.667 | -0.127 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0022` | `MECH-073` | `candidate` | 0.571 | 0.6 | -0.152 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0023` | `Q-020` | `resolved` | 0.4 | 0.833 | 0.203 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
