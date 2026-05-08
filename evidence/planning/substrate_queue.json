@@ -1636,6 +1636,47 @@
       "status": "implemented"
     },
     {
+      "sd_id": "SD-018",
+      "title": "encoder.resource_proximity_supervision -- benefit-side analog of SD-009 forcing z_world to encode resource proximity",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-015 z_resource encoder pipeline",
+        "ARC-030 benefit_terrain",
+        "MECH-117 wanting/liking gated approach",
+        "goal-directed behaviour pathway (entire EXQ-085h..o cluster)"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Identified during V3 wiring audit 2026-04-07: EXQ-085m proved benefit_eval_r2=-0.004 (z_world orthogonal to resource proximity). Without auxiliary supervision, z_world is trained only on E1 world-model prediction loss, which is invariant to resource saliency. Implementation: SplitEncoder.resource_proximity_head = nn.Sequential(nn.Linear(world_dim, 1), nn.Sigmoid()); MSE loss against max(resource_field_view) backprops through z_world encoder. Module: ree_core/encoder/split_encoder.py + ree_core/agent.py.compute_resource_proximity_loss. Config: use_resource_proximity_head (default False), resource_proximity_weight (default 0.5). Backward-compatible. Mirrors SD-009 event-contrastive supervision on the harm side. 2026-05-08 governance note: EXQ-536a/b diagnostic non_contributory; same crossed-wiring read as ARC-030 sibling -- substrate landed but downstream consumer wiring is the remaining blocker (separate from this entry).",
+      "priority": 2,
+      "added_session": "queue-completeness-sd018-2026-05-08T2030Z",
+      "last_seen_session": "queue-completeness-sd018-2026-05-08T2030Z",
+      "implementation_status": "implemented",
+      "implemented_session": "v3-wiring-audit-2026-04-07",
+      "implemented_utc": "2026-04-07T00:00:00Z",
+      "validation_experiment": "EXQ-085m diagnostic + EXQ-085h..o cluster",
+      "metric_trajectory": {
+        "primary_metric": "benefit_eval_r2_z_world_resource_proximity",
+        "primary_metric_description": "Linear regression R^2 of z_world against max(resource_field_view). Pre-SD-018 baseline: -0.004 (orthogonal). Target post-SD-018 with use_resource_proximity_head=True: r2 > 0.5 indicates z_world encodes resource proximity, unblocking the goal-scoring pathway.",
+        "direction": "higher_is_better",
+        "target": "benefit_eval_r2 > 0.5 with use_resource_proximity_head=True",
+        "observations": [
+          {
+            "run_id": "EXQ-085m (pre-SD-018 baseline)",
+            "experiment_type": "v3_exq_085m_resource_proximity_eval",
+            "date_utc": "2026-04-06",
+            "substrate_state": "Pre-SD-018: z_world trained only on E1 world-model loss",
+            "metric_value": "benefit_eval_r2 = -0.004",
+            "metric_notes": "Established the gap: z_world is orthogonal to resource proximity. Motivated SD-018 registration."
+          }
+        ],
+        "current_blocker": "Downstream consumer wiring (ARC-030 / MECH-117 sibling). EXQ-536a/b 2026-05-08 confirmed substrate landed but wanting/liking->benefit->commit chain still inert. Tracked as separate entry on ARC-030 / MECH-295 follow-ups, not on this SD-018 substrate-readiness entry.",
+        "prediction": null
+      },
+      "status": "implemented"
+    },
+    {
       "sd_id": "MECH-279",
       "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit",
       "ready": true,
