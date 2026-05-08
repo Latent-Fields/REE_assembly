@@ -9,10 +9,10 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260507T213949Z",
   "outcome": "FAIL",
-  "evidence_direction": "inconclusive_insufficient_events",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-029": "inconclusive_insufficient_events",
-    "MECH-256": "inconclusive_insufficient_events"
+    "SD-029": "non_contributory",
+    "MECH-256": "non_contributory"
   },
   "supersedes": "v3_exq_433e_sd029_eventcond_comparator_reef",
   "pass_criteria_summary": {
@@ -245,5 +245,6 @@
     "num_resources": 3,
     "hazard_harm": 0.02,
     "proximity_harm_scale": 0.1
-  }
+  },
+  "evidence_direction_note": "[2026-05-08 diagnose-errors triage] Reclassified from 'inconclusive_insufficient_events' to 'non_contributory' on both SD-029 and MECH-256. C0 trials-sufficient gate FAILed in 3/4 seeds (agent_caused_trials: 15/7/20/3 vs target 20). Same monomodal V_s monostrategy substrate-ceiling pattern as 433/433a/433b/470: agent adopts single fixed route, preventing balanced agent-vs-env event distributions for C2/C3 measurement. SD-050 reef enrichment substrate (reef_enabled=True, n_reef_patches=3, reef_patch_radius=1, hazard_food_attraction=0.7) was intended to break monostrategy on the 8x8 grid but did not produce balanced events at this scale. SD-029 retest gated on MECH-269 V_s monostrategy substrate landing, not on further reef-substrate tweaks. C2/C3 numbers (forward_r2_mean=-95752, attenuation_ratio=68.1 etc.) are uninterpretable noise downstream of the unmet C0 precondition and must not be cited."
 }

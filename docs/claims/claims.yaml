@@ -18310,6 +18310,8 @@
     gating landing.
 
     [2026-05-08 governance]: EXQ-537/537a/523b runs all classified non_contributory. Diagnostic read: single-pass forward R2 ~0.65 (vs 0.85 target) but C3 falsification holds (scrambled<intact), indicating feature quality is adequate while training capacity is the gap. EXQ-523b reef arm severely undertrained (p1_r2 ~0.18). Pattern consistent with sleep + curiosity training prerequisites the agent does not yet have. Defer evidence weighting on this claim until sleep substrate (MECH-204 / SD-049 sleep loop / SD-017 cluster) lands.
+
+    [2026-05-08 diagnose-errors]: V3-EXQ-433f (5h17min run on ree-cloud-1, runner classified UNKNOWN because flat JSON synced after bookkeeping window) reclassified non_contributory per-claim on SD-029 + MECH-256. C0 trials-sufficient gate FAILed in 3/4 seeds (agent_caused_trials 15/7/20/3 vs target 20). Adds a fifth confirmation of the 433-cohort substrate-ceiling pattern: SD-050 reef enrichment (reef_enabled=True, n_reef_patches=3, hazard_food_attraction=0.7) was intended to break monostrategy on 8x8 grid but did not produce balanced events at this scale either. Hold remains gated on MECH-269/MECH-269b V_s landing; reef-substrate tweaks are not the unblock.
   implementation_note: >
     SD-029 substrate IMPLEMENTED 2026-04-21 via a curriculum-level env
     augmentation. CausalGridWorldV2 now exposes
@@ -18544,6 +18546,8 @@
     calibrated curriculum). Hold pending MECH-269/MECH-269b V_s gating landing.
 
     [2026-05-08 governance]: EXQ-537/537a non_contributory. Same architectural read as SD-029: single-pass comparator capacity ceiling, not feature failure. C3 falsification works. Defer until sleep + curiosity training substrates land.
+
+    [2026-05-08 diagnose-errors]: V3-EXQ-433f reclassified non_contributory per-claim. C0 trials-sufficient gate FAILed in 3/4 seeds (agent_caused_trials 15/7/20/3 vs target 20) -- same monomodal V_s monostrategy substrate-ceiling pattern as 433/433a/433b/470/433d. SD-050 reef enrichment did not break monostrategy at 8x8 scale. Hold remains gated on MECH-269/MECH-269b V_s landing.
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: MECH-257

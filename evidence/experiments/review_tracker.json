@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-08T16:59:36Z",
+  "last_review_utc": "2026-05-08T17:30:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -283,7 +283,9 @@
     "V3-EXQ-536a",
     "V3-EXQ-536b",
     "V3-EXQ-537",
-    "V3-EXQ-537a"
+    "V3-EXQ-537a",
+    "V3-EXQ-538",
+    "V3-EXQ-433f"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2355,6 +2357,21 @@
         "V3-EXQ-537": "v3_exq_537_sd029_single_pass_residual_20260508T135430Z_v3",
         "V3-EXQ-537a": "v3_exq_537_sd029_single_pass_residual_20260508T135638Z_v3"
       }
+    },
+    {
+      "timestamp_utc": "2026-05-08T17:30:00Z",
+      "session_label": "diagnose-errors-244a-538-433f",
+      "reviewed_run_ids": [
+        "v3_exq_244a_mech165_replay_diversity_validation_v3"
+      ],
+      "queue_ids_runner_only": [
+        "V3-EXQ-538",
+        "V3-EXQ-433f"
+      ],
+      "subject": "Three runner-only-pending-review items resolved by /diagnose-errors triage.",
+      "v3_exq_244a": "Stale ERROR record reconciled to PASS. Manifest at runs/v3_exq_244a_mech165_replay_diversity_validation_v3/manifest.json (status=PASS, evidence_direction=supports, claim_ids_tested=[MECH-165]) -- already PASS-classified in INDEX.md. Runner SIGTERM'd on ree-cloud-2 after writing the manifest but before bookkeeping the success status. runner_status.json + ree-cloud-2.json reconciled.",
+      "v3_exq_538": "HELD pending prerequisites. SIGTERM exit -15 mid-run on ree-cloud-1 (24 min in, 0 manifest). Script supersedes V3-EXQ-514f (SD-049 Phase 2 reef behavioural validation, sleep-on ablation). Per Friday PM governance cycle, 538 is part of the Tier-3 cohort (490e/f, 524, 536-cluster, 514f cohort) gated on MECH-307 substrate landing and Tier-1 retests (530b, 514g) clearing. EXQ-539 MECH-307 commit-gating discriminative ran today and FAILed (ARM_ON   liking=2711 pred_writes=2711 z_beta_exc=0.1506 -- substrate fires but commit-chain still inert), so MECH-307 alone does not unblock 538. EXQ-514g not yet queued. Holding 538 until: (1) V3-EXQ-514g lands and clears Tier-1; (2) 539 review surfaces next-step substrate; (3) sleep-substrate audit per recent strategic redirect. Reminder injected into v3_exq_538 script docstring + WORKSPACE_STATE.",
+      "v3_exq_433f": "5h17min run on ree-cloud-1, runner classified UNKNOWN because output flat JSON synced after runner_status bookkeeping window. Flat JSON is real and complete: outcome=FAIL, evidence_direction=inconclusive_insufficient_events on SD-029 + MECH-256, C0 (gate) FAIL (agent_caused_trials_sufficient=False in 3/4 seeds: 15, 7, 20, 3 vs target 20). Same monomodal-policy / V_s monostrategy substrate-ceiling pattern as 433/433a/433b/470 (memory: 'EXQ-433/433a/433b/470 all reclassified non_contributory because monomodal policy can't generate balanced agent-vs-env event distributions for C2/C3 measurement. Hold pending MECH-269 V_s landing'). Reef enrichment substrate (SD-050) was supposed to break monostrategy but did not produce balanced events at this scale. Manifest evidence_direction reclassified non_contributory pending user confirmation; runner_status entry reclassified UNKNOWN -> FAIL since the flat JSON is now visible. Note: this script writes only flat JSON, no runs/<run_id>/manifest.json -- the indexer does not pick it up; treated as runner-only entry."
     }
   ]
 }
