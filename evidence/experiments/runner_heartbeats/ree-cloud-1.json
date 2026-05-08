@@ -1,13 +1,39 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-08T14:56:38Z",
-  "state": "starting",
+  "last_tick_utc": "2026-05-08T16:16:57Z",
+  "state": "idle",
   "current_exq": null,
   "current_exq_started_utc": null,
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-141b",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-514f",
+      "result": "FAIL",
+      "completed_at": "2026-05-08T12:25:08.254679+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-523b",
+      "result": "UNKNOWN",
+      "completed_at": "2026-05-08T12:25:45.377840+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-537",
+      "result": "UNKNOWN",
+      "completed_at": "2026-05-08T12:29:53.727016+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-538",
+      "result": "ERROR",
+      "completed_at": "2026-05-08T12:54:28.504972+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-539",
+      "result": "FAIL",
+      "completed_at": "2026-05-08T16:16:52.779245+00:00"
+    }
+  ],
   "runner_pid": 667,
   "runner_version": null,
   "gpu": {
