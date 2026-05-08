@@ -2,10 +2,22 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-08T20:59:35.761412+00:00",
+  "last_updated": "2026-05-08T21:48:10.910631+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-141d",
+      "backlog_id": "EVB-0061",
+      "claim_id": "MECH-111",
+      "title": "MECH-111 novelty drive: RNG desync between arms (supersedes 141c)",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -7350,6 +7362,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_537c_sd029_capacity_lift/v3_exq_537c_sd029_capacity_lift_20260508T205935Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 63.5
+    },
+    {
+      "queue_id": "V3-EXQ-537d",
+      "backlog_id": "",
+      "claim_id": "SD-029",
+      "title": "SD-029/MECH-256 single-pass: drop interventional margin loss + add stdout fallback",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL | [v3_exq_537d_sd029_no_interventional] outcome=FAIL elapsed=73.6s | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260508T214809Z.json",
+      "started_at": "2026-05-08T21:46:54.514391+00:00",
+      "completed_at": "2026-05-08T21:48:10.903317+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_537d_sd029_no_interventional/v3_exq_537d_sd029_no_interventional_20260508T214809Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 76.4
     }
   ]
 }
