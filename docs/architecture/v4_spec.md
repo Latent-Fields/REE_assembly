@@ -18,6 +18,9 @@ The companion document for V3-tractable enrichment is
 substrate features V3 *can* incrementally absorb. This document is for
 the residue: what V3 cannot become.
 
+For a map of the surrounding V4 planning documents, see
+`docs/architecture/v4_planning_index.md`.
+
 ## V4 prerequisites (from V3)
 
 V4 entry is gated on V3 completion. The current V3 completion gates
@@ -37,7 +40,52 @@ V3-EXQ-495 is the queued experiment for MECH-163 (per WORKSPACE_STATE
 2026-04-30 entries). Until it lands, V4 substrate work should remain
 spec-only.
 
-## V4 scope (the four primitive additions)
+## V4 scope (the five primitive additions)
+
+### V4-0. Object/entity permanence and affordance schemas
+
+The substrate must represent objects as persistent entities whose identity,
+location, affordances, and causal powers survive partial observation,
+occlusion, carrying, placement, and delayed re-encounter. V3 resources,
+hazards, landmarks, and reef cells are useful task features, but they are not
+yet entity slots with stable identity and intervention-derived affordance
+bundles.
+
+This is the bridge between the V3 single-agent world model and V4 social
+ecology. Other agents are a special, harder case of persistent entity: they
+have object permanence plus policy, welfare, body state, and goal dynamics.
+V4 should not start multi-agent work until ordinary entity permanence is
+measurable.
+
+**Claims unblocked:**
+- `ARC-059` scientist-agent developmental ordering cluster.
+- `MECH-275` sleep-phase aggregation for stable schema formation.
+- `MECH-276` scientist-agent principle / interventional closure.
+- `MECH-277` action-space discovery.
+- `MECH-278` object-schema formation via experimental action.
+- V4-1 multi-agent ecology, because other-agent modelling presupposes
+  persistent entity slots.
+
+**Implementation surface:** the reserved harness is
+`docs/architecture/v4_developmental_harness_spec.md`. It specifies a
+MiniGrid-style object-affordance ladder: carry, push, place, use,
+affordance bundles, confounder isolation, and sleep-aggregation ablation.
+The likely implementation surface is a V4-reserved environment/harness first,
+then the REEAgent changes needed to bind persistent entity slots into
+`z_world`, hippocampal anchors, and E1 schemas.
+
+**Open design questions:**
+- Whether entity slots are explicit objects in the observation pipeline,
+  hippocampal anchors, E1 schema memory, or a coordinated view across all
+  three.
+- How identity survives occlusion and carried-object transformations without
+  hand-engineering the answer into `z_world`.
+- Which affordance predictions are learned from passive observation versus
+  experimental action.
+- How sleep aggregation stabilises object schemas without overwriting
+  episode-specific evidence.
+- How entity permanence becomes agent permanence when the entity has its own
+  action policy and affective state.
 
 ### V4-1. Multi-agent ecology
 
@@ -159,6 +207,11 @@ From the Phase 3 wave 2 walk and prior surveys:
 
 | claim | epistemic_category | V4 primitive needed |
 |---|---|---|
+| ARC-059 | (V4-roadmap) | V4-0 developmental ordering / object-schema harness |
+| MECH-275 | (V4-roadmap) | V4-0 object-schema sleep aggregation |
+| MECH-276 | (V4-roadmap) | V4-0 interventional closure |
+| MECH-277 | (V4-roadmap) | V4-0 action-space discovery |
+| MECH-278 | (V4-roadmap) | V4-0 object-schema formation via experimental action |
 | Q-028 | substrate_ceiling | V4-1 multi-agent |
 | Q-029 | substrate_ceiling | V4-1 multi-agent |
 | Q-038 | substrate_conditional | V4-2 (ARC-053/055 substrate, related) |
@@ -172,7 +225,8 @@ From the Phase 3 wave 2 walk and prior surveys:
 | ARC-031 | (V4-roadmap) | V4-2 z_self navigation |
 | MECH-118 / MECH-119 | (V4-roadmap, gated on Q-022) | V4-2 self-model |
 
-About 12 claims explicitly waiting for V4 substrate.
+About 17 claims explicitly wait for V4 substrate or its developmental
+harness.
 
 ## What V4 is NOT for
 
@@ -194,7 +248,10 @@ V4 substrate is additive; V3 substrate continues to exist for V3
 claims. Sketch:
 
 1. Build `MultiAgentCausalGridWorldV4` as a new env class. Inherits
-   nothing from V3 substrate; allowed to be its own ecology.
+   nothing from V3 substrate; allowed to be its own ecology. Before the
+   multi-agent version, build the V4-0 object/entity permanence harness
+   so persistent entities and affordance schemas are validated in the
+   single-agent case.
 2. REEAgent extension: factor out the per-agent state so a single env
    instance can own N REEAgent instances each with their own state.
 3. New experiment-script template for V4 (multi-agent loops aren't
@@ -211,6 +268,9 @@ claims. Sketch:
 V4 spec work proceeds in phases:
 
 - **Phase A (this document):** spec-first. Write down what V4 needs.
+- **Phase B0 (can be specified before V3 closes):** object/entity
+  permanence harness freeze. Implementation remains V4-reserved unless
+  governance explicitly authorises a V3-scale L0/L1 probe.
 - **Phase B (gated on V3 completion):** substrate prototyping.
   `MultiAgentCausalGridWorldV4` first, then per-agent REEAgent factor.
 - **Phase C:** V4-1 contract tests, claim-cohort migration.

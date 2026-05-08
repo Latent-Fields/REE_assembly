@@ -105,6 +105,11 @@ traditions can be read as derived stabilisations of the REE substrate
 [Architecture scaling needs](architecture/architecture_scaling_needs.md) --
 derived scaling versus deliberately scaled intelligence levers
 
+**If you want V4 planning:**
+[V4 planning index](architecture/v4_planning_index.md) --
+the V4 spec, object/entity permanence harness, V3/V4 boundary documents,
+and open documentation gaps in one place
+
 **If you want what this predicts and where it is tested:**
 [Roadmap](roadmap.md) — programme phases and current experimental state
 
