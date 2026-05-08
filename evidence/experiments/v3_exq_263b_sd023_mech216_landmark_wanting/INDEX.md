@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_263b_sd023_mech216_landmark_wanting
 
-Generated: `2026-05-08T22:38:34.313374Z`
+Generated: `2026-05-08T23:05:43.671314Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_526_q034_reef_threshold_sweep
 
-Generated: `2026-05-08T22:38:34.313374Z`
+Generated: `2026-05-08T23:05:43.671314Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

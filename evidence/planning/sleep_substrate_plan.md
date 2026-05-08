@@ -252,7 +252,7 @@ work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | open | nothing internal; needs author session | Add `compute_recalibration_target`, WRITEBACK hook, `E3.recalibrate_precision_to` Option A | TBD | 2026-05-08 |
+| GAP-1 | 1 | in-progress | V3-EXQ-541 result | Substrate landed 2026-05-09: `serotonin.compute_recalibration_target`, `E3.recalibrate_precision_to` Option A, WRITEBACK sibling step in `SleepLoopManager._run_cycle`, REEConfig flags `use_rem_precision_recalibration` + `rem_precision_recalibration_step` (default 0.1). 9/9 MECH-204 contracts + 237/237 preflight + contracts PASS. Awaiting V3-EXQ-541 PASS to mark `done`; companion EXP-0171 step-size sweep gated on PASS. | V3-EXQ-541 | 2026-05-09 |
 | GAP-2 | 2 | blocked | EXQ-418e (SD-016 div-loss validation) result | Confirm EXQ-418e PASS, then re-queue 265/418/436/500/503 | re-queue ID set TBD | 2026-05-08 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
@@ -351,6 +351,53 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09 - Phase 1 substrate landed; V3-EXQ-541 + EXP-0171 queued
+
+Phase 1 deliverables 1-3 (sleep_substrate_plan.md lines 107-122) implemented:
+
+- `SerotoninModule.compute_recalibration_target() -> float` returns the captured
+  `_precision_at_rem_entry` zero-point reference (returns 0.0 when disabled or
+  when no REM entered, treated as "no target available" sentinel by the
+  consumer).
+- `E3TrajectorySelector.recalibrate_precision_to(target_precision, step) -> Tuple[float, float]`
+  applies the Option A statistical update:
+  `new_rv = (1 - step) * rv + step * (1.0 / (target + 1e-6))`. Returns
+  `(rv_before, rv_after)`. No-op on `target <= 0` or `step <= 0`.
+- `SleepLoopManager._run_cycle` runs the recalibration as a WRITEBACK-phase
+  sibling step (independent of the MECH-273 self-model gradient pass). Gated
+  on `use_rem_precision_recalibration` AND `agent.config.rem_enabled` AND
+  `agent.serotonin.enabled`. Emits diagnostics
+  `mech204_recalibration_fired`, `mech204_recalibration_target`,
+  `mech204_running_variance_before`, `mech204_running_variance_after`,
+  `mech204_recalibration_step`.
+- New REEConfig fields `use_rem_precision_recalibration` (default False) and
+  `rem_precision_recalibration_step` (default 0.1, per Q1). Both surfaced
+  through `REEConfig.from_dims`.
+
+Contract suite landed: `tests/contracts/test_mech204_precision_recalibration.py`
+9/9 PASS covering module surface (C1), default-OFF backward compat (C2),
+sleep-loop-ON / recalibration-OFF no-mech204-metrics (C3), arithmetic
+correctness (C4), zero-target / zero-step no-op (C5/C6), the
+**capture-only regression guard** (C7: `compute_recalibration_target` is
+referenced from `phase_manager.py`), end-to-end WRITEBACK firing (C8), and
+end-to-end drift movement (C9). Full preflight + contracts: 237/237 PASS.
+
+Validation experiment `V3-EXQ-541` queued: 2-arm ablation
+(ARM_0 OFF / ARM_1 ON step=0.1), 3 seeds x 8 episodes, sleep_loop K=2,
+hazard-heavy / resource-thin CausalGridWorldV2 to drive sustained PE
+variance between cycles. Pre-registered acceptance C1/C2/C3 per Phase 1
+deliverable 4.
+
+Companion proposal `EXP-0171` (manual_proposals.v1.json) registered for
+step-size sweep tuning, gated on V3-EXQ-541 PASS. 5-arm parametric sweep
+{0.0_off, 0.05, 0.1, 0.25, 0.5}; primary metrics tracking_quality and
+overshoot_rate; FAIL-route identifies the regime where Option B (Phase 7)
+becomes load-bearing.
+
+Status table row GAP-1 advanced from `open` -> `in-progress`. Marks `done`
+on V3-EXQ-541 PASS. Phase 1b (Option B broadcast read) remains
+deferred-conditional per the original Phase 1 / Phase 7 split decision.
 
 ### 2026-05-08 - GAP-5 deferred to V4
 

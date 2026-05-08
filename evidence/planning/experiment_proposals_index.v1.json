@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-08T22:38:34.313374Z",
+  "generated_at_utc": "2026-05-08T23:05:43.671314Z",
   "items": [
     {
       "backlog_id": "EVB-0005",
@@ -4214,9 +4214,21 @@
       "proposal_type": "experimental",
       "status": "executed",
       "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "MECH-204",
+      "dispatch_mode": "tuning_sweep",
+      "executed_by": "V3-EXQ-500",
+      "executed_queue_id": "V3-EXQ-500",
+      "objective": "Tune REEConfig.rem_precision_recalibration_step (Option A linear interpolation gain on E3._running_variance toward 1.0/precision_at_rem_entry) by sweeping it across a principled range and identifying the regime where post-REM precision tracks the captured zero-point reference without over-correcting or under-correcting. Plan-of-record Q1 in REE_assembly/evidence/planning/sleep_substrate_plan.md proposed default 0.1 as a placeholder; this proposal closes the open question with empirical evidence rather than guesswork.",
+      "priority": "medium",
+      "proposal_id": "EXP-0171",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "target_repo": "ree-v3"
     }
   ],
-  "n_executed": 124,
+  "n_executed": 125,
   "n_proposed_exp": 126,
   "n_proposed_lit": 4,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
