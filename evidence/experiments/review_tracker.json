@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-08T00:50:00Z",
+  "last_review_utc": "2026-05-08T16:59:36Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -278,7 +278,12 @@
     "V3-EXQ-514e",
     "V3-EXQ-524",
     "V3-EXQ-530",
-    "V3-EXQ-536"
+    "V3-EXQ-536",
+    "V3-EXQ-445h",
+    "V3-EXQ-536a",
+    "V3-EXQ-536b",
+    "V3-EXQ-537",
+    "V3-EXQ-537a"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2280,262 +2285,76 @@
     "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3",
     "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3",
     "v3_exq_483b_sd037_broadcast_override_4arm_20260507T211221Z_v3",
-    "v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3"
+    "v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3",
+    "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+    "v3_exq_490f_mech295_seeding_strengthening_20260508T024732Z_v3",
+    "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T043247Z_v3",
+    "v3_exq_476c_mech269_vs_validation_probe_20260508T125433Z_v3",
+    "v3_exq_537_sd029_single_pass_residual_20260508T135430Z_v3",
+    "v3_exq_537_sd029_single_pass_residual_20260508T135638Z_v3",
+    "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T122507Z_v3",
+    "v3_exq_141b_mech111_novelty_drive_corrected_substrate_20260508T153100Z",
+    "v3_exq_523b_sd029_reef_comparator_20260508T043308Z_v3",
+    "v3_exq_536a_goal_seeding_instrumentation_20260508T043659Z_v3",
+    "v3_exq_536b_goal_seeding_inject_forcearm_20260508T045233Z_v3",
+    "v3_exq_523b_sd029_reef_comparator_20260508T122544Z_v3",
+    "v3_exq_483b_sd037_broadcast_override_4arm_20260508T135329Z",
+    "v3_exq_141b_mech111_novelty_drive_corrected_substrate_20260508T153100Z_v3",
+    "v3_exq_483b_sd037_broadcast_override_4arm_20260508T135329Z_v3"
   ],
-  "discussion_notes": {
-    "2026-04-27T14:11Z_governance": {
-      "session": "governance-2026-04-27T14:11",
-      "summary": "Walked 9 indexed pending + 4 runner-only. PASS cluster (5 runs): V3-EXQ-494 SD-039 + V3-EXQ-496 MECH-292 (x2 Mac+rerun) + V3-EXQ-497 MECH-293 (x2) all substrate-readiness diagnostics; UC1-UC5/6 PASS confirms SD-039 -> MECH-292 -> MECH-293 dependency chain landed cleanly. Claims hold at hold_pending_v3_substrate. FAILs: V3-EXQ-433d SD-029/MECH-256 reclassified non_contributory (same monomodal phenotype as 433/433a/433b/470, c0 trial-sufficiency gate FAIL 0/4 seeds with 0 agent_caused_hazard trials despite EXQ-479 calibrated curriculum); V3-EXQ-418e SD-016 keeps does_not_support on path-1 div_weight=0.5 with status_note flagging 418f weight sweep follow-up; V3-EXQ-490 MECH-269b/Q-040 (x2) reclassified non_contributory (sub-diagnostic outcome -- c1 gate-firing precondition itself FAILed across both runs and both arms; flagged for /diagnose-errors). Q-040 narrowed in status_note: split into Q-040a (precondition -- does symmetric-V_s gate fire under V3-EXQ-490 substrate) and Q-040b (behavioural sufficiency, conditional on Q-040a PASS). Runner-only: V3-EXQ-433d added to discussed_experiment_dirs (duplicate of indexed FAIL); V3-EXQ-484/485/493 NOT marked discussed -- script-level run_id naming bug (run_id ends in raw timestamp instead of _v3 suffix; flat JSONs PASS but sync_v3_results.py skipped them). Flag for /diagnose-errors.",
-      "ids_marked": [
-        "v3_exq_433d_sd029_eventcond_comparator_20260427T012142Z_v3",
-        "v3_exq_418e_sd016_diversification_loss_20260427T054442Z_v3",
-        "v3_exq_490_mech269b_vs_rollout_gating_20260427T054459Z_v3",
-        "v3_exq_490_mech269b_vs_rollout_gating_20260427T080413Z_v3",
-        "v3_exq_494_sd039_anchor_payload_validation_20260427T094326Z_v3",
-        "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T053946Z_v3",
-        "v3_exq_496_mech292_ghost_goal_bank_validation_20260427T094339Z_v3",
-        "v3_exq_497_mech293_ghost_probes_validation_20260427T061745Z_v3",
-        "v3_exq_497_mech293_ghost_probes_validation_20260427T094353Z_v3",
-        "V3-EXQ-433d"
-      ]
-    },
-    "2026-04-26T15:39Z_governance": {
-      "session": "governance-2026-04-26T15:39",
-      "summary": "Walked 1 indexed pending: V3-EXQ-483a (SD-037 broadcast override 4-arm successor; PASS via substrate-readiness fallback). Substrate confirmed wired (override_signal mean 0.563, PAG release ratio ON_ON/ON_OFF=1.69) but behavioural acceptance still degenerate (approach_commit=0 baseline) -- same wired-but-inert pattern as predecessor V3-EXQ-483 and the V3-EXQ-471/478/480 cluster. Manifest reclassified supports -> non_contributory per-claim (SD-037, MECH-280, MECH-281); claims remain hold_pending_v3_substrate. Predecessor V3-EXQ-483 manifest run-pack copy reclassified non_contributory -> superseded (yesterday's flat JSON edit had not propagated to runs/ subdir). Promotion/demotion agenda: 9 pending_user holds applied (ARC-051, ARC-060, MECH-269b, MECH-291, MECH-292, MECH-293, MECH-294, MECH-295, SD-039 hold_pending_v3_substrate); decision log updated. MECH-294 + MECH-295 received additional governance-flag notes: MECH-294 within-cycle vs cross-cycle binding (Kay 2020 challenge) is the explicit promotion-blocker; MECH-295 strong-vs-weak liking-bridge necessity remains unresolved (weak reading provisional).",
-      "ids_marked": [
-        "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3"
-      ]
-    },
-    "2026-04-26T00:43Z_governance": {
-      "session": "governance-2026-04-26T00:43",
-      "summary": "Walked 1 indexed pending: V3-EXQ-483 (SD-037 broadcast override 4-arm validation). FAIL but tagged experiment_purpose=diagnostic. Substrate signature confirmed (override_signal climbed 0->0.563 mean / 0.622 max in ON arms; PAG release count rose from 5.3 OFF to 9.0-9.3 ON, tracking lit-pull-predicted threshold scaling). Behavioural acceptance criteria (PWS / narcolepsy ratios) were degenerate (0/0) because approach_commit was 0.0 across ALL FOUR arms including the SD-036-only baseline (ON_OFF) -- policy-layer inertia at the standard CausalGridWorldV2 benefit task, not falsification of SD-037 / MECH-280 / MECH-281. Manifest reclassified weakens -> non_contributory with evidence_direction_note (substrate-confirmed-wired but behaviourally-inconclusive). Successor V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance path) already queued and claimed. Promotion/demotion agenda: 3 pending_user holds applied (MECH-280 / MECH-281 / SD-037 hold_pending_v3_substrate); decision log updated.",
-      "ids_marked": [
-        "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3"
-      ]
-    },
-    "2026-04-25T15:49Z_diagnose_errors": {
-      "session": "diagnose-errors-2026-04-25T15:49",
-      "summary": "All 4 ERROR entries (V3-EXQ-445d/455a/449c/476) confirmed as intentional NotImplementedError gating stubs, not code bugs. MECH-284 Phase 3 substrate landed 2026-04-24 but cascade gate V3-EXQ-476a/476b ran FAIL (V_s wired-but-inert -- accumulator integrates and MECH-269 anchor resets fire, but action_class_entropy unchanged; catatonic-lock at policy layer). Remaining blocker is SD-037 (broadcast override regulator, orexin-analog) -- next /implement-substrate target per substrate_queue.json. Gate messages updated in 4 stub scripts to point at SD-037 instead of stale MECH-284 Phase 3 wording. UNKNOWN entries (V3-EXQ-471/447a/449b verifier/PASS without flat-JSON output; V3-EXQ-445e/433c/476a/476b FAIL without indexed evidence dir) reviewed inline as part of governance + cowork sessions earlier today; marking discussed.",
-      "ids_marked": [
-        "V3-EXQ-471",
-        "V3-EXQ-447a",
-        "V3-EXQ-445e",
-        "V3-EXQ-445d",
-        "V3-EXQ-455a",
-        "V3-EXQ-433c",
-        "V3-EXQ-449b",
-        "V3-EXQ-449c",
-        "V3-EXQ-476",
-        "V3-EXQ-476a",
-        "V3-EXQ-476b"
-      ]
-    },
-    "2026-04-30T20:50Z_governance_discuss_results": {
-      "session": "governance-discuss-results-2026-04-30T204541Z",
-      "summary": "Walked 5 pending results after governance.sh. V3-EXQ-490c FAIL weakens Q-040b: V_s gate fired in both arms (585 held events), but liking bridge never fired cues, dACC score bias stayed zero, and approach_commit stayed zero in ON_OFF and ON_ON; route to the prewritten 490d/490e/490f successor tree rather than promoting Q-040b. V3-EXQ-499 PASS supports MECH-094 with 3/3 seeds: tag routing ON produced zero contamination/confabulation and routing separation 0.693, while tag routing OFF produced near-total contamination and 0.64 confabulation; MECH-094 remains confirmed_established. V3-EXQ-501 PASS supports SD-035: analog BLA/CeA arithmetic beat binary sign-only in 3/3 seeds on RMSE, intermediate-valence discrimination, and transition lag; SD-035 is confirmed_established. V3-EXQ-502 PASS supports MECH-062: coordinated tri-loop gating beat single-limbic gating in stable and volatile regimes, especially under volatile disagreement; MECH-062 is confirmed_established. V3-EXQ-500 PASS is diagnostic/readiness evidence for SD-017 sleep phase machinery (3 cycles in 3/3 seeds, replay_quality ~8.10), but because experiment_purpose=diagnostic it does not count as genuine experimental backing under Option E; SD-017 remains the sole standard-gating implementation-cohort claim with zero genuine exp.",
-      "ids_marked": [
-        "v3_exq_490c_mech269b_with_liking_bridge_20260429T055859Z_v3",
-        "v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3",
-        "v3_exq_500_sd017_sleep_phase_readiness_20260429T192752Z_v3",
-        "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
-        "v3_exq_502_mech062_tri_loop_gate_coordination_20260429T192736Z_v3"
-      ]
-    },
-    "2026-05-01T20:40Z_phase3_cutover_close": {
-      "session": "phase3-cutover-2026-05-01T2040Z",
-      "summary": "V3-EXQ-503 (EXP-0171a SD-017 sleep-phase discriminative pair) PASSed in 3/3 seeds with all three pre-registered criteria. ARM_A (FULL_4_PHASE_ON, sws+rem enabled): cumulative_sws_writes=24, ctxmem_state_change Frobenius norm 4.50-5.03, cumulative_rem_rollouts=18 across all seeds. ARM_B (NO_SLEEP_BASELINE): zeros across the board. SD-017 quadrant flipped plausible_unproven -> confirmed_established; experimental_confidence 0.000 -> 0.775; overall_confidence 0.901 -> 0.870 (slight legacy-blend dip). Closes Phase 2 standard-gating cohort -- all four claims (MECH-094, SD-017, SD-035, MECH-062) now confirmed_established with genuine experimental evidence under Option E. Reviewed as part of Phase 3 cutover preparation (cutover work itself proceeds in the same session).",
-      "ids_marked": [
-        "v3_exq_503_sd017_sleep_phase_discriminative_20260501T201518Z_v3"
-      ]
-    },
-    "2026-05-02T18:06Z_diagnose_errors_obsolete_cleanup": {
-      "session": "diagnose-errors-2026-05-02T18:06Z",
-      "summary": "Cleared 3 obsolete unaddressed-error entries surfaced by /diagnose-errors. (1) V3-EXQ-008 (2026-03-17, claim_id=SD-003 'Larger World + 3x3 Observation') -- crashed at exit code 1 in March; SD-003 has since been pursued via SD-029/MECH-269 monostrategy paths on different substrate, so re-running under the same EXQ-008 number is not appropriate. Marked discussed without successor. (2) V3-ONBOARD-smoke-EWIN-PC (2026-04-05, contributor onboarding smoke for Eoin's machine) and (3) V3-ONBOARD-smoke-ree-cloud-1 (2026-04-06, Hetzner CX22 cloud onboarding) -- both contributor/cloud machine onboarding tests, not scientific experiments; the named machines are no longer in active runner rotation. Marked discussed without successor. None of these were code bugs requiring a fix; all three needed governance closure rather than a /diagnose-errors patch.",
-      "ids_marked": [
-        "V3-EXQ-008",
-        "V3-ONBOARD-smoke-EWIN-PC",
-        "V3-ONBOARD-smoke-ree-cloud-1"
-      ]
-    },
-    "2026-05-03T02:50Z_governance": {
-      "session": "governance-2026-05-03T0238Z",
-      "summary": "Walked 6 indexed pending: 1 carryover FAIL (V3-EXQ-490e Q-040 floor-relaxation, reclassified diagnostic_probe / non_contributory; routes to 490g instrumentation or 490d cue-gain sweep) and 5 from tonight's V3-EXQ-504..508 cohort. Net cohort outcome: 2 PASS / 3 FAIL on raw scoring, but post-review classification settled at: (a) V3-EXQ-505 MECH-093 PASS supports -- substrate-level 2x2 z_beta x salience dissociation passed cleanly, resolved EXQ-097 encoding-artifact conflict, drove MECH-093 candidate -> provisional; (b) V3-EXQ-507 ARC-026 PASS supports -- capacity-sweep weak-reading replication of EXQ-232, drove ARC-026 candidate -> provisional; (c) V3-EXQ-504 MECH-153 reclassified inconclusive -- soft-contrastive arm collapsed harm_r2 to -3000+ (training instability, not claim invalidation); (d) V3-EXQ-506 MECH-095 reclassified non_contributory / substrate_ceiling_confirmation -- C4-only-PASS pattern matches the substrate-ceiling signature already flagged in MECH-095's EQN; (e) V3-EXQ-508 ARC-033 left at weakens (borderline FAIL, near-threshold; ARC-033 already provisional with 55 entries, will not flip status; ARC-058 lit-pull successor flagged). Promotion/demotion agenda: ARC-026 candidate -> provisional, MECH-093 candidate -> provisional, SD-023 hold continued, MECH-057b/MECH-263/Q-037 V3-pending hold continued. pending_user dropped 5 -> 0. 8 manifest files edited (4 flat + 4 per-run). 6 decision_log entries appended. Commits + pushes pending.",
-      "ids_marked": [
-        "v3_exq_490e_mech295_seeding_strengthening_20260430T220232Z_v3",
-        "v3_exq_504_mech153_supervised_context_labeling_3arm_20260503T021659Z_v3",
-        "v3_exq_505_mech093_zbeta_precision_dissociation_20260503T021711Z_v3",
-        "v3_exq_506_mech095_agency_comparator_substrate_20260503T021729Z_v3",
-        "v3_exq_507_arc026_capacity_scaling_20260503T014741Z_v3",
-        "v3_exq_508_arc033_e2_harm_s_body_damage_ablation_20260503T021914Z_v3"
-      ]
-    },
-    "2026-05-03T23:56Z_governance": {
-      "session": "governance-2026-05-03T2356Z",
-      "summary": "Walked 3 indexed substrate-readiness diagnostics + 1 runner-only SIGTERM. All three indexed experiments are diagnostic (experiment_purpose=diagnostic); none contribute to exp_conf. (1) V3-EXQ-509 SD-047 multi_source_substrate_readiness PASS 7/7: ARM_2 calibration 2.03:1 within Asai-derived target band [0.5, 2.5]; ARM_3 2.55 within saturation tolerance; bit-identical OFF confirmed. SD-047 already at provisional with v3_pending removed -- clean close. (2) V3-EXQ-511 SD-048 interoceptive_noise_substrate_readiness FAIL 6/7: C1b ARM_1 (scale=0.25) body_noise_positive=false because combined perturbation stays below interoceptive_change_threshold=0.025 at sub-baseline intensity. ARM_2 calibration 2.39:1 PASS, ARM_3 saturation PASS. Governance decision: accept per SD-048 interpretation grid (under-calibration at sub-baseline scale, not architectural failure). evidence_direction changed weakens -> non_contributory + evidence_direction_note added to manifest. SD-048 stays candidate/v3_pending. ARC-058 behavioural successor V3-EXQ-512 deferred. (3) V3-EXQ-513 SD-049 multi_resource_heterogeneity_substrate_readiness PASS 13/13 including CC1/CC2 curriculum checks: ARM_2 3-type default full coverage, ARM_3 5-type all types spawned, per-axis drive evolution confirmed, novelty familiarity grows. Phase 1 substrate confirmed valid. SD-049 v3_pending stays true pending Phase 2 encoder + EXQ-514 behavioural validation. (4) V3-EXQ-495 ERROR (runner-only): SIGTERM on ree-cloud-1 after 4h of estimated ~40h run (ree-cloud-1 infrastructure kill, exit code -15); script v3_exq_495_mech163_planned_system_gate.py intact, no code error. Governance decision: defer entirely per README deferral note (queue Q-040b cluster-successor first). Marked as discussed-infrastructure-kill. Promotion/demotion: MECH-302 / MECH-303 / SD-049 pending_user -> applied (all correctly hold_pending_v3_substrate). pending_user 3 -> 0.",
-      "ids_marked": [
-        "v3_exq_509_sd047_multi_source_substrate_readiness_20260503T103241Z_v3",
-        "v3_exq_511_sd048_interoceptive_noise_substrate_readiness_20260503T113836Z_v3",
-        "v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness_20260503T132415Z_v3"
-      ]
-    },
-    "2026-05-04T22:01Z_governance": {
-      "session": "governance-2026-05-04T2133Z",
-      "summary": "Walked 10 indexed pending + 1 runner-only ERROR. (1) V3-EXQ-517 (3 runs): dry-run contamination corrected -- 2 dry-run artifacts (T132505Z, T132543Z) and 1 real run with calibration gap (T150341Z: comparator window 5-step / drop_threshold=5% cannot detect healing rate 0.002/step -> max drop 0.010 below required 0.025). All 3 reclassified non_contributory. MECH-302 hold maintained; EXQ-517a with recalibrated comparator window to be queued. (2) V3-EXQ-510 (SD-047 / MECH-095 WOO_SPELKE branch): flat failure across all noise arms despite non-zero C4 gap; reclassified via EXQ-510 evidence note as non_contributory (substrate_ceiling_confirmation pattern). MECH-095 epistemic_category reclassification deferred to further analysis. (3) V3-EXQ-512a (SD-048): PASS at 3x noise confirms comparator wiring; non_contributory for SD-048 confidence (noise scale not default). (4) V3-EXQ-519a (SD-051 / MECH-303): diagnostic PASS, substrate wired; MECH-303 hold maintained. (5) V3-EXQ-520 (SD-052 / MECH-304): diagnostic PASS, substrate wired; MECH-304 hold maintained. (6) V3-EXQ-418e (SD-016): does_not_support on path-1 div_weight=0.5; EXQ-418f weight sweep (div_weight 1.0/2.0/5.0) queued as follow-up. (7) V3-EXQ-106 (MECH-219): non_contributory older re-run. (8) V3-EXQ-516 (EXQ-516 support probe): short run_id, previously covered by discussed_experiment_dirs V3-EXQ-516; run_id added to reviewed_run_ids. Runner-only: V3-EXQ-514a ERROR -- flagged for /diagnose-errors, NOT marked reviewed. Promotion/demotion: 6 pending_user holds applied (MECH-302, MECH-303, MECH-304, Q-036 narrowed to MECH-305, SD-048, SD-049). New claim MECH-305 registered (harm_stream.controllability_weighted_affective_load). Q-036 evidence_quality_note updated. claims.json and experiment index rebuilt. EXQ-418f weight sweep and EXQ-517a recalibrated comparator to be queued in follow-up session.",
-      "ids_marked": [
-        "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T132505Z_v3",
-        "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T132543Z_v3",
-        "v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T150341Z_v3",
-        "v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3",
-        "v3_exq_512a_sd048_comparator_gap_recalibrated_20260504T093916Z_v3",
-        "v3_exq_519a_sd051_conditioned_safety_store_readiness_20260504T210916Z_v3",
-        "v3_exq_520_sd052_contextual_safety_terrain_readiness_20260504T212029Z_v3",
-        "v3_exq_418e_sd016_diversification_loss_20260427T015954Z_v3",
-        "v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3",
-        "20260504T041122Z_v3"
-      ]
-    },
-    "2026-05-04T22:42Z_reef_substrate": {
-      "session": "reef-enrichment-env-implementation-2026-05-04T2228Z",
-      "summary": "V3-EXQ-521 SD-050 reef enrichment substrate readiness diagnostic. PASS 7/7 criteria. C0: ARM_0 obs_dim=250 reef_cells=0. C1: ARM_1/ARM_2 obs_dim=275 (+25 reef_field_view). C2: 0 hazard-in-reef violations across 30 episodes x 200 steps x 3 seeds. C3: 33 reef cells in reef-enabled arms. C4: ARM_2 mean food_dist=2.057 vs baseline 3.790 (46% reduction; food attraction working strongly). C5: ARM_2 entropy=4.049 >= 0.7 * baseline 4.557 = 3.190 (hazard diversity not collapsed). C6: ARM_1 reef_visits=1987 (agent can enter reef). Substrate diagnostic only (no claim_ids); validates reef safe zones + food-attracted hazards env plumbing for V3-EXQ-522 monostrategy-breaking experiment.",
-      "ids_marked": [
-        "v3_exq_521_reef_enrichment_20260504T223858Z_v3"
-      ]
-    },
-    "2026-05-05T06:52Z_reef_monostrategy_break": {
-      "session": "reef-monostrategy-break-2026-05-05T0652Z",
-      "summary": "V3-EXQ-522 reef monostrategy-break behavioral diversity validation. PASS 6/6 criteria. Heuristic harm-avoiding reef-aware policy. ARM_0 baseline: reef_frac=0.0, forage=1.0, transitions/ep=0.0 (sanity C6 PASS). ARM_1 reef+food-attracted: reef_frac=0.501, forage_frac=0.499, transitions/ep=48.94 (C1/C2/C3 all PASS by wide margin). ARM_2 reef-only: reef_frac=0.525, transitions/ep=36.31 (C4/C5 PASS). Food-attracted hazards (ARM_1) drive more zone-switching than reef-only (ARM_2) as expected. Confirms SD-050 substrate creates meaningful two-attractor behavioral diversity. Unblocks V3-EXQ-523 (trained-agent SD-029 C2/C3 comparator measurement). experiment_purpose=diagnostic; no claim_ids.",
-      "ids_marked": [
-        "v3_exq_522_reef_monostrategy_break_20260505T064610Z_v3"
-      ]
-    },
-    "2026-05-05T20:40Z_bg_gating_517b_queued": {
-      "session": "bg-gating-517b-governance-2026-05-05T2040Z",
-      "summary": "Reviewed 4 FAILs + 2 UNKNOWNs. (1) V3-EXQ-418i SD-016 div_weight sweep: action_bias_divergence=0.0 across all weight arms -- cue_action_proj gradient blockage confirmed as structural (EXP-0155). does_not_support maintained. (2) V3-EXQ-517a MECH-302 relief comparator: root cause = steps_per_episode=150 geometrically too short for heal_rate=0.002/step (max healing 0.3 per episode; comparator window=30 needs sustained drop). episodes with 0 events structurally insufficient (mean 0.33/seed). Fix: steps_per_episode 150->300 in EXQ-517b. Conservative change preserving heal_rate integrity. (3) V3-EXQ-433e SD-029/MECH-256: 5th iteration hitting same monomodal-policy wall (balanced agent-vs-env event distribution impossible with single-strategy agent). Parked: waking attribution is inherently partial; full retrospective causal attribution requires offline sleep consolidation (MECH-269 V_s or sleep pipeline). Reclassified non_contributory. (4) V3-EXQ-514b SD-049 Phase 2 behavioural: user concern that BG gate never commits with default 514b config (rv_final=0.5 always), so longer episodes add idle time not chaining. Diagnostic experiment EXQ-514d written and queued: tracks rv_final + committed_frac per episode per seed. Smoke test confirmed: rv_final=0.5000 all 3 seeds, never committed. Queued EXQ-517b (steps_per_episode=300) and EXQ-514d (BG gating diagnostic). Deleted 517b dry-run artifacts from evidence/experiments/.",
-      "ids_marked": [
-        "v3_exq_418i_sd016_divweight_sweep_20260504T221922Z_v3",
-        "v3_exq_517a_mech302_relief_completion_discriminative_pair_20260504T222032Z_v3",
-        "v3_exq_433e_sd029_eventcond_comparator_reef_20260505T072754Z_v3",
-        "v3_exq_514b_sd049_phase_2_behavioural_validation_20260505T005802Z_v3"
-      ]
-    },
-    "2026-05-07T23:03Z_exq476c_cascade_gate_unmeasurable": {
-      "session": "exq476c-review-2026-05-07T2303Z",
-      "summary": "V3-EXQ-476c (MECH-269 V_s validation cascade gate FAIL) marked reviewed. Both seeds: OFF entropy=0.0 / ON entropy=0.0 / delta=0.0 -- every one of 1200 ticks emits the same action class (class 1 on seed 42; class 2 on seed 7). The cascade gate metric (entropy_delta >= 0.1) cannot be measured on an untrained-policy degenerate-argmax baseline; entropy can't go down from zero. Per pre-registered evidence_direction='inconclusive' for MECH-269/287/288 -- a FAIL on this gate does not weaken the substrate claims. CRITICAL: the V_s instrumentation IS firing on the ON arm: boundary_event_count=3/2, broadcast_event_count=3/2, anchor_active_peak=1, all zero in OFF -- Phase 1+2 substrate alive end-to-end. Cross-reference V3-EXQ-478 (MECH-284 Phase 3 diagnostic, FAIL 2026-04-24): same degenerate signature (action_class_entropy=0 in both arms; OFF/ON freeze_recommit=1/1) BUT MECH-284 substrate confirmed firing per anchor_reset_count=63/31 and mean_staleness_peak=0.94/0.83. Both 476c and 478 are unmeasurable for the same root cause: random-init policy + urgency_weight=0 produces argmax-locked behaviour. Recommendation: do NOT queue 476d. Route attention to V3-EXQ-495 (V3 full-completion gate, MECH-163 dual-systems test) which exercises the cascade behaviourally with a trained agent rather than gating on entropy delta over an untrained one. The MECH-269/287/288/284 cluster remains hold_pending_v3_substrate; the substrate is wired and instrumented, but waking-stream behavioural validation requires a trained baseline.",
-      "ids_marked": [
-        "v3_exq_476c_mech269_vs_validation_probe_20260507T214359Z_v3"
-      ]
-    },
-    "2026-05-07T22:06Z_exq535a_manifest_corrected": {
-      "session": "exq535a-manifest-correction-2026-05-07T2206Z",
-      "summary": "EXQ-535a (SD-029 P3 eval fix, FAIL) reclassified non_contributory for both SD-029 and MECH-256. The script (_eval_cf_gaps in v3_exq_535a_sd029_p3_eval_fix.py:309) computes a TWO-PASS counterfactual gap ||E2(z, a_actual)|| - ||E2(z, a_opposite)||, which is the SUPERSEDED SD-003 design, not the SD-029/MECH-256 single-pass comparator residual (z_observed - E2(z, a_actual)). SD-029 functional_restatement explicitly forbids the second E2 call ('No counterfactual branch. No E2(a_cf) call.'). MECH-256 falsifier explicitly states 'one forward pass'. The cf_gap_self/cf_gap_ext dissociation (0.082 vs ~0) is correctly signed under TWO-pass semantics but does not bear on either claim. Substrate readiness milestone (n_self=89, n_ext=50 in ARM_1 reef_food_ext, first balanced agent-vs-env distribution measurement on z_harm_s) is real and a genuine SD-029 substrate-design milestone, but properly attributed to the curriculum hook, not the comparator residual. C1 forward fit harm_forward_r2=0.660 < 0.9 spec threshold remains the binding prerequisite for any future MECH-256 test. Successor experiment (single-pass residual) to be designed next.",
-      "ids_marked": [
-        "v3_exq_535a_sd029_p3_eval_fix_20260507T203343Z_v3"
-      ]
-    },
-    "2026-05-05T22:04Z_exq445f_exq523_manifests_corrected": {
-      "session": "exq-445g-523a-queue-manifests-2026-05-05T2204Z",
-      "summary": "EXQ-445f SD-032b dACC reef FAIL: monostrategy persists despite reef env -- action_class_entropy=0.0 in all seeds for both OFF and ON_INDEPENDENT conditions. Root cause: DACCAdaptiveControl clips score_bias to dacc_bias_max_abs=1.0 (default) but E3 trajectory scores are O(17), so bias is saturated and irrelevant to trajectory ranking. C2 (SD-032b) wins=0; corrected evidence_direction_per_claim[SD-032b] from 'mixed' to 'does_not_support'. C1 (MECH-258) and C3 (MECH-260) retain 'supports'. EXQ-445g queued: dacc_bias_max_abs raised to 2.0 (architectural fix in dacc.py). EXQ-523 SD-029 reef comparator: undertrained (n_train_steps=2000 fixed, r2=0.57); hardcoded evidence_direction='supports' was incorrect. Corrected to 'non_contributory'; added per-claim and superseded_by. Superseded by EXQ-523a (graduation gate r2>=0.85 for 5 windows, epsilon=0.4, aggressive injection interval=5/prob=1.0).",
-      "ids_marked": [
-        "v3_exq_445f_sd032b_dacc_reef_20260505T174448Z_v3",
-        "v3_exq_523_sd029_reef_comparator_20260505T180800Z_v3"
-      ]
-    },
-    "2026-05-07T23:12Z_rv_pinned_cluster": {
-      "session": "rv-pinned-cluster-review-2026-05-07T2300Z",
-      "summary": "Reviewed 5 runner-only UNKNOWN/ERROR experiments (V3-EXQ-514d, 514e, 524, 530, 536) that share a single root cause: their experiment scripts call agent.select_action() but never agent.update_residue(). update_residue() is the only call site of E3Selector.post_action_update(), which is the only call site of update_running_variance(). With that path dormant, _running_variance stays at precision_init=0.5 forever; the BG commit gate (commit when rv < 0.40) never fires; current_precision = 1/(0.5+1e-6) = 1.999996 (matches EXQ-530 mean_precision constant exactly). (1) EXQ-514d (SD-049 BG gating diagnostic): rv pinned, 0/3 seeds ever committed -- diagnostic confirmed. (2) EXQ-514e (schema predictability): both ARM_A and ARM_B ever_committed=False; MECH-216 schema readout is NOT the missing ingredient; whatever pins rv is upstream of schema availability. (3) EXQ-524 (reef fishtank showcase): N/A diagnostic showcase, indexed PASS, just discussion-marked. (4) EXQ-530 (ARC-016 precision-to-commit): manifest evidence_direction reclassified weakens -> non_contributory for ARC-016. The arms could not differentiate because precision was constant in both. (5) EXQ-536 (goal seeding lift): manifest evidence_direction set non_contributory for all 5 claims (ARC-030, MECH-112, SD-018, SD-012, MECH-295). Pipeline downstream of SD-018 was not exercised because BG never committed -> no resource contacts in eval -> z_goal_active_fraction=0.0 all seeds. Architectural follow-up: 514b/514d/514e/530/536 all share this scripting omission. Either (a) document the contract that experiment loops MUST call agent.update_residue() each step even when residue isn't the focus, or (b) move the rv update out of update_residue() into select_action() / a dedicated post_action() hook so the BG gate can't be silently dormant. Consider registering a Q-claim for this contract decision.",
-      "ids_marked": [
-        "v3_exq_514d_sd049_bg_gating_diagnostic_20260506T013506Z_v3",
-        "v3_exq_514e_bg_gating_seaweed_diagnostic_20260506T064842Z_v3",
-        "v3_exq_524_reef_fishtank_showcase_20260506T093201Z_v3",
-        "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3",
-        "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3"
+  "discussion_notes": [
+    "2026-04-27T14:11Z_governance",
+    "2026-04-26T15:39Z_governance",
+    "2026-04-26T00:43Z_governance",
+    "2026-04-25T15:49Z_diagnose_errors",
+    "2026-04-30T20:50Z_governance_discuss_results",
+    "2026-05-01T20:40Z_phase3_cutover_close",
+    "2026-05-02T18:06Z_diagnose_errors_obsolete_cleanup",
+    "2026-05-03T02:50Z_governance",
+    "2026-05-03T23:56Z_governance",
+    "2026-05-04T22:01Z_governance",
+    "2026-05-04T22:42Z_reef_substrate",
+    "2026-05-05T06:52Z_reef_monostrategy_break",
+    "2026-05-05T20:40Z_bg_gating_517b_queued",
+    "2026-05-07T23:03Z_exq476c_cascade_gate_unmeasurable",
+    "2026-05-07T22:06Z_exq535a_manifest_corrected",
+    "2026-05-05T22:04Z_exq445f_exq523_manifests_corrected",
+    "2026-05-07T23:12Z_rv_pinned_cluster",
+    "2026-05-07T23:55Z_update_z_goal_cohort",
+    "2026-05-08T00:50Z_multi_sense_triage",
+    {
+      "timestamp_utc": "2026-05-08T16:59:36Z",
+      "session_label": "governance-cycle-friday-pm-2026-05-08",
+      "reviewed_run_ids": [
+        "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+        "v3_exq_490f_mech295_seeding_strengthening_20260508T024732Z_v3",
+        "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T043247Z_v3",
+        "v3_exq_476c_mech269_vs_validation_probe_20260508T125433Z_v3",
+        "v3_exq_537_sd029_single_pass_residual_20260508T135430Z_v3",
+        "v3_exq_537_sd029_single_pass_residual_20260508T135638Z_v3",
+        "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T122507Z_v3",
+        "v3_exq_141b_mech111_novelty_drive_corrected_substrate_20260508T153100Z",
+        "v3_exq_523b_sd029_reef_comparator_20260508T043308Z_v3",
+        "v3_exq_536a_goal_seeding_instrumentation_20260508T043659Z_v3",
+        "v3_exq_536b_goal_seeding_inject_forcearm_20260508T045233Z_v3",
+        "v3_exq_523b_sd029_reef_comparator_20260508T122544Z_v3",
+        "v3_exq_483b_sd037_broadcast_override_4arm_20260508T135329Z"
       ],
-      "queue_ids_marked": [
-        "V3-EXQ-514d",
-        "V3-EXQ-514e",
-        "V3-EXQ-524",
-        "V3-EXQ-530",
-        "V3-EXQ-536"
+      "discussed_experiment_dirs": [
+        "V3-EXQ-445h",
+        "V3-EXQ-536a",
+        "V3-EXQ-536b",
+        "V3-EXQ-537",
+        "V3-EXQ-537a"
       ],
-      "manifest_patches": {
-        "v3_exq_530_arc016_precision_commit_20260507T205242Z_v3": {
-          "evidence_direction": "weakens -> non_contributory",
-          "evidence_direction_per_claim": {
-            "ARC-016": "non_contributory"
-          },
-          "root_cause_tag": "rv_pinned_no_post_action_update"
-        },
-        "v3_exq_536_goal_seeding_lift_ablation_20260507T202858Z_v3": {
-          "evidence_direction": "(absent) -> non_contributory",
-          "evidence_direction_per_claim": {
-            "ARC-030": "non_contributory",
-            "MECH-112": "non_contributory",
-            "SD-018": "non_contributory",
-            "SD-012": "non_contributory",
-            "MECH-295": "non_contributory"
-          },
-          "root_cause_tag": "rv_pinned_no_post_action_update"
-        }
+      "summary": "Governance walk 2026-05-08 PM. 13 indexed pending + 6 runner-only. Manifest reclassifications: EXQ-490f Q-040 weakens->non_contributory and EXQ-514f (both runs) SD-049/SD-015 weakens->non_contributory; both reflect pre-MECH-307 conjunction-architecture confound (the four-gap wiring fault). Per-claim directions applied as-recorded for EXQ-445h (SD-032b does_not_support, MECH-258/260 supports), EXQ-141b (MECH-111 weakens), EXQ-483b (SD-037/MECH-280/MECH-281 supports). Diagnostic non_contributory entries (EXQ-476c MECH-269 cluster, EXQ-536a/536b ARC-030 cluster, EXQ-537/537a/523b SD-029 cluster) accepted as-classified. evidence_quality_note refinements added to all 21 affected claims capturing the architectural reads. Q-041 + Q-042 hold_pending_v3_substrate decisions logged with substrate-specific gates: Q-041 = SD-032c/d + MECH-258 + MECH-204; Q-042 = MECH-258 + StepHarness retest cohort (EXQ-475a/483c/490g/471a/524a). Strategic redirect: sleep substrate (MECH-204 / SD-049 sleep loop / SD-017 cluster) is the top-priority unblocker. Tier-1 StepHarness retest authoring (EXQ-530b ARC-016 + EXQ-514g SD-049 wider seeds) approved for /queue-experiment hand-off. Sleep-substrate audit approved as next concrete step. V3-EXQ-433f (no manifest, cloud-1 silent-fail) NOT marked discussed -- needs /diagnose-errors.",
+      "duplicates_indexed_runner": {
+        "V3-EXQ-445h": "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+        "V3-EXQ-536a": "v3_exq_536a_goal_seeding_instrumentation_20260508T043659Z_v3",
+        "V3-EXQ-536b": "v3_exq_536b_goal_seeding_inject_forcearm_20260508T045233Z_v3",
+        "V3-EXQ-537": "v3_exq_537_sd029_single_pass_residual_20260508T135430Z_v3",
+        "V3-EXQ-537a": "v3_exq_537_sd029_single_pass_residual_20260508T135638Z_v3"
       }
-    },
-    "2026-05-07T23:55Z_update_z_goal_cohort": {
-      "session": "fix-update-z-goal-bug",
-      "summary": "Diagnosed and patched the update_z_goal TypeError-swallowed cohort. 11 ree-v3 experiment scripts (EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524) called agent.update_z_goal(latent, benefit_exposure=..., drive_level=...) which collided with the benefit_exposure positional and raised TypeError. A bare `except Exception: pass` wrapper (commented in EXQ-471 as 'signature tolerant; skip if the runtime shape mismatches') silently swallowed the error every tick. GoalState.is_active() was always False -> z_goal stayed at 0 -> MECH-295 bridge precondition unmet. Cohort-wide additional bugs: (a) 2x agent.sense() per warmup step (substrate updates fire at 2x env rate during training, 1x during eval); (b) agent.update_residue() never called -> e3.post_action_update never fires -> running_variance pinned, residue field empty, no VALENCE_* writes; (c) dACC bias diagnostic reads bundle['mode_ev'] not the [K] score_bias passed to E3.select. All 11 scripts patched for the update_z_goal call shape + bare-except removed. Manifests for the 4 currently-weighting results (EXQ-483b, EXQ-490c, EXQ-490b, EXQ-483a) marked superseded; the 6 already-non_contributory + 1 already-superseded got a diagnosis note appended. evidence_quality_note added to claims Q-040, MECH-269b, MECH-295, SD-037, MECH-280, MECH-281, SD-036, MECH-279. Indexes rebuilt. Next: build StepHarness module + canonical metrics extractors + contract tests, then re-queue as EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a.",
-      "ids_marked": [
-        "v3_exq_483b_sd037_broadcast_override_4arm_20260507T211221Z_v3"
-      ],
-      "manifests_superseded": [
-        "v3_exq_483b_sd037_broadcast_override_4arm",
-        "v3_exq_490c_mech269b_with_liking_bridge",
-        "v3_exq_490b_mech269b_vs_rollout_gating",
-        "v3_exq_483a_sd037_broadcast_override_4arm"
-      ],
-      "claims_quality_noted": [
-        "Q-040",
-        "MECH-269b",
-        "MECH-295",
-        "SD-037",
-        "MECH-280",
-        "MECH-281",
-        "SD-036",
-        "MECH-279"
-      ],
-      "queue_modifications": [
-        "removed V3-EXQ-490f (pre-execution withdrawal)"
-      ],
-      "root_cause_tag": "update_z_goal_typeerror_swallowed"
-    },
-    "2026-05-08T00:50Z_multi_sense_triage": {
-      "session": "triage-7-weighting-multi-sense",
-      "summary": "Triaged 7 currently-weighting scripts flagged by the multi-sense audit. EXQ-124 superseded (env.reset() inside per-step inner loop corrupts E2 world_forward training -- E2 taught z_world_t + a -> z_world_post_reset). EXQ-143 superseded (eval-time double-sense in ON arm only -- structurally asymmetric substrate dynamics across arms). EXQ-108 + EXQ-375 retained with quality_note (training-time double-sense, eval symmetric, both arms equally affected so comparison structure preserved with lower-confidence magnitude). EXQ-047i/j/k cluster retained -- multi-sense AST flag was a false alarm, the pattern is a deliberate probe loop with 1 sense per env state. Also caught EXQ-490f which had run between this session's queue-removal and audit; same cohort bug, superseded. Added evidence_quality_note to MECH-033, MECH-118, MECH-135, MECH-073, MECH-095, SD-005.",
-      "ids_marked": [
-        "v3_exq_490f_mech295_seeding_strengthening_20260507T214855Z_v3"
-      ],
-      "manifests_superseded": [
-        "v3_exq_124_mech033_kernel_chain_pair",
-        "v3_exq_143_mech118_hopfield_familiarity_pair",
-        "v3_exq_490f_mech295_seeding_strengthening"
-      ],
-      "manifests_trace_noted": [
-        "v3_exq_108_mech135_discriminative_pair",
-        "v3_exq_375_mech073_valence_geometry_probe",
-        "v3_exq_047i_tpj_routing_poc",
-        "v3_exq_047j_tpj_routing_ce",
-        "v3_exq_047k_tpj_routing_larger_n"
-      ],
-      "claims_quality_noted": [
-        "MECH-033",
-        "MECH-118",
-        "MECH-135",
-        "MECH-073",
-        "MECH-095",
-        "SD-005"
-      ],
-      "root_cause_tags": [
-        "env_reset_mid_episode_corrupts_e2_warmup",
-        "eval_double_sense_asymmetric_across_arms",
-        "training_double_sense_substrate_rate_2x"
-      ]
     }
-  }
+  ]
 }

@@ -5811,6 +5811,8 @@
     Non-contributory FAILs (EXQ-235, EXQ-086 measurement bug) removed from scoring but the
     remaining supports are from specialized selectors, not the full symmetric gate. Status:
     pending_retest_after_substrate (gate: EXQ-247 + SD-015 resource indicator encoding).
+
+    [2026-05-08 governance]: EXQ-536a + EXQ-536b diagnostic non_contributory. Per user review, previous diagnostics revealed two crossed wiring paths for goal seeding -- neither was properly wired. Diagnostic results reflect substrate breakage, not mechanism falsification. Re-test required after wiring is canonicalized.
   depends_on:
     - ARC-021
     - MECH-069
@@ -6618,6 +6620,8 @@
   evidence_quality_note: |
     EXQ-141 FAIL/weakens (2026-03-29): novelty drive discriminative pair FAIL. First
     experimental entry.
+
+    [2026-05-08 governance]: EXQ-141b weakens (substrate-corrected reef retest). C1/C2/C5 fail 0.0/0/0 across 3 seeds; novelty_ema alive (~1e-4) but does NOT propagate to E3 selection. Update-path is the next investigation lever (per 2026-05-08 review): EMA -> E3-selection routing is the probable break point. Reconsider after the update-path is traced.
   depends_on:
     - MECH-069
     - ARC-030
@@ -6765,6 +6769,8 @@
     ATOMIC SPLIT (2026-04-13): MECH-112 split into MECH-229 (behavioral wanting/liking
     dissociation, status: active) and MECH-230 (z_goal latent structure, status: candidate,
     gated on SD-012). MECH-112 deprecated -- use MECH-229 and MECH-230 for new experiments.
+
+    [2026-05-08 governance]: EXQ-536a/b diagnostic non_contributory; same crossed-wiring read as ARC-030 sibling.
   split_into:
     - MECH-229
     - MECH-230
@@ -8738,6 +8744,8 @@
     First PASS with SD-012 substrate active. Co-tested with MECH-112 (deprecated;
     now MECH-229/230).
 
+    [2026-05-08 governance]: EXQ-536a/b diagnostic non_contributory; same crossed-wiring read as ARC-030 sibling.
+
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
   claim_type: design_decision
@@ -9002,6 +9010,8 @@
     Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.703,
     conflict_ratio=0.889. EXQ-182a PASS adds a support entry. Resolution requires ARC-030
     and z_goal-to-behavior pathway to be validated.
+
+    [2026-05-08 governance]: EXQ-514f reclassified weakens -> non_contributory (same reason as SD-049 sibling: pre-MECH-307 mixed affect-stream confound).
   implementation_note: >
     IMPLEMENTED 2026-04-10. ResourceEncoder class in ree_core/latent/stack.py:
     world_obs [250] -> Linear(250,64) -> ReLU -> Linear(64,32) -> z_resource [32];
@@ -14417,6 +14427,8 @@
     entire benefit/goal scoring pathway (benefit_eval_head, goal_proximity, z_goal seeding,
     drive modulation, dual systems) operates on noise. SD-018 is the critical unblocking
     substrate decision for V3 goal-directed behavior.
+  evidence_quality_note: |
+    [2026-05-08 governance]: EXQ-536a/b diagnostic non_contributory; same crossed-wiring read as ARC-030 sibling.
   notes: >
     Implementation: SplitEncoder.resource_proximity_head = nn.Sequential(
     nn.Linear(world_dim, 1), nn.Sigmoid()). Config: use_resource_proximity_head (bool,
@@ -16283,7 +16295,10 @@
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
 - id: Q-040
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
+  evidence_quality_note: |
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
+
+    [2026-05-08 governance]: EXQ-490f reclassified weakens -> non_contributory (manifest patched). Cascade test ran on pre-MECH-307 conjunction architecture; the four-gap wiring fault confounds the result. Re-test required after MECH-307 substrate lands. Cross-witness: EXQ-536b force-arm probe (z_goal_inject=0.3, action-time fraction=1.0) also yielded approach_commit_rate=0.0, consistent with downstream-inert at the same architectural layer.
   title: "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?"
   claim_type: open_question
   subject: control.vs_generalisation_unblocks_dacc
@@ -16467,12 +16482,16 @@
     aggregation and a sleep-writeback MECH covering MECH-204 -> waking
     threshold update path. Default toward registering only the Q
     until evidence directs.
+
+    [2026-05-08 governance]: hold_pending_v3_substrate. Substrate gates: SD-032c (AIC analog, candidate v3_pending), SD-032d (PCC analog, candidate v3_pending), MECH-258 (precision-weighted pain PE, candidate v3_pending), MECH-204 (REM serotonergic precision update, candidate v3_pending). The unified-supervisor question becomes empirically tractable only after the scattered loci are themselves wired; sleep substrate work (MECH-204) is the acknowledged top-priority unblocker per 2026-05-08 governance discussion.
   location: docs/architecture/threshold_supervisor_survey.md
 
 - id: Q-042
   title: "Should the running-variance / dynamic-precision update fire at action-selection time (early, control-plane-coupled), at outcome-integration time (late, residue-coupled, current location), or at both? Equivalently: is the StepHarness contract that requires experiment loops to call agent.update_residue() each step sufficient, or does ARC-016 precision need a call site that is structurally guaranteed to fire whenever the agent is selecting actions?"
   claim_type: open_question
   subject: control.precision_update_call_site
+  evidence_quality_note: |
+    [2026-05-08 governance]: candidate_resolved with hold_pending_v3_substrate. Architectural answer is settled: dual-read at outcome AND at action selection (lit-pull 2026-05-08 confirmed; clinically and biologically obvious -- consequential effect of decisions cannot be processed for ongoing experimental behaviour without both). Empirical resolution gated on (a) MECH-258 substrate implementation, (b) StepHarness-cohort retest of EXQ-475a/483c/490g/471a/524a -- the StepHarness substrate landed today; retest cohort to be authored under /queue-experiment with careful wiring checks per 2026-05-08 governance. Sleep substrate (MECH-204) shares the gate.
   polarity: open
   status: candidate_resolved
   implementation_phase: v3
@@ -18289,6 +18308,8 @@
     actually tested. c3 (approach_snr) PASS 4/4. Reclassified non_contributory
     per-claim on SD-029 + MECH-256; claims hold pending MECH-269/MECH-269b V_s
     gating landing.
+
+    [2026-05-08 governance]: EXQ-537/537a/523b runs all classified non_contributory. Diagnostic read: single-pass forward R2 ~0.65 (vs 0.85 target) but C3 falsification holds (scrambled<intact), indicating feature quality is adequate while training capacity is the gap. EXQ-523b reef arm severely undertrained (p1_r2 ~0.18). Pattern consistent with sleep + curiosity training prerequisites the agent does not yet have. Defer evidence weighting on this claim until sleep substrate (MECH-204 / SD-049 sleep loop / SD-017 cluster) lands.
   implementation_note: >
     SD-029 substrate IMPLEMENTED 2026-04-21 via a curriculum-level env
     augmentation. CausalGridWorldV2 now exposes
@@ -18521,6 +18542,8 @@
     V3-EXQ-433d 2026-04-27 also reclassified non_contributory (same monomodal
     phenotype: 0 agent_caused_hazard trials in 4/4 seeds even with EXQ-479
     calibrated curriculum). Hold pending MECH-269/MECH-269b V_s gating landing.
+
+    [2026-05-08 governance]: EXQ-537/537a non_contributory. Same architectural read as SD-029: single-pass comparator capacity ceiling, not feature failure. C3 falsification works. Defer until sleep + curiosity training substrates land.
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: MECH-257
@@ -18864,6 +18887,8 @@
     V_s-monostrategy-blocked, so behavioural-adjustment magnitude cannot be
     measured. SD-032b validation deferred until MECH-269 V_s landing unlocks
     alternative operating modes; pending_retest_after_substrate.
+
+    [2026-05-08 governance]: EXQ-445h SD-032b does_not_support (4th consecutive null after 445/445a/b/c). MECH-258 (C1 wins=2/3) and MECH-260 (C3 wins=3/3) both supported in the same run. Caution flag: monostrategy may stem from substrate gaps not yet inventoried (e.g. previous-valence-on-unexpected, MECH-307 conjunction architecture, sleep substrate). Do NOT advance toward demote until the candidate-gap inventory broadens.
   implementation_note: >
     IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/dacc.py
     (DACCAdaptiveControl, DACCConfig, DACCtoE3Adapter). Integrated into
@@ -19148,6 +19173,8 @@
     models achieve comparable per-stream accuracy to independent
     models (following MECH-257 single-substrate-with-gated-readout
     pattern).
+
+    [2026-05-08 governance]: EXQ-445h supports (C1 wins=2/3 seeds). harm_a forward R2=0.94-0.99. First clean supporting evidence for shared-substrate harm prediction on dACC reef.
   implementation_note: >
     IMPLEMENTED 2026-04-19. E2_harm_a forward model added in
     ree_core/predictors/e2_harm_a.py (E2HarmAConfig, E2HarmAForward).
@@ -19272,6 +19299,8 @@
   evidence_quality_note: >
     Single-paper evidence. Lower confidence than the other MECH claims
     in this cluster. See SD-032 parent.
+
+    [2026-05-08 governance]: EXQ-445h supports (C3 wins=3/3 seeds). harm forward R2=0.94-0.99. First clean supporting evidence on dACC reef substrate.
   implementation_note: >
     IMPLEMENTED 2026-04-19. DACCAdaptiveControl
     (ree_core/cingulate/dacc.py) maintains a FIFO action-class history
@@ -21028,6 +21057,8 @@
     BoundaryEvent rate, anchor-key snapshot scope, or commit-entry
     capture sites before the next validation pass. Substrate stays
     candidate / v3_pending; not a weakening of MECH-269.
+
+    [2026-05-08 governance]: EXQ-476c diagnostic, inconclusive. V_s observables do not convert to behaviour without the MECH-284 Phase-3 consumer; reveals an architectural gap (assumed-present consumer is in fact absent). Not weighted as evidence.
   implementation_note: >
     Anchor-reset arm online-arm wiring now consumes MECH-284 staleness
     as of 2026-04-24 (ree-v3 Phase 3). AnchorSet.tick_hysteresis
@@ -21856,7 +21887,10 @@
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: SD-037
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
+  evidence_quality_note: |
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
+
+    [2026-05-08 governance]: EXQ-483b PASS supports (substrate validates in isolation). Caveat: integration with MECH-307 conjunction architecture not yet tested; substrate-level support only.
   title: "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists."
   claim_type: design_decision
   subject: broadcast.override_regulator
@@ -22009,7 +22043,10 @@
     diversity/monostrategy improvement.
 
 - id: MECH-280
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
+  evidence_quality_note: |
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
+
+    [2026-05-08 governance]: EXQ-483b supports. PAG release ratio 1.875x (>1.30 threshold). Substrate-level mechanism validated in isolation; integration test pending MECH-307.
   title: "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys."
   claim_type: mechanism_hypothesis
   subject: lh_pag.override_projection
@@ -22056,7 +22093,10 @@
   location: docs/architecture/sd_037_broadcast_override_regulator.md
 
 - id: MECH-281
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
+  evidence_quality_note: |
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
+
+    [2026-05-08 governance]: EXQ-483b supports. Entropy amplification confirmed. Substrate-level mechanism validated in isolation; integration test pending MECH-307.
   title: "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy)."
   claim_type: mechanism_hypothesis
   subject: orexin.drive_arousal_coupling
@@ -22728,6 +22768,8 @@
     Promotion requires substrate implementation (invalidation_trigger.py
     + staleness_accumulator.py) plus the V3-EXQ-476 unlock test plus
     the four-arm trigger-vs-accumulator dissociation factorial.
+
+    [2026-05-08 governance]: EXQ-476c diagnostic inconclusive (same reading as MECH-269 sibling).
   implementation_note: >
     Upstream broadcast trigger (invalidation_trigger.py) was implemented
     in Phase 2 (2026-04-23). Downstream accumulator consumer
@@ -22988,6 +23030,8 @@
     substrate implementation (event_segmenter.py per canonical
     default config) plus integration into Phase 2 (ii)+(iii)+(iv)
     downstream substrate plus falsifiable predictions above.
+
+    [2026-05-08 governance]: EXQ-476c diagnostic inconclusive (same reading as MECH-269 sibling).
   location: docs/architecture/event_segmenter.md
 
 - id: MECH-289
@@ -24668,6 +24712,8 @@
     IDs p < 0.01 in ARM_2. Five-row interpretation grid including the
     Woo/Spelke-style falsifier branch routing MECH-229 to
     substrate_conditional with V4 dependency.
+
+    [2026-05-08 governance]: EXQ-514f (both runs) reclassified weakens -> non_contributory. Pre-MECH-307 affect-stream architecture mixed harm and benefit surprise; Phase-2 reef behavioural validation depends on cleanly separated affect signals. With streams mixed, classifier-loss and probe-accuracy outcomes cannot be interpreted as testing the SD-049 sleep-loop claim. Re-test required after MECH-307 conjunction-fix substrate lands; sleep substrate work is the load-bearing prerequisite for the underlying SD-049 mechanism itself.
   location: docs/architecture/sd_049_multi_resource_heterogeneity.md
 
 - id: MECH-296

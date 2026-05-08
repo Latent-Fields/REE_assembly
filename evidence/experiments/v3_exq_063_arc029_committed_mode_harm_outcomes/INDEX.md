@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_063_arc029_committed_mode_harm_outcomes
 
-Generated: `2026-05-08T08:54:57.680152Z`
+Generated: `2026-05-08T16:59:55.436260Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

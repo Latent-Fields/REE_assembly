@@ -1,0 +1,47 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_490f_mech295_seeding_strengthening",
+  "run_id": "v3_exq_490f_mech295_seeding_strengthening_20260508T024732Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-08T02:47:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-040"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-040": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-05-08 governance reclassification] Reclassified weakens -> non_contributory. EXQ-490f tested the wired-but-inert cascade pattern under the pre-MECH-307 conjunction architecture. The four-gap conjunction wiring fault identified in the 2026-05-08 anticipatory-affect dialogue (signed VALENCE_SURPRISE + MECH-216 z_beta coupling + anticipatory VALENCE_LIKING write + write-at-predicted-location) confounds the cascade test: C2/C3/C4 zero is consistent with both 'cascade-genuinely-inert' and 'cascade-wiring-broken-upstream'. Re-test required after MECH-307 conjunction-fix substrate lands."
+}

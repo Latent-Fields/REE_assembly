@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-04T22:01:16Z",
+  "last_updated_utc": "2026-05-08T17:03:28Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -534,12 +534,24 @@
           "experiment_type": "v3_exq_433_sd029_eventcond_comparator",
           "metric": "C3 approach-event SNR passes 2/4 seeds (vals 2.46, 3.99, 4.31, 0.0; seed 91 zero because n_self=303 but n_ext=0). C4 event-density balance passes 1/4 seeds -- seeds 13/42 have n_self<=2 vs n_ext~100 (agent-caused hazards rare); seed 91 has no externally-caused hazards. C1 (forward_r2=0.98-0.9998) and C2 (attenuation 0.40/0.49/0.44/0.0) pass.",
           "target": "C3 SNR > threshold on approach-to-harm events in >= 3/4 seeds AND C4 balanced event density (both n_self and n_ext >= 20 per seed) AND residual magnitude partially attenuated for self-caused vs externally-caused harm (Shergill partial-attenuation pattern)"
+        },
+        {
+          "run_id": "v3_exq_537_sd029_single_pass_residual_20260508T135638Z_v3",
+          "experiment_type": "v3_exq_537_sd029_single_pass_residual",
+          "metric": "C1 forward_r2=0.649 (target >0.85); C2 dissociation FAIL (intact_self/intact_ext=0.885 < 1.30); C3 falsification PASS",
+          "target": "After sleep + curiosity training substrates land: C1 forward_r2 > 0.85 and C2 ratio > 1.30 (with C3 falsification continuing to hold)."
+        },
+        {
+          "run_id": "v3_exq_523b_sd029_reef_comparator_20260508T122544Z_v3",
+          "experiment_type": "v3_exq_523b_sd029_reef_comparator",
+          "metric": "Reef arm p1_r2 ~0.18 (severely undertrained); baseline arm p1_r2 ~0.35; both far below 0.65 gradient threshold",
+          "target": "After training regime improvements (sleep + curiosity), p1_r2 reaches 0.65+ on both arms."
         }
       ],
       "implementation_hint": "Forward model (E2_harm_s, ARC-033) and interventional training (SD-013) already implemented -- C1 and C2 are passing. The blocker is curriculum: event-density imbalance between self-caused and externally-caused harm makes event-conditioned SNR noisy. Curriculum must reliably produce both event types per seed. Candidates: (a) scripted mix of hazard-approach vs hazard-enter episodes; (b) scheduled hazard-appearance events (externally-caused) interleaved with agent-driven hazard encounters; (c) longer P2 eval with hazard_density tuned so both event classes accumulate >= 20 events per seed.",
       "priority": 1,
       "added_session": "governance-2026-04-19T06",
-      "last_seen_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
       "implementation_status": "implemented",
       "implemented_utc": "2026-04-21T05:54:39Z",
       "implemented_session": "cowork-2026-04-21-batch",
@@ -594,11 +606,18 @@
       "design_doc": null,
       "depends_on_unresolved": [],
       "unblocks_claims": [],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+          "experiment_type": "v3_exq_445h_sd032b_dacc_reef",
+          "metric": "C2 SD-032b wins=0/3 seeds (action_class_entropy=0 in both arms; entropy_gap=0). 4th consecutive null after 445/445a/b/c. MECH-258/MECH-260 supports in same run.",
+          "target": "After MECH-307 + sleep substrate land, action_class_entropy >= 0.1 differential between SD-032b ON vs ABLATED arms in >=2/3 seeds."
+        }
+      ],
       "implementation_hint": "Implemented 2026-04-19 in ree-v3 cingulate cluster.",
       "priority": 2,
       "added_session": "governance-2026-04-19T21",
-      "last_seen_session": "governance-2026-04-24T08:10",
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
       "implementation_status": "implemented",
       "implemented_utc": "2026-04-19T00:00:00Z",
       "validation_experiment": "V3-EXQ-445",
@@ -1385,12 +1404,18 @@
           "experiment_type": "v3_exq_490_mech269b_vs_rollout_gating",
           "metric": "Phase 1 V_s velocity proxy stays in [0.85, 1.0]; gate hold threshold 0.4 unreachable",
           "target": "VsRolloutGate.gate() subtracts staleness_accumulator readout from per_stream_vs before threshold comparison: V_s_effective = V_s_proxy - staleness_lookup(stream); held when V_s_effective < threshold. Mirrors the MECH-269 anchor hysteresis pattern (already uses staleness_lookup via use_mech284_hysteresis flag)."
+        },
+        {
+          "run_id": "v3_exq_476c_mech269_vs_validation_probe_20260508T125433Z_v3",
+          "experiment_type": "v3_exq_476c_mech269_vs_validation_probe",
+          "metric": "Cascade gate inconclusive: action_class_entropy(ON)-action_class_entropy(OFF)=0.0 in both seeds. Phase-2 V_s flags alone do not diversify behaviour; MECH-284 Phase-3 consumer required to convert V_s observables to behaviour.",
+          "target": "After MECH-284 Phase-3 lands, action_class_entropy delta >= 0.1 in >= 2/2 seeds."
         }
       ],
       "implementation_hint": "Smaller substrate change than the Phase 2 T2 path. Mirrors the existing MECH-269 anchor hysteresis pattern: AnchorSet.tick_hysteresis already consumes staleness_lookup when use_mech284_hysteresis is True. Apply the same lookup at the rollout-gate read site. New flag use_vs_rollout_gating_staleness_lookup (default False) on HippocampalConfig. When ON, VsRolloutGate.gate() and gate_stream() lookup staleness for the stream's parent (scale, segment_id) region (or per-stream aggregate when no region key is in scope) and subtract from V_s before threshold comparison. Requires one of: a per-stream-to-region mapping (cleanest -- align with the per_region_vs partition); or a per-stream max-across-regions aggregate (matches the SD-039 build_goal_payload pattern). Does NOT require Phase 2 T2's per-stream forward-predictor router. Does NOT redefine V_s. Trade-off: the gate now responds to true staleness but only AT staleness-active regions; healthy streams in low-staleness regions still see Phase 1 V_s as the substrate-readiness signal. Composes cleanly with Phase 2 T2 if both land. Behavioural-sufficiency validation EXQ unblocks Q-040b on the narrow reading.",
       "priority": 1,
       "added_session": "diagnose-errors-2026-04-27T14:42",
-      "last_seen_session": "diagnose-errors-2026-04-27T14:42"
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08"
     },
     {
       "sd_id": "SD-034",
@@ -1888,11 +1913,18 @@
       "unblocks_claims": [
         "EXQ-471 catatonic-lock factorial diagnosis (Q-040)"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_536b_goal_seeding_inject_forcearm_20260508T045233Z_v3",
+          "experiment_type": "v3_exq_536b_goal_seeding_inject_forcearm",
+          "metric": "Force-arm probe: cfg.goal.z_goal_inject=0.3 with action-time fraction=1.0 -- approach_commit_rate=0.0 across all 3 seeds. Downstream cascade inert even with z_goal action-time active.",
+          "target": "Post-MECH-307: approach_commit_rate >0 in arm with z_goal_inject=0.3, isolating downstream conjunction architecture as the gate."
+        }
+      ],
       "implementation_hint": "Wires the missing link between SD-012 drive amplification, SD-014/SD-015 liking-stream substrate, and E3/BG action selection. Two integration sites: (a) update_z_goal() writes anticipatory liking pulse to VALENCE_LIKING at the GOAL location (NOT current z_world; distinct from update_liking() consummatory) gated on drive*z_goal_norm; (b) select_action() reads per-candidate goal_proximity, computes drive*proximity, negates (E3 lower-is-better), composes additively with dacc_score_bias before e3.select(). WEAK reading commitment: cue-side gain is function of drive * goal_proximity, not drive * residue.liking. Severed-bridge arm (cue gain=0) is the falsifiable test. Module: ree_core/regulators/mech295_liking_bridge.py.",
       "priority": 1,
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
-      "last_seen_session": "governance-2026-04-28T2156Z",
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
       "implementation_status": "implemented",
       "implemented_session": "implement-mech295-bridge-2026-04-26T16:40",
       "implemented_utc": "2026-04-26T19:48:32Z",
@@ -2015,12 +2047,18 @@
           "substrate_state": "Single-type resource substrate. PASS evidence (wanting_l1_fraction=0.96 vs liking_l1_fraction=0.43, delta=0.53) obtained via z_world fallback seeding -- not genuine identity-distinct wanting.",
           "metric": "PASS at the metric level but degenerate at the architectural level: with one resource type, wanting-target and liking-target are forced to coincide, so the dissociation is trivially at-most-one-type. EXQ-074d C2 PASS (l2_redirect <= 7 steps) similarly came from a single redirect to a moved single-type resource.",
           "target": "Re-run MECH-229 / MECH-117 evidence on SD-049 substrate. Pre-registered: identity-distinct wanting (agent approaches target_A while target_B is what it would consume for satiation) on >= 60% of seeded episodes. This is the non-degenerate test."
+        },
+        {
+          "run_id": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T122507Z_v3",
+          "experiment_type": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation",
+          "metric": "Reclassified non_contributory: pre-MECH-307 affect-stream mixed harm+benefit surprise -- classifier_loss 0.015-0.023 vs target <0.005; probe_acc 0.48-0.53 vs target >0.70",
+          "target": "Post-MECH-307 retest must show classifier_loss <0.005 and probe_acc >0.70 in 3-arm reef substrate."
         }
       ],
       "implementation_hint": "Three additions to CausalGridWorldV3 layered on top of SD-047 (which lands first): (1) Multiple resource identities (default n_resource_types=3: food/water/novelty) with identity tags in obs_dict + type-specific spawn distribution + type-specific benefit_curve (sigmoidal_saturating / sharp_saturation / novelty_decay). (2) Per-axis homeostatic drive system replacing SD-012's single drive_weight scalar -- per-axis depletion + per-axis weight + configurable combiner (sum/max/learned). (3) curriculum-introduction hook (resource_introduction_schedule: dict[str, int]). All bit-identical OFF when master switch disabled; per-resource-type bit-identical OFF for ablation studies. Validation experiment: 4-arm noise sweep (ARM_0 OFF / ARM_1 2-type homeostatic / ARM_2 3-type default / ARM_3 5-type overshoot) with explicit interpretation grid mapping outcomes to architectural conclusions including a Woo/Spelke-style falsifier branch routing MECH-229 to substrate_conditional with V4 dependency. Module surface: CausalGridWorldV3 in ree_core/environment/causal_grid_world.py + per-axis drive cascade through encoder + E3 evaluation + downstream goal-conditioning pathway. Triggers pending_substrate_reconfirmation on SD-012-emergent invariants per invariant-types governance rule.",
       "priority": 1,
       "added_session": "draft-sd049-multi-resource-heterogeneity-2026-05-03T0947Z",
-      "last_seen_session": "governance-2026-05-04T2133Z",
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
       "validation_note": "V3-EXQ-513 PASS 13/13 2026-05-03: Phase 1 substrate confirmed. All curriculum checks pass. Phase 2 (encoder + EXQ-514 behavioural) still pending."
     },
     {
@@ -2128,6 +2166,68 @@
       "priority": 1,
       "added_session": "implement-substrate-mech304-sd051-2026-05-04T1347Z",
       "last_seen_session": "governance-2026-05-04T2133Z"
+    },
+    {
+      "sd_id": "MECH-204",
+      "title": "Serotonergic withdrawal during REM actively defines the precision setpoint for waking attention; provides the sleep-mediated writeback path REE explicitly lacks.",
+      "status": "candidate_v3_pending",
+      "ready": true,
+      "ready_blocked_by": null,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "Q-041",
+        "Q-042",
+        "INV-049",
+        "SD-029",
+        "MECH-256",
+        "MECH-111",
+        "SD-049"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Sleep loop with REM-phase serotonergic withdrawal that actively recalibrates the waking precision setpoint. Pairs with SD-049 sleep loop and SD-017 cluster. Per 2026-05-08 governance: TOP-PRIORITY UNBLOCKER -- multiple downstream claims (SD-029 single-pass comparator, MECH-111 novelty drive, Q-041 unified threshold supervisor, Q-042 dual-read precision) are all gated on this. Implementation should integrate with the StepHarness landed 2026-05-08 (canonical sense/update_z_goal/update_residue sequence) so that sleep-period writes hit the same canonical substrate as wake-time updates.",
+      "priority": 1,
+      "added_session": "governance-cycle-friday-pm-2026-05-08",
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08"
+    },
+    {
+      "sd_id": "MECH-307",
+      "title": "Anticipatory affect conjunction: signed VALENCE_SURPRISE + MECH-216 z_beta coupling + anticipatory VALENCE_LIKING write + write-at-predicted-location collectively generate excitement/dread as derived states.",
+      "status": "candidate_v3_pending",
+      "ready": true,
+      "ready_blocked_by": null,
+      "design_doc": "docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "Q-040",
+        "SD-049",
+        "SD-015",
+        "MECH-111",
+        "SD-032b",
+        "ARC-030",
+        "MECH-112",
+        "SD-018",
+        "SD-012",
+        "MECH-295"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_490f_mech295_seeding_strengthening_20260508T024732Z_v3",
+          "experiment_type": "v3_exq_490f_mech295_seeding_strengthening",
+          "metric": "Q-040 cascade test: C2/C3/C4 zero (cue_fires=0, dacc_bias=0, approach_commit=0) at relaxed activation floors -- confounded by pre-MECH-307 wiring fault",
+          "target": "After MECH-307 substrate lands, retest must show non-zero cue_fires + dacc_bias + approach_commit in relaxed arm relative to baseline."
+        },
+        {
+          "run_id": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T122507Z_v3",
+          "experiment_type": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation",
+          "metric": "Pre-MECH-307 affect-stream architecture mixed harm and benefit surprise; classifier_loss ~0.015-0.023 (target <0.005), probe_acc ~0.48-0.53 (target >0.70)",
+          "target": "After MECH-307 substrate lands and affect-stream is unmixed, classifier_loss must converge below 0.005 and probe_acc above 0.70."
+        }
+      ],
+      "implementation_hint": "Four-gap conjunction fix to existing channels: (1) signed VALENCE_SURPRISE (negative for harm-paired surprise, positive for reward-paired); (2) MECH-216 z_beta coupling so arousal pulse fires on VALENCE_SURPRISE write; (3) anticipatory VALENCE_LIKING write at the predicted future location (not the current one); (4) write-at-predicted-z_world via the cached e1_prior, not at current_z_world. All four must fire conjunctively to generate excitement/dread; missing any one yields the wired-but-inert pattern observed in EXQ-490f, 514f, 536b, etc. ~40 lines of code per the 2026-05-08 design doc. SD-014 6-channel amendment (add VALENCE_EXCITEMENT + VALENCE_DREAD as discrete channels) is the fallback architectural option if MECH-307 conjunction does not produce the expected derived states.",
+      "priority": 1,
+      "added_session": "governance-cycle-friday-pm-2026-05-08",
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08"
     }
   ]
 }

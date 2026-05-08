@@ -1,0 +1,53 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation",
+  "run_id": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T122507Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-049": "non_contributory",
+    "SD-015": "non_contributory",
+    "MECH-229": "non_contributory",
+    "MECH-230": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-05-08 governance reclassification] Reclassified SD-049 + SD-015 weakens -> non_contributory. Pre-MECH-307 affect-stream architecture mixed harm and benefit surprise into a single VALENCE_SURPRISE channel. Phase-2 reef behavioural validation depends on cleanly separated affect signals to drive discriminative learning of resource-vs-harm encoding; with the streams mixed, classifier-loss and probe-accuracy targets cannot be interpreted as testing what the experiment intended. MECH-229 + MECH-230 already non_contributory. Re-test required after MECH-307 conjunction-fix substrate lands."
+}

@@ -2,21 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-08T13:56:38.952932+00:00",
-  "idle": false,
+  "last_updated": "2026-05-08T17:04:25.702855+00:00",
+  "idle": true,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-141b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-111 novelty drive: corrected-substrate retest (paired discriminative)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-539",
       "backlog_id": "",
@@ -24,7 +13,7 @@
       "title": "MECH-307 anticipatory affect conjunction commit-gating discriminative ablation",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -7289,6 +7278,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 59.4
+    },
+    {
+      "queue_id": "V3-EXQ-141b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-111 novelty drive: corrected-substrate retest (paired discriminative)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "per_seed_harm_delta_max: 0.0 | n_harm_min: 0.0 | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260508T153100Z.json",
+      "started_at": "2026-05-08T13:56:44.562068+00:00",
+      "completed_at": "2026-05-08T15:31:01.199579+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_141b_mech111_novelty_drive_corrected_substrate/v3_exq_141b_mech111_novelty_drive_corrected_substrate_20260508T153100Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 5656.6
     }
   ]
 }

@@ -1,14 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-05-08T08:55:33Z`  
-Last review: `2026-05-08T00:50:00Z`  
-Pending: **7** item(s) -- 0 PASS, 1 FAIL, 6 runner-only (ERROR/UNKNOWN/smoke)
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3` | 2026-05-08T00:29 | MECH-258, MECH-260, SD-032b | — |
+Generated: `2026-05-08T17:00:34Z`  
+Last review: `2026-05-08T16:59:36Z`  
+Pending: **2** item(s) -- 0 PASS, 0 FAIL, 2 runner-only (ERROR/UNKNOWN/smoke)
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -16,12 +10,8 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
-| `V3-EXQ-445h` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-514f` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
-| `V3-EXQ-523b` | UNKNOWN | `?` | UNKNOWN (index stale — run build_experiment_indexes.py) |
-| `V3-EXQ-536a` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-536b` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-433f` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-538` | ERROR | `?` | ERROR |
 
 ---
 

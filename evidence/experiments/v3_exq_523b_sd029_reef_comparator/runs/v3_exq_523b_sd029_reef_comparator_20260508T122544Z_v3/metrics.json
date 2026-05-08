@@ -1,0 +1,59 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "per_arm": {
+      "ARM_0_baseline": {
+        "n_self": 1099.6666666666667,
+        "n_ext": 0.0,
+        "harm_forward_r2": 0.0,
+        "mean_cf_gap_self": 0.0,
+        "mean_cf_gap_ext": 0.0,
+        "mean_p1_loss": 0.015231518312230926,
+        "mean_p2_loss": 0.0,
+        "p1_steps": 8000.0,
+        "p1_r2": 0.24742134112790118,
+        "p2_steps": 0.0,
+        "p2_r2": 0.0,
+        "p1_graduated_all": false,
+        "p2_graduated_all": false
+      },
+      "ARM_1_reef_food_ext": {
+        "n_self": 336.0,
+        "n_ext": 187.0,
+        "harm_forward_r2": 0.0,
+        "mean_cf_gap_self": 0.0,
+        "mean_cf_gap_ext": 0.0,
+        "mean_p1_loss": 0.023528089497738908,
+        "mean_p2_loss": 0.0,
+        "p1_steps": 8000.0,
+        "p1_r2": 0.11147066351162167,
+        "p2_steps": 0.0,
+        "p2_r2": 0.0,
+        "p1_graduated_all": false,
+        "p2_graduated_all": false
+      }
+    },
+    "criteria": {
+      "C0": false,
+      "C1": false,
+      "C2": false,
+      "C3": false,
+      "C4": false
+    },
+    "overall_pass": false,
+    "outcome": "INCONCLUSIVE_UNDERTRAINED",
+    "graduated": false,
+    "evidence_direction_per_claim": {
+      "SD-029": "non_contributory",
+      "MECH-256": "non_contributory"
+    },
+    "n_episodes": 80,
+    "steps_per_ep": 200,
+    "n_seeds": 3,
+    "p0_epsilon": 0.4,
+    "grad_threshold": 0.85,
+    "grad_window_size": 200,
+    "grad_n_windows_req": 5,
+    "grad_max_windows": 40
+  }
+}

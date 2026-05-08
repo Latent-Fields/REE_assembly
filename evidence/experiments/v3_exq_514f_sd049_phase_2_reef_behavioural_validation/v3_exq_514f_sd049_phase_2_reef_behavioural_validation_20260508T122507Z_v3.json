@@ -12,10 +12,10 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "started_utc": "2026-05-08T12:25:07.818196Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-049": "weakens",
-    "SD-015": "weakens",
+    "SD-049": "non_contributory",
+    "SD-015": "non_contributory",
     "MECH-229": "non_contributory",
     "MECH-230": "non_contributory"
   },
@@ -403,5 +403,6 @@
     "C2c_n_id_samples_floor": 30,
     "C2d_drive_peak_floor": 0.02
   },
-  "supersedes_note": "V3-EXQ-514b FAIL 2026-05-05T00:58Z. Single failing criterion: C2b probe_acc_neighborhood=0.483 (ARM_2 3-type). C2c PASSED (n_id_samples=41>=30): encoder had sufficient events but failed to build discriminative z_resource. Root cause: monostrategy in baseline 8x8 grid (0 hazards) -> uniform neighborhood context across resource types. Fix: reef_enabled=True + hazard_food_attraction=0.7 creates two behavioral attractors (zone_transitions_per_ep~49 in EXQ-522) -> richer, more varied per-type neighborhood compositions."
+  "supersedes_note": "V3-EXQ-514b FAIL 2026-05-05T00:58Z. Single failing criterion: C2b probe_acc_neighborhood=0.483 (ARM_2 3-type). C2c PASSED (n_id_samples=41>=30): encoder had sufficient events but failed to build discriminative z_resource. Root cause: monostrategy in baseline 8x8 grid (0 hazards) -> uniform neighborhood context across resource types. Fix: reef_enabled=True + hazard_food_attraction=0.7 creates two behavioral attractors (zone_transitions_per_ep~49 in EXQ-522) -> richer, more varied per-type neighborhood compositions.",
+  "evidence_direction_note": "[2026-05-08 governance reclassification] Reclassified SD-049 + SD-015 weakens -> non_contributory. Pre-MECH-307 affect-stream architecture mixed harm and benefit surprise into a single VALENCE_SURPRISE channel. Phase-2 reef behavioural validation depends on cleanly separated affect signals to drive discriminative learning of resource-vs-harm encoding; with the streams mixed, classifier-loss and probe-accuracy targets cannot be interpreted as testing what the experiment intended. MECH-229 + MECH-230 already non_contributory. Re-test required after MECH-307 conjunction-fix substrate lands."
 }
