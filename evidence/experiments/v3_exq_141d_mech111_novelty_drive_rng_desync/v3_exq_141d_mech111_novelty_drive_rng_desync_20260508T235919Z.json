@@ -1,0 +1,77 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_entropy_on": -9.989514395861789e-10,
+    "mean_entropy_ablated": -9.989588410730096e-10,
+    "mean_entropy_gap": 7.401486830765445e-15,
+    "mean_cells_on": 50.0,
+    "mean_cells_ablated": 50.666666666666664,
+    "mean_cell_gap": -0.6666666666666643,
+    "mean_harm_rate_on": 0.0,
+    "mean_harm_rate_ablated": 0.0,
+    "mean_harm_delta": 0.0,
+    "per_seed_entropy_gap_min": 0.0,
+    "per_seed_entropy_gap_max": 2.19824158875781e-14,
+    "per_seed_cell_gap_min": -2.0,
+    "per_seed_harm_delta_max": 0.0,
+    "novelty_ema_min": 0.00015304128370939094,
+    "n_harm_min": 0.0,
+    "n_seeds": 3.0,
+    "novelty_bonus_weight": 100.0,
+    "nav_bias": 0.5,
+    "action_divergence_min": 0.5593718223929499,
+    "action_divergence_max": 0.5651404556514046,
+    "crit0_action_divergence_pass": 1.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-141 -- MECH-111 Novelty/Curiosity Drive Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-111\n**Decision:** hybridize\n**Seeds:** [42, 43, 44]\n**Conditions:** NOVELTY_DRIVE_ON vs NOVELTY_DRIVE_ABLATED\n**Warmup:** 200 eps x 200 steps  **Eval:** 50 eps x 200 steps\n**Env:** CausalGridWorld size=10, 5 hazards, 5 resources nav_bias=0.5\n**novelty_bonus_weight:** 100.0\n\n## Design\n\nMECH-111 asserts E1 prediction-error surprise at moderate magnitudes generates intrinsic positive valence (curiosity/novelty drive). The experiment compares NOVELTY_DRIVE_ON (E1 EMA bonus active) against NOVELTY_DRIVE_ABLATED (no bonus) across 3 matched seeds. Key test: does the drive increase exploration (entropy, cell coverage) without increasing harm (curiosity-surprise is safe, not alarm-surprise)?\n\n## Pre-Registered Thresholds\n\nC0: per-seed warmup action_divergence >= 0.1 (both seeds)\nC1: per-seed entropy_gap (ON-ABLATED) >= 0.1 (both seeds)\nC2: per-seed cell_gap (ON-ABLATED) >= 3 (both seeds)\nC3: per-seed harm_delta (ON-ABLATED) <= 0.02 (both seeds)\nC4: novelty_ema_ON > 1e-06 both seeds (signal non-zero)\nC5: n_harm_min >= 10 both conditions (data quality)\n\n## Results\n\n| Condition | entropy | novel_cells | harm_rate |\n|-----------|---------|-------------|----------|\n| NOVELTY_DRIVE_ON      | -0.0000 | 50.0 | 0.0000 |\n| NOVELTY_DRIVE_ABLATED | -0.0000 | 50.7 | 0.0000 |\n\n**per-seed entropy_gap: [0.0, 0.0, 0.0]**\n**per-seed cell_gap: [0, -2, 0]**\n**per-seed harm_delta: [0.0, 0.0, 0.0]**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C0: action_divergence >= 0.1 (both seeds) | PASS | [0.5651, 0.5594, 0.5636] |\n| C1: entropy_gap >= 0.1 (both seeds) | FAIL | [0.0, 0.0, 0.0] |\n| C2: cell_gap >= 3 (both seeds) | FAIL | [0, -2, 0] |\n| C3: harm_delta <= 0.02 (both seeds) | PASS | [0.0, 0.0, 0.0] |\n| C4: novelty_ema_ON > 1e-06 (both seeds) | PASS | [0.0001568, 0.0001544, 0.000153] |\n| C5: n_harm_min >= 10 | FAIL | 0 |\n\nCriteria met: 3/6 -> **FAIL**\n\n## Interpretation\n\nMECH-111 NOT SUPPORTED: novelty bonus does not produce measurable exploration increase. E1 error may be too uniform across states, or the EMA is not feeding back into E3 selection effectively. Criteria: C1=False C2=False C3=True C4=True C5=False.\n\n## Per-Seed Detail\n\nNOVELTY_DRIVE_ON:\n  seed=42: entropy=-0.0000 cells=52 harm_rate=0.0000 novelty_ema=0.00016\n  seed=43: entropy=-0.0000 cells=49 harm_rate=0.0000 novelty_ema=0.00015\n  seed=44: entropy=-0.0000 cells=49 harm_rate=0.0000 novelty_ema=0.00015\n\nNOVELTY_DRIVE_ABLATED:\n  seed=42: entropy=-0.0000 cells=52 harm_rate=0.0000\n  seed=43: entropy=-0.0000 cells=51 harm_rate=0.0000\n  seed=44: entropy=-0.0000 cells=49 harm_rate=0.0000\n\n## Failure Notes\n\n- C1 FAIL: per-seed entropy_gap [0.0, 0.0, 0.0] < 0.1 -- novelty bonus does not produce measurable entropy increase\n- C2 FAIL: per-seed cell_gap [0, -2, 0] < 3 -- novelty drive does not increase novel cell coverage\n- C5 FAIL: n_harm_min=0 < 10 -- insufficient harm contacts; increase nav_bias or eval episodes\n",
+  "claim_ids": [
+    "MECH-111"
+  ],
+  "evidence_direction": "weakens",
+  "evidence_direction_note": "",
+  "experiment_purpose": "evidence",
+  "experiment_type": "v3_exq_141d_mech111_novelty_drive_rng_desync",
+  "fatal_error_count": 0,
+  "measurement_invalid": false,
+  "per_seed_action_divergence": [
+    0.5651404556514046,
+    0.5593718223929499,
+    0.563603644134518
+  ],
+  "run_timestamp": "20260508T235919Z",
+  "claim": "MECH-111",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C0_per_seed_action_divergence": 0.1,
+    "C1_per_seed_entropy_gap": 0.1,
+    "C2_per_seed_cell_gap": 3,
+    "C3_per_seed_harm_delta": 0.02,
+    "C4_novelty_ema_min": 1e-06,
+    "C5_n_harm_min": 10
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "conditions": [
+    "NOVELTY_DRIVE_ON",
+    "NOVELTY_DRIVE_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0061",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "MECH-111"
+  ],
+  "supersedes": "v3_exq_141c_mech111_novelty_drive_measurement_fix",
+  "measurement_fix_note": "Three measurement-validity fixes applied vs 141b: (1) novelty_bonus_weight raised 0.10 -> 100.0 to bring effective E3 score perturbation from 1e-5 to 1e-2 (in score-relevant range), (2) nav_bias action override fixed to produce a uniform one-hot tensor instead of [1,ACTION_DIM] random ints argmax'd to 0, (3) C0 action-divergence sanity check added: if warmup ON/ABLATED action sequences are within THRESH_ACTION_DIVERGENCE=0.10, the experiment writes evidence_direction=non_contributory with a bit-identical-arms-measurement-invalid note rather than a weakens verdict. nav_bias raised 0.30 -> 0.50 to ensure n_harm clears the C5 floor under the corrected one-hot."
+}
