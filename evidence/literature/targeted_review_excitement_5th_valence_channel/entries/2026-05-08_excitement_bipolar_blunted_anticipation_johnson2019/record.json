@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_bipolar_blunted_anticipation_johnson2019",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Neural responses to monetary incentives in bipolar disorder.",
+    "authors": ["Sheri L Johnson", "Hershel Mehta", "Terence A Ketter", "Ian H Gotlib", "Brian Knutson"],
+    "year": 2019,
+    "venue": "NeuroImage Clinical",
+    "doi": "10.1016/j.nicl.2019.102018"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Clinical phenotype evidence: NAcc anticipation BLUNTED in remitted bipolar I (mania-prone) participants vs controls, mediated by trait Positive Urgency. Bipolar mania is the clearest behavioural phenotype of pathological excitement; remission shows blunted NAcc-anticipation. Direct support that NAcc-anticipation tracks the excitement construct that maps to bipolar phenotypes -- exactly what registering VALENCE_EXCITEMENT would buy phenomenologically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Positive Urgency, not bipolar diagnosis directly, mediates the NAcc-anticipation blunting. Excitement-as-channel is a trait-like dimension that can be partially dissociated from clinical category -- a single-channel reading must accommodate trait-state variation."
+  ],
+  "tags": ["sd_014", "excitement", "bipolar", "positive_urgency", "mania", "anticipation", "clinical_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Remitted bipolar I participants (n=24) show reduced NAcc activity during anticipation of gains compared to age- and gender-matched controls. Across groups, this blunting correlates with individual differences in Positive Urgency (impulsive responses to positive emotions), which statistically accounts for the association of blunted NAcc activity with bipolar diagnosis.",
+    "ree_translation": "Excitement (NAcc anticipation) is a trait-like dimension that maps onto bipolar phenotypes -- mania-prone individuals show BLUNTED NAcc anticipation in remission, consistent with the construct that mania is high-amplitude excitement and remission is dampened excitement (a homeostatic over-correction). REE adopting VALENCE_EXCITEMENT as a channel would acquire representational machinery to model bipolar-like trait variation in anticipatory positive arousal.",
+    "mapping_caveat": "Remitted (not currently manic) bipolar I; sample size small (n=24). The Positive Urgency mediation is statistical, not mechanistic. Translation to REE assumes interest in modeling clinical phenotypes, which is forward-looking.",
+    "source_context": "n=24 remitted bipolar I disorder vs n=24 age/gender-matched controls, fMRI during MID task."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Recent NeuroImage Clinical paper. Mapping fidelity moderate -- the bipolar Positive Urgency mediation is informative but indirect. Transfer risk elevated because REE has no bipolar phenotype anchor."
+  }
+}

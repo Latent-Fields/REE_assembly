@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_tonic_phasic_anticipation_brombergmartin2010b",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Distinct tonic and phasic anticipatory activity in lateral habenula and dopamine neurons.",
+    "authors": ["Ethan S Bromberg-Martin", "Masayuki Matsumoto", "Okihide Hikosaka"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.06.016"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct primate single-unit evidence that anticipatory activity in lateral habenula and DA neurons is heterogeneous: tonic activity is reward-preferring (motivational value); phasic activity at task onset responds to both rewarding and aversive tasks similarly (motivational salience). Two dissociable anticipatory signals coexist within the same neurons. Strong support for the principle that anticipatory affect is multi-channel; supports the architectural-distinction premise behind VALENCE_EXCITEMENT.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses anticipatory affect into a single channel (e.g. VALENCE_WANTING amplitude), it cannot reproduce the tonic/phasic dissociation that real DA / habenula neurons exhibit. A single-channel architecture is biologically wrong; the question is just how many channels."
+  ],
+  "tags": ["sd_014", "excitement", "tonic", "phasic", "anticipation", "habenula", "dopamine", "primate"],
+  "mapping": {
+    "source_claim_statement": "Macaque lateral habenula and midbrain dopamine neurons show two distinct anticipatory signals: (1) tonic gradient activity encoding the timing distribution of upcoming tasks, reward-preferring, correlated with classic phasic motivational-value coding; (2) phasic activity at task onset, responding similarly to rewarding and punishing tasks, consistent with motivational salience.",
+    "ree_translation": "The tonic anticipatory signal is the closest neurophysiological correlate of VALENCE_EXCITEMENT as proposed -- a sustained, reward-preferring, anticipatory state that is dissociable from both directional wanting (which the same neurons code via classic phasic RPE) and from arousal-orienting (the phasic salience signal). REE's existing VALENCE_WANTING is not a tonic anticipatory state; it is a directional vector.",
+    "mapping_caveat": "Macaque single-unit recordings; mapping to REE residue field requires inferring functional equivalence between tonic firing patterns and a discrete write to a valence channel. The tonic/phasic distinction in DA neurons does not map 1:1 to channels in a residue field; the architectural translation is interpretive.",
+    "source_context": "Macaca mulatta single-unit electrophysiology in lateral habenula and substantia nigra pars compacta during anticipation of behavioral tasks varying in valence."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Strong neurophysiological evidence; primate to RL-agent translation is interpretive but the architectural principle (tonic anticipatory state distinct from phasic) is exactly what VALENCE_EXCITEMENT would represent."
+  }
+}

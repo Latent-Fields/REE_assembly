@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_circumplex_valence_arousal_posner2009",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "The neurophysiological bases of emotion: An fMRI study of the affective circumplex using emotion-denoting words.",
+    "authors": ["Jonathan Posner", "James A Russell", "Andrew Gerber", "Daniel Gorman", "Tiziano Colibazzi", "Shan Yu", "Zhishun Wang", "Alayar Kangarlu", "Hongtu Zhu", "Bradley S Peterson"],
+    "year": 2009,
+    "venue": "Human Brain Mapping",
+    "doi": "10.1002/hbm.20553"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct fMRI evidence for two dissociable neurophysiological systems subserving valence and arousal as separate dimensions, consistent with the circumplex model. Establishes that arousal and valence are not collapsible into a single dimension at the neural level, which is necessary (though not sufficient) for the VALENCE_EXCITEMENT proposal -- excitement requires that high-arousal-positive be representable as a distinct point in valence x arousal space, not collapsed into either dimension alone.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If valence and arousal collapsed onto a single neural axis, the high-arousal-positive quadrant (excitement) and low-arousal-positive quadrant (calm contentment / liking) would be indistinguishable in the brain. Posner shows they are distinguishable -- different networks mediate each dimension."
+  ],
+  "tags": ["sd_014", "excitement", "circumplex", "valence", "arousal", "psychometric_foundation"],
+  "mapping": {
+    "source_claim_statement": "Valence ratings and arousal ratings of emotion-denoting words correlate with distinct neural networks: valence with insula and lateral PFC; arousal with parahippocampus and dorsal anterior cingulate. Two underlying neurophysiological systems subserve these affective dimensions, consistent with the circumplex model.",
+    "ree_translation": "REE's residue valence vector currently has VALENCE_WANTING / LIKING / HARM / SURPRISE -- a one-dimensional valence-axis representation. The circumplex model says affect is two-dimensional: valence X arousal. VALENCE_EXCITEMENT is the high-arousal-positive quadrant; VALENCE_DREAD is the high-arousal-negative quadrant. Adding these channels brings SD-014 into alignment with the empirically supported two-dimensional circumplex.",
+    "mapping_caveat": "The circumplex is a psychometric model derived from self-report; the neural mapping is robust at the network level but does not commit to specific channel architectures. REE's residue field is not obligated to have one channel per circumplex quadrant. The argument is for representational adequacy, not literal mapping.",
+    "source_context": "Healthy adult humans, fMRI during presentation of emotion-denoting words with parametric ratings of valence and arousal."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Solid Hum Brain Mapp paper, but the fMRI-circumplex mapping has been refined / contested in subsequent work. The architectural argument (REE needs a 2D affect representation, not 1D) is what this paper supports."
+  }
+}

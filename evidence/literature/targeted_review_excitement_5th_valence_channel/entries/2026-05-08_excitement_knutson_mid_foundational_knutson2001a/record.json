@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_knutson_mid_foundational_knutson2001a",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Anticipation of increasing monetary reward selectively recruits nucleus accumbens.",
+    "authors": ["B Knutson", "C M Adams", "G W Fong", "D Hommer"],
+    "year": 2001,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.21-16-j0002.2001"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Foundational MID paper; cleanest single piece of evidence that anticipatory positive arousal in NAcc is a measurable, dissociable construct that correlates with self-reported HAPPINESS at reward cues, not with directional wanting amplitude. n=8 small but the result has been replicated thousands of times since. Source quality high (J Neurosci, foundational citation), mapping fidelity moderate-high (the construct measured -- 'happiness elicited by reward cues' -- is exactly REE's candidate VALENCE_EXCITEMENT), transfer risk low (the construct is human-defined-and-measured).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anticipation of increasing punishment did NOT activate NAcc; punishment-anticipation activated medial caudate instead. Excitement-as-NAcc-signature is positive-valence-specific, not arousal-general."
+  ],
+  "tags": ["sd_014", "excitement", "nacc", "monetary_incentive_delay", "anticipatory_affect", "foundational"],
+  "mapping": {
+    "source_claim_statement": "NAcc activation during anticipation of monetary reward correlates with self-reported happiness at reward cues; punishment-anticipation activates a distinct region (medial caudate). NAcc codes expected POSITIVE incentive value, not general anticipatory salience.",
+    "ree_translation": "VALENCE_EXCITEMENT (candidate 5th channel in SD-014's residue valence vector) maps onto the NAcc-anticipation signature: high-arousal positive affect at the cue, distinct from VALENCE_WANTING (directional motivation toward goal) and VALENCE_LIKING (consummatory hedonic). The neural correlate is positive-valence-selective, not arousal-general -- excitement is not z_beta_arousal multiplied by sign.",
+    "mapping_caveat": "The MID paradigm uses monetary reward in healthy adults; mapping to REE's CausalGridWorldV2 + drive-modulated reward is an inference about the same underlying construct. Self-reported happiness is the construct anchor, not pure neural correlation. n=8 in the original paper, though replicated extensively.",
+    "source_context": "Healthy adult humans, fMRI during monetary incentive delay task, reward and punishment anticipation contrasted parametrically."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Foundational paper, peer-reviewed, replicated thousands of times. Mapping fidelity slightly reduced by gridworld-vs-monetary-reward gap, but the construct is human-defined and the REE candidate channel is faithful to the construct."
+  }
+}

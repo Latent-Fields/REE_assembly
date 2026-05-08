@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_anticipation_outcome_dissociation_knutson2001b",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Dissociation of reward anticipation and outcome with event-related fMRI.",
+    "authors": ["B Knutson", "G W Fong", "C M Adams", "J L Varner", "D Hommer"],
+    "year": 2001,
+    "venue": "NeuroReport",
+    "doi": "10.1097/00001756-200112040-00016"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct anatomical dissociation of anticipation (ventral striatum / NAcc) vs outcome (vmPFC) circuits within the same subjects, same task. This separates excitement-anticipation from liking-receipt at the brain level; smaller dataset (n=9) but the pattern is robust and replicated by Knutson 2003. Mapping to REE's wanting/liking architecture is direct: NAcc-anticipation = candidate VALENCE_EXCITEMENT; vmPFC-receipt = VALENCE_LIKING.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Both anticipation and outcome activated dopaminergic projection regions, but distinct foci (ventral striatum vs vmPFC). A single 'positive affect' channel could not fit both signatures."
+  ],
+  "tags": ["sd_014", "excitement", "anticipation", "outcome", "wanting_liking", "vmpfc"],
+  "mapping": {
+    "source_claim_statement": "Reward anticipation activates ventral striatum / NAcc; reward outcome activates ventromedial frontal cortex. The two phases of reward processing recruit anatomically distinct regions along the dopaminergic projection trajectory.",
+    "ree_translation": "REE's existing VALENCE_LIKING channel maps to the vmPFC-outcome signature (consummatory hedonic at receipt). The NAcc-anticipation signature is unmapped in current SD-014 and is the candidate VALENCE_EXCITEMENT. Adding the 5th channel would complete the wanting/liking/excitement triad that the human neuroimaging literature already separates.",
+    "mapping_caveat": "Same caveats as Knutson 2001a; the anticipation/outcome distinction is well-replicated but the REE residue-field translation requires interpretive work. n=9 in original paper.",
+    "source_context": "Healthy adult humans, fMRI during MID task, anticipation epoch (cue) vs outcome epoch (reward delivery) contrasted."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "Smaller n than the J Neurosci foundational, but the dissociation pattern is core to the REE architectural question. Mapping fidelity is high because the wanting/liking distinction is already in REE."
+  }
+}

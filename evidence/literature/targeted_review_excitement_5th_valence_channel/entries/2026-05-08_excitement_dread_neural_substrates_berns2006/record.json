@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_dread_neural_substrates_berns2006",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Neurobiological substrates of dread.",
+    "authors": ["Gregory S Berns", "Jonathan Chappelow", "Milos Cekic", "Caroline F Zink", "Giuseppe Pagnoni", "Megan E Martin-Skurski"],
+    "year": 2006,
+    "venue": "Science",
+    "doi": "10.1126/science.1123721"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct evidence that dread is a measurable, dissociable construct distinct from fear/anxiety -- dread derives from attention to expected physical response in posterior cortical pain matrix, not from the emotional fear-anxiety circuit. Establishes a parallel anticipatory-arousal-NEGATIVE construct symmetric to the candidate VALENCE_EXCITEMENT (anticipatory-arousal-positive). Implies that if VALENCE_EXCITEMENT is registered, VALENCE_DREAD likely also belongs as a 6th channel.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Some 'extreme dreaders' preferred receiving MORE voltage immediately rather than waiting -- the disutility of dread can exceed the disutility of the anticipated outcome itself. A REE architecture without a dread channel cannot represent this preference structure."
+  ],
+  "tags": ["sd_014", "dread", "excitement", "anticipatory_negative", "pain_matrix", "symmetric"],
+  "mapping": {
+    "source_claim_statement": "Anticipating an aversive outcome (cutaneous electric shock) generates dread, which is dissociable from fear/anxiety. Dread amplitude correlates with rate of increase of activity in posterior elements of the cortical pain matrix during the waiting period, not with limbic fear circuits. Some individuals prefer immediate larger shocks over waiting for smaller ones, demonstrating that dread carries its own disutility.",
+    "ree_translation": "VALENCE_DREAD is the symmetric negative analog of the candidate VALENCE_EXCITEMENT: anticipatory high-arousal negative affect at the cue, distinct from VALENCE_HARM_DISCRIMINATIVE (which records harm-AT-receipt, like liking-receipt) and from MECH-279 PAG freeze (which is a behavioural output gate). If REE adds a 5th excitement channel, the symmetric architecture suggests adding a 6th dread channel; otherwise the anticipatory-affect representation is asymmetric across valence sign.",
+    "mapping_caveat": "Healthy adult humans, anticipating cutaneous shock; mapping to REE's harm streams is across modality (REE's z_harm_a is affective harm load, not specifically anticipatory). The decision to add VALENCE_DREAD depends on whether REE wants symmetric anticipatory-affect representation or whether asymmetry is acceptable.",
+    "source_context": "Healthy adult humans, fMRI during cued anticipation of cutaneous electric shock at varying voltages, with subsequent choice paradigm measuring dread-driven preferences."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Science paper, well-cited. Mapping fidelity moderate-high for the principle (dread is its own construct distinct from fear) but the specific neural substrate (posterior pain matrix) doesn't map 1:1 to anything in REE."
+  }
+}

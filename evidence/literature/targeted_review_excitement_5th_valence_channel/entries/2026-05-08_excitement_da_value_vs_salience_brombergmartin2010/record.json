@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_da_value_vs_salience_brombergmartin2010",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Dopamine in motivational control: rewarding, aversive, and alerting.",
+    "authors": ["Ethan S Bromberg-Martin", "Masayuki Matsumoto", "Okihide Hikosaka"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.11.022"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Authoritative review proposing that DA neurons split into VALUE-coding (reward-seeking, evaluation) vs SALIENCE-coding (orienting, cognition, general motivation) populations. Mixed verdict for VALENCE_EXCITEMENT: this framing supports the architectural separation principle (multiple anticipatory-affect channels are biologically real) but partially weakens the strong reading (excitement might be already captured by salience-coding rather than needing its own value-coded channel). Reduces but does not refute the 5th-channel proposal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Salience-coding DA neurons respond to BOTH appetitive and aversive salient cues -- they are not positive-valence-selective. If excitement maps onto this population, it cannot be a 'positive-valence-only 5th channel'."
+  ],
+  "tags": ["sd_014", "excitement", "dopamine", "value", "salience", "motivational_control", "review"],
+  "mapping": {
+    "source_claim_statement": "Midbrain dopamine neurons come in multiple types: a value-coding population (reward-preferring, encodes motivational value, supports seeking and value learning) and a salience-coding population (responds to both rewarding and aversive cues, supports orienting / general arousal / cognition). An alerting signal augments both.",
+    "ree_translation": "The architectural alternative for excitement is that it is the salience-coding signal, not a value-coding signal. Under that reading, REE could capture excitement via z_beta (which already modulates heartbeat / general arousal) rather than via a positive-valence-specific 5th channel in the residue field. The Knutson 2001a NAcc-anticipation signature, however, IS positive-valence-selective (no NAcc response to punishment anticipation), suggesting that the human-fMRI excitement signature is value-coded, not pure salience.",
+    "mapping_caveat": "The paper is a primate / rodent neurophysiology review; the human-fMRI MID literature does not perfectly align with the value-vs-salience split (NAcc BOLD likely integrates both populations spatially). The mapping to REE depends on whether we adopt the value-channel framing (separate excitement) or the salience-modulator framing (shared with z_beta).",
+    "source_context": "Review of primate and rodent single-unit electrophysiology of midbrain DA neurons; cross-species mechanistic synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Bromberg-Martin Neuron review is canonical). Mapping fidelity moderate because the value/salience split poses an architectural question rather than answering it -- the paper itself is consistent with both REE readings."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_anticipation_memory_adcock2006",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014", "SD-017"],
+  "source": {
+    "title": "Reward-motivated learning: mesolimbic activation precedes memory formation.",
+    "authors": ["R Alison Adcock", "Arul Thangavel", "Susan Whitfield-Gabrieli", "Brian Knutson", "John D E Gabrieli"],
+    "year": 2006,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2006.03.036"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct evidence that NAcc anticipation has a downstream functional consequence -- predicting subsequent memory formation 24h later. This is the load-bearing finding for REE because it ties the candidate VALENCE_EXCITEMENT write to schema/memory etching, exactly the function EXQ-538 sleep-on ablation is designed to test. Cross-tags with SD-017 because the memory-formation -> sleep-consolidation pipeline is the same loop the V3 sleep substrate would consolidate over.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anticipatory NAcc activation in trials with HIGH-reward cues did NOT improve memory if the activation was below threshold; the effect is graded with anticipatory-affect amplitude. A binary excitement-on/off channel would miss the graded effect."
+  ],
+  "tags": ["sd_014", "sd_017", "excitement", "memory_formation", "schema_etching", "nacc", "hippocampus", "vta"],
+  "mapping": {
+    "source_claim_statement": "Anticipatory mesolimbic activation (VTA, NAcc, hippocampus) preceding scene encoding predicts which scenes will be remembered 24h later. Trial-by-trial NAcc-anticipation amplitude on HIGH-reward cues correlates with subsequent memory; functional connectivity between hippocampus and VTA at encoding correlates with declarative memory formation.",
+    "ree_translation": "VALENCE_EXCITEMENT, if written at cue presentation during a reward-anticipation episode, would predict where in z_world memory consolidation should be prioritised. The Adcock et al. finding directly motivates wiring VALENCE_EXCITEMENT into MECH-205 surprise-gated replay write path: locations recorded with high excitement get higher replay priority during sleep cycles. This is a concrete functional payoff distinct from anything existing channels do.",
+    "mapping_caveat": "Healthy adult humans, declarative memory of scenes; REE memory is a different substrate (residue field + ContextMemory + RBF nodes). The principle (anticipatory positive arousal predicts subsequent memory) translates, but the specific write site needs to be designed. Also, the effect is graded -- a binary excitement signal would lose information.",
+    "source_context": "Healthy adult humans, fMRI during MID-task encoding paradigm with delayed memory recognition test."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "Strong source (Neuron, well-cited). High mapping fidelity for the function (anticipatory-affect drives memory consolidation); the architectural translation to REE residue + sleep replay is direct."
+  }
+}

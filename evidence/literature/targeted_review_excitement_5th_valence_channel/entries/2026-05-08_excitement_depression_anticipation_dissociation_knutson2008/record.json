@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-08_excitement_depression_anticipation_dissociation_knutson2008",
+  "timestamp_utc": "2026-05-08T06:26:10Z",
+  "claim_ids_tested": ["SD-014"],
+  "source": {
+    "title": "Neural responses to monetary incentives in major depression.",
+    "authors": ["Brian Knutson", "Jamil P Bhanji", "Rebecca E Cooney", "Lauren Y Atlas", "Ian H Gotlib"],
+    "year": 2008,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2007.07.023"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Clinical dissociation evidence: depressed adults retain INTACT NAcc anticipation during gain trials but show altered ACC response and reduced gain-vs-nongain outcome discrimination. NAcc anticipation can be selectively preserved while other affect components are altered, supporting its status as a separable construct. Indirect support for VALENCE_EXCITEMENT but valuable as a clinical anchor.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If excitement (NAcc anticipation) were a derivative of wanting amplitude, depressed subjects with reduced motivation should show blunted NAcc anticipation. Knutson 2008 shows this is NOT the case in unmedicated MDD -- NAcc anticipation is intact while other affect components (outcome discrimination) are altered. This dissociation is harder to explain under a single-channel reading."
+  ],
+  "tags": ["sd_014", "excitement", "depression", "clinical_dissociation", "anticipation", "outcome", "anhedonia"],
+  "mapping": {
+    "source_claim_statement": "Unmedicated currently-depressed participants and never-depressed controls did not differ in NAcc activation or in affective / behavioural responses during gain anticipation. Depressed participants did, however, exhibit increasing anterior cingulate activation during anticipation of increasing gains (vs ACC during anticipation of loss in controls), and showed reduced discrimination of gain vs nongain outcomes.",
+    "ree_translation": "Excitement (NAcc anticipation) is dissociable from wanting / liking / outcome processing -- depression alters the latter without altering the former. For REE, this means a candidate VALENCE_EXCITEMENT channel could capture a phenotype distinct from VALENCE_WANTING amplitude reduction. Depression-like phenotypes in REE would manifest as altered ACC-equivalent (perhaps SD-032 cingulate cluster) without altering the candidate excitement channel.",
+    "mapping_caveat": "Clinical psychiatry to RL agent translation has high transfer risk; REE has no current depression-class phenotype to anchor the dissociation against. The architectural support is for separability of channels, not for a specific REE depression model.",
+    "source_context": "14 unmedicated currently-depressed adults vs 12 never-depressed controls, fMRI during MID task."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Solid Biol Psychiatry source. Mapping fidelity moderate -- the dissociation pattern is informative but the clinical-to-REE translation is loose. Transfer risk elevated because REE has no current depression-class anchor."
+  }
+}
