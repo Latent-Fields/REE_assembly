@@ -1,30 +1,74 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-06T07:59:47.950360+00:00",
-  "last_updated": "2026-05-06T09:28:56.104150+00:00",
-  "idle": true,
+  "runner_pid": 121082,
+  "runner_started_at": "2026-05-07T21:39:56.005540+00:00",
+  "last_updated": "2026-05-08T13:00:30.884263+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-526",
+      "queue_id": "V3-EXQ-530b",
       "backlog_id": "",
-      "claim_id": "Q-034",
-      "title": "Q-034 reef-enabled threshold sweep -- monostrategy fix for EXQ-451",
+      "claim_id": "",
+      "title": "ARC-016 precision-to-commitment circuit: dACC precision_commit_ratio",
       "description": "",
-      "estimated_minutes": 240.0,
+      "estimated_minutes": 17.3,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-524",
+      "queue_id": "V3-EXQ-433f",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Reef fishtank showcase -- reef zone viz + shelter mode episode log",
+      "title": "SD-029 event-conditioned comparator: reef substrate (Bug 1+2 fix)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-490f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-295 seeding-strengthening: bistable (Bug 1 fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-445h",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-032b dACC reef substrate (Bug 1+2 fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-514f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 Phase 2 reef behavioural validation (Bug 1+2 fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-523b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-029 reef-unblocked comparator graduation test (Bug 1+2 fix)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1941,7 +1985,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-2",
       "actual_secs": 4809.7
+    },
+    {
+      "queue_id": "V3-EXQ-483b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-037 broadcast override 4-arm: bistable (Bug 1 fix)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15",
+      "started_at": "2026-05-07T21:39:57.524393+00:00",
+      "completed_at": "2026-05-08T12:54:30.798497+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 54873.3
+    },
+    {
+      "queue_id": "V3-EXQ-476c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-269 V_s entropy probe: cascade gate (Bug 1+2 + API fix)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Outcome: FAIL",
+      "started_at": "2026-05-08T12:54:32.510734+00:00",
+      "completed_at": "2026-05-08T13:00:30.884119+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 358.4
     }
-  ],
-  "draining": false
+  ]
 }
