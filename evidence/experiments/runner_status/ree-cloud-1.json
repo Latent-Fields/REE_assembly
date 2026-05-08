@@ -1,27 +1,16 @@
 {
   "schema_version": "v1",
-  "runner_pid": 129698,
-  "runner_started_at": "2026-05-07T21:39:47.124332+00:00",
-  "last_updated": "2026-05-08T12:29:53.727158+00:00",
+  "runner_pid": 667,
+  "runner_started_at": "2026-05-08T14:56:41.005111+00:00",
+  "last_updated": "2026-05-08T16:16:52.780323+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-538",
+      "queue_id": "V3-EXQ-141b",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-049 Phase 2 reef behavioural validation, sleep-on ablation (paired to 514f)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-483b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-037 broadcast override 4-arm: bistable (Bug 1 fix)",
+      "title": "MECH-111 novelty drive: corrected-substrate retest (paired discriminative)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
@@ -2767,6 +2756,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 121.7
+    },
+    {
+      "queue_id": "V3-EXQ-538",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 Phase 2 reef behavioural validation, sleep-on ablation (paired to 514f)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15",
+      "started_at": "2026-05-08T12:29:58.474234+00:00",
+      "completed_at": "2026-05-08T12:54:28.504972+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1470.0
+    },
+    {
+      "queue_id": "V3-EXQ-539",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-307 anticipatory affect conjunction commit-gating discriminative ablation",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "ARM_ON   liking=2711.3 pred_writes=2711.3 z_beta_exc=0.1506 harm_surprise=232 nonharm_surprise=3113 neg_surprise_centers=33 approach_rate=1.000 per_seed=[1.0, 1.0, 1.0] | [v3_exq_539_mech307_commit_gating_check] outcome=FAIL elapsed=4808.8s | Done. Outcome: FAIL",
+      "started_at": "2026-05-08T14:56:42.701454+00:00",
+      "completed_at": "2026-05-08T16:16:52.779245+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_539_mech307_commit_gating_check/v3_exq_539_mech307_commit_gating_check_20260508T161652Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 4809.5
     }
   ]
 }

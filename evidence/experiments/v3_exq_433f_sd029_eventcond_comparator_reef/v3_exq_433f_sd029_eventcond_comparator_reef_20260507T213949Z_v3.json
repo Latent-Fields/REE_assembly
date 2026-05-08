@@ -1,0 +1,249 @@
+{
+  "run_id": "v3_exq_433f_sd029_eventcond_comparator_reef_20260507T213949Z_v3",
+  "experiment_type": "v3_exq_433f_sd029_eventcond_comparator_reef",
+  "claim_ids": [
+    "SD-029",
+    "MECH-256"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260507T213949Z",
+  "outcome": "FAIL",
+  "evidence_direction": "inconclusive_insufficient_events",
+  "evidence_direction_per_claim": {
+    "SD-029": "inconclusive_insufficient_events",
+    "MECH-256": "inconclusive_insufficient_events"
+  },
+  "supersedes": "v3_exq_433e_sd029_eventcond_comparator_reef",
+  "pass_criteria_summary": {
+    "c0_trials_sufficient_gate": {
+      "wins": 0,
+      "pass": false,
+      "desc": "agent_caused AND env_caused trials >= TARGET in >=3/4 seeds"
+    },
+    "c1_mech256_forward_r2": {
+      "wins": 1,
+      "threshold_r2": 0.9,
+      "pass": false,
+      "desc": "forward_r2_mean >= 0.9 in >=3/4 seeds (mean over event types with n>=5)"
+    },
+    "c2_sd029_attenuation_ratio": {
+      "wins": 0,
+      "pass": false,
+      "desc": "attenuation_ratio in [0.2, 0.8] in >=3/4 seeds"
+    },
+    "c3_approach_snr": {
+      "wins": 3,
+      "pass": true,
+      "desc": "approach_snr > 5.0 in >=3/4 seeds"
+    },
+    "c2b_per_type_r2_diagnostic": {
+      "per_seed_r2": [
+        {
+          "env_caused_hazard": -378650.9853624793,
+          "agent_caused_hazard": -34.7096963353465,
+          "hazard_approach": -4326.547597493313,
+          "none": 0.9462219942995878
+        },
+        {
+          "env_caused_hazard": -5.589317189883304,
+          "agent_caused_hazard": -4.692571784029978,
+          "hazard_approach": -1.2056673597068883,
+          "none": 0.9031921175452045
+        },
+        {
+          "env_caused_hazard": -2.43887055985851,
+          "agent_caused_hazard": 0.9586571227062799,
+          "hazard_approach": 0.9551392511142522,
+          "none": 0.0
+        },
+        {
+          "env_caused_hazard": -2.757993303642382,
+          "agent_caused_hazard": -5.414870898810416,
+          "hazard_approach": -1.7294158074518529,
+          "none": 0.9624282165410822
+        }
+      ]
+    },
+    "c2c_causal_sig_diagnostic": {
+      "per_seed": [
+        {
+          "env_caused_hazard": -384.51405488811434,
+          "agent_caused_hazard": 530.6239944852579,
+          "hazard_approach": 324.0456723604002,
+          "none": 397.88788227330616
+        },
+        {
+          "env_caused_hazard": -0.0003208170470315963,
+          "agent_caused_hazard": -0.0008582650417728084,
+          "hazard_approach": 0.0013419413036899642,
+          "none": 0.0061628206402474465
+        },
+        {
+          "env_caused_hazard": 0.00032313528936356306,
+          "agent_caused_hazard": 0.0020809772900975076,
+          "hazard_approach": 0.0020622225125407566,
+          "none": 0.0
+        },
+        {
+          "env_caused_hazard": 0.005259125423617661,
+          "agent_caused_hazard": 0.002657185250427574,
+          "hazard_approach": 0.004405760568624828,
+          "none": 0.007750591150144715
+        }
+      ]
+    }
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "forward_r2_mean": -95752.82410857842,
+      "forward_r2_per_type": {
+        "env_caused_hazard": -378650.9853624793,
+        "agent_caused_hazard": -34.7096963353465,
+        "hazard_approach": -4326.547597493313,
+        "none": 0.9462219942995878
+      },
+      "attenuation_ratio": 68.10159017043668,
+      "approach_snr": 236.27143691261358,
+      "causal_sig_per_type": {
+        "env_caused_hazard": -384.51405488811434,
+        "agent_caused_hazard": 530.6239944852579,
+        "hazard_approach": 324.0456723604002,
+        "none": 397.88788227330616
+      },
+      "residual_per_type": {
+        "env_caused": 14.539911270141602,
+        "agent_caused": 0.21350325644016266,
+        "approach": 0.9951114654541016,
+        "none": 0.004211729858070612
+      },
+      "trials_collected": {
+        "env_caused_hazard": 20,
+        "agent_caused_hazard": 15,
+        "hazard_approach": 20,
+        "none": 20
+      },
+      "agent_caused_trials_sufficient": false,
+      "env_caused_trials_sufficient": true
+    },
+    {
+      "seed": 7,
+      "forward_r2_mean": -2.6460910540187417,
+      "forward_r2_per_type": {
+        "env_caused_hazard": -5.589317189883304,
+        "agent_caused_hazard": -4.692571784029978,
+        "hazard_approach": -1.2056673597068883,
+        "none": 0.9031921175452045
+      },
+      "attenuation_ratio": 1.0127169205281943,
+      "approach_snr": 7.755715020527804,
+      "causal_sig_per_type": {
+        "env_caused_hazard": -0.0003208170470315963,
+        "agent_caused_hazard": -0.0008582650417728084,
+        "hazard_approach": 0.0013419413036899642,
+        "none": 0.0061628206402474465
+      },
+      "residual_per_type": {
+        "env_caused": 0.07758144289255142,
+        "agent_caused": 0.07660723477602005,
+        "approach": 0.04920518770813942,
+        "none": 0.0063443779945373535
+      },
+      "trials_collected": {
+        "env_caused_hazard": 20,
+        "agent_caused_hazard": 7,
+        "hazard_approach": 20,
+        "none": 20
+      },
+      "agent_caused_trials_sufficient": false,
+      "env_caused_trials_sufficient": true
+    },
+    {
+      "seed": 13,
+      "forward_r2_mean": 0.9568981869102661,
+      "forward_r2_per_type": {
+        "env_caused_hazard": -2.43887055985851,
+        "agent_caused_hazard": 0.9586571227062799,
+        "hazard_approach": 0.9551392511142522,
+        "none": 0.0
+      },
+      "attenuation_ratio": 5.381316921778065,
+      "approach_snr": null,
+      "causal_sig_per_type": {
+        "env_caused_hazard": 0.00032313528936356306,
+        "agent_caused_hazard": 0.0020809772900975076,
+        "hazard_approach": 0.0020622225125407566,
+        "none": 0.0
+      },
+      "residual_per_type": {
+        "env_caused": 0.04103151708841324,
+        "agent_caused": 0.007624809630215168,
+        "approach": 0.007060416042804718,
+        "none": 0.0
+      },
+      "trials_collected": {
+        "env_caused_hazard": 4,
+        "agent_caused_hazard": 20,
+        "hazard_approach": 20,
+        "none": 0
+      },
+      "agent_caused_trials_sufficient": true,
+      "env_caused_trials_sufficient": false
+    },
+    {
+      "seed": 99,
+      "forward_r2_mean": -1.1749936315177176,
+      "forward_r2_per_type": {
+        "env_caused_hazard": -2.757993303642382,
+        "agent_caused_hazard": -5.414870898810416,
+        "hazard_approach": -1.7294158074518529,
+        "none": 0.9624282165410822
+      },
+      "attenuation_ratio": 1.842711201993746,
+      "approach_snr": 17.135421233324596,
+      "causal_sig_per_type": {
+        "env_caused_hazard": 0.005259125423617661,
+        "agent_caused_hazard": 0.002657185250427574,
+        "hazard_approach": 0.004405760568624828,
+        "none": 0.007750591150144715
+      },
+      "residual_per_type": {
+        "env_caused": 0.06347118318080902,
+        "agent_caused": 0.034444455057382584,
+        "approach": 0.04920639842748642,
+        "none": 0.002871618838980794
+      },
+      "trials_collected": {
+        "env_caused_hazard": 20,
+        "agent_caused_hazard": 3,
+        "hazard_approach": 20,
+        "none": 20
+      },
+      "agent_caused_trials_sufficient": false,
+      "env_caused_trials_sufficient": true
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13,
+      99
+    ],
+    "p0_eps": 200,
+    "p1_eps": 200,
+    "steps_per_ep": 200,
+    "interventional_fraction": 0.7,
+    "interventional_margin": 0.2,
+    "target_trials_per_type": 20,
+    "curriculum_interval": 10,
+    "curriculum_prob": 1.0,
+    "curriculum_adjacent_only": true,
+    "grid_size": 8,
+    "num_hazards": 2,
+    "num_resources": 3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.1
+  }
+}
