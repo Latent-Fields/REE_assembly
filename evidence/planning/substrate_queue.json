@@ -1019,7 +1019,7 @@
       "sd_id": "SD-033b",
       "title": "pfc.ofc_analog_outcome_structure",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "evidence/planning/commitment_closure_plan.md",
       "depends_on_unresolved": [
         "SD-033",
         "MECH-263",
@@ -1059,7 +1059,7 @@
       "sd_id": "SD-033c",
       "title": "pfc.vmpfc_analog_value_integration",
       "ready": false,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_033_pfc_subdivision_architecture.md",
       "depends_on_unresolved": [
         "SD-033",
         "ARC-035",
@@ -1082,7 +1082,7 @@
       "sd_id": "SD-033d",
       "title": "pfc.premotor_sma_analog_sequence_execution",
       "ready": false,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_033_pfc_subdivision_architecture.md",
       "depends_on_unresolved": [
         "SD-033",
         "MECH-094",
@@ -1099,7 +1099,7 @@
       "sd_id": "SD-033e",
       "title": "pfc.frontopolar_analog_branching",
       "ready": false,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_033_pfc_subdivision_architecture.md",
       "depends_on_unresolved": [
         "SD-033",
         "MECH-261",
@@ -1391,7 +1391,7 @@
       "title": "Staleness-corrected V_s in VsRolloutGate.gate() (alternative to Phase 2 T2)",
       "ready": true,
       "status": "proposed",
-      "design_doc": "docs/architecture/v_s_invalidation_runtime.md",
+      "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-269b",
@@ -1421,7 +1421,7 @@
       "sd_id": "SD-034",
       "title": "Governance closure operator -- five-part 'done' token at rule-completion",
       "ready": true,
-      "design_doc": "evidence/planning/sd033_governance_plan.md",
+      "design_doc": "evidence/planning/commitment_closure_plan.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "SD-033 cluster",
@@ -1512,7 +1512,7 @@
       "sd_id": "MECH-266",
       "title": "Asymmetric per-mode hysteresis (Schmitt-trigger rails on SalienceCoordinator)",
       "ready": true,
-      "design_doc": "evidence/planning/sd033_governance_plan.md",
+      "design_doc": "evidence/planning/commitment_closure_plan.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "SD-032a hysteresis",
@@ -1908,7 +1908,7 @@
       "sd_id": "MECH-295",
       "title": "Drive -> liking-stream -> approach cue bridge (weak reading)",
       "ready": true,
-      "design_doc": "docs/architecture/mech_295_drive_liking_approach_bridge.md",
+      "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "EXQ-471 catatonic-lock factorial diagnosis (Q-040)"
@@ -2018,7 +2018,7 @@
       "status": "phase_1_implemented",
       "ready": false,
       "ready_blocked_by": "Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavioural validation) is the remaining outstanding work; tracked as a separate phase_2 follow-on entry below.",
-      "design_doc": "docs/architecture/sd_049_multi_resource_heterogeneity.md",
+      "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "depends_on_unresolved": [],
       "implementation_note": "SD-049 Phase 1 IMPLEMENTED 2026-05-03 in ree-v3/ree_core/environment/causal_grid_world.py via flat kwargs on CausalGridWorld.__init__ (matching SD-022/SD-023/SD-029/SD-047/SD-048 env-only precedent). Three additions: (1) multi-identity resources with per-type field views in world_obs (world_obs_dim grows by n_resource_types*25 -- 250->325 default 3-type ARM_2; 250->375 5-type ARM_3 overshoot) and per-type benefit curves including non-homeostatic novelty_decay; (2) per-axis homeostatic drive vector parallel to legacy agent_energy (collapsed via configurable max/mean/sum combiner so all SD-032 consumers continue to read obs_body[3] unchanged in Phase 1); (3) curriculum hook via resource_introduction_schedule keyed on cross-episode _global_step. Bit-identical OFF guarantee verified (50-tick parity + V3-EXQ-513 C0). 7/7 preflight + 184/184 contracts PASS with master OFF. Substrate-readiness diagnostic V3-EXQ-513 queued (4-arm sweep + curriculum check; 13/13 PASS on dry-run; full run ~5 min on Mac). The behavioural goal_resource_r lift / identity-recovery / wanting!=liking validation is Phase 2 follow-on (V3-EXQ-514).",
       "unblocks_claims": [
@@ -2066,7 +2066,7 @@
       "title": "SD-049 Phase 2: z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavioural validation. Phase 2 of multi_resource_heterogeneity. Phase 1 (env-only substrate) landed 2026-05-03; Phase 2 lands the encoder upgrade and consumer cascade required for the FULL behavioural claim (goal_resource_r lift, identity-recovery probe, wanting != liking trajectory dissociation).",
       "status": "phase_2_implemented",
       "ready": false,
-      "design_doc": "docs/architecture/sd_049_multi_resource_heterogeneity.md (Phase 1 implementation note section)",
+      "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "depends_on_unresolved": [],
       "phase_2_scope": [
         "1. z_resource encoder identity expansion: extend SD-015 ResourceEncoder so z_resource carries identity. Two design alternatives: (a) one-hot identity slot concatenated with magnitude latent (cheap, deterministic); (b) low-D learned embedding (richer, requires phased training). Pick via lit-pull / experimental probe. Both options consume the larger world_obs (325 ARM_2 / 375 ARM_3) without modification of existing experiments since SD-015 is gated by use_resource_encoder=False default.",
@@ -2126,7 +2126,7 @@
       "status": "phase_3_pending",
       "ready": false,
       "ready_blocked_by": "Action-triggered by V3-EXQ-514 failure on SD-032-mediated mode-switching pathway specifically. The encoder-driven failure modes documented in verdict.md (rows 1-5 of the falsifier grid) do not predict that the SD-032 cascade is the bottleneck; only row 6 substrate-ceiling falsifier suggests it (and that branch routes to V4 rather than to Phase 3 anyway). Cascade is a cleanup-of-substrate-coverage refinement, not an acceptance-criterion prerequisite.",
-      "design_doc": "docs/architecture/sd_049_multi_resource_heterogeneity.md (Phase 2 implementation note section, deferred Phase 3 follow-on)",
+      "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "depends_on_unresolved": [],
       "phase_3_scope": [
         "Migrate AIC (cingulate/aic_analog.py), PCC (cingulate/pcc_analog.py), pACC (cingulate/pacc_analog.py), dACC (cingulate/dacc.py), SalienceCoordinator (cingulate/salience_coordinator.py), BroadcastOverrideRegulator (regulators/broadcast_override.py), MECH295LikingBridge (regulators/mech295_liking_bridge.py) from reading goal_state._last_drive_level (collapsed scalar) to optionally reading obs_dict['per_axis_drive'] directly when SD-049 per-axis is on.",
@@ -2196,7 +2196,7 @@
       "status": "candidate_v3_pending",
       "ready": true,
       "ready_blocked_by": null,
-      "design_doc": "docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md",
+      "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "Q-040",
