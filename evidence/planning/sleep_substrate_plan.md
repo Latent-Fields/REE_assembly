@@ -15,11 +15,12 @@ closure_plan:
       depends_on: []
       last_updated: 2026-05-09
     - id: "sleep_substrate:GAP-2"
-      title: "SD-017 retest cohort (Tier 0 EXQ-418e A2_div_only PASS 2026-04-27 -- slot_diversity 1.0 in 3/3 seeds; ready for Tier 1)"
+      title: "SD-017 retest cohort (Tier 1 first owner-EXQ V3-EXQ-265a queued + auto-claimed 2026-05-09; remaining 418c/436a/500a/503a outstanding)"
       phase: 2
-      status: open
+      status: in-progress
       severity: high
-      owner_exq: TBD
+      owner_exq: V3-EXQ-265a
+      pending_owner_exqs: [V3-EXQ-418c, V3-EXQ-436a, V3-EXQ-500a, V3-EXQ-503a]
       unblocks_claims: [SD-017, ARC-045, MECH-166]
       depends_on: []
       last_updated: 2026-05-09
@@ -406,7 +407,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
-| GAP-2 | 2 | open | (none -- Tier 0 cleared) | **Tier 0 EXQ-418e A2_div_only cleared the plan-of-record gate (slot_diversity 1.0 mean / 0.9997 min in 3/3 seeds, well above 0.5 threshold) on 2026-04-27 -- both runs confirm.** EXQ-418e's overall FAIL was on a separate attn_entropy criterion, not slot diversity. Status updated `blocked` -> `open` 2026-05-09. Next action: queue Tier 1 cohort (V3-EXQ-265a, 418c, 436a, 500a, 503a) with `sd016_diversification_weight > 0` (specifically the A2_div_only div-loss-only config) AND full SD-017 flag stack (use_sleep_loop, sws_enabled, rem_enabled, use_per_stream_vs, use_anchor_sets, use_sd039_anchor_payload). Recommended new session per 2026-05-09T13:50Z closure entry. | re-queue cohort TBD | 2026-05-09 |
+| GAP-2 | 2 | in-progress | first owner-EXQ V3-EXQ-265a queued + auto-claimed 2026-05-09T19:49:50Z by Mac runner; awaiting result | **Tier 1 cohort started 2026-05-09T19:49Z.** First owner-EXQ V3-EXQ-265a (SD-017 first-class methods validation Phase 2 retest) queued with the Phase 2 substrate stack: sd016_diversification_weight=0.5 + sd016_writepath_mode=off (A2_div_only equivalent) + use_per_stream_vs + use_anchor_sets + use_sd039_anchor_payload + use_sleep_loop + sws_enabled + rem_enabled. supersedes=V3-EXQ-265 set in queue entry + manifest. Mac runner auto-claimed within seconds of the push. Acceptance: C1+C2+C3 (substrate activation under Phase 2) AND C4 (WITH_SLEEP slot diversity differs from WITHOUT_SLEEP in >= 2/3 seeds, |diff| > 0.05) -- the discrimination signal that the original 265 could not measure under SD-016 confound. Five-row interpretation grid in script docstring covers PASS, near-miss on C4 direction, substrate regression, and SWS-flattens-div-loss-substrate. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) NOT YET queued -- pending user confirmation on serial-vs-batch sequencing. The Phase 2 substrate template is established by 265a; remaining EXQs apply the same 5-flag config diff to their respective scripts. Status row will roll forward as each owner-EXQ lands. | V3-EXQ-265a (active); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
@@ -504,6 +505,79 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09T19:49Z - GAP-2 Phase 2 first owner-EXQ queued (V3-EXQ-265a SD-017 methods validation Phase 2 retest)
+
+Phase 2 work resumed in a fresh session per the 2026-05-09T13:52Z plan-of-record
+closure recommendation. Audit of the 5 Tier-1 EXQ scripts confirmed none of them
+already set the Phase 2 substrate flags (sd016_diversification_weight,
+use_per_stream_vs, use_anchor_sets, use_sd039_anchor_payload). Substrate
+readiness verified: all 5 flags exist in REEConfig.from_dims (config.py lines
+522/687/715/1026/1615/1884/1889/2105/2108/2117/2150/2541/2544/2552/2585) and
+are wired through to the relevant submodules (LatentStackConfig,
+HippocampalConfig, AnchorSetConfig). Anchor-set has a structural precondition
+that requires use_per_stream_vs=True (raised in HippocampalModule.__init__);
+both flags are wired together in 265a's _make_agent.
+
+V3-EXQ-265a written as a copy-and-modify of EXQ-265 with:
+  - the 5 Phase 2 substrate flags added to _make_agent.
+  - SD016_DIVERSIFICATION_WEIGHT=0.5 + sd016_writepath_mode="off" (the
+    A2_div_only equivalent that EXQ-418e PASSed; A3_writes_plus_div was
+    excluded per the 2026-05-09T13:52Z note about its one collapsed seed).
+  - C2 threshold lifted 0.05 -> 0.10 (more conservative; under SD-016 div
+    loss the baseline diversity is already much higher).
+  - C4 redesigned to test signed-difference > 0.05 between WITH_SLEEP and
+    WITHOUT_SLEEP at end-of-run, vs the original 265's "WITH > WITHOUT"
+    direction-only check. Phase 2 acceptance per plan-of-record is "slot
+    metrics differ between sleep arms"; either direction is informative.
+  - supersedes="V3-EXQ-265" set in both queue entry and manifest output so
+    the indexer flips the original 265 verdict to scoring_excluded:superseded.
+  - Five-row interpretation grid in docstring distinguishing PASS, C4-only
+    near-miss, substrate regression (C1/C3), and SWS-flattens-div-loss
+    pathology (C2-only).
+  - emit_outcome runner-conformance contract satisfied on every code path
+    (--dry-run smoke + main run).
+
+Smoke (Mac, --dry-run): backward compat preserved with sleep flags off.
+Phase 2 stack + sleep ON: SWS n_writes=8, REM n_rollouts=6,
+slot_diversity~1.01; per_stream_vs populated 3 streams; anchor_set
+instantiated with use_sd039_anchor_payload=True. validate_experiments OK.
+validate_queue OK. ree-v3 commit 9e343e7 pushed; Mac runner auto-claimed
+within seconds (claimed_at 2026-05-09T19:49:50Z, status pending -> claimed).
+
+Decision: queue 265a alone in this session. The remaining 4 Tier-1 EXQs
+(V3-EXQ-418c, 436a, 500a, 503a) are NOT queued in this session. The Phase 2
+substrate template is established by 265a (5-flag config diff + supersedes
+metadata + acceptance-criterion shape). Each remaining EXQ applies the same
+template to a different base script; per /queue-experiment skill rules each
+needs its own code-review + smoke-test pass, and back-to-back skill
+invocations would inflate context with diminishing return. Recommendation:
+queue 418c next as a separate session (or this same session continues if
+user prefers), letting 265a's result inform whether the C4 acceptance shape
+needs adjustment for the multi-claim 436 (3 claims: SD-017 + ARC-045 +
+MECH-166) and the discriminative-pair 503 (FULL_4_PHASE_ON vs
+NO_SLEEP_BASELINE) before propagating.
+
+Per-script template diff for the remaining 4 EXQs (recorded here so the
+next session can apply mechanically):
+  - Add to _make_agent / agent build: sd016_writepath_mode="off",
+    sd016_diversification_weight=0.5, use_per_stream_vs=True,
+    use_anchor_sets=True, use_sd039_anchor_payload=True. Sleep flags
+    already present in original scripts.
+  - 418c: base on EXQ-418a (canonical, shy_enabled=False fix), NOT
+    EXQ-418 (buggy). 418a already has terrain_loss + LAMBDA_TERRAIN=0.1.
+    Single-claim ["SD-017"]; no per-claim direction needed.
+  - 436a: 3 claims [SD-017, ARC-045, MECH-166], 5 seeds, 3 conditions
+    (WAKING_ONLY/SWS_ONLY/SWS_THEN_REM). Already emits
+    evidence_direction_per_claim. Needs only the 5-flag substrate add.
+  - 500a: single claim, sws+rem fixed True, EPISODES_PER_RUN=3 cycles.
+    Diagnostic experiment; same 5-flag add.
+  - 503a: discriminative pair (FULL_4_PHASE_ON vs NO_SLEEP_BASELINE),
+    sleep_enabled boolean parameter. Single claim. Same 5-flag add.
+
+GAP-2 status row advances `open` -> `in-progress` with owner_exq=V3-EXQ-265a
+and pending_owner_exqs listing the remaining 4. Will roll forward as each
+owner-EXQ lands.
 
 ### 2026-05-09 - GAP-2 status correction: Tier 0 was cleared by EXQ-418e A2_div_only on 2026-04-27
 
