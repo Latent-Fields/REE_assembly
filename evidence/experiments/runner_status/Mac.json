@@ -2,10 +2,33 @@
   "schema_version": "v1",
   "runner_pid": 78911,
   "runner_started_at": "2026-05-09T13:14:15.773878+00:00",
-  "last_updated": "2026-05-09T21:45:18.187263+00:00",
+  "last_updated": "2026-05-09T21:46:28.876198+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-436a",
+      "backlog_id": "",
+      "claim_id": "SD-017",
+      "title": "SD-017 + ARC-045 + MECH-166 context-cond harm threshold, Phase 2 retest (3-cond x 5-seed multi-claim, per-seed diagnostics)",
+      "description": "",
+      "estimated_minutes": 400.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-418l",
+      "backlog_id": "",
+      "claim_id": "SD-017",
+      "title": "SD-017 action_bias_div discriminative pair, Phase 2 substrate retest (supersedes V3-EXQ-418a)",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1652,6 +1675,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier_20260509T214517Z_v3.json",
       "completed_by": "Mac",
       "actual_secs": 3064.1
+    },
+    {
+      "queue_id": "V3-EXQ-503a",
+      "backlog_id": "",
+      "claim_id": "SD-017",
+      "title": "SD-017 sleep-phase discriminative pair, Phase 2 retest (FULL_4_PHASE_ON vs NO_SLEEP_BASELINE)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "C3 cumulative_rem_rollouts:  3/3 -> PASS | C4 cross-arm |diff| on M2:   3/3 -> PASS (tolerance=0.2000; per-seed diffs=[5.0323, 4.6975, 4.4951]) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-503a -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-503a.json",
+      "started_at": "2026-05-09T21:46:27.019128+00:00",
+      "completed_at": "2026-05-09T21:46:28.874986+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3.json",
+      "completed_by": "Mac",
+      "actual_secs": 1.9
     }
   ]
 }
