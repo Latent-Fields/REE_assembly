@@ -15,15 +15,14 @@ closure_plan:
       depends_on: []
       last_updated: 2026-05-09
     - id: "sleep_substrate:GAP-2"
-      title: "SD-017 retest cohort (post SD-016 attention-uniformity fix)"
+      title: "SD-017 retest cohort (Tier 0 EXQ-418e A2_div_only PASS 2026-04-27 -- slot_diversity 1.0 in 3/3 seeds; ready for Tier 1)"
       phase: 2
-      status: blocked
+      status: open
       severity: high
       owner_exq: TBD
       unblocks_claims: [SD-017, ARC-045, MECH-166]
       depends_on: []
-      blocking_external: ["EXQ-418e SD-016 div-loss validation result"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-09
     - id: "sleep_substrate:GAP-3"
       title: "Phase B-E master flags default-False (cluster silent)"
       phase: 3
@@ -407,7 +406,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
-| GAP-2 | 2 | blocked | EXQ-418e (SD-016 div-loss validation) result | Confirm EXQ-418e PASS, then re-queue 265/418/436/500/503 | re-queue ID set TBD | 2026-05-08 |
+| GAP-2 | 2 | open | (none -- Tier 0 cleared) | **Tier 0 EXQ-418e A2_div_only cleared the plan-of-record gate (slot_diversity 1.0 mean / 0.9997 min in 3/3 seeds, well above 0.5 threshold) on 2026-04-27 -- both runs confirm.** EXQ-418e's overall FAIL was on a separate attn_entropy criterion, not slot diversity. Status updated `blocked` -> `open` 2026-05-09. Next action: queue Tier 1 cohort (V3-EXQ-265a, 418c, 436a, 500a, 503a) with `sd016_diversification_weight > 0` (specifically the A2_div_only div-loss-only config) AND full SD-017 flag stack (use_sleep_loop, sws_enabled, rem_enabled, use_per_stream_vs, use_anchor_sets, use_sd039_anchor_payload). Recommended new session per 2026-05-09T13:50Z closure entry. | re-queue cohort TBD | 2026-05-09 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
@@ -505,6 +504,44 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09 - GAP-2 status correction: Tier 0 was cleared by EXQ-418e A2_div_only on 2026-04-27
+
+User asked whether GAP-2 was still blocked by EXQ-418e. Investigation
+shows EXQ-418e ran twice on 2026-04-27 (T0159 + T0544 timestamps) and
+both runs cleanly cleared the plan-of-record's Tier 0 acceptance
+criterion (slot_diversity >= 0.5 in 2/3+ seeds with non-collapsed
+seeds). The A2_div_only arm produced:
+
+|   Arm                | slot_diversity_mean | slot_diversity_min | seeds_pass |
+|----------------------|---------------------|--------------------|------------|
+| A0_off (baseline)    | 0.199               | 0.191              | 3 (above floor only) |
+| A1_writes_only       | 0.349               | **0.000**          | 2 (one collapsed) |
+| **A2_div_only**      | **1.000**           | **0.9997**         | **3 (none collapsed)** |
+| A3_writes_plus_div   | 0.611               | **0.0054**         | 2 (one collapsed) |
+
+A2_div_only clears the threshold definitively. EXQ-418e's overall
+FAIL was on a SEPARATE criterion (C1 attn_entropy still uniform across
+all arms including A2 -- attention selectivity is a distinct concern
+from slot diversity per se). The plan-of-record Tier 0 gate -- whether
+SD-016's div-loss broke the slot collapse -- IS met. The
+attention-selectivity question is a separate (more demanding) follow-on
+that does not gate Phase 2.
+
+GAP-2 status updated `blocked` -> `open` in both YAML frontmatter and
+body status table. blocking_external on EXQ-418e removed. Phase 2 is
+now ready to queue.
+
+Note on config recommendation: A2_div_only is the cleaner config for
+Phase 2 Tier 1 retests -- A3_writes_plus_div had one collapsed seed
+in both 418e runs (slot_diversity_min ~ 0.005-0.007), so it's not
+robust enough to baseline against. New Phase 2 sessions should set
+`sd016_diversification_weight > 0` AND `use_writes_only=False` (or
+equivalent flag for the relevant ContextMemory write path) to land
+on the A2_div_only equivalent.
+
+Phase 2 starter prompt at `/tmp/sleep_substrate_phase2_starter_prompt.md`
+updated to reflect Tier 0 cleared (no /diagnose-errors detour needed).
 
 ### 2026-05-09 - V3-EXQ-541c PASS: MECH-204 V3 closure on F1; default step bumped to 0.25; Phase 7 deferred to V4
 
