@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-05-09.2 -->
+<!-- CLOSURE_VERSION: 2026-05-09.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -170,11 +170,43 @@
     fill: var(--muted); font-size: 10px;
   }
 
-  .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; }
+  .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; transition: opacity 0.15s ease; }
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
-  .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; }
+  .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; stroke-width: 1.7; }
   .edge.cross-plan:hover { stroke: rgba(163,113,247,1.0); stroke-width: 3; stroke-dasharray: 4 3; }
+  /* #4 severity-modulated edge weight: edges TO load-bearing or high nodes are thicker / more saturated */
+  .edge.sev-load-bearing { stroke-width: 2.4; opacity: 1.0; }
+  .edge.sev-load-bearing:hover { stroke-width: 3.4; }
+  .edge.sev-high { stroke-width: 1.8; opacity: 0.95; }
+  .edge.sev-high:hover { stroke-width: 2.8; }
+  .edge.cross-plan.sev-load-bearing { stroke-width: 2.8; }
+  .edge.cross-plan.sev-load-bearing:hover { stroke-width: 4; }
+  .edge.cross-plan.sev-high { stroke-width: 2.1; }
+  .edge.cross-plan.sev-high:hover { stroke-width: 3.4; }
   .edge-arrow { fill: rgba(139,148,158,0.7); }
+
+  /* #3 click-to-highlight-graph: when a node is selected, fade non-tree elements */
+  #graph[data-selected] .node:not(.in-graph) .node-rect { opacity: 0.22; }
+  #graph[data-selected] .node:not(.in-graph) text { opacity: 0.22; }
+  #graph[data-selected] .edge:not(.in-graph) { opacity: 0.12; }
+  #graph[data-selected] .node.selected .node-rect { stroke-width: 4 !important; filter: brightness(1.4) drop-shadow(0 0 4px var(--accent)); }
+  #graph[data-selected] .edge.in-graph { opacity: 1; }
+
+  /* #5 ready-to-work filter: fade nodes that are not ready (open + unblocked + load-bearing or high severity) */
+  #graph[data-ready-filter] .node:not(.is-ready) .node-rect { opacity: 0.18; }
+  #graph[data-ready-filter] .node:not(.is-ready) text { opacity: 0.18; }
+  #graph[data-ready-filter] .edge { opacity: 0.10; }
+  #graph[data-ready-filter] .node.is-ready .node-rect { stroke-width: 4 !important; filter: brightness(1.3) drop-shadow(0 0 5px #2ea043); }
+
+  /* ready-filter toggle button */
+  .ready-toggle {
+    background: var(--bg-3); color: var(--text);
+    border: 1px solid var(--border); border-radius: 5px;
+    padding: 3px 10px; font-size: 11px; cursor: pointer;
+    margin-right: 8px;
+  }
+  .ready-toggle:hover { border-color: var(--accent); }
+  .ready-toggle.active { background: var(--st-done); color: #0d1117; border-color: var(--st-done); font-weight: 600; }
 
   /* tooltip */
   #tip {
@@ -315,7 +347,10 @@
   <span class="lg"><span class="dot" style="background:var(--st-tracked)"></span>tracked</span>
   <span class="lg"><span class="dot" style="background:var(--st-open)"></span>open</span>
   <span class="lg"><span class="dot" style="background:var(--st-deferred)"></span>deferred (excluded from %)</span>
-  <span class="lg" style="margin-left:auto">solid edges = within-plan deps; dashed purple = cross-plan</span>
+  <span class="lg" style="margin-left:auto">
+    <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing or high severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
+    solid edges = within-plan deps; dashed purple = cross-plan
+  </span>
 </div>
 
 <div id="graph-wrap">
@@ -343,16 +378,128 @@ const STATUS_COLOR = {
 let CLOSURE = null;
 let TITLE_CLICKS = 0;
 
+// #3 click-to-highlight-graph state
+let SELECTED_NODE_ID = null;
+// #5 ready-to-work filter state
+let READY_FILTER_ACTIVE = false;
+// derived sets (recomputed on render or when state changes)
+let NODES_BY_ID = {};
+let NEIGHBOURS_OF = {};   // id -> Set of directly-connected ids (any edge type)
+let READY_NODE_IDS = new Set();
+
 async function load() {
   const r = await fetch('/api/closure');
   CLOSURE = await r.json();
   document.getElementById('gen').textContent =
     'generated ' + (CLOSURE.generated_at || '?') +
     ' ; ' + CLOSURE.nodes.length + ' nodes across ' + CLOSURE.plans.length + ' plans';
+  computeDerivedSets();
   renderOverall();
   renderPlans();
   renderGraph();
+  wireReadyToggle();
   scheduleEasterEggs();
+}
+
+function computeDerivedSets() {
+  // Node lookup
+  NODES_BY_ID = {};
+  for (const n of CLOSURE.nodes) NODES_BY_ID[n.id] = n;
+
+  // Adjacency (undirected union of edges + cross_links)
+  NEIGHBOURS_OF = {};
+  const addNbr = (a, b) => {
+    if (!NEIGHBOURS_OF[a]) NEIGHBOURS_OF[a] = new Set();
+    NEIGHBOURS_OF[a].add(b);
+  };
+  for (const e of CLOSURE.edges) { addNbr(e.from, e.to); addNbr(e.to, e.from); }
+  for (const e of CLOSURE.cross_links) { addNbr(e.from, e.to); addNbr(e.to, e.from); }
+
+  // Ready set (#5):
+  //   status == 'open'
+  //   AND severity in {'load-bearing','high'}
+  //   AND every depends_on (within-plan) target has status in {'done','deferred'}
+  // Cross-plan links are visualisation aids and not treated as hard blockers
+  // for filter purposes -- if a within-plan ancestor is incomplete that's the
+  // load-bearing block. Cross-plan signals are visible via edge tooltips and
+  // the click-to-highlight view.
+  READY_NODE_IDS = new Set();
+  const blockerStatuses = new Set(['done', 'deferred']);
+  const readySeverities = new Set(['load-bearing', 'high']);
+  for (const n of CLOSURE.nodes) {
+    if (n.status !== 'open') continue;
+    if (!readySeverities.has(n.severity)) continue;
+    let unblocked = true;
+    for (const depId of (n.depends_on || [])) {
+      const dep = NODES_BY_ID[depId];
+      // Unknown deps are treated as incomplete (be conservative)
+      if (!dep || !blockerStatuses.has(dep.status)) { unblocked = false; break; }
+    }
+    if (unblocked) READY_NODE_IDS.add(n.id);
+  }
+}
+
+function bfsReachable(startId) {
+  const visited = new Set([startId]);
+  const queue = [startId];
+  while (queue.length) {
+    const cur = queue.shift();
+    for (const nbr of (NEIGHBOURS_OF[cur] || [])) {
+      if (!visited.has(nbr)) { visited.add(nbr); queue.push(nbr); }
+    }
+  }
+  return visited;
+}
+
+function applySelectionStyling() {
+  const svg = document.getElementById('graph');
+  if (!svg) return;
+  if (!SELECTED_NODE_ID) {
+    svg.removeAttribute('data-selected');
+    for (const el of svg.querySelectorAll('.in-graph')) el.classList.remove('in-graph');
+    for (const el of svg.querySelectorAll('.selected')) el.classList.remove('selected');
+    return;
+  }
+  const reachable = bfsReachable(SELECTED_NODE_ID);
+  svg.setAttribute('data-selected', SELECTED_NODE_ID);
+  for (const g of svg.querySelectorAll('.node')) {
+    const nid = g.getAttribute('data-node-id');
+    g.classList.toggle('in-graph', reachable.has(nid));
+    g.classList.toggle('selected', nid === SELECTED_NODE_ID);
+  }
+  for (const e of svg.querySelectorAll('.edge')) {
+    const f = e.getAttribute('data-from');
+    const t = e.getAttribute('data-to');
+    e.classList.toggle('in-graph', reachable.has(f) && reachable.has(t));
+  }
+}
+
+function applyReadyFilterStyling() {
+  const svg = document.getElementById('graph');
+  if (!svg) return;
+  if (!READY_FILTER_ACTIVE) {
+    svg.removeAttribute('data-ready-filter');
+    for (const el of svg.querySelectorAll('.is-ready')) el.classList.remove('is-ready');
+    return;
+  }
+  svg.setAttribute('data-ready-filter', '1');
+  for (const g of svg.querySelectorAll('.node')) {
+    const nid = g.getAttribute('data-node-id');
+    g.classList.toggle('is-ready', READY_NODE_IDS.has(nid));
+  }
+}
+
+function wireReadyToggle() {
+  const btn = document.getElementById('ready-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    READY_FILTER_ACTIVE = !READY_FILTER_ACTIVE;
+    btn.classList.toggle('active', READY_FILTER_ACTIVE);
+    btn.textContent = READY_FILTER_ACTIVE
+      ? 'ready-to-work (' + READY_NODE_IDS.size + ')'
+      : 'ready-to-work';
+    applyReadyFilterStyling();
+  });
 }
 
 function renderOverall() {
@@ -532,8 +679,20 @@ function renderGraph() {
     g.addEventListener('mouseenter', (ev) => showTip(ev, n));
     g.addEventListener('mousemove', (ev) => moveTip(ev));
     g.addEventListener('mouseleave', hideTip);
+    // #3 click toggles selection; click the same node again clears
+    g.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      SELECTED_NODE_ID = (SELECTED_NODE_ID === n.id) ? null : n.id;
+      applySelectionStyling();
+    });
+    g.style.cursor = 'pointer';
     svg.appendChild(g);
   }
+
+  // #3 clicking the SVG background clears selection
+  svg.addEventListener('click', () => {
+    if (SELECTED_NODE_ID) { SELECTED_NODE_ID = null; applySelectionStyling(); }
+  });
 }
 
 function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode) {
@@ -551,9 +710,15 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode) {
         ' C' + x1 + ',' + midY + ' ' + x2 + ',' + midY + ' ' + x2 + ',' + y2;
   }
   const path = el('path');
-  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : ''));
+  // #4 severity class: edges TO load-bearing or high nodes get thicker stroke
+  // (the user mostly cares about which dependencies block important downstream work)
+  const sev = (toNode && toNode.severity) ? ' sev-' + toNode.severity : '';
+  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : '') + sev);
   path.setAttribute('d', d);
   path.setAttribute('marker-end', isCross ? 'url(#arrow-cross)' : 'url(#arrow)');
+  // #3 expose endpoints for click-to-highlight reachability styling
+  if (fromNode) path.setAttribute('data-from', fromNode.id);
+  if (toNode) path.setAttribute('data-to', toNode.id);
 
   // prose tooltip via native SVG <title> child
   // direction convention:
