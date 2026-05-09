@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-05-09.1 -->
+<!-- CLOSURE_VERSION: 2026-05-09.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -170,8 +170,10 @@
     fill: var(--muted); font-size: 10px;
   }
 
-  .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; }
+  .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; }
+  .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
   .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; }
+  .edge.cross-plan:hover { stroke: rgba(163,113,247,1.0); stroke-width: 3; stroke-dasharray: 4 3; }
   .edge-arrow { fill: rgba(139,148,158,0.7); }
 
   /* tooltip */
@@ -432,6 +434,10 @@ function renderGraph() {
     svg.appendChild(s);
   }
 
+  // build node lookup for edge tooltips
+  const nodesById = {};
+  for (const n of CLOSURE.nodes) nodesById[n.id] = n;
+
   // place nodes
   const nodePos = {};
   for (let i = 0; i < planOrder.length; i++) {
@@ -456,10 +462,10 @@ function renderGraph() {
 
   // edges first, so nodes are on top
   for (const e of CLOSURE.edges) {
-    drawEdge(svg, nodePos[e.from], nodePos[e.to], false);
+    drawEdge(svg, nodePos[e.from], nodePos[e.to], false, nodesById[e.from], nodesById[e.to]);
   }
   for (const e of CLOSURE.cross_links) {
-    drawEdge(svg, nodePos[e.from], nodePos[e.to], true);
+    drawEdge(svg, nodePos[e.from], nodePos[e.to], true, nodesById[e.from], nodesById[e.to]);
   }
 
   // nodes
@@ -530,12 +536,12 @@ function renderGraph() {
   }
 }
 
-function drawEdge(svg, from, to, isCross) {
-  if (!from || !to) return;
-  const x1 = from.x + from.w / 2;
-  const y1 = from.y + from.h;
-  const x2 = to.x + to.w / 2;
-  const y2 = to.y;
+function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode) {
+  if (!fromPos || !toPos) return;
+  const x1 = fromPos.x + fromPos.w / 2;
+  const y1 = fromPos.y + fromPos.h;
+  const x2 = toPos.x + toPos.w / 2;
+  const y2 = toPos.y;
   let d;
   if (Math.abs(x1 - x2) < 1) {
     d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
@@ -548,6 +554,33 @@ function drawEdge(svg, from, to, isCross) {
   path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : ''));
   path.setAttribute('d', d);
   path.setAttribute('marker-end', isCross ? 'url(#arrow-cross)' : 'url(#arrow)');
+
+  // prose tooltip via native SVG <title> child
+  // direction convention:
+  //   solid  (depends_on): from = predecessor, to = dependent  -> "A blocks B" / "B depends on A"
+  //   dashed (cross_plan_link): from = link-owner, to = linked -> "owner cross-links to linked"
+  if (fromNode && toNode) {
+    const fromTitle = fromNode.title || fromNode.id;
+    const toTitle = toNode.title || toNode.id;
+    const fromStatus = fromNode.status ? ' [' + fromNode.status + ']' : '';
+    const toStatus = toNode.status ? ' [' + toNode.status + ']' : '';
+    const titleEl = el('title');
+    if (isCross) {
+      titleEl.textContent =
+        'cross-plan link\n' +
+        fromNode.id + fromStatus + '\n  "' + fromTitle + '"\n' +
+        '  -> ' + toNode.id + toStatus + '\n' +
+        '     "' + toTitle + '"';
+    } else {
+      titleEl.textContent =
+        'depends-on (' + fromNode.id + ' blocks ' + toNode.id + ')\n' +
+        toNode.id + toStatus + '\n  "' + toTitle + '"\n' +
+        '  blocked by ' + fromNode.id + fromStatus + '\n' +
+        '              "' + fromTitle + '"';
+    }
+    path.appendChild(titleEl);
+  }
+
   svg.appendChild(path);
 }
 

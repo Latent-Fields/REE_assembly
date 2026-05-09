@@ -13,10 +13,10 @@ closure_plan:
       severity: load-bearing
       owner_exq: TBD
       unblocks_claims: [SD-033a, MECH-262, SD-034]
-      depends_on:
+      depends_on: []
+      cross_plan_link:
         - "arc_062_rule_apprehension:GAP-A"
         - "arc_062_rule_apprehension:GAP-B"
-      cross_plan_link:
         - "arc_062_rule_apprehension:GAP-C"
         - "arc_062_rule_apprehension:GAP-D"
       blocking_external: []
