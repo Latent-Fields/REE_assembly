@@ -1399,7 +1399,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.end_headers()
             return
         if path == "/api/closure":
-            body = json.dumps(read_closure(), indent=2).encode()
+            body = json.dumps(read_closure(), indent=2, default=str).encode()
             self._json_response(body)
             return
         if path in ("/closure", "/closure.html"):
