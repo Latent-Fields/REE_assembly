@@ -1,0 +1,1234 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_541b_mech204_step_size_sweep_20260509T123704Z_v3",
+  "experiment_type": "v3_exq_541b_mech204_step_size_sweep",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260509T123704Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-204"
+  ],
+  "backlog_id": "EXP-0171",
+  "outcome": "FAIL",
+  "result": "FAIL",
+  "evidence_direction": "weakens",
+  "criteria": {
+    "n_seeds": 3,
+    "per_arm": {
+      "ARM_0_off": {
+        "step": 0.0,
+        "seeds_fired_all": 3,
+        "seeds_track_ok": 3,
+        "seeds_overshoot_ok": 3,
+        "mean_tracking_quality": 0.8769178773896353,
+        "mean_overshoot_rate": 0.0,
+        "mean_rv_post_later_cycles": 0.31075941645393407
+      },
+      "ARM_1_step_0_05": {
+        "step": 0.05,
+        "seeds_fired_all": 3,
+        "seeds_track_ok": 3,
+        "seeds_overshoot_ok": 3,
+        "mean_tracking_quality": 0.8830719835178743,
+        "mean_overshoot_rate": 0.0,
+        "mean_rv_post_later_cycles": 0.30988304090675517
+      },
+      "ARM_2_step_0_10": {
+        "step": 0.1,
+        "seeds_fired_all": 3,
+        "seeds_track_ok": 3,
+        "seeds_overshoot_ok": 3,
+        "mean_tracking_quality": 0.889226089646353,
+        "mean_overshoot_rate": 0.0,
+        "mean_rv_post_later_cycles": 0.30900666535965937
+      },
+      "ARM_3_step_0_25": {
+        "step": 0.25,
+        "seeds_fired_all": 3,
+        "seeds_track_ok": 3,
+        "seeds_overshoot_ok": 3,
+        "mean_tracking_quality": 0.9076884080332288,
+        "mean_overshoot_rate": 0.0,
+        "mean_rv_post_later_cycles": 0.30637753871886986
+      },
+      "ARM_4_step_0_50": {
+        "step": 0.5,
+        "seeds_fired_all": 3,
+        "seeds_track_ok": 3,
+        "seeds_overshoot_ok": 3,
+        "mean_tracking_quality": 0.9384589386828207,
+        "mean_overshoot_rate": 0.0,
+        "mean_rv_post_later_cycles": 0.3019956609858811
+      }
+    },
+    "c1_pass": true,
+    "c1_per_arm": {
+      "ARM_1_step_0_05": true,
+      "ARM_2_step_0_10": true,
+      "ARM_3_step_0_25": true,
+      "ARM_4_step_0_50": true
+    },
+    "c2_pass": true,
+    "c2_qualifying_arms": [
+      "ARM_1_step_0_05",
+      "ARM_2_step_0_10",
+      "ARM_3_step_0_25"
+    ],
+    "c3_pass": true,
+    "c3_qualifying_arms": [
+      "ARM_1_step_0_05",
+      "ARM_2_step_0_10",
+      "ARM_3_step_0_25"
+    ],
+    "c4_pass": false,
+    "c4_qualifying_arms": [],
+    "c4_per_arm": {
+      "ARM_1_step_0_05": {
+        "seeds_diverged": 0,
+        "per_seed_relative_divergence": [
+          0.004907476318690155,
+          0.000541446320404635,
+          0.003926313899604298
+        ],
+        "mean_relative_divergence": 0.0031250788462330293
+      },
+      "ARM_2_step_0_10": {
+        "seeds_diverged": 0,
+        "per_seed_relative_divergence": [
+          0.009814952637125725,
+          0.0010828926408177337,
+          0.00785262779867435
+        ],
+        "mean_relative_divergence": 0.006250157692205937
+      },
+      "ARM_3_step_0_25": {
+        "seeds_diverged": 0,
+        "per_seed_relative_divergence": [
+          0.024537381590905783,
+          0.0027072316021070765,
+          0.019631569492681727
+        ],
+        "mean_relative_divergence": 0.015625394228564862
+      },
+      "ARM_4_step_0_50": {
+        "seeds_diverged": 0,
+        "per_seed_relative_divergence": [
+          0.04907476317544814,
+          0.00541446320442262,
+          0.03926313897201432
+        ],
+        "mean_relative_divergence": 0.03125078845062836
+      }
+    },
+    "overall_pass": false
+  },
+  "registered_thresholds": {
+    "C1_MIN_SEEDS_FIRED": 2,
+    "C2_TRACKING_QUALITY_MIN": 0.7,
+    "C3_OVERSHOOT_RATE_MAX": 0.1,
+    "C4_REL_DIVERGENCE_MIN": 0.05,
+    "DEFENSIBLE_STEPS": [
+      0.05,
+      0.1,
+      0.25
+    ],
+    "PRECISION_ZERO_POINT_EMA_ALPHA": 0.1
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      {
+        "label": "ARM_0_off",
+        "step": 0.0
+      },
+      {
+        "label": "ARM_1_step_0_05",
+        "step": 0.05
+      },
+      {
+        "label": "ARM_2_step_0_10",
+        "step": 0.1
+      },
+      {
+        "label": "ARM_3_step_0_25",
+        "step": 0.25
+      },
+      {
+        "label": "ARM_4_step_0_50",
+        "step": 0.5
+      }
+    ],
+    "episodes_per_run": 8,
+    "steps_per_episode": 200,
+    "sleep_loop_K": 2,
+    "precision_zero_point_ema_alpha": 0.1
+  },
+  "seed_results": {
+    "ARM_0_off": [
+      {
+        "arm": "ARM_0_off",
+        "step": 0.0,
+        "seed": 42,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.28749825360003395,
+          0.3279058139677549,
+          0.27362770419603255,
+          0.3053394594982206,
+          0.3458658027922909,
+          0.3482445496704393,
+          0.34862861357777836,
+          0.2572089255865187
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.28749825360003395,
+            "rv_post_cycle": 0.28749825360003395,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4782698997583834,
+            "mech204_running_variance_before": 0.28749825360003395,
+            "mech204_running_variance_after": 0.28749825360003395,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.27362770419603255,
+            "rv_post_cycle": 0.27362770419603255,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4959016444347335,
+            "mech204_running_variance_before": 0.27362770419603255,
+            "mech204_running_variance_after": 0.27362770419603255,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3458658027922909,
+            "rv_post_cycle": 0.3458658027922909,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4354401248703548,
+            "mech204_running_variance_before": 0.3458658027922909,
+            "mech204_running_variance_after": 0.3458658027922909,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.34862861357777836,
+            "rv_post_cycle": 0.34862861357777836,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3787334781875593,
+            "mech204_running_variance_before": 0.34862861357777836,
+            "mech204_running_variance_after": 0.34862861357777836,
+            "mech204_recalibration_step": 0.0
+          }
+        ],
+        "tracking_quality": 0.863483565104204,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.0,
+        "mean_rv_post_later_cycles": 0.32270737352203394
+      },
+      {
+        "arm": "ARM_0_off",
+        "step": 0.0,
+        "seed": 43,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.30837244468082303,
+          0.3036687527522879,
+          0.25851188210292103,
+          0.2814759519884185,
+          0.35019659203733533,
+          0.29321221553542565,
+          0.2963885016037064,
+          0.3089154412340588
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.30837244468082303,
+            "rv_post_cycle": 0.30837244468082303,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2428213818314804,
+            "mech204_running_variance_before": 0.30837244468082303,
+            "mech204_running_variance_after": 0.30837244468082303,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.25851188210292103,
+            "rv_post_cycle": 0.25851188210292103,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3053671618028613,
+            "mech204_running_variance_before": 0.25851188210292103,
+            "mech204_running_variance_after": 0.25851188210292103,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.35019659203733533,
+            "rv_post_cycle": 0.35019659203733533,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.260383522724655,
+            "mech204_running_variance_before": 0.35019659203733533,
+            "mech204_running_variance_after": 0.35019659203733533,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.2963885016037064,
+            "rv_post_cycle": 0.2963885016037064,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2717390371678436,
+            "mech204_running_variance_before": 0.2963885016037064,
+            "mech204_running_variance_after": 0.2963885016037064,
+            "mech204_recalibration_step": 0.0
+          }
+        ],
+        "tracking_quality": 0.8941358410714378,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.0,
+        "mean_rv_post_later_cycles": 0.30169899191465427
+      },
+      {
+        "arm": "ARM_0_off",
+        "step": 0.0,
+        "seed": 44,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.2787764258455188,
+          0.3578776080206294,
+          0.2902260755900906,
+          0.39948591564087077,
+          0.3669654973892484,
+          0.3253300465820977,
+          0.266424078796003,
+          0.24742383661364004
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.2787764258455188,
+            "rv_post_cycle": 0.2787764258455188,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.587091017025669,
+            "mech204_running_variance_before": 0.2787764258455188,
+            "mech204_running_variance_after": 0.2787764258455188,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2902260755900906,
+            "rv_post_cycle": 0.2902260755900906,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.572939706138034,
+            "mech204_running_variance_before": 0.2902260755900906,
+            "mech204_running_variance_after": 0.2902260755900906,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3669654973892484,
+            "rv_post_cycle": 0.3669654973892484,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.488150175878981,
+            "mech204_running_variance_before": 0.3669654973892484,
+            "mech204_running_variance_after": 0.3669654973892484,
+            "mech204_recalibration_step": 0.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.266424078796003,
+            "rv_post_cycle": 0.266424078796003,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.5146751992958873,
+            "mech204_running_variance_before": 0.266424078796003,
+            "mech204_running_variance_after": 0.266424078796003,
+            "mech204_recalibration_step": 0.0
+          }
+        ],
+        "tracking_quality": 0.8731342259932644,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.0,
+        "mean_rv_post_later_cycles": 0.307871883925114
+      }
+    ],
+    "ARM_1_step_0_05": [
+      {
+        "arm": "ARM_1_step_0_05",
+        "step": 0.05,
+        "seed": 42,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.2874982994672441,
+          0.3279058139693627,
+          0.274248776773377,
+          0.30533948126847044,
+          0.3431266843543925,
+          0.34824445365703505,
+          0.3459956230580541,
+          0.2572088332931807
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.28749825360003395,
+            "rv_post_cycle": 0.2874982994672441,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4782698997583834,
+            "mech204_running_variance_before": 0.28749825360003395,
+            "mech204_running_variance_after": 0.2874982994672441,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2736277041960326,
+            "rv_post_cycle": 0.274248776773377,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4959016444347335,
+            "mech204_running_variance_before": 0.2736277041960326,
+            "mech204_running_variance_after": 0.274248776773377,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.345865802793054,
+            "rv_post_cycle": 0.3431266843543925,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4354401248697166,
+            "mech204_running_variance_before": 0.345865802793054,
+            "mech204_running_variance_after": 0.3431266843543925,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.3486286135744129,
+            "rv_post_cycle": 0.3459956230580541,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.378733478189754,
+            "mech204_running_variance_before": 0.3486286135744129,
+            "mech204_running_variance_after": 0.3459956230580541,
+            "mech204_recalibration_step": 0.05
+          }
+        ],
+        "tracking_quality": 0.870309386851592,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.0019977271774549075,
+        "mean_rv_post_later_cycles": 0.32112369472860786
+      },
+      {
+        "arm": "ARM_1_step_0_05",
+        "step": 0.05,
+        "seed": 43,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.30837248992611543,
+          0.3036687527538737,
+          0.260713195970631,
+          0.2814760291503388,
+          0.34802237688827764,
+          0.29321213932338763,
+          0.29685146431218024,
+          0.3089154574621361
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.30837244468082303,
+            "rv_post_cycle": 0.30837248992611543,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2428213818314804,
+            "mech204_running_variance_before": 0.30837244468082303,
+            "mech204_running_variance_after": 0.30837248992611543,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2585118821029211,
+            "rv_post_cycle": 0.260713195970631,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3053671618028613,
+            "mech204_running_variance_before": 0.2585118821029211,
+            "mech204_running_variance_after": 0.260713195970631,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.35019659204004006,
+            "rv_post_cycle": 0.34802237688827764,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.26038352272245,
+            "mech204_running_variance_before": 0.35019659204004006,
+            "mech204_running_variance_after": 0.34802237688827764,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.2963885016010351,
+            "rv_post_cycle": 0.29685146431218024,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2717390371688997,
+            "mech204_running_variance_before": 0.2963885016010351,
+            "mech204_running_variance_after": 0.29685146431218024,
+            "mech204_recalibration_step": 0.05
+          }
+        ],
+        "tracking_quality": 0.8994290490126496,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.0016128305768724853,
+        "mean_rv_post_later_cycles": 0.30186234572369625
+      },
+      {
+        "arm": "ARM_1_step_0_05",
+        "step": 0.05,
+        "seed": 44,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.2787764719596772,
+          0.3578776080222458,
+          0.2897088467511816,
+          0.3994858975106209,
+          0.36295146363400255,
+          0.3253299058795121,
+          0.2673289364187002,
+          0.24742386833131222
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.2787764258455188,
+            "rv_post_cycle": 0.2787764719596772,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.587091017025669,
+            "mech204_running_variance_before": 0.2787764258455188,
+            "mech204_running_variance_after": 0.2787764719596772,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2902260755900906,
+            "rv_post_cycle": 0.2897088467511816,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.572939706138034,
+            "mech204_running_variance_before": 0.2902260755900906,
+            "mech204_running_variance_after": 0.2897088467511816,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3669654973886129,
+            "rv_post_cycle": 0.36295146363400255,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.488150175879453,
+            "mech204_running_variance_before": 0.3669654973886129,
+            "mech204_running_variance_after": 0.36295146363400255,
+            "mech204_recalibration_step": 0.05
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.266424078791071,
+            "rv_post_cycle": 0.2673289364187002,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.51467519930326,
+            "mech204_running_variance_before": 0.266424078791071,
+            "mech204_running_variance_after": 0.2673289364187002,
+            "mech204_recalibration_step": 0.05
+          }
+        ],
+        "tracking_quality": 0.8794775146893812,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.0018120400737161961,
+        "mean_rv_post_later_cycles": 0.30666308226796146
+      }
+    ],
+    "ARM_2_step_0_10": [
+      {
+        "arm": "ARM_2_step_0_10",
+        "step": 0.1,
+        "seed": 42,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.2874983453344543,
+          0.32790581397097046,
+          0.2748698493507215,
+          0.3053395030387202,
+          0.34038756591642316,
+          0.3482443576436305,
+          0.3433626325386471,
+          0.2572087409998428
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.28749825360003395,
+            "rv_post_cycle": 0.2874983453344543,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4782698997583834,
+            "mech204_running_variance_before": 0.28749825360003395,
+            "mech204_running_variance_after": 0.2874983453344543,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.27362770419603266,
+            "rv_post_cycle": 0.2748698493507215,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4959016444347335,
+            "mech204_running_variance_before": 0.27362770419603266,
+            "mech204_running_variance_after": 0.2748698493507215,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3458658027938172,
+            "rv_post_cycle": 0.34038756591642316,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.435440124869079,
+            "mech204_running_variance_before": 0.3458658027938172,
+            "mech204_running_variance_after": 0.34038756591642316,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.3486286135710473,
+            "rv_post_cycle": 0.3433626325386471,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3787334781919487,
+            "mech204_running_variance_before": 0.3486286135710473,
+            "mech204_running_variance_after": 0.3433626325386471,
+            "mech204_recalibration_step": 0.1
+          }
+        ],
+        "tracking_quality": 0.8771352085987068,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.003995454354827695,
+        "mean_rv_post_later_cycles": 0.31954001593526393
+      },
+      {
+        "arm": "ARM_2_step_0_10",
+        "step": 0.1,
+        "seed": 43,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.30837253517140784,
+          0.30366875275545974,
+          0.2629145098383409,
+          0.2814761063122591,
+          0.34584816173897026,
+          0.29321206311134973,
+          0.29731442702091115,
+          0.3089154736902133
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.30837244468082303,
+            "rv_post_cycle": 0.30837253517140784,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2428213818314804,
+            "mech204_running_variance_before": 0.30837244468082303,
+            "mech204_running_variance_after": 0.30837253517140784,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2585118821029211,
+            "rv_post_cycle": 0.2629145098383409,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3053671618028613,
+            "mech204_running_variance_before": 0.2585118821029211,
+            "mech204_running_variance_after": 0.2629145098383409,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3501965920427447,
+            "rv_post_cycle": 0.34584816173897026,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2603835227202445,
+            "mech204_running_variance_before": 0.3501965920427447,
+            "mech204_running_variance_after": 0.34584816173897026,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.29638850159836366,
+            "rv_post_cycle": 0.29731442702091115,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2717390371699557,
+            "mech204_running_variance_before": 0.29638850159836366,
+            "mech204_running_variance_after": 0.29731442702091115,
+            "mech204_recalibration_step": 0.1
+          }
+        ],
+        "tracking_quality": 0.9047222569544102,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.003225661153913928,
+        "mean_rv_post_later_cycles": 0.3020256995327408
+      },
+      {
+        "arm": "ARM_2_step_0_10",
+        "step": 0.1,
+        "seed": 44,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.27877651807383563,
+          0.35787760802386226,
+          0.28919161791227277,
+          0.39948587938037106,
+          0.35893742987881644,
+          0.3253297651769265,
+          0.2682337940418309,
+          0.24742390004898449
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.2787764258455188,
+            "rv_post_cycle": 0.27877651807383563,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.587091017025669,
+            "mech204_running_variance_before": 0.2787764258455188,
+            "mech204_running_variance_after": 0.27877651807383563,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2902260755900908,
+            "rv_post_cycle": 0.28919161791227277,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.572939706138034,
+            "mech204_running_variance_before": 0.2902260755900908,
+            "mech204_running_variance_after": 0.28919161791227277,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.36696549738797746,
+            "rv_post_cycle": 0.35893742987881644,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4881501758799245,
+            "mech204_running_variance_before": 0.36696549738797746,
+            "mech204_running_variance_after": 0.35893742987881644,
+            "mech204_recalibration_step": 0.1
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.26642407878613905,
+            "rv_post_cycle": 0.2682337940418309,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.514675199310633,
+            "mech204_running_variance_before": 0.26642407878613905,
+            "mech204_running_variance_after": 0.2682337940418309,
+            "mech204_recalibration_step": 0.1
+          }
+        ],
+        "tracking_quality": 0.8858208033859418,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.0036240801475569593,
+        "mean_rv_post_later_cycles": 0.3054542806109734
+      }
+    ],
+    "ARM_3_step_0_25": [
+      {
+        "arm": "ARM_3_step_0_25",
+        "step": 0.25,
+        "seed": 42,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.2874984829360847,
+          0.3279058139757938,
+          0.2767330670827548,
+          0.3053395683494695,
+          0.3321702106020896,
+          0.3482440696034172,
+          0.3354636609823301,
+          0.25720846411982917
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.28749825360003395,
+            "rv_post_cycle": 0.2874984829360847,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4782698997583834,
+            "mech204_running_variance_before": 0.28749825360003395,
+            "mech204_running_variance_after": 0.2874984829360847,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2736277041960328,
+            "rv_post_cycle": 0.2767330670827548,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4959016444347335,
+            "mech204_running_variance_before": 0.2736277041960328,
+            "mech204_running_variance_after": 0.2767330670827548,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3458658027961065,
+            "rv_post_cycle": 0.3321702106020896,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.435440124867165,
+            "mech204_running_variance_before": 0.3458658027961065,
+            "mech204_running_variance_after": 0.3321702106020896,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.3486286135609507,
+            "rv_post_cycle": 0.3354636609823301,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.378733478198533,
+            "mech204_running_variance_before": 0.3486286135609507,
+            "mech204_running_variance_after": 0.3354636609823301,
+            "mech204_recalibration_step": 0.25
+          }
+        ],
+        "tracking_quality": 0.8976126738384095,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.009988635886453176,
+        "mean_rv_post_later_cycles": 0.3147889795557248
+      },
+      {
+        "arm": "ARM_3_step_0_25",
+        "step": 0.25,
+        "seed": 43,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.308372670907285,
+          0.3036687527602177,
+          0.2695184514414709,
+          0.28147633779801995,
+          0.3393255162895499,
+          0.29321183447523574,
+          0.29870331514864773,
+          0.3089155223744455
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.30837244468082303,
+            "rv_post_cycle": 0.308372670907285,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2428213818314804,
+            "mech204_running_variance_before": 0.30837244468082303,
+            "mech204_running_variance_after": 0.308372670907285,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.25851188210292136,
+            "rv_post_cycle": 0.2695184514414709,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3053671618028604,
+            "mech204_running_variance_before": 0.25851188210292136,
+            "mech204_running_variance_after": 0.2695184514414709,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.35019659205085907,
+            "rv_post_cycle": 0.3393255162895499,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.260383522713627,
+            "mech204_running_variance_before": 0.35019659205085907,
+            "mech204_running_variance_after": 0.3393255162895499,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.29638850159034935,
+            "rv_post_cycle": 0.29870331514864773,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2717390371731234,
+            "mech204_running_variance_before": 0.29638850159034935,
+            "mech204_running_variance_after": 0.29870331514864773,
+            "mech204_recalibration_step": 0.25
+          }
+        ],
+        "tracking_quality": 0.920601880782987,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.00806415288605237,
+        "mean_rv_post_later_cycles": 0.30251576095988947
+      },
+      {
+        "arm": "ARM_3_step_0_25",
+        "step": 0.25,
+        "seed": 44,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.27877665641631094,
+          0.3578776080287116,
+          0.2876399313955459,
+          0.39948582498962143,
+          0.34689532861361577,
+          0.32532934306917005,
+          0.27094836691382407,
+          0.2474239952020014
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.2787764258455188,
+            "rv_post_cycle": 0.27877665641631094,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.587091017025669,
+            "mech204_running_variance_before": 0.2787764258455188,
+            "mech204_running_variance_after": 0.27877665641631094,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2902260755900909,
+            "rv_post_cycle": 0.2876399313955459,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.572939706138034,
+            "mech204_running_variance_before": 0.2902260755900909,
+            "mech204_running_variance_after": 0.2876399313955459,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3669654973860708,
+            "rv_post_cycle": 0.34689532861361577,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4881501758813407,
+            "mech204_running_variance_before": 0.3669654973860708,
+            "mech204_running_variance_after": 0.34689532861361577,
+            "mech204_recalibration_step": 0.25
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.266424078771343,
+            "rv_post_cycle": 0.27094836691382407,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.514675199332752,
+            "mech204_running_variance_before": 0.266424078771343,
+            "mech204_running_variance_after": 0.27094836691382407,
+            "mech204_recalibration_step": 0.25
+          }
+        ],
+        "tracking_quality": 0.9048506694782898,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.00906020036982704,
+        "mean_rv_post_later_cycles": 0.3018278756409953
+      }
+    ],
+    "ARM_4_step_0_50": [
+      {
+        "arm": "ARM_4_step_0_50",
+        "step": 0.5,
+        "seed": 42,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.2874987122721354,
+          0.3279058139838327,
+          0.27983842996947705,
+          0.3053396772007184,
+          0.3184746184101156,
+          0.34824358953639506,
+          0.322298708394815,
+          0.25720800265313987
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.28749825360003395,
+            "rv_post_cycle": 0.2874987122721354,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4782698997583834,
+            "mech204_running_variance_before": 0.28749825360003395,
+            "mech204_running_variance_after": 0.2874987122721354,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.27362770419603316,
+            "rv_post_cycle": 0.27983842996947705,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.495901644434733,
+            "mech204_running_variance_before": 0.27362770419603316,
+            "mech204_running_variance_after": 0.27983842996947705,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3458658027999219,
+            "rv_post_cycle": 0.3184746184101156,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.435440124863975,
+            "mech204_running_variance_before": 0.3458658027999219,
+            "mech204_running_variance_after": 0.3184746184101156,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.34862861354412317,
+            "rv_post_cycle": 0.322298708394815,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3787334782095075,
+            "mech204_running_variance_before": 0.34862861354412317,
+            "mech204_running_variance_after": 0.322298708394815,
+            "mech204_recalibration_step": 0.5
+          }
+        ],
+        "tracking_quality": 0.9317417825657774,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.01997727177085279,
+        "mean_rv_post_later_cycles": 0.30687058559146924
+      },
+      {
+        "arm": "ARM_4_step_0_50",
+        "step": 0.5,
+        "seed": 43,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.30837289713374694,
+          0.3036687527681476,
+          0.2805250207800206,
+          0.2814767236076216,
+          0.3284544405355212,
+          0.29321145341504556,
+          0.30101812870002087,
+          0.30891560351483227
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.30837244468082303,
+            "rv_post_cycle": 0.30837289713374694,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2428213818314804,
+            "mech204_running_variance_before": 0.30837244468082303,
+            "mech204_running_variance_after": 0.30837289713374694,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.25851188210292164,
+            "rv_post_cycle": 0.2805250207800206,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3053671618028604,
+            "mech204_running_variance_before": 0.25851188210292164,
+            "mech204_running_variance_after": 0.2805250207800206,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3501965920643827,
+            "rv_post_cycle": 0.3284544405355212,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2603835227026,
+            "mech204_running_variance_before": 0.3501965920643827,
+            "mech204_running_variance_after": 0.3284544405355212,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.2963885015769921,
+            "rv_post_cycle": 0.30101812870002087,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2717390371784036,
+            "mech204_running_variance_before": 0.2963885015769921,
+            "mech204_running_variance_after": 0.30101812870002087,
+            "mech204_recalibration_step": 0.5
+          }
+        ],
+        "tracking_quality": 0.9470679205082637,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.01612830577632975,
+        "mean_rv_post_later_cycles": 0.30333253000518756
+      },
+      {
+        "arm": "ARM_4_step_0_50",
+        "step": 0.5,
+        "seed": 44,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.278776886987103,
+          0.3578776080367937,
+          0.28505378720100105,
+          0.3994857343383722,
+          0.3268251598394751,
+          0.32532863955624247,
+          0.27547265504248303,
+          0.24742415379036314
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.2787764258455188,
+            "rv_post_cycle": 0.278776886987103,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.587091017025669,
+            "mech204_running_variance_before": 0.2787764258455188,
+            "mech204_running_variance_after": 0.278776886987103,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2902260755900913,
+            "rv_post_cycle": 0.28505378720100105,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.5729397061380337,
+            "mech204_running_variance_before": 0.2902260755900913,
+            "mech204_running_variance_after": 0.28505378720100105,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.36696549738289336,
+            "rv_post_cycle": 0.3268251598394751,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.4881501758836997,
+            "mech204_running_variance_before": 0.36696549738289336,
+            "mech204_running_variance_after": 0.3268251598394751,
+            "mech204_recalibration_step": 0.5
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.26642407874668306,
+            "rv_post_cycle": 0.27547265504248303,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.5146751993696164,
+            "mech204_running_variance_before": 0.26642407874668306,
+            "mech204_running_variance_after": 0.27547265504248303,
+            "mech204_recalibration_step": 0.5
+          }
+        ],
+        "tracking_quality": 0.936567112974421,
+        "overshoot_rate": 0.0,
+        "mean_abs_delta_later_cycles": 0.018120400742769494,
+        "mean_rv_post_later_cycles": 0.2957838673609864
+      }
+    ]
+  },
+  "elapsed_seconds": 180.21430921554565,
+  "notes": "EXP-0171 step-size sweep on MECH-204 F1 substrate. Five arms vary rem_precision_recalibration_step in {0.0_off, 0.05, 0.10, 0.25, 0.50} with precision_zero_point_ema_alpha=0.1 held constant. ARM_0 uses step=0.0 as the within-experiment no-op reference (consumer wired but step=0 makes recalibrate a no-op per contract C6). Acceptance: C1 substrate-readiness across step>0 arms; C2 tracking_quality >= 0.7 in some defensible step; C3 overshoot_rate <= 0.1 in some defensible step; C4 cross-arm divergence >= 5% in some step>0 arm. PASS = all four. The same step does not need to satisfy all three behavioural criteria; the report identifies the regime each metric peaks in. FAIL on C4 across all defensible steps points at Phase 7 / Option B (broadcast read at action selection) as the next architectural lever, gated on the parallel REM-precision lit-pull verdict."
+}
