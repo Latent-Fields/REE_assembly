@@ -1,0 +1,527 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_541_mech204_precision_recalibration_consumer_20260508T234302Z_v3",
+  "experiment_type": "v3_exq_541_mech204_precision_recalibration_consumer",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260508T234302Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-204"
+  ],
+  "outcome": "FAIL",
+  "result": "FAIL",
+  "evidence_direction": "superseded",
+  "criteria": {
+    "n_seeds": 3,
+    "c1_arm1_fired_every_cycle_seeds": 3,
+    "c1_pass": true,
+    "c2_arm1_mean_abs_delta": 9.047210947694178e-08,
+    "c2_arm1_sign_consistency_rate": 1.0,
+    "c2_pass": false,
+    "c3_arm0_mean_rv_post_later": 0.3073772829773504,
+    "c3_arm1_mean_rv_post_later": 0.30737737344945987,
+    "c3_relative_divergence": 2.9433570560073065e-07,
+    "c3_pass": false,
+    "overall_pass": false
+  },
+  "registered_thresholds": {
+    "MIN_MEAN_DELTA": 0.001,
+    "MIN_REL_DIVERGENCE": 0.05,
+    "C1_MIN_SEEDS_FIRED": 2,
+    "RECALIBRATION_STEP": 0.1
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      "ARM_0_off",
+      "ARM_1_on_step_0_1"
+    ],
+    "episodes_per_run": 8,
+    "steps_per_episode": 200,
+    "sleep_loop_K": 2
+  },
+  "seed_results": {
+    "ARM_0_off": [
+      {
+        "arm": "ARM_0_off",
+        "seed": 42,
+        "recalibration_on": false,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fired_all_cycles": false,
+        "rv_history": [
+          0.5,
+          0.24803235677273505,
+          0.3619145463008432,
+          0.2640220125439802,
+          0.2776261116525663,
+          0.30917666585782727,
+          0.28741129015301087,
+          0.3399602168419795,
+          0.3211773349425451
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.24803235677273505,
+            "rv_post_cycle": 0.24803235677273505,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.2640220125439802,
+            "rv_post_cycle": 0.2640220125439802,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.30917666585782727,
+            "rv_post_cycle": 0.30917666585782727,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.3399602168419795,
+            "rv_post_cycle": 0.3399602168419795,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          }
+        ],
+        "mean_delta_later_cycles": 0.0,
+        "mean_abs_delta_later_cycles": 0.0,
+        "sign_consistency_rate": 1.0,
+        "mean_rv_post_later_cycles": 0.3043862984145957
+      },
+      {
+        "arm": "ARM_0_off",
+        "seed": 43,
+        "recalibration_on": false,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fired_all_cycles": false,
+        "rv_history": [
+          0.5,
+          0.306240346186171,
+          0.3510240637843251,
+          0.3379660681876101,
+          0.28276536252356405,
+          0.2786541886334192,
+          0.3354872716778218,
+          0.324266070639964,
+          0.23962852661355735
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.306240346186171,
+            "rv_post_cycle": 0.306240346186171,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.3379660681876101,
+            "rv_post_cycle": 0.3379660681876101,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.2786541886334192,
+            "rv_post_cycle": 0.2786541886334192,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.324266070639964,
+            "rv_post_cycle": 0.324266070639964,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          }
+        ],
+        "mean_delta_later_cycles": 0.0,
+        "mean_abs_delta_later_cycles": 0.0,
+        "sign_consistency_rate": 1.0,
+        "mean_rv_post_later_cycles": 0.3136287758203311
+      },
+      {
+        "arm": "ARM_0_off",
+        "seed": 44,
+        "recalibration_on": false,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fired_all_cycles": false,
+        "rv_history": [
+          0.5,
+          0.2460347764236967,
+          0.33519271202202955,
+          0.30210274274485693,
+          0.35803865666398704,
+          0.2723421431411189,
+          0.2692762537711842,
+          0.33790543820539676,
+          0.23025973537957553
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.2460347764236967,
+            "rv_post_cycle": 0.2460347764236967,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.30210274274485693,
+            "rv_post_cycle": 0.30210274274485693,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.2723421431411189,
+            "rv_post_cycle": 0.2723421431411189,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.33790543820539676,
+            "rv_post_cycle": 0.33790543820539676,
+            "mech204_recalibration_fired": 0.0,
+            "mech204_recalibration_target": 0.0,
+            "mech204_running_variance_before": NaN,
+            "mech204_running_variance_after": NaN,
+            "mech204_recalibration_step": 0.0,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          }
+        ],
+        "mean_delta_later_cycles": 0.0,
+        "mean_abs_delta_later_cycles": 0.0,
+        "sign_consistency_rate": 1.0,
+        "mean_rv_post_later_cycles": 0.3041167746971242
+      }
+    ],
+    "ARM_1_on_step_0_1": [
+      {
+        "arm": "ARM_1_on_step_0_1",
+        "seed": 42,
+        "recalibration_on": true,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.24803245062068197,
+          0.36191454630413283,
+          0.2640221055731671,
+          0.2776261116558272,
+          0.3091767562987474,
+          0.28741129015618094,
+          0.3399603052846207,
+          0.32117733494564515
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.24803235677273505,
+            "rv_post_cycle": 0.24803245062068197,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 4.031715786180597,
+            "mech204_running_variance_before": 0.24803235677273505,
+            "mech204_running_variance_after": 0.24803245062068197,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.26402201254398033,
+            "rv_post_cycle": 0.2640221055731671,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.7875486320853278,
+            "mech204_running_variance_before": 0.26402201254398033,
+            "mech204_running_variance_after": 0.2640221055731671,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.3091766658578273,
+            "rv_post_cycle": 0.3091767562987474,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2343862782761335,
+            "mech204_running_variance_before": 0.3091766658578273,
+            "mech204_running_variance_after": 0.3091767562987474,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.33996021684197963,
+            "rv_post_cycle": 0.3399603052846207,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 2.9415120033083624,
+            "mech204_running_variance_before": 0.33996021684197963,
+            "mech204_running_variance_after": 0.3399603052846207,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          }
+        ],
+        "mean_delta_later_cycles": 9.06375826244717e-08,
+        "mean_abs_delta_later_cycles": 9.06375826244717e-08,
+        "sign_consistency_rate": 1.0,
+        "mean_rv_post_later_cycles": 0.30438638905217835
+      },
+      {
+        "arm": "ARM_1_on_step_0_1",
+        "seed": 43,
+        "recalibration_on": true,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.3062404368077977,
+          0.35102406378750173,
+          0.3379661567654403,
+          0.28276536252666895,
+          0.27865428086855004,
+          0.3354872716810549,
+          0.3242661601250541,
+          0.23962852661669412
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.306240346186171,
+            "rv_post_cycle": 0.3062404368077977,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.2653983939584617,
+            "mech204_running_variance_before": 0.306240346186171,
+            "mech204_running_variance_after": 0.3062404368077977,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.3379660681876103,
+            "rv_post_cycle": 0.3379661567654403,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 2.958868168317766,
+            "mech204_running_variance_before": 0.3379660681876103,
+            "mech204_running_variance_after": 0.3379661567654403,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.2786541886334193,
+            "rv_post_cycle": 0.27865428086855004,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.5886645603270475,
+            "mech204_running_variance_before": 0.2786541886334193,
+            "mech204_running_variance_after": 0.27865428086855004,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.32426607063996404,
+            "rv_post_cycle": 0.3242661601250541,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.083877737034566,
+            "mech204_running_variance_before": 0.32426607063996404,
+            "mech204_running_variance_after": 0.3242661601250541,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          }
+        ],
+        "mean_delta_later_cycles": 9.0099350258388e-08,
+        "mean_abs_delta_later_cycles": 9.0099350258388e-08,
+        "sign_consistency_rate": 1.0,
+        "mean_rv_post_later_cycles": 0.3136288659196815
+      },
+      {
+        "arm": "ARM_1_on_step_0_1",
+        "seed": 44,
+        "recalibration_on": true,
+        "n_cycles": 4,
+        "fired_each_cycle": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "fired_all_cycles": true,
+        "rv_history": [
+          0.5,
+          0.24603487037033786,
+          0.33519271202532264,
+          0.30210283361819273,
+          0.35803865666717233,
+          0.27234223572404226,
+          0.26927625377442954,
+          0.3379055267873247,
+          0.2302597353826806
+        ],
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.2460347764236967,
+            "rv_post_cycle": 0.24603487037033786,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 4.0644495468736475,
+            "mech204_running_variance_before": 0.2460347764236967,
+            "mech204_running_variance_after": 0.24603487037033786,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.3021027427448571,
+            "rv_post_cycle": 0.30210283361819273,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.3101211885499677,
+            "mech204_running_variance_before": 0.3021027427448571,
+            "mech204_running_variance_after": 0.30210283361819273,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.272342143141119,
+            "rv_post_cycle": 0.27234223572404226,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 3.6718383597483633,
+            "mech204_running_variance_before": 0.272342143141119,
+            "mech204_running_variance_after": 0.27234223572404226,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.337905438205397,
+            "rv_post_cycle": 0.3379055267873247,
+            "mech204_recalibration_fired": 1.0,
+            "mech204_recalibration_target": 2.9593990730420723,
+            "mech204_running_variance_before": 0.337905438205397,
+            "mech204_running_variance_after": 0.3379055267873247,
+            "mech204_recalibration_step": 0.1,
+            "sws_n_writes": 8.0,
+            "rem_n_rollouts": 6.0
+          }
+        ],
+        "mean_delta_later_cycles": 9.067939554796567e-08,
+        "mean_abs_delta_later_cycles": 9.067939554796567e-08,
+        "sign_consistency_rate": 1.0,
+        "mean_rv_post_later_cycles": 0.3041168653765199
+      }
+    ]
+  },
+  "elapsed_seconds": 130.07525300979614,
+  "notes": "Phase 1 validation of MECH-204 precision recalibration consumer. ARM_0 disables the consumer (use_rem_precision_recalibration=False); ARM_1 enables it with step=0.1. Hazard-heavy / resource-thin env drives sustained E3 _running_variance drift between sleep cycles. Acceptance: C1 substrate-readiness (recalibration fires every cycle in >=2/3 ON-arm seeds), C2 movement-direction consistency with target and non-zero mean_abs_delta, C3 cross-arm divergence on post-cycle rv. First cycle's no-op behaviour is expected (target == rv_at_rem_entry by construction); meaningful movement is measured on cycles 2..N.",
+  "evidence_direction_per_claim": {
+    "MECH-204": "superseded"
+  },
+  "evidence_direction_note": "Superseded by V3-EXQ-541a (queued 2026-05-09) following the F1 substrate fix in SerotoninModule: cross-cycle persistent zero-point reference (EMA across REM captures, alpha=0.1) replaces the legacy capture-only consumer. V3-EXQ-541 surfaced the within-cycle no-op pattern -- target == rv at writeback by construction (the captured precision_at_rem_entry equals rv at REM entry; SWS+REM passes do not update _running_variance), so Option A linear interpolation collapsed to a no-op (C1 PASS sign-consistency 1.0; C2 mean_abs_delta 9e-8 vs 1e-3 threshold; C3 cross-arm divergence 2.9e-7 vs 5% threshold). The diagnosis was correct and load-bearing -- it is preserved as the architectural finding that drove the F1 substrate fix. The original FAIL is genuine within the legacy semantics; F1 changes the consumer-side wiring so cycles 2..N have target != rv whenever waking drift moves rv between captures."
+}

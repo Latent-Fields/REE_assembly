@@ -252,7 +252,7 @@ work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | in-progress | V3-EXQ-541 result | Substrate landed 2026-05-09: `serotonin.compute_recalibration_target`, `E3.recalibrate_precision_to` Option A, WRITEBACK sibling step in `SleepLoopManager._run_cycle`, REEConfig flags `use_rem_precision_recalibration` + `rem_precision_recalibration_step` (default 0.1). 9/9 MECH-204 contracts + 237/237 preflight + contracts PASS. Awaiting V3-EXQ-541 PASS to mark `done`; companion EXP-0171 step-size sweep gated on PASS. | V3-EXQ-541 | 2026-05-09 |
+| GAP-1 | 1 | in-progress | V3-EXQ-541a result | V3-EXQ-541 FAILed cleanly under the legacy capture-only consumer (C1 PASS substrate-readiness, C2 FAIL mean_abs_delta 9e-8, C3 FAIL cross-arm divergence 2.9e-7) -- the within-cycle no-op pattern flagged in contract-test C8 was the dominant factor. F1 substrate fix landed 2026-05-09: SerotoninModule cross-cycle persistent zero-point reference (EMA across REM captures, alpha=0.1; `precision_zero_point_ema_alpha` config knob), `compute_recalibration_target` now returns the persistent value not the moment-snapshot. 13/13 MECH-204 contracts + 241/241 preflight + contracts PASS. V3-EXQ-541 manifest flipped to `evidence_direction: superseded`. V3-EXQ-541a queued (priority=4, machine_affinity=any). | V3-EXQ-541a | 2026-05-09 |
 | GAP-2 | 2 | blocked | EXQ-418e (SD-016 div-loss validation) result | Confirm EXQ-418e PASS, then re-queue 265/418/436/500/503 | re-queue ID set TBD | 2026-05-08 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
@@ -351,6 +351,88 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09 - V3-EXQ-541 FAIL diagnosis + F1 substrate fix; V3-EXQ-541a queued
+
+V3-EXQ-541 ran on ree-cloud-1 (130 sec, 2026-05-08T23:43:02Z) and FAILed:
+C1 PASS (substrate-readiness: recalibration fired every cycle in 3/3 ARM_1
+seeds), C2 FAIL (mean_abs_delta = 9.05e-8 vs threshold 1e-3), C3 FAIL
+(cross-arm divergence = 2.94e-7 vs threshold 5%). Sign-consistency was 1.0
+in every cycle of every ARM_1 seed -- the DIRECTION of recalibration was
+correct every time. The MAGNITUDE was six orders of magnitude under the
+acceptance threshold.
+
+Root cause: contract-test C8 of the original implementation flagged that
+"within a single cycle, the captured precision_at_rem_entry equals rv at
+REM entry, so Option A interpolation is mathematically a no-op against
+itself". The cycle records confirm: every ARM_1 cycle had
+target_variance ~ rv_before, so Option A linear interpolation
+`new_rv = (1 - step) * rv + step * (1 / target)` collapsed because
+`1 / target ~ rv`. Waking drift between cycles IS real (rv_history shows
+0.288 -> 0.328 -> 0.274 -> 0.305 -> ...) but each new REM entry CAPTURED
+the new rv as the new target, so the target tracked the rv rather than
+acting as a stable reference for it to be pulled back to. Local re-run
+on the Mac produced numerically identical results (mean_abs_delta 9.02e-8
+vs cloud 9.05e-8), confirming reproducibility.
+
+Concurrent finding from the cloud investigation: ree-cloud-1's
+auto-sync conflict-recovery destroyed the original V3-EXQ-541 manifest
+via `git stash --include-untracked` + `git reset --hard origin/master` +
+`git stash pop` semantics -- the locally-committed manifest was reset
+away and the selective `git add <manifest_path>` post-pop ran against a
+deleted file. Manifest recovered from dangling commit `9e8f7786be` via
+`git cat-file -p` and committed to master 2026-05-09. Diagnosis prompt
+for runner-side fix delegated to a separate session at
+`/tmp/cloud_manifest_leak_diagnosis_prompt.md` (option A: capture HEAD
+SHA pre-reset, restore manifest paths via `git checkout <sha> -- <paths>`
+post-reset). Distinct from the F1 substrate fix below.
+
+F1 substrate fix landed 2026-05-09:
+
+  - SerotoninConfig: new field `precision_zero_point_ema_alpha`
+    (default 0.1).
+  - SerotoninModule: new state `_persistent_zero_point: Optional[float]`
+    (initially None). On `enter_rem(precision)`: cold-start sets
+    persistent = first capture; subsequent captures EMA-track via
+    `persistent <- (1 - alpha) * persistent + alpha * capture`.
+    `_precision_at_rem_entry` preserved unchanged for diagnostic
+    continuity.
+  - SerotoninModule: `compute_recalibration_target` now returns
+    `_persistent_zero_point` (not `_precision_at_rem_entry`). Returns
+    0.0 sentinel when None (cold-start before first REM).
+  - SerotoninModule: new `hard_reset()` method. Per-episode `reset()`
+    preserves `_persistent_zero_point` so the long-horizon reference
+    accumulates across episodes within a session; `hard_reset()` clears
+    it (intended for between-stage resets).
+  - REEConfig.from_dims: new kwarg `precision_zero_point_ema_alpha`
+    (default 0.1) propagated to `cfg.serotonin.precision_zero_point_ema_alpha`.
+  - get_state / load_state extended to cover `persistent_zero_point`;
+    older state dicts without the field load cleanly (None).
+
+Contract suite: tests/contracts/test_mech204_precision_recalibration.py
+extended from 9 to 13 tests. New: C10 cross-cycle EMA arithmetic, C11
+persistent-survives-reset / clears-on-hard-reset, C12 alpha edge cases
+(0.0 freezes on first capture, 1.0 reverts to legacy snapshot behaviour),
+C13 state-roundtrip preserves persistent. All 13 PASS. Full preflight +
+contracts 241/241 PASS (was 237 + 4 new F1 tests).
+
+V3-EXQ-541 manifest flipped to `evidence_direction: superseded` with
+`evidence_direction_per_claim: {"MECH-204": "superseded"}` and a
+`evidence_direction_note` preserving the diagnosis as the architectural
+finding that drove the F1 fix. Indexer treats it as `scoring_excluded:
+"superseded"` per the EXQ Versioning policy.
+
+V3-EXQ-541a queued (priority=4, machine_affinity=any, supersedes
+V3-EXQ-541). Identical 2-arm ablation; only manipulated variable is the
+F1 substrate fix (now on the consumer side via the persistent zero-point
+EMA reference). Pre-registered acceptance C1/C2/C3 unchanged. Auto-claimed
+by DLAPTOP-4.local within seconds of the queue commit.
+
+Status table row GAP-1 unchanged at `in-progress`; the owner-EXQ rolled
+from V3-EXQ-541 to V3-EXQ-541a. EXP-0171 step-size sweep remains gated
+on V3-EXQ-541a PASS rather than 541. If 541a also FAILs C2/C3, the
+diagnosis points at F2 (apply-before-recapture) or F3 (Phase 7 Option B
+broadcast read) per the original split decision.
 
 ### 2026-05-09 - Phase 1 substrate landed; V3-EXQ-541 + EXP-0171 queued
 
