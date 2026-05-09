@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rem_precision_recalibration_timing",
+  "entry_id": "2026-05-09_mech204_hong_fallon_friston_harris_2018",
+  "timestamp_utc": "2026-05-09T12:43:42Z",
+  "claim_ids_tested": ["MECH-204", "SD-017"],
+  "source": {
+    "title": "Rapid Eye Movements in Sleep Furnish a Unique Probe Into Consciousness",
+    "authors": ["Charles C-H Hong", "James H Fallon", "Karl J Friston", "James C Harris"],
+    "year": 2018,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2018.02087",
+    "pmid": "30429814",
+    "pmc": "PMC6220670"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Reinforces the Hobson-Hong-Friston 2014 reading with a more specific empirical anchor: REMs are fMRI-identifiable temporally precise events that act as natural probes of the internalised active-inference loop running during REM. Source quality moderate-high (Frontiers Psychology peer-review; Friston co-author). Mapping fidelity moderate: the paper supports the active-inference + REM framework but is more focused on REMs as consciousness probes than on whether the resulting model updates are passively absorbed (F1) or actively broadcast (F3) into waking decision circuits. Adds incremental confidence to the F1-sufficient reading without being the primary anchor.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REM-locked fMRI activity in waking-decision circuits (e.g. dlPFC, BG) was found to depend on a SEPARATE post-REM broadcast that does NOT just reflect the updated generative-model parameters, the F1-sufficient reading would weaken."
+  ],
+  "tags": ["mech-204", "sd-017", "rem-sleep", "active-inference", "predictive-processing", "rems-as-probes"],
+  "mapping": {
+    "source_claim_statement": "REMs in sleep correspond to internalised active sampling or 'scanning' of self-generated visual constructs that are released from the constraints of visual input. REMs offer a probe of active inference in the sense of predictive coding when the brain is isolated from the sensorium in virtue of the natural blockade of sensory afferents during REM sleep. REMs are temporally precise events that enable powerful inferences based on time series analyses.",
+    "ree_translation": "Reinforces the Hobson-Hong-Friston 2014 architectural commitment: REM is when the brain runs an internalised active-inference loop on its generative model, with sensory input gated. The temporally precise REM events are the moments of model exercise that produce subsequent refinement. For REE's MECH-204, this supports the F1 architecture in which the persistent zero-point reference accumulates across REM cycles via these internalised active-inference operations, with the resulting refined model parameters consumed PASSIVELY by waking inference -- no separate broadcast arm needed because the refinement is already routed through the parameter updates that waking inference reads in the normal course.",
+    "mapping_caveat": "The paper is more focused on REMs as a consciousness probe than on the passive-vs-broadcast question this lit pull is asking. The F1-supportive reading is inherited from the broader Hobson-Friston framework rather than directly stated as a contrast against F3 alternatives. Lower confidence than the 2014 paper because the 2018 paper's main contribution is methodological (REMs as fMRI markers) rather than architectural.",
+    "source_context": "Theoretical / methodological review proposing REMs as natural probes of active inference. Cites human fMRI evidence for REM-locked activity in retrosplenial cortex, supplementary eye field, basal nucleus."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Frontiers Psychology peer-review; Friston co-authorship. Mapping fidelity moderate because the paper's central contribution is methodological (REMs as probes) rather than the architectural F1-vs-F3 distinction REE is asking about. Confidence aggregate held at 0.68 to reflect the indirect-supporting role -- this paper reinforces the Hobson-Friston 2014 framework but is not the primary anchor."
+  }
+}

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-09T12:36:50.098720Z`
+Generated: `2026-05-09T12:51:29.907902Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -642,7 +642,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-104
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=13, weakens=1, conflict_ratio=0.143, exp_conf=0.88, lit_conf=0.895, overall_confidence_legacy=0.888
+- Evidence breakdown: supports=13, weakens=1, conflict_ratio=0.143, exp_conf=0.879, lit_conf=0.895, overall_confidence_legacy=0.887
 - Recent entries:
   - `2026-04-13T07:43:19Z` `experimental` `v3_exq_365_mech104_surprise_gate_pair` direction=`mixed` confidence=0.5
   - `2026-04-14T20:38:26Z` `experimental` `v3_exq_365_mech104_surprise_gate_pair` direction=`supports` confidence=0.75

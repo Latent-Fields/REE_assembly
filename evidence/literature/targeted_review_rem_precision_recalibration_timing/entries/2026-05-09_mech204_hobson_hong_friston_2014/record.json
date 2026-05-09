@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rem_precision_recalibration_timing",
+  "entry_id": "2026-05-09_mech204_hobson_hong_friston_2014",
+  "timestamp_utc": "2026-05-09T12:43:42Z",
+  "claim_ids_tested": ["MECH-204", "MECH-203", "SD-017"],
+  "source": {
+    "title": "Virtual reality and consciousness inference in dreaming",
+    "authors": ["J Allan Hobson", "Charles C-H Hong", "Karl J Friston"],
+    "year": 2014,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2014.01133",
+    "pmid": "25346710",
+    "pmc": "PMC4191565"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Co-authored by Hobson (originator of the AIM neuromodulatory model) and Friston (originator of the active-inference / free-energy framework) at the canonical intersection this lit pull is asking about. Source quality high (Frontiers Psychology peer-review; senior synthesis from both originators of the relevant frameworks). Mapping fidelity high: the paper directly proposes that REM-driven generative-model refinement happens DURING REM and is then read by the waking brain as the updated model. That is the F1 architectural pattern. Confidence held below 0.9 because the paper is theoretical synthesis rather than direct experimental measurement of precision-update timing, and the architectural commitment to F1 is implicit in the framework rather than explicitly contrasted with F3 / broadcast-read alternatives.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a behavioural / neural signature appeared that required REM-captured precision to be actively read by waking action-selection circuits at choice time (rather than passively absorbed via the refined generative model), the F1-only reading from this paper would need extension to a dual-arm reading."
+  ],
+  "tags": ["mech-204", "mech-203", "sd-017", "rem-sleep", "active-inference", "predictive-processing", "neuromodulation", "hobson-aim", "friston-free-energy"],
+  "mapping": {
+    "source_claim_statement": "The brain is equipped with a virtual model of the world that generates predictions of its sensations. This model is continually updated and entrained by sensory prediction errors in wakefulness; in sleep the brain's generative model is actively refined so that it generates more efficient predictions during waking. Dreaming plays an essential role in maintaining and enhancing the capacity to model the world by minimizing model complexity and thereby maximizing both statistical and thermodynamic efficiency.",
+    "ree_translation": "The REM-phase 'active refinement' of the generative model is REE's MECH-204 SR-3 zero-point recalibration mechanism. The Hobson-Hong-Friston framing supports F1 (cross-cycle persistent reference accumulated DURING REM and consumed PASSIVELY by waking via the updated generative model) over F3 (live broadcast read of the captured value at action selection): the paper's architectural commitment is that REM produces a more efficient generative model, and waking decision systems then use that updated model without needing a separate broadcast channel. The 5-HT zero-point during REM (MECH-203 quiescence + MECH-204 capture) IS the substrate for that refinement, per the paper's neuromodulation analysis.",
+    "mapping_caveat": "The paper is theoretical / synthesis-level. It does NOT empirically distinguish F1 (passive absorption via updated model) from F3 (active broadcast read) at the resolution REE needs. The F1 reading is the more parsimonious interpretation of the paper's architectural commitment, but the paper does not RULE OUT a dual-arm reading -- it simply does not need a broadcast arm to make its argument work. Translation from Hobson-Friston theoretical framework to REE's specific Option A WRITEBACK-phase consumer is one architectural step removed from the source.",
+    "source_context": "Theoretical review at the intersection of REM-sleep neuromodulation (Hobson AIM tradition) and predictive-processing / active-inference (Friston free-energy tradition). Human and primate REM phenomenology referenced; no novel empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "Senior co-authorship of both originating-framework figures (Hobson + Friston) keeps source_quality high despite peer-review-only venue. Mapping fidelity high because the paper's central claim IS about how REM updates a generative model that waking then reads. Transfer risk low because the architectural pattern (REM refines model, waking uses refined model) is exactly REE's MECH-204 SR-3 architecture; the only translation step is to REE's specific implementation."
+  }
+}

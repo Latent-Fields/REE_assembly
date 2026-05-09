@@ -265,6 +265,24 @@ recapture) is NOT in the option set for Phase 7 -- decision-log entry
 recapture" pattern; F2 would be a software shape divergent from the
 neuroscience oracle.
 
+**Lit-pull verdict landed 2026-05-09** (5 entries +
+SYNTHESIS.md at `evidence/literature/targeted_review_rem_precision_recalibration_timing/`):
+choice (a) is the dominant pattern; (c) dual-arm is preserved as a
+candidate via the Laukkonen-Friston-Chandaria 2025 hyper-model proposal;
+(b) F3-only is NOT supported; (d) passive drift is NOT supported. F2
+permanently confirmed discarded (zero papers support it).
+
+Phase 7 design choice IF triggered (V3-EXQ-541b fails C3 across all
+defensible step-size arms): the broadcast read should consume
+`serotonin._persistent_zero_point` (the F1 cumulative reference) NOT
+`serotonin._precision_at_rem_entry` (the moment-snapshot). Reasoning per
+SYNTHESIS.md: Hobson-Hong-Friston 2014 + Walker-Stickgold 2006 establish
+the cumulative reference as the biologically meaningful target; the
+moment-snapshot is a substrate observable, not a behaviourally-consumed
+signal. Apply broadcast as additive bias on E3 score at `select_action()`
+time, scaled by tunable `rem_precision_broadcast_gain` knob, running
+alongside F1 (NOT replacing it -- the dual-arm pattern from Q-042).
+
 GAP-5 (arousal-driven entry) is intentionally NOT in this plan. Per the
 sleep-aggregation cluster doc C1, SD-037-driven entry is V4 scope and
 deferred until V3 entry trigger has matured under empirical pressure.
@@ -377,6 +395,69 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09 - REM-precision lit-pull verdict (5 entries): F1 dominant, F3 dual-arm preserved as conditional fallback, F2 confirmed discarded
+
+Targeted lit pull on REM-phase precision recalibration timing landed at
+`evidence/literature/targeted_review_rem_precision_recalibration_timing/`
+with 5 entries + SYNTHESIS.md. MECH-204 literature_confidence advanced
+from 0.0 to 0.864; quadrant moved from speculative to plausible_unproven.
+
+Entries:
+- Hobson, Hong & Friston 2014 (DOI 10.3389/fpsyg.2014.01133) -- supports F1, conf 0.82.
+- Hong, Fallon, Friston & Harris 2018 (DOI 10.3389/fpsyg.2018.02087) -- supports F1, conf 0.68.
+- Sakai & Crochet 2001 (DOI 10.1016/s0306-4522(01)00103-8) -- substrate for MECH-203 quiescence + MECH-204 capture moment, conf 0.78.
+- Walker & Stickgold 2006 (DOI 10.1146/annurev.psych.56.091103.070307) -- supports F1's cumulative-across-cycles pattern by analogy from sleep-dependent memory consolidation, conf 0.74.
+- Laukkonen, Friston & Chandaria 2025 (DOI 10.1016/j.neubiorev.2025.106296) -- mixed; tilts toward F3 / Option B as candidate dual-arm complement to F1, conf 0.62.
+
+Verdict: dominant biological pattern is F1 (cross-cycle slow-EMA reference
+accumulated during REM, consumed passively by waking via the refined
+generative model). Hobson-Hong-Friston 2014's architectural commitment is
+F1-sufficient; Walker-Stickgold 2006's cumulative-across-cycles dose-response
+pattern reinforces by analogy. Sakai 2001 grounds the substrate (88% of
+serotonergic DR neurons go silent at REM entry).
+
+The 2025 Laukkonen-Friston-Chandaria hyper-model proposal tilts toward a
+DUAL-ARM reading -- biology may run BOTH F1 (parameter-refinement
+absorption) AND F3 (active hyper-model broadcast at choice time) as a
+sleep-extension of the Q-042 dual-arm finding for general waking
+precision-update timing. The hyper-model is the active-inference framing
+of Phase 7 / Option B. NOT directly tied to REM-captured zero-points in
+the literature; the F3-supporting reading requires inferring that the
+hyper-model consumes them.
+
+F2 (apply-before-recapture) confirmed discarded: zero papers in this lit
+pull support the "recalibrate then re-snapshot" pattern. The architectural
+shape has no biological referent. F2 is permanently off the table.
+
+Phase 7 implication dispatch table (now in SYNTHESIS.md verdict section):
+1. V3-EXQ-541b clears C3 in defensible step band {0.05, 0.10, 0.25} ->
+   F1 + tuned step is the operative architecture; Phase 7 deferred to
+   V4-or-later. MECH-204 V3 closure on F1 alone.
+2. V3-EXQ-541b fails C3 in defensible band but ARM_4_step_0_50 clears it ->
+   Phase 7 deprioritised; F1 with biologically-borderline step is barely
+   sufficient. Dual-arm reading preserved as architectural insurance.
+3. V3-EXQ-541b fails C3 across all arms including 0.50 -> Laukkonen-
+   Friston-Chandaria 2025 hyper-model reading becomes load-bearing;
+   Phase 7 / Option B implementation justified. Design (per lit-pull
+   synthesis): broadcast read of `serotonin._persistent_zero_point`
+   (F1 cumulative reference, NOT moment-snapshot) at `select_action()`
+   time, additive bias on E3 score, scaled by tunable
+   `rem_precision_broadcast_gain`, run alongside F1 (dual-arm).
+
+Phase 7 description in this plan-of-record updated 2026-05-09 to record
+the lit-pull dependency satisfied; the design choice (read persistent
+not snapshot) is now lit-pull-grounded.
+
+What this lit-pull does NOT settle: exact F3 broadcast gain (no direct
+biological analogue); cumulative-vs-snapshot for the broadcast arm
+specifically; whether 12% atypical DR neurons (Sakai 2001) carry
+precision-relevant signal REE's binary tonic_5ht=0.0 ignores (V4 question);
+SWS spindle-mediated consolidation interaction with REM-driven precision
+recalibration (separate substrate question).
+
+Recommended next action (per lit-pull SYNTHESIS): wait for V3-EXQ-541b
+result (currently running on DLAPTOP-4.local), apply dispatch table.
 
 ### 2026-05-09 - V3-EXQ-541a F1 result; F2 discarded; EXP-0171 sweep + REM lit-pull queued
 

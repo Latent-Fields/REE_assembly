@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rem_precision_recalibration_timing",
+  "entry_id": "2026-05-09_mech204_mech203_sakai_crochet_2001",
+  "timestamp_utc": "2026-05-09T12:43:42Z",
+  "claim_ids_tested": ["MECH-204", "MECH-203", "SD-017"],
+  "source": {
+    "title": "Differentiation of presumed serotonergic dorsal raphe neurons in relation to behavior and wake-sleep states",
+    "authors": ["K Sakai", "S Crochet"],
+    "year": 2001,
+    "venue": "Neuroscience",
+    "doi": "10.1016/s0306-4522(01)00103-8",
+    "pmid": "11457597"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct single-unit electrophysiology in freely-moving cats establishing the canonical 5-HT zero-point during REM. Source quality high (Neuroscience, 272 single-unit recordings, in vivo, awake-behaving preparation, with serotonergic identification confirmed pharmacologically). Mapping fidelity high: directly grounds REE's MECH-203 (5-HT quiescence during REM) and the substrate for MECH-204 (the existence of a captured-precision moment when 5-HT is at zero). Confidence below 0.85 because the paper documents the SUBSTRATE (DR firing dynamics during REM) not the CONSUMER timing question (whether waking reads the recalibrated state passively via parameter updates or actively via broadcast read).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the discovered atypical DR neurons (~12% of the sample) that fire DURING REM turn out to play a load-bearing role in REM-precision recalibration -- carrying a tonic 5-HT signal that the simple 'zero-point' reading does not capture -- the substrate-level support for MECH-203's quiescence claim would weaken and the F1 architectural reading might need refinement."
+  ],
+  "tags": ["mech-204", "mech-203", "sd-017", "rem-sleep", "dorsal-raphe", "serotonin", "single-unit-recording", "5-ht-zero-point"],
+  "mapping": {
+    "source_claim_statement": "Of 272 dorsal raphe neurons recorded in freely-moving cats, 88% were classified as serotonergic on the basis of long-duration action potentials, slow discharge, and inhibitory response to 5-HT agonists. The typical serotonergic neurons (subdivided into types I-A and I-B) discharged regularly at high rate during waking, slowed progressively during slow-wave sleep, and ceased firing either during slow-wave sleep with PGO waves and paradoxical sleep (type I-A) or only during paradoxical sleep (type I-B). About 12% of presumed serotonergic neurons (atypical types I-C, II-A, II-B, II-C) showed reciprocal firing patterns including tonic activity DURING paradoxical sleep.",
+    "ree_translation": "Direct single-unit substrate evidence for REE's MECH-203 (tonic_5ht ~ 0 during REM) and MECH-204 (REM-entry as the moment when 5-HT reaches the zero point that defines the recalibration reference). Approximately 88% of presumed serotonergic DR neurons go silent at REM entry, which is the biological substrate for SerotoninModule._tonic_5ht = 0.0 during REM and the moment when _precision_at_rem_entry / _persistent_zero_point gets captured. The minority of atypical DR neurons firing DURING REM (12%) is a known caveat -- the simple zero-point picture is a first-order approximation, not strict-zero -- but the dominant pattern is REM-driven 5-HT withdrawal.",
+    "mapping_caveat": "This paper grounds the SUBSTRATE (DR firing dynamics) not the CONSUMER timing question (F1 vs F3). It supports MECH-203's quiescence claim and the existence of a captured-precision moment at REM entry, but does not directly speak to whether waking reads the captured / recalibrated state passively (F1) via downstream parameter updates or actively (F3) via a broadcast channel. The 12% atypical-neuron caveat is biologically real and means REE's binary tonic_5ht=0.0 during REM is a simplification.",
+    "source_context": "Single-unit recording in freely-moving cats with microdialysis pharmacological identification. n=272 neurons. Cat preparation; transfer to human / primate / REE substrate is via the well-established conservation of DR-REM-quiescence pattern across mammals (also documented in rats by Urbain et al 2006)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "In vivo single-unit recording with pharmacological identification in awake-behaving preparation -- methodologically strong. Mapping fidelity high for substrate (MECH-203) and capture-moment (MECH-204) but moderate for the consumer-timing question this lit-pull is asking about. Transfer risk moderate (cat -> human -> REE) but DR-REM-quiescence pattern is well-conserved across mammals."
+  }
+}

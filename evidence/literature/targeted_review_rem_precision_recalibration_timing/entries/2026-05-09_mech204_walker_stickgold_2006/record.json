@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rem_precision_recalibration_timing",
+  "entry_id": "2026-05-09_mech204_walker_stickgold_2006",
+  "timestamp_utc": "2026-05-09T12:43:42Z",
+  "claim_ids_tested": ["MECH-204", "SD-017"],
+  "source": {
+    "title": "Sleep, memory, and plasticity",
+    "authors": ["Matthew P Walker", "Robert Stickgold"],
+    "year": 2006,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev.psych.56.091103.070307",
+    "pmid": "16318592"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Annual Review of Psychology is a high-quality venue and Walker + Stickgold are senior figures in sleep + memory consolidation. The paper documents the cumulative-across-cycles pattern of sleep-dependent memory and plasticity that REE's F1 cross-cycle EMA architecture mirrors. Source quality high (Annu Rev Psychol; canonical review). Mapping fidelity moderate-high: the paper directly supports the architectural pattern of cumulative across-cycle accumulation of sleep effects, which is exactly the F1 EMA reference shape. Confidence below 0.85 because the paper is about memory consolidation broadly rather than specifically about precision recalibration; the architectural transfer is by analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If sleep-dependent memory consolidation turned out to be primarily WITHIN a single cycle (one REM episode produces the full effect, multiple cycles produce no additional effect), the cumulative-across-cycles reading that supports F1 would weaken; REE's _persistent_zero_point EMA across cycles would lose its biological motivation and a snapshot-only architecture might be more appropriate."
+  ],
+  "tags": ["mech-204", "sd-017", "sleep-dependent-consolidation", "rem-sleep", "cumulative-cycles", "walker-stickgold"],
+  "mapping": {
+    "source_claim_statement": "Sleep contributes importantly to processes of memory and brain plasticity. Sleep-dependent memory processing operates across multiple sleep cycles in a sustained, cumulative manner. Sleep-dependent perceptual and motor learning gains require multiple cycles of NREM and REM sleep; single-cycle interventions produce partial effects, while multi-cycle full-night sleep produces the full benefit. Sleep deprivation (selective REM or full-night) impairs the cumulative consolidation effect proportional to the deprivation magnitude.",
+    "ree_translation": "The cumulative-across-cycles pattern of sleep-dependent memory + plasticity is the architectural shape REE's F1 EMA-tracked _persistent_zero_point implements. Each REM cycle's contribution to the persistent reference is a small fraction of the total (alpha=0.1 means each cycle contributes ~10% to the running EMA), and the effect ACCUMULATES across cycles -- which matches the Walker-Stickgold review's finding that sleep effects need multiple cycles to fully manifest. This is the dose-response signature that supports F1 over a snapshot-only architecture.",
+    "mapping_caveat": "The paper is about memory consolidation (declarative + procedural) broadly, NOT specifically about precision-related recalibration. The architectural transfer to MECH-204's precision recalibration is by analogy: both share the cumulative-across-cycles dose-response pattern. The transfer assumes that the same cumulative signature applies to precision parameters as to memory traces; this is plausible (both are model parameters being refined by sleep) but not directly empirically established.",
+    "source_context": "Annual Review of Psychology, comprehensive review of sleep + memory + plasticity literature through 2006. Walker + Stickgold are senior figures in this area. Human + animal evidence cited. No novel empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "Annu Rev Psych is a high-quality venue. Mapping fidelity moderate-high: the cumulative-across-cycles pattern is documented for memory consolidation; transfer to precision recalibration is by architectural analogy. Transfer risk low-moderate because the pattern (sleep cycles cumulatively refine model parameters) is broad enough to apply to both domains."
+  }
+}
