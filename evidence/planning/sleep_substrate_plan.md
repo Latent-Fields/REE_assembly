@@ -6,11 +6,11 @@ closure_plan:
   scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
   nodes:
     - id: "sleep_substrate:GAP-1"
-      title: "MECH-204 precision recalibration consumer (V3-EXQ-541a F1 substrate fix landed)"
+      title: "MECH-204 precision recalibration consumer (F1 substrate landed; V3-EXQ-541c cycle-count discriminator pending)"
       phase: 1
       status: in_progress
       severity: load-bearing
-      owner_exq: V3-EXQ-541a
+      owner_exq: V3-EXQ-541c
       unblocks_claims: [Q-041, Q-042, SD-029, MECH-111, MECH-256]
       depends_on: []
       last_updated: 2026-05-09
@@ -379,7 +379,7 @@ work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | in-progress | V3-EXQ-541a result | V3-EXQ-541 FAILed cleanly under the legacy capture-only consumer (C1 PASS substrate-readiness, C2 FAIL mean_abs_delta 9e-8, C3 FAIL cross-arm divergence 2.9e-7) -- the within-cycle no-op pattern flagged in contract-test C8 was the dominant factor. F1 substrate fix landed 2026-05-09: SerotoninModule cross-cycle persistent zero-point reference (EMA across REM captures, alpha=0.1; `precision_zero_point_ema_alpha` config knob), `compute_recalibration_target` now returns the persistent value not the moment-snapshot. 13/13 MECH-204 contracts + 241/241 preflight + contracts PASS. V3-EXQ-541 manifest flipped to `evidence_direction: superseded`. V3-EXQ-541a queued (priority=4, machine_affinity=any). | V3-EXQ-541a | 2026-05-09 |
+| GAP-1 | 1 | in-progress | V3-EXQ-541c result | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull landed 5 entries (MECH-204 lit_conf 0.864): F1 dominant pattern (Hobson-Hong-Friston 2014 + Walker-Stickgold 2006 + Sakai 2001 substrate); F2 confirmed permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback (Laukkonen-Friston-Chandaria 2025). V3-EXQ-541a confirmed F1 mechanism (C2 PASS at mean_abs_delta 3.6e-3, four orders better than V3-EXQ-541's no-op) but C3 cross-arm divergence stayed under threshold. V3-EXQ-541b step-size sweep showed clean monotone dose-response (step 0.05 -> 0.31%, 0.10 -> 0.63%, 0.25 -> 1.56%, 0.50 -> 3.13%) but no arm cleared the 5% threshold. V3-EXQ-541c (cycle-count discriminator: K=1, 16 cycles per run vs 541b's 4) queued 2026-05-09T13:06Z to test F1-sufficient-given-exposure vs F1-at-ceiling. PASS-on-541c -> F1 closure on the dose-response evidence; FAIL-on-541c -> Phase 7 / Option B becomes load-bearing per lit-pull SYNTHESIS dispatch case #3. | V3-EXQ-541c | 2026-05-09 |
 | GAP-2 | 2 | blocked | EXQ-418e (SD-016 div-loss validation) result | Confirm EXQ-418e PASS, then re-queue 265/418/436/500/503 | re-queue ID set TBD | 2026-05-08 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
