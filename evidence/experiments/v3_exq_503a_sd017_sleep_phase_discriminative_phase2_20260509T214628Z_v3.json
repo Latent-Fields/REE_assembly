@@ -1,0 +1,276 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3",
+  "experiment_type": "v3_exq_503a_sd017_sleep_phase_discriminative_phase2",
+  "queue_id": "V3-EXQ-503a",
+  "supersedes": "V3-EXQ-503",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260509T214628Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-017"
+  ],
+  "outcome": "PASS",
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-017": "supports"
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "min_seeds_required": 2,
+    "c1_cumulative_sws_writes_seeds_pass": 3,
+    "c2_ctxmem_state_change_seeds_pass": 3,
+    "c3_cumulative_rem_rollouts_seeds_pass": 3,
+    "c4_cross_arm_m2_diff_seeds_pass": 3,
+    "per_seed_m2_diffs": [
+      5.032270908355713,
+      4.6975226402282715,
+      4.495065689086914
+    ],
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "c4_pass": true,
+    "overall_pass": true
+  },
+  "registered_thresholds": {
+    "C1_ARM_A_MIN_CUMULATIVE_WRITES": 3,
+    "C1_ARM_B_MAX_CUMULATIVE_WRITES": 0,
+    "C2_ARM_A_MIN_CTXMEM_DELTA": 0.1,
+    "C2_ARM_B_MAX_CTXMEM_DELTA": 1e-06,
+    "C3_ARM_A_MIN_CUMULATIVE_REM": 3,
+    "C3_ARM_B_MAX_CUMULATIVE_REM": 0,
+    "C4_CTXMEM_DIFF_TOLERANCE": 0.2,
+    "PASS_FRACTION_REQUIRED": 0.6666666666666666
+  },
+  "config": {
+    "self_dim": 32,
+    "world_dim": 32,
+    "action_dim": 5,
+    "n_prototypes": 20,
+    "n_cycles": 3,
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "sd016_writepath_mode": "off",
+    "sd016_diversification_weight": 0.5,
+    "use_per_stream_vs": true,
+    "use_anchor_sets": true,
+    "use_sd039_anchor_payload": true
+  },
+  "results_arm_a_full_4_phase_on": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_A_full_4_phase_on",
+      "sleep_enabled": true,
+      "n_cycles": 3,
+      "n_prototypes": 20,
+      "slot_diff_before": 0.9990339875221252,
+      "slot_diff_after_cycle_k": 0.7832064032554626,
+      "ctxmem_state_change": 5.032270908355713,
+      "cumulative_sws_writes": 24.0,
+      "cumulative_rem_rollouts": 18.0,
+      "per_cycle_slot_differentiation": [
+        0.9459441900253296,
+        0.8810796141624451,
+        0.7832064032554626
+      ],
+      "per_cycle_sleep_metrics": [
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.9459441900253296,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 1.1075383027394612,
+          "rem_terrain_variance": 0.0011059280267065534,
+          "rem_n_reverse": 0.0
+        },
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.8810796141624451,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 1.1097489198048909,
+          "rem_terrain_variance": 0.00074751690970566,
+          "rem_n_reverse": 0.0
+        },
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.7832064032554626,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 1.0984928011894226,
+          "rem_terrain_variance": 0.001370546623390349,
+          "rem_n_reverse": 0.0
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_A_full_4_phase_on",
+      "sleep_enabled": true,
+      "n_cycles": 3,
+      "n_prototypes": 20,
+      "slot_diff_before": 1.0082074403762817,
+      "slot_diff_after_cycle_k": 0.614086925983429,
+      "ctxmem_state_change": 4.6975226402282715,
+      "cumulative_sws_writes": 24.0,
+      "cumulative_rem_rollouts": 18.0,
+      "per_cycle_slot_differentiation": [
+        0.9604779481887817,
+        0.8298203945159912,
+        0.614086925983429
+      ],
+      "per_cycle_sleep_metrics": [
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.9604779481887817,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 0.9206757644812266,
+          "rem_terrain_variance": 0.00020848713850016605,
+          "rem_n_reverse": 0.0
+        },
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.8298203945159912,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 0.9211650788784027,
+          "rem_terrain_variance": 8.036706358390451e-05,
+          "rem_n_reverse": 0.0
+        },
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.614086925983429,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 0.9233278036117554,
+          "rem_terrain_variance": 2.5640442708881512e-05,
+          "rem_n_reverse": 0.0
+        }
+      ]
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_A_full_4_phase_on",
+      "sleep_enabled": true,
+      "n_cycles": 3,
+      "n_prototypes": 20,
+      "slot_diff_before": 1.0010889768600464,
+      "slot_diff_after_cycle_k": 0.38776519894599915,
+      "ctxmem_state_change": 4.495065689086914,
+      "cumulative_sws_writes": 24.0,
+      "cumulative_rem_rollouts": 18.0,
+      "per_cycle_slot_differentiation": [
+        0.9006863236427307,
+        0.7049455046653748,
+        0.38776519894599915
+      ],
+      "per_cycle_sleep_metrics": [
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.9006863236427307,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 0.7808486421902975,
+          "rem_terrain_variance": 0.00035682475964746467,
+          "rem_n_reverse": 0.0
+        },
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.7049455046653748,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 0.7768576641877493,
+          "rem_terrain_variance": 0.00024878660201041767,
+          "rem_n_reverse": 0.0
+        },
+        {
+          "sws_n_writes": 8.0,
+          "sws_slot_diversity": 0.38776519894599915,
+          "sws_buffer_size": 20.0,
+          "rem_n_rollouts": 6.0,
+          "rem_mean_harm_terrain": 0.7828066945075989,
+          "rem_terrain_variance": 0.0001040767206816895,
+          "rem_n_reverse": 0.0
+        }
+      ]
+    }
+  ],
+  "results_arm_b_no_sleep_baseline": [
+    {
+      "seed": 42,
+      "arm_label": "ARM_B_no_sleep_baseline",
+      "sleep_enabled": false,
+      "n_cycles": 3,
+      "n_prototypes": 20,
+      "slot_diff_before": 0.9990339875221252,
+      "slot_diff_after_cycle_k": 0.9990339875221252,
+      "ctxmem_state_change": 0.0,
+      "cumulative_sws_writes": 0.0,
+      "cumulative_rem_rollouts": 0.0,
+      "per_cycle_slot_differentiation": [
+        0.9990339875221252,
+        0.9990339875221252,
+        0.9990339875221252
+      ],
+      "per_cycle_sleep_metrics": [
+        {},
+        {},
+        {}
+      ]
+    },
+    {
+      "seed": 43,
+      "arm_label": "ARM_B_no_sleep_baseline",
+      "sleep_enabled": false,
+      "n_cycles": 3,
+      "n_prototypes": 20,
+      "slot_diff_before": 1.0082074403762817,
+      "slot_diff_after_cycle_k": 1.0082074403762817,
+      "ctxmem_state_change": 0.0,
+      "cumulative_sws_writes": 0.0,
+      "cumulative_rem_rollouts": 0.0,
+      "per_cycle_slot_differentiation": [
+        1.0082074403762817,
+        1.0082074403762817,
+        1.0082074403762817
+      ],
+      "per_cycle_sleep_metrics": [
+        {},
+        {},
+        {}
+      ]
+    },
+    {
+      "seed": 44,
+      "arm_label": "ARM_B_no_sleep_baseline",
+      "sleep_enabled": false,
+      "n_cycles": 3,
+      "n_prototypes": 20,
+      "slot_diff_before": 1.0010889768600464,
+      "slot_diff_after_cycle_k": 1.0010889768600464,
+      "ctxmem_state_change": 0.0,
+      "cumulative_sws_writes": 0.0,
+      "cumulative_rem_rollouts": 0.0,
+      "per_cycle_slot_differentiation": [
+        1.0010889768600464,
+        1.0010889768600464,
+        1.0010889768600464
+      ],
+      "per_cycle_sleep_metrics": [
+        {},
+        {},
+        {}
+      ]
+    }
+  ],
+  "elapsed_seconds": 0.19208884239196777,
+  "notes": "Phase 2 retest of SD-017 sleep-substrate discriminative pair. Successor to V3-EXQ-503 under the validated 5-flag substrate template (SD-016 div loss + MECH-269 per-stream V_s + anchor sets + SD-039 payload). Both arms preload identical N=20 deterministic experience prototypes and run K=3 sleep cycles. ARM_A enables sws+rem and use_sleep_loop (full 4-phase regime); ARM_B disables sws+rem and use_sleep_loop (NO_SLEEP_BASELINE). Phase 2 flags applied independent of sleep on/off (apply to BOTH arms). Four pre-registered metrics: M1 cumulative SWS writes, M2 ctxmem_state_change Frobenius norm, M3 cumulative REM rollouts, plus C4 cross-arm |M2 diff| > calibrated tolerance. C4 tolerance calibrated from --dry-run smoke output (5.0323 ARM_A vs 0.0 ARM_B); set to 0.20 (above the existing C2 ARM_A threshold 0.10 and ~25x below the smoke magnitude). NOT reused from 265a/500a's 0.05 (slot-diversity scale). PASS supports SD-017 architecture preserving discriminative substrate signal under Phase 2 stack; FAIL routes per the docstring interpretation grid."
+}
