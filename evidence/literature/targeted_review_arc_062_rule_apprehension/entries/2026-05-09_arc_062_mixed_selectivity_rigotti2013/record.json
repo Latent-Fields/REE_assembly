@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_mixed_selectivity_rigotti2013",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "The importance of mixed selectivity in complex cognitive tasks.",
+    "authors": ["Rigotti M", "Barak O", "Warden MR", "Wang XJ", "Daw ND", "Miller EK", "Fusi S"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12160",
+    "pmid": "23685452",
+    "pmc": "PMC4412347"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality primate single-unit data with strong theoretical analysis; supports R1 multi-stream integration unambiguously, but introduces a real caveat against the discrete two-head architecture that ARC-062 weak reading proposes. Mapping_fidelity reduced because Rigotti's mechanism is high-dimensional continuous gating, not discrete head selection.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading PASSes on SD-054 with two discrete heads, the substrate likely under-utilises the dimensionality Rigotti shows is biologically primary — multi-strategy scaling (Phase 4 / GAP-E in the cluster plan) should expose this as a ceiling.",
+    "If ARC-062 weak reading FAILs and Rigotti's mixed-selectivity reading is correct, ARC-063 strong-reading's distributed CandidateRule field with continuous tolerance gates is the next-thing-to-try architecture rather than more discrete heads."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "pfc", "mixed_selectivity", "r1_multi_stream", "r2_discrete_vs_continuous", "single_unit"],
+  "mapping": {
+    "source_claim_statement": "PFC single neurons exhibit mixed selectivity to multiple task-related aspects; mixed-selectivity neurons encode distributed information about all task-relevant aspects; the dimensionality of this representation predicts behaviour and collapses on error trials. Mixed selectivity offers a significant computational advantage over specialised responses in terms of the repertoire of input-output functions implementable by readout neurons.",
+    "ree_translation": "Direct R1 support: PFC neurons integrate multiple task-relevant streams in a single high-dimensional representation, not as separate channels. ARC-062's discriminator should be expected to integrate `z_world + z_self + z_harm_a` rather than gate on a single stream; the biology is multi-stream by default at the level of individual neurons. R2 caveat: Rigotti's mechanism is *continuous high-dimensional* mixed selectivity, not discrete head selection. ARC-062 weak reading proposes two policy heads with a learned context discriminator — a low-dimensional architectural commitment that may under-utilise what the biology offers. The SD-054 substrate is a 2-mode partition by construction, so 2 heads is correct for Phase 1; the caveat is load-bearing at Phase 4 (multi-strategy scaling) where ARC-062 may break and ARC-063's continuous CandidateRule field becomes the natural successor.",
+    "mapping_caveat": "Mixed selectivity is a *representational* finding, not directly a *gating-mechanism* finding. The paper does not test gated-policy architectures vs continuous-mixture architectures; it shows that the biological substrate carries information in the high-dimensional form. ARC-062 could PASS the SD-054 falsifier with discrete heads while still being a poor approximation of the underlying biology — the caveat is for V4 / ARC-063, not for V3 Phase 1.",
+    "source_context": "Single-unit recordings from rhesus macaque PFC during an object-sequence memory task; analysis combines neural decoding, dimensionality measurement, and behaviour-prediction."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "Nature paper, primate single-unit, strong methodology, behaviour-predictive. Mapping fidelity reduced because the finding is representational rather than architectural — it constrains how to think about PFC rule substrate but does not directly test gated-policy designs. Transfer risk moderate: the dimensionality argument is general, but the specific behavioural collapse-on-errors signature is task-dependent."
+  }
+}

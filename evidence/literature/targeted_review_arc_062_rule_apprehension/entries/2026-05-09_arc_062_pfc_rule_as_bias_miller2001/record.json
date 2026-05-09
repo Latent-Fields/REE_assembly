@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_pfc_rule_as_bias_miller2001",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "An integrative theory of prefrontal cortex function.",
+    "authors": ["Miller EK", "Cohen JD"],
+    "year": 2001,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.24.1.167",
+    "pmid": "11283309"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Foundational integrative review with broad subsequent empirical replication. Direct mapping to R1 multi-stream integration and R3 score_bias gating site (option iii), but the framework is more general than ARC-062's specific weak-reading instantiation, so mapping_fidelity is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a gated-policy ARC-062 weak-reading instantiation FAILs the SD-054 monomodal-collapse falsifier (V3-EXQ-XXX), Miller & Cohen's framework would predict the missing element is not the rule-as-bias substrate itself but the active-maintenance training signal that develops the patterns; this points the next investigation at training protocol rather than architecture."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "pfc", "rule_as_bias", "r1_multi_stream", "r3_gating_site", "foundational_review"],
+  "mapping": {
+    "source_claim_statement": "Cognitive control stems from active maintenance of patterns of activity in PFC representing goals and means; these patterns provide bias signals to other brain structures whose net effect is to guide flow of activity along neural pathways that establish the proper mappings between inputs, internal states, and outputs needed to perform a given task.",
+    "ree_translation": "Direct biological grounding for both R1 and R3. R1 (input streams): the explicit phrase 'inputs, internal states, and outputs' is multi-stream integration — exteroceptive (z_world analog) AND internal-state (z_self / z_harm_a analog) AND output context. The discriminator should read multiple streams, not just z_world. R3 (gating site): the framework places the rule substrate at PFC providing additive bias signals, which in REE maps directly to score_bias level (option iii) — current SD-033a substrate. Bias is the ENGINE of control; the apprehension layer (ARC-062 / ARC-063) generates the patterns that get maintained and projected as bias.",
+    "mapping_caveat": "This is a theoretical review, not a direct test of ARC-062's specific gated-policy instantiation. Miller & Cohen describe a continuous PFC bias-projection substrate; ARC-062's two-head + learned discriminator weak-reading is a discrete approximation. The framework supports R3-(iii) as a real biological gating site but does not arbitrate it as primary over R3-(i) BG gate or R3-(ii) hippocampal-rollout-bias.",
+    "source_context": "Theoretical review synthesising primate electrophysiology, lesion data, and computational modelling, ca. 2001."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "Source quality is exceptional — this is the canonical PFC-rule-as-bias review with thousands of citations and decades of subsequent empirical support. Mapping fidelity reduced because the framework is general; ARC-062's specific architectural commitments (two heads + learned discriminator) are not directly tested. Transfer risk low because primate PFC mechanisms generalise broadly to the REE substrate's analogous role."
+  }
+}

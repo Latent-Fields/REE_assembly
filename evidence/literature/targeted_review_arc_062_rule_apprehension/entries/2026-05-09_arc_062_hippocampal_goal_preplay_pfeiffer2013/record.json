@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_hippocampal_goal_preplay_pfeiffer2013",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals.",
+    "authors": ["Pfeiffer BE", "Foster DJ"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "pmid": "23594744",
+    "pmc": "PMC3990408"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "High-quality rodent single-unit data establishing goal-biased forward sequence as a real biological mechanism. Direct support for R3 option (ii) trajectory-proposal-level rule biasing. Re-tagged for ARC-062 cluster from existing MECH-307 entry (different mapping, same source).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading at the score_bias level (option iii) FAILs the SD-054 monomodal-collapse falsifier, Pfeiffer & Foster's mechanism is the next-thing-to-try: route the discriminator output to bias hippocampal CEM seed distribution (trajectory-proposal level) rather than to per-candidate score_bias.",
+    "If ARC-062 weak reading at the score_bias level PASSes but generalises poorly across substrate enrichment (e.g. SD-049 multi-resource heterogeneity), the biology suggests the rule signal needs to enter the rollout-generation stage upstream of E3 scoring — supports ARC-063 strong reading."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "hippocampus", "preplay", "goal_biased", "r3_trajectory_proposal", "r3_option_ii", "single_unit"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, the rat hippocampus generates brief place-cell sequences encoding spatial trajectories strongly biased to progress from the subject's current location to a known goal location. These sequences predict immediate future behaviour, even when the specific combination of start and goal locations is novel. Hippocampal sequence events are capable of supporting a goal-directed, trajectory-finding mechanism.",
+    "ree_translation": "Direct biological substrate for R3 option (ii): trajectory-proposal-level rule biasing. The hippocampus generates candidate forward sequences biased by a current goal — the biological analog of REE's HippocampalModule.propose_trajectories() with goal-conditioned CEM seeding. ARC-063 strong-reading commits to this site explicitly ('rules biasing rollout generation, becoming psychologically real by shaping which futures are easy to imagine'); ARC-062 weak reading defers it. Pfeiffer & Foster establish that trajectory-proposal-level gating IS a real biological site, parallel to (not replacing) PFC-side score_bias. For ARC-062 / R3 site selection: this is the strongest single anchor for option (ii) being a legitimate target if option (iii) under-performs.",
+    "mapping_caveat": "Pfeiffer & Foster 2013 establishes goal-biased forward sequences but does not directly test rule-context-biased sequences (e.g. 'reef-context vs forage-context preplay'). The transfer from spatial-goal preplay to context-rule-biased preplay is real but adds a step. Already pulled for the MECH-307 cluster (targeted_review_excitement_5th_valence_channel/) with a Gap 4 mapping; this re-tagging is for the ARC-062/MECH-309/ARC-063 architectural-site question — different REE-translation, same biological evidence.",
+    "source_context": "Multi-electrode recordings from rat hippocampal CA1 during goal-directed navigation in an open arena."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Nature paper, foundational for the goal-biased preplay literature. Mapping fidelity reduced because ARC-062 weak reading is committed to score_bias level (option iii), not trajectory-proposal level — this paper supports option (ii) as a legitimate alternative gating site, not as the primary one. Transfer risk moderate: rodent spatial navigation generalises to REE's CausalGridWorldV2 reef/forage substrate well, but the specific 'context-rule-biased preplay' phenomenon is an extrapolation."
+  }
+}

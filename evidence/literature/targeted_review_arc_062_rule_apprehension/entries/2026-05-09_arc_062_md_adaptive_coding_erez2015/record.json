@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_md_adaptive_coding_erez2015",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "Discrimination of Visual Categories Based on Behavioral Relevance in Widespread Regions of Frontoparietal Cortex.",
+    "authors": ["Erez Y", "Duncan J"],
+    "year": 2015,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1134-15.2015",
+    "pmid": "26354907",
+    "pmc": "PMC4563032"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Solid human fMRI multivoxel-pattern analysis demonstrating that MD network distinguishes categories based on behavioural relevance (adaptive coding). Direct support for the architectural mechanism by which task context modulates which features get encoded — the upstream story for ARC-062's discriminator. Confidence reduced because mvpa-level findings are population-level rather than rule-cell-level and the categories were perceptual not procedural rules.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading PASSes the SD-054 falsifier but multivoxel-style decoding of the discriminator's hidden representations cannot recover the reef-vs-forage context distinction (adaptive-coding signature absent), Erez & Duncan's evidence predicts the discriminator has not internalised the relevant cut — the architectural choice has surface-level success without underlying rule-context representation."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "multiple_demand_network", "adaptive_coding", "behavioural_relevance", "fmri", "mvpa", "human", "r3_distributed_multi_site"],
+  "mapping": {
+    "source_claim_statement": "Categorical discrimination in the MD system is modulated by behavioural relevance. Distinctions between categories with different behavioural status (e.g. a target and a nontarget) were significantly discriminated in MD multivoxel patterns; category distinctions that were not behaviourally relevant (e.g. between two targets) were not discriminated. Other aspects of the task that were orthogonal to the behavioural decision did not modulate categorical discrimination.",
+    "ree_translation": "Adaptive coding is the mechanism by which task context shapes which features get represented. ARC-062's discriminator implements an adaptive-coding architecture by gating which policy head receives encoder features at each tick. Erez & Duncan establish that the human MD network does this naturally — it preferentially codes task-relevant distinctions and suppresses task-irrelevant ones. For ARC-062 weak reading, this is the upstream story: the gated-policy + discriminator architecture is the simplest engineering instantiation of adaptive coding; the biology provides this property at the population level via task-dependent representational modulation across the MD network. R1 and R3 implications align: the modulation operates over the same MD network identified by Mitchell et al. 2016 (sibling entry), so the input streams (multi-stream including insular) and the gating sites (distributed across MD) are jointly the substrate where adaptive coding lives.",
+    "mapping_caveat": "Erez & Duncan's categories are perceptual (visual object distinctions) under a cued-detection task, not procedural rules. The bridge from 'multivoxel patterns reflect behaviourally relevant categories' to 'discriminator output gates rule-conditioned policy heads' is a level-of-implementation step: mvpa is a population-level decoding finding, not a single-cell or single-circuit gating finding. The phenomenon is real and biologically primary; the level-of-implementation gap means the paper cannot directly prescribe the discriminator architecture.",
+    "source_context": "Human fMRI with multivoxel pattern analysis during a cued-detection categorisation task; participants detected whether an image from one of two target visual categories was present in a display."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.22,
+    "notes": "Solid J Neurosci paper, peer-reviewed, methodologically clean mvpa. Mapping fidelity reduced because mvpa is population-level rather than circuit-level — adaptive coding is established but the specific gating architecture is not constrained. Transfer risk low: human MD findings transfer well to macaque MD (Mitchell 2016 sibling) and to REE's distributed substrate."
+  }
+}

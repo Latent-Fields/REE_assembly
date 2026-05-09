@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_corticostriatal_action_gate_gurney2015",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "A new framework for cortico-striatal plasticity: behavioural theory meets in vitro data at the reinforcement-action interface.",
+    "authors": ["Gurney KN", "Humphries MD", "Redgrave P"],
+    "year": 2015,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.1002034",
+    "pmid": "25562526",
+    "pmc": "PMC4285402"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality bridging-levels computational framework grounded in single-synapse data and replicating behavioural extinction/renewal/reacquisition. Direct support for R3 option (i) BG-side gating site as a real biological substrate. Mapping_fidelity reduced because the paper is about reinforcement-driven action selection, not rule-context discrimination — the bridge to ARC-062's rule-apprehension function adds a step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading at score_bias level (option iii) PASSes the SD-054 falsifier but the discriminator output cannot be sustained without continuous teaching signal, Gurney/Humphries/Redgrave's framework predicts the missing element is dopamine-gated cortico-striatal plasticity at the action-reinforcement interface — points the next investigation at downstream BG-side training rather than upstream architecture.",
+    "If two-head ARC-062 produces stable but maladaptive policy partitions on SD-054 (e.g. always reef, never forage despite resource cues), the framework predicts D1/D2 imbalance as a common signature — diagnostic via the action-suppression vs action-promotion ratio in the gated-policy outputs."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "basal_ganglia", "cortico_striatal", "r3_score_aggregation", "r3_option_i", "reinforcement_action_interface"],
+  "mapping": {
+    "source_claim_statement": "Operant learning requires reinforcement signals interact with action representations at a suitable neural interface — the cortico-striatal synapse where phasic dopamine acting as reinforcement prediction error gates plasticity. The two types of striatal output neuron (D1 / D2) co-operate to promote action selection in learning and compete to promote action suppression in extinction. The framework bridges single-synapse plasticity to behavioural-level reinforcement learning, replicating extinction, renewal, and reacquisition.",
+    "ree_translation": "Direct biological grounding for R3 option (i) — score-aggregation level gating at the BG / cortico-striatal interface. The D1 / D2 dual-pathway architecture is the analog of REE's E3 score-aggregation site: action selection (D1 analog) vs action suppression (D2 analog) co-operating during learning and competing during extinction maps cleanly to E3's positive vs negative score components. ARC-062's weak-reading discriminator could route to this site rather than to PFC top-down score_bias: the gated-policy heads produce contributions that feed the cortico-striatal plasticity rule, not the PFC bias-projection. This is the architectural alternative to R3 option (iii) that the framework most directly licenses.",
+    "mapping_caveat": "The paper is about *reinforcement-driven* action selection, not rule-context discrimination. The bridge from 'dopamine-gated cortico-striatal plasticity' to 'rule-context-conditioned policy gating' requires a separate commitment about what the rule signal IS at the BG synapse. Three reasonable options: (a) the rule signal modulates the dopamine-PE itself, (b) the rule signal modulates the cortical input to the synapse, (c) the rule signal modulates D1/D2 balance directly. The paper does not arbitrate among these.",
+    "source_context": "Computational modelling integrating in vitro cortico-striatal plasticity data with behavioural reinforcement-learning theory; validated against operant extinction, renewal, and reacquisition data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Strong source quality — PLoS Biology, bridges-levels integration, replicates multiple behavioural phenomena. Mapping fidelity reduced because the framework targets reinforcement-driven action selection rather than rule-context gating; the architectural-site reading is a structurally analogous but not directly-tested extension. Transfer risk moderate: REE's E3 score-aggregation has direct analogues to D1/D2 cooperative-then-competitive signatures, but the dopamine-PE gating mechanism does not have a clean V3 substrate yet."
+  }
+}

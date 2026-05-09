@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_frontal_lesion_rule_dissociation_capkova2025",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "Dissociating Frontal Lobe Lesion Induced Deficits in Rule Value Learning Using Reinforcement Learning Models and a WCST Analog.",
+    "authors": ["Capkova L", "Ainsworth M", "Mansouri FA", "Buckley MJ"],
+    "year": 2025,
+    "venue": "eNeuro",
+    "doi": "10.1523/ENEURO.0117-25.2025",
+    "pmid": "40393730",
+    "pmc": "PMC12184873"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Strong macaque lesion-behaviour study with computational-model decomposition; recent (2025); directly dissociates rule-value updating (OFC), rule maintenance (PS), and mode-switching from negative feedback (ACC). Substantial support for distributed multi-region rule architecture (ARC-063 strong reading) and against single-site dominance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading concentrates rule-context modulation at a single site (PFC-side score_bias OR BG-side score-aggregation OR hippocampal-side trajectory-proposal), Capkova et al's evidence predicts that single-site instantiation will fail under task-condition perturbation that taxes a different sub-function (e.g. negative-feedback handling, working-memory rule-maintenance) — points the cluster toward distributed multi-site instantiation as Phase 4 / GAP-E becomes load-bearing.",
+    "If ARC-062 PASSes Phase 2 falsifier but fails on a learning-rate-asymmetry probe (positive-feedback vs negative-feedback rule updating), the lesion data predicts the missing functionality maps to ACC analog — V3 substrate has dACC (SD-032b) but the rule-context coupling is not yet wired."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "wcst", "rule_value_learning", "frontal_lesion", "macaque", "r3_distributed_multi_site", "ofc", "acc", "principal_sulcus"],
+  "mapping": {
+    "source_claim_statement": "Distinct frontal regions make dissociable contributions to rule-guided decision-making. Macaques with lesions to PS (principal sulcus), ACC (anterior cingulate), OFC (orbitofrontal), sdlPFC (superior dorsolateral PFC), or FPC (frontopolar) performed a WCST analog. RL model parameter recovery showed: OFC lesions decreased rule value updating rate from BOTH positive and negative feedback; PS lesions left rule value updating intact but impaired choice repetition under well-established rule values (working-memory maintenance deficit); ACC lesions produced specific deficit in learning from negative feedback and impaired the switch between trial-and-error and working-memory modes in response to increased error likelihood.",
+    "ree_translation": "Strong direct support for distributed multi-region rule architecture, which favours ARC-063 strong reading over ARC-062 weak reading at the architectural-end-state level. The WCST analog dissociation maps three distinct sub-functions to three distinct regions: rule-value updating (OFC analog), rule-maintenance under stable rules (PS / lateral PFC analog — REE's SD-033a), and mode-switching driven by negative feedback (ACC analog — REE's dACC SD-032b + closure SD-034). For ARC-062 weak-reading Phase 1 / Phase 2 falsifier, the implication is that the gated-policy + discriminator architecture is operating on the rule-maintenance leg (PS analog) only — the rule-value-updating and negative-feedback-switching legs are NOT wired into the discriminator's training signal. This is consistent with ARC-062 being a *necessary but insufficient* substrate; PASS on SD-054 is plausible but performance ceiling depends on whether the OFC and ACC analog functions become rate-limiting.",
+    "mapping_caveat": "The WCST analog tests abstract dimensional rules (e.g. shape vs colour matching). The reef vs forage discriminative cut on SD-054 is a context rule, not a dimensional rule. The mapping from PS-rule-maintenance to SD-033a's rule_state is direct; the mapping from OFC-rule-value-updating to a REE substrate is less clean (the OFC analog substrate landed 2026-04-26, but the rule-value-updating-rate machinery is not yet wired). Some transfer risk on the negative-feedback-mode-switching mapping to dACC + SD-034 closure since the WCST mode-switching is to-and-from a working-memory state, not closure of a goal.",
+    "source_context": "Macaque frontal lesion + WCST analog behavioural data + three-parameter RL model parameter recovery; recent (2025), peer-reviewed."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "High source quality — recent peer-reviewed lesion study with quantitative model-based dissociation. Mapping fidelity strong: three sub-functions map to three REE substrates already in implementation. Transfer risk moderate: WCST dimensional rules differ from SD-054 context rules, and the rule-value-updating substrate is the weakest cross-mapping."
+  }
+}

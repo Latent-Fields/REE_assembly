@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_pfc_rule_cells_bongard2010",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "Basic mathematical rules are encoded by primate prefrontal cortex neurons.",
+    "authors": ["Bongard S", "Nieder A"],
+    "year": 2010,
+    "venue": "Proceedings of the National Academy of Sciences (PNAS)",
+    "doi": "10.1073/pnas.0909180107",
+    "pmid": "20133872",
+    "pmc": "PMC2836656"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "High-quality primate single-unit data showing PFC rule-coding neurons that abstract over numerical magnitude. Direct biological substrate for ARC-062's 'rule-coding units' commitment. Confidence reduced because mathematical rules are a specific abstract case; whether the same mechanism applies to context-discriminative rules (reef vs forage) is a transfer claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading FAILs the SD-054 falsifier and the gated-policy heads do not show a clean rule-coding signature in their pre-discriminator features, Bongard & Nieder's evidence predicts the missing element is the *abstraction* — gradient descent did not push the encoder toward rule-cell-like representations, and the architectural fix is to add an explicit rule-discrimination loss on the encoder rather than relying on policy-loss back-propagation alone."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "pfc", "rule_cells", "abstract_rules", "primate", "single_unit", "r3_score_bias_substrate"],
+  "mapping": {
+    "source_claim_statement": "Single neurons in rhesus monkey lateral PFC encode abstract mathematical rules ('greater than' vs 'less than') that generalise across set sizes the monkey had not previously encountered. The most prevalent activity recorded from randomly selected PFC neurons reflected the mathematical rules; purely sensory- and memory-related activity was almost absent. The data support PFC network models implementing specific 'rule-coding' units that control the flow of information between segregated input, memory, and output layers.",
+    "ree_translation": "Direct biological substrate for ARC-062's 'rule-coding units' architectural commitment. The phrase 'rule-coding units that control the flow of information between segregated input, memory, and output layers' is essentially the architectural commitment ARC-062 weak reading proposes — a learned context discriminator that gates between policy heads. Bongard & Nieder establish that lateral PFC HAS such units, that they generalise across novel inputs (the abstraction property MECH-309 says is missing from gradient-descent-only learners), and that they dominate PFC activity rather than being a small specialised subpopulation. For ARC-062 weak reading: licenses the architectural commitment as biologically grounded. For MECH-309: the abstraction-property finding is exactly the capacity MECH-309 says strict Bayesian / gradient-descent learners lack — biology has it; the question is what training pressure produces it.",
+    "mapping_caveat": "Mathematical rules ('greater than'/'less than' over abstract numerical quantities) are a highly abstract case. The reef-vs-forage discriminative cut on SD-054 is a context rule — closer to perceptual-categorical than to abstract-relational. The transfer from 'PFC neurons code abstract math rules' to 'PFC neurons code context rules' is real but is a step. The mechanism is the same (rule-coding units control information flow); the level of abstraction differs.",
+    "source_context": "Single-unit recordings from lateral PFC of rhesus macaques performing a numerical-comparison task with flexible rule-switching."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "PNAS, primate single-unit, methodologically clean (novel-set-size generalisation rules out sensory or memory explanations). Mapping fidelity moderate-strong: the rule-coding-unit architectural commitment is direct, but the transfer from math-abstraction to context-rule is non-trivial. Transfer risk moderate-low: lateral PFC mechanisms generalise well across rule types in primate literature."
+  }
+}

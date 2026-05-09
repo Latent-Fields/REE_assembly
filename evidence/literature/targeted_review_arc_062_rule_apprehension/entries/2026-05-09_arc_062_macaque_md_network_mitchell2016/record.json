@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_rule_apprehension",
+  "entry_id": "2026-05-09_arc_062_macaque_md_network_mitchell2016",
+  "timestamp_utc": "2026-05-09T19:07:53Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063"],
+  "source": {
+    "title": "A Putative Multiple-Demand System in the Macaque Brain.",
+    "authors": ["Mitchell DJ", "Bell AH", "Buckley MJ", "Mitchell AS", "Sallet J", "Duncan J"],
+    "year": 2016,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0810-16.2016",
+    "pmid": "27535906",
+    "pmc": "PMC4987434"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Solid macaque fMRI connectivity study delineating a frontoparietal+insular MD homolog. Direct support for distributed multi-site rule architecture and for R1 multi-stream integration (insular cluster = interoceptive). Confidence reduced because the paper measures resting-state connectivity rather than task-driven rule modulation, so the MD-as-rule-substrate inference is via the human MD literature analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading commits to a single-stream discriminator (z_world only) and FAILs the SD-054 falsifier, the macaque MD network's insular cluster predicts the missing input stream is interoceptive (z_self / z_harm_a analog) — diagnostic via the input-ablation arm of the Phase 2 experiment."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "multiple_demand_network", "frontoparietal", "insular", "macaque", "r1_multi_stream", "r3_distributed_multi_site", "fmri_connectivity"],
+  "mapping": {
+    "source_claim_statement": "Putative macaque MD regions, mapped from frontoparietal MD regions defined in humans, were found to be functionally connected under anesthesia. Iterative refinement using cross-validated connectivity identified seven clusters across frontoparietal AND INSULAR cortex closely similar to the human MD counterpart, plus one unexpected cluster in the lateral fissure.",
+    "ree_translation": "Two architectural commitments land here. First — the MD network spans frontoparietal AND insular cortex, both in humans and now in macaques. The insular cluster is the interoceptive integration site (Craig 2009; Critchley 2003). For R1, this is direct evidence that biological rule-context modulation includes interoceptive input as a first-class member, not as an afterthought. ARC-062's discriminator should therefore read all three streams (z_world + z_self + z_harm_a) — the multi-stream commitment that Miller & Cohen 2001 endorse abstractly, this paper grounds anatomically. Second — the MD network is *distributed* across multiple frontoparietal sites (lateral PFC, dorsomedial frontal, parietal, insular). For R3, this favours the 'all three sites in parallel' framing over 'one primary site'. ARC-062 weak reading at a single site (option iii score_bias) is a useful Phase 1 simplification, but the V3 architectural-end-state will need to recognise the distributed-substrate reality.",
+    "mapping_caveat": "Mitchell et al. measured resting-state connectivity, not task-driven rule-context modulation. The MD-as-rule-substrate inference is via analogy to the human MD literature where task-driven adaptive coding has been demonstrated (e.g. Erez & Duncan 2015 — see sibling entry). The paper anchors the *anatomical* multi-site distribution but does not directly demonstrate that all sites participate in rule-context modulation in the macaque under task.",
+    "source_context": "Resting-state fMRI in 35 anaesthetised rhesus macaques; iterative cross-validated connectivity refinement; mapping from human MD coordinates."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.28,
+    "notes": "Solid methodology, peer-reviewed, n=35. Source quality reduced from highest tier because the data is resting-state (not task-driven) and acquired under anaesthesia. Mapping fidelity reduced because the substrate-MD-network correspondence is by anatomical analogy. Transfer risk moderate: macaque-to-REE substrate mapping is direct for the regions involved."
+  }
+}
