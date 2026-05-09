@@ -1,0 +1,214 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_500a_sd017_sleep_phase_readiness_phase2_20260509T204158Z_v3",
+  "experiment_type": "v3_exq_500a_sd017_sleep_phase_readiness_phase2",
+  "queue_id": "V3-EXQ-500a",
+  "supersedes": "V3-EXQ-500",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260509T204158Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "SD-017"
+  ],
+  "outcome": "PASS",
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-017": "supports"
+  },
+  "criteria": {
+    "n_seeds": 3,
+    "cycles_required": 3,
+    "c1_phase_entry_count_ge_required_all_seeds": true,
+    "c2_phase_duration_variance_within_20pct_all_seeds": true,
+    "c3_replay_quality_ge_exq265_baseline_all_seeds": true,
+    "overall_pass": true
+  },
+  "registered_thresholds": {
+    "MIN_PHASE_ENTRIES": 3,
+    "MAX_PHASE_DURATION_CV": 0.2,
+    "REPLAY_QUALITY_BASELINE": 8.0
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "condition": "SLEEP_PHASE_READINESS_PHASE2",
+    "cycles_per_run": 3,
+    "wake_steps_per_cycle": 160,
+    "post_sleep_test_steps": 24,
+    "sws_consolidation_steps": 8,
+    "rem_attribution_steps": 6,
+    "sd016_writepath_mode": "off",
+    "sd016_diversification_weight": 0.5,
+    "use_per_stream_vs": true,
+    "use_anchor_sets": true,
+    "use_sd039_anchor_payload": true,
+    "use_sleep_loop": true
+  },
+  "seed_results": [
+    {
+      "seed": 42,
+      "condition": "SLEEP_PHASE_READINESS_PHASE2",
+      "phase_entry_count": {
+        "wake": 3,
+        "replay_prep": 3,
+        "replay": 3,
+        "test": 3
+      },
+      "phase_duration_cv": {
+        "wake": 0.0,
+        "replay_prep": 0.0,
+        "replay": 0.0,
+        "test": 0.0
+      },
+      "cycle_metrics": [
+        {
+          "cycle": 1,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 0.9995443820953369,
+          "slot_diversity_before_test": 0.9995443820953369,
+          "slot_diversity_after_test": 0.9995443820953369,
+          "replay_quality": 8.099954438209533
+        },
+        {
+          "cycle": 2,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 0.9995502233505249,
+          "slot_diversity_before_test": 0.9995502233505249,
+          "slot_diversity_after_test": 0.9995502233505249,
+          "replay_quality": 8.099955022335052
+        },
+        {
+          "cycle": 3,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 0.9995527863502502,
+          "slot_diversity_before_test": 0.9995527863502502,
+          "slot_diversity_after_test": 0.9995527863502502,
+          "replay_quality": 8.099955278635026
+        }
+      ],
+      "mean_replay_quality": 8.09995491305987,
+      "c1_phase_entries_and_prep": true,
+      "c2_duration_cv_within_20pct": true,
+      "c3_replay_quality_ge_baseline": true,
+      "passed": true
+    },
+    {
+      "seed": 43,
+      "condition": "SLEEP_PHASE_READINESS_PHASE2",
+      "phase_entry_count": {
+        "wake": 3,
+        "replay_prep": 3,
+        "replay": 3,
+        "test": 3
+      },
+      "phase_duration_cv": {
+        "wake": 0.0,
+        "replay_prep": 0.0,
+        "replay": 0.0,
+        "test": 0.0
+      },
+      "cycle_metrics": [
+        {
+          "cycle": 1,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 1.010640263557434,
+          "slot_diversity_before_test": 1.010640263557434,
+          "slot_diversity_after_test": 1.010640263557434,
+          "replay_quality": 8.101064026355743
+        },
+        {
+          "cycle": 2,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 1.0106562376022339,
+          "slot_diversity_before_test": 1.0106562376022339,
+          "slot_diversity_after_test": 1.0106562376022339,
+          "replay_quality": 8.101065623760224
+        },
+        {
+          "cycle": 3,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 1.0106581449508667,
+          "slot_diversity_before_test": 1.0106581449508667,
+          "slot_diversity_after_test": 1.0106581449508667,
+          "replay_quality": 8.101065814495087
+        }
+      ],
+      "mean_replay_quality": 8.101065154870351,
+      "c1_phase_entries_and_prep": true,
+      "c2_duration_cv_within_20pct": true,
+      "c3_replay_quality_ge_baseline": true,
+      "passed": true
+    },
+    {
+      "seed": 44,
+      "condition": "SLEEP_PHASE_READINESS_PHASE2",
+      "phase_entry_count": {
+        "wake": 3,
+        "replay_prep": 3,
+        "replay": 3,
+        "test": 3
+      },
+      "phase_duration_cv": {
+        "wake": 0.0,
+        "replay_prep": 0.0,
+        "replay": 0.0,
+        "test": 0.0
+      },
+      "cycle_metrics": [
+        {
+          "cycle": 1,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 0.9998045563697815,
+          "slot_diversity_before_test": 0.9998045563697815,
+          "slot_diversity_after_test": 0.9998045563697815,
+          "replay_quality": 8.099980455636977
+        },
+        {
+          "cycle": 2,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 0.9997994899749756,
+          "slot_diversity_before_test": 0.9997994899749756,
+          "slot_diversity_after_test": 0.9997994899749756,
+          "replay_quality": 8.099979948997497
+        },
+        {
+          "cycle": 3,
+          "prep_ready": true,
+          "sws_n_writes": 8.0,
+          "rem_n_rollouts": 6.0,
+          "sws_slot_diversity": 0.9997970461845398,
+          "slot_diversity_before_test": 0.9997970461845398,
+          "slot_diversity_after_test": 0.9997970461845398,
+          "replay_quality": 8.099979704618454
+        }
+      ],
+      "mean_replay_quality": 8.099980036417643,
+      "c1_phase_entries_and_prep": true,
+      "c2_duration_cv_within_20pct": true,
+      "c3_replay_quality_ge_baseline": true,
+      "passed": true
+    }
+  ],
+  "elapsed_seconds": 8.056741952896118,
+  "notes": "Phase 2 retest of EXP-0171 SD-017 readiness probe. Successor to V3-EXQ-500 under the validated 5-flag substrate template (SD-016 div loss + MECH-269 per-stream V_s + anchor sets + SD-039 payload + SD-017 sleep loop). Single-claim, single-arm readiness probe; C1/C2/C3 acceptance preserved from EXQ-500."
+}
