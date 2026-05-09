@@ -36,5 +36,9 @@
     "sws_consolidation_steps": 8,
     "rem_attribution_steps": 6
   },
-  "evidence_direction": "supports"
+  "evidence_direction": "superseded",
+  "evidence_direction_per_claim": {
+    "SD-017": "superseded"
+  },
+  "evidence_direction_note": "Superseded by V3-EXQ-265a 2026-05-09. Original 265 ran 2026-04-09 BEFORE the SD-016 ContextMemory diversification loss landed (2026-04-25). C1+C2+C3 PASSed but C4 (WITH_SLEEP slot diversity higher than WITHOUT_SLEEP in >= 2/3 seeds) FAILed (mean WITH=0.279 vs WITHOUT=0.293 -- direction reversed). The C4 failure was driven by the SD-016 attention-uniformity confound (ContextMemory write path landed without the diversification loss; slots collapsed to near-identical patterns regardless of sleep cycling). EXQ-265a re-runs the same scientific question under the Phase 2 substrate stack (sd016_diversification_weight=0.5 + use_per_stream_vs + use_anchor_sets + use_sd039_anchor_payload + use_sleep_loop) and PASSed all four criteria including a redesigned C4 (signed-difference > 0.05 between WITH/WITHOUT_SLEEP in >= 2/3 seeds; either direction informative per the SWS-may-add-or-flatten interpretation grid). Per the EXQ Versioning policy, the indexer treats this entry as scoring_excluded:superseded; the V3-EXQ-265a result is the operative measurement of SD-017 SWS/REM methods discriminative behaviour."
 }

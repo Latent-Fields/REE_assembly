@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-09T13:43:00Z",
+  "last_review_utc": "2026-05-09T20:14:34Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2318,7 +2318,8 @@
     "v3_exq_541_mech204_precision_recalibration_consumer_20260508T234302Z_v3",
     "v3_exq_541a_mech204_precision_recalibration_f1_20260509T120116Z_v3",
     "v3_exq_541b_mech204_step_size_sweep_20260509T123704Z_v3",
-    "v3_exq_541c_mech204_step_size_sweep_extended_cycles_20260509T131740Z_v3"
+    "v3_exq_541c_mech204_step_size_sweep_extended_cycles_20260509T131740Z_v3",
+    "v3_exq_265a_sd017_sleep_phase_methods_validation_phase2_20260509T201256Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2399,6 +2400,15 @@
         "v3_exq_541c_mech204_step_size_sweep_extended_cycles_20260509T131740Z_v3"
       ],
       "subject": "MECH-204 V3 closure on F1: four-experiment arc reviewed in this session and discussed with user. V3-EXQ-541 (legacy capture-only consumer) FAILed within-cycle no-op (mean_abs_delta=9e-8) -- already flipped evidence_direction=superseded earlier this session; preserved as architectural diagnosis that drove F1 design. V3-EXQ-541a (F1 substrate first run) PASSed C1+C2 (mean_abs_delta 3.6e-3, four orders better) but FAILed C3 cross-arm divergence; surfaced the within-cycle washout that step-size sweep would address. V3-EXQ-541b (5-arm step-size sweep at 4 cycles) PASSed C1+C2+C3 in every arm with clean monotone dose-response (step 0.05 -> 0.31%, 0.10 -> 0.63%, 0.25 -> 1.56%, 0.50 -> 3.13%) but FAILed C4 strict 5% threshold; identified the cycle-count washout dimension. V3-EXQ-541c (16 cycles per run, 4x exposure) PASSed all four criteria: cycle-count dose-response confirmed F1-sufficient (~2.9x divergence growth per 4x cycle increase, sub-linear but firmly NOT a plateau); ARM_4 step=0.5 cleared 5% C4 at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51%; tracking_quality monotonically improved 0.842 -> 0.921 across step arms; zero overshoot. Per REM-precision lit-pull SYNTHESIS dispatch case #1, F1+step-tuning is the operative MECH-204 architecture for V3; Phase 7 / Option B deferred to V4. Default rem_precision_recalibration_step bumped 0.1 -> 0.25 in REEConfig (high end of biologically defensible band per Q-042 Option A). MECH-204 V3 closure complete; sleep_substrate_plan.md GAP-1 status -> done."
+    },
+    {
+      "timestamp_utc": "2026-05-09T20:14:34Z",
+      "session_label": "sleep-substrate-phase2-265a-review",
+      "reviewed_run_ids": [
+        "v3_exq_265_sd017_sleep_phase_methods_validation_20260409T181835Z_v3",
+        "v3_exq_265a_sd017_sleep_phase_methods_validation_phase2_20260509T201256Z_v3"
+      ],
+      "subject": "Sleep substrate Phase 2 GAP-2 first owner-EXQ landed. V3-EXQ-265a (SD-017 SWS/REM methods validation under Phase 2 substrate stack: SD-016 div loss + V_s + anchor sets + SD-039 payload + sleep loop) PASSed all four criteria. C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0). C2 with_sleep mean slot diversity 0.257 > 0.10 threshold. C3 rem_rollouts>0 in 3/3 seeds (mean=6.0). C4 (redesigned as signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction informative) PASSed in 2/3 seeds with informative within-cohort heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175, diff 0.090); seed 49 saturated near-tie (0.365 vs 0.358, diff 0.007); seed 56 sleep COLLAPSED diversity (~0 vs 0.194, diff 0.194). Either direction satisfied C4 per the docstring interpretation grid. The cross-seed heterogeneity confirms the substrate is doing real but seed-sensitive work -- worth flagging for the multi-claim 436 and discriminative-pair 503 successors that need to handle this variability. V3-EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that motivated the retest (C4 reversal in 265 was driven by collapsed slots regardless of sleep, not by genuine SWS effect on diversity). sleep_substrate_plan.md GAP-2 owner-EXQ list: 265a done; 418c/436a/500a/503a still outstanding (deferred per session-context discipline; remaining 4 to be queued in fresh session(s) using the 5-flag Phase 2 template recorded in the 2026-05-09T19:49Z decision log)."
     }
   ]
 }

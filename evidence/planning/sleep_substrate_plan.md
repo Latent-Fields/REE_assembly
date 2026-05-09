@@ -15,11 +15,12 @@ closure_plan:
       depends_on: []
       last_updated: 2026-05-09
     - id: "sleep_substrate:GAP-2"
-      title: "SD-017 retest cohort (Tier 1 first owner-EXQ V3-EXQ-265a queued + auto-claimed 2026-05-09; remaining 418c/436a/500a/503a outstanding)"
+      title: "SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; 4 remaining Tier-1 EXQs outstanding)"
       phase: 2
       status: in-progress
       severity: high
       owner_exq: V3-EXQ-265a
+      owner_exq_status: passed
       pending_owner_exqs: [V3-EXQ-418c, V3-EXQ-436a, V3-EXQ-500a, V3-EXQ-503a]
       unblocks_claims: [SD-017, ARC-045, MECH-166]
       depends_on: []
@@ -407,7 +408,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
-| GAP-2 | 2 | in-progress | first owner-EXQ V3-EXQ-265a queued + auto-claimed 2026-05-09T19:49:50Z by Mac runner; awaiting result | **Tier 1 cohort started 2026-05-09T19:49Z.** First owner-EXQ V3-EXQ-265a (SD-017 first-class methods validation Phase 2 retest) queued with the Phase 2 substrate stack: sd016_diversification_weight=0.5 + sd016_writepath_mode=off (A2_div_only equivalent) + use_per_stream_vs + use_anchor_sets + use_sd039_anchor_payload + use_sleep_loop + sws_enabled + rem_enabled. supersedes=V3-EXQ-265 set in queue entry + manifest. Mac runner auto-claimed within seconds of the push. Acceptance: C1+C2+C3 (substrate activation under Phase 2) AND C4 (WITH_SLEEP slot diversity differs from WITHOUT_SLEEP in >= 2/3 seeds, |diff| > 0.05) -- the discrimination signal that the original 265 could not measure under SD-016 confound. Five-row interpretation grid in script docstring covers PASS, near-miss on C4 direction, substrate regression, and SWS-flattens-div-loss-substrate. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) NOT YET queued -- pending user confirmation on serial-vs-batch sequencing. The Phase 2 substrate template is established by 265a; remaining EXQs apply the same 5-flag config diff to their respective scripts. Status row will roll forward as each owner-EXQ lands. | V3-EXQ-265a (active); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
+| GAP-2 | 2 | in-progress | first owner-EXQ V3-EXQ-265a PASSED 2026-05-09T20:12Z; 4 remaining Tier-1 EXQs still outstanding | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
@@ -505,6 +506,79 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09T20:14Z - V3-EXQ-265a PASS; Phase 2 substrate template validated; remaining 4 Tier-1 EXQs ready to queue
+
+V3-EXQ-265a completed on Mac runner 2026-05-09T20:12:57Z (22 min wall) with
+overall outcome PASS on all four criteria.
+
+Result detail (3 seeds, 80 episodes, 150 steps/ep, 2 conditions WITH/WITHOUT
+sleep):
+
+  C1 sws_writes_all_seeds:        PASS (mean=8.0 in WITH_SLEEP, all 3 seeds)
+  C2 with_sleep slot_div > 0.10:  PASS (mean=0.257)
+  C3 rem_rollouts_all_seeds:      PASS (mean=6.0 in WITH_SLEEP, all 3 seeds)
+  C4 with vs without differs:     PASS in 2/3 seeds (|diff| > 0.05 either dir)
+
+Cross-seed C4 detail:
+  seed 42: WITH=0.266, WITHOUT=0.175, diff=+0.090 -- sleep ADDED diversity.
+  seed 49: WITH=0.365, WITHOUT=0.358, diff=+0.007 -- both saturated near-tie.
+  seed 56: WITH=~0,    WITHOUT=0.194, diff=-0.194 -- sleep COLLAPSED diversity.
+
+The signed-difference C4 acceptance shape is validated for use in successor
+experiments. Either direction was informative; the docstring interpretation
+grid correctly anticipated both add-diversity (seed 42) and flatten-diversity
+(seed 56) outcomes. The seed-49 saturation case is the failure mode the |diff|
+threshold guards against (correctly flagged as not-differing rather than
+counted as a "supports" result by direction alone).
+
+Architectural read on the cross-seed heterogeneity: under the Phase 2 stack
+SWS does real work but the work is seed-sensitive. Two interpretations both
+fit:
+  (a) The stochastic prototype-sampling inside run_sws_schema_pass produces
+      different schema sets per seed, and one set happens to project onto the
+      div-loss-trained slot manifold collapsing to a single attractor while
+      another set adds non-redundant prototypes. Architectural prediction:
+      tighter stratification of the buffer-sampling step would reduce the
+      seed-56 collapse rate.
+  (b) The per-seed environment trajectory exposes the agent to qualitatively
+      different residue terrain in the WITH vs WITHOUT arms (RNG state
+      diverges across the sleep-cycle ticks), so the comparison is partially
+      a comparison of different environments. Architectural prediction:
+      replay-buffer matching across arms would tighten the comparison.
+Either reading is consistent with PASS at the cohort level. Worth flagging
+in 436a's design (3 conditions x 5 seeds) so per-condition aggregation
+handles the bimodal cross-seed distribution cleanly -- mean-only summaries
+would mask the seed-56-style collapse.
+
+Bookkeeping landed this session:
+- EXQ-265 manifest flipped to evidence_direction=superseded with note
+  explaining the SD-016 attention-uniformity confound that drove the
+  original C4 reversal (C4 in 265 FAILed with mean WITH=0.279 vs
+  WITHOUT=0.293, direction-reversed; the failure was confound-driven, not
+  a substrate refutation). The indexer now treats EXQ-265 as
+  scoring_excluded:superseded; EXQ-265a is the operative measurement of
+  SD-017 SWS/REM methods discriminative behaviour.
+- review_tracker.json: appended both v3_exq_265 and v3_exq_265a run_ids to
+  reviewed_run_ids; appended discussion_notes entry with full per-seed
+  result detail; updated last_review_utc to 2026-05-09T20:14:34Z.
+- sync_v3_results + build_experiment_indexes + generate_pending_review run.
+  EXQ-265a now indexed (1012 runs vs 1011 before); per-experiment-type dir
+  v3_exq_265a_sd017_sleep_phase_methods_validation_phase2/ created.
+  pending_review.md down to 2 indexed-FAIL entries (530c, 141d) -- both
+  belong to other sessions; 0 runner-only.
+
+Decision: queue the remaining 4 Tier-1 EXQs in fresh session(s) using the
+validated 5-flag Phase 2 template + supersedes pattern + signed-difference
+C4 acceptance shape. The per-script template diff recorded in the
+2026-05-09T19:49Z decision-log entry is mechanically applicable; one
+adjustment to flag for the next session: 436a should add per-seed
+distribution diagnostics (not just mean) so the seed-56-style collapse
+pattern doesn't get masked at the cohort level.
+
+GAP-2 status table row updated to record 265a PASS + owner-EXQ list still
+showing 4 outstanding. Status remains `in-progress` until the 4 successors
+land.
 
 ### 2026-05-09T19:49Z - GAP-2 Phase 2 first owner-EXQ queued (V3-EXQ-265a SD-017 methods validation Phase 2 retest)
 

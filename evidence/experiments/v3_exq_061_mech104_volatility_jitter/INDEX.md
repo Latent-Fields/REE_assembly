@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_061_mech104_volatility_jitter
 
-Generated: `2026-05-09T19:18:21.387910Z`
+Generated: `2026-05-09T20:18:20.132696Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

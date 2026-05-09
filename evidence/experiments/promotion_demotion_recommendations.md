@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-09T19:34:08.447513Z`
+Generated: `2026-05-09T20:18:20.132696Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -1415,7 +1415,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.631, conflict_ratio=0.8, exp_entries=8, lit_entries=13; directions supports=12, weakens=8, mixed=1, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.63, conflict_ratio=0.8, exp_entries=8, lit_entries=13; directions supports=12, weakens=8, mixed=1, unknown=0, conflict_ratio=0.8
 - Evidence quality note: Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all 085x iterations despite contact-gated seeding). EXP-0091 will first test a handcrafted resource_indicator to confirm the diagnosis before implementing the full encoder. EXQ-085h through 085l (2026-03-30, 085l final, supersedes prior): ResourceEncoder tested across 5 iterations. 085l (proximity regression encoder): …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1663,3 +1663,8 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
+
+## Substrate changes with dependent invariants
+
+No substrate status changes this run. No dependent invariants flagged.
+

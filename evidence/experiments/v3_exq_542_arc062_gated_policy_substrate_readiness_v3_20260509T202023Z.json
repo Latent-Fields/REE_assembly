@@ -1,0 +1,66 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202023Z",
+  "experiment_type": "v3_exq_542_arc062_gated_policy_substrate_readiness",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-09T20:20:23.524382Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "ARC-062",
+    "MECH-309"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "ARC-062": "supports",
+    "MECH-309": "supports"
+  },
+  "metrics": {
+    "UC1_forward_pass_instantiation": {
+      "gated_policy_is_not_none": true,
+      "gating_weight": 0.4976724684238434,
+      "gated_score_bias_shape": [
+        4
+      ],
+      "head_0_bias_shape": [
+        4
+      ],
+      "head_1_bias_shape": [
+        4
+      ],
+      "bias_finite": true,
+      "pass": true
+    },
+    "UC2_master_off_no_op": {
+      "off_gated_policy_is_none": true,
+      "on_gated_policy_is_module": true,
+      "z_world_off_finite": true,
+      "z_world_on_finite": true,
+      "pass": true
+    },
+    "UC3_discriminator_input_sensitivity": {
+      "n_trials": 32,
+      "w_min": 0.5016392469406128,
+      "w_max": 0.5072585940361023,
+      "w_range": 0.005619347095489502,
+      "all_in_unit_interval": true,
+      "pass": true
+    },
+    "UC4_head_differentiation_under_training": {
+      "init_output_dist": 0.25388744473457336,
+      "final_output_dist": 1.975870132446289,
+      "ratio": 7.782464920673657,
+      "pass": true
+    },
+    "UC5_mech094_simulation_gate": {
+      "sim_gating_weight": 0.5,
+      "sim_bias_max_abs": 0.0,
+      "sim_skip_advanced": true,
+      "sim_bias_mean_unchanged": true,
+      "waking_did_not_increment_skip": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.8951930999755859,
+  "notes": "ARC-062 Phase 1 substrate-readiness diagnostic. Tests substrate wiring + Phase-1 architectural prerequisites for Phase 2 monomodal-collapse falsifier on SD-054 reef substrate. Does NOT test the MECH-309 logical-necessity claim or the ARC-062 weak-reading architectural claim -- both require behavioural validation on SD-054 + hazard_food_attraction substrate (Phase 2 of arc_062_rule_apprehension_plan.md). Pull A SYNTHESIS verdicts (R1 multi-stream / R2 N=2 / R3 score_bias level) are architectural commitments, not signals tested here."
+}
