@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_refuge_forage_ecology",
+  "entry_id": "2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019",
+  "timestamp_utc": "2026-05-09T19:24:23Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063", "SD-054"],
+  "source": {
+    "title": "State-dependent foraging among social fish in a risky environment.",
+    "authors": ["Balaban-Feld J", "Mitchell WA", "Kotler BP", "Vijayan S", "Tov Elem LT", "Abramsky Z"],
+    "year": 2019,
+    "venue": "Oecologia",
+    "doi": "10.1007/s00442-019-04395-z",
+    "pmid": "30929073"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Direct empirical fish-refuge experiment with quantitative state-dependent allocation. Highest mapping fidelity to SD-054 reef substrate of any entry in this pull (fish + refuge + active aerial predator + food-vs-shelter trade-off). Confidence reduced because n=12 paired groups is moderate sample, and the goldfish-egret system is one specific instantiation of the broader allocation logic.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading on SD-054 produces refuge-use that is INVARIANT across agent internal state (drive_level / energy), Balaban-Feld's evidence predicts this is a failure of state-dependent gating — the discriminator is not reading interoceptive signals (z_self / drive). Direct R1 confirmation: requires the multi-stream discriminator default established in Pull A's verdict 1, not the single-stream z_world-only fallback.",
+    "If ARC-062 produces no within-arm variation in refuge-use across seeds (all seeds converge to the same allocation), Balaban-Feld's underfed-vs-well-fed dissociation predicts the discriminator is collapsing across what should be state-distinguished policies — diagnostic for whether the gated policy has internalised the state-dependence."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "sd_054", "fish_refuge", "state_dependent", "goldfish", "predator_present", "r4_calibration", "high_relevance_to_sd054"],
+  "mapping": {
+    "source_claim_statement": "Underfed goldfish in mixed groups exhibited higher levels of risky foraging behaviour — they participated in more foraging outings and emerged from refuge in frontal group positions — compared to well-fed individuals from the same groups. Underfed fish consumed more food but did not experience higher mortality (the egret predator preferentially attacked groups of three or more fish and often captured fish in the chaotic period following a failed initial strike, rather than the first emerging fish). State-dependent refuge-vs-forage allocation is a primary driver of within-group variation in refuge-emergence behaviour.",
+    "ree_translation": "Direct empirical anchor for R4 with HIGH mapping fidelity to SD-054 reef substrate. Three convergent implications: (1) Refuge-vs-forage allocation in fish under active predator threat is STATE-DEPENDENT, not state-invariant. ARC-062's discriminator must read agent internal state (drive_level / z_self / z_harm_a — the multi-stream default established in Pull A's R1 verdict) to reproduce this signature on SD-054. Single-stream z_world-only discriminator predicted to FAIL the state-dependence test. (2) Within a single hazard regime, allocation varies WITH internal state across individuals. The Phase 2 falsifier should expect within-arm variation across seeds rather than convergence to a single ratio. (3) The allocation difference is quantitative: underfed fish participated in MORE foraging outings (specific quantitative spread reported in the paper). For R4 numerical calibration, this is the closest direct anchor — fish-with-refuge-and-predator allocation as a function of energy state.",
+    "mapping_caveat": "Goldfish-and-egret in artificial mesocosms is one specific instantiation; coral reef fish facing reef predators may have different absolute allocation ratios because reef ecology differs (continuous predator presence rather than intermittent strikes; structural complexity of reef refugia; different prey-predator size ratios). The state-dependence SHAPE is robust; the specific numerical ratio is system-specific. Sample size n=12 paired groups is moderate; replication across reef-fish species would tighten calibration.",
+    "source_context": "Behavioural ecology experiment with goldfish (Carassius auratus) in mixed-condition groups (underfed vs well-fed) facing little egret (Egretta garzetta) predator in artificial pool with refuge area; quantitative measurement of refuge emergence, foraging participation, and mortality."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Solid Oecologia paper with direct behavioural data on refuge-vs-forage allocation in fish under active predator. Highest mapping fidelity to SD-054 substrate of any entry — same animal class (fish), same architectural motif (refuge + open forage area + active predator). Source quality moderate-high; sample size n=12 paired groups is the binding factor on highest-tier confidence."
+  }
+}

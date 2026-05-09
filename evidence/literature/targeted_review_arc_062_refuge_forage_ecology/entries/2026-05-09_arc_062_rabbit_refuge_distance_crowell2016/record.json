@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_refuge_forage_ecology",
+  "entry_id": "2026-05-09_arc_062_rabbit_refuge_distance_crowell2016",
+  "timestamp_utc": "2026-05-09T19:24:23Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063", "SD-054"],
+  "source": {
+    "title": "Selection of food patches by sympatric herbivores in response to concealment and distance from a refuge.",
+    "authors": ["Crowell MM", "Shipley LA", "Camp MJ", "Rachlow JL", "Forbey JS", "Johnson TR"],
+    "year": 2016,
+    "venue": "Ecology and Evolution",
+    "doi": "10.1002/ece3.1940",
+    "pmid": "27069587",
+    "pmc": "PMC4803802"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Comparative behavioural ecology data on two sympatric rabbit species with quantitative patch-choice as a function of refuge distance and concealment cover. Useful for the spatial-allocation gradient in SD-054 (reef-vs-distance-from-reef) and for the species-difference reading on policy variation. Confidence reduced because it is a herbivore study and the substrate (sagebrush-steppe vs reef) differs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading produces refuge-distance preference that is INSENSITIVE to substrate variation (e.g., reef proximity does not influence foraging-patch choice), Crowell et al's evidence predicts this is a failure of spatial-context coupling. Real rabbits weigh refuge proximity directly into patch valuation; ARC-062 should reproduce this if reef proximity is correctly wired into z_world."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "sd_054", "rabbit", "refuge_distance", "concealment", "patch_choice", "species_differences", "r4_calibration"],
+  "mapping": {
+    "source_claim_statement": "Two sympatric rabbit species (pygmy rabbit Brachylagus idahoensis, mountain cottontail Sylvilagus nuttallii) differing in body size, refuge-burrow use, and habitat specialisation were tested for food-patch selection in response to concealment cover and distance from refuge. Both species preferred food patches that offered greater concealment, but pygmy rabbits preferred terrestrial concealment while mountain cottontails preferred aerial concealment. Only pygmy rabbits preferred food patches closer to their burrow refuge; mountain cottontails (larger habitat generalists not relying on burrows) traded off terrestrial concealment for visibility to detect approaching terrestrial predators. Different anti-predator behaviours in closely related species reflect different perceived predation risks.",
+    "ree_translation": "Two architectural implications for ARC-062 / R4 calibration. First (refuge-distance gradient): patch valuation is a continuous function of refuge distance, not a binary in-vs-out-of-refuge variable. SD-054's reef substrate has gradient-decay scent (Manhattan-distance from reef cells); ARC-062's discriminator should weight this gradient appropriately, biasing forage-zone score downward as a function of distance from reef. Pygmy-rabbit-style 'closer-is-better' is the predicted refuge-substrate-dependent species behaviour. Second (species differences as policy diversity proxy): closely related species exhibit different policies in the same environment because their perceived risk differs. For ARC-062 across-seed variation, this is an additional anchor (joining Eccard 2020): not just inter-individual variation but cross-architecture-instance variation as a function of how each instance has internalised the risk landscape. Phase 2 falsifier ARM_1 might profitably include explicit architectural variation across seeds (e.g., randomised initial discriminator weights producing different effective policies) as a positive prediction test.",
+    "mapping_caveat": "Sagebrush-steppe rabbits and coral reef fish operate in fundamentally different ecological regimes (mammalian terrestrial herbivore vs. teleost aquatic mid-trophic-level). The architectural reading -- refuge proximity gradient as a continuous policy variable -- transfers; the specific quantitative ratios do not. Body size and species-specific anti-predator strategy are highly relevant; SD-054 has only one 'agent' so the species-comparison anchor is informative for cross-seed variation more than for within-instance calibration.",
+    "source_context": "Sagebrush-steppe field ecology with two sympatric rabbit species; controlled food-patch experiments varying concealment and refuge proximity."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Solid Ecology and Evolution paper with comparative behavioural ecology design. Mapping fidelity reduced because herbivore-vs-fish ecology is a substantial transfer step. Transfer risk relatively high (0.40) because mammalian-burrow-refuge mechanisms differ from fish-coral-refuge mechanisms in detail; the gradient-of-distance principle transfers but specific calibration does not."
+  }
+}

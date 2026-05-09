@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_refuge_forage_ecology",
+  "entry_id": "2026-05-09_arc_062_risk_allocation_canonical_lima1999",
+  "timestamp_utc": "2026-05-09T19:24:23Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063", "SD-054"],
+  "source": {
+    "title": "Temporal Variation in Danger Drives Antipredator Behavior: The Predation Risk Allocation Hypothesis.",
+    "authors": ["Lima SL", "Bednekoff PA"],
+    "year": 1999,
+    "venue": "The American Naturalist",
+    "doi": "10.1086/303202",
+    "pmid": "29585647"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Canonical predation-risk-allocation hypothesis paper with thousands of citations and decades of empirical testing. Direct theoretical foundation for the R4 calibration question. Confidence high because the paper is foundational; reduced from highest only because it is theory not direct empirical calibration data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading on SD-054 produces antipredator allocation that is INVARIANT across hazard density (i.e., reef_visit_fraction the same regardless of how many hazards are active), the risk-allocation hypothesis predicts this is a failure of context-discrimination — the agent is treating all hazard regimes as equivalent and not gating policy on the relative-risk variable. Diagnostic: vary SD-054 hazard density across arms and measure whether reef_visit_fraction tracks the variation.",
+    "Under chronic high-risk regimes, Lima-Bednekoff predicts antipredator effort REDUCES because the animal must feed sometime — if ARC-062 maintains high refuge-use under chronic high-risk and starves the agent, the architectural commitment is suppressing the risk-allocation logic in a biologically inappropriate way."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "sd_054", "risk_allocation", "theory", "lima_bednekoff", "r4_calibration", "refuge_forage_allocation"],
+  "mapping": {
+    "source_claim_statement": "Temporal variability in predation risk leaves animals with the problem of allocating feeding and antipredator efforts across different risk situations. Animals should exhibit greatest antipredator behaviour in high-risk situations that are brief and infrequent. Animals should allocate more antipredator effort to high-risk and more feeding to low-risk, with this difference increasing with the relative degree of risk. However, under chronic high-risk, animals must feed despite the risk — antipredator effort in low-risk situations may drop to low levels as the animal allocates as much feeding as possible to brief periods of low risk. A common experimental protocol of low-risk maintenance with brief high-risk pulse OVERESTIMATES antipredator intensity expected in field or chronic exposure.",
+    "ree_translation": "Direct theoretical foundation for R4 (Phase 2 falsifier acceptance threshold calibration). The risk-allocation hypothesis predicts that an animal's refuge-vs-forage allocation is a FUNCTION of the temporal risk pattern, not a fixed ratio. Three load-bearing predictions for ARC-062 + SD-054 calibration: (1) Allocation should depend on hazard density and pattern (chronic vs pulsed). The arbitrary EXQ-522 hand-coded heuristic at reef_visit_fraction in [0.3, 0.7] is biologically defensible only if SD-054's hazard density matches the regime where the heuristic was tuned. The Phase 2 falsifier should test ARC-062's allocation across a hazard-density gradient, not at a single point. (2) Under chronic high-risk regimes, refuge-use REDUCES (not increases) because the agent has no choice but to feed — counterintuitive prediction that distinguishes architecturally honest gated-policy from a naive 'always-flee-when-hazard-present' policy. (3) Pulsed-risk paradigms overestimate antipredator behaviour. The SD-054 substrate uses persistent reef and persistent food-attracted hazards (not pulses), so the calibration target should be from chronic-risk empirical work, not pulsed-risk work.",
+    "mapping_caveat": "Lima-Bednekoff 1999 is a theoretical paper, not direct quantitative calibration data. It predicts the SHAPE of the allocation function (how it should change with risk pattern) but does not provide a numerical 'X% refuge / Y% forage' ratio for any specific hazard regime. Direct calibration requires empirical companion entries (Sundell 2004, Balaban-Feld 2019, Eccard 2020 in this directory). The theory is also species-general; specific calibration for fish-in-coral-reef ecology may differ in the relevant constants from the rodent-and-vole literature where most direct empirical tests have been run.",
+    "source_context": "Theoretical paper in *American Naturalist* deriving optimal antipredator allocation as a function of temporal risk pattern; species-general."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Foundational theoretical paper, extensively cited and replicated. Mapping fidelity high: the theoretical structure transfers cleanly to ARC-062's gated-policy + risk-context discriminator architecture. Transfer risk low because the theory is species-general and the SD-054 substrate's reef-vs-forage partition is exactly the kind of allocation problem the hypothesis addresses."
+  }
+}

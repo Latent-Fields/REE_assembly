@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_refuge_forage_ecology",
+  "entry_id": "2026-05-09_arc_062_risk_allocation_vole_test_sundell2004",
+  "timestamp_utc": "2026-05-09T19:24:23Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063", "SD-054"],
+  "source": {
+    "title": "Variation in predation risk and vole feeding behaviour: a field test of the risk allocation hypothesis.",
+    "authors": ["Sundell J", "Dudek D", "Klemme I", "Koivisto E", "Pusenius J", "Ylonen H"],
+    "year": 2004,
+    "venue": "Oecologia",
+    "doi": "10.1007/s00442-004-1490-x",
+    "pmid": "14730443"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "Direct field test of the canonical risk-allocation hypothesis (Lima & Bednekoff 1999) with bank voles + least weasel predator. Most predictions did NOT replicate; only the attack-ratio prediction was supported. Mixed-direction entry — important because it constrains the tolerance window for the Phase 2 falsifier and shows real-animal allocation often deviates from theoretical optima.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sundell et al's null result on most risk-allocation predictions warns against narrow tolerance windows on the Phase 2 falsifier. If ARM_1 ARC-062 produces partial-allocation (some predictions replicate, others do not), Sundell shows real animals do this too — narrow acceptance criteria would falsely reject biologically plausible behaviour.",
+    "If ARC-062 produces invariant allocation across all manipulations (no signal at all), Sundell's evidence does not provide cover — even partial-replication is a more biologically plausible signature than total non-response. A complete null is the clean falsifier signal."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "sd_054", "risk_allocation", "empirical_test", "voles", "field_test", "mixed_direction", "tolerance_window", "r4_calibration"],
+  "mapping": {
+    "source_claim_statement": "Field test of the predation risk allocation hypothesis (Lima & Bednekoff 1999) using bank voles (Clethrionomys glareolus) as prey and least weasel (Mustela nivalis nivalis) as predator. Temporal pattern and intensity of predation risk were manipulated in large outdoor enclosures; foraging effort and patch use measured by giving-up densities. Most predictions of the hypothesis did NOT replicate: no variation in feeding effort due to changes in level of risk or proportion of time spent under high-risk. The only significant effect was on attack ratio — foraging effort was higher in low-attack-ratio than in high-attack-ratio treatments. Authors attribute the deviation to voles' inability to accurately assess risk-level changes, plus difficulty of testing under outdoor conditions with mammals capable of flexible behavioural patterns.",
+    "ree_translation": "Important MIXED-direction empirical anchor for R4 calibration. Even when the canonical risk-allocation theory is correct in spirit (animals modulate antipredator effort by relative risk), real-animal experiments often produce only partial replication. Three implications: (1) The Phase 2 falsifier acceptance threshold should be a TOLERANCE WINDOW, not a sharp predicted ratio. Sundell shows a 5-prediction theoretical battery where 1/5 replicated empirically — the appropriate analog for ARC-062 is 'reproduces some risk-pattern dependence, not necessarily all'. (2) The single replicating prediction was attack-ratio dependence (foraging higher when attacks rare per encounter). The Phase 2 falsifier should include an attack-ratio variation as a primary metric, not just hazard-density. (3) Sundell attributes the null results partly to voles' INABILITY TO ACCURATELY ASSESS risk-level changes — a perceptual / representational limitation that maps to MECH-269 V_s monostrategy in REE. If real voles cannot represent the risk-pattern variable accurately, the architectural conclusion is that even an honest gated-policy ARC-062 may produce noisy / partial allocation responses on SD-054 if the substrate's risk signal is below the agent's representational threshold.",
+    "mapping_caveat": "Bank voles in outdoor enclosures with weasel predator is one specific system; assessment failure may be species-specific. The paper does not arbitrate whether the architecture is wrong (real voles lack rule-apprehension layer adequate to the task) or the perception is wrong (voles have ARC-062-equivalent but cannot extract the risk-pattern variable from sensory input). For ARC-062 design implications, both readings are useful — the perception-failure reading is a cautionary note for SD-054's hazard signal magnitude, the architecture-failure reading is consistent with MECH-309 in another taxon.",
+    "source_context": "Field test in large outdoor enclosures using bank voles (Clethrionomys glareolus) and least weasel (Mustela nivalis nivalis); manipulation of temporal risk patterns; giving-up density measurements."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Solid Oecologia field-test paper with quantitative giving-up density measurements. Source quality reduced from highest tier because outdoor field conditions add measurement noise. Mapping fidelity moderate-high: direct test of the canonical theory, but in voles rather than fish. Transfer risk moderate: vole-to-fish behavioural-ecology transfer requires care; species differ substantially in cognitive capacity for risk assessment. The mixed-direction signal is the load-bearing finding for tolerance-window calibration."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_refuge_forage_ecology",
+  "entry_id": "2026-05-09_arc_062_risk_allocation_critique_beauchamp2010",
+  "timestamp_utc": "2026-05-09T19:24:23Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063", "SD-054"],
+  "source": {
+    "title": "A reassessment of the predation risk allocation hypothesis: a comment on Lima and Bednekoff.",
+    "authors": ["Beauchamp G", "Ruxton GD"],
+    "year": 2010,
+    "venue": "The American Naturalist",
+    "doi": "10.1086/657437",
+    "pmid": "21117942"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Theoretical reassessment / critique of Lima & Bednekoff 1999 in the same journal. Useful for tolerance-window calibration: the canonical theory itself has theoretical caveats that the architectural-falsifier acceptance criteria should accommodate. Confidence moderate -- it is a comment/critique rather than primary empirical or theoretical contribution, but in a high-quality venue.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading PASSes the Phase 2 falsifier on a single specific Lima-Bednekoff prediction (e.g. attack-ratio dependence) and FAILs others, Beauchamp & Ruxton's reassessment provides cover -- the canonical theory itself was over-stated in places. Single-prediction PASS may be the architecturally honest outcome rather than the pre-registered five-prediction PASS."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "sd_054", "risk_allocation", "theory_critique", "lima_bednekoff", "tolerance_window", "r4_calibration", "theoretical_caveat"],
+  "mapping": {
+    "source_claim_statement": "Beauchamp and Ruxton challenge several aspects of the Lima & Bednekoff 1999 risk-allocation hypothesis on theoretical grounds, including assumptions about the structure of state-dependent decision-making and the conditions under which the hypothesis's qualitative predictions are expected to hold.",
+    "ree_translation": "Important secondary anchor for tolerance-window calibration. The canonical risk-allocation theory has acknowledged theoretical caveats; the Phase 2 falsifier should not pre-register acceptance criteria that match a strict reading of Lima-Bednekoff that even the canonical theorists' reassessors do not endorse. For R4: the appropriate acceptance threshold should require ARC-062 ARM_1 to reproduce SOME risk-pattern dependence (the spirit of the hypothesis, which the field has retained) rather than ALL of Lima-Bednekoff's specific quantitative predictions (which the field has weakened). This complements the Sundell 2004 empirical-partial-replication anchor and the Eccard 2020 individual-variation anchor in arguing for a tolerance window rather than a sharp single-prediction acceptance criterion.",
+    "mapping_caveat": "This is a theoretical comment, not primary data. It does not provide quantitative calibration. Its load-bearing function is to caution against narrow Phase 2 acceptance criteria; it does not arbitrate which specific predictions should be relaxed. The architectural-falsifier acceptance window should be derived from the convergence of Lima-Bednekoff's theoretical structure (sibling Lima 1999 entry), Sundell 2004's empirical partial-replication, Beauchamp & Ruxton's theoretical caveats, and Eccard 2020's individual-variation findings -- the cluster of entries together, not any single one.",
+    "source_context": "Theoretical comment in *American Naturalist* responding to Lima & Bednekoff 1999."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.25,
+    "notes": "Solid theoretical comment in canonical journal. Mapping fidelity moderate-low because the entry's load-bearing function is the caveat itself rather than a positive prediction. Transfer risk low because the theoretical caveat is species-general; it transfers cleanly to ARC-062 acceptance-window decisions."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-09T19:18:21.387910Z`
+Generated: `2026-05-09T19:34:08.447513Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -22,6 +22,7 @@ Generated: `2026-05-09T19:18:21.387910Z`
 | `targeted_review_arc_042` | [`2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020`](targeted_review_arc_042/entries/2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020/record.json) | 4 | [`summary`](targeted_review_arc_042/entries/2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020/summary.md) |
 | `targeted_review_arc_045` | [`2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019`](targeted_review_arc_045/entries/2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019/record.json) | 3 | [`summary`](targeted_review_arc_045/entries/2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019/summary.md) |
 | `targeted_review_arc_058` | [`2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/record.json) | 7 | [`summary`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/summary.md) |
+| `targeted_review_arc_062_refuge_forage_ecology` | [`2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/record.json) | 6 | [`summary`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/summary.md) |
 | `targeted_review_arc_062_rule_apprehension` | [`2026-05-09_arc_062_pfc_rule_cells_bongard2010`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/record.json) | 8 | [`summary`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
 | `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |

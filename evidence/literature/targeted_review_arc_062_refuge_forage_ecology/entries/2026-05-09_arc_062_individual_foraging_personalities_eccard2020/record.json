@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_062_refuge_forage_ecology",
+  "entry_id": "2026-05-09_arc_062_individual_foraging_personalities_eccard2020",
+  "timestamp_utc": "2026-05-09T19:24:23Z",
+  "claim_ids_tested": ["MECH-309", "ARC-062", "ARC-063", "SD-054"],
+  "source": {
+    "title": "Among-individual differences in foraging modulate resource exploitation under perceived predation risk.",
+    "authors": ["Eccard JA", "Liesenjohann T", "Dammhahn M"],
+    "year": 2020,
+    "venue": "Oecologia",
+    "doi": "10.1007/s00442-020-04773-y",
+    "pmid": "33141325",
+    "pmc": "PMC7683444"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Quantitative behavioural data on 21 common voles in artificial risk-vs-resource landscapes with manipulated risk during feeding vs travel. Direct evidence for consistent among-individual differences in refuge-vs-forage allocation -- foraging personalities are real. Important for tolerance-window calibration: ARM_1 ARC-062 across seeds should show BETWEEN-INDIVIDUAL variation, not seed-convergence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-062 weak reading produces seed-convergent allocation in ARM_1 of the Phase 2 falsifier, Eccard et al's evidence predicts this is a failure of policy-head differentiation -- real animals have consistent inter-individual variation arising from policy / personality differences, not just from state. Diagnostic: cross-seed coefficient of variation in ARM_1 should match Eccard's reported among-individual spread within tolerance.",
+    "If ARM_1 ARC-062 produces variation across seeds that does NOT track manipulated risk type (risk during feeding vs risk during travel), Eccard shows real voles distinguish these cleanly -- ARC-062 should reproduce the dissociation. Failure to dissociate would indicate the discriminator is collapsing across distinct risk-type cues."
+  ],
+  "tags": ["arc_062", "mech_309", "arc_063", "sd_054", "common_vole", "individual_differences", "foraging_personalities", "r4_calibration", "tolerance_window", "risk_type_dissociation"],
+  "mapping": {
+    "source_claim_statement": "21 common voles (Microtus arvalis) in artificial landscapes of perceived risks and resources with diminishing returns. By manipulating ground cover, the authors created simple landscapes of two food patches varying in perceived risk during feeding in a patch and/or while travelling between patches. Foraging behaviour was variable and adjusted to risk LEVEL and TYPE: high risk during feeding reduced feeding duration and food consumption more strongly than risk while travelling. Risk during travelling modified the risk effects of feeding for changes between patches and resulting evenness of resource exploitation. ACROSS RISK CONDITIONS, individuals differed CONSISTENTLY in when and how long they exploited resources and exposed themselves to risk. These among-individual differences in foraging behaviour were associated with consistent patterns of resource exploitation -- 'foraging personalities' -- and led to unequal payoffs.",
+    "ree_translation": "Two implications for ARC-062 / R4 calibration. First (foraging personalities): real animals show CONSISTENT among-individual variation in refuge-vs-forage allocation that is not reducible to current state. Different individuals in the same population settle on different policies. For the Phase 2 falsifier, this means ARM_1 ARC-062 across seeds should show BETWEEN-SEED VARIATION in allocation -- seed-convergence to a single ratio would be biologically anomalous. Tolerance window for the acceptance threshold should be calibrated to match the observed inter-individual spread, not to a single mean. Second (risk-type dissociation): voles distinguish risk during FEEDING from risk during TRAVELLING -- two different rules that gate different policy components. ARC-062's discriminator should reproduce this dissociation if SD-054's substrate exposes both risk types (food-area risk via food-attracted hazards; transit risk via reef-vs-forage zone transitions). Failure to dissociate would indicate the discriminator is collapsing across distinct risk-type cues.",
+    "mapping_caveat": "Common voles in artificial mesocosms is a controlled but small-scale system; n=21 is moderate. The 'foraging personality' framing implies that consistent inter-individual variation may have a substantial heritable / developmental component that is not captured by trial-by-trial gradient descent in ARC-062's joint training. The seed-variation analog in ARC-062 captures policy-divergence-from-different-initialisations but not heritable personality structure -- partial mapping rather than full equivalence. Vole-to-fish transfer carries the usual species caveat.",
+    "source_context": "21 common voles (Microtus arvalis) in artificial laboratory landscapes with manipulated risk during feeding vs travel; quantitative measurement of feeding duration, food consumption, transitions between patches, evenness of resource exploitation."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Solid Oecologia paper with controlled laboratory design; clear individual-level behavioural data. Mapping fidelity moderate-high: directly informs the tolerance-window question for the Phase 2 falsifier. Transfer risk moderate: vole-to-fish transfer carries species caveat; the heritable-vs-trained personality distinction is a partial-mapping concern."
+  }
+}
