@@ -1,3 +1,86 @@
+---
+closure_plan:
+  id: sleep_substrate
+  title: "Sleep Substrate"
+  registered: 2026-05-08
+  scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
+  nodes:
+    - id: "sleep_substrate:GAP-1"
+      title: "MECH-204 precision recalibration consumer (V3-EXQ-541a F1 substrate fix landed)"
+      phase: 1
+      status: in_progress
+      severity: load-bearing
+      owner_exq: V3-EXQ-541a
+      unblocks_claims: [Q-041, Q-042, SD-029, MECH-111, MECH-256]
+      depends_on: []
+      last_updated: 2026-05-09
+    - id: "sleep_substrate:GAP-2"
+      title: "SD-017 retest cohort (post SD-016 attention-uniformity fix)"
+      phase: 2
+      status: blocked
+      severity: high
+      owner_exq: TBD
+      unblocks_claims: [SD-017, ARC-045, MECH-166]
+      depends_on: []
+      blocking_external: ["EXQ-418e SD-016 div-loss validation result"]
+      last_updated: 2026-05-08
+    - id: "sleep_substrate:GAP-3"
+      title: "Phase B-E master flags default-False (cluster silent)"
+      phase: 3
+      status: open
+      severity: high
+      owner_exq: null
+      unblocks_claims: [MECH-285, MECH-272, MECH-275, MECH-273]
+      depends_on: ["sleep_substrate:GAP-8"]
+      last_updated: 2026-05-08
+    - id: "sleep_substrate:GAP-4"
+      title: "MECH-273 offline gradient uses synthetic batch (replace with replay-derived)"
+      phase: 4
+      status: blocked
+      severity: high
+      owner_exq: EXP-0169
+      unblocks_claims: [MECH-273]
+      depends_on: ["sleep_substrate:GAP-3"]
+      last_updated: 2026-05-08
+    - id: "sleep_substrate:GAP-5"
+      title: "Sleep entry K-episode deterministic (no arousal trigger)"
+      phase: null
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: []
+      blocking_external: ["V4 SD-037 arousal substrate"]
+      last_updated: 2026-05-08
+    - id: "sleep_substrate:GAP-6"
+      title: "StepHarness audit: SWS / REM write paths vs canonical sense/update sequence"
+      phase: 5
+      status: open
+      severity: medium
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: []
+      cross_plan_link: ["commitment_closure:GAP-10"]
+      last_updated: 2026-05-08
+    - id: "sleep_substrate:GAP-7"
+      title: "Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)"
+      phase: 6
+      status: open
+      severity: medium
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "sleep_substrate:GAP-8"
+      title: "MECH-272 routing weights flip but HippocampalRouter does not consume them"
+      phase: 3
+      status: open
+      severity: high
+      owner_exq: EXP-0168
+      unblocks_claims: [MECH-272, MECH-285]
+      depends_on: []
+      last_updated: 2026-05-08
+---
 # Sleep Substrate Plan
 
 **Registered:** 2026-05-08
@@ -395,6 +478,54 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09 - V3-EXQ-541b result (clean monotone dose-response, FAIL on threshold only) + V3-EXQ-541c queued (cycle-count test, lowest-load-bearing-assumption discriminator)
+
+V3-EXQ-541b (step-size sweep on F1 substrate) ran on DLAPTOP-4.local
+in 180 sec. Result: outcome FAIL but ALL behavioural criteria except
+C4 PASS in every step-size arm.
+
+| Arm | step | tracking_quality | overshoot_rate | mean_rv_post | C4 cross-arm divergence |
+|---|---|---|---|---|---|
+| ARM_0_off | 0.00 | 0.877 | 0.00 | 0.31076 | (reference) |
+| ARM_1 | 0.05 | 0.883 | 0.00 | 0.30988 | 0.31% |
+| ARM_2 | 0.10 | 0.889 | 0.00 | 0.30901 | 0.63% |
+| ARM_3 | 0.25 | 0.908 | 0.00 | 0.30638 | 1.56% |
+| ARM_4 | 0.50 | 0.939 | 0.00 | 0.30200 | 3.13% |
+
+C1+C2+C3 PASS in every arm. C4 FAIL in every arm vs the 5e-2 threshold,
+but with a clean monotone dose-response (divergence doubles with each
+step doubling). Tracking_quality monotonically improves with step;
+zero overshoot. F1 mechanism is doing biologically meaningful work;
+the 5% threshold appears conservative given the measured effect size.
+
+The pattern sits between dispatch cases #2 and #3 from the lit-pull
+SYNTHESIS. The divergence-grows-monotonically-with-step pattern is
+consistent with F1 being the right architecture but waking drift
+between cycles washing out most of the per-cycle recalibration before
+the next cycle's rv_post measurement.
+
+V3-EXQ-541c queued as a cycle-count discriminator with the fewest
+load-bearing assumptions: same 5 step arms, same env, same seeds,
+sleep_loop_K=1 + EPISODES_PER_RUN=16 (16 cycles per run vs 541b's 4
+cycles). Tests whether F1 cross-arm divergence scales linearly with
+cycle count under fixed waking drift (F1 sufficient given enough
+exposure -> Phase 7 stays deferred per dispatch case #1) OR plateaus
+at the 4-cycle level (F1 at its ceiling -> Phase 7 / Option B
+becomes load-bearing per dispatch case #3). Estimated ~6 min on Mac.
+
+This is the cheapest test that distinguishes "F1 needs more cycles"
+from "F1 is intrinsically limited" without committing to either
+architectural path. If 541c shows divergence growing roughly linearly
+to ~12-15% at 16 cycles (4x of 541b's 3.13% peak), F1 is sufficient
+and Phase 7 stays deferred. If 541c plateaus at ~3-5% regardless of
+cycle count, F1 ceiling is confirmed and Phase 7 becomes load-bearing
+per the lit-pull-supported design (broadcast read of
+serotonin._persistent_zero_point at action-selection time, additive
+bias on E3 score, dual-arm with F1).
+
+GAP-1 status table row owner-EXQ rolls from V3-EXQ-541a -> V3-EXQ-541b
+-> V3-EXQ-541c for the immediate cycle-count discrimination arc.
 
 ### 2026-05-09 - REM-precision lit-pull verdict (5 entries): F1 dominant, F3 dual-arm preserved as conditional fallback, F2 confirmed discarded
 
