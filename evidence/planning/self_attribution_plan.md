@@ -1,3 +1,57 @@
+---
+closure_plan:
+  id: self_attribution
+  title: "Self-Attribution Comparator Loop"
+  registered: 2026-05-08
+  scope_claims: [SD-013, SD-029, SD-030, SD-031, ARC-033, ARC-058, MECH-256, MECH-257, MECH-258, MECH-260]
+  nodes:
+    - id: "self_attribution:GAP-1"
+      title: "ARC-033 vs ARC-058 path arbitration (forensic 445h read)"
+      phase: 1
+      status: open
+      severity: high
+      owner_exq: V3-EXQ-445h
+      unblocks_claims: [ARC-033, ARC-058, MECH-258, MECH-260]
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "self_attribution:GAP-2"
+      title: "SD-029 / MECH-256 retest under full substrate stack"
+      phase: 2
+      status: blocked
+      severity: high
+      owner_exq: TBD
+      unblocks_claims: [SD-029, MECH-256, ARC-033, SD-013]
+      depends_on: ["sleep_substrate:GAP-1", "goal_pipeline:GAP-1"]
+      blocking_external: ["MECH-269 V_s monostrategy landing"]
+      last_updated: 2026-05-08
+    - id: "self_attribution:GAP-3"
+      title: "MECH-257 dual-function 3-arm ablation re-queue"
+      phase: 3
+      status: blocked
+      severity: medium
+      owner_exq: TBD
+      unblocks_claims: [MECH-257, MECH-094]
+      depends_on: ["self_attribution:GAP-1", "self_attribution:GAP-2"]
+      last_updated: 2026-05-08
+    - id: "self_attribution:GAP-4"
+      title: "Nociceptive-comparator lit-pull (PAG/RVM/ACC)"
+      phase: 4
+      status: open
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [MECH-256, SD-029]
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "self_attribution:GAP-5"
+      title: "SD-030/SD-031 z_self / z_world materialisation (V4)"
+      phase: 5
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: [SD-030, SD-031]
+      depends_on: []
+      last_updated: 2026-05-08
+---
 # Self-Attribution Comparator Loop Plan
 
 **Registered:** 2026-05-08

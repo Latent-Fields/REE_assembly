@@ -1,3 +1,84 @@
+---
+closure_plan:
+  id: sd033_governance
+  title: "SD-033 Governance (OCD test battery sub-plan)"
+  registered: 2026-04-20
+  scope_claims: [SD-033, SD-033a, SD-033b, SD-034, MECH-266, MECH-267, MECH-268]
+  parent_plan: commitment_closure
+  nodes:
+    - id: "sd033_governance:CHK-ANCHOR"
+      title: "Anchor doc + auto-memory + task_inbox lit-pulls"
+      phase: 0
+      status: done
+      severity: medium
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: []
+      last_updated: 2026-04-20
+    - id: "sd033_governance:CHK-CLAIMS"
+      title: "SD-034 + MECH-266/267/268 registered in claims.yaml"
+      phase: 0
+      status: done
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268]
+      depends_on: []
+      last_updated: 2026-04-20
+    - id: "sd033_governance:CHK-EXP_PROPOSALS"
+      title: "9 EXP proposals (EXP-0156..0164; V3-EXQ-460..468 reserved)"
+      phase: 1
+      status: done
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268]
+      depends_on: ["sd033_governance:CHK-CLAIMS"]
+      last_updated: 2026-04-20
+    - id: "sd033_governance:CHK-SD034"
+      title: "SD-034 ClosureOperator implemented + EXP-0156/0162 substrate-readiness PASS"
+      phase: 2
+      status: done
+      severity: load-bearing
+      owner_exq: V3-EXQ-460
+      unblocks_claims: [SD-034]
+      depends_on: ["sd033_governance:CHK-EXP_PROPOSALS"]
+      last_updated: 2026-04-20
+    - id: "sd033_governance:CHK-MECH267"
+      title: "MECH-267 mode-conditioned hippocampal proposals + sub-tests PASS"
+      phase: 2
+      status: done
+      severity: high
+      owner_exq: V3-EXQ-462
+      unblocks_claims: [MECH-267]
+      depends_on: ["sd033_governance:CHK-EXP_PROPOSALS"]
+      last_updated: 2026-04-20
+    - id: "sd033_governance:CHK-MECH268"
+      title: "MECH-268 dACC PE saturation + EXP-0159/0164 sub-tests PASS"
+      phase: 2
+      status: done
+      severity: high
+      owner_exq: V3-EXQ-463
+      unblocks_claims: [MECH-268]
+      depends_on: ["sd033_governance:CHK-EXP_PROPOSALS"]
+      last_updated: 2026-04-20
+    - id: "sd033_governance:CHK-MECH266"
+      title: "MECH-266 Schmitt-trigger asymmetric hysteresis + sub-tests PASS"
+      phase: 2
+      status: done
+      severity: high
+      owner_exq: V3-EXQ-464
+      unblocks_claims: [MECH-266]
+      depends_on: ["sd033_governance:CHK-EXP_PROPOSALS"]
+      last_updated: 2026-04-21
+    - id: "sd033_governance:CHK-PUSH"
+      title: "REE_assembly + ree-v3 pushed; WORKSPACE_STATE + TASK_CLAIMS closed"
+      phase: 3
+      status: open
+      severity: medium
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: ["sd033_governance:CHK-SD034", "sd033_governance:CHK-MECH266", "sd033_governance:CHK-MECH267", "sd033_governance:CHK-MECH268"]
+      last_updated: 2026-04-21
+---
 # SD-033 Governance Plan
 
 **Registered:** 2026-04-20

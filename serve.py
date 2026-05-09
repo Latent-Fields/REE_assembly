@@ -61,6 +61,7 @@ STATUS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_status"       # pe
 HEARTBEAT_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_heartbeats"  # per-machine heartbeats
 COMMANDS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_commands"     # per-machine command queues
 RUNNER_LOG = SERVE_DIR / "runner.log"
+PLANNING_DIR = SERVE_DIR / "evidence" / "planning"
 
 # Command kinds the runner accepts (mirrors ree-v3/runner_remote_control.VALID_COMMAND_KINDS)
 VALID_REMOTE_COMMAND_KINDS = (
@@ -668,6 +669,181 @@ def read_machines() -> dict:
     }
 
 
+# ── Closure plan parsing ────────────────────────────────────────────────────
+
+# Plans we know about; entries here without frontmatter still appear as
+# placeholder cards in the Closure tab so the user knows they exist but
+# haven't been retrofitted yet.
+CLOSURE_KNOWN_PLANS = [
+    "commitment_closure_plan.md",
+    "goal_pipeline_plan.md",
+    "self_attribution_plan.md",
+    "sd033_governance_plan.md",
+    "sleep_substrate_plan.md",
+]
+
+CLOSURE_STATUS_WEIGHTS = {
+    "done": 1.0,
+    "partial": 0.5,
+    "in_progress": 0.4,
+    "in-progress": 0.4,
+    "blocked": 0.1,
+    "tracked": 0.2,
+    "open": 0.0,
+    "deferred": None,   # excluded from progress denominator
+    "deferred V4": None,
+}
+
+
+def _parse_plan_frontmatter(path: Path) -> dict | None:
+    """Return the closure_plan dict from a plan doc's YAML frontmatter, or None."""
+    try:
+        text = path.read_text(encoding="utf-8")
+    except Exception:
+        return None
+    if not text.startswith("---\n"):
+        return None
+    end = text.find("\n---\n", 4)
+    if end < 0:
+        return None
+    if not _YAML_OK:
+        return None
+    fm_text = text[4:end]
+    try:
+        fm = _yaml.safe_load(fm_text)
+    except Exception:
+        return None
+    if not isinstance(fm, dict):
+        return None
+    plan = fm.get("closure_plan")
+    if not isinstance(plan, dict):
+        return None
+    return plan
+
+
+def _normalize_status(s: str | None) -> str:
+    if not s:
+        return "open"
+    s = str(s).strip().lower().replace(" ", "_")
+    return s.replace("-", "_")
+
+
+def read_closure() -> dict:
+    """Aggregate closure_plan frontmatter across planning/*_plan.md docs."""
+    plans: list[dict] = []
+    nodes_by_id: dict[str, dict] = {}
+    edges: list[dict] = []
+    cross_links: list[dict] = []
+
+    seen_files: set[str] = set()
+
+    # Load known plans first (preserves order in UI), then any other *_plan.md.
+    candidates = list(CLOSURE_KNOWN_PLANS)
+    if PLANNING_DIR.exists():
+        for p in sorted(PLANNING_DIR.glob("*_plan.md")):
+            if p.name not in candidates:
+                candidates.append(p.name)
+
+    for fname in candidates:
+        path = PLANNING_DIR / fname
+        if not path.exists():
+            continue
+        seen_files.add(fname)
+        plan = _parse_plan_frontmatter(path)
+        if plan is None:
+            plans.append({
+                "id": fname.replace("_plan.md", ""),
+                "title": fname.replace("_plan.md", "").replace("_", " ").title(),
+                "file": fname,
+                "frontmatter_pending": True,
+                "node_count": 0,
+                "progress": 0.0,
+            })
+            continue
+
+        plan_id = str(plan.get("id") or fname.replace("_plan.md", ""))
+        plan_nodes = plan.get("nodes") or []
+        weighted_done = 0.0
+        weighted_total = 0.0
+        status_counts: dict[str, int] = {}
+
+        for n in plan_nodes:
+            if not isinstance(n, dict):
+                continue
+            nid = str(n.get("id") or "")
+            if not nid:
+                continue
+            status = _normalize_status(n.get("status"))
+            status_counts[status] = status_counts.get(status, 0) + 1
+            weight = CLOSURE_STATUS_WEIGHTS.get(status, 0.0)
+            if weight is not None:
+                weighted_total += 1.0
+                weighted_done += weight
+
+            node_record = {
+                "id": nid,
+                "plan_id": plan_id,
+                "title": n.get("title") or nid,
+                "phase": n.get("phase"),
+                "status": status,
+                "severity": n.get("severity") or "medium",
+                "owner_exq": n.get("owner_exq"),
+                "unblocks_claims": list(n.get("unblocks_claims") or []),
+                "depends_on": list(n.get("depends_on") or []),
+                "cross_plan_link": list(n.get("cross_plan_link") or []),
+                "blocking_external": list(n.get("blocking_external") or []),
+                "last_updated": n.get("last_updated"),
+            }
+            # If a node id appears in multiple plans, keep first and record alias.
+            if nid in nodes_by_id:
+                nodes_by_id[nid].setdefault("aliases", []).append(plan_id)
+            else:
+                nodes_by_id[nid] = node_record
+
+            for dep in node_record["depends_on"]:
+                edges.append({"from": str(dep), "to": nid, "kind": "depends_on"})
+            for link in node_record["cross_plan_link"]:
+                cross_links.append({"from": nid, "to": str(link), "kind": "cross_plan_link"})
+
+        progress = (weighted_done / weighted_total) if weighted_total > 0 else 0.0
+
+        plans.append({
+            "id": plan_id,
+            "title": plan.get("title") or plan_id,
+            "file": fname,
+            "registered": str(plan.get("registered") or ""),
+            "scope_claims": list(plan.get("scope_claims") or []),
+            "parent_plan": plan.get("parent_plan"),
+            "sibling_plans": list(plan.get("sibling_plans") or []),
+            "node_count": len(plan_nodes),
+            "status_counts": status_counts,
+            "progress": round(progress, 4),
+            "frontmatter_pending": False,
+        })
+
+    # Overall progress: weighted across all non-deferred nodes, all plans.
+    overall_done = 0.0
+    overall_total = 0.0
+    for n in nodes_by_id.values():
+        w = CLOSURE_STATUS_WEIGHTS.get(n["status"], 0.0)
+        if w is not None:
+            overall_total += 1.0
+            overall_done += w
+    overall_progress = (overall_done / overall_total) if overall_total > 0 else 0.0
+
+    return {
+        "schema_version": "closure/v1",
+        "generated_at": datetime.datetime.utcnow().isoformat() + "Z",
+        "plans": plans,
+        "nodes": list(nodes_by_id.values()),
+        "edges": edges,
+        "cross_links": cross_links,
+        "overall_progress": round(overall_progress, 4),
+        "node_total": int(overall_total),
+        "node_done_weighted": round(overall_done, 4),
+    }
+
+
 def _machine_safe_filename(machine: str) -> str:
     keep = "-_."
     return "".join(c if (c.isalnum() or c in keep) else "_" for c in machine)
@@ -1218,6 +1394,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.send_header("Cache-Control", "no-cache")
                 self.end_headers()
                 self.wfile.write(machines_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
+            return
+        if path == "/api/closure":
+            body = json.dumps(read_closure(), indent=2).encode()
+            self._json_response(body)
+            return
+        if path in ("/closure", "/closure.html"):
+            closure_page = SERVE_DIR / "closure.html"
+            if closure_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(closure_page.read_bytes())
             else:
                 self.send_response(404)
                 self.end_headers()

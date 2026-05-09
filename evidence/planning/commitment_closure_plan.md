@@ -1,3 +1,107 @@
+---
+closure_plan:
+  id: commitment_closure
+  title: "Commitment / Closure / Mode-Governance"
+  registered: 2026-05-08
+  scope_claims: [SD-033a, SD-033b, SD-033c, SD-033d, SD-033e, SD-034, MECH-090, MECH-091, MECH-260, MECH-262, MECH-263, MECH-266, MECH-267, MECH-268]
+  sibling_plans: [sd033_governance]
+  nodes:
+    - id: "commitment_closure:GAP-1"
+      title: "SD-033a bias head untrained (Go-side mechanically silent)"
+      phase: 1
+      status: open
+      severity: load-bearing
+      owner_exq: TBD
+      unblocks_claims: [SD-033a, MECH-262, SD-034]
+      depends_on: []
+      blocking_external: ["training-protocol decision Q1 (phased vs joint vs frozen-trigger)"]
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-2"
+      title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence unauthored"
+      phase: 2
+      status: open
+      severity: high
+      owner_exq: V3-EXQ-461
+      unblocks_claims: [SD-033a, MECH-090, SD-034]
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-3"
+      title: "CausalGridWorldV2 env extensions (tolerance/counter-evidence/dual-cue)"
+      phase: 3
+      status: open
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-034, MECH-266, MECH-268]
+      depends_on: []
+      blocking_external: ["env scoping decision Q2"]
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-4"
+      title: "OCD battery completeness (V3-EXQ-460..468)"
+      phase: 2
+      status: partial
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268]
+      depends_on: ["commitment_closure:GAP-2"]
+      cross_plan_link: ["sd033_governance:CHK-EXP_PROPOSALS"]
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-5"
+      title: "MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)"
+      phase: 6
+      status: open
+      severity: medium
+      owner_exq: V3-EXQ-481b
+      unblocks_claims: [MECH-090]
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-6"
+      title: "MECH-260 vs SD-034 No-Go pulse boundary unclear (V4 flag)"
+      phase: 8
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: [MECH-260, SD-034, SD-033a]
+      depends_on: ["commitment_closure:GAP-4"]
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-7"
+      title: "MECH-091 phase-reset deferred (SD-006 phase 2)"
+      phase: 8
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: [MECH-091]
+      depends_on: []
+      blocking_external: ["SD-006 phase 2 async heartbeat"]
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-8"
+      title: "SD-033b behavioural validation (devaluation + perceptual discrimination)"
+      phase: 7
+      status: blocked
+      severity: medium
+      owner_exq: V3-EXQ-485b
+      unblocks_claims: [SD-033b, MECH-263]
+      depends_on: ["commitment_closure:GAP-3"]
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-9"
+      title: "SD-033c/d/e graph-consolidation incomplete"
+      phase: 8
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: [SD-033c, SD-033d, SD-033e]
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-10"
+      title: "StepHarness audit of governance write paths"
+      phase: 8
+      status: open
+      severity: medium
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: []
+      cross_plan_link: ["sleep_substrate:GAP-6"]
+      last_updated: 2026-05-08
+---
 # Commitment / Closure / Mode-Governance Plan
 
 **Registered:** 2026-05-08

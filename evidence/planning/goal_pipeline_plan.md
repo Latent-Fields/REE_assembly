@@ -1,3 +1,66 @@
+---
+closure_plan:
+  id: goal_pipeline
+  title: "Goal Pipeline (wanting / liking / drive cascade)"
+  registered: 2026-05-08
+  scope_claims: [SD-012, SD-014, SD-015, SD-018, SD-049, MECH-117, MECH-216, MECH-229, MECH-230, MECH-295, MECH-307, ARC-030, ARC-032, ARC-036, ARC-051]
+  nodes:
+    - id: "goal_pipeline:GAP-1"
+      title: "MECH-307 anticipatory-affect conjunction architecture"
+      phase: 1
+      status: open
+      severity: load-bearing
+      owner_exq: TBD
+      unblocks_claims: [MECH-307, SD-014]
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "goal_pipeline:GAP-2"
+      title: "SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)"
+      phase: 2
+      status: blocked
+      severity: high
+      owner_exq: V3-EXQ-514g
+      unblocks_claims: [SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030]
+      depends_on: ["goal_pipeline:GAP-1"]
+      last_updated: 2026-05-08
+    - id: "goal_pipeline:GAP-3"
+      title: "SD-012 sustained-drive EMA amendment"
+      phase: 3
+      status: open
+      severity: high
+      owner_exq: TBD
+      unblocks_claims: [SD-012, MECH-216, ARC-051]
+      depends_on: []
+      last_updated: 2026-05-08
+    - id: "goal_pipeline:GAP-4"
+      title: "MECH-295 drive->liking->approach cascade Tier-1 retest cohort"
+      phase: 4
+      status: blocked
+      severity: high
+      owner_exq: V3-EXQ-490g
+      unblocks_claims: [MECH-295, ARC-030, MECH-117, Q-040]
+      depends_on: ["goal_pipeline:GAP-1", "goal_pipeline:GAP-3"]
+      last_updated: 2026-05-08
+    - id: "goal_pipeline:GAP-5"
+      title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
+      phase: 5
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: ["goal_pipeline:GAP-4"]
+      last_updated: 2026-05-08
+    - id: "goal_pipeline:GAP-6"
+      title: "MECH-269b V_s staleness-corrected consumer migration"
+      phase: 6
+      status: open
+      severity: medium
+      owner_exq: V3-EXQ-490b
+      unblocks_claims: [MECH-269b]
+      depends_on: []
+      blocking_external: ["external V_s invalidation runtime evolution"]
+      last_updated: 2026-05-08
+---
 # Goal Pipeline Plan (wanting / liking / goal-seeding)
 
 **Registered:** 2026-05-08
