@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-09_mech307_decision_point_forward_sweep_johnson2007",
+  "timestamp_utc": "2026-05-09T10:31:43Z",
+  "claim_ids_tested": ["MECH-307"],
+  "source": {
+    "title": "Neural ensembles in CA3 transiently encode paths forward of the animal at a decision point.",
+    "authors": ["Adam Johnson", "A David Redish"],
+    "year": 2007,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3761-07.2007"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Complementary direct evidence for MECH-307 Gap 4 (write-at-predicted-location). Where Pfeiffer and Foster show forward-sweeps at goal-recall onset, Johnson and Redish show that at decision points specifically the hippocampus sweeps forward, alternating between the available paths. This grounds the architectural reading that the predicted-location representation is generated when it is actionable -- i.e., when the agent must choose between candidates. In REE terms, the conjunction-state should be evaluated at each candidate predicted-imminent location during action selection (which is exactly what V3-EXQ-540's MECH295LikingBridge.compute_conjunction_score_bias does in the per-candidate read loop). Source quality high (J Neurosci); mapping moderate -- maze topology is more constrained than REE z_world and the sweep sequences are choice-relevant rather than goal-relevant per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Johnson and Redish report forward sweeps as a transient and behaviourally inconsistent phenomenon -- they appear at decision points but not all decisions, and not all rats. A REE substrate that depends on per-candidate conjunction-reads must therefore be robust to the case where E1's prediction-at-candidate is unavailable or low-confidence. Otherwise the conjunction-fire-rate metric (V3-EXQ-540 C2 acceptance) will be silent in arms where the substrate could in principle support it but does not exercise it on a given seed."
+  ],
+  "tags": ["mech_307", "hippocampus", "decision_point", "forward_sweep", "candidate_evaluation", "ca3"],
+  "mapping": {
+    "source_claim_statement": "At decision points on a T-based maze, hippocampal CA3 neural ensembles transiently encode positions ahead of the animal, sweeping first down one path and then the other before the animal commits to a direction. The sweeps preferentially represent forward (not backward) trajectories, are influenced by task demands and experience, and co-occur with theta and gamma but not sharp-wave activity.",
+    "ree_translation": "REE's MECH-295 LikingBridge consumer (and the new MECH-307 conjunction-aware extension landed 2026-05-08, ree-v3 6cd0962) reads the conjunction-state at *each* candidate's predicted-imminent location during action selection. Johnson and Redish supply the biological precedent for that per-candidate forward read: at a real decision point in a real animal, the hippocampus actually sweeps forward down each available path in turn. This grounds the V3-EXQ-540 design choice to evaluate the four-way conjunction predicate per-candidate rather than only at the eventually-chosen candidate.",
+    "mapping_caveat": "The Johnson-Redish T-maze has only two candidate paths per decision (left/right) and the sweeps are observed at a discrete topological branch point. REE candidate sets are dimensioned by the action set (typically 4-9 directions in CausalGridWorldV2) and predictions live in continuous z_world rather than at branch points. The per-candidate-read architectural shape transfers cleanly; the spatial-topology vs latent-state geometric difference does not.",
+    "source_context": "Awake rats on T-based decision tasks (n=5 across two strains, F344 and BN); CA3 ensemble recording. Forward-sweep events isolated from theta/gamma-band LFP and from temporal coherence of the place-code reconstruction. Sweeps were rate-modulated by experience (reduced after over-training) and task demands (more pronounced when error recovery was required)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "J Neurosci, well-cited foundational paper for the 'vicarious trial and error' literature. Mapping fidelity moderate -- the per-candidate-read architectural primitive transfers, but the maze geometry constrains how directly the animal data can speak to REE candidate-evaluation. Transfer risk slightly elevated because Johnson-Redish report sweep prevalence as patchy, which is a calibration concern for V3-EXQ-540's conjunction-fire-rate acceptance metric."
+  }
+}

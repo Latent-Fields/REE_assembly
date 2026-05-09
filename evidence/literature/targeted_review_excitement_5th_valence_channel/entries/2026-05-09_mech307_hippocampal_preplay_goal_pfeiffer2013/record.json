@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-09_mech307_hippocampal_preplay_goal_pfeiffer2013",
+  "timestamp_utc": "2026-05-09T10:31:43Z",
+  "claim_ids_tested": ["MECH-307"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals.",
+    "authors": ["Brad E Pfeiffer", "David J Foster"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Direct neurophysiological evidence for the architectural commitment in MECH-307 Gap 4: writes happen at the predicted-imminent location, not at the current location. Pfeiffer and Foster show that before goal-directed navigation begins, the rat hippocampus generates brief sequences encoding spatial trajectories from current position to a remembered goal -- a forward-projected representation of the destination, generated at the moment when memory retrieval is required. The paper anchors the architectural claim that biology routinely uses forward-prediction to establish where downstream processes (here, navigation; in REE, MECH-216 valence write) should be applied. Source quality is high (Nature, well-replicated in the Foster lab and elsewhere); mapping fidelity is high for the architectural shape (forward-sweep at goal-recall time) but moderate for the specific REE write-target translation (REE writes at z_world_predicted, the rat literature describes a place-coded trajectory).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Forward-sweep sequences in the Pfeiffer-Foster paradigm depend on the rat already knowing the goal location (well-trained behaviour). MECH-307 Gap 4 implementation must therefore handle the case where E1's forward prediction is uncertain -- the conjunction-state should not fire when prediction_certainty is low. A naive write-at-predicted-location implementation that ignores prediction confidence would produce conjunction-state writes at noise locations during early learning."
+  ],
+  "tags": ["mech_307", "hippocampus", "preplay", "goal_directed_planning", "forward_sweep", "predicted_location_write"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, the rat hippocampus generates brief sequences (40-200 ms) of place-cell firing that encode spatial trajectories strongly biased to progress from the subject's current location to a known goal location. These sequences predict immediate future behaviour even when the specific start-goal combination is novel; they are generated at moments when memory retrieval is required.",
+    "ree_translation": "MECH-307 Gap 4 says MECH-216 schema readout should write to E1's forward prediction of z_world (the predicted-imminent location), not to current z_world. Pfeiffer and Foster supply the canonical biological precedent: the brain routinely constructs a forward-projected representation of where it is about to be (or where its goal is) and uses that representation to gate downstream processing. In REE, the analog is that VALENCE_WANTING + anticipatory VALENCE_LIKING + z_beta arousal should be written at z_world_predicted (the projected goal location read off E1's rollout) rather than at the current z_world. The conjunction-state then forms in the right place for MECH-205 (sleep-replay-priority) and MECH-292 (ghost-priority) consumers to detect.",
+    "mapping_caveat": "The Pfeiffer-Foster forward sweep is explicitly trajectory-shaped (sequence of place cells from current to goal), which is more elaborate than what MECH-307 Gap 4 requires (single-target write at predicted location). REE only needs the predicted-target part of the biological mechanism, not the full trajectory. The paper supports the principle that biology writes at predicted not current locations; it does not directly support the simplified single-target shortcut. There is also a paradigm gap: the rat task is spatial navigation, while REE's predicted-location write applies to z_world (a learned latent), so the geometric primitive differs even if the functional role matches.",
+    "source_context": "Awake-behaving male Long-Evans rats (n=4), tetrode recording from CA1 (149-273 simultaneously recorded place cells per session) during free goal-directed navigation in a 2x2 m open arena with two reward locations and a randomly chosen home well per trial. Forward-sweep events isolated from local field potential and timing analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Nature, foundational and replicated. Mapping is direct in architectural form (forward-projection-at-recall) but loose in detail (REE's write-at-predicted-location is a simpler operation than the rat's full forward sweep). Transfer risk moderate because rat-to-REE substrate gap is conceptual (place code vs latent state) rather than mechanistic."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-09_mech307_lateral_habenula_negative_pe_matsumoto2007",
+  "timestamp_utc": "2026-05-09T10:31:43Z",
+  "claim_ids_tested": ["MECH-307"],
+  "source": {
+    "title": "Lateral habenula as a source of negative reward signals in dopamine neurons.",
+    "authors": ["Masayuki Matsumoto", "Okihide Hikosaka"],
+    "year": 2007,
+    "venue": "Nature",
+    "doi": "10.1038/nature05860"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "The single strongest piece of evidence for MECH-307 Gap 1 (signed VALENCE_SURPRISE). Matsumoto and Hikosaka demonstrate at the single-unit level that the brain actively splits positive and negative prediction error into distinct anatomical channels: dopamine neurons encode positive PE (excited by reward-predicting cues, inhibited by no-reward cues); lateral habenula encodes negative PE (excited by no-reward cues, inhibited by reward cues); and the habenula response actually leads the dopamine response, with habenula stimulation directly inhibiting DA. This makes the Gap-1 architectural commitment (store signed PE, or split into VALENCE_POSITIVE_SURPRISE and VALENCE_NEGATIVE_SURPRISE) the biologically faithful reading. The current REE substrate's max(0, pe - ema) write at agent.py:3075-3077 is exactly the operation Matsumoto and Hikosaka show biology does NOT do.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Matsumoto and Hikosaka show that the LHb-to-DA inhibition is GABAergic and functionally asymmetric -- LHb suppresses DA on negative-PE trials, but DA does not symmetrically excite LHb on positive-PE trials. A naive REE Gap-1 implementation that treats positive and negative VALENCE_SURPRISE as symmetric (e.g., a single signed scalar with linear consumers) misses this asymmetry and may produce pathological behaviour at extreme PE magnitudes. The split-into-two-channels variant (VALENCE_POSITIVE_SURPRISE + VALENCE_NEGATIVE_SURPRISE) preserves the asymmetry naturally."
+  ],
+  "tags": ["mech_307", "lateral_habenula", "signed_prediction_error", "negative_reward_signal", "dopamine_dichotomy", "valence_surprise"],
+  "mapping": {
+    "source_claim_statement": "In rhesus monkeys performing a visually guided saccade task with positionally biased reward outcomes, lateral habenula neurons are excited by no-reward-predicting targets and inhibited by reward-predicting targets -- the precise mirror image of midbrain dopamine neurons. The habenula excitation precedes the dopamine inhibition in unrewarded trials, and weak electrical stimulation of LHb produces strong inhibition of DA neurons. The LHb is therefore a major source of the negative-reward-prediction-error signal in the DA system.",
+    "ree_translation": "MECH-307 Gap 1 says: VALENCE_SURPRISE in the residue field should be SIGNED (positive PE for excitement, negative PE for dread), not unsigned magnitude. Currently agent.py:3075-3077 writes max(0.0, pe_mag - pe_ema), which collapses positive and negative PE identically -- a bad thing happening unexpectedly produces the same write as a good thing happening unexpectedly. Matsumoto and Hikosaka's evidence is that biology does not have that confusion: the brain literally has two separate single-unit populations, with mirror-image response profiles, that together encode signed PE. The lateral habenula is the missing channel REE's substrate currently lacks. A signed implementation of VALENCE_SURPRISE (or the split-channel implementation with VALENCE_POSITIVE_SURPRISE + VALENCE_NEGATIVE_SURPRISE) is the biologically correct fix; the current unsigned implementation is the bug.",
+    "mapping_caveat": "Macaque single-unit work, on a primate-only saccade task with reward of juice. The Matsumoto-Hikosaka result has been replicated in rodents and other paradigms (Hong & Hikosaka 2008, Bromberg-Martin et al. 2010), so the species-transfer is well-established. The conceptual transfer to REE is direct: signed PE is signed PE regardless of substrate. The remaining uncertainty is whether REE should implement signed PE as a single signed scalar or as two non-negative channels; biology favours the latter (two physical populations) but the engineering tradeoffs may go the other way. V3-EXQ-540's ARM_1_signed_pe arm tests the single-signed-scalar implementation.",
+    "source_context": "Two adult male rhesus monkeys (Macaca mulatta), single-unit recordings during a memory-guided saccade task with positionally biased reward outcomes (one target rewarded, the other not, with positions reversed across blocks). Habenula and DA neurons recorded in separate sessions; reversal dynamics analysed for each population."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Nature, foundational, replicated in rodent and other primate paradigms. Mapping to MECH-307 Gap 1 is direct (signed PE substrate). Transfer risk low because the signed-PE principle is general across vertebrate reward systems and the architectural shape (two anatomical channels with mirror-image responses) is preserved across species."
+  }
+}

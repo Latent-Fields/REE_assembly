@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_418d_sd016_writepath_modes_comparison
 
-Generated: `2026-05-08T23:05:43.671314Z`
+Generated: `2026-05-09T10:38:26.637563Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

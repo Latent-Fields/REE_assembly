@@ -1,6 +1,7 @@
 # Targeted review: VALENCE_EXCITEMENT as a 5th channel in SD-014's hippocampal valence vector
 
-**Pulled:** 2026-05-08. 9 entries.
+**Pulled:** 2026-05-08 (9 entries, SD-014 5th-channel question).
+**Extended:** 2026-05-09 (5 additional entries tagged MECH-307, weekend lit-pull). Total: 14 entries.
 
 **Target claim:** SD-014 (status `provisional` per current registry; SD-014 currently specifies a 4-component valence vector V = [VALENCE_WANTING, VALENCE_LIKING, VALENCE_HARM_DISCRIMINATIVE, VALENCE_SURPRISE] in RBFLayer + ResidueField).
 
@@ -26,7 +27,23 @@
 
 ## Aggregate direction
 
-8 supports, 1 mixed, 0 weakens. Mean confidence: 0.77.
+8 supports, 1 mixed, 0 weakens. Mean confidence: 0.77 (original 2026-05-08 SD-014-tagged pull).
+
+## 2026-05-09 extension: MECH-307-tagged entries
+
+The 9 entries above all tag SD-014 (the 5th-channel question). After MECH-307 was registered as the FIRST-LINE conjunction-architecture proposal, the indexer surfaced MECH-307 as having literature_confidence=0.0 -- the existing entries argue for representational adequacy of anticipatory affect (which MECH-307 also provides) but were not tagged to the new claim. The 2026-05-09 weekend lit-pull added five entries tagged directly to MECH-307, each targeting a distinctive architectural prediction:
+
+| Entry | Paper | Year | Direction | Confidence | Gap addressed |
+|---|---|---|---|---|---|
+| `mech307_lateral_habenula_negative_pe_matsumoto2007` | Matsumoto & Hikosaka, Nature | 2007 | supports | 0.88 | Gap 1 (signed VALENCE_SURPRISE) -- LHb is the anatomical substrate of negative PE; biology splits signed PE into two mirror-image populations rather than collapsing to magnitude |
+| `mech307_hippocampal_preplay_goal_pfeiffer2013` | Pfeiffer & Foster, Nature | 2013 | supports | 0.86 | Gap 4 (write-at-predicted-location) -- hippocampal place-cell sequences depict future paths to remembered goals at memory-recall onset |
+| `mech307_decision_point_forward_sweep_johnson2007` | Johnson & Redish, J Neurosci | 2007 | supports | 0.78 | Gap 4 / consumer-side -- CA3 ensembles sweep forward down each candidate path at decision points; biological precedent for the per-candidate conjunction-read in MECH295LikingBridge.compute_conjunction_score_bias() |
+| `mech307_hippocampal_vta_loop_lisman2005` | Lisman & Grace, Neuron | 2005 | supports | 0.82 | Architectural framework -- biology implements memory-relevant function as a multi-stage loop with no dedicated channel; canonical precedent for the conjunction-as-loop reading |
+| `mech307_pupil_arousal_disrupts_memory_lloyd2025` | Lloyd, Miletic & Nieuwenhuis, Cognition | 2025 | mixed | 0.62 | Gap 3 caveat -- high pupil-linked arousal during encoding can DISRUPT subsequent memory via decision-urgency; Gap-3 z_beta coupling cannot be implemented as monotonic raise, needs inverted-U or context gate |
+
+MECH-307 lit-pull aggregate (2026-05-09 entries only): 4 supports + 1 mixed, mean confidence 0.79. The mixed entry (Lloyd et al. 2025) is included deliberately as a critical-direction balancing entry; without it the lit base would over-represent the supporting case for the conjunction architecture.
+
+The combined synthesis (SD-014 9 + MECH-307 5 = 14 entries) supports both the FIRST-LINE conjunction architecture (MECH-307) and the FALLBACK 6-channel amendment (SD-014). The architectural choice between them remains empirical, to be adjudicated by V3-EXQ-540 (3-arm gap decomposition currently queued) and any successor that compares ARM_2_full_conjunction against ARM_3_alternative_5channel directly. The new MECH-307 entries also surface a substantive design constraint not visible in the 2026-05-08 pull: Gap 3 z_beta coupling must respect the Lloyd et al. inverted-U finding, either by clamping z_beta_increment at a moderate ceiling or by adding a context gate that distinguishes encoding-relevant from urgency-relevant arousal.
 
 ## Five-step argument for the verdict
 

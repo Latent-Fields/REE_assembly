@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-09_mech307_hippocampal_vta_loop_lisman2005",
+  "timestamp_utc": "2026-05-09T10:31:43Z",
+  "claim_ids_tested": ["MECH-307"],
+  "source": {
+    "title": "The hippocampal-VTA loop: controlling the entry of information into long-term memory.",
+    "authors": ["John E Lisman", "Anthony A Grace"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.05.002"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational architectural review providing the anatomical-loop precedent for MECH-307's central architectural claim that biology does not have a 'VALENCE_EXCITEMENT neuron type' but instead implements anticipatory positive affect as a multi-stage loop crossing several structures. Lisman and Grace lay out the hippocampus -> subiculum -> nucleus accumbens -> ventral pallidum -> VTA -> dopamine release back to hippocampus circuit, with each stage adding a distinct contribution (novelty, salience, goal information, dopamine-mediated LTP enhancement). This is exactly the conjunction-as-loop-not-channel argument MECH-307 makes for excitement -- the signal arises from the convergence of multiple inputs at one structure (NAcc), not from a dedicated channel. Source quality high (Neuron review, very well-cited); mapping fidelity high for the architectural conjunction reading; mapping moderate for the specific four-gap structure of MECH-307 because the Lisman-Grace loop is more focused on novelty-driven memory than on excitement-driven anticipation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Lisman-Grace loop is canonically a NOVELTY detector (hippocampus signals 'this is new'), not an EXCITEMENT generator. MECH-307 inherits the architectural shape (loop, not channel) but must be careful not to conflate novelty with anticipatory positive affect. A REE conjunction-state that fires on novelty alone (without the anticipatory-wanting + anticipatory-liking + signed-PE components) would mis-tag novel-but-uninteresting locations as excitement-states, which would corrupt MECH-205 sleep-replay-priority. The conjunction predicate (all four components, not just novelty) is the safeguard."
+  ],
+  "tags": ["mech_307", "hippocampal_vta_loop", "anatomical_convergence", "nacc", "novelty_dopamine", "long_term_memory_gating", "conjunction_as_loop"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus and the midbrain dopaminergic neurons of the ventral tegmental area form a functional loop. The hippocampus detects newly arrived information not already stored in long-term memory; the resulting novelty signal is conveyed via subiculum, nucleus accumbens, and ventral pallidum to the VTA, where it contributes (along with salience and goal information from other inputs) to the novelty-dependent firing of DA cells. In the upward arm of the loop, dopamine is released within the hippocampus, producing enhancement of LTP and learning. The loop regulates the entry of information into long-term memory.",
+    "ree_translation": "MECH-307's central architectural claim is that excitement does not require a new VALENCE channel because it can be constructed from the convergence of existing components -- signed VALENCE_SURPRISE + MECH-216 schema readout coupled to z_beta arousal + anticipatory VALENCE_LIKING + write-at-predicted-location. Lisman and Grace supply the canonical biological precedent for this conjunction-as-loop reading: the brain implements memory-relevant anticipatory dopamine signalling not as a single 'memory-priority' neuron type but as a multi-stage loop that converges several different inputs (novelty from hippocampus, salience and goal information from elsewhere) at the VTA. The output of the loop -- dopamine release at the hippocampus, enhancing LTP -- is the functional-level analog of MECH-307's expected output: the conjunction-state at the predicted-imminent location feeds MECH-205 sleep-replay-priority (the REE equivalent of LTP-enhanced storage). The architectural lesson transfers cleanly: do not add a new channel for excitement; instead, fix the wiring so the conjunction emerges from existing pieces, just as biology assembles novelty-driven memory consolidation from a multi-stage loop.",
+    "mapping_caveat": "The Lisman-Grace loop is canonically a NOVELTY-detection loop, while MECH-307 is about ANTICIPATORY POSITIVE AFFECT (excitement). These are related but distinct phenomena -- novelty can be aversive or neutral, while excitement is specifically positive-valence anticipatory. The architectural shape (loop, not channel; convergence at one structure) transfers; the specific signal content (novelty vs anticipatory-positive) does not. Adcock 2006 (already in this synthesis) is the bridge that ties anticipatory positive arousal specifically to memory consolidation and shows that the Lisman-Grace loop is the substrate the anticipatory-affect signal rides on. So the mapping is: Lisman-Grace gives the architectural precedent (conjunction-as-loop), Adcock 2006 gives the functional content (anticipatory positive arousal hits the same loop).",
+    "source_context": "Theoretical review (Neuron, 2005) integrating decades of anatomical tracing studies, single-unit recording in VTA and hippocampus, and electrophysiology of DA-LTP interactions. The paper does not present new data; it synthesises existing evidence into a circuit-level model."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Highly cited, foundational circuit-level review. Source quality high but reduced from 0.95 because it is a review, not new data. Mapping fidelity high for the conjunction-as-loop architectural reading (the key MECH-307 commitment) but moderate for the specific four-gap structure because the loop is novelty-focused. Transfer risk modest -- the architectural shape is robust across mammalian species, and the bridge to MECH-307 functional content runs through Adcock 2006."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_excitement_5th_valence_channel",
+  "entry_id": "2026-05-09_mech307_pupil_arousal_disrupts_memory_lloyd2025",
+  "timestamp_utc": "2026-05-09T10:31:43Z",
+  "claim_ids_tested": ["MECH-307"],
+  "source": {
+    "title": "Pupil-linked arousal counteracts the positive effects of reward anticipation on incidental memory encoding.",
+    "authors": ["Beth Lloyd", "Steven Miletic", "Sander Nieuwenhuis"],
+    "year": 2025,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2025.106237"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Important critical-direction entry that complicates MECH-307 Gap 3 (z_beta arousal coupling to schema readout). Lloyd, Miletic, and Nieuwenhuis show that in a monetary incentive delay task with a 24-hour surprise memory test, higher pupil-linked arousal during encoding actually IMPAIRED subsequent memory, partially counteracting the dominant positive effect of reward anticipation. The authors suggest the mechanism is decision urgency: high arousal pushes the system toward fast/reactive processing modes that disrupt encoding. This is a critical caveat for MECH-307: the Gap-3 architectural commitment (raise z_beta in proportion to schema_salience) cannot be a monotonic 'more arousal is better for memory' coupling. There is an inverted-U or context-gated relationship that the substrate must respect. Confidence is moderate (not low) because the result is published, statistically robust, and the alternative-mechanism explanation (decision urgency) is plausible. Direction is mixed because the paper confirms the dominant positive effect of reward anticipation on memory while demonstrating a counteracting arousal effect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lloyd et al. find that higher pupil-linked arousal during encoding HURTS memory, opposite to the naive Adcock-2006-style story that anticipatory arousal helps memory consolidation. If MECH-307 Gap 3 is implemented as a simple monotonic z_beta increment proportional to schema_salience, the substrate may produce conjunction-state writes at locations where the high z_beta is actually disrupting encoding rather than facilitating it. The substrate needs either an inverted-U on z_beta-coupling-strength or a context gate that distinguishes encoding-relevant from urgency-relevant arousal.",
+    "The result is from one task (monetary incentive delay with surprise memory test) and one population (young adults). The counteracting-arousal effect may be paradigm-specific. MECH-307's architectural commitment should not be fully revised on a single paper; rather, the falsification design (V3-EXQ-540 successor measuring conjunction-state to memory-formation tie-in) should explicitly test whether the inverted-U holds in REE."
+  ],
+  "tags": ["mech_307", "pupil_arousal", "reward_anticipation", "memory_encoding", "decision_urgency", "z_beta_coupling_caveat"],
+  "mapping": {
+    "source_claim_statement": "In a monetary incentive delay task followed by a surprise memory test 24 hours later (n=33 healthy young adults), reward anticipation produced the expected positive direct effect on subsequent memory. However, pupil-linked arousal during encoding had a NEGATIVE effect on subsequent memory, partially counteracting the reward-anticipation benefit. Mediation analysis suggested the mechanism is decision urgency -- high arousal pushed participants toward faster, more reactive responses that disrupted incidental encoding of the cue stimuli.",
+    "ree_translation": "MECH-307 Gap 3 says: when MECH-216 schema_salience fires above threshold, also raise z_beta arousal proportionally. The architectural assumption (implicit in the synthesis) is that this z_beta increase is monotonically helpful for downstream memory consolidation -- it ties into the Adcock 2006 prediction that anticipation-marked locations get higher replay priority. Lloyd et al. complicate that assumption: in humans, the same kind of anticipatory arousal that should help consolidation also produces decision urgency that disrupts encoding. The translation to REE is a constraint, not a refutation: the Gap-3 z_beta coupling cannot be implemented as a simple monotonic raise. There must be either an inverted-U (high arousal beyond some threshold becomes counterproductive) or a context gate (arousal coupled to schema readout helps memory; arousal coupled to time pressure hurts encoding). The substrate must distinguish these two arousal sources or risk producing conjunction-state writes at locations where the high z_beta is actually corrupting the residue field rather than amplifying its functional role.",
+    "mapping_caveat": "Single human behavioural study, n=33, monetary incentive delay paradigm. The counteracting-arousal effect is statistically robust within the paradigm but its generalisation across paradigms is unclear. The mechanism the authors propose (decision urgency) is plausible but not directly demonstrated -- they show a mediation pattern, not a causal manipulation. For MECH-307's purpose, the paper functions as a *constraint* on Gap 3 implementation rather than a falsification of MECH-307 as a whole. The architectural commitment (z_beta couples to schema readout) survives; the implementation detail (monotonic vs context-gated) is what the paper informs.",
+    "source_context": "Healthy young adults (n=33), monetary incentive delay encoding task with cue stimuli, 24-hour delayed surprise recognition memory test. Pupil dilation recorded continuously during encoding; trial-level pupil amplitude entered as a covariate. Mediation analysis tested whether pupil-arousal mediated the reward-to-memory effect."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Cognition (peer-reviewed, statistically defensible result), but single-study and one paradigm. Mapping fidelity moderate -- the result speaks to z_beta coupling implementation but not to the conjunction-state architecture as a whole. Transfer risk moderate-elevated because the decision-urgency mechanism may be human-task-specific and the REE substrate has different action-selection dynamics. The paper is included as a critical balancing entry, not as a falsifier."
+  }
+}
