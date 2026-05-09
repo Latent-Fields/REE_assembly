@@ -72,12 +72,12 @@ closure_plan:
     - id: "sd033_governance:CHK-PUSH"
       title: "REE_assembly + ree-v3 pushed; WORKSPACE_STATE + TASK_CLAIMS closed"
       phase: 3
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: []
       depends_on: ["sd033_governance:CHK-SD034", "sd033_governance:CHK-MECH266", "sd033_governance:CHK-MECH267", "sd033_governance:CHK-MECH268"]
-      last_updated: 2026-04-21
+      last_updated: 2026-05-09
 ---
 # SD-033 Governance Plan
 
@@ -200,9 +200,9 @@ This plan targets the OCD side of the axis by name, but the same substrate landi
 - [x] SD-034 closure operator implemented 2026-04-20 (ree_core/governance/closure_operator.py); EXP-0156/0162 scripts authored (V3-EXQ-460, V3-EXQ-466) and queued; all landing sub-tests PASS; contracts regression suite green (24/24)
 - [x] MECH-267 mode-conditioned hippocampal proposals implemented 2026-04-20 (ree_core/hippocampal/module.py operating_mode parameter + ree_core/utils/config.py HippocampalConfig.mode_conditioning_enabled + per-mode CEM-noise multipliers); EXP-0158/0161 scripts authored (V3-EXQ-462, V3-EXQ-465) as substrate-landing diagnostics; all 10/10 sub-tests PASS on smoke; behavioural successors deferred pending EXP-0155 (cue_action_proj diagnostic) and forced-replay injection hook respectively
 - [x] MECH-268 dACC conflict saturation implemented 2026-04-20 (ree_core/cingulate/dacc.py f_sat = 1.0 / (1.0 + strength * max(0, n_rec - grace)) over FIFO outcome history; ClosureOperator wired to call dacc.reset_outcome_history(); REEConfig.from_dims wired with 4 saturation knobs + closure_reset_outcome_history); EXP-0159 (V3-EXQ-463, 7 sub-tests) and EXP-0164 (V3-EXQ-468, 6 sub-tests, 4-arm A/B/C/D interaction) authored as substrate-landing diagnostics; all 13/13 sub-tests PASS on smoke; behavioural arms (500+ step sustained outcome / counter-evidence injection) deferred -- need env extensions not on roadmap
-- [ ] REE_assembly + ree-v3 pushed
-- [ ] WORKSPACE_STATE Recent Work entry added
-- [ ] TASK_CLAIMS closed as done
+- [x] REE_assembly + ree-v3 pushed (commits 9afd427e73, bbed5361d6, 63280c917f, f81de60558, 38453bfc8d on origin/master; ree-v3 substrate landings on origin/main)
+- [x] WORKSPACE_STATE Recent Work entries added (governance-cycle 2026-04-28T2156Z; commitment-closure-plan-doc 2026-05-08T19:27Z; queue-completeness-mech267-mech268 2026-05-08T20:12Z; sd-018-substrate-queue 2026-05-08T20:30Z)
+- [x] TASK_CLAIMS closed as done (no active SD-033 claims as of 2026-05-09T19:26Z)
 
 ## EXQ-script authoring gated on substrate
 
