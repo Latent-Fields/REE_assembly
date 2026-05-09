@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-09T10:38:26.637563Z",
+  "generated_at_utc": "2026-05-09T12:36:50.098720Z",
   "items": [
     {
       "backlog_id": "EVB-0005",
@@ -4201,11 +4201,11 @@
     {
       "claim_id": "MECH-204",
       "dispatch_mode": "tuning_sweep",
-      "executed_by": "V3-EXQ-500",
-      "executed_queue_id": "V3-EXQ-500",
-      "objective": "Tune REEConfig.rem_precision_recalibration_step (Option A linear interpolation gain on E3._running_variance toward 1.0/precision_at_rem_entry) by sweeping it across a principled range and identifying the regime where post-REM precision tracks the captured zero-point reference without over-correcting or under-correcting. Plan-of-record Q1 in REE_assembly/evidence/planning/sleep_substrate_plan.md proposed default 0.1 as a placeholder; this proposal closes the open question with empirical evidence rather than guesswork.",
+      "executed_by": "V3-EXQ-541b",
+      "executed_queue_id": "V3-EXQ-541b",
+      "objective": "Tune REEConfig.rem_precision_recalibration_step (Option A linear interpolation gain on E3._running_variance toward 1.0/persistent_zero_point) by sweeping it across a principled range and identifying the regime where post-REM precision tracks the captured zero-point reference without over-correcting or under-correcting. Plan-of-record Q1 in REE_assembly/evidence/planning/sleep_substrate_plan.md proposed default 0.1 as a placeholder; this proposal closes the open question with empirical evidence rather than guesswork. V3-EXQ-541a confirmed F1 substrate works at step=0.1 (C1+C2 PASS) but C3 cross-arm divergence stayed under threshold; this sweep tests whether step tuning alone clears C3 or whether Phase 7 / Option B becomes load-bearing.",
       "priority": "medium",
-      "proposal_id": "EXP-0171",
+      "proposal_id": "EXP-MECH204-STEP-SWEEP",
       "proposal_type": "experimental",
       "status": "executed",
       "target_repo": "ree-v3"

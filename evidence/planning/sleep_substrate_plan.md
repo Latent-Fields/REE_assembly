@@ -239,6 +239,32 @@ read-site at action selection consuming `precision_at_rem_entry` directly.
 Per Q-042 verdict, biology runs both. We add the second arm only if
 Phase 1 alone is insufficient.
 
+**Phase 7 dependency on REM-precision-recalibration lit-pull**
+(2026-05-09): the Q-042 lit-pull synthesis covers general waking
+precision-update timing (Iglesias 2013, Behrens 2007, Aston-Jones &
+Cohen 2005, Frank 2015, Schwartenbeck 2014). It does NOT specifically
+address REM-phase recalibration semantics or the 5-HT zero-point
+mechanism's relationship to the broadcast arm. A focused lit-pull on
+REM-phase timing (anchors: Hobson AIM, Pace-Schott + Stickgold
+cumulative-cycle effects, Aghajanian + Fishbein 5-HT withdrawal and
+post-REM precision recovery, Walker & Stickgold sleep-dependent
+precision improvements) was queued 2026-05-09 to inform whether
+Phase 7's broadcast site should:
+- (a) read `_persistent_zero_point` directly (the F1 cumulative
+  reference) at action selection,
+- (b) read `_precision_at_rem_entry` (the most-recent moment-snapshot)
+  at action selection,
+- (c) read the *difference* between current rv and either of the above,
+  scaled by some gain.
+
+The lit pull gates the architectural choice (a) vs (b) vs (c). Until
+its verdict lands, Phase 7 implementation is paused even if V3-EXQ-541b
+results indicate F1+step-tuning is insufficient. **F2 (apply-before-
+recapture) is NOT in the option set for Phase 7 -- decision-log entry
+2026-05-09 records this**: biology does not run any "recalibrate-then-
+recapture" pattern; F2 would be a software shape divergent from the
+neuroscience oracle.
+
 GAP-5 (arousal-driven entry) is intentionally NOT in this plan. Per the
 sleep-aggregation cluster doc C1, SD-037-driven entry is V4 scope and
 deferred until V3 entry trigger has matured under empirical pressure.
@@ -351,6 +377,72 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09 - V3-EXQ-541a F1 result; F2 discarded; EXP-0171 sweep + REM lit-pull queued
+
+V3-EXQ-541a (F1 substrate) ran on DLAPTOP-4.local (95 sec) immediately
+after the F1 fix landed. Result:
+
+  C1 PASS (3/3 ARM_1 seeds fired every cycle)
+  C2 PASS (mean_abs_delta = 3.62e-3 vs threshold 1e-3; FOUR ORDERS OF
+       MAGNITUDE improvement over V3-EXQ-541's 9.05e-8 within-cycle no-op)
+  C2 sign_consistency = 1.00 (direction always correct)
+  C3 FAIL (cross-arm divergence = 5.64e-3 vs threshold 5e-2; ten times
+       closer than V3-EXQ-541's 2.94e-7 but still under threshold)
+
+Interpretation: F1 mechanism works as designed. Cycle records (ARM_1
+seed 42) show genuine bidirectional rv movement: ep=1 cold-start no-op
+(target = first capture by construction); ep=3 delta=+1.24e-3 (rv pulled
+up toward 0.286); ep=5 delta=-5.48e-3 (rv pulled down toward 0.291);
+ep=7 delta=-5.27e-3 (rv pulled down toward 0.296). The per-cycle
+recalibration is doing its job, but the per-cycle effect (~5e-3) is
+largely re-absorbed by waking drift over the ~400 steps between sleep
+cycles, so cumulative cross-arm divergence stays at ~0.5%.
+
+F2 (apply-before-recapture) discarded as a follow-on option after
+checking biological evidence. Q-042 lit-pull synthesis (5 entries:
+Iglesias 2013 basal-forebrain high-level PE, Behrens 2007 ACC
+volatility, Aston-Jones & Cohen 2005 LC phasic NA, Frank 2015 STN-preSMA
+threshold, Schwartenbeck 2014 DA policy precision) shows biology runs
+two arms: a late post-outcome statistical update (Option A) AND a
+separate pre-commit broadcast at action selection (Option B). Neither
+matches F2's "recalibrate-then-recapture" semantic. F2 is a software
+shape with no biological referent; pursuing it would diverge REE from
+the neuroscience oracle. Decision: skip F2; the natural next move when
+F1 is insufficient is F3 (Phase 7 / Option B broadcast read at action
+selection), which IS the second arm biology runs.
+
+Two parallel follow-ons queued instead:
+
+(1) EXP-0171 step-size sweep instantiated as V3-EXQ-541b: 5-arm
+parametric sweep of `rem_precision_recalibration_step` in {0.0_off,
+0.05, 0.1, 0.25, 0.5}. Primary metrics tracking_quality (1 - mean(
+|rv_after - target_variance| / target_variance)) and overshoot_rate
+(fraction of cycles where rv crosses target). Lightweight: zero new
+substrate code (the step is already a config knob landed in F1).
+Pre-registered acceptance: at least one step in the biologically
+defensible band {0.05, 0.1, 0.25} produces tracking_quality >= 0.7 with
+overshoot_rate <= 0.1 in >= 2/3 seeds AND clears C3 (cross-arm
+divergence >= 5%). FAIL-route: if no step satisfies both criteria,
+F1+step-tuning alone is insufficient and Phase 7 / Option B becomes
+load-bearing.
+
+(2) Targeted lit-pull on REM-phase precision recalibration timing
+queued via /lit-pull. Anchors: Hobson AIM model (REM as distinct
+neuromodulatory regime), Pace-Schott + Stickgold (cumulative
+across-cycle effects), Aghajanian + Fishbein (5-HT withdrawal and
+post-REM precision recovery), Walker & Stickgold (sleep-dependent
+perceptual precision improvements). Question: does biology
+specifically support F1 (slow-EMA cumulative reference) vs F3
+(broadcast read against the reference at action selection) for
+**REM-phase** recalibration as distinct from the general waking
+precision-update timing covered by Q-042. Output: synthesis verdict
+informing Phase 7 design. Gates Phase 7 / Option B implementation.
+
+Status table row GAP-1 unchanged at `in-progress`. The owner-EXQ rolls
+from V3-EXQ-541a to V3-EXQ-541b for the immediate validation arc.
+Phase 7 dependency on the lit-pull recorded in the Phase 7 description
+(below).
 
 ### 2026-05-09 - V3-EXQ-541 FAIL diagnosis + F1 substrate fix; V3-EXQ-541a queued
 
