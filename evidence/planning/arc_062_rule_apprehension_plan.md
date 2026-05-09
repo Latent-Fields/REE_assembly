@@ -19,9 +19,9 @@ closure_plan:
     - id: "arc_062_rule_apprehension:GAP-B"
       title: "MECH-309 monomodal-collapse falsifier unrun (ARM_0 single-head vs ARM_1 gated-heads on SD-054)"
       phase: 2
-      status: open
+      status: queued
       severity: load-bearing
-      owner_exq: TBD
+      owner_exq: V3-EXQ-543
       unblocks_claims: [MECH-309, ARC-062, SD-029]
       depends_on: ["arc_062_rule_apprehension:GAP-A"]
       cross_plan_link: ["commitment_closure:GAP-1"]
@@ -346,7 +346,7 @@ The resume primitive. Updated every session that touches this cluster.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-A | 1 | done | nothing | Substrate landed (ree_core/policy/gated_policy.py + use_gated_policy flag + REEAgent wiring + 5 contract tests + V3-EXQ-542 substrate-readiness diagnostic 5/5 PASS) | V3-EXQ-542 | 2026-05-09 |
-| GAP-B | 2 | open | GAP-A | Pre-register Phase 2 acceptance criteria (already drafted above); queue 2-arm + density gradient EXQs | TBD | 2026-05-09 |
+| GAP-B | 2 | queued | runner pickup | V3-EXQ-543 queued (single-arm core 2-arm contrast at ARM_1_med density per "single-arm Phase 2 first" guidance; C2/C3/C4 measured with C1 non_contributory; F1/F2 falsifier signatures pre-registered). Density-gradient sub-arms ARM_1_low/med/high and R1 input-ablation ARM_1a/b/c held for Phase 2b on PASS | V3-EXQ-543 | 2026-05-09 |
 | GAP-C | 3 | open | GAP-B PASS | Wire discriminator output into LateralPFCAnalog.update() source vector | TBD | 2026-05-09 |
 | GAP-D | 3 | open | GAP-C | Add bias head params to E3 optimiser; default-flag flip; queue GAP-1 validation EXQ | TBD | 2026-05-09 |
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
