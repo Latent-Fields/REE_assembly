@@ -9,9 +9,9 @@ closure_plan:
     - id: "arc_062_rule_apprehension:GAP-A"
       title: "ARC-062 substrate not implemented (gated-policy heads + learned context discriminator)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
-      owner_exq: TBD
+      owner_exq: V3-EXQ-542
       unblocks_claims: [ARC-062, MECH-309]
       depends_on: []
       cross_plan_link: ["commitment_closure:GAP-1"]
@@ -345,7 +345,7 @@ The resume primitive. Updated every session that touches this cluster.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-A | 1 | open | nothing | Implement gated_policy.py module + flag + contracts; queue Phase 1 substrate-readiness EXQ | TBD | 2026-05-09 |
+| GAP-A | 1 | done | nothing | Substrate landed (ree_core/policy/gated_policy.py + use_gated_policy flag + REEAgent wiring + 5 contract tests + V3-EXQ-542 substrate-readiness diagnostic 5/5 PASS) | V3-EXQ-542 | 2026-05-09 |
 | GAP-B | 2 | open | GAP-A | Pre-register Phase 2 acceptance criteria (already drafted above); queue 2-arm + density gradient EXQs | TBD | 2026-05-09 |
 | GAP-C | 3 | open | GAP-B PASS | Wire discriminator output into LateralPFCAnalog.update() source vector | TBD | 2026-05-09 |
 | GAP-D | 3 | open | GAP-C | Add bias head params to E3 optimiser; default-flag flip; queue GAP-1 validation EXQ | TBD | 2026-05-09 |
@@ -443,6 +443,71 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-09 - GAP-A done (Phase 1 substrate landed; V3-EXQ-542 5/5 PASS)
+
+Phase 1 substrate landed. New module
+[ree-v3/ree_core/policy/gated_policy.py](../../../ree-v3/ree_core/policy/gated_policy.py)
+implements `GatedPolicy` (N=2 scoring heads sharing E3 candidate features +
+3-stream context discriminator on `(z_world, z_self, z_harm_a)`) plus
+`GatedPolicyConfig` and `GatedPolicyOutput`. Symmetry-broken init on the
+heads' last-Linear bias (+/- `head_init_bias_offset` default 0.05) so the
+two heads can differentiate from step 0 under any training pressure.
+`disc_init_scale=0.1` keeps the discriminator output near 0.5 at init,
+avoiding early head over-commitment.
+
+REEConfig flag `use_gated_policy` (default False, bit-identical OFF) wired
+through `REEConfig.from_dims` with per-knob defaults (`gated_policy_n_heads=2`,
+`gated_policy_disc_hidden=24`, `gated_policy_disc_init_scale=0.1`,
+`gated_policy_head_hidden=32`, `gated_policy_bias_scale=0.1`,
+`gated_policy_head_init_bias_offset=0.05`).
+
+REEAgent wiring composes `gated_policy_score_bias` additively into
+`dacc_score_bias` immediately before the MECH-295 block, parallel to the
+dACC / lateral_pfc / ofc composition pattern. **No connection to SD-033a
+in Phase 1** -- that wiring is Phase 3 (closes commitment_closure GAP-1)
+per the plan-of-record. Per-episode `reset()` clears diagnostic counters
+on the GatedPolicy module (no persistent state to clear; module is
+stateless across ticks).
+
+5 contract tests in
+[ree-v3/tests/contracts/test_gated_policy.py](../../../ree-v3/tests/contracts/test_gated_policy.py)
+landed: C1 default-off no-op + C2 backward-compat + C3 discriminator output
+in [0, 1] across diverse latents + C4 head differentiation under training
+pressure (output-divergence metric, >5x growth on held-out batch after 200
+SGD steps) + C5 MECH-094 simulation_mode gate. All 5 PASS; full ree-v3
+preflight + contracts 249/249 PASS (244 prior + 5 new). Bit-identical OFF
+guarantee verified.
+
+V3-EXQ-542 substrate-readiness diagnostic 5/5 PASS (Mac runner,
+2026-05-09T20:22:11Z, `v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z.json`).
+Five sub-tests UC1-UC5 cover forward-pass instantiation, master-OFF
+no-op, discriminator input sensitivity, head differentiation under
+training pressure, and MECH-094 simulation gate. UC2 z_world pixel-match
+across flag-off vs flag-on dropped from acceptance criteria because the
+GatedPolicy `nn.Linear` inits consume the global RNG between paths so
+the rest of the agent's randomly-initialised weights diverge by
+construction; substrate-level backward-compat (flag OFF -> module is
+None; flag ON -> module instantiates without raising; both sense() clean)
+is the right contract at the substrate layer, and the pixel-level no-op
+is exercised by contract test C1 against a single agent that never
+instantiates GatedPolicy. UC3 threshold for discriminator output range
+set to 0.001 (above floating-point noise floor; substantial discriminator
+variation is a Phase-2 training signal, not a Phase-1 init signal --
+disc_init_scale=0.1 deliberately keeps the sigmoid output flat near 0.5
+at init).
+
+GAP-A status `open` -> `done` in YAML frontmatter and body status table;
+`last_updated` 2026-05-09; owner_exq populated as V3-EXQ-542. Phase 2
+(GAP-B monomodal-collapse falsifier on SD-054) remains `open` and is the
+next-thing-to-queue (separate session per the plan-of-record's six-phase
+sequencing -- do not bundle Phase 2 EXQ in this same session).
+
+Cross-plan link: commitment_closure_plan.md GAP-1 remains `blocked` on
+both arc_062 GAP-A (now done) and arc_062 GAP-B (still open). GAP-1
+unblock cascade requires Phase 2 PASS (then Phase 3 wires discriminator
+into SD-033a `LateralPFCAnalog.update()` source vector + adds bias-head
+parameters to E3 optimiser).
 
 ### 2026-05-09 - Plan registered
 
