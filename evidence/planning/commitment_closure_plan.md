@@ -9,13 +9,18 @@ closure_plan:
     - id: "commitment_closure:GAP-1"
       title: "SD-033a bias head untrained (Go-side mechanically silent)"
       phase: 1
-      status: open
+      status: blocked
       severity: load-bearing
       owner_exq: TBD
       unblocks_claims: [SD-033a, MECH-262, SD-034]
-      depends_on: []
-      blocking_external: ["training-protocol decision Q1 (phased vs joint vs frozen-trigger)"]
-      last_updated: 2026-05-08
+      depends_on:
+        - "arc_062_rule_apprehension:GAP-A"
+        - "arc_062_rule_apprehension:GAP-B"
+      cross_plan_link:
+        - "arc_062_rule_apprehension:GAP-C"
+        - "arc_062_rule_apprehension:GAP-D"
+      blocking_external: []
+      last_updated: 2026-05-09
     - id: "commitment_closure:GAP-2"
       title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence unauthored"
       phase: 2
@@ -222,33 +227,54 @@ downstream item. Phases ordered by leverage. Where work depends on adjacent
 non-governance paths (sleep substrate; SD-006 async; V_s anchor reset),
 that is called out as a deviation in the [Decision log](#decision-log).
 
-### Phase 1: SD-033a bias-head training (GAP-1)
+### Phase 1: SD-033a bias-head training (GAP-1) -- REFRAMED 2026-05-09
 
-Smallest scope, highest leverage. Without a trained Go-side bias, the entire
-Go / Hold / No-Go loop runs with bias=0 at the SD-033a output, and every
-behavioural arm of the OCD battery tests a substrate that cannot bias action
-selection.
+**Status:** blocked on the rule-apprehension cluster's Phase 1 + Phase 2.
+The ARC-062 / MECH-309 cluster registered 2026-05-08 reframes this gap:
+SD-033a's bias head needs a non-oracle rule signal to train against, and
+that signal lives upstream of SD-033a in the apprehension layer. See
+[arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md)
+for the parent plan; this Phase 1 closes when that plan's Phase 3
+(GAP-C + GAP-D) lands.
 
-Deliverables:
+The original Phase 1 deliverable list proposed a phased pre-training-on-
+rule-cue-curriculum approach. That approach presupposed an oracle
+`rule_cue_id` label that, per MECH-309's logical-necessity claim, cannot
+exist honestly in REE — trainers weight rules they do not invent. Pre-
+training the bias head on oracle labels would produce a substrate that
+learns supervised mappings in a lab but has no honest signal source in
+deployment. The reframe drops the oracle-curriculum approach in favour
+of joint training through ARC-062's discriminator-driven gradient path.
 
-1. Training protocol decision (Q1 in [Open questions](#open-questions)):
-   joint with E3 vs phased pre-training vs frozen until task-conditional
-   trigger. Cluster-doc default: phased, with the bias head warmed on a
-   small rule-cue -> action paired-association curriculum, then handed
-   to E3 joint training.
-2. Loss design: per-candidate score-bias regression target derived from
-   the rule-cue label (cluster doc Option A: per-candidate; Option B:
-   uniform -- we have committed to Option A).
+Reframed deliverables (all gated on arc_062_rule_apprehension Phase 1 +
+Phase 2 PASS):
+
+1. ARC-062 discriminator output wired into `LateralPFCAnalog.update()`
+   source vector as a third projection alongside `delta_proj(z_delta)`
+   and `world_pool_weight * world_proj(z_world)`. Owned by
+   arc_062_rule_apprehension GAP-C / Phase 3.
+2. Bias head's `requires_grad_(True)` and added to E3 optimiser; gradient
+   flows from existing E3 path through `score_bias` back to head weights
+   — no separate loss term. Owned by arc_062_rule_apprehension GAP-D /
+   Phase 3.
 3. Master flag `use_lateral_pfc_analog` defaults flipped to True for
-   experiments tagged with rule-cue env; remains False elsewhere
-   (backward compatibility per existing config contract).
-4. Validation EXQ: 2-arm ablation (head trained vs frozen-zero) on the
-   simplest rule-cue gridworld. Acceptance: trained-head arm
-   demonstrates rule-cue-conditional action bias; frozen-zero arm
-   reproduces baseline.
+   experiments that *also* enable `use_gated_policy` (the ARC-062 flag);
+   remains False elsewhere. Replaces the original "rule-cue-tagged
+   experiments" condition.
+4. Validation EXQ: 2-arm ablation (head trainable vs frozen-zero) on the
+   ARC-062 + SD-054 stack. Acceptance: trainable arm shows non-zero
+   `score_bias` after N episodes AND non-trivial reef/forage strategy
+   split (cross-link to ARC-062's monomodal-collapse falsifier in
+   arc_062_rule_apprehension GAP-B / Phase 2).
 
 Contract test: `lateral_pfc_analog.score_bias` non-zero on at least one
 candidate after training, zero before.
+
+Original Q1 ("phased vs joint vs frozen-trigger training protocol") is
+RETIRED -- joint-with-E3 via gradient-through-score_bias is the only
+architecturally honest option once the rule signal is non-oracle. See
+[Decision log](#decision-log) 2026-05-09 entry for the full reframing
+rationale.
 
 ### Phase 2: V3-EXQ-461 EXP-0157 authoring (GAP-2)
 
@@ -419,7 +445,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | open | training-protocol decision (Q1) | Decide phased vs joint vs frozen-trigger; queue trained-vs-frozen ablation | TBD | 2026-05-08 |
+| GAP-1 | 1 | blocked | arc_062_rule_apprehension Phase 1 + Phase 2 (GAP-A + GAP-B) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; resume when ARC-062 PASSes monomodal-collapse falsifier | TBD | 2026-05-09 |
 | GAP-2 | 2 | open | nothing internal | Author v3_exq_461 via /queue-experiment; reserve V3-EXQ-461 | V3-EXQ-461 | 2026-05-08 |
 | GAP-3 | 3 | open | env scoping decision (Q2) | Pick tolerance-window default, scope counter-evidence injection API, dual-cue trigger primitive | env infra (no EXQ) | 2026-05-08 |
 | GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
@@ -529,6 +555,41 @@ both this plan and the sleep plan.
 
 Append-only. Every architectural choice + every deviation pause / resume.
 
+### 2026-05-09 - GAP-1 reframed as ARC-062-dependent
+
+Phase 1 deliverable 1 (Q1 training protocol) and deliverable 4 (rule-cue
+gridworld) both presupposed an oracle `rule_cue_id` label that the
+architecture says doesn't exist (MECH-309: trainers weight rules they do
+not invent). Per the rule-apprehension cluster registered 2026-05-08
+(MECH-309 / ARC-062 / ARC-063), the rule-creating substrate is ARC-062
+(V3 weak reading) / ARC-063 (V4 strong reading), not the env. SD-033a
+sits *downstream* of that layer in the apprehension → commitment
+pipeline.
+
+GAP-1 reclassified `open → blocked` on `arc_062_rule_apprehension:GAP-A/B`
+(parent plan-of-record [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md)
+registered same session). The Phase 1 deliverable list is rewritten so
+the bias head is trained jointly with E3 via the existing score-aggregation
+gradient path, with the rule signal arriving from ARC-062's discriminator
+rather than from an oracle label.
+
+Two preceding lit-pulls 2026-05-09 grounded the architectural decisions:
+- Pull A (`targeted_review_arc_062_rule_apprehension/` 8 entries) resolved
+  R1 (multi-stream discriminator input), R2 (N=2 heads at Phase 1, V4 caveat
+  on continuous mixed-selectivity), R3 (Phase-1 default = score_bias level).
+- Pull B (`targeted_review_arc_062_refuge_forage_ecology/` 6 entries)
+  resolved R4 (multi-signature tolerance window, PASS rule = at least
+  2 of 4 acceptance criteria hold across seeds).
+
+Q1 in [Open questions](#open-questions) is retired by the reframe; joint-
+with-E3 via gradient-through-score_bias is the only architecturally honest
+option once the rule signal is non-oracle. The plan-doc-default phased-
+pre-training option is dropped.
+
+Cross-plan link to `arc_062_rule_apprehension_plan.md` GAP-A / B / C / D
+established. Sessions that touch *both* plans should update the
+[Status table](#status-table) on both.
+
 ### 2026-05-08 - Plan registered
 
 Plan-of-record commitment_closure_plan.md registered. Ten gaps surfaced and
@@ -617,11 +678,16 @@ captured as GAP-5 / Phase 6.
 
 Numbered for reference from future sessions.
 
-- **Q1**: SD-033a bias-head training protocol -- joint with E3 vs phased
-  pre-training vs frozen until task-conditional trigger? Default proposed:
-  phased pre-training on a small rule-cue -> action paired-association
-  curriculum, then handed to E3 joint training. Loss: per-candidate
-  score-bias regression target derived from the rule-cue label.
+- **Q1**: ~~SD-033a bias-head training protocol -- joint with E3 vs phased
+  pre-training vs frozen until task-conditional trigger?~~ **RETIRED
+  2026-05-09.** Resolved by the ARC-062 / MECH-309 cluster reframe: joint-
+  with-E3 via gradient-through-score_bias is the only architecturally
+  honest option once the rule signal is non-oracle. The phased-pre-
+  training-on-rule-cue-curriculum default presupposed an oracle
+  `rule_cue_id` label that MECH-309 says cannot exist honestly in REE.
+  See [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md)
+  Open Question R1 / R2 / R3 / R4 for the resolved-default values
+  (biology-anchored from Pull A + Pull B lit-pulls 2026-05-09).
 - **Q2**: Phase 3 tolerance-band completion default -- fixed window
   (T_default ~ 1 step / 1 grid cell) vs adaptive (scaled to env size)?
   Default proposed: fixed window per env config, configurable per

@@ -2501,7 +2501,28 @@
       "implemented_session": "2026-04-19-cingulate-cluster-implementation",
       "implemented_utc": "2026-04-19T00:00:00Z",
       "validation_experiment": "V3-EXQ-445 three-arm ablation"
+    },
+    {
+      "sd_id": "ARC-062",
+      "title": "Rule-apprehension architectural slot, weak reading: gated-policy heads + learned context discriminator. V3 instantiation of the rule-creating substrate MECH-309 identifies as logically necessary.",
+      "status": "candidate_v3_pending",
+      "ready": true,
+      "ready_blocked_by": null,
+      "design_doc": "evidence/planning/arc_062_rule_apprehension_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-309",
+        "ARC-062",
+        "SD-033a",
+        "MECH-262",
+        "SD-029"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4).",
+      "priority": 2,
+      "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
+      "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"
     }
   ],
-  "last_seen_session": "governance-cycle-2026-05-08T2221Z"
+  "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"
 }
