@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-09T12:51:29.907902Z`
+Generated: `2026-05-09T13:42:37.893450Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -36,7 +36,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-099` | directional, source_disagreement, mixed_evidence | 7 | 4 | 0.727 | `2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value` | 13 |
 | `MECH-102` | directional, source_disagreement, mixed_evidence | 10 | 11 | 0.952 | `2026-04-26_ghost_goal_blocked_goal_berkowitz1989` | 33 |
 | `MECH-104` | directional, mixed_evidence | 13 | 1 | 0.143 | `v3_exq_126_mech104_surprise_gate_pair_20260421T202336Z_v3` | 17 |
-| `MECH-111` | directional, source_disagreement, mixed_evidence | 2 | 2 | 1 | `v3_exq_141b_mech111_novelty_drive_corrected_substrate_20260508T153100Z_v3` | 5 |
+| `MECH-111` | directional, source_disagreement, mixed_evidence | 2 | 3 | 0.8 | `v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3` | 6 |
 | `MECH-112` | directional, mixed_evidence | 13 | 3 | 0.375 | `v3_exq_527_mech112_identity_goal_reef_20260506T082915Z_v3` | 21 |
 | `MECH-116` | directional, source_disagreement | 7 | 2 | 0.444 | `2026-04-19_pfc_cluster_integrative_theory_miller2001` | 9 |
 | `MECH-118` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-03-29_mech_118_temporal_dissociation_memory_signals_staresina2012` | 4 |
@@ -49,6 +49,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-165` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-04-06_mech165_salient_replay_priority_huelingo2023` | 4 |
 | `MECH-186` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-04-09_mech_186_serotonergic_neurons_timescales_cohen2015` | 5 |
 | `MECH-188` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_253_mech188_zgoal_injection_1775556946_v3` | 4 |
+| `MECH-204` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_541c_mech204_step_size_sweep_extended_cycles_20260509T131740Z_v3` | 8 |
 | `MECH-216` | directional | 6 | 1 | 0.286 | `v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3` | 7 |
 | `MECH-220` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_395_mech220_harm_hub_20260418T202544Z_v3` | 5 |
 | `MECH-229` | directional, mixed_evidence | 9 | 1 | 0.2 | `2026-05-04_sd_049_temporal_community_schapiro2016` | 12 |
@@ -343,7 +344,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-010
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.281, lit_conf=0.871, overall_confidence_legacy=0.724
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.28, lit_conf=0.871, overall_confidence_legacy=0.723
 - Recent entries:
   - `2026-04-04T23:50:00Z` `literature` `targeted_review_zebrafish_sleep_behavioral_diversity` direction=`supports` confidence=0.88
   - `2026-04-04T23:50:00Z` `literature` `targeted_review_zebrafish_sleep_behavioral_diversity` direction=`supports` confidence=0.8
@@ -582,7 +583,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-098
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.621, lit_conf=0.911, overall_confidence_legacy=0.766
+- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.621, lit_conf=0.91, overall_confidence_legacy=0.765
 - Recent entries:
   - `2026-04-18T12:40:10.705519Z` `experimental` `v3_exq_110_mech098_reafference_pair` direction=`weakens` confidence=0.75
   - `2026-04-18T12:40:10.705966Z` `experimental` `v3_exq_110_mech098_reafference_pair` direction=`weakens` confidence=0.75
@@ -622,7 +623,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-102
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=10, weakens=11, conflict_ratio=0.952, exp_conf=0.519, lit_conf=0.848, overall_confidence_legacy=0.683
+- Evidence breakdown: supports=10, weakens=11, conflict_ratio=0.952, exp_conf=0.518, lit_conf=0.848, overall_confidence_legacy=0.683
 - Recent entries:
   - `2026-04-18T16:48:57Z` `literature` `targeted_review_sd003_successor_evaluator` direction=`supports` confidence=0.82
   - `2026-04-18T16:48:57Z` `literature` `targeted_review_sd003_successor_evaluator` direction=`supports` confidence=0.72
@@ -656,13 +657,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-111
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=2, conflict_ratio=1, exp_conf=0.415, lit_conf=0.764, overall_confidence_legacy=0.555
+- Evidence breakdown: supports=2, weakens=3, conflict_ratio=0.8, exp_conf=0.468, lit_conf=0.764, overall_confidence_legacy=0.586
 - Recent entries:
-  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_111` direction=`supports` confidence=0.74
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_111` direction=`supports` confidence=0.76
   - `2026-04-02T02:18:31Z` `experimental` `v3_exq_073b_mech111_novelty_signal` direction=`superseded` confidence=0.55
   - `2026-05-08T15:31:00Z` `experimental` `v3_exq_141b_mech111_novelty_drive_corrected_substrate` direction=`weakens` confidence=0.75
   - `2026-05-08T20:57:23Z` `experimental` `v3_exq_141c_mech111_novelty_drive_measurement_fix` direction=`non_contributory` confidence=0
+  - `2026-05-08T23:59:19Z` `experimental` `v3_exq_141d_mech111_novelty_drive_rng_desync` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `If novelty-related dopamine signals encode mean reward rather than variance (i.e., if they are standard prediction error signals), the uncertainty-driven exploration model would collapse to standard TD learning and MECH-111's distinct curiosity signal would lack dopaminergic grounding.` (1)
   - `If the basal ganglia variance encoding is specific to reward contexts and does not generalise to information-theoretic contexts (exploration of novel states without reward), the model would not support MECH-111's claim about intrinsic information-seeking.` (1)
@@ -675,7 +676,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-112
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=13, weakens=3, conflict_ratio=0.375, exp_conf=0.821, lit_conf=0.892, overall_confidence_legacy=0.857
+- Evidence breakdown: supports=13, weakens=3, conflict_ratio=0.375, exp_conf=0.82, lit_conf=0.892, overall_confidence_legacy=0.856
 - Recent entries:
   - `2026-05-06T08:00:28Z` `experimental` `v3_exq_527_mech112_identity_goal_reef` direction=`mixed` confidence=0.5
   - `2026-05-06T08:29:15Z` `experimental` `v3_exq_527_mech112_identity_goal_reef` direction=`mixed` confidence=0.5
@@ -735,7 +736,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-120
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, exp_conf=0.304, lit_conf=0.897, overall_confidence_legacy=0.66
+- Evidence breakdown: supports=7, weakens=2, conflict_ratio=0.444, exp_conf=0.303, lit_conf=0.897, overall_confidence_legacy=0.659
 - Recent entries:
   - `2026-04-06T00:00:00Z` `literature` `targeted_review_paper_fm2_replay_ordering` direction=`supports` confidence=0.82
   - `2026-04-06T00:00:00Z` `literature` `targeted_review_paper_fm2_replay_ordering` direction=`supports` confidence=0.8
@@ -854,7 +855,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-165
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.25, lit_conf=0.827, overall_confidence_legacy=0.683
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.249, lit_conf=0.827, overall_confidence_legacy=0.682
 - Recent entries:
   - `2026-04-05T14:17:09Z` `experimental` `v3_exq_244_mech165_reverse_replay_diversity` direction=`non_contributory` confidence=0
   - `2026-04-06T00:00:00Z` `literature` `targeted_review_paper_fm2_replay_ordering` direction=`supports` confidence=0.78
@@ -907,6 +908,26 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `NAc 5-HT stimulation does not promote waiting -- dissociates the PFC pathway from reward-volume mechanisms, supporting the specificity of MECH-188's top-down circuit claim` (1)
   - `Bayesian model: OFC calculates overall reward probability; mPFC evaluates time committed -- this double-dissociation is architecturally relevant to how z_goal seeding vs. z_goal maintenance might differ` (1)
   - `5-HT2A receptors on PFC layer V pyramidal neurons suppress NMDAR function via microtubule/kinesin transport -- this is the anatomical substrate for serotonin gating PFC-to-striatum output` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### MECH-204
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.575, lit_conf=0.864, overall_confidence_legacy=0.72
+- Recent entries:
+  - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.68
+  - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`mixed` confidence=0.62
+  - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.78
+  - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.74
+  - `2026-05-09T13:17:40Z` `experimental` `v3_exq_541c_mech204_step_size_sweep_extended_cycles` direction=`supports` confidence=0.75
+- Recurring failure signatures:
+  - `If a behavioural / neural signature appeared that required REM-captured precision to be actively read by waking action-selection circuits at choice time (rather than passively absorbed via the refined generative model), the F1-only reading from this paper would need extension to a dual-arm reading.` (1)
+  - `If REM-locked fMRI activity in waking-decision circuits (e.g. dlPFC, BG) was found to depend on a SEPARATE post-REM broadcast that does NOT just reflect the updated generative-model parameters, the F1-sufficient reading would weaken.` (1)
+  - `If the hyper-model framework turns out to be specifically about waking conscious-experience integration rather than about REM-driven precision recalibration -- i.e. the precision-control hyper-model operates only during waking, not as a consumer of REM-captured zero-points -- the F3-tilting reading would weaken and the paper would collapse to F1-supporting via the broader Friston framework.` (1)
+  - `If the discovered atypical DR neurons (~12% of the sample) that fire DURING REM turn out to play a load-bearing role in REM-precision recalibration -- carrying a tonic 5-HT signal that the simple 'zero-point' reading does not capture -- the substrate-level support for MECH-203's quiescence claim would weaken and the F1 architectural reading might need refinement.` (1)
+  - `If sleep-dependent memory consolidation turned out to be primarily WITHIN a single cycle (one REM episode produces the full effect, multiple cycles produce no additional effect), the cumulative-across-cycles reading that supports F1 would weaken; REE's _persistent_zero_point EMA across cycles would lose its biological motivation and a snapshot-only architecture might be more appropriate.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -1074,7 +1095,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-001
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.234, lit_conf=0.799, overall_confidence_legacy=0.658
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.233, lit_conf=0.799, overall_confidence_legacy=0.658
 - Recent entries:
   - `2026-03-29T08:46:02Z` `experimental` `v3_exq_146_q001_entity_binding_pair` direction=`weakens` confidence=0.75
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_001` direction=`mixed` confidence=0.62
@@ -1532,7 +1553,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-049
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=3, conflict_ratio=0.6, exp_conf=0.317, lit_conf=0.808, overall_confidence_legacy=0.685
+- Evidence breakdown: supports=7, weakens=3, conflict_ratio=0.6, exp_conf=0.316, lit_conf=0.808, overall_confidence_legacy=0.685
 - Recent entries:
   - `2026-05-04T01:25:28Z` `literature` `targeted_review_sd_049_encoder_identity_expansion` direction=`weakens` confidence=0.78
   - `2026-05-04T21:33:40.763741Z` `experimental` `v3_exq_514_sd049_phase_2_behavioural_validation` direction=`superseded` confidence=0.55

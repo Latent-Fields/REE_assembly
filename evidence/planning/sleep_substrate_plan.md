@@ -6,9 +6,9 @@ closure_plan:
   scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
   nodes:
     - id: "sleep_substrate:GAP-1"
-      title: "MECH-204 precision recalibration consumer (F1 substrate landed; V3-EXQ-541c cycle-count discriminator pending)"
+      title: "MECH-204 precision recalibration consumer (F1 closure; V3-EXQ-541c PASS, cycle-count dose-response confirmed F1-sufficient)"
       phase: 1
-      status: in_progress
+      status: done
       severity: load-bearing
       owner_exq: V3-EXQ-541c
       unblocks_claims: [Q-041, Q-042, SD-029, MECH-111, MECH-256]
@@ -313,14 +313,41 @@ Deliverables:
 
 This phase has no validation EXQ of its own; it is a process improvement.
 
-### Phase 7: Phase 1b (deferred broadcast read-site)
+### Phase 7: Phase 1b (deferred to V4 unless future behavioural evidence reverses)
 
-Conditional on Phase 1 PASS. If Option A statistical update produces
-measurable precision movement but the agent still does not show
-recalibration-driven behavioural recovery, add Option B broadcast
-read-site at action selection consuming `precision_at_rem_entry` directly.
-Per Q-042 verdict, biology runs both. We add the second arm only if
-Phase 1 alone is insufficient.
+**Status (2026-05-09): deferred to V4 or later.** V3-EXQ-541c PASSed all
+four criteria (overall_pass=True), confirming F1+step-tuning is the
+operative MECH-204 architecture per the REM-precision lit-pull SYNTHESIS
+dispatch case #1. Phase 7 / Option B (broadcast read-site at action
+selection) is NOT needed for V3 closure.
+
+**Original conditional design retained as architectural insurance:** if
+future behavioural evidence reveals that the F1-sufficient reading is
+incomplete -- e.g. a downstream claim's behavioural signature requires
+the dual-arm pattern that Q-042 + Laukkonen-Friston-Chandaria 2025
+hyper-model proposal preserve as a possibility -- Phase 7 implementation
+is fully spec'd:
+
+- Read `serotonin._persistent_zero_point` (the F1 cumulative reference)
+  at `select_action()` time, NOT `serotonin._precision_at_rem_entry`
+  (the moment-snapshot). Per lit-pull SYNTHESIS: Hobson-Hong-Friston
+  2014 + Walker-Stickgold 2006 establish the cumulative reference as
+  the biologically meaningful target.
+- Apply broadcast as additive bias on E3 score, scaled by tunable
+  `rem_precision_broadcast_gain` knob.
+- Run alongside F1 (NOT replacing it -- the dual-arm pattern from
+  Q-042's general waking finding).
+
+**F2 (apply-before-recapture) is permanently OFF the option set.** The
+2026-05-09 REM-precision lit pull found zero biological referent across
+5 entries; F2 is a software shape divergent from the neuroscience
+oracle.
+
+**Trigger condition for Phase 7 work to resume:** a downstream behavioural
+claim that depends on MECH-204 (Q-041, Q-042, SD-029, MECH-111, MECH-256
+per GAP-1 unblocks_claims) FAILing in a way that forensic analysis
+attributes to "F1 alone insufficient" rather than to other substrate
+gaps. Until then, Phase 7 stays in V4 deferred state.
 
 **Phase 7 dependency on REM-precision-recalibration lit-pull**
 (2026-05-09): the Q-042 lit-pull synthesis covers general waking
@@ -379,7 +406,7 @@ work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | in-progress | V3-EXQ-541c result | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull landed 5 entries (MECH-204 lit_conf 0.864): F1 dominant pattern (Hobson-Hong-Friston 2014 + Walker-Stickgold 2006 + Sakai 2001 substrate); F2 confirmed permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback (Laukkonen-Friston-Chandaria 2025). V3-EXQ-541a confirmed F1 mechanism (C2 PASS at mean_abs_delta 3.6e-3, four orders better than V3-EXQ-541's no-op) but C3 cross-arm divergence stayed under threshold. V3-EXQ-541b step-size sweep showed clean monotone dose-response (step 0.05 -> 0.31%, 0.10 -> 0.63%, 0.25 -> 1.56%, 0.50 -> 3.13%) but no arm cleared the 5% threshold. V3-EXQ-541c (cycle-count discriminator: K=1, 16 cycles per run vs 541b's 4) queued 2026-05-09T13:06Z to test F1-sufficient-given-exposure vs F1-at-ceiling. PASS-on-541c -> F1 closure on the dose-response evidence; FAIL-on-541c -> Phase 7 / Option B becomes load-bearing per lit-pull SYNTHESIS dispatch case #3. | V3-EXQ-541c | 2026-05-09 |
+| GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
 | GAP-2 | 2 | blocked | EXQ-418e (SD-016 div-loss validation) result | Confirm EXQ-418e PASS, then re-queue 265/418/436/500/503 | re-queue ID set TBD | 2026-05-08 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
@@ -478,6 +505,82 @@ land Option A first (Phase 1) as the smallest precision-moving deliverable;
 land Option B (Phase 7) only if Phase 1 PASS does not produce
 behavioural-recovery effect. Reason: smallest-step principle; Option A is
 self-contained; Option B's add value is empirical.
+
+### 2026-05-09 - V3-EXQ-541c PASS: MECH-204 V3 closure on F1; default step bumped to 0.25; Phase 7 deferred to V4
+
+V3-EXQ-541c (16 cycles per run, 4x V3-EXQ-541b's 4 cycles) PASSED all
+four criteria (overall_pass=True) in 201 sec on DLAPTOP-4.local.
+
+Cycle-count dose-response across step arms (541b's 4 cycles → 541c's 16):
+
+| step | C4 @ 4 cycles | C4 @ 16 cycles | scaling factor |
+|---|---|---|---|
+| 0.05 | 0.31% | 0.90% | ~2.9x |
+| 0.10 | 0.63% | 1.81% | ~2.9x |
+| 0.25 | 1.56% | 4.51% | ~2.9x |
+| 0.50 | 3.13% | **9.03% (PASS)** | ~2.9x |
+
+A 4x cycle-count increase produced ~2.9x divergence increase across all
+arms -- sub-linear (waking drift still washes some) but firmly NOT a
+plateau. ARM_4 step=0.5 cleared the 5% C4 threshold at 9.03% in 3/3
+seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality
+monotonically improved 0.842 -> 0.921; zero overshoot in any arm.
+
+**This is dispatch case #1 from the REM-precision lit-pull SYNTHESIS.**
+F1+step-tuning is sufficient given enough exposure; Phase 7 / Option B
+stays deferred. The Hobson-Hong-Friston 2014 + Walker-Stickgold 2006
+F1-sufficient reading is empirically backed.
+
+Three closure actions landed in this entry's commit:
+
+1. **GAP-1 status `in-progress` -> `done`** in YAML frontmatter + body
+   status table. owner_exq retained as V3-EXQ-541c (the validation that
+   licensed closure). MECH-204 V3 closure complete.
+
+2. **Phase 7 description rewritten**: deferred-conditional -> deferred-
+   to-V4-unless-future-behavioural-evidence-reverses. Original Option B
+   design retained as architectural insurance with a documented trigger
+   condition (a downstream MECH-204-dependent claim FAILing in a way
+   forensic analysis attributes to "F1 alone insufficient").
+
+3. **Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25** in
+   ree-v3 REEConfig dataclass + from_dims kwarg. Rationale: 0.25 is the
+   high end of the biologically defensible band per Q-042 Option A
+   verdict; V3-EXQ-541c shows this step produces measurable cross-arm
+   divergence (4.51% at 16 cycles, 1.56% at 4 cycles) with perfect
+   tracking_quality and zero overshoot. The previous default 0.1 was
+   conservative; 0.25 is the strongest biologically-defensible default
+   that balances movement magnitude against overshoot risk. Existing
+   experiment scripts that pin step=0.1 explicitly (V3-EXQ-541, 541a,
+   541b's ARM_2, 541c's ARM_2) are unaffected -- they pass step
+   explicitly, not via default. Out-of-the-box behaviour for new
+   experiments now uses 0.25; experiments wanting other values
+   (including the conservative 0.1 baseline) should override.
+
+Notes:
+
+- ARM_3 step=0.25 just barely missed the strict 5% C4 threshold at 16
+  cycles (4.51%). Either the threshold was conservative for the
+  defensible band, OR ~24-32 cycles would let 0.25 clear strictly. The
+  default-bump to 0.25 is justified by the dose-response trend + the
+  541c PASS at step=0.5 (which clears comfortably).
+- The 5% C4 threshold itself was set without prior knowledge of the
+  effect size; in retrospect a sliding-scale or per-arm threshold
+  matched to the expected dose-response would have been more
+  informative. Future MECH-204 step-size sweeps (if any) should
+  pre-register thresholds based on the 541b/541c dose-response curve
+  rather than a single magic number.
+- Phase 2 (SD-017 retest cohort) is now unblocked -- no Phase 1
+  dependency remains. Recommended new session for Phase 2 work to
+  keep context clean and avoid concurrency with the still-active
+  runner-leak-fix session.
+
+Phase 1 of sleep_substrate_plan.md is closed. The remaining gaps
+(GAP-2 SD-017 retest cohort, GAP-3 Phase B-E master flags, GAP-4
+MECH-273 replay-derived training, GAP-6 StepHarness audit, GAP-7
+multi-episode driver pattern, GAP-8 MECH-272 routing-gate consumer)
+are independent of MECH-204 closure and proceed on their own gating
+chains.
 
 ### 2026-05-09 - V3-EXQ-541b result (clean monotone dose-response, FAIL on threshold only) + V3-EXQ-541c queued (cycle-count test, lowest-load-bearing-assumption discriminator)
 

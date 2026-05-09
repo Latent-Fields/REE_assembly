@@ -1,14 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-05-08T22:38:35Z`  
-Last review: `2026-05-08T22:34:09Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-05-09T13:46:26Z`  
+Last review: `2026-05-09T13:43:00Z`  
+Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
 | `v3_exq_530c_arc016_precision_commit_stepharness_20260508T172357Z_v3` | 2026-05-08T18:00 | ARC-016 | — |
+| `v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3` | 2026-05-08T23:59 | MECH-111 | — |
 
 ---
 
