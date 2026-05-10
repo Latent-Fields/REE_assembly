@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_070_decomposition",
+  "entry_id": "2026-05-10_arc_070_cls_hippocampus_schapiro_2017",
+  "timestamp_utc": "2026-05-10T17:21:11Z",
+  "claim_ids_tested": ["ARC-070"],
+  "source": {
+    "title": "Complementary learning systems within the hippocampus: a neural network modelling approach to reconciling episodic memory with statistical learning",
+    "authors": ["Anna C. Schapiro", "Nicholas B. Turk-Browne", "Matthew M. Botvinick", "Kenneth A. Norman"],
+    "year": 2017,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0049",
+    "pmid": "27872368"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Substrate-level anchor for the pattern-separation machinery that supports decomposition. Schapiro et al. show the hippocampus implements complementary learning systems WITHIN itself -- the trisynaptic pathway (entorhinal cortex -> dentate gyrus -> CA3 -> CA1) supports episodic memorisation through pattern-separated representations, while the monosynaptic pathway (entorhinal cortex -> CA1) supports statistical learning of regularities. This dual machinery is the substrate on which decomposition operates: pattern-separation makes the chunked primitive separable into discriminable sub-elements, statistical learning makes the regularities across primitives apprehensible. Indirect ARC-070 anchor: it grounds the claim that the hippocampus has the substrate to support both grain levels (episodic chunks via trisynaptic, statistical patterns via monosynaptic). Lower confidence because the mapping to decomposition-on-prediction-failure is multi-step and the paper itself addresses memory rather than rollout directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's hippocampal rollout substrate uses only one representational pathway (e.g. only pattern-separated discrete primitives), it will fail to support the multi-grain decomposition Schapiro et al. document as native to the hippocampus. The substrate likely needs both pattern-separated discrete representations (for chunked primitives) and overlapping statistical representations (for grain-invariant rules across primitives).",
+    "If decomposition operates only on the discrete-primitive pathway without engaging statistical regularities, the rule-apprehension layer (ARC-062) reading the decomposed sequence will lose the grain-invariant rule signature -- the same pattern is encoded at multiple grains in the hippocampus, and ARC-062 should be able to read whichever grain is most predictive."
+  ],
+  "tags": ["arc_070", "complementary_learning_systems", "pattern_separation", "hippocampus", "trisynaptic_pathway", "monosynaptic_pathway", "statistical_learning", "r1_trigger", "r3_hierarchy_depth"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus implements complementary learning systems within itself, resolving the apparent tension between episodic memorisation and statistical regularity extraction. The trisynaptic pathway (entorhinal cortex -> dentate gyrus -> CA3 -> CA1) uses pattern separation to memorise individual episodes as discriminable representations, supporting episodic memory. The monosynaptic pathway (entorhinal cortex -> CA1) uses overlapping representations to extract statistical regularities across episodes, supporting category-level statistical learning. The two pathways operate in parallel, and their outputs are integrated downstream. Apparent regularity learning in CA3 emerges through associative reactivation rather than overlap, distinguishing it from the genuinely overlap-based monosynaptic learning.",
+    "ree_translation": "Schapiro et al. ground the substrate on which ARC-070 operates. The trisynaptic-vs-monosynaptic division within the hippocampus gives a natural locus for two grain levels: chunked primitives represented via pattern-separated trisynaptic outputs (episodic, discrete, decomposable into stored sub-elements), and statistical regularities represented via the monosynaptic pathway (grain-invariant, supports rule apprehension at the chunk grain). When ARC-070 decomposes a chunk, the output sequence is the trisynaptic-pathway content of the chunk; when ARC-062 apprehends a rule across decomposed primitives, the rule may live in the monosynaptic-pathway statistical representation. The paper supplies indirect support for R3 (multi-level hierarchy) by demonstrating that the hippocampus natively has at least two parallel representational pathways. It supplies indirect support for R1 (trigger primary): the trisynaptic pathway's pattern-separation IS a region-conditioned discriminability operation, which is what the V_s drop signal would be expected to read out.",
+    "mapping_caveat": "Schapiro et al. address episodic memory and statistical learning, NOT rollout-side trajectory decomposition. The mapping to ARC-070 is multi-step: the paper's pathway distinction MAY map onto the chunk / sub-element grain distinction in REE's rollout, but this is an architectural inference that the paper itself does not make. Additionally, the model is computational rather than directly empirical; the trisynaptic / monosynaptic functional split is supported by broader anatomy and lesion data but the specific division of labour proposed in the paper is a model-level claim. The synthesis treats this as a substrate-grounding paper -- it shows the hippocampus has the architecture to support multi-grain decomposition -- rather than a direct decomposition-trigger anchor.",
+    "source_context": "Computational neural network modelling paper, Phil Trans Roy Soc B 2017. Reconciles two literatures (episodic memory, statistical learning) by demonstrating both can operate within hippocampal subfields under the same anatomy."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.45,
+    "notes": "Source quality strong (Phil Trans Roy Soc B, well-cited model, established authors). Mapping fidelity moderate -- the pathway distinction maps onto the multi-grain hierarchy ARC-070 needs, but the mapping is an architectural inference not a direct demonstration. Transfer risk high because the paper is about memory not rollout, so the bridge to ARC-070 runs through the constructive-episodic-simulation literature."
+  }
+}

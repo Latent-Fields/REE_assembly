@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_070_decomposition",
+  "entry_id": "2026-05-10_arc_070_diverse_density_subgoals_mcgovern_barto_2001",
+  "timestamp_utc": "2026-05-10T17:21:11Z",
+  "claim_ids_tested": ["ARC-070"],
+  "source": {
+    "title": "Automatic Discovery of Subgoals in Reinforcement Learning using Diverse Density",
+    "authors": ["Amy McGovern", "Andrew G. Barto"],
+    "year": 2001,
+    "venue": "Proceedings of the Eighteenth International Conference on Machine Learning (ICML)",
+    "doi": "10.5555/645530.655681",
+    "url": "https://scholarworks.umass.edu/cs_faculty_pubs/8/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Computational anchor for R5 (bottleneck-state vs error-driven decomposition verdict). McGovern & Barto's diverse-density subgoal discovery is the canonical computational treatment of bottleneck-state decomposition: a state is a subgoal candidate if it appears on many paths to a successful outcome (a 'doorway' connecting strongly-connected regions). The mechanism produces hierarchical decomposition by carving the state-action graph at bottleneck states and inserting options. R5 verdict consequence: bottleneck-state and error-driven framings are NOT the same mechanism in the McGovern-Barto formulation -- bottlenecks are STATISTICALLY identified (frequency on paths) rather than PE-driven. This is a substantive architectural alternative the synthesis must adjudicate. evidence_direction=mixed because the paper supports the EXISTENCE of decomposition machinery in computational systems but its specific mechanism (statistical bottleneck discovery) is NOT what the biological-anchor papers favour for ARC-070's primary trigger -- the synthesis recommends PE-driven primary with bottleneck-aware secondary as a fallback design rather than McGovern-Barto's primary scheme.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's ARC-070 child-MECH uses ONLY a statistical-frequency bottleneck-discovery mechanism without an error-driven trigger, it will produce decomposition only for repeatedly-visited graph topologies and will miss the imagination-side / one-shot decomposition the biological literature documents.",
+    "If REE's ARC-070 ignores the bottleneck-state framing entirely and uses only PE-driven triggers, it will fail to capture the natural decomposition structure of state spaces with strongly-connected regions linked by narrow doorways -- a class of problems where McGovern-Barto's mechanism specifically excels."
+  ],
+  "tags": ["arc_070", "subgoal_discovery", "bottleneck_states", "diverse_density", "hierarchical_RL", "options_framework", "r5_bottleneck_vs_error"],
+  "mapping": {
+    "source_claim_statement": "A reinforcement-learning agent can automatically discover useful subgoals by identifying states that appear frequently on multiple paths to a successful outcome. Such states are 'bottleneck' or 'doorway' states -- they connect otherwise weakly-connected regions of the state space. The diverse density framework casts subgoal identification as multiple-instance learning: states that appear in successful paths but not in unsuccessful ones (or that appear with high frequency across diverse contexts) are flagged as candidates. Once a subgoal is identified, an option is constructed for reaching it, decomposing the original problem into sub-problems. The mechanism produces hierarchical decomposition through statistical-graph analysis rather than through prediction error.",
+    "ree_translation": "McGovern & Barto's mechanism is the canonical computational example of structural / bottleneck-driven decomposition, distinct from the prediction-error-driven decomposition that Zacks 2007 and the broader event-segmentation literature favour. R5 (bottleneck-state vs error-driven decomposition: same mechanism or distinct?) gets a substantive answer here: the two framings are NOT the same mechanism. Bottleneck states are statistically identified (frequency on paths); event-segmentation boundaries are dynamically identified (PE pulse). The synthesis recommends PE-driven primary trigger (V_s drop, per the biological literature) with the bottleneck framing as a complementary read on WHERE decomposition is most likely to be useful -- bottleneck states are often also high-PE states because the agent's predictions are most uncertain at decision-critical junctures, but the mechanisms operate on different signals and produce decomposition under different conditions. ARC-070's child-MECH design should be PE-primary with optional bottleneck-aware secondary signals rather than bottleneck-primary.",
+    "mapping_caveat": "McGovern & Barto's framework is computational rather than biological. Its evidence value for ARC-070 is in establishing that decomposition is computationally tractable and that bottleneck-state framing is a viable alternative mechanism; it is NOT direct evidence that REE should adopt this specific mechanism. The biological anchors (Zacks 2007, Schacter 2008, Schapiro 2017) consistently favour PE-driven mechanisms over statistical-bottleneck mechanisms for the primary trigger. The McGovern-Barto entry serves as the foil that disambiguates R5 -- it shows the alternative mechanism explicitly so the synthesis can adjudicate. Transfer risk is high: the diverse-density subgoal-discovery mechanism is computationally well-defined but has limited direct biological grounding.",
+    "source_context": "Computational ML paper, ICML 2001. Foundational treatment of bottleneck-state subgoal discovery in hierarchical reinforcement learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.55,
+    "notes": "Source quality moderate-high (foundational ICML paper, well-cited within the hierarchical-RL literature). Mapping fidelity moderate -- the mechanism is well-defined and provides a clear R5 alternative, but the synthesis recommends NOT adopting this as the primary mechanism. Transfer risk high because the paper is computational without direct biological grounding. evidence_direction is mixed -- the paper supports the existence of decomposition machinery and clarifies the R5 alternative, but its specific mechanism is not what the synthesis recommends for ARC-070's primary trigger."
+  }
+}

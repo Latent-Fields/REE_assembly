@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_options_framework_sutton1999",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071"],
+  "source": {
+    "title": "Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning",
+    "authors": ["Richard S. Sutton", "Doina Precup", "Satinder Singh"],
+    "year": 1999,
+    "venue": "Artificial Intelligence",
+    "doi": "10.1016/S0004-3702(99)00052-1",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0004370299000521"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Cleanest formal analog of policy composition. The options framework gives ARC-071 the formal vocabulary -- options are exactly chunked-primitive equivalents (closed-loop policies with initiation set, termination condition, and internal policy). Source quality high (founding paper, ~6000 citations, Sutton-Precup-Singh). The mapping is formal-not-biological, which is the dominant caveat: ARC-071 needs to instantiate options-like structure in REE substrate, not just reproduce options on top of REE primitives.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Options have three required fields: policy, initiation set, termination condition -- ARC-071 chunks cannot be just a sequence; they must carry context-keyed initiation and completion conditions. Pure-sequence implementations without these will mis-fire.",
+    "Options-discovery is the open problem in hierarchical RL -- the options framework SUPPLIES the formalism but does NOT settle how options are discovered. ARC-071's biological-trigger commitment (repetition + outcome consistency) is the biology-side answer to the discovery problem; the formal framework does not constrain it.",
+    "Options compose with primitive actions interchangeably -- ARC-071 chunks must be selectable in the same selection step as their constituent primitives, not in a separate hierarchy-only selection step."
+  ],
+  "tags": ["arc-071", "options_framework", "hierarchical_rl", "formal_analog", "sutton"],
+  "mapping": {
+    "source_claim_statement": "Options are closed-loop policies for taking action over a period of time, defined by a policy, an initiation set, and a termination condition. Options enable temporally abstract knowledge and action to be included in the reinforcement learning framework. A set of options defined over an MDP constitutes a semi-Markov decision process. Options may be used interchangeably with primitive actions in planning and learning.",
+    "ree_translation": "ARC-071's chunked primitive is the REE-substrate analog of an option. The three-field structure (policy / initiation set / termination condition) maps directly: chunked-policy is the sequence, initiation set is the context conditions under which the chunk fires, termination condition is the completion signal. Options-framework's interchangeability claim supports ARC-071's design that chunked primitives go into the same candidate pool as un-chunked primitives -- ARC-007 hippocampal proposals select from a mixed-grain set, not from grain-segregated pools. The semi-MDP framing supports treating chunked-primitive execution as taking variable time without breaking the rest of the agent's machinery.",
+    "mapping_caveat": "The options framework is formal not biological -- it constrains the SHAPE of ARC-071 chunks but does not constrain the biological MECHANISM by which they form (the discovery problem is open in hierarchical RL). ARC-071's biological-trigger commitment (repetition + outcome consistency from Graybiel) is the biology-side answer to the discovery problem; the formal framework does not constrain it. Also, the framework's value-side machinery (Q-learning over options) does NOT map to ARC-071 -- ARC-007 strict preserves value-flat hippocampal proposals, so ARC-071 chunks must remain value-flat at the proposal layer.",
+    "source_context": "Foundational hierarchical RL paper formalising temporal abstraction in reinforcement learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Source quality 0.85 (founding hierarchical RL paper, ~6000 citations). Mapping fidelity 0.75 -- the formal SHAPE maps cleanly; the biological MECHANISM does not come from this paper. Transfer risk 0.40 -- formal-to-biological transfer always carries higher risk; the value-side machinery in particular does NOT translate (ARC-007 strict preserves value-flat proposals)."
+  }
+}

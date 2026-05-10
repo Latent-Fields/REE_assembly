@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_motor_chunking_fmri_wymbs2012",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071"],
+  "source": {
+    "title": "Differential recruitment of the sensorimotor putamen and frontoparietal cortex during motor chunking in humans",
+    "authors": ["Nicholas F. Wymbs", "Danielle S. Bassett", "Peter J. Mucha", "Mason A. Porter", "Scott T. Grafton"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.03.038",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22681696/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Human fMRI evidence for the multi-substrate chunking machinery -- putamen supports concatenation (chunking IN), frontoparietal cortex supports segmentation (chunking OUT, ARC-070-direction). This is the cleanest human-substrate paper for R2 (substrate locus): chunking is NOT one substrate but at least two operating at different phases. Source quality high (Neuron, 3-day longitudinal fMRI design with dynamic network analysis). Mapping fidelity 0.80 -- the concatenation / segmentation distinction maps directly onto ARC-071 / ARC-070 within the family doc.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Chunking is two processes (concatenation / segmentation), not one -- ARC-071 (composition) and ARC-070 (decomposition) are not redundant or symmetric inverses; they have substrate-distinct implementations. The family doc's symmetric framing should be tightened.",
+    "Putamen supports concatenation; frontoparietal cortex supports segmentation -- ARC-071 substrate is putamen-analog (DLS), ARC-070 substrate is frontoparietal-analog (vmPFC + parietal). Substrate non-redundancy is empirically grounded.",
+    "Chunking process differs between early and late training phases -- the segmentation (ARC-070) process happens more early in learning, concatenation (ARC-071) happens more late. Trigger asymmetry within the cluster matches the pre-registered fast-decomposition vs slow-composition framing."
+  ],
+  "tags": ["arc-071", "motor_chunking", "putamen", "frontoparietal", "human_fmri", "concatenation_segmentation"],
+  "mapping": {
+    "source_claim_statement": "Motor chunking involves two processes: concatenation, aimed at the formation of motor-motor associations between elements; and segmentation, aimed at the parsing of multiple contiguous elements into shorter action sets. The putamen supports the concatenation process with robust connectivity to skilled motor output regions. Cortical regions in the left hemisphere (frontoparietal) respond more during segmentation, linked to the manipulation of motor information.",
+    "ree_translation": "ARC-071 (composition) maps onto Wymbs's concatenation; ARC-070 (decomposition) maps onto Wymbs's segmentation. The substrate-distinct attribution (putamen for concatenation, frontoparietal for segmentation) supports R2 verdict that ARC-071's substrate is DLS-analog (putamen-analog in REE) while ARC-070's substrate is frontoparietal-analog (vmPFC + parietal). The two processes operating at different phases (early-segmentation, late-concatenation) supports the asymmetric-trigger framing the family doc registered (fast simulation-side decomposition vs slow execution-side composition).",
+    "mapping_caveat": "Wymbs et al. operationalise chunking through fMRI BOLD + dynamic network analysis -- this is a network-level signature, not a direct measure of compose/decompose operations on a representational object. The mapping requires assuming the BOLD signature reflects the underlying chunking machinery that ARC-071 instantiates. Also, Wymbs is purely behavioural-motor; cognitive chunking (ARC-071's broader scope) is not tested.",
+    "source_context": "3-day longitudinal fMRI in healthy human subjects performing cued motor sequence production task; novel dynamic network analysis to identify chunking structure trial-wise."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.15,
+    "notes": "Source quality 0.85 (Neuron, longitudinal human fMRI with novel network-analysis method). Mapping fidelity 0.80 (direct on substrate distinction; the BOLD-to-mechanism step is the small concession). Transfer risk 0.15 (human data, no species-translation needed)."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_dls_dms_habit_yinknowlton2006",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071", "MECH-163"],
+  "source": {
+    "title": "The role of the basal ganglia in habit formation",
+    "authors": ["Henry H. Yin", "Barbara J. Knowlton"],
+    "year": 2006,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn1919",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16715055/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Direct biological grounding for the dual-systems architecture (DLS habit / DMS goal-directed) that MECH-163 names. Yin & Knowlton synthesise the lesion + outcome-devaluation evidence that operationalises the goal-directed-vs-habit distinction. Source quality high (Nat Rev Neurosci, ~5000 citations). The R3 LOAD-BEARING verdict for the synthesis -- this paper anchors that the dual systems exist with substrate-distinct loci, and provides the framework within which ARC-071 names the planned->habitual transition mechanism. Mapping fidelity is the load-bearing component.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DLS lesions PRESERVE goal-directed control even after overtraining -- if ARC-071 substrate is removed, the agent should fall back cleanly to MECH-163 planned-system control without breakdown of behaviour. This is a sharp falsifiable prediction.",
+    "Habit formation signature is impervious-to-outcome-devaluation -- ARC-071-formed chunks should be selectable based on context-cue-match even when the chunked-sequence's outcome value drops. If REE chunks remain value-sensitive after composition, ARC-071 implementation is wrong substrate-locus.",
+    "DMS and DLS operate in parallel during transition with interdependency -- ARC-071 implementation must NOT be a clean either/or switch; the two systems coexist and compete during learning."
+  ],
+  "tags": ["arc-071", "mech-163", "dls_dms", "habit_formation", "anchor_paper", "transition_mechanism"],
+  "mapping": {
+    "source_claim_statement": "Reward-guided instrumental behaviors usually start as goal-directed actions controlled by the anticipation of the outcome, but under certain conditions these can become stimulus-driven habits, which are not controlled by outcome expectancy. The distinction between goal-directed and habitual learning corresponds with reliance on different parts of the basal ganglia: the dorsomedial striatum (DMS) and the dorsolateral striatum (DLS) respectively. There is explicit evidence for the transfer from DMS to DLS over the course of training, but the two operate in parallel during the transition with some degree of interdependency.",
+    "ree_translation": "MECH-163 names the dual systems (planned + habitual). Yin & Knowlton 2006 anchors the biological substrate (DMS / DLS). ARC-071 names the transition machinery between them -- the mechanism by which content moves from planned (DMS-equivalent) to habitual (DLS-equivalent). The biology supports the transition framing: DMS-to-DLS transfer happens, gradually, through repetition. The DMS-DLS parallel operation during transition supports ARC-071's design choice that the original primitive sequence remains available alongside the chunked unit (chunks are additive, not replacing).",
+    "mapping_caveat": "Yin & Knowlton frame the transition at the SYSTEM level (one striatal subdivision becomes more dominant) rather than at the CHUNK level (specific sequences get chunked into specific units). ARC-071's commitment is the chunk-level claim; Yin & Knowlton's is the system-level support. The mapping requires assuming the chunk-level mechanism is the means by which the system-level transfer happens -- biologically plausible but not directly tested in this review.",
+    "source_context": "Nature Reviews Neuroscience review synthesising rodent lesion + electrophysiology, primate single-unit, and human imaging data on goal-directed vs habitual instrumental learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.18,
+    "notes": "Source quality 0.88 (NRN, lead authors of the field, high-citation review). Mapping fidelity 0.85 -- the system-level evidence is direct; the chunk-level mapping requires an inferential step. Transfer risk low (mammalian striatal organisation conserved)."
+  }
+}

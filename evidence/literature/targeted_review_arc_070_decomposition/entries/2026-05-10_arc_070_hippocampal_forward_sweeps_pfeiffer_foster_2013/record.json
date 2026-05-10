@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_070_decomposition",
+  "entry_id": "2026-05-10_arc_070_hippocampal_forward_sweeps_pfeiffer_foster_2013",
+  "timestamp_utc": "2026-05-10T17:21:11Z",
+  "claim_ids_tested": ["ARC-070"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Brad E. Pfeiffer", "David J. Foster"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "pmid": "23594744"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct mechanistic anchor for the imagination-side rollout substrate. Pfeiffer & Foster show rat hippocampus generates brief place-cell sequences before goal-directed navigation that encode future trajectories from current location to remembered goal -- the rodent analog of REE's hippocampal rollout substrate (ARC-007 / SD-002). The trajectories elaborate dynamically as the agent approaches prediction-relevant cues, which is precisely the imagination-side substrate that ARC-070 needs to operate on. Strong source quality (Nature, single-unit electrophysiology with clean methodology). Mapping fidelity moderate-strong: the paper does not directly demonstrate decomposition-on-prediction-failure but it does demonstrate the substrate (forward sweeps) on which ARC-070's decomposition would operate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's hippocampal rollout substrate produces only static / single-shot trajectories without the kind of dynamic elaboration Pfeiffer & Foster document, ARC-070 cannot operate on the substrate as designed -- decomposition presupposes a forward-sweep mechanism that produces variable-grain trajectories. The substrate (ARC-007 hippocampal proposals) needs to support the dynamic-elaboration property documented here.",
+    "If the forward-sweep mechanism is constant-grain (single-action timesteps with fixed temporal compression), ARC-070's variable-grain decomposition will not have a substrate to operate on. The hippocampal rollout substrate needs to support multi-grain trajectory representation, consistent with Pfeiffer-Foster's evidence of cues elaborating sequence content."
+  ],
+  "tags": ["arc_070", "hippocampal_forward_sweeps", "place_cells", "trajectory_planning", "rollout_substrate", "navigation", "r3_hierarchy_depth", "r4_mid_execution"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, the rat hippocampus generates brief sequences of place-cell activity encoding spatial trajectories. These sequences are biased to progress from the rat's current location toward a known goal location and predict immediate future behaviour, including for novel start-goal combinations. The sequences are not pre-stored replays but constructed forward sweeps that integrate the current position, goal location, and intervening map. The sequences extend through the environment with cue-dependent elaboration, suggesting a flexible trajectory-finding mechanism rather than rigid playback.",
+    "ree_translation": "Pfeiffer & Foster 2013 documents the rodent analog of REE's hippocampal rollout substrate. The paper supplies two architectural anchors for ARC-070. First, R3 (hierarchy depth) gets indirect support: the forward-sweep substrate is dynamic and elaborates as the trajectory encounters prediction-relevant cues, which is the rodent-electrophysiology counterpart to the multi-level decomposition Badre & D'Esposito document in frontal cortex. The hippocampus is contributing to the same multi-grain control machinery. Second, R4 (mid-execution decomposition) gets a partial anchor: the forward sweeps are generated during navigation, including during ongoing motor activity, so the substrate supports both pre-commitment and (potentially) mid-execution re-elaboration. The mapping to ARC-070 specifically: when a chunked primitive in REE's rollout fails to ground (V_s drops), the hippocampal forward-sweep mechanism that generated the chunk in the first place is the natural locus for re-segmenting it into finer primitives, because that is the same machinery that produced the original chunked sequence.",
+    "mapping_caveat": "Pfeiffer & Foster show forward sweeps for goal-directed navigation; they do NOT show a decomposition operation explicitly triggered by prediction failure. The paper supplies the substrate evidence (forward sweeps elaborate trajectories) but not direct evidence of the trigger mechanism (V_s drop -> decompose). The R4 mid-execution-decomposition mapping is inferential: the paper shows sweeps generated during navigation, which suggests the substrate is available for mid-execution use, but it does not demonstrate decomposition firing mid-execution. Additionally, the rodent navigation substrate is one specific instantiation of the hippocampal rollout machinery; whether the same dynamic-elaboration property generalises to other domains (motor sequences, abstract task hierarchies) is an extrapolation supported by the broader episodic-simulation literature but not by this paper alone.",
+    "source_context": "Empirical paper, Nature 2013. Single-unit hippocampal recordings in rats during open-field goal-directed navigation. Methodologically clean: clear evidence of forward sweeps that predict immediate future behaviour, including in novel configurations."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Source quality very high (Nature paper, clean single-unit recordings, replicated and extended by follow-on work). Mapping fidelity moderate-strong: documents the substrate (forward sweeps) on which ARC-070 operates, but not the decomposition trigger directly. Transfer risk moderate-high: rodent open-field navigation is one specific instantiation; whether the dynamic-elaboration property generalises to abstract task hierarchies is an open extrapolation."
+  }
+}

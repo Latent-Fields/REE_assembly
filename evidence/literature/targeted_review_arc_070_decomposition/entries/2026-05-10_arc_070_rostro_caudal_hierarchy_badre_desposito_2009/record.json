@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_070_decomposition",
+  "entry_id": "2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009",
+  "timestamp_utc": "2026-05-10T17:21:11Z",
+  "claim_ids_tested": ["ARC-070"],
+  "source": {
+    "title": "Is the rostro-caudal axis of the frontal lobe hierarchical?",
+    "authors": ["David Badre", "Mark D'Esposito"],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2667",
+    "pmid": "19672274"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational anchor for R3 (hierarchy depth verdict). Badre & D'Esposito review anatomical, neuroimaging, electrophysiological and developmental findings supporting a multi-level functional hierarchy along the rostro-caudal axis of frontal cortex. Anterior regions encode more abstract action representations; posterior regions encode more concrete motor specifications. The hierarchical decomposition direction (abstract intention -> concrete motor act) is exactly the inverse of REE's chunk-to-primitive composition direction, so ARC-070's decomposition direction is grounded in the same anatomical substrate. R3 verdict (multi-level vs single-level decomposition) is settled in favour of multi-level by this paper's evidence: the brain instantiates AT LEAST 3-4 levels of action abstraction along the rostro-caudal axis, and the corresponding mechanism shape for ARC-070 is multi-level chunk -> sub-chunk -> primitive recursion, not single-level chunk-to-primitive only.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An ARC-070 child-MECH that supports only single-level decomposition (chunk -> primitive, with no chunk-of-chunks recursion) will fail to match the multi-level hierarchical organisation Badre & D'Esposito document in frontal cortex. The mechanism design must support recursive decomposition with practical recursion bounds.",
+    "If the implementation places all decomposition operations at a single anatomical / computational locus (no functional differentiation across abstraction levels), the design will lose the predictive structure of the rostro-caudal gradient and any rule-apprehension layer (ARC-062) reading the decomposed sequence will lose the abstraction-level signal that the hierarchy carries."
+  ],
+  "tags": ["arc_070", "rostro_caudal_hierarchy", "prefrontal_cortex", "hierarchical_control", "abstraction_levels", "r3_hierarchy_depth"],
+  "mapping": {
+    "source_claim_statement": "The frontal cortex shows a rostro-caudal gradient in functional activity scaled by the abstractness of action representations: more anterior regions (frontopolar, anterior PFC) encode more abstract action goals and rules; more posterior regions (lateral PFC, premotor cortex) encode progressively more concrete stimulus-response associations and motor specifications. Hierarchical control flows along this axis: anterior regions influence posterior regions during the realisation of abstract goals as motor acts. The hierarchy involves multiple levels (at minimum: response, feature, dimension, context / task-set, episode), with empirical evidence from anatomy, fMRI, single-unit recording, and developmental studies.",
+    "ree_translation": "ARC-070's decomposition direction is anatomically supported as a multi-level hierarchy. The chunk-to-primitive zoom-in is one step in a longer chain: most-abstract intention -> task-set -> action sequence (chunked primitive) -> individual action -> motor specification. ARC-070's child-MECH design should permit recursion: a chunked primitive can decompose into sub-chunks, each of which can decompose further, with the recursion depth bounded by the depth of the predictive model that licenses each abstraction level. The R3 verdict (multi-level vs single-level) settles in favour of multi-level. Practical implementation may bound the recursion depth at 2-3 levels for tractability, but the architectural commitment is recursive in principle.",
+    "mapping_caveat": "Badre & D'Esposito's evidence is on EXECUTIVE control of overt action, not on rollout-side imagination. The rostro-caudal gradient is documented during task-set selection, action planning, and rule application; the imagination-side application (ARC-070's domain) is a theoretical extension. The transfer is licensed by the broader episodic-simulation literature (Schacter 2008 companion entry) showing imagination shares network substrate with action / memory, but the specific rostro-caudal evidence does not directly come from imagination experiments. Additionally, the 2009 review notes ongoing controversy about whether the gradient is strictly hierarchical or rather a graded specialisation; the synthesis recommends hierarchical interpretation as the working hypothesis with sensitivity to the disconfirming literature.",
+    "source_context": "Foundational Nature Reviews Neuroscience review, integrating anatomical, fMRI, single-unit, and developmental evidence on frontal-lobe organisation. Authors are leading figures in cognitive control / prefrontal organisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (NRN review, well cited, integrates multiple methodologies). Mapping fidelity moderate-strong on R3 (multi-level hierarchy directly supported), weaker on ARC-070's specific imagination-side application (the rostro-caudal evidence is mostly about overt action). Transfer risk moderate-high because the mapping from frontal-cortex action hierarchy to REE's rollout-side decomposition runs through episodic-simulation theory, not direct empirical evidence."
+  }
+}

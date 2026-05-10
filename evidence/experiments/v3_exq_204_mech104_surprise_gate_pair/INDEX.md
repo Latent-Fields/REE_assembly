@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_204_mech104_surprise_gate_pair
 
-Generated: `2026-05-10T17:02:59.769039Z`
+Generated: `2026-05-10T17:34:44.089782Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_070_decomposition",
+  "entry_id": "2026-05-10_arc_070_cascaded_control_koechlin_summerfield_2007",
+  "timestamp_utc": "2026-05-10T17:21:11Z",
+  "claim_ids_tested": ["ARC-070"],
+  "source": {
+    "title": "An information theoretical approach to prefrontal executive function",
+    "authors": ["Etienne Koechlin", "Christopher Summerfield"],
+    "year": 2007,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2007.04.005",
+    "pmid": "17475536"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Theoretical anchor for R3 (hierarchy depth) and R5 (decomposition as cascaded control). Koechlin & Summerfield's cascade model formalises the rostro-caudal hierarchy as a sequence of nested control signals: premotor cortex selects sensorimotor responses, posterior LPFC selects S-R mappings according to immediate context, anterior LPFC selects context-mappings according to current episode. This is a clean information-theoretic decomposition of executive control into multiple levels, complementing Badre & D'Esposito 2009's empirical review. R3 multi-level verdict gets a second strong anchor; R5 (bottleneck-state vs error-driven) gets indirect support because cascaded control is a structural -- not error-driven -- decomposition framework. Lower confidence than Badre because Koechlin's empirical anchor is narrower (specific cascading-control tasks) and the model has been partially refined by subsequent work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An ARC-070 child-MECH that uses ONLY error-driven decomposition (no structural / level-keyed component) will fail to reproduce Koechlin's cascading control phenomena, where decomposition follows the structure of the task hierarchy regardless of momentary prediction error. The mechanism likely needs both an error-driven trigger AND a structural / level-keyed substrate.",
+    "If REE's rule-apprehension layer (ARC-062) operates only at the chunk grain output by ARC-070's decomposition, the architecture will lose the multi-level rule-application signature Koechlin documents -- different rules apply at different cascade levels, and the rule-apprehension layer should be sensitive to level."
+  ],
+  "tags": ["arc_070", "cascaded_control", "prefrontal_cortex", "information_theory", "hierarchy_levels", "r3_hierarchy_depth", "r5_bottleneck_vs_error"],
+  "mapping": {
+    "source_claim_statement": "The lateral prefrontal cortex implements executive control through a hierarchically ordered cascade of control signals processed along its anterior-posterior axis. At the lowest level, premotor cortex selects responses given a stimulus; one level up, posterior LPFC selects which stimulus-response mapping to apply given the immediate context; one level up, anterior LPFC selects which context-mapping rule to apply given the current behavioural episode; and so on. The cascade is information-theoretically motivated -- each level adds a tier of context-conditional information that constrains the level below. The architecture explains how unitary executive control can emerge from a network of functionally specialised regions.",
+    "ree_translation": "Koechlin & Summerfield's cascade gives a formal scaffold for ARC-070's multi-level decomposition. The analog is: a chunked primitive at level N decomposes into a sequence of chunked primitives at level N-1 (which may further decompose into level N-2 primitives, etc.), with each level's decomposition conditioned on the level above. The R3 verdict (multi-level hierarchy) is supported by this paper's structural argument as well as Badre & D'Esposito's empirical evidence. The R5 verdict (bottleneck-state vs error-driven) gets a partial answer: the cascade architecture is structural (level-keyed), suggesting that decomposition is partly DRIVEN BY THE TASK STRUCTURE itself (analogous to bottleneck-state framing) rather than purely by prediction error. The synthesis recommends a HYBRID R5 verdict: error-driven trigger (PE / V_s drop) on a level-keyed substrate (cascade structure).",
+    "mapping_caveat": "Koechlin's cascade is an account of executive control during overt task performance, not of rollout-side imagination. The transfer to ARC-070 inherits the same constructive-episodic-simulation transfer risk as Badre & D'Esposito 2009. Additionally, the cascade model has been refined by subsequent work (notably Koechlin's own 2014/2016 follow-ups on the PROBE / SOFA architectures); the 2007 paper's clean single-axis cascade is somewhat oversimplified. The synthesis treats the 2007 paper as the canonical cited source for cascade-based hierarchical control while acknowledging the architecture has evolved. The mapping fidelity is therefore lower than for the more direct anchors (Zacks 2007, Schacter 2008).",
+    "source_context": "Theoretical paper, Trends in Cognitive Sciences 2007. Builds on Koechlin's earlier empirical work (Koechlin 2003 Science) and frames executive control in information-theoretic terms."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Source quality strong (TICS theoretical review, well cited). Mapping fidelity moderate -- cascade structure aligns with multi-level decomposition but is not specifically about imagination-side processing. Transfer risk moderate-high because the cascade model has been refined and the original 2007 statement is somewhat coarse. Treated as a R3 / R5 anchor, complementary to Badre 2009 on the structural / theoretical side."
+  }
+}

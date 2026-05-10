@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_striatal_chunking_graybiel1998",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071"],
+  "source": {
+    "title": "The basal ganglia and chunking of action repertoires",
+    "authors": ["Ann M. Graybiel"],
+    "year": 1998,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1006/nlme.1998.3843",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9753592/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational reference establishing the chunking-of-action-repertoires construct in the striatum. Cited >2000 times. Direct mapping to ARC-071's compose-on-repetition commitment. Substrate identity (striatum) and direction (sequence -> single performance unit) both nailed. Mapping fidelity is the dominant component; the only caveat is that the 1998 paper proposes the construct rather than testing it experimentally, so source_quality is rated on conceptual rigour and subsequent empirical validation rather than primary data in the paper itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ARC-071 must accumulate over (sequence, outcome) pairs, not over (sequence) alone -- Graybiel 1998 is explicit that S-R learning shapes the chunked unit; without outcome-keyed accumulation the slot is mis-specified.",
+    "Recoding-of-cortically-derived-information happens within the striatum, not in cortex -- ARC-071 substrate must be a striatum-analog, not a generic policy-cache."
+  ],
+  "tags": ["arc-071", "striatal_chunking", "habit_formation", "anchor_paper", "graybiel"],
+  "mapping": {
+    "source_claim_statement": "Recoding within the striatum can chunk the representations of motor and cognitive action sequences so that they can be implemented as performance units. S-R learning has properties of slow acquisition and (in humans) can occur without conscious awareness.",
+    "ree_translation": "ARC-071 instantiates exactly this recoding -- repeatedly executed primitive sequences are chunked into a single primitive that downstream layers (ARC-062 rule apprehension, ARC-065 diversity generation) treat atomically. Trigger primary is repetition + outcome consistency (the canonical Graybiel pattern); substrate analog is dorsolateral striatum, sibling to MECH-163 habit system.",
+    "mapping_caveat": "Graybiel 1998 frames chunking as cognitive AND motor; ARC-071 currently registers only over policy primitives (motor analog). A cognitive-chunking extension is implicit but not registered. Also, Graybiel's 'performance unit' is implementation-side; ARC-071's chunk also reshapes proposal/rule-apprehension, which is a stronger claim the 1998 paper does not explicitly support.",
+    "source_context": "Theoretical review synthesising rodent and primate striatal recording data and human imaging."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.92,
+    "transfer_risk": 0.18,
+    "notes": "Mapping fidelity dominant -- this is the canonical reference for ARC-071's architectural commitment. Transfer risk low (mammalian striatal organisation broadly conserved). Source quality 0.80 reflects review-paper-not-primary-data status."
+  }
+}

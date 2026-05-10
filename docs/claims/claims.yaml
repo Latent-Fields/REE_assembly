@@ -28774,6 +28774,86 @@
     environment that can produce the high-V_s-drop-mid-chunk
     scenario; SD-054 reef substrate or any environment with
     region-conditioned predictability heterogeneity will work.
+
+    Lit-pull addendum 2026-05-10
+    (evidence/literature/targeted_review_arc_070_decomposition/):
+    7 entries (Zacks 2007 PMID 17338600, Schacter Addis Buckner
+    2008 PMID 18400923, Badre & D'Esposito 2009 PMID 19672274,
+    Pfeiffer & Foster 2013 PMID 23594744, Koechlin & Summerfield
+    2007 PMID 17475536, Schapiro et al. 2017 PMID 27872368,
+    McGovern & Barto 2001 ICML). Aggregate lit_conf expected
+    0.74-0.78 (mean per-entry confidence 0.76); direction
+    6 supports + 1 mixed.
+
+    Five verdicts (R1-R5):
+
+    R1 trigger primary: PRIMARY = V_s drop on chunk's region
+    (PE-driven, biologically anchored via Zacks 2007 PE-as-trigger
+    framework + Schapiro 2017 hippocampal pattern-separation as
+    candidate V_s substrate). E2 forward-model disagreement,
+    completion-signal failure, and mid-execution PE are convergent
+    secondary signals that may co-fire but should not be primary.
+    Conf 0.78.
+
+    R2 LOAD-BEARING: SHARED SUBSTRATE recommended -- ARC-070 should
+    be implemented as a BIDIRECTIONAL EXTENSION of MECH-288
+    event_segmenter (one mechanism, two input streams: observation
+    and imagination), NOT a new module. Schacter / Addis / Buckner
+    2008 supplies the empirical anchor (constructive-episodic-
+    simulation core network is the SAME network for remembering
+    past and imagining future events); Zacks 2007's framework is
+    substrate-agnostic about the input stream's source. The R2
+    architectural recommendation simplifies the substrate registry
+    significantly: instead of two parallel decomposition mechanisms,
+    REE gets one bidirectional event_segmenter handling both input
+    streams, with MECH-269 V_s primitive feeding both via region-
+    conditioned predictability. Falsifiable test: ablating MECH-288
+    substrate should impair BOTH observation and imagination
+    decomposition; if a clinical or computational dissociation is
+    found, the bidirectional hypothesis falsifies. Conf 0.74.
+
+    R3 hierarchy depth: MULTI-LEVEL hierarchy supported
+    empirically (Badre & D'Esposito 2009 rostro-caudal gradient,
+    3-4 levels minimum) and theoretically (Koechlin & Summerfield
+    2007 cascade). Recursive decomposition (chunk -> sub-chunk ->
+    primitive) with implementation depth cap at 3-4 levels
+    suggested for tractability. Conf 0.78.
+
+    R4 mid-execution decomposition: BOTH supported (pre-commitment
+    AND mid-execution). Same V_s-trigger mechanism handles both
+    phases; downstream effects gated by MECH-094 hypothesis_tag
+    (pre-commit: no residue write; post-commit: residue write
+    enabled). Mid-execution branch may serve double duty as
+    reactive-replanning substrate -- candidate child-Q-claim.
+    Conf 0.66 (lowest of five; thin direct empirical evidence).
+
+    R5 bottleneck-state vs error-driven: DISTINCT mechanisms
+    with overlapping outputs. ARC-070 primary trigger is
+    PE-driven (V_s drop, biologically anchored); McGovern & Barto
+    2001 bottleneck-state framing is a foil mechanism that does
+    not biologically generalise. Bottleneck-aware secondary signal
+    is permitted as offline / consolidation-phase analysis (may
+    integrate with ARC-071 chunk-formation pull). Conf 0.74.
+
+    Architectural consequences for child-MECH design:
+      (a) primary trigger = V_s drop on chunk's region (R1);
+      (b) BIDIRECTIONAL substrate with MECH-288 (R2 LOAD-BEARING);
+      (c) recursive multi-level decomposition with depth cap (R3);
+      (d) both pre-commit and mid-execution phases supported via
+          same mechanism with hypothesis_tag-conditional downstream
+          effects (R4);
+      (e) PE-driven primary, bottleneck-aware secondary optional
+          (R5).
+
+    ARC-070 will be the SECOND major V_s consumer after MECH-269b;
+    the two readers can have independent thresholds but share the
+    V_s primitive substrate. Validation: discriminative-pair
+    experiment comparing ARC-070 OFF baseline vs V_s-drop primary
+    vs bottleneck-state primary, predicting the V_s-drop arm
+    decomposes pre-commitment when V_s indicates unreliability and
+    the bottleneck arm decomposes only on repeated structures.
+    See evidence/literature/targeted_review_arc_070_decomposition/
+    synthesis.md for full reasoning and falsifiable predictions.
   notes: >
     Cross-reference: ARC-070 is the inverse of ARC-071
     (composition). They share the parent commitment (ARC-069) but
@@ -28792,6 +28872,11 @@
     (event segmentation imagination side / Badre & D'Esposito
     hierarchical control / Pfeiffer-Foster hippocampal forward
     sweeps).
+
+    Lit-pull verdict R2 (post-2026-05-10) adds Schacter / Addis /
+    Buckner 2008 to the primary anchor cluster as the LOAD-BEARING
+    empirical anchor for shared substrate between observation-side
+    and imagination-side processing.
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: ARC-071
@@ -28964,6 +29049,61 @@
     diagnostic measuring whether the chunking accumulator fires
     at all; behavioural-latency / rollout-cost measurements come
     later.
+
+    Lit-pull landed 2026-05-10:
+    evidence/literature/targeted_review_arc_071_composition/
+    (9 entries; aggregate lit_conf ~ 0.78 supports-direction net,
+    8 supports + 1 weakens). Six verdicts settled:
+      R1 (trigger primary): repetition + outcome consistency is
+        primary trigger (canonical Graybiel pattern). Reward-rate
+        and V_s-positive are secondary modulators / gates. FEP
+        not directly supported in chunking literature. Conf 0.78.
+      R2 (substrate locus): PHASE-DEPENDENT MULTI-SUBSTRATE.
+        Substrate is striatum (DLS-analog, motor-motor association
+        formation) + infralimbic cortex (vmPFC-analog, chunk
+        maintenance, causally required per Smith & Graybiel 2013
+        optogenetic disruption) + frontoparietal cortex (early-
+        phase parsing, more relevant to ARC-070). NOT a single
+        substrate. Conf 0.81.
+      R3 (LOAD-BEARING transition mechanism for MECH-163):
+        CONFIRMED. ARC-071 IS the missing transition mechanism
+        in MECH-163 dual_goal_directed_systems. Yin & Knowlton
+        2006 supplies system-level evidence (DMS-to-DLS transfer
+        with overtraining); Smith & Graybiel 2013 supplies chunk-
+        level causal evidence (IL disruption prevents habit
+        formation). Recommend MECH-163 governance update:
+        depends_on should add ARC-071 (currently absent because
+        ARC-071 was registered after MECH-163). Conf 0.85.
+      R4 (chunks-of-chunks recursion): permit recursion to 2-3
+        levels by default. Architectural requirement: chunks must
+        carry initiation-set + termination-condition fields beyond
+        the sequence itself (Sutton 1999 options structure). Conf
+        0.72.
+      R5 (outcome-consistency threshold): gradual variance
+        threshold with hysteresis (F_low for formation < F_high
+        for dissolution; dissolution timescale slower than
+        formation). Chunk-size budget 2-5 elements per level
+        (Sakai 2003). Conf 0.71.
+      R6 (SAFETY-CRITICAL real-vs-imagined gating): NEW REE GAP.
+        Biology does NOT cleanly gate the chunking write path
+        against replay/imagined sequences -- sleep replay drives
+        chunking circuit consolidation per Albouy 2013 hippocampal-
+        striatal replay coupling (and broader sleep-motor-
+        consolidation literature). ARC-071's pre-registered
+        MECH-094 hypothesis_tag=False strict-gating is MORE
+        CONSERVATIVE than biology, with substantive safety-vs-
+        realism tradeoff. ESCALATED to governance decision: keep
+        MECH-094 strict (sacrifice realism for safety) vs. carve
+        out sleep-mode value-conditioned exception (more biology-
+        faithful but introduces residue-write through the
+        simulation channel MECH-094 prevents). Decision touches
+        MECH-094, ARC-071, MECH-292/293, sleep_substrate cluster,
+        SD-039. Defer ARC-071 child-MECH design until R6 lands.
+        Conf 0.74.
+    Aggregate ARC-071 lit_conf ~ 0.78. R3 confirmation and R6
+    escalation are both architecturally consequential beyond
+    standard parameterisation; family doc + governance follow-on
+    required.
   notes: >
     Cross-reference: ARC-071 is the inverse of ARC-070
     (decomposition). Asymmetric triggers (slow / repetition-driven

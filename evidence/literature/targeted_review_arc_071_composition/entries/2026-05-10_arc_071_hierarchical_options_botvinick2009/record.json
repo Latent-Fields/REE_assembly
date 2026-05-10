@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_hierarchical_options_botvinick2009",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071"],
+  "source": {
+    "title": "Hierarchically organized behavior and its neural foundations: A reinforcement learning perspective",
+    "authors": ["Matthew M. Botvinick", "Yael Niv", "Andrew C. Barto"],
+    "year": 2009,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2008.08.011",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The load-bearing source for R4 (chunks-of-chunks recursion). Botvinick et al. extend the options framework to deep behavioural hierarchies and map components onto prefrontal substrate (rostro-caudal and orbital prefrontal). Provides both formal grounding for recursive chunking and biological-constraint evidence for natural depth limits. Source is in Cognition not TiCS as the briefing pre-registered; same lead author published a related paper in TiCS 2008. Mapping fidelity 0.78 -- direct on hierarchy and recursion; the prefrontal-substrate detail is REE-relevant via vmPFC analog.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Behavioural hierarchy is divisible into discrete tasks containing subtask sequences containing simple actions -- ARC-071 should permit recursion (chunks-of-chunks) up to 2-3 levels in healthy operation; deeper hierarchies are biologically rare and likely unstable.",
+    "Hierarchical organisation maps onto rostro-caudal prefrontal substrate -- ARC-071 implementation must respect grain-substrate matching (deeper hierarchy = more rostral substrate); collapsing to flat substrate will fail to express the hierarchy.",
+    "Reusable subroutines (options) require both an initiation set and a termination condition -- ARC-071 chunks need explicit context-keyed initiation triggers (when does the chunk fire?) and termination conditions (when does the chunk complete?); pure repetition-counter implementations without these will produce mis-fired chunks."
+  ],
+  "tags": ["arc-071", "hierarchical_rl", "options_framework", "prefrontal", "botvinick"],
+  "mapping": {
+    "source_claim_statement": "Human and animal behaviour is hierarchically organised, divisible into discrete tasks comprised of subtask sequences which are built of simple actions. Hierarchical reinforcement learning aggregates actions into reusable subroutines or skills (options). Components map onto regions within the dorsolateral and orbital prefrontal cortex.",
+    "ree_translation": "ARC-071 should permit recursion (chunks-of-chunks) up to roughly 2-3 levels of nesting -- behavioural hierarchies in biology are rarely deeper than that in healthy operation. Each level of the hierarchy maps onto progressively more rostral / orbital prefrontal substrate. ARC-071 implementation in REE should preserve the hierarchical-substrate matching: deeper chunks should engage REE's vmPFC-analog (INV-037 / INV-038) more heavily; shallow chunks engage more posterior substrate. The options-framework's initiation-set and termination-condition requirements give ARC-071 chunks two explicit data fields beyond the sequence itself: (a) context-keyed initiation triggers, (b) completion conditions.",
+    "mapping_caveat": "Botvinick / Niv / Barto draw heavily on the hierarchical RL formalism, which has known scaling limits (deep hierarchies become brittle as exploration over the option space explodes). Biology may not match this formalism exactly -- the prefrontal-substrate evidence is correlational not causal. Also, the paper is in Cognition not TiCS as the briefing pre-registered.",
+    "source_context": "Theoretical / computational review synthesising hierarchical reinforcement learning formalism (options framework + variants) with primate / human prefrontal anatomy and lesion/imaging data."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.78 (Cognition, lead authors of the field, ~1500 citations). Mapping fidelity 0.78 (direct on hierarchy + recursion + substrate). Transfer risk 0.30 -- the hierarchical-RL formalism's scaling limits may not match biology exactly; the prefrontal-mapping is correlational."
+  }
+}

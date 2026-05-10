@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_070_decomposition",
+  "entry_id": "2026-05-10_arc_070_episodic_simulation_schacter_2008",
+  "timestamp_utc": "2026-05-10T17:21:11Z",
+  "claim_ids_tested": ["ARC-070"],
+  "source": {
+    "title": "Episodic simulation of future events: concepts, data, and applications",
+    "authors": ["Daniel L. Schacter", "Donna Rose Addis", "Randy L. Buckner"],
+    "year": 2008,
+    "venue": "Annals of the New York Academy of Sciences",
+    "doi": "10.1196/annals.1440.001",
+    "pmid": "18400923"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Load-bearing anchor for R2 (the LOAD-BEARING verdict of this pull). Schacter / Addis / Buckner consolidate the empirical evidence that imagining future events recruits substantially the same core neural network (medial PFC, medial temporal lobe / hippocampus, retrosplenial / posterior cingulate, inferior parietal lobule) as remembering past events. This is the strongest available empirical anchor for ARC-070's commitment that imagination-side processing shares substrate with observation-side processing -- shared neural network is a NECESSARY (though not sufficient) condition for shared event-segmentation machinery. Combined with Zacks 2007's theoretical framework, this paper supplies the empirical half of the R2 verdict.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE substrate uses an entirely separate imagination-side processing pipeline disjoint from MECH-288 event_segmenter, the design will violate the core constructive-episodic-simulation finding that observation and imagination share a single neural substrate. Such a design would predict that lesions to the observation-side event segmenter would NOT impair imagination-side segmentation; the literature predicts the opposite.",
+    "If ARC-070 fires on a fundamentally different signal class than MECH-288 (e.g. one uses prediction error and the other uses bottleneck-state distance), the architecture would predict a dissociation that the constructive-simulation literature has not observed. Both directions of the bidirectional substrate must read from the same predictive engine."
+  ],
+  "tags": ["arc_070", "episodic_simulation", "constructive_simulation", "imagination", "future_thinking", "core_network", "default_mode", "hippocampus", "r2_substrate_sharing"],
+  "mapping": {
+    "source_claim_statement": "Simulating possible future events depends on much of the same neural machinery -- a 'core network' including medial prefrontal cortex, medial temporal lobe (hippocampus / parahippocampus), retrosplenial / posterior cingulate cortex, and inferior parietal lobule -- as does remembering past events. The constructive-episodic-simulation hypothesis posits that the brain uses past experiences as building blocks for imagining specific future events; the same constructive process underlies both directions of mental time travel. The core network's regions activate together during both remembering and imagining, with hippocampal engagement scaling with the amount of detail simulated.",
+    "ree_translation": "ARC-070's R2 verdict requires biology to support shared substrate between observation-side processing (MECH-288 event_segmenter) and imagination-side processing (ARC-070's decomposition trigger). Schacter / Addis / Buckner 2008 directly licenses this commitment: the same neural network that processes observed activity streams also processes imagined activity streams; therefore, the SAME event-segmentation machinery that fires on observation should fire on imagination. The recommendation is to instantiate ARC-070 as a BIDIRECTIONAL EXTENSION of MECH-288's substrate (one mechanism, two input streams: observation and imagination), not as a separate module. The hippocampal centrality in the core network is doubly relevant given Pfeiffer & Foster 2013's evidence that hippocampal forward sweeps elaborate trajectory paths -- the same hippocampal substrate that generates the imagined trajectories ALSO would be the locus for segmenting them.",
+    "mapping_caveat": "Schacter 2008 establishes shared NETWORK, not shared MECHANISM at the algorithmic level. Two computational processes can run on the same network without being the same algorithm; the fMRI co-activation evidence is a weaker constraint than the architectural recommendation requires. The R2 verdict therefore must be hedged: biology STRONGLY suggests shared substrate but does not unambiguously prove that the SAME computational gate (event-segmentation) is operating in both directions. The synthesis recommends shared-substrate as the default architectural choice, with a falsifiable child-MECH design -- one bidirectional event_segmenter accepting observation and imagination streams -- and a fallback (separate-but-coupled gates) if behavioural evidence diverges.",
+    "source_context": "Theoretical / synthesis review, Annals NYAS 2008. Integrates the constructive-episodic-simulation hypothesis with fMRI evidence on the core network. Authors are leading figures in episodic memory / future thinking research."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (canonical review by leading authors in the domain). Mapping fidelity strong for shared-NETWORK, moderate for shared-MECHANISM (the gap is what the caveat addresses). Transfer risk moderate-high because human-fMRI core-network evidence is at a coarser grain than REE's rollout-side substrate question -- the network-level finding licenses architectural shared-substrate but the algorithmic-level confirmation requires a behavioural design that has not been run."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_habits_evaluative_brain_graybiel2008",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071"],
+  "source": {
+    "title": "Habits, rituals, and the evaluative brain",
+    "authors": ["Ann M. Graybiel"],
+    "year": 2008,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.29.051605.112851",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18558860/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Decade-after follow-up to Graybiel 1998 with substantially more empirical evidence available. Reframes chunking as the output of an evaluative-brain process: circuits mediating evaluation of actions gradually lead to selection of particular behaviors that, through chunking, become habits. The evaluative-circuit framing matters for ARC-071's outcome-consistency requirement -- chunking is not just repetition but repetition-conditioned-on-evaluation. Source quality high (Annu Rev Neurosci review by the field's lead author). Mapping fidelity 0.85 -- gives more parametric grounding than 1998 but also broadens scope to ritual/compulsion territory beyond ARC-071's policy-composition slot.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Habits and rituals share substrate with addiction and OCD -- ARC-071 implementation should expect failure modes mirroring these clinical signatures (chunks-without-evaluation, chunks-resistant-to-decomposition).",
+    "The evaluative circuit is upstream of chunking -- ARC-071 must be downstream of (or gated by) an evaluation-of-outcomes signal, not standalone."
+  ],
+  "tags": ["arc-071", "habit_formation", "evaluation", "anchor_paper", "graybiel"],
+  "mapping": {
+    "source_claim_statement": "Circuits mediating evaluation of actions gradually lead to selection of particular behaviors that, through the chunking process, become habits. Recoding within the striatum can chunk the representations of motor and cognitive action sequences into performance units.",
+    "ree_translation": "ARC-071's outcome-consistency trigger maps onto the evaluative-brain framing -- chunks form preferentially over evaluated-as-good sequences, not over arbitrary sequences. The evaluation signal in REE is the realised outcome (z_harm + z_goal + valence integration via SD-014); chunks accumulate when these are stable across repetitions. The clinical-pathology framing in Graybiel 2008 cross-references the speculative pre-registered ARC-071 pathology candidates (OCD as ARC-071-weakened, autism as ARC-070-weakened on chunked primitives).",
+    "mapping_caveat": "Graybiel 2008 spans habit formation through addiction and ritualised behaviour -- a substantial scope expansion beyond ARC-071's policy-composition slot. The clinical extensions are evidence-suggestive, not load-bearing for the architectural commitment. Evaluation is treated as upstream gate; ARC-071 as registered does not yet specify the gate explicitly (lit-pull verdict R5 should pin this).",
+    "source_context": "Annual review synthesising rodent / primate / human data including striatal recording and human imaging across normal and clinical populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (peer-reviewed annual review by the field's leading author). Mapping fidelity 0.85 -- direct on chunking, broader scope on ritual/clinical extensions. Transfer risk slightly higher than 1998 because the evaluative-circuit detail is more substrate-specific (DA / ACh signaling) than the 1998 framing."
+  }
+}

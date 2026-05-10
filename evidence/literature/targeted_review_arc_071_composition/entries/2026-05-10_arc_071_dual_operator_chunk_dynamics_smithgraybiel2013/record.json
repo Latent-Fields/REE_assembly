@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_dual_operator_chunk_dynamics_smithgraybiel2013",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071", "MECH-163"],
+  "source": {
+    "title": "A dual operator view of habitual behavior reflecting cortical and striatal dynamics",
+    "authors": ["Kyle S. Smith", "Ann M. Graybiel"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.05.038",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23810540/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "The empirical paper that closes the chunk-level mapping Yin & Knowlton 2006 left implicit. Recordings in DLS and infralimbic cortex during overtraining show distinct time courses for chunk crystallisation; selective optogenetic disruption of IL during overtraining PREVENTS habit formation. This is causal manipulation, not just correlational. Settles R3 (transition mechanism) at the chunk-substrate level and supplies the R5 chunk-dynamics evidence (chunks form, dissolve, reform across timescales). High mapping fidelity to ARC-071's composition direction. Source quality high (Neuron, optogenetic causal, multi-region recording).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Infralimbic cortex disruption prevents habit formation -- ARC-071 substrate is NOT just striatum-analog; a cortical (IL-analog) component is required. Pure-striatal ARC-071 implementations will fail to chunk.",
+    "Striatal task-bracketing pattern is reward-devaluation-INSENSITIVE while IL pattern remains reward-sensitive late -- the two operators have different evaluation properties. ARC-071 implementation must distinguish the chunk-execution pattern (devaluation-insensitive) from the chunk-maintenance pattern (devaluation-sensitive).",
+    "Chunks form, dissolve, and reform across overtraining -- ARC-071 must support chunk DISSOLUTION (not just formation). The slot's notes mention this implicitly via ARC-070; the synthesis should pin the dissolution-vs-decomposition relation explicitly."
+  ],
+  "tags": ["arc-071", "mech-163", "chunk_dynamics", "infralimbic_cortex", "optogenetics", "smith_graybiel"],
+  "mapping": {
+    "source_claim_statement": "Learning-related spiking dynamics of both striatum and neocortex are necessary, as dual operators, for habit crystallization. Striatum rapidly acquired an action-bracketing activity pattern insensitive to reward devaluation but sensitive to running automaticity. A similar pattern developed in the upper layers of the infralimbic cortex but formed only late during overtraining and closely tracked habit states. Selective optogenetic disruption of infralimbic activity during overtraining prevented habit formation. Chunks form, dissolve, and reform across overtraining timescales.",
+    "ree_translation": "ARC-071's transition mechanism for MECH-163 dual systems is causally supported -- IL disruption breaks the planned->habitual transition. The R3 LOAD-BEARING verdict comes back CONFIRMED at the causal level: ARC-071 IS the missing transition mechanism, with substrate located across striatum + infralimbic cortex (not striatum alone). For R5 outcome-consistency threshold: chunks dissolve under overtraining-with-changed-context, supporting an outcome-variance-tolerance threshold below which chunks de-form. ARC-071 implementation must include both formation and dissolution machinery.",
+    "mapping_caveat": "The optogenetic disruption is in IL, not in DLS -- the paper does not directly test whether disrupting striatum alone (with IL intact) would prevent chunking. Mapping ARC-071's substrate to JUST striatum-analog therefore underspecifies; substrate is striatum-PLUS-IL-analog. REE's IL-analog candidate is the ventromedial-PFC region (vmPFC.md INV-037 / INV-038); cross-link required.",
+    "source_context": "Multi-electrode recording in DLS and IL of rats during T-maze overtraining + reward devaluation, with optogenetic IL disruption manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Source quality 0.90 (Neuron, multi-region recording + causal optogenetic manipulation, lead author of field). Mapping fidelity 0.85 -- direct on chunk dynamics + R3 transition mechanism, but the IL involvement adds substrate complexity ARC-071's slot does not yet specify. Transfer risk 0.20 (rodent IL has plausible primate / human vmPFC analog but the homology is debated)."
+  }
+}

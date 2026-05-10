@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_070_decomposition",
+  "entry_id": "2026-05-10_arc_070_event_segmentation_zacks_2007",
+  "timestamp_utc": "2026-05-10T17:21:11Z",
+  "claim_ids_tested": ["ARC-070"],
+  "source": {
+    "title": "Event perception: a mind-brain perspective",
+    "authors": ["Jeffrey M. Zacks", "Nicole K. Speer", "Khena M. Swallow", "Todd S. Braver", "Jeremy R. Reynolds"],
+    "year": 2007,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.133.2.273",
+    "pmid": "17338600"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Load-bearing anchor for R1 (PE-as-trigger), R2 (shared substrate for segmentation across streams), and R5 (error-driven boundary signal). Zacks 2007 is the foundational theoretical statement of event segmentation theory: perceptual systems continuously make predictions and a transient prediction-error pulse is the canonical event-boundary signal. The mathematical structure -- a running event model whose error pulses gate a re-segmentation update -- maps directly onto ARC-070's commitment that low-V_s (= prediction error on a chunk's region) triggers re-segmentation of the rollout proposal stream. Strong source quality (foundational Psych Bull review, >2000 citations), strong R1/R5 mapping. R2 mapping is partial: the 2007 paper states the framework but the explicit observation/imagination shared-substrate evidence is more directly carried by Schacter Addis Buckner 2008 (companion entry).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that uses a constant-grain rollout proposal stream without a prediction-error-conditioned re-segmentation step will fail to reproduce Zacks-style boundary-locked computational events. The event-segmentation framework's core empirical signature is a transient PE-locked re-segmentation pulse, which ARC-070 (with V_s as the trigger) is designed to instantiate.",
+    "If the ARC-070 child mechanism uses only mid-execution prediction error (not pre-commitment / simulation-side error) it will fail to reproduce the imagination-side segmentation phenomena that the broader event-segmentation literature has documented across observed and imagined activity streams. A simulation-only segmentation gate is required."
+  ],
+  "tags": ["arc_070", "event_segmentation", "prediction_error", "boundaries", "imagination", "r1_trigger", "r2_substrate_sharing", "r5_bottleneck_vs_error"],
+  "mapping": {
+    "source_claim_statement": "People understand activity through discrete events. Perceptual systems continuously make predictions about what will happen next; when transient errors in predictions arise, an event boundary is perceived and the working event model is updated. Boundaries are nested at multiple grains (coarse and fine) and the same machinery applies across perceived activity streams. Brain regions including posterior temporal/parietal cortex and lateral frontal cortex show transient activation increases time-locked to event boundaries.",
+    "ree_translation": "ARC-070 names the imagination-side instantiation of exactly this framework. The V_s-drop trigger (MECH-269 region-conditioned predictability scalar dropping below threshold) IS a region-conditioned prediction-error signal in the formal sense; when V_s on the chunk's region is low, the chunked primitive cannot be reliably forward-simulated, and ARC-070 commits to re-segmenting the proposal stream into finer primitives. Zacks 2007 supplies the theoretical scaffolding: (a) PE is the canonical boundary signal (R1 verdict primary), (b) the same machinery operates across streams when the predictive system is the same (R2 verdict toward shared substrate, with caveats), (c) boundaries are nested at multiple grains (R3 verdict toward multi-level hierarchy supported), (d) error-driven boundaries and bottleneck-state-driven boundaries are functionally distinct framings of overlapping phenomena (R5 verdict).",
+    "mapping_caveat": "Zacks 2007's empirical anchoring is overwhelmingly on observed activity streams (films, narratives, simple perceptual sequences). The framework EXTENDS to imagination, simulation, memory replay -- the theory is substrate-agnostic about the source of the predictive stream -- but the 2007 paper itself does NOT directly test imagination-side segmentation. The R2 verdict therefore must be triangulated from this paper PLUS the constructive-episodic-simulation literature (Schacter Addis Buckner 2008 companion entry); Zacks 2007 alone supplies the theoretical-framework half of R2, not the empirical half.",
+    "source_context": "Foundational theoretical review, Psychological Bulletin 2007. Integrates perceptual psychology, fMRI, behavioural-segmentation, and cognitive-control literatures. Authors are the originators of event segmentation theory."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (foundational review, heavily cited, principled framework). Mapping fidelity strong on R1 + R5 (PE-as-trigger and error-driven framing); slightly weakened on R2 (the 2007 paper does not directly carry the observation->imagination empirical bridge -- that's Schacter 2008's job). Transfer risk moderate: framework transfers cleanly to REE's E3 + V_s scoring chain, but the empirical anchor data come from human perception experiments, not from autonomous-agent rollout substrates."
+  }
+}

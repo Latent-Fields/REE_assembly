@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_sleep_replay_motor_consolidation_albouy2013",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071", "MECH-094"],
+  "source": {
+    "title": "Hippocampus and striatum: Dynamics and interaction during acquisition and sleep-related motor sequence memory consolidation",
+    "authors": ["Genevieve Albouy", "Brad R. King", "Pierre Maquet", "Julien Doyon"],
+    "year": 2013,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22183",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23929594/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "Load-bearing R6 source -- weakens the assumption that biology cleanly distinguishes real-executed from imagined/replayed in the chunking write path. Joint hippocampal-striatal reactivations during sleep, with hippocampal activity LEADING ventral striatal replays, drive sleep-dependent motor sequence consolidation including chunk crystallisation. This means biology DOES allow replay-driven plasticity in the chunking circuit -- sleep-replay is part of the chunking machinery, not gated out of it. ARC-071's strict MECH-094 hypothesis_tag=False gating is therefore biologically MORE CONSERVATIVE than reality, which has substantive safety-vs-realism tradeoff implications for REE. High mapping fidelity (this is the question R6 asks); high source quality (Hippocampus journal, well-replicated finding).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sleep replay drives motor consolidation INCLUDING chunk-level changes -- biology does NOT cleanly gate the chunking write path against replay. ARC-071 implementation in REE can either (a) be MORE CONSERVATIVE than biology by enforcing strict hypothesis_tag=False gating (current MECH-094 design), trading off some realism for safety; or (b) permit replay-driven chunking, matching biology but exposing the agent to hallucinated-chunk risk.",
+    "Hippocampal-striatal coupling during sleep is reward-prediction-biased -- if ARC-071 permits replay-driven chunking, it should be VALUE-CONDITIONED (only consolidate replays of high-reward sequences). REE's analog would be E3-score-conditioned replay-chunking.",
+    "REE has a pre-existing architectural gap registered here -- biology says sleep replay does chunk, MECH-094 says simulation must not chunk. This is a substantive conflict the synthesis should escalate as a NEW REE GAP, not just a parameter choice."
+  ],
+  "tags": ["arc-071", "mech-094", "sleep_replay", "hippocampal_striatal", "consolidation", "safety_critical"],
+  "mapping": {
+    "source_claim_statement": "During motor sequence learning, the competitive interaction between the hippocampus and striatum observed during initial learning transformed into a cooperative interplay overnight, paralleling overnight performance enhancement. Joint reactivations occur in both hippocampal and striatal ensembles during sleep, with hippocampal activity leading ventral striatal replays during consolidation of place-reward associations. The functional connectivity between hippocampus and striatum can implement optimal learning and predict subsequent sleep-dependent motor sequence memory consolidation.",
+    "ree_translation": "R6 verdict (does biology distinguish real-executed from imagined/replayed in chunking write path): NO, biology does NOT cleanly gate. Sleep replay is part of the chunking machinery in biology, not gated out of it. ARC-071's pre-registered MECH-094 hypothesis_tag=False gating (chunks form ONLY from real executed sequences) is therefore MORE CONSERVATIVE than biology. The safety-critical tradeoff: REE's strict gating sacrifices some biological realism (sleep-replay-driven chunk consolidation) to avoid the hallucinated-chunk risk that biology accepts. The REE alternative -- permit replay-driven chunking but require value/reward-prediction conditioning (matching the Albouy 2013 reward-prediction bias) -- is a more biology-faithful design but introduces residue-write through the simulation channel that MECH-094 was specifically built to prevent. The synthesis should escalate this as a NEW REE GAP requiring explicit governance decision: do we keep MECH-094 strict gating and accept the realism gap, or relax it for ARC-071 specifically with a sleep-mode value-conditioned exception?",
+    "mapping_caveat": "Albouy et al. is human fMRI on motor SEQUENCE learning -- the chunking signature is correlational (BOLD pattern + behavioural improvement), not direct measurement of chunk formation. The cleaner causal evidence for sleep-replay-driven chunking would be rodent striatal replay studies (Lansink 2009 hippocampal-VTA-ventral striatal replay coupling; van der Meer 2016 striatal replay), but those are on reward-association rather than chunk-formation specifically. Strong-mapping caveat: the paper supports replay-driven CONSOLIDATION but not specifically replay-driven CHUNK FORMATION; the latter requires assuming the consolidation signal includes chunk-crystallisation.",
+    "source_context": "Healthy human subjects performing motor sequence task across acquisition + post-training sleep / no-sleep periods, with fMRI during retrieval to track functional connectivity changes."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Source quality 0.80 (Hippocampus journal, well-replicated finding, lead authors of motor-consolidation field). Mapping fidelity 0.75 -- direct on the consolidation question; the consolidation-implies-chunk-formation step is the inferential gap. Transfer risk 0.20 (human data, no species translation needed)."
+  }
+}

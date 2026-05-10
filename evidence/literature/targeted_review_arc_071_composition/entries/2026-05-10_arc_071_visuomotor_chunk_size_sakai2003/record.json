@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-05-10_arc_071_visuomotor_chunk_size_sakai2003",
+  "timestamp_utc": "2026-05-10T17:17:14Z",
+  "claim_ids_tested": ["ARC-071"],
+  "source": {
+    "title": "Chunking during human visuomotor sequence learning",
+    "authors": ["Katsuyuki Sakai", "K. Kitaguchi", "Okihide Hikosaka"],
+    "year": 2003,
+    "venue": "Experimental Brain Research",
+    "doi": "10.1007/s00221-003-1548-8",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12879170/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct human-behavioural evidence for spontaneous chunking with quantified chunk-size constraints (typically 2-4 items, sometimes 5). This is the load-bearing R5 source for parameterising the outcome-consistency threshold and the chunk-size budget. The reference-time-gap operationalisation (chunks identified by inter-element-time clustering) is a clean behavioural signature ARC-071 implementations can mirror. Source is the original Sakai paper, though the briefing mistakenly placed it in Curr Op Neurobiol (it is in Exp Brain Res). Mapping fidelity 0.78 -- the chunk-size-budget evidence translates directly; the reference task is finger-sequence learning so the motor-chunk grain is fine-grained.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Chunks are typically 2-4 items, sometimes 5 -- ARC-071 should default to small-grain chunks; chunks-of-15 are biologically unusual and likely indicate over-aggressive accumulator parameters.",
+    "Chunks are identified by inter-element TIME GAPS -- ARC-071's chunk-execution signature should emit a faster within-chunk timing than between-chunk timing; this is a direct behavioural test of whether chunks formed.",
+    "Subjects spontaneously chunk during sequence learning without instruction -- ARC-071 implementation should fire automatically, not require explicit goal-driven chunking instruction."
+  ],
+  "tags": ["arc-071", "chunk_size", "visuomotor", "behavioral_signature", "sakai_hikosaka"],
+  "mapping": {
+    "source_claim_statement": "Motor sequence learning is a process whereby a series of elementary movements is re-coded into an efficient representation for the entire sequence. Human subjects learn a visuomotor sequence by spontaneously chunking the elementary movements; each chunk acts as a single memory unit. Subjects perform sequences as several clusters of sets separated by long time gaps; clusters typically contain 2-4 items, sometimes 5. As learning progresses, clusters become clearer and more consistent; each cluster is processed as a single memory unit, a chunk, and is necessary for efficient sequence processing.",
+    "ree_translation": "ARC-071's chunk-size budget is small (2-5 elements) per the canonical biological pattern. The behavioural signature of chunk formation is inter-element timing -- shorter within-chunk, longer between-chunk gaps. ARC-071 implementations should produce this signature when chunks form. The spontaneous-chunking-without-instruction finding supports ARC-071 firing automatically (not requiring explicit goal-driven chunking instruction). For R5 outcome-consistency threshold: the cluster-becomes-clearer-with-learning trajectory implies a gradual variance threshold rather than a step function.",
+    "mapping_caveat": "Sakai et al. study is on finger-sequence learning -- a fine-grained motor task. The chunk-size budget (2-5) may not transfer cleanly to coarser action primitives (e.g. ARC-007 hippocampal proposals at single-action grain over many seconds). REE's 'primitives' are coarser than Sakai's 'elements'; the chunk-size budget should be calibrated separately at the REE-primitive grain. Also, the paper is in Exp Brain Res, not Curr Op Neurobiol as the briefing pre-registered.",
+    "source_context": "Healthy human subjects performing 2x10 visuomotor sequence task with extensive practice; chunk identification via inter-element time-gap analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.75 (Exp Brain Res, well-cited but not top-tier). Mapping fidelity 0.78 (direct on chunk-size budget; transfer to coarser-grain REE primitives is the open question). Transfer risk 0.30 -- the task-grain mismatch is the main risk; the behavioural signature should generalise but the chunk-size constants may not."
+  }
+}
